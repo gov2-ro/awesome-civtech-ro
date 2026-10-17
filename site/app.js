@@ -713,7 +713,7 @@ fetch('data.json').then(r => r.json()).then(db => {
   }
   SUGGEST = buildSuggestions();
   readURL();
-  if (DB.checked) slot('checked').textContent = `Ultima verificare automată: ${DB.checked} · ${DB.items.length} intrări`;
+  if (DB.checked) slot('checked').textContent = `actualizat: ${DB.checked} · ${DB.items.length} intrări`;
   renderAll();
   renderDetail();
   fitHeader();
