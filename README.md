@@ -1,6 +1,6 @@
-Listă de proiecte &amp; resurse de civtech, opengov, bună guvernare și tot așa.
+Listă de proiecte &amp; resurse de civtech, transparență, bună administrație și tot așa.
 
-<img src="docs/reference/logo/civtech-ro-tatt.png" width="225" style="float: right;">
+![civtech.gov2.ro logo small ](docs/reference/logo/civtech-ro-2-xs.png)
 
 ## Roadmap
 - [x] gather init sources
@@ -44,3 +44,7 @@ uv run scripts/profile.py            # profile new entries (add --force to redo 
 python3 scripts/build.py             # merge everything into site/data.json
 python3 -m http.server -d site 8000  # http://localhost:8000
 ```
+
+
+![civtech.gov2.ro logo](docs/reference/logo/civtech-ro-2.png)
+![civtech.gov2.ro logo](docs/reference/logo/civtech-ro-tatt-1-bw.png)
