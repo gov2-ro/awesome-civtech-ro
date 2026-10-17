@@ -8,6 +8,8 @@
     uv run scripts/profile.py --force         # re-profile everything
     uv run scripts/profile.py --only a,b      # just these slugs
     uv run scripts/profile.py --no-shots      # skip the browser screenshot pass
+    uv run scripts/profile.py --extra         # only refresh age, activity and reach signals for every entry
+    uv run scripts/profile.py --opr --search --gdelt   # optional reach passes (keys: OPR_API_KEY, SERPER_API_KEY)
 
 Writes data/profil.csv and images into site/img/{og,icon}/.
 """
@@ -15,16 +17,18 @@ import argparse
 import asyncio
 import io
 import json
+import os
 import re
 import sys
-from datetime import datetime, timezone
+import xml.etree.ElementTree as ET
+from datetime import datetime, timedelta, timezone
 from urllib.parse import urljoin, urlparse
 
 import httpx
 from PIL import Image, ImageOps
 from selectolax.lexbor import LexborHTMLParser as HTMLParser
 
-from common import DATA, SITE, load_entries, load_profile, save_profile
+from common import DATA, SITE, domain_of, load_entries, load_profile, save_profile
 
 UA = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
@@ -43,6 +47,7 @@ PARKED = re.compile(
     re.I,
 )
 REPO = re.compile(r"^https?://(www\.)?(github\.com|gitlab\.com|codeberg\.org)/[\w.-]+(/[\w.-]+)?/?$", re.I)
+GH_REPO = re.compile(r"^https?://(www\.)?github\.com/([\w.-]+/[\w.-]+?)(\.git)?/?$", re.I)
 REPO_SKIP = re.compile(r"/(sponsors|features|about|pricing|login|topics|marketplace)(/|$)", re.I)
 SOCIAL_HOSTS = {
     h: r["key"]
@@ -151,7 +156,10 @@ async def fetch_page(client, insecure, url: str) -> dict:
             score = int(size.group(1)) if size else (180 if "apple" in rel else 32)
             icons.append((score, urljoin(base, link.attributes["href"])))
     icons.sort(reverse=True)
-    out["icon_candidates"] = [u for _, u in icons] + [urljoin(base, "/favicon.ico")]
+    host = urlparse(base).hostname or ""
+    # Icon services as a last resort; both answer 404 when they have nothing.
+    out["icon_candidates"] = [u for _, u in icons] + [urljoin(base, "/favicon.ico"),
+                              f"https://icons.duckduckgo.com/ip3/{host}.ico", f"https://www.google.com/s2/favicons?domain={host}&sz=128"]
     repos, social = [], {}
     for a in tree.css("a[href]"):
         href = (a.attributes.get("href") or "").strip()
@@ -210,6 +218,324 @@ async def wayback(client, url: str) -> str:
         return ""
 
 
+async def archive_months(client, url: str) -> list[str] | None:
+    """Months (YYYYMMDD of the first capture in each) with a successful Wayback capture, oldest first.
+    The first gives the age; how many there are says how much the web noticed the site."""
+    target = re.sub(r"^https?://(www\.)?", "", url).rstrip("/")
+    for attempt in range(4):
+        try:
+            r = await client.get("https://web.archive.org/cdx/search/cdx", timeout=60, params={
+                "url": target, "output": "json", "fl": "timestamp", "filter": "statuscode:200",
+                "collapse": "timestamp:6"})
+            r.raise_for_status()
+            return [row[0][:8] for row in r.json()[1:]]
+        except Exception:
+            await asyncio.sleep(5 * 2 ** attempt)  # the CDX API rate-limits bursts
+    return None  # unknown, as opposed to [] (never archived)
+
+
+def ymd(ts: str) -> str:
+    return f"{ts[:4]}-{ts[4:6]}-{ts[6:8]}" if ts else ""
+
+
+def gh_headers() -> dict:
+    h = {"Accept": "application/vnd.github+json"}
+    if tok := os.environ.get("GITHUB_TOKEN"):
+        h["Authorization"] = f"Bearer {tok}"
+    return h
+
+
+async def github(client, repo: str) -> dict:
+    try:
+        r = await client.get(f"https://api.github.com/repos/{repo}", headers=gh_headers(), timeout=20)
+        return r.json() if r.status_code == 200 else {}
+    except Exception:
+        return {}
+
+
+_gh_search_lock = asyncio.Lock()
+
+
+async def github_find(client, host: str) -> str:
+    """A repo whose homepage is the site, for projects that don't link their code.
+    The search API allows 30 requests a minute with a token (10 without)."""
+    async with _gh_search_lock:
+        await asyncio.sleep(2.2 if os.environ.get("GITHUB_TOKEN") else 6.5)
+        try:
+            r = await client.get("https://api.github.com/search/repositories", headers=gh_headers(), timeout=20,
+                                 params={"q": f'"{host}" in:readme,description', "per_page": 30})
+            items = r.json().get("items", []) if r.status_code == 200 else []
+        except Exception:
+            return ""
+    # The homepage alone is not enough: an organisation points all its repos at its own site.
+    flat = lambda s: re.sub(r"[^a-z0-9]", "", s.lower())
+    label = flat(host.split(".")[0])
+    for it in items:
+        home = re.sub(r"^https?://(www\.)?", "", (it.get("homepage") or "").lower()).split("/")[0]
+        name = flat(it["name"])
+        if home == host and (label in name or name in label):
+            return it["full_name"]
+    return ""
+
+
+async def cert_first(client, host: str) -> str:
+    """Earliest TLS certificate issued for the host (certificate transparency, via crt.sh)."""
+    for attempt in range(3):
+        try:
+            r = await client.get("https://crt.sh/", params={"q": host, "output": "json"}, timeout=120)
+            if r.status_code == 200:
+                rows = r.json()
+                names = lambda x: {n.strip().lower() for n in (x.get("name_value") or "").split("\n")}
+                dates = [x["not_before"][:10] for x in rows if host in names(x)]
+                return min(dates, default="")
+        except Exception:
+            pass
+        await asyncio.sleep(5 * 2 ** attempt)  # crt.sh is often overloaded
+    return ""
+
+
+async def open_pagerank(client, profile: dict, entries: list[dict]):
+    """Open PageRank (0–10, from Common Crawl links), 100 domains per request. Needs OPR_API_KEY."""
+    key = os.environ.get("OPR_API_KEY")
+    if not key:
+        log("OPR_API_KEY not set; skipping Open PageRank")
+        return
+    by_dom = {}
+    for e in entries:
+        if urlparse(e["url"]).path.strip("/") == "":
+            by_dom.setdefault(domain_of(e["url"]), []).append(e["slug"])
+    doms = list(by_dom)
+    for i in range(0, len(doms), 100):
+        r = await client.get("https://openpagerank.com/api/v1.0/getPageRank", headers={"API-OPR": key},
+                             params=[("domains[]", d) for d in doms[i:i + 100]], timeout=30)
+        for row in r.json().get("response", []):
+            for slug in by_dom.get(row.get("domain"), []):
+                profile[slug]["opr"] = row.get("page_rank_decimal") or 0
+                log(f"  opr      {profile[slug]['opr']:<5} {slug}")
+
+
+SKIP_MENTION = re.compile(r"(^|\.)(facebook|instagram|linkedin|twitter|x|youtube|tiktok|github|google)\.com$")
+
+
+async def search_mentions(client, e: dict, p: dict):
+    """Pages elsewhere naming the domain (Google, via Serper; ~2 credits per entry). Needs SERPER_API_KEY."""
+    dom = domain_of(e["url"])
+    links = []
+    for page in (1, 2):
+        try:
+            # Unquoted: Serper's free tier rejects phrase queries; Google keeps a domain together anyway.
+            r = await client.post("https://google.serper.dev/search", timeout=30,
+                                  headers={"X-API-KEY": os.environ["SERPER_API_KEY"]},
+                                  json={"q": f"{dom} -site:{dom}", "gl": "ro", "hl": "ro", "num": 10, "page": page})
+            js = r.json()
+        except Exception as ex:
+            log(f"  search   ERR {e['slug']}: {ex}")
+            return
+        if "organic" not in js:
+            log(f"  search   ERR {e['slug']}: {js.get('message', js)}")
+            return
+        links += [o.get("link", "") for o in js["organic"]]
+        if len(js["organic"]) < 10:
+            break
+    hosts = [domain_of(u) for u in links]
+    hosts = [h for h in dict.fromkeys(hosts) if h and not h.endswith(dom) and not SKIP_MENTION.search(h)]
+    p["mentions"], p["mention_hosts"] = len(hosts), " ".join(hosts[:12])
+    p["search_social"] = {}
+    # Profiles the homepage doesn't link to often show up here; the review step weighs them.
+    # Only profiles whose handle carries the site's name: results also hold posts that merely mention it.
+    flat = lambda x: re.sub(r"[^a-z0-9]", "", x.lower())
+    label = flat(dom.split(".")[0])
+    for u in links:
+        host = (urlparse(u).hostname or "").lower().removeprefix("www.").removeprefix("m.")
+        role = SOCIAL_HOSTS.get(host) or ("github" if host == "github.com" else None)
+        handle = flat((urlparse(u).path.strip("/").split("/") or [""])[0].removeprefix("@"))
+        if role and len(handle) > 3 and len(label) > 3 and (label in handle or handle in label) and not SHARE.search(u):
+            p.setdefault("search_social", {}).setdefault(role, u.split("?")[0])
+    log(f"  search   {len(hosts):<3} {e['slug']}  {' '.join(hosts[:5])}")
+
+
+async def gdelt(client, e: dict, p: dict):
+    """News articles (GDELT, last 12 months) quoting the domain. GDELT asks for one request every 5 s."""
+    q = f'"{domain_of(e["url"]).replace(".", " ")}"'
+    for attempt in range(4):
+        await asyncio.sleep(6 * (attempt + 1))
+        try:
+            r = await client.get("https://api.gdeltproject.org/api/v2/doc/doc", timeout=40, params={
+                "query": q, "mode": "artlist", "format": "json", "maxrecords": 250, "timespan": "12m"})
+            if r.text.startswith("Please limit"):
+                continue
+            js = r.json() if r.text.strip().startswith("{") else {}
+            p["gdelt"] = len(js.get("articles", []))
+            log(f"  gdelt    {p['gdelt']:<3} {e['slug']}")
+            return
+        except Exception:
+            continue
+
+
+async def sitemap_info(client, base: str) -> tuple[str, int]:
+    """Newest lastmod and number of URLs, following one level of sitemap index (robots.txt first)."""
+    roots = []
+    try:
+        r, body = await get(client, urljoin(base, "/robots.txt"), 200_000)
+        if r.status_code == 200:
+            roots = re.findall(r"(?im)^\s*sitemap:\s*(\S+)", body.decode("utf-8", "replace"))
+    except Exception:
+        pass
+    roots = roots or [urljoin(base, "/sitemap.xml")]
+    mods, urls, todo, seen = [], 0, list(dict.fromkeys(roots))[:3], set()
+    while todo and len(seen) < 25:
+        u = todo.pop(0)
+        seen.add(u)
+        try:
+            r, body = await get(client, u, 10_000_000)
+            if r.status_code != 200:
+                continue
+            root = ET.fromstring(body)
+        except Exception:
+            continue
+        for el in root.iter():
+            tag = el.tag.rsplit("}", 1)[-1]
+            if tag == "lastmod" and el.text and re.match(r"\d{4}-\d\d-\d\d", el.text.strip()):
+                mods.append(el.text.strip()[:10])
+            elif tag == "loc" and el.text:
+                if root.tag.endswith("sitemapindex"):
+                    if el.text.strip() not in seen:
+                        todo.append(el.text.strip())
+                else:
+                    urls += 1
+    return max(mods, default=""), urls
+
+
+FEED_PATHS = ["/feed/", "/rss.xml", "/feed.xml", "/atom.xml", "/rss/", "/index.xml"]
+FEED_DATE = re.compile(r"<(?:pubDate|published|updated|dc:date)>\s*([^<]+?)\s*<", re.I)
+
+
+def parse_date(s: str) -> str:
+    for fmt in ("%a, %d %b %Y %H:%M:%S %z", "%a, %d %b %Y %H:%M:%S %Z", "%a, %d %b %Y %H:%M %z"):
+        try:
+            return datetime.strptime(s.strip(), fmt).strftime("%Y-%m-%d")
+        except ValueError:
+            pass
+    m = re.match(r"(\d{4}-\d\d-\d\d)", s.strip())
+    return m.group(1) if m else ""
+
+
+async def feed_latest(client, base: str, linked: list[str]) -> tuple[str, str]:
+    """(feed URL, newest item date) from a linked feed or the usual paths."""
+    for u in [*linked, *(urljoin(base, p) for p in FEED_PATHS)][:8]:
+        try:
+            r, body = await get(client, u, 3_000_000)
+            text = body.decode("utf-8", "replace")
+            if r.status_code != 200 or not re.search(r"<(rss|feed|rdf:RDF)\b", text[:3000]):
+                continue
+            dates = [d for d in (parse_date(x) for x in FEED_DATE.findall(text)) if d]
+            return str(r.url), max(dates, default="")
+        except Exception:
+            continue
+    return "", ""
+
+
+async def wp_latest(client, base: str) -> str:
+    """Newest post or page date from the WordPress REST API."""
+    out = ""
+    for kind in ("posts", "pages"):
+        try:
+            r = await client.get(urljoin(base, f"/wp-json/wp/v2/{kind}"), timeout=20,
+                                 params={"per_page": 1, "orderby": "modified", "_fields": "modified"})
+            if r.status_code == 200 and isinstance(js := r.json(), list) and js:
+                out = max(out, js[0].get("modified", "")[:10])
+        except Exception:
+            pass
+    return out
+
+
+async def wiki_refs(client, domain: str) -> int:
+    """Wikipedia articles (ro + en) linking to the domain."""
+    n = 0
+    for lang in ("ro", "en"):
+        try:
+            r = await client.get(f"https://{lang}.wikipedia.org/w/api.php", timeout=20, params={
+                "action": "query", "list": "exturlusage", "euquery": domain, "eulimit": 500,
+                "eunamespace": 0, "format": "json", "euprop": "title"})
+            n += len({x["title"] for x in r.json().get("query", {}).get("exturlusage", [])})
+        except Exception:
+            pass
+    return n
+
+
+async def header_lastmod(client, url: str) -> str:
+    try:
+        r = await client.head(url, timeout=15)
+        lm = r.headers.get("last-modified")
+        return datetime.strptime(lm, "%a, %d %b %Y %H:%M:%S GMT").strftime("%Y-%m-%d") if lm else ""
+    except Exception:
+        return ""
+
+
+COPYRIGHT = re.compile(r"(?:©|&copy;|copyright)\s*(?:\d{4}\s*[-–—]\s*)?((?:19|20)\d\d)", re.I)
+
+
+async def extras_one(sem, client, e: dict, p: dict):
+    """Signals for age, activity and reach. Last update is the newest of: repo push, feed item,
+    WordPress edit, sitemap lastmod, Last-Modified. Dates of today or later are what dynamic
+    pages report for themselves, not real edits."""
+    async with sem:
+        url = p.get("final_url") or e["url"]
+        alive = p.get("status") in ("activ", "mutat", "blocat")
+        # A project on a subpage of a bigger site: the host's sitemap, feed and links are not its own.
+        rooted = urlparse(e["url"]).path.strip("/") == ""
+        months = await archive_months(client, e["url"])
+        if months is not None:
+            p["first_seen"], p["last_capture"] = ymd(months[0]) if months else "", ymd(months[-1]) if months else ""
+            p["archive_months"] = len(months)
+        cands = []
+        repos = [m.group(2) for u in [*re.findall(r"https?://\S+", e.get("linkuri", "")), *(p.get("repos") or [])]
+                 if (m := GH_REPO.match(u.rstrip(",")))]
+        host = (urlparse(e["url"]).hostname or "").lower().removeprefix("www.")
+        if not repos and rooted and alive and (found := await github_find(client, host)):
+            repos = [found]
+            p["repos"] = [f"https://github.com/{found}", *(p.get("repos") or [])]
+        if repos and (gh := await github(client, repos[0])):
+            cands.append(((gh.get("pushed_at") or "")[:10], "cod"))
+            p["repo"], p["stars"], p["forks"] = gh.get("full_name", repos[0]), gh.get("stargazers_count", 0), gh.get("forks_count", 0)
+            p["repo_created"], p["repo_archived"] = (gh.get("created_at") or "")[:10], gh.get("archived", False)
+        if rooted:
+            p["cert_first"] = p.get("cert_first") or await cert_first(client, host)
+        if alive:
+            linked, html = [], ""
+            try:
+                r, body = await get(client, url, MAX_HTML)
+                html = body.decode(r.encoding or "utf-8", errors="replace")
+                tree = HTMLParser(html)
+                linked = [urljoin(str(r.url), l.attributes["href"]) for l in tree.css('link[rel="alternate"][href]')
+                          if re.search(r"rss|atom", l.attributes.get("type") or "")]
+                gen = tree.css_first('meta[name="generator"]')
+                p["generator"] = clean(gen.attributes.get("content") or "")[:60] if gen else ""
+                body_el = tree.body
+                p["words"] = len((body_el.text(separator=" ") if body_el else "").split())
+            except Exception:
+                pass
+            years = [int(y) for y in COPYRIGHT.findall(html)]
+            p["copyright_year"] = max(years) if years else ""
+            p["feed"], feed_date = await feed_latest(client, url, linked) if rooted else ("", "")
+            lastmod, p["sitemap_urls"] = await sitemap_info(client, url) if rooted else ("", "")
+            if not p.get("icon"):
+                host = urlparse(url).hostname or ""
+                p["icon"] = await fetch_icon(client, e["slug"], [
+                    urljoin(url, "/apple-touch-icon.png"), urljoin(url, "/favicon.ico"),
+                    f"https://icons.duckduckgo.com/ip3/{host}.ico", f"https://www.google.com/s2/favicons?domain={host}&sz=128"])
+            wp = await wp_latest(client, url) if rooted and ("wp-content" in html or "wordpress" in (p.get("generator") or "").lower()) else ""
+            cands += [(feed_date, "feed"), (wp, "wordpress"), (lastmod, "sitemap"), (await header_lastmod(client, url), "server")]
+        else:
+            cands.append((p.get("last_capture", ""), "arhiva"))
+        p["wiki_refs"] = await wiki_refs(client, domain_of(e["url"]) if rooted else re.sub(r"^https?://(www\.)?", "", e["url"]).rstrip("/"))
+        recent = (datetime.now(timezone.utc) - timedelta(days=1)).strftime("%Y-%m-%d")
+        best = max(((d, s) for d, s in cands if d and d < recent), default=("", ""))
+        p["updated"], p["updated_src"] = best
+        log(f"  extra    {p.get('first_seen') or '----------'} {best[0] or '----------'} {best[1]:9} "
+            f"arch:{p.get('archive_months', 0):<3} pages:{p.get('sitemap_urls', '-')!s:<5} wiki:{p['wiki_refs']} {e['slug']}")
+
+
 def classify(p: dict) -> str:
     if p.get("error"):
         # A timeout is inconclusive (slow host, geo-blocking); the browser pass decides.
@@ -221,6 +547,8 @@ def classify(p: dict) -> str:
         return "offline"
     if p.get("parked"):
         return "parcat"
+    if urlparse(p["url"]).path.strip("/") and p.get("final_url") and not urlparse(p["final_url"]).path.strip("/"):
+        return "offline"  # a project subpage that now redirects to the host's homepage is gone
     if p.get("final_url") and reg_domain(urlparse(p["final_url"]).hostname or "") != reg_domain(
         urlparse(p["url"]).hostname or ""
     ):
@@ -292,6 +620,10 @@ async def main():
     ap.add_argument("--force", action="store_true")
     ap.add_argument("--only", default="")
     ap.add_argument("--no-shots", action="store_true")
+    ap.add_argument("--extra", action="store_true", help="age, activity and reach signals (free)")
+    ap.add_argument("--opr", action="store_true", help="Open PageRank (OPR_API_KEY)")
+    ap.add_argument("--search", action="store_true", help="mentions on Google via Serper (SERPER_API_KEY, paid)")
+    ap.add_argument("--gdelt", action="store_true", help="news mentions via GDELT (slow: 6 s per entry)")
     args = ap.parse_args()
 
     OG_DIR.mkdir(parents=True, exist_ok=True)
@@ -302,13 +634,39 @@ async def main():
     if only:
         todo = [e for e in entries if e["slug"] in only]
     else:
-        todo = [e for e in entries if args.force or e["slug"] not in profile]
+        # A changed url counts as never profiled.
+        todo = [e for e in entries if args.force or e["slug"] not in profile or profile[e["slug"]].get("url") != e["url"]]
+    opts = dict(headers=HEADERS, follow_redirects=True, timeout=httpx.Timeout(20, connect=10), max_redirects=8)
+    if args.extra or args.opr or args.search or args.gdelt:
+        todo = [e for e in (todo if only else entries) if e["slug"] in profile]
+        # Domain-level signals mean nothing for a project on a subpage of a bigger site.
+        rooted = [e for e in todo if urlparse(e["url"]).path.strip("/") == ""]
+        async with httpx.AsyncClient(verify=False, **opts) as client:
+            if args.extra:
+                log(f"extra signals for {len(todo)} entries")
+                sem = asyncio.Semaphore(3)
+                await asyncio.gather(*(extras_one(sem, client, e, profile[e["slug"]]) for e in todo))
+            if args.opr:
+                await open_pagerank(client, profile, todo)
+            if args.search:
+                if not os.environ.get("SERPER_API_KEY"):
+                    sys.exit("SERPER_API_KEY not set")
+                sem = asyncio.Semaphore(4)
+                async def one(e):
+                    async with sem:
+                        await search_mentions(client, e, profile[e["slug"]])
+                await asyncio.gather(*(one(e) for e in rooted))
+            if args.gdelt:
+                for e in rooted:
+                    await gdelt(client, e, profile[e["slug"]])
+        save_profile(profile)
+        return
     log(f"profiling {len(todo)} of {len(entries)} entries")
 
     sem = asyncio.Semaphore(8)
-    opts = dict(headers=HEADERS, follow_redirects=True, timeout=httpx.Timeout(20, connect=10), max_redirects=8)
     async with httpx.AsyncClient(**opts) as client, httpx.AsyncClient(verify=False, **opts) as insecure:
         results = await asyncio.gather(*(profile_one(sem, client, insecure, e) for e in todo))
+        await asyncio.gather(*(extras_one(sem, insecure, e, p) for e, p in zip(todo, results)))
     for e, p in zip(todo, results):
         profile[e["slug"]] = p
 

@@ -3,10 +3,11 @@
     python3 scripts/build.py
 """
 import json
+import math
 import re
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 
-from common import BOILERPLATE, DATA, SITE, domain_of, load_entries, load_profile, split_list, to_href
+from common import BOILERPLATE, DATA, SITE, domain_of, load_entries, load_profile, split_list, split_tip, to_href
 
 CODE_ROLES = ("github", "gitlab", "cod")
 
@@ -61,6 +62,48 @@ def status_of(stare: str, prof: dict) -> str:
     return {"mutat": "activ", "blocat": "necunoscut", "parcat": "offline"}.get(s, s)
 
 
+def num(v) -> int:
+    try:
+        return int(v)
+    except (TypeError, ValueError):
+        return 0
+
+
+def years_since(d: str) -> float | None:
+    return (date.today() - date.fromisoformat(d)).days / 365.25 if d else None
+
+
+def last_activity(p: dict) -> str:
+    """Newest sign of life: a dated update, else the copyright year in the footer."""
+    cy = num(p.get("copyright_year"))
+    return max(p.get("updated", ""), f"{cy}-12-31" if cy and cy <= date.today().year else "")
+
+
+def since(p: dict) -> tuple[str, str]:
+    """Earliest trace: first Wayback capture or repo creation; the first TLS certificate only when
+    neither exists, since a domain can be older than the project now living on it."""
+    seen = min(((d, s) for d, s in ((p.get("first_seen", ""), "arhiva"), (p.get("repo_created", ""), "cod")) if d),
+               default=("", ""))
+    return seen if seen[0] else ((p["cert_first"], "certificat") if p.get("cert_first") else ("", ""))
+
+
+def score(e: dict, p: dict, alive: bool, desc: str, img) -> int:
+    """0–100 relevance estimate: recent activity, reach, volume, longevity and how well it is documented.
+    A heuristic for ordering, not a verdict; the weights are meant to be tuned."""
+    lg = lambda v, top: min(1.0, math.log1p(num(v)) / math.log1p(top))
+    act = years_since(last_activity(p))
+    activity = 0.3 if act is None else 1 if act < .25 else .75 if act < 1 else .45 if act < 2 else .2 if act < 4 else 0
+    opr = float(p.get("opr") or 0)
+    reach = (.3 * lg(p.get("archive_months"), 120) + .2 * lg(p.get("mentions"), 20) + .15 * min(1.0, opr / 6)
+             + .1 * lg(p.get("gdelt"), 30) + .15 * lg(p.get("wiki_refs"), 20) + .1 * lg(p.get("stars"), 200))
+    volume = lg(p.get("sitemap_urls"), 5000)
+    age = years_since(since(p)[0])
+    longevity = min(1.0, (age or 0) / 8)
+    docs = sum([bool(e["descriere_scurta"]), bool(desc), bool(e.get("cuvinte")), bool(img)]) / 4
+    total = 30 * activity + 25 * reach + 15 * volume + 15 * longevity + 15 * docs
+    return round(total * (1 if alive else .4))
+
+
 def main():
     tax = json.loads((DATA / "taxonomy.json").read_text())
     roles = tax["linkuri"]["roluri"]
@@ -75,10 +118,12 @@ def main():
         lk = links(e["linkuri"], live.get("social") or {}, roles)
         code_link = next((l for l in lk if l["role"] in CODE_ROLES), None)
         code = code_link["url"] if code_link else (live.get("repos") or [""])[0]
-        img = None if e["imagine"] == "none" else live.get("image")
+        img = live.get("image")
         moved = live.get("status") == "mutat"
         final = live.get("final_url") or e["url"]
         status = status_of(e["stare"], p)
+        alive = status in ("activ", "necunoscut")
+        act = last_activity(p)
         items.append({
             "id": n + 1,
             "slug": e["slug"],
@@ -89,7 +134,7 @@ def main():
             "desc": desc,
             "descSrc": desc_src,
             "domeniu": e["domeniu"],
-            "tip": e.get("tip", ""),
+            "tips": split_tip(e.get("tip", "")),
             "acoperire": e["acoperire"],
             "oras": e["oras"],
             "keywords": keywords(e.get("cuvinte", ""), tax["cuvinte"]),
@@ -103,10 +148,16 @@ def main():
             "status": status,
             "httpStatus": live.get("http_status"),
             "checked": (p.get("fetched_at") or "")[:10],
+            "since": since(p)[0],
+            "sinceSrc": since(p)[1],
+            "updated": p.get("updated", ""),
+            "updatedSrc": p.get("updated_src", ""),
+            # Up, but no sign of an edit in three years.
+            "stale": act[:4] if alive and act and (years_since(act) > 3 or p.get("repo_archived")) else "",
+            "score": score(e, p, alive, desc, img),
             "img": img,
             "icon": live.get("icon", ""),
             "wayback": p.get("wayback") or (f"https://web.archive.org/web/{e['url']}" if e["url"] and status in ("offline", "arhivat") else ""),
-            "sursa": e["sursa"],
         })
     items.sort(key=lambda x: re.sub(r"[^a-z0-9]", "", x["name"].lower()))
     checked = sorted({i["checked"] for i in items if i["checked"]})

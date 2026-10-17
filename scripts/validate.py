@@ -12,7 +12,7 @@ import re
 import sys
 from pathlib import Path
 
-from common import DATA, ORGS_COLS, PROIECTE_COLS, split_list, to_href
+from common import DATA, ORGS_COLS, PROIECTE_COLS, split_list, split_tip, to_href
 
 TAX = json.loads((DATA / "taxonomy.json").read_text())
 DOMENII = {d["key"] for d in TAX["domenii"]}
@@ -81,8 +81,6 @@ def check(path: Path, cols: list[str], seen: dict, urls: dict, is_org: bool):
                 warn("acoperire locală fără oraș")
             if r["stare"] not in ("", "arhivat", "offline"):
                 err(f"stare necunoscută: '{r['stare']}' (gol, arhivat sau offline)")
-            if r["imagine"] not in ("", "none"):
-                err(f"imagine: '{r['imagine']}' (gol sau none)")
             try:
                 for tok in split_list(r["linkuri"]):
                     m = re.match(r"^([a-z]+):(https?://.+)$", tok)
@@ -95,8 +93,9 @@ def check(path: Path, cols: list[str], seen: dict, urls: dict, is_org: bool):
             if not is_org:
                 if r["fel"] not in ("proiect", "resursa"):
                     err(f"fel necunoscut: '{r['fel']}' (proiect sau resursa)")
-                if r["tip"] and r["tip"] not in TIPURI:
-                    err(f"tip necunoscut: '{r['tip']}' (valori: {', '.join(sorted(TIPURI))})")
+                for t in split_tip(r["tip"]):
+                    if t not in TIPURI:
+                        err(f"tip necunoscut: '{t}' (valori: {', '.join(sorted(TIPURI))})")
                 if r["fel"] == "proiect" and not r["tip"]:
                     warn("proiect fără tip")
                 if r["civictech"] not in ("", "0", "1"):

@@ -1,6 +1,6 @@
-Listă de proiecte &amp; resurse de civtech, transparență, bună administrație și tot așa.
+<img src="docs/reference/logo/civtech-ro-favicon-2.png" width=64>
 
-![civtech.gov2.ro logo small ](docs/reference/logo/civtech-ro-2-xs.png)
+Listă de proiecte &amp; resurse de civtech, transparență, bună administrație și tot așa &rarr; [proiecte.csv](data/proiecte.csv)
 
 ## Roadmap
 - [x] gather init sources
@@ -16,6 +16,11 @@ Listă de proiecte &amp; resurse de civtech, transparență, bună administrați
 - ranking by popularity / relevance — formula and signals to be decided
 - sort by age (needs a launch / added date per entry)
 - RSS feed
+- update logo
+- add manual ranking - recomandarea redacției?
+- mark fresh projects
+- remove "catalog" column
+- navigate projects with keyboard, left/right, j/k, open original
 - more links per resource, plus stats: social media, GitHub, search-engine result counts
 - international mirror (projects, orgs, tools — seed: `data/international.csv`), shown contextually next to related Romanian resources
 - "Propune un proiect", two ways in: a PR on GitHub, or a Google Form feeding a Google Sheet. Two-way sync via a GitHub workflow:
@@ -26,6 +31,10 @@ Listă de proiecte &amp; resurse de civtech, transparență, bună administrați
 - hosting: GitHub Pages mirror, or host there with its own domain
 - static HTML page per project at build time (own share preview, indexable)
 - profiler: detect donation, terms, about/contact and data-access (download / API / MCP) pages from homepage links, feeding the same `links` roles
+- write methodology. In Romanian. 
+- later: allow bookmarks. saved in browser, but allow csv export.
+- later: add voting? log-in with gh/li/google/meta/x ? - what would that imply?
+
 
 
 ## Layout
@@ -41,10 +50,13 @@ Human-edited data is CSV, so it can be changed in a PR or round-tripped through 
 ```sh
 python3 scripts/validate.py          # check the CSVs (runs on every PR)
 uv run scripts/profile.py            # profile new entries (add --force to redo all, --only slug,slug)
+uv run scripts/profile.py --extra    # age, activity, volume, repos, certificates, Wikipedia links (free)
+uv run scripts/profile.py --search --gdelt --opr   # reach: Serper (SERPER_API_KEY, paid), GDELT, Open PageRank (OPR_API_KEY)
+uv run scripts/review.py --limit 5   # Claude Haiku suggestions → data/review/sugestii.csv (ANTHROPIC_API_KEY; --dry-run to inspect)
 python3 scripts/build.py             # merge everything into site/data.json
 python3 -m http.server -d site 8000  # http://localhost:8000
 ```
 
 
-![civtech.gov2.ro logo](docs/reference/logo/civtech-ro-2.png)
-![civtech.gov2.ro logo](docs/reference/logo/civtech-ro-tatt-1-bw.png)
+<img src="docs/reference/logo/civtech-ro-2.png" width=250>
+<img src="docs/reference/logo/civtech-ro-tatt-1-bw.png" width=250>

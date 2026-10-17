@@ -21,7 +21,6 @@ const ICON = {
   code: '<svg viewBox="0 0 24 24"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></svg>',
   grid: '<svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></svg>',
   list: '<svg viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg>',
-  link: '<svg viewBox="0 0 24 24"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>',
   archive: '<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="5" rx="1"/><path d="M5 9v10h14V9M10 13h4"/></svg>',
 };
 
@@ -35,7 +34,7 @@ const STATUS = {
   necunoscut: { label: 'Neconfirmat', cls: 'warn', group: 'neconfirmat' },
   neverificat: { label: 'Neverificat', cls: 'warn', group: 'neconfirmat' },
 };
-const SORTS = [['domeniu', 'Pe domenii'], ['az', 'A–Z'], ['random', 'Aleatoriu']];
+const SORTS = [['domeniu', 'Pe domenii'], ['az', 'A–Z'], ['relevanta', 'Relevanță'], ['recent', 'Actualizate recent'], ['random', 'Aleatoriu']];
 const MIN_Q = 3;
 // ina=1 shows inactive projects (hidden by default); a and s are kept for URLs but have no UI for now.
 const DEFAULTS = { k: 'proiect', q: '', d: '', t: '', kw: '', c: '', org: '', a: '', s: '', cod: '', civ: '', ina: '', v: '', o: '', p: '' };
@@ -45,7 +44,6 @@ let DB = null, TAX = null, seed = Math.random();
 let title = TITLES[0];
 const state = { ...DEFAULTS };
 const closed = new Set(store.get('ct.closed', ['cuvinte']));
-const mqWide = matchMedia('(min-width: 720px)');
 let lastFocus = null;
 
 const isInactive = it => STATUS[it.status].group === 'inactiv';
@@ -74,7 +72,7 @@ const hrefFor = slug => { const u = new URLSearchParams(location.search); u.set(
 function matches(it, skip) {
   if (it.kind !== state.k) return false;
   if (skip !== 'd' && state.d && it.domeniu !== state.d) return false;
-  if (skip !== 't' && state.t && !tips().includes(it.tip)) return false;
+  if (skip !== 't' && state.t && !tips().some(t => it.tips.includes(t))) return false;
   if (skip !== 'kw' && state.kw && !listOf('kw').some(k => it.keywords.includes(k))) return false;
   if (skip !== 'c' && state.c && it.oras !== state.c) return false;
   if (skip !== 'org' && state.org && !it._orgs.includes(state.org)) return false;
@@ -93,7 +91,8 @@ function matches(it, skip) {
 const kindItems = () => DB.items.filter(i => i.kind === state.k);
 const countBy = (skip, key) => {
   const c = {};
-  for (const it of DB.items) if (matches(it, skip)) { const v = key(it); c[v] = (c[v] || 0) + 1; }
+  // key may return several values (an item with two tips counts under both).
+  for (const it of DB.items) if (matches(it, skip)) for (const v of [key(it)].flat()) c[v] = (c[v] || 0) + 1;
   return c;
 };
 const activeFilterCount = () => ['d', 'c', 'org', 'a', 's', 'cod', 'civ', 'ina'].filter(k => state[k]).length + tips().length + listOf('kw').length;
@@ -104,6 +103,8 @@ function sorted(list) {
     const r = it => Math.sin(it.id * 9301 + seed * 49297) % 1;
     return [...list].sort((a, b) => r(a) - r(b));
   }
+  if (state.o === 'relevanta') return [...list].sort((a, b) => b.score - a.score || byName(a, b));
+  if (state.o === 'recent') return [...list].sort((a, b) => (b.updated || '').localeCompare(a.updated || '') || byName(a, b));
   return [...list].sort((a, b) => rank(a) - rank(b) || byName(a, b));
 }
 
@@ -123,43 +124,80 @@ function thumb(it) {
   if (it.icon) return `<div class="thumb icon"><img src="${esc(it.icon)}" alt="" loading="lazy"></div>`;
   return `<div class="thumb none" style="--h:${hue(it.domain || it.name)}" aria-hidden="true">${esc(initials(it.name))}</div>`;
 }
-const tipLabel = it => TAX.tip[it.tip]?.label || '';
+const tipLabels = it => it.tips.map(t => TAX.tip[t]?.label).filter(Boolean);
 const placeLabel = it => it.acoperire === 'local' ? (it.oras || 'Local') : '';
 function metaLine(it, withDomain) {
   const st = STATUS[it.status];
-  const parts = [tipLabel(it), placeLabel(it)];
+  const parts = [...tipLabels(it), placeLabel(it)];
   if (withDomain) parts.unshift(TAX.domeniu[it.domeniu]?.short);
   let html = parts.filter(Boolean).map(esc).join(' · ');
   if (st.group !== 'activ') html += ` <span class="status-tag ${st.cls}">· ${st.label}</span>`;
+  else if (it.stale) html += ` <span class="status-tag warn">· neactualizat din ${it.stale}</span>`;
   return html;
 }
 const statusDot = it => `<span class="dot ${STATUS[it.status].cls}" title="${STATUS[it.status].label}"></span>`;
 const codeTag = it => it.code ? `<span class="code-tag" title="Cod sursă deschis">${ICON.code}cod</span>` : '';
 const blurb = it => it.tagline || it.desc;
+const clip = (s, n) => s.length > n ? s.slice(0, s.lastIndexOf(' ', n) > n * .6 ? s.lastIndexOf(' ', n) : n).replace(/[\s,.;:–-]+$/, '') + '…' : s;
+// Native tooltip: the start of the long description, when there is more to say than the tagline.
+const hint = it => { const d = it.desc && it.desc !== it.tagline ? it.desc : ''; return d ? ` title="${esc(clip(d, 220))}"` : ''; };
+
+/* ---------- dates ---------- */
+const DAY = 864e5;
+function span(days) {
+  if (days < 1) return 'azi';
+  if (days < 31) return plural(Math.floor(days), 'zi', 'zile');
+  if (days < 365) return plural(Math.floor(days / 30.4), 'lună', 'luni');
+  return plural(Math.floor(days / 365.25), 'an', 'ani');
+}
+const daysSince = d => (Date.now() - Date.parse(d)) / DAY;
+const age = it => it.since ? span(daysSince(it.since)) : '';
+const updatedLabel = it => !it.updated ? '' : daysSince(it.updated) < 1 ? 'azi' : `acum ${span(daysSince(it.updated))}`;
+const UPDATED_SRC = { cod: 'ultimul commit', sitemap: 'sitemap', server: 'antetul Last-Modified', arhiva: 'ultima arhivare Wayback' };
+const SINCE_SRC = { arhiva: 'prima arhivare Wayback', cod: 'crearea depozitului de cod', certificat: 'primul certificat TLS al domeniului' };
+const ageTitle = it => !it.since ? 'Necunoscut' : it.sinceSrc ? `${it.since} · după ${SINCE_SRC[it.sinceSrc] || it.sinceSrc}` : it.since;
+const updatedTitle = it => it.updated ? `${it.updated} · după ${UPDATED_SRC[it.updatedSrc] || it.updatedSrc}` : 'Necunoscut';
+
+// Cards and rows are not links themselves: the name is (stretched over the whole item, opening the
+// detail panel), so the project's own site can sit inside as a second, real link.
+const extHref = it => (!isInactive(it) && it.url) || it.wayback || '';
+function extLink(it, label, cls = '') {
+  const href = extHref(it);
+  if (!href) return label ? `<span class="${cls}">${label}</span>` : '';
+  const title = isInactive(it) ? 'Vezi în arhivă' : `Deschide ${it.domain}`;
+  return `<a class="ext ${cls}" href="${esc(href)}" target="_blank" rel="noopener" title="${esc(title)}"${label ? '' : ` aria-label="${esc(title)}"`}>${label}${ICON.out}</a>`;
+}
+const nameLink = it => `<a class="stretch" href="${hrefFor(it.slug)}">${esc(it.name)}</a>`;
 
 function card(it, withDomain) {
-  return `<a class="card${isInactive(it) ? ' inactive' : ''}" href="${hrefFor(it.slug)}" data-open="${it.slug}">
+  return `<div class="card${isInactive(it) ? ' inactive' : ''}" data-open="${it.slug}"${hint(it)}>
     ${media(it)}
     <div class="card-body">
       <div class="meta">${metaLine(it, withDomain)}</div>
-      <h3>${esc(it.name)}</h3>
+      <h3>${nameLink(it)}</h3>
       ${blurb(it) ? `<p class="tagline">${esc(blurb(it))}</p>` : ''}
-      <div class="foot">${statusDot(it)}<span class="dom">${esc(it.domain)}</span>${codeTag(it)}</div>
+      <div class="foot">${statusDot(it)}${extLink(it, `<span class="dom">${esc(it.domain)}</span>`)}${codeTag(it)}</div>
     </div>
-  </a>`;
+  </div>`;
 }
 function row(it, withDomain) {
-  return `<a class="row${isInactive(it) ? ' inactive' : ''}" href="${hrefFor(it.slug)}" data-open="${it.slug}">
+  const desc = it.tagline && it.desc && it.desc !== it.tagline ? it.desc : '';
+  const dates = [age(it) && `${age(it)} vechime`, updatedLabel(it) && `actualizat ${updatedLabel(it)}`].filter(Boolean).join(' · ');
+  return `<div class="row${isInactive(it) ? ' inactive' : ''}" data-open="${it.slug}"${hint(it)}>
     ${thumb(it)}
     <div class="row-main">
-      <div class="row-title">${esc(it.name)} ${statusDot(it)} ${codeTag(it)}</div>
+      <div class="row-title">${nameLink(it)} ${statusDot(it)} ${codeTag(it)} ${extLink(it, '', 'ext-m')}</div>
       ${blurb(it) ? `<div class="row-tag">${esc(blurb(it))}</div>` : ''}
-      <div class="meta meta-m">${metaLine(it, withDomain)}</div>
+      ${desc ? `<div class="row-desc">${esc(clip(desc, 160))}</div>` : ''}
+      ${it.keywords.length ? `<div class="row-kw">${it.keywords.map(k => `<span>#${esc(kwLabel(k))}</span>`).join('')}</div>` : ''}
+      <div class="meta meta-m">${metaLine(it, withDomain)}${dates ? ` · ${esc(dates)}` : ''}</div>
     </div>
-    <div class="row-side">${esc(it.org || '')}</div>
-    <div class="row-side">${esc(it.domain)}</div>
-  </a>`;
+    <div class="row-side" title="${esc(ageTitle(it))}">${esc(age(it) || '—')}</div>
+    <div class="row-side${it.updatedSrc === 'arhiva' ? ' faint' : ''}" title="${esc(updatedTitle(it))}">${esc(updatedLabel(it) || '—')}</div>
+    <div class="row-side">${extLink(it, `<span class="dom">${esc(it.domain)}</span>`)}</div>
+  </div>`;
 }
+const LIST_HEAD = '<div class="list-head" aria-hidden="true"><span>Proiect</span><span>Vechime</span><span>Actualizat</span><span>Site</span></div>';
 
 /* ---------- filters ---------- */
 function renderTabs() {
@@ -177,7 +215,7 @@ function facet(id, label, body) {
 function facetsHTML() {
   const mine = kindItems();
   const has = (pred) => mine.some(pred);
-  const dC = countBy('d', i => i.domeniu), tC = countBy('t', i => i.tip);
+  const dC = countBy('d', i => i.domeniu), tC = countBy('t', i => i.tips);
   const out = [];
 
   // Only choices that exist for the current tab are offered.
@@ -188,7 +226,7 @@ function facetsHTML() {
       return `<button class="tag" data-act="multi" data-key="${key}" data-val="${esc(val)}" aria-pressed="${on}" ${!n && !on ? 'disabled' : ''}>${esc(text)}<span class="n">${n}</span></button>`;
     }).join('')}</div>`);
   };
-  const tipList = DB.taxonomy.tipuri.filter(t => has(i => i.tip === t.key));
+  const tipList = DB.taxonomy.tipuri.filter(t => has(i => i.tips.includes(t.key)));
   if (tipList.length > 1) out.push(tagFacet('tip', 'Tip', 't', tipList.map(t => [t.key, t.label]), tC));
   const domList = DB.taxonomy.domenii.filter(d => has(i => i.domeniu === d.key));
   if (domList.length > 1) {
@@ -250,7 +288,7 @@ function renderToolbar(n) {
   slot('fcount').textContent = activeFilterCount() || '';
 }
 
-const currentView = () => state.v || (state.k !== 'proiect' || !mqWide.matches ? 'list' : 'cards');
+const currentView = () => state.v || 'list';
 
 function renderResults() {
   const list = DB.items.filter(i => matches(i));
@@ -258,7 +296,7 @@ function renderResults() {
   const view = currentView();
   const block = (items, withDomain) => view === 'cards'
     ? `<div class="grid">${items.map(i => card(i, withDomain)).join('')}</div>`
-    : `<div class="list">${items.map(i => row(i, withDomain)).join('')}</div>`;
+    : `<div class="list">${LIST_HEAD}${items.map(i => row(i, withDomain)).join('')}</div>`;
   let html;
   if (!list.length) {
     html = `<div class="empty"><h3>Niciun rezultat.</h3><p>Încearcă alt termen de căutare sau elimină unul dintre filtre.</p><p><button class="btn btn-outline" data-act="reset">Șterge filtrele</button></p></div>`;
@@ -322,7 +360,7 @@ function renderDetail() {
   const st = STATUS[it.status];
   const alive = !isInactive(it);
   const related = DB.items.filter(i => i.kind === it.kind && i.domeniu === it.domeniu && i.slug !== it.slug && !isInactive(i))
-    .sort((a, b) => (a.tip === it.tip ? -1 : 0) - (b.tip === it.tip ? -1 : 0) || byName(a, b)).slice(0, 4);
+    .sort((a, b) => b.tips.filter(t => it.tips.includes(t)).length - a.tips.filter(t => it.tips.includes(t)).length || byName(a, b)).slice(0, 4);
   const dl = [
     it.org && ['Autor', esc(it.org)],
     it.contact && ['Contact', esc(it.contact)],
@@ -330,8 +368,9 @@ function renderDetail() {
     ...linkRows(it),
     it.code && ['Cod sursă', `<a href="${esc(it.code)}" target="_blank" rel="noopener">${esc(it.code.replace(/^https?:\/\/(www\.)?/, ''))}</a>`],
     it.wayback && ['Arhivă', `<a href="${esc(it.wayback)}" target="_blank" rel="noopener">Wayback Machine</a>`],
-    ['Stare', `${statusDot(it)} ${st.label}${it.checked ? ` <span class="muted small mono">· verificat ${esc(it.checked)}${it.httpStatus ? ` · HTTP ${it.httpStatus}` : ''}</span>` : ''}`],
-    it.sursa && ['Catalog', esc(it.sursa)],
+    it.since && ['Vechime', `${esc(age(it))} <span class="muted small mono">· ${esc(ageTitle(it))}</span>`],
+    it.updated && ['Actualizat', `${esc(updatedLabel(it))} <span class="muted small mono">· ${esc(it.updated)} după ${esc(UPDATED_SRC[it.updatedSrc] || it.updatedSrc)}</span>`],
+    ['Stare', `${statusDot(it)} ${st.label}${it.stale ? ` <span class="muted small">· niciun semn de actualizare după ${it.stale}</span>` : ''}${it.checked ? ` <span class="muted small mono">· verificat ${esc(it.checked)}${it.httpStatus ? ` · HTTP ${it.httpStatus}` : ''}</span>` : ''}`],
   ].filter(Boolean);
   const cta = alive && it.url
     ? `<a class="btn btn-primary" href="${esc(it.url)}" target="_blank" rel="noopener">Deschide ${esc(it.domain)}${ICON.out}</a>`
@@ -342,10 +381,11 @@ function renderDetail() {
     <div class="d-scroll">
       ${it.img || it.icon ? media(it) : ''}
       <h2 id="d-title">${esc(it.name)}</h2>
+      ${cta ? `<div class="d-open">${cta}</div>` : ''}
       ${it.tagline ? `<p class="d-tag">${esc(it.tagline)}</p>` : ''}
       <div class="d-badges">
         <span>${statusDot(it)}${st.label}</span>
-        ${tipLabel(it) ? `<span>${esc(tipLabel(it))}</span>` : ''}
+        ${tipLabels(it).map(l => `<span>${esc(l)}</span>`).join('')}
         ${placeLabel(it) ? `<span>${esc(placeLabel(it))}</span>` : ''}
         ${it.code ? `<span>${ICON.code}cod deschis</span>` : ''}
       </div>
@@ -353,8 +393,7 @@ function renderDetail() {
       ${it.keywords.length ? `<div class="tags">${it.keywords.map(k => `<button class="tag" data-act="multi" data-key="kw" data-val="${esc(k)}" aria-pressed="${listOf('kw').includes(k)}">#${esc(kwLabel(k))}</button>`).join('')}</div>` : ''}
       <dl class="dl">${dl.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>
       ${related.length ? `<div class="related"><p class="kicker">Tot din ${esc(dom.short)}</p>${related.map(r => row(r, false)).join('')}</div>` : ''}
-    </div>
-    <div class="d-cta">${cta}<button class="btn btn-outline" data-act="copy" aria-label="Copiază linkul">${ICON.link}<span data-copy-label>Link</span></button></div>`;
+    </div>`;
   if (drawer.hidden) openLayer(drawer);
   else $('.d-scroll', drawer).scrollTop = 0;
 }
@@ -392,7 +431,7 @@ function scoreOf(n, q) {
 function countFor(s) {
   const base = DB.items.filter(i => i.kind === state.k && (state.ina || !isInactive(i)));
   if (s.kind === 'tema') return base.filter(i => i.domeniu === s.val).length;
-  if (s.kind === 'tip') return base.filter(i => i.tip === s.val).length;
+  if (s.kind === 'tip') return base.filter(i => i.tips.includes(s.val)).length;
   if (s.kind === 'kw') return base.filter(i => i.keywords.includes(s.val)).length;
   if (s.kind === 'oras') return base.filter(i => i.oras === s.val).length;
   if (s.kind === 'org') return DB.items.filter(i => i._orgs.includes(s.val)).length;
@@ -471,45 +510,17 @@ function pickAC(i) {
 }
 
 /* ---------- rotating title ---------- */
-const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
-const SCRAMBLE = 'ABCDEFGHIJKLMNOPRSTUVZĂÂÎȘȚ0123456789#%&*';
-const EFFECTS = {
-  slide(box, from, to) {
-    const old = box.firstElementChild, neu = document.createElement('span');
-    neu.textContent = to; box.append(neu);
-    const o = { duration: 520, easing: 'cubic-bezier(.6,0,.2,1)', fill: 'forwards' };
-    old.animate([{ transform: 'translateY(0)', opacity: 1 }, { transform: 'translateY(-110%)', opacity: 0 }], o).finished.then(() => old.remove());
-    neu.animate([{ transform: 'translateY(110%)', opacity: 0 }, { transform: 'translateY(0)', opacity: 1 }], o);
-  },
-  blur(box, from, to) {
-    const old = box.firstElementChild, neu = document.createElement('span');
-    neu.textContent = to; box.append(neu);
-    old.animate([{ filter: 'blur(0)', opacity: 1 }, { filter: 'blur(8px)', opacity: 0 }], { duration: 380, fill: 'forwards' }).finished.then(() => old.remove());
-    neu.animate([{ filter: 'blur(8px)', opacity: 0, letterSpacing: '.08em' }, { filter: 'blur(0)', opacity: 1, letterSpacing: '-.01em' }], { duration: 620, easing: 'ease-out' });
-  },
-  scramble(box, from, to) {
-    const el = box.firstElementChild, len = Math.max(from.length, to.length), t0 = performance.now(), dur = 900;
-    const step = now => {
-      const p = Math.min(1, (now - t0) / dur);
-      let s = '';
-      for (let i = 0; i < len; i++) {
-        const settle = i / len * 0.7 + 0.3;
-        s += p >= settle ? (to[i] ?? '') : (to[i] === ' ' ? ' ' : SCRAMBLE[(Math.random() * SCRAMBLE.length) | 0]);
-      }
-      el.textContent = s;
-      if (p < 1) requestAnimationFrame(step); else el.textContent = to;
-    };
-    requestAnimationFrame(step);
-  },
-};
+// One span, text swapped while it is hidden; the motion lives in CSS (.out / .in).
 function rotateTitle() {
   const next = TITLES.filter(t => t !== title)[(Math.random() * (TITLES.length - 1)) | 0];
-  const box = slot('brand');
-  if (reduceMotion.matches) box.firstElementChild.textContent = next;
-  else {
-    const names = Object.keys(EFFECTS);
-    EFFECTS[names[(Math.random() * names.length) | 0]](box, title, next);
-  }
+  const el = slot('brand').firstElementChild;
+  el.classList.add('out');
+  setTimeout(() => {
+    el.textContent = next;
+    el.classList.replace('out', 'in');
+    el.offsetWidth; // commit the start position before transitioning back
+    el.classList.remove('in');
+  }, 340);
   title = next;
   syncTitle();
   setTimeout(rotateTitle, 3000 + Math.random() * 2000);
@@ -527,6 +538,7 @@ document.addEventListener('click', e => {
   const opt = e.target.closest('[data-ac]');
   if (opt) { pickAC(+opt.dataset.ac); return; }
   if (!e.target.closest('[data-slot="search"]')) closeAC();
+  if (e.target.closest('a.ext')) return;  // the project's own site: a plain link
   const open = e.target.closest('[data-open]');
   if (open && !e.metaKey && !e.ctrlKey && !e.shiftKey && e.button === 0) {
     e.preventDefault();
@@ -556,10 +568,6 @@ document.addEventListener('click', e => {
     if (!slot('drawer').hidden && state.p) { state.p = ''; writeURL(); }
     closeLayers();
     syncTitle();
-  } else if (act === 'copy') {
-    navigator.clipboard?.writeText(location.href).then(() => {
-      const l = $('[data-copy-label]', a); if (l) { l.textContent = 'Copiat'; setTimeout(() => (l.textContent = 'Link'), 1600); }
-    });
   }
 });
 // Keep focus in the input while choosing a suggestion with the mouse.
@@ -621,7 +629,6 @@ document.addEventListener('keydown', e => {
   }
 });
 window.addEventListener('popstate', () => { readURL(); renderAll(); renderDetail(); });
-mqWide.addEventListener('change', () => { if (!state.v) renderResults(); });
 
 // Below 1024px the header is taller than one row; stick it so only the search and chips stay visible.
 function fitHeader() {
@@ -639,7 +646,7 @@ fetch('data.json').then(r => r.json()).then(db => {
     if (!STATUS[it.status]) it.status = 'neverificat';
     it._sort = norm(it.name).replace(/[^a-z0-9]/g, '');
     it._orgs = (it.org || '').split(/\s+[\/&]\s+|,\s*/).map(s => s.trim()).filter(s => s.length > 2);
-    it._hay = norm([it.name, it.tagline, it.desc, it.org, it.domain, it.oras, TAX.domeniu[it.domeniu]?.label, TAX.tip[it.tip]?.label, ...it.keywords.map(kwLabel)].join(' '));
+    it._hay = norm([it.name, it.tagline, it.desc, it.org, it.domain, it.oras, TAX.domeniu[it.domeniu]?.label, ...tipLabels(it), ...it.keywords.map(kwLabel)].join(' '));
   }
   SUGGEST = buildSuggestions();
   readURL();

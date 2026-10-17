@@ -19,7 +19,7 @@ Fișierele se pot edita și ca tabel (LibreOffice, Excel, Google Sheets) — pă
 | `url` | adresa principală |
 | `linkuri` | **toate celelalte linkuri, în aceeași celulă**, separate prin spațiu sau linie nouă (sau listă JSON). Tipul se deduce din domeniu (Facebook, GitHub…) sau îl scrii în față: `donatii:` `despre:` `contact:` `termeni:` `date:` `api:` `mcp:` `cod:`. Primul link GitHub/GitLab/`cod:` e codul sursă. |
 | `domeniu` | una dintre cheile din `data/taxonomy.json` → `domenii` (`bani`, `politica`, `justitie`…) |
-| `tip` | una dintre cheile din `tipuri` (`instrument`, `vizualizare`, `harta`, `baza-de-date`, `monitorizare`, `educativ`, `ghid`) |
+| `tip` | una sau mai multe chei din `tipuri`, separate prin virgulă, cea principală prima (`instrument`, `vizualizare`, `harta`, `baza-de-date`, `monitorizare`, `educativ`, `ghid`) |
 | `cuvinte` | cuvinte cheie separate prin virgulă |
 | `acoperire` | `national`, `local` sau `international` |
 | `oras` | pentru proiectele locale |
@@ -27,8 +27,6 @@ Fișierele se pot edita și ca tabel (LibreOffice, Excel, Google Sheets) — pă
 | `contact` | opțional |
 | `civictech` | `1` dacă e un proiect civic tech (făcut de societatea civilă / voluntari), `0` altfel |
 | `stare` | gol (verificată automat), `arhivat` sau `offline` |
-| `imagine` | gol, sau `none` ca să ascunzi o imagine nepotrivită |
-| `sursa` | de unde vine intrarea |
 | `nota` | note interne, nu apar pe site |
 
 `orgs.csv` are aceleași coloane, fără `fel`, `tip`, `autor`, `contact` și `civictech`.

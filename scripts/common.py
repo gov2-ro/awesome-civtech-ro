@@ -11,13 +11,15 @@ PROFILE = DATA / "profil.csv"
 
 # Column order of the editable files. Contributions (PRs, the Google Sheet) use the same headers.
 PROIECTE_COLS = ["slug", "fel", "nume", "descriere_scurta", "descriere", "url", "linkuri", "domeniu", "tip", "cuvinte",
-                 "acoperire", "oras", "autor", "contact", "civictech", "stare", "imagine", "sursa", "nota"]
+                 "acoperire", "oras", "autor", "contact", "civictech", "stare", "nota"]
 ORGS_COLS = ["slug", "nume", "descriere_scurta", "descriere", "url", "linkuri", "domeniu", "cuvinte", "acoperire", "oras",
-             "stare", "imagine", "sursa", "nota"]
+             "stare", "nota"]
 # Profile: flat columns, plus JSON for the one nested value (social links by network).
 PROFIL_COLS = ["slug", "url", "final_url", "http_status", "status", "error", "ssl_error", "parked", "title", "og_title",
                "site_name", "description", "lang", "repos", "social", "img_src", "img_kind", "img_w", "img_h",
-               "img_color", "img_source", "icon", "wayback", "fetched_at"]
+               "img_color", "img_source", "icon", "wayback", "first_seen", "last_capture", "archive_months", "updated", "updated_src", "feed",
+               "generator", "words", "copyright_year", "sitemap_urls", "cert_first", "repo", "repo_created", "repo_archived", "stars", "forks",
+               "wiki_refs", "opr", "mentions", "mention_hosts", "search_social", "gdelt", "fetched_at"]
 
 # Descriptions that carry no information (kept for imports from other catalogues).
 BOILERPLATE = re.compile(
@@ -44,6 +46,11 @@ def split_list(cell: str) -> list[str]:
     if cell.startswith("["):
         return [str(x).strip() for x in json.loads(cell) if str(x).strip()]
     return [x for x in re.split(r"[\s|]+", cell) if x]
+
+
+def split_tip(cell: str) -> list[str]:
+    """The tip cell: one or more keys, comma-separated, the main one first."""
+    return list(dict.fromkeys(t.strip() for t in (cell or "").split(",") if t.strip()))
 
 
 def read_csv(path: Path) -> list[dict]:
@@ -77,11 +84,12 @@ def load_profile() -> dict:
         p = {k: r[k] for k in PROFIL_COLS if r.get(k) and not k.startswith("img_") and k not in ("slug", "repos", "social")}
         if r["http_status"]:
             p["http_status"] = int(r["http_status"])
-        for k in ("ssl_error", "parked"):
+        for k in ("ssl_error", "parked", "repo_archived"):
             if k in p:
                 p[k] = p[k] == "1"
         p["repos"] = split_list(r["repos"])
         p["social"] = json.loads(r["social"]) if r["social"] else {}
+        p["search_social"] = json.loads(r.get("search_social") or "{}")
         if r["img_src"]:
             p["image"] = {"src": r["img_src"], "kind": r["img_kind"], "w": int(r["img_w"]), "h": int(r["img_h"]),
                           "color": r["img_color"], "source_url": r["img_source"]}
@@ -98,8 +106,10 @@ def save_profile(profile: dict):
             "slug": slug,
             "ssl_error": "1" if p.get("ssl_error") else "",
             "parked": "1" if p.get("parked") else "",
+            "repo_archived": "1" if p.get("repo_archived") else "",
             "repos": " ".join(p.get("repos") or []),
             "social": json.dumps(p["social"], ensure_ascii=False) if p.get("social") else "",
+            "search_social": json.dumps(p["search_social"], ensure_ascii=False) if p.get("search_social") else "",
             "img_src": im.get("src", ""), "img_kind": im.get("kind", ""), "img_w": im.get("w", ""),
             "img_h": im.get("h", ""), "img_color": im.get("color", ""), "img_source": im.get("source_url", ""),
         })
