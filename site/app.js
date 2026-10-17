@@ -34,11 +34,12 @@ const STATUS = {
   necunoscut: { label: 'Neconfirmat', cls: 'warn', group: 'neconfirmat' },
   neverificat: { label: 'Neverificat', cls: 'warn', group: 'neconfirmat' },
 };
-const SORTS = [['domeniu', 'Pe domenii'], ['az', 'A–Z'], ['relevanta', 'Relevanță'], ['recent', 'Actualizate recent'], ['random', 'Aleatoriu']];
+const SORTS = [['domeniu', 'Pe domenii'], ['az', 'A–Z'], ['top', 'Active și relevante'], ['relevanta', 'Relevanță'], ['nou', 'Cele mai noi'], ['recent', 'Actualizate recent'], ['random', 'Aleatoriu']];
 const MIN_Q = 3;
 // ina=1 shows inactive projects (hidden by default); a and s are kept for URLs but have no UI for now.
-const DEFAULTS = { k: 'proiect', q: '', d: '', t: '', kw: '', c: '', org: '', a: '', s: '', cod: '', civ: '', ina: '', v: '', o: '', p: '' };
-const FILTERS = ['q', 'd', 't', 'kw', 'c', 'org', 'a', 's', 'cod', 'civ', 'ina'];
+const DEFAULTS = { k: 'proiect', q: '', d: '', t: '', kw: '', c: '', org: '', a: '', s: '', cod: '', civ: '', nou: '', ina: '', v: '', o: '', p: '' };
+const FILTERS = ['q', 'd', 't', 'kw', 'c', 'org', 'a', 's', 'cod', 'civ', 'nou', 'ina'];
+const FRESH_DAYS = 183, LAUNCH_DAYS = 60;
 
 let DB = null, TAX = null, seed = Math.random();
 let title = TITLES[0];
@@ -80,6 +81,7 @@ function matches(it, skip) {
   if (skip !== 's' && state.s && STATUS[it.status].group !== state.s) return false;
   if (skip !== 'cod' && state.cod && !it.code) return false;
   if (skip !== 'civ' && state.civ && !it.civictech) return false;
+  if (skip !== 'nou' && state.nou && !isFresh(it)) return false;
   if (skip !== 'ina' && !state.ina && isInactive(it)) return false;
   const q = query();
   if (q) {
@@ -95,15 +97,29 @@ const countBy = (skip, key) => {
   for (const it of DB.items) if (matches(it, skip)) for (const v of [key(it)].flat()) c[v] = (c[v] || 0) + 1;
   return c;
 };
-const activeFilterCount = () => ['d', 'c', 'org', 'a', 's', 'cod', 'civ', 'ina'].filter(k => state[k]).length + tips().length + listOf('kw').length;
+const activeFilterCount = () => ['d', 'c', 'org', 'a', 's', 'cod', 'civ', 'nou', 'ina'].filter(k => state[k]).length + tips().length + listOf('kw').length;
 const rank = it => ({ activ: 0, neconfirmat: 1, inactiv: 2 })[STATUS[it.status].group];
 const byName = (a, b) => a._sort.localeCompare(b._sort);
+// Last sign of life: the last update, or the launch date when that is later. A recent launch thus
+// sorts like a recent update. Entries with neither go last.
+const lastSign = it => [it.updated, isLaunched(it) ? it.since : ''].sort().at(-1) || '';
+// "Active și relevante": the build's relevance score, discounted by time since the last sign of life
+// (half-life ~8 months; unknown counts as old), plus a small bump for a launch in the last 60 days.
+function topScore(it) {
+  const d = lastSign(it);
+  const recency = d ? Math.exp(-daysSince(d) / 365) : .25;
+  return it.score * (.5 + .5 * recency) + (isLaunched(it) ? 8 : 0);
+}
 function sorted(list) {
   if (state.o === 'random') {
     const r = it => Math.sin(it.id * 9301 + seed * 49297) % 1;
     return [...list].sort((a, b) => r(a) - r(b));
   }
+  if (state.o === 'top') return [...list].sort((a, b) => topScore(b) - topScore(a) || byName(a, b));
+  if (state.o === 'domeniu') return [...list].sort((a, b) => rank(a) - rank(b) || lastSign(b).localeCompare(lastSign(a)) || byName(a, b));
   if (state.o === 'relevanta') return [...list].sort((a, b) => b.score - a.score || byName(a, b));
+  // Entries with no known start date go last.
+  if (state.o === 'nou') return [...list].sort((a, b) => (b.since || '0').localeCompare(a.since || '0') || byName(a, b));
   if (state.o === 'recent') return [...list].sort((a, b) => (b.updated || '').localeCompare(a.updated || '') || byName(a, b));
   return [...list].sort((a, b) => rank(a) - rank(b) || byName(a, b));
 }
@@ -137,6 +153,8 @@ function metaLine(it, withDomain) {
 }
 const statusDot = it => `<span class="dot ${STATUS[it.status].cls}" title="${STATUS[it.status].label}"></span>`;
 const codeTag = it => it.code ? `<span class="code-tag" title="Cod sursă deschis">${ICON.code}cod</span>` : '';
+const newTag = it => !isFresh(it) ? ''
+  : `<span class="code-tag new-tag${isLaunched(it) ? ' launch' : ''}" title="Apărut acum ${esc(age(it))} · ${esc(ageTitle(it))}">${isLaunched(it) ? 'lansat recent' : 'nou'}</span>`;
 const blurb = it => it.tagline || it.desc;
 const clip = (s, n) => s.length > n ? s.slice(0, s.lastIndexOf(' ', n) > n * .6 ? s.lastIndexOf(' ', n) : n).replace(/[\s,.;:–-]+$/, '') + '…' : s;
 // Native tooltip: the start of the long description, when there is more to say than the tagline.
@@ -151,6 +169,9 @@ function span(days) {
   return plural(Math.floor(days / 365.25), 'an', 'ani');
 }
 const daysSince = d => (Date.now() - Date.parse(d)) / DAY;
+// "Fresh": first seen less than FRESH_DAYS ago, by the same date the Vechime column shows.
+const isFresh = it => !!it.since && daysSince(it.since) < FRESH_DAYS;
+const isLaunched = it => !!it.since && daysSince(it.since) < LAUNCH_DAYS;
 const age = it => it.since ? span(daysSince(it.since)) : '';
 const updatedLabel = it => !it.updated ? '' : daysSince(it.updated) < 1 ? 'azi' : `acum ${span(daysSince(it.updated))}`;
 const UPDATED_SRC = { cod: 'ultimul commit', sitemap: 'sitemap', server: 'antetul Last-Modified', arhiva: 'ultima arhivare Wayback' };
@@ -176,7 +197,7 @@ function card(it, withDomain) {
       <div class="meta">${metaLine(it, withDomain)}</div>
       <h3>${nameLink(it)}</h3>
       ${blurb(it) ? `<p class="tagline">${esc(blurb(it))}</p>` : ''}
-      <div class="foot">${statusDot(it)}${extLink(it, `<span class="dom">${esc(it.domain)}</span>`)}${codeTag(it)}</div>
+      <div class="foot">${statusDot(it)}${extLink(it, `<span class="dom">${esc(it.domain)}</span>`)}${newTag(it)}${codeTag(it)}</div>
     </div>
   </div>`;
 }
@@ -186,7 +207,7 @@ function row(it, withDomain) {
   return `<div class="row${isInactive(it) ? ' inactive' : ''}" data-open="${it.slug}"${hint(it)}>
     ${thumb(it)}
     <div class="row-main">
-      <div class="row-title">${nameLink(it)} ${statusDot(it)} ${codeTag(it)} ${extLink(it, '', 'ext-m')}</div>
+      <div class="row-title">${nameLink(it)} ${statusDot(it)} ${newTag(it)} ${codeTag(it)} ${extLink(it, '', 'ext-m')}</div>
       ${blurb(it) ? `<div class="row-tag">${esc(blurb(it))}</div>` : ''}
       ${desc ? `<div class="row-desc">${esc(clip(desc, 160))}</div>` : ''}
       ${it.keywords.length ? `<div class="row-kw">${it.keywords.map(k => `<span>#${esc(kwLabel(k))}</span>`).join('')}</div>` : ''}
@@ -246,6 +267,7 @@ function facetsHTML() {
   const toggles = [];
   const toggle = (key, label, checked, n) => toggles.push(`<label class="toggle"><input type="checkbox" data-act="toggle" data-key="${key}" ${checked ? 'checked' : ''}><span class="l">${label}</span>${n != null ? `<span class="n">${n}</span>` : ''}</label>`);
   if (has(i => i.code) && has(i => !i.code)) toggle('cod', 'Doar cu cod sursă deschis', state.cod, DB.items.filter(i => matches(i, 'cod') && i.code).length);
+  if (has(isFresh) && has(i => !isFresh(i))) toggle('nou', 'Doar proiecte noi', state.nou, DB.items.filter(i => matches(i, 'nou') && isFresh(i)).length);
   if (has(isInactive)) toggle('ina', 'Ascunde proiecte inactive', !state.ina, null);
   if (has(i => i.civictech) && has(i => !i.civictech)) toggle('civ', 'Doar proiecte civtech', state.civ, DB.items.filter(i => matches(i, 'civ') && i.civictech).length);
   if (toggles.length) out.push(facet('optiuni', 'Opțiuni', toggles.join('')));
@@ -271,6 +293,7 @@ function renderToolbar(n) {
   if (state.s) pill('s', '', state.s);
   if (state.cod) pill('cod', '', 'Cod deschis');
   if (state.civ) pill('civ', '', 'Civtech');
+  if (state.nou) pill('nou', '', 'Noi');
   if (state.ina) pill('ina', '', 'Inclusiv inactive');
   if (query()) pill('q', '', `„${state.q}”`);
   const view = currentView();
@@ -387,6 +410,7 @@ function renderDetail() {
         <span>${statusDot(it)}${st.label}</span>
         ${tipLabels(it).map(l => `<span>${esc(l)}</span>`).join('')}
         ${placeLabel(it) ? `<span>${esc(placeLabel(it))}</span>` : ''}
+        ${isFresh(it) ? `<span class="new${isLaunched(it) ? ' launch' : ''}">${isLaunched(it) ? 'lansat recent' : 'nou'} · ${esc(age(it))}</span>` : ''}
         ${it.code ? `<span>${ICON.code}cod deschis</span>` : ''}
       </div>
       ${it.desc ? `<p class="d-desc">${esc(it.desc)}</p>${it.descSrc === 'site' ? '<p class="d-src">Descriere preluată de pe site-ul proiectului.</p>' : ''}` : ''}
@@ -395,7 +419,11 @@ function renderDetail() {
       ${related.length ? `<div class="related"><p class="kicker">Tot din ${esc(dom.short)}</p>${related.map(r => row(r, false)).join('')}</div>` : ''}
     </div>`;
   if (drawer.hidden) openLayer(drawer);
-  else $('.d-scroll', drawer).scrollTop = 0;
+  else {
+    $('.d-scroll', drawer).scrollTop = 0;
+    // The re-render dropped the focused element; keep focus inside the drawer.
+    if (!drawer.contains(document.activeElement)) $('[data-autofocus]', drawer)?.focus();
+  }
 }
 
 function renderSheet() {
@@ -509,18 +537,49 @@ function pickAC(i) {
   input.blur();
 }
 
+/* ---------- keyboard navigation ---------- */
+// j/k or ←/→ step through the results in the order shown; with the drawer open they step the open entry.
+const resultEl = slug => [...slot('results').querySelectorAll('[data-open]')].find(el => el.dataset.open === slug);
+function reveal(el) {
+  const r = el.getBoundingClientRect(), top = slot('hdr').getBoundingClientRect().bottom;
+  if (r.top < top || r.bottom > innerHeight) el.scrollIntoView({ block: 'center' });
+}
+function step(d) {
+  const slugs = [...slot('results').querySelectorAll('[data-open]')].map(el => el.dataset.open);
+  if (!slugs.length) return;
+  const at = state.p || document.activeElement?.closest?.('[data-slot="results"] [data-open]')?.dataset.open;
+  const i = slugs.indexOf(at);
+  const next = slugs[i < 0 ? (d > 0 ? 0 : slugs.length - 1) : Math.min(Math.max(i + d, 0), slugs.length - 1)];
+  const el = resultEl(next);
+  if (state.p) {
+    if (next === state.p) return;
+    state.p = next; writeURL(); renderDetail();
+    lastFocus = $('.stretch', el);  // closing the drawer returns focus to the last entry seen
+  } else $('.stretch', el).focus({ preventScroll: true });
+  reveal(el);
+}
+// o opens the entry's own site (or its archive): the open entry, else the focused one.
+function openOriginal() {
+  const slug = state.p || document.activeElement?.closest?.('[data-open]')?.dataset.open;
+  const it = slug && DB.items.find(i => i.slug === slug);
+  const href = it && extHref(it);
+  if (href) window.open(href, '_blank', 'noopener');
+}
+
 /* ---------- rotating title ---------- */
-// One span, text swapped while it is hidden; the motion lives in CSS (.out / .in).
+// One span, text swapped while it is hidden; the motion lives in CSS (.out / .in, one effect per swap).
+const TITLE_FX = ['rise', 'drop', 'flip', 'wipe', 'zoom', 'slide', 'spread'];
 function rotateTitle() {
   const next = TITLES.filter(t => t !== title)[(Math.random() * (TITLES.length - 1)) | 0];
-  const el = slot('brand').firstElementChild;
+  const box = slot('brand'), el = box.firstElementChild;
+  box.dataset.fx = TITLE_FX.filter(f => f !== box.dataset.fx)[(Math.random() * (TITLE_FX.length - 1)) | 0];
   el.classList.add('out');
   setTimeout(() => {
     el.textContent = next;
     el.classList.replace('out', 'in');
     el.offsetWidth; // commit the start position before transitioning back
     el.classList.remove('in');
-  }, 340);
+  }, 420);
   title = next;
   syncTitle();
   setTimeout(rotateTitle, 3000 + Math.random() * 2000);
@@ -627,6 +686,10 @@ document.addEventListener('keydown', e => {
     if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f.at(-1).focus(); }
     else if (!e.shiftKey && document.activeElement === f.at(-1)) { e.preventDefault(); f[0].focus(); }
   }
+  if (typing || e.metaKey || e.ctrlKey || e.altKey || !slot('sheet').hidden || !DB) return;
+  if (e.key === 'j' || e.key === 'ArrowRight') { e.preventDefault(); step(1); }
+  else if (e.key === 'k' || e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
+  else if (e.key === 'o') { e.preventDefault(); openOriginal(); }
 });
 window.addEventListener('popstate', () => { readURL(); renderAll(); renderDetail(); });
 

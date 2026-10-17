@@ -1,41 +1,12 @@
-<img src="docs/reference/logo/civtech-ro-favicon-2.png" width=64>
+<img src="docs/reference/logo/civtech-ro-favicon-2.png" width=128>
 
 Listă de proiecte &amp; resurse de civtech, transparență, bună administrație și tot așa &rarr; [proiecte.csv](data/proiecte.csv)
 
-## Roadmap
-- [x] gather init sources
-- [x] download og images
-- [x] profiler
-- [x] alpha UI
-- [x] orgs
-- [ ] make nicer
+Vezi și [roadmap/backlog](docs/BACKLOG.md).
 
-## Backlog
-- assign a resource to more than one domain (and more keywords per resource; the Tip filter is already multi-select)
-- maybe an "Altele" domain for things that fit nowhere
-- ranking by popularity / relevance — formula and signals to be decided
-- sort by age (needs a launch / added date per entry)
-- RSS feed
-- update logo
-- add manual ranking - recomandarea redacției?
-- mark fresh projects
-- remove "catalog" column
-- navigate projects with keyboard, left/right, j/k, open original
-- more links per resource, plus stats: social media, GitHub, search-engine result counts
-- international mirror (projects, orgs, tools — seed: `data/international.csv`), shown contextually next to related Romanian resources
-- "Propune un proiect", two ways in: a PR on GitHub, or a Google Form feeding a Google Sheet. Two-way sync via a GitHub workflow:
-  - auth: Google service account, key stored as a GitHub Actions secret (or keyless via Workload Identity Federation); share only this one Sheet with the service account
-  - Sheet → repo: new/changed rows become a PR, checked by `scripts/validate.py`; never commit straight to main
-  - repo → Sheet: after merge, rewrite the mirror tabs from `proiecte.csv` / `orgs.csv` and mark proposals as accepted/rejected
-  - runs on schedule / push to main only (secrets aren't available to PRs from forks)
-- hosting: GitHub Pages mirror, or host there with its own domain
-- static HTML page per project at build time (own share preview, indexable)
-- profiler: detect donation, terms, about/contact and data-access (download / API / MCP) pages from homepage links, feeding the same `links` roles
-- write methodology. In Romanian. 
-- later: allow bookmarks. saved in browser, but allow csv export.
-- later: add voting? log-in with gh/li/google/meta/x ? - what would that imply?
+----
 
-
+# 🤖🗯️
 
 ## Layout
 Human-edited data is CSV, so it can be changed in a PR or round-tripped through Google Sheets. See [CONTRIBUTING.md](CONTRIBUTING.md) for every column.
@@ -58,5 +29,4 @@ python3 -m http.server -d site 8000  # http://localhost:8000
 ```
 
 
-<img src="docs/reference/logo/civtech-ro-2.png" width=250>
-<img src="docs/reference/logo/civtech-ro-tatt-1-bw.png" width=250>
+<img src="docs/reference/logo/civtech-ro-2.png" width=250> <img src="docs/reference/logo/civtech-ro-tatt-1-bw.png" width=250>
