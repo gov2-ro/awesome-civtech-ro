@@ -13,18 +13,24 @@ python3 -m http.server -d site 8000         # preview at http://localhost:8000
 
 uv run scripts/profile.py                   # profile entries missing from profil.csv (--force all, --only slug,slug, --no-shots)
 uv run scripts/profile.py --extra           # age / activity / repo / Wayback / cert / Wikipedia signals (free)
-uv run scripts/profile.py --search --opr --gdelt   # paid / keyed reach passes (SERPER_API_KEY, OPR_API_KEY)
-uv run scripts/review.py --only slug,slug   # Claude Haiku review (ANTHROPIC_API_KEY); --dry-run prints the request, no API call
+uv run scripts/profile.py --opr             # Open PageRank (OPR_API_KEY)
+uv run scripts/search.py --dry-run --only slug,slug   # print the search queries; no requests
+uv run scripts/search.py                    # Serper + Brave (SERPER_API_KEY, BRAVE_API_KEY, paid): entries without rows in data/mentiuni.csv (--only, --force, --provider serper|brave|all)
+uv run scripts/search.py --prune-only       # apply the prune rules to the stored rows and recompute mentions in profil.csv (run it after profile.py --force, which drops them); no requests
+uv run scripts/review.py --only slug,slug   # Claude Haiku review + labels for the kept search results (ANTHROPIC_API_KEY); --dry-run prints the request, no API call
 ```
 
-`validate.py` and `build.py` are stdlib-only and run with plain `python3` (CI uses 3.12). `profile.py` and `review.py` declare their dependencies inline (PEP 723 `# /// script` header) and must be run with `uv run`; both use Playwright for JS-rendered pages. There are no tests: after changing scripts, run `validate.py` then `build.py` (that is exactly what CI does).
+`validate.py` and `build.py` are stdlib-only and run with plain `python3` (CI uses 3.12). `profile.py`, `search.py` and `review.py` declare their dependencies inline (PEP 723 `# /// script` header) and must be run with `uv run`; `profile.py` and `review.py` use Playwright for JS-rendered pages. There are no tests: after changing scripts, run `validate.py` then `build.py` (that is exactly what CI does).
 
 ## Data pipeline
 
 ```
 data/proiecte.csv + data/orgs.csv  (human-edited)
         │  scripts/profile.py  → data/profil.csv (generated) + site/img/{og,icon}/
+        │  scripts/search.py   → data/mentiuni.csv (generated; the editor prunes in column `editor`)
+        │                      → profil.csv: mentions, mention_hosts, search_social
         │  scripts/review.py   → data/review/{raw.jsonl,sugestii.csv} (suggestions only, gitignored)
+        │                      → data/mentiuni_etichete.csv (labels of the kept results, generated)
         ▼
 scripts/build.py → site/data.json  →  site/app.js (vanilla JS, fetches data.json)
 ```

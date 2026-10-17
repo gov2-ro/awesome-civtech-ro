@@ -12,7 +12,7 @@ import re
 import sys
 from pathlib import Path
 
-from common import DATA, ORGS_COLS, PROIECTE_COLS, split_list, split_tip, to_href
+from common import DATA, MENTIUNI, MENTIUNI_COLS, ORGS_COLS, PROIECTE_COLS, split_list, split_tip, to_href
 
 TAX = json.loads((DATA / "taxonomy.json").read_text())
 DOMENII = {d["key"] for d in TAX["domenii"]}
@@ -104,10 +104,25 @@ def check(path: Path, cols: list[str], seen: dict, urls: dict, is_org: bool):
                     warn("fără descriere")
 
 
+def check_mentiuni(path: Path):
+    """mentiuni.csv is generated; a person edits only `editor`, and a typo there would silently drop the row."""
+    if not path.exists():
+        return
+    with open(path, encoding="utf-8-sig", newline="") as f:
+        reader = csv.DictReader(f)
+        if reader.fieldnames != MENTIUNI_COLS:
+            report("error", path, 1, f"coloane diferite de MENTIUNI_COLS din scripts/common.py: {reader.fieldnames}")
+            return
+        for r in reader:
+            if (r["editor"] or "").strip() not in ("", "0", "1"):
+                report("error", path, reader.line_num, f"{r['slug']}: editor: '{r['editor']}' (gol, 0 sau 1)")
+
+
 def main():
     seen, urls = {}, {}
     check(DATA / "proiecte.csv", PROIECTE_COLS, seen, urls, False)
     check(DATA / "orgs.csv", ORGS_COLS, seen, urls, True)
+    check_mentiuni(MENTIUNI)
     for extra in sys.argv[1:]:
         check(Path(extra).resolve(), PROIECTE_COLS, seen, urls, False)
     print(f"{errors} erori, {warnings} avertismente", file=sys.stderr)

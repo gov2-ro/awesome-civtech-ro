@@ -11,6 +11,9 @@
 Needs ANTHROPIC_API_KEY. Nothing is written to proiecte.csv: suggestions land in data/review/
 (raw.jsonl, one answer per entry, and sugestii.csv, one row per changed field) for a person to
 accept or reject. A full run is ~110 requests of ~6k tokens, a few US cents on Haiku.
+
+The search results kept in data/mentiuni.csv (at most 40 per entry) go into the same request. The model
+labels each one; the labels land in data/mentiuni_etichete.csv, which build.py turns into the reach counts.
 """
 import argparse
 import csv
@@ -18,18 +21,22 @@ import json
 import re
 import sys
 from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime, timezone
 from urllib.parse import urljoin, urlparse
 
 import anthropic
 import httpx
 from selectolax.lexbor import LexborHTMLParser as HTMLParser
 
-from common import DATA, domain_of, load_entries, load_profile, split_list, split_tip
+from common import (DATA, ETICHETE, ETICHETE_COLS, domain_of, is_kept, load_entries, load_mentions, load_profile, read_csv,
+                    split_list, split_tip, write_csv)
 
 MODEL = "claude-haiku-5-5"
 OUT = DATA / "review"
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36"
 MAX_TEXT = 12_000  # characters of homepage text sent per entry
+MAX_MENTIONS = 40  # search results sent per entry, best rank first
+SOURCES = ["stire", "cercetare", "guvern", "raport_ong", "director", "social", "altul"]
 PRICE = {"in": 0.10, "out": 0.50, "cache_read": 0.01}  # USD per million tokens, Haiku 5.5
 
 TAX = json.loads((DATA / "taxonomy.json").read_text())
@@ -68,6 +75,21 @@ developers for public benefit; false for official government portals and commerc
 joined with hyphens. Put any keyword not in the vocabulary in `cuvinte_noi` too, so the editor sees it.
 - For an organisation (`kind: organizatie`) `tip` and `civictech` matter less; describe what the \
 organisation does.
+- `mentiuni`: web pages that a search engine returned for the entry's name or domain, each with an `id`, \
+`url`, `titlu`, `fragment` and `data`. Answer once for every `id`, using only the title, snippet and URL. \
+`despre_proiect`: true only when the page is about this project or organisation. Many results are about \
+something else with the same name (a person, a product, a song, a dictionary entry, another company), \
+and a result that merely contains the words does not count. When unsure, answer false: a wrong true \
+raises the entry in the ranking, a wrong false costs little. `tip_sursa`: `stire` (news article, press \
+agency or broadcaster), `cercetare` (paper, study, thesis, conference), `guvern` (public authority, \
+parliament, EU institution), `raport_ong` (report or page of an NGO, foundation or funder), `director` \
+(directory, catalogue or list that names many projects, company registers), `social` (social network, \
+forum, comment thread), `altul`. `independent`: true when the page is not run by the project, its \
+authors, its parent organisation or its partners; their own sites, newsletters and press releases are \
+not independent. Without `mentiuni` in the input, return an empty list.
+- `atentie`: one Romanian sentence on how much independent attention the entry gets, judged only from \
+the results with `despre_proiect: true`. If there are none, say so; do not infer attention from the \
+entry's age or the profiler's data. Empty when there were no results.
 
 The taxonomy and the existing keyword vocabulary follow."""
 
@@ -95,7 +117,7 @@ def schema() -> dict:
         "additionalProperties": False,
         "required": ["stare", "stare_motiv", "civictech", "civictech_motiv", "descriere_scurta", "descriere",
                      "domeniu", "tip", "cuvinte", "cuvinte_noi", "acoperire", "oras", "autor", "linkuri",
-                     "probleme", "incredere"],
+                     "probleme", "incredere", "mentiuni", "atentie"],
         "properties": {
             "stare": s(enum=["activ", "abandonat", "offline", "incert"]),
             "stare_motiv": s(),
@@ -115,6 +137,12 @@ def schema() -> dict:
                 "properties": {"role": s(enum=ROLES), "url": s(), "evidence": s()}}},
             "probleme": {"type": "array", "items": s()},
             "incredere": s(enum=["mare", "medie", "mica"]),
+            "mentiuni": {"type": "array", "items": {
+                "type": "object", "additionalProperties": False,
+                "required": ["id", "despre_proiect", "tip_sursa", "independent"],
+                "properties": {"id": {"type": "integer"}, "despre_proiect": {"type": "boolean"},
+                               "tip_sursa": s(enum=SOURCES), "independent": {"type": "boolean"}}}},
+            "atentie": s(),
         },
     }
 
@@ -202,17 +230,27 @@ def homepage(url: str) -> dict:
     }
 
 
-def entry_message(e: dict, p: dict) -> str:
+def kept_results(rows: list[dict]) -> list[dict]:
+    """The kept search results of one entry, best rank first; `id` is the position the model answers by."""
+    best = sorted((r for r in rows if is_kept(r)), key=lambda r: int(r["rank"]))[:MAX_MENTIONS]
+    return [{"id": i, "url": r["url"], "titlu": r["title"], "fragment": r["snippet"], "data": r["date"]}
+            for i, r in enumerate(best, 1)]
+
+
+def entry_message(e: dict, p: dict, results: list[dict]) -> str:
     row = {k: e.get(k, "") for k in ("slug", "kind", "nume", "descriere_scurta", "descriere", "url", "linkuri",
                                         "domeniu", "tip", "cuvinte", "acoperire", "oras", "autor", "civictech", "stare")}
     prof = {k: p.get(k) for k in ("status", "final_url", "http_status", "title", "og_title", "description", "social",
                                    "repos", "first_seen", "updated", "updated_src", "copyright_year", "feed",
                                    "sitemap_urls", "repo_archived", "mention_hosts", "search_social") if p.get(k) not in (None, "", [], {})}
     page = homepage(e["url"]) if e["url"] else {"eroare": "fără url"}
-    return json.dumps({"rand_actual": row, "profil_automat": prof, "pagina": page}, ensure_ascii=False, indent=1)
+    msg = {"rand_actual": row, "profil_automat": prof, "pagina": page}
+    if results:
+        msg["mentiuni"] = results
+    return json.dumps(msg, ensure_ascii=False, indent=1)
 
 
-def review(client: anthropic.Anthropic, system: list, e: dict, user: str) -> dict:
+def review(client: anthropic.Anthropic, system: list, e: dict, user: str, results: list[dict]) -> dict:
     msg = client.messages.create(
         model=MODEL,
         max_tokens=16000,
@@ -229,6 +267,7 @@ def review(client: anthropic.Anthropic, system: list, e: dict, user: str) -> dic
         return {"slug": e["slug"], "eroare": "max_tokens", "cost": cost}
     text = next(b.text for b in msg.content if b.type == "text")
     return {"slug": e["slug"], "model": MODEL, "cost": cost, "cache_read": u.cache_read_input_tokens or 0,
+            "mentiuni_map": {str(m["id"]): m["url"] for m in results},  # ties the labels to the urls that were sent
             "review": json.loads(text)}
 
 
@@ -266,6 +305,21 @@ def diff_rows(e: dict, r: dict) -> list[dict]:
     return out
 
 
+def write_labels(results: list[dict]):
+    """data/mentiuni_etichete.csv: one row per labelled result. Entries not reviewed in this run keep their labels."""
+    fresh = [r for r in results if "review" in r and "mentiuni_map" in r]
+    if not fresh:
+        return
+    now = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    new = [{"slug": r["slug"], "url": r["mentiuni_map"][str(m["id"])], "despre_proiect": "1" if m["despre_proiect"] else "0",
+            "tip_sursa": m["tip_sursa"], "independent": "1" if m["independent"] else "0", "model": r["model"], "labelled_at": now}
+           for r in fresh for m in r["review"]["mentiuni"] if str(m["id"]) in r["mentiuni_map"]]
+    redone = {r["slug"] for r in fresh}
+    old = [r for r in (read_csv(ETICHETE) if ETICHETE.exists() else []) if r["slug"] not in redone]
+    write_csv(ETICHETE, ETICHETE_COLS, sorted(old + new, key=lambda r: r["slug"]))
+    print(f"{len(new)} labels for {len(redone)} entries in {ETICHETE}", file=sys.stderr)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", default="")
@@ -285,16 +339,24 @@ def main():
                 done[r["slug"]] = r
     entries = load_entries()
     profile = load_profile()
+    results_of: dict[str, list[dict]] = {}
+    for r in load_mentions():
+        results_of.setdefault(r["slug"], []).append(r)
+    results_of = {slug: kept_results(rows) for slug, rows in results_of.items()}
     only = {s for s in args.only.split(",") if s}
-    todo = [e for e in entries if (e["slug"] in only if only else args.force or e["slug"] not in done)]
+    # An answer from before the search step has no labels: review that entry again if it has results.
+    stale = lambda e: e["slug"] in done and "mentiuni_map" not in done[e["slug"]] and results_of.get(e["slug"])
+    todo = [e for e in entries if (e["slug"] in only if only else args.force or e["slug"] not in done or stale(e))]
     if args.limit:
         todo = todo[:args.limit]
     print(f"reviewing {len(todo)} entries with {MODEL}", file=sys.stderr)
 
     if args.dry_run:
-        e = todo[0]
         print(SYSTEM + "\n\n" + taxonomy_block(entries))
-        print("\n----- user -----\n" + entry_message(e, profile.get(e["slug"], {})))
+        for e in (todo if only else todo[:1]):  # --only names the entries to look at; otherwise just the first
+            res = results_of.get(e["slug"], [])
+            print(f"\n----- user: {e['slug']} ({len(res)} results) -----\n"
+                  + entry_message(e, profile.get(e["slug"], {}), res))
         print("\n----- schema -----\n" + json.dumps(schema(), ensure_ascii=False))
         return
     client = anthropic.Anthropic()
@@ -303,12 +365,13 @@ def main():
     msgs = {}
     for e in todo:
         print(f"  fetching {e['slug']}", file=sys.stderr)
-        msgs[e["slug"]] = entry_message(e, profile.get(e["slug"], {}))
+        msgs[e["slug"]] = entry_message(e, profile.get(e["slug"], {}), results_of.get(e["slug"], []))
+    ask = lambda e: review(client, system, e, msgs[e["slug"]], results_of.get(e["slug"], []))
     results = []
     if todo:  # warm the cache once instead of letting the first parallel calls all write it
-        results.append(review(client, system, todo[0], msgs[todo[0]["slug"]]))
+        results.append(ask(todo[0]))
         with ThreadPoolExecutor(args.workers) as pool:
-            results += list(pool.map(lambda e: review(client, system, e, msgs[e["slug"]]), todo[1:]))
+            results += list(pool.map(ask, todo[1:]))
 
     total = 0.0
     for r in results:
@@ -318,6 +381,7 @@ def main():
         print(f"  {r['slug']:30} {r.get('eroare') or r['review']['stare'] + ' / ' + r['review']['incredere']}"
               f"  ${r.get('cost', 0):.4f}", file=sys.stderr)
     raw_path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in done.values()))
+    write_labels(results)
 
     by_slug = {e["slug"]: e for e in entries}
     rows = [row for slug, r in done.items() if slug in by_slug for row in diff_rows(by_slug[slug], r["review"])]

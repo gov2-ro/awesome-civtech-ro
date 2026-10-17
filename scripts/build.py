@@ -7,7 +7,8 @@ import math
 import re
 from datetime import date, datetime, timezone
 
-from common import BOILERPLATE, DATA, SITE, domain_of, load_entries, load_profile, split_list, split_tip, to_href
+from common import (BOILERPLATE, DATA, ETICHETE, SITE, domain_of, is_kept, load_entries, load_mentions, load_profile, read_csv,
+                    split_list, split_tip, to_href)
 
 CODE_ROLES = ("github", "gitlab", "cod")
 
@@ -87,20 +88,49 @@ def since(p: dict) -> tuple[str, str]:
     return seen if seen[0] else ((p["cert_first"], "certificat") if p.get("cert_first") else ("", ""))
 
 
-def score(e: dict, p: dict, alive: bool, desc: str, img) -> int:
+def reach_features(mentions: list[dict], labels: list[dict]) -> dict[str, dict]:
+    """Per slug, from the kept search results: how many distinct hosts give independent attention (the page is about
+    the entry, and the page is not the entry's own channel, as labelled by review.py), split by kind of source, and
+    the date of the newest such page. Without labels the kept hosts stand in for `indep` and the rest is 0."""
+    kept: dict[str, list[dict]] = {}
+    for r in mentions:
+        if is_kept(r):
+            kept.setdefault(r["slug"], []).append(r)
+    label = {(l["slug"], l["url"]): l for l in labels}
+    labelled = {l["slug"] for l in labels}
+    hosts = lambda rows: len({r["host"] for r in rows})
+    out = {}
+    for slug in kept.keys() | labelled:
+        rows = kept.get(slug, [])
+        if slug not in labelled:
+            out[slug] = {"indep": hosts(rows), "stiri": 0, "cercetare": 0, "guvern": 0, "ultima": ""}
+            continue
+        good = [r for r in rows if (l := label.get((slug, r["url"]))) and l["despre_proiect"] == "1" and l["independent"] == "1"]
+        of = lambda kind: [r for r in good if label[(slug, r["url"])]["tip_sursa"] == kind]
+        out[slug] = {"indep": hosts(good), "stiri": hosts(of("stire")), "cercetare": hosts(of("cercetare")),
+                     "guvern": hosts(of("guvern")), "ultima": max((r["date"] for r in good), default="")}
+    return out
+
+
+NO_REACH = {"indep": 0, "stiri": 0, "cercetare": 0, "guvern": 0, "ultima": ""}
+
+
+def score(e: dict, p: dict, alive: bool, desc: str, img, reach: dict) -> int:
     """0–100 relevance estimate: recent activity, reach, volume, longevity and how well it is documented.
     A heuristic for ordering, not a verdict; the weights are meant to be tuned."""
     lg = lambda v, top: min(1.0, math.log1p(num(v)) / math.log1p(top))
     act = years_since(last_activity(p))
     activity = 0.3 if act is None else 1 if act < .25 else .75 if act < 1 else .45 if act < 2 else .2 if act < 4 else 0
     opr = float(p.get("opr") or 0)
-    reach = (.3 * lg(p.get("archive_months"), 120) + .2 * lg(p.get("mentions"), 20) + .15 * min(1.0, opr / 6)
-             + .1 * lg(p.get("gdelt"), 30) + .15 * lg(p.get("wiki_refs"), 20) + .1 * lg(p.get("stars"), 200))
+    # Weights sum to 1; every term is log-scaled except Open PageRank.
+    r = (.30 * lg(p.get("archive_months"), 120) + .20 * lg(reach["indep"], 15) + .10 * lg(reach["stiri"], 10)
+         + .05 * lg(reach["cercetare"] + reach["guvern"], 5) + .15 * min(1.0, opr / 6)
+         + .10 * lg(p.get("wiki_refs"), 20) + .10 * lg(p.get("stars"), 200))
     volume = lg(p.get("sitemap_urls"), 5000)
     age = years_since(since(p)[0])
     longevity = min(1.0, (age or 0) / 8)
     docs = sum([bool(e["descriere_scurta"]), bool(desc), bool(e.get("cuvinte")), bool(img)]) / 4
-    total = 30 * activity + 25 * reach + 15 * volume + 15 * longevity + 15 * docs
+    total = 30 * activity + 25 * r + 15 * volume + 15 * longevity + 15 * docs
     return round(total * (1 if alive else .4))
 
 
@@ -108,6 +138,7 @@ def main():
     tax = json.loads((DATA / "taxonomy.json").read_text())
     roles = tax["linkuri"]["roluri"]
     profile = load_profile()
+    features = reach_features(load_mentions(), read_csv(ETICHETE) if ETICHETE.exists() else [])
     items = []
     for n, e in enumerate(load_entries()):
         p = profile.get(e["slug"], {})
@@ -124,6 +155,7 @@ def main():
         status = status_of(e["stare"], p)
         alive = status in ("activ", "necunoscut")
         act = last_activity(p)
+        reach = features.get(e["slug"], NO_REACH)
         items.append({
             "id": n + 1,
             "slug": e["slug"],
@@ -154,7 +186,8 @@ def main():
             "updatedSrc": p.get("updated_src", ""),
             # Up, but no sign of an edit in three years.
             "stale": act[:4] if alive and act and (years_since(act) > 3 or p.get("repo_archived")) else "",
-            "score": score(e, p, alive, desc, img),
+            "score": score(e, p, alive, desc, img, reach),
+            "reach": reach,
             "img": img,
             "icon": live.get("icon", ""),
             "wayback": p.get("wayback") or (f"https://web.archive.org/web/{e['url']}" if e["url"] and status in ("offline", "arhivat") else ""),

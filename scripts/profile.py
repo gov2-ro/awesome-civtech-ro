@@ -9,14 +9,13 @@
     uv run scripts/profile.py --only a,b      # just these slugs
     uv run scripts/profile.py --no-shots      # skip the browser screenshot pass
     uv run scripts/profile.py --extra         # only refresh age, activity and reach signals for every entry
-    uv run scripts/profile.py --opr --search --gdelt   # optional reach passes (keys: OPR_API_KEY, SERPER_API_KEY)
+    uv run scripts/profile.py --opr           # Open PageRank (key: OPR_API_KEY)
 
-Writes data/profil.csv and images into site/img/{og,icon}/.
+Writes data/profil.csv and images into site/img/{og,icon}/. Web search lives in scripts/search.py.
 """
 import argparse
 import asyncio
 import io
-import json
 import os
 import re
 import sys
@@ -28,7 +27,7 @@ import httpx
 from PIL import Image, ImageOps
 from selectolax.lexbor import LexborHTMLParser as HTMLParser
 
-from common import DATA, SITE, domain_of, load_entries, load_profile, save_profile
+from common import SHARE, SITE, SOCIAL_HOSTS, domain_of, load_entries, load_profile, save_profile
 
 UA = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
@@ -49,13 +48,6 @@ PARKED = re.compile(
 REPO = re.compile(r"^https?://(www\.)?(github\.com|gitlab\.com|codeberg\.org)/[\w.-]+(/[\w.-]+)?/?$", re.I)
 GH_REPO = re.compile(r"^https?://(www\.)?github\.com/([\w.-]+/[\w.-]+?)(\.git)?/?$", re.I)
 REPO_SKIP = re.compile(r"/(sponsors|features|about|pricing|login|topics|marketplace)(/|$)", re.I)
-SOCIAL_HOSTS = {
-    h: r["key"]
-    for r in json.loads((DATA / "taxonomy.json").read_text())["linkuri"]["roluri"]
-    if r["key"] not in ("github", "gitlab")
-    for h in r["hosts"]
-}
-SHARE = re.compile(r"sharer|/share|intent/|shareArticle|/dialog/|/plugins/|/hashtag/|/watch\?|/embed/|/events/|/groups/", re.I)
 COOKIE_CSS = """
 #onetrust-banner-sdk, #onetrust-consent-sdk, #CybotCookiebotDialog, .cc-window, .cc-banner,
 #cookie-law-info-bar, .cky-consent-container, #cmplz-cookiebanner-container, .cookie-notice-container,
@@ -314,64 +306,6 @@ async def open_pagerank(client, profile: dict, entries: list[dict]):
                 log(f"  opr      {profile[slug]['opr']:<5} {slug}")
 
 
-SKIP_MENTION = re.compile(r"(^|\.)(facebook|instagram|linkedin|twitter|x|youtube|tiktok|github|google)\.com$")
-
-
-async def search_mentions(client, e: dict, p: dict):
-    """Pages elsewhere naming the domain (Google, via Serper; ~2 credits per entry). Needs SERPER_API_KEY."""
-    dom = domain_of(e["url"])
-    links = []
-    for page in (1, 2):
-        try:
-            # Unquoted: Serper's free tier rejects phrase queries; Google keeps a domain together anyway.
-            r = await client.post("https://google.serper.dev/search", timeout=30,
-                                  headers={"X-API-KEY": os.environ["SERPER_API_KEY"]},
-                                  json={"q": f"{dom} -site:{dom}", "gl": "ro", "hl": "ro", "num": 10, "page": page})
-            js = r.json()
-        except Exception as ex:
-            log(f"  search   ERR {e['slug']}: {ex}")
-            return
-        if "organic" not in js:
-            log(f"  search   ERR {e['slug']}: {js.get('message', js)}")
-            return
-        links += [o.get("link", "") for o in js["organic"]]
-        if len(js["organic"]) < 10:
-            break
-    hosts = [domain_of(u) for u in links]
-    hosts = [h for h in dict.fromkeys(hosts) if h and not h.endswith(dom) and not SKIP_MENTION.search(h)]
-    p["mentions"], p["mention_hosts"] = len(hosts), " ".join(hosts[:12])
-    p["search_social"] = {}
-    # Profiles the homepage doesn't link to often show up here; the review step weighs them.
-    # Only profiles whose handle carries the site's name: results also hold posts that merely mention it.
-    flat = lambda x: re.sub(r"[^a-z0-9]", "", x.lower())
-    label = flat(dom.split(".")[0])
-    for u in links:
-        host = (urlparse(u).hostname or "").lower().removeprefix("www.").removeprefix("m.")
-        role = SOCIAL_HOSTS.get(host) or ("github" if host == "github.com" else None)
-        handle = flat((urlparse(u).path.strip("/").split("/") or [""])[0].removeprefix("@"))
-        if role and len(handle) > 3 and len(label) > 3 and (label in handle or handle in label) and not SHARE.search(u):
-            p.setdefault("search_social", {}).setdefault(role, u.split("?")[0])
-    log(f"  search   {len(hosts):<3} {e['slug']}  {' '.join(hosts[:5])}")
-
-
-async def gdelt(client, e: dict, p: dict):
-    """News articles (GDELT, last 12 months) quoting the domain. GDELT asks for one request every 5 s."""
-    q = f'"{domain_of(e["url"]).replace(".", " ")}"'
-    for attempt in range(4):
-        await asyncio.sleep(6 * (attempt + 1))
-        try:
-            r = await client.get("https://api.gdeltproject.org/api/v2/doc/doc", timeout=40, params={
-                "query": q, "mode": "artlist", "format": "json", "maxrecords": 250, "timespan": "12m"})
-            if r.text.startswith("Please limit"):
-                continue
-            js = r.json() if r.text.strip().startswith("{") else {}
-            p["gdelt"] = len(js.get("articles", []))
-            log(f"  gdelt    {p['gdelt']:<3} {e['slug']}")
-            return
-        except Exception:
-            continue
-
-
 async def sitemap_info(client, base: str) -> tuple[str, int]:
     """Newest lastmod and number of URLs, following one level of sitemap index (robots.txt first)."""
     roots = []
@@ -622,8 +556,6 @@ async def main():
     ap.add_argument("--no-shots", action="store_true")
     ap.add_argument("--extra", action="store_true", help="age, activity and reach signals (free)")
     ap.add_argument("--opr", action="store_true", help="Open PageRank (OPR_API_KEY)")
-    ap.add_argument("--search", action="store_true", help="mentions on Google via Serper (SERPER_API_KEY, paid)")
-    ap.add_argument("--gdelt", action="store_true", help="news mentions via GDELT (slow: 6 s per entry)")
     args = ap.parse_args()
 
     OG_DIR.mkdir(parents=True, exist_ok=True)
@@ -637,10 +569,8 @@ async def main():
         # A changed url counts as never profiled.
         todo = [e for e in entries if args.force or e["slug"] not in profile or profile[e["slug"]].get("url") != e["url"]]
     opts = dict(headers=HEADERS, follow_redirects=True, timeout=httpx.Timeout(20, connect=10), max_redirects=8)
-    if args.extra or args.opr or args.search or args.gdelt:
+    if args.extra or args.opr:
         todo = [e for e in (todo if only else entries) if e["slug"] in profile]
-        # Domain-level signals mean nothing for a project on a subpage of a bigger site.
-        rooted = [e for e in todo if urlparse(e["url"]).path.strip("/") == ""]
         async with httpx.AsyncClient(verify=False, **opts) as client:
             if args.extra:
                 log(f"extra signals for {len(todo)} entries")
@@ -648,17 +578,6 @@ async def main():
                 await asyncio.gather(*(extras_one(sem, client, e, profile[e["slug"]]) for e in todo))
             if args.opr:
                 await open_pagerank(client, profile, todo)
-            if args.search:
-                if not os.environ.get("SERPER_API_KEY"):
-                    sys.exit("SERPER_API_KEY not set")
-                sem = asyncio.Semaphore(4)
-                async def one(e):
-                    async with sem:
-                        await search_mentions(client, e, profile[e["slug"]])
-                await asyncio.gather(*(one(e) for e in rooted))
-            if args.gdelt:
-                for e in rooted:
-                    await gdelt(client, e, profile[e["slug"]])
         save_profile(profile)
         return
     log(f"profiling {len(todo)} of {len(entries)} entries")

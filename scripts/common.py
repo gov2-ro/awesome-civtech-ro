@@ -1,4 +1,4 @@
-"""Shared loading of the editable CSVs (proiecte, orgs) and the generated profile CSV."""
+"""Shared loading of the editable CSVs (proiecte, orgs) and the generated profile and mention CSVs."""
 import csv
 import json
 import re
@@ -8,6 +8,8 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 SITE = ROOT / "site"
 PROFILE = DATA / "profil.csv"
+MENTIUNI = DATA / "mentiuni.csv"
+ETICHETE = DATA / "mentiuni_etichete.csv"
 
 # Column order of the editable files. Contributions (PRs, the Google Sheet) use the same headers.
 PROIECTE_COLS = ["slug", "fel", "nume", "descriere_scurta", "descriere", "url", "linkuri", "domeniu", "tip", "cuvinte",
@@ -19,7 +21,21 @@ PROFIL_COLS = ["slug", "url", "final_url", "http_status", "status", "error", "ss
                "site_name", "description", "lang", "repos", "social", "img_src", "img_kind", "img_w", "img_h",
                "img_color", "img_source", "icon", "wayback", "first_seen", "last_capture", "archive_months", "updated", "updated_src", "feed",
                "generator", "words", "copyright_year", "sitemap_urls", "cert_first", "repo", "repo_created", "repo_archived", "stars", "forks",
-               "wiki_refs", "opr", "mentions", "mention_hosts", "search_social", "gdelt", "fetched_at"]
+               "wiki_refs", "opr", "mentions", "mention_hosts", "search_social", "fetched_at"]
+# Search results (scripts/search.py). `editor` is the only column a person edits: 1 keeps, 0 drops, empty follows `regula`.
+MENTIUNI_COLS = ["slug", "provider", "query", "rank", "url", "host", "title", "snippet", "date", "regula", "editor", "fetched_at"]
+# LLM labels of the kept results (scripts/review.py); generated, never hand-edited.
+ETICHETE_COLS = ["slug", "url", "despre_proiect", "tip_sursa", "independent", "model", "labelled_at"]
+
+# Profile links by network: host -> role key, from the taxonomy (GitHub and GitLab are code, not social).
+SOCIAL_HOSTS = {
+    h: r["key"]
+    for r in json.loads((DATA / "taxonomy.json").read_text())["linkuri"]["roluri"]
+    if r["key"] not in ("github", "gitlab")
+    for h in r["hosts"]
+}
+# Share buttons and other URLs that are not a profile page.
+SHARE = re.compile(r"sharer|/share|intent/|shareArticle|/dialog/|/plugins/|/hashtag/|/watch\?|/embed/|/events/|/groups/", re.I)
 
 # Descriptions that carry no information (kept for imports from other catalogues).
 BOILERPLATE = re.compile(
@@ -63,6 +79,16 @@ def write_csv(path: Path, cols: list[str], rows: list[dict]):
         w = csv.DictWriter(f, fieldnames=cols, extrasaction="ignore", lineterminator="\n")
         w.writeheader()
         w.writerows(rows)
+
+
+def is_kept(row: dict) -> bool:
+    """A search result counts when the editor keeps it, or when the editor is silent and no rule dropped it."""
+    return row["editor"] == "1" or (row["editor"] == "" and row["regula"] == "")
+
+
+def load_mentions() -> list[dict]:
+    """Every row of mentiuni.csv (empty when search.py has not run)."""
+    return read_csv(MENTIUNI) if MENTIUNI.exists() else []
 
 
 def load_entries() -> list[dict]:

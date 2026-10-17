@@ -26,9 +26,23 @@ Fișierele se pot edita și ca tabel (LibreOffice, Excel, Google Sheets) — pă
 | `autor` | oameni sau organizații, separați prin ` / ` |
 | `contact` | opțional |
 | `civictech` | `1` dacă e un proiect civic tech (făcut de societatea civilă / voluntari), `0` altfel |
-| `stare` | gol (verificată automat), `arhivat` sau `offline` |
+| `stare` | gol (verificată automat), `arhivat` sau `offline`. |
 | `nota` | note interne, nu apar pe site |
 
 `orgs.csv` are aceleași coloane, fără `fel`, `tip`, `autor`, `contact` și `civictech`.
 
 Restul — starea site-ului, imaginea, iconița, linkurile sociale găsite pe pagină — se completează automat (`scripts/profile.py` → `data/profil.csv`).
+
+## Rezultatele căutării — `mentiuni.csv`
+
+`scripts/search.py` salvează în `data/mentiuni.csv` paginile găsite pe web despre fiecare intrare (Google prin Serper, plus Brave). Fișierul e generat, cu o singură excepție: coloana `editor` o completezi tu.
+
+| `editor` | ce înseamnă |
+| --- | --- |
+| `1` | păstrează rezultatul, chiar dacă o regulă automată îl respinge (coloana `regula` nu e goală) |
+| `0` | elimină rezultatul, chiar dacă nicio regulă nu îl respinge |
+| gol | decide regula: rezultatul se păstrează doar dacă `regula` e goală |
+
+Coloana `regula` spune de ce a fost respins un rezultat: `propriu` (site-ul intrării, linkurile ei și site-urile autorilor), `social`, `cod`, `magazin`, `registru`, `ferma`, `zgomot`. Regulile marchează rândurile, nu le șterg. La următoarea rulare, `search.py` păstrează valorile din `editor`.
+
+Rezultatele păstrate sunt etichetate de `scripts/review.py` în `data/mentiuni_etichete.csv` (generat, nu se editează) și intră apoi în scorul „Relevanță".
