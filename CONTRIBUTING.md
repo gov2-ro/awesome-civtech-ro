@@ -26,7 +26,7 @@ Fișierele se pot edita și ca tabel (LibreOffice, Excel, Google Sheets) — pă
 | `autor` | oameni sau organizații, separați prin ` / ` |
 | `contact` | opțional |
 | `civictech` | `1` dacă e un proiect civic tech (făcut de societatea civilă / voluntari), `0` altfel |
-| `stare` | gol (verificată automat), `arhivat` sau `offline`. |
+| `stare` | gol (verificată automat), `arhivat` sau `offline`. Un site offline pe care Wayback Machine nu l-a mai văzut de un an apare automat ca `arhivat`. |
 | `nota` | note interne, nu apar pe site |
 
 `orgs.csv` are aceleași coloane, fără `fel`, `tip`, `autor`, `contact` și `civictech`.

@@ -60,6 +60,9 @@ def status_of(stare: str, prof: dict) -> str:
     s = prof.get("status")
     if not s:
         return "neverificat"
+    # Gone, and the Wayback Machine has not seen it for a year: the project has ended, not just a glitch.
+    if s == "offline" and (years_since(prof.get("last_capture", "")) or 0) > 1:
+        return "arhivat"
     return {"mutat": "activ", "blocat": "necunoscut", "parcat": "offline"}.get(s, s)
 
 
