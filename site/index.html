@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CivTech România</title>
+<meta name="description" content="Director de instrumente civice, date deschise și proiecte de bună guvernare din România.">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e0e10" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Instrument+Sans:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%225%22 fill=%22%23111113%22/%3E%3Ctext x=%2216%22 y=%2221%22 font-family=%22monospace%22 font-size=%2214%22 fill=%22white%22 text-anchor=%22middle%22%3Ect%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#results">Sari la rezultate</a>
+
+<header class="hdr" data-slot="hdr">
+  <div class="wrap hdr-in">
+    <a class="brand" href="./">
+      <span class="brand-mark" aria-hidden="true">ct</span>
+      <span class="brand-name" data-slot="brand" aria-hidden="true"><span>CivTech România</span></span>
+      <span class="sr">CivTech România — prima pagină</span>
+    </a>
+    <nav class="tabs" aria-label="Ce cauți" data-slot="tabs"></nav>
+    <div class="tools">
+      <div class="search" data-slot="search">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" data-slot="q" placeholder="Caută proiect, temă, oraș…" autocomplete="off" enterkeyhint="search"
+          role="combobox" aria-label="Caută" aria-autocomplete="list" aria-expanded="false" aria-controls="ac">
+        <kbd class="kbd" aria-hidden="true">/</kbd>
+        <div class="ac" id="ac" role="listbox" aria-label="Sugestii" data-slot="ac" hidden></div>
+      </div>
+      <a class="hdr-link" href="#despre">Despre</a>
+    </div>
+    <button class="btn btn-outline filters-btn" data-act="sheet" aria-haspopup="dialog">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+      Filtre<span class="badge" data-slot="fcount"></span>
+    </button>
+    <nav class="chips" aria-label="Domenii" data-slot="chips"></nav>
+  </div>
+</header>
+
+<main class="layout wrap">
+  <aside class="side" aria-label="Filtre" data-slot="side"></aside>
+  <section class="results" id="results" aria-live="polite">
+    <div class="toolbar" data-slot="toolbar"></div>
+    <div data-slot="results"></div>
+  </section>
+</main>
+
+<footer class="footer wrap" id="despre">
+  <div>
+    <p class="kicker">Despre</p>
+    <p>Secțiune în lucru.</p>
+  </div>
+  <div>
+    <p class="kicker">Propune un proiect</p>
+    <p>Lipsește ceva sau o informație e greșită? Formularul de propuneri urmează.</p>
+  </div>
+  <p class="mono small muted" data-slot="checked"></p>
+</footer>
+
+<div class="scrim" data-slot="scrim" data-act="close" hidden></div>
+<div class="drawer" data-slot="drawer" role="dialog" aria-modal="true" aria-labelledby="d-title" hidden></div>
+<div class="sheet" data-slot="sheet" role="dialog" aria-modal="true" aria-label="Filtre" hidden></div>
+
+<script src="app.js"></script>
+</body>
+</html>

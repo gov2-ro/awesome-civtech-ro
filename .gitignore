@@ -72,3 +72,6 @@ tmp/
 */tmp/*
 docs/reference/init-prototype/*
 *_OBSOLETE*
+# awesome-civtech: the directory data is tracked (the rules above come from another project)
+!/data/*.csv
+!/data/taxonomy.json

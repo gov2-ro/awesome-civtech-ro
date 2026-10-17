@@ -1,0 +1,21 @@
+name: validate
+
+on:
+  pull_request:
+    paths: ["data/**", "scripts/**"]
+  push:
+    branches: [main]
+    paths: ["data/**", "scripts/**"]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check proiecte.csv and orgs.csv
+        run: python3 scripts/validate.py
+      - name: Build site data
+        run: python3 scripts/build.py
