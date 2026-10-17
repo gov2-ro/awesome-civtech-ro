@@ -1,11 +1,14 @@
 /tmp
 /data/*
 *.code-workspace
-*/_obsolete
+
 */*.log
 *.log
 */data/*
-_obsolete
+_obsolete/*
+*/_obsolete/*
+*_OBSOLETE*
+*/_OBSOLETE/*
 .codesight
 */geckodriver.log
 geckodriver.log
