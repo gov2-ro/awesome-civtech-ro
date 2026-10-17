@@ -36,9 +36,9 @@ scripts/build.py → site/data.json  →  site/app.js (vanilla JS, fetches data.
 ```
 
 - **Human-edited source of truth**: `proiecte.csv` (`fel` = `proiect` | `resursa`), `orgs.csv`, and `taxonomy.json` (domenii, tipuri, acoperire, keyword `ignora`/`alias` rules, link roles with host lists). Columns are documented in CONTRIBUTING.md. CSVs must stay round-trippable through Google Sheets/Excel: UTF-8, comma-separated, list cells (`linkuri`) space/newline/`|`-separated or a JSON array, `tip` comma-separated with the main type first.
-- **Never hand-edit generated files**: `data/profil.csv`, `site/data.json`, `site/img/`. `review.py` never writes `proiecte.csv` — a person accepts suggestions manually.
+- **Never hand-edit generated files**: `site/feed.xml`, `data/profil.csv`, `data/mentiuni_etichete.csv`, `site/data.json`, `site/img/`. The one exception is the column `editor` in `data/mentiuni.csv` (empty, `1` keep, `0` drop); `search.py` keeps it on every rewrite. `review.py` never writes `proiecte.csv` — a person accepts suggestions manually.
 - `scripts/common.py` holds the shared loaders and the canonical column lists (`PROIECTE_COLS`, `ORGS_COLS`, `PROFIL_COLS`). Adding a column means updating it there (and in `validate.py` / `build.py` / CONTRIBUTING.md as relevant). `profil.csv` is flat except `social` (a JSON cell).
-- `build.py` decides what the site shows: curated description vs. the site's meta description (`pick_desc`, filtering `BOILERPLATE`), link roles from `linkuri` + profiler-found socials, `status` (manual `stare` = `arhivat`/`offline` overrides the profiler, and a retired entry ignores what is live at its old URL), `since` / `stale`, and `score` (0–100: activity 30, reach 25, volume 15, longevity 15, documentation 15) used by the "Relevanță" sort.
+- `build.py` decides what the site shows: curated description vs. the site's meta description (`pick_desc`, filtering `BOILERPLATE`), link roles from `linkuri` + profiler-found socials, `status` (manual `stare` = `arhivat`/`offline` overrides the profiler; a profiler `offline` with no Wayback capture for over a year shows as `arhivat`; and a retired entry ignores what is live at its old URL), `since` / `stale`, and `score` (0–100: activity 30, reach 25, volume 15, longevity 15, documentation 15) used by the "Relevanță" sort.
 - `site/app.js` keeps all UI state in URL query params (`DEFAULTS` / `FILTERS`; `p=<slug>` opens an entry), with a few per-browser prefs in localStorage.
 - `data/curation.csv`, `data/international.csv`, `data/_OBSOLETE/` aren't read by any script; `international.csv` is the seed for a planned international mirror.
 
@@ -88,3 +88,22 @@ relevant deliverable, bump the minor version; for a correction only, bump the pa
 workspace version in `Cargo.toml`, add a line to `docs/RELEASES.md`, commit, and tag the
 commit. Do this without asking, and say when you did. **Publishing a release is separate,
 and happens only when asked.**
+
+
+## Opus designs, Sonnet builds
+
+The work splits by model. **When you are Opus**, defer implementation and well-defined
+future work to Sonnet by default:
+
+- **Opus** writes specs, ADRs and briefs; makes and records decisions; and reviews Sonnet's
+  results against the brief before they are accepted.
+- **Sonnet** carries out a brief: code, spikes, measurements, fixture changes, and the
+  activity and backlog entries for that work.
+- **Opus does the work itself** when the task is a few lines, or when the design is still
+  moving and the doing is part of the deciding.
+
+**Sonnet stops and asks** when a step would change a spec, an ADR, an invariant or a
+dependency outside the brief's folder. It reports what it measured and what it assumed.
+
+To hand over, Opus tells the owner that the brief is ready. The owner runs it in a Sonnet
+session, or asks Opus to start a Sonnet agent on it.
