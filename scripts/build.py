@@ -1,16 +1,21 @@
-"""Merge proiecte.csv + orgs.csv + profil.csv into site/data.json (the browser's copy; generated, not edited).
+"""Merge proiecte.csv + orgs.csv + profil.csv into site/data.json (the browser's copy) and site/feed.xml
+(RSS, newest projects first). Both generated, not edited.
 
     python3 scripts/build.py
 """
 import json
 import math
 import re
+from email.utils import format_datetime
+from xml.sax.saxutils import escape
 from datetime import date, datetime, timezone
 
 from common import (BOILERPLATE, DATA, ETICHETE, SITE, domain_of, is_kept, load_entries, load_mentions, load_profile, read_csv,
                     split_list, split_tip, to_href)
 
 CODE_ROLES = ("github", "gitlab", "cod")
+SITE_URL = "https://civtech.gov2.ro/"
+FEED_SIZE = 40
 
 
 def pick_desc(desc: str, prof: dict) -> tuple[str, str]:
@@ -137,6 +142,26 @@ def score(e: dict, p: dict, alive: bool, desc: str, img, reach: dict) -> int:
     return round(total * (1 if alive else .4))
 
 
+def feed(items: list[dict], generated: datetime) -> str:
+    """RSS 2.0 of live projects, newest first by `since` (first trace on the web, not the date added here)."""
+    live = [i for i in items if i["kind"] == "proiect" and i["since"] and i["status"] not in ("offline", "arhivat")]
+    out = []
+    for i in sorted(live, key=lambda i: i["since"], reverse=True)[:FEED_SIZE]:
+        when = datetime.fromisoformat(i["since"]).replace(tzinfo=timezone.utc)
+        link = f"{SITE_URL}?p={i['slug']}"
+        out.append(f"""<item><title>{escape(i['name'])}</title><link>{escape(link)}</link><guid isPermaLink="true">{escape(link)}</guid>
+<description>{escape(i['tagline'] or i['desc'] or '')}</description><pubDate>{format_datetime(when)}</pubDate></item>""")
+    return f"""<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
+<title>CivTech România — proiecte noi</title><link>{SITE_URL}</link>
+<atom:link href="{SITE_URL}feed.xml" rel="self" type="application/rss+xml"/>
+<description>Cele mai noi proiecte din colecția CivTech România.</description><language>ro</language>
+<lastBuildDate>{format_datetime(generated)}</lastBuildDate>
+{chr(10).join(out)}
+</channel></rss>
+"""
+
+
 def main():
     tax = json.loads((DATA / "taxonomy.json").read_text())
     roles = tax["linkuri"]["roluri"]
@@ -198,8 +223,9 @@ def main():
     items.sort(key=lambda x: re.sub(r"[^a-z0-9]", "", x["name"].lower()))
     checked = sorted({i["checked"] for i in items if i["checked"]})
     tax_out = {k: v for k, v in tax.items() if k != "cuvinte"}
+    now = datetime.now(timezone.utc)
     out = {
-        "generated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "generated": now.isoformat(timespec="seconds"),
         "checked": checked[-1] if checked else "",
         "taxonomy": tax_out,
         "items": items,
@@ -208,7 +234,8 @@ def main():
     by = {}
     for i in items:
         by[i["status"]] = by.get(i["status"], 0) + 1
-    print(f"wrote {len(items)} entries to site/data.json  {by}")
+    (SITE / "feed.xml").write_text(feed(items, now))
+    print(f"wrote {len(items)} entries to site/data.json  {by}; site/feed.xml")
 
 
 if __name__ == "__main__":
