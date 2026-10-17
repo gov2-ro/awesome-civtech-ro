@@ -1,0 +1,74 @@
+/tmp
+/data/*
+*.code-workspace
+*/_obsolete
+*/*.log
+*.log
+*/data/*
+_obsolete
+.codesight
+*/geckodriver.log
+geckodriver.log
+selenium/geckodriver.log
+!/data/reference/
+!/data/cached-responses/
+!/data/datasette/
+# Source material for the salary grid — the MMFTSS workbook, the draft annexes,
+# ~5 MB of .docx/.xlsx/.pdf. Out of the repo; `data/salarii/` below carries what
+# was parsed out of them, which is what the site actually reads.
+docs/salarii/
+
+# The salary grid registry is a versioned artifact, not scratch output: every
+# estimate the site shows must be traceable to a row in it, including for an
+# older variant of the draft law. Rebuild with `python build-salary-grid.py`.
+!/data/salarii/
+# The COR occupation table is reference data with a recorded provenance, not
+# pipeline output. See data/ocupatii/README.md.
+!/data/ocupatii/
+# Town populations, 2021 census (DATA-06): reference data with its source and
+# revision in every row. Rebuild with ops/build-uat-population.py.
+!/data/uat-populatie.csv
+/data/cached-responses/*
+/testbench/
+*/scraping.log
+Archive.zip
+*/Archive.zip
+*.dump
+*/*.zip 
+*zip
+posturi.sqlite
+*/posturi.sqlite
+# environment secrets
+.env
+
+# runtime logs (rotated pipeline logs included)
+logs/*
+!logs/.gitkeep
+
+# virtualenv
+.venv/
+# webapp
+.playwright-mcp/
+webapp/.env
+webapp/__pycache__/
+**/__pycache__/
+webapp/staticfiles/
+webapp/db.sqlite3.superpowers/
+
+# PHP webapp export
+posturi.sqlite
+webapp-php/posturi.sqlite
+# SQLite WAL/shared-memory sidecars
+*.sqlite-wal
+*.sqlite-shm
+node_modules/
+.pipeline.lock
+
+# Playwright output (browser traces and reports)
+test-results/
+playwright-report/
+webapp-php/static/code-version.txt
+tmp/
+*/tmp/*
+docs/reference/init-prototype/*
+*_OBSOLETE*
