@@ -44,7 +44,9 @@ const FRESH_DAYS = 183, LAUNCH_DAYS = 60;
 let DB = null, TAX = null, seed = Math.random();
 let title = TITLES[0];
 const state = { ...DEFAULTS };
-const closed = new Set(store.get('ct.closed', ['cuvinte']));
+// First visit on desktop: only "domeniu" is open. Once a visitor toggles a facet, their choice is stored and wins.
+const wide = matchMedia('(min-width: 1024px)').matches;
+const closed = new Set(store.get('ct.closed', wide ? ['tip', 'cuvinte', 'optiuni'] : ['cuvinte']));
 let lastFocus = null;
 
 const isInactive = it => STATUS[it.status].group === 'inactiv';
