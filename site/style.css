@@ -390,6 +390,14 @@ svg.gh { width: 20px; height: 20px; fill: currentColor; stroke: none; }
 .dl dt { font: 400 11px/1.9 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .dl dd { margin: 0; overflow-wrap: anywhere; }
 .dl a { color: var(--accent-ink); text-underline-offset: 3px; }
+.dl .links { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 14px; }
+.dl a.lk { display: inline-flex; align-items: center; gap: 6px; }
+.fav { width: 14px; height: 14px; flex: none; object-fit: contain; border-radius: 2px; }
+@media (prefers-color-scheme: dark) { .fav { box-sizing: content-box; padding: 1px; background: #fff; } }
+.dl a.net { display: inline-flex; padding: 4px; margin: -2px -4px; color: var(--ink-2); border-radius: var(--radius); }
+.dl a.net:hover { color: var(--accent-ink); }
+.dl a.net svg { width: 18px; height: 18px; fill: currentColor; stroke: none; }
+.dl .repo { font-size: 13px; line-height: 1.7; color: var(--ink-2); }
 .related { padding-top: 14px; border-top: 1px solid var(--line); display: grid; }
 .related .kicker { margin-bottom: 4px; }
 .related .row {

@@ -10,8 +10,8 @@ from email.utils import format_datetime
 from xml.sax.saxutils import escape
 from datetime import date, datetime, timezone
 
-from common import (BOILERPLATE, DATA, ETICHETE, SITE, domain_of, is_kept, load_entries, load_mentions, load_profile, read_csv,
-                    split_list, split_tip, to_href)
+from common import (BOILERPLATE, DATA, ETICHETE, LINKICON_DIR, NETWORK_ROLES, SITE, domain_of, is_kept, link_host, load_entries,
+                    load_mentions, load_profile, parse_link, read_csv, split_list, split_tip)
 
 CODE_ROLES = ("github", "gitlab", "cod")
 SITE_URL = "https://civtech.gov2.ro/"
@@ -42,21 +42,38 @@ def keywords(cell: str, rules: dict) -> list[str]:
 
 def links(cell: str, social: dict, roles: list[dict]) -> list[dict]:
     """The 'linkuri' cell ("rol:URL" or bare URL), then social links the profiler found on the homepage."""
-    by_host = {h: r["key"] for r in roles for h in r["hosts"]}
     label = {r["key"]: r["label"] for r in roles}
     out = {}
     for tok in split_list(cell):
-        m = re.match(r"^([a-z]+):(https?://.+)$", tok)
-        role, url = (m.group(1), m.group(2)) if m and m.group(1) in label else (None, to_href(tok))
-        role = role or by_host.get(domain_of(url).removeprefix("m."), "web")
+        role, url = parse_link(tok, roles)
         out.setdefault(role if role not in ("web", *CODE_ROLES) else url,
                        {"role": role, "label": label[role], "url": url, "src": "manual"})
     for role, url in social.items():
         if re.search(r"/(events|groups)/", url):
             continue
         out.setdefault(role, {"role": role, "label": label.get(role, role), "url": url, "src": "site"})
+    # A link that shows no network logo shows the favicon of its host, when the profiler stored one.
+    for l in out.values():
+        host = link_host(l["url"])
+        if l["role"] not in NETWORK_ROLES and (LINKICON_DIR / f"{host}.webp").exists():
+            l["icon"] = f"img/linkicon/{host}.webp"
     order = list(label)
     return sorted(out.values(), key=lambda l: order.index(l["role"]))
+
+
+def repo_stats(p: dict) -> dict:
+    """GitHub facts of the entry's repository for the drawer; only the values the profiler found."""
+    if not p.get("repo"):
+        return {}
+    out = {"name": p["repo"], "url": f"https://github.com/{p['repo']}", "archived": bool(p.get("repo_archived"))}
+    for col, key in (("stars", "stars"), ("forks", "forks"), ("open_issues", "issues"), ("commits", "commits"),
+                     ("contributors", "contributors")):
+        if p.get(col) not in (None, ""):
+            out[key] = num(p[col])
+    for col, key in (("last_commit", "last"), ("license", "license"), ("language", "language")):
+        if p.get(col):
+            out[key] = p[col]
+    return out
 
 
 def status_of(stare: str, prof: dict) -> str:
@@ -184,6 +201,7 @@ def main():
         alive = status in ("activ", "necunoscut")
         act = last_activity(p)
         reach = features.get(e["slug"], NO_REACH)
+        repo = repo_stats(p)
         items.append({
             "id": n + 1,
             "slug": e["slug"],
@@ -204,6 +222,7 @@ def main():
             "movedFrom": domain_of(e["url"]) if moved else "",
             "org": e.get("autor", ""),
             "code": code,
+            **({"repo": repo} if repo else {}),
             "contact": e.get("contact", ""),
             "status": status,
             "httpStatus": live.get("http_status"),

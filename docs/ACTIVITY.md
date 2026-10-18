@@ -1,5 +1,69 @@
 # Activity
 
+## 2026-10-18 — Network logos, link favicons, GitHub stats (brief `link-icons-github-stats.md`)
+
+**Done**
+- Drawer (`site/app.js`, `style.css`): a link to one of the 13 networks shows its logo, 18 px,
+  inline SVG from Simple Icons 16.35.0 (CC0), `currentColor`. Each has `aria-label` and `title`
+  with the network name; the global focus ring shows on it. Other links show their host's favicon
+  (14 px) before the label; in dark mode the favicon sits on a white chip, because dark marks
+  (GitHub) vanish on the dark background.
+- `profile.py`: `link_icons()` fetches one favicon per non-network link host into
+  `site/img/linkicon/<host>.webp` (32 px at most; skipped when the file exists, unless `--force`).
+  `build.py` adds `icon` to a link when the file exists. `common.py`: `NETWORK_ROLES`, `ROLES`,
+  `link_host()`, `parse_link()` (the role parsing of `build.links()` moved there).
+- `profile.py` icon: `icon_candidates()` (declared icons, logo images in `header`/`nav`/`a[rel=home]`,
+  root paths, two icon services) and `fetch_icon()` (first square candidate of 64 px or more, else
+  the largest; a stored icon is replaced only by a larger one). `extras_one` now owns the icon step
+  (`profile_one` no longer fetches it), so `--extra` upgrades small icons.
+- GitHub stats in `extras_one`: new `profil.csv` columns `open_issues`, `commits`, `contributors`,
+  `last_commit`, `license`, `language`. `build.py` writes `repo: {name, url, stars, forks, issues,
+  commits, contributors, last, license, language, archived}` per item that has a repo. The drawer
+  shows a "Cod" row under "Cod sursă".
+
+**Measured**
+- Full `--extra` run (116 entries): 151 GitHub requests; core limit 5000, 4912 left after it.
+  Total for the session about 178 requests; 4895 left at the end. 0 rate-limit stops.
+- 19 repos with stats (20 repos in `profil.csv`; the 20th, `rescue-4x4`, is an orphan row of a
+  deleted entry). All 19 have stars, forks, open issues, commits, contributors, last commit and
+  language; 13 have a licence (the others have none).
+- Link favicons: 12 hosts, 12 stored, 0 failed.
+- Icons under 64 px: 29 of 104 before, 22 of 106 after. 7 upgraded (crpe 16 to 99, efor 16 to 68,
+  harta-firmelor 32 to 128, igov 48 to 128, ro-api-hub 32 to 128, romania-transparenta 48 to 128,
+  tech-and-tonic 16 to 115); 2 new (onorata-instanta, calitate-aer-radauti, 128 px). The 22 left
+  include 10 orphan files; factual stays at 32 px (its logo is an SVG) and code4ro at 48 px (its
+  logo, 376 x 116, is a wordmark).
+- Examples: ro-api-hub 2 stars, 1 fork, 0 issues, 27 commits, 1 contributor, last commit
+  2026-09-24, MIT; redirectioneaza 26 stars, 27 forks, 20 issues, 1538 commits, 27 contributors,
+  2026-10-04, MPL-2.0; sicap-ai 92 stars, 23 forks, 0 issues, 388 commits, 7 contributors,
+  2026-09-25.
+- `validate.py`: 0 errors. `build.py`: 117 entries.
+
+**Hard**
+- `profile.py --only factual,funky-citizens,ro-api-hub,code4ro` (asked in the brief) replaces whole
+  rows: it dropped `mentions`, `mention_hosts`, `search_social` (restored by `search.py
+  --prune-only`, no requests) and, because crt.sh answered 502, `cert_first` of factual and
+  code4ro. A later `--extra --only factual,code4ro` restored it once crt.sh answered again.
+- A code4ro-style wordmark (376 x 116) is a poor icon in a square slot, so `fetch_icon` ranks a
+  candidate wider than 2:1 below any square one.
+
+**Decided**
+- Open issues without pull requests: `open_issues_count` minus the open pull requests (one core
+  request with `per_page=1`, the page count from the `Link` header). The brief allowed the search
+  API; it allows 30 requests a minute and the profiler already spends them on `github_find`. Cost
+  of the alternative: about 2 minutes more per run, and a second source of rate-limit stops.
+  With this, the UI says "issues" and never mixes in pull requests. When the pull request call
+  fails, `open_issues` stays empty.
+- Added to the "Cod" row beyond the brief's example: the language and "arhivat" (an archived repo),
+  and the repository's name as a link when it is not the "Cod sursă" link above (code4ro links
+  an organisation page; the stats are of `code4romania/code4.ro`). Cost: a longer row. Drop them
+  in `repoRow()` if too long.
+- The favicon of a host is not removed when a link goes away; files are keyed by host and may be
+  shared by several entries.
+- A failed GitHub call never writes a zero: the field keeps its old value. A rate limit sets a
+  flag, skips every later GitHub call, and ends the run with a non-zero exit after the profile is
+  saved.
+
 ## 2026-10-18 — New organisations and resources filled in
 
 **Done**

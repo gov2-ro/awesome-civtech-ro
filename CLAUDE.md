@@ -26,7 +26,7 @@ uv run scripts/review.py --only slug,slug   # Claude Haiku review + labels for t
 
 ```
 data/proiecte.csv + data/orgs.csv  (human-edited)
-        │  scripts/profile.py  → data/profil.csv (generated) + site/img/{og,icon}/
+        │  scripts/profile.py  → data/profil.csv (generated) + site/img/{og,icon,linkicon}/
         │  scripts/search.py   → data/mentiuni.csv (generated; the editor prunes in column `editor`)
         │                      → profil.csv: mentions, mention_hosts, search_social
         │  scripts/review.py   → data/review/{raw.jsonl,sugestii.csv} (suggestions only, gitignored)

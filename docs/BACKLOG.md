@@ -26,8 +26,36 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [ ] UI: show the reach features (independent mentions, news, latest mention) on the entry card
 - [ ] Run Open PageRank (`--opr`, needs `OPR_API_KEY`, free signup)
 
+## Link icons and GitHub stats (brief: `docs/briefs/link-icons-github-stats.md`)
+
+- [x] Drawer: a link to a network shows its logo (inline SVG, Simple Icons, `currentColor`) with
+      `aria-label` and `title` (D1, D2)
+- [x] `profile.py` stores the favicon of each non-network link host in `site/img/linkicon/`; `build.py`
+      adds `icon` to the link (D3). 12 hosts, 0 failed.
+- [x] `profile.py`: the entry icon prefers a candidate of 64 px or more; header logo images are
+      candidates (D4)
+- [x] GitHub stats in `profile.py --extra` (6 new `profil.csv` columns) and the "Cod" row in the
+      drawer (D5, D6). 19 repos.
+- [ ] A logo that is an SVG is skipped: Pillow cannot decode it (factual.ro has an SVG logo and a
+      32 px favicon). Option: rasterise it with Playwright in the browser pass.
+- [ ] `profile.py --only` / `--force` drops `cert_first` while crt.sh answers 502 (2026-10-18:
+      factual, code4ro; restored later with `--extra --only`). `extras_one` keeps an old value only
+      when the profile row survives.
+- [ ] `profile.py --extra` runs a GitHub search for every live entry without a repo, on every run
+      (about 75 requests, about 3 minutes at the 30 per minute limit). Store the miss to skip it.
+- [ ] A link host whose favicon fails is fetched again on every run (no stored miss). Today: 0 failures.
+- [ ] Orphans: 22 files in `site/img/icon/` and 10 rows in `profil.csv` have no entry in the CSVs
+      (deleted entries, e.g. `rescue-4x4`). Nothing shows them.
+- [ ] `CLAUDE.md` pipeline sketch names `site/img/{og,icon}/`; add `linkicon`.
+
 ## Site (from README *Backlog*)
 
+- [ ] "Vezi și proiectele inactive (N)" link: at the end of each domain section (sort "Pe domenii"),
+      or at the end of the list (other sorts). It opens a list of only `arhivat` / `offline` entries
+      of that section or tab, for all three tabs (proiecte, resurse & liste, organizații). Today the
+      only way in is the "Ascunde proiecte inactive" toggle (`ina=1`), which mixes them into the list.
+      Open question: does the inactive-only list replace `ina=1`, or does it get its own URL value
+      (e.g. `ina=doar`)?
 - [x] Keyboard navigation: `j`/`k` or `←`/`→` step through results (and the open entry),
       `o` opens the entry's own site; key hints in the footer
 - [x] Mark fresh projects: `nou` tag when `since` is under 183 days, plus a "Doar proiecte noi"

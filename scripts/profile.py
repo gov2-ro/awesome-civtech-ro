@@ -8,10 +8,10 @@
     uv run scripts/profile.py --force         # re-profile everything
     uv run scripts/profile.py --only a,b      # just these slugs
     uv run scripts/profile.py --no-shots      # skip the browser screenshot pass
-    uv run scripts/profile.py --extra         # only refresh age, activity and reach signals for every entry
+    uv run scripts/profile.py --extra         # only refresh age, activity, GitHub stats and link favicons for every entry
     uv run scripts/profile.py --opr           # Open PageRank (key: OPR_API_KEY)
 
-Writes data/profil.csv and images into site/img/{og,icon}/. Web search lives in scripts/search.py.
+Writes data/profil.csv and images into site/img/{og,icon,linkicon}/. Web search lives in scripts/search.py.
 """
 import argparse
 import asyncio
@@ -27,7 +27,8 @@ import httpx
 from PIL import Image, ImageOps
 from selectolax.lexbor import LexborHTMLParser as HTMLParser
 
-from common import SHARE, SITE, SOCIAL_HOSTS, domain_of, load_entries, load_profile, save_profile
+from common import (LINKICON_DIR, NETWORK_ROLES, ROLES, SHARE, SITE, SOCIAL_HOSTS, domain_of, link_host, load_entries,
+                    load_profile, parse_link, save_profile, split_list)
 
 UA = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
@@ -36,6 +37,8 @@ UA = (
 HEADERS = {"User-Agent": UA, "Accept-Language": "ro,en;q=0.8"}
 OG_DIR = SITE / "img" / "og"
 ICON_DIR = SITE / "img" / "icon"
+ICON_WANT = 64  # px: the entry's icon is replaced while it is smaller and a candidate offers more
+LINKICON_WANT = 32  # px: link favicons show at 14-16 px
 MAX_HTML = 3_000_000
 MAX_IMG = 12_000_000
 MIN_COVER_W = 400  # narrower og images are treated as missing
@@ -48,6 +51,7 @@ PARKED = re.compile(
 REPO = re.compile(r"^https?://(www\.)?(github\.com|gitlab\.com|codeberg\.org)/[\w.-]+(/[\w.-]+)?/?$", re.I)
 GH_REPO = re.compile(r"^https?://(www\.)?github\.com/([\w.-]+/[\w.-]+?)(\.git)?/?$", re.I)
 REPO_SKIP = re.compile(r"/(sponsors|features|about|pricing|login|topics|marketplace)(/|$)", re.I)
+LOGO = re.compile(r"logo", re.I)
 COOKIE_CSS = """
 #onetrust-banner-sdk, #onetrust-consent-sdk, #CybotCookiebotDialog, .cc-window, .cc-banner,
 #cookie-law-info-bar, .cky-consent-container, #cmplz-cookiebanner-container, .cookie-notice-container,
@@ -140,18 +144,7 @@ async def fetch_page(client, insecure, url: str) -> dict:
     src = tree.css_first('link[rel="image_src"]')
     imgs.append(src.attributes.get("href", "") if src else "")
     out["image_candidates"] = list(dict.fromkeys(urljoin(base, i) for i in imgs if i))
-    icons = []
-    for link in tree.css("link[rel]"):
-        rel = (link.attributes.get("rel") or "").lower()
-        if "icon" in rel and link.attributes.get("href"):
-            size = re.match(r"(\d+)", link.attributes.get("sizes") or "")
-            score = int(size.group(1)) if size else (180 if "apple" in rel else 32)
-            icons.append((score, urljoin(base, link.attributes["href"])))
-    icons.sort(reverse=True)
     host = urlparse(base).hostname or ""
-    # Icon services as a last resort; both answer 404 when they have nothing.
-    out["icon_candidates"] = [u for _, u in icons] + [urljoin(base, "/favicon.ico"),
-                              f"https://icons.duckduckgo.com/ip3/{host}.ico", f"https://www.google.com/s2/favicons?domain={host}&sz=128"]
     host_of_page = host.removeprefix("www.")
     repos, social = [], {}
     for a in tree.css("a[href]"):
@@ -192,7 +185,52 @@ async def fetch_image(client, slug: str, candidates: list[str]) -> dict | None:
     return None
 
 
-async def fetch_icon(client, slug: str, candidates: list[str]) -> str:
+def icon_candidates(tree: HTMLParser, base: str) -> list[str]:
+    """Icon URLs, best first: the icons the page declares (largest first), logo images in the page header,
+    then the usual paths and two icon services (both answer 404 when they have nothing)."""
+    icons = []
+    for link in tree.css("link[rel]"):
+        rel = (link.attributes.get("rel") or "").lower()
+        if "icon" in rel and link.attributes.get("href"):
+            size = re.match(r"(\d+)", link.attributes.get("sizes") or "")
+            score = int(size.group(1)) if size else (180 if "apple" in rel else 32)
+            icons.append((score, urljoin(base, link.attributes["href"])))
+    icons.sort(reverse=True)
+    logos = []
+    for img in tree.css("header img, nav img, [role=banner] img, a[rel=home] img"):
+        src = (img.attributes.get("src") or "").strip()
+        tags = " ".join(img.attributes.get(a) or "" for a in ("class", "id", "alt", "src"))
+        if src and not src.startswith("data:") and not src.split("?")[0].lower().endswith(".svg") and LOGO.search(tags):
+            logos.append(urljoin(base, src))
+    host = urlparse(base).hostname or ""
+    return list(dict.fromkeys([u for _, u in icons] + logos[:3] + [
+        urljoin(base, "/apple-touch-icon.png"), urljoin(base, "/favicon.ico"), f"https://icons.duckduckgo.com/ip3/{host}.ico",
+        f"https://www.google.com/s2/favicons?domain={host}&sz=128"]))
+
+
+def probe(body: bytes) -> tuple[int, int] | None:
+    """Pixel size of an image that decodes, else None (an SVG does not)."""
+    try:
+        im = Image.open(io.BytesIO(body))
+        im.load()
+        return im.size
+    except Exception:
+        return None
+
+
+def stored_side(path) -> int:
+    """Short side of a stored image, 0 when there is none."""
+    try:
+        with Image.open(path) as im:
+            return min(im.size)
+    except Exception:
+        return 0
+
+
+async def fetch_icon(client, stem: str, candidates: list[str], dest=ICON_DIR, want=ICON_WANT, max_w=128, beat=0) -> str:
+    """Store the first candidate that is roughly square and `want` px wide, else the largest one found, as
+    `dest/stem.webp`. Returns the path under site/, or "" when no candidate is larger than `beat` px."""
+    best, best_rank = None, beat
     for u in candidates:
         try:
             r, body = await get(client, u, 2_000_000)
@@ -200,10 +238,19 @@ async def fetch_icon(client, slug: str, candidates: list[str]) -> str:
                 continue
         except Exception:
             continue
-        info = save_image(body, ICON_DIR / slug, 128)
-        if info and info["w"] >= 16:
-            return f"img/icon/{slug}.webp"
-    return ""
+        size = probe(body)
+        if not size or min(size) < 16:
+            continue
+        # A wide wordmark is a poor icon: it ranks below any square one.
+        rank = min(size) if max(size) <= 2 * min(size) else 1
+        if rank > best_rank:
+            best, best_rank = body, rank
+        if best_rank >= want:
+            break
+    if not best:
+        return ""
+    save_image(best, dest / stem, max_w)
+    return f"img/{dest.name}/{stem}.webp"
 
 
 async def wayback(client, url: str) -> str:
@@ -242,12 +289,72 @@ def gh_headers() -> dict:
     return h
 
 
-async def github(client, repo: str) -> dict:
+GH = {"calls": 0, "left": {}, "stopped": False}  # requests made; rate limit left per API resource; set when GitHub refuses on a rate limit
+
+
+async def gh_get(client, path: str, **params):
+    """GET on the GitHub API. None when the call failed. A rate limit stops every later call: the run reports it,
+    and a field the call would have filled stays as it was (a failed call is never a zero)."""
+    if GH["stopped"]:
+        return None
     try:
-        r = await client.get(f"https://api.github.com/repos/{repo}", headers=gh_headers(), timeout=20)
-        return r.json() if r.status_code == 200 else {}
-    except Exception:
+        r = await client.get(f"https://api.github.com{path}", headers=gh_headers(), params=params, timeout=20)
+    except Exception as ex:
+        log(f"  github   ERR {path}: {type(ex).__name__}")
+        return None
+    GH["calls"] += 1
+    left = r.headers.get("x-ratelimit-remaining")
+    if left and left.isdigit():
+        GH["left"][r.headers.get("x-ratelimit-resource", "core")] = int(left)
+    if r.status_code in (403, 429) and (left == "0" or "rate limit" in r.text.lower()):
+        GH["stopped"] = True
+        log(f"  github   RATE LIMIT at {path} (resets {r.headers.get('x-ratelimit-reset')}); no more GitHub calls in this run")
+        return None
+    return r
+
+
+async def github(client, repo: str) -> dict:
+    r = await gh_get(client, f"/repos/{repo}")
+    if r is None or r.status_code != 200:
+        if r is not None:
+            log(f"  github   {r.status_code} /repos/{repo}")
         return {}
+    return r.json()
+
+
+async def gh_count(client, path: str, **params) -> int | None:
+    """How many items a list endpoint holds, read from the page number of the Link header's rel="last" with
+    per_page=1. 1 without a Link header and one item, 0 for an empty list. None when the call failed."""
+    r = await gh_get(client, path, per_page=1, **params)
+    if r is None:
+        return None
+    if r.status_code in (204, 409):  # an empty repository answers 409 on commits and 204 on contributors
+        return 0
+    if r.status_code != 200:
+        log(f"  github   {r.status_code} {path}")
+        return None
+    m = re.search(r'[?&]page=(\d+)>;\s*rel="last"', r.headers.get("link", ""))
+    return int(m.group(1)) if m else len(r.json())
+
+
+async def github_stats(client, gh: dict) -> dict:
+    """Open issues, commits, contributors, last commit, licence and language of a repo (its API object is `gh`).
+    A key is missing from the result when its call failed. `open_issues_count` counts pull requests too, so the
+    open pull requests are taken off."""
+    name = gh["full_name"]
+    lic = (gh.get("license") or {}).get("spdx_id") or ""
+    out = {"license": "" if lic == "NOASSERTION" else lic, "language": gh.get("language") or ""}
+    r = await gh_get(client, f"/repos/{name}/commits", per_page=1)
+    if r is not None and r.status_code in (200, 409):
+        items = r.json() if r.status_code == 200 else []
+        m = re.search(r'[?&]page=(\d+)>;\s*rel="last"', r.headers.get("link", ""))
+        out["commits"] = int(m.group(1)) if m else len(items)
+        out["last_commit"] = (((items[0].get("commit") or {}).get("committer") or {}).get("date") or "")[:10] if items else ""
+    if (n := await gh_count(client, f"/repos/{name}/contributors", anon=1)) is not None:
+        out["contributors"] = n
+    if gh.get("has_issues", True) and (n := await gh_count(client, f"/repos/{name}/pulls", state="open")) is not None:
+        out["open_issues"] = max(0, gh.get("open_issues_count", 0) - n)
+    return out
 
 
 _gh_search_lock = asyncio.Lock()
@@ -258,12 +365,8 @@ async def github_find(client, host: str) -> str:
     The search API allows 30 requests a minute with a token (10 without)."""
     async with _gh_search_lock:
         await asyncio.sleep(2.2 if os.environ.get("GITHUB_TOKEN") else 6.5)
-        try:
-            r = await client.get("https://api.github.com/search/repositories", headers=gh_headers(), timeout=20,
-                                 params={"q": f'"{host}" in:readme,description', "per_page": 30})
-            items = r.json().get("items", []) if r.status_code == 200 else []
-        except Exception:
-            return ""
+        r = await gh_get(client, "/search/repositories", q=f'"{host}" in:readme,description', per_page=30)
+        items = r.json().get("items", []) if r is not None and r.status_code == 200 else []
     # The homepage alone is not enough: an organisation points all its repos at its own site.
     flat = lambda s: re.sub(r"[^a-z0-9]", "", s.lower())
     label = flat(host.split(".")[0])
@@ -438,14 +541,16 @@ async def extras_one(sem, client, e: dict, p: dict):
             cands.append(((gh.get("pushed_at") or "")[:10], "cod"))
             p["repo"], p["stars"], p["forks"] = gh.get("full_name", repos[0]), gh.get("stargazers_count", 0), gh.get("forks_count", 0)
             p["repo_created"], p["repo_archived"] = (gh.get("created_at") or "")[:10], gh.get("archived", False)
+            p.update(await github_stats(client, gh))
         if rooted:
             p["cert_first"] = p.get("cert_first") or await cert_first(client, host)
         if alive:
-            linked, html = [], ""
+            linked, html, icons = [], "", []
             try:
                 r, body = await get(client, url, MAX_HTML)
                 html = body.decode(r.encoding or "utf-8", errors="replace")
                 tree = HTMLParser(html)
+                icons = icon_candidates(tree, str(r.url))
                 linked = [urljoin(str(r.url), l.attributes["href"]) for l in tree.css('link[rel="alternate"][href]')
                           if re.search(r"rss|atom", l.attributes.get("type") or "")]
                 gen = tree.css_first('meta[name="generator"]')
@@ -458,11 +563,11 @@ async def extras_one(sem, client, e: dict, p: dict):
             p["copyright_year"] = max(years) if years else ""
             p["feed"], feed_date = await feed_latest(client, url, linked) if rooted else ("", "")
             lastmod, p["sitemap_urls"] = await sitemap_info(client, url) if rooted else ("", "")
-            if not p.get("icon"):
-                host = urlparse(url).hostname or ""
-                p["icon"] = await fetch_icon(client, e["slug"], [
-                    urljoin(url, "/apple-touch-icon.png"), urljoin(url, "/favicon.ico"),
-                    f"https://icons.duckduckgo.com/ip3/{host}.ico", f"https://www.google.com/s2/favicons?domain={host}&sz=128"])
+            # An icon under ICON_WANT px gives way to a larger one, when the page or an icon service offers it.
+            have = stored_side(SITE / p["icon"]) if p.get("icon") else 0
+            if have < ICON_WANT and (new := await fetch_icon(client, e["slug"], icons or icon_candidates(HTMLParser(""), url), beat=have)):
+                log(f"  icon     {have or '-'} -> {stored_side(SITE / new)} px {e['slug']}")
+                p["icon"] = new
             wp = await wp_latest(client, url) if rooted and ("wp-content" in html or "wordpress" in (p.get("generator") or "").lower()) else ""
             cands += [(feed_date, "feed"), (wp, "wordpress"), (lastmod, "sitemap"), (await header_lastmod(client, url), "server")]
         else:
@@ -473,6 +578,38 @@ async def extras_one(sem, client, e: dict, p: dict):
         p["updated"], p["updated_src"] = best
         log(f"  extra    {p.get('first_seen') or '----------'} {best[0] or '----------'} {best[1]:9} "
             f"arch:{p.get('archive_months', 0):<3} pages:{p.get('sitemap_urls', '-')!s:<5} wiki:{p['wiki_refs']} {e['slug']}")
+
+
+async def link_icon_one(sem, client, host: str, url: str) -> bool:
+    """Favicon of one host, from its home page, into site/img/linkicon/<host>.webp."""
+    async with sem:
+        home = urlparse(url)._replace(path="/", params="", query="", fragment="").geturl()
+        try:
+            r, body = await get(client, home, MAX_HTML)
+            tree = HTMLParser(body.decode(r.encoding or "utf-8", errors="replace"))
+            cands = icon_candidates(tree, str(r.url))
+        except Exception:
+            cands = icon_candidates(HTMLParser(""), home)
+        ok = bool(await fetch_icon(client, host, cands, dest=LINKICON_DIR, want=LINKICON_WANT, max_w=32))
+        log(f"  linkicon {'ok ' if ok else 'ERR'} {host}")
+        return ok
+
+
+async def link_icons(client, entries: list[dict], profile: dict, force: bool):
+    """Favicons for the links that show no network logo: the hosts in `linkuri` and in the social links the
+    profiler found, once per host (an existing file is kept unless `force`)."""
+    hosts = {}
+    for e in entries:
+        links = [parse_link(t, ROLES) for t in split_list(e.get("linkuri", ""))]
+        links += list((profile.get(e["slug"], {}).get("social") or {}).items())
+        for role, url in links:
+            if role not in NETWORK_ROLES and (h := link_host(url)):
+                hosts.setdefault(h, url)
+    todo = {h: u for h, u in hosts.items() if force or not (LINKICON_DIR / f"{h}.webp").exists()}
+    log(f"link favicons: {len(hosts)} hosts, {len(hosts) - len(todo)} stored already, {len(todo)} to fetch")
+    sem = asyncio.Semaphore(6)
+    done = await asyncio.gather(*(link_icon_one(sem, client, h, u) for h, u in todo.items()))
+    log(f"link favicons: {sum(done)} fetched, {len(done) - sum(done)} failed")
 
 
 def classify(p: dict) -> str:
@@ -503,10 +640,8 @@ async def profile_one(sem, client, insecure, e: dict) -> dict:
         p["status"] = classify(p)
         if p["status"] in ("activ", "mutat", "blocat"):
             p["image"] = await fetch_image(c, slug, p.pop("image_candidates", []))
-            p["icon"] = await fetch_icon(c, slug, p.pop("icon_candidates", []))
         else:
             p.pop("image_candidates", None)
-            p.pop("icon_candidates", None)
         if p["status"] in ("offline", "parcat"):
             p["wayback"] = await wayback(client, url)
         p["fetched_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
@@ -554,9 +689,15 @@ async def screenshots(profile: dict, slugs: list[str]):
         await browser.close()
 
 
+def github_report():
+    log(f"github: {GH['calls']} requests, rate limit left {GH['left']}")
+    if GH["stopped"]:
+        sys.exit("GitHub refused on a rate limit: the stats of the entries after that call are not updated. Run it again later.")
+
+
 async def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--force", action="store_true")
+    ap.add_argument("--force", action="store_true", help="re-profile everything; with --extra, fetch the link favicons again")
     ap.add_argument("--only", default="")
     ap.add_argument("--no-shots", action="store_true")
     ap.add_argument("--extra", action="store_true", help="age, activity and reach signals (free)")
@@ -565,6 +706,7 @@ async def main():
 
     OG_DIR.mkdir(parents=True, exist_ok=True)
     ICON_DIR.mkdir(parents=True, exist_ok=True)
+    LINKICON_DIR.mkdir(parents=True, exist_ok=True)
     profile = load_profile()
     entries = [e for e in load_entries() if e["url"]]
     only = {s for s in args.only.split(",") if s}
@@ -581,9 +723,11 @@ async def main():
                 log(f"extra signals for {len(todo)} entries")
                 sem = asyncio.Semaphore(3)
                 await asyncio.gather(*(extras_one(sem, client, e, profile[e["slug"]]) for e in todo))
+                await link_icons(client, todo, profile, args.force)
             if args.opr:
                 await open_pagerank(client, profile, todo)
         save_profile(profile)
+        github_report()
         return
     log(f"profiling {len(todo)} of {len(entries)} entries")
 
@@ -591,8 +735,9 @@ async def main():
     async with httpx.AsyncClient(**opts) as client, httpx.AsyncClient(verify=False, **opts) as insecure:
         results = await asyncio.gather(*(profile_one(sem, client, insecure, e) for e in todo))
         await asyncio.gather(*(extras_one(sem, insecure, e, p) for e, p in zip(todo, results)))
-    for e, p in zip(todo, results):
-        profile[e["slug"]] = p
+        for e, p in zip(todo, results):
+            profile[e["slug"]] = p
+        await link_icons(insecure, todo, profile, args.force)
 
     if not args.no_shots:
         need = [e["slug"] for e in todo if profile[e["slug"]]["status"] == "blocat"
@@ -606,6 +751,7 @@ async def main():
     for p in profile.values():
         counts[p["status"]] = counts.get(p["status"], 0) + 1
     log("status:", counts)
+    github_report()
 
 
 if __name__ == "__main__":
