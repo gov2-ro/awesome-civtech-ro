@@ -175,6 +175,9 @@ function thumb(it) {
   if (it.icon) return `<div class="thumb icon"><img src="${esc(it.icon)}" alt="" loading="lazy"></div>`;
   return `<div class="thumb none" style="--h:${hue(it.domain || it.name)}" aria-hidden="true">${esc(initials(it.name))}</div>`;
 }
+// The project's own favicon, small, beside its name. In rows, a blank of the same width keeps the names aligned.
+const favicon = (it, gap) => it.icon ? `<img class="fav fav-name" src="${esc(it.icon)}" alt="" width="16" height="16" loading="lazy">`
+  : gap ? '<span class="fav-gap"></span>' : '';
 const tipLabels = it => it.tips.map(t => TAX.tip[t]?.label).filter(Boolean);
 const placeLabel = it => it.acoperire === 'local' ? (it.oras || 'Local') : '';
 function metaLine(it, withDomain) {
@@ -203,11 +206,20 @@ function span(days) {
   if (days < 365) return plural(Math.floor(days / 30.4), 'lună', 'luni');
   return plural(Math.floor(days / 365.25), 'an', 'ani');
 }
+// Compact span for the list columns, no space: "9Z" days, "2L" months, "13A" years.
+function shortSpan(days) {
+  if (days < 1) return 'azi';
+  if (days < 31) return `${Math.floor(days)}Z`;
+  if (days < 365) return `${Math.floor(days / 30.4)}L`;
+  return `${Math.floor(days / 365.25)}A`;
+}
 const daysSince = d => (Date.now() - Date.parse(d)) / DAY;
 // "Fresh": first seen less than FRESH_DAYS ago, by the same date the Vechime column shows.
 const isFresh = it => !!it.since && daysSince(it.since) < FRESH_DAYS;
 const isLaunched = it => !!it.since && daysSince(it.since) < LAUNCH_DAYS;
 const age = it => it.since ? span(daysSince(it.since)) : '';
+const ageShort = it => it.since ? shortSpan(daysSince(it.since)) : '';
+const updatedShort = it => it.updated ? shortSpan(daysSince(it.updated)) : '';
 const updatedLabel = it => !it.updated ? '' : daysSince(it.updated) < 1 ? 'azi' : `acum ${span(daysSince(it.updated))}`;
 const UPDATED_SRC = { cod: 'ultimul commit', sitemap: 'sitemap', server: 'antetul Last-Modified', arhiva: 'ultima arhivare Wayback' };
 const SINCE_SRC = { arhiva: 'prima arhivare Wayback', cod: 'crearea depozitului de cod', certificat: 'primul certificat TLS al domeniului' };
@@ -236,24 +248,38 @@ function card(it, withDomain) {
     </div>
   </div>`;
 }
+// Icon-only links for the list column: curated links first, then those found on the site. A network shows its logo, any
+// other link its host's favicon, else a plain arrow. Past ROW_LINKS, "+n" stands for the rest (they are in the detail panel).
+const ROW_LINKS = 4;
+function rowLinks(it) {
+  const ls = [...it.links].sort((a, b) => (b.src === 'manual') - (a.src === 'manual'));
+  const one = l => {
+    const glyph = NETWORK[l.role] ? `<svg class="logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="${NETWORK[l.role]}"/></svg>`
+      : l.icon ? `<img class="fav" src="${esc(l.icon)}" alt="" width="14" height="14" loading="lazy">` : ICON.out;
+    return `<a class="ext rl" href="${esc(l.url)}" target="_blank" rel="noopener" title="${esc(l.label)}" aria-label="${esc(l.label)}">${glyph}</a>`;
+  };
+  const more = ls.length - ROW_LINKS;
+  return ls.slice(0, ROW_LINKS).map(one).join('') + (more > 0 ? `<span class="rl-more" title="${esc(ls.slice(ROW_LINKS).map(l => l.label).join(', '))}">+${more}</span>` : '');
+}
 function row(it, withDomain) {
   const desc = it.tagline && it.desc && it.desc !== it.tagline ? it.desc : '';
   const dates = [age(it) && `${age(it)} vechime`, updatedLabel(it) && `actualizat ${updatedLabel(it)}`].filter(Boolean).join(' · ');
   return `<div class="row${isInactive(it) ? ' inactive' : ''}" data-open="${it.slug}"${hint(it)}>
     ${thumb(it)}
     <div class="row-main">
-      <div class="row-title">${nameLink(it)} ${statusDot(it)} ${newTag(it)} ${codeTag(it)} ${extLink(it, '', 'ext-m')}</div>
+      <div class="row-title">${favicon(it, true)}${nameLink(it)} ${statusDot(it)} ${newTag(it)} ${codeTag(it)} ${extLink(it, '', 'ext-m')}</div>
       ${blurb(it) ? `<div class="row-tag">${esc(blurb(it))}</div>` : ''}
       ${desc ? `<div class="row-desc">${esc(clip(desc, 160))}</div>` : ''}
       ${it.keywords.length ? `<div class="row-kw">${it.keywords.map(k => `<span>#${esc(kwLabel(k))}</span>`).join('')}</div>` : ''}
       <div class="meta meta-m">${metaLine(it, withDomain)}${dates ? ` · ${esc(dates)}` : ''}</div>
     </div>
-    <div class="row-side" title="${esc(ageTitle(it))}">${esc(age(it) || '—')}</div>
-    <div class="row-side${it.updatedSrc === 'arhiva' ? ' faint' : ''}" title="${esc(updatedTitle(it))}">${esc(updatedLabel(it) || '—')}</div>
+    <div class="row-side row-links">${rowLinks(it)}</div>
+    <div class="row-side" title="${esc(ageTitle(it))}">${esc(ageShort(it) || '—')}</div>
+    <div class="row-side${it.updatedSrc === 'arhiva' ? ' faint' : ''}" title="${esc(updatedTitle(it))}">${esc(updatedShort(it) || '—')}</div>
     <div class="row-side">${extLink(it, `<span class="dom">${esc(it.domain)}</span>`)}</div>
   </div>`;
 }
-const LIST_HEAD = '<div class="list-head" aria-hidden="true"><span>Proiect</span><span>Vechime</span><span>Actualizat</span><span>Site</span></div>';
+const LIST_HEAD = '<div class="list-head" aria-hidden="true"><span>Proiect</span><span>Links</span><span>Age</span><span>Updated</span><span>Site</span></div>';
 
 /* ---------- filters ---------- */
 function renderTabs() {
@@ -462,7 +488,7 @@ function renderDetail() {
       <button class="btn btn-ghost btn-icon" data-act="close" aria-label="Închide" data-autofocus>${ICON.x}</button></div>
     <div class="d-scroll">
       ${it.img || it.icon ? media(it) : ''}
-      <h2 id="d-title">${esc(it.name)}</h2>
+      <h2 id="d-title">${favicon(it)}${esc(it.name)}</h2>
       ${cta ? `<div class="d-open">${cta}</div>` : ''}
       ${it.tagline ? `<p class="d-tag">${esc(it.tagline)}</p>` : ''}
       <div class="d-badges">

@@ -290,7 +290,7 @@ svg.gh { width: 20px; height: 20px; fill: currentColor; stroke: none; }
   .card .media img:not(.ico) { filter: grayscale(1) contrast(1.04); }
   .card:hover .media img, .card:focus-within .media img { filter: none; }
 }
-.inactive .media img, .inactive .thumb img { filter: grayscale(1) opacity(.55) !important; }
+.inactive .media img, .inactive .thumb img, .inactive .fav-name { filter: grayscale(1) opacity(.55) !important; }
 
 /* ---------- cards ---------- */
 .grid { display: grid; gap: 22px 16px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); }
@@ -347,12 +347,19 @@ svg.gh { width: 20px; height: 20px; fill: currentColor; stroke: none; }
 .row-kw { display: flex; flex-wrap: wrap; gap: 0 8px; font: 400 11.5px/1.5 var(--font-mono); color: var(--muted); }
 .row-side, .list-head { display: none; }
 @media (min-width: 720px) {
-  .row, .list-head { grid-template-columns: 75px minmax(0, 1fr) 80px 120px 170px; gap: 16px; }
+  .row, .list-head { grid-template-columns: 75px minmax(0, 1fr) 96px 44px 60px 170px; gap: 12px; }
   .row {
   position: relative; padding: 7px 0; }
   .thumb { width: 75px; height: 75px; }
   .row-side { display: block; font: 400 12px/1.4 var(--font-mono); color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .row-side .ext { max-width: 100%; }
+  .row-links { display: flex; align-items: center; gap: 2px; overflow: visible; }
+  .row-links .rl { padding: 3px; margin: -3px 0; border-radius: var(--radius); color: var(--ink-2); }
+  .row-links .rl svg { width: 15px; height: 15px; opacity: 1; }
+  .row-links .rl svg.logo { fill: currentColor; stroke: none; }
+  .row-links .rl .fav { width: 15px; height: 15px; }
+  .row-links .rl:hover { color: var(--accent-ink); }
+  .rl-more { font: 400 11px/1 var(--font-mono); color: var(--muted); padding-left: 2px; }
   .row .ext-m { display: none; }
   .related .row .ext-m { display: inline-flex; }
   .row-side.faint { opacity: .6; }
@@ -397,6 +404,10 @@ svg.gh { width: 20px; height: 20px; fill: currentColor; stroke: none; }
 .dl a.lk { display: inline-flex; align-items: center; gap: 6px; }
 .fav { width: 14px; height: 14px; flex: none; object-fit: contain; border-radius: 2px; }
 @media (prefers-color-scheme: dark) { .fav { box-sizing: content-box; padding: 1px; background: #fff; } }
+/* Favicon beside a name: 16px in a row, 24px in the detail heading. */
+.fav-name, .fav-gap { width: 16px; height: 16px; }
+.fav-gap { flex: none; }
+.d-scroll h2 .fav-name { width: 24px; height: 24px; margin-right: 10px; vertical-align: -3px; border-radius: 4px; }
 .dl a.net { display: inline-flex; padding: 4px; margin: -2px -4px; color: var(--ink-2); border-radius: var(--radius); }
 .dl a.net:hover { color: var(--accent-ink); }
 .dl a.net svg { width: 18px; height: 18px; fill: currentColor; stroke: none; }
