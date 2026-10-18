@@ -3,3 +3,4 @@
 - **v0.2.0** (2026-10-18): search mentions (Serper + Brave) with rule and editor pruning, labelled
   reach in the score, automatic `arhivat`, keyboard navigation and fresh tag, share preview, RSS,
   `/add-new-url`.
+- **v0.2.1** (2026-10-18): 13 organisations and 3 resources filled in, comma-separated links, desktop filter defaults, 75 px list thumbnails, header without logo, new share image.
