@@ -29,44 +29,44 @@
 :root[data-theme="light"] { color-scheme: light; }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0e0e10;
-    --surface: #17171a;
-    --surface-2: #222226;
-    --ink: #f2f2f0;
-    --ink-2: #cfcfd4;
-    --muted: #9a9aa4;
-    --line: #2a2a2f;
-    --line-strong: #3a3a40;
-    --accent: #7ea2ff;
-    --accent-ink: #a9c0ff;
-    --ok: #4cc38a;
-    --warn: #e0a64a;
-    --bad: #ff6b66;
-    --tri-b: #6f95ff;
-    --tri-y: #fcd116;
-    --tri-r: #ff5a5f;
+    --bg: #272822;
+    --surface: #1d1e19;
+    --surface-2: #3b3c35;
+    --ink: #fdfff1;
+    --ink-2: #c0c1b5;
+    --muted: #919288;
+    --line: #3b3c35;
+    --line-strong: #57584f;
+    --accent: #66d9ef;
+    --accent-ink: #66d9ef;
+    --ok: #a6e22e;
+    --warn: #fd971f;
+    --bad: #f92672;
+    --tri-b: #66d9ef;
+    --tri-y: #e6db74;
+    --tri-r: #f92672;
     --shadow: 0 8px 28px rgb(0 0 0 / .5);
     --shadow-lg: 0 24px 64px rgb(0 0 0 / .6);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0e0e10;
-  --surface: #17171a;
-  --surface-2: #222226;
-  --ink: #f2f2f0;
-  --ink-2: #cfcfd4;
-  --muted: #9a9aa4;
-  --line: #2a2a2f;
-  --line-strong: #3a3a40;
-  --accent: #7ea2ff;
-  --accent-ink: #a9c0ff;
-  --ok: #4cc38a;
-  --warn: #e0a64a;
-  --bad: #ff6b66;
-  --tri-b: #6f95ff;
-  --tri-y: #fcd116;
-  --tri-r: #ff5a5f;
+  --bg: #272822;
+  --surface: #1d1e19;
+  --surface-2: #3b3c35;
+  --ink: #fdfff1;
+  --ink-2: #c0c1b5;
+  --muted: #919288;
+  --line: #3b3c35;
+  --line-strong: #57584f;
+  --accent: #66d9ef;
+  --accent-ink: #66d9ef;
+  --ok: #a6e22e;
+  --warn: #fd971f;
+  --bad: #f92672;
+  --tri-b: #66d9ef;
+  --tri-y: #e6db74;
+  --tri-r: #f92672;
   --shadow: 0 8px 28px rgb(0 0 0 / .5);
   --shadow-lg: 0 24px 64px rgb(0 0 0 / .6);
   color-scheme: dark;
@@ -116,7 +116,7 @@ svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width:
 .btn-icon { width: 40px; padding: 0; }
 .badge:not(:empty) {
   display: inline-grid; place-items: center; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px;
-  background: var(--accent); color: #fff; font: 500 calc(11px * var(--fs))/1 var(--font-mono);
+  background: var(--accent); color: var(--bg); font: 500 calc(11px * var(--fs))/1 var(--font-mono);
 }
 
 /* ---------- header ----------
@@ -490,3 +490,7 @@ svg.gh { width: 20px; height: 20px; fill: currentColor; stroke: none; }
 .org-text .kicker { margin: 0; }
 .org-text strong { font: 600 calc(16px * var(--fs)) / 1.25 var(--font-head); }
 .org-blurb { font-size: calc(14px * var(--fs)); color: var(--ink-2); line-height: 1.35; }
+
+/* Dark theme: project images (often on a white page) get some alpha, so they blend into the dark background. */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) :is(.media, .thumb) img:not(.ico, .fav) { opacity: .85; } }
+:root[data-theme="dark"] :is(.media, .thumb) img:not(.ico, .fav) { opacity: .85; }

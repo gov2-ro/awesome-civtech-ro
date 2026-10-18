@@ -838,7 +838,7 @@ new ResizeObserver(fitHeader).observe(slot('hdr'));
 /* ---------- display preferences: text size and theme ---------- */
 // The <head> script in index.html applies them before the first paint; this keeps the footer buttons and the
 // browser's theme colour in step. "m" and "system" are the defaults and leave the attributes off.
-const THEME_COLOR = { light: '#ffffff', dark: '#0e0e10' };
+const THEME_COLOR = { light: '#ffffff', dark: '#272822' };
 function applyPrefs() {
   const fs = store.get('ct.fs', 'm'), theme = store.get('ct.theme', 'system'), root = document.documentElement;
   if (fs === 'm') delete root.dataset.fs; else root.dataset.fs = fs;
