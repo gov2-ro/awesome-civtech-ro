@@ -28,7 +28,7 @@ from urllib.parse import urlparse
 
 import httpx
 
-from common import (MENTIUNI, MENTIUNI_COLS, SHARE, SOCIAL_HOSTS, domain_of, is_kept, is_url, load_entries, load_mentions,
+from common import (load_env, MENTIUNI, MENTIUNI_COLS, SHARE, SOCIAL_HOSTS, domain_of, is_kept, is_url, load_entries, load_mentions,
                     load_profile, save_profile, split_list, write_csv)
 
 SERPER = "https://google.serper.dev/search"
@@ -357,6 +357,7 @@ async def run(todo: list[dict], plans: dict, old: dict[str, list[dict]], rows: l
 
 
 def main():
+    load_env()
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", default="", help="comma-separated slugs")
     ap.add_argument("--force", action="store_true", help="query again the slugs that already have rows")

@@ -1,6 +1,7 @@
 """Shared loading of the editable CSVs (proiecte, orgs) and the generated profile and mention CSVs."""
 import csv
 import json
+import os
 import re
 from pathlib import Path
 from urllib.parse import urlparse
@@ -8,6 +9,18 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 SITE = ROOT / "site"
+
+
+def load_env(path: Path = ROOT / ".env"):
+    """Read KEY=value lines from the repo's .env (gitignored) into os.environ. Variables already set win,
+    so CI secrets and `export` still override the file."""
+    if not path.exists():
+        return
+    for line in path.read_text().splitlines():
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            k, v = line.split("=", 1)
+            os.environ.setdefault(k.strip().removeprefix("export ").strip(), v.strip().strip("'\""))
 PROFILE = DATA / "profil.csv"
 MENTIUNI = DATA / "mentiuni.csv"
 ETICHETE = DATA / "mentiuni_etichete.csv"

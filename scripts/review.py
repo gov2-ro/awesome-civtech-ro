@@ -28,7 +28,7 @@ import anthropic
 import httpx
 from selectolax.lexbor import LexborHTMLParser as HTMLParser
 
-from common import (DATA, ETICHETE, ETICHETE_COLS, domain_of, is_kept, load_entries, load_mentions, load_profile, read_csv,
+from common import (load_env, DATA, ETICHETE, ETICHETE_COLS, domain_of, is_kept, load_entries, load_mentions, load_profile, read_csv,
                     split_list, split_tip, write_csv)
 
 MODEL = "claude-haiku-5-5"
@@ -321,6 +321,7 @@ def write_labels(results: list[dict]):
 
 
 def main():
+    load_env()
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", default="")
     ap.add_argument("--limit", type=int, default=0)

@@ -27,7 +27,7 @@ import httpx
 from PIL import Image, ImageOps
 from selectolax.lexbor import LexborHTMLParser as HTMLParser
 
-from common import (LINKICON_DIR, NETWORK_ROLES, ROLES, SHARE, SITE, SOCIAL_HOSTS, domain_of, link_host, load_entries,
+from common import (load_env, LINKICON_DIR, NETWORK_ROLES, ROLES, SHARE, SITE, SOCIAL_HOSTS, domain_of, link_host, load_entries,
                     load_profile, parse_link, save_profile, split_list)
 
 UA = (
@@ -696,6 +696,7 @@ def github_report():
 
 
 async def main():
+    load_env()
     ap = argparse.ArgumentParser()
     ap.add_argument("--force", action="store_true", help="re-profile everything; with --extra, fetch the link favicons again")
     ap.add_argument("--only", default="")
