@@ -17,7 +17,7 @@ Fișierele se pot edita și ca tabel (LibreOffice, Excel, Google Sheets) — pă
 | `descriere_scurta` | o frază, sub ~90 de caractere |
 | `descriere` | ce face, pentru cine, din ce date |
 | `url` | adresa principală |
-| `linkuri` | **toate celelalte linkuri, în aceeași celulă**, separate prin spațiu sau linie nouă (sau listă JSON). Tipul se deduce din domeniu (Facebook, GitHub…) sau îl scrii în față: `donatii:` `despre:` `contact:` `termeni:` `date:` `api:` `mcp:` `cod:`. Primul link GitHub/GitLab/`cod:` e codul sursă. |
+| `linkuri` | **toate celelalte linkuri, în aceeași celulă**, separate prin spațiu, virgulă sau linie nouă (sau listă JSON). Tipul se deduce din domeniu (Facebook, GitHub…) sau îl scrii în față: `donatii:` `despre:` `contact:` `termeni:` `date:` `api:` `mcp:` `cod:`. Primul link GitHub/GitLab/`cod:` e codul sursă. |
 | `domeniu` | una dintre cheile din `data/taxonomy.json` → `domenii` (`bani`, `politica`, `justitie`…) |
 | `tip` | una sau mai multe chei din `tipuri`, separate prin virgulă, cea principală prima (`instrument`, `vizualizare`, `harta`, `baza-de-date`, `monitorizare`, `educativ`, `ghid`) |
 | `cuvinte` | cuvinte cheie separate prin virgulă |

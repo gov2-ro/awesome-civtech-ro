@@ -57,11 +57,12 @@ def domain_of(url: str) -> str:
 
 
 def split_list(cell: str) -> list[str]:
-    """A list cell: a JSON array, or values separated by spaces, newlines or |."""
+    """A list cell: a JSON array, or values separated by spaces, newlines, | or commas (a comma at a
+    value's end, as people type lists in Sheets, never belongs to the URL)."""
     cell = (cell or "").strip()
     if cell.startswith("["):
         return [str(x).strip() for x in json.loads(cell) if str(x).strip()]
-    return [x for x in re.split(r"[\s|]+", cell) if x]
+    return [x for x in re.split(r"[\s|]+|,(?=\s|$)", cell) if x]
 
 
 def split_tip(cell: str) -> list[str]:
