@@ -129,10 +129,14 @@ The Form "Sugestii listă civtech.gov2.ro" sends its answers to the tab `propune
 `scripts/form.py` writes the questions of the Form from the data model, so that the choices always match
 `data/taxonomy.json`. Run it after a change in the taxonomy.
 ```sh
-set -a; source .env; set +a                    # needs FORM_ID and the key (see the last point below)
 uv run scripts/form.py                         # print the planned questions and the Form as it is now; no writes
+uv run scripts/form.py --save                  # store the Form, as you edited it in Google Forms, in data/form.json
 uv run scripts/form.py --apply                 # replace ALL items of the Form with the planned ones
 ```
+The scripts read `.env` themselves. To change wording, help texts, order or required flags, edit the Form in
+Google Forms and run `--save`: `data/form.json` becomes the template, and a later `--apply` (for example after a
+taxonomy change) keeps your edits. The choices of "Ce propui?", "Domeniu", "Tip" and "Acoperire" always come from
+the taxonomy, so keep those four titles as they are.
 - `--apply` deletes every existing item of the Form and creates the 13 planned questions, in one request. It does not
   change the title, the description, the settings or the response destination of the Form.
 - The columns of `propuneri` are named after the question titles. The list `TITLES` at the top of `form.py` holds

@@ -7,6 +7,11 @@
     uv run scripts/form.py            # print the planned questions and the Form as it is now; writes nothing
     uv run scripts/form.py --json     # the same, plus the forms.batchUpdate body
     uv run scripts/form.py --apply    # replace ALL items of the Form with the planned ones (one batchUpdate)
+    uv run scripts/form.py --save     # read the Form as edited by hand and store it as the template, data/form.json
+
+The template (data/form.json, when it exists) sets the questions: their order, titles, types, help texts and
+required flags. Edit the Form in Google Forms, then `--save`. The choices of "Ce propui?", "Domeniu", "Tip" and
+"Acoperire" always come from the taxonomy (so the answers map back to CSV keys); other choices from the template.
 
 Needs FORM_ID and a service-account key (an editor of the Form): GOOGLE_SA_KEY (the JSON text) or
 GOOGLE_APPLICATION_CREDENTIALS (a path). Without a key the default mode prints the plan only.
@@ -36,6 +41,7 @@ TITLES = [
 
 SCOPES = ["https://www.googleapis.com/auth/forms.body"]
 API = "https://forms.googleapis.com/v1/forms"
+TEMPLATE = DATA / "form.json"
 HINT_MAX = 60  # a taxonomy hint longer than this stays out of the help text
 CHOICE_TYPES = {"radio": "RADIO", "dropdown": "DROP_DOWN", "checkbox": "CHECKBOX"}
 KIND_NAMES = {"short": "short text", "paragraph": "paragraph", "radio": "radio", "dropdown": "drop-down",
@@ -94,6 +100,8 @@ def build_questions() -> list[Question]:
         Q_ALTCEVA: Question(Q_ALTCEVA, "paragraph"),
     }
     questions = [by_title[t] for t in TITLES]  # the order of TITLES is the order in the Form
+    if TEMPLATE.exists():
+        questions = from_template(json.loads(TEMPLATE.read_text(encoding="utf-8")), by_title)
     for q in questions:
         labels = [label for label, _ in q.choices]
         if q.kind in CHOICE_TYPES and not labels:
@@ -101,6 +109,38 @@ def build_questions() -> list[Question]:
         if len(set(labels)) != len(labels):
             raise SystemExit(f"question '{q.title}': two choices have the same label")
     return questions
+
+
+def from_template(template: list[dict], defaults: dict[str, Question]) -> list[Question]:
+    """The saved Form, with taxonomy-driven choices refreshed from the taxonomy (matched by title)."""
+    out = []
+    for t in template:
+        d = defaults.get(t["title"])
+        tax_choices = d.choices if d and d.kind in CHOICE_TYPES and t["kind"] in CHOICE_TYPES else None
+        out.append(Question(t["title"], t["kind"], t.get("required", False), t.get("help", ""),
+                            tax_choices or [(c, c) for c in t.get("choices", [])]))
+    return out
+
+
+def to_template(form: dict) -> list[dict]:
+    """The Form's questions as template entries; items that are not questions (sections, images) are skipped."""
+    kinds = {v: k for k, v in CHOICE_TYPES.items()}
+    out = []
+    for item in form.get("items", []):
+        q = item.get("questionItem", {}).get("question")
+        if not q or not ("choiceQuestion" in q or "textQuestion" in q):
+            log(f"  skipped (not a text or choice question): {item_summary(item)}")
+            continue
+        entry = {"title": item.get("title", ""), "required": bool(q.get("required"))}
+        if "choiceQuestion" in q:
+            entry["kind"] = kinds.get(q["choiceQuestion"].get("type"), "radio")
+            entry["choices"] = [o.get("value", "") for o in q["choiceQuestion"].get("options", [])]
+        else:
+            entry["kind"] = "paragraph" if q["textQuestion"].get("paragraph") else "short"
+        if item.get("description"):
+            entry["help"] = item["description"]
+        out.append(entry)
+    return out
 
 
 QUESTIONS = build_questions()
@@ -225,11 +265,20 @@ def main():
                                  epilog="Default: print the plan and the Form as it is now; no writes.")
     ap.add_argument("--apply", action="store_true", help="replace all items of the Form with the planned ones")
     ap.add_argument("--json", action="store_true", help="also print the batchUpdate body")
+    ap.add_argument("--save", action="store_true", help=f"store the Form as it is now in {TEMPLATE.relative_to(DATA.parent)}")
     args = ap.parse_args()
 
     form_id, info = os.environ.get("FORM_ID", "").strip(), credentials_info()
-    if args.apply and not (form_id and info):
-        sys.exit("--apply needs FORM_ID and a key (GOOGLE_SA_KEY or GOOGLE_APPLICATION_CREDENTIALS)")
+    if (args.apply or args.save) and not (form_id and info):
+        sys.exit("--apply and --save need FORM_ID and a key (GOOGLE_SA_KEY or GOOGLE_APPLICATION_CREDENTIALS)")
+    if args.save:
+        template = to_template(get_form(open_session(info), form_id))
+        TEMPLATE.write_text(json.dumps(template, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        missing = [t for t in (Q_FEL, Q_DOMENIU, Q_TIP, Q_ACOPERIRE) if t not in {e["title"] for e in template}]
+        print(f"saved {len(template)} questions to {TEMPLATE.relative_to(DATA.parent)}")
+        if missing:
+            print(f"note: no question titled {missing}: their answers no longer map to taxonomy keys")
+        return
 
     print_plan()
     session = form = None
@@ -253,7 +302,7 @@ def main():
         sys.exit(f"batchUpdate failed, the Form is unchanged: {api_error(r)}")
     done = r.json().get("form", {})
     titles = [it.get("title") for it in done.get("items", [])]
-    if titles != TITLES:
+    if titles != [q.title for q in QUESTIONS]:
         sys.exit(f"batchUpdate answered 200, but the Form now has these items: {titles}")
     print(f"\nDone: replaced {len(form.get('items', []))} item(s) with {len(titles)}. Revision {done.get('revisionId', '?')}.")
 
