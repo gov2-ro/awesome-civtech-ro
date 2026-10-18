@@ -1,5 +1,19 @@
 # Activity
 
+## 2026-10-18 — Stale CSS behind Cloudflare
+
+**Done**
+- Symptom: after the push, the public footer showed the old dark palette and overlapping theme buttons, but the
+  new HTML (the "Liste simple" line). Measured with `curl -I`: `style.css` and `app.js` answered `cf-cache-status:
+  HIT`, `cache-control: max-age=14400`, `last-modified` from the earlier deploy, and their hashes differed from
+  the files on GitHub Pages and in the repository. The HTML and `data.json` were `DYNAMIC` and current.
+- Cause: Cloudflare caches static files by extension, and its browser TTL (4 hours) replaces the 10 minutes that
+  GitHub Pages sends. HTML and JSON are not cached, so the new page ran with the old CSS and JS.
+- `build.py` now writes `?v=<sha1 prefix>` on the `style.css` and `app.js` links of `site/index.html`
+  (`stamp_assets`, before the page writers copy it). A changed file has a new address, so nothing needs a purge
+  and no browser keeps the old file. Browsers that hold the old page's CSS see the new one on their next visit
+  to the page (the HTML is cached 10 minutes).
+
 ## 2026-10-18 — A manual image for an entry
 
 **Done**

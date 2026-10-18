@@ -5,6 +5,7 @@ The page's folder is the entry's tab: site/proiect/, site/organizatie/ or site/r
 
     python3 scripts/build.py
 """
+import hashlib
 import html
 import json
 import math
@@ -212,6 +213,27 @@ def clip(text: str, n: int) -> str:
     return cut.rstrip(" ,.;:–-") + "…"
 
 
+ASSET_LINKS = {"style.css": r'(href="style\.css)(\?v=[0-9a-f]+)?(")', "app.js": r'(src="app\.js)(\?v=[0-9a-f]+)?(")'}
+
+
+def stamp_assets() -> bool:
+    """Put a hash of style.css and app.js in their links in site/index.html (?v=<hash>). Cloudflare and browsers keep
+    these two files for hours (measured: cache-control max-age=14400, cf-cache-status HIT), while the page itself is not
+    cached; a changed file gets a new address, so the new page never meets the old file. Run it before the page writers,
+    which copy index.html. Returns True when index.html changed."""
+    path = SITE / "index.html"
+    doc = path.read_text(encoding="utf-8")
+    for name, rx in ASSET_LINKS.items():
+        digest = hashlib.sha1((SITE / name).read_bytes()).hexdigest()[:10]
+        doc, n = re.subn(rx, lambda m: f"{m.group(1)}?v={digest}{m.group(3)}", doc)
+        if n != 1:
+            raise SystemExit(f"site/index.html must link {name} exactly once (found {n})")
+    changed = doc != path.read_text(encoding="utf-8")
+    if changed:
+        path.write_text(doc, encoding="utf-8")
+    return changed
+
+
 def esc(v) -> str:
     return html.escape(str(v), quote=True)
 
@@ -406,6 +428,7 @@ def main():
     for i in items:
         by[i["status"]] = by.get(i["status"], 0) + 1
     (SITE / "feed.xml").write_text(feed(items, now))
+    stamp_assets()
     pages = entry_pages(items)
     archives = archive_pages(items, tax)
     print(f"wrote {len(items)} entries to site/data.json  {by}; site/feed.xml; {pages} entry pages and {archives} archives in site/{{{','.join(PAGE_KINDS)}}}/")

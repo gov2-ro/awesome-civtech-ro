@@ -103,6 +103,11 @@ so link previews and search engines see the entry. `app.js` reads the slug from 
 the entry. The old `/?p=<slug>` still opens it, and then moves to the new address. Git ignores these
 pages; the Pages workflow builds them.
 
+**Caching.** The site sits behind Cloudflare. It caches `style.css` and `app.js` and tells browsers to keep
+them for four hours; the HTML and `data.json` are not cached. So `build.py` puts a hash of each file in its link
+in `site/index.html` (`style.css?v=<hash>`): a changed file has a new address, and a new page never meets an old
+file. No purge is needed.
+
 **Archives.** `build.py` also writes a plain list of every entry of a kind: `site/proiect/index.html`,
 `site/organizatie/index.html` and `site/resursa/index.html` (projects by domain, the others A to Z).
 The archives need no script, and each entry links to its own page.
