@@ -484,6 +484,26 @@ function worksHTML(it) {
   return `<div class="related"><p class="kicker">${title} · ${works.length}</p>${works.slice(0, MAX_WORKS).map(r => row(r, true)).join('')}${more > 0 ? `<p class="small muted">… și încă ${more}</p>` : ''}</div>`;
 }
 
+// "Semnalează o problemă": three ways to tell us, each prefilled with the entry's name and address. data/site.json
+// (copied into data.json as `site`) says which ones exist: an empty address hides its option.
+function flagHTML(it) {
+  const site = DB.site || {}, tab = it.kind === 'organizatie' ? 'orgs' : 'proiecte';
+  const subject = `Problemă la „${it.name}” (${it.slug})`;
+  const body = `Pagina: ${location.origin}${entryPath(it.slug)}\nÎn tabel: fila ${tab}, rândul ${it.row}\n\nCe nu e corect sau lipsește?\n`;
+  const q = `${encodeURIComponent(subject)}`, b = `${encodeURIComponent(body)}`;
+  const opts = [
+    site.sheet && site.tabs?.[tab] != null && [`${site.sheet}#gid=${site.tabs[tab]}&range=A${it.row}`, 'Corectează în tabel',
+      `Deschide rândul ${it.row} din fila „${tab}”. Modifici direct; schimbarea e verificată înainte să apară pe site.`],
+    site.email && [`mailto:${site.email}?subject=${q}&body=${b}`, 'Trimite un e-mail', 'Mesajul pornește cu numele și adresa paginii.'],
+    site.issues && [`${site.issues}?title=${q}&body=${b}`, 'Deschide o problemă pe GitHub', 'Cere cont GitHub; discuția e publică.'],
+  ].filter(Boolean);
+  if (!opts.length) return '';
+  return `<details class="flag"><summary>Semnalează o problemă</summary>
+    <p>Ceva lipsește sau nu e corect aici? Alege varianta care îți vine mai la îndemână:</p>
+    <ul>${opts.map(([href, label, note]) => `<li><a href="${esc(href)}" target="_blank" rel="noopener">${label}</a><span>${esc(note)}</span></li>`).join('')}</ul>
+  </details>`;
+}
+
 function renderDetail() {
   const it = current();
   const drawer = slot('drawer');
@@ -536,6 +556,7 @@ function renderDetail() {
       <dl class="dl">${dl.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>
       ${worksHTML(it)}
       ${related.length ? `<div class="related"><p class="kicker">Tot din ${esc(dom.short)}</p>${related.map(r => row(r, false)).join('')}</div>` : ''}
+      ${flagHTML(it)}
     </div>`;
   if (drawer.hidden) openLayer(drawer);
   else {

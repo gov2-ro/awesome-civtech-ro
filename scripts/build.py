@@ -34,6 +34,12 @@ def pick_desc(desc: str, prof: dict) -> tuple[str, str]:
     return "", ""
 
 
+def next_row(rows: dict[str, int], tab: str) -> int:
+    """The next row number of a tab of the Sheet (the tab has the CSV's rows, in order, under a header)."""
+    rows[tab] += 1
+    return rows[tab]
+
+
 def authors(cell: str, orgs: dict[str, dict]) -> list[dict]:
     """The `autor` cell as a list of {name, org}. A name that is the slug of a row in orgs.csv becomes that
     organisation (its own name, and `org` = its slug); any other name stays as written."""
@@ -327,6 +333,7 @@ def main():
     items = []
     entries = load_entries()
     orgs = {e["slug"]: e for e in entries if e["kind"] == "organizatie"}
+    rows = {"proiecte": 1, "orgs": 1}  # the Sheet's row of an entry: row 1 is the header, then the CSV order
     for n, e in enumerate(entries):
         p = profile.get(e["slug"], {})
         # A retired project's live URL shows something else now: ignore what the profiler saw there.
@@ -348,6 +355,7 @@ def main():
             "id": n + 1,
             "slug": e["slug"],
             "kind": e["kind"],
+            "row": next_row(rows, "orgs" if e["kind"] == "organizatie" else "proiecte"),
             "fel": e.get("fel", ""),
             "civictech": e.get("civictech") == "1",
             "name": e["nume"],
@@ -390,6 +398,7 @@ def main():
         "generated": now.isoformat(timespec="seconds"),
         "checked": checked[-1] if checked else "",
         "taxonomy": tax_out,
+        "site": {k: v for k, v in json.loads((DATA / "site.json").read_text(encoding="utf-8")).items() if k != "_doc"},
         "items": items,
     }
     (SITE / "data.json").write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")))
