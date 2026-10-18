@@ -1,5 +1,74 @@
 # Activity
 
+## 2026-10-18 — Authors, `fel`, kind paths, text size, theme
+
+**Done**
+- Pulled the Sheet into the CSVs (`sheets.py pull`): 4 new rows (one is a Sheet edit of `registrul-firmelor`),
+  `autor` cells changed to org slugs, the org slug `ethicalmedia` renamed `ethical-media`, and the entry
+  `gov2` removed. PR #1 is stale now; the next `sheets-pull` run updates it.
+- `taxonomy.json`: new domain `altele`, and a new list `fel` (`proiect`, `resursa`, `articol`, `ghid`,
+  `campanie`, `cercetare`), each with the tab it belongs to. `common.FEL_KIND` maps `fel` to the tab, so
+  every `fel` but `proiect` lands on "Resurse & liste". `validate.py` and the Sheet's drop-down read
+  the list. Data still holds only `proiect` and `resursa`; the owner has not set the new values yet.
+- Addresses follow the tab: `/proiect/…`, `/organizatie/…`, `/resursa/…` (`build.py` writes the three
+  folders; `app.js` reads any of them).
+- Authors: `build.py` turns `autor` into `authors: [{name, org}]` (a name that is an `orgs.csv` slug
+  becomes that organisation). The drawer of an entry shows the organisation as a card, and "De același
+  autor" lists the other entries with the same author. The drawer of an organisation shows "Proiecte și
+  resurse". Names that are not slugs match by their written text.
+- Footer: text size S / M / L / XL (0.9 / 1 / 1.15 / 1.3 of the current size; M is the old size) and
+  theme Sistem / Luminoasă / Întunecată. Both persist in localStorage and apply before the first paint
+  (a `<head>` script). Every `px` font size in `style.css` is now `calc(Npx * var(--fs))`; the dark
+  styles exist twice (OS preference, and `data-theme="dark"`).
+- Measured in headless Chromium: body font 14.4 / 16 / 18.4 / 20.8 px; OS dark + "Luminoasă" gives a
+  white page; reload keeps both choices; no page errors, no 4xx.
+
+**Decided**
+- `acoperire` may be empty (a warning, no longer an error). The two new Sheet rows had it empty, and an
+  article has no reach. Cost of the alternative: CI fails on rows the owner added on purpose.
+- An author written as plain text is not matched to an organisation by name, only by slug. Cost of
+  name matching: a link nobody asked for. Cost of slugs only: the owner must write the slug.
+
+**Hard**
+- The `gov2` entry is gone from the Sheet, and three rows still name `gov2` as author.
+
+## 2026-10-18 — Favicons beside names, first Sheet pull request
+
+**Done**
+- `sheets-pull` ran for the first time (by hand). It opened PR #1 with one new row
+  (`registrul-firmelor`) and one edit (`ro-api-hub`). The owner swapped the two description cells of
+  the new row in the Sheet, and the second run carried the fix. The merge is still open (see **Hard**).
+- `site/app.js`, `site/style.css`: the project's favicon (`it.icon`) shows before the name in list rows
+  (16 px) and in the detail heading (24 px). Rows keep their og-image thumbnail. An entry without a
+  favicon gets a blank of the same width in a row, so the names stay aligned. Cards are unchanged.
+- Measured in headless Chromium, light and dark: 65 rows show a favicon, 16 rows show a gap, and
+  the page raises no errors. Of the 117 entries in `data.json`, 81 have a favicon.
+
+- List view: a **Links** column (up to 4 icons: curated links first, then those found on the site;
+  "+n" for the rest), and **Age** / **Updated** columns, narrower, with compact values: `9Z` days,
+  `2L` months, `13A` years, no space. The headers are English at the owner's request; the values in
+  the drawer keep the long Romanian form. "Zile" became `Z` by analogy with `L` and `A`.
+- Pretty links: `build.py` writes 117 pages to `site/proiect/<slug>/index.html` (git ignores them).
+  Each has its own title, description, canonical URL and og/twitter image, a `<base href="../../">`
+  and a `<noscript>` summary. `app.js` takes the slug from the path, writes `/proiect/<slug>/` with
+  `pushState`, and still opens `?p=<slug>`. An entry opened by address alone shows its own tab
+  (organisations, resources). The RSS links point to the new addresses.
+- Tested in headless Chromium: static page, close, click in the list, Back, old `?p=`, organisation
+  page, filters in the query, `j` step, no trailing slash: no page errors, no 4xx.
+
+- `docs/DATA-SCHEMA.md`: every column of `proiecte.csv`, `orgs.csv`, `profil.csv`, `mentiuni.csv`,
+  `mentiuni_etichete.csv`, `taxonomy.json`, `form.json` and `data.json`, with the rules of
+  `validate.py`. Written from the scripts; each claim was checked in the code. Linked from the README,
+  CONTRIBUTING, ARCHITECTURE and CLAUDE.md.
+
+**Hard**
+- A relative image path breaks after `pushState` to `/proiect/<slug>/` on a page without `<base>`
+  (`img/og/x.webp` resolves under `/proiect/<slug>/`). Found in the first test run. `app.js` now
+  prefixes every data path with `ROOT` at load.
+- A fix pushed to the `sheets-sync` branch would make `sheets-push` exit 3 after the merge: the
+  Sheet's swapped cells count as edits the repo does not have. The fix went into the Sheet instead.
+- The agent's `gh pr merge` was blocked by the permission classifier. The owner merges the PR.
+
 ## 2026-10-18 — Form live, Form template, architecture doc
 
 **Done**

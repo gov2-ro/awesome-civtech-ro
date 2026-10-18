@@ -65,6 +65,28 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
       delete that column by hand (0 responses).
 - [ ] Importer for `propuneri`: map the answers to a `proiecte.csv` / `orgs.csv` row with `ANSWER_KEYS`
       in `form.py` (needs a `slug`; the editor accepts each row by hand, as for `review.py`).
+- [ ] Order the Form questions like the `proiecte` columns, so one paste moves a `propuneri` row to
+      the tab `proiecte`: Ce propui? (`fel`), Nume, Pe scurt, Descriere, Adresa (URL), Alte linkuri,
+      Domeniu, Tip, Acoperire, Oraș, Autor. Today "Adresa (URL)" comes before "Pe scurt". The first
+      row pasted by hand (`registrul-firmelor`, 2026-10-18) has `descriere_scurta` and `descriere`
+      swapped; it is not known whether the swap came from the Form or from the paste.
+- [ ] The Form's first question ("Ce propui?") offers only Proiect, Resursă and Organizație. It does not
+      offer `articol`, `ghid`, `campanie` or `cercetare`. Decide whether to add them (`FEL_CHOICES` in
+      `form.py`, then `form.py --apply`) or to let the editor set `fel` when copying a row.
+- [ ] Authors that look like a slug but have no row in `orgs.csv`: `gabriel-popa` (3 entries) and `gov2`
+      (3 entries; the entry `gov2` is no longer in the Sheet). Add the rows to `orgs.csv`, or write the
+      names in full. `validate.py` warns about each.
+- [ ] Filter by `fel` in the "Resurse & liste" tab (article, guide, campaign, research). The label shows on
+      each entry, but there is no facet yet.
+- [ ] `sitemap.xml` and `robots.txt`, written by `build.py`, so that search engines find the
+      `/<kind>/<slug>/` pages. The home page lists them only through JavaScript.
+- [ ] `site/404.html` for a removed slug: send `/<kind>/<old-slug>/` to `/?p=<old-slug>` or to the
+      home page. Today a removed entry returns the GitHub Pages 404.
+- [ ] The og images are WebP. Check a link preview on the networks that matter (Facebook, LinkedIn,
+      Telegram, WhatsApp) once the pages are live.
+- [ ] `docs/DATA-SCHEMA.md` can drift from `scripts/common.py`. Add a check to `validate.py` (or CI) that
+      every column in `PROIECTE_COLS`, `ORGS_COLS`, `PROFIL_COLS`, `MENTIUNI_COLS` and `ETICHETE_COLS` appears
+      in that file.
 - [ ] The longest help text (Domeniu, 11 hints) has 772 characters. If the Forms API or the layout
       rejects it, set `HINT_MAX` in `form.py` to 0 to drop the hints from the help text.
 

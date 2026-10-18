@@ -12,7 +12,7 @@ Fișierele se pot edita și ca tabel (LibreOffice, Excel, Google Sheets) — pă
 | coloană | ce conține |
 | --- | --- |
 | `slug` | identificator unic: litere mici, cifre, cratime (`harta-firmelor`) |
-| `fel` | `proiect` sau `resursa` (listă, ghid, colecție) |
+| `fel` | `proiect`, sau o resursă: `resursa` (listă, colecție), `articol`, `ghid`, `campanie`, `cercetare`. Resursele apar la „Resurse & liste” |
 | `nume` | numele proiectului, așa cum îl folosește el |
 | `descriere_scurta` | o frază, sub ~90 de caractere |
 | `descriere` | ce face, pentru cine, din ce date |
@@ -21,9 +21,9 @@ Fișierele se pot edita și ca tabel (LibreOffice, Excel, Google Sheets) — pă
 | `domeniu` | una dintre cheile din `data/taxonomy.json` → `domenii` (`bani`, `politica`, `justitie`…) |
 | `tip` | una sau mai multe chei din `tipuri`, separate prin virgulă, cea principală prima (`instrument`, `vizualizare`, `harta`, `baza-de-date`, `monitorizare`, `educativ`, `ghid`) |
 | `cuvinte` | cuvinte cheie separate prin virgulă |
-| `acoperire` | `national`, `local` sau `international` |
+| `acoperire` | `national`, `local` sau `international` (poate rămâne goală) |
 | `oras` | pentru proiectele locale |
-| `autor` | oameni sau organizații, separați prin ` / ` |
+| `autor` | oameni sau organizații, separați prin ` / `. Dacă numele e `slug`-ul unui rând din `orgs.csv` (`funky-citizens`), proiectul apare legat de organizație, iar pagina organizației îi listează proiectele |
 | `contact` | opțional |
 | `civictech` | `1` dacă e un proiect civic tech (făcut de societatea civilă / voluntari), `0` altfel |
 | `stare` | gol (verificată automat), `arhivat` sau `offline`. Un site offline pe care Wayback Machine nu l-a mai văzut de un an apare automat ca `arhivat`. |
@@ -32,6 +32,8 @@ Fișierele se pot edita și ca tabel (LibreOffice, Excel, Google Sheets) — pă
 `orgs.csv` are aceleași coloane, fără `fel`, `tip`, `autor`, `contact` și `civictech`.
 
 Restul — starea site-ului, imaginea, iconița, linkurile sociale găsite pe pagină — se completează automat (`scripts/profile.py` → `data/profil.csv`).
+
+Toate fișierele de date, coloană cu coloană, sunt descrise (în engleză) în [docs/DATA-SCHEMA.md](docs/DATA-SCHEMA.md).
 
 ## Rezultatele căutării — `mentiuni.csv`
 

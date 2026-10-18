@@ -41,7 +41,8 @@ flowchart LR
 | `site/data.json`, `site/feed.xml`, `site/img/` | `build.py`, `profile.py` | what the site shows |
 
 Rule of thumb: a person edits the first three; scripts write the rest.
-[CONTRIBUTING.md](../CONTRIBUTING.md) describes every column.
+[DATA-SCHEMA.md](DATA-SCHEMA.md) explains every column. [CONTRIBUTING.md](../CONTRIBUTING.md) tells a
+contributor how to fill in a row.
 
 ## From CSV to website
 
@@ -94,6 +95,13 @@ flowchart LR
 Every push to `main` that touches `data/`, `scripts/` or `site/` rebuilds `data.json` and publishes
 `site/`. It takes about a minute. GitHub does **not** run `profile.py` or `search.py`: the editor runs
 them locally and commits what they produce.
+
+**One page per entry.** GitHub Pages is static hosting: it has no rewrite rules and ignores
+`.htaccess`. So `build.py` writes `site/<kind>/<slug>/index.html` for every entry, with the kind of its tab: `proiect`, `organizatie` or `resursa`. Each page is
+`site/index.html` with that entry's title, description, canonical address and share image in `<head>`,
+so link previews and search engines see the entry. `app.js` reads the slug from the path and opens
+the entry. The old `/?p=<slug>` still opens it, and then moves to the new address. Git ignores these
+pages; the Pages workflow builds them.
 
 ## Editing in Google Sheets
 

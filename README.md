@@ -1,7 +1,7 @@
-<img src="docs/reference/logo/civtech-ro-favicon-2.png" width=128>
+<img src="docs/reference/logo/g2-0-128.png" width=128>
 
 
-[civtech.gov2.ro](https://civtech.gov2.ro/) &middot; listă de proiecte &amp; resurse de civtech, transparență, bună administrație și tot așa &rarr; [proiecte.csv](data/proiecte.csv). Vezi și [roadmap/backlog](docs/BACKLOG.md) &amp; [arhitectura](docs/ARCHITECTURE.md).
+[civtech.gov2.ro](https://civtech.gov2.ro/) &middot; listă de proiecte &amp; resurse de civtech, transparență, bună administrație și tot așa &rarr; [proiecte.csv](data/proiecte.csv). Vezi și [roadmap/backlog](docs/BACKLOG.md), [arhitectura](docs/ARCHITECTURE.md) &amp; [schema datelor](docs/DATA-SCHEMA.md).
 
 _Notă_: Verificarea datelor **nu este încă finalizată**.
 
@@ -173,9 +173,8 @@ the taxonomy, so keep those four titles as they are.
 The workflows run on a schedule, on pushes to `main` and by hand only, because GitHub does not give secrets to
 pull requests from forks.
 
-<img src="docs/reference/logo/civtech-ro-2.png" width=250> <img src="docs/reference/logo/civtech-ro-tatt-1-bw.png" width=250>
-
 -----
 
+<img src="docs/reference/logo/g2-0.png" width=250> 
 Copyright (c) 2026 [gov2.ro](https://gov2.ro)
 Date reutilizabile conform [EUPL v1.2](https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12) (the "Licence")
