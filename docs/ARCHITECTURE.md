@@ -163,8 +163,8 @@ The Form's questions come from the data model, so the choices always match the t
 flowchart LR
     tax[taxonomy.json] --> fp[form.py]
     tpl[data/form.json<br/>question template] --> fp
-    fp -- --apply --> form[Google Form]
-    form -- --save, after editing by hand --> tpl
+    fp -->|"--apply"| form[Google Form]
+    form -->|"--save, after editing by hand"| tpl
 ```
 
 - `form.py --save` reads the Form, as the editor changed it in Google Forms, into `data/form.json`.
