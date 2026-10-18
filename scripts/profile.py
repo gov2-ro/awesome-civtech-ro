@@ -152,6 +152,7 @@ async def fetch_page(client, insecure, url: str) -> dict:
     # Icon services as a last resort; both answer 404 when they have nothing.
     out["icon_candidates"] = [u for _, u in icons] + [urljoin(base, "/favicon.ico"),
                               f"https://icons.duckduckgo.com/ip3/{host}.ico", f"https://www.google.com/s2/favicons?domain={host}&sz=128"]
+    host_of_page = host.removeprefix("www.")
     repos, social = [], {}
     for a in tree.css("a[href]"):
         href = (a.attributes.get("href") or "").strip()
@@ -161,8 +162,12 @@ async def fetch_page(client, insecure, url: str) -> dict:
         role = SOCIAL_HOSTS.get(host)
         path = urlparse(href).path.strip("/")
         # One profile link per network; skip share buttons and bare network home pages.
-        if role and path and not SHARE.search(href) and role not in social:
+        # linkedin.com/in/… is a person (a team page), not the project's own profile.
+        if role and path and not SHARE.search(href) and role not in social and not (role == "linkedin" and path.startswith("in/")):
             social[role] = href.split("#")[0]
+    # On a GitHub page the repo links are GitHub's own chrome (github.com/mcp, /features…); the page is the repo.
+    if host_of_page in ("github.com", "gitlab.com"):
+        repos = [base.split("?")[0].split("#")[0]]
     out["repos"] = list(dict.fromkeys(repos))[:5]
     out["social"] = social
     return out
@@ -423,7 +428,7 @@ async def extras_one(sem, client, e: dict, p: dict):
             p["first_seen"], p["last_capture"] = ymd(months[0]) if months else "", ymd(months[-1]) if months else ""
             p["archive_months"] = len(months)
         cands = []
-        repos = [m.group(2) for u in [*re.findall(r"https?://\S+", e.get("linkuri", "")), *(p.get("repos") or [])]
+        repos = [m.group(2) for u in [e["url"], *re.findall(r"https?://\S+", e.get("linkuri", "")), *(p.get("repos") or [])]
                  if (m := GH_REPO.match(u.rstrip(",")))]
         host = (urlparse(e["url"]).hostname or "").lower().removeprefix("www.")
         if not repos and rooted and alive and (found := await github_find(client, host)):
