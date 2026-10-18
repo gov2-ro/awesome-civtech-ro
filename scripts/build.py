@@ -206,37 +206,43 @@ def clip(text: str, n: int) -> str:
     return cut.rstrip(" ,.;:–-") + "…"
 
 
+def esc(v) -> str:
+    return html.escape(str(v), quote=True)
+
+
+def swap(doc: str, pattern: str, repl: str) -> str:
+    doc, n = re.subn(pattern, lambda _: repl, doc, count=1)
+    if not n:
+        raise SystemExit(f"site/index.html has no {pattern}: the page writers in build.py need it")
+    return doc
+
+
+def page_head(template: str, *, title: str, text: str, url: str, img: dict, alt: str, depth: int) -> str:
+    """site/index.html with this page's title, description, canonical address and share image in <head>, and a <base>
+    so that the page's relative paths reach the site root from `depth` folders down."""
+    doc = swap(template, r"<title>.*?</title>", f"<title>{esc(title)}</title>")
+    doc = swap(doc, r'<meta charset="utf-8">', f'<meta charset="utf-8">\n<base href="{"../" * depth}">')
+    doc = swap(doc, r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{esc(text)}">')
+    doc = swap(doc, r'<link rel="canonical" href="[^"]*">', f'<link rel="canonical" href="{url}">')
+    for key, value in {"og:url": url, "og:title": title, "og:description": text, "og:image": SITE_URL + img["src"],
+                       "og:image:width": img["w"], "og:image:height": img["h"], "og:image:alt": alt,
+                       "twitter:title": title, "twitter:description": text, "twitter:image": SITE_URL + img["src"]}.items():
+        attr = "name" if key.startswith("twitter:") else "property"
+        doc = swap(doc, rf'<meta {attr}="{key}" content="[^"]*">', f'<meta {attr}="{key}" content="{esc(value)}">')
+    return doc
+
+
 def entry_pages(items: list[dict]) -> int:
-    """One page per entry at site/proiect/<slug>/index.html: index.html with that entry's title, description,
-    canonical address and share image in <head>, a <base> so the page's relative paths reach the site root,
+    """One page per entry at site/<kind>/<slug>/index.html: index.html with that entry's own <head> (see page_head)
     and the entry's text in <noscript>. app.js reads the slug from the path and opens the entry."""
     template = (SITE / "index.html").read_text(encoding="utf-8")
     for kind in {i["kind"] for i in items} | set(PAGE_KINDS):
         shutil.rmtree(SITE / kind, ignore_errors=True)
-
-    def swap(doc: str, pattern: str, repl: str) -> str:
-        doc, n = re.subn(pattern, lambda _: repl, doc, count=1)
-        if not n:
-            raise SystemExit(f"site/index.html has no {pattern}: entry_pages() needs it")
-        return doc
-
     for i in items:
         slug, name, kind = i["slug"], i["name"], i["kind"]
-        url = f"{SITE_URL}{kind}/{slug}/"
-        title = f"{name} — CivTech România"
         text = clip(i["desc"] or i["tagline"] or "", 200) or "Director de instrumente civice, date deschise și proiecte de bună guvernare din România."
         img = i["img"] if i["img"] and i["img"]["kind"] != "logo" else DEFAULT_SHARE
-        esc = lambda v: html.escape(str(v), quote=True)
-        doc = template
-        doc = swap(doc, r"<title>.*?</title>", f"<title>{esc(title)}</title>")
-        doc = swap(doc, r'<meta charset="utf-8">', '<meta charset="utf-8">\n<base href="../../">')
-        doc = swap(doc, r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{esc(text)}">')
-        doc = swap(doc, r'<link rel="canonical" href="[^"]*">', f'<link rel="canonical" href="{url}">')
-        for key, value in {"og:url": url, "og:title": title, "og:description": text, "og:image": SITE_URL + img["src"],
-                           "og:image:width": img["w"], "og:image:height": img["h"], "og:image:alt": name,
-                           "twitter:title": title, "twitter:description": text, "twitter:image": SITE_URL + img["src"]}.items():
-            attr = "name" if key.startswith("twitter:") else "property"
-            doc = swap(doc, rf'<meta {attr}="{key}" content="[^"]*">', f'<meta {attr}="{key}" content="{esc(value)}">')
+        doc = page_head(template, title=f"{name} — CivTech România", text=text, url=f"{SITE_URL}{kind}/{slug}/", img=img, alt=name, depth=2)
         # With a <base>, a bare "#fragment" would leave the page: point it at this page.
         doc = doc.replace('href="#', f'href="{kind}/{slug}/#')
         nojs = (f'<noscript><article class="nojs"><h1>{esc(name)}</h1>'
@@ -249,6 +255,68 @@ def entry_pages(items: list[dict]) -> int:
         out.mkdir(parents=True)
         (out / "index.html").write_text(doc, encoding="utf-8")
     return len(items)
+
+
+ARCHIVE_LEAD = {
+    "proiect": "{n} proiecte civic tech din România, pe domenii.",
+    "organizatie": "{n} organizații care fac civic tech, transparență și participare în România.",
+    "resursa": "{n} resurse: liste, articole, ghiduri, campanii și cercetări.",
+}
+
+
+def archive_pages(items: list[dict], tax: dict) -> int:
+    """One list of every entry of a kind at site/<kind>/index.html (/proiect/, /organizatie/, /resursa/): plain HTML,
+    readable without scripts, each entry linking to its own page. Projects are grouped by domain, the others run A-Z.
+    Call it after entry_pages(), which clears the folders."""
+    template = (SITE / "index.html").read_text(encoding="utf-8")
+    kinds = {k["key"]: k["label"] for k in tax["kinds"]}
+    domains = {d["key"]: d for d in tax["domenii"]}
+    tips = {t["key"]: t["label"] for t in tax["tipuri"]}
+    fels = {f["key"]: f["label"] for f in tax["fel"]}
+    counts = {k: sum(1 for i in items if i["kind"] == k) for k in kinds}
+
+    def entry(i: dict) -> str:
+        kind_label = fels.get(i["fel"], "") if i["kind"] == "resursa" and i["fel"] != "resursa" else ""
+        parts = [kind_label, *(tips.get(t, "") for t in i["tips"]), i["oras"] if i["acoperire"] == "local" else ""]
+        meta = " · ".join(dict.fromkeys(p for p in parts if p))
+        gone = f' <span class="arch-gone">{esc(i["status"])}</span>' if i["status"] in ("arhivat", "offline") else ""
+        icon = f'<img class="fav fav-name" src="{esc(i["icon"])}" alt="" width="24" height="24" loading="lazy">' if i["icon"] else ""
+        blurb = clip(i["tagline"] or i["desc"], 160)
+        return (f'<li class="arch-item"><a class="arch-name" href="{i["kind"]}/{esc(i["slug"])}/">{icon}{esc(i["name"])}</a>{gone}'
+                + (f'<span class="arch-meta">{esc(meta)}</span>' if meta else "")
+                + (f'<p class="arch-blurb">{esc(blurb)}</p>' if blurb else "") + "</li>")
+
+    for kind, label in kinds.items():
+        mine = [i for i in items if i["kind"] == kind]
+        if kind == "proiect":
+            groups = [(d["label"], d["hint"], [i for i in mine if i["domeniu"] == d["key"]]) for d in domains.values()]
+        else:
+            groups = [("", "", mine)]
+        body = "".join((f'<section class="arch-group"><h2>{esc(g)} <span class="n">{len(rows)}</span></h2>' + (f'<p class="arch-hint">{esc(h)}</p>' if h else "") if g else "<section>")
+                       + f'<ul class="arch-list">{"".join(entry(i) for i in rows)}</ul></section>' for g, h, rows in groups if rows)
+        lead = ARCHIVE_LEAD[kind].format(n=len(mine))
+        nav = "".join(f'<a href="{k}/"{" aria-current=" + chr(34) + "page" + chr(34) if k == kind else ""}>{esc(name)} <span class="n">{counts[k]}</span></a>'
+                      for k, name in kinds.items())
+        doc = page_head(template, title=f"{label} — CivTech România", text=lead, url=f"{SITE_URL}{kind}/", img=DEFAULT_SHARE,
+                        alt="CivTech România", depth=1)
+        head = doc[:doc.index("<body>")]
+        page = f"""{head}<body class="archive">
+<header class="arch-hdr wrap">
+  <a class="arch-brand" href="./">CivTech România</a>
+  <nav class="arch-nav" aria-label="Arhive">{nav}</nav>
+  <a class="btn btn-outline" href="./?k={kind}">Caută și filtrează</a>
+</header>
+<main class="wrap arch">
+  <h1>{esc(label)}</h1>
+  <p class="arch-lead">{esc(lead)} <a href="./?k={kind}">Lista interactivă</a> are căutare și filtre.</p>
+  {body}
+</main>
+<footer class="footer wrap"><p class="mono small muted">actualizat: {esc(max((i["checked"] for i in items), default=""))} · <a href="./">civtech.gov2.ro</a> · <a href="feed.xml">RSS</a></p></footer>
+</body>
+</html>
+"""
+        (SITE / kind / "index.html").write_text(page, encoding="utf-8")
+    return len(kinds)
 
 
 def main():
@@ -330,7 +398,8 @@ def main():
         by[i["status"]] = by.get(i["status"], 0) + 1
     (SITE / "feed.xml").write_text(feed(items, now))
     pages = entry_pages(items)
-    print(f"wrote {len(items)} entries to site/data.json  {by}; site/feed.xml; {pages} pages in site/{{{','.join(PAGE_KINDS)}}}/")
+    archives = archive_pages(items, tax)
+    print(f"wrote {len(items)} entries to site/data.json  {by}; site/feed.xml; {pages} entry pages and {archives} archives in site/{{{','.join(PAGE_KINDS)}}}/")
 
 
 if __name__ == "__main__":

@@ -494,3 +494,26 @@ svg.gh { width: 20px; height: 20px; fill: currentColor; stroke: none; }
 /* Dark theme: project images (often on a white page) get some alpha, so they blend into the dark background. */
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) :is(.media, .thumb) img:not(.ico, .fav) { opacity: .85; } }
 :root[data-theme="dark"] :is(.media, .thumb) img:not(.ico, .fav) { opacity: .85; }
+
+/* ---------- archive pages: /proiect/, /organizatie/, /resursa/ (written by build.py) ---------- */
+.arch-hdr { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; padding-top: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.arch-brand { font: 600 calc(17px * var(--fs)) / 1.3 var(--font-head); letter-spacing: -.01em; color: inherit; text-decoration: none; }
+.arch-nav { display: flex; flex-wrap: wrap; gap: 0 18px; flex: 1; }
+.arch-nav a { padding: 8px 0; font-size: calc(15px * var(--fs)); color: var(--muted); text-decoration: none; border-bottom: 2px solid transparent; }
+.arch-nav a:hover { color: var(--ink); }
+.arch-nav a[aria-current] { color: var(--ink); border-bottom-color: var(--ink); }
+.arch-nav .n { font: 400 calc(12px * var(--fs)) / 1 var(--font-mono); color: var(--muted); }
+.arch { display: grid; gap: 22px; padding-top: 28px; padding-bottom: 44px; max-width: 920px; }
+.arch h1 { font-size: calc(clamp(28px, 5vw, 40px) * var(--fs)); font-weight: 700; letter-spacing: -.025em; }
+.arch-lead { margin: 0; max-width: 62ch; color: var(--ink-2); }
+.arch-group { display: grid; gap: 4px; }
+.arch-group h2 { display: flex; align-items: baseline; gap: 10px; padding-top: 14px; border-top: 1px solid var(--ink); font-size: calc(21px * var(--fs)); font-weight: 600; }
+.arch-group h2 .n { font: 400 calc(13px * var(--fs)) / 1 var(--font-mono); color: var(--muted); }
+.arch-hint { margin: 0; font-size: calc(14px * var(--fs)); color: var(--muted); }
+.arch-list { list-style: none; margin: 0; padding: 0; }
+.arch-item { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.arch-name { display: inline-flex; align-items: center; gap: 8px; align-self: center; font: 600 calc(16px * var(--fs)) / 1.25 var(--font-head); color: inherit; text-decoration: none; }
+.arch-name:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.arch-gone { font: 500 calc(11px * var(--fs)) / 1.4 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--bad); }
+.arch-meta { font: 400 calc(12px * var(--fs)) / 1.4 var(--font-mono); letter-spacing: .04em; color: var(--muted); }
+.arch-blurb { flex-basis: 100%; margin: 0; color: var(--ink-2); font-size: calc(14px * var(--fs)); line-height: 1.4; }
