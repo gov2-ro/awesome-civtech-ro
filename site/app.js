@@ -703,7 +703,7 @@ function fitHeader() {
 new ResizeObserver(fitHeader).observe(slot('hdr'));
 
 /* ---------- boot ---------- */
-fetch('data.json').then(r => r.json()).then(db => {
+fetch('data.json', { cache: 'no-cache' }).then(r => r.json()).then(db => {
   DB = db;
   const map = arr => Object.fromEntries(arr.map(x => [x.key, x]));
   TAX = { domeniu: map(db.taxonomy.domenii), tip: map(db.taxonomy.tipuri), kind: map(db.taxonomy.kinds) };
