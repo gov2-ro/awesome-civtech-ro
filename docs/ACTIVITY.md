@@ -1,5 +1,29 @@
 # Activity
 
+## 2026-10-18 — Logos, archives, report a problem, Monokai dark theme
+
+**Done**
+- The owner ran `form.py --apply` (read back with `form.py`: 13 questions, "Altele" in Domeniu).
+- Logos: the 128 px icons are shown as the project's logo: 24 px before the name in list rows (no blank
+  when there is none, so a title without a logo starts at the left edge), and 72 px in a new drawer
+  header, left of the title, the "Deschide" button and the tagline.
+- `acoperire` empty now means `national` in `build.py`; `validate.py` no longer warns about it.
+- Archives: `build.py` writes `site/proiect/`, `site/organizatie/` and `site/resursa/` `index.html`: every
+  entry of the kind, readable without scripts. The footer links them. All three, not only projects and
+  organisations, so that the resources do not lack one.
+- "Semnalează o problemă" at the end of the drawer: a `<details>` with three prefilled options (the Sheet
+  row, an e-mail, a GitHub issue). `data/site.json` holds the addresses; `build.py` adds `row` to each item
+  (row 1 is the header, so the first entry is row 2). The e-mail is empty,
+  so that option is hidden until the owner sets it.
+- Dark theme is Monokai Pro, filter Classic (bg `#272822`, text `#fdfff1`, pink `#f92672`, blue `#66d9ef`,
+  green `#a6e22e`, yellow `#e6db74`, orange `#fd971f`; the hex values come from the theme's preview
+  SVG on vscodethemes.com, except orange). Project images in dark get `opacity: .85` so a white page
+  blends into the dark background. The accent badge text now uses `--bg`.
+- The pending work of the earlier entries was committed by topic (8 commits).
+
+**Hard**
+- The e-mail address is not in the repository; I did not guess one.
+
 ## 2026-10-18 — Authors, `fel`, kind paths, text size, theme
 
 **Done**
@@ -24,7 +48,8 @@
   white page; reload keeps both choices; no page errors, no 4xx.
 
 **Decided**
-- `acoperire` may be empty (a warning, no longer an error). The two new Sheet rows had it empty, and an
+- `acoperire` may be empty (a warning, no longer an error). Later the same day the owner chose a default:
+  an empty value means `national`, with no warning. The two new Sheet rows had it empty, and an
   article has no reach. Cost of the alternative: CI fails on rows the owner added on purpose.
 - An author written as plain text is not matched to an organisation by name, only by slug. Cost of
   name matching: a link nobody asked for. Cost of slugs only: the owner must write the slug.

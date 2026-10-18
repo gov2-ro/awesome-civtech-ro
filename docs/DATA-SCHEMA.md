@@ -17,6 +17,7 @@ The column lists are in `scripts/common.py` (`PROIECTE_COLS`, `ORGS_COLS`, `PROF
 | `data/mentiuni.csv` | `search.py`; a person sets `editor` | [mentiuni.csv](#mentiunicsv) |
 | `data/mentiuni_etichete.csv` | `review.py` | [mentiuni_etichete.csv](#mentiuni_etichetecsv) |
 | `data/form.json` | `form.py --save` | [form.json](#formjson) |
+| `data/site.json` | a person | [site.json](#sitejson) |
 | `site/data.json` | `build.py` | [data.json](#datajson) |
 
 ## Rules for every CSV
@@ -47,7 +48,7 @@ guide, a campaign, research). Order of columns: as in the table.
 | `domeniu` | Subject area. | One key from `taxonomy.json` → `domenii`. Required. |
 | `tip` | Kind of tool. | One or more keys from `tipuri`, comma-separated, main type first. Error for an unknown key. Warning for a project with no type. |
 | `cuvinte` | Keywords. | Comma-separated. `build.py` drops the ones in `cuvinte.ignora` and rewrites the ones in `cuvinte.alias`. It drops `local:*` keywords, because `oras` holds the city. |
-| `acoperire` | Geographic reach. | One key from `acoperire`: `national`, `local` or `international`. Warning if empty (an article or a campaign may have none); error for an unknown key. |
+| `acoperire` | Geographic reach. | One key from `acoperire`: `national`, `local` or `international`. Empty means `national` (the site shows it so); error for an unknown key. |
 | `oras` | City, for local entries. | Free text. Warning if `acoperire` is `local` and this is empty. |
 | `autor` | People or organisations behind it. | Separate names with ` / ` (a comma or ` & ` also works). **A name that is the `slug` of a row in `orgs.csv` links the entry to that organisation**: the entry page shows the organisation, and the organisation page lists its entries. Any other name stays plain text; the site shows other entries with the same name under "De același autor". Warning when a name looks like a slug but is not in `orgs.csv`. |
 | `contact` | A contact point. | Optional. Free text. |
@@ -239,16 +240,29 @@ The columns of `propuneri` do not match the columns of `proiecte.csv`: a person 
 accepted row by hand and adds `slug`, `fel` and the other missing cells. See `docs/BACKLOG.md`
 for the plan to order the questions like the CSV.
 
+## site.json
+
+Where a visitor can report a problem with an entry: the drawer's "Semnalează o problemă". `build.py`
+copies the file into `data.json` as `site`. An empty value hides that option.
+
+| Key | Meaning |
+| --- | --- |
+| `issues` | Address of GitHub's "new issue" page. The site adds a title and a body that name the entry. |
+| `sheet` | Address of the Google Sheet, ending in `/edit`. The site adds the tab and the entry's row. |
+| `tabs` | The Sheet's tab ids, `proiecte` and `orgs`: the number after `gid=` in the Sheet's address. |
+| `email` | An address for the "send an e-mail" option. Empty by default, so that option is hidden. |
+
 ## data.json
 
 What the browser loads: `generated` (time), `checked` (the newest `fetched_at`), `taxonomy`
-(`taxonomy.json` without `cuvinte`) and `items`. **Generated** by `build.py`; the field list is in
+(`taxonomy.json` without `cuvinte`), `site` (`site.json`) and `items`. **Generated** by `build.py`; the field list is in
 `main()` of `scripts/build.py`. Some fields do not copy a column:
 
 - `status`: `activ`, `offline`, `arhivat`, `necunoscut` or `neverificat`. A manual `stare` wins over
   the profiler. The profiler's `mutat` becomes `activ` (the entry then gets `movedFrom` and the new
   address), `parcat` becomes `offline`, and `blocat` becomes `necunoscut`. `neverificat` means no
   profile row exists. An `offline` site with no Wayback capture for over a year becomes `arhivat`.
+- `row`: the entry's row in its Sheet tab (`proiecte` or `orgs`): the CSV order plus the header row.
 - `fel`: the column `fel` (empty for an organisation). `kind` is the tab, from `fel`.
 - `authors`: the `autor` cell as a list of `{name, org}`. `org` is the slug of an organisation when the cell
   named one (then `name` is that organisation's name), else empty.

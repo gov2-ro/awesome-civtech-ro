@@ -21,7 +21,7 @@ Fișierele se pot edita și ca tabel (LibreOffice, Excel, Google Sheets) — pă
 | `domeniu` | una dintre cheile din `data/taxonomy.json` → `domenii` (`bani`, `politica`, `justitie`…) |
 | `tip` | una sau mai multe chei din `tipuri`, separate prin virgulă, cea principală prima (`instrument`, `vizualizare`, `harta`, `baza-de-date`, `monitorizare`, `educativ`, `ghid`) |
 | `cuvinte` | cuvinte cheie separate prin virgulă |
-| `acoperire` | `national`, `local` sau `international` (poate rămâne goală) |
+| `acoperire` | `national`, `local` sau `international`. Goală înseamnă `national` |
 | `oras` | pentru proiectele locale |
 | `autor` | oameni sau organizații, separați prin ` / `. Dacă numele e `slug`-ul unui rând din `orgs.csv` (`funky-citizens`), proiectul apare legat de organizație, iar pagina organizației îi listează proiectele |
 | `contact` | opțional |

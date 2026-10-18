@@ -103,6 +103,15 @@ so link previews and search engines see the entry. `app.js` reads the slug from 
 the entry. The old `/?p=<slug>` still opens it, and then moves to the new address. Git ignores these
 pages; the Pages workflow builds them.
 
+**Archives.** `build.py` also writes a plain list of every entry of a kind: `site/proiect/index.html`,
+`site/organizatie/index.html` and `site/resursa/index.html` (projects by domain, the others A to Z).
+The archives need no script, and each entry links to its own page.
+
+**Reporting a problem.** The drawer of an entry ends with "Semnalează o problemă". It offers three
+ways to tell the editor: edit the entry's row in the Google Sheet, send an e-mail, or open a GitHub
+issue. Each is prefilled with the entry's name, address and Sheet row. `data/site.json` holds the
+addresses; an empty one hides its option.
+
 ## Editing in Google Sheets
 
 The Sheet `civtech.gov2.ro` has the tabs `proiecte` and `orgs`, with the same columns as the CSVs.

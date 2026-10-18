@@ -78,8 +78,11 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
       names in full. `validate.py` warns about each.
 - [ ] Filter by `fel` in the "Resurse & liste" tab (article, guide, campaign, research). The label shows on
       each entry, but there is no facet yet.
+- [ ] Owner: set `email` in `data/site.json`, or the report-a-problem panel has no e-mail option. Check that
+      the Sheet's sharing lets the people you want edit it (or only comment); the panel links to its row.
 - [ ] `sitemap.xml` and `robots.txt`, written by `build.py`, so that search engines find the
-      `/<kind>/<slug>/` pages. The home page lists them only through JavaScript.
+      `/<kind>/<slug>/` pages and the three archives. The home page lists the entries only through JavaScript
+      (the footer links the archives).
 - [ ] `site/404.html` for a removed slug: send `/<kind>/<old-slug>/` to `/?p=<old-slug>` or to the
       home page. Today a removed entry returns the GitHub Pages 404.
 - [ ] The og images are WebP. Check a link preview on the networks that matter (Facebook, LinkedIn,
