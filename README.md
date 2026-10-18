@@ -1,5 +1,4 @@
-<img src="docs/reference/logo/g2-0-128.png" width=128>
-
+<img src="docs/reference/logo/g2-0-128.png" width=128 style="float: right;">
 
 [civtech.gov2.ro](https://civtech.gov2.ro/) &middot; listă de proiecte &amp; resurse de civtech, transparență, bună administrație și tot așa &rarr; [proiecte.csv](data/proiecte.csv). Vezi și [roadmap/backlog](docs/BACKLOG.md), [arhitectura](docs/ARCHITECTURE.md) &amp; [schema datelor](docs/DATA-SCHEMA.md).
 
@@ -7,7 +6,8 @@ _Notă_: Verificarea datelor **nu este încă finalizată**.
 
 Pentru erate sau sugestii de resurse noi, submit a PR sau issue, sau via [Google Form](https://forms.gle/wswqrm7P4QV25NZx7).
 
-----
+![civtech.gov2.ro landing light](docs/reference/civtech.gov2.ro-landing-light.png)
+![civtech.gov2.ro landing dark](docs/reference/civtech.gov2.ro-landing-dark.png)
 
 # 🤖🗯️
 
