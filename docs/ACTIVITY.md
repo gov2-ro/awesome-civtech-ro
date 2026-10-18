@@ -1,5 +1,26 @@
 # Activity
 
+## 2026-10-18 — Form live, Form template, architecture doc
+
+**Done**
+- `form.py --apply` wrote the 13 questions to the proposal Form (revision 7). `--save` stores the
+  Form, as edited by hand, in `data/form.json`; `--apply` uses it as the template from then on.
+- Scripts read the repo's `.env` themselves (`load_env` in `common.py`); exported variables win.
+- First real sync: pulled the owner's Sheet edit (`demoanaf`), removed quotes typed into two `tip`
+  cells and around one description, pushed back with `--force`; `diff` then showed no differences.
+  `sheets-push`, `pages` and `validate` passed on GitHub.
+- Footer links the public Form (forms.gle/wswqrm7P4QV25NZx7). `docs/ARCHITECTURE.md` describes the
+  data flow, the Sheet ⇄ CSV workflows and the Form, with Mermaid charts; linked from the README.
+
+**Hard**
+- The owner saw the Form's file name as "Untitled form". `form.py` sends no `updateFormInfo`; the
+  API showed `documentTitle: "Untitled form"` already before the first `--apply`. Now both names are
+  "Sugestii listă civtech.gov2.ro".
+
+**Decided**
+- Taxonomy-backed choices (Ce propui?, Domeniu, Tip, Acoperire) always come from `taxonomy.json`, even
+  with a template, so answers map back to CSV keys. Cost: renaming those four questions breaks that.
+
 ## 2026-10-18 — Proposal Form generated from the data model (brief `form-generator.md`)
 
 **Done**
