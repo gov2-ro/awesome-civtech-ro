@@ -735,6 +735,20 @@ document.addEventListener('keydown', e => {
   else if (e.key === 'k' || e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
   else if (e.key === 'o') { e.preventDefault(); openOriginal(); }
 });
+// Touch: a horizontal swipe on the open entry steps to the next (left) or previous (right) one, like j/k.
+let touch = null;
+slot('drawer').addEventListener('touchstart', e => {
+  // Rows that scroll sideways (link icons, chips) keep their own swipe.
+  const scroller = e.composedPath().find(el => el instanceof Element && el !== slot('drawer') && slot('drawer').contains(el)
+    && el.scrollWidth > el.clientWidth + 1 && getComputedStyle(el).overflowX !== 'visible');
+  touch = e.touches.length === 1 && !scroller ? { x: e.touches[0].clientX, y: e.touches[0].clientY, t: Date.now() } : null;
+}, { passive: true });
+slot('drawer').addEventListener('touchend', e => {
+  if (!touch) return;
+  const dx = e.changedTouches[0].clientX - touch.x, dy = e.changedTouches[0].clientY - touch.y;
+  if (Math.abs(dx) > 60 && Math.abs(dx) > 2 * Math.abs(dy) && Date.now() - touch.t < 600) step(dx < 0 ? 1 : -1);
+  touch = null;
+}, { passive: true });
 window.addEventListener('popstate', () => { readURL(); renderAll(); renderDetail(); });
 
 // Below 1024px the header is taller than one row; stick it so only the search and chips stay visible.
@@ -757,7 +771,7 @@ fetch('data.json', { cache: 'no-cache' }).then(r => r.json()).then(db => {
   }
   SUGGEST = buildSuggestions();
   readURL();
-  if (DB.checked) slot('checked').textContent = `actualizat: ${DB.checked} · ${DB.items.length} intrări`;
+  if (DB.checked) slot('checked').textContent = `actualizat: ${DB.checked} · ${DB.items.length} resurse`;
   renderAll();
   renderDetail();
   fitHeader();

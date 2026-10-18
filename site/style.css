@@ -138,12 +138,15 @@ svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width:
   .brand-name > span { transition: none; animation: none; background-position: 100% 0; }
 }
 .tools { display: contents; }
-.hdr-link { grid-area: link; font-size: 15px; color: var(--muted); text-decoration: none; padding: 8px 0 8px 8px; }
+.hdr-links { grid-area: link; display: inline-flex; align-items: center; justify-content: flex-end; gap: 10px; }
+.hdr-help { font: 500 14px/1 var(--font-mono); padding-left: 0; }
+.hdr-link { font-size: 15px; color: var(--muted); text-decoration: none; padding: 8px 0 8px 8px; }
 .hdr-link:hover { color: var(--ink); }
 .hdr-link { display: inline-flex; align-items: center; }
 svg.gh { width: 20px; height: 20px; fill: currentColor; stroke: none; }
 .gh-link { display: inline-flex; align-items: center; gap: 8px; color: inherit; }
-.gh-link svg.gh { width: 16px; height: 16px; }
+.gh-link svg.gh, .gh-link svg.rss { width: 16px; height: 16px; }
+.gh-link svg.rss { fill: currentColor; }
 .tabs { grid-area: tabs; display: flex; justify-content: center; gap: 2px; overflow-x: auto; scrollbar-width: none; margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); }
 .tabs::-webkit-scrollbar { display: none; }
 .tab {
@@ -422,5 +425,6 @@ svg.gh { width: 20px; height: 20px; fill: currentColor; stroke: none; }
 .footer { display: grid; gap: 20px; padding-top: 28px; padding-bottom: max(40px, env(safe-area-inset-bottom)); border-top: 1px solid var(--line); color: var(--ink-2); font-size: 15px; }
 .footer .kicker { margin-bottom: 6px; }
 .footer p { max-width: 62ch; }
+.footer .keys { max-width: none; }
 @media (hover: none) { .footer .keys { display: none; } }
 @media (min-width: 720px) { .footer { grid-template-columns: 1fr 1fr; } .footer > .mono { grid-column: 1 / -1; } }
