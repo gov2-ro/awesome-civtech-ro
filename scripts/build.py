@@ -364,7 +364,7 @@ def main():
             "descSrc": desc_src,
             "domeniu": e["domeniu"],
             "tips": split_tip(e.get("tip", "")),
-            "acoperire": e["acoperire"],
+            "acoperire": e["acoperire"] or "national",  # a missing value means national
             "oras": e["oras"],
             "keywords": keywords(e.get("cuvinte", ""), tax["cuvinte"]),
             "links": [l for l in lk if l is not code_link],

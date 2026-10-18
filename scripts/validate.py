@@ -76,9 +76,7 @@ def check(path: Path, cols: list[str], seen: dict, urls: dict, is_org: bool):
                 urls[u] = r["slug"]
             if r["domeniu"] not in DOMENII:
                 err(f"domeniu necunoscut: '{r['domeniu']}' (valori: {', '.join(sorted(DOMENII))})")
-            if not r["acoperire"]:
-                warn("fără acoperire")
-            elif r["acoperire"] not in ACOPERIRE:
+            if r["acoperire"] and r["acoperire"] not in ACOPERIRE:  # empty means national
                 err(f"acoperire necunoscută: '{r['acoperire']}'")
             if r["acoperire"] == "local" and not r["oras"]:
                 warn("acoperire locală fără oraș")
