@@ -1,5 +1,27 @@
 # Activity
 
+## 2026-10-18 — New organisations and resources filled in
+
+**Done**
+- Sonnet filled the empty cells of 13 `orgs.csv` rows and 3 `proiecte.csv` rows from each site
+  (about/contact/donate pages; Wayback for techsoup.ro, which blocks bots, and for the-sponge).
+  Profiled all 16; searched the 13 without rows (48 requests, ~$0.10, 0 errors).
+- Owner request: removed `safe-companii-de-stat` (its URL is a meta-refresh to monitorsafe.ro,
+  already `monitor-safe`), with its 26 `mentiuni.csv` rows.
+- Taxonomy: new types `colectie` and `serviciu`, as the owner used them. Slug `expert-forum` →
+  `efor` carried into `mentiuni.csv` (34 rows, editor marks kept) and `profil.csv`.
+- `split_list` also splits on a comma before a space or the end: the owner typed `a, b` links,
+  and the comma had become part of the URL (seen in `ghiduri-efor`).
+- Site: on desktop, first visit opens only the "Domeniu" filter; the sidebar lost a 2 px horizontal
+  scroll; list thumbnails are 75 px. Footer reads "actualizat:". Header logo removed.
+
+**Measured**
+- 116 entries: activ 93, arhivat 11, offline 10, neverificat 1, necunoscut 1. `validate.py`: 0 errors.
+
+**Decided**
+- The two local NGOs (Rădăuțiul Civic, Civica Iași) get `domeniu=local`, not `civic`.
+- No `orgs.csv` row for Quickdata Studio (PressPay co-author): a commercial studio.
+
 ## 2026-10-18 — Share preview, RSS, `/add-new-url`
 
 **Done**

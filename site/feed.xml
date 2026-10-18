@@ -3,7 +3,7 @@
 <title>CivTech România — proiecte noi</title><link>https://civtech.gov2.ro/</link>
 <atom:link href="https://civtech.gov2.ro/feed.xml" rel="self" type="application/rss+xml"/>
 <description>Cele mai noi proiecte din colecția CivTech România.</description><language>ro</language>
-<lastBuildDate>Sat, 17 Oct 2026 23:19:25 +0000</lastBuildDate>
+<lastBuildDate>Sun, 18 Oct 2026 00:08:17 +0000</lastBuildDate>
 <item><title>România Interactivă</title><link>https://civtech.gov2.ro/?p=romania-interactiva</link><guid isPermaLink="true">https://civtech.gov2.ro/?p=romania-interactiva</guid>
 <description>Clasamente, calculatoare și vizualizări din date oficiale</description><pubDate>Mon, 12 Oct 2026 00:00:00 +0000</pubDate></item>
 <item><title>De Obște</title><link>https://civtech.gov2.ro/?p=de-obste</link><guid isPermaLink="true">https://civtech.gov2.ro/?p=de-obste</guid>
@@ -74,6 +74,8 @@
 <description>Cazuri de corupție: prescripții, achitări, condamnări</description><pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate></item>
 <item><title>Verifică psiholog</title><link>https://civtech.gov2.ro/?p=verifica-psiholog</link><guid isPermaLink="true">https://civtech.gov2.ro/?p=verifica-psiholog</guid>
 <description>Verifică gratuit psihologi autorizați CPR din România. 35.570 psihologi, 63.748 certificate. Date sincronizate zilnic.</description><pubDate>Thu, 21 Aug 2025 00:00:00 +0000</pubDate></item>
+<item><title>PressPay</title><link>https://civtech.gov2.ro/?p=presspay</link><guid isPermaLink="true">https://civtech.gov2.ro/?p=presspay</guid>
+<description>Abonament lunar împărțit între publicațiile independente pe care le apreciezi</description><pubDate>Sat, 17 May 2025 00:00:00 +0000</pubDate></item>
 <item><title>Transparenta.eu</title><link>https://civtech.gov2.ro/?p=transparenta-eu</link><guid isPermaLink="true">https://civtech.gov2.ro/?p=transparenta-eu</guid>
 <description>Bugete, legislație și justiție, într-un singur loc</description><pubDate>Wed, 07 May 2025 00:00:00 +0000</pubDate></item>
 <item><title>Date statistice INS</title><link>https://civtech.gov2.ro/?p=ins-gov2</link><guid isPermaLink="true">https://civtech.gov2.ro/?p=ins-gov2</guid>
@@ -82,6 +84,4 @@
 <description>Asistent AI care explică legislația pe înțeles</description><pubDate>Mon, 07 Oct 2024 00:00:00 +0000</pubDate></item>
 <item><title>Observatori Vot Corect</title><link>https://civtech.gov2.ro/?p=observatori-votcorect</link><guid isPermaLink="true">https://civtech.gov2.ro/?p=observatori-votcorect</guid>
 <description></description><pubDate>Thu, 18 Apr 2024 00:00:00 +0000</pubDate></item>
-<item><title>Banii Noștri</title><link>https://civtech.gov2.ro/?p=banii-nostri</link><guid isPermaLink="true">https://civtech.gov2.ro/?p=banii-nostri</guid>
-<description>Achiziții publice, buget și finanțare politică</description><pubDate>Sat, 23 Dec 2023 00:00:00 +0000</pubDate></item>
 </channel></rss>
