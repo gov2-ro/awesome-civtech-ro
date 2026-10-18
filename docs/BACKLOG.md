@@ -105,6 +105,5 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [x] hosting: GitHub Pages mirror, or host there with its own domain
 - static HTML page per project at build time (own share preview, indexable)
 - profiler: detect donation, terms, about/contact and data-access (download / API / MCP) pages from homepage links, feeding the same `links` roles
-- write methodology. In Romanian. 
+- write methodology? In Romanian. 
 - later: allow bookmarks. saved in browser, but allow csv export.
-- later: add voting? log-in with gh/li/google/meta/x ? - what would that imply?
