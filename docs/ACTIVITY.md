@@ -1,5 +1,121 @@
 # Activity
 
+## 2026-10-18 — Proposal Form generated from the data model (brief `form-generator.md`)
+
+**Done**
+- `scripts/form.py` (PEP 723: `google-auth`, `requests`). It plans 13 questions in the order of the brief (D2).
+  The choices of `Domeniu`, `Tip` and `Acoperire` come from `data/taxonomy.json`; the first question has the
+  labels of the brief. `TITLES` (top of the file) holds the titles; `ANSWER_KEYS` maps title → choice label →
+  CSV key and is printed. Default mode prints the plan and the Form as it is now (read only). `--json` also
+  prints the `batchUpdate` body. `--apply` deletes all items and creates the planned ones in one
+  `forms.batchUpdate` (D1). **`--apply` was not run**: the owner approves the dry run first.
+- README: part "Formular (the proposal Form)" in the Google Sheets section.
+
+**Measured** (2026-10-18; the key was never printed)
+- `GET forms/{id}` with scope `forms.body`: HTTP 200. The Form has 1 item (`Untitled Question`, radio),
+  revision `00000006`, and a linked Sheet.
+- Tab `propuneri`, row 1: `Timestamp`, `Untitled Question`. 0 responses.
+- The plan: 13 questions (3 required), 14 requests in the body (1 `deleteItem`, 13 `createItem`). The longest
+  help text (Domeniu, with 11 hints) has 772 characters.
+- The `batchUpdate` body has 0 errors against the schema of the v1 discovery document (field names, types,
+  enums). That is the only check: the API has no dry run.
+- Discovery document: `TextQuestion` has only `paragraph`, so a URL validation is not possible.
+
+**Hard**
+- No way to test the write. A scratch Form would be a new file in the service account's Drive (outside the
+  brief), so the first real test is `--apply` itself. The call is all or nothing, and it carries
+  `requiredRevisionId`, so a concurrent edit of the Form makes it fail instead of being overwritten.
+- The auto-mode classifier denied a test run of `--apply` without credentials (a guard check). It was not
+  retried.
+
+**Decided**
+- **Hints in the help text, one `label: hint` line per hint of 60 characters or less.** A drop-down has no text
+  per choice, so the hints go into the help text of the question. All 20 hints pass. Alternative: the hint in
+  the choice label. The answer text would then differ from the taxonomy label, and a changed hint would break
+  `ANSWER_KEYS`.
+- **Key `organizatie`** for the third choice of `Ce propui?` (the `kind` of `common.py`); `proiect` and `resursa`
+  are the `fel` values.
+- **Delete from the last index down**, so every index in the request is the one that was read.
+- **`includeFormInResponse`**, then compare the titles of the answer with `TITLES`. A mismatch is an error.
+- The Google imports sit inside functions, so `from form import ANSWER_KEYS` works without the Google packages.
+- **Open risk:** the Sheet may keep the column `Untitled Question` after the delete. See BACKLOG, *Proposal
+  Form*.
+
+## 2026-10-18 — Google Sheets sync (brief `sheets-sync.md`)
+
+**Done**
+- `scripts/sheets.py` (PEP 723: `gspread`, `google-auth`): `diff`, `pull`, `push [--since REF] [--force]`.
+  Key from `GOOGLE_SA_KEY` (JSON text) or the file in `GOOGLE_APPLICATION_CREDENTIALS`; Sheet from `SHEET_ID`.
+  `pull` reads strings, checks that row 1 equals `PROIECTE_COLS` / `ORGS_COLS`, drops empty rows, strips
+  trailing spaces and line-ending `\r`, and writes with `write_csv`. `push` writes header and rows in one
+  `update` (RAW), clears the rows below, then freezes and bolds row 1, sets every cell of the table to plain
+  text, and adds drop-downs for `fel`, `domeniu`, `tip` (suggests only), `acoperire`, `stare`, `civictech`.
+  Exit codes: 0 done, 1 error, 3 the Sheet holds edits not yet in the repo (nothing written).
+- `.github/workflows/sheets-pull.yml`: every 6 hours and on demand; `diff`, `pull`, `validate.py`,
+  `build.py`; one pull request from `sheets-sync` (force-pushed), title and text in Romanian, text = `diff`
+  plus `validate.py` output. It commits the two CSVs only. When the Sheet matches `main` again, it closes an
+  open `sheets-sync` pull request.
+- `.github/workflows/sheets-push.yml`: on push to `main` that touches the two CSVs, and on demand (inputs
+  `since`, `force`); `push --since <before>`; exit 3 fails the job with "Tabelul are modificări
+  nesincronizate; rulează sheets-pull". `fetch-depth: 0`, so that `--since` can read an older commit.
+- Both workflows use `concurrency: group: sheets`, `cancel-in-progress: false`.
+- README: the "Editing in Google Sheets" section now says how it works, with the one-time setup.
+
+**Measured** (all on 2026-10-18; the key was never printed)
+- Real Sheet, read only (`diff`): `proiecte` 104 rows in the CSV and the Sheet, one cell differs
+  (`demoanaf` / `descriere`: the Sheet lacks the sentence "Proiect independent." and the two line breaks).
+  `orgs` 13 rows, no cell differs. Because of that cell, the first `push` to the real tabs was **not** run
+  (brief: stop and report).
+- Real Sheet, `pull` as a test: `proiecte.csv` 1 cell (4 lines in `git diff`), `orgs.csv` 2 lines
+  (`descriere_scurta` of `code4ro` and `techsoup` end with a space in the CSV; `pull` strips it). Restored
+  with `git checkout`.
+- Push, pull and diff on two temporary tabs of the real spreadsheet (`zz-test-proiecte`, `zz-test-orgs`,
+  created and deleted in each run; the data tabs were not touched): `push` wrote 104 and 13 rows; `diff`
+  then showed no differences; `pull` left `proiecte.csv` byte-identical (empty `git diff`) and `orgs.csv`
+  differs in exactly the 2 trailing-space lines. Under `UNFORMATTED_VALUE` the `civictech` cells come back as
+  strings (7 of 7 read); A1, A2 and O2 carry `numberFormat TEXT`; row 1 is frozen and bold; 6 drop-downs, 5
+  strict and `tip` not.
+- Guards on the same tabs: a Sheet edit gives exit 3 for `push` (no ref), for `--since HEAD` and for
+  `--since 6aec21c` (only the edited cell is listed, not the rows that changed in the repo since). With the
+  Sheet equal to the current CSVs, `--since c2028f3` gives exit 0 (the merged pull request case). A renamed
+  header cell gives exit 1 and names "missing 'nume'; unknown 'nume_x'"; an unknown ref gives exit 1;
+  trailing spaces are stripped.
+
+**Hard**
+- The first test runs failed on two defects, both fixed: an empty tab comes back from `get_all_values()` as
+  one empty row (it looked like a wrong header), and a `values.update` with `RAW` resets the number format of
+  the cells it writes (the first version formatted before writing, so no cell was plain text). Now
+  `push_tab` writes first and formats after.
+- The service account cannot create a spreadsheet (HTTP 403), so the tests used temporary tabs in the real
+  spreadsheet.
+- The tab list of the spreadsheet changed while this ran (`Form Responses 1` became `propuneri`): somebody
+  else edits it. `sheets.py` reads and writes only the two named tabs.
+- Not run: `validate.py`/`build.py` inside the workflow shell and the `gh` calls (no workflow may run, no
+  push). The shell blocks passed `bash -n`, the YAML parsed, and the PR text step ran with stubbed
+  `validate.py` and `build.py`.
+
+**Decided**
+- **D4 is refined, not changed.** As written, `push --since <before>` fails on the main flow: the editor edits
+  the Sheet (Sheet = A + E), `sheets-pull` opens a pull request with A + E, the merge pushes to `main` with
+  `before` = A, and the Sheet differs from the CSVs at A, so the job would fail on every merge of a Sheet
+  pull request. Now a Sheet change counts as pending only when it is neither in the CSVs at `--since` nor in
+  the current CSVs (cell by cell, three-way). A change that a pull request already carried is settled; the
+  guard against losing a pending edit holds. Cost of the alternative (D4 as written): a red job after each
+  Sheet pull request, and the Sheet is never rewritten from the merged CSVs. To get the literal D4 back,
+  compare `changes(base, sheet)` in `cmd_push` instead of `pending(...)`.
+- Row order counts as an edit only when the Sheet's order of the common slugs differs from both the old and
+  the new CSV. Without `--since`, any order change counts.
+- `diff` and the checks compare cells after the same normalisation on both sides (no trailing spaces), so a
+  stray space is never a Sheet edit. `diff` adds a line when only the file format would change.
+- An empty tab or a tab without data rows holds no edits (push fills it). `pull` refuses to write an empty
+  tab over a CSV.
+- `sheets-pull` closes the open `sheets-sync` pull request when the Sheet matches `main`; else a stale pull
+  request would stay open. `sheets-push` takes the inputs `since` and `force` for manual runs; without them a
+  manual run compares with the current CSVs.
+- A pull request opened with `GITHUB_TOKEN` does not start `validate.yml`; that is why `sheets-pull` runs
+  `validate.py` and `build.py` itself (D5). The job does not fail when they report errors: the errors go into
+  the pull request text.
+
 ## 2026-10-18 — Network logos, link favicons, GitHub stats (brief `link-icons-github-stats.md`)
 
 **Done**

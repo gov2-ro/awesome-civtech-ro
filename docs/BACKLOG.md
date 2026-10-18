@@ -26,6 +26,48 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [ ] UI: show the reach features (independent mentions, news, latest mention) on the entry card
 - [ ] Run Open PageRank (`--opr`, needs `OPR_API_KEY`, free signup)
 
+## Google Sheets sync (brief: `docs/briefs/sheets-sync.md`)
+
+- [x] `scripts/sheets.py`: `diff`, `pull`, `push [--since REF] [--force]` (D1–D4). Tested on two
+      temporary tabs of the real spreadsheet; see `docs/ACTIVITY.md`.
+- [x] Workflows `sheets-pull.yml` and `sheets-push.yml`, shared `concurrency` group (D5–D7).
+      Not run on GitHub yet: the brief forbids triggering workflows.
+- [x] README: section "Editing in Google Sheets" describes how it works now.
+- [ ] Owner: turn on Settings → Actions → General → "Allow GitHub Actions to create and approve
+      pull requests"; check the secret `GOOGLE_SA_KEY` and the variable `SHEET_ID`; then run
+      `sheets-pull` by hand once.
+- [ ] Owner decides on the real tab `proiecte`: it differs from the CSV in one cell
+      (`demoanaf` / `descriere`: the Sheet lacks "Proiect independent." and the line breaks; checked
+      2026-10-18). Keep it: `sheets.py pull`, review, commit. Drop it: `sheets.py push --force`.
+      The first `push` to the real tabs is not done yet.
+- [ ] Trim the trailing space in `orgs.csv`, `descriere_scurta` of `code4ro` and `techsoup`. `pull`
+      strips it (D2), so the next pull otherwise rewrites the file.
+- [ ] `pull` copies the Sheet over the CSVs with no base. A CSV edit on `main` that `sheets-push` has
+      not written yet shows as a revert in the next pull request. Option: a 3-way merge with the last
+      synced commit (needs a marker: a git tag or a cell in the Sheet).
+- [ ] `push --since REF` stops with "row 1 differs" when the columns changed between REF and now.
+      Run `push --force` once after a column change (README says so). Option: detect this case.
+- [ ] GitHub keeps one pending run per concurrency group. If `sheets-push` runs are superseded, the
+      next run's `before` is not the state the Sheet was synced from, and the check can give a false
+      exit 3. Recovery: run `sheets-push` by hand with `since` or `force`.
+- [ ] The Sheet has a third tab, `propuneri` (Form responses). `sheets.py` ignores it. The
+      "Propune un proiect" form is not wired to the pipeline.
+- [ ] `CLAUDE.md`: add `sheets.py` to *Commands*, the pipeline sketch and the *Deployment* section.
+
+## Proposal Form (brief: `docs/briefs/form-generator.md`)
+
+- [x] `scripts/form.py`: plans the 13 questions from `data/taxonomy.json`; default mode prints them and
+      reads the Form; `--apply` replaces all items in one `forms.batchUpdate` (D1–D3). Tested read only
+      on 2026-10-18; **`--apply` is not run yet**.
+- [ ] Owner: read the dry run (`uv run scripts/form.py`), then run `--apply` once.
+- [ ] After `--apply`: check row 1 of the tab `propuneri`. Before it, it holds `Timestamp` and
+      `Untitled Question` (the Form's one default question). The deleted question may leave its column;
+      delete that column by hand (0 responses).
+- [ ] Importer for `propuneri`: map the answers to a `proiecte.csv` / `orgs.csv` row with `ANSWER_KEYS`
+      in `form.py` (needs a `slug`; the editor accepts each row by hand, as for `review.py`).
+- [ ] The longest help text (Domeniu, 11 hints) has 772 characters. If the Forms API or the layout
+      rejects it, set `HINT_MAX` in `form.py` to 0 to drop the hints from the help text.
+
 ## Link icons and GitHub stats (brief: `docs/briefs/link-icons-github-stats.md`)
 
 - [x] Drawer: a link to a network shows its logo (inline SVG, Simple Icons, `currentColor`) with
@@ -103,6 +145,17 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [-] Quoted phrases on Serper's free tier: the API rejects them with HTTP 400. Use Brave for
       phrase queries.
 - [-] SerpApi as a provider: ~$25 per 1k queries, 25× Serper.
+- [-] Format the cells as text before writing the values. A `values.update` with `RAW` resets the
+      number format of the cells it writes (measured 2026-10-18). `sheets.py` writes first and
+      formats after.
+- [-] A scratch spreadsheet for tests. The service account gets 403 on `spreadsheets.create`. Tests
+      used two temporary tabs (`zz-test-*`) of the real spreadsheet, deleted after each run.
+- [-] URL validation on "Adresa (URL)" in the Form. The Forms REST API (v1 discovery document,
+      checked 2026-10-18) has no text validation: `TextQuestion` has only `paragraph`. `validate.py`
+      checks the URL when a person copies an answer to a CSV.
+- [-] A dry run of `forms.batchUpdate`. The API has none. The body was checked offline against
+      the discovery schema (a scratch check, not in the repo); the first real test is `--apply`
+      (all or nothing, guarded by the revision ID).
 - [-] Host rules alone against name collisions. Measured 2026-10-18: after all rules, generic
       news sites (digi24.ro, hotnews.ro, adevarul.ro) stay in 21–24 entries each, because the
       name or author query matches common words. Only the page text can decide; that is the LLM
@@ -125,7 +178,7 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [x] navigate projects with keyboard, left/right, j/k, open original (`o`)
 - [x] more links per resource, plus stats: social media, GitHub, search-engine result counts
 - international mirror (projects, orgs, tools — seed: `data/international.csv`), shown contextually next to related Romanian resources
-- "Propune un proiect", two ways in: a PR on GitHub, or a Google Form feeding a Google Sheet. Two-way sync via a GitHub workflow:
+- "Propune un proiect", two ways in: a PR on GitHub, or a Google Form feeding a Google Sheet. Two-way sync via a GitHub workflow: (built 2026-10-18: see *Google Sheets sync*; the Form is not wired yet)
   - auth: Google service account, key stored as a GitHub Actions secret (or keyless via Workload Identity Federation); share only this one Sheet with the service account
   - Sheet → repo: new/changed rows become a PR, checked by `scripts/validate.py`; never commit straight to main
   - repo → Sheet: after merge, rewrite the mirror tabs from `proiecte.csv` / `orgs.csv` and mark proposals as accepted/rejected

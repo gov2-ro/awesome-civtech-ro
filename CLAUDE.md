@@ -18,6 +18,8 @@ uv run scripts/search.py --dry-run --only slug,slug   # print the search queries
 uv run scripts/search.py                    # Serper + Brave (SERPER_API_KEY, BRAVE_API_KEY, paid): entries without rows in data/mentiuni.csv (--only, --force, --provider serper|brave|all)
 uv run scripts/search.py --prune-only       # apply the prune rules to the stored rows and recompute mentions in profil.csv (run it after profile.py --force, which drops them); no requests
 uv run scripts/review.py --only slug,slug   # Claude Haiku review + labels for the kept search results (ANTHROPIC_API_KEY); --dry-run prints the request, no API call
+uv run scripts/sheets.py diff|pull|push   # Google Sheet ⇄ proiecte.csv/orgs.csv (GOOGLE_APPLICATION_CREDENTIALS, SHEET_ID in .env); push refuses to overwrite unsynced Sheet edits
+uv run scripts/form.py [--apply]            # proposal Form questions from taxonomy.json (FORM_ID); default prints the plan
 ```
 
 `validate.py` and `build.py` are stdlib-only and run with plain `python3` (CI uses 3.12). `profile.py`, `search.py` and `review.py` declare their dependencies inline (PEP 723 `# /// script` header) and must be run with `uv run`; `profile.py` and `review.py` use Playwright for JS-rendered pages. There are no tests: after changing scripts, run `validate.py` then `build.py` (that is exactly what CI does).
@@ -44,7 +46,7 @@ scripts/build.py → site/data.json  →  site/app.js (vanilla JS, fetches data.
 
 ## Deployment
 
-`.github/workflows/pages.yml` runs `validate.py` + `build.py` on push to `main` and publishes `site/` to GitHub Pages. `validate.yml` runs the same two steps on PRs touching `data/` or `scripts/`; `validate.py` emits GitHub annotations when `GITHUB_ACTIONS=true`.
+`.github/workflows/pages.yml` runs `validate.py` + `build.py` on push to `main` and publishes `site/` to GitHub Pages. `sheets-pull.yml` (every 6 h) opens/updates a PR from branch `sheets-sync` with the Sheet's edits; `sheets-push.yml` rewrites the Sheet after a push to `main` that touches the two CSVs. `validate.yml` runs the same two steps on PRs touching `data/` or `scripts/`; `validate.py` emits GitHub annotations when `GITHUB_ACTIONS=true`.
 
 ## Notes
 

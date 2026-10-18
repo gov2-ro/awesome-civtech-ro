@@ -29,8 +29,10 @@ uv run scripts/search.py --only slug,slug    # web mentions via Serper + Brave (
 uv run scripts/search.py --prune-only        # re-apply the pruning rules to data/mentiuni.csv (no requests)
 uv run scripts/review.py --limit 5           # Claude Haiku suggestions → data/review/sugestii.csv (--dry-run to inspect)
 ```
-`profile.py`, `search.py` and `review.py` need [uv](https://docs.astral.sh/uv/). For the paid passes, load the keys
-first: `set -a; source ~/devbox/ePtm/puzzes/.env; set +a` (`SERPER_API_KEY`, `BRAVE_API_KEY`, `ANTHROPIC_API_KEY`).
+`profile.py`, `search.py` and `review.py` need [uv](https://docs.astral.sh/uv/). Keys and local settings live in
+`.env` at the repo root (gitignored, never committed): `SERPER_API_KEY`, `BRAVE_API_KEY`, `ANTHROPIC_API_KEY`,
+`GITHUB_TOKEN` (optional), `GOOGLE_APPLICATION_CREDENTIALS` (path to the service-account JSON, kept outside the repo)
+and `SHEET_ID`. Load them with `set -a; source .env; set +a` before a paid or keyed run.
 
 ## Editing the data
 
@@ -78,30 +80,94 @@ Then run `search.py --prune-only` and `build.py`.
 
 ## Editing in Google Sheets
 
-**Works today (by hand):** in Google Sheets, *File → Import → Upload* `proiecte.csv` (or `orgs.csv`). Before you
-import, choose *Convert text to numbers, dates and formulas: No*, so that `1`, dates and slugs stay text. Edit,
-then *File → Download → Comma-separated values* and replace the file in the repo. Run the steps above.
+The Sheet `civtech.gov2.ro` has two tabs, `proiecte` and `orgs`. Row 1 of each tab holds the column names of the
+CSV, in the same order. The repo stays the source of truth. `scripts/sheets.py` and two workflows keep the Sheet
+and the CSVs in step.
 
-**Planned (not built yet): a two-way sync** through a GitHub workflow (see [BACKLOG](docs/BACKLOG.md)):
-the Sheet's changes come in as a pull request checked by `validate.py`; after a merge, the workflow rewrites
-the Sheet from the CSVs. It never commits to `main` directly. To prepare for it:
+**Sheet → repo (`sheets-pull`).** The workflow runs every 6 hours, and on demand (*Actions → sheets-pull → Run
+workflow*). It reads the Sheet and, if a CSV changed, runs `validate.py` and `build.py` and opens one pull request
+from the branch `sheets-sync`, "Sheets: modificări din tabel". The text of the pull request lists the changed rows
+and the output of `validate.py`. You review the pull request and merge it. The workflow never pushes to `main`.
+It runs `validate.py` itself, because a pull request opened by a workflow does not start `validate.yml`.
 
-1. **The spreadsheet.** One Google Sheet with two tabs named `proiecte` and `orgs`. Row 1 holds the column
-   names exactly as in the CSVs, in the same order. Select all cells → *Format → Number → Plain text*. Optional:
-   *Data → Data validation* drop-downs for `fel`, `domeniu`, `tip`, `acoperire`, `stare` and `civictech`, with
-   the keys from `data/taxonomy.json`. Note the Sheet ID: the part of the URL between `/d/` and `/edit`.
+**Repo → Sheet (`sheets-push`).** When a push to `main` changes `data/proiecte.csv` or `data/orgs.csv`, the workflow
+rewrites both tabs from the CSVs. Every cell is plain text, row 1 is frozen and bold, and the columns `fel`,
+`domeniu`, `tip`, `acoperire`, `stare` and `civictech` have drop-downs from `data/taxonomy.json`. The workflow
+never overwrites an edit that is not in the repo yet. It compares the Sheet with the CSVs of the push's previous
+commit (`--since`). If the Sheet holds a change that is neither in those CSVs nor in the new ones, the job fails
+with "Tabelul are modificări nesincronizate; rulează sheets-pull". Run `sheets-pull`, merge the pull request, and the
+next push writes the Sheet. A pull request that came from the Sheet needs no such step: its changes are in the
+new CSVs, so the check passes.
+
+Both workflows share one queue, so they never run at the same time.
+
+**Rules for the editor**
+- Do not change row 1 or the column order. `pull` stops with an error that names the difference.
+- Do not write to the right of the last column.
+- A row deleted in the Sheet is a deleted entry in the pull request.
+- `pull` copies the Sheet as it is: it strips trailing spaces and drops empty rows, and nothing more. If you edit a
+  CSV on `main` and the Sheet in the same hours, the pull request shows the Sheet's old value as a revert. Merge
+  only what you want.
+- A new column goes into `PROIECTE_COLS` or `ORGS_COLS` in `scripts/common.py` first. Then run `sheets.py push
+  --force` once, so that row 1 of the Sheet has the new column.
+
+**By hand** (needs [uv](https://docs.astral.sh/uv/) and `.env`, see above):
+```sh
+set -a; source .env; set +a
+uv run scripts/sheets.py diff                 # Sheet vs the CSVs: rows added / removed / changed; no writes
+uv run scripts/sheets.py pull                 # Sheet -> data/proiecte.csv, data/orgs.csv (then: git diff)
+uv run scripts/sheets.py push --since <ref>   # CSVs -> Sheet; <ref> = the commit the Sheet was last synced from
+uv run scripts/sheets.py push                 # same, but refuses if the Sheet differs from the current CSVs
+uv run scripts/sheets.py push --force         # no check: the Sheet becomes a copy of the CSVs
+```
+Exit code 3 means that the Sheet holds edits not yet in the repo; nothing was written. In GitHub, run
+*Actions → sheets-push → Run workflow* with the input `since` (or `force`) to run a push by hand.
+
+### Formular (the proposal Form)
+
+The Form "Sugestii listă civtech.gov2.ro" sends its answers to the tab `propuneri` of the same Sheet. The script
+`scripts/form.py` writes the questions of the Form from the data model, so that the choices always match
+`data/taxonomy.json`. Run it after a change in the taxonomy.
+```sh
+set -a; source .env; set +a                    # needs FORM_ID and the key (see the last point below)
+uv run scripts/form.py                         # print the planned questions and the Form as it is now; no writes
+uv run scripts/form.py --apply                 # replace ALL items of the Form with the planned ones
+```
+- `--apply` deletes every existing item of the Form and creates the 13 planned questions, in one request. It does not
+  change the title, the description, the settings or the response destination of the Form.
+- The columns of `propuneri` are named after the question titles. The list `TITLES` at the top of `form.py` holds
+  them. Renaming a title renames a column, so change a title only together with whatever reads `propuneri`.
+- `ANSWER_KEYS` in `form.py` maps each choice label to its key in the CSV (`Bani publici` → `bani`).
+- The Form API cannot validate a URL. `validate.py` checks the URL when you copy an answer into a CSV.
+- Give the service account *Editor* access to the Form, and enable the **Google Forms API** in the Google Cloud
+  project. Put the Form's ID (the part of the edit URL between `/d/` and `/edit`) in `.env` as `FORM_ID`.
+
+### Set up (once)
+
+1. **The spreadsheet.** One Google Sheet with two tabs named `proiecte` and `orgs`. Note the Sheet ID: the part
+   of the URL between `/d/` and `/edit`. `sheets.py push` fills the tabs and sets the formats, so you do not
+   need to prepare them. To fill a Sheet by hand instead: *File → Import → Upload* a CSV, with *Convert text to
+   numbers, dates and formulas: No*.
 2. **A Google Cloud project.** At [console.cloud.google.com](https://console.cloud.google.com/), create a
    project (e.g. `civtech-sync`). In *APIs & Services → Library*, enable the **Google Sheets API**.
 3. **A service account.** In *IAM & Admin → Service accounts*, create one (e.g. `civtech-sheets`). It needs no
    project role. Open it → *Keys → Add key → Create new key → JSON*, and download the file. If your Google
    Workspace blocks key creation (policy `iam.disableServiceAccountKeyCreation`), an admin must allow it for
-   this project, or the workflow must use Workload Identity Federation instead of a key.
+   this project.
 4. **Share the Sheet** with the service account's e-mail (`…@<project>.iam.gserviceaccount.com`) as *Editor*.
    Share only this one Sheet with it.
 5. **GitHub.** In the repo, *Settings → Secrets and variables → Actions*: add the secret `GOOGLE_SA_KEY` (the
-   whole JSON file) and the variable `SHEET_ID`. Then delete the downloaded JSON file from your machine.
+   whole JSON file) and the variable `SHEET_ID`. Then keep the JSON file outside the repo, or delete it.
+6. **Pull requests from workflows.** In *Settings → Actions → General → Workflow permissions*, tick *Allow GitHub
+   Actions to create and approve pull requests*. Without it, `sheets-pull` cannot open the pull request.
+7. **Locally** (optional): put `GOOGLE_APPLICATION_CREDENTIALS` (path to the JSON file) and `SHEET_ID` in `.env`.
 
-The workflow runs only on a schedule and on pushes to `main`, because GitHub does not give secrets to pull
-requests from forks.
+The workflows run on a schedule, on pushes to `main` and by hand only, because GitHub does not give secrets to
+pull requests from forks.
 
 <img src="docs/reference/logo/civtech-ro-2.png" width=250> <img src="docs/reference/logo/civtech-ro-tatt-1-bw.png" width=250>
+
+-----
+
+Copyright (c) 2026 [gov2.ro](https://gov2.ro)
+Date reutilizabile conform [EUPL v1.2](https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12) (the "Licence")

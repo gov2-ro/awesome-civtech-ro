@@ -49,7 +49,7 @@ The owner allows direct edits to `data/proiecte.csv` and `data/orgs.csv`.
 
 ```sh
 uv run scripts/profile.py --only <slug>       # profil.csv, og image, icon, screenshot
-set -a; source ~/devbox/ePtm/puzzes/.env; set +a
+set -a; source .env; set +a
 uv run scripts/search.py --only <slug>        # mentions: ~3 paid requests, under 1 US cent
 python3 scripts/validate.py
 python3 scripts/build.py
