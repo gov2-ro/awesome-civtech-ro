@@ -3,7 +3,7 @@
 <title>CivTech România — proiecte noi</title><link>https://civtech.gov2.ro/</link>
 <atom:link href="https://civtech.gov2.ro/feed.xml" rel="self" type="application/rss+xml"/>
 <description>Cele mai noi proiecte din colecția CivTech România.</description><language>ro</language>
-<lastBuildDate>Sun, 18 Oct 2026 09:17:25 +0000</lastBuildDate>
+<lastBuildDate>Sun, 18 Oct 2026 10:10:28 +0000</lastBuildDate>
 <item><title>România Interactivă</title><link>https://civtech.gov2.ro/?p=romania-interactiva</link><guid isPermaLink="true">https://civtech.gov2.ro/?p=romania-interactiva</guid>
 <description>Clasamente, calculatoare și vizualizări din date oficiale</description><pubDate>Mon, 12 Oct 2026 00:00:00 +0000</pubDate></item>
 <item><title>De Obște</title><link>https://civtech.gov2.ro/?p=de-obste</link><guid isPermaLink="true">https://civtech.gov2.ro/?p=de-obste</guid>
@@ -38,12 +38,16 @@
 <description>Imobilele statului administrate de RA-APPS</description><pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate></item>
 <item><title>Harta Firmelor</title><link>https://civtech.gov2.ro/?p=harta-firmelor</link><guid isPermaLink="true">https://civtech.gov2.ro/?p=harta-firmelor</guid>
 <description>Legăturile dintre firme, oameni și contracte publice</description><pubDate>Sat, 30 May 2026 00:00:00 +0000</pubDate></item>
+<item><title>ro-api-hub</title><link>https://civtech.gov2.ro/?p=ro-api-hub</link><guid isPermaLink="true">https://civtech.gov2.ro/?p=ro-api-hub</guid>
+<description>Catalog open-source al API-urilor publice și private din România</description><pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate></item>
 <item><title>Posturi · gov2</title><link>https://civtech.gov2.ro/?p=posturi-gov2</link><guid isPermaLink="true">https://civtech.gov2.ro/?p=posturi-gov2</guid>
 <description>Posturi vacante în sectorul public</description><pubDate>Mon, 25 May 2026 00:00:00 +0000</pubDate></item>
 <item><title>Vocea Cartierului Tău</title><link>https://civtech.gov2.ro/?p=vocea-cartierului-tau</link><guid isPermaLink="true">https://civtech.gov2.ro/?p=vocea-cartierului-tau</guid>
 <description>Sesizarea și urmărirea problemelor din cartier</description><pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate></item>
 <item><title>bucuresti.help</title><link>https://civtech.gov2.ro/?p=bucuresti-help</link><guid isPermaLink="true">https://civtech.gov2.ro/?p=bucuresti-help</guid>
 <description>Fotografiezi problema, AI-ul scrie sesizarea</description><pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate></item>
+<item><title>Evermed</title><link>https://civtech.gov2.ro/?p=evermed</link><guid isPermaLink="true">https://civtech.gov2.ro/?p=evermed</guid>
+<description>Clinici private cu contract CNAS</description><pubDate>Sat, 09 May 2026 00:00:00 +0000</pubDate></item>
 <item><title>Tipizatul</title><link>https://civtech.gov2.ro/?p=tipizatul</link><guid isPermaLink="true">https://civtech.gov2.ro/?p=tipizatul</guid>
 <description>Formulare tipizate emise de instituțiile publice</description><pubDate>Mon, 04 May 2026 00:00:00 +0000</pubDate></item>
 <item><title>Calendar ridicare gunoi Arad</title><link>https://civtech.gov2.ro/?p=reciclare-arad</link><guid isPermaLink="true">https://civtech.gov2.ro/?p=reciclare-arad</guid>
@@ -80,8 +84,4 @@
 <description>Bugete, legislație și justiție, într-un singur loc</description><pubDate>Wed, 07 May 2025 00:00:00 +0000</pubDate></item>
 <item><title>Date statistice INS</title><link>https://civtech.gov2.ro/?p=ins-gov2</link><guid isPermaLink="true">https://civtech.gov2.ro/?p=ins-gov2</guid>
 <description>Date de la Institutul Național de Statistică</description><pubDate>Wed, 18 Dec 2024 00:00:00 +0000</pubDate></item>
-<item><title>AI Aflat</title><link>https://civtech.gov2.ro/?p=ai-aflat</link><guid isPermaLink="true">https://civtech.gov2.ro/?p=ai-aflat</guid>
-<description>Asistent AI care explică legislația pe înțeles</description><pubDate>Mon, 07 Oct 2024 00:00:00 +0000</pubDate></item>
-<item><title>Observatori Vot Corect</title><link>https://civtech.gov2.ro/?p=observatori-votcorect</link><guid isPermaLink="true">https://civtech.gov2.ro/?p=observatori-votcorect</guid>
-<description></description><pubDate>Thu, 18 Apr 2024 00:00:00 +0000</pubDate></item>
 </channel></rss>
