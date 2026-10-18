@@ -102,6 +102,16 @@
       "key": "ghid",
       "label": "Ghid",
       "hint": "informații și explicații"
+    },
+    {
+      "key": "colectie",
+      "label": "Colecție",
+      "hint": "listă sau colecție de proiecte, publicații, surse"
+    },
+    {
+      "key": "serviciu",
+      "label": "Serviciu",
+      "hint": "serviciu sau platformă pe care o folosești direct"
     }
   ],
   "acoperire": [
