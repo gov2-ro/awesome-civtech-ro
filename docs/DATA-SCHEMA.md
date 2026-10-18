@@ -133,7 +133,7 @@ column names of `PROFIL_COLS`. A site that is offline keeps the fields that did 
 | `img_kind` | `og` (the page's share image), `logo` (an image with a width under 1.3 times its height: a logo or a square image), or `screenshot` (taken in a browser when no usable image exists). |
 | `img_w`, `img_h` | Size of the image in pixels. |
 | `img_color` | Dominant colour, `#rrggbb`. |
-| `img_source` | Where the image came from: the image address, or the page address for a screenshot. |
+| `img_source` | Where the image came from: the image address, the page address for a screenshot, or `manual` for a file that a person put in `site/img/og/<slug>.webp`. The profiler keeps a `manual` image and never fetches over it. |
 | `icon` | Path of the favicon, `img/icon/<slug>.webp`. The profiler replaces it while it is under 64 px and a bigger one exists. |
 
 The favicons of the entry's *other* links are in `site/img/linkicon/<host>.webp`. No column holds them.

@@ -1,5 +1,20 @@
 # Activity
 
+## 2026-10-18 — A manual image for an entry
+
+**Done**
+- The owner saved `site/img/og/semnal-razboiul-hibrid.webp` by hand, and it did not show. Cause: the entry
+  had no row in `profil.csv` (a new Sheet row, never profiled), and `build.py` takes the image from that row.
+- `profile.py` now adopts an image file that it did not write (`manual_image`): it records the size, colour
+  and kind with `img_source` = `manual`, and no fetch or screenshot replaces it. A file from an earlier run
+  names its source in the old profile row, so it is refreshed as before. Run `uv run scripts/profile.py
+  --only <slug>` after saving the file.
+- Profiled `semnal-razboiul-hibrid` (status activ, image kept: 34708 bytes before and after, 960 x 557).
+
+**Hard**
+- The same gap holds for the other new Sheet rows: they have no profile row yet (see the status `neverificat`
+  in `data.json`). `uv run scripts/profile.py` without arguments profiles them.
+
 ## 2026-10-18 — Logos, archives, report a problem, Monokai dark theme
 
 **Done**

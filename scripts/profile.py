@@ -12,6 +12,10 @@
     uv run scripts/profile.py --opr           # Open PageRank (key: OPR_API_KEY)
 
 Writes data/profil.csv and images into site/img/{og,icon,linkicon}/. Web search lives in scripts/search.py.
+
+A person can set an entry's image: save it as site/img/og/<slug>.webp, then run the profiler for that slug (--only).
+The profiler records it with img_source "manual" and never fetches over it. (An image that the profiler wrote
+itself names its source, and is refreshed on --force.)
 """
 import argparse
 import asyncio
@@ -96,10 +100,35 @@ def save_image(data: bytes, dest_stem, max_w: int) -> dict | None:
     if w > max_w:
         im = im.resize((max_w, round(h * max_w / w)), Image.LANCZOS)
     im.save(f"{dest_stem}.webp", "WEBP", quality=82, method=5)
+    return {"w": w, "h": h, "color": dominant_color(im)}
+
+
+def dominant_color(im) -> str:
+    """The image's average colour on white, as #rrggbb."""
     flat = Image.new("RGB", im.size, (255, 255, 255))
     flat.paste(im, mask=im.split()[-1] if im.mode == "RGBA" else None)
     r, g, b = flat.resize((1, 1), Image.BOX).getpixel((0, 0))
-    return {"w": w, "h": h, "color": f"#{r:02x}{g:02x}{b:02x}"}
+    return f"#{r:02x}{g:02x}{b:02x}"
+
+
+def manual_image(slug: str, old: dict | None) -> dict | None:
+    """An image that a person put in site/img/og/<slug>.webp: a file the profiler did not write. It is the entry's
+    image, recorded with source "manual", and no fetch or screenshot replaces it. A file that an earlier run wrote
+    (the old profile row names its source) is not manual and is refreshed as usual."""
+    f = OG_DIR / f"{slug}.webp"
+    if not f.exists():
+        return None
+    source = ((old or {}).get("image") or {}).get("source_url", "")
+    if source and source != "manual":
+        return None
+    try:
+        with Image.open(f) as im:
+            im.load()
+            w, h = im.size
+            color = dominant_color(im if im.mode in ("RGB", "RGBA") else im.convert("RGBA"))
+    except Exception:
+        return None
+    return {"w": w, "h": h, "color": color, "src": f"img/og/{slug}.webp", "kind": "logo" if w / h < 1.3 else "og", "source_url": "manual"}
 
 
 async def get(client: httpx.AsyncClient, url: str, limit: int):
@@ -632,16 +661,17 @@ def classify(p: dict) -> str:
     return "activ"
 
 
-async def profile_one(sem, client, insecure, e: dict) -> dict:
+async def profile_one(sem, client, insecure, e: dict, old: dict | None = None) -> dict:
     async with sem:
         slug, url = e["slug"], e["url"]
         p = await fetch_page(client, insecure, url)
         c = insecure if p.get("ssl_error") else client
         p["status"] = classify(p)
-        if p["status"] in ("activ", "mutat", "blocat"):
-            p["image"] = await fetch_image(c, slug, p.pop("image_candidates", []))
-        else:
-            p.pop("image_candidates", None)
+        candidates = p.pop("image_candidates", [])
+        if manual := manual_image(slug, old):
+            p["image"] = manual
+        elif p["status"] in ("activ", "mutat", "blocat"):
+            p["image"] = await fetch_image(c, slug, candidates)
         if p["status"] in ("offline", "parcat"):
             p["wayback"] = await wayback(client, url)
         p["fetched_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
@@ -734,7 +764,7 @@ async def main():
 
     sem = asyncio.Semaphore(8)
     async with httpx.AsyncClient(**opts) as client, httpx.AsyncClient(verify=False, **opts) as insecure:
-        results = await asyncio.gather(*(profile_one(sem, client, insecure, e) for e in todo))
+        results = await asyncio.gather(*(profile_one(sem, client, insecure, e, profile.get(e["slug"])) for e in todo))
         await asyncio.gather(*(extras_one(sem, insecure, e, p) for e, p in zip(todo, results)))
         for e, p in zip(todo, results):
             profile[e["slug"]] = p
