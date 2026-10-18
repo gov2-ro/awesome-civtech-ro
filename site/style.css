@@ -433,10 +433,14 @@ svg.gh { width: 20px; height: 20px; fill: currentColor; stroke: none; }
 .fav { width: 14px; height: 14px; flex: none; object-fit: contain; border-radius: 2px; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .fav { box-sizing: content-box; padding: 1px; background: #fff; } }
 :root[data-theme="dark"] .fav { box-sizing: content-box; padding: 1px; background: #fff; }
-/* Favicon beside a name: 16px in a row, 24px in the detail heading. */
-.fav-name, .fav-gap { width: 16px; height: 16px; }
-.fav-gap { flex: none; }
-.d-scroll h2 .fav-name { width: 24px; height: 24px; margin-right: 10px; vertical-align: -3px; border-radius: 4px; }
+/* The project's logo (its icon, up to 128 px): 24 px before the name in a row, 72 px beside the title in the drawer. */
+.fav-name { width: 24px; height: 24px; border-radius: 4px; }
+.d-head { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px 16px; align-items: start; }
+.d-head.no-logo { grid-template-columns: minmax(0, 1fr); }
+.d-head-text { display: grid; gap: 10px; min-width: 0; }
+.d-head-text .d-tag { margin-top: 0; }
+.d-logo { width: 72px; height: 72px; object-fit: contain; padding: 8px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+@media (max-width: 480px) { .d-logo { width: 56px; height: 56px; padding: 6px; border-radius: 10px; } }
 .dl a.net { display: inline-flex; padding: 4px; margin: -2px -4px; color: var(--ink-2); border-radius: var(--radius); }
 .dl a.net:hover { color: var(--accent-ink); }
 .dl a.net svg { width: 18px; height: 18px; fill: currentColor; stroke: none; }

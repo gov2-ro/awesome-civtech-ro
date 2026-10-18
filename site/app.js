@@ -175,9 +175,8 @@ function thumb(it) {
   if (it.icon) return `<div class="thumb icon"><img src="${esc(it.icon)}" alt="" loading="lazy"></div>`;
   return `<div class="thumb none" style="--h:${hue(it.domain || it.name)}" aria-hidden="true">${esc(initials(it.name))}</div>`;
 }
-// The project's own favicon, small, beside its name. In rows, a blank of the same width keeps the names aligned.
-const favicon = (it, gap) => it.icon ? `<img class="fav fav-name" src="${esc(it.icon)}" alt="" width="16" height="16" loading="lazy">`
-  : gap ? '<span class="fav-gap"></span>' : '';
+// The project's logo (its icon, up to 128 px) before its name in a row. Without one, the name starts at the left edge.
+const logo = it => it.icon ? `<img class="fav fav-name" src="${esc(it.icon)}" alt="" width="24" height="24" loading="lazy">` : '';
 const tipLabels = it => it.tips.map(t => TAX.tip[t]?.label).filter(Boolean);
 // A resource that is an article, guide, campaign or piece of research says so; plain "resursa" says nothing.
 const felLabel = it => it.kind === 'resursa' && it.fel && it.fel !== 'resursa' ? TAX.fel[it.fel]?.label || '' : '';
@@ -269,7 +268,7 @@ function row(it, withDomain) {
   return `<div class="row${isInactive(it) ? ' inactive' : ''}" data-open="${it.slug}"${hint(it)}>
     ${thumb(it)}
     <div class="row-main">
-      <div class="row-title">${favicon(it, true)}${nameLink(it)} ${statusDot(it)} ${newTag(it)} ${codeTag(it)} ${extLink(it, '', 'ext-m')}</div>
+      <div class="row-title">${logo(it)}${nameLink(it)} ${statusDot(it)} ${newTag(it)} ${codeTag(it)} ${extLink(it, '', 'ext-m')}</div>
       ${blurb(it) ? `<div class="row-tag">${esc(blurb(it))}</div>` : ''}
       ${desc ? `<div class="row-desc">${esc(clip(desc, 160))}</div>` : ''}
       ${it.keywords.length ? `<div class="row-kw">${it.keywords.map(k => `<span>#${esc(kwLabel(k))}</span>`).join('')}</div>` : ''}
@@ -515,9 +514,14 @@ function renderDetail() {
       <button class="btn btn-ghost btn-icon" data-act="close" aria-label="Închide" data-autofocus>${ICON.x}</button></div>
     <div class="d-scroll">
       ${it.img || it.icon ? media(it) : ''}
-      <h2 id="d-title">${favicon(it)}${esc(it.name)}</h2>
-      ${cta ? `<div class="d-open">${cta}</div>` : ''}
-      ${it.tagline ? `<p class="d-tag">${esc(it.tagline)}</p>` : ''}
+      <div class="d-head${it.icon ? '' : ' no-logo'}">
+        ${it.icon ? `<img class="d-logo" src="${esc(it.icon)}" alt="" width="72" height="72">` : ''}
+        <div class="d-head-text">
+          <h2 id="d-title">${esc(it.name)}</h2>
+          ${cta ? `<div class="d-open">${cta}</div>` : ''}
+          ${it.tagline ? `<p class="d-tag">${esc(it.tagline)}</p>` : ''}
+        </div>
+      </div>
       <div class="d-badges">
         <span>${statusDot(it)}${st.label}</span>
         ${felLabel(it) ? `<span>${esc(felLabel(it))}</span>` : ''}
