@@ -34,6 +34,19 @@ def pick_desc(desc: str, prof: dict) -> tuple[str, str]:
     return "", ""
 
 
+def authors(cell: str, orgs: dict[str, dict]) -> list[dict]:
+    """The `autor` cell as a list of {name, org}. A name that is the slug of a row in orgs.csv becomes that
+    organisation (its own name, and `org` = its slug); any other name stays as written."""
+    out = {}
+    for name in re.split(r"\s+[/&]\s+|,\s*", cell or ""):
+        name = name.strip()
+        if len(name) <= 2:
+            continue
+        a = {"name": orgs[name]["nume"], "org": name} if name in orgs else {"name": name, "org": ""}
+        out.setdefault(a["org"] or a["name"], a)
+    return list(out.values())
+
+
 def keywords(cell: str, rules: dict) -> list[str]:
     out = []
     for k in cell.split(","):
@@ -244,7 +257,9 @@ def main():
     profile = load_profile()
     features = reach_features(load_mentions(), read_csv(ETICHETE) if ETICHETE.exists() else [])
     items = []
-    for n, e in enumerate(load_entries()):
+    entries = load_entries()
+    orgs = {e["slug"]: e for e in entries if e["kind"] == "organizatie"}
+    for n, e in enumerate(entries):
         p = profile.get(e["slug"], {})
         # A retired project's live URL shows something else now: ignore what the profiler saw there.
         retired = e["stare"] in ("arhivat", "offline")
@@ -265,6 +280,7 @@ def main():
             "id": n + 1,
             "slug": e["slug"],
             "kind": e["kind"],
+            "fel": e.get("fel", ""),
             "civictech": e.get("civictech") == "1",
             "name": e["nume"],
             "tagline": e["descriere_scurta"],
@@ -279,7 +295,7 @@ def main():
             "url": final if moved else e["url"],
             "domain": domain_of(final if moved else e["url"]) if e["url"] else "",
             "movedFrom": domain_of(e["url"]) if moved else "",
-            "org": e.get("autor", ""),
+            "authors": authors(e.get("autor", ""), orgs),
             "code": code,
             **({"repo": repo} if repo else {}),
             "contact": e.get("contact", ""),

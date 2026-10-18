@@ -179,10 +179,12 @@ function thumb(it) {
 const favicon = (it, gap) => it.icon ? `<img class="fav fav-name" src="${esc(it.icon)}" alt="" width="16" height="16" loading="lazy">`
   : gap ? '<span class="fav-gap"></span>' : '';
 const tipLabels = it => it.tips.map(t => TAX.tip[t]?.label).filter(Boolean);
+// A resource that is an article, guide, campaign or piece of research says so; plain "resursa" says nothing.
+const felLabel = it => it.kind === 'resursa' && it.fel && it.fel !== 'resursa' ? TAX.fel[it.fel]?.label || '' : '';
 const placeLabel = it => it.acoperire === 'local' ? (it.oras || 'Local') : '';
 function metaLine(it, withDomain) {
   const st = STATUS[it.status];
-  const parts = [...tipLabels(it), placeLabel(it)];
+  const parts = [...new Set([felLabel(it), ...tipLabels(it), placeLabel(it)])];
   if (withDomain) parts.unshift(TAX.domeniu[it.domeniu]?.short);
   let html = parts.filter(Boolean).map(esc).join(' · ');
   if (st.group !== 'activ') html += ` <span class="status-tag ${st.cls}">· ${st.label}</span>`;
@@ -458,6 +460,31 @@ function repoRow(it) {
   return ['Cod', `<span class="repo mono">${parts.join(' · ')}</span>`];
 }
 
+// An author that is an organisation of the catalogue opens its page; any other author is plain text.
+const authorLink = a => a.org && BY_SLUG.has(a.org)
+  ? `<a href="${hrefFor(a.org)}" data-open="${esc(a.org)}">${esc(a.name)}</a>` : esc(a.name);
+const MAX_WORKS = 15;
+// Entries (projects and resources) by the same author as `it`; for an organisation, the entries that name it as author.
+function sameAuthor(it) {
+  const keys = it.kind === 'organizatie' ? [it.slug] : it._akeys;
+  return DB.items.filter(i => i !== it && i.kind !== 'organizatie' && i._akeys.some(k => keys.includes(k)))
+    .sort((a, b) => rank(a) - rank(b) || byName(a, b));
+}
+// The organisation behind a project: name, one line about it, and a way into its page.
+function orgCard(o) {
+  return `<a class="org-card" href="${hrefFor(o.slug)}" data-open="${esc(o.slug)}">
+    ${o.icon ? `<img class="fav fav-org" src="${esc(o.icon)}" alt="" width="24" height="24" loading="lazy">` : `<span class="org-mark" aria-hidden="true">${esc(initials(o.name))}</span>`}
+    <span class="org-text"><span class="kicker">Organizație</span><strong>${esc(o.name)}</strong>${blurb(o) ? `<span class="org-blurb">${esc(clip(blurb(o), 140))}</span>` : ''}</span>
+  </a>`;
+}
+function worksHTML(it) {
+  const works = sameAuthor(it);
+  if (!works.length) return '';
+  const title = it.kind === 'organizatie' ? 'Proiecte și resurse' : 'De același autor';
+  const more = works.length - MAX_WORKS;
+  return `<div class="related"><p class="kicker">${title} · ${works.length}</p>${works.slice(0, MAX_WORKS).map(r => row(r, true)).join('')}${more > 0 ? `<p class="small muted">… și încă ${more}</p>` : ''}</div>`;
+}
+
 function renderDetail() {
   const it = current();
   const drawer = slot('drawer');
@@ -469,7 +496,7 @@ function renderDetail() {
   const related = DB.items.filter(i => i.kind === it.kind && i.domeniu === it.domeniu && i.slug !== it.slug && !isInactive(i))
     .sort((a, b) => b.tips.filter(t => it.tips.includes(t)).length - a.tips.filter(t => it.tips.includes(t)).length || byName(a, b)).slice(0, 4);
   const dl = [
-    it.org && ['Autor', esc(it.org)],
+    it.authors.length && [it.authors.length > 1 ? 'Autori' : 'Autor', it.authors.map(authorLink).join(' · ')],
     it.contact && ['Contact', esc(it.contact)],
     it.url && ['Site', `${alive ? `<a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.domain)}</a>` : `<span class="muted">${esc(it.domain)}</span>`}${it.movedFrom ? ` <span class="muted small">(mutat de pe ${esc(it.movedFrom)})</span>` : ''}`],
     ...linkRows(it),
@@ -493,14 +520,17 @@ function renderDetail() {
       ${it.tagline ? `<p class="d-tag">${esc(it.tagline)}</p>` : ''}
       <div class="d-badges">
         <span>${statusDot(it)}${st.label}</span>
-        ${tipLabels(it).map(l => `<span>${esc(l)}</span>`).join('')}
+        ${felLabel(it) ? `<span>${esc(felLabel(it))}</span>` : ''}
+        ${tipLabels(it).filter(l => l !== felLabel(it)).map(l => `<span>${esc(l)}</span>`).join('')}
         ${placeLabel(it) ? `<span>${esc(placeLabel(it))}</span>` : ''}
         ${isFresh(it) ? `<span class="new${isLaunched(it) ? ' launch' : ''}">${isLaunched(it) ? 'lansat recent' : 'nou'} · ${esc(age(it))}</span>` : ''}
         ${it.code ? `<span>${ICON.code}cod deschis</span>` : ''}
       </div>
       ${it.desc ? `<p class="d-desc">${esc(it.desc)}</p>${it.descSrc === 'site' ? '<p class="d-src">Descriere preluată de pe site-ul proiectului.</p>' : ''}` : ''}
       ${it.keywords.length ? `<div class="tags">${it.keywords.map(k => `<button class="tag" data-act="multi" data-key="kw" data-val="${esc(k)}" aria-pressed="${listOf('kw').includes(k)}">#${esc(kwLabel(k))}</button>`).join('')}</div>` : ''}
+      ${it.authors.filter(a => a.org && BY_SLUG.has(a.org)).map(a => orgCard(BY_SLUG.get(a.org))).join('')}
       <dl class="dl">${dl.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>
+      ${worksHTML(it)}
       ${related.length ? `<div class="related"><p class="kicker">Tot din ${esc(dom.short)}</p>${related.map(r => row(r, false)).join('')}</div>` : ''}
     </div>`;
   if (drawer.hidden) openLayer(drawer);
@@ -803,7 +833,7 @@ new ResizeObserver(fitHeader).observe(slot('hdr'));
 fetch(ROOT + 'data.json', { cache: 'no-cache' }).then(r => r.json()).then(db => {
   DB = db;
   const map = arr => Object.fromEntries(arr.map(x => [x.key, x]));
-  TAX = { domeniu: map(db.taxonomy.domenii), tip: map(db.taxonomy.tipuri), kind: map(db.taxonomy.kinds) };
+  TAX = { domeniu: map(db.taxonomy.domenii), tip: map(db.taxonomy.tipuri), kind: map(db.taxonomy.kinds), fel: map(db.taxonomy.fel) };
   // Paths in the data are relative to the site root; the address bar changes with pushState, so make them absolute.
   const abs = p => p ? ROOT + p : p;
   for (const it of db.items) {
@@ -813,8 +843,10 @@ fetch(ROOT + 'data.json', { cache: 'no-cache' }).then(r => r.json()).then(db => 
     if (!STATUS[it.status]) it.status = 'neverificat';
     it._sort = norm(it.name).replace(/[^a-z0-9]/g, '');
     BY_SLUG.set(it.slug, it);
-    it._orgs = (it.org || '').split(/\s+[\/&]\s+|,\s*/).map(s => s.trim()).filter(s => s.length > 2);
-    it._hay = norm([it.name, it.tagline, it.desc, it.org, it.domain, it.oras, TAX.domeniu[it.domeniu]?.label, ...tipLabels(it), ...it.keywords.map(kwLabel)].join(' '));
+    it._orgs = it.authors.map(a => a.name);
+    // What ties entries together by author: the slug of an organisation, else the written name.
+    it._akeys = it.authors.map(a => a.org || norm(a.name));
+    it._hay = norm([it.name, it.tagline, it.desc, ...it._orgs, it.domain, it.oras, TAX.domeniu[it.domeniu]?.label, ...tipLabels(it), ...it.keywords.map(kwLabel)].join(' '));
   }
   SUGGEST = buildSuggestions();
   readURL();
