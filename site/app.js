@@ -737,6 +737,8 @@ document.addEventListener('click', e => {
   } else if (act === 'reset') { for (const k of FILTERS) state[k] = ''; writeURL(); renderAll(); }
   else if (act === 'kind') { state.k = val; state.o = defaultSort(); for (const k of FILTERS) if (k !== 'q') state[k] = ''; writeURL(); renderAll(); }
   else if (act === 'view') { state.v = val; writeURL(); renderResults(); }
+  else if (act === 'fs') { store.set('ct.fs', val); applyPrefs(); }
+  else if (act === 'theme') { store.set('ct.theme', val); applyPrefs(); }
   else if (act === 'sheet') { renderSheet(); openLayer(slot('sheet')); }
   else if (act === 'close') {
     if (!slot('drawer').hidden && state.p) { state.p = ''; writeURL(); }
@@ -828,6 +830,23 @@ function fitHeader() {
   hdr.style.top = innerWidth < 1024 ? `-${search.offsetTop - parseFloat(getComputedStyle(search).marginTop)}px` : '0px';
 }
 new ResizeObserver(fitHeader).observe(slot('hdr'));
+
+/* ---------- display preferences: text size and theme ---------- */
+// The <head> script in index.html applies them before the first paint; this keeps the footer buttons and the
+// browser's theme colour in step. "m" and "system" are the defaults and leave the attributes off.
+const THEME_COLOR = { light: '#ffffff', dark: '#0e0e10' };
+function applyPrefs() {
+  const fs = store.get('ct.fs', 'm'), theme = store.get('ct.theme', 'system'), root = document.documentElement;
+  if (fs === 'm') delete root.dataset.fs; else root.dataset.fs = fs;
+  if (theme === 'system') delete root.dataset.theme; else root.dataset.theme = theme;
+  for (const b of document.querySelectorAll('[data-act="fs"]')) b.setAttribute('aria-pressed', String(b.dataset.val === fs));
+  for (const b of document.querySelectorAll('[data-act="theme"]')) b.setAttribute('aria-pressed', String(b.dataset.val === theme));
+  for (const m of document.querySelectorAll('meta[name="theme-color"]')) {
+    m.dataset.orig ??= m.content;
+    m.content = theme === 'system' ? m.dataset.orig : THEME_COLOR[theme];
+  }
+}
+applyPrefs();
 
 /* ---------- boot ---------- */
 fetch(ROOT + 'data.json', { cache: 'no-cache' }).then(r => r.json()).then(db => {

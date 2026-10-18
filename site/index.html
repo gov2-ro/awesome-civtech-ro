@@ -25,6 +25,7 @@
 <meta name="theme-color" content="#0e0e10" media="(prefers-color-scheme: dark)">
 <link rel="preload" href="fonts/ibm-plex-sans-latin-f66677.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/fonts.css">
+<script>try{var r=document.documentElement,f=JSON.parse(localStorage.getItem('ct.fs')),t=JSON.parse(localStorage.getItem('ct.theme'));if(/^(s|l|xl)$/.test(f))r.dataset.fs=f;if(/^(light|dark)$/.test(t))r.dataset.theme=t}catch(e){}</script>
 <link rel="icon" type="image/png" href="img/logo.png">
 <link rel="apple-touch-icon" href="img/logo.png">
 <link rel="stylesheet" href="style.css">
@@ -77,6 +78,22 @@
   <div>
     <p class="kicker">Propune un proiect</p>
     <p>Lipsește ceva sau o informație e greșită? <a href="https://forms.gle/wswqrm7P4QV25NZx7" target="_blank" rel="noopener">Trimite o propunere</a>: un proiect, o resursă sau o organizație.</p>
+  </div>
+  <div class="prefs" role="group" aria-label="Aspect">
+    <p class="kicker">Aspect</p>
+    <div class="pref"><span id="fs-label">Mărime text</span>
+      <span class="seg seg-txt" role="group" aria-labelledby="fs-label">
+        <button data-act="fs" data-val="s" aria-pressed="false" title="Text mic">S</button>
+        <button data-act="fs" data-val="m" aria-pressed="true" title="Text mediu">M</button>
+        <button data-act="fs" data-val="l" aria-pressed="false" title="Text mare">L</button>
+        <button data-act="fs" data-val="xl" aria-pressed="false" title="Text foarte mare">XL</button>
+      </span></div>
+    <div class="pref"><span id="theme-label">Temă</span>
+      <span class="seg seg-txt" role="group" aria-labelledby="theme-label">
+        <button data-act="theme" data-val="system" aria-pressed="true" title="Ca sistemul">Sistem</button>
+        <button data-act="theme" data-val="light" aria-pressed="false" title="Luminoasă">Luminoasă</button>
+        <button data-act="theme" data-val="dark" aria-pressed="false" title="Întunecată">Întunecată</button>
+      </span></div>
   </div>
   <p class="mono small muted keys">Taste: <kbd class="kbd">/</kbd> caută · <kbd class="kbd">j</kbd> <kbd class="kbd">k</kbd> sau <kbd class="kbd">←</kbd> <kbd class="kbd">→</kbd> trec la proiectul următor / anterior · <kbd class="kbd">Enter</kbd> deschide fișa · <kbd class="kbd">o</kbd> deschide site-ul proiectului · <kbd class="kbd">Esc</kbd> închide</p>
   <p class="mono small muted" data-slot="checked"></p>
