@@ -268,7 +268,7 @@ def entry_pages(items: list[dict]) -> int:
         shutil.rmtree(SITE / kind, ignore_errors=True)
     for i in items:
         slug, name, kind = i["slug"], i["name"], i["kind"]
-        text = clip(i["desc"] or i["tagline"] or "", 200) or "Director de instrumente civice, date deschise și proiecte de bună guvernare din România."
+        text = clip(i["desc"] or i["tagline"] or "", 200) or "Colecție de instrumente civice, date deschise și proiecte de bună guvernare din România."
         img = i["img"] if i["img"] and i["img"]["kind"] != "logo" else DEFAULT_SHARE
         doc = page_head(template, title=f"{name} — CivTech România", text=text, url=f"{SITE_URL}{kind}/{slug}/", img=img, alt=name, depth=2)
         # With a <base>, a bare "#fragment" would leave the page: point it at this page.
