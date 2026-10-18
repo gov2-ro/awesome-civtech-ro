@@ -1,0 +1,60 @@
+name: sheets-push
+
+# Repo -> Google Sheet. After a push to main that changes proiecte.csv or orgs.csv, rewrites both tabs.
+# `sheets.py push --since <before>` refuses (exit 3) when the Sheet holds edits that are not in the repo yet.
+# Needs: secret GOOGLE_SA_KEY (the service-account key, JSON) and variable SHEET_ID.
+on:
+  push:
+    branches: [main]
+    paths: ["data/proiecte.csv", "data/orgs.csv"]
+  workflow_dispatch:
+    inputs:
+      since:
+        description: "Commit the Sheet was last synced from (empty: compare the Sheet with the current CSVs)"
+        required: false
+        default: ""
+      force:
+        description: "Overwrite the Sheet without the check"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sheets
+  cancel-in-progress: false
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # `--since` reads the CSVs at an earlier commit
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: astral-sh/setup-uv@v6
+
+      - name: Write the CSVs to the Sheet
+        env:
+          GOOGLE_SA_KEY: ${{ secrets.GOOGLE_SA_KEY }}
+          SHEET_ID: ${{ vars.SHEET_ID }}
+          BEFORE: ${{ github.event.before }}
+          SINCE: ${{ inputs.since }}
+          FORCE: ${{ inputs.force }}
+        run: |
+          since="${SINCE:-$BEFORE}"
+          case "$since" in 0000000000000000000000000000000000000000) since="" ;; esac # a new branch has no "before"
+          args=()
+          if [ -n "$since" ]; then args+=(--since "$since"); fi
+          if [ "$FORCE" = "true" ]; then args+=(--force); fi
+          set +e
+          uv run scripts/sheets.py push "${args[@]}"
+          code=$?
+          set -e
+          if [ "$code" -eq 3 ]; then
+            echo "::error::Tabelul are modificări nesincronizate; rulează sheets-pull"
+          fi
+          exit "$code"

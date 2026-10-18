@@ -1,0 +1,111 @@
+name: sheets-pull
+
+# Google Sheet -> repo. Reads the Sheet and opens (or updates) one pull request with its changes; never pushes to main.
+# Needs: secret GOOGLE_SA_KEY (the service-account key, JSON), variable SHEET_ID, and
+# Settings -> Actions -> General -> "Allow GitHub Actions to create and approve pull requests".
+# A pull request opened with GITHUB_TOKEN does not start validate.yml, so this job runs validate.py and build.py itself.
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sheets
+  cancel-in-progress: false
+
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    env:
+      BRANCH: sheets-sync
+      TITLE: "Sheets: modificări din tabel"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: astral-sh/setup-uv@v6
+
+      - name: Read the Sheet
+        env:
+          GOOGLE_SA_KEY: ${{ secrets.GOOGLE_SA_KEY }}
+          SHEET_ID: ${{ vars.SHEET_ID }}
+        run: |
+          uv run scripts/sheets.py diff > "$RUNNER_TEMP/diff.txt"
+          cat "$RUNNER_TEMP/diff.txt"
+          uv run scripts/sheets.py pull
+
+      - name: Check the CSVs
+        id: state
+        run: |
+          if git diff --quiet -- data/proiecte.csv data/orgs.csv; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Validate and build
+        if: steps.state.outputs.changed == 'true'
+        run: |
+          # GITHUB_ACTIONS=false: plain "file:line: error: message" lines, which read well in the PR text.
+          set +e
+          GITHUB_ACTIONS=false python3 scripts/validate.py > "$RUNNER_TEMP/validate.txt" 2>&1
+          validate=$?
+          python3 scripts/build.py > "$RUNNER_TEMP/build.txt" 2>&1
+          build=$?
+          {
+            echo "Modificările din tabelul Google, față de \`main\`. Controlați-le, apoi îmbinați cererea (merge)."
+            echo "După îmbinare, \`sheets-push\` rescrie tabelul din CSV."
+            echo
+            echo "### Diferențe (\`sheets.py diff\`)"
+            echo '````'
+            head -c 40000 "$RUNNER_TEMP/diff.txt"
+            echo '````'
+            echo
+            echo "### \`validate.py\` (cod de ieșire $validate)"
+            echo '````'
+            head -c 10000 "$RUNNER_TEMP/validate.txt"
+            echo '````'
+            echo
+            echo "### \`build.py\` (cod de ieșire $build)"
+            if [ "$build" -ne 0 ]; then
+              echo '````'
+              tail -c 3000 "$RUNNER_TEMP/build.txt"
+              echo '````'
+            fi
+          } > "$RUNNER_TEMP/body.md"
+          cat "$RUNNER_TEMP/body.md"
+
+      - name: Open or update the pull request
+        if: steps.state.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$BRANCH"
+          git add data/proiecte.csv data/orgs.csv
+          git commit -m "$TITLE"
+          git push --force origin "$BRANCH"
+          number=$(gh pr list --head "$BRANCH" --base main --state open --json number --jq '.[0].number // empty')
+          if [ -n "$number" ]; then
+            gh pr edit "$number" --title "$TITLE" --body-file "$RUNNER_TEMP/body.md"
+          else
+            gh pr create --base main --head "$BRANCH" --title "$TITLE" --body-file "$RUNNER_TEMP/body.md"
+          fi
+
+      - name: Close the pull request when the Sheet matches main
+        if: steps.state.outputs.changed == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          number=$(gh pr list --head "$BRANCH" --base main --state open --json number --jq '.[0].number // empty')
+          if [ -n "$number" ]; then
+            gh pr close "$number" --delete-branch --comment "Tabelul coincide acum cu \`main\`: nu mai sunt modificări de îmbinat."
+          fi
