@@ -27,6 +27,8 @@ uv run scripts/form.py [--apply]            # proposal Form questions from taxon
 ## Data pipeline
 
 ```
+Google Sheet ⇄ scripts/sheets.py (pull / push)
+        │
 data/proiecte.csv + data/orgs.csv  (human-edited)
         │  scripts/profile.py  → data/profil.csv (generated) + site/img/{og,icon,linkicon}/
         │  scripts/search.py   → data/mentiuni.csv (generated; the editor prunes in column `editor`)

@@ -16,9 +16,9 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [ ] Run `review.py` against the API (needs `ANTHROPIC_API_KEY`; the key in
       `~/devbox/ePtm/puzzes/.env` is empty). Then check `build.py` output: until labels exist,
       `reach.indep` is the kept-host count and the score is provisional
-- [ ] `README.md` line 54 still lists `profile.py --search --gdelt --opr` (flags removed)
-- [ ] `declic`: `url` de-clic.ro is offline; the search finds the live site at declic.ro. Editor
-      decides whether to change the url
+- [x] `README.md` line 54 still lists `profile.py --search --gdelt --opr` (flags removed)
+- [x] `declic`: `url` de-clic.ro is offline; the search finds the live site at declic.ro. Editor
+      decides whether to change the url. The `url` is now declic.ro
 - [ ] `profile.py --force` replaces the whole profile row and drops `mentions`, `search_social`
       and `opr`. Run `search.py --prune-only` after it, or make `profile.py` keep these columns
 - [ ] Name-collision noise (`465`, `the-sponge`, `declic`, author names such as "Gabriel Popa"):
@@ -40,7 +40,7 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
       (`demoanaf` / `descriere`: the Sheet lacks "Proiect independent." and the line breaks; checked
       2026-10-18). Keep it: `sheets.py pull`, review, commit. Drop it: `sheets.py push --force`.
       The first `push` to the real tabs is not done yet.
-- [ ] Trim the trailing space in `orgs.csv`, `descriere_scurta` of `code4ro` and `techsoup`. `pull`
+- [x] Trim the trailing space in `orgs.csv`, `descriere_scurta` of `code4ro` and `techsoup`. `pull`
       strips it (D2), so the next pull otherwise rewrites the file.
 - [ ] `pull` copies the Sheet over the CSVs with no base. A CSV edit on `main` that `sheets-push` has
       not written yet shows as a revert in the next pull request. Option: a 3-way merge with the last
@@ -52,14 +52,14 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
       exit 3. Recovery: run `sheets-push` by hand with `since` or `force`.
 - [ ] The Sheet has a third tab, `propuneri` (Form responses). `sheets.py` ignores it. The
       "Propune un proiect" form is not wired to the pipeline.
-- [ ] `CLAUDE.md`: add `sheets.py` to *Commands*, the pipeline sketch and the *Deployment* section.
+- [x] `CLAUDE.md`: add `sheets.py` to *Commands*, the pipeline sketch and the *Deployment* section.
 
 ## Proposal Form (brief: `docs/briefs/form-generator.md`)
 
 - [x] `scripts/form.py`: plans the 13 questions from `data/taxonomy.json`; default mode prints them and
       reads the Form; `--apply` replaces all items in one `forms.batchUpdate` (D1–D3). Tested read only
-      on 2026-10-18; **`--apply` is not run yet**.
-- [ ] Owner: read the dry run (`uv run scripts/form.py`), then run `--apply` once.
+      on 2026-10-18; the owner ran `--apply` the same day.
+- [x] Owner: read the dry run (`uv run scripts/form.py`), then run `--apply` once.
 - [ ] After `--apply`: check row 1 of the tab `propuneri`. Before it, it holds `Timestamp` and
       `Untitled Question` (the Form's one default question). The deleted question may leave its column;
       delete that column by hand (0 responses).
@@ -73,9 +73,9 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [ ] The Form's first question ("Ce propui?") offers only Proiect, Resursă and Organizație. It does not
       offer `articol`, `ghid`, `campanie` or `cercetare`. Decide whether to add them (`FEL_CHOICES` in
       `form.py`, then `form.py --apply`) or to let the editor set `fel` when copying a row.
-- [ ] Authors that look like a slug but have no row in `orgs.csv`: `gabriel-popa` (3 entries) and `gov2`
+- [x] Authors that look like a slug but have no row in `orgs.csv`: `gabriel-popa` (3 entries) and `gov2`
       (3 entries; the entry `gov2` is no longer in the Sheet). Add the rows to `orgs.csv`, or write the
-      names in full. `validate.py` warns about each.
+      names in full. `validate.py` warns about each. The names are now written in full (Gabriel Popa, GOV2).
 - [ ] Filter by `fel` in the "Resurse & liste" tab (article, guide, campaign, research). The label shows on
       each entry, but there is no facet yet.
 - [ ] Owner: set `email` in `data/site.json`, or the report-a-problem panel has no e-mail option. Check that
@@ -111,9 +111,9 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [ ] `profile.py --extra` runs a GitHub search for every live entry without a repo, on every run
       (about 75 requests, about 3 minutes at the 30 per minute limit). Store the miss to skip it.
 - [ ] A link host whose favicon fails is fetched again on every run (no stored miss). Today: 0 failures.
-- [ ] Orphans: 22 files in `site/img/icon/` and 10 rows in `profil.csv` have no entry in the CSVs
+- [ ] Orphans: 23 files in `site/img/icon/` and 12 rows in `profil.csv` have no entry in the CSVs
       (deleted entries, e.g. `rescue-4x4`). Nothing shows them.
-- [ ] `CLAUDE.md` pipeline sketch names `site/img/{og,icon}/`; add `linkicon`.
+- [x] `CLAUDE.md` pipeline sketch names `site/img/{og,icon}/`; add `linkicon`.
 
 ## Site (from README *Backlog*)
 
@@ -155,12 +155,11 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
 ## Editorial checks
 
-- [ ] Check doubtful GitHub matches: `rescue-4x4` → `mihaituhari/rescue4x4-language`,
-      `harta-banilor-publici` → `initiativaromania/HBP-Android`,
+- [ ] Check doubtful GitHub matches (`rescue-4x4` is deleted): `harta-banilor-publici` → `initiativaromania/HBP-Android`,
       `harta-tv-locale` → `geospatialorg/geospatialorg.github.io`
-- [ ] Decide `stare=arhivat` for sites up with no edit in 3+ years: pmb-plus, monitor-social,
-      median-research-centre, calitate-aer-radauti, data-expertforum, onorata-instanta,
-      parlament-transparent (archived repo)
+- [ ] Decide `stare=arhivat` for sites up with no edit in 3+ years: monitor-social,
+      calitate-aer-radauti, data-expertforum, onorata-instanta. (pmb-plus and median-research-centre are
+      deleted; parlament-transparent has `stare=offline`.)
 
 ## Verified limits
 
