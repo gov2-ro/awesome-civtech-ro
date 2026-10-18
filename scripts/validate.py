@@ -18,6 +18,7 @@ TAX = json.loads((DATA / "taxonomy.json").read_text())
 DOMENII = {d["key"] for d in TAX["domenii"]}
 TIPURI = {t["key"] for t in TAX["tipuri"]}
 ACOPERIRE = {a["key"] for a in TAX["acoperire"]}
+FEL = [f["key"] for f in TAX["fel"]]
 ROLURI = {r["key"] for r in TAX["linkuri"]["roluri"]}
 SLUG = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 URL = re.compile(r"^https?://[^\s/$.?#][^\s]*\.[^\s]+$", re.I)
@@ -75,7 +76,9 @@ def check(path: Path, cols: list[str], seen: dict, urls: dict, is_org: bool):
                 urls[u] = r["slug"]
             if r["domeniu"] not in DOMENII:
                 err(f"domeniu necunoscut: '{r['domeniu']}' (valori: {', '.join(sorted(DOMENII))})")
-            if r["acoperire"] not in ACOPERIRE:
+            if not r["acoperire"]:
+                warn("fără acoperire")
+            elif r["acoperire"] not in ACOPERIRE:
                 err(f"acoperire necunoscută: '{r['acoperire']}'")
             if r["acoperire"] == "local" and not r["oras"]:
                 warn("acoperire locală fără oraș")
@@ -91,8 +94,12 @@ def check(path: Path, cols: list[str], seen: dict, urls: dict, is_org: bool):
             except json.JSONDecodeError:
                 err("linkuri: listă JSON invalidă")
             if not is_org:
-                if r["fel"] not in ("proiect", "resursa"):
-                    err(f"fel necunoscut: '{r['fel']}' (proiect sau resursa)")
+                if r["fel"] not in FEL:
+                    err(f"fel necunoscut: '{r['fel']}' (valori: {', '.join(FEL)})")
+                # An author that is a slug names a row of orgs.csv; a slug-like word that is not one is probably a typo.
+                for a in re.split(r"\s+[/&]\s+|,\s*", r["autor"]):
+                    if SLUG.match(a) and a not in ORG_SLUGS:
+                        warn(f"autor '{a}' arată ca un slug, dar nu există în orgs.csv")
                 for t in split_tip(r["tip"]):
                     if t not in TIPURI:
                         err(f"tip necunoscut: '{t}' (valori: {', '.join(sorted(TIPURI))})")
@@ -116,6 +123,14 @@ def check_mentiuni(path: Path):
         for r in reader:
             if (r["editor"] or "").strip() not in ("", "0", "1"):
                 report("error", path, reader.line_num, f"{r['slug']}: editor: '{r['editor']}' (gol, 0 sau 1)")
+
+
+def org_slugs() -> set[str]:
+    with open(DATA / "orgs.csv", encoding="utf-8-sig", newline="") as f:
+        return {(r.get("slug") or "").strip() for r in csv.DictReader(f)}
+
+
+ORG_SLUGS = org_slugs()
 
 
 def main():

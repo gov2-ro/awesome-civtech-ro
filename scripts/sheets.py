@@ -244,7 +244,7 @@ def cmd_pull(sh: gspread.Spreadsheet):
 def dropdowns() -> dict[str, tuple[list[str], bool]]:
     """column -> (allowed values, strict). `tip` takes a comma-separated list, so its drop-down only suggests."""
     tax = json.loads((DATA / "taxonomy.json").read_text(encoding="utf-8"))
-    return {"fel": (["proiect", "resursa"], True), "domeniu": ([d["key"] for d in tax["domenii"]], True),
+    return {"fel": ([f["key"] for f in tax["fel"]], True), "domeniu": ([d["key"] for d in tax["domenii"]], True),
             "tip": ([t["key"] for t in tax["tipuri"]], False), "acoperire": ([a["key"] for a in tax["acoperire"]], True),
             "stare": (["arhivat", "offline"], True), "civictech": (["0", "1"], True)}
 

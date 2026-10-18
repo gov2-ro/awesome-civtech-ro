@@ -65,6 +65,12 @@
       "label": "Societate civilă & participare",
       "short": "Participare",
       "hint": "ONG-uri, donații, educație civică, deliberare"
+    },
+    {
+      "key": "altele",
+      "label": "Altele",
+      "short": "Altele",
+      "hint": "ce nu încape în celelalte domenii"
     }
   ],
   "tipuri": [
@@ -126,6 +132,38 @@
     {
       "key": "international",
       "label": "Internațional"
+    }
+  ],
+  "fel": [
+    {
+      "key": "proiect",
+      "label": "Proiect",
+      "kind": "proiect"
+    },
+    {
+      "key": "resursa",
+      "label": "Resursă",
+      "kind": "resursa"
+    },
+    {
+      "key": "articol",
+      "label": "Articol",
+      "kind": "resursa"
+    },
+    {
+      "key": "ghid",
+      "label": "Ghid",
+      "kind": "resursa"
+    },
+    {
+      "key": "campanie",
+      "label": "Campanie",
+      "kind": "resursa"
+    },
+    {
+      "key": "cercetare",
+      "label": "Cercetare",
+      "kind": "resursa"
     }
   ],
   "kinds": [

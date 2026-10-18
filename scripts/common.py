@@ -42,7 +42,10 @@ MENTIUNI_COLS = ["slug", "provider", "query", "rank", "url", "host", "title", "s
 # LLM labels of the kept results (scripts/review.py); generated, never hand-edited.
 ETICHETE_COLS = ["slug", "url", "despre_proiect", "tip_sursa", "independent", "model", "labelled_at"]
 
-ROLES = json.loads((DATA / "taxonomy.json").read_text())["linkuri"]["roluri"]
+_TAX = json.loads((DATA / "taxonomy.json").read_text())
+ROLES = _TAX["linkuri"]["roluri"]
+# `fel` (the column of proiecte.csv) -> the tab it belongs to: articles, guides, campaigns and research all sit under "resursa".
+FEL_KIND = {f["key"]: f["kind"] for f in _TAX["fel"]}
 # Profile links by network: host -> role key, from the taxonomy (GitHub and GitLab are code, not social).
 SOCIAL_HOSTS = {h: r["key"] for r in ROLES if r["key"] not in ("github", "gitlab") for h in r["hosts"]}
 # Link roles that show a network logo in the drawer (NETWORK in site/app.js). Every other link shows the favicon of its host.
@@ -125,7 +128,7 @@ def load_entries() -> list[dict]:
     """Every listed entry: projects and resources from proiecte.csv, organisations from orgs.csv."""
     out = []
     for r in read_csv(DATA / "proiecte.csv"):
-        out.append({**r, "kind": r["fel"] or "proiect", "url": to_href(r["url"]) if r["url"] else ""})
+        out.append({**r, "kind": FEL_KIND.get(r["fel"] or "proiect", "proiect"), "url": to_href(r["url"]) if r["url"] else ""})
     for r in read_csv(DATA / "orgs.csv"):
         out.append({**r, "kind": "organizatie", "url": to_href(r["url"]) if r["url"] else ""})
     return out
