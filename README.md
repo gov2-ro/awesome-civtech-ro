@@ -1,7 +1,11 @@
 <img src="docs/reference/logo/civtech-ro-favicon-2.png" width=128>
 
 
-[civtech.gov2.ro](https://civtech.gov2.ro/) &middot; listă de proiecte &amp; resurse de civtech, transparență, bună administrație și tot așa &rarr; [proiecte.csv](data/proiecte.csv). Vezi și [roadmap/backlog](docs/BACKLOG.md) și [arhitectura](docs/ARCHITECTURE.md).
+[civtech.gov2.ro](https://civtech.gov2.ro/) &middot; listă de proiecte &amp; resurse de civtech, transparență, bună administrație și tot așa &rarr; [proiecte.csv](data/proiecte.csv). Vezi și [roadmap/backlog](docs/BACKLOG.md) &amp; [arhitectura](docs/ARCHITECTURE.md).
+
+_Notă_: Verificarea datelor **nu este încă finalizată**.
+
+Pentru erate sau sugestii de resurse noi, submit a PR sau issue, sau via [Google Form](https://forms.gle/wswqrm7P4QV25NZx7).
 
 ----
 
