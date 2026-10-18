@@ -60,6 +60,7 @@ const FILTERS = ['q', 'd', 't', 'kw', 'c', 'org', 'a', 's', 'cod', 'civ', 'nou',
 const FRESH_DAYS = 183, LAUNCH_DAYS = 60;
 
 let DB = null, TAX = null, seed = Math.random();
+const BY_SLUG = new Map();
 let title = TITLES[0];
 const state = { ...DEFAULTS };
 // First visit on desktop: only "domeniu" is open. Once a visitor toggles a facet, their choice is stored and wins.
@@ -76,18 +77,32 @@ const query = () => state.q.length >= MIN_Q ? state.q : '';
 /* ---------- URL state ---------- */
 // Projects read best grouped by domain; the short org/resource lists read best flat.
 const defaultSort = () => state.k === 'proiect' ? 'domeniu' : 'az';
+// An entry opens at its own address, /<kind>/<slug>/ with kind = proiect | organizatie | resursa (a page that
+// scripts/build.py writes, so link previews and search engines see it), with the filters in the query. The old
+// ?p=<slug> still opens it. ROOT is the site's path, whatever page loaded.
+const KINDS = 'proiect|organizatie|resursa';
+const ROOT = location.pathname.replace(new RegExp(`((${KINDS})/[^/]*/?|index\\.html)$`), '');
+const pathSlug = () => decodeURIComponent((location.pathname.match(new RegExp(`/(?:${KINDS})/([^/]+)/?$`)) || [])[1] || '');
+const entryPath = slug => `${ROOT}${BY_SLUG.get(slug)?.kind || 'proiect'}/${encodeURIComponent(slug)}/`;
 function readURL() {
   const u = new URLSearchParams(location.search);
   for (const k of Object.keys(DEFAULTS)) state[k] = u.get(k) ?? DEFAULTS[k];
+  if (!state.p) state.p = pathSlug();
+  // An entry from the address alone (no kind in the query) opens on its own tab: an organisation, not the project list.
+  if (state.p && !u.has('k')) { const it = BY_SLUG.get(state.p); if (it) state.k = it.kind; }
   if (!state.o) state.o = defaultSort();
 }
-function writeURL(push = false) {
+// The filters, as a query string; the open entry is in the path, not here.
+function filterQuery() {
   const u = new URLSearchParams();
-  for (const [k, v] of Object.entries(state)) if (v && v !== (k === 'o' ? defaultSort() : DEFAULTS[k])) u.set(k, v);
-  const url = (u.toString() ? '?' + u : location.pathname) + location.hash;
-  if (url !== location.search + location.hash) history[push ? 'pushState' : 'replaceState'](null, '', url);
+  for (const [k, v] of Object.entries(state)) if (v && k !== 'p' && v !== (k === 'o' ? defaultSort() : DEFAULTS[k])) u.set(k, v);
+  return u.toString() ? '?' + u : '';
 }
-const hrefFor = slug => { const u = new URLSearchParams(location.search); u.set('p', slug); return '?' + u; };
+function writeURL(push = false) {
+  const url = (state.p ? entryPath(state.p) : ROOT) + filterQuery() + location.hash;
+  if (url !== location.pathname + location.search + location.hash) history[push ? 'pushState' : 'replaceState'](null, '', url);
+}
+const hrefFor = slug => entryPath(slug) + filterQuery();
 
 /* ---------- filtering ---------- */
 function matches(it, skip) {
@@ -759,18 +774,25 @@ function fitHeader() {
 new ResizeObserver(fitHeader).observe(slot('hdr'));
 
 /* ---------- boot ---------- */
-fetch('data.json', { cache: 'no-cache' }).then(r => r.json()).then(db => {
+fetch(ROOT + 'data.json', { cache: 'no-cache' }).then(r => r.json()).then(db => {
   DB = db;
   const map = arr => Object.fromEntries(arr.map(x => [x.key, x]));
   TAX = { domeniu: map(db.taxonomy.domenii), tip: map(db.taxonomy.tipuri), kind: map(db.taxonomy.kinds) };
+  // Paths in the data are relative to the site root; the address bar changes with pushState, so make them absolute.
+  const abs = p => p ? ROOT + p : p;
   for (const it of db.items) {
+    it.icon = abs(it.icon);
+    if (it.img) it.img.src = abs(it.img.src);
+    for (const l of it.links) l.icon = abs(l.icon);
     if (!STATUS[it.status]) it.status = 'neverificat';
     it._sort = norm(it.name).replace(/[^a-z0-9]/g, '');
+    BY_SLUG.set(it.slug, it);
     it._orgs = (it.org || '').split(/\s+[\/&]\s+|,\s*/).map(s => s.trim()).filter(s => s.length > 2);
     it._hay = norm([it.name, it.tagline, it.desc, it.org, it.domain, it.oras, TAX.domeniu[it.domeniu]?.label, ...tipLabels(it), ...it.keywords.map(kwLabel)].join(' '));
   }
   SUGGEST = buildSuggestions();
   readURL();
+  if (current() && !pathSlug()) writeURL();  // an old ?p=<slug> link moves to the entry's own address
   if (DB.checked) slot('checked').textContent = `actualizat: ${DB.checked} · ${DB.items.length} resurse`;
   renderAll();
   renderDetail();

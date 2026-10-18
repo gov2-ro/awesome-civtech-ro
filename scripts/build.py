@@ -1,11 +1,15 @@
-"""Merge proiecte.csv + orgs.csv + profil.csv into site/data.json (the browser's copy) and site/feed.xml
-(RSS, newest projects first). Both generated, not edited.
+"""Merge proiecte.csv + orgs.csv + profil.csv into site/data.json (the browser's copy), site/feed.xml
+(RSS, newest projects first) and site/proiect/<slug>/index.html (one page per entry, for link previews and
+search engines; git ignores them, the Pages workflow builds them). All generated, not edited.
+The page's folder is the entry's tab: site/proiect/, site/organizatie/ or site/resursa/.
 
     python3 scripts/build.py
 """
+import html
 import json
 import math
 import re
+import shutil
 from email.utils import format_datetime
 from xml.sax.saxutils import escape
 from datetime import date, datetime, timezone
@@ -16,6 +20,8 @@ from common import (BOILERPLATE, DATA, ETICHETE, LINKICON_DIR, NETWORK_ROLES, SI
 CODE_ROLES = ("github", "gitlab", "cod")
 SITE_URL = "https://civtech.gov2.ro/"
 FEED_SIZE = 40
+PAGE_KINDS = ("proiect", "organizatie", "resursa")  # the folders under site/ that entry_pages() owns
+DEFAULT_SHARE = {"src": "img/share.png", "w": 1106, "h": 558}
 
 
 def pick_desc(desc: str, prof: dict) -> tuple[str, str]:
@@ -165,7 +171,7 @@ def feed(items: list[dict], generated: datetime) -> str:
     out = []
     for i in sorted(live, key=lambda i: i["since"], reverse=True)[:FEED_SIZE]:
         when = datetime.fromisoformat(i["since"]).replace(tzinfo=timezone.utc)
-        link = f"{SITE_URL}?p={i['slug']}"
+        link = f"{SITE_URL}{i['kind']}/{i['slug']}/"
         out.append(f"""<item><title>{escape(i['name'])}</title><link>{escape(link)}</link><guid isPermaLink="true">{escape(link)}</guid>
 <description>{escape(i['tagline'] or i['desc'] or '')}</description><pubDate>{format_datetime(when)}</pubDate></item>""")
     return f"""<?xml version="1.0" encoding="utf-8"?>
@@ -177,6 +183,59 @@ def feed(items: list[dict], generated: datetime) -> str:
 {chr(10).join(out)}
 </channel></rss>
 """
+
+
+def clip(text: str, n: int) -> str:
+    """`text` cut at a word boundary before `n` characters, with an ellipsis."""
+    if len(text) <= n:
+        return text
+    cut = text[:n].rsplit(" ", 1)[0] if " " in text[:n] else text[:n]
+    return cut.rstrip(" ,.;:–-") + "…"
+
+
+def entry_pages(items: list[dict]) -> int:
+    """One page per entry at site/proiect/<slug>/index.html: index.html with that entry's title, description,
+    canonical address and share image in <head>, a <base> so the page's relative paths reach the site root,
+    and the entry's text in <noscript>. app.js reads the slug from the path and opens the entry."""
+    template = (SITE / "index.html").read_text(encoding="utf-8")
+    for kind in {i["kind"] for i in items} | set(PAGE_KINDS):
+        shutil.rmtree(SITE / kind, ignore_errors=True)
+
+    def swap(doc: str, pattern: str, repl: str) -> str:
+        doc, n = re.subn(pattern, lambda _: repl, doc, count=1)
+        if not n:
+            raise SystemExit(f"site/index.html has no {pattern}: entry_pages() needs it")
+        return doc
+
+    for i in items:
+        slug, name, kind = i["slug"], i["name"], i["kind"]
+        url = f"{SITE_URL}{kind}/{slug}/"
+        title = f"{name} — CivTech România"
+        text = clip(i["desc"] or i["tagline"] or "", 200) or "Director de instrumente civice, date deschise și proiecte de bună guvernare din România."
+        img = i["img"] if i["img"] and i["img"]["kind"] != "logo" else DEFAULT_SHARE
+        esc = lambda v: html.escape(str(v), quote=True)
+        doc = template
+        doc = swap(doc, r"<title>.*?</title>", f"<title>{esc(title)}</title>")
+        doc = swap(doc, r'<meta charset="utf-8">', '<meta charset="utf-8">\n<base href="../../">')
+        doc = swap(doc, r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{esc(text)}">')
+        doc = swap(doc, r'<link rel="canonical" href="[^"]*">', f'<link rel="canonical" href="{url}">')
+        for key, value in {"og:url": url, "og:title": title, "og:description": text, "og:image": SITE_URL + img["src"],
+                           "og:image:width": img["w"], "og:image:height": img["h"], "og:image:alt": name,
+                           "twitter:title": title, "twitter:description": text, "twitter:image": SITE_URL + img["src"]}.items():
+            attr = "name" if key.startswith("twitter:") else "property"
+            doc = swap(doc, rf'<meta {attr}="{key}" content="[^"]*">', f'<meta {attr}="{key}" content="{esc(value)}">')
+        # With a <base>, a bare "#fragment" would leave the page: point it at this page.
+        doc = doc.replace('href="#', f'href="{kind}/{slug}/#')
+        nojs = (f'<noscript><article class="nojs"><h1>{esc(name)}</h1>'
+                + (f"<p>{esc(i['tagline'])}</p>" if i["tagline"] else "")
+                + (f"<p>{esc(i['desc'])}</p>" if i["desc"] else "")
+                + (f'<p><a href="{esc(i["url"])}">{esc(i["domain"])}</a></p>' if i["url"] else "")
+                + '<p><a href="./">CivTech România</a></p></article></noscript>')
+        doc = swap(doc, r'<a class="skip"', nojs + '\n<a class="skip"')
+        out = SITE / kind / slug
+        out.mkdir(parents=True)
+        (out / "index.html").write_text(doc, encoding="utf-8")
+    return len(items)
 
 
 def main():
@@ -254,7 +313,8 @@ def main():
     for i in items:
         by[i["status"]] = by.get(i["status"], 0) + 1
     (SITE / "feed.xml").write_text(feed(items, now))
-    print(f"wrote {len(items)} entries to site/data.json  {by}; site/feed.xml")
+    pages = entry_pages(items)
+    print(f"wrote {len(items)} entries to site/data.json  {by}; site/feed.xml; {pages} pages in site/{{{','.join(PAGE_KINDS)}}}/")
 
 
 if __name__ == "__main__":

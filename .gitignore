@@ -79,3 +79,7 @@ docs/reference/init-prototype/*
 !/data/*.csv
 !/data/taxonomy.json
 !/data/form.json
+# one page per entry, written by scripts/build.py (the Pages workflow builds them)
+/site/proiect/
+/site/organizatie/
+/site/resursa/
