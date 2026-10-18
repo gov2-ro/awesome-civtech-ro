@@ -1,5 +1,20 @@
 # Activity
 
+## 2026-10-19 — llms.txt
+
+**Done**
+- `build.py` writes `site/llms.txt` (`llms_txt`), in the llmstxt.org format: an H1, a summary in a blockquote,
+  the data links (`data.json`, the two CSVs, `DATA-SCHEMA.md`, `CONTRIBUTING.md`, `feed.xml`), and one
+  Markdown link per entry to its own page, with the tagline (else the description, cut at 200 characters), the
+  site address, and `(offline)` / `(arhivat)` for a retired entry. Projects are grouped by domain, organisations
+  run A-Z, resources are grouped by `fel`. Measured on the current data: 122 entries, about 21 KB.
+
+**Decided**
+- The text is in Romanian, like the site. The file is generated on every build, so it cannot drift from the data.
+  A hand-written file would be shorter, but it would go out of date with each new entry.
+- The links go to the entry pages, not to the projects' sites: the entry page carries the description in
+  `<noscript>`, and the line also gives the site address. No `llms-full.txt`: `data.json` holds the full data.
+
 ## 2026-10-18 — Stale CSS behind Cloudflare
 
 **Done**

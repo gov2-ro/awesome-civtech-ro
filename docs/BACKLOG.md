@@ -195,6 +195,7 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [x] ranking by popularity / relevance — `score` in `build.py`, "Relevanță" sort; reach signals being reworked (`docs/specs/search-relevance.md`)
 - [x] sort by age — "Cele mai noi" sort, by `since`
 - [x] RSS feed — `site/feed.xml` from `build.py`: 40 newest live projects by `since`
+- [x] `site/llms.txt` from `build.py` (llmstxt.org): summary, data links, every entry linked to its page
 - [x] update logo — `site/img/logo.png` from `civtech-ro-favicon-2.png` (180 px)
 - [x] og image / description — `site/img/share.png` (1200×630), og/twitter tags in `index.html`
 - [ ] initial ranking: by domain, then by relevance x last updated x age x novelty – we cam call this "relevanță". Remove active și relevante. Add "cele mai vechi"

@@ -1,5 +1,6 @@
 """Merge proiecte.csv + orgs.csv + profil.csv into site/data.json (the browser's copy), site/feed.xml
-(RSS, newest projects first) and site/proiect/<slug>/index.html (one page per entry, for link previews and
+(RSS, newest projects first), site/llms.txt (the whole list as Markdown, for language models; llmstxt.org) and
+site/proiect/<slug>/index.html (one page per entry, for link previews and
 search engines; git ignores them, the Pages workflow builds them). All generated, not edited.
 The page's folder is the entry's tab: site/proiect/, site/organizatie/ or site/resursa/.
 
@@ -21,6 +22,7 @@ from common import (BOILERPLATE, DATA, ETICHETE, LINKICON_DIR, NETWORK_ROLES, SI
 CODE_ROLES = ("github", "gitlab", "cod")
 SITE_URL = "https://civtech.gov2.ro/"
 FEED_SIZE = 40
+REPO_URL = "https://github.com/gov2-ro/awesome-civtech-ro"
 PAGE_KINDS = ("proiect", "organizatie", "resursa")  # the folders under site/ that entry_pages() owns
 DEFAULT_SHARE = {"src": "img/share.png", "w": 1106, "h": 558}
 
@@ -347,6 +349,50 @@ def archive_pages(items: list[dict], tax: dict) -> int:
     return len(kinds)
 
 
+def llms_txt(items: list[dict], tax: dict) -> str:
+    """site/llms.txt (format: llmstxt.org): what the site is, where the data is, and every entry as a Markdown link to
+    its own page. Projects are grouped by domain, resources by `fel`, organisations run A-Z (`items` is sorted)."""
+    domains = tax["domenii"]
+    fels = {f["key"]: f["label"] for f in tax["fel"] if f["kind"] == "resursa"} | {"resursa": "Liste și colecții"}
+
+    def line(i: dict) -> str:
+        blurb = clip(i["tagline"] or i["desc"], 200).rstrip(".")
+        gone = f" ({i['status']})" if i["status"] in ("arhivat", "offline") else ""
+        text = ". ".join(t for t in (blurb, f"Site: {i['url']}" if i["url"] else "") if t)
+        return f"- [{i['name']}]({SITE_URL}{i['kind']}/{i['slug']}/){gone}" + (f": {text}" if text else "")
+
+    def section(title: str, rows: list[dict]) -> str:
+        return f"## {title}\n\n" + "\n".join(line(i) for i in rows) + "\n" if rows else ""
+
+    projects = [i for i in items if i["kind"] == "proiect"]
+    orgs = [i for i in items if i["kind"] == "organizatie"]
+    res = [i for i in items if i["kind"] == "resursa"]
+    checked = max((i["checked"] for i in items), default="")
+    parts = [f"""# CivTech România
+
+> Colecție curatoriată de proiecte civic tech, organizații și resurse din România: instrumente civice, date deschise
+> și proiecte de bună guvernare. {len(projects)} proiecte, {len(orgs)} organizații, {len(res)} resurse.
+
+Fiecare intrare are o pagină proprie la {SITE_URL}<tip>/<slug>/ (tip: proiect, organizatie, resursa). Starea
+(activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: {checked}. Textele sunt în
+limba română. Datele sunt reutilizabile conform EUPL v1.2.
+
+## Date
+
+- [data.json]({SITE_URL}data.json): toate intrările, cu taxonomia, linkurile, starea și scorul de relevanță
+- [proiecte.csv]({REPO_URL}/blob/main/data/proiecte.csv): sursa editată de om pentru proiecte și resurse
+- [orgs.csv]({REPO_URL}/blob/main/data/orgs.csv): sursa editată de om pentru organizații
+- [DATA-SCHEMA.md]({REPO_URL}/blob/main/docs/DATA-SCHEMA.md): coloanele fiecărui fișier
+- [CONTRIBUTING.md]({REPO_URL}/blob/main/CONTRIBUTING.md): cum se propune un proiect
+- [feed.xml]({SITE_URL}feed.xml): RSS cu cele mai noi proiecte
+"""]
+    parts += [section(f"Proiecte: {d['label']}", [i for i in projects if i["domeniu"] == d["key"]]) for d in domains]
+    parts.append(section("Organizații", orgs))
+    parts += [section(f"Resurse: {label}", [i for i in res if i["fel"] == key]) for key, label in fels.items()]
+    parts.append(section("Resurse: altele", [i for i in res if i["fel"] not in fels]))
+    return "\n".join(p for p in parts if p)
+
+
 def main():
     tax = json.loads((DATA / "taxonomy.json").read_text())
     roles = tax["linkuri"]["roluri"]
@@ -428,10 +474,11 @@ def main():
     for i in items:
         by[i["status"]] = by.get(i["status"], 0) + 1
     (SITE / "feed.xml").write_text(feed(items, now))
+    (SITE / "llms.txt").write_text(llms_txt(items, tax), encoding="utf-8")
     stamp_assets()
     pages = entry_pages(items)
     archives = archive_pages(items, tax)
-    print(f"wrote {len(items)} entries to site/data.json  {by}; site/feed.xml; {pages} entry pages and {archives} archives in site/{{{','.join(PAGE_KINDS)}}}/")
+    print(f"wrote {len(items)} entries to site/data.json  {by}; site/feed.xml; site/llms.txt; {pages} entry pages and {archives} archives in site/{{{','.join(PAGE_KINDS)}}}/")
 
 
 if __name__ == "__main__":

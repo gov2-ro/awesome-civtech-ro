@@ -38,7 +38,7 @@ flowchart LR
 | `data/mentiuni.csv` | `search.py` (plus the `editor` column, by hand) | pages elsewhere on the web that mention each entry |
 | `data/mentiuni_etichete.csv` | `review.py` | Claude Haiku's labels for those mentions (news, research, independent…) |
 | `data/form.json` | `form.py --save` | the template of the Google Form's questions |
-| `site/data.json`, `site/feed.xml`, `site/img/` | `build.py`, `profile.py` | what the site shows |
+| `site/data.json`, `site/feed.xml`, `site/llms.txt`, `site/img/` | `build.py`, `profile.py` | what the site shows |
 
 Rule of thumb: a person edits the first three; scripts write the rest.
 [DATA-SCHEMA.md](DATA-SCHEMA.md) explains every column. [CONTRIBUTING.md](../CONTRIBUTING.md) tells a
@@ -65,7 +65,7 @@ flowchart TD
     profil --> build[build.py]
     ment --> build
     labels --> build
-    build --> out[site/data.json + feed.xml]
+    build --> out[site/data.json + feed.xml + llms.txt]
     out --> browser[site/app.js in the browser]
 ```
 
