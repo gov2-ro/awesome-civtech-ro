@@ -120,9 +120,9 @@ fiindcă nu aparțin proiectului.
 Aceste date arată ce a observat verificarea. Ele nu dovedesc că datele sau serviciul proiectului sunt la zi.
 Un depozit poate primi push-uri fără ca site-ul să se schimbe. Un sitemap poate fi regenerat automat.
 
-`last_activity` (în `build.py`) este data cea mai nouă dintre `updated` și 31 decembrie al anului din notița de drepturi
-de autor a paginii principale (cel mai mare an găsit după © sau „copyright”). Anul din viitor se ignoră.
-Anul curent se ia în calcul: el dă o dată de la sfârșitul anului, care poate fi încă în viitor.
+`last_activity` (în `build.py`) este `updated`, dacă acesta există. Numai fără `updated`, `build.py` folosește anul din notița
+de drepturi de autor a paginii principale (cel mai mare an găsit după © sau „copyright”), ca 1 ianuarie al acelui an.
+O dată din viitor se ignoră. Multe pagini scriu anul curent automat, deci anul din notiță este un semnal slab.
 `build.py` folosește `last_activity` în două locuri:
 
 - eticheta „neactualizat din AAAA”: pentru o intrare Activ sau Neconfirmat cu o dată de activitate, când aceasta e mai veche
@@ -179,8 +179,10 @@ Jumătate din puncte se obțin deja la `√(1 + maxim) − 1`: circa 10 luni de 
 magazine, rețele sociale, găzduiri de cod, registre de firme, site-uri generate pentru orice domeniu, site-uri care răspund
 la orice nume (dicționare, joburi, muzică, film) și site-urile proprii ale intrării. Un editor poate păstra (`1`) sau elimina (`0`)
 un rezultat. `build.py` folosește rezultatele păstrate.
-Dacă intrarea are etichete, `build.py` numără paginile etichetate „despre proiect” și „independente”.
-Fără etichete, `build.py` numără gazdele distincte ale rezultatelor păstrate.
+O etichetă contează numai pentru un rezultat păstrat cu aceeași adresă. O etichetă rămasă de la un rezultat eliminat nu contează.
+Dacă toate rezultatele păstrate au etichete, `build.py` numără gazdele paginilor etichetate „despre proiect” și „independente”.
+Dacă numai o parte au etichete, `build.py` adaugă gazdele rezultatelor fără etichetă și marchează numărul ca provizoriu.
+Fără etichete, `build.py` numără gazdele distincte ale rezultatelor păstrate. `build.py` afișează acoperirea etichetelor la fiecare rulare.
 Modelul de limbaj scrie etichetele, iar `build.py` le folosește direct.
 
 ### Ce favorizează scorul
