@@ -1,5 +1,39 @@
 # Activity
 
+## 2026-10-20 — Cutover prepared as one tested command; documentation of the v2 preview (slice F)
+
+**Done**
+- `integrare.py --detach` (owner, once): records the commit in `pachet.json`. After it, `integrare/` is editorial, and the check proves
+  only that the overlay at the detach commit still assembles from the sealed run. Tested on temporary copies; the real overlay is not detached.
+- `common.PUBLIC_ROOT` (today `data/`) is the default root of all seven scripts and the loaders. Only the public root may write `site/`;
+  a v2 public root always runs the publication gate, and `--allow-draft` can never target `site/`.
+- `scripts/cutover_v2.py`: `--plan` (blockers and steps), `--apply` (24 exact text edits in 10 files plus the `site-v2/` move; refuses
+  while a blocker exists and writes nothing on any mismatch), `--rehearse DIR` (the whole cutover on a clone, then validation, build,
+  script dry runs, unit tests and `actionlint` there). CI runs the rehearsal on every PR.
+- Runbook `docs/briefs/cutover-taxonomy-v2.md`: owner decisions in order, external actions with commands, post-deploy checks, rollback.
+- Documentation: `DATA-SCHEMA.md` (v1 and v2 files, `observatii/`, `_sync`), `ARCHITECTURE.md` (v2 roots, enrichment, `_sync`,
+  CI; 9 Mermaid blocks parse), `CONTRIBUTING.md` (proposal routes as the code supports them; v2 is not editable by contributors yet),
+  `README.md`, `CLAUDE.md`/`AGENTS.md` command lists (Haiku), `data/taxonomy-v2/README.md` (detach). `scripts/test_docs.py` fails
+  when a column is missing from `DATA-SCHEMA.md`.
+- Measured on the merged branch: 269 unit tests pass (34 cutover, 2 docs). `check_preview.py` 98/98. Rehearsal passes
+  (269 tests in the copy, 6 skipped as cutover-state tests). `actionlint` 1.7.12 + shellcheck 0.10.0 pass on the four workflows.
+  `--plan` lists 4 blockers: 122 unaccepted entries, 27 open high-priority items, `tabs.intrari` null, not detached.
+  The v1 build is byte-identical to the build before slice F (timestamps aside).
+
+**Hard**
+- Existing tests pinned the draft data and the v1 default root. A simulated owner state (detached, accepted, items closed, vocabulary added)
+  exposed 19 failures; the tests now read `PUBLIC_ROOT` and the derived roots, so they hold before and after the cutover.
+- Two local preview servers from earlier sessions held ports 8765 and 8766, so the first browser run checked a stale build.
+  The final run used port 8791. The servers were left running: they are not from this session.
+
+**Decided**
+- Detach before the owner edits, instead of routing every decision through `modificari.csv`. A direct edit and a Sheet pull into
+  `v2-intrari` then work. Cost: after detach, CI proves the derivation only at the detach commit, and `--baseline` is skipped for the overlay.
+- The rehearsal waives the gate only inside its copy, through a driver script. A flag or environment variable in `build.py` would be
+  a way to publish drafts. Cost: the waiver lives in rehearsal code that the tests must keep in step.
+- The cutover removes its own rehearsal step from `validate.yml`; `--rehearse` reports "already applied" afterwards.
+- Not done: applying the v2 questions to the live Form (`form.py --apply` refuses a v2 root). It is an owner item before the cutover.
+
 ## 2026-10-20 — Integration review queue reconciled with the current classifications (slice D)
 
 **Done**

@@ -11,7 +11,27 @@ Branch `taxonomy-v2-migration`. Production stays on v1. No Google, workflow, dep
 - [x] C. Frontend audit defects in `site-v2/`: failed data load, noscript, canonical, observed dates, methodology page.
 - [x] D. Review queue: reconcile R001–R066 with the integration copy; `tehnic` state for non-editorial items; a recommendation on every open item.
 - [x] E. CI: tests, v2 validation and preview build, JS syntax, browser checks, workflow lint; path filters for `site/`, `site-v2/`, workflows.
-- [ ] F. Cutover preparation: runbook, a dry-run check of the cutover, documentation of the v2 model.
+- [x] F. Cutover preparation: runbook, a dry-run check of the cutover, documentation of the v2 model.
+
+### Owner decisions and external activation (nothing here was done; each needs the owner)
+
+Editorial, in this order (runbook `docs/briefs/cutover-taxonomy-v2.md`):
+- [ ] Merge `taxonomy-v2-migration` into `main` (this deploys the v1 site with the noscript block, the footer methodology link,
+      and the `last_activity` correction: 2 `stale` and 19 `score` changes). Then push. Optional: bump `pages.yml` and the Sheets workflows' action versions after the first green `validate.yml`.
+- [ ] Detach the integration copy: `python3 data/taxonomy-v2/integrare.py --detach`, then commit. Before any vocabulary or entry edit.
+- [ ] Decide the 66 open review items (27 high priority), starting with the high-priority ones. Each has a recommendation in `integrare/revizuire.csv`.
+- [ ] Moldova area ID: recommendation `tara:MD` (S001, V009, V010). Vocabulary proposals V001–V011: recommendation accept
+      `tehnologie:retea-de-senzori` and `scop:sustenabilitate-presa`, defer the eight single-entry proposals. After an accepted term, run `form.py --data-dir … --write-map`.
+- [ ] C013 `nu-astepta-supereroi`: local/București coverage has no text support; recommendation `national` + `tara:RO`.
+- [ ] Write a tagline or description for the 12 live entries without text (see the audit item); decide whether that becomes a publication rule.
+- [ ] Accept the 122 entries (`clasificare_stare=acceptat`) one by one. `scripts/cutover_v2.py --plan` lists what still blocks.
+- [ ] Product: introduction text and audience, the rotating jokes, the sort options, and a curated launch date (all in the audit section).
+
+External (Google, GitHub), after the editorial work:
+- [ ] Sheets v1: allow Actions to create PRs; decide the `demoanaf` cell; run `sheets-push` with `force` once to create `_sync`. Do not require `validate / sheets-pull` in branch protection.
+- [ ] Sheets v2: `uv run scripts/sheets.py push --data-dir data/taxonomy-v2/integrare` creates `v2-intrari`; put its gid in `setari.json` `tabs.intrari`.
+- [ ] Form v2: no command applies the v2 questions to the live Form yet (`form.py --apply` refuses a v2 root). Implement it, or edit the Form by hand from the plan, before the cutover.
+- [ ] Cutover: `python3 scripts/cutover_v2.py --apply` (refuses while a blocker exists), review the diff, commit, push. Rollback: revert that commit.
 
 ## Taxonomy v2 — isolated proposal (spec: `docs/specs/taxonomy-v2.md`)
 
@@ -40,10 +60,12 @@ Branch `taxonomy-v2-migration`. Production stays on v1. No Google, workflow, dep
 - [x] Verify the isolated preview: 40 unit tests (`scripts/test_taxonomy_v2.py`) and 63 browser checks (`scripts/check_preview.py`).
 - [x] Run `scripts/test_taxonomy_v2.py` in `validate.yml`, with the CI slice. Include `site-v2/` changes in PR validation.
       Done 2026-10-20: `validate.yml` runs every `scripts/test_*.py` and the browser checks.
-- [ ] At the cutover, replace `site/app.js` with `site-v2/app.js`, merge `site-v2/v2.css` into `style.css`, and remove `site-v2/`.
-- [ ] Adapt enrichment, Sheets, Form, and CI to the accepted schema. Use separate v2 Sheet tabs during migration.
+- [~] At the cutover, replace `site/app.js` with `site-v2/app.js`, merge `site-v2/v2.css` into `style.css`, and remove `site-v2/`.
+      Prepared 2026-10-20: `scripts/cutover_v2.py --apply` does it; `--rehearse` checks it in CI.
+- [~] Adapt enrichment, Sheets, Form, and CI to the accepted schema. Use separate v2 Sheet tabs during migration.
+      Done 2026-10-20 for explicit v2 roots (slices A, B, E, F). Open: applying the v2 Form questions to the live Form.
 
-The public site does not consume this package. Production data and the v1 build output are unchanged; the scripts read v2 only with `--data-dir`.
+The public site does not consume this package. `common.PUBLIC_ROOT` is `data/` (v1); the scripts read v2 only with `--data-dir` until `cutover_v2.py --apply`.
 
 ## Audit — 2026-10-19
 

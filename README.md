@@ -99,9 +99,10 @@ coverage areas. Each value is an ID from a controlled vocabulary. The integratio
 classification of all 122 entries.
 
 **Every v2 classification is a proposal. No editor has accepted one.** The public site, `data/` and the default root of every
-script stay on v1 until the owner decides on a cutover. The cutover code does not exist yet.
+script stay on v1 until the owner decides on a cutover. `scripts/cutover_v2.py` prepares it; the runbook is
+[docs/briefs/cutover-taxonomy-v2.md](docs/briefs/cutover-taxonomy-v2.md).
 
-Every script takes `--data-dir` (default `data/`). Point it at the integration copy to work on v2:
+Every script takes `--data-dir` (default `common.PUBLIC_ROOT`, today `data/`). Point it at the integration copy to work on v2:
 ```sh
 python3 scripts/validate.py --data-dir data/taxonomy-v2/integrare                 # draft rules: proposals are allowed
 python3 scripts/validate.py --data-dir data/taxonomy-v2/integrare --publication   # adds the public gate; it fails until entries are accepted
@@ -110,12 +111,16 @@ python3 -m http.server -d /tmp/civtech-v2 8765
 uv run scripts/check_preview.py http://localhost:8765/                            # browser checks of the served preview (Playwright)
 python3 data/taxonomy-v2/validate.py --root data/taxonomy-v2/integrare --baseline # package checks, and proof that the copy keeps the source rows
 python3 data/taxonomy-v2/integrare.py                                             # does integrare/ match the sealed run? (--write regenerates it)
+python3 data/taxonomy-v2/integrare.py --detach                                    # owner, once, before the review edits: integrare/ becomes editable
+python3 scripts/cutover_v2.py --plan                                              # the cutover's blockers and steps; writes nothing
+python3 scripts/cutover_v2.py --rehearse /tmp/civtech-rehearsal                   # the whole cutover on a copy, with its checks (CI runs it)
 ```
 - A v2 build needs `--site-dir` outside the repository, and it never writes `site/`. Without `--allow-draft` it applies the
   publication gate: every entry accepted, and no open high-priority review item.
 - `profile.py`, `search.py` and `review.py` with a v2 `--data-dir` read and write only `data/taxonomy-v2/observatii/`. No script
   writes `intrari.csv`. `review.py` puts its suggestions in `observatii/review/` (the repository ignores it), and a person accepts them by hand.
-- Do not edit `integrare/intrari.csv` by hand. `integrare.py` rebuilds it from the sealed run, and CI fails when it differs. Corrections go in `integrare/modificari.csv`.
+- Before `--detach`, do not edit `integrare/intrari.csv` by hand. `integrare.py` rebuilds it from the sealed run, and CI fails when it differs.
+  Corrections go in `integrare/modificari.csv`. After `--detach`, the files are editorial, and CI proves only the state at the detach commit.
 - Contributors do not edit the v2 files yet. [CONTRIBUTING.md](CONTRIBUTING.md) says so in Romanian.
 
 The editing guide of the package (Romanian) is [data/taxonomy-v2/README.md](data/taxonomy-v2/README.md). The model is in

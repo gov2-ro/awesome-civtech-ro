@@ -204,6 +204,19 @@ O dovadă are una dintre formele:
 
 `integrare.py` refuză o dovadă care nu există și un punct R fără rând. Fișierele din `runs/`, `source/` și `reference/` nu se modifică.
 
+### Detașarea copiei
+
+Înainte de revizuirea editorială, proprietarul rulează o singură dată:
+
+```sh
+python3 data/taxonomy-v2/integrare.py --detach   # apoi commit
+```
+
+Comanda scrie în `pachet.json` commitul și data detașării. După detașare, fișierele din `integrare/` se editează direct,
+de mână sau prin fila `v2-intrari` a tabelului. `integrare.py` nu le mai regenerează. Verificarea dovedește doar că
+`integrare/` de la commitul detașării corespunde rulării sigilate. Detașați înainte de orice modificare a vocabularului:
+o modificare a vocabularului face rularea să nu mai corespundă, iar `--detach` refuză.
+
 ## Previzualizare
 
 ```sh
