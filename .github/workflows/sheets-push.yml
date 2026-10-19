@@ -1,7 +1,9 @@
 name: sheets-push
 
 # Repo -> Google Sheet. After a push to main that changes proiecte.csv or orgs.csv, rewrites both tabs.
-# `sheets.py push --since <before>` refuses (exit 3) when the Sheet holds edits that are not in the repo yet.
+# `sheets.py push` refuses (exit 3) when the Sheet holds edits that are not in the repo yet. Its base is the commit named
+# in the Sheet's `_sync` tab (the last successful push), not the `before` of this run: a skipped run does not move it.
+# It writes that marker last. The manual inputs `since` and `force` replace the marker for one run.
 # Needs: secret GOOGLE_SA_KEY (the service-account key, JSON) and variable SHEET_ID.
 on:
   push:
@@ -10,7 +12,7 @@ on:
   workflow_dispatch:
     inputs:
       since:
-        description: "Commit the Sheet was last synced from (empty: compare the Sheet with the current CSVs)"
+        description: "Commit to use as the base instead of the Sheet's sync marker (empty: use the marker)"
         required: false
         default: ""
       force:
@@ -31,7 +33,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # `--since` reads the CSVs at an earlier commit
+          fetch-depth: 0 # the sync marker (and `--since`) names an earlier commit
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -41,14 +43,11 @@ jobs:
         env:
           GOOGLE_SA_KEY: ${{ secrets.GOOGLE_SA_KEY }}
           SHEET_ID: ${{ vars.SHEET_ID }}
-          BEFORE: ${{ github.event.before }}
           SINCE: ${{ inputs.since }}
           FORCE: ${{ inputs.force }}
         run: |
-          since="${SINCE:-$BEFORE}"
-          case "$since" in 0000000000000000000000000000000000000000) since="" ;; esac # a new branch has no "before"
           args=()
-          if [ -n "$since" ]; then args+=(--since "$since"); fi
+          if [ -n "$SINCE" ]; then args+=(--since "$SINCE"); fi
           if [ "$FORCE" = "true" ]; then args+=(--force); fi
           set +e
           uv run scripts/sheets.py push "${args[@]}"

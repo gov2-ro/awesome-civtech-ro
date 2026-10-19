@@ -1,0 +1,72 @@
+{
+ "_doc": "Answer map of the v2 proposal Form: for each choice question, the label shown in the Form and the ID it stands for. `kind_section` gives the site section of each entity kind. `version` goes up whenever a title or a label is added; a label is never removed, so that old responses in the tab `propuneri` still map to the same ID. Write it with `scripts/form.py --data-dir <v2 root> --write-map`.",
+ "version": 1,
+ "titles": [
+  "Ce propui?",
+  "Nume",
+  "Pe scurt",
+  "Descriere",
+  "Adresa (URL)",
+  "Alte linkuri",
+  "Subiecte",
+  "Formate",
+  "Acoperire",
+  "Oraș",
+  "Autor",
+  "E-mailul tău",
+  "Altceva?"
+ ],
+ "answers": {
+  "Ce propui?": {
+   "Proiect": "proiect",
+   "Organizație": "organizatie",
+   "Resursă": "resursa",
+   "Publicație": "publicatie",
+   "Set de date": "set-date",
+   "Campanie": "campanie"
+  },
+  "Subiecte": {
+   "Guvernare și democrație": "subiect:guvernare-democratie",
+   "Finanțe publice": "subiect:finante-publice",
+   "Drept, justiție și drepturi": "subiect:drept-justitie",
+   "Media și informare": "subiect:media-informare",
+   "Mediu și energie": "subiect:mediu-energie",
+   "Sănătate": "subiect:sanatate",
+   "Educație și cultură": "subiect:educatie-cultura",
+   "Comunități și teritoriu": "subiect:comunitati-teritoriu",
+   "Economie și muncă": "subiect:economie-munca",
+   "Societate digitală": "subiect:societate-digitala",
+   "Societate civilă": "subiect:societate-civila",
+   "Protecție socială și incluziune": "subiect:protectie-sociala",
+   "Securitate și reziliență": "subiect:securitate-rezilienta"
+  },
+  "Formate": {
+   "Hartă": "format:harta",
+   "Vizualizare de date": "format:vizualizare",
+   "Registru sau bază de date": "format:registru",
+   "Ghid": "format:ghid",
+   "Catalog sau colecție": "format:colectie",
+   "Joc sau test": "format:joc-test",
+   "Curs sau atelier": "format:curs",
+   "Articol": "format:articol",
+   "Raport sau cercetare": "format:raport",
+   "Formular": "format:formular",
+   "API oferit": "format:api",
+   "Set de date oferit": "format:set-date"
+  },
+  "Acoperire": {
+   "Național": "national",
+   "Local": "local",
+   "Internațional": "international",
+   "Necunoscut": "necunoscut"
+  }
+ },
+ "kind_section": {
+  "proiect": "proiect",
+  "organizatie": "organizatie",
+  "resursa": "resursa",
+  "publicatie": "resursa",
+  "set-date": "resursa",
+  "campanie": "resursa"
+ }
+}
