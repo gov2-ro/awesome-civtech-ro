@@ -88,20 +88,36 @@ The Sheet `civtech.gov2.ro` has two tabs, `proiecte` and `orgs`. Row 1 of each t
 CSV, in the same order. The repo stays the source of truth. `scripts/sheets.py` and two workflows keep the Sheet
 and the CSVs in step.
 
+The tab `_sync` is the **sync marker**. It has one row per synced tab: the tab, the commit, the SHA-256 of the CSV
+that `push` wrote, and the time. `push` creates and updates it, so do not edit it. Delete a row to make `sheets.py`
+forget that tab. The marker names the CSVs that the Sheet and the repo both started from. That is the base of a
+three-way comparison.
+
 **Sheet → repo (`sheets-pull`).** The workflow runs every 6 hours, and on demand (*Actions → sheets-pull → Run
-workflow*). It reads the Sheet and, if a CSV changed, runs `validate.py` and `build.py` and opens one pull request
-from the branch `sheets-sync`, "Sheets: modificări din tabel". The text of the pull request lists the changed rows
-and the output of `validate.py`. You review the pull request and merge it. The workflow never pushes to `main`.
-It runs `validate.py` itself, because a pull request opened by a workflow does not start `validate.yml`.
+workflow*). It reads the Sheet and merges it into the CSVs cell by cell, against the base:
+- A cell that only the Sheet changed since the marker takes the Sheet's value.
+- A cell that only the repo changed keeps the repo's value. A CSV edit on `main` that `sheets-push` has not written
+  yet is no longer a revert.
+- A cell that both changed to different values is a conflict. `pull` writes nothing and exits with code 3, and the
+  job fails with the list of cells in its log. Make the two values equal, in the Sheet or in the CSV, then run
+  `sheets-pull` again. (`pull --since HEAD` lets the Sheet win every conflict.)
+
+If a CSV changed, the workflow runs `validate.py` and `build.py` and opens one pull request from the branch
+`sheets-sync`, "Sheets: modificări din tabel". The text of the pull request lists the changed rows and the output of
+`validate.py`. You review the pull request and merge it. The workflow never pushes to `main`. It runs `validate.py`
+itself, because a pull request opened by a workflow does not start `validate.yml`. When `validate.py` or `build.py`
+fails, the workflow still opens or updates the pull request. Then it sets the commit status `validate / sheets-pull`
+to `failure` on the head of the pull request, and fails the job.
 
 **Repo → Sheet (`sheets-push`).** When a push to `main` changes `data/proiecte.csv` or `data/orgs.csv`, the workflow
 rewrites both tabs from the CSVs. Every cell is plain text, row 1 is frozen and bold, and the columns `fel`,
 `domeniu`, `tip`, `acoperire`, `stare` and `civictech` have drop-downs from `data/taxonomy.json`. The workflow
-never overwrites an edit that is not in the repo yet. It compares the Sheet with the CSVs of the push's previous
-commit (`--since`). If the Sheet holds a change that is neither in those CSVs nor in the new ones, the job fails
-with "Tabelul are modificări nesincronizate; rulează sheets-pull". Run `sheets-pull`, merge the pull request, and the
-next push writes the Sheet. A pull request that came from the Sheet needs no such step: its changes are in the
-new CSVs, so the check passes.
+never overwrites an edit that is not in the repo yet. It compares the Sheet with the CSVs at the commit in the
+marker (the last successful push), not with the previous commit of the push: a skipped run does not move the base.
+If the Sheet holds a cell that differs from the marker's CSVs and from the new CSVs, the job fails with "Tabelul are
+modificări nesincronizate; rulează sheets-pull". Run `sheets-pull`, merge the pull request, and the next push writes
+the Sheet. A pull request that came from the Sheet needs no such step: its changes are in the new CSVs, so the
+check passes. `push` writes the marker last, and only when the CSV it pushed is the file at `HEAD`.
 
 Both workflows share one queue, so they never run at the same time.
 
@@ -109,23 +125,37 @@ Both workflows share one queue, so they never run at the same time.
 - Do not change row 1 or the column order. `pull` stops with an error that names the difference.
 - Do not write to the right of the last column.
 - A row deleted in the Sheet is a deleted entry in the pull request.
-- `pull` copies the Sheet as it is: it strips trailing spaces and drops empty rows, and nothing more. If you edit a
-  CSV on `main` and the Sheet in the same hours, the pull request shows the Sheet's old value as a revert. Merge
-  only what you want.
-- A new column goes into `PROIECTE_COLS` or `ORGS_COLS` in `scripts/common.py` first. Then run `sheets.py push
-  --force` once, so that row 1 of the Sheet has the new column.
+- `pull` strips trailing spaces and drops empty rows, and nothing more.
+- A new column goes into `PROIECTE_COLS` or `ORGS_COLS` in `scripts/common.py` and into the CSV header together.
+  The next `push` rewrites row 1 of the Sheet and clears a column that left the list. It needs no `--force`. A column
+  that a person added to the Sheet, with data in it, stops the push (exit 3).
 
 **By hand** (needs [uv](https://docs.astral.sh/uv/) and `.env`, see above):
 ```sh
 set -a; source .env; set +a
-uv run scripts/sheets.py diff                 # Sheet vs the CSVs: rows added / removed / changed; no writes
-uv run scripts/sheets.py pull                 # Sheet -> data/proiecte.csv, data/orgs.csv (then: git diff)
-uv run scripts/sheets.py push --since <ref>   # CSVs -> Sheet; <ref> = the commit the Sheet was last synced from
-uv run scripts/sheets.py push                 # same, but refuses if the Sheet differs from the current CSVs
+uv run scripts/sheets.py diff                 # what pull would write; what the repo has that the Sheet lacks; conflicts. No writes
+uv run scripts/sheets.py pull                 # merge the Sheet into data/proiecte.csv, data/orgs.csv (then: git diff)
+uv run scripts/sheets.py pull --check         # ... then run validate.py on the root; exit 1 on errors (the CSVs stay written)
+uv run scripts/sheets.py push                 # CSVs -> Sheet; refuses (exit 3) if the Sheet holds edits not in the repo
+uv run scripts/sheets.py push --since <ref>   # the same, with the CSVs at <ref> as the base instead of the marker
 uv run scripts/sheets.py push --force         # no check: the Sheet becomes a copy of the CSVs
 ```
-Exit code 3 means that the Sheet holds edits not yet in the repo; nothing was written. In GitHub, run
-*Actions → sheets-push → Run workflow* with the input `since` (or `force`) to run a push by hand.
+Without a marker, `pull` copies the Sheet over the CSVs (it warns), and `push` compares the Sheet with the current CSVs.
+The first `push --force` from a clean `main` creates the marker. Exit code 3 means that nothing was written: `push`
+found Sheet edits that are not in the repo, or `pull` found a conflict. In GitHub, run *Actions → sheets-push → Run
+workflow* with the input `since` (or `force`) to run a push by hand.
+
+### Taxonomy v2 tabs (preview, not in the workflows)
+
+`sheets.py --data-dir data/taxonomy-v2/integrare` works on new tabs only: `v2-intrari` mirrors `intrari.csv`, and
+`--tabs v2-intrari,v2-revizuire` adds the review queue `revizuire.csv`. The headers come from `schema.json`. A v2 root
+refuses the tabs `proiecte`, `orgs` and `propuneri`, and a v1 root refuses the `v2-` tabs. `push` creates a missing
+`v2-` tab. IDs stay text, a cell with `|` takes several IDs, and only single-value columns have a strict drop-down.
+`pull --data-dir ... --check` runs the package checks, which test every ID of every cell against its concept scheme.
+```sh
+uv run scripts/sheets.py push --data-dir data/taxonomy-v2/integrare                 # commit the CSV first: the marker names a commit
+uv run scripts/sheets.py pull --data-dir data/taxonomy-v2/integrare --check
+```
 
 ### Formular (the proposal Form)
 
@@ -150,12 +180,28 @@ the taxonomy, so keep those four titles as they are.
 - Give the service account *Editor* access to the Form, and enable the **Google Forms API** in the Google Cloud
   project. Put the Form's ID (the part of the edit URL between `/d/` and `/edit`) in `.env` as `FORM_ID`.
 
+**Taxonomy v2 (offline).** With a v2 `--data-dir`, `form.py` plans the v2 questions from the vocabulary and sends
+nothing to Google (`--apply` and `--save` are refused until the cutover). The Form asks for the entity kind, the name,
+the addresses, the root subjects and the formats (checkboxes) and the coverage. The file `data/form-v2.json` is the
+versioned answer map: for each choice question, label → ID. A label is never removed from it, so that old responses
+still map to the same ID after the vocabulary renames a label.
+```sh
+uv run scripts/form.py --data-dir data/taxonomy-v2/integrare                       # the plan, with the entry counts and the map drift
+uv run scripts/form.py --data-dir data/taxonomy-v2/integrare --check               # exit 1 when the map lacks a label of the plan
+uv run scripts/form.py --data-dir data/taxonomy-v2/integrare --write-map           # add the new labels to the map (version + 1)
+uv run scripts/form.py --data-dir data/taxonomy-v2/integrare --import propuneri.csv --out rows.csv   # responses -> intrari.csv rows
+```
+`--import` reads an export of the tab `propuneri`. It writes `intrari.csv` rows with IDs and `clasificare_stare` `propus`.
+The state is `de-revizuit` when the response names no subject or several (the editor chooses the primary subject). It
+reports every unknown label and leaves it out; it never guesses. It does not copy the e-mail of the proposer.
+The editor copies the rows to `intrari.csv` by hand and runs `validate.py`.
+
 ### Set up (once)
 
 1. **The spreadsheet.** One Google Sheet with two tabs named `proiecte` and `orgs`. Note the Sheet ID: the part
-   of the URL between `/d/` and `/edit`. `sheets.py push` fills the tabs and sets the formats, so you do not
-   need to prepare them. To fill a Sheet by hand instead: *File → Import → Upload* a CSV, with *Convert text to
-   numbers, dates and formulas: No*.
+   of the URL between `/d/` and `/edit`. `sheets.py push` fills the tabs, sets the formats and creates the tab
+   `_sync` (the marker), so you do not need to prepare them. To fill a Sheet by hand instead: *File → Import →
+   Upload* a CSV, with *Convert text to numbers, dates and formulas: No*.
 2. **A Google Cloud project.** At [console.cloud.google.com](https://console.cloud.google.com/), create a
    project (e.g. `civtech-sync`). In *APIs & Services → Library*, enable the **Google Sheets API**.
 3. **A service account.** In *IAM & Admin → Service accounts*, create one (e.g. `civtech-sheets`). It needs no
@@ -169,6 +215,11 @@ the taxonomy, so keep those four titles as they are.
 6. **Pull requests from workflows.** In *Settings → Actions → General → Workflow permissions*, tick *Allow GitHub
    Actions to create and approve pull requests*. Without it, `sheets-pull` cannot open the pull request.
 7. **Locally** (optional): put `GOOGLE_APPLICATION_CREDENTIALS` (path to the JSON file) and `SHEET_ID` in `.env`.
+8. **The first marker.** Run *Actions → sheets-push → Run workflow* once from `main`, with `force` ticked (or without
+   it, if the Sheet equals the CSVs). Until then `pull` is two-way and warns.
+9. **The status of the pull request** (optional). `sheets-pull` sets the commit status `validate / sheets-pull` on the
+   head of its pull request. A branch protection rule that requires this status also blocks every pull request that
+   never gets it, so require it only if you merge other pull requests as an administrator.
 
 The workflows run on a schedule, on pushes to `main` and by hand only, because GitHub does not give secrets to
 pull requests from forks.
