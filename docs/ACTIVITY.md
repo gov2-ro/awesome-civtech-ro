@@ -1,5 +1,40 @@
 # Activity
 
+## 2026-10-20 — Enrichment on explicit roots; profile merge; label hashes; dated last activity (slice A)
+
+**Done**
+- `profile.py`, `search.py`, `review.py` take `--data-dir` (default `data/`). A v2 run reads entries from `load_catalogue` and
+  reads and writes only the root's `observatii/` files. Images stay in `site/img/`. The three scripts now import under plain
+  `python3`; each asks for its libraries only when it needs them.
+- `common.merge_profile(old, fresh)`: a refresh (also `--force`) keeps `mentions`, `mention_hosts`, `search_social`, `opr`, and
+  the `--extra` signals that the new fetch did not return (`cert_first`, `wiki_refs`, the repo group, …). `wiki_refs()` returns
+  None on a failed call instead of a false 0.
+- `search.py` on v2: author names from the attribution relations, `autor_original` as fallback; organisation sites only from
+  relation targets that are organisation entries. Example: `7-ani-de-acasa` now searches "Funky Citizens", not `funky-citizens`.
+- `review.py` on v2: facet IDs with definitions, one array per facet, cited evidence for technologies and typed roles
+  (a quote of at least 12 characters from the supplied text), unknown terms to a proposal list. Output in
+  `observatii/review/` (gitignored); `intrari.csv` is never written. The v1 prompt, schema and suggestion rows are unchanged
+  (compared on all 122 entries).
+- Each review answer stores hashes of the entry text, the sent URL set, the vocabulary, the prompt and the model. A changed hash
+  makes the entry due again. `build.py` counts a label only for a kept row with the same URL; a partly labelled entry adds its
+  unlabelled kept hosts and carries `provisional: true`. `review.py` and `build.py` print the label coverage.
+- `last_activity`: a dated update wins; the copyright year is a fallback, as `<year>-01-01`, never after today.
+- `scripts/test_enrichment.py`: 55 tests, no network. All 95 unit tests pass (also on Python 3.12).
+- Measured: label coverage 0/1408 kept rows (no labels exist yet). Before the fix, 27 profiles had a future
+  last activity (`2026-12-31`). v1 build: `stale` changes on 2 of 122 items (`code4ro` 2026 → 2023; `e-cutremur` empty → 2023),
+  `score` on 19, all lower (17 by 7–8 points; `code4ro` 73 → 49, `e-cutremur` 57 → 33). Nothing else in the build changed.
+- `docs/METODOLOGIE.md` and `docs/DATA-SCHEMA.md` describe the new rules.
+
+**Hard**
+- This worktree also started at `v0.3.1`; the agent rebased its empty branch onto the brief's commit.
+
+**Decided**
+- The hashes stay in the local, untracked `raw.jsonl`. Cost: a fresh checkout treats every entry as due (a paid re-run).
+  A tracked hash file would avoid it, but it adds a file; revisit before the first paid run.
+- A failed fetch never blanks a known value. Cost: a feed that a site really removed stays in the profile until `--extra` finds another.
+- `review.py --dry-run` no longer fetches the homepage (also v1); `--fetch` restores it. A dry run must work offline.
+- The v2 review does not propose `maturitate` or `tip_organizatie`. Maturity needs an explicit declaration (specification).
+
 ## 2026-10-19 — v2 browser code: failed load, noscript, head metadata, observed dates, methodology (slice C)
 
 **Done**

@@ -6,7 +6,7 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
 Branch `taxonomy-v2-migration`. Production stays on v1. No Google, workflow, deploy or release action.
 
-- [~] A. Enrichment on explicit roots: `profile.py`, `search.py`, `review.py --data-dir`; profile merge; label hashes and coverage; copyright date.
+- [x] A. Enrichment on explicit roots: `profile.py`, `search.py`, `review.py --data-dir`; profile merge; label hashes and coverage; copyright date.
 - [~] B. Sheets and Form for v2: new tabs, `_sync` marker as the base, 3-way pull, blocking validation, offline round trips, Form plan and importer.
 - [x] C. Frontend audit defects in `site-v2/`: failed data load, noscript, canonical, observed dates, methodology page.
 - [~] D. Review queue: reconcile R001–R066 with the integration copy; `tehnic` state for non-editorial items; a recommendation on every open item.
