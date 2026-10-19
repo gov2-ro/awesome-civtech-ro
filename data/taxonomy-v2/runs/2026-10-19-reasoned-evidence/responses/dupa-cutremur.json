@@ -1,0 +1,308 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "dupa-cutremur",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:securitate-rezilienta",
+    "subiecte": [
+      "subiect:securitate-rezilienta",
+      "subiect:comunitati-teritoriu"
+    ],
+    "teme": [
+      "subiect:cutremure",
+      "subiect:infrastructura-locala"
+    ],
+    "scopuri": [
+      "scop:pregatire-riscuri",
+      "scop:informare"
+    ],
+    "functionalitati": [],
+    "formate": [
+      "format:harta",
+      "format:set-date"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "local",
+    "arii_acoperite": [
+      "localitate:bucuresti"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "dupa-cutremur:tip_entitate_original",
+          "locator": "clasificare-input.csv:dupa-cutremur:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:securitate-rezilienta",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "dupa-cutremur:descriere_scurta",
+          "locator": "clasificare-input.csv:dupa-cutremur:descriere_scurta",
+          "excerpt": "Clădiri vulnerabile și străzi care pot fi blocate după un cutremur"
+        },
+        {
+          "source_id": "dupa-cutremur:descriere",
+          "locator": "clasificare-input.csv:dupa-cutremur:descriere",
+          "excerpt": "Hartă interactivă a Bucureștiului care arată clădirile vulnerabile și străzile care ar putea fi blocate de dărâmături după un cutremur. Dezvoltată de Re:Rise și geo-spatial.org, pune la dispoziția cetățenilor și autorităților date deschise pentru pregătire și planificarea intervențiilor."
+        }
+      ],
+      "rationale_ro": "Harta clădirilor vulnerabile din București sprijină pregătirea pentru cutremur. Conceptul subiect:cutremure are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:securitate-rezilienta",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "dupa-cutremur:descriere_scurta",
+          "locator": "clasificare-input.csv:dupa-cutremur:descriere_scurta",
+          "excerpt": "Clădiri vulnerabile și străzi care pot fi blocate după un cutremur"
+        },
+        {
+          "source_id": "dupa-cutremur:descriere",
+          "locator": "clasificare-input.csv:dupa-cutremur:descriere",
+          "excerpt": "Hartă interactivă a Bucureștiului care arată clădirile vulnerabile și străzile care ar putea fi blocate de dărâmături după un cutremur. Dezvoltată de Re:Rise și geo-spatial.org, pune la dispoziția cetățenilor și autorităților date deschise pentru pregătire și planificarea intervențiilor."
+        }
+      ],
+      "rationale_ro": "Harta clădirilor vulnerabile din București sprijină pregătirea pentru cutremur. Conceptul subiect:cutremure are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:comunitati-teritoriu",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "dupa-cutremur:descriere_scurta",
+          "locator": "clasificare-input.csv:dupa-cutremur:descriere_scurta",
+          "excerpt": "Clădiri vulnerabile și străzi care pot fi blocate după un cutremur"
+        },
+        {
+          "source_id": "dupa-cutremur:descriere",
+          "locator": "clasificare-input.csv:dupa-cutremur:descriere",
+          "excerpt": "Hartă interactivă a Bucureștiului care arată clădirile vulnerabile și străzile care ar putea fi blocate de dărâmături după un cutremur. Dezvoltată de Re:Rise și geo-spatial.org, pune la dispoziția cetățenilor și autorităților date deschise pentru pregătire și planificarea intervențiilor."
+        }
+      ],
+      "rationale_ro": "Harta clădirilor vulnerabile din București sprijină pregătirea pentru cutremur. Conceptul subiect:infrastructura-locala are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:cutremure",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "dupa-cutremur:descriere_scurta",
+          "locator": "clasificare-input.csv:dupa-cutremur:descriere_scurta",
+          "excerpt": "Clădiri vulnerabile și străzi care pot fi blocate după un cutremur"
+        },
+        {
+          "source_id": "dupa-cutremur:descriere",
+          "locator": "clasificare-input.csv:dupa-cutremur:descriere",
+          "excerpt": "Hartă interactivă a Bucureștiului care arată clădirile vulnerabile și străzile care ar putea fi blocate de dărâmături după un cutremur. Dezvoltată de Re:Rise și geo-spatial.org, pune la dispoziția cetățenilor și autorităților date deschise pentru pregătire și planificarea intervențiilor."
+        }
+      ],
+      "rationale_ro": "Harta clădirilor vulnerabile din București sprijină pregătirea pentru cutremur. Încadrare: Cutremure."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:infrastructura-locala",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "dupa-cutremur:descriere_scurta",
+          "locator": "clasificare-input.csv:dupa-cutremur:descriere_scurta",
+          "excerpt": "Clădiri vulnerabile și străzi care pot fi blocate după un cutremur"
+        },
+        {
+          "source_id": "dupa-cutremur:descriere",
+          "locator": "clasificare-input.csv:dupa-cutremur:descriere",
+          "excerpt": "Hartă interactivă a Bucureștiului care arată clădirile vulnerabile și străzile care ar putea fi blocate de dărâmături după un cutremur. Dezvoltată de Re:Rise și geo-spatial.org, pune la dispoziția cetățenilor și autorităților date deschise pentru pregătire și planificarea intervențiilor."
+        }
+      ],
+      "rationale_ro": "Harta clădirilor vulnerabile din București sprijină pregătirea pentru cutremur. Încadrare: Infrastructură locală."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:pregatire-riscuri",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "dupa-cutremur:descriere_scurta",
+          "locator": "clasificare-input.csv:dupa-cutremur:descriere_scurta",
+          "excerpt": "Clădiri vulnerabile și străzi care pot fi blocate după un cutremur"
+        },
+        {
+          "source_id": "dupa-cutremur:descriere",
+          "locator": "clasificare-input.csv:dupa-cutremur:descriere",
+          "excerpt": "Hartă interactivă a Bucureștiului care arată clădirile vulnerabile și străzile care ar putea fi blocate de dărâmături după un cutremur. Dezvoltată de Re:Rise și geo-spatial.org, pune la dispoziția cetățenilor și autorităților date deschise pentru pregătire și planificarea intervențiilor."
+        }
+      ],
+      "rationale_ro": "Harta clădirilor vulnerabile din București sprijină pregătirea pentru cutremur. Încadrare: Pregătire pentru riscuri."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "dupa-cutremur:descriere_scurta",
+          "locator": "clasificare-input.csv:dupa-cutremur:descriere_scurta",
+          "excerpt": "Clădiri vulnerabile și străzi care pot fi blocate după un cutremur"
+        },
+        {
+          "source_id": "dupa-cutremur:descriere",
+          "locator": "clasificare-input.csv:dupa-cutremur:descriere",
+          "excerpt": "Hartă interactivă a Bucureștiului care arată clădirile vulnerabile și străzile care ar putea fi blocate de dărâmături după un cutremur. Dezvoltată de Re:Rise și geo-spatial.org, pune la dispoziția cetățenilor și autorităților date deschise pentru pregătire și planificarea intervențiilor."
+        }
+      ],
+      "rationale_ro": "Harta clădirilor vulnerabile din București sprijină pregătirea pentru cutremur. Încadrare: Informare și înțelegere."
+    },
+    {
+      "field": "formate",
+      "value": "format:harta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "dupa-cutremur:descriere_scurta",
+          "locator": "clasificare-input.csv:dupa-cutremur:descriere_scurta",
+          "excerpt": "Clădiri vulnerabile și străzi care pot fi blocate după un cutremur"
+        },
+        {
+          "source_id": "dupa-cutremur:descriere",
+          "locator": "clasificare-input.csv:dupa-cutremur:descriere",
+          "excerpt": "Hartă interactivă a Bucureștiului care arată clădirile vulnerabile și străzile care ar putea fi blocate de dărâmături după un cutremur. Dezvoltată de Re:Rise și geo-spatial.org, pune la dispoziția cetățenilor și autorităților date deschise pentru pregătire și planificarea intervențiilor."
+        }
+      ],
+      "rationale_ro": "Harta clădirilor vulnerabile din București sprijină pregătirea pentru cutremur. Încadrare: Hartă."
+    },
+    {
+      "field": "formate",
+      "value": "format:set-date",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "dupa-cutremur:descriere_scurta",
+          "locator": "clasificare-input.csv:dupa-cutremur:descriere_scurta",
+          "excerpt": "Clădiri vulnerabile și străzi care pot fi blocate după un cutremur"
+        },
+        {
+          "source_id": "dupa-cutremur:descriere",
+          "locator": "clasificare-input.csv:dupa-cutremur:descriere",
+          "excerpt": "Hartă interactivă a Bucureștiului care arată clădirile vulnerabile și străzile care ar putea fi blocate de dărâmături după un cutremur. Dezvoltată de Re:Rise și geo-spatial.org, pune la dispoziția cetățenilor și autorităților date deschise pentru pregătire și planificarea intervențiilor."
+        }
+      ],
+      "rationale_ro": "Harta clădirilor vulnerabile din București sprijină pregătirea pentru cutremur. Încadrare: Set de date oferit."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "local",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "dupa-cutremur:acoperire_original",
+          "locator": "clasificare-input.csv:dupa-cutremur:acoperire_original",
+          "excerpt": "local"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "localitate:bucuresti",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "dupa-cutremur:acoperire_original",
+          "locator": "clasificare-input.csv:dupa-cutremur:acoperire_original",
+          "excerpt": "local"
+        },
+        {
+          "source_id": "dupa-cutremur:oras_original",
+          "locator": "clasificare-input.csv:dupa-cutremur:oras_original",
+          "excerpt": "București"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": null,
+      "object_literal": "Re:Rise",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "dupa-cutremur:autor_original",
+          "locator": "clasificare-input.csv:dupa-cutremur:autor_original",
+          "excerpt": "Re:Rise & geo-spatial.org"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    },
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": null,
+      "object_literal": "geo-spatial.org",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "dupa-cutremur:autor_original",
+          "locator": "clasificare-input.csv:dupa-cutremur:autor_original",
+          "excerpt": "Re:Rise & geo-spatial.org"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    },
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "cuvinte",
+      "original_value": "primării",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

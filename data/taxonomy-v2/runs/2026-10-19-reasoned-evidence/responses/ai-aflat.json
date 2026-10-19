@@ -1,0 +1,247 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "ai-aflat",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:drept-justitie",
+    "subiecte": [
+      "subiect:drept-justitie"
+    ],
+    "teme": [
+      "subiect:legislatie"
+    ],
+    "scopuri": [
+      "scop:informare",
+      "scop:aparare-drepturi"
+    ],
+    "functionalitati": [],
+    "formate": [],
+    "tehnologii": [
+      "tehnologie:ai"
+    ],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": "maturitate:operational",
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "ai-aflat:tip_entitate_original",
+          "locator": "clasificare-input.csv:ai-aflat:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:drept-justitie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ai-aflat:descriere_scurta",
+          "locator": "clasificare-input.csv:ai-aflat:descriere_scurta",
+          "excerpt": "Asistent AI care explică legislația pe înțeles"
+        },
+        {
+          "source_id": "ai-aflat:descriere",
+          "locator": "clasificare-input.csv:ai-aflat:descriere",
+          "excerpt": "Asistent AI pentru înțelegerea legislației din România, explică prevederile legale într-un limbaj accesibil, ajutând utilizatorii să înțeleagă mai ușor informațiile juridice."
+        }
+      ],
+      "rationale_ro": "Asistentul AI explică legislația; descrierea nu limitează serviciul la Legea 544. Conceptul subiect:legislatie are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:drept-justitie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ai-aflat:descriere_scurta",
+          "locator": "clasificare-input.csv:ai-aflat:descriere_scurta",
+          "excerpt": "Asistent AI care explică legislația pe înțeles"
+        },
+        {
+          "source_id": "ai-aflat:descriere",
+          "locator": "clasificare-input.csv:ai-aflat:descriere",
+          "excerpt": "Asistent AI pentru înțelegerea legislației din România, explică prevederile legale într-un limbaj accesibil, ajutând utilizatorii să înțeleagă mai ușor informațiile juridice."
+        }
+      ],
+      "rationale_ro": "Asistentul AI explică legislația; descrierea nu limitează serviciul la Legea 544. Conceptul subiect:legislatie are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:legislatie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ai-aflat:descriere_scurta",
+          "locator": "clasificare-input.csv:ai-aflat:descriere_scurta",
+          "excerpt": "Asistent AI care explică legislația pe înțeles"
+        },
+        {
+          "source_id": "ai-aflat:descriere",
+          "locator": "clasificare-input.csv:ai-aflat:descriere",
+          "excerpt": "Asistent AI pentru înțelegerea legislației din România, explică prevederile legale într-un limbaj accesibil, ajutând utilizatorii să înțeleagă mai ușor informațiile juridice."
+        }
+      ],
+      "rationale_ro": "Asistentul AI explică legislația; descrierea nu limitează serviciul la Legea 544. Încadrare: Legislație."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ai-aflat:descriere_scurta",
+          "locator": "clasificare-input.csv:ai-aflat:descriere_scurta",
+          "excerpt": "Asistent AI care explică legislația pe înțeles"
+        },
+        {
+          "source_id": "ai-aflat:descriere",
+          "locator": "clasificare-input.csv:ai-aflat:descriere",
+          "excerpt": "Asistent AI pentru înțelegerea legislației din România, explică prevederile legale într-un limbaj accesibil, ajutând utilizatorii să înțeleagă mai ușor informațiile juridice."
+        }
+      ],
+      "rationale_ro": "Asistentul AI explică legislația; descrierea nu limitează serviciul la Legea 544. Încadrare: Informare și înțelegere."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:aparare-drepturi",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ai-aflat:descriere_scurta",
+          "locator": "clasificare-input.csv:ai-aflat:descriere_scurta",
+          "excerpt": "Asistent AI care explică legislația pe înțeles"
+        },
+        {
+          "source_id": "ai-aflat:descriere",
+          "locator": "clasificare-input.csv:ai-aflat:descriere",
+          "excerpt": "Asistent AI pentru înțelegerea legislației din România, explică prevederile legale într-un limbaj accesibil, ajutând utilizatorii să înțeleagă mai ușor informațiile juridice."
+        }
+      ],
+      "rationale_ro": "Asistentul AI explică legislația; descrierea nu limitează serviciul la Legea 544. Încadrare: Apărarea drepturilor."
+    },
+    {
+      "field": "tehnologii",
+      "value": "tehnologie:ai",
+      "basis": "explicit",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "ai-aflat:descriere_scurta",
+          "locator": "clasificare-input.csv:ai-aflat:descriere_scurta",
+          "excerpt": "Asistent AI care explică legislația pe înțeles"
+        },
+        {
+          "source_id": "ai-aflat:descriere",
+          "locator": "clasificare-input.csv:ai-aflat:descriere",
+          "excerpt": "Asistent AI pentru înțelegerea legislației din România, explică prevederile legale într-un limbaj accesibil, ajutând utilizatorii să înțeleagă mai ușor informațiile juridice."
+        }
+      ],
+      "rationale_ro": "Asistentul AI explică legislația; descrierea nu limitează serviciul la Legea 544. Încadrare: Utilizează inteligență artificială."
+    },
+    {
+      "field": "maturitate",
+      "value": "maturitate:operational",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ai-aflat:descriere_scurta",
+          "locator": "clasificare-input.csv:ai-aflat:descriere_scurta",
+          "excerpt": "Asistent AI care explică legislația pe înțeles"
+        },
+        {
+          "source_id": "ai-aflat:descriere",
+          "locator": "clasificare-input.csv:ai-aflat:descriere",
+          "excerpt": "Asistent AI pentru înțelegerea legislației din România, explică prevederile legale într-un limbaj accesibil, ajutând utilizatorii să înțeleagă mai ușor informațiile juridice."
+        }
+      ],
+      "rationale_ro": "Descrierea oferă un flux concret pentru utilizare obișnuită de către publicul țintă. Asistentul AI explică legislația; descrierea nu limitează serviciul la Legea 544. Încadrare: Operațional."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ai-aflat:acoperire_original",
+          "locator": "clasificare-input.csv:ai-aflat:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ai-aflat:acoperire_original",
+          "locator": "clasificare-input.csv:ai-aflat:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": null,
+      "object_literal": "Vlad Tudor",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "ai-aflat:autor_original",
+          "locator": "clasificare-input.csv:ai-aflat:autor_original",
+          "excerpt": "Vlad Tudor"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "instrument",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "legea-544",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

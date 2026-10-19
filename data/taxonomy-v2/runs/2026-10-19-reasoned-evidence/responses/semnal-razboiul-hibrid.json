@@ -1,0 +1,312 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "semnal-razboiul-hibrid",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:securitate-rezilienta",
+    "subiecte": [
+      "subiect:securitate-rezilienta",
+      "subiect:societate-digitala",
+      "subiect:media-informare"
+    ],
+    "teme": [
+      "subiect:amenintari-hibride",
+      "subiect:securitate-cibernetica",
+      "subiect:dezinformare"
+    ],
+    "scopuri": [
+      "scop:informare"
+    ],
+    "functionalitati": [
+      "functie:cautare"
+    ],
+    "formate": [
+      "format:harta",
+      "format:registru"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "international",
+    "arii_acoperite": []
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "semnal-razboiul-hibrid:tip_entitate_original",
+          "locator": "clasificare-input.csv:semnal-razboiul-hibrid:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:securitate-rezilienta",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "semnal-razboiul-hibrid:descriere_scurta",
+          "locator": "clasificare-input.csv:semnal-razboiul-hibrid:descriere_scurta",
+          "excerpt": "Harta incidentelor"
+        },
+        {
+          "source_id": "semnal-razboiul-hibrid:descriere",
+          "locator": "clasificare-input.csv:semnal-razboiul-hibrid:descriere",
+          "excerpt": "177 de incidente documentate din 2014 până azi, 25 dintre ele în România. Drone, sabotaje, atacuri cibernetice, spionaj și dezinformare, fiecare cu sursa lui."
+        }
+      ],
+      "rationale_ro": "Harta documentează incidente hibride transfrontaliere; numai o parte sunt în România. Conceptul subiect:amenintari-hibride are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:securitate-rezilienta",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "semnal-razboiul-hibrid:descriere_scurta",
+          "locator": "clasificare-input.csv:semnal-razboiul-hibrid:descriere_scurta",
+          "excerpt": "Harta incidentelor"
+        },
+        {
+          "source_id": "semnal-razboiul-hibrid:descriere",
+          "locator": "clasificare-input.csv:semnal-razboiul-hibrid:descriere",
+          "excerpt": "177 de incidente documentate din 2014 până azi, 25 dintre ele în România. Drone, sabotaje, atacuri cibernetice, spionaj și dezinformare, fiecare cu sursa lui."
+        }
+      ],
+      "rationale_ro": "Harta documentează incidente hibride transfrontaliere; numai o parte sunt în România. Conceptul subiect:amenintari-hibride are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:societate-digitala",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "semnal-razboiul-hibrid:descriere_scurta",
+          "locator": "clasificare-input.csv:semnal-razboiul-hibrid:descriere_scurta",
+          "excerpt": "Harta incidentelor"
+        },
+        {
+          "source_id": "semnal-razboiul-hibrid:descriere",
+          "locator": "clasificare-input.csv:semnal-razboiul-hibrid:descriere",
+          "excerpt": "177 de incidente documentate din 2014 până azi, 25 dintre ele în România. Drone, sabotaje, atacuri cibernetice, spionaj și dezinformare, fiecare cu sursa lui."
+        }
+      ],
+      "rationale_ro": "Harta documentează incidente hibride transfrontaliere; numai o parte sunt în România. Conceptul subiect:securitate-cibernetica are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:media-informare",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "semnal-razboiul-hibrid:descriere_scurta",
+          "locator": "clasificare-input.csv:semnal-razboiul-hibrid:descriere_scurta",
+          "excerpt": "Harta incidentelor"
+        },
+        {
+          "source_id": "semnal-razboiul-hibrid:descriere",
+          "locator": "clasificare-input.csv:semnal-razboiul-hibrid:descriere",
+          "excerpt": "177 de incidente documentate din 2014 până azi, 25 dintre ele în România. Drone, sabotaje, atacuri cibernetice, spionaj și dezinformare, fiecare cu sursa lui."
+        }
+      ],
+      "rationale_ro": "Harta documentează incidente hibride transfrontaliere; numai o parte sunt în România. Conceptul subiect:dezinformare are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:amenintari-hibride",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "semnal-razboiul-hibrid:descriere_scurta",
+          "locator": "clasificare-input.csv:semnal-razboiul-hibrid:descriere_scurta",
+          "excerpt": "Harta incidentelor"
+        },
+        {
+          "source_id": "semnal-razboiul-hibrid:descriere",
+          "locator": "clasificare-input.csv:semnal-razboiul-hibrid:descriere",
+          "excerpt": "177 de incidente documentate din 2014 până azi, 25 dintre ele în România. Drone, sabotaje, atacuri cibernetice, spionaj și dezinformare, fiecare cu sursa lui."
+        }
+      ],
+      "rationale_ro": "Harta documentează incidente hibride transfrontaliere; numai o parte sunt în România. Încadrare: Amenințări hibride."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:securitate-cibernetica",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "semnal-razboiul-hibrid:descriere_scurta",
+          "locator": "clasificare-input.csv:semnal-razboiul-hibrid:descriere_scurta",
+          "excerpt": "Harta incidentelor"
+        },
+        {
+          "source_id": "semnal-razboiul-hibrid:descriere",
+          "locator": "clasificare-input.csv:semnal-razboiul-hibrid:descriere",
+          "excerpt": "177 de incidente documentate din 2014 până azi, 25 dintre ele în România. Drone, sabotaje, atacuri cibernetice, spionaj și dezinformare, fiecare cu sursa lui."
+        }
+      ],
+      "rationale_ro": "Harta documentează incidente hibride transfrontaliere; numai o parte sunt în România. Încadrare: Securitate cibernetică."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:dezinformare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "semnal-razboiul-hibrid:descriere_scurta",
+          "locator": "clasificare-input.csv:semnal-razboiul-hibrid:descriere_scurta",
+          "excerpt": "Harta incidentelor"
+        },
+        {
+          "source_id": "semnal-razboiul-hibrid:descriere",
+          "locator": "clasificare-input.csv:semnal-razboiul-hibrid:descriere",
+          "excerpt": "177 de incidente documentate din 2014 până azi, 25 dintre ele în România. Drone, sabotaje, atacuri cibernetice, spionaj și dezinformare, fiecare cu sursa lui."
+        }
+      ],
+      "rationale_ro": "Harta documentează incidente hibride transfrontaliere; numai o parte sunt în România. Încadrare: Dezinformare."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "semnal-razboiul-hibrid:descriere_scurta",
+          "locator": "clasificare-input.csv:semnal-razboiul-hibrid:descriere_scurta",
+          "excerpt": "Harta incidentelor"
+        },
+        {
+          "source_id": "semnal-razboiul-hibrid:descriere",
+          "locator": "clasificare-input.csv:semnal-razboiul-hibrid:descriere",
+          "excerpt": "177 de incidente documentate din 2014 până azi, 25 dintre ele în România. Drone, sabotaje, atacuri cibernetice, spionaj și dezinformare, fiecare cu sursa lui."
+        }
+      ],
+      "rationale_ro": "Harta documentează incidente hibride transfrontaliere; numai o parte sunt în România. Încadrare: Informare și înțelegere."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:cautare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "semnal-razboiul-hibrid:descriere_scurta",
+          "locator": "clasificare-input.csv:semnal-razboiul-hibrid:descriere_scurta",
+          "excerpt": "Harta incidentelor"
+        },
+        {
+          "source_id": "semnal-razboiul-hibrid:descriere",
+          "locator": "clasificare-input.csv:semnal-razboiul-hibrid:descriere",
+          "excerpt": "177 de incidente documentate din 2014 până azi, 25 dintre ele în România. Drone, sabotaje, atacuri cibernetice, spionaj și dezinformare, fiecare cu sursa lui."
+        }
+      ],
+      "rationale_ro": "Harta documentează incidente hibride transfrontaliere; numai o parte sunt în România. Încadrare: Caută și consultă."
+    },
+    {
+      "field": "formate",
+      "value": "format:harta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "semnal-razboiul-hibrid:descriere_scurta",
+          "locator": "clasificare-input.csv:semnal-razboiul-hibrid:descriere_scurta",
+          "excerpt": "Harta incidentelor"
+        },
+        {
+          "source_id": "semnal-razboiul-hibrid:descriere",
+          "locator": "clasificare-input.csv:semnal-razboiul-hibrid:descriere",
+          "excerpt": "177 de incidente documentate din 2014 până azi, 25 dintre ele în România. Drone, sabotaje, atacuri cibernetice, spionaj și dezinformare, fiecare cu sursa lui."
+        }
+      ],
+      "rationale_ro": "Harta documentează incidente hibride transfrontaliere; numai o parte sunt în România. Încadrare: Hartă."
+    },
+    {
+      "field": "formate",
+      "value": "format:registru",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "semnal-razboiul-hibrid:descriere_scurta",
+          "locator": "clasificare-input.csv:semnal-razboiul-hibrid:descriere_scurta",
+          "excerpt": "Harta incidentelor"
+        },
+        {
+          "source_id": "semnal-razboiul-hibrid:descriere",
+          "locator": "clasificare-input.csv:semnal-razboiul-hibrid:descriere",
+          "excerpt": "177 de incidente documentate din 2014 până azi, 25 dintre ele în România. Drone, sabotaje, atacuri cibernetice, spionaj și dezinformare, fiecare cu sursa lui."
+        }
+      ],
+      "rationale_ro": "Harta documentează incidente hibride transfrontaliere; numai o parte sunt în România. Încadrare: Registru sau bază de date."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "international",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "semnal-razboiul-hibrid:descriere_scurta",
+          "locator": "clasificare-input.csv:semnal-razboiul-hibrid:descriere_scurta",
+          "excerpt": "Harta incidentelor"
+        },
+        {
+          "source_id": "semnal-razboiul-hibrid:descriere",
+          "locator": "clasificare-input.csv:semnal-razboiul-hibrid:descriere",
+          "excerpt": "177 de incidente documentate din 2014 până azi, 25 dintre ele în România. Drone, sabotaje, atacuri cibernetice, spionaj și dezinformare, fiecare cu sursa lui."
+        }
+      ],
+      "rationale_ro": "Aplicabilitatea rezultă din descrierea specifică intrării, nu din adresa editorului. Harta documentează incidente hibride transfrontaliere; numai o parte sunt în România."
+    }
+  ],
+  "attributions": [],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    }
+  ],
+  "conflicts": [
+    {
+      "field": "nivel_acoperire",
+      "source_ids": [
+        "semnal-razboiul-hibrid:acoperire_original",
+        "semnal-razboiul-hibrid:descriere_scurta"
+      ],
+      "reason_ro": "Eticheta geografică originală nu descrie precis aplicabilitatea documentată.",
+      "resolution_ro": "Propun nivelul și ariile susținute de descriere; nu modific sursa originală."
+    }
+  ],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "monitorizare",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "jurnalism",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

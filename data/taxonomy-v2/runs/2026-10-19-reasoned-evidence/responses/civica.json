@@ -1,0 +1,392 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "civica",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "organizatie",
+    "subiect_principal": "subiect:societate-civila",
+    "subiecte": [
+      "subiect:societate-civila",
+      "subiect:educatie-cultura",
+      "subiect:mediu-energie",
+      "subiect:comunitati-teritoriu"
+    ],
+    "teme": [
+      "subiect:educatie-civica",
+      "subiect:mediu",
+      "subiect:infrastructura-locala"
+    ],
+    "scopuri": [
+      "scop:participare",
+      "scop:sprijin-organizatii",
+      "scop:educatie"
+    ],
+    "functionalitati": [
+      "functie:advocacy",
+      "functie:invatare"
+    ],
+    "formate": [],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [
+      "organizatie:ong",
+      "organizatie:retea"
+    ],
+    "maturitate": null,
+    "nivel_acoperire": "local",
+    "arii_acoperite": [
+      "localitate:iasi"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "organizatie",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "civica:tip_entitate_original",
+          "locator": "clasificare-input.csv:civica:tip_entitate_original",
+          "excerpt": "organizatie"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:societate-civila",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "civica:descriere_scurta",
+          "locator": "clasificare-input.csv:civica:descriere_scurta",
+          "excerpt": "Asociație din Iași care sprijină advocacy-ul și participarea civică"
+        },
+        {
+          "source_id": "civica:descriere",
+          "locator": "clasificare-input.csv:civica:descriere",
+          "excerpt": "Asociația CIVICA a fost înființată în decembrie 2014, la Iași. Este o comunitate care sprijină cetățenii, grupurile civice și ONG-urile să adreseze o nevoie sau să influențeze o decizie publică locală, prin asistență în advocacy, mecanisme de participare civică, educație civică și media. Printre proiecte se numără regenerarea spațiilor de joacă („Oaza Urbană”) și înființarea Ariei Naturale Urbane Ciric."
+        }
+      ],
+      "rationale_ro": "CIVICA sprijină grupurile locale din Iași prin advocacy, participare și educație civică."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:societate-civila",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "civica:descriere_scurta",
+          "locator": "clasificare-input.csv:civica:descriere_scurta",
+          "excerpt": "Asociație din Iași care sprijină advocacy-ul și participarea civică"
+        },
+        {
+          "source_id": "civica:descriere",
+          "locator": "clasificare-input.csv:civica:descriere",
+          "excerpt": "Asociația CIVICA a fost înființată în decembrie 2014, la Iași. Este o comunitate care sprijină cetățenii, grupurile civice și ONG-urile să adreseze o nevoie sau să influențeze o decizie publică locală, prin asistență în advocacy, mecanisme de participare civică, educație civică și media. Printre proiecte se numără regenerarea spațiilor de joacă („Oaza Urbană”) și înființarea Ariei Naturale Urbane Ciric."
+        }
+      ],
+      "rationale_ro": "CIVICA sprijină grupurile locale din Iași prin advocacy, participare și educație civică."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:educatie-cultura",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "civica:descriere_scurta",
+          "locator": "clasificare-input.csv:civica:descriere_scurta",
+          "excerpt": "Asociație din Iași care sprijină advocacy-ul și participarea civică"
+        },
+        {
+          "source_id": "civica:descriere",
+          "locator": "clasificare-input.csv:civica:descriere",
+          "excerpt": "Asociația CIVICA a fost înființată în decembrie 2014, la Iași. Este o comunitate care sprijină cetățenii, grupurile civice și ONG-urile să adreseze o nevoie sau să influențeze o decizie publică locală, prin asistență în advocacy, mecanisme de participare civică, educație civică și media. Printre proiecte se numără regenerarea spațiilor de joacă („Oaza Urbană”) și înființarea Ariei Naturale Urbane Ciric."
+        }
+      ],
+      "rationale_ro": "CIVICA sprijină grupurile locale din Iași prin advocacy, participare și educație civică. Conceptul subiect:educatie-civica are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:mediu-energie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "civica:descriere_scurta",
+          "locator": "clasificare-input.csv:civica:descriere_scurta",
+          "excerpt": "Asociație din Iași care sprijină advocacy-ul și participarea civică"
+        },
+        {
+          "source_id": "civica:descriere",
+          "locator": "clasificare-input.csv:civica:descriere",
+          "excerpt": "Asociația CIVICA a fost înființată în decembrie 2014, la Iași. Este o comunitate care sprijină cetățenii, grupurile civice și ONG-urile să adreseze o nevoie sau să influențeze o decizie publică locală, prin asistență în advocacy, mecanisme de participare civică, educație civică și media. Printre proiecte se numără regenerarea spațiilor de joacă („Oaza Urbană”) și înființarea Ariei Naturale Urbane Ciric."
+        }
+      ],
+      "rationale_ro": "CIVICA sprijină grupurile locale din Iași prin advocacy, participare și educație civică. Conceptul subiect:mediu are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:comunitati-teritoriu",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "civica:descriere_scurta",
+          "locator": "clasificare-input.csv:civica:descriere_scurta",
+          "excerpt": "Asociație din Iași care sprijină advocacy-ul și participarea civică"
+        },
+        {
+          "source_id": "civica:descriere",
+          "locator": "clasificare-input.csv:civica:descriere",
+          "excerpt": "Asociația CIVICA a fost înființată în decembrie 2014, la Iași. Este o comunitate care sprijină cetățenii, grupurile civice și ONG-urile să adreseze o nevoie sau să influențeze o decizie publică locală, prin asistență în advocacy, mecanisme de participare civică, educație civică și media. Printre proiecte se numără regenerarea spațiilor de joacă („Oaza Urbană”) și înființarea Ariei Naturale Urbane Ciric."
+        }
+      ],
+      "rationale_ro": "CIVICA sprijină grupurile locale din Iași prin advocacy, participare și educație civică. Conceptul subiect:infrastructura-locala are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:educatie-civica",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "civica:descriere_scurta",
+          "locator": "clasificare-input.csv:civica:descriere_scurta",
+          "excerpt": "Asociație din Iași care sprijină advocacy-ul și participarea civică"
+        },
+        {
+          "source_id": "civica:descriere",
+          "locator": "clasificare-input.csv:civica:descriere",
+          "excerpt": "Asociația CIVICA a fost înființată în decembrie 2014, la Iași. Este o comunitate care sprijină cetățenii, grupurile civice și ONG-urile să adreseze o nevoie sau să influențeze o decizie publică locală, prin asistență în advocacy, mecanisme de participare civică, educație civică și media. Printre proiecte se numără regenerarea spațiilor de joacă („Oaza Urbană”) și înființarea Ariei Naturale Urbane Ciric."
+        }
+      ],
+      "rationale_ro": "CIVICA sprijină grupurile locale din Iași prin advocacy, participare și educație civică. Încadrare: Educație civică."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:mediu",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "civica:descriere_scurta",
+          "locator": "clasificare-input.csv:civica:descriere_scurta",
+          "excerpt": "Asociație din Iași care sprijină advocacy-ul și participarea civică"
+        },
+        {
+          "source_id": "civica:descriere",
+          "locator": "clasificare-input.csv:civica:descriere",
+          "excerpt": "Asociația CIVICA a fost înființată în decembrie 2014, la Iași. Este o comunitate care sprijină cetățenii, grupurile civice și ONG-urile să adreseze o nevoie sau să influențeze o decizie publică locală, prin asistență în advocacy, mecanisme de participare civică, educație civică și media. Printre proiecte se numără regenerarea spațiilor de joacă („Oaza Urbană”) și înființarea Ariei Naturale Urbane Ciric."
+        }
+      ],
+      "rationale_ro": "CIVICA sprijină grupurile locale din Iași prin advocacy, participare și educație civică. Încadrare: Protecția mediului."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:infrastructura-locala",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "civica:descriere_scurta",
+          "locator": "clasificare-input.csv:civica:descriere_scurta",
+          "excerpt": "Asociație din Iași care sprijină advocacy-ul și participarea civică"
+        },
+        {
+          "source_id": "civica:descriere",
+          "locator": "clasificare-input.csv:civica:descriere",
+          "excerpt": "Asociația CIVICA a fost înființată în decembrie 2014, la Iași. Este o comunitate care sprijină cetățenii, grupurile civice și ONG-urile să adreseze o nevoie sau să influențeze o decizie publică locală, prin asistență în advocacy, mecanisme de participare civică, educație civică și media. Printre proiecte se numără regenerarea spațiilor de joacă („Oaza Urbană”) și înființarea Ariei Naturale Urbane Ciric."
+        }
+      ],
+      "rationale_ro": "CIVICA sprijină grupurile locale din Iași prin advocacy, participare și educație civică. Încadrare: Infrastructură locală."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:participare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "civica:descriere_scurta",
+          "locator": "clasificare-input.csv:civica:descriere_scurta",
+          "excerpt": "Asociație din Iași care sprijină advocacy-ul și participarea civică"
+        },
+        {
+          "source_id": "civica:descriere",
+          "locator": "clasificare-input.csv:civica:descriere",
+          "excerpt": "Asociația CIVICA a fost înființată în decembrie 2014, la Iași. Este o comunitate care sprijină cetățenii, grupurile civice și ONG-urile să adreseze o nevoie sau să influențeze o decizie publică locală, prin asistență în advocacy, mecanisme de participare civică, educație civică și media. Printre proiecte se numără regenerarea spațiilor de joacă („Oaza Urbană”) și înființarea Ariei Naturale Urbane Ciric."
+        }
+      ],
+      "rationale_ro": "CIVICA sprijină grupurile locale din Iași prin advocacy, participare și educație civică. Încadrare: Participare civică."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:sprijin-organizatii",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "civica:descriere_scurta",
+          "locator": "clasificare-input.csv:civica:descriere_scurta",
+          "excerpt": "Asociație din Iași care sprijină advocacy-ul și participarea civică"
+        },
+        {
+          "source_id": "civica:descriere",
+          "locator": "clasificare-input.csv:civica:descriere",
+          "excerpt": "Asociația CIVICA a fost înființată în decembrie 2014, la Iași. Este o comunitate care sprijină cetățenii, grupurile civice și ONG-urile să adreseze o nevoie sau să influențeze o decizie publică locală, prin asistență în advocacy, mecanisme de participare civică, educație civică și media. Printre proiecte se numără regenerarea spațiilor de joacă („Oaza Urbană”) și înființarea Ariei Naturale Urbane Ciric."
+        }
+      ],
+      "rationale_ro": "CIVICA sprijină grupurile locale din Iași prin advocacy, participare și educație civică. Încadrare: Sprijin pentru organizații civice."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:educatie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "civica:descriere_scurta",
+          "locator": "clasificare-input.csv:civica:descriere_scurta",
+          "excerpt": "Asociație din Iași care sprijină advocacy-ul și participarea civică"
+        },
+        {
+          "source_id": "civica:descriere",
+          "locator": "clasificare-input.csv:civica:descriere",
+          "excerpt": "Asociația CIVICA a fost înființată în decembrie 2014, la Iași. Este o comunitate care sprijină cetățenii, grupurile civice și ONG-urile să adreseze o nevoie sau să influențeze o decizie publică locală, prin asistență în advocacy, mecanisme de participare civică, educație civică și media. Printre proiecte se numără regenerarea spațiilor de joacă („Oaza Urbană”) și înființarea Ariei Naturale Urbane Ciric."
+        }
+      ],
+      "rationale_ro": "CIVICA sprijină grupurile locale din Iași prin advocacy, participare și educație civică. Încadrare: Învățare."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:advocacy",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "civica:descriere_scurta",
+          "locator": "clasificare-input.csv:civica:descriere_scurta",
+          "excerpt": "Asociație din Iași care sprijină advocacy-ul și participarea civică"
+        },
+        {
+          "source_id": "civica:descriere",
+          "locator": "clasificare-input.csv:civica:descriere",
+          "excerpt": "Asociația CIVICA a fost înființată în decembrie 2014, la Iași. Este o comunitate care sprijină cetățenii, grupurile civice și ONG-urile să adreseze o nevoie sau să influențeze o decizie publică locală, prin asistență în advocacy, mecanisme de participare civică, educație civică și media. Printre proiecte se numără regenerarea spațiilor de joacă („Oaza Urbană”) și înființarea Ariei Naturale Urbane Ciric."
+        }
+      ],
+      "rationale_ro": "CIVICA sprijină grupurile locale din Iași prin advocacy, participare și educație civică. Încadrare: Organizează advocacy."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:invatare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "civica:descriere_scurta",
+          "locator": "clasificare-input.csv:civica:descriere_scurta",
+          "excerpt": "Asociație din Iași care sprijină advocacy-ul și participarea civică"
+        },
+        {
+          "source_id": "civica:descriere",
+          "locator": "clasificare-input.csv:civica:descriere",
+          "excerpt": "Asociația CIVICA a fost înființată în decembrie 2014, la Iași. Este o comunitate care sprijină cetățenii, grupurile civice și ONG-urile să adreseze o nevoie sau să influențeze o decizie publică locală, prin asistență în advocacy, mecanisme de participare civică, educație civică și media. Printre proiecte se numără regenerarea spațiilor de joacă („Oaza Urbană”) și înființarea Ariei Naturale Urbane Ciric."
+        }
+      ],
+      "rationale_ro": "CIVICA sprijină grupurile locale din Iași prin advocacy, participare și educație civică. Încadrare: Învață sau exersează."
+    },
+    {
+      "field": "tip_organizatie",
+      "value": "organizatie:ong",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "civica:descriere_scurta",
+          "locator": "clasificare-input.csv:civica:descriere_scurta",
+          "excerpt": "Asociație din Iași care sprijină advocacy-ul și participarea civică"
+        },
+        {
+          "source_id": "civica:descriere",
+          "locator": "clasificare-input.csv:civica:descriere",
+          "excerpt": "Asociația CIVICA a fost înființată în decembrie 2014, la Iași. Este o comunitate care sprijină cetățenii, grupurile civice și ONG-urile să adreseze o nevoie sau să influențeze o decizie publică locală, prin asistență în advocacy, mecanisme de participare civică, educație civică și media. Printre proiecte se numără regenerarea spațiilor de joacă („Oaza Urbană”) și înființarea Ariei Naturale Urbane Ciric."
+        }
+      ],
+      "rationale_ro": "CIVICA sprijină grupurile locale din Iași prin advocacy, participare și educație civică. Încadrare: Organizație neguvernamentală."
+    },
+    {
+      "field": "tip_organizatie",
+      "value": "organizatie:retea",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "civica:descriere_scurta",
+          "locator": "clasificare-input.csv:civica:descriere_scurta",
+          "excerpt": "Asociație din Iași care sprijină advocacy-ul și participarea civică"
+        },
+        {
+          "source_id": "civica:descriere",
+          "locator": "clasificare-input.csv:civica:descriere",
+          "excerpt": "Asociația CIVICA a fost înființată în decembrie 2014, la Iași. Este o comunitate care sprijină cetățenii, grupurile civice și ONG-urile să adreseze o nevoie sau să influențeze o decizie publică locală, prin asistență în advocacy, mecanisme de participare civică, educație civică și media. Printre proiecte se numără regenerarea spațiilor de joacă („Oaza Urbană”) și înființarea Ariei Naturale Urbane Ciric."
+        }
+      ],
+      "rationale_ro": "CIVICA sprijină grupurile locale din Iași prin advocacy, participare și educație civică. Încadrare: Rețea sau comunitate."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "local",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "civica:acoperire_original",
+          "locator": "clasificare-input.csv:civica:acoperire_original",
+          "excerpt": "local"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "localitate:iasi",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "civica:acoperire_original",
+          "locator": "clasificare-input.csv:civica:acoperire_original",
+          "excerpt": "local"
+        },
+        {
+          "source_id": "civica:oras_original",
+          "locator": "clasificare-input.csv:civica:oras_original",
+          "excerpt": "Iași"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [],
+  "uncertainties": [],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "cuvinte",
+      "original_value": "societate-civilă",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "educație-civică",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

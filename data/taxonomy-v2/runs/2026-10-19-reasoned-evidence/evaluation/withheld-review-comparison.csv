@@ -1,0 +1,67 @@
+review_id,slug,field,baseline_reason,candidate_status,public_sources,disposition,editorial_acceptance
+R001,7-ani-de-acasa,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,classified,2,Evidence added; evaluate the affected claim,none
+R002,bani-pierduti,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,classified,1,Evidence added; evaluate the affected claim,none
+R003,barometrul-digital,teme,Distingeți infrastructura digitală de infrastructura fizică.,classified,0,Conservative reassignment or uncertainty; no new public evidence,none
+R004,reciclare-arad,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,partial,0,Conservative reassignment or uncertainty; no new public evidence,none
+R005,centrul-pentru-cariere,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,classified,1,Evidence added; evaluate the affected claim,none
+R006,ce-zice-legea,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,partial,2,Evidence added; evaluate the affected claim,none
+R007,scoala-pentru-democratie,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,classified,1,Evidence added; evaluate the affected claim,none
+R008,companii-publice-ro,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,classified,1,Evidence added; evaluate the affected claim,none
+R009,data-expertforum,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,classified,1,Evidence added; evaluate the affected claim,none
+R010,data-expertforum,teme,"Etichetă păstrată ca propunere. Confirmați reutilizarea și licența, nu doar accesul public.",classified,1,Evidence added; evaluate the affected claim,none
+R011,e-cutremur,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,classified,1,Evidence added; evaluate the affected claim,none
+R012,europescope,nivel_acoperire,Descrierea privește instituțiile UE sau incidente din Europa. Confirmați întinderea exactă.,classified,0,Conservative reassignment or uncertainty; no new public evidence,none
+R013,harta-firmelor,tehnologii,Eticheta singură nu dovedește utilizarea AI. Poate descrie o temă sau poate fi eronată.,classified,0,Conservative reassignment or uncertainty; no new public evidence,none
+R014,harta-politicii,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,partial,1,Evidence added; evaluate the affected claim,none
+R015,harta-taierilor,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,partial,0,Conservative reassignment or uncertainty; no new public evidence,none
+R016,harta-taierilor,tehnologii,Eticheta singură nu dovedește utilizarea AI. Poate descrie o temă sau poate fi eronată.,partial,0,Conservative reassignment or uncertainty; no new public evidence,none
+R017,incentru,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,insufficient_evidence,0,Conservative reassignment or uncertainty; no new public evidence,none
+R018,interoperabilitate,teme,Distingeți infrastructura digitală de infrastructura fizică.,classified,0,Conservative reassignment or uncertainty; no new public evidence,none
+R019,jailando,tehnologii,Eticheta singură nu dovedește utilizarea AI. Poate descrie o temă sau poate fi eronată.,partial,0,Conservative reassignment or uncertainty; no new public evidence,none
+R020,mari-corupti,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,classified,1,Evidence added; evaluate the affected claim,none
+R021,monarh-ai,tehnologii,Eticheta singură nu dovedește utilizarea AI. Poate descrie o temă sau poate fi eronată.,partial,0,Conservative reassignment or uncertainty; no new public evidence,none
+R022,monitor-energie,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,classified,1,Evidence added; evaluate the affected claim,none
+R023,monitorul-ai,tehnologii,Eticheta singură nu dovedește utilizarea AI. Poate descrie o temă sau poate fi eronată.,classified,0,Conservative reassignment or uncertainty; no new public evidence,none
+R024,multumesc,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,partial,1,Evidence added; evaluate the affected claim,none
+R025,muzeul-coruptiei,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,classified,1,Evidence added; evaluate the affected claim,none
+R026,observatori-votcorect,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,partial,1,Evidence added; evaluate the affected claim,none
+R027,onorata-instanta,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,classified,1,Evidence added; evaluate the affected claim,none
+R028,onorata-instanta,tehnologii,Eticheta singură nu dovedește utilizarea AI. Poate descrie o temă sau poate fi eronată.,classified,1,Evidence added; evaluate the affected claim,none
+R029,open-budget,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,classified,1,Evidence added; evaluate the affected claim,none
+R030,parlament-transparent,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,partial,0,Conservative reassignment or uncertainty; no new public evidence,none
+R031,piata-de-spaga,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,classified,1,Evidence added; evaluate the affected claim,none
+R032,rezultate-vot,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,classified,1,Evidence added; evaluate the affected claim,none
+R033,romania-interactiva,tehnologii,Eticheta singură nu dovedește utilizarea AI. Poate descrie o temă sau poate fi eronată.,classified,0,Conservative reassignment or uncertainty; no new public evidence,none
+R034,sicap-ai,tehnologii,Eticheta singură nu dovedește utilizarea AI. Poate descrie o temă sau poate fi eronată.,classified,0,Conservative reassignment or uncertainty; no new public evidence,none
+R035,sanatate-mintala,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,classified,1,Evidence added; evaluate the affected claim,none
+R036,apti-unelte-democratie,tehnologii,Eticheta singură nu dovedește utilizarea AI. Poate descrie o temă sau poate fi eronată.,classified,1,Evidence added; evaluate the affected claim,none
+R037,unde-locuiesc-romanii,tehnologii,Eticheta singură nu dovedește utilizarea AI. Poate descrie o temă sau poate fi eronată.,classified,0,Conservative reassignment or uncertainty; no new public evidence,none
+R038,verifica-psiholog,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,classified,1,Evidence added; evaluate the affected claim,none
+R039,vocea-cartierului-tau,tehnologii,Eticheta singură nu dovedește utilizarea AI. Poate descrie o temă sau poate fi eronată.,classified,0,Conservative reassignment or uncertainty; no new public evidence,none
+R040,votcorect,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,classified,1,Evidence added; evaluate the affected claim,none
+R041,votcorect,tehnologii,Eticheta singură nu dovedește utilizarea AI. Poate descrie o temă sau poate fi eronată.,classified,1,Evidence added; evaluate the affected claim,none
+R042,votdiaspora,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,classified,1,Evidence added; evaluate the affected claim,none
+R043,dignitas,clasificare,Clasificarea folosește numele și vechile categorii. Verificați subiectul și funcțiile.,classified,1,Evidence added; evaluate the affected claim,none
+R044,ro-api-hub,tehnologii,Un catalog despre MCP nu dovedește că această intrare oferă un server MCP.,partial,0,Conservative reassignment or uncertainty; no new public evidence,none
+R045,ro-api-hub,formate,Catalogul enumeră API-uri. Nu a fost clasificat ca furnizor al unui API propriu.,partial,0,Conservative reassignment or uncertainty; no new public evidence,none
+R046,piratii-digitali-ai-kremlinului,tip_entitate,Descrierea prezintă o investigație jurnalistică individuală.,classified,0,Conservative reassignment or uncertainty; no new public evidence,none
+R047,semnal-razboiul-hibrid,nivel_acoperire,Descrierea privește instituțiile UE sau incidente din Europa. Confirmați întinderea exactă.,classified,0,Conservative reassignment or uncertainty; no new public evidence,none
+R048,proiecte-geo-spatial,teme,"Etichetă păstrată ca propunere. Confirmați reutilizarea și licența, nu doar accesul public.",partial,0,Conservative reassignment or uncertainty; no new public evidence,none
+R049,efor,localitati_acoperite,Orașul poate fi sediul organizației. Nu a fost transformat în limită a acoperirii.,classified,0,Conservative reassignment or uncertainty; no new public evidence,none
+R050,funky-citizens,localitati_acoperite,Orașul poate fi sediul organizației. Nu a fost transformat în limită a acoperirii.,classified,0,Conservative reassignment or uncertainty; no new public evidence,none
+R051,ai-parte,tehnologii,Eticheta singură nu dovedește utilizarea AI. Poate descrie o temă sau poate fi eronată.,classified,0,Conservative reassignment or uncertainty; no new public evidence,none
+R052,tech-and-tonic,tehnologii,Eticheta singură nu dovedește utilizarea AI. Poate descrie o temă sau poate fi eronată.,classified,0,Conservative reassignment or uncertainty; no new public evidence,none
+R053,antibunk,subiecte,Descrierea privește dezinformarea. Eticheta de mediu nu a fost preluată automat.,classified,0,Conservative reassignment or uncertainty; no new public evidence,none
+R054,accesinfo,teme,Cererea de informații este generală; nu a fost limitată la achiziții sau finanțe.,classified,0,Conservative reassignment or uncertainty; no new public evidence,none
+R055,ai-aflat,teme,"Descrierea privește legislația în general, fără a confirma o funcție specială pentru Legea 544.",classified,0,Conservative reassignment or uncertainty; no new public evidence,none
+R056,votez-info,teme,Comparatorul de candidați nu dovedește o funcție pentru Legea 544.,classified,0,Conservative reassignment or uncertainty; no new public evidence,none
+R057,harta-tv-locale,institutii_vizate,O hartă a televiziunilor locale nu dovedește că primăriile sunt instituțiile vizate.,classified,0,Conservative reassignment or uncertainty; no new public evidence,none
+R058,monitorul-ai,teme,"Descrierea identifică o arhivă de stenograme, nu un instrument despre funcția publică sau integritate.",classified,0,Conservative reassignment or uncertainty; no new public evidence,none
+R059,ro-api-hub,tehnologii,"Referințele descriu conținutul catalogului, nu tehnologia utilizată sau interfețele proprii.",partial,0,Conservative reassignment or uncertainty; no new public evidence,none
+R060,proiecte-geo-spatial,formate,"Intrarea este o colecție de proiecte GIS, nu neapărat o hartă în sine.",partial,0,Conservative reassignment or uncertainty; no new public evidence,none
+R061,incentru,subiect_principal,Încadrare provizorie foarte largă; lipsesc descrierea și tipul.,insufficient_evidence,0,Conservative reassignment or uncertainty; no new public evidence,none
+R062,7-ani-de-acasa,formate,"Nu se poate distinge un joc, un curs sau un ghid din datele păstrate.",classified,2,Evidence added; evaluate the affected claim,none
+R063,scoala-pentru-democratie,formate,Nu se poate distinge un joc de un curs fără reverificare.,classified,1,Evidence added; evaluate the affected claim,none
+R064,muzeul-coruptiei,formate,Nu se poate confirma formatul educativ exact.,classified,1,Evidence added; evaluate the affected claim,none
+R065,econtractauto,subiect_principal,"Contractul auto este o procedură juridică și economică, nu implicit un serviciu public.",classified,0,Conservative reassignment or uncertainty; no new public evidence,none
+R066,crpe,subiecte,Descrierea mai include agricultura și dezvoltarea rurală. Extindeți vocabularul dacă aceste subiecte devin filtre utile.,classified,0,Conservative reassignment or uncertainty; no new public evidence,none

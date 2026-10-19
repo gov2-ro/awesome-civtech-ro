@@ -1,0 +1,410 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "romania-transparenta",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:guvernare-democratie",
+    "subiecte": [
+      "subiect:guvernare-democratie",
+      "subiect:finante-publice",
+      "subiect:educatie-cultura"
+    ],
+    "teme": [
+      "subiect:administratie-publica",
+      "subiect:companii-de-stat",
+      "subiect:buget",
+      "subiect:invatamant"
+    ],
+    "scopuri": [
+      "scop:transparenta",
+      "scop:responsabilizare"
+    ],
+    "functionalitati": [
+      "functie:cautare"
+    ],
+    "formate": [
+      "format:registru"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [
+      "institutie:primarie",
+      "institutie:scoala"
+    ],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "romania-transparenta:tip_entitate_original",
+          "locator": "clasificare-input.csv:romania-transparenta:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "romania-transparenta:descriere_scurta",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere_scurta",
+          "excerpt": "Registre despre primării, companii de stat, universități"
+        },
+        {
+          "source_id": "romania-transparenta:descriere",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere",
+          "excerpt": "Reunește registre despre administrația locală, companiile de stat, universități și alte instituții publice. Poți explora cine le conduce, cum sunt folosiți banii publici și ce informații sunt disponibile despre activitatea lor."
+        }
+      ],
+      "rationale_ro": "Registrele reunesc instituții și companii publice, conducerile și utilizarea banilor. Conceptul subiect:administratie-publica are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "romania-transparenta:descriere_scurta",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere_scurta",
+          "excerpt": "Registre despre primării, companii de stat, universități"
+        },
+        {
+          "source_id": "romania-transparenta:descriere",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere",
+          "excerpt": "Reunește registre despre administrația locală, companiile de stat, universități și alte instituții publice. Poți explora cine le conduce, cum sunt folosiți banii publici și ce informații sunt disponibile despre activitatea lor."
+        }
+      ],
+      "rationale_ro": "Registrele reunesc instituții și companii publice, conducerile și utilizarea banilor. Conceptul subiect:administratie-publica are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:finante-publice",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "romania-transparenta:descriere_scurta",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere_scurta",
+          "excerpt": "Registre despre primării, companii de stat, universități"
+        },
+        {
+          "source_id": "romania-transparenta:descriere",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere",
+          "excerpt": "Reunește registre despre administrația locală, companiile de stat, universități și alte instituții publice. Poți explora cine le conduce, cum sunt folosiți banii publici și ce informații sunt disponibile despre activitatea lor."
+        }
+      ],
+      "rationale_ro": "Registrele reunesc instituții și companii publice, conducerile și utilizarea banilor. Conceptul subiect:companii-de-stat are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:educatie-cultura",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "romania-transparenta:descriere_scurta",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere_scurta",
+          "excerpt": "Registre despre primării, companii de stat, universități"
+        },
+        {
+          "source_id": "romania-transparenta:descriere",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere",
+          "excerpt": "Reunește registre despre administrația locală, companiile de stat, universități și alte instituții publice. Poți explora cine le conduce, cum sunt folosiți banii publici și ce informații sunt disponibile despre activitatea lor."
+        }
+      ],
+      "rationale_ro": "Registrele reunesc instituții și companii publice, conducerile și utilizarea banilor. Conceptul subiect:invatamant are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:administratie-publica",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "romania-transparenta:descriere_scurta",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere_scurta",
+          "excerpt": "Registre despre primării, companii de stat, universități"
+        },
+        {
+          "source_id": "romania-transparenta:descriere",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere",
+          "excerpt": "Reunește registre despre administrația locală, companiile de stat, universități și alte instituții publice. Poți explora cine le conduce, cum sunt folosiți banii publici și ce informații sunt disponibile despre activitatea lor."
+        }
+      ],
+      "rationale_ro": "Registrele reunesc instituții și companii publice, conducerile și utilizarea banilor. Încadrare: Administrație publică."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:companii-de-stat",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "romania-transparenta:descriere_scurta",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere_scurta",
+          "excerpt": "Registre despre primării, companii de stat, universități"
+        },
+        {
+          "source_id": "romania-transparenta:descriere",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere",
+          "excerpt": "Reunește registre despre administrația locală, companiile de stat, universități și alte instituții publice. Poți explora cine le conduce, cum sunt folosiți banii publici și ce informații sunt disponibile despre activitatea lor."
+        }
+      ],
+      "rationale_ro": "Registrele reunesc instituții și companii publice, conducerile și utilizarea banilor. Încadrare: Companii de stat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:buget",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "romania-transparenta:descriere_scurta",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere_scurta",
+          "excerpt": "Registre despre primării, companii de stat, universități"
+        },
+        {
+          "source_id": "romania-transparenta:descriere",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere",
+          "excerpt": "Reunește registre despre administrația locală, companiile de stat, universități și alte instituții publice. Poți explora cine le conduce, cum sunt folosiți banii publici și ce informații sunt disponibile despre activitatea lor."
+        }
+      ],
+      "rationale_ro": "Registrele reunesc instituții și companii publice, conducerile și utilizarea banilor. Încadrare: Buget public."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:invatamant",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "romania-transparenta:descriere_scurta",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere_scurta",
+          "excerpt": "Registre despre primării, companii de stat, universități"
+        },
+        {
+          "source_id": "romania-transparenta:descriere",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere",
+          "excerpt": "Reunește registre despre administrația locală, companiile de stat, universități și alte instituții publice. Poți explora cine le conduce, cum sunt folosiți banii publici și ce informații sunt disponibile despre activitatea lor."
+        }
+      ],
+      "rationale_ro": "Registrele reunesc instituții și companii publice, conducerile și utilizarea banilor. Încadrare: Învățământ."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:transparenta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "romania-transparenta:descriere_scurta",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere_scurta",
+          "excerpt": "Registre despre primării, companii de stat, universități"
+        },
+        {
+          "source_id": "romania-transparenta:descriere",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere",
+          "excerpt": "Reunește registre despre administrația locală, companiile de stat, universități și alte instituții publice. Poți explora cine le conduce, cum sunt folosiți banii publici și ce informații sunt disponibile despre activitatea lor."
+        }
+      ],
+      "rationale_ro": "Registrele reunesc instituții și companii publice, conducerile și utilizarea banilor. Încadrare: Transparență."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:responsabilizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "romania-transparenta:descriere_scurta",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere_scurta",
+          "excerpt": "Registre despre primării, companii de stat, universități"
+        },
+        {
+          "source_id": "romania-transparenta:descriere",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere",
+          "excerpt": "Reunește registre despre administrația locală, companiile de stat, universități și alte instituții publice. Poți explora cine le conduce, cum sunt folosiți banii publici și ce informații sunt disponibile despre activitatea lor."
+        }
+      ],
+      "rationale_ro": "Registrele reunesc instituții și companii publice, conducerile și utilizarea banilor. Încadrare: Responsabilizare publică."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:cautare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "romania-transparenta:descriere_scurta",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere_scurta",
+          "excerpt": "Registre despre primării, companii de stat, universități"
+        },
+        {
+          "source_id": "romania-transparenta:descriere",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere",
+          "excerpt": "Reunește registre despre administrația locală, companiile de stat, universități și alte instituții publice. Poți explora cine le conduce, cum sunt folosiți banii publici și ce informații sunt disponibile despre activitatea lor."
+        }
+      ],
+      "rationale_ro": "Registrele reunesc instituții și companii publice, conducerile și utilizarea banilor. Încadrare: Caută și consultă."
+    },
+    {
+      "field": "formate",
+      "value": "format:registru",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "romania-transparenta:descriere_scurta",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere_scurta",
+          "excerpt": "Registre despre primării, companii de stat, universități"
+        },
+        {
+          "source_id": "romania-transparenta:descriere",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere",
+          "excerpt": "Reunește registre despre administrația locală, companiile de stat, universități și alte instituții publice. Poți explora cine le conduce, cum sunt folosiți banii publici și ce informații sunt disponibile despre activitatea lor."
+        }
+      ],
+      "rationale_ro": "Registrele reunesc instituții și companii publice, conducerile și utilizarea banilor. Încadrare: Registru sau bază de date."
+    },
+    {
+      "field": "institutii_vizate",
+      "value": "institutie:primarie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "romania-transparenta:descriere_scurta",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere_scurta",
+          "excerpt": "Registre despre primării, companii de stat, universități"
+        },
+        {
+          "source_id": "romania-transparenta:descriere",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere",
+          "excerpt": "Reunește registre despre administrația locală, companiile de stat, universități și alte instituții publice. Poți explora cine le conduce, cum sunt folosiți banii publici și ce informații sunt disponibile despre activitatea lor."
+        }
+      ],
+      "rationale_ro": "Registrele reunesc instituții și companii publice, conducerile și utilizarea banilor. Încadrare: Primărie sau administrație locală."
+    },
+    {
+      "field": "institutii_vizate",
+      "value": "institutie:scoala",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "romania-transparenta:descriere_scurta",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere_scurta",
+          "excerpt": "Registre despre primării, companii de stat, universități"
+        },
+        {
+          "source_id": "romania-transparenta:descriere",
+          "locator": "clasificare-input.csv:romania-transparenta:descriere",
+          "excerpt": "Reunește registre despre administrația locală, companiile de stat, universități și alte instituții publice. Poți explora cine le conduce, cum sunt folosiți banii publici și ce informații sunt disponibile despre activitatea lor."
+        }
+      ],
+      "rationale_ro": "Registrele reunesc instituții și companii publice, conducerile și utilizarea banilor. Încadrare: Școală sau instituție de învățământ."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "romania-transparenta:acoperire_original",
+          "locator": "clasificare-input.csv:romania-transparenta:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "romania-transparenta:acoperire_original",
+          "locator": "clasificare-input.csv:romania-transparenta:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": null,
+      "object_literal": "Andreea Moldovan",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "romania-transparenta:autor_original",
+          "locator": "clasificare-input.csv:romania-transparenta:autor_original",
+          "excerpt": "Andreea Moldovan / Alex Mantello"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    },
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": null,
+      "object_literal": "Alex Mantello",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "romania-transparenta:autor_original",
+          "locator": "clasificare-input.csv:romania-transparenta:autor_original",
+          "excerpt": "Andreea Moldovan / Alex Mantello"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    },
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "baza-de-date",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "primării",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

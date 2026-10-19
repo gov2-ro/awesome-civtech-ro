@@ -1,0 +1,305 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "7-ani-de-acasa",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:guvernare-democratie",
+    "subiecte": [
+      "subiect:guvernare-democratie",
+      "subiect:educatie-cultura"
+    ],
+    "teme": [
+      "subiect:alegeri",
+      "subiect:vot",
+      "subiect:afaceri-europene",
+      "subiect:educatie-civica"
+    ],
+    "scopuri": [
+      "scop:informare",
+      "scop:educatie",
+      "scop:participare"
+    ],
+    "functionalitati": [
+      "functie:invatare"
+    ],
+    "formate": [
+      "format:ghid"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [
+      "institutie:institutie-ue"
+    ],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "7-ani-de-acasa:tip_entitate_original",
+          "locator": "clasificare-input.csv:7-ani-de-acasa:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn4search0",
+          "locator": "https://expertforum.ro/istoric-alegeri/#turn4search0",
+          "excerpt": "citeturn4search0 [wordlim: 200] Crawled: 2 weeks ago; În 2014 am pornit proiectele legate de monitorizarea și îmbunătățirea proceselor electorale din România cu alegerile europarlamentare.Printre altele, am dezvoltat platforma www.7anideacasa.eu, un instrument util pentru educația alegătorilor."
+        }
+      ],
+      "rationale_ro": "Documentația EFOR descrie educarea alegătorilor pentru alegerile europene din România. Conceptul subiect:alegeri are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn4search0",
+          "locator": "https://expertforum.ro/istoric-alegeri/#turn4search0",
+          "excerpt": "citeturn4search0 [wordlim: 200] Crawled: 2 weeks ago; În 2014 am pornit proiectele legate de monitorizarea și îmbunătățirea proceselor electorale din România cu alegerile europarlamentare.Printre altele, am dezvoltat platforma www.7anideacasa.eu, un instrument util pentru educația alegătorilor."
+        }
+      ],
+      "rationale_ro": "Documentația EFOR descrie educarea alegătorilor pentru alegerile europene din România. Conceptul subiect:alegeri are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:educatie-cultura",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn4search0",
+          "locator": "https://expertforum.ro/istoric-alegeri/#turn4search0",
+          "excerpt": "citeturn4search0 [wordlim: 200] Crawled: 2 weeks ago; În 2014 am pornit proiectele legate de monitorizarea și îmbunătățirea proceselor electorale din România cu alegerile europarlamentare.Printre altele, am dezvoltat platforma www.7anideacasa.eu, un instrument util pentru educația alegătorilor."
+        }
+      ],
+      "rationale_ro": "Documentația EFOR descrie educarea alegătorilor pentru alegerile europene din România. Conceptul subiect:educatie-civica are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:alegeri",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn4search0",
+          "locator": "https://expertforum.ro/istoric-alegeri/#turn4search0",
+          "excerpt": "citeturn4search0 [wordlim: 200] Crawled: 2 weeks ago; În 2014 am pornit proiectele legate de monitorizarea și îmbunătățirea proceselor electorale din România cu alegerile europarlamentare.Printre altele, am dezvoltat platforma www.7anideacasa.eu, un instrument util pentru educația alegătorilor."
+        }
+      ],
+      "rationale_ro": "Documentația EFOR descrie educarea alegătorilor pentru alegerile europene din România. Încadrare: Alegeri."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:vot",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn4search0",
+          "locator": "https://expertforum.ro/istoric-alegeri/#turn4search0",
+          "excerpt": "citeturn4search0 [wordlim: 200] Crawled: 2 weeks ago; În 2014 am pornit proiectele legate de monitorizarea și îmbunătățirea proceselor electorale din România cu alegerile europarlamentare.Printre altele, am dezvoltat platforma www.7anideacasa.eu, un instrument util pentru educația alegătorilor."
+        }
+      ],
+      "rationale_ro": "Documentația EFOR descrie educarea alegătorilor pentru alegerile europene din România. Încadrare: Vot."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:afaceri-europene",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn4search0",
+          "locator": "https://expertforum.ro/istoric-alegeri/#turn4search0",
+          "excerpt": "citeturn4search0 [wordlim: 200] Crawled: 2 weeks ago; În 2014 am pornit proiectele legate de monitorizarea și îmbunătățirea proceselor electorale din România cu alegerile europarlamentare.Printre altele, am dezvoltat platforma www.7anideacasa.eu, un instrument util pentru educația alegătorilor."
+        }
+      ],
+      "rationale_ro": "Documentația EFOR descrie educarea alegătorilor pentru alegerile europene din România. Încadrare: Afaceri europene."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:educatie-civica",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn4search0",
+          "locator": "https://expertforum.ro/istoric-alegeri/#turn4search0",
+          "excerpt": "citeturn4search0 [wordlim: 200] Crawled: 2 weeks ago; În 2014 am pornit proiectele legate de monitorizarea și îmbunătățirea proceselor electorale din România cu alegerile europarlamentare.Printre altele, am dezvoltat platforma www.7anideacasa.eu, un instrument util pentru educația alegătorilor."
+        }
+      ],
+      "rationale_ro": "Documentația EFOR descrie educarea alegătorilor pentru alegerile europene din România. Încadrare: Educație civică."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn4search0",
+          "locator": "https://expertforum.ro/istoric-alegeri/#turn4search0",
+          "excerpt": "citeturn4search0 [wordlim: 200] Crawled: 2 weeks ago; În 2014 am pornit proiectele legate de monitorizarea și îmbunătățirea proceselor electorale din România cu alegerile europarlamentare.Printre altele, am dezvoltat platforma www.7anideacasa.eu, un instrument util pentru educația alegătorilor."
+        }
+      ],
+      "rationale_ro": "Documentația EFOR descrie educarea alegătorilor pentru alegerile europene din România. Încadrare: Informare și înțelegere."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:educatie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn4search0",
+          "locator": "https://expertforum.ro/istoric-alegeri/#turn4search0",
+          "excerpt": "citeturn4search0 [wordlim: 200] Crawled: 2 weeks ago; În 2014 am pornit proiectele legate de monitorizarea și îmbunătățirea proceselor electorale din România cu alegerile europarlamentare.Printre altele, am dezvoltat platforma www.7anideacasa.eu, un instrument util pentru educația alegătorilor."
+        }
+      ],
+      "rationale_ro": "Documentația EFOR descrie educarea alegătorilor pentru alegerile europene din România. Încadrare: Învățare."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:participare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn4search0",
+          "locator": "https://expertforum.ro/istoric-alegeri/#turn4search0",
+          "excerpt": "citeturn4search0 [wordlim: 200] Crawled: 2 weeks ago; În 2014 am pornit proiectele legate de monitorizarea și îmbunătățirea proceselor electorale din România cu alegerile europarlamentare.Printre altele, am dezvoltat platforma www.7anideacasa.eu, un instrument util pentru educația alegătorilor."
+        }
+      ],
+      "rationale_ro": "Documentația EFOR descrie educarea alegătorilor pentru alegerile europene din România. Încadrare: Participare civică."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:invatare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn4search0",
+          "locator": "https://expertforum.ro/istoric-alegeri/#turn4search0",
+          "excerpt": "citeturn4search0 [wordlim: 200] Crawled: 2 weeks ago; În 2014 am pornit proiectele legate de monitorizarea și îmbunătățirea proceselor electorale din România cu alegerile europarlamentare.Printre altele, am dezvoltat platforma www.7anideacasa.eu, un instrument util pentru educația alegătorilor."
+        }
+      ],
+      "rationale_ro": "Documentația EFOR descrie educarea alegătorilor pentru alegerile europene din România. Încadrare: Învață sau exersează."
+    },
+    {
+      "field": "formate",
+      "value": "format:ghid",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn4search0",
+          "locator": "https://expertforum.ro/istoric-alegeri/#turn4search0",
+          "excerpt": "citeturn4search0 [wordlim: 200] Crawled: 2 weeks ago; În 2014 am pornit proiectele legate de monitorizarea și îmbunătățirea proceselor electorale din România cu alegerile europarlamentare.Printre altele, am dezvoltat platforma www.7anideacasa.eu, un instrument util pentru educația alegătorilor."
+        }
+      ],
+      "rationale_ro": "Documentația EFOR descrie educarea alegătorilor pentru alegerile europene din România. Încadrare: Ghid."
+    },
+    {
+      "field": "institutii_vizate",
+      "value": "institutie:institutie-ue",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn4search0",
+          "locator": "https://expertforum.ro/istoric-alegeri/#turn4search0",
+          "excerpt": "citeturn4search0 [wordlim: 200] Crawled: 2 weeks ago; În 2014 am pornit proiectele legate de monitorizarea și îmbunătățirea proceselor electorale din România cu alegerile europarlamentare.Printre altele, am dezvoltat platforma www.7anideacasa.eu, un instrument util pentru educația alegătorilor."
+        }
+      ],
+      "rationale_ro": "Documentația EFOR descrie educarea alegătorilor pentru alegerile europene din România. Încadrare: Instituție a Uniunii Europene."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "7-ani-de-acasa:acoperire_original",
+          "locator": "clasificare-input.csv:7-ani-de-acasa:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "7-ani-de-acasa:acoperire_original",
+          "locator": "clasificare-input.csv:7-ani-de-acasa:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": "funky-citizens",
+      "object_literal": null,
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "7-ani-de-acasa:autor_original",
+          "locator": "clasificare-input.csv:7-ani-de-acasa:autor_original",
+          "excerpt": "funky-citizens"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    },
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "educativ",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

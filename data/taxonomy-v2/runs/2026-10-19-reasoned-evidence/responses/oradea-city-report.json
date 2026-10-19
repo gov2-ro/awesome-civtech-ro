@@ -1,0 +1,239 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "oradea-city-report",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:comunitati-teritoriu",
+    "subiecte": [
+      "subiect:comunitati-teritoriu",
+      "subiect:guvernare-democratie"
+    ],
+    "teme": [
+      "subiect:administratie-publica"
+    ],
+    "scopuri": [
+      "scop:participare",
+      "scop:responsabilizare"
+    ],
+    "functionalitati": [
+      "functie:sesizare"
+    ],
+    "formate": [],
+    "tehnologii": [],
+    "institutii_vizate": [
+      "institutie:primarie"
+    ],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "local",
+    "arii_acoperite": [
+      "localitate:oradea"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "oradea-city-report:tip_entitate_original",
+          "locator": "clasificare-input.csv:oradea-city-report:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:comunitati-teritoriu",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "oradea-city-report:descriere_scurta",
+          "locator": "clasificare-input.csv:oradea-city-report:descriere_scurta",
+          "excerpt": "Sesizări către Primăria Oradea"
+        }
+      ],
+      "rationale_ro": "Descrierea scurtă indică sesizări către Primăria Oradea."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:comunitati-teritoriu",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "oradea-city-report:descriere_scurta",
+          "locator": "clasificare-input.csv:oradea-city-report:descriere_scurta",
+          "excerpt": "Sesizări către Primăria Oradea"
+        }
+      ],
+      "rationale_ro": "Descrierea scurtă indică sesizări către Primăria Oradea."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "oradea-city-report:descriere_scurta",
+          "locator": "clasificare-input.csv:oradea-city-report:descriere_scurta",
+          "excerpt": "Sesizări către Primăria Oradea"
+        }
+      ],
+      "rationale_ro": "Descrierea scurtă indică sesizări către Primăria Oradea. Conceptul subiect:administratie-publica are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:administratie-publica",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "oradea-city-report:descriere_scurta",
+          "locator": "clasificare-input.csv:oradea-city-report:descriere_scurta",
+          "excerpt": "Sesizări către Primăria Oradea"
+        }
+      ],
+      "rationale_ro": "Descrierea scurtă indică sesizări către Primăria Oradea. Încadrare: Administrație publică."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:participare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "oradea-city-report:descriere_scurta",
+          "locator": "clasificare-input.csv:oradea-city-report:descriere_scurta",
+          "excerpt": "Sesizări către Primăria Oradea"
+        }
+      ],
+      "rationale_ro": "Descrierea scurtă indică sesizări către Primăria Oradea. Încadrare: Participare civică."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:responsabilizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "oradea-city-report:descriere_scurta",
+          "locator": "clasificare-input.csv:oradea-city-report:descriere_scurta",
+          "excerpt": "Sesizări către Primăria Oradea"
+        }
+      ],
+      "rationale_ro": "Descrierea scurtă indică sesizări către Primăria Oradea. Încadrare: Responsabilizare publică."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:sesizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "oradea-city-report:descriere_scurta",
+          "locator": "clasificare-input.csv:oradea-city-report:descriere_scurta",
+          "excerpt": "Sesizări către Primăria Oradea"
+        }
+      ],
+      "rationale_ro": "Descrierea scurtă indică sesizări către Primăria Oradea. Încadrare: Trimite sau urmărește o sesizare."
+    },
+    {
+      "field": "institutii_vizate",
+      "value": "institutie:primarie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "oradea-city-report:descriere_scurta",
+          "locator": "clasificare-input.csv:oradea-city-report:descriere_scurta",
+          "excerpt": "Sesizări către Primăria Oradea"
+        }
+      ],
+      "rationale_ro": "Descrierea scurtă indică sesizări către Primăria Oradea. Încadrare: Primărie sau administrație locală."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "local",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "oradea-city-report:acoperire_original",
+          "locator": "clasificare-input.csv:oradea-city-report:acoperire_original",
+          "excerpt": "local"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "localitate:oradea",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "oradea-city-report:acoperire_original",
+          "locator": "clasificare-input.csv:oradea-city-report:acoperire_original",
+          "excerpt": "local"
+        },
+        {
+          "source_id": "oradea-city-report:oras_original",
+          "locator": "clasificare-input.csv:oradea-city-report:oras_original",
+          "excerpt": "Oradea"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": null,
+      "object_literal": "Primăria Oradea",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "oradea-city-report:autor_original",
+          "locator": "clasificare-input.csv:oradea-city-report:autor_original",
+          "excerpt": "Primăria Oradea"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    },
+    {
+      "field": "classification",
+      "reason_ro": "Lipsește descrierea detaliată; titlul, textul scurt și etichetele au precizie limitată.",
+      "needed_evidence_ro": "Documentație publică specifică intrării."
+    },
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "instrument",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

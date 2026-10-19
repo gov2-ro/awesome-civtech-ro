@@ -1,0 +1,254 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "monitorul-ai-integritate",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:guvernare-democratie",
+    "subiecte": [
+      "subiect:guvernare-democratie"
+    ],
+    "teme": [
+      "subiect:integritate-publica"
+    ],
+    "scopuri": [
+      "scop:transparenta",
+      "scop:responsabilizare"
+    ],
+    "functionalitati": [
+      "functie:analiza"
+    ],
+    "formate": [
+      "format:vizualizare"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "monitorul-ai-integritate:tip_entitate_original",
+          "locator": "clasificare-input.csv:monitorul-ai-integritate:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "monitorul-ai-integritate:descriere_scurta",
+          "locator": "clasificare-input.csv:monitorul-ai-integritate:descriere_scurta",
+          "excerpt": "Analiză declarații avere & interese"
+        },
+        {
+          "source_id": "monitorul-ai-integritate:descriere",
+          "locator": "clasificare-input.csv:monitorul-ai-integritate:descriere",
+          "excerpt": "Un portret de date al declarațiilor de avere din România"
+        }
+      ],
+      "rationale_ro": "Declarațiile de avere și interese constituie obiectul portretului de date. Conceptul subiect:integritate-publica are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "monitorul-ai-integritate:descriere_scurta",
+          "locator": "clasificare-input.csv:monitorul-ai-integritate:descriere_scurta",
+          "excerpt": "Analiză declarații avere & interese"
+        },
+        {
+          "source_id": "monitorul-ai-integritate:descriere",
+          "locator": "clasificare-input.csv:monitorul-ai-integritate:descriere",
+          "excerpt": "Un portret de date al declarațiilor de avere din România"
+        }
+      ],
+      "rationale_ro": "Declarațiile de avere și interese constituie obiectul portretului de date. Conceptul subiect:integritate-publica are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:integritate-publica",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "monitorul-ai-integritate:descriere_scurta",
+          "locator": "clasificare-input.csv:monitorul-ai-integritate:descriere_scurta",
+          "excerpt": "Analiză declarații avere & interese"
+        },
+        {
+          "source_id": "monitorul-ai-integritate:descriere",
+          "locator": "clasificare-input.csv:monitorul-ai-integritate:descriere",
+          "excerpt": "Un portret de date al declarațiilor de avere din România"
+        }
+      ],
+      "rationale_ro": "Declarațiile de avere și interese constituie obiectul portretului de date. Încadrare: Integritate publică."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:transparenta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "monitorul-ai-integritate:descriere_scurta",
+          "locator": "clasificare-input.csv:monitorul-ai-integritate:descriere_scurta",
+          "excerpt": "Analiză declarații avere & interese"
+        },
+        {
+          "source_id": "monitorul-ai-integritate:descriere",
+          "locator": "clasificare-input.csv:monitorul-ai-integritate:descriere",
+          "excerpt": "Un portret de date al declarațiilor de avere din România"
+        }
+      ],
+      "rationale_ro": "Declarațiile de avere și interese constituie obiectul portretului de date. Încadrare: Transparență."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:responsabilizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "monitorul-ai-integritate:descriere_scurta",
+          "locator": "clasificare-input.csv:monitorul-ai-integritate:descriere_scurta",
+          "excerpt": "Analiză declarații avere & interese"
+        },
+        {
+          "source_id": "monitorul-ai-integritate:descriere",
+          "locator": "clasificare-input.csv:monitorul-ai-integritate:descriere",
+          "excerpt": "Un portret de date al declarațiilor de avere din România"
+        }
+      ],
+      "rationale_ro": "Declarațiile de avere și interese constituie obiectul portretului de date. Încadrare: Responsabilizare publică."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:analiza",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "monitorul-ai-integritate:descriere_scurta",
+          "locator": "clasificare-input.csv:monitorul-ai-integritate:descriere_scurta",
+          "excerpt": "Analiză declarații avere & interese"
+        },
+        {
+          "source_id": "monitorul-ai-integritate:descriere",
+          "locator": "clasificare-input.csv:monitorul-ai-integritate:descriere",
+          "excerpt": "Un portret de date al declarațiilor de avere din România"
+        }
+      ],
+      "rationale_ro": "Declarațiile de avere și interese constituie obiectul portretului de date. Încadrare: Analizează date."
+    },
+    {
+      "field": "formate",
+      "value": "format:vizualizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "monitorul-ai-integritate:descriere_scurta",
+          "locator": "clasificare-input.csv:monitorul-ai-integritate:descriere_scurta",
+          "excerpt": "Analiză declarații avere & interese"
+        },
+        {
+          "source_id": "monitorul-ai-integritate:descriere",
+          "locator": "clasificare-input.csv:monitorul-ai-integritate:descriere",
+          "excerpt": "Un portret de date al declarațiilor de avere din România"
+        }
+      ],
+      "rationale_ro": "Declarațiile de avere și interese constituie obiectul portretului de date. Încadrare: Vizualizare de date."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "monitorul-ai-integritate:acoperire_original",
+          "locator": "clasificare-input.csv:monitorul-ai-integritate:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "monitorul-ai-integritate:acoperire_original",
+          "locator": "clasificare-input.csv:monitorul-ai-integritate:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": null,
+      "object_literal": "Radu Ciocan",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "monitorul-ai-integritate:autor_original",
+          "locator": "clasificare-input.csv:monitorul-ai-integritate:autor_original",
+          "excerpt": "Radu Ciocan"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    },
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "cuvinte",
+      "original_value": "funcții-publice",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "politicieni",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

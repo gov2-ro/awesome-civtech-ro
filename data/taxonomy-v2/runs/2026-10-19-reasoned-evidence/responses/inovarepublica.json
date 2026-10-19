@@ -1,0 +1,407 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "inovarepublica",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "organizatie",
+    "subiect_principal": "subiect:guvernare-democratie",
+    "subiecte": [
+      "subiect:guvernare-democratie",
+      "subiect:drept-justitie",
+      "subiect:educatie-cultura",
+      "subiect:protectie-sociala"
+    ],
+    "teme": [
+      "subiect:democratie",
+      "subiect:drepturile-omului",
+      "subiect:educatie-civica",
+      "subiect:situatie-sociala"
+    ],
+    "scopuri": [
+      "scop:participare",
+      "scop:aparare-drepturi",
+      "scop:educatie"
+    ],
+    "functionalitati": [
+      "functie:analiza",
+      "functie:monitorizare",
+      "functie:advocacy"
+    ],
+    "formate": [],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [
+      "organizatie:ong"
+    ],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "organizatie",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "inovarepublica:tip_entitate_original",
+          "locator": "clasificare-input.csv:inovarepublica:tip_entitate_original",
+          "excerpt": "organizatie"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "inovarepublica:descriere_scurta",
+          "locator": "clasificare-input.csv:inovarepublica:descriere_scurta",
+          "excerpt": "Asociație pentru democrație, educație civică și societate incluzivă"
+        },
+        {
+          "source_id": "inovarepublica:descriere",
+          "locator": "clasificare-input.csv:inovarepublica:descriere",
+          "excerpt": "Asociație constituită în 2014, care face cercetare socială, monitorizează instituțiile publice, formulează recomandări de politici publice și face advocacy. Lucrează în trei domenii: instituții democratice și drepturi fundamentale, educație civică și societate incluzivă. Printre proiecte se numără instrumentul de bugetare participativă la școală și Coaliția ONG-uri pentru Cetățean."
+        }
+      ],
+      "rationale_ro": "Asociația cercetează instituții democratice, drepturi și incluziune; proiectele ei nu devin funcții ale site-ului. Conceptul subiect:democratie are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "inovarepublica:descriere_scurta",
+          "locator": "clasificare-input.csv:inovarepublica:descriere_scurta",
+          "excerpt": "Asociație pentru democrație, educație civică și societate incluzivă"
+        },
+        {
+          "source_id": "inovarepublica:descriere",
+          "locator": "clasificare-input.csv:inovarepublica:descriere",
+          "excerpt": "Asociație constituită în 2014, care face cercetare socială, monitorizează instituțiile publice, formulează recomandări de politici publice și face advocacy. Lucrează în trei domenii: instituții democratice și drepturi fundamentale, educație civică și societate incluzivă. Printre proiecte se numără instrumentul de bugetare participativă la școală și Coaliția ONG-uri pentru Cetățean."
+        }
+      ],
+      "rationale_ro": "Asociația cercetează instituții democratice, drepturi și incluziune; proiectele ei nu devin funcții ale site-ului. Conceptul subiect:democratie are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:drept-justitie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "inovarepublica:descriere_scurta",
+          "locator": "clasificare-input.csv:inovarepublica:descriere_scurta",
+          "excerpt": "Asociație pentru democrație, educație civică și societate incluzivă"
+        },
+        {
+          "source_id": "inovarepublica:descriere",
+          "locator": "clasificare-input.csv:inovarepublica:descriere",
+          "excerpt": "Asociație constituită în 2014, care face cercetare socială, monitorizează instituțiile publice, formulează recomandări de politici publice și face advocacy. Lucrează în trei domenii: instituții democratice și drepturi fundamentale, educație civică și societate incluzivă. Printre proiecte se numără instrumentul de bugetare participativă la școală și Coaliția ONG-uri pentru Cetățean."
+        }
+      ],
+      "rationale_ro": "Asociația cercetează instituții democratice, drepturi și incluziune; proiectele ei nu devin funcții ale site-ului. Conceptul subiect:drepturile-omului are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:educatie-cultura",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "inovarepublica:descriere_scurta",
+          "locator": "clasificare-input.csv:inovarepublica:descriere_scurta",
+          "excerpt": "Asociație pentru democrație, educație civică și societate incluzivă"
+        },
+        {
+          "source_id": "inovarepublica:descriere",
+          "locator": "clasificare-input.csv:inovarepublica:descriere",
+          "excerpt": "Asociație constituită în 2014, care face cercetare socială, monitorizează instituțiile publice, formulează recomandări de politici publice și face advocacy. Lucrează în trei domenii: instituții democratice și drepturi fundamentale, educație civică și societate incluzivă. Printre proiecte se numără instrumentul de bugetare participativă la școală și Coaliția ONG-uri pentru Cetățean."
+        }
+      ],
+      "rationale_ro": "Asociația cercetează instituții democratice, drepturi și incluziune; proiectele ei nu devin funcții ale site-ului. Conceptul subiect:educatie-civica are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:protectie-sociala",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "inovarepublica:descriere_scurta",
+          "locator": "clasificare-input.csv:inovarepublica:descriere_scurta",
+          "excerpt": "Asociație pentru democrație, educație civică și societate incluzivă"
+        },
+        {
+          "source_id": "inovarepublica:descriere",
+          "locator": "clasificare-input.csv:inovarepublica:descriere",
+          "excerpt": "Asociație constituită în 2014, care face cercetare socială, monitorizează instituțiile publice, formulează recomandări de politici publice și face advocacy. Lucrează în trei domenii: instituții democratice și drepturi fundamentale, educație civică și societate incluzivă. Printre proiecte se numără instrumentul de bugetare participativă la școală și Coaliția ONG-uri pentru Cetățean."
+        }
+      ],
+      "rationale_ro": "Asociația cercetează instituții democratice, drepturi și incluziune; proiectele ei nu devin funcții ale site-ului. Conceptul subiect:situatie-sociala are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:democratie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "inovarepublica:descriere_scurta",
+          "locator": "clasificare-input.csv:inovarepublica:descriere_scurta",
+          "excerpt": "Asociație pentru democrație, educație civică și societate incluzivă"
+        },
+        {
+          "source_id": "inovarepublica:descriere",
+          "locator": "clasificare-input.csv:inovarepublica:descriere",
+          "excerpt": "Asociație constituită în 2014, care face cercetare socială, monitorizează instituțiile publice, formulează recomandări de politici publice și face advocacy. Lucrează în trei domenii: instituții democratice și drepturi fundamentale, educație civică și societate incluzivă. Printre proiecte se numără instrumentul de bugetare participativă la școală și Coaliția ONG-uri pentru Cetățean."
+        }
+      ],
+      "rationale_ro": "Asociația cercetează instituții democratice, drepturi și incluziune; proiectele ei nu devin funcții ale site-ului. Încadrare: Democrație."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:drepturile-omului",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "inovarepublica:descriere_scurta",
+          "locator": "clasificare-input.csv:inovarepublica:descriere_scurta",
+          "excerpt": "Asociație pentru democrație, educație civică și societate incluzivă"
+        },
+        {
+          "source_id": "inovarepublica:descriere",
+          "locator": "clasificare-input.csv:inovarepublica:descriere",
+          "excerpt": "Asociație constituită în 2014, care face cercetare socială, monitorizează instituțiile publice, formulează recomandări de politici publice și face advocacy. Lucrează în trei domenii: instituții democratice și drepturi fundamentale, educație civică și societate incluzivă. Printre proiecte se numără instrumentul de bugetare participativă la școală și Coaliția ONG-uri pentru Cetățean."
+        }
+      ],
+      "rationale_ro": "Asociația cercetează instituții democratice, drepturi și incluziune; proiectele ei nu devin funcții ale site-ului. Încadrare: Drepturile omului."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:educatie-civica",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "inovarepublica:descriere_scurta",
+          "locator": "clasificare-input.csv:inovarepublica:descriere_scurta",
+          "excerpt": "Asociație pentru democrație, educație civică și societate incluzivă"
+        },
+        {
+          "source_id": "inovarepublica:descriere",
+          "locator": "clasificare-input.csv:inovarepublica:descriere",
+          "excerpt": "Asociație constituită în 2014, care face cercetare socială, monitorizează instituțiile publice, formulează recomandări de politici publice și face advocacy. Lucrează în trei domenii: instituții democratice și drepturi fundamentale, educație civică și societate incluzivă. Printre proiecte se numără instrumentul de bugetare participativă la școală și Coaliția ONG-uri pentru Cetățean."
+        }
+      ],
+      "rationale_ro": "Asociația cercetează instituții democratice, drepturi și incluziune; proiectele ei nu devin funcții ale site-ului. Încadrare: Educație civică."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:situatie-sociala",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "inovarepublica:descriere_scurta",
+          "locator": "clasificare-input.csv:inovarepublica:descriere_scurta",
+          "excerpt": "Asociație pentru democrație, educație civică și societate incluzivă"
+        },
+        {
+          "source_id": "inovarepublica:descriere",
+          "locator": "clasificare-input.csv:inovarepublica:descriere",
+          "excerpt": "Asociație constituită în 2014, care face cercetare socială, monitorizează instituțiile publice, formulează recomandări de politici publice și face advocacy. Lucrează în trei domenii: instituții democratice și drepturi fundamentale, educație civică și societate incluzivă. Printre proiecte se numără instrumentul de bugetare participativă la școală și Coaliția ONG-uri pentru Cetățean."
+        }
+      ],
+      "rationale_ro": "Asociația cercetează instituții democratice, drepturi și incluziune; proiectele ei nu devin funcții ale site-ului. Încadrare: Situație socială."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:participare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "inovarepublica:descriere_scurta",
+          "locator": "clasificare-input.csv:inovarepublica:descriere_scurta",
+          "excerpt": "Asociație pentru democrație, educație civică și societate incluzivă"
+        },
+        {
+          "source_id": "inovarepublica:descriere",
+          "locator": "clasificare-input.csv:inovarepublica:descriere",
+          "excerpt": "Asociație constituită în 2014, care face cercetare socială, monitorizează instituțiile publice, formulează recomandări de politici publice și face advocacy. Lucrează în trei domenii: instituții democratice și drepturi fundamentale, educație civică și societate incluzivă. Printre proiecte se numără instrumentul de bugetare participativă la școală și Coaliția ONG-uri pentru Cetățean."
+        }
+      ],
+      "rationale_ro": "Asociația cercetează instituții democratice, drepturi și incluziune; proiectele ei nu devin funcții ale site-ului. Încadrare: Participare civică."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:aparare-drepturi",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "inovarepublica:descriere_scurta",
+          "locator": "clasificare-input.csv:inovarepublica:descriere_scurta",
+          "excerpt": "Asociație pentru democrație, educație civică și societate incluzivă"
+        },
+        {
+          "source_id": "inovarepublica:descriere",
+          "locator": "clasificare-input.csv:inovarepublica:descriere",
+          "excerpt": "Asociație constituită în 2014, care face cercetare socială, monitorizează instituțiile publice, formulează recomandări de politici publice și face advocacy. Lucrează în trei domenii: instituții democratice și drepturi fundamentale, educație civică și societate incluzivă. Printre proiecte se numără instrumentul de bugetare participativă la școală și Coaliția ONG-uri pentru Cetățean."
+        }
+      ],
+      "rationale_ro": "Asociația cercetează instituții democratice, drepturi și incluziune; proiectele ei nu devin funcții ale site-ului. Încadrare: Apărarea drepturilor."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:educatie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "inovarepublica:descriere_scurta",
+          "locator": "clasificare-input.csv:inovarepublica:descriere_scurta",
+          "excerpt": "Asociație pentru democrație, educație civică și societate incluzivă"
+        },
+        {
+          "source_id": "inovarepublica:descriere",
+          "locator": "clasificare-input.csv:inovarepublica:descriere",
+          "excerpt": "Asociație constituită în 2014, care face cercetare socială, monitorizează instituțiile publice, formulează recomandări de politici publice și face advocacy. Lucrează în trei domenii: instituții democratice și drepturi fundamentale, educație civică și societate incluzivă. Printre proiecte se numără instrumentul de bugetare participativă la școală și Coaliția ONG-uri pentru Cetățean."
+        }
+      ],
+      "rationale_ro": "Asociația cercetează instituții democratice, drepturi și incluziune; proiectele ei nu devin funcții ale site-ului. Încadrare: Învățare."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:analiza",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "inovarepublica:descriere_scurta",
+          "locator": "clasificare-input.csv:inovarepublica:descriere_scurta",
+          "excerpt": "Asociație pentru democrație, educație civică și societate incluzivă"
+        },
+        {
+          "source_id": "inovarepublica:descriere",
+          "locator": "clasificare-input.csv:inovarepublica:descriere",
+          "excerpt": "Asociație constituită în 2014, care face cercetare socială, monitorizează instituțiile publice, formulează recomandări de politici publice și face advocacy. Lucrează în trei domenii: instituții democratice și drepturi fundamentale, educație civică și societate incluzivă. Printre proiecte se numără instrumentul de bugetare participativă la școală și Coaliția ONG-uri pentru Cetățean."
+        }
+      ],
+      "rationale_ro": "Asociația cercetează instituții democratice, drepturi și incluziune; proiectele ei nu devin funcții ale site-ului. Încadrare: Analizează date."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:monitorizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "inovarepublica:descriere_scurta",
+          "locator": "clasificare-input.csv:inovarepublica:descriere_scurta",
+          "excerpt": "Asociație pentru democrație, educație civică și societate incluzivă"
+        },
+        {
+          "source_id": "inovarepublica:descriere",
+          "locator": "clasificare-input.csv:inovarepublica:descriere",
+          "excerpt": "Asociație constituită în 2014, care face cercetare socială, monitorizează instituțiile publice, formulează recomandări de politici publice și face advocacy. Lucrează în trei domenii: instituții democratice și drepturi fundamentale, educație civică și societate incluzivă. Printre proiecte se numără instrumentul de bugetare participativă la școală și Coaliția ONG-uri pentru Cetățean."
+        }
+      ],
+      "rationale_ro": "Asociația cercetează instituții democratice, drepturi și incluziune; proiectele ei nu devin funcții ale site-ului. Încadrare: Monitorizează."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:advocacy",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "inovarepublica:descriere_scurta",
+          "locator": "clasificare-input.csv:inovarepublica:descriere_scurta",
+          "excerpt": "Asociație pentru democrație, educație civică și societate incluzivă"
+        },
+        {
+          "source_id": "inovarepublica:descriere",
+          "locator": "clasificare-input.csv:inovarepublica:descriere",
+          "excerpt": "Asociație constituită în 2014, care face cercetare socială, monitorizează instituțiile publice, formulează recomandări de politici publice și face advocacy. Lucrează în trei domenii: instituții democratice și drepturi fundamentale, educație civică și societate incluzivă. Printre proiecte se numără instrumentul de bugetare participativă la școală și Coaliția ONG-uri pentru Cetățean."
+        }
+      ],
+      "rationale_ro": "Asociația cercetează instituții democratice, drepturi și incluziune; proiectele ei nu devin funcții ale site-ului. Încadrare: Organizează advocacy."
+    },
+    {
+      "field": "tip_organizatie",
+      "value": "organizatie:ong",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "inovarepublica:descriere_scurta",
+          "locator": "clasificare-input.csv:inovarepublica:descriere_scurta",
+          "excerpt": "Asociație pentru democrație, educație civică și societate incluzivă"
+        },
+        {
+          "source_id": "inovarepublica:descriere",
+          "locator": "clasificare-input.csv:inovarepublica:descriere",
+          "excerpt": "Asociație constituită în 2014, care face cercetare socială, monitorizează instituțiile publice, formulează recomandări de politici publice și face advocacy. Lucrează în trei domenii: instituții democratice și drepturi fundamentale, educație civică și societate incluzivă. Printre proiecte se numără instrumentul de bugetare participativă la școală și Coaliția ONG-uri pentru Cetățean."
+        }
+      ],
+      "rationale_ro": "Asociația cercetează instituții democratice, drepturi și incluziune; proiectele ei nu devin funcții ale site-ului. Încadrare: Organizație neguvernamentală."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "inovarepublica:acoperire_original",
+          "locator": "clasificare-input.csv:inovarepublica:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "inovarepublica:acoperire_original",
+          "locator": "clasificare-input.csv:inovarepublica:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [],
+  "uncertainties": [],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "cuvinte",
+      "original_value": "societate-civilă",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "educație-civică",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

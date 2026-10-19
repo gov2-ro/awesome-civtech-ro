@@ -1,0 +1,687 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:civtech:taxonomy-v2-classification:1",
+  "title": "CivTech v2 automated classification proposal",
+  "description": "Model output only. IDs, citations, hierarchy, and source preservation require additional deterministic validation.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "taxonomy-v2-classification/1"
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "result_status": {
+      "type": "string",
+      "enum": [
+        "classified",
+        "partial",
+        "insufficient_evidence"
+      ]
+    },
+    "classification": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tip_entitate": {
+          "type": "string",
+          "enum": [
+            "proiect",
+            "organizatie",
+            "resursa",
+            "publicatie",
+            "set-date",
+            "campanie"
+          ]
+        },
+        "subiect_principal": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^subiect:[a-z0-9]+(?:-[a-z0-9]+)*$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "subiecte": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^subiect:[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "teme": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^subiect:[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "scopuri": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^scop:[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "functionalitati": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^functie:[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "formate": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^format:[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "tehnologii": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^tehnologie:[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "institutii_vizate": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^institutie:[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "tip_organizatie": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^organizatie:[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "maturitate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "maturitate:experiment",
+                "maturitate:prototip",
+                "maturitate:pilot",
+                "maturitate:operational"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "nivel_acoperire": {
+          "type": "string",
+          "enum": [
+            "national",
+            "local",
+            "international",
+            "necunoscut"
+          ]
+        },
+        "arii_acoperite": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "tip_entitate",
+        "subiect_principal",
+        "subiecte",
+        "teme",
+        "scopuri",
+        "functionalitati",
+        "formate",
+        "tehnologii",
+        "institutii_vizate",
+        "tip_organizatie",
+        "maturitate",
+        "nivel_acoperire",
+        "arii_acoperite"
+      ]
+    },
+    "justifications": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/justification"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "attributions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/attribution"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "uncertainties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "field": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reason_ro": {
+            "type": "string",
+            "minLength": 1
+          },
+          "needed_evidence_ro": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "field",
+          "reason_ro",
+          "needed_evidence_ro"
+        ]
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "field": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 2,
+            "uniqueItems": true
+          },
+          "reason_ro": {
+            "type": "string",
+            "minLength": 1
+          },
+          "resolution_ro": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "field",
+          "source_ids",
+          "reason_ro",
+          "resolution_ro"
+        ]
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "excluded_legacy_tags": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "original_field": {
+            "type": "string",
+            "enum": [
+              "domeniu",
+              "tip",
+              "cuvinte"
+            ]
+          },
+          "original_value": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reason_ro": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "original_field",
+          "original_value",
+          "reason_ro"
+        ]
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "new_concept_proposals": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/concept_proposal"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "new_area_proposals": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/area_proposal"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "slug",
+    "result_status",
+    "classification",
+    "justifications",
+    "attributions",
+    "uncertainties",
+    "conflicts",
+    "excluded_legacy_tags",
+    "new_concept_proposals",
+    "new_area_proposals"
+  ],
+  "$defs": {
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "excerpt": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "source_id",
+        "locator",
+        "excerpt"
+      ]
+    },
+    "justification": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "type": "string",
+          "enum": [
+            "tip_entitate",
+            "subiect_principal",
+            "subiecte",
+            "teme",
+            "scopuri",
+            "functionalitati",
+            "formate",
+            "tehnologii",
+            "institutii_vizate",
+            "tip_organizatie",
+            "maturitate",
+            "nivel_acoperire",
+            "arii_acoperite"
+          ]
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "basis": {
+          "type": "string",
+          "enum": [
+            "explicit",
+            "inference",
+            "hierarchy",
+            "identity_preservation"
+          ]
+        },
+        "confidence": {
+          "type": "string",
+          "enum": [
+            "mica",
+            "medie",
+            "mare"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "rationale_ro": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "field",
+        "value",
+        "basis",
+        "confidence",
+        "evidence",
+        "rationale_ro"
+      ]
+    },
+    "attribution": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "predicate": {
+          "type": "string",
+          "enum": [
+            "atribuit_in_sursa",
+            "creat_de",
+            "mentinut_de",
+            "publicat_de",
+            "finantat_de",
+            "parte_din",
+            "ofera",
+            "foloseste"
+          ]
+        },
+        "object_slug": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "object_literal": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "basis": {
+          "type": "string",
+          "enum": [
+            "explicit",
+            "inference",
+            "hierarchy",
+            "identity_preservation"
+          ]
+        },
+        "confidence": {
+          "type": "string",
+          "enum": [
+            "mica",
+            "medie",
+            "mare"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "rationale_ro": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "predicate",
+        "object_slug",
+        "object_literal",
+        "basis",
+        "confidence",
+        "evidence",
+        "rationale_ro"
+      ],
+      "oneOf": [
+        {
+          "properties": {
+            "object_slug": {
+              "type": "string",
+              "minLength": 1
+            },
+            "object_literal": {
+              "type": "null"
+            }
+          }
+        },
+        {
+          "properties": {
+            "object_slug": {
+              "type": "null"
+            },
+            "object_literal": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "predicate": {
+                "enum": [
+                  "parte_din",
+                  "ofera",
+                  "foloseste"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "object_slug": {
+                "type": "string",
+                "minLength": 1
+              },
+              "object_literal": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "concept_proposal": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "scheme": {
+          "type": "string",
+          "enum": [
+            "subiect",
+            "scop",
+            "functie",
+            "format",
+            "tehnologie",
+            "institutie",
+            "organizatie",
+            "maturitate"
+          ]
+        },
+        "label_ro": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label_en": {
+          "type": "string",
+          "minLength": 1
+        },
+        "definition_ro": {
+          "type": "string",
+          "minLength": 1
+        },
+        "broader_existing_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "reason_ro": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "scheme",
+        "label_ro",
+        "label_en",
+        "definition_ro",
+        "broader_existing_ids",
+        "reason_ro",
+        "evidence"
+      ]
+    },
+    "area_proposal": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "label_ro": {
+          "type": "string",
+          "minLength": 1
+        },
+        "area_type": {
+          "type": "string",
+          "enum": [
+            "tara",
+            "regiune",
+            "judet",
+            "localitate"
+          ]
+        },
+        "parent_existing_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "reason_ro": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "label_ro",
+        "area_type",
+        "parent_existing_ids",
+        "reason_ro",
+        "evidence"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "result_status": {
+            "const": "insufficient_evidence"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "classification": {
+            "properties": {
+              "subiect_principal": {
+                "type": "null"
+              },
+              "subiecte": {
+                "maxItems": 0
+              },
+              "teme": {
+                "maxItems": 0
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "classification": {
+            "properties": {
+              "subiect_principal": {
+                "type": "string",
+                "pattern": "^subiect:[a-z0-9]+(?:-[a-z0-9]+)*$"
+              },
+              "subiecte": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

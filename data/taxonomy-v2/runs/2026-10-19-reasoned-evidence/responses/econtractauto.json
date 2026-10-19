@@ -1,0 +1,221 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "econtractauto",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:drept-justitie",
+    "subiecte": [
+      "subiect:drept-justitie"
+    ],
+    "teme": [],
+    "scopuri": [
+      "scop:acces-servicii"
+    ],
+    "functionalitati": [
+      "functie:generare-documente"
+    ],
+    "formate": [
+      "format:formular"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": "maturitate:operational",
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "econtractauto:tip_entitate_original",
+          "locator": "clasificare-input.csv:econtractauto:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:drept-justitie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "econtractauto:descriere_scurta",
+          "locator": "clasificare-input.csv:econtractauto:descriere_scurta",
+          "excerpt": "Contractul de vânzare-cumpărare auto în trei pași"
+        },
+        {
+          "source_id": "econtractauto:descriere",
+          "locator": "clasificare-input.csv:econtractauto:descriere",
+          "excerpt": "Generează contractul oficial de înstrăinare-dobândire a unui vehicul în 3 \npași simpli. Încarcă CI și talonul, verifică datele extrase automat, \nsemnează și descarcă PDF-ul."
+        }
+      ],
+      "rationale_ro": "Generarea contractului auto este o procedură juridică, nu o ofertă de locuri de muncă."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:drept-justitie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "econtractauto:descriere_scurta",
+          "locator": "clasificare-input.csv:econtractauto:descriere_scurta",
+          "excerpt": "Contractul de vânzare-cumpărare auto în trei pași"
+        },
+        {
+          "source_id": "econtractauto:descriere",
+          "locator": "clasificare-input.csv:econtractauto:descriere",
+          "excerpt": "Generează contractul oficial de înstrăinare-dobândire a unui vehicul în 3 \npași simpli. Încarcă CI și talonul, verifică datele extrase automat, \nsemnează și descarcă PDF-ul."
+        }
+      ],
+      "rationale_ro": "Generarea contractului auto este o procedură juridică, nu o ofertă de locuri de muncă."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:acces-servicii",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "econtractauto:descriere_scurta",
+          "locator": "clasificare-input.csv:econtractauto:descriere_scurta",
+          "excerpt": "Contractul de vânzare-cumpărare auto în trei pași"
+        },
+        {
+          "source_id": "econtractauto:descriere",
+          "locator": "clasificare-input.csv:econtractauto:descriere",
+          "excerpt": "Generează contractul oficial de înstrăinare-dobândire a unui vehicul în 3 \npași simpli. Încarcă CI și talonul, verifică datele extrase automat, \nsemnează și descarcă PDF-ul."
+        }
+      ],
+      "rationale_ro": "Generarea contractului auto este o procedură juridică, nu o ofertă de locuri de muncă. Încadrare: Acces la servicii."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:generare-documente",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "econtractauto:descriere_scurta",
+          "locator": "clasificare-input.csv:econtractauto:descriere_scurta",
+          "excerpt": "Contractul de vânzare-cumpărare auto în trei pași"
+        },
+        {
+          "source_id": "econtractauto:descriere",
+          "locator": "clasificare-input.csv:econtractauto:descriere",
+          "excerpt": "Generează contractul oficial de înstrăinare-dobândire a unui vehicul în 3 \npași simpli. Încarcă CI și talonul, verifică datele extrase automat, \nsemnează și descarcă PDF-ul."
+        }
+      ],
+      "rationale_ro": "Generarea contractului auto este o procedură juridică, nu o ofertă de locuri de muncă. Încadrare: Completează sau generează documente."
+    },
+    {
+      "field": "formate",
+      "value": "format:formular",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "econtractauto:descriere_scurta",
+          "locator": "clasificare-input.csv:econtractauto:descriere_scurta",
+          "excerpt": "Contractul de vânzare-cumpărare auto în trei pași"
+        },
+        {
+          "source_id": "econtractauto:descriere",
+          "locator": "clasificare-input.csv:econtractauto:descriere",
+          "excerpt": "Generează contractul oficial de înstrăinare-dobândire a unui vehicul în 3 \npași simpli. Încarcă CI și talonul, verifică datele extrase automat, \nsemnează și descarcă PDF-ul."
+        }
+      ],
+      "rationale_ro": "Generarea contractului auto este o procedură juridică, nu o ofertă de locuri de muncă. Încadrare: Formular."
+    },
+    {
+      "field": "maturitate",
+      "value": "maturitate:operational",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "econtractauto:descriere_scurta",
+          "locator": "clasificare-input.csv:econtractauto:descriere_scurta",
+          "excerpt": "Contractul de vânzare-cumpărare auto în trei pași"
+        },
+        {
+          "source_id": "econtractauto:descriere",
+          "locator": "clasificare-input.csv:econtractauto:descriere",
+          "excerpt": "Generează contractul oficial de înstrăinare-dobândire a unui vehicul în 3 \npași simpli. Încarcă CI și talonul, verifică datele extrase automat, \nsemnează și descarcă PDF-ul."
+        }
+      ],
+      "rationale_ro": "Descrierea oferă un flux concret pentru utilizare obișnuită de către publicul țintă. Generarea contractului auto este o procedură juridică, nu o ofertă de locuri de muncă. Încadrare: Operațional."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "econtractauto:acoperire_original",
+          "locator": "clasificare-input.csv:econtractauto:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "econtractauto:acoperire_original",
+          "locator": "clasificare-input.csv:econtractauto:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [],
+  "uncertainties": [],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "instrument",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "formulare",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [
+    {
+      "scheme": "functie",
+      "label_ro": "Semnarea documentelor",
+      "label_en": "Document signing",
+      "definition_ro": "Permite aplicarea unei semnături pe un document.",
+      "broader_existing_ids": [],
+      "reason_ro": "Generarea documentelor nu exprimă separat etapa de semnare.",
+      "evidence": [
+        {
+          "source_id": "econtractauto:descriere",
+          "locator": "clasificare-input.csv:econtractauto:descriere",
+          "excerpt": "Generează contractul oficial de înstrăinare-dobândire a unui vehicul în 3 \npași simpli. Încarcă CI și talonul, verifică datele extrase automat, \nsemnează și descarcă PDF-ul."
+        }
+      ]
+    }
+  ],
+  "new_area_proposals": []
+}

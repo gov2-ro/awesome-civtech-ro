@@ -1,0 +1,242 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "reciclare-arad",
+  "result_status": "partial",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:mediu-energie",
+    "subiecte": [
+      "subiect:mediu-energie"
+    ],
+    "teme": [
+      "subiect:deseuri"
+    ],
+    "scopuri": [
+      "scop:informare"
+    ],
+    "functionalitati": [],
+    "formate": [],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "local",
+    "arii_acoperite": [
+      "localitate:arad"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "reciclare-arad:tip_entitate_original",
+          "locator": "clasificare-input.csv:reciclare-arad:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:mediu-energie",
+      "basis": "hierarchy",
+      "confidence": "mica",
+      "evidence": [
+        {
+          "source_id": "reciclare-arad:nume",
+          "locator": "clasificare-input.csv:reciclare-arad:nume",
+          "excerpt": "Calendar ridicare gunoi Arad"
+        },
+        {
+          "source_id": "reciclare-arad:domeniu_original",
+          "locator": "clasificare-input.csv:reciclare-arad:domeniu_original",
+          "excerpt": "mediu"
+        },
+        {
+          "source_id": "reciclare-arad:tip_original",
+          "locator": "clasificare-input.csv:reciclare-arad:tip_original",
+          "excerpt": "instrument"
+        },
+        {
+          "source_id": "reciclare-arad:cuvinte_original",
+          "locator": "clasificare-input.csv:reciclare-arad:cuvinte_original",
+          "excerpt": "ecologie"
+        }
+      ],
+      "rationale_ro": "Titlul identifică ridicarea deșeurilor în Arad; funcțiile calendarului nu sunt documentate. Conceptul subiect:deseuri are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:mediu-energie",
+      "basis": "hierarchy",
+      "confidence": "mica",
+      "evidence": [
+        {
+          "source_id": "reciclare-arad:nume",
+          "locator": "clasificare-input.csv:reciclare-arad:nume",
+          "excerpt": "Calendar ridicare gunoi Arad"
+        },
+        {
+          "source_id": "reciclare-arad:domeniu_original",
+          "locator": "clasificare-input.csv:reciclare-arad:domeniu_original",
+          "excerpt": "mediu"
+        },
+        {
+          "source_id": "reciclare-arad:tip_original",
+          "locator": "clasificare-input.csv:reciclare-arad:tip_original",
+          "excerpt": "instrument"
+        },
+        {
+          "source_id": "reciclare-arad:cuvinte_original",
+          "locator": "clasificare-input.csv:reciclare-arad:cuvinte_original",
+          "excerpt": "ecologie"
+        }
+      ],
+      "rationale_ro": "Titlul identifică ridicarea deșeurilor în Arad; funcțiile calendarului nu sunt documentate. Conceptul subiect:deseuri are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:deseuri",
+      "basis": "inference",
+      "confidence": "mica",
+      "evidence": [
+        {
+          "source_id": "reciclare-arad:nume",
+          "locator": "clasificare-input.csv:reciclare-arad:nume",
+          "excerpt": "Calendar ridicare gunoi Arad"
+        },
+        {
+          "source_id": "reciclare-arad:domeniu_original",
+          "locator": "clasificare-input.csv:reciclare-arad:domeniu_original",
+          "excerpt": "mediu"
+        },
+        {
+          "source_id": "reciclare-arad:tip_original",
+          "locator": "clasificare-input.csv:reciclare-arad:tip_original",
+          "excerpt": "instrument"
+        },
+        {
+          "source_id": "reciclare-arad:cuvinte_original",
+          "locator": "clasificare-input.csv:reciclare-arad:cuvinte_original",
+          "excerpt": "ecologie"
+        }
+      ],
+      "rationale_ro": "Titlul identifică ridicarea deșeurilor în Arad; funcțiile calendarului nu sunt documentate. Încadrare: Deșeuri și reciclare."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:informare",
+      "basis": "inference",
+      "confidence": "mica",
+      "evidence": [
+        {
+          "source_id": "reciclare-arad:nume",
+          "locator": "clasificare-input.csv:reciclare-arad:nume",
+          "excerpt": "Calendar ridicare gunoi Arad"
+        },
+        {
+          "source_id": "reciclare-arad:domeniu_original",
+          "locator": "clasificare-input.csv:reciclare-arad:domeniu_original",
+          "excerpt": "mediu"
+        },
+        {
+          "source_id": "reciclare-arad:tip_original",
+          "locator": "clasificare-input.csv:reciclare-arad:tip_original",
+          "excerpt": "instrument"
+        },
+        {
+          "source_id": "reciclare-arad:cuvinte_original",
+          "locator": "clasificare-input.csv:reciclare-arad:cuvinte_original",
+          "excerpt": "ecologie"
+        }
+      ],
+      "rationale_ro": "Titlul identifică ridicarea deșeurilor în Arad; funcțiile calendarului nu sunt documentate. Încadrare: Informare și înțelegere."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "local",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "reciclare-arad:acoperire_original",
+          "locator": "clasificare-input.csv:reciclare-arad:acoperire_original",
+          "excerpt": "local"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "localitate:arad",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "reciclare-arad:acoperire_original",
+          "locator": "clasificare-input.csv:reciclare-arad:acoperire_original",
+          "excerpt": "local"
+        },
+        {
+          "source_id": "reciclare-arad:oras_original",
+          "locator": "clasificare-input.csv:reciclare-arad:oras_original",
+          "excerpt": "Arad"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    },
+    {
+      "field": "classification",
+      "reason_ro": "Lipsește descrierea detaliată; titlul, textul scurt și etichetele au precizie limitată.",
+      "needed_evidence_ro": "Documentație publică specifică intrării."
+    },
+    {
+      "field": "classification",
+      "reason_ro": "Titlul identifică ridicarea deșeurilor în Arad; funcțiile calendarului nu sunt documentate.",
+      "needed_evidence_ro": "Documentație primară care rezolvă ambiguitatea indicată."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "instrument",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "ecologie",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [
+    {
+      "scheme": "format",
+      "label_ro": "Calendar",
+      "label_en": "Calendar",
+      "definition_ro": "Prezintă evenimente sau operațiuni în funcție de data programată.",
+      "broader_existing_ids": [],
+      "reason_ro": "Programul de ridicare a deșeurilor nu este descris precis de formatele existente.",
+      "evidence": [
+        {
+          "source_id": "reciclare-arad:nume",
+          "locator": "clasificare-input.csv:reciclare-arad:nume",
+          "excerpt": "Calendar ridicare gunoi Arad"
+        }
+      ]
+    }
+  ],
+  "new_area_proposals": []
+}

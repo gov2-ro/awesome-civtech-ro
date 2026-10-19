@@ -1,0 +1,395 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "aiparte-research",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "resursa",
+    "subiect_principal": "subiect:educatie-cultura",
+    "subiecte": [
+      "subiect:educatie-cultura",
+      "subiect:guvernare-democratie",
+      "subiect:protectie-sociala"
+    ],
+    "teme": [
+      "subiect:invatamant",
+      "subiect:bacalaureat",
+      "subiect:administratie-publica",
+      "subiect:situatie-sociala"
+    ],
+    "scopuri": [
+      "scop:informare"
+    ],
+    "functionalitati": [
+      "functie:analiza"
+    ],
+    "formate": [
+      "format:colectie",
+      "format:raport"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [
+      "institutie:scoala",
+      "institutie:primarie"
+    ],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "resursa",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "aiparte-research:tip_entitate_original",
+          "locator": "clasificare-input.csv:aiparte-research:tip_entitate_original",
+          "excerpt": "resursa"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:educatie-cultura",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "aiparte-research:descriere_scurta",
+          "locator": "clasificare-input.csv:aiparte-research:descriere_scurta",
+          "excerpt": "Explorăm datele din educație și administrație pentru a înțelege inegalitățile și a dezvolta soluții"
+        },
+        {
+          "source_id": "aiparte-research:descriere",
+          "locator": "clasificare-input.csv:aiparte-research:descriere",
+          "excerpt": "Colecție de rapoarte și analize ale AIParte Research despre datele din educație și administrație. Rapoartele tratează inechitățile dintre rural și urban în accesul la licee de top, rezultatele la Bacalaureat 2025, șansele elevilor din București pe cartiere și performanța administrativă a primarilor după afilierea politică. Pagina listează și proiectele asociate, precum serverele MCP și proiectul civic Cișmele Publice."
+        }
+      ],
+      "rationale_ro": "Colecția cercetează inegalități educaționale și administrația; proiectele MCP asociate nu sunt oferite de colecție. Conceptul subiect:invatamant are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:educatie-cultura",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "aiparte-research:descriere_scurta",
+          "locator": "clasificare-input.csv:aiparte-research:descriere_scurta",
+          "excerpt": "Explorăm datele din educație și administrație pentru a înțelege inegalitățile și a dezvolta soluții"
+        },
+        {
+          "source_id": "aiparte-research:descriere",
+          "locator": "clasificare-input.csv:aiparte-research:descriere",
+          "excerpt": "Colecție de rapoarte și analize ale AIParte Research despre datele din educație și administrație. Rapoartele tratează inechitățile dintre rural și urban în accesul la licee de top, rezultatele la Bacalaureat 2025, șansele elevilor din București pe cartiere și performanța administrativă a primarilor după afilierea politică. Pagina listează și proiectele asociate, precum serverele MCP și proiectul civic Cișmele Publice."
+        }
+      ],
+      "rationale_ro": "Colecția cercetează inegalități educaționale și administrația; proiectele MCP asociate nu sunt oferite de colecție. Conceptul subiect:invatamant are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "aiparte-research:descriere_scurta",
+          "locator": "clasificare-input.csv:aiparte-research:descriere_scurta",
+          "excerpt": "Explorăm datele din educație și administrație pentru a înțelege inegalitățile și a dezvolta soluții"
+        },
+        {
+          "source_id": "aiparte-research:descriere",
+          "locator": "clasificare-input.csv:aiparte-research:descriere",
+          "excerpt": "Colecție de rapoarte și analize ale AIParte Research despre datele din educație și administrație. Rapoartele tratează inechitățile dintre rural și urban în accesul la licee de top, rezultatele la Bacalaureat 2025, șansele elevilor din București pe cartiere și performanța administrativă a primarilor după afilierea politică. Pagina listează și proiectele asociate, precum serverele MCP și proiectul civic Cișmele Publice."
+        }
+      ],
+      "rationale_ro": "Colecția cercetează inegalități educaționale și administrația; proiectele MCP asociate nu sunt oferite de colecție. Conceptul subiect:administratie-publica are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:protectie-sociala",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "aiparte-research:descriere_scurta",
+          "locator": "clasificare-input.csv:aiparte-research:descriere_scurta",
+          "excerpt": "Explorăm datele din educație și administrație pentru a înțelege inegalitățile și a dezvolta soluții"
+        },
+        {
+          "source_id": "aiparte-research:descriere",
+          "locator": "clasificare-input.csv:aiparte-research:descriere",
+          "excerpt": "Colecție de rapoarte și analize ale AIParte Research despre datele din educație și administrație. Rapoartele tratează inechitățile dintre rural și urban în accesul la licee de top, rezultatele la Bacalaureat 2025, șansele elevilor din București pe cartiere și performanța administrativă a primarilor după afilierea politică. Pagina listează și proiectele asociate, precum serverele MCP și proiectul civic Cișmele Publice."
+        }
+      ],
+      "rationale_ro": "Colecția cercetează inegalități educaționale și administrația; proiectele MCP asociate nu sunt oferite de colecție. Conceptul subiect:situatie-sociala are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:invatamant",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "aiparte-research:descriere_scurta",
+          "locator": "clasificare-input.csv:aiparte-research:descriere_scurta",
+          "excerpt": "Explorăm datele din educație și administrație pentru a înțelege inegalitățile și a dezvolta soluții"
+        },
+        {
+          "source_id": "aiparte-research:descriere",
+          "locator": "clasificare-input.csv:aiparte-research:descriere",
+          "excerpt": "Colecție de rapoarte și analize ale AIParte Research despre datele din educație și administrație. Rapoartele tratează inechitățile dintre rural și urban în accesul la licee de top, rezultatele la Bacalaureat 2025, șansele elevilor din București pe cartiere și performanța administrativă a primarilor după afilierea politică. Pagina listează și proiectele asociate, precum serverele MCP și proiectul civic Cișmele Publice."
+        }
+      ],
+      "rationale_ro": "Colecția cercetează inegalități educaționale și administrația; proiectele MCP asociate nu sunt oferite de colecție. Încadrare: Învățământ."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:bacalaureat",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "aiparte-research:descriere_scurta",
+          "locator": "clasificare-input.csv:aiparte-research:descriere_scurta",
+          "excerpt": "Explorăm datele din educație și administrație pentru a înțelege inegalitățile și a dezvolta soluții"
+        },
+        {
+          "source_id": "aiparte-research:descriere",
+          "locator": "clasificare-input.csv:aiparte-research:descriere",
+          "excerpt": "Colecție de rapoarte și analize ale AIParte Research despre datele din educație și administrație. Rapoartele tratează inechitățile dintre rural și urban în accesul la licee de top, rezultatele la Bacalaureat 2025, șansele elevilor din București pe cartiere și performanța administrativă a primarilor după afilierea politică. Pagina listează și proiectele asociate, precum serverele MCP și proiectul civic Cișmele Publice."
+        }
+      ],
+      "rationale_ro": "Colecția cercetează inegalități educaționale și administrația; proiectele MCP asociate nu sunt oferite de colecție. Încadrare: Bacalaureat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:administratie-publica",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "aiparte-research:descriere_scurta",
+          "locator": "clasificare-input.csv:aiparte-research:descriere_scurta",
+          "excerpt": "Explorăm datele din educație și administrație pentru a înțelege inegalitățile și a dezvolta soluții"
+        },
+        {
+          "source_id": "aiparte-research:descriere",
+          "locator": "clasificare-input.csv:aiparte-research:descriere",
+          "excerpt": "Colecție de rapoarte și analize ale AIParte Research despre datele din educație și administrație. Rapoartele tratează inechitățile dintre rural și urban în accesul la licee de top, rezultatele la Bacalaureat 2025, șansele elevilor din București pe cartiere și performanța administrativă a primarilor după afilierea politică. Pagina listează și proiectele asociate, precum serverele MCP și proiectul civic Cișmele Publice."
+        }
+      ],
+      "rationale_ro": "Colecția cercetează inegalități educaționale și administrația; proiectele MCP asociate nu sunt oferite de colecție. Încadrare: Administrație publică."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:situatie-sociala",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "aiparte-research:descriere_scurta",
+          "locator": "clasificare-input.csv:aiparte-research:descriere_scurta",
+          "excerpt": "Explorăm datele din educație și administrație pentru a înțelege inegalitățile și a dezvolta soluții"
+        },
+        {
+          "source_id": "aiparte-research:descriere",
+          "locator": "clasificare-input.csv:aiparte-research:descriere",
+          "excerpt": "Colecție de rapoarte și analize ale AIParte Research despre datele din educație și administrație. Rapoartele tratează inechitățile dintre rural și urban în accesul la licee de top, rezultatele la Bacalaureat 2025, șansele elevilor din București pe cartiere și performanța administrativă a primarilor după afilierea politică. Pagina listează și proiectele asociate, precum serverele MCP și proiectul civic Cișmele Publice."
+        }
+      ],
+      "rationale_ro": "Colecția cercetează inegalități educaționale și administrația; proiectele MCP asociate nu sunt oferite de colecție. Încadrare: Situație socială."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "aiparte-research:descriere_scurta",
+          "locator": "clasificare-input.csv:aiparte-research:descriere_scurta",
+          "excerpt": "Explorăm datele din educație și administrație pentru a înțelege inegalitățile și a dezvolta soluții"
+        },
+        {
+          "source_id": "aiparte-research:descriere",
+          "locator": "clasificare-input.csv:aiparte-research:descriere",
+          "excerpt": "Colecție de rapoarte și analize ale AIParte Research despre datele din educație și administrație. Rapoartele tratează inechitățile dintre rural și urban în accesul la licee de top, rezultatele la Bacalaureat 2025, șansele elevilor din București pe cartiere și performanța administrativă a primarilor după afilierea politică. Pagina listează și proiectele asociate, precum serverele MCP și proiectul civic Cișmele Publice."
+        }
+      ],
+      "rationale_ro": "Colecția cercetează inegalități educaționale și administrația; proiectele MCP asociate nu sunt oferite de colecție. Încadrare: Informare și înțelegere."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:analiza",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "aiparte-research:descriere_scurta",
+          "locator": "clasificare-input.csv:aiparte-research:descriere_scurta",
+          "excerpt": "Explorăm datele din educație și administrație pentru a înțelege inegalitățile și a dezvolta soluții"
+        },
+        {
+          "source_id": "aiparte-research:descriere",
+          "locator": "clasificare-input.csv:aiparte-research:descriere",
+          "excerpt": "Colecție de rapoarte și analize ale AIParte Research despre datele din educație și administrație. Rapoartele tratează inechitățile dintre rural și urban în accesul la licee de top, rezultatele la Bacalaureat 2025, șansele elevilor din București pe cartiere și performanța administrativă a primarilor după afilierea politică. Pagina listează și proiectele asociate, precum serverele MCP și proiectul civic Cișmele Publice."
+        }
+      ],
+      "rationale_ro": "Colecția cercetează inegalități educaționale și administrația; proiectele MCP asociate nu sunt oferite de colecție. Încadrare: Analizează date."
+    },
+    {
+      "field": "formate",
+      "value": "format:colectie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "aiparte-research:descriere_scurta",
+          "locator": "clasificare-input.csv:aiparte-research:descriere_scurta",
+          "excerpt": "Explorăm datele din educație și administrație pentru a înțelege inegalitățile și a dezvolta soluții"
+        },
+        {
+          "source_id": "aiparte-research:descriere",
+          "locator": "clasificare-input.csv:aiparte-research:descriere",
+          "excerpt": "Colecție de rapoarte și analize ale AIParte Research despre datele din educație și administrație. Rapoartele tratează inechitățile dintre rural și urban în accesul la licee de top, rezultatele la Bacalaureat 2025, șansele elevilor din București pe cartiere și performanța administrativă a primarilor după afilierea politică. Pagina listează și proiectele asociate, precum serverele MCP și proiectul civic Cișmele Publice."
+        }
+      ],
+      "rationale_ro": "Colecția cercetează inegalități educaționale și administrația; proiectele MCP asociate nu sunt oferite de colecție. Încadrare: Catalog sau colecție."
+    },
+    {
+      "field": "formate",
+      "value": "format:raport",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "aiparte-research:descriere_scurta",
+          "locator": "clasificare-input.csv:aiparte-research:descriere_scurta",
+          "excerpt": "Explorăm datele din educație și administrație pentru a înțelege inegalitățile și a dezvolta soluții"
+        },
+        {
+          "source_id": "aiparte-research:descriere",
+          "locator": "clasificare-input.csv:aiparte-research:descriere",
+          "excerpt": "Colecție de rapoarte și analize ale AIParte Research despre datele din educație și administrație. Rapoartele tratează inechitățile dintre rural și urban în accesul la licee de top, rezultatele la Bacalaureat 2025, șansele elevilor din București pe cartiere și performanța administrativă a primarilor după afilierea politică. Pagina listează și proiectele asociate, precum serverele MCP și proiectul civic Cișmele Publice."
+        }
+      ],
+      "rationale_ro": "Colecția cercetează inegalități educaționale și administrația; proiectele MCP asociate nu sunt oferite de colecție. Încadrare: Raport sau cercetare."
+    },
+    {
+      "field": "institutii_vizate",
+      "value": "institutie:scoala",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "aiparte-research:descriere_scurta",
+          "locator": "clasificare-input.csv:aiparte-research:descriere_scurta",
+          "excerpt": "Explorăm datele din educație și administrație pentru a înțelege inegalitățile și a dezvolta soluții"
+        },
+        {
+          "source_id": "aiparte-research:descriere",
+          "locator": "clasificare-input.csv:aiparte-research:descriere",
+          "excerpt": "Colecție de rapoarte și analize ale AIParte Research despre datele din educație și administrație. Rapoartele tratează inechitățile dintre rural și urban în accesul la licee de top, rezultatele la Bacalaureat 2025, șansele elevilor din București pe cartiere și performanța administrativă a primarilor după afilierea politică. Pagina listează și proiectele asociate, precum serverele MCP și proiectul civic Cișmele Publice."
+        }
+      ],
+      "rationale_ro": "Colecția cercetează inegalități educaționale și administrația; proiectele MCP asociate nu sunt oferite de colecție. Încadrare: Școală sau instituție de învățământ."
+    },
+    {
+      "field": "institutii_vizate",
+      "value": "institutie:primarie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "aiparte-research:descriere_scurta",
+          "locator": "clasificare-input.csv:aiparte-research:descriere_scurta",
+          "excerpt": "Explorăm datele din educație și administrație pentru a înțelege inegalitățile și a dezvolta soluții"
+        },
+        {
+          "source_id": "aiparte-research:descriere",
+          "locator": "clasificare-input.csv:aiparte-research:descriere",
+          "excerpt": "Colecție de rapoarte și analize ale AIParte Research despre datele din educație și administrație. Rapoartele tratează inechitățile dintre rural și urban în accesul la licee de top, rezultatele la Bacalaureat 2025, șansele elevilor din București pe cartiere și performanța administrativă a primarilor după afilierea politică. Pagina listează și proiectele asociate, precum serverele MCP și proiectul civic Cișmele Publice."
+        }
+      ],
+      "rationale_ro": "Colecția cercetează inegalități educaționale și administrația; proiectele MCP asociate nu sunt oferite de colecție. Încadrare: Primărie sau administrație locală."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "aiparte-research:acoperire_original",
+          "locator": "clasificare-input.csv:aiparte-research:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "aiparte-research:acoperire_original",
+          "locator": "clasificare-input.csv:aiparte-research:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": "ai-parte",
+      "object_literal": null,
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "aiparte-research:autor_original",
+          "locator": "clasificare-input.csv:aiparte-research:autor_original",
+          "excerpt": "ai-parte"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "cuvinte",
+      "original_value": "statistică",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "școli",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "primării",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

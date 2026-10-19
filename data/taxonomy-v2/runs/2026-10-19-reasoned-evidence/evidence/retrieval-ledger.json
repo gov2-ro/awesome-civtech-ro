@@ -1,0 +1,835 @@
+[
+  {
+    "source_id": "turn0view0",
+    "url": "https://www.7anideacasa.eu",
+    "status": "failed",
+    "raw_file": "evidence/web-01.json",
+    "retrieved_at": "2026-10-19T14:56:09.904989+00:00"
+  },
+  {
+    "source_id": "turn0view1",
+    "url": "https://www.banipierduti.ro",
+    "status": "failed",
+    "raw_file": "evidence/web-01.json",
+    "retrieved_at": "2026-10-19T14:56:09.904989+00:00"
+  },
+  {
+    "source_id": "turn0view2",
+    "url": "https://centrulpentrucariere.ro/",
+    "status": "text",
+    "raw_file": "evidence/web-01.json",
+    "retrieved_at": "2026-10-19T14:56:09.904989+00:00"
+  },
+  {
+    "source_id": "turn0view3",
+    "url": "https://cezicelegea.ro/",
+    "status": "failed",
+    "raw_file": "evidence/web-01.json",
+    "retrieved_at": "2026-10-19T14:56:09.904989+00:00"
+  },
+  {
+    "source_id": "turn0view4",
+    "url": "https://scoalapentrudemocratie.ro/",
+    "status": "text",
+    "raw_file": "evidence/web-01.json",
+    "retrieved_at": "2026-10-19T14:56:09.904989+00:00"
+  },
+  {
+    "source_id": "turn0view5",
+    "url": "https://cosettechichirau.github.io/companiipublice/",
+    "status": "text",
+    "raw_file": "evidence/web-01.json",
+    "retrieved_at": "2026-10-19T14:56:09.904989+00:00"
+  },
+  {
+    "source_id": "turn0view6",
+    "url": "https://data.expertforum.ro/",
+    "status": "text",
+    "raw_file": "evidence/web-01.json",
+    "retrieved_at": "2026-10-19T14:56:09.904989+00:00"
+  },
+  {
+    "source_id": "turn0view7",
+    "url": "https://www.incentru.ro",
+    "status": "failed",
+    "raw_file": "evidence/web-01.json",
+    "retrieved_at": "2026-10-19T14:56:09.904989+00:00"
+  },
+  {
+    "source_id": "turn0view8",
+    "url": "https://monitorenergie.ro/",
+    "status": "failed",
+    "raw_file": "evidence/web-01.json",
+    "retrieved_at": "2026-10-19T14:56:09.904989+00:00"
+  },
+  {
+    "source_id": "turn0view9",
+    "url": "https://www.multumesc.org",
+    "status": "failed",
+    "raw_file": "evidence/web-01.json",
+    "retrieved_at": "2026-10-19T14:56:09.904989+00:00"
+  },
+  {
+    "source_id": "turn1view0",
+    "url": "https://www.maricorupti.ro",
+    "status": "failed",
+    "raw_file": "evidence/web-02.json",
+    "retrieved_at": "2026-10-19T14:56:41.090883+00:00"
+  },
+  {
+    "source_id": "turn1view1",
+    "url": "https://www.muzeulcoruptiei.ro/",
+    "status": "failed",
+    "raw_file": "evidence/web-02.json",
+    "retrieved_at": "2026-10-19T14:56:41.090883+00:00"
+  },
+  {
+    "source_id": "turn1view2",
+    "url": "https://www.onoratainstanta.ro",
+    "status": "text",
+    "raw_file": "evidence/web-02.json",
+    "retrieved_at": "2026-10-19T14:56:41.090883+00:00"
+  },
+  {
+    "source_id": "turn1view3",
+    "url": "https://www.openbudget.ro",
+    "status": "failed",
+    "raw_file": "evidence/web-02.json",
+    "retrieved_at": "2026-10-19T14:56:41.090883+00:00"
+  },
+  {
+    "source_id": "turn1view4",
+    "url": "https://www.piatadespaga.ro",
+    "status": "failed",
+    "raw_file": "evidence/web-02.json",
+    "retrieved_at": "2026-10-19T14:56:41.090883+00:00"
+  },
+  {
+    "source_id": "turn1view5",
+    "url": "https://www.verificapsiholog.ro/",
+    "status": "text",
+    "raw_file": "evidence/web-02.json",
+    "retrieved_at": "2026-10-19T14:56:41.090883+00:00"
+  },
+  {
+    "source_id": "turn1view6",
+    "url": "https://sanatateamintala.ro/",
+    "status": "text",
+    "raw_file": "evidence/web-02.json",
+    "retrieved_at": "2026-10-19T14:56:41.090883+00:00"
+  },
+  {
+    "source_id": "turn1view7",
+    "url": "https://dignitas.ro/",
+    "status": "text",
+    "raw_file": "evidence/web-02.json",
+    "retrieved_at": "2026-10-19T14:56:41.090883+00:00"
+  },
+  {
+    "source_id": "turn1view8",
+    "url": "https://hoover.grep.ro",
+    "status": "failed",
+    "raw_file": "evidence/web-02.json",
+    "retrieved_at": "2026-10-19T14:56:41.090883+00:00"
+  },
+  {
+    "source_id": "turn1view9",
+    "url": "https://e-cutremur.ro/",
+    "status": "text",
+    "raw_file": "evidence/web-02.json",
+    "retrieved_at": "2026-10-19T14:56:41.090883+00:00"
+  },
+  {
+    "source_id": "turn2view0",
+    "url": "https://baditaflorin.github.io/calendar-ridicare-gunoi-arad/",
+    "status": "failed",
+    "raw_file": "evidence/web-03.json",
+    "retrieved_at": "2026-10-19T14:56:54.857867+00:00"
+  },
+  {
+    "source_id": "turn2view1",
+    "url": "https://www.drepturicivile.ro",
+    "status": "text",
+    "raw_file": "evidence/web-03.json",
+    "retrieved_at": "2026-10-19T14:56:54.857867+00:00"
+  },
+  {
+    "source_id": "turn2view2",
+    "url": "https://declic.ro",
+    "status": "text",
+    "raw_file": "evidence/web-03.json",
+    "retrieved_at": "2026-10-19T14:56:54.857867+00:00"
+  },
+  {
+    "source_id": "turn2view3",
+    "url": "https://www.hartapoliticii.ro",
+    "status": "failed",
+    "raw_file": "evidence/web-03.json",
+    "retrieved_at": "2026-10-19T14:56:54.857867+00:00"
+  },
+  {
+    "source_id": "turn2view4",
+    "url": "http://jailando.com/",
+    "status": "failed",
+    "raw_file": "evidence/web-03.json",
+    "retrieved_at": "2026-10-19T14:56:54.857867+00:00"
+  },
+  {
+    "source_id": "turn2view5",
+    "url": "https://parlament.openpolitics.ro",
+    "status": "failed",
+    "raw_file": "evidence/web-03.json",
+    "retrieved_at": "2026-10-19T14:56:54.857867+00:00"
+  },
+  {
+    "source_id": "turn2view6",
+    "url": "https://rezultatevot.ro/",
+    "status": "text",
+    "raw_file": "evidence/web-03.json",
+    "retrieved_at": "2026-10-19T14:56:54.857867+00:00"
+  },
+  {
+    "source_id": "turn2view7",
+    "url": "https://www.testvot.eu",
+    "status": "empty",
+    "raw_file": "evidence/web-03.json",
+    "retrieved_at": "2026-10-19T14:56:54.857867+00:00"
+  },
+  {
+    "source_id": "turn2view8",
+    "url": "https://votcorect.ro",
+    "status": "text",
+    "raw_file": "evidence/web-03.json",
+    "retrieved_at": "2026-10-19T14:56:54.857867+00:00"
+  },
+  {
+    "source_id": "turn2view9",
+    "url": "https://votdiaspora.ro/",
+    "status": "text",
+    "raw_file": "evidence/web-03.json",
+    "retrieved_at": "2026-10-19T14:56:54.857867+00:00"
+  },
+  {
+    "source_id": "turn3view0",
+    "url": "https://www.7anideacasa.eu",
+    "status": "failed",
+    "raw_file": "evidence/web-04.json",
+    "retrieved_at": "2026-10-19T14:57:33.845377+00:00"
+  },
+  {
+    "source_id": "turn3view1",
+    "url": "https://www.nuasteptasupereroi.ro",
+    "status": "failed",
+    "raw_file": "evidence/web-04.json",
+    "retrieved_at": "2026-10-19T14:57:33.845377+00:00"
+  },
+  {
+    "source_id": "turn3view2",
+    "url": "https://observatori.votcorect.ro",
+    "status": "text",
+    "raw_file": "evidence/web-04.json",
+    "retrieved_at": "2026-10-19T14:57:33.845377+00:00"
+  },
+  {
+    "source_id": "turn3view3",
+    "url": "https://www.politicalcolours.ro",
+    "status": "failed",
+    "raw_file": "evidence/web-04.json",
+    "retrieved_at": "2026-10-19T14:57:33.845377+00:00"
+  },
+  {
+    "source_id": "turn3view4",
+    "url": "https://redirectioneaza.ro/",
+    "status": "text",
+    "raw_file": "evidence/web-04.json",
+    "retrieved_at": "2026-10-19T14:57:33.845377+00:00"
+  },
+  {
+    "source_id": "turn3view5",
+    "url": "http://www.votez.info/",
+    "status": "empty",
+    "raw_file": "evidence/web-04.json",
+    "retrieved_at": "2026-10-19T14:57:33.845377+00:00"
+  },
+  {
+    "source_id": "turn3view6",
+    "url": "http://www.funkycitizens.org/site-uri-utile-pentru-cetateni/",
+    "status": "failed",
+    "raw_file": "evidence/web-04.json",
+    "retrieved_at": "2026-10-19T14:57:33.845377+00:00"
+  },
+  {
+    "source_id": "turn3view7",
+    "url": "https://www.apti.ro/top-zece-cele-mai-bune-unelte-de-democratie-digitala",
+    "status": "text",
+    "raw_file": "evidence/web-04.json",
+    "retrieved_at": "2026-10-19T14:57:33.845377+00:00"
+  },
+  {
+    "source_id": "turn3view8",
+    "url": "https://www.crpe.ro/ro/295766-2/",
+    "status": "text",
+    "raw_file": "evidence/web-04.json",
+    "retrieved_at": "2026-10-19T14:57:33.845377+00:00"
+  },
+  {
+    "source_id": "turn4search0",
+    "url": "https://expertforum.ro/istoric-alegeri/",
+    "status": "text",
+    "raw_file": "evidence/web-05.json",
+    "retrieved_at": "2026-10-19T14:57:44.267612+00:00"
+  },
+  {
+    "source_id": "turn4search1",
+    "url": "https://incentru.ro.clearwebstats.com/",
+    "status": "text",
+    "raw_file": "evidence/web-05.json",
+    "retrieved_at": "2026-10-19T14:57:44.267612+00:00"
+  },
+  {
+    "source_id": "turn4search12",
+    "url": "https://www.funkycitizens.org/wp-content/uploads/2015/10/Raport-anual-Funky_2014.pdf",
+    "status": "text",
+    "raw_file": "evidence/web-05.json",
+    "retrieved_at": "2026-10-19T14:57:44.267612+00:00"
+  },
+  {
+    "source_id": "turn4search2",
+    "url": "https://expertforum.ro/lansam-www-7anideacasa-eu-site-dedicat-alegerilor-pentru-parlamentul-european/",
+    "status": "text",
+    "raw_file": "evidence/web-05.json",
+    "retrieved_at": "2026-10-19T14:57:44.267612+00:00"
+  },
+  {
+    "source_id": "turn4search3",
+    "url": "https://bit24.ro/site-ul-care-monitorizeaza-deputatii/",
+    "status": "text",
+    "raw_file": "evidence/web-05.json",
+    "retrieved_at": "2026-10-19T14:57:44.267612+00:00"
+  },
+  {
+    "source_id": "turn4search13",
+    "url": "https://funky.ong/wp-content/uploads/2017/03/Raport-anual-Funky_2013.pdf",
+    "status": "text",
+    "raw_file": "evidence/web-05.json",
+    "retrieved_at": "2026-10-19T14:57:44.267612+00:00"
+  },
+  {
+    "source_id": "turn4search4",
+    "url": "https://www.scamadviser.com/check-website/multumesc.org",
+    "status": "text",
+    "raw_file": "evidence/web-05.json",
+    "retrieved_at": "2026-10-19T14:57:44.267612+00:00"
+  },
+  {
+    "source_id": "turn4search5",
+    "url": "https://ziaruldebacau.ro/bataie-de-joc-noua-din-zece-deputati-bacauani-au-lipsit-de-la-munca-o-treime-din-mandat-vreme-si-ciubotaru-record-de-absente/",
+    "status": "text",
+    "raw_file": "evidence/web-05.json",
+    "retrieved_at": "2026-10-19T14:57:44.267612+00:00"
+  },
+  {
+    "source_id": "turn4search6",
+    "url": "https://funky.ong/en/proiecte/7-ani-de-acasa/",
+    "status": "text",
+    "raw_file": "evidence/web-05.json",
+    "retrieved_at": "2026-10-19T14:57:44.267612+00:00"
+  },
+  {
+    "source_id": "turn4search7",
+    "url": "https://azstats.org/site/incentru.ro/",
+    "status": "text",
+    "raw_file": "evidence/web-05.json",
+    "retrieved_at": "2026-10-19T14:57:44.267612+00:00"
+  },
+  {
+    "source_id": "turn4search8",
+    "url": "https://funky.ong/pe-25-mai-votez-dupa-ies-in-strada/",
+    "status": "text",
+    "raw_file": "evidence/web-05.json",
+    "retrieved_at": "2026-10-19T14:57:44.267612+00:00"
+  },
+  {
+    "source_id": "turn4search9",
+    "url": "https://octavpelin.wordpress.com/2017/11/08/funky-citizens-scurta-biografie-neromantata-a-ong-ului-condus-de-calistru-si-vrabie/",
+    "status": "text",
+    "raw_file": "evidence/web-05.json",
+    "retrieved_at": "2026-10-19T14:57:44.267612+00:00"
+  },
+  {
+    "source_id": "turn4search10",
+    "url": "https://www.rostonline.ro/2016/01/cum-aflam-prezenta-la-zi-a-deputatilor-romaniei/",
+    "status": "text",
+    "raw_file": "evidence/web-05.json",
+    "retrieved_at": "2026-10-19T14:57:44.267612+00:00"
+  },
+  {
+    "source_id": "turn4search11",
+    "url": "https://www.realitatea.net/stiri/ultimele-stiri/activitatea-deputatilor-monitorizata-pe-site_5dcc921c406af85273d2a43b",
+    "status": "text",
+    "raw_file": "evidence/web-05.json",
+    "retrieved_at": "2026-10-19T14:57:44.267612+00:00"
+  },
+  {
+    "source_id": "turn4search14",
+    "url": "https://expertforum.ro/wp-content/uploads/2014/06/Raport-alegeri-EFOR-2014.pdf",
+    "status": "text",
+    "raw_file": "evidence/web-05.json",
+    "retrieved_at": "2026-10-19T14:57:44.267612+00:00"
+  },
+  {
+    "source_id": "turn4search15",
+    "url": "https://media.hotnews.ro/assets/document/2016/05/3/20971041-0.pdf",
+    "status": "text",
+    "raw_file": "evidence/web-05.json",
+    "retrieved_at": "2026-10-19T14:57:44.267612+00:00"
+  },
+  {
+    "source_id": "turn5search0",
+    "url": "https://funky.ong/domenii/",
+    "status": "text",
+    "raw_file": "evidence/web-06.json",
+    "retrieved_at": "2026-10-19T14:58:27.921795+00:00"
+  },
+  {
+    "source_id": "turn5search1",
+    "url": "https://matepolis.ro/invata/bisectoarele-triunghiului-cercul-inscris-clasa-6/",
+    "status": "text",
+    "raw_file": "evidence/web-06.json",
+    "retrieved_at": "2026-10-19T14:58:27.921795+00:00"
+  },
+  {
+    "source_id": "turn5search2",
+    "url": "https://ro.scribd.com/document/970797456/S%C4%83pt%C4%83mana-13-Geometrie-Plan%C4%83-2021",
+    "status": "text",
+    "raw_file": "evidence/web-06.json",
+    "retrieved_at": "2026-10-19T14:58:27.921795+00:00"
+  },
+  {
+    "source_id": "turn5search3",
+    "url": "https://mediafax.ro/cultura-media/s-a-lansat-muzeul-coruptiei-in-romania-cu-o-galerie-a-spagilor-de-la-milioane-de-euro-la-o-oaie-15396074",
+    "status": "text",
+    "raw_file": "evidence/web-06.json",
+    "retrieved_at": "2026-10-19T14:58:27.921795+00:00"
+  },
+  {
+    "source_id": "turn5search4",
+    "url": "https://www.podscan.fm/podcasts/in-centru",
+    "status": "text",
+    "raw_file": "evidence/web-06.json",
+    "retrieved_at": "2026-10-19T14:58:27.921795+00:00"
+  },
+  {
+    "source_id": "turn5search5",
+    "url": "https://funky.ong/proiecte/",
+    "status": "text",
+    "raw_file": "evidence/web-06.json",
+    "retrieved_at": "2026-10-19T14:58:27.921795+00:00"
+  },
+  {
+    "source_id": "turn5search6",
+    "url": "https://www.researchgate.net/publication/390231418_Educatie_civica_Democratia_se_invata",
+    "status": "text",
+    "raw_file": "evidence/web-06.json",
+    "retrieved_at": "2026-10-19T14:58:27.921795+00:00"
+  },
+  {
+    "source_id": "turn5search7",
+    "url": "https://www.paginademedia.ro/2016/11/internetics-156-de-campanii-inscrise-printre-care-si-muzeul-coruptiei-semnata-de-kinecto-pentru-nicusor-dan/",
+    "status": "text",
+    "raw_file": "evidence/web-06.json",
+    "retrieved_at": "2026-10-19T14:58:27.921795+00:00"
+  },
+  {
+    "source_id": "turn5search8",
+    "url": "https://mlive.md/2026/08/muzeul-coruptiei-in-aer-liber-dosarul-leova-bumbata-ramane-invaluit-in-mister/",
+    "status": "text",
+    "raw_file": "evidence/web-06.json",
+    "retrieved_at": "2026-10-19T14:58:27.921795+00:00"
+  },
+  {
+    "source_id": "turn5search9",
+    "url": "https://zece.tv/2026/01/08/drumul-leova-bumbata-ramane-sub-ancheta-muzeul-coruptiei-asteapta-verdictul-expertilor/33961/",
+    "status": "text",
+    "raw_file": "evidence/web-06.json",
+    "retrieved_at": "2026-10-19T14:58:27.921795+00:00"
+  },
+  {
+    "source_id": "turn5search10",
+    "url": "https://www.wikidata.org/wiki/Q10614739",
+    "status": "text",
+    "raw_file": "evidence/web-06.json",
+    "retrieved_at": "2026-10-19T14:58:27.921795+00:00"
+  },
+  {
+    "source_id": "turn5search11",
+    "url": "https://www.ai-futureschool.com/ro/matematica/centrul-cercului-inscris-intr-un-triunghi.php",
+    "status": "text",
+    "raw_file": "evidence/web-06.json",
+    "retrieved_at": "2026-10-19T14:58:27.921795+00:00"
+  },
+  {
+    "source_id": "turn5search12",
+    "url": "https://dgaspc3.ro/wp-content/uploads/fisiere-publice/regulament_de_organizare_si_functionare/2016/1/Regulament%20de%20Organizare%20si%20Functionare.pdf",
+    "status": "text",
+    "raw_file": "evidence/web-06.json",
+    "retrieved_at": "2026-10-19T14:58:27.921795+00:00"
+  },
+  {
+    "source_id": "turn5search13",
+    "url": "https://antipa.ro/wp-content/uploads/2019/10/Proiect_management_2017_LOP_v2_2_publicare.pdf",
+    "status": "text",
+    "raw_file": "evidence/web-06.json",
+    "retrieved_at": "2026-10-19T14:58:27.921795+00:00"
+  },
+  {
+    "source_id": "turn5search14",
+    "url": "https://www.cjc.ro/dyn_doc/concursuri/alte_institutii/2020/08_Evaluare_management_2019_Muzeul_de_arta/02_Raport_de_activitate_2019.pdf",
+    "status": "text",
+    "raw_file": "evidence/web-06.json",
+    "retrieved_at": "2026-10-19T14:58:27.921795+00:00"
+  },
+  {
+    "source_id": "turn5search15",
+    "url": "https://zalausj.ro/ro/hotarari/2020/h323-2020.pdf",
+    "status": "text",
+    "raw_file": "evidence/web-06.json",
+    "retrieved_at": "2026-10-19T14:58:27.921795+00:00"
+  },
+  {
+    "source_id": "turn5search16",
+    "url": "https://www.mnir.ro/wp-content/uploads/2022/06/Plan-de-integritate-aprobat.pdf",
+    "status": "text",
+    "raw_file": "evidence/web-06.json",
+    "retrieved_at": "2026-10-19T14:58:27.921795+00:00"
+  },
+  {
+    "source_id": "turn5search17",
+    "url": "https://www.dgaspcbv.ro/wp-content/uploads/2019/08/raport-activitate-2018-pt-site.pdf",
+    "status": "text",
+    "raw_file": "evidence/web-06.json",
+    "retrieved_at": "2026-10-19T14:58:27.921795+00:00"
+  },
+  {
+    "source_id": "turn5view0",
+    "url": "https://votdiaspora.ro/",
+    "status": "text",
+    "raw_file": "evidence/web-06.json",
+    "retrieved_at": "2026-10-19T14:58:27.921795+00:00"
+  },
+  {
+    "source_id": "turn5view1",
+    "url": "https://votcorect.ro/",
+    "status": "text",
+    "raw_file": "evidence/web-06.json",
+    "retrieved_at": "2026-10-19T14:58:27.921795+00:00"
+  },
+  {
+    "source_id": "turn5view2",
+    "url": "https://e-cutremur.ro/",
+    "status": "text",
+    "raw_file": "evidence/web-06.json",
+    "retrieved_at": "2026-10-19T14:58:27.921795+00:00"
+  },
+  {
+    "source_id": "turn6search0",
+    "url": "https://ro.linkedin.com/posts/dragosstanca_inamicii-rom%C3%A2niei-nu-mai-au-mare-lucru-de-activity-7491122521690525696-oI6T",
+    "status": "text",
+    "raw_file": "evidence/web-07.json",
+    "retrieved_at": "2026-10-19T14:58:46.128588+00:00"
+  },
+  {
+    "source_id": "turn6reddit12",
+    "url": "https://www.reddit.com/r/RouGenZ/comments/1wdegsj/iar_se_scumpe%C8%99te_curentul/",
+    "status": "text",
+    "raw_file": "evidence/web-07.json",
+    "retrieved_at": "2026-10-19T14:58:46.128588+00:00"
+  },
+  {
+    "source_id": "turn6reddit13",
+    "url": "https://www.reddit.com/r/Romania/comments/1vh1gub/siteul_transelectricaro_pare_cai_picat/",
+    "status": "text",
+    "raw_file": "evidence/web-07.json",
+    "retrieved_at": "2026-10-19T14:58:46.128588+00:00"
+  },
+  {
+    "source_id": "turn6search1",
+    "url": "https://ro.linkedin.com/posts/oanapetrescu10_criza-energetic%C4%83-prin-ochii-companiilor-activity-7493988736494469120-j0CU",
+    "status": "text",
+    "raw_file": "evidence/web-07.json",
+    "retrieved_at": "2026-10-19T14:58:46.128588+00:00"
+  },
+  {
+    "source_id": "turn6search2",
+    "url": "https://www.forbes.ro/romania-produce-energie-cand-soarele-e-la-intensitate-maxima-dar-presiunea-creste-dupa-apus-cum-arata-in-timp-real-sistemul-energetic-516731",
+    "status": "text",
+    "raw_file": "evidence/web-07.json",
+    "retrieved_at": "2026-10-19T14:58:46.128588+00:00"
+  },
+  {
+    "source_id": "turn6reddit14",
+    "url": "https://www.reddit.com/r/Roumanie/comments/1vj3g9t/hai_ma_ca_zilele_astea_nu_mai_trebuie_sa/",
+    "status": "text",
+    "raw_file": "evidence/web-07.json",
+    "retrieved_at": "2026-10-19T14:58:46.128588+00:00"
+  },
+  {
+    "source_id": "turn6search3",
+    "url": "https://rotimes.ro/article/2026-08-14-romania-exports-electricity-amid-record-solar-production",
+    "status": "text",
+    "raw_file": "evidence/web-07.json",
+    "retrieved_at": "2026-10-19T14:58:46.128588+00:00"
+  },
+  {
+    "source_id": "turn6search4",
+    "url": "https://telex.md/2026/08/13/ministerul-energiei-romania-va-importa-pana-la-2-300-mw-in-aceasta-seara-dupa-oprirea-unitatii-2-la-ce-pret-vom-cumpara-energia/",
+    "status": "text",
+    "raw_file": "evidence/web-07.json",
+    "retrieved_at": "2026-10-19T14:58:46.128588+00:00"
+  },
+  {
+    "source_id": "turn6search5",
+    "url": "https://www.ziaresireviste.ro/romania-consuma-sau-produce-in-sfarsit-avem-raspunsul-in-timp-real-monitor-energie-ro/",
+    "status": "text",
+    "raw_file": "evidence/web-07.json",
+    "retrieved_at": "2026-10-19T14:58:46.128588+00:00"
+  },
+  {
+    "source_id": "turn6search6",
+    "url": "https://www.contributors.ro/prostia-energetica-romaneasca/",
+    "status": "text",
+    "raw_file": "evidence/web-07.json",
+    "retrieved_at": "2026-10-19T14:58:46.128588+00:00"
+  },
+  {
+    "source_id": "turn6search7",
+    "url": "https://mihaivasilescublog.ro/2026/08/09/placut-saptamana-512/",
+    "status": "text",
+    "raw_file": "evidence/web-07.json",
+    "retrieved_at": "2026-10-19T14:58:46.128588+00:00"
+  },
+  {
+    "source_id": "turn6search8",
+    "url": "https://www.cotidianul.ro/romania-a-inceput-sa-importe-energie-dupa-deconectarea-reactorului-2-de-la-cernavoda/",
+    "status": "text",
+    "raw_file": "evidence/web-07.json",
+    "retrieved_at": "2026-10-19T14:58:46.128588+00:00"
+  },
+  {
+    "source_id": "turn6search9",
+    "url": "https://www.cotidianul.ro/34-gw-din-import-intr-o-seara-de-octombrie-semnalul-unei-crize-strategice/",
+    "status": "text",
+    "raw_file": "evidence/web-07.json",
+    "retrieved_at": "2026-10-19T14:58:46.128588+00:00"
+  },
+  {
+    "source_id": "turn6reddit15",
+    "url": "https://www.reddit.com/r/Roumanie/comments/1vh545h/monitor_energie_rom%C3%A2nia_produc%C8%9Bie_consum_%C8%99i/",
+    "status": "text",
+    "raw_file": "evidence/web-07.json",
+    "retrieved_at": "2026-10-19T14:58:46.128588+00:00"
+  },
+  {
+    "source_id": "turn6search10",
+    "url": "https://www.linkedin.com/posts/raluca-secar%C4%83-68609825_sistemul-energetic-national-transelectrica-activity-7494127851127021568-p-oE",
+    "status": "text",
+    "raw_file": "evidence/web-07.json",
+    "retrieved_at": "2026-10-19T14:58:46.128588+00:00"
+  },
+  {
+    "source_id": "turn6search11",
+    "url": "https://infoz.click/cost-energie",
+    "status": "text",
+    "raw_file": "evidence/web-07.json",
+    "retrieved_at": "2026-10-19T14:58:46.128588+00:00"
+  },
+  {
+    "source_id": "turn6reddit16",
+    "url": "https://www.reddit.com/r/Romania2/comments/1vh536p/monitor_energie_rom%C3%A2nia_produc%C8%9Bie_consum_%C8%99i/",
+    "status": "text",
+    "raw_file": "evidence/web-07.json",
+    "retrieved_at": "2026-10-19T14:58:46.128588+00:00"
+  },
+  {
+    "source_id": "turn6view0",
+    "url": "https://votdiaspora.ro/",
+    "status": "text",
+    "raw_file": "evidence/web-07.json",
+    "retrieved_at": "2026-10-19T14:58:46.128588+00:00"
+  },
+  {
+    "source_id": "turn6view1",
+    "url": "https://votcorect.ro/",
+    "status": "text",
+    "raw_file": "evidence/web-07.json",
+    "retrieved_at": "2026-10-19T14:58:46.128588+00:00"
+  },
+  {
+    "source_id": "turn6view2",
+    "url": "https://e-cutremur.ro/",
+    "status": "text",
+    "raw_file": "evidence/web-07.json",
+    "retrieved_at": "2026-10-19T14:58:46.128588+00:00"
+  },
+  {
+    "source_id": "turn7search0",
+    "url": "https://funky.ong/proiecte/maricorupti-ro/",
+    "status": "text",
+    "raw_file": "evidence/web-08.json",
+    "retrieved_at": "2026-10-19T14:58:56.084262+00:00"
+  },
+  {
+    "source_id": "turn7search12",
+    "url": "https://diaspora.gov.ro/images/content/intern/03-2025/NEWSLETTER_455.pdf",
+    "status": "text",
+    "raw_file": "evidence/web-08.json",
+    "retrieved_at": "2026-10-19T14:58:56.084262+00:00"
+  },
+  {
+    "source_id": "turn7search13",
+    "url": "https://diaspora.gov.ro/images/content/intern/07-2024/NEWSLETTER_423.pdf",
+    "status": "text",
+    "raw_file": "evidence/web-08.json",
+    "retrieved_at": "2026-10-19T14:58:56.084262+00:00"
+  },
+  {
+    "source_id": "turn7search14",
+    "url": "https://diaspora.gov.ro/images/content/intern/03-2025/NEWSLETTER_456.pdf",
+    "status": "text",
+    "raw_file": "evidence/web-08.json",
+    "retrieved_at": "2026-10-19T14:58:56.084262+00:00"
+  },
+  {
+    "source_id": "turn7search15",
+    "url": "https://diaspora.gov.ro/images/content/intern/09-2024/NEWSLETTER_431.pdf",
+    "status": "text",
+    "raw_file": "evidence/web-08.json",
+    "retrieved_at": "2026-10-19T14:58:56.084262+00:00"
+  },
+  {
+    "source_id": "turn7reddit16",
+    "url": "https://www.reddit.com/r/Romania/comments/16teu13",
+    "status": "text",
+    "raw_file": "evidence/web-08.json",
+    "retrieved_at": "2026-10-19T14:58:56.084262+00:00"
+  },
+  {
+    "source_id": "turn7search17",
+    "url": "https://www.houstonromanianconsulate.com/wp-content/uploads/2024/07/NEWSLETTER-420.pdf",
+    "status": "text",
+    "raw_file": "evidence/web-08.json",
+    "retrieved_at": "2026-10-19T14:58:56.084262+00:00"
+  },
+  {
+    "source_id": "turn7search18",
+    "url": "https://diaspora.gov.ro/images/content/intern/09-2024/NEWSLETTER_430.pdf",
+    "status": "text",
+    "raw_file": "evidence/web-08.json",
+    "retrieved_at": "2026-10-19T14:58:56.084262+00:00"
+  },
+  {
+    "source_id": "turn7search1",
+    "url": "https://github.com/code4romania/czl-scrape",
+    "status": "text",
+    "raw_file": "evidence/web-08.json",
+    "retrieved_at": "2026-10-19T14:58:56.084262+00:00"
+  },
+  {
+    "source_id": "turn7search2",
+    "url": "https://github.com/code4romania/czl-api",
+    "status": "text",
+    "raw_file": "evidence/web-08.json",
+    "retrieved_at": "2026-10-19T14:58:56.084262+00:00"
+  },
+  {
+    "source_id": "turn7search3",
+    "url": "https://ro.linkedin.com/posts/code4romania_cezicelegea-cezicelegea-cezicelegea-activity-7239939330406858754-2mvZ",
+    "status": "text",
+    "raw_file": "evidence/web-08.json",
+    "retrieved_at": "2026-10-19T14:58:56.084262+00:00"
+  },
+  {
+    "source_id": "turn7search4",
+    "url": "https://llm.dataforseo.com/ce-zice-legea/",
+    "status": "text",
+    "raw_file": "evidence/web-08.json",
+    "retrieved_at": "2026-10-19T14:58:56.084262+00:00"
+  },
+  {
+    "source_id": "turn7search5",
+    "url": "https://www.funkycitizens.org/talking-points-developments-in-romania/",
+    "status": "text",
+    "raw_file": "evidence/web-08.json",
+    "retrieved_at": "2026-10-19T14:58:56.084262+00:00"
+  },
+  {
+    "source_id": "turn7search6",
+    "url": "https://www.iqads.ro/articol/32396/de-ce-e-necesara-o-coruptopedia-romana-pentru-ca-o-sa-ai-nepoti-candva-si-vei",
+    "status": "text",
+    "raw_file": "evidence/web-08.json",
+    "retrieved_at": "2026-10-19T14:58:56.084262+00:00"
+  },
+  {
+    "source_id": "turn7search7",
+    "url": "https://incentru.ro.clearwebstats.com/",
+    "status": "text",
+    "raw_file": "evidence/web-08.json",
+    "retrieved_at": "2026-10-19T14:58:56.084262+00:00"
+  },
+  {
+    "source_id": "turn7search8",
+    "url": "https://ro.linkedin.com/in/danachim",
+    "status": "text",
+    "raw_file": "evidence/web-08.json",
+    "retrieved_at": "2026-10-19T14:58:56.084262+00:00"
+  },
+  {
+    "source_id": "turn7search9",
+    "url": "https://www.iqads.ro/articol/34531/ce-ne-place-sa-uram-teodor-tita-ura-e-o-forma-perversa-de-participare-trebuie-sa",
+    "status": "text",
+    "raw_file": "evidence/web-08.json",
+    "retrieved_at": "2026-10-19T14:58:56.084262+00:00"
+  },
+  {
+    "source_id": "turn7search10",
+    "url": "https://www.digi24.ro/stiri/actualitate/evenimente/foto-video-aproximativ-12-000-de-oameni-au-comemorat-in-strada-victimele-din-clubul-colectiv-453370",
+    "status": "text",
+    "raw_file": "evidence/web-08.json",
+    "retrieved_at": "2026-10-19T14:58:56.084262+00:00"
+  },
+  {
+    "source_id": "turn7search11",
+    "url": "https://ghepart.ro/proiecte/",
+    "status": "text",
+    "raw_file": "evidence/web-08.json",
+    "retrieved_at": "2026-10-19T14:58:56.084262+00:00"
+  },
+  {
+    "source_id": "turn7view0",
+    "url": "http://geo-spatial.org/hartatv/",
+    "status": "failed",
+    "raw_file": "evidence/web-08.json",
+    "retrieved_at": "2026-10-19T14:58:56.084262+00:00"
+  },
+  {
+    "source_id": "turn7view1",
+    "url": "http://harta.plantamfaptebune.ro/Public",
+    "status": "failed",
+    "raw_file": "evidence/web-08.json",
+    "retrieved_at": "2026-10-19T14:58:56.084262+00:00"
+  },
+  {
+    "source_id": "turn7view2",
+    "url": "http://monitorsocial.ro/",
+    "status": "text",
+    "raw_file": "evidence/web-08.json",
+    "retrieved_at": "2026-10-19T14:58:56.084262+00:00"
+  },
+  {
+    "source_id": "turn7view3",
+    "url": "https://tableta.ceata.org/p/situricivice",
+    "status": "failed",
+    "raw_file": "evidence/web-08.json",
+    "retrieved_at": "2026-10-19T14:58:56.084262+00:00"
+  }
+]

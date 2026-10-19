@@ -1,0 +1,248 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "radar-digital",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:media-informare",
+    "subiecte": [
+      "subiect:media-informare"
+    ],
+    "teme": [],
+    "scopuri": [
+      "scop:participare",
+      "scop:informare"
+    ],
+    "functionalitati": [
+      "functie:sesizare",
+      "functie:analiza"
+    ],
+    "formate": [],
+    "tehnologii": [
+      "tehnologie:ai"
+    ],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "radar-digital:tip_entitate_original",
+          "locator": "clasificare-input.csv:radar-digital:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:media-informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "radar-digital:descriere_scurta",
+          "locator": "clasificare-input.csv:radar-digital:descriere_scurta",
+          "excerpt": "Semnalarea conținutului problematic de pe rețelele sociale"
+        },
+        {
+          "source_id": "radar-digital:descriere",
+          "locator": "clasificare-input.csv:radar-digital:descriere",
+          "excerpt": "Radar Digital este o platformă comunitară la început, care centralizează postări problematice de pe Facebook, Instagram, TikTok și X. Folosește AI pentru a sprijini analiza conținutului și îi ghidează pe utilizatori în raportarea acestuia către rețelele sociale, raportarea fiind realizată manual de fiecare utilizator."
+        }
+      ],
+      "rationale_ro": "AI sprijină analiza conținutului problematic; raportarea pe rețele rămâne manuală."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:media-informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "radar-digital:descriere_scurta",
+          "locator": "clasificare-input.csv:radar-digital:descriere_scurta",
+          "excerpt": "Semnalarea conținutului problematic de pe rețelele sociale"
+        },
+        {
+          "source_id": "radar-digital:descriere",
+          "locator": "clasificare-input.csv:radar-digital:descriere",
+          "excerpt": "Radar Digital este o platformă comunitară la început, care centralizează postări problematice de pe Facebook, Instagram, TikTok și X. Folosește AI pentru a sprijini analiza conținutului și îi ghidează pe utilizatori în raportarea acestuia către rețelele sociale, raportarea fiind realizată manual de fiecare utilizator."
+        }
+      ],
+      "rationale_ro": "AI sprijină analiza conținutului problematic; raportarea pe rețele rămâne manuală."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:participare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "radar-digital:descriere_scurta",
+          "locator": "clasificare-input.csv:radar-digital:descriere_scurta",
+          "excerpt": "Semnalarea conținutului problematic de pe rețelele sociale"
+        },
+        {
+          "source_id": "radar-digital:descriere",
+          "locator": "clasificare-input.csv:radar-digital:descriere",
+          "excerpt": "Radar Digital este o platformă comunitară la început, care centralizează postări problematice de pe Facebook, Instagram, TikTok și X. Folosește AI pentru a sprijini analiza conținutului și îi ghidează pe utilizatori în raportarea acestuia către rețelele sociale, raportarea fiind realizată manual de fiecare utilizator."
+        }
+      ],
+      "rationale_ro": "AI sprijină analiza conținutului problematic; raportarea pe rețele rămâne manuală. Încadrare: Participare civică."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "radar-digital:descriere_scurta",
+          "locator": "clasificare-input.csv:radar-digital:descriere_scurta",
+          "excerpt": "Semnalarea conținutului problematic de pe rețelele sociale"
+        },
+        {
+          "source_id": "radar-digital:descriere",
+          "locator": "clasificare-input.csv:radar-digital:descriere",
+          "excerpt": "Radar Digital este o platformă comunitară la început, care centralizează postări problematice de pe Facebook, Instagram, TikTok și X. Folosește AI pentru a sprijini analiza conținutului și îi ghidează pe utilizatori în raportarea acestuia către rețelele sociale, raportarea fiind realizată manual de fiecare utilizator."
+        }
+      ],
+      "rationale_ro": "AI sprijină analiza conținutului problematic; raportarea pe rețele rămâne manuală. Încadrare: Informare și înțelegere."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:sesizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "radar-digital:descriere_scurta",
+          "locator": "clasificare-input.csv:radar-digital:descriere_scurta",
+          "excerpt": "Semnalarea conținutului problematic de pe rețelele sociale"
+        },
+        {
+          "source_id": "radar-digital:descriere",
+          "locator": "clasificare-input.csv:radar-digital:descriere",
+          "excerpt": "Radar Digital este o platformă comunitară la început, care centralizează postări problematice de pe Facebook, Instagram, TikTok și X. Folosește AI pentru a sprijini analiza conținutului și îi ghidează pe utilizatori în raportarea acestuia către rețelele sociale, raportarea fiind realizată manual de fiecare utilizator."
+        }
+      ],
+      "rationale_ro": "AI sprijină analiza conținutului problematic; raportarea pe rețele rămâne manuală. Încadrare: Trimite sau urmărește o sesizare."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:analiza",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "radar-digital:descriere_scurta",
+          "locator": "clasificare-input.csv:radar-digital:descriere_scurta",
+          "excerpt": "Semnalarea conținutului problematic de pe rețelele sociale"
+        },
+        {
+          "source_id": "radar-digital:descriere",
+          "locator": "clasificare-input.csv:radar-digital:descriere",
+          "excerpt": "Radar Digital este o platformă comunitară la început, care centralizează postări problematice de pe Facebook, Instagram, TikTok și X. Folosește AI pentru a sprijini analiza conținutului și îi ghidează pe utilizatori în raportarea acestuia către rețelele sociale, raportarea fiind realizată manual de fiecare utilizator."
+        }
+      ],
+      "rationale_ro": "AI sprijină analiza conținutului problematic; raportarea pe rețele rămâne manuală. Încadrare: Analizează date."
+    },
+    {
+      "field": "tehnologii",
+      "value": "tehnologie:ai",
+      "basis": "explicit",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "radar-digital:descriere_scurta",
+          "locator": "clasificare-input.csv:radar-digital:descriere_scurta",
+          "excerpt": "Semnalarea conținutului problematic de pe rețelele sociale"
+        },
+        {
+          "source_id": "radar-digital:descriere",
+          "locator": "clasificare-input.csv:radar-digital:descriere",
+          "excerpt": "Radar Digital este o platformă comunitară la început, care centralizează postări problematice de pe Facebook, Instagram, TikTok și X. Folosește AI pentru a sprijini analiza conținutului și îi ghidează pe utilizatori în raportarea acestuia către rețelele sociale, raportarea fiind realizată manual de fiecare utilizator."
+        }
+      ],
+      "rationale_ro": "AI sprijină analiza conținutului problematic; raportarea pe rețele rămâne manuală. Încadrare: Utilizează inteligență artificială."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "radar-digital:acoperire_original",
+          "locator": "clasificare-input.csv:radar-digital:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "radar-digital:acoperire_original",
+          "locator": "clasificare-input.csv:radar-digital:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": null,
+      "object_literal": "Florin Scripcaru",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "radar-digital:autor_original",
+          "locator": "clasificare-input.csv:radar-digital:autor_original",
+          "excerpt": "Florin Scripcaru"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    },
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "monitorizare",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

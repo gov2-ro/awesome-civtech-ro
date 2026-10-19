@@ -1,0 +1,355 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "onesti-city",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:comunitati-teritoriu",
+    "subiecte": [
+      "subiect:comunitati-teritoriu",
+      "subiect:guvernare-democratie"
+    ],
+    "teme": [
+      "subiect:administratie-publica"
+    ],
+    "scopuri": [
+      "scop:participare",
+      "scop:informare"
+    ],
+    "functionalitati": [
+      "functie:sesizare"
+    ],
+    "formate": [
+      "format:harta"
+    ],
+    "tehnologii": [
+      "tehnologie:ai",
+      "tehnologie:aplicatie-mobila"
+    ],
+    "institutii_vizate": [
+      "institutie:primarie"
+    ],
+    "tip_organizatie": [],
+    "maturitate": "maturitate:operational",
+    "nivel_acoperire": "local",
+    "arii_acoperite": [
+      "localitate:onesti"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "onesti-city:tip_entitate_original",
+          "locator": "clasificare-input.csv:onesti-city:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:comunitati-teritoriu",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "onesti-city:descriere_scurta",
+          "locator": "clasificare-input.csv:onesti-city:descriere_scurta",
+          "excerpt": "Știri locale, anunțuri ale primăriei și sesizări"
+        },
+        {
+          "source_id": "onesti-city:descriere",
+          "locator": "clasificare-input.csv:onesti-city:descriere",
+          "excerpt": "Platformă comunitară independentă care aduce într-un singur loc știri locale, anunțuri ale Primăriei, informații despre oraș și posibilitatea de a semnala probleme pe o hartă publică. Folosește AI pentru a rezuma anunțurile administrației și oferă cetățenilor o modalitate mai simplă de a rămâne informați și de a semnala problemele din comunitate. Este disponibilă și ca aplicație mobilă."
+        }
+      ],
+      "rationale_ro": "Platforma Onești rezumă anunțuri cu AI, înregistrează sesizări și oferă o aplicație mobilă."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:comunitati-teritoriu",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "onesti-city:descriere_scurta",
+          "locator": "clasificare-input.csv:onesti-city:descriere_scurta",
+          "excerpt": "Știri locale, anunțuri ale primăriei și sesizări"
+        },
+        {
+          "source_id": "onesti-city:descriere",
+          "locator": "clasificare-input.csv:onesti-city:descriere",
+          "excerpt": "Platformă comunitară independentă care aduce într-un singur loc știri locale, anunțuri ale Primăriei, informații despre oraș și posibilitatea de a semnala probleme pe o hartă publică. Folosește AI pentru a rezuma anunțurile administrației și oferă cetățenilor o modalitate mai simplă de a rămâne informați și de a semnala problemele din comunitate. Este disponibilă și ca aplicație mobilă."
+        }
+      ],
+      "rationale_ro": "Platforma Onești rezumă anunțuri cu AI, înregistrează sesizări și oferă o aplicație mobilă."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "onesti-city:descriere_scurta",
+          "locator": "clasificare-input.csv:onesti-city:descriere_scurta",
+          "excerpt": "Știri locale, anunțuri ale primăriei și sesizări"
+        },
+        {
+          "source_id": "onesti-city:descriere",
+          "locator": "clasificare-input.csv:onesti-city:descriere",
+          "excerpt": "Platformă comunitară independentă care aduce într-un singur loc știri locale, anunțuri ale Primăriei, informații despre oraș și posibilitatea de a semnala probleme pe o hartă publică. Folosește AI pentru a rezuma anunțurile administrației și oferă cetățenilor o modalitate mai simplă de a rămâne informați și de a semnala problemele din comunitate. Este disponibilă și ca aplicație mobilă."
+        }
+      ],
+      "rationale_ro": "Platforma Onești rezumă anunțuri cu AI, înregistrează sesizări și oferă o aplicație mobilă. Conceptul subiect:administratie-publica are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:administratie-publica",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "onesti-city:descriere_scurta",
+          "locator": "clasificare-input.csv:onesti-city:descriere_scurta",
+          "excerpt": "Știri locale, anunțuri ale primăriei și sesizări"
+        },
+        {
+          "source_id": "onesti-city:descriere",
+          "locator": "clasificare-input.csv:onesti-city:descriere",
+          "excerpt": "Platformă comunitară independentă care aduce într-un singur loc știri locale, anunțuri ale Primăriei, informații despre oraș și posibilitatea de a semnala probleme pe o hartă publică. Folosește AI pentru a rezuma anunțurile administrației și oferă cetățenilor o modalitate mai simplă de a rămâne informați și de a semnala problemele din comunitate. Este disponibilă și ca aplicație mobilă."
+        }
+      ],
+      "rationale_ro": "Platforma Onești rezumă anunțuri cu AI, înregistrează sesizări și oferă o aplicație mobilă. Încadrare: Administrație publică."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:participare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "onesti-city:descriere_scurta",
+          "locator": "clasificare-input.csv:onesti-city:descriere_scurta",
+          "excerpt": "Știri locale, anunțuri ale primăriei și sesizări"
+        },
+        {
+          "source_id": "onesti-city:descriere",
+          "locator": "clasificare-input.csv:onesti-city:descriere",
+          "excerpt": "Platformă comunitară independentă care aduce într-un singur loc știri locale, anunțuri ale Primăriei, informații despre oraș și posibilitatea de a semnala probleme pe o hartă publică. Folosește AI pentru a rezuma anunțurile administrației și oferă cetățenilor o modalitate mai simplă de a rămâne informați și de a semnala problemele din comunitate. Este disponibilă și ca aplicație mobilă."
+        }
+      ],
+      "rationale_ro": "Platforma Onești rezumă anunțuri cu AI, înregistrează sesizări și oferă o aplicație mobilă. Încadrare: Participare civică."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "onesti-city:descriere_scurta",
+          "locator": "clasificare-input.csv:onesti-city:descriere_scurta",
+          "excerpt": "Știri locale, anunțuri ale primăriei și sesizări"
+        },
+        {
+          "source_id": "onesti-city:descriere",
+          "locator": "clasificare-input.csv:onesti-city:descriere",
+          "excerpt": "Platformă comunitară independentă care aduce într-un singur loc știri locale, anunțuri ale Primăriei, informații despre oraș și posibilitatea de a semnala probleme pe o hartă publică. Folosește AI pentru a rezuma anunțurile administrației și oferă cetățenilor o modalitate mai simplă de a rămâne informați și de a semnala problemele din comunitate. Este disponibilă și ca aplicație mobilă."
+        }
+      ],
+      "rationale_ro": "Platforma Onești rezumă anunțuri cu AI, înregistrează sesizări și oferă o aplicație mobilă. Încadrare: Informare și înțelegere."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:sesizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "onesti-city:descriere_scurta",
+          "locator": "clasificare-input.csv:onesti-city:descriere_scurta",
+          "excerpt": "Știri locale, anunțuri ale primăriei și sesizări"
+        },
+        {
+          "source_id": "onesti-city:descriere",
+          "locator": "clasificare-input.csv:onesti-city:descriere",
+          "excerpt": "Platformă comunitară independentă care aduce într-un singur loc știri locale, anunțuri ale Primăriei, informații despre oraș și posibilitatea de a semnala probleme pe o hartă publică. Folosește AI pentru a rezuma anunțurile administrației și oferă cetățenilor o modalitate mai simplă de a rămâne informați și de a semnala problemele din comunitate. Este disponibilă și ca aplicație mobilă."
+        }
+      ],
+      "rationale_ro": "Platforma Onești rezumă anunțuri cu AI, înregistrează sesizări și oferă o aplicație mobilă. Încadrare: Trimite sau urmărește o sesizare."
+    },
+    {
+      "field": "formate",
+      "value": "format:harta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "onesti-city:descriere_scurta",
+          "locator": "clasificare-input.csv:onesti-city:descriere_scurta",
+          "excerpt": "Știri locale, anunțuri ale primăriei și sesizări"
+        },
+        {
+          "source_id": "onesti-city:descriere",
+          "locator": "clasificare-input.csv:onesti-city:descriere",
+          "excerpt": "Platformă comunitară independentă care aduce într-un singur loc știri locale, anunțuri ale Primăriei, informații despre oraș și posibilitatea de a semnala probleme pe o hartă publică. Folosește AI pentru a rezuma anunțurile administrației și oferă cetățenilor o modalitate mai simplă de a rămâne informați și de a semnala problemele din comunitate. Este disponibilă și ca aplicație mobilă."
+        }
+      ],
+      "rationale_ro": "Platforma Onești rezumă anunțuri cu AI, înregistrează sesizări și oferă o aplicație mobilă. Încadrare: Hartă."
+    },
+    {
+      "field": "tehnologii",
+      "value": "tehnologie:ai",
+      "basis": "explicit",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "onesti-city:descriere_scurta",
+          "locator": "clasificare-input.csv:onesti-city:descriere_scurta",
+          "excerpt": "Știri locale, anunțuri ale primăriei și sesizări"
+        },
+        {
+          "source_id": "onesti-city:descriere",
+          "locator": "clasificare-input.csv:onesti-city:descriere",
+          "excerpt": "Platformă comunitară independentă care aduce într-un singur loc știri locale, anunțuri ale Primăriei, informații despre oraș și posibilitatea de a semnala probleme pe o hartă publică. Folosește AI pentru a rezuma anunțurile administrației și oferă cetățenilor o modalitate mai simplă de a rămâne informați și de a semnala problemele din comunitate. Este disponibilă și ca aplicație mobilă."
+        }
+      ],
+      "rationale_ro": "Platforma Onești rezumă anunțuri cu AI, înregistrează sesizări și oferă o aplicație mobilă. Încadrare: Utilizează inteligență artificială."
+    },
+    {
+      "field": "tehnologii",
+      "value": "tehnologie:aplicatie-mobila",
+      "basis": "explicit",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "onesti-city:descriere_scurta",
+          "locator": "clasificare-input.csv:onesti-city:descriere_scurta",
+          "excerpt": "Știri locale, anunțuri ale primăriei și sesizări"
+        },
+        {
+          "source_id": "onesti-city:descriere",
+          "locator": "clasificare-input.csv:onesti-city:descriere",
+          "excerpt": "Platformă comunitară independentă care aduce într-un singur loc știri locale, anunțuri ale Primăriei, informații despre oraș și posibilitatea de a semnala probleme pe o hartă publică. Folosește AI pentru a rezuma anunțurile administrației și oferă cetățenilor o modalitate mai simplă de a rămâne informați și de a semnala problemele din comunitate. Este disponibilă și ca aplicație mobilă."
+        }
+      ],
+      "rationale_ro": "Platforma Onești rezumă anunțuri cu AI, înregistrează sesizări și oferă o aplicație mobilă. Încadrare: Aplicație mobilă."
+    },
+    {
+      "field": "institutii_vizate",
+      "value": "institutie:primarie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "onesti-city:descriere_scurta",
+          "locator": "clasificare-input.csv:onesti-city:descriere_scurta",
+          "excerpt": "Știri locale, anunțuri ale primăriei și sesizări"
+        },
+        {
+          "source_id": "onesti-city:descriere",
+          "locator": "clasificare-input.csv:onesti-city:descriere",
+          "excerpt": "Platformă comunitară independentă care aduce într-un singur loc știri locale, anunțuri ale Primăriei, informații despre oraș și posibilitatea de a semnala probleme pe o hartă publică. Folosește AI pentru a rezuma anunțurile administrației și oferă cetățenilor o modalitate mai simplă de a rămâne informați și de a semnala problemele din comunitate. Este disponibilă și ca aplicație mobilă."
+        }
+      ],
+      "rationale_ro": "Platforma Onești rezumă anunțuri cu AI, înregistrează sesizări și oferă o aplicație mobilă. Încadrare: Primărie sau administrație locală."
+    },
+    {
+      "field": "maturitate",
+      "value": "maturitate:operational",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "onesti-city:descriere_scurta",
+          "locator": "clasificare-input.csv:onesti-city:descriere_scurta",
+          "excerpt": "Știri locale, anunțuri ale primăriei și sesizări"
+        },
+        {
+          "source_id": "onesti-city:descriere",
+          "locator": "clasificare-input.csv:onesti-city:descriere",
+          "excerpt": "Platformă comunitară independentă care aduce într-un singur loc știri locale, anunțuri ale Primăriei, informații despre oraș și posibilitatea de a semnala probleme pe o hartă publică. Folosește AI pentru a rezuma anunțurile administrației și oferă cetățenilor o modalitate mai simplă de a rămâne informați și de a semnala problemele din comunitate. Este disponibilă și ca aplicație mobilă."
+        }
+      ],
+      "rationale_ro": "Descrierea oferă un flux concret pentru utilizare obișnuită de către publicul țintă. Platforma Onești rezumă anunțuri cu AI, înregistrează sesizări și oferă o aplicație mobilă. Încadrare: Operațional."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "local",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "onesti-city:acoperire_original",
+          "locator": "clasificare-input.csv:onesti-city:acoperire_original",
+          "excerpt": "local"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "localitate:onesti",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "onesti-city:acoperire_original",
+          "locator": "clasificare-input.csv:onesti-city:acoperire_original",
+          "excerpt": "local"
+        },
+        {
+          "source_id": "onesti-city:oras_original",
+          "locator": "clasificare-input.csv:onesti-city:oras_original",
+          "excerpt": "Onești"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": null,
+      "object_literal": "Marius Dima",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "onesti-city:autor_original",
+          "locator": "clasificare-input.csv:onesti-city:autor_original",
+          "excerpt": "Marius Dima"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "instrument",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "primării",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

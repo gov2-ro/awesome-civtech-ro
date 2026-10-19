@@ -1,0 +1,197 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "votcorect",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:guvernare-democratie",
+    "subiecte": [
+      "subiect:guvernare-democratie"
+    ],
+    "teme": [
+      "subiect:alegeri",
+      "subiect:vot"
+    ],
+    "scopuri": [
+      "scop:informare",
+      "scop:participare"
+    ],
+    "functionalitati": [
+      "functie:sesizare"
+    ],
+    "formate": [],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "votcorect:tip_entitate_original",
+          "locator": "clasificare-input.csv:votcorect:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn6view1",
+          "locator": "https://votcorect.ro/#turn6view1",
+          "excerpt": "L2: Vot Corect oferă informații despre alegeri și sprijin alegătorilor pentru sesizarea neregulilor."
+        }
+      ],
+      "rationale_ro": "Pagina descrie sprijinul alegătorilor și sesizarea neregulilor, fără dovadă de AI. Conceptul subiect:alegeri are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn6view1",
+          "locator": "https://votcorect.ro/#turn6view1",
+          "excerpt": "L2: Vot Corect oferă informații despre alegeri și sprijin alegătorilor pentru sesizarea neregulilor."
+        }
+      ],
+      "rationale_ro": "Pagina descrie sprijinul alegătorilor și sesizarea neregulilor, fără dovadă de AI. Conceptul subiect:alegeri are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:alegeri",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn6view1",
+          "locator": "https://votcorect.ro/#turn6view1",
+          "excerpt": "L2: Vot Corect oferă informații despre alegeri și sprijin alegătorilor pentru sesizarea neregulilor."
+        }
+      ],
+      "rationale_ro": "Pagina descrie sprijinul alegătorilor și sesizarea neregulilor, fără dovadă de AI. Încadrare: Alegeri."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:vot",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn6view1",
+          "locator": "https://votcorect.ro/#turn6view1",
+          "excerpt": "L2: Vot Corect oferă informații despre alegeri și sprijin alegătorilor pentru sesizarea neregulilor."
+        }
+      ],
+      "rationale_ro": "Pagina descrie sprijinul alegătorilor și sesizarea neregulilor, fără dovadă de AI. Încadrare: Vot."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn6view1",
+          "locator": "https://votcorect.ro/#turn6view1",
+          "excerpt": "L2: Vot Corect oferă informații despre alegeri și sprijin alegătorilor pentru sesizarea neregulilor."
+        }
+      ],
+      "rationale_ro": "Pagina descrie sprijinul alegătorilor și sesizarea neregulilor, fără dovadă de AI. Încadrare: Informare și înțelegere."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:participare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn6view1",
+          "locator": "https://votcorect.ro/#turn6view1",
+          "excerpt": "L2: Vot Corect oferă informații despre alegeri și sprijin alegătorilor pentru sesizarea neregulilor."
+        }
+      ],
+      "rationale_ro": "Pagina descrie sprijinul alegătorilor și sesizarea neregulilor, fără dovadă de AI. Încadrare: Participare civică."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:sesizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn6view1",
+          "locator": "https://votcorect.ro/#turn6view1",
+          "excerpt": "L2: Vot Corect oferă informații despre alegeri și sprijin alegătorilor pentru sesizarea neregulilor."
+        }
+      ],
+      "rationale_ro": "Pagina descrie sprijinul alegătorilor și sesizarea neregulilor, fără dovadă de AI. Încadrare: Trimite sau urmărește o sesizare."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "votcorect:acoperire_original",
+          "locator": "clasificare-input.csv:votcorect:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "votcorect:acoperire_original",
+          "locator": "clasificare-input.csv:votcorect:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "instrument",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "ai",
+      "reason_ro": "Eticheta nu dovedește tehnologia folosită sau oferită."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

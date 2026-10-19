@@ -1,0 +1,343 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "bucuresti-verde",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:mediu-energie",
+    "subiecte": [
+      "subiect:mediu-energie"
+    ],
+    "teme": [
+      "subiect:paduri-arbori"
+    ],
+    "scopuri": [
+      "scop:participare",
+      "scop:responsabilizare"
+    ],
+    "functionalitati": [
+      "functie:sesizare",
+      "functie:monitorizare",
+      "functie:verificare"
+    ],
+    "formate": [
+      "format:harta"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": "maturitate:operational",
+    "nivel_acoperire": "local",
+    "arii_acoperite": [
+      "localitate:bucuresti"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "bucuresti-verde:tip_entitate_original",
+          "locator": "clasificare-input.csv:bucuresti-verde:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:mediu-energie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "bucuresti-verde:descriere_scurta",
+          "locator": "clasificare-input.csv:bucuresti-verde:descriere_scurta",
+          "excerpt": "Documentarea și sesizarea tăierilor de arbori"
+        },
+        {
+          "source_id": "bucuresti-verde:descriere",
+          "locator": "clasificare-input.csv:bucuresti-verde:descriere",
+          "excerpt": "București Verde ajută cetățenii să documenteze tăieri și toaletări de arbori prin fotografii și localizare GPS și îi ghidează în sesizarea Poliției Locale. Platforma centralizează cazurile pe o hartă interactivă, iar echipa urmărește răspunsurile autorităților și verificarea avizelor pentru a clarifica legalitatea intervențiilor."
+        }
+      ],
+      "rationale_ro": "Platforma documentează arborii tăiați și urmărește sesizările și avizele. Conceptul subiect:paduri-arbori are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:mediu-energie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "bucuresti-verde:descriere_scurta",
+          "locator": "clasificare-input.csv:bucuresti-verde:descriere_scurta",
+          "excerpt": "Documentarea și sesizarea tăierilor de arbori"
+        },
+        {
+          "source_id": "bucuresti-verde:descriere",
+          "locator": "clasificare-input.csv:bucuresti-verde:descriere",
+          "excerpt": "București Verde ajută cetățenii să documenteze tăieri și toaletări de arbori prin fotografii și localizare GPS și îi ghidează în sesizarea Poliției Locale. Platforma centralizează cazurile pe o hartă interactivă, iar echipa urmărește răspunsurile autorităților și verificarea avizelor pentru a clarifica legalitatea intervențiilor."
+        }
+      ],
+      "rationale_ro": "Platforma documentează arborii tăiați și urmărește sesizările și avizele. Conceptul subiect:paduri-arbori are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:paduri-arbori",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "bucuresti-verde:descriere_scurta",
+          "locator": "clasificare-input.csv:bucuresti-verde:descriere_scurta",
+          "excerpt": "Documentarea și sesizarea tăierilor de arbori"
+        },
+        {
+          "source_id": "bucuresti-verde:descriere",
+          "locator": "clasificare-input.csv:bucuresti-verde:descriere",
+          "excerpt": "București Verde ajută cetățenii să documenteze tăieri și toaletări de arbori prin fotografii și localizare GPS și îi ghidează în sesizarea Poliției Locale. Platforma centralizează cazurile pe o hartă interactivă, iar echipa urmărește răspunsurile autorităților și verificarea avizelor pentru a clarifica legalitatea intervențiilor."
+        }
+      ],
+      "rationale_ro": "Platforma documentează arborii tăiați și urmărește sesizările și avizele. Încadrare: Păduri și arbori."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:participare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "bucuresti-verde:descriere_scurta",
+          "locator": "clasificare-input.csv:bucuresti-verde:descriere_scurta",
+          "excerpt": "Documentarea și sesizarea tăierilor de arbori"
+        },
+        {
+          "source_id": "bucuresti-verde:descriere",
+          "locator": "clasificare-input.csv:bucuresti-verde:descriere",
+          "excerpt": "București Verde ajută cetățenii să documenteze tăieri și toaletări de arbori prin fotografii și localizare GPS și îi ghidează în sesizarea Poliției Locale. Platforma centralizează cazurile pe o hartă interactivă, iar echipa urmărește răspunsurile autorităților și verificarea avizelor pentru a clarifica legalitatea intervențiilor."
+        }
+      ],
+      "rationale_ro": "Platforma documentează arborii tăiați și urmărește sesizările și avizele. Încadrare: Participare civică."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:responsabilizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "bucuresti-verde:descriere_scurta",
+          "locator": "clasificare-input.csv:bucuresti-verde:descriere_scurta",
+          "excerpt": "Documentarea și sesizarea tăierilor de arbori"
+        },
+        {
+          "source_id": "bucuresti-verde:descriere",
+          "locator": "clasificare-input.csv:bucuresti-verde:descriere",
+          "excerpt": "București Verde ajută cetățenii să documenteze tăieri și toaletări de arbori prin fotografii și localizare GPS și îi ghidează în sesizarea Poliției Locale. Platforma centralizează cazurile pe o hartă interactivă, iar echipa urmărește răspunsurile autorităților și verificarea avizelor pentru a clarifica legalitatea intervențiilor."
+        }
+      ],
+      "rationale_ro": "Platforma documentează arborii tăiați și urmărește sesizările și avizele. Încadrare: Responsabilizare publică."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:sesizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "bucuresti-verde:descriere_scurta",
+          "locator": "clasificare-input.csv:bucuresti-verde:descriere_scurta",
+          "excerpt": "Documentarea și sesizarea tăierilor de arbori"
+        },
+        {
+          "source_id": "bucuresti-verde:descriere",
+          "locator": "clasificare-input.csv:bucuresti-verde:descriere",
+          "excerpt": "București Verde ajută cetățenii să documenteze tăieri și toaletări de arbori prin fotografii și localizare GPS și îi ghidează în sesizarea Poliției Locale. Platforma centralizează cazurile pe o hartă interactivă, iar echipa urmărește răspunsurile autorităților și verificarea avizelor pentru a clarifica legalitatea intervențiilor."
+        }
+      ],
+      "rationale_ro": "Platforma documentează arborii tăiați și urmărește sesizările și avizele. Încadrare: Trimite sau urmărește o sesizare."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:monitorizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "bucuresti-verde:descriere_scurta",
+          "locator": "clasificare-input.csv:bucuresti-verde:descriere_scurta",
+          "excerpt": "Documentarea și sesizarea tăierilor de arbori"
+        },
+        {
+          "source_id": "bucuresti-verde:descriere",
+          "locator": "clasificare-input.csv:bucuresti-verde:descriere",
+          "excerpt": "București Verde ajută cetățenii să documenteze tăieri și toaletări de arbori prin fotografii și localizare GPS și îi ghidează în sesizarea Poliției Locale. Platforma centralizează cazurile pe o hartă interactivă, iar echipa urmărește răspunsurile autorităților și verificarea avizelor pentru a clarifica legalitatea intervențiilor."
+        }
+      ],
+      "rationale_ro": "Platforma documentează arborii tăiați și urmărește sesizările și avizele. Încadrare: Monitorizează."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:verificare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "bucuresti-verde:descriere_scurta",
+          "locator": "clasificare-input.csv:bucuresti-verde:descriere_scurta",
+          "excerpt": "Documentarea și sesizarea tăierilor de arbori"
+        },
+        {
+          "source_id": "bucuresti-verde:descriere",
+          "locator": "clasificare-input.csv:bucuresti-verde:descriere",
+          "excerpt": "București Verde ajută cetățenii să documenteze tăieri și toaletări de arbori prin fotografii și localizare GPS și îi ghidează în sesizarea Poliției Locale. Platforma centralizează cazurile pe o hartă interactivă, iar echipa urmărește răspunsurile autorităților și verificarea avizelor pentru a clarifica legalitatea intervențiilor."
+        }
+      ],
+      "rationale_ro": "Platforma documentează arborii tăiați și urmărește sesizările și avizele. Încadrare: Verifică informații."
+    },
+    {
+      "field": "formate",
+      "value": "format:harta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "bucuresti-verde:descriere_scurta",
+          "locator": "clasificare-input.csv:bucuresti-verde:descriere_scurta",
+          "excerpt": "Documentarea și sesizarea tăierilor de arbori"
+        },
+        {
+          "source_id": "bucuresti-verde:descriere",
+          "locator": "clasificare-input.csv:bucuresti-verde:descriere",
+          "excerpt": "București Verde ajută cetățenii să documenteze tăieri și toaletări de arbori prin fotografii și localizare GPS și îi ghidează în sesizarea Poliției Locale. Platforma centralizează cazurile pe o hartă interactivă, iar echipa urmărește răspunsurile autorităților și verificarea avizelor pentru a clarifica legalitatea intervențiilor."
+        }
+      ],
+      "rationale_ro": "Platforma documentează arborii tăiați și urmărește sesizările și avizele. Încadrare: Hartă."
+    },
+    {
+      "field": "maturitate",
+      "value": "maturitate:operational",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "bucuresti-verde:descriere_scurta",
+          "locator": "clasificare-input.csv:bucuresti-verde:descriere_scurta",
+          "excerpt": "Documentarea și sesizarea tăierilor de arbori"
+        },
+        {
+          "source_id": "bucuresti-verde:descriere",
+          "locator": "clasificare-input.csv:bucuresti-verde:descriere",
+          "excerpt": "București Verde ajută cetățenii să documenteze tăieri și toaletări de arbori prin fotografii și localizare GPS și îi ghidează în sesizarea Poliției Locale. Platforma centralizează cazurile pe o hartă interactivă, iar echipa urmărește răspunsurile autorităților și verificarea avizelor pentru a clarifica legalitatea intervențiilor."
+        }
+      ],
+      "rationale_ro": "Descrierea oferă un flux concret pentru utilizare obișnuită de către publicul țintă. Platforma documentează arborii tăiați și urmărește sesizările și avizele. Încadrare: Operațional."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "local",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "bucuresti-verde:acoperire_original",
+          "locator": "clasificare-input.csv:bucuresti-verde:acoperire_original",
+          "excerpt": "local"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "localitate:bucuresti",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "bucuresti-verde:acoperire_original",
+          "locator": "clasificare-input.csv:bucuresti-verde:acoperire_original",
+          "excerpt": "local"
+        },
+        {
+          "source_id": "bucuresti-verde:oras_original",
+          "locator": "clasificare-input.csv:bucuresti-verde:oras_original",
+          "excerpt": "București"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": null,
+      "object_literal": "Alex Ifrimenco",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "bucuresti-verde:autor_original",
+          "locator": "clasificare-input.csv:bucuresti-verde:autor_original",
+          "excerpt": "Alex Ifrimenco / Beniamin Gheorghiță / Alexandru Lisman"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    },
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": null,
+      "object_literal": "Beniamin Gheorghiță",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "bucuresti-verde:autor_original",
+          "locator": "clasificare-input.csv:bucuresti-verde:autor_original",
+          "excerpt": "Alex Ifrimenco / Beniamin Gheorghiță / Alexandru Lisman"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    },
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": null,
+      "object_literal": "Alexandru Lisman",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "bucuresti-verde:autor_original",
+          "locator": "clasificare-input.csv:bucuresti-verde:autor_original",
+          "excerpt": "Alex Ifrimenco / Beniamin Gheorghiță / Alexandru Lisman"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "instrument",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "primării",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

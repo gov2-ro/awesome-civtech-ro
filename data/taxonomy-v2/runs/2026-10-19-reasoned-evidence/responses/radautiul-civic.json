@@ -1,0 +1,331 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "radautiul-civic",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "organizatie",
+    "subiect_principal": "subiect:societate-civila",
+    "subiecte": [
+      "subiect:societate-civila",
+      "subiect:guvernare-democratie",
+      "subiect:educatie-cultura",
+      "subiect:mediu-energie"
+    ],
+    "teme": [
+      "subiect:administratie-publica",
+      "subiect:educatie-civica",
+      "subiect:cultura",
+      "subiect:mediu"
+    ],
+    "scopuri": [
+      "scop:participare",
+      "scop:transparenta"
+    ],
+    "functionalitati": [],
+    "formate": [],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [
+      "organizatie:ong"
+    ],
+    "maturitate": null,
+    "nivel_acoperire": "local",
+    "arii_acoperite": [
+      "localitate:radauti"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "organizatie",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "radautiul-civic:tip_entitate_original",
+          "locator": "clasificare-input.csv:radautiul-civic:tip_entitate_original",
+          "excerpt": "organizatie"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:societate-civila",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "radautiul-civic:descriere_scurta",
+          "locator": "clasificare-input.csv:radautiul-civic:descriere_scurta",
+          "excerpt": "Asociație pentru cetățenie activă și dezvoltarea comunității din Rădăuți"
+        },
+        {
+          "source_id": "radautiul-civic:descriere",
+          "locator": "clasificare-input.csv:radautiul-civic:descriere",
+          "excerpt": "Organizație non-guvernamentală și non-profit, care stimulează cetățenia activă pentru dezvoltarea comunității locale din Rădăuți. Lucrează în domenii precum buna guvernare locală, social-educațional, mediu, cultură și transparență. Primele inițiative datează din 2016; astăzi dezvoltă și aplicații civice, precum AccessInfo și eRădăuți."
+        }
+      ],
+      "rationale_ro": "Asociația lucrează local în Rădăuți în guvernare, educație, cultură și mediu."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:societate-civila",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "radautiul-civic:descriere_scurta",
+          "locator": "clasificare-input.csv:radautiul-civic:descriere_scurta",
+          "excerpt": "Asociație pentru cetățenie activă și dezvoltarea comunității din Rădăuți"
+        },
+        {
+          "source_id": "radautiul-civic:descriere",
+          "locator": "clasificare-input.csv:radautiul-civic:descriere",
+          "excerpt": "Organizație non-guvernamentală și non-profit, care stimulează cetățenia activă pentru dezvoltarea comunității locale din Rădăuți. Lucrează în domenii precum buna guvernare locală, social-educațional, mediu, cultură și transparență. Primele inițiative datează din 2016; astăzi dezvoltă și aplicații civice, precum AccessInfo și eRădăuți."
+        }
+      ],
+      "rationale_ro": "Asociația lucrează local în Rădăuți în guvernare, educație, cultură și mediu."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "radautiul-civic:descriere_scurta",
+          "locator": "clasificare-input.csv:radautiul-civic:descriere_scurta",
+          "excerpt": "Asociație pentru cetățenie activă și dezvoltarea comunității din Rădăuți"
+        },
+        {
+          "source_id": "radautiul-civic:descriere",
+          "locator": "clasificare-input.csv:radautiul-civic:descriere",
+          "excerpt": "Organizație non-guvernamentală și non-profit, care stimulează cetățenia activă pentru dezvoltarea comunității locale din Rădăuți. Lucrează în domenii precum buna guvernare locală, social-educațional, mediu, cultură și transparență. Primele inițiative datează din 2016; astăzi dezvoltă și aplicații civice, precum AccessInfo și eRădăuți."
+        }
+      ],
+      "rationale_ro": "Asociația lucrează local în Rădăuți în guvernare, educație, cultură și mediu. Conceptul subiect:administratie-publica are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:educatie-cultura",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "radautiul-civic:descriere_scurta",
+          "locator": "clasificare-input.csv:radautiul-civic:descriere_scurta",
+          "excerpt": "Asociație pentru cetățenie activă și dezvoltarea comunității din Rădăuți"
+        },
+        {
+          "source_id": "radautiul-civic:descriere",
+          "locator": "clasificare-input.csv:radautiul-civic:descriere",
+          "excerpt": "Organizație non-guvernamentală și non-profit, care stimulează cetățenia activă pentru dezvoltarea comunității locale din Rădăuți. Lucrează în domenii precum buna guvernare locală, social-educațional, mediu, cultură și transparență. Primele inițiative datează din 2016; astăzi dezvoltă și aplicații civice, precum AccessInfo și eRădăuți."
+        }
+      ],
+      "rationale_ro": "Asociația lucrează local în Rădăuți în guvernare, educație, cultură și mediu. Conceptul subiect:educatie-civica are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:mediu-energie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "radautiul-civic:descriere_scurta",
+          "locator": "clasificare-input.csv:radautiul-civic:descriere_scurta",
+          "excerpt": "Asociație pentru cetățenie activă și dezvoltarea comunității din Rădăuți"
+        },
+        {
+          "source_id": "radautiul-civic:descriere",
+          "locator": "clasificare-input.csv:radautiul-civic:descriere",
+          "excerpt": "Organizație non-guvernamentală și non-profit, care stimulează cetățenia activă pentru dezvoltarea comunității locale din Rădăuți. Lucrează în domenii precum buna guvernare locală, social-educațional, mediu, cultură și transparență. Primele inițiative datează din 2016; astăzi dezvoltă și aplicații civice, precum AccessInfo și eRădăuți."
+        }
+      ],
+      "rationale_ro": "Asociația lucrează local în Rădăuți în guvernare, educație, cultură și mediu. Conceptul subiect:mediu are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:administratie-publica",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "radautiul-civic:descriere_scurta",
+          "locator": "clasificare-input.csv:radautiul-civic:descriere_scurta",
+          "excerpt": "Asociație pentru cetățenie activă și dezvoltarea comunității din Rădăuți"
+        },
+        {
+          "source_id": "radautiul-civic:descriere",
+          "locator": "clasificare-input.csv:radautiul-civic:descriere",
+          "excerpt": "Organizație non-guvernamentală și non-profit, care stimulează cetățenia activă pentru dezvoltarea comunității locale din Rădăuți. Lucrează în domenii precum buna guvernare locală, social-educațional, mediu, cultură și transparență. Primele inițiative datează din 2016; astăzi dezvoltă și aplicații civice, precum AccessInfo și eRădăuți."
+        }
+      ],
+      "rationale_ro": "Asociația lucrează local în Rădăuți în guvernare, educație, cultură și mediu. Încadrare: Administrație publică."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:educatie-civica",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "radautiul-civic:descriere_scurta",
+          "locator": "clasificare-input.csv:radautiul-civic:descriere_scurta",
+          "excerpt": "Asociație pentru cetățenie activă și dezvoltarea comunității din Rădăuți"
+        },
+        {
+          "source_id": "radautiul-civic:descriere",
+          "locator": "clasificare-input.csv:radautiul-civic:descriere",
+          "excerpt": "Organizație non-guvernamentală și non-profit, care stimulează cetățenia activă pentru dezvoltarea comunității locale din Rădăuți. Lucrează în domenii precum buna guvernare locală, social-educațional, mediu, cultură și transparență. Primele inițiative datează din 2016; astăzi dezvoltă și aplicații civice, precum AccessInfo și eRădăuți."
+        }
+      ],
+      "rationale_ro": "Asociația lucrează local în Rădăuți în guvernare, educație, cultură și mediu. Încadrare: Educație civică."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:cultura",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "radautiul-civic:descriere_scurta",
+          "locator": "clasificare-input.csv:radautiul-civic:descriere_scurta",
+          "excerpt": "Asociație pentru cetățenie activă și dezvoltarea comunității din Rădăuți"
+        },
+        {
+          "source_id": "radautiul-civic:descriere",
+          "locator": "clasificare-input.csv:radautiul-civic:descriere",
+          "excerpt": "Organizație non-guvernamentală și non-profit, care stimulează cetățenia activă pentru dezvoltarea comunității locale din Rădăuți. Lucrează în domenii precum buna guvernare locală, social-educațional, mediu, cultură și transparență. Primele inițiative datează din 2016; astăzi dezvoltă și aplicații civice, precum AccessInfo și eRădăuți."
+        }
+      ],
+      "rationale_ro": "Asociația lucrează local în Rădăuți în guvernare, educație, cultură și mediu. Încadrare: Cultură."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:mediu",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "radautiul-civic:descriere_scurta",
+          "locator": "clasificare-input.csv:radautiul-civic:descriere_scurta",
+          "excerpt": "Asociație pentru cetățenie activă și dezvoltarea comunității din Rădăuți"
+        },
+        {
+          "source_id": "radautiul-civic:descriere",
+          "locator": "clasificare-input.csv:radautiul-civic:descriere",
+          "excerpt": "Organizație non-guvernamentală și non-profit, care stimulează cetățenia activă pentru dezvoltarea comunității locale din Rădăuți. Lucrează în domenii precum buna guvernare locală, social-educațional, mediu, cultură și transparență. Primele inițiative datează din 2016; astăzi dezvoltă și aplicații civice, precum AccessInfo și eRădăuți."
+        }
+      ],
+      "rationale_ro": "Asociația lucrează local în Rădăuți în guvernare, educație, cultură și mediu. Încadrare: Protecția mediului."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:participare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "radautiul-civic:descriere_scurta",
+          "locator": "clasificare-input.csv:radautiul-civic:descriere_scurta",
+          "excerpt": "Asociație pentru cetățenie activă și dezvoltarea comunității din Rădăuți"
+        },
+        {
+          "source_id": "radautiul-civic:descriere",
+          "locator": "clasificare-input.csv:radautiul-civic:descriere",
+          "excerpt": "Organizație non-guvernamentală și non-profit, care stimulează cetățenia activă pentru dezvoltarea comunității locale din Rădăuți. Lucrează în domenii precum buna guvernare locală, social-educațional, mediu, cultură și transparență. Primele inițiative datează din 2016; astăzi dezvoltă și aplicații civice, precum AccessInfo și eRădăuți."
+        }
+      ],
+      "rationale_ro": "Asociația lucrează local în Rădăuți în guvernare, educație, cultură și mediu. Încadrare: Participare civică."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:transparenta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "radautiul-civic:descriere_scurta",
+          "locator": "clasificare-input.csv:radautiul-civic:descriere_scurta",
+          "excerpt": "Asociație pentru cetățenie activă și dezvoltarea comunității din Rădăuți"
+        },
+        {
+          "source_id": "radautiul-civic:descriere",
+          "locator": "clasificare-input.csv:radautiul-civic:descriere",
+          "excerpt": "Organizație non-guvernamentală și non-profit, care stimulează cetățenia activă pentru dezvoltarea comunității locale din Rădăuți. Lucrează în domenii precum buna guvernare locală, social-educațional, mediu, cultură și transparență. Primele inițiative datează din 2016; astăzi dezvoltă și aplicații civice, precum AccessInfo și eRădăuți."
+        }
+      ],
+      "rationale_ro": "Asociația lucrează local în Rădăuți în guvernare, educație, cultură și mediu. Încadrare: Transparență."
+    },
+    {
+      "field": "tip_organizatie",
+      "value": "organizatie:ong",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "radautiul-civic:descriere_scurta",
+          "locator": "clasificare-input.csv:radautiul-civic:descriere_scurta",
+          "excerpt": "Asociație pentru cetățenie activă și dezvoltarea comunității din Rădăuți"
+        },
+        {
+          "source_id": "radautiul-civic:descriere",
+          "locator": "clasificare-input.csv:radautiul-civic:descriere",
+          "excerpt": "Organizație non-guvernamentală și non-profit, care stimulează cetățenia activă pentru dezvoltarea comunității locale din Rădăuți. Lucrează în domenii precum buna guvernare locală, social-educațional, mediu, cultură și transparență. Primele inițiative datează din 2016; astăzi dezvoltă și aplicații civice, precum AccessInfo și eRădăuți."
+        }
+      ],
+      "rationale_ro": "Asociația lucrează local în Rădăuți în guvernare, educație, cultură și mediu. Încadrare: Organizație neguvernamentală."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "local",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "radautiul-civic:acoperire_original",
+          "locator": "clasificare-input.csv:radautiul-civic:acoperire_original",
+          "excerpt": "local"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "localitate:radauti",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "radautiul-civic:acoperire_original",
+          "locator": "clasificare-input.csv:radautiul-civic:acoperire_original",
+          "excerpt": "local"
+        },
+        {
+          "source_id": "radautiul-civic:oras_original",
+          "locator": "clasificare-input.csv:radautiul-civic:oras_original",
+          "excerpt": "Rădăuți"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [],
+  "uncertainties": [],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "cuvinte",
+      "original_value": "primării",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "societate-civilă",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

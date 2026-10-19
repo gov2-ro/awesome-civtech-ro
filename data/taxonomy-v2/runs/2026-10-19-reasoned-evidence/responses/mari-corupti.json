@@ -1,0 +1,289 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "mari-corupti",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:guvernare-democratie",
+    "subiecte": [
+      "subiect:guvernare-democratie",
+      "subiect:drept-justitie"
+    ],
+    "teme": [
+      "subiect:coruptie",
+      "subiect:condamnari"
+    ],
+    "scopuri": [
+      "scop:informare",
+      "scop:educatie",
+      "scop:anticoruptie"
+    ],
+    "functionalitati": [
+      "functie:cautare",
+      "functie:analiza"
+    ],
+    "formate": [
+      "format:registru",
+      "format:vizualizare"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "mari-corupti:tip_entitate_original",
+          "locator": "clasificare-input.csv:mari-corupti:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn7search0",
+          "locator": "https://funky.ong/proiecte/maricorupti-ro/#turn7search0",
+          "excerpt": "Singurul site care-ți arată în orice moment care mare demnitar a mai intrat (sau ieșit) de la închisoare. Vezi rezumatele dosarelor lor și cifre esențiale despre faptele lor. Ne ocupăm doar cu cei condamnați definitiv pentru fapte de corupție. Dacă vrei să susții lupta anticorupție, comandă-ți un set de stickere de colecție cu marii corupți ilustrați."
+        }
+      ],
+      "rationale_ro": "Documentația Funky limitează baza la persoane condamnate definitiv pentru corupție. Conceptul subiect:coruptie are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn7search0",
+          "locator": "https://funky.ong/proiecte/maricorupti-ro/#turn7search0",
+          "excerpt": "Singurul site care-ți arată în orice moment care mare demnitar a mai intrat (sau ieșit) de la închisoare. Vezi rezumatele dosarelor lor și cifre esențiale despre faptele lor. Ne ocupăm doar cu cei condamnați definitiv pentru fapte de corupție. Dacă vrei să susții lupta anticorupție, comandă-ți un set de stickere de colecție cu marii corupți ilustrați."
+        }
+      ],
+      "rationale_ro": "Documentația Funky limitează baza la persoane condamnate definitiv pentru corupție. Conceptul subiect:coruptie are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:drept-justitie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn7search0",
+          "locator": "https://funky.ong/proiecte/maricorupti-ro/#turn7search0",
+          "excerpt": "Singurul site care-ți arată în orice moment care mare demnitar a mai intrat (sau ieșit) de la închisoare. Vezi rezumatele dosarelor lor și cifre esențiale despre faptele lor. Ne ocupăm doar cu cei condamnați definitiv pentru fapte de corupție. Dacă vrei să susții lupta anticorupție, comandă-ți un set de stickere de colecție cu marii corupți ilustrați."
+        }
+      ],
+      "rationale_ro": "Documentația Funky limitează baza la persoane condamnate definitiv pentru corupție. Conceptul subiect:condamnari are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:coruptie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn7search0",
+          "locator": "https://funky.ong/proiecte/maricorupti-ro/#turn7search0",
+          "excerpt": "Singurul site care-ți arată în orice moment care mare demnitar a mai intrat (sau ieșit) de la închisoare. Vezi rezumatele dosarelor lor și cifre esențiale despre faptele lor. Ne ocupăm doar cu cei condamnați definitiv pentru fapte de corupție. Dacă vrei să susții lupta anticorupție, comandă-ți un set de stickere de colecție cu marii corupți ilustrați."
+        }
+      ],
+      "rationale_ro": "Documentația Funky limitează baza la persoane condamnate definitiv pentru corupție. Încadrare: Corupție."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:condamnari",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn7search0",
+          "locator": "https://funky.ong/proiecte/maricorupti-ro/#turn7search0",
+          "excerpt": "Singurul site care-ți arată în orice moment care mare demnitar a mai intrat (sau ieșit) de la închisoare. Vezi rezumatele dosarelor lor și cifre esențiale despre faptele lor. Ne ocupăm doar cu cei condamnați definitiv pentru fapte de corupție. Dacă vrei să susții lupta anticorupție, comandă-ți un set de stickere de colecție cu marii corupți ilustrați."
+        }
+      ],
+      "rationale_ro": "Documentația Funky limitează baza la persoane condamnate definitiv pentru corupție. Încadrare: Condamnări."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn7search0",
+          "locator": "https://funky.ong/proiecte/maricorupti-ro/#turn7search0",
+          "excerpt": "Singurul site care-ți arată în orice moment care mare demnitar a mai intrat (sau ieșit) de la închisoare. Vezi rezumatele dosarelor lor și cifre esențiale despre faptele lor. Ne ocupăm doar cu cei condamnați definitiv pentru fapte de corupție. Dacă vrei să susții lupta anticorupție, comandă-ți un set de stickere de colecție cu marii corupți ilustrați."
+        }
+      ],
+      "rationale_ro": "Documentația Funky limitează baza la persoane condamnate definitiv pentru corupție. Încadrare: Informare și înțelegere."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:educatie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn7search0",
+          "locator": "https://funky.ong/proiecte/maricorupti-ro/#turn7search0",
+          "excerpt": "Singurul site care-ți arată în orice moment care mare demnitar a mai intrat (sau ieșit) de la închisoare. Vezi rezumatele dosarelor lor și cifre esențiale despre faptele lor. Ne ocupăm doar cu cei condamnați definitiv pentru fapte de corupție. Dacă vrei să susții lupta anticorupție, comandă-ți un set de stickere de colecție cu marii corupți ilustrați."
+        }
+      ],
+      "rationale_ro": "Documentația Funky limitează baza la persoane condamnate definitiv pentru corupție. Încadrare: Învățare."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:anticoruptie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn7search0",
+          "locator": "https://funky.ong/proiecte/maricorupti-ro/#turn7search0",
+          "excerpt": "Singurul site care-ți arată în orice moment care mare demnitar a mai intrat (sau ieșit) de la închisoare. Vezi rezumatele dosarelor lor și cifre esențiale despre faptele lor. Ne ocupăm doar cu cei condamnați definitiv pentru fapte de corupție. Dacă vrei să susții lupta anticorupție, comandă-ți un set de stickere de colecție cu marii corupți ilustrați."
+        }
+      ],
+      "rationale_ro": "Documentația Funky limitează baza la persoane condamnate definitiv pentru corupție. Încadrare: Prevenirea și combaterea corupției."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:cautare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn7search0",
+          "locator": "https://funky.ong/proiecte/maricorupti-ro/#turn7search0",
+          "excerpt": "Singurul site care-ți arată în orice moment care mare demnitar a mai intrat (sau ieșit) de la închisoare. Vezi rezumatele dosarelor lor și cifre esențiale despre faptele lor. Ne ocupăm doar cu cei condamnați definitiv pentru fapte de corupție. Dacă vrei să susții lupta anticorupție, comandă-ți un set de stickere de colecție cu marii corupți ilustrați."
+        }
+      ],
+      "rationale_ro": "Documentația Funky limitează baza la persoane condamnate definitiv pentru corupție. Încadrare: Caută și consultă."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:analiza",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn7search0",
+          "locator": "https://funky.ong/proiecte/maricorupti-ro/#turn7search0",
+          "excerpt": "Singurul site care-ți arată în orice moment care mare demnitar a mai intrat (sau ieșit) de la închisoare. Vezi rezumatele dosarelor lor și cifre esențiale despre faptele lor. Ne ocupăm doar cu cei condamnați definitiv pentru fapte de corupție. Dacă vrei să susții lupta anticorupție, comandă-ți un set de stickere de colecție cu marii corupți ilustrați."
+        }
+      ],
+      "rationale_ro": "Documentația Funky limitează baza la persoane condamnate definitiv pentru corupție. Încadrare: Analizează date."
+    },
+    {
+      "field": "formate",
+      "value": "format:registru",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn7search0",
+          "locator": "https://funky.ong/proiecte/maricorupti-ro/#turn7search0",
+          "excerpt": "Singurul site care-ți arată în orice moment care mare demnitar a mai intrat (sau ieșit) de la închisoare. Vezi rezumatele dosarelor lor și cifre esențiale despre faptele lor. Ne ocupăm doar cu cei condamnați definitiv pentru fapte de corupție. Dacă vrei să susții lupta anticorupție, comandă-ți un set de stickere de colecție cu marii corupți ilustrați."
+        }
+      ],
+      "rationale_ro": "Documentația Funky limitează baza la persoane condamnate definitiv pentru corupție. Încadrare: Registru sau bază de date."
+    },
+    {
+      "field": "formate",
+      "value": "format:vizualizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn7search0",
+          "locator": "https://funky.ong/proiecte/maricorupti-ro/#turn7search0",
+          "excerpt": "Singurul site care-ți arată în orice moment care mare demnitar a mai intrat (sau ieșit) de la închisoare. Vezi rezumatele dosarelor lor și cifre esențiale despre faptele lor. Ne ocupăm doar cu cei condamnați definitiv pentru fapte de corupție. Dacă vrei să susții lupta anticorupție, comandă-ți un set de stickere de colecție cu marii corupți ilustrați."
+        }
+      ],
+      "rationale_ro": "Documentația Funky limitează baza la persoane condamnate definitiv pentru corupție. Încadrare: Vizualizare de date."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "mari-corupti:acoperire_original",
+          "locator": "clasificare-input.csv:mari-corupti:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "mari-corupti:acoperire_original",
+          "locator": "clasificare-input.csv:mari-corupti:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": "funky-citizens",
+      "object_literal": null,
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "mari-corupti:autor_original",
+          "locator": "clasificare-input.csv:mari-corupti:autor_original",
+          "excerpt": "funky-citizens"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    },
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "baza-de-date",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

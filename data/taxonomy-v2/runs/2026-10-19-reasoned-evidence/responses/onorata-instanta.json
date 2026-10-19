@@ -1,0 +1,239 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "onorata-instanta",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:drept-justitie",
+    "subiecte": [
+      "subiect:drept-justitie"
+    ],
+    "teme": [],
+    "scopuri": [
+      "scop:transparenta",
+      "scop:responsabilizare"
+    ],
+    "functionalitati": [
+      "functie:comparare",
+      "functie:analiza"
+    ],
+    "formate": [
+      "format:registru"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [
+      "institutie:instanta"
+    ],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "onorata-instanta:tip_entitate_original",
+          "locator": "clasificare-input.csv:onorata-instanta:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:drept-justitie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn1view2",
+          "locator": "https://www.onoratainstanta.ro#turn1view2",
+          "excerpt": "L2: ### Topul instanțelor din România, conform indicelui de performanță"
+        }
+      ],
+      "rationale_ro": "Pagina afișează indici de performanță pentru instanțe; nu dovedește utilizarea AI."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:drept-justitie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn1view2",
+          "locator": "https://www.onoratainstanta.ro#turn1view2",
+          "excerpt": "L2: ### Topul instanțelor din România, conform indicelui de performanță"
+        }
+      ],
+      "rationale_ro": "Pagina afișează indici de performanță pentru instanțe; nu dovedește utilizarea AI."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:transparenta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn1view2",
+          "locator": "https://www.onoratainstanta.ro#turn1view2",
+          "excerpt": "L2: ### Topul instanțelor din România, conform indicelui de performanță"
+        }
+      ],
+      "rationale_ro": "Pagina afișează indici de performanță pentru instanțe; nu dovedește utilizarea AI. Încadrare: Transparență."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:responsabilizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn1view2",
+          "locator": "https://www.onoratainstanta.ro#turn1view2",
+          "excerpt": "L2: ### Topul instanțelor din România, conform indicelui de performanță"
+        }
+      ],
+      "rationale_ro": "Pagina afișează indici de performanță pentru instanțe; nu dovedește utilizarea AI. Încadrare: Responsabilizare publică."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:comparare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn1view2",
+          "locator": "https://www.onoratainstanta.ro#turn1view2",
+          "excerpt": "L2: ### Topul instanțelor din România, conform indicelui de performanță"
+        }
+      ],
+      "rationale_ro": "Pagina afișează indici de performanță pentru instanțe; nu dovedește utilizarea AI. Încadrare: Compară."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:analiza",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn1view2",
+          "locator": "https://www.onoratainstanta.ro#turn1view2",
+          "excerpt": "L2: ### Topul instanțelor din România, conform indicelui de performanță"
+        }
+      ],
+      "rationale_ro": "Pagina afișează indici de performanță pentru instanțe; nu dovedește utilizarea AI. Încadrare: Analizează date."
+    },
+    {
+      "field": "formate",
+      "value": "format:registru",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn1view2",
+          "locator": "https://www.onoratainstanta.ro#turn1view2",
+          "excerpt": "L2: ### Topul instanțelor din România, conform indicelui de performanță"
+        }
+      ],
+      "rationale_ro": "Pagina afișează indici de performanță pentru instanțe; nu dovedește utilizarea AI. Încadrare: Registru sau bază de date."
+    },
+    {
+      "field": "institutii_vizate",
+      "value": "institutie:instanta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn1view2",
+          "locator": "https://www.onoratainstanta.ro#turn1view2",
+          "excerpt": "L2: ### Topul instanțelor din România, conform indicelui de performanță"
+        }
+      ],
+      "rationale_ro": "Pagina afișează indici de performanță pentru instanțe; nu dovedește utilizarea AI. Încadrare: Instanță judecătorească."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "onorata-instanta:acoperire_original",
+          "locator": "clasificare-input.csv:onorata-instanta:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "onorata-instanta:acoperire_original",
+          "locator": "clasificare-input.csv:onorata-instanta:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": "funky-citizens",
+      "object_literal": null,
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "onorata-instanta:autor_original",
+          "locator": "clasificare-input.csv:onorata-instanta:autor_original",
+          "excerpt": "funky-citizens"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    },
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "monitorizare",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "ai",
+      "reason_ro": "Eticheta nu dovedește tehnologia folosită sau oferită."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "legislație",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

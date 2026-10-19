@@ -1,0 +1,311 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "guvernezi",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:educatie-cultura",
+    "subiecte": [
+      "subiect:educatie-cultura",
+      "subiect:guvernare-democratie",
+      "subiect:finante-publice"
+    ],
+    "teme": [
+      "subiect:educatie-civica",
+      "subiect:democratie",
+      "subiect:buget"
+    ],
+    "scopuri": [
+      "scop:educatie"
+    ],
+    "functionalitati": [
+      "functie:invatare"
+    ],
+    "formate": [
+      "format:joc-test"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": "maturitate:operational",
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "guvernezi:tip_entitate_original",
+          "locator": "clasificare-input.csv:guvernezi:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:educatie-cultura",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "guvernezi:descriere_scurta",
+          "locator": "clasificare-input.csv:guvernezi:descriere_scurta",
+          "excerpt": "Joc: ești prim-ministru patru ani. Cu ce politician semeni?"
+        },
+        {
+          "source_id": "guvernezi:descriere",
+          "locator": "clasificare-input.csv:guvernezi:descriere",
+          "excerpt": "Joc gratuit în care ești prim-ministru patru ani: buget, justiție, \nBruxelles, crize și mini-jocuri. La final afli cu ce politician român \nsemeni."
+        }
+      ],
+      "rationale_ro": "Jocul simulează decizii de prim-ministru despre buget și instituții. Conceptul subiect:educatie-civica are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:educatie-cultura",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "guvernezi:descriere_scurta",
+          "locator": "clasificare-input.csv:guvernezi:descriere_scurta",
+          "excerpt": "Joc: ești prim-ministru patru ani. Cu ce politician semeni?"
+        },
+        {
+          "source_id": "guvernezi:descriere",
+          "locator": "clasificare-input.csv:guvernezi:descriere",
+          "excerpt": "Joc gratuit în care ești prim-ministru patru ani: buget, justiție, \nBruxelles, crize și mini-jocuri. La final afli cu ce politician român \nsemeni."
+        }
+      ],
+      "rationale_ro": "Jocul simulează decizii de prim-ministru despre buget și instituții. Conceptul subiect:educatie-civica are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "guvernezi:descriere_scurta",
+          "locator": "clasificare-input.csv:guvernezi:descriere_scurta",
+          "excerpt": "Joc: ești prim-ministru patru ani. Cu ce politician semeni?"
+        },
+        {
+          "source_id": "guvernezi:descriere",
+          "locator": "clasificare-input.csv:guvernezi:descriere",
+          "excerpt": "Joc gratuit în care ești prim-ministru patru ani: buget, justiție, \nBruxelles, crize și mini-jocuri. La final afli cu ce politician român \nsemeni."
+        }
+      ],
+      "rationale_ro": "Jocul simulează decizii de prim-ministru despre buget și instituții. Conceptul subiect:democratie are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:finante-publice",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "guvernezi:descriere_scurta",
+          "locator": "clasificare-input.csv:guvernezi:descriere_scurta",
+          "excerpt": "Joc: ești prim-ministru patru ani. Cu ce politician semeni?"
+        },
+        {
+          "source_id": "guvernezi:descriere",
+          "locator": "clasificare-input.csv:guvernezi:descriere",
+          "excerpt": "Joc gratuit în care ești prim-ministru patru ani: buget, justiție, \nBruxelles, crize și mini-jocuri. La final afli cu ce politician român \nsemeni."
+        }
+      ],
+      "rationale_ro": "Jocul simulează decizii de prim-ministru despre buget și instituții. Conceptul subiect:buget are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:educatie-civica",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "guvernezi:descriere_scurta",
+          "locator": "clasificare-input.csv:guvernezi:descriere_scurta",
+          "excerpt": "Joc: ești prim-ministru patru ani. Cu ce politician semeni?"
+        },
+        {
+          "source_id": "guvernezi:descriere",
+          "locator": "clasificare-input.csv:guvernezi:descriere",
+          "excerpt": "Joc gratuit în care ești prim-ministru patru ani: buget, justiție, \nBruxelles, crize și mini-jocuri. La final afli cu ce politician român \nsemeni."
+        }
+      ],
+      "rationale_ro": "Jocul simulează decizii de prim-ministru despre buget și instituții. Încadrare: Educație civică."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:democratie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "guvernezi:descriere_scurta",
+          "locator": "clasificare-input.csv:guvernezi:descriere_scurta",
+          "excerpt": "Joc: ești prim-ministru patru ani. Cu ce politician semeni?"
+        },
+        {
+          "source_id": "guvernezi:descriere",
+          "locator": "clasificare-input.csv:guvernezi:descriere",
+          "excerpt": "Joc gratuit în care ești prim-ministru patru ani: buget, justiție, \nBruxelles, crize și mini-jocuri. La final afli cu ce politician român \nsemeni."
+        }
+      ],
+      "rationale_ro": "Jocul simulează decizii de prim-ministru despre buget și instituții. Încadrare: Democrație."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:buget",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "guvernezi:descriere_scurta",
+          "locator": "clasificare-input.csv:guvernezi:descriere_scurta",
+          "excerpt": "Joc: ești prim-ministru patru ani. Cu ce politician semeni?"
+        },
+        {
+          "source_id": "guvernezi:descriere",
+          "locator": "clasificare-input.csv:guvernezi:descriere",
+          "excerpt": "Joc gratuit în care ești prim-ministru patru ani: buget, justiție, \nBruxelles, crize și mini-jocuri. La final afli cu ce politician român \nsemeni."
+        }
+      ],
+      "rationale_ro": "Jocul simulează decizii de prim-ministru despre buget și instituții. Încadrare: Buget public."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:educatie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "guvernezi:descriere_scurta",
+          "locator": "clasificare-input.csv:guvernezi:descriere_scurta",
+          "excerpt": "Joc: ești prim-ministru patru ani. Cu ce politician semeni?"
+        },
+        {
+          "source_id": "guvernezi:descriere",
+          "locator": "clasificare-input.csv:guvernezi:descriere",
+          "excerpt": "Joc gratuit în care ești prim-ministru patru ani: buget, justiție, \nBruxelles, crize și mini-jocuri. La final afli cu ce politician român \nsemeni."
+        }
+      ],
+      "rationale_ro": "Jocul simulează decizii de prim-ministru despre buget și instituții. Încadrare: Învățare."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:invatare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "guvernezi:descriere_scurta",
+          "locator": "clasificare-input.csv:guvernezi:descriere_scurta",
+          "excerpt": "Joc: ești prim-ministru patru ani. Cu ce politician semeni?"
+        },
+        {
+          "source_id": "guvernezi:descriere",
+          "locator": "clasificare-input.csv:guvernezi:descriere",
+          "excerpt": "Joc gratuit în care ești prim-ministru patru ani: buget, justiție, \nBruxelles, crize și mini-jocuri. La final afli cu ce politician român \nsemeni."
+        }
+      ],
+      "rationale_ro": "Jocul simulează decizii de prim-ministru despre buget și instituții. Încadrare: Învață sau exersează."
+    },
+    {
+      "field": "formate",
+      "value": "format:joc-test",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "guvernezi:descriere_scurta",
+          "locator": "clasificare-input.csv:guvernezi:descriere_scurta",
+          "excerpt": "Joc: ești prim-ministru patru ani. Cu ce politician semeni?"
+        },
+        {
+          "source_id": "guvernezi:descriere",
+          "locator": "clasificare-input.csv:guvernezi:descriere",
+          "excerpt": "Joc gratuit în care ești prim-ministru patru ani: buget, justiție, \nBruxelles, crize și mini-jocuri. La final afli cu ce politician român \nsemeni."
+        }
+      ],
+      "rationale_ro": "Jocul simulează decizii de prim-ministru despre buget și instituții. Încadrare: Joc sau test."
+    },
+    {
+      "field": "maturitate",
+      "value": "maturitate:operational",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "guvernezi:descriere_scurta",
+          "locator": "clasificare-input.csv:guvernezi:descriere_scurta",
+          "excerpt": "Joc: ești prim-ministru patru ani. Cu ce politician semeni?"
+        },
+        {
+          "source_id": "guvernezi:descriere",
+          "locator": "clasificare-input.csv:guvernezi:descriere",
+          "excerpt": "Joc gratuit în care ești prim-ministru patru ani: buget, justiție, \nBruxelles, crize și mini-jocuri. La final afli cu ce politician român \nsemeni."
+        }
+      ],
+      "rationale_ro": "Descrierea oferă un flux concret pentru utilizare obișnuită de către publicul țintă. Jocul simulează decizii de prim-ministru despre buget și instituții. Încadrare: Operațional."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "guvernezi:acoperire_original",
+          "locator": "clasificare-input.csv:guvernezi:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "guvernezi:acoperire_original",
+          "locator": "clasificare-input.csv:guvernezi:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [],
+  "uncertainties": [],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "educativ",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "educație-civică",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "bani-publici",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

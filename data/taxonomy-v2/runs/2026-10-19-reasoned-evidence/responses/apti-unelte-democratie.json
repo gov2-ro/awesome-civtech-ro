@@ -1,0 +1,293 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "apti-unelte-democratie",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "publicatie",
+    "subiect_principal": "subiect:guvernare-democratie",
+    "subiecte": [
+      "subiect:guvernare-democratie",
+      "subiect:societate-digitala"
+    ],
+    "teme": [
+      "subiect:democratie",
+      "subiect:digitalizare"
+    ],
+    "scopuri": [
+      "scop:participare",
+      "scop:informare"
+    ],
+    "functionalitati": [],
+    "formate": [
+      "format:articol",
+      "format:colectie"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "publicatie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "apti-unelte-democratie:descriere_scurta",
+          "locator": "clasificare-input.csv:apti-unelte-democratie:descriere_scurta",
+          "excerpt": "Selecția ApTI"
+        },
+        {
+          "source_id": "turn3view7",
+          "locator": "https://www.apti.ro/top-zece-cele-mai-bune-unelte-de-democratie-digitala#turn3view7",
+          "excerpt": "L36: În cadrul proiectului cite22†TheSponge†thesponge.eu , ApTI a organizat pe 8 septembrie 2014 o dezbatere cu tema unelte de democrație digitală. Împreună cu participanții, am descoperit o listă bogată de site-uri și unelte românești pe care le putem folosi pentru a crește implicarea civică și a încuraja democrația digitală. Dintre ele am ales cele mai bune 10, în opinia noastră subiectivă:"
+        }
+      ],
+      "rationale_ro": "Intrarea este un material editorial individual, conform descrierii și paginii selectate."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "apti-unelte-democratie:descriere_scurta",
+          "locator": "clasificare-input.csv:apti-unelte-democratie:descriere_scurta",
+          "excerpt": "Selecția ApTI"
+        },
+        {
+          "source_id": "turn3view7",
+          "locator": "https://www.apti.ro/top-zece-cele-mai-bune-unelte-de-democratie-digitala#turn3view7",
+          "excerpt": "L36: În cadrul proiectului cite22†TheSponge†thesponge.eu , ApTI a organizat pe 8 septembrie 2014 o dezbatere cu tema unelte de democrație digitală. Împreună cu participanții, am descoperit o listă bogată de site-uri și unelte românești pe care le putem folosi pentru a crește implicarea civică și a încuraja democrația digitală. Dintre ele am ales cele mai bune 10, în opinia noastră subiectivă:"
+        }
+      ],
+      "rationale_ro": "Pagina ApTI este un articol cu o selecție de instrumente pentru democrație digitală. Conceptul subiect:democratie are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "apti-unelte-democratie:descriere_scurta",
+          "locator": "clasificare-input.csv:apti-unelte-democratie:descriere_scurta",
+          "excerpt": "Selecția ApTI"
+        },
+        {
+          "source_id": "turn3view7",
+          "locator": "https://www.apti.ro/top-zece-cele-mai-bune-unelte-de-democratie-digitala#turn3view7",
+          "excerpt": "L36: În cadrul proiectului cite22†TheSponge†thesponge.eu , ApTI a organizat pe 8 septembrie 2014 o dezbatere cu tema unelte de democrație digitală. Împreună cu participanții, am descoperit o listă bogată de site-uri și unelte românești pe care le putem folosi pentru a crește implicarea civică și a încuraja democrația digitală. Dintre ele am ales cele mai bune 10, în opinia noastră subiectivă:"
+        }
+      ],
+      "rationale_ro": "Pagina ApTI este un articol cu o selecție de instrumente pentru democrație digitală. Conceptul subiect:democratie are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:societate-digitala",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "apti-unelte-democratie:descriere_scurta",
+          "locator": "clasificare-input.csv:apti-unelte-democratie:descriere_scurta",
+          "excerpt": "Selecția ApTI"
+        },
+        {
+          "source_id": "turn3view7",
+          "locator": "https://www.apti.ro/top-zece-cele-mai-bune-unelte-de-democratie-digitala#turn3view7",
+          "excerpt": "L36: În cadrul proiectului cite22†TheSponge†thesponge.eu , ApTI a organizat pe 8 septembrie 2014 o dezbatere cu tema unelte de democrație digitală. Împreună cu participanții, am descoperit o listă bogată de site-uri și unelte românești pe care le putem folosi pentru a crește implicarea civică și a încuraja democrația digitală. Dintre ele am ales cele mai bune 10, în opinia noastră subiectivă:"
+        }
+      ],
+      "rationale_ro": "Pagina ApTI este un articol cu o selecție de instrumente pentru democrație digitală. Conceptul subiect:digitalizare are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:democratie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "apti-unelte-democratie:descriere_scurta",
+          "locator": "clasificare-input.csv:apti-unelte-democratie:descriere_scurta",
+          "excerpt": "Selecția ApTI"
+        },
+        {
+          "source_id": "turn3view7",
+          "locator": "https://www.apti.ro/top-zece-cele-mai-bune-unelte-de-democratie-digitala#turn3view7",
+          "excerpt": "L36: În cadrul proiectului cite22†TheSponge†thesponge.eu , ApTI a organizat pe 8 septembrie 2014 o dezbatere cu tema unelte de democrație digitală. Împreună cu participanții, am descoperit o listă bogată de site-uri și unelte românești pe care le putem folosi pentru a crește implicarea civică și a încuraja democrația digitală. Dintre ele am ales cele mai bune 10, în opinia noastră subiectivă:"
+        }
+      ],
+      "rationale_ro": "Pagina ApTI este un articol cu o selecție de instrumente pentru democrație digitală. Încadrare: Democrație."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:digitalizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "apti-unelte-democratie:descriere_scurta",
+          "locator": "clasificare-input.csv:apti-unelte-democratie:descriere_scurta",
+          "excerpt": "Selecția ApTI"
+        },
+        {
+          "source_id": "turn3view7",
+          "locator": "https://www.apti.ro/top-zece-cele-mai-bune-unelte-de-democratie-digitala#turn3view7",
+          "excerpt": "L36: În cadrul proiectului cite22†TheSponge†thesponge.eu , ApTI a organizat pe 8 septembrie 2014 o dezbatere cu tema unelte de democrație digitală. Împreună cu participanții, am descoperit o listă bogată de site-uri și unelte românești pe care le putem folosi pentru a crește implicarea civică și a încuraja democrația digitală. Dintre ele am ales cele mai bune 10, în opinia noastră subiectivă:"
+        }
+      ],
+      "rationale_ro": "Pagina ApTI este un articol cu o selecție de instrumente pentru democrație digitală. Încadrare: Digitalizare."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:participare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "apti-unelte-democratie:descriere_scurta",
+          "locator": "clasificare-input.csv:apti-unelte-democratie:descriere_scurta",
+          "excerpt": "Selecția ApTI"
+        },
+        {
+          "source_id": "turn3view7",
+          "locator": "https://www.apti.ro/top-zece-cele-mai-bune-unelte-de-democratie-digitala#turn3view7",
+          "excerpt": "L36: În cadrul proiectului cite22†TheSponge†thesponge.eu , ApTI a organizat pe 8 septembrie 2014 o dezbatere cu tema unelte de democrație digitală. Împreună cu participanții, am descoperit o listă bogată de site-uri și unelte românești pe care le putem folosi pentru a crește implicarea civică și a încuraja democrația digitală. Dintre ele am ales cele mai bune 10, în opinia noastră subiectivă:"
+        }
+      ],
+      "rationale_ro": "Pagina ApTI este un articol cu o selecție de instrumente pentru democrație digitală. Încadrare: Participare civică."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "apti-unelte-democratie:descriere_scurta",
+          "locator": "clasificare-input.csv:apti-unelte-democratie:descriere_scurta",
+          "excerpt": "Selecția ApTI"
+        },
+        {
+          "source_id": "turn3view7",
+          "locator": "https://www.apti.ro/top-zece-cele-mai-bune-unelte-de-democratie-digitala#turn3view7",
+          "excerpt": "L36: În cadrul proiectului cite22†TheSponge†thesponge.eu , ApTI a organizat pe 8 septembrie 2014 o dezbatere cu tema unelte de democrație digitală. Împreună cu participanții, am descoperit o listă bogată de site-uri și unelte românești pe care le putem folosi pentru a crește implicarea civică și a încuraja democrația digitală. Dintre ele am ales cele mai bune 10, în opinia noastră subiectivă:"
+        }
+      ],
+      "rationale_ro": "Pagina ApTI este un articol cu o selecție de instrumente pentru democrație digitală. Încadrare: Informare și înțelegere."
+    },
+    {
+      "field": "formate",
+      "value": "format:articol",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "apti-unelte-democratie:descriere_scurta",
+          "locator": "clasificare-input.csv:apti-unelte-democratie:descriere_scurta",
+          "excerpt": "Selecția ApTI"
+        },
+        {
+          "source_id": "turn3view7",
+          "locator": "https://www.apti.ro/top-zece-cele-mai-bune-unelte-de-democratie-digitala#turn3view7",
+          "excerpt": "L36: În cadrul proiectului cite22†TheSponge†thesponge.eu , ApTI a organizat pe 8 septembrie 2014 o dezbatere cu tema unelte de democrație digitală. Împreună cu participanții, am descoperit o listă bogată de site-uri și unelte românești pe care le putem folosi pentru a crește implicarea civică și a încuraja democrația digitală. Dintre ele am ales cele mai bune 10, în opinia noastră subiectivă:"
+        }
+      ],
+      "rationale_ro": "Pagina ApTI este un articol cu o selecție de instrumente pentru democrație digitală. Încadrare: Articol."
+    },
+    {
+      "field": "formate",
+      "value": "format:colectie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "apti-unelte-democratie:descriere_scurta",
+          "locator": "clasificare-input.csv:apti-unelte-democratie:descriere_scurta",
+          "excerpt": "Selecția ApTI"
+        },
+        {
+          "source_id": "turn3view7",
+          "locator": "https://www.apti.ro/top-zece-cele-mai-bune-unelte-de-democratie-digitala#turn3view7",
+          "excerpt": "L36: În cadrul proiectului cite22†TheSponge†thesponge.eu , ApTI a organizat pe 8 septembrie 2014 o dezbatere cu tema unelte de democrație digitală. Împreună cu participanții, am descoperit o listă bogată de site-uri și unelte românești pe care le putem folosi pentru a crește implicarea civică și a încuraja democrația digitală. Dintre ele am ales cele mai bune 10, în opinia noastră subiectivă:"
+        }
+      ],
+      "rationale_ro": "Pagina ApTI este un articol cu o selecție de instrumente pentru democrație digitală. Încadrare: Catalog sau colecție."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "apti-unelte-democratie:acoperire_original",
+          "locator": "clasificare-input.csv:apti-unelte-democratie:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "apti-unelte-democratie:acoperire_original",
+          "locator": "clasificare-input.csv:apti-unelte-democratie:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": null,
+      "object_literal": "ApTI",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "apti-unelte-democratie:autor_original",
+          "locator": "clasificare-input.csv:apti-unelte-democratie:autor_original",
+          "excerpt": "ApTI"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "ghid",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "ai",
+      "reason_ro": "Eticheta nu dovedește tehnologia folosită sau oferită."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

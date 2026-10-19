@@ -1,0 +1,58 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "incentru",
+  "result_status": "insufficient_evidence",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": null,
+    "subiecte": [],
+    "teme": [],
+    "scopuri": [],
+    "functionalitati": [],
+    "formate": [],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "necunoscut",
+    "arii_acoperite": []
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "incentru:tip_entitate_original",
+          "locator": "clasificare-input.csv:incentru:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    }
+  ],
+  "attributions": [],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    },
+    {
+      "field": "classification",
+      "reason_ro": "Lipsește descrierea detaliată; titlul, textul scurt și etichetele au precizie limitată.",
+      "needed_evidence_ro": "Documentație publică specifică intrării."
+    },
+    {
+      "field": "classification",
+      "reason_ro": "Numele și categoria civic nu stabilesc obiectul; rezultatele despre un blog nu confirmă identitatea intrării.",
+      "needed_evidence_ro": "Documentație primară care rezolvă ambiguitatea indicată."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

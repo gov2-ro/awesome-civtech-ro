@@ -1,0 +1,2861 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "source_mode": "retrieved_evidence",
+  "target_schema_version": "2.0.0-draft.2",
+  "entry": {
+    "slug": "nu-astepta-supereroi",
+    "nume": "Nu aștepta supereroi",
+    "descriere_scurta": "Datele de contact ale consilierilor locali",
+    "descriere": "",
+    "url": "https://www.nuasteptasupereroi.ro",
+    "linkuri": "",
+    "tip_entitate_original": "proiect",
+    "sectiune_url_original": "proiect",
+    "fel_original": "proiect",
+    "domeniu_original": "local",
+    "tip_original": "baza-de-date",
+    "cuvinte_original": "",
+    "acoperire_original": "national",
+    "oras_original": "",
+    "autor_original": "CeRe",
+    "sursa_fisier": "proiecte.csv",
+    "sursa_rand": "65",
+    "original_entity_type": "proiect",
+    "original_url_section": "proiect",
+    "original_attributions": [
+      {
+        "source_id": "nu-astepta-supereroi:autor_original",
+        "locator": "clasificare-input.csv:nu-astepta-supereroi:autor_original",
+        "literal": "CeRe",
+        "resolved_slug": null
+      }
+    ]
+  },
+  "vocabulary": {
+    "target_schema_version": "2.0.0-draft.2",
+    "concepts": [
+      {
+        "id": "subiect:guvernare-democratie",
+        "schema": "subiect",
+        "eticheta_ro": "Guvernare și democrație",
+        "eticheta_en": "Governance and democracy",
+        "alternative_ro": "",
+        "definitie_ro": "Instituții publice, reprezentare politică, alegeri și procese democratice.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:finante-publice",
+        "schema": "subiect",
+        "eticheta_ro": "Finanțe publice",
+        "eticheta_en": "Public finance",
+        "alternative_ro": "bani publici",
+        "definitie_ro": "Venituri, cheltuieli, bugete, achiziții și active publice.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:drept-justitie",
+        "schema": "subiect",
+        "eticheta_ro": "Drept, justiție și drepturi",
+        "eticheta_en": "Law, justice and rights",
+        "alternative_ro": "",
+        "definitie_ro": "Legislație, proceduri judiciare și exercitarea drepturilor.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:media-informare",
+        "schema": "subiect",
+        "eticheta_ro": "Media și informare",
+        "eticheta_en": "Media and information",
+        "alternative_ro": "",
+        "definitie_ro": "Jurnalism, ecosistemul informațional și dezinformare.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:mediu-energie",
+        "schema": "subiect",
+        "eticheta_ro": "Mediu și energie",
+        "eticheta_en": "Environment and energy",
+        "alternative_ro": "",
+        "definitie_ro": "Protecția mediului, resurse naturale și sisteme energetice.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:sanatate",
+        "schema": "subiect",
+        "eticheta_ro": "Sănătate",
+        "eticheta_en": "Health",
+        "alternative_ro": "",
+        "definitie_ro": "Sănătate fizică și mintală și acces la îngrijire.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:educatie-cultura",
+        "schema": "subiect",
+        "eticheta_ro": "Educație și cultură",
+        "eticheta_en": "Education and culture",
+        "alternative_ro": "",
+        "definitie_ro": "Învățământ, învățare, educație civică și activități culturale.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:comunitati-teritoriu",
+        "schema": "subiect",
+        "eticheta_ro": "Comunități și teritoriu",
+        "eticheta_en": "Communities and territory",
+        "alternative_ro": "",
+        "definitie_ro": "Viață urbană, infrastructură locală, locuire și distribuția populației.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:economie-munca",
+        "schema": "subiect",
+        "eticheta_ro": "Economie și muncă",
+        "eticheta_en": "Economy and work",
+        "alternative_ro": "",
+        "definitie_ro": "Firme, relații economice, piața muncii și cariere.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:societate-digitala",
+        "schema": "subiect",
+        "eticheta_ro": "Societate digitală",
+        "eticheta_en": "Digital society",
+        "alternative_ro": "",
+        "definitie_ro": "Digitalizare, infrastructură digitală și impactul social al tehnologiei.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:societate-civila",
+        "schema": "subiect",
+        "eticheta_ro": "Societate civilă",
+        "eticheta_en": "Civil society",
+        "alternative_ro": "",
+        "definitie_ro": "Organizații și grupuri civice, resursele și dezvoltarea lor.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:protectie-sociala",
+        "schema": "subiect",
+        "eticheta_ro": "Protecție socială și incluziune",
+        "eticheta_en": "Social protection and inclusion",
+        "alternative_ro": "",
+        "definitie_ro": "Situație socială, inegalități, incluziune și migrație.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:securitate-rezilienta",
+        "schema": "subiect",
+        "eticheta_ro": "Securitate și reziliență",
+        "eticheta_en": "Security and resilience",
+        "alternative_ro": "",
+        "definitie_ro": "Apărare, amenințări hibride, dezastre și pregătire pentru situații de urgență.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:administratie-publica",
+        "schema": "subiect",
+        "eticheta_ro": "Administrație publică",
+        "eticheta_en": "Public administration",
+        "alternative_ro": "",
+        "definitie_ro": "Instituții, organizare și activitate administrativă.",
+        "mai_larg": "subiect:guvernare-democratie",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:democratie",
+        "schema": "subiect",
+        "eticheta_ro": "Democrație",
+        "eticheta_en": "Democracy",
+        "alternative_ro": "",
+        "definitie_ro": "Reprezentare, instituții și procese democratice.",
+        "mai_larg": "subiect:guvernare-democratie",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:alegeri",
+        "schema": "subiect",
+        "eticheta_ro": "Alegeri",
+        "eticheta_en": "Elections",
+        "alternative_ro": "",
+        "definitie_ro": "Organizarea, observarea și rezultatele alegerilor.",
+        "mai_larg": "subiect:guvernare-democratie",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:vot",
+        "schema": "subiect",
+        "eticheta_ro": "Vot",
+        "eticheta_en": "Voting",
+        "alternative_ro": "",
+        "definitie_ro": "Exercitarea votului electoral sau instituțional.",
+        "mai_larg": "subiect:guvernare-democratie",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:activitate-parlamentara",
+        "schema": "subiect",
+        "eticheta_ro": "Activitate parlamentară",
+        "eticheta_en": "Parliamentary activity",
+        "alternative_ro": "",
+        "definitie_ro": "Dezbateri, voturi și documente parlamentare.",
+        "mai_larg": "subiect:guvernare-democratie",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:finantare-politica",
+        "schema": "subiect",
+        "eticheta_ro": "Finanțare politică",
+        "eticheta_en": "Political finance",
+        "alternative_ro": "",
+        "definitie_ro": "Venituri și cheltuieli ale partidelor și campaniilor electorale.",
+        "mai_larg": "subiect:guvernare-democratie",
+        "asociate": "subiect:finante-publice",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:partide-politice",
+        "schema": "subiect",
+        "eticheta_ro": "Partide politice",
+        "eticheta_en": "Political parties",
+        "alternative_ro": "",
+        "definitie_ro": "Organizarea și activitatea partidelor politice.",
+        "mai_larg": "subiect:guvernare-democratie",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:reprezentanti-alesi",
+        "schema": "subiect",
+        "eticheta_ro": "Reprezentanți aleși",
+        "eticheta_en": "Elected representatives",
+        "alternative_ro": "",
+        "definitie_ro": "Mandatele și activitatea reprezentanților aleși.",
+        "mai_larg": "subiect:guvernare-democratie",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:integritate-publica",
+        "schema": "subiect",
+        "eticheta_ro": "Integritate publică",
+        "eticheta_en": "Public integrity",
+        "alternative_ro": "",
+        "definitie_ro": "Conflicte de interese, avere și integritatea funcției publice.",
+        "mai_larg": "subiect:guvernare-democratie",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:coruptie",
+        "schema": "subiect",
+        "eticheta_ro": "Corupție",
+        "eticheta_en": "Corruption",
+        "alternative_ro": "",
+        "definitie_ro": "Fenomenul corupției și cazurile documentate. Nu implică vinovăție stabilită pentru fiecare persoană.",
+        "mai_larg": "subiect:guvernare-democratie",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:sondaje",
+        "schema": "subiect",
+        "eticheta_ro": "Sondaje de opinie",
+        "eticheta_en": "Opinion polls",
+        "alternative_ro": "",
+        "definitie_ro": "Măsurarea opiniilor și intențiilor electorale.",
+        "mai_larg": "subiect:guvernare-democratie",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:afaceri-europene",
+        "schema": "subiect",
+        "eticheta_ro": "Afaceri europene",
+        "eticheta_en": "European affairs",
+        "alternative_ro": "",
+        "definitie_ro": "Instituțiile, politicile și procesele Uniunii Europene.",
+        "mai_larg": "subiect:guvernare-democratie",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:buget",
+        "schema": "subiect",
+        "eticheta_ro": "Buget public",
+        "eticheta_en": "Public budget",
+        "alternative_ro": "",
+        "definitie_ro": "Venituri și cheltuieli planificate sau executate ale instituțiilor publice.",
+        "mai_larg": "subiect:finante-publice",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:achizitii-publice",
+        "schema": "subiect",
+        "eticheta_ro": "Achiziții publice",
+        "eticheta_en": "Public procurement",
+        "alternative_ro": "achiziții publice",
+        "definitie_ro": "Cumpărarea de bunuri, servicii și lucrări de către sectorul public.",
+        "mai_larg": "subiect:finante-publice",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:investitii-publice",
+        "schema": "subiect",
+        "eticheta_ro": "Investiții publice",
+        "eticheta_en": "Public investment",
+        "alternative_ro": "",
+        "definitie_ro": "Proiecte de investiții finanțate din resurse publice.",
+        "mai_larg": "subiect:finante-publice",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:companii-de-stat",
+        "schema": "subiect",
+        "eticheta_ro": "Companii de stat",
+        "eticheta_en": "State-owned enterprises",
+        "alternative_ro": "companii publice",
+        "definitie_ro": "Companii deținute sau controlate de stat.",
+        "mai_larg": "subiect:finante-publice",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:active-publice",
+        "schema": "subiect",
+        "eticheta_ro": "Active publice",
+        "eticheta_en": "Public assets",
+        "alternative_ro": "",
+        "definitie_ro": "Bunuri și proprietăți ale statului sau administrației locale.",
+        "mai_larg": "subiect:finante-publice",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:fiscalitate",
+        "schema": "subiect",
+        "eticheta_ro": "Fiscalitate",
+        "eticheta_en": "Taxation",
+        "alternative_ro": "",
+        "definitie_ro": "Impozite, obligații fiscale și administrare fiscală.",
+        "mai_larg": "subiect:finante-publice",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:legislatie",
+        "schema": "subiect",
+        "eticheta_ro": "Legislație",
+        "eticheta_en": "Legislation",
+        "alternative_ro": "",
+        "definitie_ro": "Texte legislative și interpretarea lor.",
+        "mai_larg": "subiect:drept-justitie",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:drepturile-omului",
+        "schema": "subiect",
+        "eticheta_ro": "Drepturile omului",
+        "eticheta_en": "Human rights",
+        "alternative_ro": "",
+        "definitie_ro": "Drepturi și libertăți fundamentale.",
+        "mai_larg": "subiect:drept-justitie",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:acces-informatii",
+        "schema": "subiect",
+        "eticheta_ro": "Acces la informații publice",
+        "eticheta_en": "Access to public information",
+        "alternative_ro": "",
+        "definitie_ro": "Dreptul de acces și procedurile pentru informațiile de interes public.",
+        "mai_larg": "subiect:drept-justitie",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:legea-544-2001",
+        "schema": "subiect",
+        "eticheta_ro": "Legea 544/2001",
+        "eticheta_en": "Romanian Law 544/2001",
+        "alternative_ro": "legea 544|544/2001",
+        "definitie_ro": "Legea română privind liberul acces la informațiile de interes public.",
+        "mai_larg": "subiect:acces-informatii",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:proceduri-judiciare",
+        "schema": "subiect",
+        "eticheta_ro": "Proceduri judiciare",
+        "eticheta_en": "Judicial proceedings",
+        "alternative_ro": "",
+        "definitie_ro": "Dosare, termene, hotărâri și proceduri în instanțe.",
+        "mai_larg": "subiect:drept-justitie",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:condamnari",
+        "schema": "subiect",
+        "eticheta_ro": "Condamnări",
+        "eticheta_en": "Convictions",
+        "alternative_ro": "",
+        "definitie_ro": "Hotărâri de condamnare. Nu este sinonim cu anticorupție.",
+        "mai_larg": "subiect:drept-justitie",
+        "asociate": "subiect:coruptie",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:violenta-gen",
+        "schema": "subiect",
+        "eticheta_ro": "Violență de gen",
+        "eticheta_en": "Gender-based violence",
+        "alternative_ro": "",
+        "definitie_ro": "Violență de gen, inclusiv femicid.",
+        "mai_larg": "subiect:drept-justitie",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:cetatenie",
+        "schema": "subiect",
+        "eticheta_ro": "Cetățenie",
+        "eticheta_en": "Citizenship",
+        "alternative_ro": "",
+        "definitie_ro": "Dobândirea și administrarea statutului de cetățean.",
+        "mai_larg": "subiect:drept-justitie",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:jurnalism",
+        "schema": "subiect",
+        "eticheta_ro": "Jurnalism",
+        "eticheta_en": "Journalism",
+        "alternative_ro": "",
+        "definitie_ro": "Documentare, investigații și publicare jurnalistică.",
+        "mai_larg": "subiect:media-informare",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:presa-independenta",
+        "schema": "subiect",
+        "eticheta_ro": "Presă independentă",
+        "eticheta_en": "Independent media",
+        "alternative_ro": "",
+        "definitie_ro": "Publicații și sustenabilitatea presei independente.",
+        "mai_larg": "subiect:jurnalism",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:dezinformare",
+        "schema": "subiect",
+        "eticheta_ro": "Dezinformare",
+        "eticheta_en": "Disinformation",
+        "alternative_ro": "disinfo",
+        "definitie_ro": "Dezinformare, propagandă și manipularea informațiilor.",
+        "mai_larg": "subiect:media-informare",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:publicitate-etica",
+        "schema": "subiect",
+        "eticheta_ro": "Publicitate etică",
+        "eticheta_en": "Ethical advertising",
+        "alternative_ro": "",
+        "definitie_ro": "Practici și modele de publicitate responsabile.",
+        "mai_larg": "subiect:media-informare",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:mediu",
+        "schema": "subiect",
+        "eticheta_ro": "Protecția mediului",
+        "eticheta_en": "Environmental protection",
+        "alternative_ro": "",
+        "definitie_ro": "Protejarea mediului înconjurător.",
+        "mai_larg": "subiect:mediu-energie",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:calitate-aer",
+        "schema": "subiect",
+        "eticheta_ro": "Calitatea aerului",
+        "eticheta_en": "Air quality",
+        "alternative_ro": "",
+        "definitie_ro": "Poluanți și măsurători ale calității aerului.",
+        "mai_larg": "subiect:mediu-energie",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:paduri-arbori",
+        "schema": "subiect",
+        "eticheta_ro": "Păduri și arbori",
+        "eticheta_en": "Forests and trees",
+        "alternative_ro": "",
+        "definitie_ro": "Păduri, arbori urbani și tăieri.",
+        "mai_larg": "subiect:mediu-energie",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:deseuri",
+        "schema": "subiect",
+        "eticheta_ro": "Deșeuri și reciclare",
+        "eticheta_en": "Waste and recycling",
+        "alternative_ro": "",
+        "definitie_ro": "Gestionarea deșeurilor și reciclarea.",
+        "mai_larg": "subiect:mediu-energie",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:energie",
+        "schema": "subiect",
+        "eticheta_ro": "Energie",
+        "eticheta_en": "Energy",
+        "alternative_ro": "",
+        "definitie_ro": "Producție, consum și politici energetice.",
+        "mai_larg": "subiect:mediu-energie",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:sanatate-mintala",
+        "schema": "subiect",
+        "eticheta_ro": "Sănătate mintală",
+        "eticheta_en": "Mental health",
+        "alternative_ro": "",
+        "definitie_ro": "Sănătate mintală și servicii psihologice.",
+        "mai_larg": "subiect:sanatate",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:servicii-medicale",
+        "schema": "subiect",
+        "eticheta_ro": "Servicii medicale",
+        "eticheta_en": "Healthcare services",
+        "alternative_ro": "",
+        "definitie_ro": "Acces la furnizori și servicii medicale.",
+        "mai_larg": "subiect:sanatate",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:invatamant",
+        "schema": "subiect",
+        "eticheta_ro": "Învățământ",
+        "eticheta_en": "Education",
+        "alternative_ro": "învățământ",
+        "definitie_ro": "Sistemul de învățământ, școli și rezultate educaționale.",
+        "mai_larg": "subiect:educatie-cultura",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:educatie-civica",
+        "schema": "subiect",
+        "eticheta_ro": "Educație civică",
+        "eticheta_en": "Civic education",
+        "alternative_ro": "",
+        "definitie_ro": "Învățare despre drepturi, instituții și participare democratică.",
+        "mai_larg": "subiect:educatie-cultura",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:bacalaureat",
+        "schema": "subiect",
+        "eticheta_ro": "Bacalaureat",
+        "eticheta_en": "Baccalaureate examination",
+        "alternative_ro": "",
+        "definitie_ro": "Examenul de bacalaureat și rezultatele sale.",
+        "mai_larg": "subiect:invatamant",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:cultura",
+        "schema": "subiect",
+        "eticheta_ro": "Cultură",
+        "eticheta_en": "Culture",
+        "alternative_ro": "",
+        "definitie_ro": "Activități, expresii și participare culturală.",
+        "mai_larg": "subiect:educatie-cultura",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:infrastructura-locala",
+        "schema": "subiect",
+        "eticheta_ro": "Infrastructură locală",
+        "eticheta_en": "Local infrastructure",
+        "alternative_ro": "",
+        "definitie_ro": "Drumuri, iluminat și alte dotări fizice locale.",
+        "mai_larg": "subiect:comunitati-teritoriu",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:locuire",
+        "schema": "subiect",
+        "eticheta_ro": "Locuire",
+        "eticheta_en": "Housing",
+        "alternative_ro": "",
+        "definitie_ro": "Locuințe și condiții de locuire.",
+        "mai_larg": "subiect:comunitati-teritoriu",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:populatie",
+        "schema": "subiect",
+        "eticheta_ro": "Populație și demografie",
+        "eticheta_en": "Population and demography",
+        "alternative_ro": "",
+        "definitie_ro": "Distribuția și caracteristicile populației.",
+        "mai_larg": "subiect:comunitati-teritoriu",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:firme",
+        "schema": "subiect",
+        "eticheta_ro": "Firme",
+        "eticheta_en": "Businesses",
+        "alternative_ro": "",
+        "definitie_ro": "Identitate, situație și relații între firme.",
+        "mai_larg": "subiect:economie-munca",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:ocupare-cariere",
+        "schema": "subiect",
+        "eticheta_ro": "Ocupare și cariere",
+        "eticheta_en": "Employment and careers",
+        "alternative_ro": "",
+        "definitie_ro": "Locuri de muncă, recrutare și orientare profesională.",
+        "mai_larg": "subiect:economie-munca",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:digitalizare",
+        "schema": "subiect",
+        "eticheta_ro": "Digitalizare",
+        "eticheta_en": "Digitalisation",
+        "alternative_ro": "",
+        "definitie_ro": "Transformarea digitală a serviciilor și instituțiilor.",
+        "mai_larg": "subiect:societate-digitala",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:infrastructura-digitala",
+        "schema": "subiect",
+        "eticheta_ro": "Infrastructură digitală",
+        "eticheta_en": "Digital infrastructure",
+        "alternative_ro": "",
+        "definitie_ro": "Platforme, registre și infrastructură informatică.",
+        "mai_larg": "subiect:societate-digitala",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:securitate-cibernetica",
+        "schema": "subiect",
+        "eticheta_ro": "Securitate cibernetică",
+        "eticheta_en": "Cybersecurity",
+        "alternative_ro": "",
+        "definitie_ro": "Securitatea sistemelor și serviciilor digitale.",
+        "mai_larg": "subiect:societate-digitala",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:date-personale",
+        "schema": "subiect",
+        "eticheta_ro": "Date personale",
+        "eticheta_en": "Personal data",
+        "alternative_ro": "",
+        "definitie_ro": "Date referitoare la persoane și protecția lor.",
+        "mai_larg": "subiect:societate-digitala",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:inteligenta-artificiala",
+        "schema": "subiect",
+        "eticheta_ro": "Inteligență artificială ca subiect",
+        "eticheta_en": "Artificial intelligence as a subject",
+        "alternative_ro": "AI ca temă",
+        "definitie_ro": "Cercetare, cursuri sau impact social al AI. Nu afirmă utilizarea AI de către intrare.",
+        "mai_larg": "subiect:societate-digitala",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:tehnologia-informatiei",
+        "schema": "subiect",
+        "eticheta_ro": "Tehnologia informației",
+        "eticheta_en": "Information technology",
+        "alternative_ro": "",
+        "definitie_ro": "Tehnologii și sisteme pentru prelucrarea informației.",
+        "mai_larg": "subiect:societate-digitala",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:interfete-programare",
+        "schema": "subiect",
+        "eticheta_ro": "Interfețe de programare ca subiect",
+        "eticheta_en": "APIs as a subject",
+        "alternative_ro": "",
+        "definitie_ro": "Documentare sau cataloage despre API. Nu afirmă că intrarea oferă un API.",
+        "mai_larg": "subiect:societate-digitala",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:statistica",
+        "schema": "subiect",
+        "eticheta_ro": "Statistică",
+        "eticheta_en": "Statistics",
+        "alternative_ro": "statistică",
+        "definitie_ro": "Date și metode statistice, inclusiv statistici oficiale.",
+        "mai_larg": "subiect:guvernare-democratie",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:date-deschise",
+        "schema": "subiect",
+        "eticheta_ro": "Date deschise",
+        "eticheta_en": "Open data",
+        "alternative_ro": "",
+        "definitie_ro": "Date care pot fi accesate, reutilizate și redistribuite. Simplul acces public nu dovedește o licență deschisă.",
+        "mai_larg": "subiect:societate-digitala",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:situatie-sociala",
+        "schema": "subiect",
+        "eticheta_ro": "Situație socială",
+        "eticheta_en": "Social conditions",
+        "alternative_ro": "",
+        "definitie_ro": "Indicatori și condiții sociale.",
+        "mai_larg": "subiect:protectie-sociala",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:migratie",
+        "schema": "subiect",
+        "eticheta_ro": "Migrație",
+        "eticheta_en": "Migration",
+        "alternative_ro": "",
+        "definitie_ro": "Mobilitate și migrație a persoanelor.",
+        "mai_larg": "subiect:protectie-sociala",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:aparare",
+        "schema": "subiect",
+        "eticheta_ro": "Apărare",
+        "eticheta_en": "Defence",
+        "alternative_ro": "",
+        "definitie_ro": "Politici, capacități și investiții de apărare.",
+        "mai_larg": "subiect:securitate-rezilienta",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:amenintari-hibride",
+        "schema": "subiect",
+        "eticheta_ro": "Amenințări hibride",
+        "eticheta_en": "Hybrid threats",
+        "alternative_ro": "",
+        "definitie_ro": "Sabotaj, spionaj și alte acțiuni hibride documentate.",
+        "mai_larg": "subiect:securitate-rezilienta",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:cutremure",
+        "schema": "subiect",
+        "eticheta_ro": "Cutremure",
+        "eticheta_en": "Earthquakes",
+        "alternative_ro": "",
+        "definitie_ro": "Risc seismic, vulnerabilitate și pregătire pentru cutremure.",
+        "mai_larg": "subiect:securitate-rezilienta",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:dezvoltare-ong",
+        "schema": "subiect",
+        "eticheta_ro": "Dezvoltarea organizațiilor civice",
+        "eticheta_en": "Civic organisation development",
+        "alternative_ro": "",
+        "definitie_ro": "Resurse, capacitate și colaborare pentru organizații civice.",
+        "mai_larg": "subiect:societate-civila",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "subiect:voluntariat",
+        "schema": "subiect",
+        "eticheta_ro": "Voluntariat",
+        "eticheta_en": "Volunteering",
+        "alternative_ro": "",
+        "definitie_ro": "Participarea voluntară la activități civice.",
+        "mai_larg": "subiect:societate-civila",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "scop:transparenta",
+        "schema": "scop",
+        "eticheta_ro": "Transparență",
+        "eticheta_en": "Transparency",
+        "alternative_ro": "",
+        "definitie_ro": "Face vizibile informații, decizii sau utilizarea resurselor.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "scop:responsabilizare",
+        "schema": "scop",
+        "eticheta_ro": "Responsabilizare publică",
+        "eticheta_en": "Public accountability",
+        "alternative_ro": "",
+        "definitie_ro": "Sprijină urmărirea și contestarea acțiunilor celor care exercită puterea.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "scop:participare",
+        "schema": "scop",
+        "eticheta_ro": "Participare civică",
+        "eticheta_en": "Civic participation",
+        "alternative_ro": "",
+        "definitie_ro": "Sprijină implicarea cetățenilor în viața publică.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "scop:acces-servicii",
+        "schema": "scop",
+        "eticheta_ro": "Acces la servicii",
+        "eticheta_en": "Access to services",
+        "alternative_ro": "",
+        "definitie_ro": "Ajută persoanele să acceseze servicii sau proceduri.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "scop:informare",
+        "schema": "scop",
+        "eticheta_ro": "Informare și înțelegere",
+        "eticheta_en": "Information and understanding",
+        "alternative_ro": "",
+        "definitie_ro": "Explică informații și sprijină înțelegerea lor.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "scop:educatie",
+        "schema": "scop",
+        "eticheta_ro": "Învățare",
+        "eticheta_en": "Learning",
+        "alternative_ro": "",
+        "definitie_ro": "Sprijină dobândirea de cunoștințe sau competențe.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "scop:sprijin-organizatii",
+        "schema": "scop",
+        "eticheta_ro": "Sprijin pentru organizații civice",
+        "eticheta_en": "Support for civic organisations",
+        "alternative_ro": "",
+        "definitie_ro": "Sprijină resursele și capacitatea organizațiilor civice.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "scop:aparare-drepturi",
+        "schema": "scop",
+        "eticheta_ro": "Apărarea drepturilor",
+        "eticheta_en": "Rights protection",
+        "alternative_ro": "",
+        "definitie_ro": "Sprijină cunoașterea și exercitarea drepturilor.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "scop:anticoruptie",
+        "schema": "scop",
+        "eticheta_ro": "Prevenirea și combaterea corupției",
+        "eticheta_en": "Anti-corruption",
+        "alternative_ro": "",
+        "definitie_ro": "Sprijină prevenirea sau combaterea corupției; nu este sinonim cu fenomenul corupției.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "scop:pregatire-riscuri",
+        "schema": "scop",
+        "eticheta_ro": "Pregătire pentru riscuri",
+        "eticheta_en": "Risk preparedness",
+        "alternative_ro": "",
+        "definitie_ro": "Sprijină pregătirea și reacția la riscuri.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "functie:cautare",
+        "schema": "functie",
+        "eticheta_ro": "Caută și consultă",
+        "eticheta_en": "Search and browse",
+        "alternative_ro": "",
+        "definitie_ro": "Permite găsirea și consultarea unor înregistrări sau documente.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "functie:comparare",
+        "schema": "functie",
+        "eticheta_ro": "Compară",
+        "eticheta_en": "Compare",
+        "alternative_ro": "",
+        "definitie_ro": "Permite compararea unor opțiuni, indicatori sau entități.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "functie:monitorizare",
+        "schema": "functie",
+        "eticheta_ro": "Monitorizează",
+        "eticheta_en": "Monitor",
+        "alternative_ro": "",
+        "definitie_ro": "Urmărește evoluții sau activități în timp.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "functie:sesizare",
+        "schema": "functie",
+        "eticheta_ro": "Trimite sau urmărește o sesizare",
+        "eticheta_en": "Report an issue",
+        "alternative_ro": "",
+        "definitie_ro": "Sprijină documentarea, trimiterea sau urmărirea sesizărilor.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "functie:cerere-informatii",
+        "schema": "functie",
+        "eticheta_ro": "Solicită informații publice",
+        "eticheta_en": "Request public information",
+        "alternative_ro": "",
+        "definitie_ro": "Sprijină formularea sau urmărirea cererilor de informații.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "functie:generare-documente",
+        "schema": "functie",
+        "eticheta_ro": "Completează sau generează documente",
+        "eticheta_en": "Generate documents",
+        "alternative_ro": "",
+        "definitie_ro": "Completează sau generează formulare și documente.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "functie:verificare",
+        "schema": "functie",
+        "eticheta_ro": "Verifică informații",
+        "eticheta_en": "Verify information",
+        "alternative_ro": "",
+        "definitie_ro": "Sprijină verificarea unor date, afirmații sau documente; nu garantează adevărul rezultatului.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "functie:verificare-fapte",
+        "schema": "functie",
+        "eticheta_ro": "Verifică fapte",
+        "eticheta_en": "Fact checking",
+        "alternative_ro": "fact-checking",
+        "definitie_ro": "Verificare jurnalistică a afirmațiilor cu surse.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "functie:analiza",
+        "schema": "functie",
+        "eticheta_ro": "Analizează date",
+        "eticheta_en": "Analyse data",
+        "alternative_ro": "",
+        "definitie_ro": "Sprijină analiza datelor sau documentelor.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "functie:invatare",
+        "schema": "functie",
+        "eticheta_ro": "Învață sau exersează",
+        "eticheta_en": "Learn or practise",
+        "alternative_ro": "",
+        "definitie_ro": "Oferă materiale sau activități educative.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "functie:donatii",
+        "schema": "functie",
+        "eticheta_ro": "Donează sau redirecționează fonduri",
+        "eticheta_en": "Donate or redirect funds",
+        "alternative_ro": "",
+        "definitie_ro": "Permite susținerea financiară a unei cauze sau publicații.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "functie:petitii",
+        "schema": "functie",
+        "eticheta_ro": "Semnează sau organizează petiții",
+        "eticheta_en": "Petitions",
+        "alternative_ro": "",
+        "definitie_ro": "Sprijină inițierea sau semnarea petițiilor.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "functie:advocacy",
+        "schema": "functie",
+        "eticheta_ro": "Organizează advocacy",
+        "eticheta_en": "Advocacy",
+        "alternative_ro": "",
+        "definitie_ro": "Sprijină influențarea politicilor și deciziilor publice.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "functie:mentorat",
+        "schema": "functie",
+        "eticheta_ro": "Primește mentorat",
+        "eticheta_en": "Mentoring",
+        "alternative_ro": "",
+        "definitie_ro": "Oferă mentorat sau consiliere pentru dezvoltare.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "functie:alerte",
+        "schema": "functie",
+        "eticheta_ro": "Primește alerte",
+        "eticheta_en": "Alerts",
+        "alternative_ro": "",
+        "definitie_ro": "Trimite notificări sau alerte despre schimbări.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "format:harta",
+        "schema": "format",
+        "eticheta_ro": "Hartă",
+        "eticheta_en": "Map",
+        "alternative_ro": "",
+        "definitie_ro": "Informații prezentate geografic pe o hartă.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "format:vizualizare",
+        "schema": "format",
+        "eticheta_ro": "Vizualizare de date",
+        "eticheta_en": "Data visualisation",
+        "alternative_ro": "",
+        "definitie_ro": "Grafice, tablouri de bord și alte vizualizări.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "format:registru",
+        "schema": "format",
+        "eticheta_ro": "Registru sau bază de date",
+        "eticheta_en": "Register or database",
+        "alternative_ro": "",
+        "definitie_ro": "Colecție structurată de înregistrări. Nu presupune descărcare sau licență deschisă.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "format:ghid",
+        "schema": "format",
+        "eticheta_ro": "Ghid",
+        "eticheta_en": "Guide",
+        "alternative_ro": "",
+        "definitie_ro": "Explicații și îndrumări organizate pentru o sarcină sau temă.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "format:colectie",
+        "schema": "format",
+        "eticheta_ro": "Catalog sau colecție",
+        "eticheta_en": "Catalogue or collection",
+        "alternative_ro": "",
+        "definitie_ro": "Listă sau colecție de resurse ori proiecte.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "format:joc-test",
+        "schema": "format",
+        "eticheta_ro": "Joc sau test",
+        "eticheta_en": "Game or quiz",
+        "alternative_ro": "",
+        "definitie_ro": "Activitate interactivă de joc sau test.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "format:curs",
+        "schema": "format",
+        "eticheta_ro": "Curs sau atelier",
+        "eticheta_en": "Course or workshop",
+        "alternative_ro": "",
+        "definitie_ro": "Activitate structurată de învățare.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "format:articol",
+        "schema": "format",
+        "eticheta_ro": "Articol",
+        "eticheta_en": "Article",
+        "alternative_ro": "",
+        "definitie_ro": "Material editorial sau jurnalistic individual.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "format:raport",
+        "schema": "format",
+        "eticheta_ro": "Raport sau cercetare",
+        "eticheta_en": "Report or research",
+        "alternative_ro": "",
+        "definitie_ro": "Publicație de analiză sau cercetare.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "format:formular",
+        "schema": "format",
+        "eticheta_ro": "Formular",
+        "eticheta_en": "Form",
+        "alternative_ro": "",
+        "definitie_ro": "Interfață sau document pentru introducerea de date.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "format:api",
+        "schema": "format",
+        "eticheta_ro": "API oferit",
+        "eticheta_en": "API offered",
+        "alternative_ro": "",
+        "definitie_ro": "Interfață programatică oferită de intrare. Un catalog despre API nu este suficient.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "format:set-date",
+        "schema": "format",
+        "eticheta_ro": "Set de date oferit",
+        "eticheta_en": "Dataset offered",
+        "alternative_ro": "",
+        "definitie_ro": "Un set de date identificabil oferit pentru acces sau descărcare.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "tehnologie:ai",
+        "schema": "tehnologie",
+        "eticheta_ro": "Utilizează inteligență artificială",
+        "eticheta_en": "Uses artificial intelligence",
+        "alternative_ro": "AI",
+        "definitie_ro": "Descrierea afirmă utilizarea AI în funcționare. Numele proiectului sau o etichetă nu sunt suficiente.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "tehnologie:aplicatie-mobila",
+        "schema": "tehnologie",
+        "eticheta_ro": "Aplicație mobilă",
+        "eticheta_en": "Mobile application",
+        "alternative_ro": "",
+        "definitie_ro": "Intrarea oferă o aplicație mobilă.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "tehnologie:mcp",
+        "schema": "tehnologie",
+        "eticheta_ro": "Server MCP oferit",
+        "eticheta_en": "MCP server offered",
+        "alternative_ro": "",
+        "definitie_ro": "Intrarea oferă un server MCP. Menționarea unor proiecte MCP asociate nu este suficientă.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "institutie:primarie",
+        "schema": "institutie",
+        "eticheta_ro": "Primărie sau administrație locală",
+        "eticheta_en": "Municipality or local administration",
+        "alternative_ro": "",
+        "definitie_ro": "Tip de instituție vizată. Nu indică proprietarul sau partenerul proiectului.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "institutie:parlament",
+        "schema": "institutie",
+        "eticheta_ro": "Parlament",
+        "eticheta_en": "Parliament",
+        "alternative_ro": "",
+        "definitie_ro": "Instituție parlamentară vizată.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "institutie:anaf",
+        "schema": "institutie",
+        "eticheta_ro": "ANAF",
+        "eticheta_en": "Romanian tax administration",
+        "alternative_ro": "",
+        "definitie_ro": "Instituție vizată sau sursă de date, fără a implica un parteneriat.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "institutie:scoala",
+        "schema": "institutie",
+        "eticheta_ro": "Școală sau instituție de învățământ",
+        "eticheta_en": "Educational institution",
+        "alternative_ro": "",
+        "definitie_ro": "Instituție de învățământ vizată.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "institutie:instanta",
+        "schema": "institutie",
+        "eticheta_ro": "Instanță judecătorească",
+        "eticheta_en": "Court",
+        "alternative_ro": "",
+        "definitie_ro": "Instanță vizată sau sursă a informațiilor.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "institutie:institutie-ue",
+        "schema": "institutie",
+        "eticheta_ro": "Instituție a Uniunii Europene",
+        "eticheta_en": "EU institution",
+        "alternative_ro": "",
+        "definitie_ro": "Instituție a Uniunii Europene vizată.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "organizatie:ong",
+        "schema": "organizatie",
+        "eticheta_ro": "Organizație neguvernamentală",
+        "eticheta_en": "Non-governmental organisation",
+        "alternative_ro": "",
+        "definitie_ro": "Tip declarat în sursă; nu reprezintă o verificare juridică.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "organizatie:think-tank",
+        "schema": "organizatie",
+        "eticheta_ro": "Think-tank",
+        "eticheta_en": "Think tank",
+        "alternative_ro": "",
+        "definitie_ro": "Organizație axată pe cercetare și politici publice.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "organizatie:retea",
+        "schema": "organizatie",
+        "eticheta_ro": "Rețea sau comunitate",
+        "eticheta_en": "Network or community",
+        "alternative_ro": "",
+        "definitie_ro": "Rețea ori comunitate de persoane sau organizații.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "maturitate:experiment",
+        "schema": "maturitate",
+        "eticheta_ro": "Experiment",
+        "eticheta_en": "Experiment",
+        "alternative_ro": "",
+        "definitie_ro": "Explorează o idee sau o abordare; utilizarea practică nu este stabilită.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "maturitate:prototip",
+        "schema": "maturitate",
+        "eticheta_ro": "Prototip",
+        "eticheta_en": "Prototype",
+        "alternative_ro": "",
+        "definitie_ro": "Demonstrează funcționalitatea propusă.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "maturitate:pilot",
+        "schema": "maturitate",
+        "eticheta_ro": "Pilot",
+        "eticheta_en": "Pilot",
+        "alternative_ro": "",
+        "definitie_ro": "Este utilizat într-o implementare limitată în condiții reale sau într-un test cu utilizatori reali.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      },
+      {
+        "id": "maturitate:operational",
+        "schema": "maturitate",
+        "eticheta_ro": "Operațional",
+        "eticheta_en": "Operational",
+        "alternative_ro": "",
+        "definitie_ro": "Este oferit pentru utilizare obișnuită de către publicul său țintă.",
+        "mai_larg": "",
+        "asociate": "",
+        "statut": "propus"
+      }
+    ],
+    "areas": [
+      {
+        "id": "tara:RO",
+        "eticheta_ro": "România",
+        "tip": "tara",
+        "parinte": "",
+        "cod_iso_3166_1": "RO"
+      },
+      {
+        "id": "regiune:UE",
+        "eticheta_ro": "Uniunea Europeană",
+        "tip": "regiune",
+        "parinte": "",
+        "cod_iso_3166_1": ""
+      },
+      {
+        "id": "regiune:Europa",
+        "eticheta_ro": "Europa",
+        "tip": "regiune",
+        "parinte": "",
+        "cod_iso_3166_1": ""
+      },
+      {
+        "id": "judet:ilfov",
+        "eticheta_ro": "Ilfov",
+        "tip": "judet",
+        "parinte": "tara:RO",
+        "cod_iso_3166_1": ""
+      },
+      {
+        "id": "localitate:bucuresti",
+        "eticheta_ro": "București",
+        "tip": "localitate",
+        "parinte": "tara:RO",
+        "cod_iso_3166_1": ""
+      },
+      {
+        "id": "localitate:arad",
+        "eticheta_ro": "Arad",
+        "tip": "localitate",
+        "parinte": "tara:RO",
+        "cod_iso_3166_1": ""
+      },
+      {
+        "id": "localitate:radauti",
+        "eticheta_ro": "Rădăuți",
+        "tip": "localitate",
+        "parinte": "tara:RO",
+        "cod_iso_3166_1": ""
+      },
+      {
+        "id": "localitate:onesti",
+        "eticheta_ro": "Onești",
+        "tip": "localitate",
+        "parinte": "tara:RO",
+        "cod_iso_3166_1": ""
+      },
+      {
+        "id": "localitate:oradea",
+        "eticheta_ro": "Oradea",
+        "tip": "localitate",
+        "parinte": "tara:RO",
+        "cod_iso_3166_1": ""
+      },
+      {
+        "id": "localitate:craiova",
+        "eticheta_ro": "Craiova",
+        "tip": "localitate",
+        "parinte": "tara:RO",
+        "cod_iso_3166_1": ""
+      },
+      {
+        "id": "localitate:iasi",
+        "eticheta_ro": "Iași",
+        "tip": "localitate",
+        "parinte": "tara:RO",
+        "cod_iso_3166_1": ""
+      }
+    ],
+    "code_lists": {
+      "tip_entitate": [
+        "proiect",
+        "organizatie",
+        "resursa",
+        "publicatie",
+        "set-date",
+        "campanie"
+      ],
+      "sectiune_url": [
+        "proiect",
+        "organizatie",
+        "resursa"
+      ],
+      "nivel_acoperire": [
+        "national",
+        "local",
+        "international",
+        "necunoscut"
+      ],
+      "clasificare_stare": [
+        "propus",
+        "acceptat",
+        "de-revizuit"
+      ],
+      "incredere": [
+        "mica",
+        "medie",
+        "mare"
+      ],
+      "stare": [
+        "",
+        "arhivat",
+        "offline"
+      ],
+      "civictech_original": [
+        "",
+        "0",
+        "1"
+      ],
+      "predicat": [
+        "atribuit_in_sursa",
+        "creat_de",
+        "mentinut_de",
+        "publicat_de",
+        "finantat_de",
+        "parte_din",
+        "ofera",
+        "foloseste"
+      ]
+    },
+    "known_entities": [
+      {
+        "slug": "465",
+        "name": "465.ro"
+      },
+      {
+        "slug": "7-ani-de-acasa",
+        "name": "7 ani de acasă"
+      },
+      {
+        "slug": "accesinfo",
+        "name": "AccesInfo"
+      },
+      {
+        "slug": "aerlive",
+        "name": "aerlive"
+      },
+      {
+        "slug": "afacut",
+        "name": "A Făcut?"
+      },
+      {
+        "slug": "ai-aflat",
+        "name": "AI Aflat"
+      },
+      {
+        "slug": "amscapat",
+        "name": "Am scăpat"
+      },
+      {
+        "slug": "antibunk",
+        "name": "Antibunk"
+      },
+      {
+        "slug": "banii-nostri",
+        "name": "Banii Noștri"
+      },
+      {
+        "slug": "bani-partide",
+        "name": "Bani Partide"
+      },
+      {
+        "slug": "bani-pierduti",
+        "name": "Bani pierduți"
+      },
+      {
+        "slug": "barometrul-digital",
+        "name": "Barometrul Digital"
+      },
+      {
+        "slug": "bucuresti-help",
+        "name": "bucuresti.help"
+      },
+      {
+        "slug": "bucuresti-verde",
+        "name": "București Verde"
+      },
+      {
+        "slug": "reciclare-arad",
+        "name": "Calendar ridicare gunoi Arad"
+      },
+      {
+        "slug": "calitate-aer-radauti",
+        "name": "Calitatea Aerului Rădăuți"
+      },
+      {
+        "slug": "ce-cumpara-primaria",
+        "name": "Ce cumpără primăria"
+      },
+      {
+        "slug": "ce-fac-politicienii",
+        "name": "Ce fac politicienii?"
+      },
+      {
+        "slug": "centrul-pentru-cariere",
+        "name": "Centrul pentru Cariere"
+      },
+      {
+        "slug": "ce-zice-legea",
+        "name": "Ce zice legea"
+      },
+      {
+        "slug": "scoala-pentru-democratie",
+        "name": "Școala pentru Democrație"
+      },
+      {
+        "slug": "companii-de-stat",
+        "name": "Companiile de stat"
+      },
+      {
+        "slug": "companii-publice-ro",
+        "name": "Companii Publice — România"
+      },
+      {
+        "slug": "data-expertforum",
+        "name": "Data Expert Forum"
+      },
+      {
+        "slug": "ins-gov2",
+        "name": "Date statistice INS"
+      },
+      {
+        "slug": "declic",
+        "name": "DeClic"
+      },
+      {
+        "slug": "demoanaf",
+        "name": "DemoANAF"
+      },
+      {
+        "slug": "de-obste",
+        "name": "De Obște"
+      },
+      {
+        "slug": "despre-femicid",
+        "name": "Despre femicid"
+      },
+      {
+        "slug": "didi365",
+        "name": "Didi365"
+      },
+      {
+        "slug": "domnule-primar",
+        "name": "Domnule Primar"
+      },
+      {
+        "slug": "drepturi-civile",
+        "name": "Drepturi civile"
+      },
+      {
+        "slug": "dupa-cutremur",
+        "name": "După cutremur"
+      },
+      {
+        "slug": "econtractauto",
+        "name": "eContractAuto"
+      },
+      {
+        "slug": "e-cutremur",
+        "name": "e-cutremur"
+      },
+      {
+        "slug": "europescope",
+        "name": "EuropeScope"
+      },
+      {
+        "slug": "evermed",
+        "name": "Evermed"
+      },
+      {
+        "slug": "executii-bugetare",
+        "name": "Execuții Bugetare"
+      },
+      {
+        "slug": "factual",
+        "name": "Factual"
+      },
+      {
+        "slug": "guvernezi",
+        "name": "Guvernezi!"
+      },
+      {
+        "slug": "harta-banilor-publici",
+        "name": "Harta Banilor Publici"
+      },
+      {
+        "slug": "harta-digitalizarii-primariilor",
+        "name": "Harta digitalizării primăriilor"
+      },
+      {
+        "slug": "harta-firmelor",
+        "name": "Harta Firmelor"
+      },
+      {
+        "slug": "monitorul-ai-integritate",
+        "name": "Pe propria răspundere"
+      },
+      {
+        "slug": "harta-politicii",
+        "name": "Harta Politicii"
+      },
+      {
+        "slug": "harta-taierilor",
+        "name": "Harta tăierilor de păduri"
+      },
+      {
+        "slug": "harta-tv-locale",
+        "name": "Harta TV Locale"
+      },
+      {
+        "slug": "hoover",
+        "name": "Hoover"
+      },
+      {
+        "slug": "ia-statul-la-intrebari",
+        "name": "Ia statul la întrebări"
+      },
+      {
+        "slug": "igov",
+        "name": "iGov"
+      },
+      {
+        "slug": "imobile-rapps",
+        "name": "Imobilele RA-APPS"
+      },
+      {
+        "slug": "incentru",
+        "name": "Incentru"
+      },
+      {
+        "slug": "interoperabilitate",
+        "name": "Interoperabilitate.ro"
+      },
+      {
+        "slug": "jailando",
+        "name": "Jailando"
+      },
+      {
+        "slug": "mari-corupti",
+        "name": "Mari Corupți"
+      },
+      {
+        "slug": "monarh-ai",
+        "name": "Monarh AI"
+      },
+      {
+        "slug": "monitor-cetatenie",
+        "name": "Monitor cetățenie"
+      },
+      {
+        "slug": "monitor-energie",
+        "name": "Monitor Energie"
+      },
+      {
+        "slug": "monitor-safe",
+        "name": "Monitor SAFE"
+      },
+      {
+        "slug": "monitor-social",
+        "name": "Monitor Social"
+      },
+      {
+        "slug": "monitorul-ai",
+        "name": "monitorul.ai"
+      },
+      {
+        "slug": "multumesc",
+        "name": "Mulțumesc.org"
+      },
+      {
+        "slug": "muzeul-coruptiei",
+        "name": "Muzeul Corupției"
+      },
+      {
+        "slug": "nu-astepta-supereroi",
+        "name": "Nu aștepta supereroi"
+      },
+      {
+        "slug": "observatori-votcorect",
+        "name": "Observatori Vot Corect"
+      },
+      {
+        "slug": "onesti-city",
+        "name": "Onești City"
+      },
+      {
+        "slug": "ong-camera-deputatilor",
+        "name": "ONG-urile înregistrate la Camera Deputaților"
+      },
+      {
+        "slug": "onorata-instanta",
+        "name": "Onorata Instanță"
+      },
+      {
+        "slug": "open-budget",
+        "name": "Open Budget"
+      },
+      {
+        "slug": "oradea-city-report",
+        "name": "Oradea City Report"
+      },
+      {
+        "slug": "parlament-transparent",
+        "name": "Parlament Transparent"
+      },
+      {
+        "slug": "piata-de-spaga",
+        "name": "Piața de Șpagă"
+      },
+      {
+        "slug": "political-colours",
+        "name": "Political Colours"
+      },
+      {
+        "slug": "politicieni-corupti",
+        "name": "Politicieni Corupți"
+      },
+      {
+        "slug": "portal-just-modern",
+        "name": "Portal Just Modern"
+      },
+      {
+        "slug": "posturi-gov2",
+        "name": "Posturi · gov2"
+      },
+      {
+        "slug": "radar-digital",
+        "name": "Radar Digital"
+      },
+      {
+        "slug": "redirectioneaza",
+        "name": "Redirecționează"
+      },
+      {
+        "slug": "rezultate-vot",
+        "name": "Rezultate Vot"
+      },
+      {
+        "slug": "romania-fara-gropi",
+        "name": "România fără gropi"
+      },
+      {
+        "slug": "romania-interactiva",
+        "name": "România Interactivă"
+      },
+      {
+        "slug": "romania-transparenta",
+        "name": "România Transparentă"
+      },
+      {
+        "slug": "sicap-ai",
+        "name": "SICAP.ai"
+      },
+      {
+        "slug": "site-uri-utile-funky",
+        "name": "Site-uri utile pentru cetățeni"
+      },
+      {
+        "slug": "etherpad-situri-civice",
+        "name": "Situri civice (Etherpad)"
+      },
+      {
+        "slug": "sanatate-mintala",
+        "name": "Sănătate mintală"
+      },
+      {
+        "slug": "sondaje-romania",
+        "name": "Sondaje România"
+      },
+      {
+        "slug": "testvot",
+        "name": "Testvot"
+      },
+      {
+        "slug": "tipizatul",
+        "name": "Tipizatul"
+      },
+      {
+        "slug": "apti-unelte-democratie",
+        "name": "Top 10 unelte de democrație digitală"
+      },
+      {
+        "slug": "transparenta-eu",
+        "name": "Transparenta.eu"
+      },
+      {
+        "slug": "unde-locuiesc-romanii",
+        "name": "Unde locuiesc românii?"
+      },
+      {
+        "slug": "verifica-psiholog",
+        "name": "Verifică psiholog"
+      },
+      {
+        "slug": "vichub-data",
+        "name": "VicHub Data"
+      },
+      {
+        "slug": "vocea-cartierului-tau",
+        "name": "Vocea Cartierului Tău"
+      },
+      {
+        "slug": "votcorect",
+        "name": "Vot Corect"
+      },
+      {
+        "slug": "votdiaspora",
+        "name": "Vot Diaspora"
+      },
+      {
+        "slug": "votez-info",
+        "name": "Votez.Info(rmat)"
+      },
+      {
+        "slug": "dignitas",
+        "name": "Dignitas"
+      },
+      {
+        "slug": "ghiduri-efor",
+        "name": "Ghiduri politici publice, monitorizare date"
+      },
+      {
+        "slug": "jurnalism-independent",
+        "name": "Listă publicații independente"
+      },
+      {
+        "slug": "presspay",
+        "name": "PressPay"
+      },
+      {
+        "slug": "aiparte-research",
+        "name": "AIParte Research"
+      },
+      {
+        "slug": "ro-api-hub",
+        "name": "ro-api-hub"
+      },
+      {
+        "slug": "registrul-firmelor",
+        "name": "Registrul firmelor"
+      },
+      {
+        "slug": "monitorizare-plan-digital-national",
+        "name": "Monitorizarea Planului Național privind Deceniul Digital"
+      },
+      {
+        "slug": "piratii-digitali-ai-kremlinului",
+        "name": "Pirații digitali ai Kremlinului"
+      },
+      {
+        "slug": "semnal-razboiul-hibrid",
+        "name": "Războiul hibrid al Rusiei"
+      },
+      {
+        "slug": "proiecte-geo-spatial",
+        "name": "Proiecte geo-spatial.org"
+      },
+      {
+        "slug": "efor",
+        "name": "Expert Forum"
+      },
+      {
+        "slug": "funky-citizens",
+        "name": "Funky Citizens"
+      },
+      {
+        "slug": "code4ro",
+        "name": "Code for Romania"
+      },
+      {
+        "slug": "crpe",
+        "name": "Centrul Român de Politici Europene"
+      },
+      {
+        "slug": "ethical-media",
+        "name": "Ethical Media Alliance"
+      },
+      {
+        "slug": "amplify",
+        "name": "AmpliFY ONG"
+      },
+      {
+        "slug": "techsoup",
+        "name": "TechSoup"
+      },
+      {
+        "slug": "cere",
+        "name": "Centrul de Resurse pentru Participare Publică"
+      },
+      {
+        "slug": "ai-parte",
+        "name": "AI parte"
+      },
+      {
+        "slug": "inovarepublica",
+        "name": "Centrul pentru Inovare Publică"
+      },
+      {
+        "slug": "radautiul-civic",
+        "name": "Rădăuțiul Civic"
+      },
+      {
+        "slug": "civica",
+        "name": "Civica Iași"
+      },
+      {
+        "slug": "tech-and-tonic",
+        "name": "Tech & Tonic"
+      }
+    ],
+    "approved_identity_aliases": []
+  },
+  "sources": [
+    {
+      "id": "nu-astepta-supereroi:slug",
+      "kind": "curated_csv",
+      "url": null,
+      "retrieved_at": null,
+      "locator": "clasificare-input.csv:nu-astepta-supereroi:slug",
+      "text": "nu-astepta-supereroi"
+    },
+    {
+      "id": "nu-astepta-supereroi:nume",
+      "kind": "curated_csv",
+      "url": null,
+      "retrieved_at": null,
+      "locator": "clasificare-input.csv:nu-astepta-supereroi:nume",
+      "text": "Nu aștepta supereroi"
+    },
+    {
+      "id": "nu-astepta-supereroi:descriere_scurta",
+      "kind": "curated_csv",
+      "url": null,
+      "retrieved_at": null,
+      "locator": "clasificare-input.csv:nu-astepta-supereroi:descriere_scurta",
+      "text": "Datele de contact ale consilierilor locali"
+    },
+    {
+      "id": "nu-astepta-supereroi:url",
+      "kind": "curated_csv",
+      "url": null,
+      "retrieved_at": null,
+      "locator": "clasificare-input.csv:nu-astepta-supereroi:url",
+      "text": "https://www.nuasteptasupereroi.ro"
+    },
+    {
+      "id": "nu-astepta-supereroi:tip_entitate_original",
+      "kind": "curated_csv",
+      "url": null,
+      "retrieved_at": null,
+      "locator": "clasificare-input.csv:nu-astepta-supereroi:tip_entitate_original",
+      "text": "proiect"
+    },
+    {
+      "id": "nu-astepta-supereroi:sectiune_url_original",
+      "kind": "curated_csv",
+      "url": null,
+      "retrieved_at": null,
+      "locator": "clasificare-input.csv:nu-astepta-supereroi:sectiune_url_original",
+      "text": "proiect"
+    },
+    {
+      "id": "nu-astepta-supereroi:fel_original",
+      "kind": "curated_csv",
+      "url": null,
+      "retrieved_at": null,
+      "locator": "clasificare-input.csv:nu-astepta-supereroi:fel_original",
+      "text": "proiect"
+    },
+    {
+      "id": "nu-astepta-supereroi:domeniu_original",
+      "kind": "curated_csv",
+      "url": null,
+      "retrieved_at": null,
+      "locator": "clasificare-input.csv:nu-astepta-supereroi:domeniu_original",
+      "text": "local"
+    },
+    {
+      "id": "nu-astepta-supereroi:tip_original",
+      "kind": "curated_csv",
+      "url": null,
+      "retrieved_at": null,
+      "locator": "clasificare-input.csv:nu-astepta-supereroi:tip_original",
+      "text": "baza-de-date"
+    },
+    {
+      "id": "nu-astepta-supereroi:acoperire_original",
+      "kind": "curated_csv",
+      "url": null,
+      "retrieved_at": null,
+      "locator": "clasificare-input.csv:nu-astepta-supereroi:acoperire_original",
+      "text": "national"
+    },
+    {
+      "id": "nu-astepta-supereroi:autor_original",
+      "kind": "curated_csv",
+      "url": null,
+      "retrieved_at": null,
+      "locator": "clasificare-input.csv:nu-astepta-supereroi:autor_original",
+      "text": "CeRe"
+    },
+    {
+      "id": "nu-astepta-supereroi:sursa_fisier",
+      "kind": "curated_csv",
+      "url": null,
+      "retrieved_at": null,
+      "locator": "clasificare-input.csv:nu-astepta-supereroi:sursa_fisier",
+      "text": "proiecte.csv"
+    },
+    {
+      "id": "nu-astepta-supereroi:sursa_rand",
+      "kind": "curated_csv",
+      "url": null,
+      "retrieved_at": null,
+      "locator": "clasificare-input.csv:nu-astepta-supereroi:sursa_rand",
+      "text": "65"
+    }
+  ],
+  "output_schema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "urn:civtech:taxonomy-v2-classification:1",
+    "title": "CivTech v2 automated classification proposal",
+    "description": "Model output only. IDs, citations, hierarchy, and source preservation require additional deterministic validation.",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "schema_version": {
+        "const": "taxonomy-v2-classification/1"
+      },
+      "slug": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      },
+      "result_status": {
+        "type": "string",
+        "enum": [
+          "classified",
+          "partial",
+          "insufficient_evidence"
+        ]
+      },
+      "classification": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tip_entitate": {
+            "type": "string",
+            "enum": [
+              "proiect",
+              "organizatie",
+              "resursa",
+              "publicatie",
+              "set-date",
+              "campanie"
+            ]
+          },
+          "subiect_principal": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^subiect:[a-z0-9]+(?:-[a-z0-9]+)*$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "subiecte": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^subiect:[a-z0-9]+(?:-[a-z0-9]+)*$"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "teme": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^subiect:[a-z0-9]+(?:-[a-z0-9]+)*$"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "scopuri": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^scop:[a-z0-9]+(?:-[a-z0-9]+)*$"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "functionalitati": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^functie:[a-z0-9]+(?:-[a-z0-9]+)*$"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "formate": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^format:[a-z0-9]+(?:-[a-z0-9]+)*$"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "tehnologii": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^tehnologie:[a-z0-9]+(?:-[a-z0-9]+)*$"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "institutii_vizate": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^institutie:[a-z0-9]+(?:-[a-z0-9]+)*$"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "tip_organizatie": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^organizatie:[a-z0-9]+(?:-[a-z0-9]+)*$"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "maturitate": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "maturitate:experiment",
+                  "maturitate:prototip",
+                  "maturitate:pilot",
+                  "maturitate:operational"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "nivel_acoperire": {
+            "type": "string",
+            "enum": [
+              "national",
+              "local",
+              "international",
+              "necunoscut"
+            ]
+          },
+          "arii_acoperite": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "tip_entitate",
+          "subiect_principal",
+          "subiecte",
+          "teme",
+          "scopuri",
+          "functionalitati",
+          "formate",
+          "tehnologii",
+          "institutii_vizate",
+          "tip_organizatie",
+          "maturitate",
+          "nivel_acoperire",
+          "arii_acoperite"
+        ]
+      },
+      "justifications": {
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/justification"
+        },
+        "minItems": 0,
+        "uniqueItems": true
+      },
+      "attributions": {
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/attribution"
+        },
+        "minItems": 0,
+        "uniqueItems": true
+      },
+      "uncertainties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "field": {
+              "type": "string",
+              "minLength": 1
+            },
+            "reason_ro": {
+              "type": "string",
+              "minLength": 1
+            },
+            "needed_evidence_ro": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "field",
+            "reason_ro",
+            "needed_evidence_ro"
+          ]
+        },
+        "minItems": 0,
+        "uniqueItems": true
+      },
+      "conflicts": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "field": {
+              "type": "string",
+              "minLength": 1
+            },
+            "source_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 2,
+              "uniqueItems": true
+            },
+            "reason_ro": {
+              "type": "string",
+              "minLength": 1
+            },
+            "resolution_ro": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "field",
+            "source_ids",
+            "reason_ro",
+            "resolution_ro"
+          ]
+        },
+        "minItems": 0,
+        "uniqueItems": true
+      },
+      "excluded_legacy_tags": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "original_field": {
+              "type": "string",
+              "enum": [
+                "domeniu",
+                "tip",
+                "cuvinte"
+              ]
+            },
+            "original_value": {
+              "type": "string",
+              "minLength": 1
+            },
+            "reason_ro": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "original_field",
+            "original_value",
+            "reason_ro"
+          ]
+        },
+        "minItems": 0,
+        "uniqueItems": true
+      },
+      "new_concept_proposals": {
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/concept_proposal"
+        },
+        "minItems": 0,
+        "uniqueItems": true
+      },
+      "new_area_proposals": {
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/area_proposal"
+        },
+        "minItems": 0,
+        "uniqueItems": true
+      }
+    },
+    "required": [
+      "schema_version",
+      "slug",
+      "result_status",
+      "classification",
+      "justifications",
+      "attributions",
+      "uncertainties",
+      "conflicts",
+      "excluded_legacy_tags",
+      "new_concept_proposals",
+      "new_area_proposals"
+    ],
+    "$defs": {
+      "evidence": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "locator": {
+            "type": "string",
+            "minLength": 1
+          },
+          "excerpt": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "source_id",
+          "locator",
+          "excerpt"
+        ]
+      },
+      "justification": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "field": {
+            "type": "string",
+            "enum": [
+              "tip_entitate",
+              "subiect_principal",
+              "subiecte",
+              "teme",
+              "scopuri",
+              "functionalitati",
+              "formate",
+              "tehnologii",
+              "institutii_vizate",
+              "tip_organizatie",
+              "maturitate",
+              "nivel_acoperire",
+              "arii_acoperite"
+            ]
+          },
+          "value": {
+            "type": "string",
+            "minLength": 1
+          },
+          "basis": {
+            "type": "string",
+            "enum": [
+              "explicit",
+              "inference",
+              "hierarchy",
+              "identity_preservation"
+            ]
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "mica",
+              "medie",
+              "mare"
+            ]
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/evidence"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "rationale_ro": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "field",
+          "value",
+          "basis",
+          "confidence",
+          "evidence",
+          "rationale_ro"
+        ]
+      },
+      "attribution": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "predicate": {
+            "type": "string",
+            "enum": [
+              "atribuit_in_sursa",
+              "creat_de",
+              "mentinut_de",
+              "publicat_de",
+              "finantat_de",
+              "parte_din",
+              "ofera",
+              "foloseste"
+            ]
+          },
+          "object_slug": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "object_literal": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "basis": {
+            "type": "string",
+            "enum": [
+              "explicit",
+              "inference",
+              "hierarchy",
+              "identity_preservation"
+            ]
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "mica",
+              "medie",
+              "mare"
+            ]
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/evidence"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "rationale_ro": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "predicate",
+          "object_slug",
+          "object_literal",
+          "basis",
+          "confidence",
+          "evidence",
+          "rationale_ro"
+        ],
+        "oneOf": [
+          {
+            "properties": {
+              "object_slug": {
+                "type": "string",
+                "minLength": 1
+              },
+              "object_literal": {
+                "type": "null"
+              }
+            }
+          },
+          {
+            "properties": {
+              "object_slug": {
+                "type": "null"
+              },
+              "object_literal": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "predicate": {
+                  "enum": [
+                    "parte_din",
+                    "ofera",
+                    "foloseste"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "object_slug": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "object_literal": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "concept_proposal": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "scheme": {
+            "type": "string",
+            "enum": [
+              "subiect",
+              "scop",
+              "functie",
+              "format",
+              "tehnologie",
+              "institutie",
+              "organizatie",
+              "maturitate"
+            ]
+          },
+          "label_ro": {
+            "type": "string",
+            "minLength": 1
+          },
+          "label_en": {
+            "type": "string",
+            "minLength": 1
+          },
+          "definition_ro": {
+            "type": "string",
+            "minLength": 1
+          },
+          "broader_existing_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "reason_ro": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/evidence"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "scheme",
+          "label_ro",
+          "label_en",
+          "definition_ro",
+          "broader_existing_ids",
+          "reason_ro",
+          "evidence"
+        ]
+      },
+      "area_proposal": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "label_ro": {
+            "type": "string",
+            "minLength": 1
+          },
+          "area_type": {
+            "type": "string",
+            "enum": [
+              "tara",
+              "regiune",
+              "judet",
+              "localitate"
+            ]
+          },
+          "parent_existing_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "reason_ro": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/evidence"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "label_ro",
+          "area_type",
+          "parent_existing_ids",
+          "reason_ro",
+          "evidence"
+        ]
+      }
+    },
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "result_status": {
+              "const": "insufficient_evidence"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "classification": {
+              "properties": {
+                "subiect_principal": {
+                  "type": "null"
+                },
+                "subiecte": {
+                  "maxItems": 0
+                },
+                "teme": {
+                  "maxItems": 0
+                }
+              }
+            }
+          }
+        },
+        "else": {
+          "properties": {
+            "classification": {
+              "properties": {
+                "subiect_principal": {
+                  "type": "string",
+                  "pattern": "^subiect:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                },
+                "subiecte": {
+                  "minItems": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

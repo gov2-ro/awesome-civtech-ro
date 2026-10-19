@@ -1,0 +1,186 @@
+[
+  {
+    "slug": "aerlive",
+    "concepts": [
+      {
+        "scheme": "tehnologie",
+        "label_ro": "Rețea de senzori",
+        "label_en": "Sensor network",
+        "definition_ro": "Folosește senzori fizici pentru colectarea sistematică de măsurători.",
+        "broader_existing_ids": [],
+        "reason_ro": "Vocabularul nu exprimă măsurarea fizică prin senzori.",
+        "evidence": [
+          {
+            "source_id": "aerlive:descriere",
+            "locator": "clasificare-input.csv:aerlive:descriere",
+            "excerpt": "O platformă care colectează și publică în mod coerent date despre calitatea aerului în București. Aerlive.ro este și despre implicarea cetățenilor în procesul de măsurare a calității aerului. Prin intermediul platformei distribuim, începând cu luna februarie 2020 senzori individuali de măsurare a PM-urilor (micro-particule) către cetățenii care doresc să adopte un senzor, să-l monteze și să-l mențină în funcțiune pe o perioadă de cel puțin 18 luni."
+          }
+        ]
+      }
+    ],
+    "areas": []
+  },
+  {
+    "slug": "reciclare-arad",
+    "concepts": [
+      {
+        "scheme": "format",
+        "label_ro": "Calendar",
+        "label_en": "Calendar",
+        "definition_ro": "Prezintă evenimente sau operațiuni în funcție de data programată.",
+        "broader_existing_ids": [],
+        "reason_ro": "Programul de ridicare a deșeurilor nu este descris precis de formatele existente.",
+        "evidence": [
+          {
+            "source_id": "reciclare-arad:nume",
+            "locator": "clasificare-input.csv:reciclare-arad:nume",
+            "excerpt": "Calendar ridicare gunoi Arad"
+          }
+        ]
+      }
+    ],
+    "areas": []
+  },
+  {
+    "slug": "econtractauto",
+    "concepts": [
+      {
+        "scheme": "functie",
+        "label_ro": "Semnarea documentelor",
+        "label_en": "Document signing",
+        "definition_ro": "Permite aplicarea unei semnături pe un document.",
+        "broader_existing_ids": [],
+        "reason_ro": "Generarea documentelor nu exprimă separat etapa de semnare.",
+        "evidence": [
+          {
+            "source_id": "econtractauto:descriere",
+            "locator": "clasificare-input.csv:econtractauto:descriere",
+            "excerpt": "Generează contractul oficial de înstrăinare-dobândire a unui vehicul în 3 \npași simpli. Încarcă CI și talonul, verifică datele extrase automat, \nsemnează și descarcă PDF-ul."
+          }
+        ]
+      }
+    ],
+    "areas": []
+  },
+  {
+    "slug": "monitor-cetatenie",
+    "concepts": [
+      {
+        "scheme": "institutie",
+        "label_ro": "Autoritate pentru cetățenie",
+        "label_en": "Citizenship authority",
+        "definition_ro": "Instituție care gestionează cererile și procedurile privind cetățenia.",
+        "broader_existing_ids": [],
+        "reason_ro": "Nu există o categorie pentru instituția vizată de statisticile de cetățenie.",
+        "evidence": [
+          {
+            "source_id": "monitor-cetatenie:descriere",
+            "locator": "clasificare-input.csv:monitor-cetatenie:descriere",
+            "excerpt": "Platformă care prezintă statistici despre cererile de cetățenie română, de la numărul cererilor înregistrate și soluționate până la timpii de așteptare, pentru fiecare categorie legală. Permite urmărirea evoluției procesării cererilor și oferă date utile pentru analiza activității instituțiilor publice."
+          }
+        ]
+      }
+    ],
+    "areas": []
+  },
+  {
+    "slug": "sondaje-romania",
+    "concepts": [
+      {
+        "scheme": "functie",
+        "label_ro": "Simularea scenariilor",
+        "label_en": "Scenario simulation",
+        "definition_ro": "Calculează rezultatele unor ipoteze sau combinații introduse de utilizator.",
+        "broader_existing_ids": [],
+        "reason_ro": "Simulatorul de coaliții depășește compararea sau analiza descriptivă.",
+        "evidence": [
+          {
+            "source_id": "sondaje-romania:descriere",
+            "locator": "clasificare-input.csv:sondaje-romania:descriere",
+            "excerpt": "Agregator independent de sondaje din România. Toate sondajele de la INSCOP, \nCURS și IRES într-un singur loc, indiferent de natura lor. Simulator \ncoaliții cu parlamentul actual și proiecții, barometru încredere și medii \nponderate. Actualizat zilnic."
+          }
+        ]
+      }
+    ],
+    "areas": []
+  },
+  {
+    "slug": "piratii-digitali-ai-kremlinului",
+    "concepts": [],
+    "areas": [
+      {
+        "label_ro": "Europa de Est",
+        "area_type": "regiune",
+        "parent_existing_ids": [
+          "regiune:Europa"
+        ],
+        "reason_ro": "Aria este menționată explicit, dar nu are un identificator în lista înghețată.",
+        "evidence": [
+          {
+            "source_id": "piratii-digitali-ai-kremlinului:descriere",
+            "locator": "clasificare-input.csv:piratii-digitali-ai-kremlinului:descriere",
+            "excerpt": "Timp de cinci luni am urmărit peste o sută de mii de reclame difuzate pe 131 de site-uri din Europa de Est. După ce am decodat mecanismele ascunse ale reclamelor, am găsit o rețea de companii rusești. Investigația arată ce date sunt colectate despre români, cine ajunge să le primească și de ce reclamele afișate pe site-uri cu conținut conspiraționist și extremist sunt printre cele mai valoroase pentru această rețea."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "proiecte-geo-spatial",
+    "concepts": [
+      {
+        "scheme": "subiect",
+        "label_ro": "Informații geografice",
+        "label_en": "Geographic information",
+        "definition_ro": "Colectarea, prelucrarea și utilizarea informațiilor cu referință geografică.",
+        "broader_existing_ids": [
+          "subiect:tehnologia-informatiei"
+        ],
+        "reason_ro": "GIS este mai precis decât categoria tehnologiei informației.",
+        "evidence": [
+          {
+            "source_id": "proiecte-geo-spatial:descriere",
+            "locator": "clasificare-input.csv:proiecte-geo-spatial:descriere",
+            "excerpt": "Inițiative și proiecte dezvoltate de comunitatea geo-spatial.org de-a lungul anilor"
+          }
+        ]
+      }
+    ],
+    "areas": []
+  },
+  {
+    "slug": "crpe",
+    "concepts": [
+      {
+        "scheme": "subiect",
+        "label_ro": "Agricultură și dezvoltare rurală",
+        "label_en": "Agriculture and rural development",
+        "definition_ro": "Activități agricole și politici de dezvoltare a comunităților rurale.",
+        "broader_existing_ids": [],
+        "reason_ro": "Cercetarea CRPE include agricultura; vocabularul nu are un concept suficient de precis.",
+        "evidence": [
+          {
+            "source_id": "crpe:descriere",
+            "locator": "clasificare-input.csv:crpe:descriere",
+            "excerpt": "Din 2009, centrul face cercetări în politici publice europene și naționale, campanii de advocacy, dezbateri publice, programe de formare și campanii de implicare civică. Domeniile principale sunt democrația și buna guvernare, relațiile externe (în special Republica Moldova și Parteneriatul Estic), agricultura și dezvoltarea rurală, educația și implicarea tinerilor. În 2012 a deschis o sucursală în Republica Moldova."
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "label_ro": "Republica Moldova",
+        "area_type": "tara",
+        "parent_existing_ids": [],
+        "reason_ro": "Aria este menționată explicit, dar nu are un identificator în lista înghețată.",
+        "evidence": [
+          {
+            "source_id": "crpe:descriere",
+            "locator": "clasificare-input.csv:crpe:descriere",
+            "excerpt": "Din 2009, centrul face cercetări în politici publice europene și naționale, campanii de advocacy, dezbateri publice, programe de formare și campanii de implicare civică. Domeniile principale sunt democrația și buna guvernare, relațiile externe (în special Republica Moldova și Parteneriatul Estic), agricultura și dezvoltarea rurală, educația și implicarea tinerilor. În 2012 a deschis o sucursală în Republica Moldova."
+          }
+        ]
+      }
+    ]
+  }
+]

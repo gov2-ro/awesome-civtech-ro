@@ -1,0 +1,233 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "monarh-ai",
+  "result_status": "partial",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:media-informare",
+    "subiecte": [
+      "subiect:media-informare"
+    ],
+    "teme": [
+      "subiect:dezinformare"
+    ],
+    "scopuri": [
+      "scop:informare"
+    ],
+    "functionalitati": [
+      "functie:monitorizare",
+      "functie:analiza"
+    ],
+    "formate": [],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "monarh-ai:tip_entitate_original",
+          "locator": "clasificare-input.csv:monarh-ai:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:media-informare",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "monarh-ai:descriere_scurta",
+          "locator": "clasificare-input.csv:monarh-ai:descriere_scurta",
+          "excerpt": "Monitorizarea manipulării de pe TikTok"
+        },
+        {
+          "source_id": "monarh-ai:descriere",
+          "locator": "clasificare-input.csv:monarh-ai:descriere",
+          "excerpt": "MONARH AI este un serviciu automatizat care monitorizează TikTok-ul românesc, identifică materiale cu potențial de manipulare și pregătește analize cu surse pentru revizuire umană înainte de publicare. Poate fi adaptat pentru urmărirea unor teme specifice, ajutând instituțiile și organizațiile să identifice posibile dezinformări și să formuleze răspunsuri documentate."
+        }
+      ],
+      "rationale_ro": "Automatizarea monitorizării TikTok este explicită; numele AI nu precizează mecanismul tehnic. Conceptul subiect:dezinformare are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:media-informare",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "monarh-ai:descriere_scurta",
+          "locator": "clasificare-input.csv:monarh-ai:descriere_scurta",
+          "excerpt": "Monitorizarea manipulării de pe TikTok"
+        },
+        {
+          "source_id": "monarh-ai:descriere",
+          "locator": "clasificare-input.csv:monarh-ai:descriere",
+          "excerpt": "MONARH AI este un serviciu automatizat care monitorizează TikTok-ul românesc, identifică materiale cu potențial de manipulare și pregătește analize cu surse pentru revizuire umană înainte de publicare. Poate fi adaptat pentru urmărirea unor teme specifice, ajutând instituțiile și organizațiile să identifice posibile dezinformări și să formuleze răspunsuri documentate."
+        }
+      ],
+      "rationale_ro": "Automatizarea monitorizării TikTok este explicită; numele AI nu precizează mecanismul tehnic. Conceptul subiect:dezinformare are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:dezinformare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "monarh-ai:descriere_scurta",
+          "locator": "clasificare-input.csv:monarh-ai:descriere_scurta",
+          "excerpt": "Monitorizarea manipulării de pe TikTok"
+        },
+        {
+          "source_id": "monarh-ai:descriere",
+          "locator": "clasificare-input.csv:monarh-ai:descriere",
+          "excerpt": "MONARH AI este un serviciu automatizat care monitorizează TikTok-ul românesc, identifică materiale cu potențial de manipulare și pregătește analize cu surse pentru revizuire umană înainte de publicare. Poate fi adaptat pentru urmărirea unor teme specifice, ajutând instituțiile și organizațiile să identifice posibile dezinformări și să formuleze răspunsuri documentate."
+        }
+      ],
+      "rationale_ro": "Automatizarea monitorizării TikTok este explicită; numele AI nu precizează mecanismul tehnic. Încadrare: Dezinformare."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "monarh-ai:descriere_scurta",
+          "locator": "clasificare-input.csv:monarh-ai:descriere_scurta",
+          "excerpt": "Monitorizarea manipulării de pe TikTok"
+        },
+        {
+          "source_id": "monarh-ai:descriere",
+          "locator": "clasificare-input.csv:monarh-ai:descriere",
+          "excerpt": "MONARH AI este un serviciu automatizat care monitorizează TikTok-ul românesc, identifică materiale cu potențial de manipulare și pregătește analize cu surse pentru revizuire umană înainte de publicare. Poate fi adaptat pentru urmărirea unor teme specifice, ajutând instituțiile și organizațiile să identifice posibile dezinformări și să formuleze răspunsuri documentate."
+        }
+      ],
+      "rationale_ro": "Automatizarea monitorizării TikTok este explicită; numele AI nu precizează mecanismul tehnic. Încadrare: Informare și înțelegere."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:monitorizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "monarh-ai:descriere_scurta",
+          "locator": "clasificare-input.csv:monarh-ai:descriere_scurta",
+          "excerpt": "Monitorizarea manipulării de pe TikTok"
+        },
+        {
+          "source_id": "monarh-ai:descriere",
+          "locator": "clasificare-input.csv:monarh-ai:descriere",
+          "excerpt": "MONARH AI este un serviciu automatizat care monitorizează TikTok-ul românesc, identifică materiale cu potențial de manipulare și pregătește analize cu surse pentru revizuire umană înainte de publicare. Poate fi adaptat pentru urmărirea unor teme specifice, ajutând instituțiile și organizațiile să identifice posibile dezinformări și să formuleze răspunsuri documentate."
+        }
+      ],
+      "rationale_ro": "Automatizarea monitorizării TikTok este explicită; numele AI nu precizează mecanismul tehnic. Încadrare: Monitorizează."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:analiza",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "monarh-ai:descriere_scurta",
+          "locator": "clasificare-input.csv:monarh-ai:descriere_scurta",
+          "excerpt": "Monitorizarea manipulării de pe TikTok"
+        },
+        {
+          "source_id": "monarh-ai:descriere",
+          "locator": "clasificare-input.csv:monarh-ai:descriere",
+          "excerpt": "MONARH AI este un serviciu automatizat care monitorizează TikTok-ul românesc, identifică materiale cu potențial de manipulare și pregătește analize cu surse pentru revizuire umană înainte de publicare. Poate fi adaptat pentru urmărirea unor teme specifice, ajutând instituțiile și organizațiile să identifice posibile dezinformări și să formuleze răspunsuri documentate."
+        }
+      ],
+      "rationale_ro": "Automatizarea monitorizării TikTok este explicită; numele AI nu precizează mecanismul tehnic. Încadrare: Analizează date."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "monarh-ai:acoperire_original",
+          "locator": "clasificare-input.csv:monarh-ai:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "monarh-ai:acoperire_original",
+          "locator": "clasificare-input.csv:monarh-ai:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": null,
+      "object_literal": "Matei-Șerban Călin",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "monarh-ai:autor_original",
+          "locator": "clasificare-input.csv:monarh-ai:autor_original",
+          "excerpt": "Matei-Șerban Călin"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    },
+    {
+      "field": "classification",
+      "reason_ro": "Automatizarea monitorizării TikTok este explicită; numele AI nu precizează mecanismul tehnic.",
+      "needed_evidence_ro": "Documentație primară care rezolvă ambiguitatea indicată."
+    },
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "cuvinte",
+      "original_value": "ai",
+      "reason_ro": "Eticheta nu dovedește tehnologia folosită sau oferită."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

@@ -1,0 +1,319 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "ce-cumpara-primaria",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:finante-publice",
+    "subiecte": [
+      "subiect:finante-publice"
+    ],
+    "teme": [
+      "subiect:achizitii-publice"
+    ],
+    "scopuri": [
+      "scop:transparenta",
+      "scop:responsabilizare"
+    ],
+    "functionalitati": [
+      "functie:cautare",
+      "functie:comparare"
+    ],
+    "formate": [
+      "format:vizualizare"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [
+      "institutie:primarie"
+    ],
+    "tip_organizatie": [],
+    "maturitate": "maturitate:operational",
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "ce-cumpara-primaria:tip_entitate_original",
+          "locator": "clasificare-input.csv:ce-cumpara-primaria:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:finante-publice",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ce-cumpara-primaria:descriere_scurta",
+          "locator": "clasificare-input.csv:ce-cumpara-primaria:descriere_scurta",
+          "excerpt": "Achizițiile primăriilor, pe localități"
+        },
+        {
+          "source_id": "ce-cumpara-primaria:descriere",
+          "locator": "clasificare-input.csv:ce-cumpara-primaria:descriere",
+          "excerpt": "Platforma permite căutarea unei localități pentru a vedea ce cumpără primăria și cât cheltuiește pentru drumuri, iluminat, hrană la școală sau salubritate. Utilizatorii pot compara cheltuielile cu cele ale unor primării de dimensiuni similare, pentru a înțelege mai bine cum sunt folosiți banii publici."
+        }
+      ],
+      "rationale_ro": "Cetățenii caută localități și compară cheltuielile primăriilor similare. Conceptul subiect:achizitii-publice are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:finante-publice",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ce-cumpara-primaria:descriere_scurta",
+          "locator": "clasificare-input.csv:ce-cumpara-primaria:descriere_scurta",
+          "excerpt": "Achizițiile primăriilor, pe localități"
+        },
+        {
+          "source_id": "ce-cumpara-primaria:descriere",
+          "locator": "clasificare-input.csv:ce-cumpara-primaria:descriere",
+          "excerpt": "Platforma permite căutarea unei localități pentru a vedea ce cumpără primăria și cât cheltuiește pentru drumuri, iluminat, hrană la școală sau salubritate. Utilizatorii pot compara cheltuielile cu cele ale unor primării de dimensiuni similare, pentru a înțelege mai bine cum sunt folosiți banii publici."
+        }
+      ],
+      "rationale_ro": "Cetățenii caută localități și compară cheltuielile primăriilor similare. Conceptul subiect:achizitii-publice are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:achizitii-publice",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ce-cumpara-primaria:descriere_scurta",
+          "locator": "clasificare-input.csv:ce-cumpara-primaria:descriere_scurta",
+          "excerpt": "Achizițiile primăriilor, pe localități"
+        },
+        {
+          "source_id": "ce-cumpara-primaria:descriere",
+          "locator": "clasificare-input.csv:ce-cumpara-primaria:descriere",
+          "excerpt": "Platforma permite căutarea unei localități pentru a vedea ce cumpără primăria și cât cheltuiește pentru drumuri, iluminat, hrană la școală sau salubritate. Utilizatorii pot compara cheltuielile cu cele ale unor primării de dimensiuni similare, pentru a înțelege mai bine cum sunt folosiți banii publici."
+        }
+      ],
+      "rationale_ro": "Cetățenii caută localități și compară cheltuielile primăriilor similare. Încadrare: Achiziții publice."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:transparenta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ce-cumpara-primaria:descriere_scurta",
+          "locator": "clasificare-input.csv:ce-cumpara-primaria:descriere_scurta",
+          "excerpt": "Achizițiile primăriilor, pe localități"
+        },
+        {
+          "source_id": "ce-cumpara-primaria:descriere",
+          "locator": "clasificare-input.csv:ce-cumpara-primaria:descriere",
+          "excerpt": "Platforma permite căutarea unei localități pentru a vedea ce cumpără primăria și cât cheltuiește pentru drumuri, iluminat, hrană la școală sau salubritate. Utilizatorii pot compara cheltuielile cu cele ale unor primării de dimensiuni similare, pentru a înțelege mai bine cum sunt folosiți banii publici."
+        }
+      ],
+      "rationale_ro": "Cetățenii caută localități și compară cheltuielile primăriilor similare. Încadrare: Transparență."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:responsabilizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ce-cumpara-primaria:descriere_scurta",
+          "locator": "clasificare-input.csv:ce-cumpara-primaria:descriere_scurta",
+          "excerpt": "Achizițiile primăriilor, pe localități"
+        },
+        {
+          "source_id": "ce-cumpara-primaria:descriere",
+          "locator": "clasificare-input.csv:ce-cumpara-primaria:descriere",
+          "excerpt": "Platforma permite căutarea unei localități pentru a vedea ce cumpără primăria și cât cheltuiește pentru drumuri, iluminat, hrană la școală sau salubritate. Utilizatorii pot compara cheltuielile cu cele ale unor primării de dimensiuni similare, pentru a înțelege mai bine cum sunt folosiți banii publici."
+        }
+      ],
+      "rationale_ro": "Cetățenii caută localități și compară cheltuielile primăriilor similare. Încadrare: Responsabilizare publică."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:cautare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ce-cumpara-primaria:descriere_scurta",
+          "locator": "clasificare-input.csv:ce-cumpara-primaria:descriere_scurta",
+          "excerpt": "Achizițiile primăriilor, pe localități"
+        },
+        {
+          "source_id": "ce-cumpara-primaria:descriere",
+          "locator": "clasificare-input.csv:ce-cumpara-primaria:descriere",
+          "excerpt": "Platforma permite căutarea unei localități pentru a vedea ce cumpără primăria și cât cheltuiește pentru drumuri, iluminat, hrană la școală sau salubritate. Utilizatorii pot compara cheltuielile cu cele ale unor primării de dimensiuni similare, pentru a înțelege mai bine cum sunt folosiți banii publici."
+        }
+      ],
+      "rationale_ro": "Cetățenii caută localități și compară cheltuielile primăriilor similare. Încadrare: Caută și consultă."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:comparare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ce-cumpara-primaria:descriere_scurta",
+          "locator": "clasificare-input.csv:ce-cumpara-primaria:descriere_scurta",
+          "excerpt": "Achizițiile primăriilor, pe localități"
+        },
+        {
+          "source_id": "ce-cumpara-primaria:descriere",
+          "locator": "clasificare-input.csv:ce-cumpara-primaria:descriere",
+          "excerpt": "Platforma permite căutarea unei localități pentru a vedea ce cumpără primăria și cât cheltuiește pentru drumuri, iluminat, hrană la școală sau salubritate. Utilizatorii pot compara cheltuielile cu cele ale unor primării de dimensiuni similare, pentru a înțelege mai bine cum sunt folosiți banii publici."
+        }
+      ],
+      "rationale_ro": "Cetățenii caută localități și compară cheltuielile primăriilor similare. Încadrare: Compară."
+    },
+    {
+      "field": "formate",
+      "value": "format:vizualizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ce-cumpara-primaria:descriere_scurta",
+          "locator": "clasificare-input.csv:ce-cumpara-primaria:descriere_scurta",
+          "excerpt": "Achizițiile primăriilor, pe localități"
+        },
+        {
+          "source_id": "ce-cumpara-primaria:descriere",
+          "locator": "clasificare-input.csv:ce-cumpara-primaria:descriere",
+          "excerpt": "Platforma permite căutarea unei localități pentru a vedea ce cumpără primăria și cât cheltuiește pentru drumuri, iluminat, hrană la școală sau salubritate. Utilizatorii pot compara cheltuielile cu cele ale unor primării de dimensiuni similare, pentru a înțelege mai bine cum sunt folosiți banii publici."
+        }
+      ],
+      "rationale_ro": "Cetățenii caută localități și compară cheltuielile primăriilor similare. Încadrare: Vizualizare de date."
+    },
+    {
+      "field": "institutii_vizate",
+      "value": "institutie:primarie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ce-cumpara-primaria:descriere_scurta",
+          "locator": "clasificare-input.csv:ce-cumpara-primaria:descriere_scurta",
+          "excerpt": "Achizițiile primăriilor, pe localități"
+        },
+        {
+          "source_id": "ce-cumpara-primaria:descriere",
+          "locator": "clasificare-input.csv:ce-cumpara-primaria:descriere",
+          "excerpt": "Platforma permite căutarea unei localități pentru a vedea ce cumpără primăria și cât cheltuiește pentru drumuri, iluminat, hrană la școală sau salubritate. Utilizatorii pot compara cheltuielile cu cele ale unor primării de dimensiuni similare, pentru a înțelege mai bine cum sunt folosiți banii publici."
+        }
+      ],
+      "rationale_ro": "Cetățenii caută localități și compară cheltuielile primăriilor similare. Încadrare: Primărie sau administrație locală."
+    },
+    {
+      "field": "maturitate",
+      "value": "maturitate:operational",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ce-cumpara-primaria:descriere_scurta",
+          "locator": "clasificare-input.csv:ce-cumpara-primaria:descriere_scurta",
+          "excerpt": "Achizițiile primăriilor, pe localități"
+        },
+        {
+          "source_id": "ce-cumpara-primaria:descriere",
+          "locator": "clasificare-input.csv:ce-cumpara-primaria:descriere",
+          "excerpt": "Platforma permite căutarea unei localități pentru a vedea ce cumpără primăria și cât cheltuiește pentru drumuri, iluminat, hrană la școală sau salubritate. Utilizatorii pot compara cheltuielile cu cele ale unor primării de dimensiuni similare, pentru a înțelege mai bine cum sunt folosiți banii publici."
+        }
+      ],
+      "rationale_ro": "Descrierea oferă un flux concret pentru utilizare obișnuită de către publicul țintă. Cetățenii caută localități și compară cheltuielile primăriilor similare. Încadrare: Operațional."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ce-cumpara-primaria:acoperire_original",
+          "locator": "clasificare-input.csv:ce-cumpara-primaria:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ce-cumpara-primaria:acoperire_original",
+          "locator": "clasificare-input.csv:ce-cumpara-primaria:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": null,
+      "object_literal": "Victor Rotariu",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "ce-cumpara-primaria:autor_original",
+          "locator": "clasificare-input.csv:ce-cumpara-primaria:autor_original",
+          "excerpt": "Victor Rotariu"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "cuvinte",
+      "original_value": "buget",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "proiecte-publice",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "primării",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "bani-publici",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

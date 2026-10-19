@@ -1,0 +1,521 @@
+[
+  {
+    "slug": "reciclare-arad",
+    "result_status": "partial",
+    "uncertainties": [
+      {
+        "field": "maturitate",
+        "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+        "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+      },
+      {
+        "field": "classification",
+        "reason_ro": "Lipsește descrierea detaliată; titlul, textul scurt și etichetele au precizie limitată.",
+        "needed_evidence_ro": "Documentație publică specifică intrării."
+      },
+      {
+        "field": "classification",
+        "reason_ro": "Titlul identifică ridicarea deșeurilor în Arad; funcțiile calendarului nu sunt documentate.",
+        "needed_evidence_ro": "Documentație primară care rezolvă ambiguitatea indicată."
+      }
+    ],
+    "conflicts": []
+  },
+  {
+    "slug": "ce-zice-legea",
+    "result_status": "partial",
+    "uncertainties": [
+      {
+        "field": "maturitate",
+        "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+        "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+      },
+      {
+        "field": "classification",
+        "reason_ro": "Documentarea publică descrie explicarea legislației; proiectele GitHub istorice au altă accentuare.",
+        "needed_evidence_ro": "Documentație primară care rezolvă ambiguitatea indicată."
+      },
+      {
+        "field": "attributions",
+        "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+        "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+      }
+    ],
+    "conflicts": []
+  },
+  {
+    "slug": "ins-gov2",
+    "result_status": "partial",
+    "uncertainties": [
+      {
+        "field": "maturitate",
+        "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+        "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+      },
+      {
+        "field": "classification",
+        "reason_ro": "Descrierea identifică statisticile INS; formatul rămâne o propunere slabă din tipul original.",
+        "needed_evidence_ro": "Documentație primară care rezolvă ambiguitatea indicată."
+      },
+      {
+        "field": "attributions",
+        "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+        "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+      }
+    ],
+    "conflicts": []
+  },
+  {
+    "slug": "demoanaf",
+    "result_status": "partial",
+    "uncertainties": [
+      {
+        "field": "maturitate",
+        "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+        "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+      },
+      {
+        "field": "classification",
+        "reason_ro": "Descrierea promite verificări fiscale; eticheta originală prototip împiedică stabilirea maturității.",
+        "needed_evidence_ro": "Documentație primară care rezolvă ambiguitatea indicată."
+      }
+    ],
+    "conflicts": [
+      {
+        "field": "maturitate",
+        "source_ids": [
+          "demoanaf:cuvinte_original",
+          "demoanaf:descriere"
+        ],
+        "reason_ro": "Eticheta originală spune prototip; descrierea oferă utilizare gratuită fără cont, fără etapă explicită.",
+        "resolution_ro": "Las maturitatea necunoscută până la clarificarea documentară."
+      }
+    ]
+  },
+  {
+    "slug": "drepturi-civile",
+    "result_status": "partial",
+    "uncertainties": [
+      {
+        "field": "maturitate",
+        "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+        "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+      },
+      {
+        "field": "classification",
+        "reason_ro": "Clasificarea privește ghidul original; redirecționarea către organizație nu schimbă identitatea ghidului.",
+        "needed_evidence_ro": "Documentație primară care rezolvă ambiguitatea indicată."
+      },
+      {
+        "field": "attributions",
+        "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+        "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+      }
+    ],
+    "conflicts": [
+      {
+        "field": "tip_entitate",
+        "source_ids": [
+          "drepturi-civile:descriere_scurta",
+          "turn2view1"
+        ],
+        "reason_ro": "Sursa editorială descrie un ghid; URL-ul redirecționează către pagina generală APADOR-CH.",
+        "resolution_ro": "Păstrez identitatea ghidului și nu îi atribui toate activitățile organizației."
+      }
+    ]
+  },
+  {
+    "slug": "europescope",
+    "result_status": "classified",
+    "uncertainties": [
+      {
+        "field": "attributions",
+        "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+        "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+      }
+    ],
+    "conflicts": [
+      {
+        "field": "nivel_acoperire",
+        "source_ids": [
+          "europescope:acoperire_original",
+          "europescope:descriere_scurta"
+        ],
+        "reason_ro": "Eticheta geografică originală nu descrie precis aplicabilitatea documentată.",
+        "resolution_ro": "Propun nivelul și ariile susținute de descriere; nu modific sursa originală."
+      }
+    ]
+  },
+  {
+    "slug": "harta-politicii",
+    "result_status": "partial",
+    "uncertainties": [
+      {
+        "field": "maturitate",
+        "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+        "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+      },
+      {
+        "field": "classification",
+        "reason_ro": "ApTI descrie instrumentul ca explicație a vieții politice; funcțiile precise nu sunt stabilite.",
+        "needed_evidence_ro": "Documentație primară care rezolvă ambiguitatea indicată."
+      }
+    ],
+    "conflicts": []
+  },
+  {
+    "slug": "harta-taierilor",
+    "result_status": "partial",
+    "uncertainties": [
+      {
+        "field": "maturitate",
+        "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+        "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+      },
+      {
+        "field": "classification",
+        "reason_ro": "Lipsește descrierea detaliată; titlul, textul scurt și etichetele au precizie limitată.",
+        "needed_evidence_ro": "Documentație publică specifică intrării."
+      },
+      {
+        "field": "classification",
+        "reason_ro": "Titlul indică o hartă a tăierilor; eticheta AI nu probează tehnologia.",
+        "needed_evidence_ro": "Documentație primară care rezolvă ambiguitatea indicată."
+      }
+    ],
+    "conflicts": []
+  },
+  {
+    "slug": "incentru",
+    "result_status": "insufficient_evidence",
+    "uncertainties": [
+      {
+        "field": "maturitate",
+        "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+        "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+      },
+      {
+        "field": "classification",
+        "reason_ro": "Lipsește descrierea detaliată; titlul, textul scurt și etichetele au precizie limitată.",
+        "needed_evidence_ro": "Documentație publică specifică intrării."
+      },
+      {
+        "field": "classification",
+        "reason_ro": "Numele și categoria civic nu stabilesc obiectul; rezultatele despre un blog nu confirmă identitatea intrării.",
+        "needed_evidence_ro": "Documentație primară care rezolvă ambiguitatea indicată."
+      }
+    ],
+    "conflicts": []
+  },
+  {
+    "slug": "jailando",
+    "result_status": "partial",
+    "uncertainties": [
+      {
+        "field": "maturitate",
+        "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+        "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+      },
+      {
+        "field": "classification",
+        "reason_ro": "Lipsește descrierea detaliată; titlul, textul scurt și etichetele au precizie limitată.",
+        "needed_evidence_ro": "Documentație publică specifică intrării."
+      },
+      {
+        "field": "classification",
+        "reason_ro": "Descrierea scurtă se referă la politicieni condamnați; nu stabilește că toate infracțiunile sunt de corupție.",
+        "needed_evidence_ro": "Documentație primară care rezolvă ambiguitatea indicată."
+      }
+    ],
+    "conflicts": []
+  },
+  {
+    "slug": "monarh-ai",
+    "result_status": "partial",
+    "uncertainties": [
+      {
+        "field": "maturitate",
+        "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+        "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+      },
+      {
+        "field": "classification",
+        "reason_ro": "Automatizarea monitorizării TikTok este explicită; numele AI nu precizează mecanismul tehnic.",
+        "needed_evidence_ro": "Documentație primară care rezolvă ambiguitatea indicată."
+      },
+      {
+        "field": "attributions",
+        "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+        "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+      }
+    ],
+    "conflicts": []
+  },
+  {
+    "slug": "multumesc",
+    "result_status": "partial",
+    "uncertainties": [
+      {
+        "field": "maturitate",
+        "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+        "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+      },
+      {
+        "field": "classification",
+        "reason_ro": "Relatarea din 2016 identifică monitorizarea prezenței deputaților; funcționarea actuală este necunoscută.",
+        "needed_evidence_ro": "Documentație primară care rezolvă ambiguitatea indicată."
+      }
+    ],
+    "conflicts": []
+  },
+  {
+    "slug": "nu-astepta-supereroi",
+    "result_status": "classified",
+    "uncertainties": [
+      {
+        "field": "maturitate",
+        "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+        "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+      },
+      {
+        "field": "classification",
+        "reason_ro": "Lipsește descrierea detaliată; titlul, textul scurt și etichetele au precizie limitată.",
+        "needed_evidence_ro": "Documentație publică specifică intrării."
+      },
+      {
+        "field": "attributions",
+        "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+        "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+      }
+    ],
+    "conflicts": [
+      {
+        "field": "nivel_acoperire",
+        "source_ids": [
+          "nu-astepta-supereroi:acoperire_original",
+          "nu-astepta-supereroi:descriere_scurta"
+        ],
+        "reason_ro": "Eticheta geografică originală nu descrie precis aplicabilitatea documentată.",
+        "resolution_ro": "Propun nivelul și ariile susținute de descriere; nu modific sursa originală."
+      }
+    ]
+  },
+  {
+    "slug": "observatori-votcorect",
+    "result_status": "partial",
+    "uncertainties": [
+      {
+        "field": "maturitate",
+        "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+        "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+      },
+      {
+        "field": "classification",
+        "reason_ro": "Pagina are manualul observatorului și formare; panoul nu confirmă fluxul operațional.",
+        "needed_evidence_ro": "Documentație primară care rezolvă ambiguitatea indicată."
+      }
+    ],
+    "conflicts": []
+  },
+  {
+    "slug": "parlament-transparent",
+    "result_status": "partial",
+    "uncertainties": [
+      {
+        "field": "maturitate",
+        "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+        "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+      },
+      {
+        "field": "classification",
+        "reason_ro": "Lipsește descrierea detaliată; titlul, textul scurt și etichetele au precizie limitată.",
+        "needed_evidence_ro": "Documentație publică specifică intrării."
+      },
+      {
+        "field": "classification",
+        "reason_ro": "Titlul și eticheta parlament susțin doar o clasificare parlamentară provizorie.",
+        "needed_evidence_ro": "Documentație primară care rezolvă ambiguitatea indicată."
+      },
+      {
+        "field": "attributions",
+        "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+        "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+      }
+    ],
+    "conflicts": []
+  },
+  {
+    "slug": "testvot",
+    "result_status": "partial",
+    "uncertainties": [
+      {
+        "field": "maturitate",
+        "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+        "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+      },
+      {
+        "field": "classification",
+        "reason_ro": "Lipsește descrierea detaliată; titlul, textul scurt și etichetele au precizie limitată.",
+        "needed_evidence_ro": "Documentație publică specifică intrării."
+      },
+      {
+        "field": "classification",
+        "reason_ro": "Testul de afinitate compară poziții politice; pagina fără text nu probează alte funcții.",
+        "needed_evidence_ro": "Documentație primară care rezolvă ambiguitatea indicată."
+      },
+      {
+        "field": "attributions",
+        "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+        "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+      }
+    ],
+    "conflicts": []
+  },
+  {
+    "slug": "transparenta-eu",
+    "result_status": "partial",
+    "uncertainties": [
+      {
+        "field": "maturitate",
+        "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+        "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+      },
+      {
+        "field": "classification",
+        "reason_ro": "Descrierea menționează AI ca obiectiv; nu documentează o funcție concretă bazată pe AI.",
+        "needed_evidence_ro": "Documentație primară care rezolvă ambiguitatea indicată."
+      },
+      {
+        "field": "attributions",
+        "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+        "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+      }
+    ],
+    "conflicts": []
+  },
+  {
+    "slug": "votdiaspora",
+    "result_status": "classified",
+    "uncertainties": [
+      {
+        "field": "maturitate",
+        "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+        "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+      },
+      {
+        "field": "attributions",
+        "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+        "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+      },
+      {
+        "field": "arii_acoperite",
+        "reason_ro": "Lista țărilor cu secții de votare nu este furnizată în dovezile extrase.",
+        "needed_evidence_ro": "Lista explicită a secțiilor și a țărilor pentru scrutinul relevant."
+      }
+    ],
+    "conflicts": [
+      {
+        "field": "nivel_acoperire",
+        "source_ids": [
+          "votdiaspora:acoperire_original",
+          "turn6view0"
+        ],
+        "reason_ro": "Eticheta geografică originală nu descrie precis aplicabilitatea documentată.",
+        "resolution_ro": "Propun nivelul și ariile susținute de descriere; nu modific sursa originală."
+      }
+    ]
+  },
+  {
+    "slug": "ro-api-hub",
+    "result_status": "partial",
+    "uncertainties": [
+      {
+        "field": "maturitate",
+        "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+        "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+      },
+      {
+        "field": "classification",
+        "reason_ro": "Catalogul documentează API-uri ale altor servicii; nu dovedește un API propriu sau un server MCP.",
+        "needed_evidence_ro": "Documentație primară care rezolvă ambiguitatea indicată."
+      },
+      {
+        "field": "attributions",
+        "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+        "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+      }
+    ],
+    "conflicts": []
+  },
+  {
+    "slug": "piratii-digitali-ai-kremlinului",
+    "result_status": "classified",
+    "uncertainties": [],
+    "conflicts": [
+      {
+        "field": "nivel_acoperire",
+        "source_ids": [
+          "piratii-digitali-ai-kremlinului:acoperire_original",
+          "piratii-digitali-ai-kremlinului:descriere_scurta"
+        ],
+        "reason_ro": "Eticheta geografică originală nu descrie precis aplicabilitatea documentată.",
+        "resolution_ro": "Propun nivelul și ariile susținute de descriere; nu modific sursa originală."
+      }
+    ]
+  },
+  {
+    "slug": "semnal-razboiul-hibrid",
+    "result_status": "classified",
+    "uncertainties": [
+      {
+        "field": "maturitate",
+        "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+        "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+      }
+    ],
+    "conflicts": [
+      {
+        "field": "nivel_acoperire",
+        "source_ids": [
+          "semnal-razboiul-hibrid:acoperire_original",
+          "semnal-razboiul-hibrid:descriere_scurta"
+        ],
+        "reason_ro": "Eticheta geografică originală nu descrie precis aplicabilitatea documentată.",
+        "resolution_ro": "Propun nivelul și ariile susținute de descriere; nu modific sursa originală."
+      }
+    ]
+  },
+  {
+    "slug": "proiecte-geo-spatial",
+    "result_status": "partial",
+    "uncertainties": [
+      {
+        "field": "classification",
+        "reason_ro": "Pagina listează inițiative GIS ale comunității; colecția nu este automat hartă sau set de date deschis.",
+        "needed_evidence_ro": "Documentație primară care rezolvă ambiguitatea indicată."
+      },
+      {
+        "field": "attributions",
+        "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+        "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+      }
+    ],
+    "conflicts": []
+  },
+  {
+    "slug": "crpe",
+    "result_status": "classified",
+    "uncertainties": [],
+    "conflicts": [
+      {
+        "field": "nivel_acoperire",
+        "source_ids": [
+          "crpe:acoperire_original",
+          "crpe:descriere_scurta"
+        ],
+        "reason_ro": "Eticheta geografică originală nu descrie precis aplicabilitatea documentată.",
+        "resolution_ro": "Propun nivelul și ariile susținute de descriere; nu modific sursa originală."
+      }
+    ]
+  }
+]

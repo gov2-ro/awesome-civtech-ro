@@ -1,0 +1,281 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "piratii-digitali-ai-kremlinului",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "publicatie",
+    "subiect_principal": "subiect:media-informare",
+    "subiecte": [
+      "subiect:media-informare",
+      "subiect:societate-digitala"
+    ],
+    "teme": [
+      "subiect:jurnalism",
+      "subiect:dezinformare",
+      "subiect:date-personale"
+    ],
+    "scopuri": [
+      "scop:informare",
+      "scop:responsabilizare"
+    ],
+    "functionalitati": [],
+    "formate": [
+      "format:articol"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "international",
+    "arii_acoperite": []
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "publicatie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "piratii-digitali-ai-kremlinului:descriere_scurta",
+          "locator": "clasificare-input.csv:piratii-digitali-ai-kremlinului:descriere_scurta",
+          "excerpt": "Cum fură pixelii rusești datele românilor și finanțează conspirațiile și extremismul"
+        },
+        {
+          "source_id": "piratii-digitali-ai-kremlinului:descriere",
+          "locator": "clasificare-input.csv:piratii-digitali-ai-kremlinului:descriere",
+          "excerpt": "Timp de cinci luni am urmărit peste o sută de mii de reclame difuzate pe 131 de site-uri din Europa de Est. După ce am decodat mecanismele ascunse ale reclamelor, am găsit o rețea de companii rusești. Investigația arată ce date sunt colectate despre români, cine ajunge să le primească și de ce reclamele afișate pe site-uri cu conținut conspiraționist și extremist sunt printre cele mai valoroase pentru această rețea."
+        }
+      ],
+      "rationale_ro": "Intrarea este un material editorial individual, conform descrierii și paginii selectate."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:media-informare",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "piratii-digitali-ai-kremlinului:descriere_scurta",
+          "locator": "clasificare-input.csv:piratii-digitali-ai-kremlinului:descriere_scurta",
+          "excerpt": "Cum fură pixelii rusești datele românilor și finanțează conspirațiile și extremismul"
+        },
+        {
+          "source_id": "piratii-digitali-ai-kremlinului:descriere",
+          "locator": "clasificare-input.csv:piratii-digitali-ai-kremlinului:descriere",
+          "excerpt": "Timp de cinci luni am urmărit peste o sută de mii de reclame difuzate pe 131 de site-uri din Europa de Est. După ce am decodat mecanismele ascunse ale reclamelor, am găsit o rețea de companii rusești. Investigația arată ce date sunt colectate despre români, cine ajunge să le primească și de ce reclamele afișate pe site-uri cu conținut conspiraționist și extremist sunt printre cele mai valoroase pentru această rețea."
+        }
+      ],
+      "rationale_ro": "Investigația individuală descrie reclamele și datele personale în România și Europa de Est. Conceptul subiect:jurnalism are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:media-informare",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "piratii-digitali-ai-kremlinului:descriere_scurta",
+          "locator": "clasificare-input.csv:piratii-digitali-ai-kremlinului:descriere_scurta",
+          "excerpt": "Cum fură pixelii rusești datele românilor și finanțează conspirațiile și extremismul"
+        },
+        {
+          "source_id": "piratii-digitali-ai-kremlinului:descriere",
+          "locator": "clasificare-input.csv:piratii-digitali-ai-kremlinului:descriere",
+          "excerpt": "Timp de cinci luni am urmărit peste o sută de mii de reclame difuzate pe 131 de site-uri din Europa de Est. După ce am decodat mecanismele ascunse ale reclamelor, am găsit o rețea de companii rusești. Investigația arată ce date sunt colectate despre români, cine ajunge să le primească și de ce reclamele afișate pe site-uri cu conținut conspiraționist și extremist sunt printre cele mai valoroase pentru această rețea."
+        }
+      ],
+      "rationale_ro": "Investigația individuală descrie reclamele și datele personale în România și Europa de Est. Conceptul subiect:jurnalism are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:societate-digitala",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "piratii-digitali-ai-kremlinului:descriere_scurta",
+          "locator": "clasificare-input.csv:piratii-digitali-ai-kremlinului:descriere_scurta",
+          "excerpt": "Cum fură pixelii rusești datele românilor și finanțează conspirațiile și extremismul"
+        },
+        {
+          "source_id": "piratii-digitali-ai-kremlinului:descriere",
+          "locator": "clasificare-input.csv:piratii-digitali-ai-kremlinului:descriere",
+          "excerpt": "Timp de cinci luni am urmărit peste o sută de mii de reclame difuzate pe 131 de site-uri din Europa de Est. După ce am decodat mecanismele ascunse ale reclamelor, am găsit o rețea de companii rusești. Investigația arată ce date sunt colectate despre români, cine ajunge să le primească și de ce reclamele afișate pe site-uri cu conținut conspiraționist și extremist sunt printre cele mai valoroase pentru această rețea."
+        }
+      ],
+      "rationale_ro": "Investigația individuală descrie reclamele și datele personale în România și Europa de Est. Conceptul subiect:date-personale are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:jurnalism",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "piratii-digitali-ai-kremlinului:descriere_scurta",
+          "locator": "clasificare-input.csv:piratii-digitali-ai-kremlinului:descriere_scurta",
+          "excerpt": "Cum fură pixelii rusești datele românilor și finanțează conspirațiile și extremismul"
+        },
+        {
+          "source_id": "piratii-digitali-ai-kremlinului:descriere",
+          "locator": "clasificare-input.csv:piratii-digitali-ai-kremlinului:descriere",
+          "excerpt": "Timp de cinci luni am urmărit peste o sută de mii de reclame difuzate pe 131 de site-uri din Europa de Est. După ce am decodat mecanismele ascunse ale reclamelor, am găsit o rețea de companii rusești. Investigația arată ce date sunt colectate despre români, cine ajunge să le primească și de ce reclamele afișate pe site-uri cu conținut conspiraționist și extremist sunt printre cele mai valoroase pentru această rețea."
+        }
+      ],
+      "rationale_ro": "Investigația individuală descrie reclamele și datele personale în România și Europa de Est. Încadrare: Jurnalism."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:dezinformare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "piratii-digitali-ai-kremlinului:descriere_scurta",
+          "locator": "clasificare-input.csv:piratii-digitali-ai-kremlinului:descriere_scurta",
+          "excerpt": "Cum fură pixelii rusești datele românilor și finanțează conspirațiile și extremismul"
+        },
+        {
+          "source_id": "piratii-digitali-ai-kremlinului:descriere",
+          "locator": "clasificare-input.csv:piratii-digitali-ai-kremlinului:descriere",
+          "excerpt": "Timp de cinci luni am urmărit peste o sută de mii de reclame difuzate pe 131 de site-uri din Europa de Est. După ce am decodat mecanismele ascunse ale reclamelor, am găsit o rețea de companii rusești. Investigația arată ce date sunt colectate despre români, cine ajunge să le primească și de ce reclamele afișate pe site-uri cu conținut conspiraționist și extremist sunt printre cele mai valoroase pentru această rețea."
+        }
+      ],
+      "rationale_ro": "Investigația individuală descrie reclamele și datele personale în România și Europa de Est. Încadrare: Dezinformare."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:date-personale",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "piratii-digitali-ai-kremlinului:descriere_scurta",
+          "locator": "clasificare-input.csv:piratii-digitali-ai-kremlinului:descriere_scurta",
+          "excerpt": "Cum fură pixelii rusești datele românilor și finanțează conspirațiile și extremismul"
+        },
+        {
+          "source_id": "piratii-digitali-ai-kremlinului:descriere",
+          "locator": "clasificare-input.csv:piratii-digitali-ai-kremlinului:descriere",
+          "excerpt": "Timp de cinci luni am urmărit peste o sută de mii de reclame difuzate pe 131 de site-uri din Europa de Est. După ce am decodat mecanismele ascunse ale reclamelor, am găsit o rețea de companii rusești. Investigația arată ce date sunt colectate despre români, cine ajunge să le primească și de ce reclamele afișate pe site-uri cu conținut conspiraționist și extremist sunt printre cele mai valoroase pentru această rețea."
+        }
+      ],
+      "rationale_ro": "Investigația individuală descrie reclamele și datele personale în România și Europa de Est. Încadrare: Date personale."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "piratii-digitali-ai-kremlinului:descriere_scurta",
+          "locator": "clasificare-input.csv:piratii-digitali-ai-kremlinului:descriere_scurta",
+          "excerpt": "Cum fură pixelii rusești datele românilor și finanțează conspirațiile și extremismul"
+        },
+        {
+          "source_id": "piratii-digitali-ai-kremlinului:descriere",
+          "locator": "clasificare-input.csv:piratii-digitali-ai-kremlinului:descriere",
+          "excerpt": "Timp de cinci luni am urmărit peste o sută de mii de reclame difuzate pe 131 de site-uri din Europa de Est. După ce am decodat mecanismele ascunse ale reclamelor, am găsit o rețea de companii rusești. Investigația arată ce date sunt colectate despre români, cine ajunge să le primească și de ce reclamele afișate pe site-uri cu conținut conspiraționist și extremist sunt printre cele mai valoroase pentru această rețea."
+        }
+      ],
+      "rationale_ro": "Investigația individuală descrie reclamele și datele personale în România și Europa de Est. Încadrare: Informare și înțelegere."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:responsabilizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "piratii-digitali-ai-kremlinului:descriere_scurta",
+          "locator": "clasificare-input.csv:piratii-digitali-ai-kremlinului:descriere_scurta",
+          "excerpt": "Cum fură pixelii rusești datele românilor și finanțează conspirațiile și extremismul"
+        },
+        {
+          "source_id": "piratii-digitali-ai-kremlinului:descriere",
+          "locator": "clasificare-input.csv:piratii-digitali-ai-kremlinului:descriere",
+          "excerpt": "Timp de cinci luni am urmărit peste o sută de mii de reclame difuzate pe 131 de site-uri din Europa de Est. După ce am decodat mecanismele ascunse ale reclamelor, am găsit o rețea de companii rusești. Investigația arată ce date sunt colectate despre români, cine ajunge să le primească și de ce reclamele afișate pe site-uri cu conținut conspiraționist și extremist sunt printre cele mai valoroase pentru această rețea."
+        }
+      ],
+      "rationale_ro": "Investigația individuală descrie reclamele și datele personale în România și Europa de Est. Încadrare: Responsabilizare publică."
+    },
+    {
+      "field": "formate",
+      "value": "format:articol",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "piratii-digitali-ai-kremlinului:descriere_scurta",
+          "locator": "clasificare-input.csv:piratii-digitali-ai-kremlinului:descriere_scurta",
+          "excerpt": "Cum fură pixelii rusești datele românilor și finanțează conspirațiile și extremismul"
+        },
+        {
+          "source_id": "piratii-digitali-ai-kremlinului:descriere",
+          "locator": "clasificare-input.csv:piratii-digitali-ai-kremlinului:descriere",
+          "excerpt": "Timp de cinci luni am urmărit peste o sută de mii de reclame difuzate pe 131 de site-uri din Europa de Est. După ce am decodat mecanismele ascunse ale reclamelor, am găsit o rețea de companii rusești. Investigația arată ce date sunt colectate despre români, cine ajunge să le primească și de ce reclamele afișate pe site-uri cu conținut conspiraționist și extremist sunt printre cele mai valoroase pentru această rețea."
+        }
+      ],
+      "rationale_ro": "Investigația individuală descrie reclamele și datele personale în România și Europa de Est. Încadrare: Articol."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "international",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "piratii-digitali-ai-kremlinului:descriere_scurta",
+          "locator": "clasificare-input.csv:piratii-digitali-ai-kremlinului:descriere_scurta",
+          "excerpt": "Cum fură pixelii rusești datele românilor și finanțează conspirațiile și extremismul"
+        },
+        {
+          "source_id": "piratii-digitali-ai-kremlinului:descriere",
+          "locator": "clasificare-input.csv:piratii-digitali-ai-kremlinului:descriere",
+          "excerpt": "Timp de cinci luni am urmărit peste o sută de mii de reclame difuzate pe 131 de site-uri din Europa de Est. După ce am decodat mecanismele ascunse ale reclamelor, am găsit o rețea de companii rusești. Investigația arată ce date sunt colectate despre români, cine ajunge să le primească și de ce reclamele afișate pe site-uri cu conținut conspiraționist și extremist sunt printre cele mai valoroase pentru această rețea."
+        }
+      ],
+      "rationale_ro": "Aplicabilitatea rezultă din descrierea specifică intrării, nu din adresa editorului. Investigația individuală descrie reclamele și datele personale în România și Europa de Est."
+    }
+  ],
+  "attributions": [],
+  "uncertainties": [],
+  "conflicts": [
+    {
+      "field": "nivel_acoperire",
+      "source_ids": [
+        "piratii-digitali-ai-kremlinului:acoperire_original",
+        "piratii-digitali-ai-kremlinului:descriere_scurta"
+      ],
+      "reason_ro": "Eticheta geografică originală nu descrie precis aplicabilitatea documentată.",
+      "resolution_ro": "Propun nivelul și ariile susținute de descriere; nu modific sursa originală."
+    }
+  ],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "monitorizare",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": [
+    {
+      "label_ro": "Europa de Est",
+      "area_type": "regiune",
+      "parent_existing_ids": [
+        "regiune:Europa"
+      ],
+      "reason_ro": "Aria este menționată explicit, dar nu are un identificator în lista înghețată.",
+      "evidence": [
+        {
+          "source_id": "piratii-digitali-ai-kremlinului:descriere",
+          "locator": "clasificare-input.csv:piratii-digitali-ai-kremlinului:descriere",
+          "excerpt": "Timp de cinci luni am urmărit peste o sută de mii de reclame difuzate pe 131 de site-uri din Europa de Est. După ce am decodat mecanismele ascunse ale reclamelor, am găsit o rețea de companii rusești. Investigația arată ce date sunt colectate despre români, cine ajunge să le primească și de ce reclamele afișate pe site-uri cu conținut conspiraționist și extremist sunt printre cele mai valoroase pentru această rețea."
+        }
+      ]
+    }
+  ]
+}

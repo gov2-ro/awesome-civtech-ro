@@ -1,0 +1,258 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "companii-publice-ro",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:finante-publice",
+    "subiecte": [
+      "subiect:finante-publice"
+    ],
+    "teme": [
+      "subiect:companii-de-stat"
+    ],
+    "scopuri": [
+      "scop:transparenta",
+      "scop:informare"
+    ],
+    "functionalitati": [
+      "functie:cautare",
+      "functie:comparare",
+      "functie:analiza"
+    ],
+    "formate": [
+      "format:registru",
+      "format:harta",
+      "format:vizualizare"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "companii-publice-ro:tip_entitate_original",
+          "locator": "clasificare-input.csv:companii-publice-ro:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:finante-publice",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn0view5",
+          "locator": "https://cosettechichirau.github.io/companiipublice/#turn0view5",
+          "excerpt": "L33: O societate sau regie autonomă aflată sub controlul (majoritar sau integral) al statului ori al unei autorități locale, monitorizată conform O.U.G. nr. 109/2011 privind guvernanța corporativă a întreprinderilor publice. Lista de bază provine din monitorizarea Ministerului Finanțelor, conform O.M.F.P. nr. 2873/2016."
+        }
+      ],
+      "rationale_ro": "Pagina explică întreprinderile publice și afișează căutarea și comparațiile financiare. Conceptul subiect:companii-de-stat are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:finante-publice",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn0view5",
+          "locator": "https://cosettechichirau.github.io/companiipublice/#turn0view5",
+          "excerpt": "L33: O societate sau regie autonomă aflată sub controlul (majoritar sau integral) al statului ori al unei autorități locale, monitorizată conform O.U.G. nr. 109/2011 privind guvernanța corporativă a întreprinderilor publice. Lista de bază provine din monitorizarea Ministerului Finanțelor, conform O.M.F.P. nr. 2873/2016."
+        }
+      ],
+      "rationale_ro": "Pagina explică întreprinderile publice și afișează căutarea și comparațiile financiare. Conceptul subiect:companii-de-stat are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:companii-de-stat",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn0view5",
+          "locator": "https://cosettechichirau.github.io/companiipublice/#turn0view5",
+          "excerpt": "L33: O societate sau regie autonomă aflată sub controlul (majoritar sau integral) al statului ori al unei autorități locale, monitorizată conform O.U.G. nr. 109/2011 privind guvernanța corporativă a întreprinderilor publice. Lista de bază provine din monitorizarea Ministerului Finanțelor, conform O.M.F.P. nr. 2873/2016."
+        }
+      ],
+      "rationale_ro": "Pagina explică întreprinderile publice și afișează căutarea și comparațiile financiare. Încadrare: Companii de stat."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:transparenta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn0view5",
+          "locator": "https://cosettechichirau.github.io/companiipublice/#turn0view5",
+          "excerpt": "L33: O societate sau regie autonomă aflată sub controlul (majoritar sau integral) al statului ori al unei autorități locale, monitorizată conform O.U.G. nr. 109/2011 privind guvernanța corporativă a întreprinderilor publice. Lista de bază provine din monitorizarea Ministerului Finanțelor, conform O.M.F.P. nr. 2873/2016."
+        }
+      ],
+      "rationale_ro": "Pagina explică întreprinderile publice și afișează căutarea și comparațiile financiare. Încadrare: Transparență."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn0view5",
+          "locator": "https://cosettechichirau.github.io/companiipublice/#turn0view5",
+          "excerpt": "L33: O societate sau regie autonomă aflată sub controlul (majoritar sau integral) al statului ori al unei autorități locale, monitorizată conform O.U.G. nr. 109/2011 privind guvernanța corporativă a întreprinderilor publice. Lista de bază provine din monitorizarea Ministerului Finanțelor, conform O.M.F.P. nr. 2873/2016."
+        }
+      ],
+      "rationale_ro": "Pagina explică întreprinderile publice și afișează căutarea și comparațiile financiare. Încadrare: Informare și înțelegere."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:cautare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn0view5",
+          "locator": "https://cosettechichirau.github.io/companiipublice/#turn0view5",
+          "excerpt": "L33: O societate sau regie autonomă aflată sub controlul (majoritar sau integral) al statului ori al unei autorități locale, monitorizată conform O.U.G. nr. 109/2011 privind guvernanța corporativă a întreprinderilor publice. Lista de bază provine din monitorizarea Ministerului Finanțelor, conform O.M.F.P. nr. 2873/2016."
+        }
+      ],
+      "rationale_ro": "Pagina explică întreprinderile publice și afișează căutarea și comparațiile financiare. Încadrare: Caută și consultă."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:comparare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn0view5",
+          "locator": "https://cosettechichirau.github.io/companiipublice/#turn0view5",
+          "excerpt": "L33: O societate sau regie autonomă aflată sub controlul (majoritar sau integral) al statului ori al unei autorități locale, monitorizată conform O.U.G. nr. 109/2011 privind guvernanța corporativă a întreprinderilor publice. Lista de bază provine din monitorizarea Ministerului Finanțelor, conform O.M.F.P. nr. 2873/2016."
+        }
+      ],
+      "rationale_ro": "Pagina explică întreprinderile publice și afișează căutarea și comparațiile financiare. Încadrare: Compară."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:analiza",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn0view5",
+          "locator": "https://cosettechichirau.github.io/companiipublice/#turn0view5",
+          "excerpt": "L33: O societate sau regie autonomă aflată sub controlul (majoritar sau integral) al statului ori al unei autorități locale, monitorizată conform O.U.G. nr. 109/2011 privind guvernanța corporativă a întreprinderilor publice. Lista de bază provine din monitorizarea Ministerului Finanțelor, conform O.M.F.P. nr. 2873/2016."
+        }
+      ],
+      "rationale_ro": "Pagina explică întreprinderile publice și afișează căutarea și comparațiile financiare. Încadrare: Analizează date."
+    },
+    {
+      "field": "formate",
+      "value": "format:registru",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn0view5",
+          "locator": "https://cosettechichirau.github.io/companiipublice/#turn0view5",
+          "excerpt": "L33: O societate sau regie autonomă aflată sub controlul (majoritar sau integral) al statului ori al unei autorități locale, monitorizată conform O.U.G. nr. 109/2011 privind guvernanța corporativă a întreprinderilor publice. Lista de bază provine din monitorizarea Ministerului Finanțelor, conform O.M.F.P. nr. 2873/2016."
+        }
+      ],
+      "rationale_ro": "Pagina explică întreprinderile publice și afișează căutarea și comparațiile financiare. Încadrare: Registru sau bază de date."
+    },
+    {
+      "field": "formate",
+      "value": "format:harta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn0view5",
+          "locator": "https://cosettechichirau.github.io/companiipublice/#turn0view5",
+          "excerpt": "L33: O societate sau regie autonomă aflată sub controlul (majoritar sau integral) al statului ori al unei autorități locale, monitorizată conform O.U.G. nr. 109/2011 privind guvernanța corporativă a întreprinderilor publice. Lista de bază provine din monitorizarea Ministerului Finanțelor, conform O.M.F.P. nr. 2873/2016."
+        }
+      ],
+      "rationale_ro": "Pagina explică întreprinderile publice și afișează căutarea și comparațiile financiare. Încadrare: Hartă."
+    },
+    {
+      "field": "formate",
+      "value": "format:vizualizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn0view5",
+          "locator": "https://cosettechichirau.github.io/companiipublice/#turn0view5",
+          "excerpt": "L33: O societate sau regie autonomă aflată sub controlul (majoritar sau integral) al statului ori al unei autorități locale, monitorizată conform O.U.G. nr. 109/2011 privind guvernanța corporativă a întreprinderilor publice. Lista de bază provine din monitorizarea Ministerului Finanțelor, conform O.M.F.P. nr. 2873/2016."
+        }
+      ],
+      "rationale_ro": "Pagina explică întreprinderile publice și afișează căutarea și comparațiile financiare. Încadrare: Vizualizare de date."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "companii-publice-ro:acoperire_original",
+          "locator": "clasificare-input.csv:companii-publice-ro:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "companii-publice-ro:acoperire_original",
+          "locator": "clasificare-input.csv:companii-publice-ro:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "baza-de-date",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "bani-publici",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

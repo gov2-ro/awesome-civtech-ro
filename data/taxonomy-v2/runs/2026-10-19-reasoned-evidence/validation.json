@@ -1,0 +1,28 @@
+{
+  "checked_at": "2026-10-19T15:07:23.794664+00:00",
+  "entries": 122,
+  "schema_valid": 122,
+  "errors": 0,
+  "error_details": [],
+  "assignments": 1439,
+  "citations": 2363,
+  "original_attributions_preserved": 86,
+  "unresolved_identity_literals": 66,
+  "typed_attribution_roles": 0,
+  "result_status": {
+    "classified": 105,
+    "partial": 16,
+    "insufficient_evidence": 1
+  },
+  "maturity": {
+    "unknown": 92,
+    "maturitate:operational": 29,
+    "maturitate:prototip": 1
+  },
+  "technology": {
+    "tehnologie:ai": 5,
+    "tehnologie:aplicatie-mobila": 1
+  },
+  "concept_proposals": 7,
+  "area_proposals": 2
+}

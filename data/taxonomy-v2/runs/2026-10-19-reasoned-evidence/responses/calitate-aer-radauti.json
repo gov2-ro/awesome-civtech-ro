@@ -1,0 +1,278 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "calitate-aer-radauti",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:mediu-energie",
+    "subiecte": [
+      "subiect:mediu-energie"
+    ],
+    "teme": [
+      "subiect:calitate-aer"
+    ],
+    "scopuri": [
+      "scop:informare",
+      "scop:responsabilizare"
+    ],
+    "functionalitati": [
+      "functie:monitorizare"
+    ],
+    "formate": [
+      "format:vizualizare"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": "maturitate:operational",
+    "nivel_acoperire": "local",
+    "arii_acoperite": [
+      "localitate:radauti"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "calitate-aer-radauti:tip_entitate_original",
+          "locator": "clasificare-input.csv:calitate-aer-radauti:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:mediu-energie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "calitate-aer-radauti:descriere_scurta",
+          "locator": "clasificare-input.csv:calitate-aer-radauti:descriere_scurta",
+          "excerpt": "Rețea proprie de senzori pentru calitatea aerului"
+        },
+        {
+          "source_id": "calitate-aer-radauti:descriere",
+          "locator": "clasificare-input.csv:calitate-aer-radauti:descriere",
+          "excerpt": "Proiect al Asociației Rădăuțiul Civic care monitorizează calitatea aerului printr-o rețea proprie de senzori instalați în oraș. Datele sunt disponibile public, în timp real și sub formă de grafice, pentru a ajuta cetățenii să înțeleagă nivelul poluării, să identifice posibile probleme și să ceară măsuri autorităților locale."
+        }
+      ],
+      "rationale_ro": "O rețea instalată în Rădăuți publică măsurători în timp real și grafice. Conceptul subiect:calitate-aer are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:mediu-energie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "calitate-aer-radauti:descriere_scurta",
+          "locator": "clasificare-input.csv:calitate-aer-radauti:descriere_scurta",
+          "excerpt": "Rețea proprie de senzori pentru calitatea aerului"
+        },
+        {
+          "source_id": "calitate-aer-radauti:descriere",
+          "locator": "clasificare-input.csv:calitate-aer-radauti:descriere",
+          "excerpt": "Proiect al Asociației Rădăuțiul Civic care monitorizează calitatea aerului printr-o rețea proprie de senzori instalați în oraș. Datele sunt disponibile public, în timp real și sub formă de grafice, pentru a ajuta cetățenii să înțeleagă nivelul poluării, să identifice posibile probleme și să ceară măsuri autorităților locale."
+        }
+      ],
+      "rationale_ro": "O rețea instalată în Rădăuți publică măsurători în timp real și grafice. Conceptul subiect:calitate-aer are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:calitate-aer",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "calitate-aer-radauti:descriere_scurta",
+          "locator": "clasificare-input.csv:calitate-aer-radauti:descriere_scurta",
+          "excerpt": "Rețea proprie de senzori pentru calitatea aerului"
+        },
+        {
+          "source_id": "calitate-aer-radauti:descriere",
+          "locator": "clasificare-input.csv:calitate-aer-radauti:descriere",
+          "excerpt": "Proiect al Asociației Rădăuțiul Civic care monitorizează calitatea aerului printr-o rețea proprie de senzori instalați în oraș. Datele sunt disponibile public, în timp real și sub formă de grafice, pentru a ajuta cetățenii să înțeleagă nivelul poluării, să identifice posibile probleme și să ceară măsuri autorităților locale."
+        }
+      ],
+      "rationale_ro": "O rețea instalată în Rădăuți publică măsurători în timp real și grafice. Încadrare: Calitatea aerului."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "calitate-aer-radauti:descriere_scurta",
+          "locator": "clasificare-input.csv:calitate-aer-radauti:descriere_scurta",
+          "excerpt": "Rețea proprie de senzori pentru calitatea aerului"
+        },
+        {
+          "source_id": "calitate-aer-radauti:descriere",
+          "locator": "clasificare-input.csv:calitate-aer-radauti:descriere",
+          "excerpt": "Proiect al Asociației Rădăuțiul Civic care monitorizează calitatea aerului printr-o rețea proprie de senzori instalați în oraș. Datele sunt disponibile public, în timp real și sub formă de grafice, pentru a ajuta cetățenii să înțeleagă nivelul poluării, să identifice posibile probleme și să ceară măsuri autorităților locale."
+        }
+      ],
+      "rationale_ro": "O rețea instalată în Rădăuți publică măsurători în timp real și grafice. Încadrare: Informare și înțelegere."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:responsabilizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "calitate-aer-radauti:descriere_scurta",
+          "locator": "clasificare-input.csv:calitate-aer-radauti:descriere_scurta",
+          "excerpt": "Rețea proprie de senzori pentru calitatea aerului"
+        },
+        {
+          "source_id": "calitate-aer-radauti:descriere",
+          "locator": "clasificare-input.csv:calitate-aer-radauti:descriere",
+          "excerpt": "Proiect al Asociației Rădăuțiul Civic care monitorizează calitatea aerului printr-o rețea proprie de senzori instalați în oraș. Datele sunt disponibile public, în timp real și sub formă de grafice, pentru a ajuta cetățenii să înțeleagă nivelul poluării, să identifice posibile probleme și să ceară măsuri autorităților locale."
+        }
+      ],
+      "rationale_ro": "O rețea instalată în Rădăuți publică măsurători în timp real și grafice. Încadrare: Responsabilizare publică."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:monitorizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "calitate-aer-radauti:descriere_scurta",
+          "locator": "clasificare-input.csv:calitate-aer-radauti:descriere_scurta",
+          "excerpt": "Rețea proprie de senzori pentru calitatea aerului"
+        },
+        {
+          "source_id": "calitate-aer-radauti:descriere",
+          "locator": "clasificare-input.csv:calitate-aer-radauti:descriere",
+          "excerpt": "Proiect al Asociației Rădăuțiul Civic care monitorizează calitatea aerului printr-o rețea proprie de senzori instalați în oraș. Datele sunt disponibile public, în timp real și sub formă de grafice, pentru a ajuta cetățenii să înțeleagă nivelul poluării, să identifice posibile probleme și să ceară măsuri autorităților locale."
+        }
+      ],
+      "rationale_ro": "O rețea instalată în Rădăuți publică măsurători în timp real și grafice. Încadrare: Monitorizează."
+    },
+    {
+      "field": "formate",
+      "value": "format:vizualizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "calitate-aer-radauti:descriere_scurta",
+          "locator": "clasificare-input.csv:calitate-aer-radauti:descriere_scurta",
+          "excerpt": "Rețea proprie de senzori pentru calitatea aerului"
+        },
+        {
+          "source_id": "calitate-aer-radauti:descriere",
+          "locator": "clasificare-input.csv:calitate-aer-radauti:descriere",
+          "excerpt": "Proiect al Asociației Rădăuțiul Civic care monitorizează calitatea aerului printr-o rețea proprie de senzori instalați în oraș. Datele sunt disponibile public, în timp real și sub formă de grafice, pentru a ajuta cetățenii să înțeleagă nivelul poluării, să identifice posibile probleme și să ceară măsuri autorităților locale."
+        }
+      ],
+      "rationale_ro": "O rețea instalată în Rădăuți publică măsurători în timp real și grafice. Încadrare: Vizualizare de date."
+    },
+    {
+      "field": "maturitate",
+      "value": "maturitate:operational",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "calitate-aer-radauti:descriere_scurta",
+          "locator": "clasificare-input.csv:calitate-aer-radauti:descriere_scurta",
+          "excerpt": "Rețea proprie de senzori pentru calitatea aerului"
+        },
+        {
+          "source_id": "calitate-aer-radauti:descriere",
+          "locator": "clasificare-input.csv:calitate-aer-radauti:descriere",
+          "excerpt": "Proiect al Asociației Rădăuțiul Civic care monitorizează calitatea aerului printr-o rețea proprie de senzori instalați în oraș. Datele sunt disponibile public, în timp real și sub formă de grafice, pentru a ajuta cetățenii să înțeleagă nivelul poluării, să identifice posibile probleme și să ceară măsuri autorităților locale."
+        }
+      ],
+      "rationale_ro": "Descrierea oferă un flux concret pentru utilizare obișnuită de către publicul țintă. O rețea instalată în Rădăuți publică măsurători în timp real și grafice. Încadrare: Operațional."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "local",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "calitate-aer-radauti:acoperire_original",
+          "locator": "clasificare-input.csv:calitate-aer-radauti:acoperire_original",
+          "excerpt": "local"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "localitate:radauti",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "calitate-aer-radauti:acoperire_original",
+          "locator": "clasificare-input.csv:calitate-aer-radauti:acoperire_original",
+          "excerpt": "local"
+        },
+        {
+          "source_id": "calitate-aer-radauti:oras_original",
+          "locator": "clasificare-input.csv:calitate-aer-radauti:oras_original",
+          "excerpt": "Rădăuți"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": "radautiul-civic",
+      "object_literal": null,
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "calitate-aer-radauti:autor_original",
+          "locator": "clasificare-input.csv:calitate-aer-radauti:autor_original",
+          "excerpt": "radautiul-civic"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "cuvinte",
+      "original_value": "ecologie",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "mediu",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "primării",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

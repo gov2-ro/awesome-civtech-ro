@@ -1,0 +1,369 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "harta-firmelor",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:economie-munca",
+    "subiecte": [
+      "subiect:economie-munca",
+      "subiect:finante-publice"
+    ],
+    "teme": [
+      "subiect:firme",
+      "subiect:achizitii-publice"
+    ],
+    "scopuri": [
+      "scop:transparenta",
+      "scop:informare"
+    ],
+    "functionalitati": [
+      "functie:cautare",
+      "functie:analiza"
+    ],
+    "formate": [
+      "format:registru",
+      "format:vizualizare"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [
+      "institutie:anaf"
+    ],
+    "tip_organizatie": [],
+    "maturitate": "maturitate:operational",
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "harta-firmelor:tip_entitate_original",
+          "locator": "clasificare-input.csv:harta-firmelor:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:economie-munca",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "harta-firmelor:descriere_scurta",
+          "locator": "clasificare-input.csv:harta-firmelor:descriere_scurta",
+          "excerpt": "Legăturile dintre firme, oameni și contracte publice"
+        },
+        {
+          "source_id": "harta-firmelor:descriere",
+          "locator": "clasificare-input.csv:harta-firmelor:descriere",
+          "excerpt": "Hartă a legăturilor dintre firme, acționari, administratori și bani publici. Adună date de la ONRC, ANAF, SEAP și Monitorul Oficial și arată cine e în spatele unei companii, cu cine e conectat și ce contracte publice a luat. Gratuit. Util pentru verificarea partenerilor înainte de o colaborare, pentru analiză de piață și pentru jurnaliști."
+        }
+      ],
+      "rationale_ro": "Relațiile dintre companii și contracte sprijină verificările; numele hartă nu dovedește un format geografic. Conceptul subiect:firme are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:economie-munca",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "harta-firmelor:descriere_scurta",
+          "locator": "clasificare-input.csv:harta-firmelor:descriere_scurta",
+          "excerpt": "Legăturile dintre firme, oameni și contracte publice"
+        },
+        {
+          "source_id": "harta-firmelor:descriere",
+          "locator": "clasificare-input.csv:harta-firmelor:descriere",
+          "excerpt": "Hartă a legăturilor dintre firme, acționari, administratori și bani publici. Adună date de la ONRC, ANAF, SEAP și Monitorul Oficial și arată cine e în spatele unei companii, cu cine e conectat și ce contracte publice a luat. Gratuit. Util pentru verificarea partenerilor înainte de o colaborare, pentru analiză de piață și pentru jurnaliști."
+        }
+      ],
+      "rationale_ro": "Relațiile dintre companii și contracte sprijină verificările; numele hartă nu dovedește un format geografic. Conceptul subiect:firme are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:finante-publice",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "harta-firmelor:descriere_scurta",
+          "locator": "clasificare-input.csv:harta-firmelor:descriere_scurta",
+          "excerpt": "Legăturile dintre firme, oameni și contracte publice"
+        },
+        {
+          "source_id": "harta-firmelor:descriere",
+          "locator": "clasificare-input.csv:harta-firmelor:descriere",
+          "excerpt": "Hartă a legăturilor dintre firme, acționari, administratori și bani publici. Adună date de la ONRC, ANAF, SEAP și Monitorul Oficial și arată cine e în spatele unei companii, cu cine e conectat și ce contracte publice a luat. Gratuit. Util pentru verificarea partenerilor înainte de o colaborare, pentru analiză de piață și pentru jurnaliști."
+        }
+      ],
+      "rationale_ro": "Relațiile dintre companii și contracte sprijină verificările; numele hartă nu dovedește un format geografic. Conceptul subiect:achizitii-publice are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:firme",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "harta-firmelor:descriere_scurta",
+          "locator": "clasificare-input.csv:harta-firmelor:descriere_scurta",
+          "excerpt": "Legăturile dintre firme, oameni și contracte publice"
+        },
+        {
+          "source_id": "harta-firmelor:descriere",
+          "locator": "clasificare-input.csv:harta-firmelor:descriere",
+          "excerpt": "Hartă a legăturilor dintre firme, acționari, administratori și bani publici. Adună date de la ONRC, ANAF, SEAP și Monitorul Oficial și arată cine e în spatele unei companii, cu cine e conectat și ce contracte publice a luat. Gratuit. Util pentru verificarea partenerilor înainte de o colaborare, pentru analiză de piață și pentru jurnaliști."
+        }
+      ],
+      "rationale_ro": "Relațiile dintre companii și contracte sprijină verificările; numele hartă nu dovedește un format geografic. Încadrare: Firme."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:achizitii-publice",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "harta-firmelor:descriere_scurta",
+          "locator": "clasificare-input.csv:harta-firmelor:descriere_scurta",
+          "excerpt": "Legăturile dintre firme, oameni și contracte publice"
+        },
+        {
+          "source_id": "harta-firmelor:descriere",
+          "locator": "clasificare-input.csv:harta-firmelor:descriere",
+          "excerpt": "Hartă a legăturilor dintre firme, acționari, administratori și bani publici. Adună date de la ONRC, ANAF, SEAP și Monitorul Oficial și arată cine e în spatele unei companii, cu cine e conectat și ce contracte publice a luat. Gratuit. Util pentru verificarea partenerilor înainte de o colaborare, pentru analiză de piață și pentru jurnaliști."
+        }
+      ],
+      "rationale_ro": "Relațiile dintre companii și contracte sprijină verificările; numele hartă nu dovedește un format geografic. Încadrare: Achiziții publice."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:transparenta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "harta-firmelor:descriere_scurta",
+          "locator": "clasificare-input.csv:harta-firmelor:descriere_scurta",
+          "excerpt": "Legăturile dintre firme, oameni și contracte publice"
+        },
+        {
+          "source_id": "harta-firmelor:descriere",
+          "locator": "clasificare-input.csv:harta-firmelor:descriere",
+          "excerpt": "Hartă a legăturilor dintre firme, acționari, administratori și bani publici. Adună date de la ONRC, ANAF, SEAP și Monitorul Oficial și arată cine e în spatele unei companii, cu cine e conectat și ce contracte publice a luat. Gratuit. Util pentru verificarea partenerilor înainte de o colaborare, pentru analiză de piață și pentru jurnaliști."
+        }
+      ],
+      "rationale_ro": "Relațiile dintre companii și contracte sprijină verificările; numele hartă nu dovedește un format geografic. Încadrare: Transparență."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "harta-firmelor:descriere_scurta",
+          "locator": "clasificare-input.csv:harta-firmelor:descriere_scurta",
+          "excerpt": "Legăturile dintre firme, oameni și contracte publice"
+        },
+        {
+          "source_id": "harta-firmelor:descriere",
+          "locator": "clasificare-input.csv:harta-firmelor:descriere",
+          "excerpt": "Hartă a legăturilor dintre firme, acționari, administratori și bani publici. Adună date de la ONRC, ANAF, SEAP și Monitorul Oficial și arată cine e în spatele unei companii, cu cine e conectat și ce contracte publice a luat. Gratuit. Util pentru verificarea partenerilor înainte de o colaborare, pentru analiză de piață și pentru jurnaliști."
+        }
+      ],
+      "rationale_ro": "Relațiile dintre companii și contracte sprijină verificările; numele hartă nu dovedește un format geografic. Încadrare: Informare și înțelegere."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:cautare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "harta-firmelor:descriere_scurta",
+          "locator": "clasificare-input.csv:harta-firmelor:descriere_scurta",
+          "excerpt": "Legăturile dintre firme, oameni și contracte publice"
+        },
+        {
+          "source_id": "harta-firmelor:descriere",
+          "locator": "clasificare-input.csv:harta-firmelor:descriere",
+          "excerpt": "Hartă a legăturilor dintre firme, acționari, administratori și bani publici. Adună date de la ONRC, ANAF, SEAP și Monitorul Oficial și arată cine e în spatele unei companii, cu cine e conectat și ce contracte publice a luat. Gratuit. Util pentru verificarea partenerilor înainte de o colaborare, pentru analiză de piață și pentru jurnaliști."
+        }
+      ],
+      "rationale_ro": "Relațiile dintre companii și contracte sprijină verificările; numele hartă nu dovedește un format geografic. Încadrare: Caută și consultă."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:analiza",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "harta-firmelor:descriere_scurta",
+          "locator": "clasificare-input.csv:harta-firmelor:descriere_scurta",
+          "excerpt": "Legăturile dintre firme, oameni și contracte publice"
+        },
+        {
+          "source_id": "harta-firmelor:descriere",
+          "locator": "clasificare-input.csv:harta-firmelor:descriere",
+          "excerpt": "Hartă a legăturilor dintre firme, acționari, administratori și bani publici. Adună date de la ONRC, ANAF, SEAP și Monitorul Oficial și arată cine e în spatele unei companii, cu cine e conectat și ce contracte publice a luat. Gratuit. Util pentru verificarea partenerilor înainte de o colaborare, pentru analiză de piață și pentru jurnaliști."
+        }
+      ],
+      "rationale_ro": "Relațiile dintre companii și contracte sprijină verificările; numele hartă nu dovedește un format geografic. Încadrare: Analizează date."
+    },
+    {
+      "field": "formate",
+      "value": "format:registru",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "harta-firmelor:descriere_scurta",
+          "locator": "clasificare-input.csv:harta-firmelor:descriere_scurta",
+          "excerpt": "Legăturile dintre firme, oameni și contracte publice"
+        },
+        {
+          "source_id": "harta-firmelor:descriere",
+          "locator": "clasificare-input.csv:harta-firmelor:descriere",
+          "excerpt": "Hartă a legăturilor dintre firme, acționari, administratori și bani publici. Adună date de la ONRC, ANAF, SEAP și Monitorul Oficial și arată cine e în spatele unei companii, cu cine e conectat și ce contracte publice a luat. Gratuit. Util pentru verificarea partenerilor înainte de o colaborare, pentru analiză de piață și pentru jurnaliști."
+        }
+      ],
+      "rationale_ro": "Relațiile dintre companii și contracte sprijină verificările; numele hartă nu dovedește un format geografic. Încadrare: Registru sau bază de date."
+    },
+    {
+      "field": "formate",
+      "value": "format:vizualizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "harta-firmelor:descriere_scurta",
+          "locator": "clasificare-input.csv:harta-firmelor:descriere_scurta",
+          "excerpt": "Legăturile dintre firme, oameni și contracte publice"
+        },
+        {
+          "source_id": "harta-firmelor:descriere",
+          "locator": "clasificare-input.csv:harta-firmelor:descriere",
+          "excerpt": "Hartă a legăturilor dintre firme, acționari, administratori și bani publici. Adună date de la ONRC, ANAF, SEAP și Monitorul Oficial și arată cine e în spatele unei companii, cu cine e conectat și ce contracte publice a luat. Gratuit. Util pentru verificarea partenerilor înainte de o colaborare, pentru analiză de piață și pentru jurnaliști."
+        }
+      ],
+      "rationale_ro": "Relațiile dintre companii și contracte sprijină verificările; numele hartă nu dovedește un format geografic. Încadrare: Vizualizare de date."
+    },
+    {
+      "field": "institutii_vizate",
+      "value": "institutie:anaf",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "harta-firmelor:descriere_scurta",
+          "locator": "clasificare-input.csv:harta-firmelor:descriere_scurta",
+          "excerpt": "Legăturile dintre firme, oameni și contracte publice"
+        },
+        {
+          "source_id": "harta-firmelor:descriere",
+          "locator": "clasificare-input.csv:harta-firmelor:descriere",
+          "excerpt": "Hartă a legăturilor dintre firme, acționari, administratori și bani publici. Adună date de la ONRC, ANAF, SEAP și Monitorul Oficial și arată cine e în spatele unei companii, cu cine e conectat și ce contracte publice a luat. Gratuit. Util pentru verificarea partenerilor înainte de o colaborare, pentru analiză de piață și pentru jurnaliști."
+        }
+      ],
+      "rationale_ro": "Relațiile dintre companii și contracte sprijină verificările; numele hartă nu dovedește un format geografic. Încadrare: ANAF."
+    },
+    {
+      "field": "maturitate",
+      "value": "maturitate:operational",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "harta-firmelor:descriere_scurta",
+          "locator": "clasificare-input.csv:harta-firmelor:descriere_scurta",
+          "excerpt": "Legăturile dintre firme, oameni și contracte publice"
+        },
+        {
+          "source_id": "harta-firmelor:descriere",
+          "locator": "clasificare-input.csv:harta-firmelor:descriere",
+          "excerpt": "Hartă a legăturilor dintre firme, acționari, administratori și bani publici. Adună date de la ONRC, ANAF, SEAP și Monitorul Oficial și arată cine e în spatele unei companii, cu cine e conectat și ce contracte publice a luat. Gratuit. Util pentru verificarea partenerilor înainte de o colaborare, pentru analiză de piață și pentru jurnaliști."
+        }
+      ],
+      "rationale_ro": "Descrierea oferă un flux concret pentru utilizare obișnuită de către publicul țintă. Relațiile dintre companii și contracte sprijină verificările; numele hartă nu dovedește un format geografic. Încadrare: Operațional."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "harta-firmelor:acoperire_original",
+          "locator": "clasificare-input.csv:harta-firmelor:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "harta-firmelor:acoperire_original",
+          "locator": "clasificare-input.csv:harta-firmelor:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": null,
+      "object_literal": "Radu Ciocan",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "harta-firmelor:autor_original",
+          "locator": "clasificare-input.csv:harta-firmelor:autor_original",
+          "excerpt": "Radu Ciocan"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "baza-de-date",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "ai",
+      "reason_ro": "Eticheta nu dovedește tehnologia folosită sau oferită."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

@@ -1,0 +1,123 @@
+# index | primary root | topics | purposes | capabilities | formats | technologies | institutions | organisation types | maturity | entry-specific rationale
+0|guvernare-democratie|reprezentanti-alesi,activitate-parlamentara|transparenta,participare|cautare|registru||parlament|||Contactele parlamentarilor sprijină comunicarea cu reprezentanții aleși.
+1|guvernare-democratie|alegeri,vot,afaceri-europene,educatie-civica|informare,educatie,participare|invatare|ghid||institutie-ue|||Documentația EFOR descrie educarea alegătorilor pentru alegerile europene din România.
+2|drept-justitie|acces-informatii,legea-544-2001|transparenta,aparare-drepturi,participare|cerere-informatii,generare-documente,cautare|formular,registru||||operational|Aplicația redactează și urmărește cereri conform Legii 544; nu dovedește o aplicație mobilă.
+3|mediu-energie|calitate-aer|informare,participare|monitorizare|||||operational|Senzorii distribuiți cetățenilor măsoară aerul în București și Ilfov.
+4|finante-publice|investitii-publice|transparenta,responsabilizare|cautare|registru||||operational|Căutarea localității permite consultarea sumelor și documentelor investițiilor.
+5|drept-justitie|legislatie|informare,aparare-drepturi|||ai|||operational|Asistentul AI explică legislația; descrierea nu limitează serviciul la Legea 544.
+6|guvernare-democratie|coruptie,proceduri-judiciare,condamnari|transparenta,informare|cautare|registru|||||Agregatorul distinge prescripțiile, achitările și condamnările din dosarele de corupție.
+7|media-informare|dezinformare|informare,educatie|verificare-fapte,analiza,invatare|ghid,vizualizare|||||Analizele și ghidurile privesc dezinformarea; conținutul despre AI nu dovedește folosirea AI.
+8|finante-publice|achizitii-publice,buget,finantare-politica,jurnalism|transparenta,responsabilizare|analiza|vizualizare,raport|||||Vizualizările și investigațiile urmăresc achizițiile, bugetul și finanțarea politică.
+9|guvernare-democratie|finantare-politica,partide-politice|transparenta,responsabilizare|monitorizare,analiza|registru,raport|||||Veniturile partidelor și finanțarea campaniilor sunt obiectul principal; finanțele publice sunt secundare.
+10|finante-publice|buget|transparenta,informare||vizualizare|||||Descrierea ApTI leagă explicit acest domeniu de cheltuirea bugetului României.
+11|societate-digitala|securitate-cibernetica,administratie-publica|transparenta,responsabilizare|analiza|raport|ai||||Agentul AI evaluează securitatea site-urilor instituțiilor și publică un raport cu metodologie.
+12|comunitati-teritoriu|infrastructura-locala|participare,responsabilizare|sesizare,generare-documente|formular|ai|||operational|Fotografia unei probleme urbane produce o sesizare trimisă instituției responsabile.
+13|mediu-energie|paduri-arbori|participare,responsabilizare|sesizare,monitorizare,verificare|harta||||operational|Platforma documentează arborii tăiați și urmărește sesizările și avizele.
+14|mediu-energie|deseuri|informare|||||||Titlul identifică ridicarea deșeurilor în Arad; funcțiile calendarului nu sunt documentate.
+15|mediu-energie|calitate-aer|informare,responsabilizare|monitorizare|vizualizare||||operational|O rețea instalată în Rădăuți publică măsurători în timp real și grafice.
+16|finante-publice|achizitii-publice|transparenta,responsabilizare|cautare,comparare|vizualizare||primarie||operational|Cetățenii caută localități și compară cheltuielile primăriilor similare.
+17|guvernare-democratie||transparenta,responsabilizare|monitorizare|registru|||||Cronologia urmărește faptele și declarațiile politicienilor, cu surse pentru fiecare informație.
+18|economie-munca|ocupare-cariere|informare,educatie|invatare,cautare|ghid,colectie||||operational|Pagina descrie fișe de job și îndrumare pentru planificarea carierei.
+19|drept-justitie|legislatie|informare,aparare-drepturi|invatare|ghid|||||Documentarea publică descrie explicarea legislației; proiectele GitHub istorice au altă accentuare.
+20|educatie-cultura|educatie-civica,democratie,invatamant|educatie,participare|invatare|curs,ghid||scoala|||Programul instruiește profesorii și elevii pentru cetățenie democratică.
+21|finante-publice|companii-de-stat|transparenta,responsabilizare|cautare|registru|||||Baza de date prezintă companiile statului, pierderile și conducerea lor.
+22|finante-publice|companii-de-stat|transparenta,informare|cautare,comparare,analiza|registru,harta,vizualizare|||||Pagina explică întreprinderile publice și afișează căutarea și comparațiile financiare.
+23|finante-publice|achizitii-publice,investitii-publice,finantare-politica,alegeri|transparenta,informare|cautare|colectie,set-date|||||Colecția EFOR oferă seturi descărcabile despre alegeri, finanțare și infrastructură.
+24|guvernare-democratie|statistica|informare||vizualizare|||||Descrierea identifică statisticile INS; formatul rămâne o propunere slabă din tipul original.
+25|societate-civila||participare|petitii,advocacy|||||operational|Comunitatea permite inițierea petițiilor și organizează campanii civice.
+26|finante-publice|fiscalitate,firme|acces-servicii,informare|cautare,verificare|| |anaf|||Descrierea promite verificări fiscale; eticheta originală prototip împiedică stabilirea maturității.
+27|societate-digitala|digitalizare,administratie-publica|acces-servicii||||||prototip|Sursa numește explicit un prototip demonstrativ de servicii publice digitale.
+28|drept-justitie|violenta-gen|informare,responsabilizare|analiza,monitorizare|registru,vizualizare,set-date|||||Platforma centralizează cazuri și oferă statistici și date descărcabile despre femicid.
+29|media-informare|dezinformare|informare|verificare,alerte||||||Scorurile și alertele prioritizează verificarea; ele nu sunt verdicte jurnalistice de adevăr.
+30|comunitati-teritoriu|administratie-publica|participare,responsabilizare|sesizare|||primarie|||Titlul și descrierea indică sesizări către primărie, fără alte funcții demonstrate.
+31|drept-justitie|drepturile-omului|informare,aparare-drepturi|invatare|ghid|||||Clasificarea privește ghidul original; redirecționarea către organizație nu schimbă identitatea ghidului.
+32|securitate-rezilienta|cutremure,infrastructura-locala|pregatire-riscuri,informare||harta,set-date|||||Harta clădirilor vulnerabile din București sprijină pregătirea pentru cutremur.
+33|drept-justitie||acces-servicii|generare-documente|formular||||operational|Generarea contractului auto este o procedură juridică, nu o ofertă de locuri de muncă.
+34|securitate-rezilienta|cutremure|pregatire-riscuri,educatie|invatare|ghid|||||Pagina oferă îndrumări pentru siguranța în caz de cutremur.
+35|guvernare-democratie|afaceri-europene,activitate-parlamentara,vot|transparenta,informare|comparare,monitorizare,analiza|registru||institutie-ue,parlament||operational|Sunt comparate voturile eurodeputaților și pozițiile statelor membre în instituțiile UE.
+36|sanatate|servicii-medicale|acces-servicii|cautare|registru||||operational|Utilizatorii găsesc clinici private care oferă servicii prin CNAS.
+37|finante-publice|buget|transparenta,responsabilizare|cautare,monitorizare|vizualizare||primarie||operational|Consultarea veniturilor și cheltuielilor locale este organizată pe instituții și ani.
+38|media-informare||informare,responsabilizare|verificare-fapte||||||Descrierea scurtă specifică fact-checking pentru declarațiile politicienilor.
+39|educatie-cultura|educatie-civica,democratie,buget|educatie|invatare|joc-test||||operational|Jocul simulează decizii de prim-ministru despre buget și instituții.
+40|finante-publice|achizitii-publice|transparenta||harta|||||Descrierea scurtă identifică o hartă a achizițiilor publice.
+41|societate-digitala|digitalizare,administratie-publica|transparenta,responsabilizare||harta||primarie|||O investigație cartografiază digitalizarea primăriilor; cererile autorului nu sunt o funcție oferită utilizatorilor.
+42|economie-munca|firme,achizitii-publice|transparenta,informare|cautare,analiza|registru,vizualizare||anaf||operational|Relațiile dintre companii și contracte sprijină verificările; numele hartă nu dovedește un format geografic.
+43|guvernare-democratie|integritate-publica|transparenta,responsabilizare|analiza|vizualizare|||||Declarațiile de avere și interese constituie obiectul portretului de date.
+44|guvernare-democratie||informare|||||||ApTI descrie instrumentul ca explicație a vieții politice; funcțiile precise nu sunt stabilite.
+45|mediu-energie|paduri-arbori|informare||harta|||||Titlul indică o hartă a tăierilor; eticheta AI nu probează tehnologia.
+46|media-informare||informare||harta|||||Descrierea scurtă identifică televiziunile locale pe hartă; primăriile nu sunt dovedite ca subiect.
+47|societate-digitala|tehnologia-informatiei|informare|cautare||||||Motorul caută în colecții de documente; folosirea jurnalistică nu limitează subiectul tehnic.
+48|drept-justitie|acces-informatii,legea-544-2001|transparenta,aparare-drepturi|cerere-informatii||||||Intrarea privește cereri de informații publice; pagina generală a editorului nu dovedește alte funcții.
+49|guvernare-democratie|administratie-publica,buget,jurnalism|transparenta,responsabilizare,informare|monitorizare,analiza|raport,harta|||||Rapoartele verificabile și harta presei urmăresc instituțiile și cheltuielile publice.
+50|finante-publice|active-publice|transparenta|cautare|registru||||operational|Registrul prezintă situația imobilelor de stat administrate de RA-APPS.
+51||||||||||Numele și categoria civic nu stabilesc obiectul; rezultatele despre un blog nu confirmă identitatea intrării.
+52|societate-digitala|infrastructura-digitala,securitate-cibernetica,jurnalism|transparenta,responsabilizare|analiza|articol|||||Investigațiile privesc infrastructura digitală publică; nu oferă direct funcții de interoperabilitate.
+53|drept-justitie|condamnari|informare||registru|||||Descrierea scurtă se referă la politicieni condamnați; nu stabilește că toate infracțiunile sunt de corupție.
+54|guvernare-democratie|coruptie,condamnari|informare,educatie,anticoruptie|cautare,analiza|registru,vizualizare|||||Documentația Funky limitează baza la persoane condamnate definitiv pentru corupție.
+55|media-informare|dezinformare|informare|monitorizare,analiza||||||Automatizarea monitorizării TikTok este explicită; numele AI nu precizează mecanismul tehnic.
+56|drept-justitie|cetatenie,statistica,administratie-publica|transparenta,informare|monitorizare,analiza|vizualizare|||||Statisticile urmăresc soluționarea cererilor de cetățenie și timpul de așteptare.
+57|mediu-energie|energie|informare|monitorizare|vizualizare|||||Presa identifică platforma de date energetice în timp real; tehnologia de dezvoltare nu probează AI în operare.
+58|finante-publice|achizitii-publice,investitii-publice,aparare|transparenta,responsabilizare|monitorizare|registru|||||Monitorizarea programului SAFE urmărește contractele și investițiile României pentru apărare.
+59|protectie-sociala|situatie-sociala|informare||vizualizare|||||Descrierea scurtă identifică datele sociale despre România.
+60|guvernare-democratie|activitate-parlamentara,vot|transparenta|cautare|registru||parlament||operational|Arhiva caută stenograme și documente parlamentare; domeniul .ai nu demonstrează AI.
+61|guvernare-democratie|activitate-parlamentara|transparenta,responsabilizare|monitorizare|vizualizare||parlament|||Relatarea din 2016 identifică monitorizarea prezenței deputaților; funcționarea actuală este necunoscută.
+62|guvernare-democratie|coruptie|informare,educatie|invatare|joc-test,colectie|||||Relatarea lansării descrie o galerie și un test despre șpăgi, inclusiv exemple fictive.
+63|guvernare-democratie|reprezentanti-alesi,administratie-publica|participare,transparenta|cautare|registru||primarie|||Datele de contact ale consilierilor sprijină relația cetățenilor cu administrația locală.
+64|guvernare-democratie|alegeri,vot|participare|invatare|ghid|||||Pagina are manualul observatorului și formare; panoul nu confirmă fluxul operațional.
+65|comunitati-teritoriu|administratie-publica|participare,informare|sesizare|harta|ai,aplicatie-mobila|primarie||operational|Platforma Onești rezumă anunțuri cu AI, înregistrează sesizări și oferă o aplicație mobilă.
+66|societate-civila||transparenta,informare|cautare|registru||parlament|||Intrarea este registrul ONG-urilor înregistrate la Camera Deputaților.
+67|drept-justitie||transparenta,responsabilizare|comparare,analiza|registru||instanta|||Pagina afișează indici de performanță pentru instanțe; nu dovedește utilizarea AI.
+68|finante-publice|buget,fiscalitate|transparenta,informare||vizualizare|||||Descrierea ApTI identifică explicarea alocării contribuțiilor fiscale.
+69|comunitati-teritoriu|administratie-publica|participare,responsabilizare|sesizare|||primarie|||Descrierea scurtă indică sesizări către Primăria Oradea.
+70|guvernare-democratie|activitate-parlamentara|transparenta||||parlament|||Titlul și eticheta parlament susțin doar o clasificare parlamentară provizorie.
+71|guvernare-democratie|coruptie|transparenta,anticoruptie|sesizare||||||ApTI descrie raportarea anonimă a șpăgilor; relatarea istorică nu probează serviciul actual.
+72|guvernare-democratie|reprezentanti-alesi,partide-politice|transparenta,informare||harta||primarie|||Harta arată afilierea politică a primarilor, nu activitatea partidelor în toate domeniile.
+73|guvernare-democratie|coruptie,integritate-publica,proceduri-judiciare|transparenta,informare|cautare|registru|||||Baza distinge stadii judiciare diferite; includerea nu înseamnă condamnare.
+74|drept-justitie|proceduri-judiciare|acces-servicii,informare|cautare,monitorizare,alerte|registru,ghid||instanta||operational|Căutarea dosarelor, termenele și notificările sprijină accesul la informații judiciare.
+75|economie-munca|ocupare-cariere,administratie-publica|acces-servicii|cautare|registru|||||Anunțurile privesc posturi vacante în sectorul public.
+76|media-informare||participare,informare|sesizare,analiza||ai||||AI sprijină analiza conținutului problematic; raportarea pe rețele rămâne manuală.
+77|societate-civila|dezvoltare-ong,fiscalitate|sprijin-organizatii,participare|donatii,generare-documente,cautare|formular,registru||||operational|Platforma facilitează redirecționarea impozitului și găsirea ONG-urilor beneficiare.
+78|guvernare-democratie|alegeri,vot|transparenta,informare|cautare|vizualizare|||||Pagina include mai multe scrutine; un scrutin local afișat implicit nu restrânge aplicabilitatea națională.
+79|comunitati-teritoriu|infrastructura-locala|participare,responsabilizare|sesizare||||||Descrierea scurtă indică raportarea gropilor din drumuri.
+80|guvernare-democratie|statistica,digitalizare,administratie-publica|informare,transparenta|comparare,analiza|vizualizare||||operational|Clasamentele și calculatoarele compară orașe și digitalizarea administrațiilor; AI nu este demonstrată.
+81|guvernare-democratie|administratie-publica,companii-de-stat,buget,invatamant|transparenta,responsabilizare|cautare|registru||primarie,scoala|||Registrele reunesc instituții și companii publice, conducerile și utilizarea banilor.
+82|finante-publice|achizitii-publice|transparenta|cautare|registru||||operational|Motorul este descris ca folosit zilnic pentru căutarea licitațiilor; marca .ai nu demonstrează AI.
+83|societate-civila||informare||colectie|||||Lista oferă site-uri utile cetățenilor; nu este automat un ghid procedural.
+84|societate-civila||informare||colectie|||||Intrarea este o listă colaborativă de site-uri civice, nu funcțiile fiecărui site.
+85|sanatate|sanatate-mintala|informare,educatie|invatare|ghid|||||Pagina furnizează informații și ghiduri despre sănătatea mintală.
+86|guvernare-democratie|sondaje,alegeri,partide-politice|informare|comparare,monitorizare,analiza|vizualizare,registru||||operational|Agregatorul reunește sondaje și oferă simularea coalițiilor și medii ponderate.
+87|guvernare-democratie|alegeri|informare|comparare|joc-test|||||Testul de afinitate compară poziții politice; pagina fără text nu probează alte funcții.
+88|guvernare-democratie|administratie-publica|acces-servicii|generare-documente,cautare|formular,colectie||primarie,scoala||operational|Catalogul permite completarea în browser a formularelor instituțiilor și descărcarea lor.
+89|guvernare-democratie|democratie,digitalizare|participare,informare||articol,colectie|||||Pagina ApTI este un articol cu o selecție de instrumente pentru democrație digitală.
+90|finante-publice|buget,legislatie,proceduri-judiciare|transparenta,participare|analiza,monitorizare|vizualizare|||||Descrierea menționează AI ca obiectiv; nu documentează o funcție concretă bazată pe AI.
+91|comunitati-teritoriu|populatie|informare|analiza|harta||||operational|Întrebările primesc răspunsuri geografice despre populație; mecanismul AI nu este precizat.
+92|sanatate|sanatate-mintala,servicii-medicale|informare,acces-servicii|cautare,verificare|registru|||||Pagina descrie verificarea informativă a psihologilor înscriși în registrul profesional.
+93|guvernare-democratie|statistica,populatie,buget,alegeri|informare|analiza|vizualizare,harta|||||Vizualizările interactive acoperă indicatori statistici și mai multe domenii explicite.
+94|comunitati-teritoriu|administratie-publica|participare,responsabilizare|sesizare,monitorizare|harta,registru||||operational|Cazurile din Craiova au localizare, răspunsuri instituționale și termene urmărite.
+95|guvernare-democratie|alegeri,vot|informare,participare|sesizare||||||Pagina descrie sprijinul alegătorilor și sesizarea neregulilor, fără dovadă de AI.
+96|guvernare-democratie|alegeri,vot|informare,acces-servicii|cautare|harta|||||Harta secțiilor din diaspora sprijină votul românilor aflați în străinătate.
+97|guvernare-democratie|alegeri|informare|cautare,comparare|registru|||||Descrierea scurtă identifică profiluri și comparații de candidați; Legea 544 nu este o funcție demonstrată.
+98|media-informare||informare,responsabilizare|verificare-fapte||||||Pagina declară verificarea afirmațiilor politice și o temă curentă despre trafic în București.
+99|finante-publice|buget,investitii-publice,achizitii-publice|educatie,transparenta|invatare|ghid,colectie||primarie|||Colecția explică bugete, investiții și utilizarea bazelor de date în investigații financiare.
+100|media-informare|presa-independenta|informare|cautare|colectie|||||Lista filtrabilă prezintă publicații și legături de donații; nu procesează ea însăși donațiile.
+101|media-informare|presa-independenta|sprijin-organizatii|donatii|||||operational|Abonamentul distribuie banii între publicațiile apreciate, cu raport lunar pentru cititor.
+102|educatie-cultura|invatamant,bacalaureat,administratie-publica,situatie-sociala|informare|analiza|colectie,raport||scoala,primarie|||Colecția cercetează inegalități educaționale și administrația; proiectele MCP asociate nu sunt oferite de colecție.
+103|societate-digitala|interfete-programare|informare|cautare|colectie,ghid||anaf|||Catalogul documentează API-uri ale altor servicii; nu dovedește un API propriu sau un server MCP.
+104|economie-munca|firme,fiscalitate|informare|cautare|registru||anaf||operational|Registrul gratuit oferă informații publice despre firme din ONRC și ANAF.
+105|societate-digitala|digitalizare,administratie-publica|transparenta,responsabilizare|monitorizare,analiza||||||Pagina descrie proiectul de monitorizare a incluziunii digitale, nu un serviciu public digital.
+106|media-informare|jurnalism,dezinformare,date-personale|informare,responsabilizare||articol|||||Investigația individuală descrie reclamele și datele personale în România și Europa de Est.
+107|securitate-rezilienta|amenintari-hibride,securitate-cibernetica,dezinformare|informare|cautare|harta,registru|||||Harta documentează incidente hibride transfrontaliere; numai o parte sunt în România.
+108|societate-digitala|tehnologia-informatiei|informare||colectie|||||Pagina listează inițiative GIS ale comunității; colecția nu este automat hartă sau set de date deschis.
+109|guvernare-democratie|integritate-publica,alegeri,administratie-publica,energie,dezinformare|transparenta,responsabilizare,informare|monitorizare,analiza|raport|||think-tank||Organizația cercetează politici publice în domeniile explicit enumerate, inclusiv sănătatea și justiția.
+110|guvernare-democratie|buget,alegeri,dezinformare,educatie-civica|transparenta,responsabilizare,educatie,participare|monitorizare,verificare-fapte,advocacy,invatare||||ong||ONG-ul monitorizează executivul, verifică fapte și oferă educație civică.
+111|societate-civila|dezvoltare-ong,infrastructura-digitala|sprijin-organizatii|||||||Organizația construiește și administrează infrastructură digitală pentru societatea civilă.
+112|guvernare-democratie|afaceri-europene,democratie,invatamant|informare,participare,educatie|analiza,advocacy,invatare|raport,curs|||think-tank||Centrul face cercetare, advocacy și formare în România și Republica Moldova.
+113|media-informare|jurnalism,presa-independenta|sprijin-organizatii|||||ong||Inițiativa non-profit sprijină sustenabilitatea jurnalismului; modelele declarate nu probează publicitate etică implementată.
+114|societate-civila|dezvoltare-ong|sprijin-organizatii,educatie|mentorat,invatare|curs|||retea||Comunitatea pentru ONG-uri din România oferă mentorat, cursuri și consultanță.
+115|societate-civila|dezvoltare-ong,digitalizare|sprijin-organizatii,educatie|invatare|curs|||ong||Asociația oferă software și cursuri ONG-urilor; instrumentul menționat nu face organizația un proiect software.
+116|societate-civila||participare,sprijin-organizatii,educatie|advocacy,invatare||||||Centrul sprijină organizarea comunitară și formează actori civici.
+117|educatie-cultura|invatamant,inteligenta-artificiala|educatie,informare|invatare|colectie,curs||scoala|retea||Rețeaua părinților oferă catalog de școli și cursuri despre AI; nu demonstrează AI în operare.
+118|guvernare-democratie|democratie,drepturile-omului,educatie-civica,situatie-sociala|participare,aparare-drepturi,educatie|analiza,monitorizare,advocacy||||ong||Asociația cercetează instituții democratice, drepturi și incluziune; proiectele ei nu devin funcții ale site-ului.
+119|societate-civila|administratie-publica,educatie-civica,cultura,mediu|participare,transparenta|||||ong||Asociația lucrează local în Rădăuți în guvernare, educație, cultură și mediu.
+120|societate-civila|educatie-civica,mediu,infrastructura-locala|participare,sprijin-organizatii,educatie|advocacy,invatare||||ong,retea||CIVICA sprijină grupurile locale din Iași prin advocacy, participare și educație civică.
+121|societate-digitala|inteligenta-artificiala,democratie,alegeri,cultura,migratie|informare,participare|advocacy||||ong||Asociația lucrează la impactul social al tehnologiei, cultură și migrație; AI este subiect.

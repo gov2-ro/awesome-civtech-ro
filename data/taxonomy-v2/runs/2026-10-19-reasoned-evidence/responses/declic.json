@@ -1,0 +1,204 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "declic",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:societate-civila",
+    "subiecte": [
+      "subiect:societate-civila"
+    ],
+    "teme": [],
+    "scopuri": [
+      "scop:participare"
+    ],
+    "functionalitati": [
+      "functie:petitii",
+      "functie:advocacy"
+    ],
+    "formate": [],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": "maturitate:operational",
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "declic:tip_entitate_original",
+          "locator": "clasificare-input.csv:declic:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:societate-civila",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "declic:descriere_scurta",
+          "locator": "clasificare-input.csv:declic:descriere_scurta",
+          "excerpt": "Comunitate de campanii și petiții civice"
+        },
+        {
+          "source_id": "turn2view2",
+          "locator": "https://declic.ro#turn2view2",
+          "excerpt": "L164: Poți începe o petiție în doar câteva minute"
+        }
+      ],
+      "rationale_ro": "Comunitatea permite inițierea petițiilor și organizează campanii civice."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:societate-civila",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "declic:descriere_scurta",
+          "locator": "clasificare-input.csv:declic:descriere_scurta",
+          "excerpt": "Comunitate de campanii și petiții civice"
+        },
+        {
+          "source_id": "turn2view2",
+          "locator": "https://declic.ro#turn2view2",
+          "excerpt": "L164: Poți începe o petiție în doar câteva minute"
+        }
+      ],
+      "rationale_ro": "Comunitatea permite inițierea petițiilor și organizează campanii civice."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:participare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "declic:descriere_scurta",
+          "locator": "clasificare-input.csv:declic:descriere_scurta",
+          "excerpt": "Comunitate de campanii și petiții civice"
+        },
+        {
+          "source_id": "turn2view2",
+          "locator": "https://declic.ro#turn2view2",
+          "excerpt": "L164: Poți începe o petiție în doar câteva minute"
+        }
+      ],
+      "rationale_ro": "Comunitatea permite inițierea petițiilor și organizează campanii civice. Încadrare: Participare civică."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:petitii",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "declic:descriere_scurta",
+          "locator": "clasificare-input.csv:declic:descriere_scurta",
+          "excerpt": "Comunitate de campanii și petiții civice"
+        },
+        {
+          "source_id": "turn2view2",
+          "locator": "https://declic.ro#turn2view2",
+          "excerpt": "L164: Poți începe o petiție în doar câteva minute"
+        }
+      ],
+      "rationale_ro": "Comunitatea permite inițierea petițiilor și organizează campanii civice. Încadrare: Semnează sau organizează petiții."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:advocacy",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "declic:descriere_scurta",
+          "locator": "clasificare-input.csv:declic:descriere_scurta",
+          "excerpt": "Comunitate de campanii și petiții civice"
+        },
+        {
+          "source_id": "turn2view2",
+          "locator": "https://declic.ro#turn2view2",
+          "excerpt": "L164: Poți începe o petiție în doar câteva minute"
+        }
+      ],
+      "rationale_ro": "Comunitatea permite inițierea petițiilor și organizează campanii civice. Încadrare: Organizează advocacy."
+    },
+    {
+      "field": "maturitate",
+      "value": "maturitate:operational",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "declic:descriere_scurta",
+          "locator": "clasificare-input.csv:declic:descriere_scurta",
+          "excerpt": "Comunitate de campanii și petiții civice"
+        },
+        {
+          "source_id": "turn2view2",
+          "locator": "https://declic.ro#turn2view2",
+          "excerpt": "L164: Poți începe o petiție în doar câteva minute"
+        }
+      ],
+      "rationale_ro": "Descrierea oferă un flux concret pentru utilizare obișnuită de către publicul țintă. Comunitatea permite inițierea petițiilor și organizează campanii civice. Încadrare: Operațional."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "declic:acoperire_original",
+          "locator": "clasificare-input.csv:declic:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "declic:acoperire_original",
+          "locator": "clasificare-input.csv:declic:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [],
+  "uncertainties": [],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "instrument",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "sesizări",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

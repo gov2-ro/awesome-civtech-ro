@@ -1,0 +1,327 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "portal-just-modern",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:drept-justitie",
+    "subiecte": [
+      "subiect:drept-justitie"
+    ],
+    "teme": [
+      "subiect:proceduri-judiciare"
+    ],
+    "scopuri": [
+      "scop:acces-servicii",
+      "scop:informare"
+    ],
+    "functionalitati": [
+      "functie:cautare",
+      "functie:monitorizare",
+      "functie:alerte"
+    ],
+    "formate": [
+      "format:registru",
+      "format:ghid"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [
+      "institutie:instanta"
+    ],
+    "tip_organizatie": [],
+    "maturitate": "maturitate:operational",
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "portal-just-modern:tip_entitate_original",
+          "locator": "clasificare-input.csv:portal-just-modern:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:drept-justitie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "portal-just-modern:descriere_scurta",
+          "locator": "clasificare-input.csv:portal-just-modern:descriere_scurta",
+          "excerpt": "Căutarea dosarelor și termenelor din instanțe"
+        },
+        {
+          "source_id": "portal-just-modern:descriere",
+          "locator": "clasificare-input.csv:portal-just-modern:descriere",
+          "excerpt": "Platformă care facilitează accesul public la informații despre dosarele din instanțele din România. Permite căutarea dosarelor, consultarea termenelor de judecată și a hotărârilor, urmărirea evoluției dosarelor prin notificări și accesarea unor ghiduri practice pentru cetățeni. Utilizează date publice de pe portalul instanțelor de judecată."
+        }
+      ],
+      "rationale_ro": "Căutarea dosarelor, termenele și notificările sprijină accesul la informații judiciare. Conceptul subiect:proceduri-judiciare are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:drept-justitie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "portal-just-modern:descriere_scurta",
+          "locator": "clasificare-input.csv:portal-just-modern:descriere_scurta",
+          "excerpt": "Căutarea dosarelor și termenelor din instanțe"
+        },
+        {
+          "source_id": "portal-just-modern:descriere",
+          "locator": "clasificare-input.csv:portal-just-modern:descriere",
+          "excerpt": "Platformă care facilitează accesul public la informații despre dosarele din instanțele din România. Permite căutarea dosarelor, consultarea termenelor de judecată și a hotărârilor, urmărirea evoluției dosarelor prin notificări și accesarea unor ghiduri practice pentru cetățeni. Utilizează date publice de pe portalul instanțelor de judecată."
+        }
+      ],
+      "rationale_ro": "Căutarea dosarelor, termenele și notificările sprijină accesul la informații judiciare. Conceptul subiect:proceduri-judiciare are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:proceduri-judiciare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "portal-just-modern:descriere_scurta",
+          "locator": "clasificare-input.csv:portal-just-modern:descriere_scurta",
+          "excerpt": "Căutarea dosarelor și termenelor din instanțe"
+        },
+        {
+          "source_id": "portal-just-modern:descriere",
+          "locator": "clasificare-input.csv:portal-just-modern:descriere",
+          "excerpt": "Platformă care facilitează accesul public la informații despre dosarele din instanțele din România. Permite căutarea dosarelor, consultarea termenelor de judecată și a hotărârilor, urmărirea evoluției dosarelor prin notificări și accesarea unor ghiduri practice pentru cetățeni. Utilizează date publice de pe portalul instanțelor de judecată."
+        }
+      ],
+      "rationale_ro": "Căutarea dosarelor, termenele și notificările sprijină accesul la informații judiciare. Încadrare: Proceduri judiciare."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:acces-servicii",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "portal-just-modern:descriere_scurta",
+          "locator": "clasificare-input.csv:portal-just-modern:descriere_scurta",
+          "excerpt": "Căutarea dosarelor și termenelor din instanțe"
+        },
+        {
+          "source_id": "portal-just-modern:descriere",
+          "locator": "clasificare-input.csv:portal-just-modern:descriere",
+          "excerpt": "Platformă care facilitează accesul public la informații despre dosarele din instanțele din România. Permite căutarea dosarelor, consultarea termenelor de judecată și a hotărârilor, urmărirea evoluției dosarelor prin notificări și accesarea unor ghiduri practice pentru cetățeni. Utilizează date publice de pe portalul instanțelor de judecată."
+        }
+      ],
+      "rationale_ro": "Căutarea dosarelor, termenele și notificările sprijină accesul la informații judiciare. Încadrare: Acces la servicii."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "portal-just-modern:descriere_scurta",
+          "locator": "clasificare-input.csv:portal-just-modern:descriere_scurta",
+          "excerpt": "Căutarea dosarelor și termenelor din instanțe"
+        },
+        {
+          "source_id": "portal-just-modern:descriere",
+          "locator": "clasificare-input.csv:portal-just-modern:descriere",
+          "excerpt": "Platformă care facilitează accesul public la informații despre dosarele din instanțele din România. Permite căutarea dosarelor, consultarea termenelor de judecată și a hotărârilor, urmărirea evoluției dosarelor prin notificări și accesarea unor ghiduri practice pentru cetățeni. Utilizează date publice de pe portalul instanțelor de judecată."
+        }
+      ],
+      "rationale_ro": "Căutarea dosarelor, termenele și notificările sprijină accesul la informații judiciare. Încadrare: Informare și înțelegere."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:cautare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "portal-just-modern:descriere_scurta",
+          "locator": "clasificare-input.csv:portal-just-modern:descriere_scurta",
+          "excerpt": "Căutarea dosarelor și termenelor din instanțe"
+        },
+        {
+          "source_id": "portal-just-modern:descriere",
+          "locator": "clasificare-input.csv:portal-just-modern:descriere",
+          "excerpt": "Platformă care facilitează accesul public la informații despre dosarele din instanțele din România. Permite căutarea dosarelor, consultarea termenelor de judecată și a hotărârilor, urmărirea evoluției dosarelor prin notificări și accesarea unor ghiduri practice pentru cetățeni. Utilizează date publice de pe portalul instanțelor de judecată."
+        }
+      ],
+      "rationale_ro": "Căutarea dosarelor, termenele și notificările sprijină accesul la informații judiciare. Încadrare: Caută și consultă."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:monitorizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "portal-just-modern:descriere_scurta",
+          "locator": "clasificare-input.csv:portal-just-modern:descriere_scurta",
+          "excerpt": "Căutarea dosarelor și termenelor din instanțe"
+        },
+        {
+          "source_id": "portal-just-modern:descriere",
+          "locator": "clasificare-input.csv:portal-just-modern:descriere",
+          "excerpt": "Platformă care facilitează accesul public la informații despre dosarele din instanțele din România. Permite căutarea dosarelor, consultarea termenelor de judecată și a hotărârilor, urmărirea evoluției dosarelor prin notificări și accesarea unor ghiduri practice pentru cetățeni. Utilizează date publice de pe portalul instanțelor de judecată."
+        }
+      ],
+      "rationale_ro": "Căutarea dosarelor, termenele și notificările sprijină accesul la informații judiciare. Încadrare: Monitorizează."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:alerte",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "portal-just-modern:descriere_scurta",
+          "locator": "clasificare-input.csv:portal-just-modern:descriere_scurta",
+          "excerpt": "Căutarea dosarelor și termenelor din instanțe"
+        },
+        {
+          "source_id": "portal-just-modern:descriere",
+          "locator": "clasificare-input.csv:portal-just-modern:descriere",
+          "excerpt": "Platformă care facilitează accesul public la informații despre dosarele din instanțele din România. Permite căutarea dosarelor, consultarea termenelor de judecată și a hotărârilor, urmărirea evoluției dosarelor prin notificări și accesarea unor ghiduri practice pentru cetățeni. Utilizează date publice de pe portalul instanțelor de judecată."
+        }
+      ],
+      "rationale_ro": "Căutarea dosarelor, termenele și notificările sprijină accesul la informații judiciare. Încadrare: Primește alerte."
+    },
+    {
+      "field": "formate",
+      "value": "format:registru",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "portal-just-modern:descriere_scurta",
+          "locator": "clasificare-input.csv:portal-just-modern:descriere_scurta",
+          "excerpt": "Căutarea dosarelor și termenelor din instanțe"
+        },
+        {
+          "source_id": "portal-just-modern:descriere",
+          "locator": "clasificare-input.csv:portal-just-modern:descriere",
+          "excerpt": "Platformă care facilitează accesul public la informații despre dosarele din instanțele din România. Permite căutarea dosarelor, consultarea termenelor de judecată și a hotărârilor, urmărirea evoluției dosarelor prin notificări și accesarea unor ghiduri practice pentru cetățeni. Utilizează date publice de pe portalul instanțelor de judecată."
+        }
+      ],
+      "rationale_ro": "Căutarea dosarelor, termenele și notificările sprijină accesul la informații judiciare. Încadrare: Registru sau bază de date."
+    },
+    {
+      "field": "formate",
+      "value": "format:ghid",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "portal-just-modern:descriere_scurta",
+          "locator": "clasificare-input.csv:portal-just-modern:descriere_scurta",
+          "excerpt": "Căutarea dosarelor și termenelor din instanțe"
+        },
+        {
+          "source_id": "portal-just-modern:descriere",
+          "locator": "clasificare-input.csv:portal-just-modern:descriere",
+          "excerpt": "Platformă care facilitează accesul public la informații despre dosarele din instanțele din România. Permite căutarea dosarelor, consultarea termenelor de judecată și a hotărârilor, urmărirea evoluției dosarelor prin notificări și accesarea unor ghiduri practice pentru cetățeni. Utilizează date publice de pe portalul instanțelor de judecată."
+        }
+      ],
+      "rationale_ro": "Căutarea dosarelor, termenele și notificările sprijină accesul la informații judiciare. Încadrare: Ghid."
+    },
+    {
+      "field": "institutii_vizate",
+      "value": "institutie:instanta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "portal-just-modern:descriere_scurta",
+          "locator": "clasificare-input.csv:portal-just-modern:descriere_scurta",
+          "excerpt": "Căutarea dosarelor și termenelor din instanțe"
+        },
+        {
+          "source_id": "portal-just-modern:descriere",
+          "locator": "clasificare-input.csv:portal-just-modern:descriere",
+          "excerpt": "Platformă care facilitează accesul public la informații despre dosarele din instanțele din România. Permite căutarea dosarelor, consultarea termenelor de judecată și a hotărârilor, urmărirea evoluției dosarelor prin notificări și accesarea unor ghiduri practice pentru cetățeni. Utilizează date publice de pe portalul instanțelor de judecată."
+        }
+      ],
+      "rationale_ro": "Căutarea dosarelor, termenele și notificările sprijină accesul la informații judiciare. Încadrare: Instanță judecătorească."
+    },
+    {
+      "field": "maturitate",
+      "value": "maturitate:operational",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "portal-just-modern:descriere_scurta",
+          "locator": "clasificare-input.csv:portal-just-modern:descriere_scurta",
+          "excerpt": "Căutarea dosarelor și termenelor din instanțe"
+        },
+        {
+          "source_id": "portal-just-modern:descriere",
+          "locator": "clasificare-input.csv:portal-just-modern:descriere",
+          "excerpt": "Platformă care facilitează accesul public la informații despre dosarele din instanțele din România. Permite căutarea dosarelor, consultarea termenelor de judecată și a hotărârilor, urmărirea evoluției dosarelor prin notificări și accesarea unor ghiduri practice pentru cetățeni. Utilizează date publice de pe portalul instanțelor de judecată."
+        }
+      ],
+      "rationale_ro": "Descrierea oferă un flux concret pentru utilizare obișnuită de către publicul țintă. Căutarea dosarelor, termenele și notificările sprijină accesul la informații judiciare. Încadrare: Operațional."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "portal-just-modern:acoperire_original",
+          "locator": "clasificare-input.csv:portal-just-modern:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "portal-just-modern:acoperire_original",
+          "locator": "clasificare-input.csv:portal-just-modern:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [],
+  "uncertainties": [],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "instrument",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "legislație",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

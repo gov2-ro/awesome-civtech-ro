@@ -1,0 +1,167 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "site-uri-utile-funky",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "resursa",
+    "subiect_principal": "subiect:societate-civila",
+    "subiecte": [
+      "subiect:societate-civila"
+    ],
+    "teme": [],
+    "scopuri": [
+      "scop:informare"
+    ],
+    "functionalitati": [],
+    "formate": [
+      "format:colectie"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "resursa",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "site-uri-utile-funky:tip_entitate_original",
+          "locator": "clasificare-input.csv:site-uri-utile-funky:tip_entitate_original",
+          "excerpt": "resursa"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:societate-civila",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "site-uri-utile-funky:descriere_scurta",
+          "locator": "clasificare-input.csv:site-uri-utile-funky:descriere_scurta",
+          "excerpt": "Lista Funky Citizens"
+        }
+      ],
+      "rationale_ro": "Lista oferă site-uri utile cetățenilor; nu este automat un ghid procedural."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:societate-civila",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "site-uri-utile-funky:descriere_scurta",
+          "locator": "clasificare-input.csv:site-uri-utile-funky:descriere_scurta",
+          "excerpt": "Lista Funky Citizens"
+        }
+      ],
+      "rationale_ro": "Lista oferă site-uri utile cetățenilor; nu este automat un ghid procedural."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "site-uri-utile-funky:descriere_scurta",
+          "locator": "clasificare-input.csv:site-uri-utile-funky:descriere_scurta",
+          "excerpt": "Lista Funky Citizens"
+        }
+      ],
+      "rationale_ro": "Lista oferă site-uri utile cetățenilor; nu este automat un ghid procedural. Încadrare: Informare și înțelegere."
+    },
+    {
+      "field": "formate",
+      "value": "format:colectie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "site-uri-utile-funky:descriere_scurta",
+          "locator": "clasificare-input.csv:site-uri-utile-funky:descriere_scurta",
+          "excerpt": "Lista Funky Citizens"
+        }
+      ],
+      "rationale_ro": "Lista oferă site-uri utile cetățenilor; nu este automat un ghid procedural. Încadrare: Catalog sau colecție."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "site-uri-utile-funky:acoperire_original",
+          "locator": "clasificare-input.csv:site-uri-utile-funky:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "site-uri-utile-funky:acoperire_original",
+          "locator": "clasificare-input.csv:site-uri-utile-funky:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": "funky-citizens",
+      "object_literal": null,
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "site-uri-utile-funky:autor_original",
+          "locator": "clasificare-input.csv:site-uri-utile-funky:autor_original",
+          "excerpt": "funky-citizens"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "classification",
+      "reason_ro": "Lipsește descrierea detaliată; titlul, textul scurt și etichetele au precizie limitată.",
+      "needed_evidence_ro": "Documentație publică specifică intrării."
+    },
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "ghid",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

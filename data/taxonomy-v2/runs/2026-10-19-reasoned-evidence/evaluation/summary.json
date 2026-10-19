@@ -1,0 +1,254 @@
+{
+  "evaluation_started_at": "2026-10-19T15:07:24.063722+00:00",
+  "classification_sealed_at": "2026-10-19T15:04:06.928166+00:00",
+  "candidate_seal_valid": true,
+  "withheld_files": {
+    "intrari.csv": {
+      "sha256": "caf5a56e0ac80e07dd0fc65e4ad6188e24bce7965a8c3966f2e2014c88d90f13",
+      "rows": 122
+    },
+    "revizuire.csv": {
+      "sha256": "f98e7fb5017f0c0f1f6a04ef4557fa1391ddd5686436a0f0d4e722b4ea1ea04f",
+      "rows": 66
+    },
+    "atribuiri-initiale.csv": {
+      "sha256": "21cbe2b6d6f637a2cf8d5f573e2ca482699662a6d559b5568104f0f90447891b",
+      "rows": 822
+    }
+  },
+  "entry_coverage": 122,
+  "validation": {
+    "checked_at": "2026-10-19T15:07:23.794664+00:00",
+    "entries": 122,
+    "schema_valid": 122,
+    "errors": 0,
+    "error_details": [],
+    "assignments": 1439,
+    "citations": 2363,
+    "original_attributions_preserved": 86,
+    "unresolved_identity_literals": 66,
+    "typed_attribution_roles": 0,
+    "result_status": {
+      "classified": 105,
+      "partial": 16,
+      "insufficient_evidence": 1
+    },
+    "maturity": {
+      "unknown": 92,
+      "maturitate:operational": 29,
+      "maturitate:prototip": 1
+    },
+    "technology": {
+      "tehnologie:ai": 5,
+      "tehnologie:aplicatie-mobila": 1
+    },
+    "concept_proposals": 7,
+    "area_proposals": 2
+  },
+  "field_metrics": [
+    {
+      "field": "tip_entitate",
+      "entries": 122,
+      "exact_agreement": 121,
+      "disagreements": 1,
+      "exact_agreement_rate": 0.9918
+    },
+    {
+      "field": "subiect_principal",
+      "entries": 122,
+      "exact_agreement": 116,
+      "disagreements": 6,
+      "exact_agreement_rate": 0.9508
+    },
+    {
+      "field": "subiecte",
+      "entries": 122,
+      "exact_agreement": 90,
+      "disagreements": 32,
+      "exact_agreement_rate": 0.7377,
+      "mean_jaccard": 0.859,
+      "candidate_assignments": 191,
+      "baseline_assignments": 206,
+      "shared_assignments": 178
+    },
+    {
+      "field": "teme",
+      "entries": 122,
+      "exact_agreement": 76,
+      "disagreements": 46,
+      "exact_agreement_rate": 0.623,
+      "mean_jaccard": 0.7758,
+      "candidate_assignments": 206,
+      "baseline_assignments": 189,
+      "shared_assignments": 165
+    },
+    {
+      "field": "scopuri",
+      "entries": 122,
+      "exact_agreement": 69,
+      "disagreements": 53,
+      "exact_agreement_rate": 0.5656,
+      "mean_jaccard": 0.748,
+      "candidate_assignments": 213,
+      "baseline_assignments": 176,
+      "shared_assignments": 157
+    },
+    {
+      "field": "functionalitati",
+      "entries": 122,
+      "exact_agreement": 75,
+      "disagreements": 47,
+      "exact_agreement_rate": 0.6148,
+      "mean_jaccard": 0.7056,
+      "candidate_assignments": 147,
+      "baseline_assignments": 110,
+      "shared_assignments": 96
+    },
+    {
+      "field": "formate",
+      "entries": 122,
+      "exact_agreement": 87,
+      "disagreements": 35,
+      "exact_agreement_rate": 0.7131,
+      "mean_jaccard": 0.7705,
+      "candidate_assignments": 120,
+      "baseline_assignments": 88,
+      "shared_assignments": 83
+    },
+    {
+      "field": "tehnologii",
+      "entries": 122,
+      "exact_agreement": 121,
+      "disagreements": 1,
+      "exact_agreement_rate": 0.9918,
+      "mean_jaccard": 0.9918,
+      "candidate_assignments": 6,
+      "baseline_assignments": 7,
+      "shared_assignments": 6
+    },
+    {
+      "field": "institutii_vizate",
+      "entries": 122,
+      "exact_agreement": 104,
+      "disagreements": 18,
+      "exact_agreement_rate": 0.8525,
+      "mean_jaccard": 0.8566,
+      "candidate_assignments": 31,
+      "baseline_assignments": 32,
+      "shared_assignments": 22
+    },
+    {
+      "field": "tip_organizatie",
+      "entries": 122,
+      "exact_agreement": 118,
+      "disagreements": 4,
+      "exact_agreement_rate": 0.9672,
+      "mean_jaccard": 0.9713,
+      "candidate_assignments": 12,
+      "baseline_assignments": 12,
+      "shared_assignments": 10
+    },
+    {
+      "field": "maturitate",
+      "entries": 122,
+      "exact_agreement": 92,
+      "disagreements": 30,
+      "exact_agreement_rate": 0.7541
+    },
+    {
+      "field": "nivel_acoperire",
+      "entries": 122,
+      "exact_agreement": 117,
+      "disagreements": 5,
+      "exact_agreement_rate": 0.959
+    },
+    {
+      "field": "arii_acoperite",
+      "entries": 122,
+      "exact_agreement": 117,
+      "disagreements": 5,
+      "exact_agreement_rate": 0.959,
+      "mean_jaccard": 0.959,
+      "candidate_assignments": 119,
+      "baseline_assignments": 123,
+      "shared_assignments": 118
+    }
+  ],
+  "primary_subject_disagreements": 6,
+  "primary_difference_categories": {
+    "different_root_requires_semantic_review": 4,
+    "abstention": 1,
+    "primary_emphasis_existing_baseline_root_retained": 1
+  },
+  "field_disagreements": 283,
+  "retrieval": {
+    "records": 119,
+    "statuses": {
+      "failed": 22,
+      "text": 95,
+      "empty": 2
+    },
+    "entries_with_public_evidence": 28,
+    "unique_public_sources_supplied": 26,
+    "used_sources": {
+      "turn4search0": 1,
+      "turn4search2": 1,
+      "turn3view7": 5,
+      "turn0view2": 1,
+      "turn7search12": 1,
+      "turn7search1": 1,
+      "turn0view4": 1,
+      "turn0view5": 1,
+      "turn0view6": 1,
+      "turn2view2": 1,
+      "turn2view1": 1,
+      "turn6view2": 1,
+      "turn7search0": 1,
+      "turn6search2": 1,
+      "turn4search5": 1,
+      "turn5search3": 1,
+      "turn3view2": 1,
+      "turn1view2": 1,
+      "turn3view4": 1,
+      "turn2view6": 1,
+      "turn1view6": 1,
+      "turn1view5": 1,
+      "turn6view1": 1,
+      "turn6view0": 1,
+      "turn1view7": 1,
+      "turn3view8": 1
+    }
+  },
+  "initial_assignment_rows": 822,
+  "initial_assignments_retained": 718,
+  "existing_review_items": 66,
+  "semantic_sample": {
+    "entries": 27,
+    "outcomes": {
+      "supported": 12,
+      "supported_with_historical_limit": 2,
+      "partial_supported": 2,
+      "citation_and_scope_concern": 1,
+      "supported_uncertainty": 1,
+      "supported_identity_preservation": 1,
+      "weak_format_support": 1,
+      "supported_abstention": 1,
+      "supported_abstention_on_technology": 1,
+      "supported_with_area_gap": 2,
+      "conservative_organisation_type": 1,
+      "purpose_boundary_concern": 1,
+      "supported_with_topic_gap": 1
+    },
+    "independent_human_review": false
+  },
+  "existing_file_hashes_checked": 495,
+  "existing_files_changed": [],
+  "limitations": [
+    "Exact backend model ID, per-entry token usage and sampling settings unavailable in this session.",
+    "Direct assistant classification with batch serialization; not an isolated API response per entry or an implemented inference runner.",
+    "No local_only control arm; retrieval benefit is not a causal measurement.",
+    "Mechanical citation validity does not prove semantic entailment.",
+    "Candidate is frozen before evaluation; identified semantic issues remain documented, not silently corrected.",
+    "Candidate preserves all consolidated input fields. It does not contain excluded contact, notes or availability overrides; later implementation must preserve those by source identity."
+  ]
+}

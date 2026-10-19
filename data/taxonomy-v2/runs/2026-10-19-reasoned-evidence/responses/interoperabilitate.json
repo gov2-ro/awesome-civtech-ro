@@ -1,0 +1,319 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "interoperabilitate",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:societate-digitala",
+    "subiecte": [
+      "subiect:societate-digitala",
+      "subiect:media-informare"
+    ],
+    "teme": [
+      "subiect:infrastructura-digitala",
+      "subiect:securitate-cibernetica",
+      "subiect:jurnalism"
+    ],
+    "scopuri": [
+      "scop:transparenta",
+      "scop:responsabilizare"
+    ],
+    "functionalitati": [
+      "functie:analiza"
+    ],
+    "formate": [
+      "format:articol"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "interoperabilitate:tip_entitate_original",
+          "locator": "clasificare-input.csv:interoperabilitate:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:societate-digitala",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "interoperabilitate:descriere_scurta",
+          "locator": "clasificare-input.csv:interoperabilitate:descriere_scurta",
+          "excerpt": "Investigații despre infrastructura digitală a statului"
+        },
+        {
+          "source_id": "interoperabilitate:descriere",
+          "locator": "clasificare-input.csv:interoperabilitate:descriere",
+          "excerpt": "Investigații cu surse verificabile despre platformele, banii și actorii din spatele digitalizării publice. Dosarul PNI și securitatea registrelor statului."
+        }
+      ],
+      "rationale_ro": "Investigațiile privesc infrastructura digitală publică; nu oferă direct funcții de interoperabilitate. Conceptul subiect:infrastructura-digitala are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:societate-digitala",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "interoperabilitate:descriere_scurta",
+          "locator": "clasificare-input.csv:interoperabilitate:descriere_scurta",
+          "excerpt": "Investigații despre infrastructura digitală a statului"
+        },
+        {
+          "source_id": "interoperabilitate:descriere",
+          "locator": "clasificare-input.csv:interoperabilitate:descriere",
+          "excerpt": "Investigații cu surse verificabile despre platformele, banii și actorii din spatele digitalizării publice. Dosarul PNI și securitatea registrelor statului."
+        }
+      ],
+      "rationale_ro": "Investigațiile privesc infrastructura digitală publică; nu oferă direct funcții de interoperabilitate. Conceptul subiect:infrastructura-digitala are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:media-informare",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "interoperabilitate:descriere_scurta",
+          "locator": "clasificare-input.csv:interoperabilitate:descriere_scurta",
+          "excerpt": "Investigații despre infrastructura digitală a statului"
+        },
+        {
+          "source_id": "interoperabilitate:descriere",
+          "locator": "clasificare-input.csv:interoperabilitate:descriere",
+          "excerpt": "Investigații cu surse verificabile despre platformele, banii și actorii din spatele digitalizării publice. Dosarul PNI și securitatea registrelor statului."
+        }
+      ],
+      "rationale_ro": "Investigațiile privesc infrastructura digitală publică; nu oferă direct funcții de interoperabilitate. Conceptul subiect:jurnalism are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:infrastructura-digitala",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "interoperabilitate:descriere_scurta",
+          "locator": "clasificare-input.csv:interoperabilitate:descriere_scurta",
+          "excerpt": "Investigații despre infrastructura digitală a statului"
+        },
+        {
+          "source_id": "interoperabilitate:descriere",
+          "locator": "clasificare-input.csv:interoperabilitate:descriere",
+          "excerpt": "Investigații cu surse verificabile despre platformele, banii și actorii din spatele digitalizării publice. Dosarul PNI și securitatea registrelor statului."
+        }
+      ],
+      "rationale_ro": "Investigațiile privesc infrastructura digitală publică; nu oferă direct funcții de interoperabilitate. Încadrare: Infrastructură digitală."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:securitate-cibernetica",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "interoperabilitate:descriere_scurta",
+          "locator": "clasificare-input.csv:interoperabilitate:descriere_scurta",
+          "excerpt": "Investigații despre infrastructura digitală a statului"
+        },
+        {
+          "source_id": "interoperabilitate:descriere",
+          "locator": "clasificare-input.csv:interoperabilitate:descriere",
+          "excerpt": "Investigații cu surse verificabile despre platformele, banii și actorii din spatele digitalizării publice. Dosarul PNI și securitatea registrelor statului."
+        }
+      ],
+      "rationale_ro": "Investigațiile privesc infrastructura digitală publică; nu oferă direct funcții de interoperabilitate. Încadrare: Securitate cibernetică."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:jurnalism",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "interoperabilitate:descriere_scurta",
+          "locator": "clasificare-input.csv:interoperabilitate:descriere_scurta",
+          "excerpt": "Investigații despre infrastructura digitală a statului"
+        },
+        {
+          "source_id": "interoperabilitate:descriere",
+          "locator": "clasificare-input.csv:interoperabilitate:descriere",
+          "excerpt": "Investigații cu surse verificabile despre platformele, banii și actorii din spatele digitalizării publice. Dosarul PNI și securitatea registrelor statului."
+        }
+      ],
+      "rationale_ro": "Investigațiile privesc infrastructura digitală publică; nu oferă direct funcții de interoperabilitate. Încadrare: Jurnalism."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:transparenta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "interoperabilitate:descriere_scurta",
+          "locator": "clasificare-input.csv:interoperabilitate:descriere_scurta",
+          "excerpt": "Investigații despre infrastructura digitală a statului"
+        },
+        {
+          "source_id": "interoperabilitate:descriere",
+          "locator": "clasificare-input.csv:interoperabilitate:descriere",
+          "excerpt": "Investigații cu surse verificabile despre platformele, banii și actorii din spatele digitalizării publice. Dosarul PNI și securitatea registrelor statului."
+        }
+      ],
+      "rationale_ro": "Investigațiile privesc infrastructura digitală publică; nu oferă direct funcții de interoperabilitate. Încadrare: Transparență."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:responsabilizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "interoperabilitate:descriere_scurta",
+          "locator": "clasificare-input.csv:interoperabilitate:descriere_scurta",
+          "excerpt": "Investigații despre infrastructura digitală a statului"
+        },
+        {
+          "source_id": "interoperabilitate:descriere",
+          "locator": "clasificare-input.csv:interoperabilitate:descriere",
+          "excerpt": "Investigații cu surse verificabile despre platformele, banii și actorii din spatele digitalizării publice. Dosarul PNI și securitatea registrelor statului."
+        }
+      ],
+      "rationale_ro": "Investigațiile privesc infrastructura digitală publică; nu oferă direct funcții de interoperabilitate. Încadrare: Responsabilizare publică."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:analiza",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "interoperabilitate:descriere_scurta",
+          "locator": "clasificare-input.csv:interoperabilitate:descriere_scurta",
+          "excerpt": "Investigații despre infrastructura digitală a statului"
+        },
+        {
+          "source_id": "interoperabilitate:descriere",
+          "locator": "clasificare-input.csv:interoperabilitate:descriere",
+          "excerpt": "Investigații cu surse verificabile despre platformele, banii și actorii din spatele digitalizării publice. Dosarul PNI și securitatea registrelor statului."
+        }
+      ],
+      "rationale_ro": "Investigațiile privesc infrastructura digitală publică; nu oferă direct funcții de interoperabilitate. Încadrare: Analizează date."
+    },
+    {
+      "field": "formate",
+      "value": "format:articol",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "interoperabilitate:descriere_scurta",
+          "locator": "clasificare-input.csv:interoperabilitate:descriere_scurta",
+          "excerpt": "Investigații despre infrastructura digitală a statului"
+        },
+        {
+          "source_id": "interoperabilitate:descriere",
+          "locator": "clasificare-input.csv:interoperabilitate:descriere",
+          "excerpt": "Investigații cu surse verificabile despre platformele, banii și actorii din spatele digitalizării publice. Dosarul PNI și securitatea registrelor statului."
+        }
+      ],
+      "rationale_ro": "Investigațiile privesc infrastructura digitală publică; nu oferă direct funcții de interoperabilitate. Încadrare: Articol."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "interoperabilitate:acoperire_original",
+          "locator": "clasificare-input.csv:interoperabilitate:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "interoperabilitate:acoperire_original",
+          "locator": "clasificare-input.csv:interoperabilitate:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": null,
+      "object_literal": "Gabriel Popa",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "interoperabilitate:autor_original",
+          "locator": "clasificare-input.csv:interoperabilitate:autor_original",
+          "excerpt": "Gabriel Popa"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    },
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "monitorizare",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "infrastructură",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "digital",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

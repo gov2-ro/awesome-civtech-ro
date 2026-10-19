@@ -1,0 +1,268 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "parlament-transparent",
+  "result_status": "partial",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:guvernare-democratie",
+    "subiecte": [
+      "subiect:guvernare-democratie"
+    ],
+    "teme": [
+      "subiect:activitate-parlamentara"
+    ],
+    "scopuri": [
+      "scop:transparenta"
+    ],
+    "functionalitati": [],
+    "formate": [],
+    "tehnologii": [],
+    "institutii_vizate": [
+      "institutie:parlament"
+    ],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "parlament-transparent:tip_entitate_original",
+          "locator": "clasificare-input.csv:parlament-transparent:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "mica",
+      "evidence": [
+        {
+          "source_id": "parlament-transparent:nume",
+          "locator": "clasificare-input.csv:parlament-transparent:nume",
+          "excerpt": "Parlament Transparent"
+        },
+        {
+          "source_id": "parlament-transparent:domeniu_original",
+          "locator": "clasificare-input.csv:parlament-transparent:domeniu_original",
+          "excerpt": "politica"
+        },
+        {
+          "source_id": "parlament-transparent:tip_original",
+          "locator": "clasificare-input.csv:parlament-transparent:tip_original",
+          "excerpt": "monitorizare"
+        },
+        {
+          "source_id": "parlament-transparent:cuvinte_original",
+          "locator": "clasificare-input.csv:parlament-transparent:cuvinte_original",
+          "excerpt": "parlament"
+        }
+      ],
+      "rationale_ro": "Titlul și eticheta parlament susțin doar o clasificare parlamentară provizorie. Conceptul subiect:activitate-parlamentara are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "mica",
+      "evidence": [
+        {
+          "source_id": "parlament-transparent:nume",
+          "locator": "clasificare-input.csv:parlament-transparent:nume",
+          "excerpt": "Parlament Transparent"
+        },
+        {
+          "source_id": "parlament-transparent:domeniu_original",
+          "locator": "clasificare-input.csv:parlament-transparent:domeniu_original",
+          "excerpt": "politica"
+        },
+        {
+          "source_id": "parlament-transparent:tip_original",
+          "locator": "clasificare-input.csv:parlament-transparent:tip_original",
+          "excerpt": "monitorizare"
+        },
+        {
+          "source_id": "parlament-transparent:cuvinte_original",
+          "locator": "clasificare-input.csv:parlament-transparent:cuvinte_original",
+          "excerpt": "parlament"
+        }
+      ],
+      "rationale_ro": "Titlul și eticheta parlament susțin doar o clasificare parlamentară provizorie. Conceptul subiect:activitate-parlamentara are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:activitate-parlamentara",
+      "basis": "inference",
+      "confidence": "mica",
+      "evidence": [
+        {
+          "source_id": "parlament-transparent:nume",
+          "locator": "clasificare-input.csv:parlament-transparent:nume",
+          "excerpt": "Parlament Transparent"
+        },
+        {
+          "source_id": "parlament-transparent:domeniu_original",
+          "locator": "clasificare-input.csv:parlament-transparent:domeniu_original",
+          "excerpt": "politica"
+        },
+        {
+          "source_id": "parlament-transparent:tip_original",
+          "locator": "clasificare-input.csv:parlament-transparent:tip_original",
+          "excerpt": "monitorizare"
+        },
+        {
+          "source_id": "parlament-transparent:cuvinte_original",
+          "locator": "clasificare-input.csv:parlament-transparent:cuvinte_original",
+          "excerpt": "parlament"
+        }
+      ],
+      "rationale_ro": "Titlul și eticheta parlament susțin doar o clasificare parlamentară provizorie. Încadrare: Activitate parlamentară."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:transparenta",
+      "basis": "inference",
+      "confidence": "mica",
+      "evidence": [
+        {
+          "source_id": "parlament-transparent:nume",
+          "locator": "clasificare-input.csv:parlament-transparent:nume",
+          "excerpt": "Parlament Transparent"
+        },
+        {
+          "source_id": "parlament-transparent:domeniu_original",
+          "locator": "clasificare-input.csv:parlament-transparent:domeniu_original",
+          "excerpt": "politica"
+        },
+        {
+          "source_id": "parlament-transparent:tip_original",
+          "locator": "clasificare-input.csv:parlament-transparent:tip_original",
+          "excerpt": "monitorizare"
+        },
+        {
+          "source_id": "parlament-transparent:cuvinte_original",
+          "locator": "clasificare-input.csv:parlament-transparent:cuvinte_original",
+          "excerpt": "parlament"
+        }
+      ],
+      "rationale_ro": "Titlul și eticheta parlament susțin doar o clasificare parlamentară provizorie. Încadrare: Transparență."
+    },
+    {
+      "field": "institutii_vizate",
+      "value": "institutie:parlament",
+      "basis": "inference",
+      "confidence": "mica",
+      "evidence": [
+        {
+          "source_id": "parlament-transparent:nume",
+          "locator": "clasificare-input.csv:parlament-transparent:nume",
+          "excerpt": "Parlament Transparent"
+        },
+        {
+          "source_id": "parlament-transparent:domeniu_original",
+          "locator": "clasificare-input.csv:parlament-transparent:domeniu_original",
+          "excerpt": "politica"
+        },
+        {
+          "source_id": "parlament-transparent:tip_original",
+          "locator": "clasificare-input.csv:parlament-transparent:tip_original",
+          "excerpt": "monitorizare"
+        },
+        {
+          "source_id": "parlament-transparent:cuvinte_original",
+          "locator": "clasificare-input.csv:parlament-transparent:cuvinte_original",
+          "excerpt": "parlament"
+        }
+      ],
+      "rationale_ro": "Titlul și eticheta parlament susțin doar o clasificare parlamentară provizorie. Încadrare: Parlament."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "parlament-transparent:acoperire_original",
+          "locator": "clasificare-input.csv:parlament-transparent:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "parlament-transparent:acoperire_original",
+          "locator": "clasificare-input.csv:parlament-transparent:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": null,
+      "object_literal": "Median Research Centre",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "parlament-transparent:autor_original",
+          "locator": "clasificare-input.csv:parlament-transparent:autor_original",
+          "excerpt": "Median Research Centre"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    },
+    {
+      "field": "classification",
+      "reason_ro": "Lipsește descrierea detaliată; titlul, textul scurt și etichetele au precizie limitată.",
+      "needed_evidence_ro": "Documentație publică specifică intrării."
+    },
+    {
+      "field": "classification",
+      "reason_ro": "Titlul și eticheta parlament susțin doar o clasificare parlamentară provizorie.",
+      "needed_evidence_ro": "Documentație primară care rezolvă ambiguitatea indicată."
+    },
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "monitorizare",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

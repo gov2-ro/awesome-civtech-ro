@@ -1,0 +1,467 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "funky-citizens",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "organizatie",
+    "subiect_principal": "subiect:guvernare-democratie",
+    "subiecte": [
+      "subiect:guvernare-democratie",
+      "subiect:finante-publice",
+      "subiect:media-informare",
+      "subiect:educatie-cultura",
+      "subiect:drept-justitie"
+    ],
+    "teme": [
+      "subiect:buget",
+      "subiect:alegeri",
+      "subiect:dezinformare",
+      "subiect:educatie-civica"
+    ],
+    "scopuri": [
+      "scop:transparenta",
+      "scop:responsabilizare",
+      "scop:educatie",
+      "scop:participare"
+    ],
+    "functionalitati": [
+      "functie:monitorizare",
+      "functie:verificare-fapte",
+      "functie:advocacy",
+      "functie:invatare"
+    ],
+    "formate": [],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [
+      "organizatie:ong"
+    ],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "organizatie",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "funky-citizens:tip_entitate_original",
+          "locator": "clasificare-input.csv:funky-citizens:tip_entitate_original",
+          "excerpt": "organizatie"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "funky-citizens:descriere_scurta",
+          "locator": "clasificare-input.csv:funky-citizens:descriere_scurta",
+          "excerpt": "ONG pentru bună guvernare și cetățenie activă: bugete, alegeri, dezinformare"
+        },
+        {
+          "source_id": "funky-citizens:descriere",
+          "locator": "clasificare-input.csv:funky-citizens:descriere",
+          "excerpt": "Funky Citizens este un ONG înființat în 2012, care urmărește banii publici, verifică faptele și face educația civică accesibilă. Folosește tehnologia, advocacy-ul bazat pe date și educația civică pentru a monitoriza executivul și a susține reforma instituțiilor. Proiectele ei acoperă bugetele publice, combaterea dezinformării, justiția și alegerile."
+        }
+      ],
+      "rationale_ro": "ONG-ul monitorizează executivul, verifică fapte și oferă educație civică. Conceptul subiect:alegeri are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "funky-citizens:descriere_scurta",
+          "locator": "clasificare-input.csv:funky-citizens:descriere_scurta",
+          "excerpt": "ONG pentru bună guvernare și cetățenie activă: bugete, alegeri, dezinformare"
+        },
+        {
+          "source_id": "funky-citizens:descriere",
+          "locator": "clasificare-input.csv:funky-citizens:descriere",
+          "excerpt": "Funky Citizens este un ONG înființat în 2012, care urmărește banii publici, verifică faptele și face educația civică accesibilă. Folosește tehnologia, advocacy-ul bazat pe date și educația civică pentru a monitoriza executivul și a susține reforma instituțiilor. Proiectele ei acoperă bugetele publice, combaterea dezinformării, justiția și alegerile."
+        }
+      ],
+      "rationale_ro": "ONG-ul monitorizează executivul, verifică fapte și oferă educație civică. Conceptul subiect:alegeri are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:finante-publice",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "funky-citizens:descriere_scurta",
+          "locator": "clasificare-input.csv:funky-citizens:descriere_scurta",
+          "excerpt": "ONG pentru bună guvernare și cetățenie activă: bugete, alegeri, dezinformare"
+        },
+        {
+          "source_id": "funky-citizens:descriere",
+          "locator": "clasificare-input.csv:funky-citizens:descriere",
+          "excerpt": "Funky Citizens este un ONG înființat în 2012, care urmărește banii publici, verifică faptele și face educația civică accesibilă. Folosește tehnologia, advocacy-ul bazat pe date și educația civică pentru a monitoriza executivul și a susține reforma instituțiilor. Proiectele ei acoperă bugetele publice, combaterea dezinformării, justiția și alegerile."
+        }
+      ],
+      "rationale_ro": "ONG-ul monitorizează executivul, verifică fapte și oferă educație civică. Conceptul subiect:buget are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:media-informare",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "funky-citizens:descriere_scurta",
+          "locator": "clasificare-input.csv:funky-citizens:descriere_scurta",
+          "excerpt": "ONG pentru bună guvernare și cetățenie activă: bugete, alegeri, dezinformare"
+        },
+        {
+          "source_id": "funky-citizens:descriere",
+          "locator": "clasificare-input.csv:funky-citizens:descriere",
+          "excerpt": "Funky Citizens este un ONG înființat în 2012, care urmărește banii publici, verifică faptele și face educația civică accesibilă. Folosește tehnologia, advocacy-ul bazat pe date și educația civică pentru a monitoriza executivul și a susține reforma instituțiilor. Proiectele ei acoperă bugetele publice, combaterea dezinformării, justiția și alegerile."
+        }
+      ],
+      "rationale_ro": "ONG-ul monitorizează executivul, verifică fapte și oferă educație civică. Conceptul subiect:dezinformare are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:educatie-cultura",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "funky-citizens:descriere_scurta",
+          "locator": "clasificare-input.csv:funky-citizens:descriere_scurta",
+          "excerpt": "ONG pentru bună guvernare și cetățenie activă: bugete, alegeri, dezinformare"
+        },
+        {
+          "source_id": "funky-citizens:descriere",
+          "locator": "clasificare-input.csv:funky-citizens:descriere",
+          "excerpt": "Funky Citizens este un ONG înființat în 2012, care urmărește banii publici, verifică faptele și face educația civică accesibilă. Folosește tehnologia, advocacy-ul bazat pe date și educația civică pentru a monitoriza executivul și a susține reforma instituțiilor. Proiectele ei acoperă bugetele publice, combaterea dezinformării, justiția și alegerile."
+        }
+      ],
+      "rationale_ro": "ONG-ul monitorizează executivul, verifică fapte și oferă educație civică. Conceptul subiect:educatie-civica are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:drept-justitie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "funky-citizens:descriere_scurta",
+          "locator": "clasificare-input.csv:funky-citizens:descriere_scurta",
+          "excerpt": "ONG pentru bună guvernare și cetățenie activă: bugete, alegeri, dezinformare"
+        },
+        {
+          "source_id": "funky-citizens:descriere",
+          "locator": "clasificare-input.csv:funky-citizens:descriere",
+          "excerpt": "Funky Citizens este un ONG înființat în 2012, care urmărește banii publici, verifică faptele și face educația civică accesibilă. Folosește tehnologia, advocacy-ul bazat pe date și educația civică pentru a monitoriza executivul și a susține reforma instituțiilor. Proiectele ei acoperă bugetele publice, combaterea dezinformării, justiția și alegerile."
+        }
+      ],
+      "rationale_ro": "ONG-ul monitorizează executivul, verifică fapte și oferă educație civică."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:buget",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "funky-citizens:descriere_scurta",
+          "locator": "clasificare-input.csv:funky-citizens:descriere_scurta",
+          "excerpt": "ONG pentru bună guvernare și cetățenie activă: bugete, alegeri, dezinformare"
+        },
+        {
+          "source_id": "funky-citizens:descriere",
+          "locator": "clasificare-input.csv:funky-citizens:descriere",
+          "excerpt": "Funky Citizens este un ONG înființat în 2012, care urmărește banii publici, verifică faptele și face educația civică accesibilă. Folosește tehnologia, advocacy-ul bazat pe date și educația civică pentru a monitoriza executivul și a susține reforma instituțiilor. Proiectele ei acoperă bugetele publice, combaterea dezinformării, justiția și alegerile."
+        }
+      ],
+      "rationale_ro": "ONG-ul monitorizează executivul, verifică fapte și oferă educație civică. Încadrare: Buget public."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:alegeri",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "funky-citizens:descriere_scurta",
+          "locator": "clasificare-input.csv:funky-citizens:descriere_scurta",
+          "excerpt": "ONG pentru bună guvernare și cetățenie activă: bugete, alegeri, dezinformare"
+        },
+        {
+          "source_id": "funky-citizens:descriere",
+          "locator": "clasificare-input.csv:funky-citizens:descriere",
+          "excerpt": "Funky Citizens este un ONG înființat în 2012, care urmărește banii publici, verifică faptele și face educația civică accesibilă. Folosește tehnologia, advocacy-ul bazat pe date și educația civică pentru a monitoriza executivul și a susține reforma instituțiilor. Proiectele ei acoperă bugetele publice, combaterea dezinformării, justiția și alegerile."
+        }
+      ],
+      "rationale_ro": "ONG-ul monitorizează executivul, verifică fapte și oferă educație civică. Încadrare: Alegeri."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:dezinformare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "funky-citizens:descriere_scurta",
+          "locator": "clasificare-input.csv:funky-citizens:descriere_scurta",
+          "excerpt": "ONG pentru bună guvernare și cetățenie activă: bugete, alegeri, dezinformare"
+        },
+        {
+          "source_id": "funky-citizens:descriere",
+          "locator": "clasificare-input.csv:funky-citizens:descriere",
+          "excerpt": "Funky Citizens este un ONG înființat în 2012, care urmărește banii publici, verifică faptele și face educația civică accesibilă. Folosește tehnologia, advocacy-ul bazat pe date și educația civică pentru a monitoriza executivul și a susține reforma instituțiilor. Proiectele ei acoperă bugetele publice, combaterea dezinformării, justiția și alegerile."
+        }
+      ],
+      "rationale_ro": "ONG-ul monitorizează executivul, verifică fapte și oferă educație civică. Încadrare: Dezinformare."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:educatie-civica",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "funky-citizens:descriere_scurta",
+          "locator": "clasificare-input.csv:funky-citizens:descriere_scurta",
+          "excerpt": "ONG pentru bună guvernare și cetățenie activă: bugete, alegeri, dezinformare"
+        },
+        {
+          "source_id": "funky-citizens:descriere",
+          "locator": "clasificare-input.csv:funky-citizens:descriere",
+          "excerpt": "Funky Citizens este un ONG înființat în 2012, care urmărește banii publici, verifică faptele și face educația civică accesibilă. Folosește tehnologia, advocacy-ul bazat pe date și educația civică pentru a monitoriza executivul și a susține reforma instituțiilor. Proiectele ei acoperă bugetele publice, combaterea dezinformării, justiția și alegerile."
+        }
+      ],
+      "rationale_ro": "ONG-ul monitorizează executivul, verifică fapte și oferă educație civică. Încadrare: Educație civică."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:transparenta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "funky-citizens:descriere_scurta",
+          "locator": "clasificare-input.csv:funky-citizens:descriere_scurta",
+          "excerpt": "ONG pentru bună guvernare și cetățenie activă: bugete, alegeri, dezinformare"
+        },
+        {
+          "source_id": "funky-citizens:descriere",
+          "locator": "clasificare-input.csv:funky-citizens:descriere",
+          "excerpt": "Funky Citizens este un ONG înființat în 2012, care urmărește banii publici, verifică faptele și face educația civică accesibilă. Folosește tehnologia, advocacy-ul bazat pe date și educația civică pentru a monitoriza executivul și a susține reforma instituțiilor. Proiectele ei acoperă bugetele publice, combaterea dezinformării, justiția și alegerile."
+        }
+      ],
+      "rationale_ro": "ONG-ul monitorizează executivul, verifică fapte și oferă educație civică. Încadrare: Transparență."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:responsabilizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "funky-citizens:descriere_scurta",
+          "locator": "clasificare-input.csv:funky-citizens:descriere_scurta",
+          "excerpt": "ONG pentru bună guvernare și cetățenie activă: bugete, alegeri, dezinformare"
+        },
+        {
+          "source_id": "funky-citizens:descriere",
+          "locator": "clasificare-input.csv:funky-citizens:descriere",
+          "excerpt": "Funky Citizens este un ONG înființat în 2012, care urmărește banii publici, verifică faptele și face educația civică accesibilă. Folosește tehnologia, advocacy-ul bazat pe date și educația civică pentru a monitoriza executivul și a susține reforma instituțiilor. Proiectele ei acoperă bugetele publice, combaterea dezinformării, justiția și alegerile."
+        }
+      ],
+      "rationale_ro": "ONG-ul monitorizează executivul, verifică fapte și oferă educație civică. Încadrare: Responsabilizare publică."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:educatie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "funky-citizens:descriere_scurta",
+          "locator": "clasificare-input.csv:funky-citizens:descriere_scurta",
+          "excerpt": "ONG pentru bună guvernare și cetățenie activă: bugete, alegeri, dezinformare"
+        },
+        {
+          "source_id": "funky-citizens:descriere",
+          "locator": "clasificare-input.csv:funky-citizens:descriere",
+          "excerpt": "Funky Citizens este un ONG înființat în 2012, care urmărește banii publici, verifică faptele și face educația civică accesibilă. Folosește tehnologia, advocacy-ul bazat pe date și educația civică pentru a monitoriza executivul și a susține reforma instituțiilor. Proiectele ei acoperă bugetele publice, combaterea dezinformării, justiția și alegerile."
+        }
+      ],
+      "rationale_ro": "ONG-ul monitorizează executivul, verifică fapte și oferă educație civică. Încadrare: Învățare."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:participare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "funky-citizens:descriere_scurta",
+          "locator": "clasificare-input.csv:funky-citizens:descriere_scurta",
+          "excerpt": "ONG pentru bună guvernare și cetățenie activă: bugete, alegeri, dezinformare"
+        },
+        {
+          "source_id": "funky-citizens:descriere",
+          "locator": "clasificare-input.csv:funky-citizens:descriere",
+          "excerpt": "Funky Citizens este un ONG înființat în 2012, care urmărește banii publici, verifică faptele și face educația civică accesibilă. Folosește tehnologia, advocacy-ul bazat pe date și educația civică pentru a monitoriza executivul și a susține reforma instituțiilor. Proiectele ei acoperă bugetele publice, combaterea dezinformării, justiția și alegerile."
+        }
+      ],
+      "rationale_ro": "ONG-ul monitorizează executivul, verifică fapte și oferă educație civică. Încadrare: Participare civică."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:monitorizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "funky-citizens:descriere_scurta",
+          "locator": "clasificare-input.csv:funky-citizens:descriere_scurta",
+          "excerpt": "ONG pentru bună guvernare și cetățenie activă: bugete, alegeri, dezinformare"
+        },
+        {
+          "source_id": "funky-citizens:descriere",
+          "locator": "clasificare-input.csv:funky-citizens:descriere",
+          "excerpt": "Funky Citizens este un ONG înființat în 2012, care urmărește banii publici, verifică faptele și face educația civică accesibilă. Folosește tehnologia, advocacy-ul bazat pe date și educația civică pentru a monitoriza executivul și a susține reforma instituțiilor. Proiectele ei acoperă bugetele publice, combaterea dezinformării, justiția și alegerile."
+        }
+      ],
+      "rationale_ro": "ONG-ul monitorizează executivul, verifică fapte și oferă educație civică. Încadrare: Monitorizează."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:verificare-fapte",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "funky-citizens:descriere_scurta",
+          "locator": "clasificare-input.csv:funky-citizens:descriere_scurta",
+          "excerpt": "ONG pentru bună guvernare și cetățenie activă: bugete, alegeri, dezinformare"
+        },
+        {
+          "source_id": "funky-citizens:descriere",
+          "locator": "clasificare-input.csv:funky-citizens:descriere",
+          "excerpt": "Funky Citizens este un ONG înființat în 2012, care urmărește banii publici, verifică faptele și face educația civică accesibilă. Folosește tehnologia, advocacy-ul bazat pe date și educația civică pentru a monitoriza executivul și a susține reforma instituțiilor. Proiectele ei acoperă bugetele publice, combaterea dezinformării, justiția și alegerile."
+        }
+      ],
+      "rationale_ro": "ONG-ul monitorizează executivul, verifică fapte și oferă educație civică. Încadrare: Verifică fapte."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:advocacy",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "funky-citizens:descriere_scurta",
+          "locator": "clasificare-input.csv:funky-citizens:descriere_scurta",
+          "excerpt": "ONG pentru bună guvernare și cetățenie activă: bugete, alegeri, dezinformare"
+        },
+        {
+          "source_id": "funky-citizens:descriere",
+          "locator": "clasificare-input.csv:funky-citizens:descriere",
+          "excerpt": "Funky Citizens este un ONG înființat în 2012, care urmărește banii publici, verifică faptele și face educația civică accesibilă. Folosește tehnologia, advocacy-ul bazat pe date și educația civică pentru a monitoriza executivul și a susține reforma instituțiilor. Proiectele ei acoperă bugetele publice, combaterea dezinformării, justiția și alegerile."
+        }
+      ],
+      "rationale_ro": "ONG-ul monitorizează executivul, verifică fapte și oferă educație civică. Încadrare: Organizează advocacy."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:invatare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "funky-citizens:descriere_scurta",
+          "locator": "clasificare-input.csv:funky-citizens:descriere_scurta",
+          "excerpt": "ONG pentru bună guvernare și cetățenie activă: bugete, alegeri, dezinformare"
+        },
+        {
+          "source_id": "funky-citizens:descriere",
+          "locator": "clasificare-input.csv:funky-citizens:descriere",
+          "excerpt": "Funky Citizens este un ONG înființat în 2012, care urmărește banii publici, verifică faptele și face educația civică accesibilă. Folosește tehnologia, advocacy-ul bazat pe date și educația civică pentru a monitoriza executivul și a susține reforma instituțiilor. Proiectele ei acoperă bugetele publice, combaterea dezinformării, justiția și alegerile."
+        }
+      ],
+      "rationale_ro": "ONG-ul monitorizează executivul, verifică fapte și oferă educație civică. Încadrare: Învață sau exersează."
+    },
+    {
+      "field": "tip_organizatie",
+      "value": "organizatie:ong",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "funky-citizens:descriere_scurta",
+          "locator": "clasificare-input.csv:funky-citizens:descriere_scurta",
+          "excerpt": "ONG pentru bună guvernare și cetățenie activă: bugete, alegeri, dezinformare"
+        },
+        {
+          "source_id": "funky-citizens:descriere",
+          "locator": "clasificare-input.csv:funky-citizens:descriere",
+          "excerpt": "Funky Citizens este un ONG înființat în 2012, care urmărește banii publici, verifică faptele și face educația civică accesibilă. Folosește tehnologia, advocacy-ul bazat pe date și educația civică pentru a monitoriza executivul și a susține reforma instituțiilor. Proiectele ei acoperă bugetele publice, combaterea dezinformării, justiția și alegerile."
+        }
+      ],
+      "rationale_ro": "ONG-ul monitorizează executivul, verifică fapte și oferă educație civică. Încadrare: Organizație neguvernamentală."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "funky-citizens:acoperire_original",
+          "locator": "clasificare-input.csv:funky-citizens:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "funky-citizens:acoperire_original",
+          "locator": "clasificare-input.csv:funky-citizens:acoperire_original",
+          "excerpt": "national"
+        },
+        {
+          "source_id": "funky-citizens:oras_original",
+          "locator": "clasificare-input.csv:funky-citizens:oras_original",
+          "excerpt": "București"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [],
+  "uncertainties": [],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "cuvinte",
+      "original_value": "educație-civică",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

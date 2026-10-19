@@ -1,0 +1,206 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "ethical-media",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "organizatie",
+    "subiect_principal": "subiect:media-informare",
+    "subiecte": [
+      "subiect:media-informare"
+    ],
+    "teme": [
+      "subiect:jurnalism",
+      "subiect:presa-independenta"
+    ],
+    "scopuri": [
+      "scop:sprijin-organizatii"
+    ],
+    "functionalitati": [],
+    "formate": [],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [
+      "organizatie:ong"
+    ],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "organizatie",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "ethical-media:tip_entitate_original",
+          "locator": "clasificare-input.csv:ethical-media:tip_entitate_original",
+          "excerpt": "organizatie"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:media-informare",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ethical-media:descriere_scurta",
+          "locator": "clasificare-input.csv:ethical-media:descriere_scurta",
+          "excerpt": "Inițiativă non-profit pentru sustenabilitatea presei de interes public"
+        },
+        {
+          "source_id": "ethical-media:descriere",
+          "locator": "clasificare-input.csv:ethical-media:descriere",
+          "excerpt": "inițiativă non-profit care își propune să identifice, să dezvolte și/sau să faciliteze accesul la noi tehnologii și modele operaționale sustenabile pentru jurnalismul de interes public"
+        }
+      ],
+      "rationale_ro": "Inițiativa non-profit sprijină sustenabilitatea jurnalismului; modelele declarate nu probează publicitate etică implementată. Conceptul subiect:jurnalism are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:media-informare",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ethical-media:descriere_scurta",
+          "locator": "clasificare-input.csv:ethical-media:descriere_scurta",
+          "excerpt": "Inițiativă non-profit pentru sustenabilitatea presei de interes public"
+        },
+        {
+          "source_id": "ethical-media:descriere",
+          "locator": "clasificare-input.csv:ethical-media:descriere",
+          "excerpt": "inițiativă non-profit care își propune să identifice, să dezvolte și/sau să faciliteze accesul la noi tehnologii și modele operaționale sustenabile pentru jurnalismul de interes public"
+        }
+      ],
+      "rationale_ro": "Inițiativa non-profit sprijină sustenabilitatea jurnalismului; modelele declarate nu probează publicitate etică implementată. Conceptul subiect:jurnalism are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:jurnalism",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ethical-media:descriere_scurta",
+          "locator": "clasificare-input.csv:ethical-media:descriere_scurta",
+          "excerpt": "Inițiativă non-profit pentru sustenabilitatea presei de interes public"
+        },
+        {
+          "source_id": "ethical-media:descriere",
+          "locator": "clasificare-input.csv:ethical-media:descriere",
+          "excerpt": "inițiativă non-profit care își propune să identifice, să dezvolte și/sau să faciliteze accesul la noi tehnologii și modele operaționale sustenabile pentru jurnalismul de interes public"
+        }
+      ],
+      "rationale_ro": "Inițiativa non-profit sprijină sustenabilitatea jurnalismului; modelele declarate nu probează publicitate etică implementată. Încadrare: Jurnalism."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:presa-independenta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ethical-media:descriere_scurta",
+          "locator": "clasificare-input.csv:ethical-media:descriere_scurta",
+          "excerpt": "Inițiativă non-profit pentru sustenabilitatea presei de interes public"
+        },
+        {
+          "source_id": "ethical-media:descriere",
+          "locator": "clasificare-input.csv:ethical-media:descriere",
+          "excerpt": "inițiativă non-profit care își propune să identifice, să dezvolte și/sau să faciliteze accesul la noi tehnologii și modele operaționale sustenabile pentru jurnalismul de interes public"
+        }
+      ],
+      "rationale_ro": "Inițiativa non-profit sprijină sustenabilitatea jurnalismului; modelele declarate nu probează publicitate etică implementată. Încadrare: Presă independentă."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:sprijin-organizatii",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ethical-media:descriere_scurta",
+          "locator": "clasificare-input.csv:ethical-media:descriere_scurta",
+          "excerpt": "Inițiativă non-profit pentru sustenabilitatea presei de interes public"
+        },
+        {
+          "source_id": "ethical-media:descriere",
+          "locator": "clasificare-input.csv:ethical-media:descriere",
+          "excerpt": "inițiativă non-profit care își propune să identifice, să dezvolte și/sau să faciliteze accesul la noi tehnologii și modele operaționale sustenabile pentru jurnalismul de interes public"
+        }
+      ],
+      "rationale_ro": "Inițiativa non-profit sprijină sustenabilitatea jurnalismului; modelele declarate nu probează publicitate etică implementată. Încadrare: Sprijin pentru organizații civice."
+    },
+    {
+      "field": "tip_organizatie",
+      "value": "organizatie:ong",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ethical-media:descriere_scurta",
+          "locator": "clasificare-input.csv:ethical-media:descriere_scurta",
+          "excerpt": "Inițiativă non-profit pentru sustenabilitatea presei de interes public"
+        },
+        {
+          "source_id": "ethical-media:descriere",
+          "locator": "clasificare-input.csv:ethical-media:descriere",
+          "excerpt": "inițiativă non-profit care își propune să identifice, să dezvolte și/sau să faciliteze accesul la noi tehnologii și modele operaționale sustenabile pentru jurnalismul de interes public"
+        }
+      ],
+      "rationale_ro": "Inițiativa non-profit sprijină sustenabilitatea jurnalismului; modelele declarate nu probează publicitate etică implementată. Încadrare: Organizație neguvernamentală."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ethical-media:acoperire_original",
+          "locator": "clasificare-input.csv:ethical-media:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ethical-media:acoperire_original",
+          "locator": "clasificare-input.csv:ethical-media:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [],
+  "uncertainties": [],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "cuvinte",
+      "original_value": "presă-independentă",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "publicitate-etică",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

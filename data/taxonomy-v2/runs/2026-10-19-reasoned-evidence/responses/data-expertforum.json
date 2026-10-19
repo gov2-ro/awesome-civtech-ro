@@ -1,0 +1,324 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "data-expertforum",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:finante-publice",
+    "subiecte": [
+      "subiect:finante-publice",
+      "subiect:guvernare-democratie",
+      "subiect:sanatate",
+      "subiect:media-informare"
+    ],
+    "teme": [
+      "subiect:achizitii-publice",
+      "subiect:investitii-publice",
+      "subiect:finantare-politica",
+      "subiect:alegeri"
+    ],
+    "scopuri": [
+      "scop:transparenta",
+      "scop:informare"
+    ],
+    "functionalitati": [
+      "functie:cautare"
+    ],
+    "formate": [
+      "format:colectie",
+      "format:set-date"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "data-expertforum:tip_entitate_original",
+          "locator": "clasificare-input.csv:data-expertforum:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:finante-publice",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn0view6",
+          "locator": "https://data.expertforum.ro/#turn0view6",
+          "excerpt": "L2: Secțiunea cu baze de date conține seturi compilate de EFOR în proiecte legate de diverse teme precum alegeri, finanțare politică, fonduri pentru infrastructură, achiziții publice, sănătate etc."
+        }
+      ],
+      "rationale_ro": "Colecția EFOR oferă seturi descărcabile despre alegeri, finanțare și infrastructură. Conceptul subiect:achizitii-publice are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:finante-publice",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn0view6",
+          "locator": "https://data.expertforum.ro/#turn0view6",
+          "excerpt": "L2: Secțiunea cu baze de date conține seturi compilate de EFOR în proiecte legate de diverse teme precum alegeri, finanțare politică, fonduri pentru infrastructură, achiziții publice, sănătate etc."
+        }
+      ],
+      "rationale_ro": "Colecția EFOR oferă seturi descărcabile despre alegeri, finanțare și infrastructură. Conceptul subiect:achizitii-publice are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn0view6",
+          "locator": "https://data.expertforum.ro/#turn0view6",
+          "excerpt": "L2: Secțiunea cu baze de date conține seturi compilate de EFOR în proiecte legate de diverse teme precum alegeri, finanțare politică, fonduri pentru infrastructură, achiziții publice, sănătate etc."
+        }
+      ],
+      "rationale_ro": "Colecția EFOR oferă seturi descărcabile despre alegeri, finanțare și infrastructură. Conceptul subiect:finantare-politica are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:sanatate",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn0view6",
+          "locator": "https://data.expertforum.ro/#turn0view6",
+          "excerpt": "L2: Secțiunea cu baze de date conține seturi compilate de EFOR în proiecte legate de diverse teme precum alegeri, finanțare politică, fonduri pentru infrastructură, achiziții publice, sănătate etc."
+        }
+      ],
+      "rationale_ro": "Colecția EFOR oferă seturi descărcabile despre alegeri, finanțare și infrastructură."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:media-informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn0view6",
+          "locator": "https://data.expertforum.ro/#turn0view6",
+          "excerpt": "L2: Secțiunea cu baze de date conține seturi compilate de EFOR în proiecte legate de diverse teme precum alegeri, finanțare politică, fonduri pentru infrastructură, achiziții publice, sănătate etc."
+        }
+      ],
+      "rationale_ro": "Colecția EFOR oferă seturi descărcabile despre alegeri, finanțare și infrastructură."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:achizitii-publice",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn0view6",
+          "locator": "https://data.expertforum.ro/#turn0view6",
+          "excerpt": "L2: Secțiunea cu baze de date conține seturi compilate de EFOR în proiecte legate de diverse teme precum alegeri, finanțare politică, fonduri pentru infrastructură, achiziții publice, sănătate etc."
+        }
+      ],
+      "rationale_ro": "Colecția EFOR oferă seturi descărcabile despre alegeri, finanțare și infrastructură. Încadrare: Achiziții publice."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:investitii-publice",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn0view6",
+          "locator": "https://data.expertforum.ro/#turn0view6",
+          "excerpt": "L2: Secțiunea cu baze de date conține seturi compilate de EFOR în proiecte legate de diverse teme precum alegeri, finanțare politică, fonduri pentru infrastructură, achiziții publice, sănătate etc."
+        }
+      ],
+      "rationale_ro": "Colecția EFOR oferă seturi descărcabile despre alegeri, finanțare și infrastructură. Încadrare: Investiții publice."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:finantare-politica",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn0view6",
+          "locator": "https://data.expertforum.ro/#turn0view6",
+          "excerpt": "L2: Secțiunea cu baze de date conține seturi compilate de EFOR în proiecte legate de diverse teme precum alegeri, finanțare politică, fonduri pentru infrastructură, achiziții publice, sănătate etc."
+        }
+      ],
+      "rationale_ro": "Colecția EFOR oferă seturi descărcabile despre alegeri, finanțare și infrastructură. Încadrare: Finanțare politică."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:alegeri",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn0view6",
+          "locator": "https://data.expertforum.ro/#turn0view6",
+          "excerpt": "L2: Secțiunea cu baze de date conține seturi compilate de EFOR în proiecte legate de diverse teme precum alegeri, finanțare politică, fonduri pentru infrastructură, achiziții publice, sănătate etc."
+        }
+      ],
+      "rationale_ro": "Colecția EFOR oferă seturi descărcabile despre alegeri, finanțare și infrastructură. Încadrare: Alegeri."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:transparenta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn0view6",
+          "locator": "https://data.expertforum.ro/#turn0view6",
+          "excerpt": "L2: Secțiunea cu baze de date conține seturi compilate de EFOR în proiecte legate de diverse teme precum alegeri, finanțare politică, fonduri pentru infrastructură, achiziții publice, sănătate etc."
+        }
+      ],
+      "rationale_ro": "Colecția EFOR oferă seturi descărcabile despre alegeri, finanțare și infrastructură. Încadrare: Transparență."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn0view6",
+          "locator": "https://data.expertforum.ro/#turn0view6",
+          "excerpt": "L2: Secțiunea cu baze de date conține seturi compilate de EFOR în proiecte legate de diverse teme precum alegeri, finanțare politică, fonduri pentru infrastructură, achiziții publice, sănătate etc."
+        }
+      ],
+      "rationale_ro": "Colecția EFOR oferă seturi descărcabile despre alegeri, finanțare și infrastructură. Încadrare: Informare și înțelegere."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:cautare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn0view6",
+          "locator": "https://data.expertforum.ro/#turn0view6",
+          "excerpt": "L2: Secțiunea cu baze de date conține seturi compilate de EFOR în proiecte legate de diverse teme precum alegeri, finanțare politică, fonduri pentru infrastructură, achiziții publice, sănătate etc."
+        }
+      ],
+      "rationale_ro": "Colecția EFOR oferă seturi descărcabile despre alegeri, finanțare și infrastructură. Încadrare: Caută și consultă."
+    },
+    {
+      "field": "formate",
+      "value": "format:colectie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn0view6",
+          "locator": "https://data.expertforum.ro/#turn0view6",
+          "excerpt": "L2: Secțiunea cu baze de date conține seturi compilate de EFOR în proiecte legate de diverse teme precum alegeri, finanțare politică, fonduri pentru infrastructură, achiziții publice, sănătate etc."
+        }
+      ],
+      "rationale_ro": "Colecția EFOR oferă seturi descărcabile despre alegeri, finanțare și infrastructură. Încadrare: Catalog sau colecție."
+    },
+    {
+      "field": "formate",
+      "value": "format:set-date",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn0view6",
+          "locator": "https://data.expertforum.ro/#turn0view6",
+          "excerpt": "L2: Secțiunea cu baze de date conține seturi compilate de EFOR în proiecte legate de diverse teme precum alegeri, finanțare politică, fonduri pentru infrastructură, achiziții publice, sănătate etc."
+        }
+      ],
+      "rationale_ro": "Colecția EFOR oferă seturi descărcabile despre alegeri, finanțare și infrastructură. Încadrare: Set de date oferit."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "data-expertforum:acoperire_original",
+          "locator": "clasificare-input.csv:data-expertforum:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "data-expertforum:acoperire_original",
+          "locator": "clasificare-input.csv:data-expertforum:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": "efor",
+      "object_literal": null,
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "data-expertforum:autor_original",
+          "locator": "clasificare-input.csv:data-expertforum:autor_original",
+          "excerpt": "efor"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    },
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "vizualizare",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "date-deschise",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

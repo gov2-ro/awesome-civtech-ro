@@ -1,0 +1,47 @@
+{
+  "run_id": "2026-10-19-reasoned-evidence",
+  "created_at": "2026-10-19T14:55:47.682828+00:00",
+  "source_mode": "retrieved_evidence",
+  "target_schema_version": "2.0.0-draft.2",
+  "entry_count": 122,
+  "classifier": {
+    "provider": "OpenAI",
+    "model": "GPT-6 (session identity; exact backend model ID unavailable)",
+    "execution": "Direct assistant reasoning; one persisted JSON response per entry. No external inference API or automated inference runner.",
+    "settings": "Session settings; temperature and seed unavailable",
+    "usage": "Per-entry token usage unavailable; no fabricated counts."
+  },
+  "withheld": [
+    "intrari.csv",
+    "revizuire.csv",
+    "atribuiri-initiale.csv"
+  ],
+  "frozen_files": {
+    "frozen/arii.csv": "6a8c624463d0d6a6dd2ab0a264e19faee579e174ac34ff3584e8e9e0afe3bb20",
+    "frozen/vocabulary.json": "57c90b9e7daa62b707bcf1c7248272ab4b82716258e15323cc3bc61051c616db",
+    "frozen/clasificare-input.csv": "464ff8cf0963d56952fd055fdd98d4167ad56339f6663ef8a4875a69f1c4a2a4",
+    "frozen/prompt.md": "28acdbc7198b174cda255c049046d6a214c6d93ec030948e746176edfd3c8b7e",
+    "frozen/output.schema.json": "70a35789fc504d5b37222fd58a513823d0d2ab0f13d52f01128f2d652bc1c05c",
+    "frozen/valori.csv": "8a6315838457f018ef42285286fd68168a652547c602de9675254342ff7075bf",
+    "frozen/concepte.csv": "e796f3f275eca90a8ac39f798d7d295a85694059f05b22bc70a9f69c5021b849"
+  },
+  "preparation_notes": [
+    "Run-local vocabulary only. Replaced draft.1 prototype definition and added experiment, pilot, operational.",
+    "Code lists copied from existing structural contract. Labels are code mirrors, not reviewed translations.",
+    "No aliases approved; exact original names and slugs only.",
+    "Existing data hashed for final non-mutation audit; withheld contents not exposed."
+  ],
+  "completed_at": "2026-10-19T15:07:42.807981+00:00",
+  "classification_seal": "classification-seal.json",
+  "validation": "validation.json",
+  "candidate_dataset": "candidate/intrari-candidate.csv",
+  "evaluation_report": "evaluation/REPORT.md",
+  "result_summary": {
+    "entries": 122,
+    "classified": 105,
+    "partial": 16,
+    "insufficient_evidence": 1,
+    "schema_valid": 122,
+    "existing_files_changed": 0
+  }
+}

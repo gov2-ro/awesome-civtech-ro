@@ -1,0 +1,333 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "vocea-cartierului-tau",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:comunitati-teritoriu",
+    "subiecte": [
+      "subiect:comunitati-teritoriu",
+      "subiect:guvernare-democratie"
+    ],
+    "teme": [
+      "subiect:administratie-publica"
+    ],
+    "scopuri": [
+      "scop:participare",
+      "scop:responsabilizare"
+    ],
+    "functionalitati": [
+      "functie:sesizare",
+      "functie:monitorizare"
+    ],
+    "formate": [
+      "format:harta",
+      "format:registru"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": "maturitate:operational",
+    "nivel_acoperire": "local",
+    "arii_acoperite": [
+      "localitate:craiova"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "vocea-cartierului-tau:tip_entitate_original",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:comunitati-teritoriu",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "vocea-cartierului-tau:descriere_scurta",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:descriere_scurta",
+          "excerpt": "Sesizarea și urmărirea problemelor din cartier"
+        },
+        {
+          "source_id": "vocea-cartierului-tau:descriere",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:descriere",
+          "excerpt": "Vocea Cartierului Tău este o platformă civică din Craiova care documentează problemele semnalate de cetățeni și urmărește demersurile către autorități. Sesizările sunt localizate pe o hartă interactivă și organizate în dosare de monitorizare, unde pot fi consultate răspunsurile instituțiilor, termenele asumate și evoluția fiecărui caz."
+        }
+      ],
+      "rationale_ro": "Cazurile din Craiova au localizare, răspunsuri instituționale și termene urmărite."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:comunitati-teritoriu",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "vocea-cartierului-tau:descriere_scurta",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:descriere_scurta",
+          "excerpt": "Sesizarea și urmărirea problemelor din cartier"
+        },
+        {
+          "source_id": "vocea-cartierului-tau:descriere",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:descriere",
+          "excerpt": "Vocea Cartierului Tău este o platformă civică din Craiova care documentează problemele semnalate de cetățeni și urmărește demersurile către autorități. Sesizările sunt localizate pe o hartă interactivă și organizate în dosare de monitorizare, unde pot fi consultate răspunsurile instituțiilor, termenele asumate și evoluția fiecărui caz."
+        }
+      ],
+      "rationale_ro": "Cazurile din Craiova au localizare, răspunsuri instituționale și termene urmărite."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "vocea-cartierului-tau:descriere_scurta",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:descriere_scurta",
+          "excerpt": "Sesizarea și urmărirea problemelor din cartier"
+        },
+        {
+          "source_id": "vocea-cartierului-tau:descriere",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:descriere",
+          "excerpt": "Vocea Cartierului Tău este o platformă civică din Craiova care documentează problemele semnalate de cetățeni și urmărește demersurile către autorități. Sesizările sunt localizate pe o hartă interactivă și organizate în dosare de monitorizare, unde pot fi consultate răspunsurile instituțiilor, termenele asumate și evoluția fiecărui caz."
+        }
+      ],
+      "rationale_ro": "Cazurile din Craiova au localizare, răspunsuri instituționale și termene urmărite. Conceptul subiect:administratie-publica are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:administratie-publica",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "vocea-cartierului-tau:descriere_scurta",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:descriere_scurta",
+          "excerpt": "Sesizarea și urmărirea problemelor din cartier"
+        },
+        {
+          "source_id": "vocea-cartierului-tau:descriere",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:descriere",
+          "excerpt": "Vocea Cartierului Tău este o platformă civică din Craiova care documentează problemele semnalate de cetățeni și urmărește demersurile către autorități. Sesizările sunt localizate pe o hartă interactivă și organizate în dosare de monitorizare, unde pot fi consultate răspunsurile instituțiilor, termenele asumate și evoluția fiecărui caz."
+        }
+      ],
+      "rationale_ro": "Cazurile din Craiova au localizare, răspunsuri instituționale și termene urmărite. Încadrare: Administrație publică."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:participare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "vocea-cartierului-tau:descriere_scurta",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:descriere_scurta",
+          "excerpt": "Sesizarea și urmărirea problemelor din cartier"
+        },
+        {
+          "source_id": "vocea-cartierului-tau:descriere",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:descriere",
+          "excerpt": "Vocea Cartierului Tău este o platformă civică din Craiova care documentează problemele semnalate de cetățeni și urmărește demersurile către autorități. Sesizările sunt localizate pe o hartă interactivă și organizate în dosare de monitorizare, unde pot fi consultate răspunsurile instituțiilor, termenele asumate și evoluția fiecărui caz."
+        }
+      ],
+      "rationale_ro": "Cazurile din Craiova au localizare, răspunsuri instituționale și termene urmărite. Încadrare: Participare civică."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:responsabilizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "vocea-cartierului-tau:descriere_scurta",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:descriere_scurta",
+          "excerpt": "Sesizarea și urmărirea problemelor din cartier"
+        },
+        {
+          "source_id": "vocea-cartierului-tau:descriere",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:descriere",
+          "excerpt": "Vocea Cartierului Tău este o platformă civică din Craiova care documentează problemele semnalate de cetățeni și urmărește demersurile către autorități. Sesizările sunt localizate pe o hartă interactivă și organizate în dosare de monitorizare, unde pot fi consultate răspunsurile instituțiilor, termenele asumate și evoluția fiecărui caz."
+        }
+      ],
+      "rationale_ro": "Cazurile din Craiova au localizare, răspunsuri instituționale și termene urmărite. Încadrare: Responsabilizare publică."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:sesizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "vocea-cartierului-tau:descriere_scurta",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:descriere_scurta",
+          "excerpt": "Sesizarea și urmărirea problemelor din cartier"
+        },
+        {
+          "source_id": "vocea-cartierului-tau:descriere",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:descriere",
+          "excerpt": "Vocea Cartierului Tău este o platformă civică din Craiova care documentează problemele semnalate de cetățeni și urmărește demersurile către autorități. Sesizările sunt localizate pe o hartă interactivă și organizate în dosare de monitorizare, unde pot fi consultate răspunsurile instituțiilor, termenele asumate și evoluția fiecărui caz."
+        }
+      ],
+      "rationale_ro": "Cazurile din Craiova au localizare, răspunsuri instituționale și termene urmărite. Încadrare: Trimite sau urmărește o sesizare."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:monitorizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "vocea-cartierului-tau:descriere_scurta",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:descriere_scurta",
+          "excerpt": "Sesizarea și urmărirea problemelor din cartier"
+        },
+        {
+          "source_id": "vocea-cartierului-tau:descriere",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:descriere",
+          "excerpt": "Vocea Cartierului Tău este o platformă civică din Craiova care documentează problemele semnalate de cetățeni și urmărește demersurile către autorități. Sesizările sunt localizate pe o hartă interactivă și organizate în dosare de monitorizare, unde pot fi consultate răspunsurile instituțiilor, termenele asumate și evoluția fiecărui caz."
+        }
+      ],
+      "rationale_ro": "Cazurile din Craiova au localizare, răspunsuri instituționale și termene urmărite. Încadrare: Monitorizează."
+    },
+    {
+      "field": "formate",
+      "value": "format:harta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "vocea-cartierului-tau:descriere_scurta",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:descriere_scurta",
+          "excerpt": "Sesizarea și urmărirea problemelor din cartier"
+        },
+        {
+          "source_id": "vocea-cartierului-tau:descriere",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:descriere",
+          "excerpt": "Vocea Cartierului Tău este o platformă civică din Craiova care documentează problemele semnalate de cetățeni și urmărește demersurile către autorități. Sesizările sunt localizate pe o hartă interactivă și organizate în dosare de monitorizare, unde pot fi consultate răspunsurile instituțiilor, termenele asumate și evoluția fiecărui caz."
+        }
+      ],
+      "rationale_ro": "Cazurile din Craiova au localizare, răspunsuri instituționale și termene urmărite. Încadrare: Hartă."
+    },
+    {
+      "field": "formate",
+      "value": "format:registru",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "vocea-cartierului-tau:descriere_scurta",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:descriere_scurta",
+          "excerpt": "Sesizarea și urmărirea problemelor din cartier"
+        },
+        {
+          "source_id": "vocea-cartierului-tau:descriere",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:descriere",
+          "excerpt": "Vocea Cartierului Tău este o platformă civică din Craiova care documentează problemele semnalate de cetățeni și urmărește demersurile către autorități. Sesizările sunt localizate pe o hartă interactivă și organizate în dosare de monitorizare, unde pot fi consultate răspunsurile instituțiilor, termenele asumate și evoluția fiecărui caz."
+        }
+      ],
+      "rationale_ro": "Cazurile din Craiova au localizare, răspunsuri instituționale și termene urmărite. Încadrare: Registru sau bază de date."
+    },
+    {
+      "field": "maturitate",
+      "value": "maturitate:operational",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "vocea-cartierului-tau:descriere_scurta",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:descriere_scurta",
+          "excerpt": "Sesizarea și urmărirea problemelor din cartier"
+        },
+        {
+          "source_id": "vocea-cartierului-tau:descriere",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:descriere",
+          "excerpt": "Vocea Cartierului Tău este o platformă civică din Craiova care documentează problemele semnalate de cetățeni și urmărește demersurile către autorități. Sesizările sunt localizate pe o hartă interactivă și organizate în dosare de monitorizare, unde pot fi consultate răspunsurile instituțiilor, termenele asumate și evoluția fiecărui caz."
+        }
+      ],
+      "rationale_ro": "Descrierea oferă un flux concret pentru utilizare obișnuită de către publicul țintă. Cazurile din Craiova au localizare, răspunsuri instituționale și termene urmărite. Încadrare: Operațional."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "local",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "vocea-cartierului-tau:acoperire_original",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:acoperire_original",
+          "excerpt": "local"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "localitate:craiova",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "vocea-cartierului-tau:acoperire_original",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:acoperire_original",
+          "excerpt": "local"
+        },
+        {
+          "source_id": "vocea-cartierului-tau:oras_original",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:oras_original",
+          "excerpt": "Craiova"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": null,
+      "object_literal": "Silviu Ionuț Carp",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "vocea-cartierului-tau:autor_original",
+          "locator": "clasificare-input.csv:vocea-cartierului-tau:autor_original",
+          "excerpt": "Silviu Ionuț Carp"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "instrument",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "ai",
+      "reason_ro": "Eticheta nu dovedește tehnologia folosită sau oferită."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

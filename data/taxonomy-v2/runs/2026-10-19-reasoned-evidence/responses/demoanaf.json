@@ -1,0 +1,308 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "demoanaf",
+  "result_status": "partial",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:finante-publice",
+    "subiecte": [
+      "subiect:finante-publice",
+      "subiect:economie-munca"
+    ],
+    "teme": [
+      "subiect:fiscalitate",
+      "subiect:firme"
+    ],
+    "scopuri": [
+      "scop:acces-servicii",
+      "scop:informare"
+    ],
+    "functionalitati": [
+      "functie:cautare",
+      "functie:verificare"
+    ],
+    "formate": [],
+    "tehnologii": [],
+    "institutii_vizate": [
+      "institutie:anaf"
+    ],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "demoanaf:tip_entitate_original",
+          "locator": "clasificare-input.csv:demoanaf:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:finante-publice",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "demoanaf:descriere_scurta",
+          "locator": "clasificare-input.csv:demoanaf:descriere_scurta",
+          "excerpt": "CUI, curs BNR, IBAN trezorerie, e-Factura — fără cont"
+        },
+        {
+          "source_id": "demoanaf:descriere",
+          "locator": "clasificare-input.csv:demoanaf:descriere",
+          "excerpt": "Alternativa modernă și gratuită la portalul anaf.ro: verifică firme după CUI, curs valutar BNR, IBAN trezorerie, validare e-Factura. Fără cont, fără așteptare. Date oficiale ONRC, ANAF, BNR."
+        }
+      ],
+      "rationale_ro": "Descrierea promite verificări fiscale; eticheta originală prototip împiedică stabilirea maturității. Conceptul subiect:fiscalitate are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:finante-publice",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "demoanaf:descriere_scurta",
+          "locator": "clasificare-input.csv:demoanaf:descriere_scurta",
+          "excerpt": "CUI, curs BNR, IBAN trezorerie, e-Factura — fără cont"
+        },
+        {
+          "source_id": "demoanaf:descriere",
+          "locator": "clasificare-input.csv:demoanaf:descriere",
+          "excerpt": "Alternativa modernă și gratuită la portalul anaf.ro: verifică firme după CUI, curs valutar BNR, IBAN trezorerie, validare e-Factura. Fără cont, fără așteptare. Date oficiale ONRC, ANAF, BNR."
+        }
+      ],
+      "rationale_ro": "Descrierea promite verificări fiscale; eticheta originală prototip împiedică stabilirea maturității. Conceptul subiect:fiscalitate are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:economie-munca",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "demoanaf:descriere_scurta",
+          "locator": "clasificare-input.csv:demoanaf:descriere_scurta",
+          "excerpt": "CUI, curs BNR, IBAN trezorerie, e-Factura — fără cont"
+        },
+        {
+          "source_id": "demoanaf:descriere",
+          "locator": "clasificare-input.csv:demoanaf:descriere",
+          "excerpt": "Alternativa modernă și gratuită la portalul anaf.ro: verifică firme după CUI, curs valutar BNR, IBAN trezorerie, validare e-Factura. Fără cont, fără așteptare. Date oficiale ONRC, ANAF, BNR."
+        }
+      ],
+      "rationale_ro": "Descrierea promite verificări fiscale; eticheta originală prototip împiedică stabilirea maturității. Conceptul subiect:firme are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:fiscalitate",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "demoanaf:descriere_scurta",
+          "locator": "clasificare-input.csv:demoanaf:descriere_scurta",
+          "excerpt": "CUI, curs BNR, IBAN trezorerie, e-Factura — fără cont"
+        },
+        {
+          "source_id": "demoanaf:descriere",
+          "locator": "clasificare-input.csv:demoanaf:descriere",
+          "excerpt": "Alternativa modernă și gratuită la portalul anaf.ro: verifică firme după CUI, curs valutar BNR, IBAN trezorerie, validare e-Factura. Fără cont, fără așteptare. Date oficiale ONRC, ANAF, BNR."
+        }
+      ],
+      "rationale_ro": "Descrierea promite verificări fiscale; eticheta originală prototip împiedică stabilirea maturității. Încadrare: Fiscalitate."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:firme",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "demoanaf:descriere_scurta",
+          "locator": "clasificare-input.csv:demoanaf:descriere_scurta",
+          "excerpt": "CUI, curs BNR, IBAN trezorerie, e-Factura — fără cont"
+        },
+        {
+          "source_id": "demoanaf:descriere",
+          "locator": "clasificare-input.csv:demoanaf:descriere",
+          "excerpt": "Alternativa modernă și gratuită la portalul anaf.ro: verifică firme după CUI, curs valutar BNR, IBAN trezorerie, validare e-Factura. Fără cont, fără așteptare. Date oficiale ONRC, ANAF, BNR."
+        }
+      ],
+      "rationale_ro": "Descrierea promite verificări fiscale; eticheta originală prototip împiedică stabilirea maturității. Încadrare: Firme."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:acces-servicii",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "demoanaf:descriere_scurta",
+          "locator": "clasificare-input.csv:demoanaf:descriere_scurta",
+          "excerpt": "CUI, curs BNR, IBAN trezorerie, e-Factura — fără cont"
+        },
+        {
+          "source_id": "demoanaf:descriere",
+          "locator": "clasificare-input.csv:demoanaf:descriere",
+          "excerpt": "Alternativa modernă și gratuită la portalul anaf.ro: verifică firme după CUI, curs valutar BNR, IBAN trezorerie, validare e-Factura. Fără cont, fără așteptare. Date oficiale ONRC, ANAF, BNR."
+        }
+      ],
+      "rationale_ro": "Descrierea promite verificări fiscale; eticheta originală prototip împiedică stabilirea maturității. Încadrare: Acces la servicii."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "demoanaf:descriere_scurta",
+          "locator": "clasificare-input.csv:demoanaf:descriere_scurta",
+          "excerpt": "CUI, curs BNR, IBAN trezorerie, e-Factura — fără cont"
+        },
+        {
+          "source_id": "demoanaf:descriere",
+          "locator": "clasificare-input.csv:demoanaf:descriere",
+          "excerpt": "Alternativa modernă și gratuită la portalul anaf.ro: verifică firme după CUI, curs valutar BNR, IBAN trezorerie, validare e-Factura. Fără cont, fără așteptare. Date oficiale ONRC, ANAF, BNR."
+        }
+      ],
+      "rationale_ro": "Descrierea promite verificări fiscale; eticheta originală prototip împiedică stabilirea maturității. Încadrare: Informare și înțelegere."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:cautare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "demoanaf:descriere_scurta",
+          "locator": "clasificare-input.csv:demoanaf:descriere_scurta",
+          "excerpt": "CUI, curs BNR, IBAN trezorerie, e-Factura — fără cont"
+        },
+        {
+          "source_id": "demoanaf:descriere",
+          "locator": "clasificare-input.csv:demoanaf:descriere",
+          "excerpt": "Alternativa modernă și gratuită la portalul anaf.ro: verifică firme după CUI, curs valutar BNR, IBAN trezorerie, validare e-Factura. Fără cont, fără așteptare. Date oficiale ONRC, ANAF, BNR."
+        }
+      ],
+      "rationale_ro": "Descrierea promite verificări fiscale; eticheta originală prototip împiedică stabilirea maturității. Încadrare: Caută și consultă."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:verificare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "demoanaf:descriere_scurta",
+          "locator": "clasificare-input.csv:demoanaf:descriere_scurta",
+          "excerpt": "CUI, curs BNR, IBAN trezorerie, e-Factura — fără cont"
+        },
+        {
+          "source_id": "demoanaf:descriere",
+          "locator": "clasificare-input.csv:demoanaf:descriere",
+          "excerpt": "Alternativa modernă și gratuită la portalul anaf.ro: verifică firme după CUI, curs valutar BNR, IBAN trezorerie, validare e-Factura. Fără cont, fără așteptare. Date oficiale ONRC, ANAF, BNR."
+        }
+      ],
+      "rationale_ro": "Descrierea promite verificări fiscale; eticheta originală prototip împiedică stabilirea maturității. Încadrare: Verifică informații."
+    },
+    {
+      "field": "institutii_vizate",
+      "value": "institutie:anaf",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "demoanaf:descriere_scurta",
+          "locator": "clasificare-input.csv:demoanaf:descriere_scurta",
+          "excerpt": "CUI, curs BNR, IBAN trezorerie, e-Factura — fără cont"
+        },
+        {
+          "source_id": "demoanaf:descriere",
+          "locator": "clasificare-input.csv:demoanaf:descriere",
+          "excerpt": "Alternativa modernă și gratuită la portalul anaf.ro: verifică firme după CUI, curs valutar BNR, IBAN trezorerie, validare e-Factura. Fără cont, fără așteptare. Date oficiale ONRC, ANAF, BNR."
+        }
+      ],
+      "rationale_ro": "Descrierea promite verificări fiscale; eticheta originală prototip împiedică stabilirea maturității. Încadrare: ANAF."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "demoanaf:acoperire_original",
+          "locator": "clasificare-input.csv:demoanaf:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "demoanaf:acoperire_original",
+          "locator": "clasificare-input.csv:demoanaf:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    },
+    {
+      "field": "classification",
+      "reason_ro": "Descrierea promite verificări fiscale; eticheta originală prototip împiedică stabilirea maturității.",
+      "needed_evidence_ro": "Documentație primară care rezolvă ambiguitatea indicată."
+    }
+  ],
+  "conflicts": [
+    {
+      "field": "maturitate",
+      "source_ids": [
+        "demoanaf:cuvinte_original",
+        "demoanaf:descriere"
+      ],
+      "reason_ro": "Eticheta originală spune prototip; descrierea oferă utilizare gratuită fără cont, fără etapă explicită.",
+      "resolution_ro": "Las maturitatea necunoscută până la clarificarea documentară."
+    }
+  ],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "instrument",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "prototip",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

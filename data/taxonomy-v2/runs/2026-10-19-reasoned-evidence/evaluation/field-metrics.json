@@ -1,0 +1,129 @@
+[
+  {
+    "field": "tip_entitate",
+    "entries": 122,
+    "exact_agreement": 121,
+    "disagreements": 1,
+    "exact_agreement_rate": 0.9918
+  },
+  {
+    "field": "subiect_principal",
+    "entries": 122,
+    "exact_agreement": 116,
+    "disagreements": 6,
+    "exact_agreement_rate": 0.9508
+  },
+  {
+    "field": "subiecte",
+    "entries": 122,
+    "exact_agreement": 90,
+    "disagreements": 32,
+    "exact_agreement_rate": 0.7377,
+    "mean_jaccard": 0.859,
+    "candidate_assignments": 191,
+    "baseline_assignments": 206,
+    "shared_assignments": 178
+  },
+  {
+    "field": "teme",
+    "entries": 122,
+    "exact_agreement": 76,
+    "disagreements": 46,
+    "exact_agreement_rate": 0.623,
+    "mean_jaccard": 0.7758,
+    "candidate_assignments": 206,
+    "baseline_assignments": 189,
+    "shared_assignments": 165
+  },
+  {
+    "field": "scopuri",
+    "entries": 122,
+    "exact_agreement": 69,
+    "disagreements": 53,
+    "exact_agreement_rate": 0.5656,
+    "mean_jaccard": 0.748,
+    "candidate_assignments": 213,
+    "baseline_assignments": 176,
+    "shared_assignments": 157
+  },
+  {
+    "field": "functionalitati",
+    "entries": 122,
+    "exact_agreement": 75,
+    "disagreements": 47,
+    "exact_agreement_rate": 0.6148,
+    "mean_jaccard": 0.7056,
+    "candidate_assignments": 147,
+    "baseline_assignments": 110,
+    "shared_assignments": 96
+  },
+  {
+    "field": "formate",
+    "entries": 122,
+    "exact_agreement": 87,
+    "disagreements": 35,
+    "exact_agreement_rate": 0.7131,
+    "mean_jaccard": 0.7705,
+    "candidate_assignments": 120,
+    "baseline_assignments": 88,
+    "shared_assignments": 83
+  },
+  {
+    "field": "tehnologii",
+    "entries": 122,
+    "exact_agreement": 121,
+    "disagreements": 1,
+    "exact_agreement_rate": 0.9918,
+    "mean_jaccard": 0.9918,
+    "candidate_assignments": 6,
+    "baseline_assignments": 7,
+    "shared_assignments": 6
+  },
+  {
+    "field": "institutii_vizate",
+    "entries": 122,
+    "exact_agreement": 104,
+    "disagreements": 18,
+    "exact_agreement_rate": 0.8525,
+    "mean_jaccard": 0.8566,
+    "candidate_assignments": 31,
+    "baseline_assignments": 32,
+    "shared_assignments": 22
+  },
+  {
+    "field": "tip_organizatie",
+    "entries": 122,
+    "exact_agreement": 118,
+    "disagreements": 4,
+    "exact_agreement_rate": 0.9672,
+    "mean_jaccard": 0.9713,
+    "candidate_assignments": 12,
+    "baseline_assignments": 12,
+    "shared_assignments": 10
+  },
+  {
+    "field": "maturitate",
+    "entries": 122,
+    "exact_agreement": 92,
+    "disagreements": 30,
+    "exact_agreement_rate": 0.7541
+  },
+  {
+    "field": "nivel_acoperire",
+    "entries": 122,
+    "exact_agreement": 117,
+    "disagreements": 5,
+    "exact_agreement_rate": 0.959
+  },
+  {
+    "field": "arii_acoperite",
+    "entries": 122,
+    "exact_agreement": 117,
+    "disagreements": 5,
+    "exact_agreement_rate": 0.959,
+    "mean_jaccard": 0.959,
+    "candidate_assignments": 119,
+    "baseline_assignments": 123,
+    "shared_assignments": 118
+  }
+]

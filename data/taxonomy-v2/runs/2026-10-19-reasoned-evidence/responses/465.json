@@ -1,0 +1,290 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "465",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:guvernare-democratie",
+    "subiecte": [
+      "subiect:guvernare-democratie"
+    ],
+    "teme": [
+      "subiect:reprezentanti-alesi",
+      "subiect:activitate-parlamentara"
+    ],
+    "scopuri": [
+      "scop:transparenta",
+      "scop:participare"
+    ],
+    "functionalitati": [
+      "functie:cautare"
+    ],
+    "formate": [
+      "format:registru"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [
+      "institutie:parlament"
+    ],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "465:tip_entitate_original",
+          "locator": "clasificare-input.csv:465:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "465:descriere_scurta",
+          "locator": "clasificare-input.csv:465:descriere_scurta",
+          "excerpt": "Parlamentarii României și datele lor de contact"
+        },
+        {
+          "source_id": "465:descriere",
+          "locator": "clasificare-input.csv:465:descriere",
+          "excerpt": "Platformă civică ce prezintă parlamentarii României din legislatura 2024–2028 și evidențiază disponibilitatea datelor lor de contact pe site-urile oficiale, atrăgând atenția asupra dificultăților cetățenilor de a comunica direct cu reprezentanții aleși."
+        }
+      ],
+      "rationale_ro": "Contactele parlamentarilor sprijină comunicarea cu reprezentanții aleși. Conceptul subiect:reprezentanti-alesi are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "465:descriere_scurta",
+          "locator": "clasificare-input.csv:465:descriere_scurta",
+          "excerpt": "Parlamentarii României și datele lor de contact"
+        },
+        {
+          "source_id": "465:descriere",
+          "locator": "clasificare-input.csv:465:descriere",
+          "excerpt": "Platformă civică ce prezintă parlamentarii României din legislatura 2024–2028 și evidențiază disponibilitatea datelor lor de contact pe site-urile oficiale, atrăgând atenția asupra dificultăților cetățenilor de a comunica direct cu reprezentanții aleși."
+        }
+      ],
+      "rationale_ro": "Contactele parlamentarilor sprijină comunicarea cu reprezentanții aleși. Conceptul subiect:reprezentanti-alesi are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:reprezentanti-alesi",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "465:descriere_scurta",
+          "locator": "clasificare-input.csv:465:descriere_scurta",
+          "excerpt": "Parlamentarii României și datele lor de contact"
+        },
+        {
+          "source_id": "465:descriere",
+          "locator": "clasificare-input.csv:465:descriere",
+          "excerpt": "Platformă civică ce prezintă parlamentarii României din legislatura 2024–2028 și evidențiază disponibilitatea datelor lor de contact pe site-urile oficiale, atrăgând atenția asupra dificultăților cetățenilor de a comunica direct cu reprezentanții aleși."
+        }
+      ],
+      "rationale_ro": "Contactele parlamentarilor sprijină comunicarea cu reprezentanții aleși. Încadrare: Reprezentanți aleși."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:activitate-parlamentara",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "465:descriere_scurta",
+          "locator": "clasificare-input.csv:465:descriere_scurta",
+          "excerpt": "Parlamentarii României și datele lor de contact"
+        },
+        {
+          "source_id": "465:descriere",
+          "locator": "clasificare-input.csv:465:descriere",
+          "excerpt": "Platformă civică ce prezintă parlamentarii României din legislatura 2024–2028 și evidențiază disponibilitatea datelor lor de contact pe site-urile oficiale, atrăgând atenția asupra dificultăților cetățenilor de a comunica direct cu reprezentanții aleși."
+        }
+      ],
+      "rationale_ro": "Contactele parlamentarilor sprijină comunicarea cu reprezentanții aleși. Încadrare: Activitate parlamentară."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:transparenta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "465:descriere_scurta",
+          "locator": "clasificare-input.csv:465:descriere_scurta",
+          "excerpt": "Parlamentarii României și datele lor de contact"
+        },
+        {
+          "source_id": "465:descriere",
+          "locator": "clasificare-input.csv:465:descriere",
+          "excerpt": "Platformă civică ce prezintă parlamentarii României din legislatura 2024–2028 și evidențiază disponibilitatea datelor lor de contact pe site-urile oficiale, atrăgând atenția asupra dificultăților cetățenilor de a comunica direct cu reprezentanții aleși."
+        }
+      ],
+      "rationale_ro": "Contactele parlamentarilor sprijină comunicarea cu reprezentanții aleși. Încadrare: Transparență."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:participare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "465:descriere_scurta",
+          "locator": "clasificare-input.csv:465:descriere_scurta",
+          "excerpt": "Parlamentarii României și datele lor de contact"
+        },
+        {
+          "source_id": "465:descriere",
+          "locator": "clasificare-input.csv:465:descriere",
+          "excerpt": "Platformă civică ce prezintă parlamentarii României din legislatura 2024–2028 și evidențiază disponibilitatea datelor lor de contact pe site-urile oficiale, atrăgând atenția asupra dificultăților cetățenilor de a comunica direct cu reprezentanții aleși."
+        }
+      ],
+      "rationale_ro": "Contactele parlamentarilor sprijină comunicarea cu reprezentanții aleși. Încadrare: Participare civică."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:cautare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "465:descriere_scurta",
+          "locator": "clasificare-input.csv:465:descriere_scurta",
+          "excerpt": "Parlamentarii României și datele lor de contact"
+        },
+        {
+          "source_id": "465:descriere",
+          "locator": "clasificare-input.csv:465:descriere",
+          "excerpt": "Platformă civică ce prezintă parlamentarii României din legislatura 2024–2028 și evidențiază disponibilitatea datelor lor de contact pe site-urile oficiale, atrăgând atenția asupra dificultăților cetățenilor de a comunica direct cu reprezentanții aleși."
+        }
+      ],
+      "rationale_ro": "Contactele parlamentarilor sprijină comunicarea cu reprezentanții aleși. Încadrare: Caută și consultă."
+    },
+    {
+      "field": "formate",
+      "value": "format:registru",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "465:descriere_scurta",
+          "locator": "clasificare-input.csv:465:descriere_scurta",
+          "excerpt": "Parlamentarii României și datele lor de contact"
+        },
+        {
+          "source_id": "465:descriere",
+          "locator": "clasificare-input.csv:465:descriere",
+          "excerpt": "Platformă civică ce prezintă parlamentarii României din legislatura 2024–2028 și evidențiază disponibilitatea datelor lor de contact pe site-urile oficiale, atrăgând atenția asupra dificultăților cetățenilor de a comunica direct cu reprezentanții aleși."
+        }
+      ],
+      "rationale_ro": "Contactele parlamentarilor sprijină comunicarea cu reprezentanții aleși. Încadrare: Registru sau bază de date."
+    },
+    {
+      "field": "institutii_vizate",
+      "value": "institutie:parlament",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "465:descriere_scurta",
+          "locator": "clasificare-input.csv:465:descriere_scurta",
+          "excerpt": "Parlamentarii României și datele lor de contact"
+        },
+        {
+          "source_id": "465:descriere",
+          "locator": "clasificare-input.csv:465:descriere",
+          "excerpt": "Platformă civică ce prezintă parlamentarii României din legislatura 2024–2028 și evidențiază disponibilitatea datelor lor de contact pe site-urile oficiale, atrăgând atenția asupra dificultăților cetățenilor de a comunica direct cu reprezentanții aleși."
+        }
+      ],
+      "rationale_ro": "Contactele parlamentarilor sprijină comunicarea cu reprezentanții aleși. Încadrare: Parlament."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "465:acoperire_original",
+          "locator": "clasificare-input.csv:465:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "465:acoperire_original",
+          "locator": "clasificare-input.csv:465:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": null,
+      "object_literal": "Adriana Diaconu",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "465:autor_original",
+          "locator": "clasificare-input.csv:465:autor_original",
+          "excerpt": "Adriana Diaconu"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    },
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "baza-de-date",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

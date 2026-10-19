@@ -1,0 +1,348 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "banii-nostri",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:finante-publice",
+    "subiecte": [
+      "subiect:finante-publice",
+      "subiect:guvernare-democratie",
+      "subiect:media-informare"
+    ],
+    "teme": [
+      "subiect:achizitii-publice",
+      "subiect:buget",
+      "subiect:finantare-politica",
+      "subiect:jurnalism"
+    ],
+    "scopuri": [
+      "scop:transparenta",
+      "scop:responsabilizare"
+    ],
+    "functionalitati": [
+      "functie:analiza"
+    ],
+    "formate": [
+      "format:vizualizare",
+      "format:raport"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "banii-nostri:tip_entitate_original",
+          "locator": "clasificare-input.csv:banii-nostri:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:finante-publice",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "banii-nostri:descriere_scurta",
+          "locator": "clasificare-input.csv:banii-nostri:descriere_scurta",
+          "excerpt": "Achiziții publice, buget și finanțare politică"
+        },
+        {
+          "source_id": "banii-nostri:descriere",
+          "locator": "clasificare-input.csv:banii-nostri:descriere",
+          "excerpt": "Vizualizări, rapoarte și investigații despre achizițiile publice, bugetul \nde stat și finanțarea politică din România. Date publice agregate și \nprezentate accesibil."
+        }
+      ],
+      "rationale_ro": "Vizualizările și investigațiile urmăresc achizițiile, bugetul și finanțarea politică. Conceptul subiect:achizitii-publice are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:finante-publice",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "banii-nostri:descriere_scurta",
+          "locator": "clasificare-input.csv:banii-nostri:descriere_scurta",
+          "excerpt": "Achiziții publice, buget și finanțare politică"
+        },
+        {
+          "source_id": "banii-nostri:descriere",
+          "locator": "clasificare-input.csv:banii-nostri:descriere",
+          "excerpt": "Vizualizări, rapoarte și investigații despre achizițiile publice, bugetul \nde stat și finanțarea politică din România. Date publice agregate și \nprezentate accesibil."
+        }
+      ],
+      "rationale_ro": "Vizualizările și investigațiile urmăresc achizițiile, bugetul și finanțarea politică. Conceptul subiect:achizitii-publice are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "banii-nostri:descriere_scurta",
+          "locator": "clasificare-input.csv:banii-nostri:descriere_scurta",
+          "excerpt": "Achiziții publice, buget și finanțare politică"
+        },
+        {
+          "source_id": "banii-nostri:descriere",
+          "locator": "clasificare-input.csv:banii-nostri:descriere",
+          "excerpt": "Vizualizări, rapoarte și investigații despre achizițiile publice, bugetul \nde stat și finanțarea politică din România. Date publice agregate și \nprezentate accesibil."
+        }
+      ],
+      "rationale_ro": "Vizualizările și investigațiile urmăresc achizițiile, bugetul și finanțarea politică. Conceptul subiect:finantare-politica are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:media-informare",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "banii-nostri:descriere_scurta",
+          "locator": "clasificare-input.csv:banii-nostri:descriere_scurta",
+          "excerpt": "Achiziții publice, buget și finanțare politică"
+        },
+        {
+          "source_id": "banii-nostri:descriere",
+          "locator": "clasificare-input.csv:banii-nostri:descriere",
+          "excerpt": "Vizualizări, rapoarte și investigații despre achizițiile publice, bugetul \nde stat și finanțarea politică din România. Date publice agregate și \nprezentate accesibil."
+        }
+      ],
+      "rationale_ro": "Vizualizările și investigațiile urmăresc achizițiile, bugetul și finanțarea politică. Conceptul subiect:jurnalism are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:achizitii-publice",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "banii-nostri:descriere_scurta",
+          "locator": "clasificare-input.csv:banii-nostri:descriere_scurta",
+          "excerpt": "Achiziții publice, buget și finanțare politică"
+        },
+        {
+          "source_id": "banii-nostri:descriere",
+          "locator": "clasificare-input.csv:banii-nostri:descriere",
+          "excerpt": "Vizualizări, rapoarte și investigații despre achizițiile publice, bugetul \nde stat și finanțarea politică din România. Date publice agregate și \nprezentate accesibil."
+        }
+      ],
+      "rationale_ro": "Vizualizările și investigațiile urmăresc achizițiile, bugetul și finanțarea politică. Încadrare: Achiziții publice."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:buget",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "banii-nostri:descriere_scurta",
+          "locator": "clasificare-input.csv:banii-nostri:descriere_scurta",
+          "excerpt": "Achiziții publice, buget și finanțare politică"
+        },
+        {
+          "source_id": "banii-nostri:descriere",
+          "locator": "clasificare-input.csv:banii-nostri:descriere",
+          "excerpt": "Vizualizări, rapoarte și investigații despre achizițiile publice, bugetul \nde stat și finanțarea politică din România. Date publice agregate și \nprezentate accesibil."
+        }
+      ],
+      "rationale_ro": "Vizualizările și investigațiile urmăresc achizițiile, bugetul și finanțarea politică. Încadrare: Buget public."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:finantare-politica",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "banii-nostri:descriere_scurta",
+          "locator": "clasificare-input.csv:banii-nostri:descriere_scurta",
+          "excerpt": "Achiziții publice, buget și finanțare politică"
+        },
+        {
+          "source_id": "banii-nostri:descriere",
+          "locator": "clasificare-input.csv:banii-nostri:descriere",
+          "excerpt": "Vizualizări, rapoarte și investigații despre achizițiile publice, bugetul \nde stat și finanțarea politică din România. Date publice agregate și \nprezentate accesibil."
+        }
+      ],
+      "rationale_ro": "Vizualizările și investigațiile urmăresc achizițiile, bugetul și finanțarea politică. Încadrare: Finanțare politică."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:jurnalism",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "banii-nostri:descriere_scurta",
+          "locator": "clasificare-input.csv:banii-nostri:descriere_scurta",
+          "excerpt": "Achiziții publice, buget și finanțare politică"
+        },
+        {
+          "source_id": "banii-nostri:descriere",
+          "locator": "clasificare-input.csv:banii-nostri:descriere",
+          "excerpt": "Vizualizări, rapoarte și investigații despre achizițiile publice, bugetul \nde stat și finanțarea politică din România. Date publice agregate și \nprezentate accesibil."
+        }
+      ],
+      "rationale_ro": "Vizualizările și investigațiile urmăresc achizițiile, bugetul și finanțarea politică. Încadrare: Jurnalism."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:transparenta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "banii-nostri:descriere_scurta",
+          "locator": "clasificare-input.csv:banii-nostri:descriere_scurta",
+          "excerpt": "Achiziții publice, buget și finanțare politică"
+        },
+        {
+          "source_id": "banii-nostri:descriere",
+          "locator": "clasificare-input.csv:banii-nostri:descriere",
+          "excerpt": "Vizualizări, rapoarte și investigații despre achizițiile publice, bugetul \nde stat și finanțarea politică din România. Date publice agregate și \nprezentate accesibil."
+        }
+      ],
+      "rationale_ro": "Vizualizările și investigațiile urmăresc achizițiile, bugetul și finanțarea politică. Încadrare: Transparență."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:responsabilizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "banii-nostri:descriere_scurta",
+          "locator": "clasificare-input.csv:banii-nostri:descriere_scurta",
+          "excerpt": "Achiziții publice, buget și finanțare politică"
+        },
+        {
+          "source_id": "banii-nostri:descriere",
+          "locator": "clasificare-input.csv:banii-nostri:descriere",
+          "excerpt": "Vizualizări, rapoarte și investigații despre achizițiile publice, bugetul \nde stat și finanțarea politică din România. Date publice agregate și \nprezentate accesibil."
+        }
+      ],
+      "rationale_ro": "Vizualizările și investigațiile urmăresc achizițiile, bugetul și finanțarea politică. Încadrare: Responsabilizare publică."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:analiza",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "banii-nostri:descriere_scurta",
+          "locator": "clasificare-input.csv:banii-nostri:descriere_scurta",
+          "excerpt": "Achiziții publice, buget și finanțare politică"
+        },
+        {
+          "source_id": "banii-nostri:descriere",
+          "locator": "clasificare-input.csv:banii-nostri:descriere",
+          "excerpt": "Vizualizări, rapoarte și investigații despre achizițiile publice, bugetul \nde stat și finanțarea politică din România. Date publice agregate și \nprezentate accesibil."
+        }
+      ],
+      "rationale_ro": "Vizualizările și investigațiile urmăresc achizițiile, bugetul și finanțarea politică. Încadrare: Analizează date."
+    },
+    {
+      "field": "formate",
+      "value": "format:vizualizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "banii-nostri:descriere_scurta",
+          "locator": "clasificare-input.csv:banii-nostri:descriere_scurta",
+          "excerpt": "Achiziții publice, buget și finanțare politică"
+        },
+        {
+          "source_id": "banii-nostri:descriere",
+          "locator": "clasificare-input.csv:banii-nostri:descriere",
+          "excerpt": "Vizualizări, rapoarte și investigații despre achizițiile publice, bugetul \nde stat și finanțarea politică din România. Date publice agregate și \nprezentate accesibil."
+        }
+      ],
+      "rationale_ro": "Vizualizările și investigațiile urmăresc achizițiile, bugetul și finanțarea politică. Încadrare: Vizualizare de date."
+    },
+    {
+      "field": "formate",
+      "value": "format:raport",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "banii-nostri:descriere_scurta",
+          "locator": "clasificare-input.csv:banii-nostri:descriere_scurta",
+          "excerpt": "Achiziții publice, buget și finanțare politică"
+        },
+        {
+          "source_id": "banii-nostri:descriere",
+          "locator": "clasificare-input.csv:banii-nostri:descriere",
+          "excerpt": "Vizualizări, rapoarte și investigații despre achizițiile publice, bugetul \nde stat și finanțarea politică din România. Date publice agregate și \nprezentate accesibil."
+        }
+      ],
+      "rationale_ro": "Vizualizările și investigațiile urmăresc achizițiile, bugetul și finanțarea politică. Încadrare: Raport sau cercetare."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "banii-nostri:acoperire_original",
+          "locator": "clasificare-input.csv:banii-nostri:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "banii-nostri:acoperire_original",
+          "locator": "clasificare-input.csv:banii-nostri:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "cuvinte",
+      "original_value": "bani-publici",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

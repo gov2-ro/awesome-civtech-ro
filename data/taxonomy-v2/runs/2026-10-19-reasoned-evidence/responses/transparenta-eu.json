@@ -1,0 +1,334 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "transparenta-eu",
+  "result_status": "partial",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:finante-publice",
+    "subiecte": [
+      "subiect:finante-publice",
+      "subiect:drept-justitie"
+    ],
+    "teme": [
+      "subiect:buget",
+      "subiect:legislatie",
+      "subiect:proceduri-judiciare"
+    ],
+    "scopuri": [
+      "scop:transparenta",
+      "scop:participare"
+    ],
+    "functionalitati": [
+      "functie:analiza",
+      "functie:monitorizare"
+    ],
+    "formate": [
+      "format:vizualizare"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "transparenta-eu:tip_entitate_original",
+          "locator": "clasificare-input.csv:transparenta-eu:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:finante-publice",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "transparenta-eu:descriere_scurta",
+          "locator": "clasificare-input.csv:transparenta-eu:descriere_scurta",
+          "excerpt": "Bugete, legislație și justiție, într-un singur loc"
+        },
+        {
+          "source_id": "transparenta-eu:descriere",
+          "locator": "clasificare-input.csv:transparenta-eu:descriere",
+          "excerpt": "Transparenta.eu este o platformă de analiză și monitorizare a datelor publice, de la bugetul local și național la legislație și justiție. Scopul proiectului este să faciliteze analiza datelor pentru diverse studii de interes public (reorganizarea administrativ-teritorială, impactul PNRR etc.), monitorizarea datelor precum proiecte legislative, evoluția bugetului, dar și implicarea cetățenilor în campanii civice precum campania „Cu ochii pe bugetele locale!”. Un alt aspect important în acest proiect este folosirea inteligenței artificiale în beneficiul societății pentru a facilita accesul la informație și a încuraja participarea civică."
+        }
+      ],
+      "rationale_ro": "Descrierea menționează AI ca obiectiv; nu documentează o funcție concretă bazată pe AI. Conceptul subiect:buget are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:finante-publice",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "transparenta-eu:descriere_scurta",
+          "locator": "clasificare-input.csv:transparenta-eu:descriere_scurta",
+          "excerpt": "Bugete, legislație și justiție, într-un singur loc"
+        },
+        {
+          "source_id": "transparenta-eu:descriere",
+          "locator": "clasificare-input.csv:transparenta-eu:descriere",
+          "excerpt": "Transparenta.eu este o platformă de analiză și monitorizare a datelor publice, de la bugetul local și național la legislație și justiție. Scopul proiectului este să faciliteze analiza datelor pentru diverse studii de interes public (reorganizarea administrativ-teritorială, impactul PNRR etc.), monitorizarea datelor precum proiecte legislative, evoluția bugetului, dar și implicarea cetățenilor în campanii civice precum campania „Cu ochii pe bugetele locale!”. Un alt aspect important în acest proiect este folosirea inteligenței artificiale în beneficiul societății pentru a facilita accesul la informație și a încuraja participarea civică."
+        }
+      ],
+      "rationale_ro": "Descrierea menționează AI ca obiectiv; nu documentează o funcție concretă bazată pe AI. Conceptul subiect:buget are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:drept-justitie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "transparenta-eu:descriere_scurta",
+          "locator": "clasificare-input.csv:transparenta-eu:descriere_scurta",
+          "excerpt": "Bugete, legislație și justiție, într-un singur loc"
+        },
+        {
+          "source_id": "transparenta-eu:descriere",
+          "locator": "clasificare-input.csv:transparenta-eu:descriere",
+          "excerpt": "Transparenta.eu este o platformă de analiză și monitorizare a datelor publice, de la bugetul local și național la legislație și justiție. Scopul proiectului este să faciliteze analiza datelor pentru diverse studii de interes public (reorganizarea administrativ-teritorială, impactul PNRR etc.), monitorizarea datelor precum proiecte legislative, evoluția bugetului, dar și implicarea cetățenilor în campanii civice precum campania „Cu ochii pe bugetele locale!”. Un alt aspect important în acest proiect este folosirea inteligenței artificiale în beneficiul societății pentru a facilita accesul la informație și a încuraja participarea civică."
+        }
+      ],
+      "rationale_ro": "Descrierea menționează AI ca obiectiv; nu documentează o funcție concretă bazată pe AI. Conceptul subiect:legislatie are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:buget",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "transparenta-eu:descriere_scurta",
+          "locator": "clasificare-input.csv:transparenta-eu:descriere_scurta",
+          "excerpt": "Bugete, legislație și justiție, într-un singur loc"
+        },
+        {
+          "source_id": "transparenta-eu:descriere",
+          "locator": "clasificare-input.csv:transparenta-eu:descriere",
+          "excerpt": "Transparenta.eu este o platformă de analiză și monitorizare a datelor publice, de la bugetul local și național la legislație și justiție. Scopul proiectului este să faciliteze analiza datelor pentru diverse studii de interes public (reorganizarea administrativ-teritorială, impactul PNRR etc.), monitorizarea datelor precum proiecte legislative, evoluția bugetului, dar și implicarea cetățenilor în campanii civice precum campania „Cu ochii pe bugetele locale!”. Un alt aspect important în acest proiect este folosirea inteligenței artificiale în beneficiul societății pentru a facilita accesul la informație și a încuraja participarea civică."
+        }
+      ],
+      "rationale_ro": "Descrierea menționează AI ca obiectiv; nu documentează o funcție concretă bazată pe AI. Încadrare: Buget public."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:legislatie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "transparenta-eu:descriere_scurta",
+          "locator": "clasificare-input.csv:transparenta-eu:descriere_scurta",
+          "excerpt": "Bugete, legislație și justiție, într-un singur loc"
+        },
+        {
+          "source_id": "transparenta-eu:descriere",
+          "locator": "clasificare-input.csv:transparenta-eu:descriere",
+          "excerpt": "Transparenta.eu este o platformă de analiză și monitorizare a datelor publice, de la bugetul local și național la legislație și justiție. Scopul proiectului este să faciliteze analiza datelor pentru diverse studii de interes public (reorganizarea administrativ-teritorială, impactul PNRR etc.), monitorizarea datelor precum proiecte legislative, evoluția bugetului, dar și implicarea cetățenilor în campanii civice precum campania „Cu ochii pe bugetele locale!”. Un alt aspect important în acest proiect este folosirea inteligenței artificiale în beneficiul societății pentru a facilita accesul la informație și a încuraja participarea civică."
+        }
+      ],
+      "rationale_ro": "Descrierea menționează AI ca obiectiv; nu documentează o funcție concretă bazată pe AI. Încadrare: Legislație."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:proceduri-judiciare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "transparenta-eu:descriere_scurta",
+          "locator": "clasificare-input.csv:transparenta-eu:descriere_scurta",
+          "excerpt": "Bugete, legislație și justiție, într-un singur loc"
+        },
+        {
+          "source_id": "transparenta-eu:descriere",
+          "locator": "clasificare-input.csv:transparenta-eu:descriere",
+          "excerpt": "Transparenta.eu este o platformă de analiză și monitorizare a datelor publice, de la bugetul local și național la legislație și justiție. Scopul proiectului este să faciliteze analiza datelor pentru diverse studii de interes public (reorganizarea administrativ-teritorială, impactul PNRR etc.), monitorizarea datelor precum proiecte legislative, evoluția bugetului, dar și implicarea cetățenilor în campanii civice precum campania „Cu ochii pe bugetele locale!”. Un alt aspect important în acest proiect este folosirea inteligenței artificiale în beneficiul societății pentru a facilita accesul la informație și a încuraja participarea civică."
+        }
+      ],
+      "rationale_ro": "Descrierea menționează AI ca obiectiv; nu documentează o funcție concretă bazată pe AI. Încadrare: Proceduri judiciare."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:transparenta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "transparenta-eu:descriere_scurta",
+          "locator": "clasificare-input.csv:transparenta-eu:descriere_scurta",
+          "excerpt": "Bugete, legislație și justiție, într-un singur loc"
+        },
+        {
+          "source_id": "transparenta-eu:descriere",
+          "locator": "clasificare-input.csv:transparenta-eu:descriere",
+          "excerpt": "Transparenta.eu este o platformă de analiză și monitorizare a datelor publice, de la bugetul local și național la legislație și justiție. Scopul proiectului este să faciliteze analiza datelor pentru diverse studii de interes public (reorganizarea administrativ-teritorială, impactul PNRR etc.), monitorizarea datelor precum proiecte legislative, evoluția bugetului, dar și implicarea cetățenilor în campanii civice precum campania „Cu ochii pe bugetele locale!”. Un alt aspect important în acest proiect este folosirea inteligenței artificiale în beneficiul societății pentru a facilita accesul la informație și a încuraja participarea civică."
+        }
+      ],
+      "rationale_ro": "Descrierea menționează AI ca obiectiv; nu documentează o funcție concretă bazată pe AI. Încadrare: Transparență."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:participare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "transparenta-eu:descriere_scurta",
+          "locator": "clasificare-input.csv:transparenta-eu:descriere_scurta",
+          "excerpt": "Bugete, legislație și justiție, într-un singur loc"
+        },
+        {
+          "source_id": "transparenta-eu:descriere",
+          "locator": "clasificare-input.csv:transparenta-eu:descriere",
+          "excerpt": "Transparenta.eu este o platformă de analiză și monitorizare a datelor publice, de la bugetul local și național la legislație și justiție. Scopul proiectului este să faciliteze analiza datelor pentru diverse studii de interes public (reorganizarea administrativ-teritorială, impactul PNRR etc.), monitorizarea datelor precum proiecte legislative, evoluția bugetului, dar și implicarea cetățenilor în campanii civice precum campania „Cu ochii pe bugetele locale!”. Un alt aspect important în acest proiect este folosirea inteligenței artificiale în beneficiul societății pentru a facilita accesul la informație și a încuraja participarea civică."
+        }
+      ],
+      "rationale_ro": "Descrierea menționează AI ca obiectiv; nu documentează o funcție concretă bazată pe AI. Încadrare: Participare civică."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:analiza",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "transparenta-eu:descriere_scurta",
+          "locator": "clasificare-input.csv:transparenta-eu:descriere_scurta",
+          "excerpt": "Bugete, legislație și justiție, într-un singur loc"
+        },
+        {
+          "source_id": "transparenta-eu:descriere",
+          "locator": "clasificare-input.csv:transparenta-eu:descriere",
+          "excerpt": "Transparenta.eu este o platformă de analiză și monitorizare a datelor publice, de la bugetul local și național la legislație și justiție. Scopul proiectului este să faciliteze analiza datelor pentru diverse studii de interes public (reorganizarea administrativ-teritorială, impactul PNRR etc.), monitorizarea datelor precum proiecte legislative, evoluția bugetului, dar și implicarea cetățenilor în campanii civice precum campania „Cu ochii pe bugetele locale!”. Un alt aspect important în acest proiect este folosirea inteligenței artificiale în beneficiul societății pentru a facilita accesul la informație și a încuraja participarea civică."
+        }
+      ],
+      "rationale_ro": "Descrierea menționează AI ca obiectiv; nu documentează o funcție concretă bazată pe AI. Încadrare: Analizează date."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:monitorizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "transparenta-eu:descriere_scurta",
+          "locator": "clasificare-input.csv:transparenta-eu:descriere_scurta",
+          "excerpt": "Bugete, legislație și justiție, într-un singur loc"
+        },
+        {
+          "source_id": "transparenta-eu:descriere",
+          "locator": "clasificare-input.csv:transparenta-eu:descriere",
+          "excerpt": "Transparenta.eu este o platformă de analiză și monitorizare a datelor publice, de la bugetul local și național la legislație și justiție. Scopul proiectului este să faciliteze analiza datelor pentru diverse studii de interes public (reorganizarea administrativ-teritorială, impactul PNRR etc.), monitorizarea datelor precum proiecte legislative, evoluția bugetului, dar și implicarea cetățenilor în campanii civice precum campania „Cu ochii pe bugetele locale!”. Un alt aspect important în acest proiect este folosirea inteligenței artificiale în beneficiul societății pentru a facilita accesul la informație și a încuraja participarea civică."
+        }
+      ],
+      "rationale_ro": "Descrierea menționează AI ca obiectiv; nu documentează o funcție concretă bazată pe AI. Încadrare: Monitorizează."
+    },
+    {
+      "field": "formate",
+      "value": "format:vizualizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "transparenta-eu:descriere_scurta",
+          "locator": "clasificare-input.csv:transparenta-eu:descriere_scurta",
+          "excerpt": "Bugete, legislație și justiție, într-un singur loc"
+        },
+        {
+          "source_id": "transparenta-eu:descriere",
+          "locator": "clasificare-input.csv:transparenta-eu:descriere",
+          "excerpt": "Transparenta.eu este o platformă de analiză și monitorizare a datelor publice, de la bugetul local și național la legislație și justiție. Scopul proiectului este să faciliteze analiza datelor pentru diverse studii de interes public (reorganizarea administrativ-teritorială, impactul PNRR etc.), monitorizarea datelor precum proiecte legislative, evoluția bugetului, dar și implicarea cetățenilor în campanii civice precum campania „Cu ochii pe bugetele locale!”. Un alt aspect important în acest proiect este folosirea inteligenței artificiale în beneficiul societății pentru a facilita accesul la informație și a încuraja participarea civică."
+        }
+      ],
+      "rationale_ro": "Descrierea menționează AI ca obiectiv; nu documentează o funcție concretă bazată pe AI. Încadrare: Vizualizare de date."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "transparenta-eu:acoperire_original",
+          "locator": "clasificare-input.csv:transparenta-eu:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "transparenta-eu:acoperire_original",
+          "locator": "clasificare-input.csv:transparenta-eu:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": null,
+      "object_literal": "Claudiu Bogdan",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "transparenta-eu:autor_original",
+          "locator": "clasificare-input.csv:transparenta-eu:autor_original",
+          "excerpt": "Claudiu Bogdan"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    },
+    {
+      "field": "classification",
+      "reason_ro": "Descrierea menționează AI ca obiectiv; nu documentează o funcție concretă bazată pe AI.",
+      "needed_evidence_ro": "Documentație primară care rezolvă ambiguitatea indicată."
+    },
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "cuvinte",
+      "original_value": "bani-publici",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

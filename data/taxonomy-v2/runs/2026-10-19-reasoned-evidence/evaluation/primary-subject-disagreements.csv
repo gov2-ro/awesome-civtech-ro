@@ -1,0 +1,7 @@
+slug,baseline,candidate,category,rationale
+7-ani-de-acasa,subiect:societate-civila,subiect:guvernare-democratie,different_root_requires_semantic_review,Documentația EFOR descrie educarea alegătorilor pentru alegerile europene din România. Conceptul subiect:alegeri are acest strămoș în vocabularul înghețat.
+data-expertforum,subiect:societate-digitala,subiect:finante-publice,different_root_requires_semantic_review,"Colecția EFOR oferă seturi descărcabile despre alegeri, finanțare și infrastructură. Conceptul subiect:achizitii-publice are acest strămoș în vocabularul înghețat."
+hoover,subiect:media-informare,subiect:societate-digitala,different_root_requires_semantic_review,Motorul caută în colecții de documente; folosirea jurnalistică nu limitează subiectul tehnic. Conceptul subiect:tehnologia-informatiei are acest strămoș în vocabularul înghețat.
+incentru,subiect:societate-civila,,abstention,Abținere documentată.
+jailando,subiect:guvernare-democratie,subiect:drept-justitie,different_root_requires_semantic_review,Descrierea scurtă se referă la politicieni condamnați; nu stabilește că toate infracțiunile sunt de corupție. Conceptul subiect:condamnari are acest strămoș în vocabularul înghețat.
+apti-unelte-democratie,subiect:societate-digitala,subiect:guvernare-democratie,primary_emphasis_existing_baseline_root_retained,Pagina ApTI este un articol cu o selecție de instrumente pentru democrație digitală. Conceptul subiect:democratie are acest strămoș în vocabularul înghețat.

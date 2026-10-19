@@ -1,0 +1,228 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "didi365",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:media-informare",
+    "subiecte": [
+      "subiect:media-informare"
+    ],
+    "teme": [
+      "subiect:dezinformare"
+    ],
+    "scopuri": [
+      "scop:informare"
+    ],
+    "functionalitati": [
+      "functie:verificare",
+      "functie:alerte"
+    ],
+    "formate": [],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "didi365:tip_entitate_original",
+          "locator": "clasificare-input.csv:didi365:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:media-informare",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "didi365:descriere_scurta",
+          "locator": "clasificare-input.csv:didi365:descriere_scurta",
+          "excerpt": "Semnalarea afirmațiilor care trebuie verificate"
+        },
+        {
+          "source_id": "didi365:descriere",
+          "locator": "clasificare-input.csv:didi365:descriere",
+          "excerpt": "Didi365 sprijină jurnaliștii și cetățenii în evaluarea articolelor, postărilor și materialelor video, semnalând afirmații care necesită verificare și posibile indicii de manipulare. Platforma oferă scoruri orientative de credibilitate și alerte privind potențiale narative de dezinformare, ajutând la prioritizarea documentării. Rezultatele reprezintă un punct de plecare pentru verificarea jurnalistică, nu un verdict asupra veridicității informațiilor."
+        }
+      ],
+      "rationale_ro": "Scorurile și alertele prioritizează verificarea; ele nu sunt verdicte jurnalistice de adevăr. Conceptul subiect:dezinformare are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:media-informare",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "didi365:descriere_scurta",
+          "locator": "clasificare-input.csv:didi365:descriere_scurta",
+          "excerpt": "Semnalarea afirmațiilor care trebuie verificate"
+        },
+        {
+          "source_id": "didi365:descriere",
+          "locator": "clasificare-input.csv:didi365:descriere",
+          "excerpt": "Didi365 sprijină jurnaliștii și cetățenii în evaluarea articolelor, postărilor și materialelor video, semnalând afirmații care necesită verificare și posibile indicii de manipulare. Platforma oferă scoruri orientative de credibilitate și alerte privind potențiale narative de dezinformare, ajutând la prioritizarea documentării. Rezultatele reprezintă un punct de plecare pentru verificarea jurnalistică, nu un verdict asupra veridicității informațiilor."
+        }
+      ],
+      "rationale_ro": "Scorurile și alertele prioritizează verificarea; ele nu sunt verdicte jurnalistice de adevăr. Conceptul subiect:dezinformare are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:dezinformare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "didi365:descriere_scurta",
+          "locator": "clasificare-input.csv:didi365:descriere_scurta",
+          "excerpt": "Semnalarea afirmațiilor care trebuie verificate"
+        },
+        {
+          "source_id": "didi365:descriere",
+          "locator": "clasificare-input.csv:didi365:descriere",
+          "excerpt": "Didi365 sprijină jurnaliștii și cetățenii în evaluarea articolelor, postărilor și materialelor video, semnalând afirmații care necesită verificare și posibile indicii de manipulare. Platforma oferă scoruri orientative de credibilitate și alerte privind potențiale narative de dezinformare, ajutând la prioritizarea documentării. Rezultatele reprezintă un punct de plecare pentru verificarea jurnalistică, nu un verdict asupra veridicității informațiilor."
+        }
+      ],
+      "rationale_ro": "Scorurile și alertele prioritizează verificarea; ele nu sunt verdicte jurnalistice de adevăr. Încadrare: Dezinformare."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "didi365:descriere_scurta",
+          "locator": "clasificare-input.csv:didi365:descriere_scurta",
+          "excerpt": "Semnalarea afirmațiilor care trebuie verificate"
+        },
+        {
+          "source_id": "didi365:descriere",
+          "locator": "clasificare-input.csv:didi365:descriere",
+          "excerpt": "Didi365 sprijină jurnaliștii și cetățenii în evaluarea articolelor, postărilor și materialelor video, semnalând afirmații care necesită verificare și posibile indicii de manipulare. Platforma oferă scoruri orientative de credibilitate și alerte privind potențiale narative de dezinformare, ajutând la prioritizarea documentării. Rezultatele reprezintă un punct de plecare pentru verificarea jurnalistică, nu un verdict asupra veridicității informațiilor."
+        }
+      ],
+      "rationale_ro": "Scorurile și alertele prioritizează verificarea; ele nu sunt verdicte jurnalistice de adevăr. Încadrare: Informare și înțelegere."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:verificare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "didi365:descriere_scurta",
+          "locator": "clasificare-input.csv:didi365:descriere_scurta",
+          "excerpt": "Semnalarea afirmațiilor care trebuie verificate"
+        },
+        {
+          "source_id": "didi365:descriere",
+          "locator": "clasificare-input.csv:didi365:descriere",
+          "excerpt": "Didi365 sprijină jurnaliștii și cetățenii în evaluarea articolelor, postărilor și materialelor video, semnalând afirmații care necesită verificare și posibile indicii de manipulare. Platforma oferă scoruri orientative de credibilitate și alerte privind potențiale narative de dezinformare, ajutând la prioritizarea documentării. Rezultatele reprezintă un punct de plecare pentru verificarea jurnalistică, nu un verdict asupra veridicității informațiilor."
+        }
+      ],
+      "rationale_ro": "Scorurile și alertele prioritizează verificarea; ele nu sunt verdicte jurnalistice de adevăr. Încadrare: Verifică informații."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:alerte",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "didi365:descriere_scurta",
+          "locator": "clasificare-input.csv:didi365:descriere_scurta",
+          "excerpt": "Semnalarea afirmațiilor care trebuie verificate"
+        },
+        {
+          "source_id": "didi365:descriere",
+          "locator": "clasificare-input.csv:didi365:descriere",
+          "excerpt": "Didi365 sprijină jurnaliștii și cetățenii în evaluarea articolelor, postărilor și materialelor video, semnalând afirmații care necesită verificare și posibile indicii de manipulare. Platforma oferă scoruri orientative de credibilitate și alerte privind potențiale narative de dezinformare, ajutând la prioritizarea documentării. Rezultatele reprezintă un punct de plecare pentru verificarea jurnalistică, nu un verdict asupra veridicității informațiilor."
+        }
+      ],
+      "rationale_ro": "Scorurile și alertele prioritizează verificarea; ele nu sunt verdicte jurnalistice de adevăr. Încadrare: Primește alerte."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "didi365:acoperire_original",
+          "locator": "clasificare-input.csv:didi365:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "didi365:acoperire_original",
+          "locator": "clasificare-input.csv:didi365:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": null,
+      "object_literal": "Top Clossers SRL",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "didi365:autor_original",
+          "locator": "clasificare-input.csv:didi365:autor_original",
+          "excerpt": "Top Clossers SRL"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    },
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "instrument",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

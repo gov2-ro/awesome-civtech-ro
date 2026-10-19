@@ -1,0 +1,443 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "crpe",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "organizatie",
+    "subiect_principal": "subiect:guvernare-democratie",
+    "subiecte": [
+      "subiect:guvernare-democratie",
+      "subiect:educatie-cultura"
+    ],
+    "teme": [
+      "subiect:afaceri-europene",
+      "subiect:democratie",
+      "subiect:invatamant"
+    ],
+    "scopuri": [
+      "scop:informare",
+      "scop:participare",
+      "scop:educatie"
+    ],
+    "functionalitati": [
+      "functie:analiza",
+      "functie:advocacy",
+      "functie:invatare"
+    ],
+    "formate": [
+      "format:raport",
+      "format:curs"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [
+      "organizatie:think-tank"
+    ],
+    "maturitate": null,
+    "nivel_acoperire": "international",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "organizatie",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "crpe:tip_entitate_original",
+          "locator": "clasificare-input.csv:crpe:tip_entitate_original",
+          "excerpt": "organizatie"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "crpe:descriere_scurta",
+          "locator": "clasificare-input.csv:crpe:descriere_scurta",
+          "excerpt": "Think-tank românesc specializat în afaceri europene și politici publice"
+        },
+        {
+          "source_id": "crpe:descriere",
+          "locator": "clasificare-input.csv:crpe:descriere",
+          "excerpt": "Din 2009, centrul face cercetări în politici publice europene și naționale, campanii de advocacy, dezbateri publice, programe de formare și campanii de implicare civică. Domeniile principale sunt democrația și buna guvernare, relațiile externe (în special Republica Moldova și Parteneriatul Estic), agricultura și dezvoltarea rurală, educația și implicarea tinerilor. În 2012 a deschis o sucursală în Republica Moldova."
+        }
+      ],
+      "rationale_ro": "Centrul face cercetare, advocacy și formare în România și Republica Moldova. Conceptul subiect:afaceri-europene are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "crpe:descriere_scurta",
+          "locator": "clasificare-input.csv:crpe:descriere_scurta",
+          "excerpt": "Think-tank românesc specializat în afaceri europene și politici publice"
+        },
+        {
+          "source_id": "crpe:descriere",
+          "locator": "clasificare-input.csv:crpe:descriere",
+          "excerpt": "Din 2009, centrul face cercetări în politici publice europene și naționale, campanii de advocacy, dezbateri publice, programe de formare și campanii de implicare civică. Domeniile principale sunt democrația și buna guvernare, relațiile externe (în special Republica Moldova și Parteneriatul Estic), agricultura și dezvoltarea rurală, educația și implicarea tinerilor. În 2012 a deschis o sucursală în Republica Moldova."
+        }
+      ],
+      "rationale_ro": "Centrul face cercetare, advocacy și formare în România și Republica Moldova. Conceptul subiect:afaceri-europene are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:educatie-cultura",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "crpe:descriere_scurta",
+          "locator": "clasificare-input.csv:crpe:descriere_scurta",
+          "excerpt": "Think-tank românesc specializat în afaceri europene și politici publice"
+        },
+        {
+          "source_id": "crpe:descriere",
+          "locator": "clasificare-input.csv:crpe:descriere",
+          "excerpt": "Din 2009, centrul face cercetări în politici publice europene și naționale, campanii de advocacy, dezbateri publice, programe de formare și campanii de implicare civică. Domeniile principale sunt democrația și buna guvernare, relațiile externe (în special Republica Moldova și Parteneriatul Estic), agricultura și dezvoltarea rurală, educația și implicarea tinerilor. În 2012 a deschis o sucursală în Republica Moldova."
+        }
+      ],
+      "rationale_ro": "Centrul face cercetare, advocacy și formare în România și Republica Moldova. Conceptul subiect:invatamant are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:afaceri-europene",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "crpe:descriere_scurta",
+          "locator": "clasificare-input.csv:crpe:descriere_scurta",
+          "excerpt": "Think-tank românesc specializat în afaceri europene și politici publice"
+        },
+        {
+          "source_id": "crpe:descriere",
+          "locator": "clasificare-input.csv:crpe:descriere",
+          "excerpt": "Din 2009, centrul face cercetări în politici publice europene și naționale, campanii de advocacy, dezbateri publice, programe de formare și campanii de implicare civică. Domeniile principale sunt democrația și buna guvernare, relațiile externe (în special Republica Moldova și Parteneriatul Estic), agricultura și dezvoltarea rurală, educația și implicarea tinerilor. În 2012 a deschis o sucursală în Republica Moldova."
+        }
+      ],
+      "rationale_ro": "Centrul face cercetare, advocacy și formare în România și Republica Moldova. Încadrare: Afaceri europene."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:democratie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "crpe:descriere_scurta",
+          "locator": "clasificare-input.csv:crpe:descriere_scurta",
+          "excerpt": "Think-tank românesc specializat în afaceri europene și politici publice"
+        },
+        {
+          "source_id": "crpe:descriere",
+          "locator": "clasificare-input.csv:crpe:descriere",
+          "excerpt": "Din 2009, centrul face cercetări în politici publice europene și naționale, campanii de advocacy, dezbateri publice, programe de formare și campanii de implicare civică. Domeniile principale sunt democrația și buna guvernare, relațiile externe (în special Republica Moldova și Parteneriatul Estic), agricultura și dezvoltarea rurală, educația și implicarea tinerilor. În 2012 a deschis o sucursală în Republica Moldova."
+        }
+      ],
+      "rationale_ro": "Centrul face cercetare, advocacy și formare în România și Republica Moldova. Încadrare: Democrație."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:invatamant",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "crpe:descriere_scurta",
+          "locator": "clasificare-input.csv:crpe:descriere_scurta",
+          "excerpt": "Think-tank românesc specializat în afaceri europene și politici publice"
+        },
+        {
+          "source_id": "crpe:descriere",
+          "locator": "clasificare-input.csv:crpe:descriere",
+          "excerpt": "Din 2009, centrul face cercetări în politici publice europene și naționale, campanii de advocacy, dezbateri publice, programe de formare și campanii de implicare civică. Domeniile principale sunt democrația și buna guvernare, relațiile externe (în special Republica Moldova și Parteneriatul Estic), agricultura și dezvoltarea rurală, educația și implicarea tinerilor. În 2012 a deschis o sucursală în Republica Moldova."
+        }
+      ],
+      "rationale_ro": "Centrul face cercetare, advocacy și formare în România și Republica Moldova. Încadrare: Învățământ."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "crpe:descriere_scurta",
+          "locator": "clasificare-input.csv:crpe:descriere_scurta",
+          "excerpt": "Think-tank românesc specializat în afaceri europene și politici publice"
+        },
+        {
+          "source_id": "crpe:descriere",
+          "locator": "clasificare-input.csv:crpe:descriere",
+          "excerpt": "Din 2009, centrul face cercetări în politici publice europene și naționale, campanii de advocacy, dezbateri publice, programe de formare și campanii de implicare civică. Domeniile principale sunt democrația și buna guvernare, relațiile externe (în special Republica Moldova și Parteneriatul Estic), agricultura și dezvoltarea rurală, educația și implicarea tinerilor. În 2012 a deschis o sucursală în Republica Moldova."
+        }
+      ],
+      "rationale_ro": "Centrul face cercetare, advocacy și formare în România și Republica Moldova. Încadrare: Informare și înțelegere."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:participare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "crpe:descriere_scurta",
+          "locator": "clasificare-input.csv:crpe:descriere_scurta",
+          "excerpt": "Think-tank românesc specializat în afaceri europene și politici publice"
+        },
+        {
+          "source_id": "crpe:descriere",
+          "locator": "clasificare-input.csv:crpe:descriere",
+          "excerpt": "Din 2009, centrul face cercetări în politici publice europene și naționale, campanii de advocacy, dezbateri publice, programe de formare și campanii de implicare civică. Domeniile principale sunt democrația și buna guvernare, relațiile externe (în special Republica Moldova și Parteneriatul Estic), agricultura și dezvoltarea rurală, educația și implicarea tinerilor. În 2012 a deschis o sucursală în Republica Moldova."
+        }
+      ],
+      "rationale_ro": "Centrul face cercetare, advocacy și formare în România și Republica Moldova. Încadrare: Participare civică."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:educatie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "crpe:descriere_scurta",
+          "locator": "clasificare-input.csv:crpe:descriere_scurta",
+          "excerpt": "Think-tank românesc specializat în afaceri europene și politici publice"
+        },
+        {
+          "source_id": "crpe:descriere",
+          "locator": "clasificare-input.csv:crpe:descriere",
+          "excerpt": "Din 2009, centrul face cercetări în politici publice europene și naționale, campanii de advocacy, dezbateri publice, programe de formare și campanii de implicare civică. Domeniile principale sunt democrația și buna guvernare, relațiile externe (în special Republica Moldova și Parteneriatul Estic), agricultura și dezvoltarea rurală, educația și implicarea tinerilor. În 2012 a deschis o sucursală în Republica Moldova."
+        }
+      ],
+      "rationale_ro": "Centrul face cercetare, advocacy și formare în România și Republica Moldova. Încadrare: Învățare."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:analiza",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "crpe:descriere_scurta",
+          "locator": "clasificare-input.csv:crpe:descriere_scurta",
+          "excerpt": "Think-tank românesc specializat în afaceri europene și politici publice"
+        },
+        {
+          "source_id": "crpe:descriere",
+          "locator": "clasificare-input.csv:crpe:descriere",
+          "excerpt": "Din 2009, centrul face cercetări în politici publice europene și naționale, campanii de advocacy, dezbateri publice, programe de formare și campanii de implicare civică. Domeniile principale sunt democrația și buna guvernare, relațiile externe (în special Republica Moldova și Parteneriatul Estic), agricultura și dezvoltarea rurală, educația și implicarea tinerilor. În 2012 a deschis o sucursală în Republica Moldova."
+        }
+      ],
+      "rationale_ro": "Centrul face cercetare, advocacy și formare în România și Republica Moldova. Încadrare: Analizează date."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:advocacy",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "crpe:descriere_scurta",
+          "locator": "clasificare-input.csv:crpe:descriere_scurta",
+          "excerpt": "Think-tank românesc specializat în afaceri europene și politici publice"
+        },
+        {
+          "source_id": "crpe:descriere",
+          "locator": "clasificare-input.csv:crpe:descriere",
+          "excerpt": "Din 2009, centrul face cercetări în politici publice europene și naționale, campanii de advocacy, dezbateri publice, programe de formare și campanii de implicare civică. Domeniile principale sunt democrația și buna guvernare, relațiile externe (în special Republica Moldova și Parteneriatul Estic), agricultura și dezvoltarea rurală, educația și implicarea tinerilor. În 2012 a deschis o sucursală în Republica Moldova."
+        }
+      ],
+      "rationale_ro": "Centrul face cercetare, advocacy și formare în România și Republica Moldova. Încadrare: Organizează advocacy."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:invatare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "crpe:descriere_scurta",
+          "locator": "clasificare-input.csv:crpe:descriere_scurta",
+          "excerpt": "Think-tank românesc specializat în afaceri europene și politici publice"
+        },
+        {
+          "source_id": "crpe:descriere",
+          "locator": "clasificare-input.csv:crpe:descriere",
+          "excerpt": "Din 2009, centrul face cercetări în politici publice europene și naționale, campanii de advocacy, dezbateri publice, programe de formare și campanii de implicare civică. Domeniile principale sunt democrația și buna guvernare, relațiile externe (în special Republica Moldova și Parteneriatul Estic), agricultura și dezvoltarea rurală, educația și implicarea tinerilor. În 2012 a deschis o sucursală în Republica Moldova."
+        }
+      ],
+      "rationale_ro": "Centrul face cercetare, advocacy și formare în România și Republica Moldova. Încadrare: Învață sau exersează."
+    },
+    {
+      "field": "formate",
+      "value": "format:raport",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "crpe:descriere_scurta",
+          "locator": "clasificare-input.csv:crpe:descriere_scurta",
+          "excerpt": "Think-tank românesc specializat în afaceri europene și politici publice"
+        },
+        {
+          "source_id": "crpe:descriere",
+          "locator": "clasificare-input.csv:crpe:descriere",
+          "excerpt": "Din 2009, centrul face cercetări în politici publice europene și naționale, campanii de advocacy, dezbateri publice, programe de formare și campanii de implicare civică. Domeniile principale sunt democrația și buna guvernare, relațiile externe (în special Republica Moldova și Parteneriatul Estic), agricultura și dezvoltarea rurală, educația și implicarea tinerilor. În 2012 a deschis o sucursală în Republica Moldova."
+        }
+      ],
+      "rationale_ro": "Centrul face cercetare, advocacy și formare în România și Republica Moldova. Încadrare: Raport sau cercetare."
+    },
+    {
+      "field": "formate",
+      "value": "format:curs",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "crpe:descriere_scurta",
+          "locator": "clasificare-input.csv:crpe:descriere_scurta",
+          "excerpt": "Think-tank românesc specializat în afaceri europene și politici publice"
+        },
+        {
+          "source_id": "crpe:descriere",
+          "locator": "clasificare-input.csv:crpe:descriere",
+          "excerpt": "Din 2009, centrul face cercetări în politici publice europene și naționale, campanii de advocacy, dezbateri publice, programe de formare și campanii de implicare civică. Domeniile principale sunt democrația și buna guvernare, relațiile externe (în special Republica Moldova și Parteneriatul Estic), agricultura și dezvoltarea rurală, educația și implicarea tinerilor. În 2012 a deschis o sucursală în Republica Moldova."
+        }
+      ],
+      "rationale_ro": "Centrul face cercetare, advocacy și formare în România și Republica Moldova. Încadrare: Curs sau atelier."
+    },
+    {
+      "field": "tip_organizatie",
+      "value": "organizatie:think-tank",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "crpe:descriere_scurta",
+          "locator": "clasificare-input.csv:crpe:descriere_scurta",
+          "excerpt": "Think-tank românesc specializat în afaceri europene și politici publice"
+        },
+        {
+          "source_id": "crpe:descriere",
+          "locator": "clasificare-input.csv:crpe:descriere",
+          "excerpt": "Din 2009, centrul face cercetări în politici publice europene și naționale, campanii de advocacy, dezbateri publice, programe de formare și campanii de implicare civică. Domeniile principale sunt democrația și buna guvernare, relațiile externe (în special Republica Moldova și Parteneriatul Estic), agricultura și dezvoltarea rurală, educația și implicarea tinerilor. În 2012 a deschis o sucursală în Republica Moldova."
+        }
+      ],
+      "rationale_ro": "Centrul face cercetare, advocacy și formare în România și Republica Moldova. Încadrare: Think-tank."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "international",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "crpe:descriere_scurta",
+          "locator": "clasificare-input.csv:crpe:descriere_scurta",
+          "excerpt": "Think-tank românesc specializat în afaceri europene și politici publice"
+        },
+        {
+          "source_id": "crpe:descriere",
+          "locator": "clasificare-input.csv:crpe:descriere",
+          "excerpt": "Din 2009, centrul face cercetări în politici publice europene și naționale, campanii de advocacy, dezbateri publice, programe de formare și campanii de implicare civică. Domeniile principale sunt democrația și buna guvernare, relațiile externe (în special Republica Moldova și Parteneriatul Estic), agricultura și dezvoltarea rurală, educația și implicarea tinerilor. În 2012 a deschis o sucursală în Republica Moldova."
+        }
+      ],
+      "rationale_ro": "Aplicabilitatea rezultă din descrierea specifică intrării, nu din adresa editorului. Centrul face cercetare, advocacy și formare în România și Republica Moldova."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "crpe:descriere_scurta",
+          "locator": "clasificare-input.csv:crpe:descriere_scurta",
+          "excerpt": "Think-tank românesc specializat în afaceri europene și politici publice"
+        },
+        {
+          "source_id": "crpe:descriere",
+          "locator": "clasificare-input.csv:crpe:descriere",
+          "excerpt": "Din 2009, centrul face cercetări în politici publice europene și naționale, campanii de advocacy, dezbateri publice, programe de formare și campanii de implicare civică. Domeniile principale sunt democrația și buna guvernare, relațiile externe (în special Republica Moldova și Parteneriatul Estic), agricultura și dezvoltarea rurală, educația și implicarea tinerilor. În 2012 a deschis o sucursală în Republica Moldova."
+        }
+      ],
+      "rationale_ro": "Aplicabilitatea rezultă din descrierea specifică intrării, nu din adresa editorului. Centrul face cercetare, advocacy și formare în România și Republica Moldova."
+    }
+  ],
+  "attributions": [],
+  "uncertainties": [],
+  "conflicts": [
+    {
+      "field": "nivel_acoperire",
+      "source_ids": [
+        "crpe:acoperire_original",
+        "crpe:descriere_scurta"
+      ],
+      "reason_ro": "Eticheta geografică originală nu descrie precis aplicabilitatea documentată.",
+      "resolution_ro": "Propun nivelul și ariile susținute de descriere; nu modific sursa originală."
+    }
+  ],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "cuvinte",
+      "original_value": "uniunea-europeană",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "societate-civilă",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "educație-civică",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [
+    {
+      "scheme": "subiect",
+      "label_ro": "Agricultură și dezvoltare rurală",
+      "label_en": "Agriculture and rural development",
+      "definition_ro": "Activități agricole și politici de dezvoltare a comunităților rurale.",
+      "broader_existing_ids": [],
+      "reason_ro": "Cercetarea CRPE include agricultura; vocabularul nu are un concept suficient de precis.",
+      "evidence": [
+        {
+          "source_id": "crpe:descriere",
+          "locator": "clasificare-input.csv:crpe:descriere",
+          "excerpt": "Din 2009, centrul face cercetări în politici publice europene și naționale, campanii de advocacy, dezbateri publice, programe de formare și campanii de implicare civică. Domeniile principale sunt democrația și buna guvernare, relațiile externe (în special Republica Moldova și Parteneriatul Estic), agricultura și dezvoltarea rurală, educația și implicarea tinerilor. În 2012 a deschis o sucursală în Republica Moldova."
+        }
+      ]
+    }
+  ],
+  "new_area_proposals": [
+    {
+      "label_ro": "Republica Moldova",
+      "area_type": "tara",
+      "parent_existing_ids": [],
+      "reason_ro": "Aria este menționată explicit, dar nu are un identificator în lista înghețată.",
+      "evidence": [
+        {
+          "source_id": "crpe:descriere",
+          "locator": "clasificare-input.csv:crpe:descriere",
+          "excerpt": "Din 2009, centrul face cercetări în politici publice europene și naționale, campanii de advocacy, dezbateri publice, programe de formare și campanii de implicare civică. Domeniile principale sunt democrația și buna guvernare, relațiile externe (în special Republica Moldova și Parteneriatul Estic), agricultura și dezvoltarea rurală, educația și implicarea tinerilor. În 2012 a deschis o sucursală în Republica Moldova."
+        }
+      ]
+    }
+  ]
+}

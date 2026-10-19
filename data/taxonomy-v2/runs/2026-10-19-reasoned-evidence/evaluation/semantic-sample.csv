@@ -1,0 +1,28 @@
+slug,outcome,finding_ro
+465,supported,Contactele parlamentarilor susțin registrul și reprezentarea; maturitatea rămâne necunoscută.
+7-ani-de-acasa,supported_with_historical_limit,EFOR confirmă educația electorală și procedurile de vot. Sursa este istorică; nu demonstrează operarea actuală.
+accesinfo,supported,Descrierea susține cereri și documente conform Legii 544. Nu confirmă aplicație mobilă sau achiziții publice.
+antibunk,supported,Descrierea privește dezinformarea. Eticheta mediu nu a devenit subiect; discuția despre AI nu a devenit tehnologie.
+centrul-pentru-cariere,supported,Pagina primară oferă fișe de job și planificarea carierei. Domeniul economie-muncă este justificat.
+ce-zice-legea,partial_supported,Sursele publice descriu explicarea legislației. Repozitoriul istoric propune urmărirea schimbărilor. Rezultatul rămâne parțial.
+data-expertforum,citation_and_scope_concern,Sursa completă include media și date despre Republica Moldova. Citatul ales nu probează separat rădăcina media. Acoperirea națională moștenită este incompletă.
+demoanaf,supported_uncertainty,Eticheta prototip și descrierea unui serviciu accesibil nu stabilesc etapa. Valoarea null evită o certitudine falsă.
+de-obste,supported,Descrierea declară explicit un prototip demonstrativ. Nu rezultă un pilot sau o utilizare obișnuită.
+drepturi-civile,supported_identity_preservation,Pagina actuală redirecționează la organizație. Ghidul își păstrează identitatea; conflictul este înregistrat.
+dupa-cutremur,supported,Descrierea leagă harta Bucureștiului de pregătirea seismică. Mediul nu este subiectul principal.
+europescope,supported,Instituțiile și voturile UE justifică aria UE. Exemplul nu stabilește aria întregii Europe.
+harta-firmelor,supported,Relațiile dintre companii justifică economia și achizițiile secundare. Grafurile nu sunt presupuse hărți geografice.
+jailando,weak_format_support,"Descrierea susține condamnări, fără a restrânge infracțiunile la corupție. Formatul registru se bazează mai ales pe tipul istoric."
+incentru,supported_abstention,Numele și categoria civic nu stabilesc un subiect. Rezultatele despre blog nu au fost tratate drept aceeași identitate.
+monarh-ai,supported_abstention_on_technology,Monitorizarea automată este explicită. Descrierea nu precizează utilizarea AI în operare; tehnologia rămâne goală.
+monitorul-ai,supported,Arhiva și căutarea parlamentară sunt explicite. Numele .ai nu probează inteligență artificială.
+muzeul-coruptiei,supported_with_historical_limit,Relatarea lansării confirmă galeria și testul. Include exemple fictive; rezultatul nu le tratează ca dosare reale.
+observatori-votcorect,partial_supported,Manualul și formarea sunt vizibile. Panoul cu text implicit nu dovedește un serviciu operațional.
+ro-api-hub,supported,"Catalogul documentează API-uri externe. Nu sunt atribuite API propriu, MCP sau AI pe baza indexului pentru agenți."
+aiparte-research,supported,Colecția oferă rapoarte despre educație și administrație. Legăturile către proiecte MCP nu schimbă tehnologia colecției.
+votdiaspora,supported_with_area_gap,Descrierea identifică harta secțiilor pentru românii aflați în străinătate. Țările exacte rămân necunoscute.
+piratii-digitali-ai-kremlinului,supported,Unitatea este o investigație individuală. Articolul privește date personale și dezinformare în Europa de Est.
+crpe,supported_with_area_gap,Descrierea confirmă activitate în Moldova și agricultură. Lipsesc conceptul agricol și identificatorul Moldovei.
+code4ro,conservative_organisation_type,Descrierea susține dezvoltarea societății civile. Tipul ONG nu este preluat automat din eticheta originală.
+presspay,purpose_boundary_concern,Finanțarea presei independente este explicită. Scopul sprijin-organizatii poate fi prea îngust: definiția numește organizații civice.
+proiecte-geo-spatial,supported_with_topic_gap,"GIS susține tehnologia informației în sens larg. Colecția nu oferă automat hartă, API sau licență de date deschise."

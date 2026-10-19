@@ -1,0 +1,473 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "efor",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "organizatie",
+    "subiect_principal": "subiect:guvernare-democratie",
+    "subiecte": [
+      "subiect:guvernare-democratie",
+      "subiect:mediu-energie",
+      "subiect:media-informare",
+      "subiect:finante-publice",
+      "subiect:drept-justitie",
+      "subiect:sanatate"
+    ],
+    "teme": [
+      "subiect:integritate-publica",
+      "subiect:alegeri",
+      "subiect:administratie-publica",
+      "subiect:energie",
+      "subiect:dezinformare"
+    ],
+    "scopuri": [
+      "scop:transparenta",
+      "scop:responsabilizare",
+      "scop:informare"
+    ],
+    "functionalitati": [
+      "functie:monitorizare",
+      "functie:analiza"
+    ],
+    "formate": [
+      "format:raport"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [
+      "organizatie:think-tank"
+    ],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "organizatie",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "efor:tip_entitate_original",
+          "locator": "clasificare-input.csv:efor:tip_entitate_original",
+          "excerpt": "organizatie"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "efor:descriere_scurta",
+          "locator": "clasificare-input.csv:efor:descriere_scurta",
+          "excerpt": "Think-tank pentru buget, alegeri și integritate"
+        },
+        {
+          "source_id": "efor:descriere",
+          "locator": "clasificare-input.csv:efor:descriere",
+          "excerpt": "Think-tank din București, înființat de experți în politici publice și reforma administrației. Acoperă integritatea, finanțele publice, justiția, energia, sănătatea, procesele electorale și combaterea dezinformării. Monitorizează sectoarele publice, publică rapoarte și organizează dezbateri."
+        }
+      ],
+      "rationale_ro": "Organizația cercetează politici publice în domeniile explicit enumerate, inclusiv sănătatea și justiția. Conceptul subiect:integritate-publica are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "efor:descriere_scurta",
+          "locator": "clasificare-input.csv:efor:descriere_scurta",
+          "excerpt": "Think-tank pentru buget, alegeri și integritate"
+        },
+        {
+          "source_id": "efor:descriere",
+          "locator": "clasificare-input.csv:efor:descriere",
+          "excerpt": "Think-tank din București, înființat de experți în politici publice și reforma administrației. Acoperă integritatea, finanțele publice, justiția, energia, sănătatea, procesele electorale și combaterea dezinformării. Monitorizează sectoarele publice, publică rapoarte și organizează dezbateri."
+        }
+      ],
+      "rationale_ro": "Organizația cercetează politici publice în domeniile explicit enumerate, inclusiv sănătatea și justiția. Conceptul subiect:integritate-publica are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:mediu-energie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "efor:descriere_scurta",
+          "locator": "clasificare-input.csv:efor:descriere_scurta",
+          "excerpt": "Think-tank pentru buget, alegeri și integritate"
+        },
+        {
+          "source_id": "efor:descriere",
+          "locator": "clasificare-input.csv:efor:descriere",
+          "excerpt": "Think-tank din București, înființat de experți în politici publice și reforma administrației. Acoperă integritatea, finanțele publice, justiția, energia, sănătatea, procesele electorale și combaterea dezinformării. Monitorizează sectoarele publice, publică rapoarte și organizează dezbateri."
+        }
+      ],
+      "rationale_ro": "Organizația cercetează politici publice în domeniile explicit enumerate, inclusiv sănătatea și justiția. Conceptul subiect:energie are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:media-informare",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "efor:descriere_scurta",
+          "locator": "clasificare-input.csv:efor:descriere_scurta",
+          "excerpt": "Think-tank pentru buget, alegeri și integritate"
+        },
+        {
+          "source_id": "efor:descriere",
+          "locator": "clasificare-input.csv:efor:descriere",
+          "excerpt": "Think-tank din București, înființat de experți în politici publice și reforma administrației. Acoperă integritatea, finanțele publice, justiția, energia, sănătatea, procesele electorale și combaterea dezinformării. Monitorizează sectoarele publice, publică rapoarte și organizează dezbateri."
+        }
+      ],
+      "rationale_ro": "Organizația cercetează politici publice în domeniile explicit enumerate, inclusiv sănătatea și justiția. Conceptul subiect:dezinformare are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:finante-publice",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "efor:descriere_scurta",
+          "locator": "clasificare-input.csv:efor:descriere_scurta",
+          "excerpt": "Think-tank pentru buget, alegeri și integritate"
+        },
+        {
+          "source_id": "efor:descriere",
+          "locator": "clasificare-input.csv:efor:descriere",
+          "excerpt": "Think-tank din București, înființat de experți în politici publice și reforma administrației. Acoperă integritatea, finanțele publice, justiția, energia, sănătatea, procesele electorale și combaterea dezinformării. Monitorizează sectoarele publice, publică rapoarte și organizează dezbateri."
+        }
+      ],
+      "rationale_ro": "Organizația cercetează politici publice în domeniile explicit enumerate, inclusiv sănătatea și justiția."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:drept-justitie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "efor:descriere_scurta",
+          "locator": "clasificare-input.csv:efor:descriere_scurta",
+          "excerpt": "Think-tank pentru buget, alegeri și integritate"
+        },
+        {
+          "source_id": "efor:descriere",
+          "locator": "clasificare-input.csv:efor:descriere",
+          "excerpt": "Think-tank din București, înființat de experți în politici publice și reforma administrației. Acoperă integritatea, finanțele publice, justiția, energia, sănătatea, procesele electorale și combaterea dezinformării. Monitorizează sectoarele publice, publică rapoarte și organizează dezbateri."
+        }
+      ],
+      "rationale_ro": "Organizația cercetează politici publice în domeniile explicit enumerate, inclusiv sănătatea și justiția."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:sanatate",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "efor:descriere_scurta",
+          "locator": "clasificare-input.csv:efor:descriere_scurta",
+          "excerpt": "Think-tank pentru buget, alegeri și integritate"
+        },
+        {
+          "source_id": "efor:descriere",
+          "locator": "clasificare-input.csv:efor:descriere",
+          "excerpt": "Think-tank din București, înființat de experți în politici publice și reforma administrației. Acoperă integritatea, finanțele publice, justiția, energia, sănătatea, procesele electorale și combaterea dezinformării. Monitorizează sectoarele publice, publică rapoarte și organizează dezbateri."
+        }
+      ],
+      "rationale_ro": "Organizația cercetează politici publice în domeniile explicit enumerate, inclusiv sănătatea și justiția."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:integritate-publica",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "efor:descriere_scurta",
+          "locator": "clasificare-input.csv:efor:descriere_scurta",
+          "excerpt": "Think-tank pentru buget, alegeri și integritate"
+        },
+        {
+          "source_id": "efor:descriere",
+          "locator": "clasificare-input.csv:efor:descriere",
+          "excerpt": "Think-tank din București, înființat de experți în politici publice și reforma administrației. Acoperă integritatea, finanțele publice, justiția, energia, sănătatea, procesele electorale și combaterea dezinformării. Monitorizează sectoarele publice, publică rapoarte și organizează dezbateri."
+        }
+      ],
+      "rationale_ro": "Organizația cercetează politici publice în domeniile explicit enumerate, inclusiv sănătatea și justiția. Încadrare: Integritate publică."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:alegeri",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "efor:descriere_scurta",
+          "locator": "clasificare-input.csv:efor:descriere_scurta",
+          "excerpt": "Think-tank pentru buget, alegeri și integritate"
+        },
+        {
+          "source_id": "efor:descriere",
+          "locator": "clasificare-input.csv:efor:descriere",
+          "excerpt": "Think-tank din București, înființat de experți în politici publice și reforma administrației. Acoperă integritatea, finanțele publice, justiția, energia, sănătatea, procesele electorale și combaterea dezinformării. Monitorizează sectoarele publice, publică rapoarte și organizează dezbateri."
+        }
+      ],
+      "rationale_ro": "Organizația cercetează politici publice în domeniile explicit enumerate, inclusiv sănătatea și justiția. Încadrare: Alegeri."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:administratie-publica",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "efor:descriere_scurta",
+          "locator": "clasificare-input.csv:efor:descriere_scurta",
+          "excerpt": "Think-tank pentru buget, alegeri și integritate"
+        },
+        {
+          "source_id": "efor:descriere",
+          "locator": "clasificare-input.csv:efor:descriere",
+          "excerpt": "Think-tank din București, înființat de experți în politici publice și reforma administrației. Acoperă integritatea, finanțele publice, justiția, energia, sănătatea, procesele electorale și combaterea dezinformării. Monitorizează sectoarele publice, publică rapoarte și organizează dezbateri."
+        }
+      ],
+      "rationale_ro": "Organizația cercetează politici publice în domeniile explicit enumerate, inclusiv sănătatea și justiția. Încadrare: Administrație publică."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:energie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "efor:descriere_scurta",
+          "locator": "clasificare-input.csv:efor:descriere_scurta",
+          "excerpt": "Think-tank pentru buget, alegeri și integritate"
+        },
+        {
+          "source_id": "efor:descriere",
+          "locator": "clasificare-input.csv:efor:descriere",
+          "excerpt": "Think-tank din București, înființat de experți în politici publice și reforma administrației. Acoperă integritatea, finanțele publice, justiția, energia, sănătatea, procesele electorale și combaterea dezinformării. Monitorizează sectoarele publice, publică rapoarte și organizează dezbateri."
+        }
+      ],
+      "rationale_ro": "Organizația cercetează politici publice în domeniile explicit enumerate, inclusiv sănătatea și justiția. Încadrare: Energie."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:dezinformare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "efor:descriere_scurta",
+          "locator": "clasificare-input.csv:efor:descriere_scurta",
+          "excerpt": "Think-tank pentru buget, alegeri și integritate"
+        },
+        {
+          "source_id": "efor:descriere",
+          "locator": "clasificare-input.csv:efor:descriere",
+          "excerpt": "Think-tank din București, înființat de experți în politici publice și reforma administrației. Acoperă integritatea, finanțele publice, justiția, energia, sănătatea, procesele electorale și combaterea dezinformării. Monitorizează sectoarele publice, publică rapoarte și organizează dezbateri."
+        }
+      ],
+      "rationale_ro": "Organizația cercetează politici publice în domeniile explicit enumerate, inclusiv sănătatea și justiția. Încadrare: Dezinformare."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:transparenta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "efor:descriere_scurta",
+          "locator": "clasificare-input.csv:efor:descriere_scurta",
+          "excerpt": "Think-tank pentru buget, alegeri și integritate"
+        },
+        {
+          "source_id": "efor:descriere",
+          "locator": "clasificare-input.csv:efor:descriere",
+          "excerpt": "Think-tank din București, înființat de experți în politici publice și reforma administrației. Acoperă integritatea, finanțele publice, justiția, energia, sănătatea, procesele electorale și combaterea dezinformării. Monitorizează sectoarele publice, publică rapoarte și organizează dezbateri."
+        }
+      ],
+      "rationale_ro": "Organizația cercetează politici publice în domeniile explicit enumerate, inclusiv sănătatea și justiția. Încadrare: Transparență."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:responsabilizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "efor:descriere_scurta",
+          "locator": "clasificare-input.csv:efor:descriere_scurta",
+          "excerpt": "Think-tank pentru buget, alegeri și integritate"
+        },
+        {
+          "source_id": "efor:descriere",
+          "locator": "clasificare-input.csv:efor:descriere",
+          "excerpt": "Think-tank din București, înființat de experți în politici publice și reforma administrației. Acoperă integritatea, finanțele publice, justiția, energia, sănătatea, procesele electorale și combaterea dezinformării. Monitorizează sectoarele publice, publică rapoarte și organizează dezbateri."
+        }
+      ],
+      "rationale_ro": "Organizația cercetează politici publice în domeniile explicit enumerate, inclusiv sănătatea și justiția. Încadrare: Responsabilizare publică."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "efor:descriere_scurta",
+          "locator": "clasificare-input.csv:efor:descriere_scurta",
+          "excerpt": "Think-tank pentru buget, alegeri și integritate"
+        },
+        {
+          "source_id": "efor:descriere",
+          "locator": "clasificare-input.csv:efor:descriere",
+          "excerpt": "Think-tank din București, înființat de experți în politici publice și reforma administrației. Acoperă integritatea, finanțele publice, justiția, energia, sănătatea, procesele electorale și combaterea dezinformării. Monitorizează sectoarele publice, publică rapoarte și organizează dezbateri."
+        }
+      ],
+      "rationale_ro": "Organizația cercetează politici publice în domeniile explicit enumerate, inclusiv sănătatea și justiția. Încadrare: Informare și înțelegere."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:monitorizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "efor:descriere_scurta",
+          "locator": "clasificare-input.csv:efor:descriere_scurta",
+          "excerpt": "Think-tank pentru buget, alegeri și integritate"
+        },
+        {
+          "source_id": "efor:descriere",
+          "locator": "clasificare-input.csv:efor:descriere",
+          "excerpt": "Think-tank din București, înființat de experți în politici publice și reforma administrației. Acoperă integritatea, finanțele publice, justiția, energia, sănătatea, procesele electorale și combaterea dezinformării. Monitorizează sectoarele publice, publică rapoarte și organizează dezbateri."
+        }
+      ],
+      "rationale_ro": "Organizația cercetează politici publice în domeniile explicit enumerate, inclusiv sănătatea și justiția. Încadrare: Monitorizează."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:analiza",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "efor:descriere_scurta",
+          "locator": "clasificare-input.csv:efor:descriere_scurta",
+          "excerpt": "Think-tank pentru buget, alegeri și integritate"
+        },
+        {
+          "source_id": "efor:descriere",
+          "locator": "clasificare-input.csv:efor:descriere",
+          "excerpt": "Think-tank din București, înființat de experți în politici publice și reforma administrației. Acoperă integritatea, finanțele publice, justiția, energia, sănătatea, procesele electorale și combaterea dezinformării. Monitorizează sectoarele publice, publică rapoarte și organizează dezbateri."
+        }
+      ],
+      "rationale_ro": "Organizația cercetează politici publice în domeniile explicit enumerate, inclusiv sănătatea și justiția. Încadrare: Analizează date."
+    },
+    {
+      "field": "formate",
+      "value": "format:raport",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "efor:descriere_scurta",
+          "locator": "clasificare-input.csv:efor:descriere_scurta",
+          "excerpt": "Think-tank pentru buget, alegeri și integritate"
+        },
+        {
+          "source_id": "efor:descriere",
+          "locator": "clasificare-input.csv:efor:descriere",
+          "excerpt": "Think-tank din București, înființat de experți în politici publice și reforma administrației. Acoperă integritatea, finanțele publice, justiția, energia, sănătatea, procesele electorale și combaterea dezinformării. Monitorizează sectoarele publice, publică rapoarte și organizează dezbateri."
+        }
+      ],
+      "rationale_ro": "Organizația cercetează politici publice în domeniile explicit enumerate, inclusiv sănătatea și justiția. Încadrare: Raport sau cercetare."
+    },
+    {
+      "field": "tip_organizatie",
+      "value": "organizatie:think-tank",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "efor:descriere_scurta",
+          "locator": "clasificare-input.csv:efor:descriere_scurta",
+          "excerpt": "Think-tank pentru buget, alegeri și integritate"
+        },
+        {
+          "source_id": "efor:descriere",
+          "locator": "clasificare-input.csv:efor:descriere",
+          "excerpt": "Think-tank din București, înființat de experți în politici publice și reforma administrației. Acoperă integritatea, finanțele publice, justiția, energia, sănătatea, procesele electorale și combaterea dezinformării. Monitorizează sectoarele publice, publică rapoarte și organizează dezbateri."
+        }
+      ],
+      "rationale_ro": "Organizația cercetează politici publice în domeniile explicit enumerate, inclusiv sănătatea și justiția. Încadrare: Think-tank."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "efor:acoperire_original",
+          "locator": "clasificare-input.csv:efor:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "efor:acoperire_original",
+          "locator": "clasificare-input.csv:efor:acoperire_original",
+          "excerpt": "national"
+        },
+        {
+          "source_id": "efor:oras_original",
+          "locator": "clasificare-input.csv:efor:oras_original",
+          "excerpt": "București"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [],
+  "uncertainties": [],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "cuvinte",
+      "original_value": "ghid",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "educație-civică",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

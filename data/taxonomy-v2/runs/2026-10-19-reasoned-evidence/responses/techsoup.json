@@ -1,0 +1,283 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "techsoup",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "organizatie",
+    "subiect_principal": "subiect:societate-civila",
+    "subiecte": [
+      "subiect:societate-civila",
+      "subiect:societate-digitala"
+    ],
+    "teme": [
+      "subiect:dezvoltare-ong",
+      "subiect:digitalizare"
+    ],
+    "scopuri": [
+      "scop:sprijin-organizatii",
+      "scop:educatie"
+    ],
+    "functionalitati": [
+      "functie:invatare"
+    ],
+    "formate": [
+      "format:curs"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [
+      "organizatie:ong"
+    ],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "organizatie",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "techsoup:tip_entitate_original",
+          "locator": "clasificare-input.csv:techsoup:tip_entitate_original",
+          "excerpt": "organizatie"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:societate-civila",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "techsoup:descriere_scurta",
+          "locator": "clasificare-input.csv:techsoup:descriere_scurta",
+          "excerpt": "Tehnologie pentru organizații nonprofit"
+        },
+        {
+          "source_id": "techsoup:descriere",
+          "locator": "clasificare-input.csv:techsoup:descriere",
+          "excerpt": "Programul TechSoup România oferă organizațiilor neguvernamentale produse software, servicii cloud și cursuri la costuri reduse sau gratuite. Este derulat din 2009 de Asociația Techsoup, membră în rețeaua TechSoup Global. Include și Digital Assessment Tool, un instrument gratuit de evaluare a maturității digitale a ONG-urilor."
+        }
+      ],
+      "rationale_ro": "Asociația oferă software și cursuri ONG-urilor; instrumentul menționat nu face organizația un proiect software. Conceptul subiect:dezvoltare-ong are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:societate-civila",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "techsoup:descriere_scurta",
+          "locator": "clasificare-input.csv:techsoup:descriere_scurta",
+          "excerpt": "Tehnologie pentru organizații nonprofit"
+        },
+        {
+          "source_id": "techsoup:descriere",
+          "locator": "clasificare-input.csv:techsoup:descriere",
+          "excerpt": "Programul TechSoup România oferă organizațiilor neguvernamentale produse software, servicii cloud și cursuri la costuri reduse sau gratuite. Este derulat din 2009 de Asociația Techsoup, membră în rețeaua TechSoup Global. Include și Digital Assessment Tool, un instrument gratuit de evaluare a maturității digitale a ONG-urilor."
+        }
+      ],
+      "rationale_ro": "Asociația oferă software și cursuri ONG-urilor; instrumentul menționat nu face organizația un proiect software. Conceptul subiect:dezvoltare-ong are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:societate-digitala",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "techsoup:descriere_scurta",
+          "locator": "clasificare-input.csv:techsoup:descriere_scurta",
+          "excerpt": "Tehnologie pentru organizații nonprofit"
+        },
+        {
+          "source_id": "techsoup:descriere",
+          "locator": "clasificare-input.csv:techsoup:descriere",
+          "excerpt": "Programul TechSoup România oferă organizațiilor neguvernamentale produse software, servicii cloud și cursuri la costuri reduse sau gratuite. Este derulat din 2009 de Asociația Techsoup, membră în rețeaua TechSoup Global. Include și Digital Assessment Tool, un instrument gratuit de evaluare a maturității digitale a ONG-urilor."
+        }
+      ],
+      "rationale_ro": "Asociația oferă software și cursuri ONG-urilor; instrumentul menționat nu face organizația un proiect software. Conceptul subiect:digitalizare are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:dezvoltare-ong",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "techsoup:descriere_scurta",
+          "locator": "clasificare-input.csv:techsoup:descriere_scurta",
+          "excerpt": "Tehnologie pentru organizații nonprofit"
+        },
+        {
+          "source_id": "techsoup:descriere",
+          "locator": "clasificare-input.csv:techsoup:descriere",
+          "excerpt": "Programul TechSoup România oferă organizațiilor neguvernamentale produse software, servicii cloud și cursuri la costuri reduse sau gratuite. Este derulat din 2009 de Asociația Techsoup, membră în rețeaua TechSoup Global. Include și Digital Assessment Tool, un instrument gratuit de evaluare a maturității digitale a ONG-urilor."
+        }
+      ],
+      "rationale_ro": "Asociația oferă software și cursuri ONG-urilor; instrumentul menționat nu face organizația un proiect software. Încadrare: Dezvoltarea organizațiilor civice."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:digitalizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "techsoup:descriere_scurta",
+          "locator": "clasificare-input.csv:techsoup:descriere_scurta",
+          "excerpt": "Tehnologie pentru organizații nonprofit"
+        },
+        {
+          "source_id": "techsoup:descriere",
+          "locator": "clasificare-input.csv:techsoup:descriere",
+          "excerpt": "Programul TechSoup România oferă organizațiilor neguvernamentale produse software, servicii cloud și cursuri la costuri reduse sau gratuite. Este derulat din 2009 de Asociația Techsoup, membră în rețeaua TechSoup Global. Include și Digital Assessment Tool, un instrument gratuit de evaluare a maturității digitale a ONG-urilor."
+        }
+      ],
+      "rationale_ro": "Asociația oferă software și cursuri ONG-urilor; instrumentul menționat nu face organizația un proiect software. Încadrare: Digitalizare."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:sprijin-organizatii",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "techsoup:descriere_scurta",
+          "locator": "clasificare-input.csv:techsoup:descriere_scurta",
+          "excerpt": "Tehnologie pentru organizații nonprofit"
+        },
+        {
+          "source_id": "techsoup:descriere",
+          "locator": "clasificare-input.csv:techsoup:descriere",
+          "excerpt": "Programul TechSoup România oferă organizațiilor neguvernamentale produse software, servicii cloud și cursuri la costuri reduse sau gratuite. Este derulat din 2009 de Asociația Techsoup, membră în rețeaua TechSoup Global. Include și Digital Assessment Tool, un instrument gratuit de evaluare a maturității digitale a ONG-urilor."
+        }
+      ],
+      "rationale_ro": "Asociația oferă software și cursuri ONG-urilor; instrumentul menționat nu face organizația un proiect software. Încadrare: Sprijin pentru organizații civice."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:educatie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "techsoup:descriere_scurta",
+          "locator": "clasificare-input.csv:techsoup:descriere_scurta",
+          "excerpt": "Tehnologie pentru organizații nonprofit"
+        },
+        {
+          "source_id": "techsoup:descriere",
+          "locator": "clasificare-input.csv:techsoup:descriere",
+          "excerpt": "Programul TechSoup România oferă organizațiilor neguvernamentale produse software, servicii cloud și cursuri la costuri reduse sau gratuite. Este derulat din 2009 de Asociația Techsoup, membră în rețeaua TechSoup Global. Include și Digital Assessment Tool, un instrument gratuit de evaluare a maturității digitale a ONG-urilor."
+        }
+      ],
+      "rationale_ro": "Asociația oferă software și cursuri ONG-urilor; instrumentul menționat nu face organizația un proiect software. Încadrare: Învățare."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:invatare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "techsoup:descriere_scurta",
+          "locator": "clasificare-input.csv:techsoup:descriere_scurta",
+          "excerpt": "Tehnologie pentru organizații nonprofit"
+        },
+        {
+          "source_id": "techsoup:descriere",
+          "locator": "clasificare-input.csv:techsoup:descriere",
+          "excerpt": "Programul TechSoup România oferă organizațiilor neguvernamentale produse software, servicii cloud și cursuri la costuri reduse sau gratuite. Este derulat din 2009 de Asociația Techsoup, membră în rețeaua TechSoup Global. Include și Digital Assessment Tool, un instrument gratuit de evaluare a maturității digitale a ONG-urilor."
+        }
+      ],
+      "rationale_ro": "Asociația oferă software și cursuri ONG-urilor; instrumentul menționat nu face organizația un proiect software. Încadrare: Învață sau exersează."
+    },
+    {
+      "field": "formate",
+      "value": "format:curs",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "techsoup:descriere_scurta",
+          "locator": "clasificare-input.csv:techsoup:descriere_scurta",
+          "excerpt": "Tehnologie pentru organizații nonprofit"
+        },
+        {
+          "source_id": "techsoup:descriere",
+          "locator": "clasificare-input.csv:techsoup:descriere",
+          "excerpt": "Programul TechSoup România oferă organizațiilor neguvernamentale produse software, servicii cloud și cursuri la costuri reduse sau gratuite. Este derulat din 2009 de Asociația Techsoup, membră în rețeaua TechSoup Global. Include și Digital Assessment Tool, un instrument gratuit de evaluare a maturității digitale a ONG-urilor."
+        }
+      ],
+      "rationale_ro": "Asociația oferă software și cursuri ONG-urilor; instrumentul menționat nu face organizația un proiect software. Încadrare: Curs sau atelier."
+    },
+    {
+      "field": "tip_organizatie",
+      "value": "organizatie:ong",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "techsoup:descriere_scurta",
+          "locator": "clasificare-input.csv:techsoup:descriere_scurta",
+          "excerpt": "Tehnologie pentru organizații nonprofit"
+        },
+        {
+          "source_id": "techsoup:descriere",
+          "locator": "clasificare-input.csv:techsoup:descriere",
+          "excerpt": "Programul TechSoup România oferă organizațiilor neguvernamentale produse software, servicii cloud și cursuri la costuri reduse sau gratuite. Este derulat din 2009 de Asociația Techsoup, membră în rețeaua TechSoup Global. Include și Digital Assessment Tool, un instrument gratuit de evaluare a maturității digitale a ONG-urilor."
+        }
+      ],
+      "rationale_ro": "Asociația oferă software și cursuri ONG-urilor; instrumentul menționat nu face organizația un proiect software. Încadrare: Organizație neguvernamentală."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "techsoup:acoperire_original",
+          "locator": "clasificare-input.csv:techsoup:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "techsoup:acoperire_original",
+          "locator": "clasificare-input.csv:techsoup:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [],
+  "uncertainties": [],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "cuvinte",
+      "original_value": "societate-civilă",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

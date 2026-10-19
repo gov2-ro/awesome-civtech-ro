@@ -1,0 +1,213 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "domnule-primar",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:comunitati-teritoriu",
+    "subiecte": [
+      "subiect:comunitati-teritoriu",
+      "subiect:guvernare-democratie"
+    ],
+    "teme": [
+      "subiect:administratie-publica"
+    ],
+    "scopuri": [
+      "scop:participare",
+      "scop:responsabilizare"
+    ],
+    "functionalitati": [
+      "functie:sesizare"
+    ],
+    "formate": [],
+    "tehnologii": [],
+    "institutii_vizate": [
+      "institutie:primarie"
+    ],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "domnule-primar:tip_entitate_original",
+          "locator": "clasificare-input.csv:domnule-primar:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:comunitati-teritoriu",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "domnule-primar:descriere_scurta",
+          "locator": "clasificare-input.csv:domnule-primar:descriere_scurta",
+          "excerpt": "Sesizări către primărie"
+        }
+      ],
+      "rationale_ro": "Titlul și descrierea indică sesizări către primărie, fără alte funcții demonstrate."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:comunitati-teritoriu",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "domnule-primar:descriere_scurta",
+          "locator": "clasificare-input.csv:domnule-primar:descriere_scurta",
+          "excerpt": "Sesizări către primărie"
+        }
+      ],
+      "rationale_ro": "Titlul și descrierea indică sesizări către primărie, fără alte funcții demonstrate."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "domnule-primar:descriere_scurta",
+          "locator": "clasificare-input.csv:domnule-primar:descriere_scurta",
+          "excerpt": "Sesizări către primărie"
+        }
+      ],
+      "rationale_ro": "Titlul și descrierea indică sesizări către primărie, fără alte funcții demonstrate. Conceptul subiect:administratie-publica are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:administratie-publica",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "domnule-primar:descriere_scurta",
+          "locator": "clasificare-input.csv:domnule-primar:descriere_scurta",
+          "excerpt": "Sesizări către primărie"
+        }
+      ],
+      "rationale_ro": "Titlul și descrierea indică sesizări către primărie, fără alte funcții demonstrate. Încadrare: Administrație publică."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:participare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "domnule-primar:descriere_scurta",
+          "locator": "clasificare-input.csv:domnule-primar:descriere_scurta",
+          "excerpt": "Sesizări către primărie"
+        }
+      ],
+      "rationale_ro": "Titlul și descrierea indică sesizări către primărie, fără alte funcții demonstrate. Încadrare: Participare civică."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:responsabilizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "domnule-primar:descriere_scurta",
+          "locator": "clasificare-input.csv:domnule-primar:descriere_scurta",
+          "excerpt": "Sesizări către primărie"
+        }
+      ],
+      "rationale_ro": "Titlul și descrierea indică sesizări către primărie, fără alte funcții demonstrate. Încadrare: Responsabilizare publică."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:sesizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "domnule-primar:descriere_scurta",
+          "locator": "clasificare-input.csv:domnule-primar:descriere_scurta",
+          "excerpt": "Sesizări către primărie"
+        }
+      ],
+      "rationale_ro": "Titlul și descrierea indică sesizări către primărie, fără alte funcții demonstrate. Încadrare: Trimite sau urmărește o sesizare."
+    },
+    {
+      "field": "institutii_vizate",
+      "value": "institutie:primarie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "domnule-primar:descriere_scurta",
+          "locator": "clasificare-input.csv:domnule-primar:descriere_scurta",
+          "excerpt": "Sesizări către primărie"
+        }
+      ],
+      "rationale_ro": "Titlul și descrierea indică sesizări către primărie, fără alte funcții demonstrate. Încadrare: Primărie sau administrație locală."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "domnule-primar:acoperire_original",
+          "locator": "clasificare-input.csv:domnule-primar:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "domnule-primar:acoperire_original",
+          "locator": "clasificare-input.csv:domnule-primar:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    },
+    {
+      "field": "classification",
+      "reason_ro": "Lipsește descrierea detaliată; titlul, textul scurt și etichetele au precizie limitată.",
+      "needed_evidence_ro": "Documentație publică specifică intrării."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "instrument",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

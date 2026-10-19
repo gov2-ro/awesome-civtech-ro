@@ -1,0 +1,212 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "ce-fac-politicienii",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:guvernare-democratie",
+    "subiecte": [
+      "subiect:guvernare-democratie"
+    ],
+    "teme": [],
+    "scopuri": [
+      "scop:transparenta",
+      "scop:responsabilizare"
+    ],
+    "functionalitati": [
+      "functie:monitorizare"
+    ],
+    "formate": [
+      "format:registru"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "ce-fac-politicienii:tip_entitate_original",
+          "locator": "clasificare-input.csv:ce-fac-politicienii:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:guvernare-democratie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ce-fac-politicienii:descriere_scurta",
+          "locator": "clasificare-input.csv:ce-fac-politicienii:descriere_scurta",
+          "excerpt": "Cronologia declarațiilor și faptelor politicienilor, cu surse"
+        },
+        {
+          "source_id": "ce-fac-politicienii:descriere",
+          "locator": "clasificare-input.csv:ce-fac-politicienii:descriere",
+          "excerpt": "Monitorizarea declarațiilor și activității politicienilor români. Cronologia faptelor și declarațiilor politicienilor din România, cu surse citate pentru fiecare informație publicată."
+        }
+      ],
+      "rationale_ro": "Cronologia urmărește faptele și declarațiile politicienilor, cu surse pentru fiecare informație."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:guvernare-democratie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ce-fac-politicienii:descriere_scurta",
+          "locator": "clasificare-input.csv:ce-fac-politicienii:descriere_scurta",
+          "excerpt": "Cronologia declarațiilor și faptelor politicienilor, cu surse"
+        },
+        {
+          "source_id": "ce-fac-politicienii:descriere",
+          "locator": "clasificare-input.csv:ce-fac-politicienii:descriere",
+          "excerpt": "Monitorizarea declarațiilor și activității politicienilor români. Cronologia faptelor și declarațiilor politicienilor din România, cu surse citate pentru fiecare informație publicată."
+        }
+      ],
+      "rationale_ro": "Cronologia urmărește faptele și declarațiile politicienilor, cu surse pentru fiecare informație."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:transparenta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ce-fac-politicienii:descriere_scurta",
+          "locator": "clasificare-input.csv:ce-fac-politicienii:descriere_scurta",
+          "excerpt": "Cronologia declarațiilor și faptelor politicienilor, cu surse"
+        },
+        {
+          "source_id": "ce-fac-politicienii:descriere",
+          "locator": "clasificare-input.csv:ce-fac-politicienii:descriere",
+          "excerpt": "Monitorizarea declarațiilor și activității politicienilor români. Cronologia faptelor și declarațiilor politicienilor din România, cu surse citate pentru fiecare informație publicată."
+        }
+      ],
+      "rationale_ro": "Cronologia urmărește faptele și declarațiile politicienilor, cu surse pentru fiecare informație. Încadrare: Transparență."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:responsabilizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ce-fac-politicienii:descriere_scurta",
+          "locator": "clasificare-input.csv:ce-fac-politicienii:descriere_scurta",
+          "excerpt": "Cronologia declarațiilor și faptelor politicienilor, cu surse"
+        },
+        {
+          "source_id": "ce-fac-politicienii:descriere",
+          "locator": "clasificare-input.csv:ce-fac-politicienii:descriere",
+          "excerpt": "Monitorizarea declarațiilor și activității politicienilor români. Cronologia faptelor și declarațiilor politicienilor din România, cu surse citate pentru fiecare informație publicată."
+        }
+      ],
+      "rationale_ro": "Cronologia urmărește faptele și declarațiile politicienilor, cu surse pentru fiecare informație. Încadrare: Responsabilizare publică."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:monitorizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ce-fac-politicienii:descriere_scurta",
+          "locator": "clasificare-input.csv:ce-fac-politicienii:descriere_scurta",
+          "excerpt": "Cronologia declarațiilor și faptelor politicienilor, cu surse"
+        },
+        {
+          "source_id": "ce-fac-politicienii:descriere",
+          "locator": "clasificare-input.csv:ce-fac-politicienii:descriere",
+          "excerpt": "Monitorizarea declarațiilor și activității politicienilor români. Cronologia faptelor și declarațiilor politicienilor din România, cu surse citate pentru fiecare informație publicată."
+        }
+      ],
+      "rationale_ro": "Cronologia urmărește faptele și declarațiile politicienilor, cu surse pentru fiecare informație. Încadrare: Monitorizează."
+    },
+    {
+      "field": "formate",
+      "value": "format:registru",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ce-fac-politicienii:descriere_scurta",
+          "locator": "clasificare-input.csv:ce-fac-politicienii:descriere_scurta",
+          "excerpt": "Cronologia declarațiilor și faptelor politicienilor, cu surse"
+        },
+        {
+          "source_id": "ce-fac-politicienii:descriere",
+          "locator": "clasificare-input.csv:ce-fac-politicienii:descriere",
+          "excerpt": "Monitorizarea declarațiilor și activității politicienilor români. Cronologia faptelor și declarațiilor politicienilor din România, cu surse citate pentru fiecare informație publicată."
+        }
+      ],
+      "rationale_ro": "Cronologia urmărește faptele și declarațiile politicienilor, cu surse pentru fiecare informație. Încadrare: Registru sau bază de date."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ce-fac-politicienii:acoperire_original",
+          "locator": "clasificare-input.csv:ce-fac-politicienii:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ce-fac-politicienii:acoperire_original",
+          "locator": "clasificare-input.csv:ce-fac-politicienii:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "cuvinte",
+      "original_value": "politicieni",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "integritate",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

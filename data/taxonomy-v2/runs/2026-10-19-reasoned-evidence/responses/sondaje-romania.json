@@ -1,0 +1,337 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "sondaje-romania",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:guvernare-democratie",
+    "subiecte": [
+      "subiect:guvernare-democratie"
+    ],
+    "teme": [
+      "subiect:sondaje",
+      "subiect:alegeri",
+      "subiect:partide-politice"
+    ],
+    "scopuri": [
+      "scop:informare"
+    ],
+    "functionalitati": [
+      "functie:comparare",
+      "functie:monitorizare",
+      "functie:analiza"
+    ],
+    "formate": [
+      "format:vizualizare",
+      "format:registru"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": "maturitate:operational",
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "sondaje-romania:tip_entitate_original",
+          "locator": "clasificare-input.csv:sondaje-romania:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "sondaje-romania:descriere_scurta",
+          "locator": "clasificare-input.csv:sondaje-romania:descriere_scurta",
+          "excerpt": "Agregator de sondaje electorale"
+        },
+        {
+          "source_id": "sondaje-romania:descriere",
+          "locator": "clasificare-input.csv:sondaje-romania:descriere",
+          "excerpt": "Agregator independent de sondaje din România. Toate sondajele de la INSCOP, \nCURS și IRES într-un singur loc, indiferent de natura lor. Simulator \ncoaliții cu parlamentul actual și proiecții, barometru încredere și medii \nponderate. Actualizat zilnic."
+        }
+      ],
+      "rationale_ro": "Agregatorul reunește sondaje și oferă simularea coalițiilor și medii ponderate. Conceptul subiect:sondaje are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "sondaje-romania:descriere_scurta",
+          "locator": "clasificare-input.csv:sondaje-romania:descriere_scurta",
+          "excerpt": "Agregator de sondaje electorale"
+        },
+        {
+          "source_id": "sondaje-romania:descriere",
+          "locator": "clasificare-input.csv:sondaje-romania:descriere",
+          "excerpt": "Agregator independent de sondaje din România. Toate sondajele de la INSCOP, \nCURS și IRES într-un singur loc, indiferent de natura lor. Simulator \ncoaliții cu parlamentul actual și proiecții, barometru încredere și medii \nponderate. Actualizat zilnic."
+        }
+      ],
+      "rationale_ro": "Agregatorul reunește sondaje și oferă simularea coalițiilor și medii ponderate. Conceptul subiect:sondaje are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:sondaje",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "sondaje-romania:descriere_scurta",
+          "locator": "clasificare-input.csv:sondaje-romania:descriere_scurta",
+          "excerpt": "Agregator de sondaje electorale"
+        },
+        {
+          "source_id": "sondaje-romania:descriere",
+          "locator": "clasificare-input.csv:sondaje-romania:descriere",
+          "excerpt": "Agregator independent de sondaje din România. Toate sondajele de la INSCOP, \nCURS și IRES într-un singur loc, indiferent de natura lor. Simulator \ncoaliții cu parlamentul actual și proiecții, barometru încredere și medii \nponderate. Actualizat zilnic."
+        }
+      ],
+      "rationale_ro": "Agregatorul reunește sondaje și oferă simularea coalițiilor și medii ponderate. Încadrare: Sondaje de opinie."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:alegeri",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "sondaje-romania:descriere_scurta",
+          "locator": "clasificare-input.csv:sondaje-romania:descriere_scurta",
+          "excerpt": "Agregator de sondaje electorale"
+        },
+        {
+          "source_id": "sondaje-romania:descriere",
+          "locator": "clasificare-input.csv:sondaje-romania:descriere",
+          "excerpt": "Agregator independent de sondaje din România. Toate sondajele de la INSCOP, \nCURS și IRES într-un singur loc, indiferent de natura lor. Simulator \ncoaliții cu parlamentul actual și proiecții, barometru încredere și medii \nponderate. Actualizat zilnic."
+        }
+      ],
+      "rationale_ro": "Agregatorul reunește sondaje și oferă simularea coalițiilor și medii ponderate. Încadrare: Alegeri."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:partide-politice",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "sondaje-romania:descriere_scurta",
+          "locator": "clasificare-input.csv:sondaje-romania:descriere_scurta",
+          "excerpt": "Agregator de sondaje electorale"
+        },
+        {
+          "source_id": "sondaje-romania:descriere",
+          "locator": "clasificare-input.csv:sondaje-romania:descriere",
+          "excerpt": "Agregator independent de sondaje din România. Toate sondajele de la INSCOP, \nCURS și IRES într-un singur loc, indiferent de natura lor. Simulator \ncoaliții cu parlamentul actual și proiecții, barometru încredere și medii \nponderate. Actualizat zilnic."
+        }
+      ],
+      "rationale_ro": "Agregatorul reunește sondaje și oferă simularea coalițiilor și medii ponderate. Încadrare: Partide politice."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "sondaje-romania:descriere_scurta",
+          "locator": "clasificare-input.csv:sondaje-romania:descriere_scurta",
+          "excerpt": "Agregator de sondaje electorale"
+        },
+        {
+          "source_id": "sondaje-romania:descriere",
+          "locator": "clasificare-input.csv:sondaje-romania:descriere",
+          "excerpt": "Agregator independent de sondaje din România. Toate sondajele de la INSCOP, \nCURS și IRES într-un singur loc, indiferent de natura lor. Simulator \ncoaliții cu parlamentul actual și proiecții, barometru încredere și medii \nponderate. Actualizat zilnic."
+        }
+      ],
+      "rationale_ro": "Agregatorul reunește sondaje și oferă simularea coalițiilor și medii ponderate. Încadrare: Informare și înțelegere."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:comparare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "sondaje-romania:descriere_scurta",
+          "locator": "clasificare-input.csv:sondaje-romania:descriere_scurta",
+          "excerpt": "Agregator de sondaje electorale"
+        },
+        {
+          "source_id": "sondaje-romania:descriere",
+          "locator": "clasificare-input.csv:sondaje-romania:descriere",
+          "excerpt": "Agregator independent de sondaje din România. Toate sondajele de la INSCOP, \nCURS și IRES într-un singur loc, indiferent de natura lor. Simulator \ncoaliții cu parlamentul actual și proiecții, barometru încredere și medii \nponderate. Actualizat zilnic."
+        }
+      ],
+      "rationale_ro": "Agregatorul reunește sondaje și oferă simularea coalițiilor și medii ponderate. Încadrare: Compară."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:monitorizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "sondaje-romania:descriere_scurta",
+          "locator": "clasificare-input.csv:sondaje-romania:descriere_scurta",
+          "excerpt": "Agregator de sondaje electorale"
+        },
+        {
+          "source_id": "sondaje-romania:descriere",
+          "locator": "clasificare-input.csv:sondaje-romania:descriere",
+          "excerpt": "Agregator independent de sondaje din România. Toate sondajele de la INSCOP, \nCURS și IRES într-un singur loc, indiferent de natura lor. Simulator \ncoaliții cu parlamentul actual și proiecții, barometru încredere și medii \nponderate. Actualizat zilnic."
+        }
+      ],
+      "rationale_ro": "Agregatorul reunește sondaje și oferă simularea coalițiilor și medii ponderate. Încadrare: Monitorizează."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:analiza",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "sondaje-romania:descriere_scurta",
+          "locator": "clasificare-input.csv:sondaje-romania:descriere_scurta",
+          "excerpt": "Agregator de sondaje electorale"
+        },
+        {
+          "source_id": "sondaje-romania:descriere",
+          "locator": "clasificare-input.csv:sondaje-romania:descriere",
+          "excerpt": "Agregator independent de sondaje din România. Toate sondajele de la INSCOP, \nCURS și IRES într-un singur loc, indiferent de natura lor. Simulator \ncoaliții cu parlamentul actual și proiecții, barometru încredere și medii \nponderate. Actualizat zilnic."
+        }
+      ],
+      "rationale_ro": "Agregatorul reunește sondaje și oferă simularea coalițiilor și medii ponderate. Încadrare: Analizează date."
+    },
+    {
+      "field": "formate",
+      "value": "format:vizualizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "sondaje-romania:descriere_scurta",
+          "locator": "clasificare-input.csv:sondaje-romania:descriere_scurta",
+          "excerpt": "Agregator de sondaje electorale"
+        },
+        {
+          "source_id": "sondaje-romania:descriere",
+          "locator": "clasificare-input.csv:sondaje-romania:descriere",
+          "excerpt": "Agregator independent de sondaje din România. Toate sondajele de la INSCOP, \nCURS și IRES într-un singur loc, indiferent de natura lor. Simulator \ncoaliții cu parlamentul actual și proiecții, barometru încredere și medii \nponderate. Actualizat zilnic."
+        }
+      ],
+      "rationale_ro": "Agregatorul reunește sondaje și oferă simularea coalițiilor și medii ponderate. Încadrare: Vizualizare de date."
+    },
+    {
+      "field": "formate",
+      "value": "format:registru",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "sondaje-romania:descriere_scurta",
+          "locator": "clasificare-input.csv:sondaje-romania:descriere_scurta",
+          "excerpt": "Agregator de sondaje electorale"
+        },
+        {
+          "source_id": "sondaje-romania:descriere",
+          "locator": "clasificare-input.csv:sondaje-romania:descriere",
+          "excerpt": "Agregator independent de sondaje din România. Toate sondajele de la INSCOP, \nCURS și IRES într-un singur loc, indiferent de natura lor. Simulator \ncoaliții cu parlamentul actual și proiecții, barometru încredere și medii \nponderate. Actualizat zilnic."
+        }
+      ],
+      "rationale_ro": "Agregatorul reunește sondaje și oferă simularea coalițiilor și medii ponderate. Încadrare: Registru sau bază de date."
+    },
+    {
+      "field": "maturitate",
+      "value": "maturitate:operational",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "sondaje-romania:descriere_scurta",
+          "locator": "clasificare-input.csv:sondaje-romania:descriere_scurta",
+          "excerpt": "Agregator de sondaje electorale"
+        },
+        {
+          "source_id": "sondaje-romania:descriere",
+          "locator": "clasificare-input.csv:sondaje-romania:descriere",
+          "excerpt": "Agregator independent de sondaje din România. Toate sondajele de la INSCOP, \nCURS și IRES într-un singur loc, indiferent de natura lor. Simulator \ncoaliții cu parlamentul actual și proiecții, barometru încredere și medii \nponderate. Actualizat zilnic."
+        }
+      ],
+      "rationale_ro": "Descrierea oferă un flux concret pentru utilizare obișnuită de către publicul țintă. Agregatorul reunește sondaje și oferă simularea coalițiilor și medii ponderate. Încadrare: Operațional."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "sondaje-romania:acoperire_original",
+          "locator": "clasificare-input.csv:sondaje-romania:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "sondaje-romania:acoperire_original",
+          "locator": "clasificare-input.csv:sondaje-romania:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [],
+  "uncertainties": [],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "cuvinte",
+      "original_value": "electoral",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [
+    {
+      "scheme": "functie",
+      "label_ro": "Simularea scenariilor",
+      "label_en": "Scenario simulation",
+      "definition_ro": "Calculează rezultatele unor ipoteze sau combinații introduse de utilizator.",
+      "broader_existing_ids": [],
+      "reason_ro": "Simulatorul de coaliții depășește compararea sau analiza descriptivă.",
+      "evidence": [
+        {
+          "source_id": "sondaje-romania:descriere",
+          "locator": "clasificare-input.csv:sondaje-romania:descriere",
+          "excerpt": "Agregator independent de sondaje din România. Toate sondajele de la INSCOP, \nCURS și IRES într-un singur loc, indiferent de natura lor. Simulator \ncoaliții cu parlamentul actual și proiecții, barometru încredere și medii \nponderate. Actualizat zilnic."
+        }
+      ]
+    }
+  ],
+  "new_area_proposals": []
+}

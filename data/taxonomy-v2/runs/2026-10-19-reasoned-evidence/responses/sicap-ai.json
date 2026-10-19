@@ -1,0 +1,258 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "sicap-ai",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:finante-publice",
+    "subiecte": [
+      "subiect:finante-publice"
+    ],
+    "teme": [
+      "subiect:achizitii-publice"
+    ],
+    "scopuri": [
+      "scop:transparenta"
+    ],
+    "functionalitati": [
+      "functie:cautare"
+    ],
+    "formate": [
+      "format:registru"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": "maturitate:operational",
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "sicap-ai:tip_entitate_original",
+          "locator": "clasificare-input.csv:sicap-ai:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:finante-publice",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "sicap-ai:descriere_scurta",
+          "locator": "clasificare-input.csv:sicap-ai:descriere_scurta",
+          "excerpt": "Motor de căutare pentru licitații și achiziții directe"
+        },
+        {
+          "source_id": "sicap-ai:descriere",
+          "locator": "clasificare-input.csv:sicap-ai:descriere",
+          "excerpt": "Motor gratuit și open source de căutare a licitațiilor publice din România. Lansat în 2020, folosit zilnic de mii de oameni. Util oricui vrea să vadă rapid istoricul licitatiilor, fără cont și fără abonament."
+        }
+      ],
+      "rationale_ro": "Motorul este descris ca folosit zilnic pentru căutarea licitațiilor; marca .ai nu demonstrează AI. Conceptul subiect:achizitii-publice are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:finante-publice",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "sicap-ai:descriere_scurta",
+          "locator": "clasificare-input.csv:sicap-ai:descriere_scurta",
+          "excerpt": "Motor de căutare pentru licitații și achiziții directe"
+        },
+        {
+          "source_id": "sicap-ai:descriere",
+          "locator": "clasificare-input.csv:sicap-ai:descriere",
+          "excerpt": "Motor gratuit și open source de căutare a licitațiilor publice din România. Lansat în 2020, folosit zilnic de mii de oameni. Util oricui vrea să vadă rapid istoricul licitatiilor, fără cont și fără abonament."
+        }
+      ],
+      "rationale_ro": "Motorul este descris ca folosit zilnic pentru căutarea licitațiilor; marca .ai nu demonstrează AI. Conceptul subiect:achizitii-publice are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:achizitii-publice",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "sicap-ai:descriere_scurta",
+          "locator": "clasificare-input.csv:sicap-ai:descriere_scurta",
+          "excerpt": "Motor de căutare pentru licitații și achiziții directe"
+        },
+        {
+          "source_id": "sicap-ai:descriere",
+          "locator": "clasificare-input.csv:sicap-ai:descriere",
+          "excerpt": "Motor gratuit și open source de căutare a licitațiilor publice din România. Lansat în 2020, folosit zilnic de mii de oameni. Util oricui vrea să vadă rapid istoricul licitatiilor, fără cont și fără abonament."
+        }
+      ],
+      "rationale_ro": "Motorul este descris ca folosit zilnic pentru căutarea licitațiilor; marca .ai nu demonstrează AI. Încadrare: Achiziții publice."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:transparenta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "sicap-ai:descriere_scurta",
+          "locator": "clasificare-input.csv:sicap-ai:descriere_scurta",
+          "excerpt": "Motor de căutare pentru licitații și achiziții directe"
+        },
+        {
+          "source_id": "sicap-ai:descriere",
+          "locator": "clasificare-input.csv:sicap-ai:descriere",
+          "excerpt": "Motor gratuit și open source de căutare a licitațiilor publice din România. Lansat în 2020, folosit zilnic de mii de oameni. Util oricui vrea să vadă rapid istoricul licitatiilor, fără cont și fără abonament."
+        }
+      ],
+      "rationale_ro": "Motorul este descris ca folosit zilnic pentru căutarea licitațiilor; marca .ai nu demonstrează AI. Încadrare: Transparență."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:cautare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "sicap-ai:descriere_scurta",
+          "locator": "clasificare-input.csv:sicap-ai:descriere_scurta",
+          "excerpt": "Motor de căutare pentru licitații și achiziții directe"
+        },
+        {
+          "source_id": "sicap-ai:descriere",
+          "locator": "clasificare-input.csv:sicap-ai:descriere",
+          "excerpt": "Motor gratuit și open source de căutare a licitațiilor publice din România. Lansat în 2020, folosit zilnic de mii de oameni. Util oricui vrea să vadă rapid istoricul licitatiilor, fără cont și fără abonament."
+        }
+      ],
+      "rationale_ro": "Motorul este descris ca folosit zilnic pentru căutarea licitațiilor; marca .ai nu demonstrează AI. Încadrare: Caută și consultă."
+    },
+    {
+      "field": "formate",
+      "value": "format:registru",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "sicap-ai:descriere_scurta",
+          "locator": "clasificare-input.csv:sicap-ai:descriere_scurta",
+          "excerpt": "Motor de căutare pentru licitații și achiziții directe"
+        },
+        {
+          "source_id": "sicap-ai:descriere",
+          "locator": "clasificare-input.csv:sicap-ai:descriere",
+          "excerpt": "Motor gratuit și open source de căutare a licitațiilor publice din România. Lansat în 2020, folosit zilnic de mii de oameni. Util oricui vrea să vadă rapid istoricul licitatiilor, fără cont și fără abonament."
+        }
+      ],
+      "rationale_ro": "Motorul este descris ca folosit zilnic pentru căutarea licitațiilor; marca .ai nu demonstrează AI. Încadrare: Registru sau bază de date."
+    },
+    {
+      "field": "maturitate",
+      "value": "maturitate:operational",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "sicap-ai:descriere_scurta",
+          "locator": "clasificare-input.csv:sicap-ai:descriere_scurta",
+          "excerpt": "Motor de căutare pentru licitații și achiziții directe"
+        },
+        {
+          "source_id": "sicap-ai:descriere",
+          "locator": "clasificare-input.csv:sicap-ai:descriere",
+          "excerpt": "Motor gratuit și open source de căutare a licitațiilor publice din România. Lansat în 2020, folosit zilnic de mii de oameni. Util oricui vrea să vadă rapid istoricul licitatiilor, fără cont și fără abonament."
+        }
+      ],
+      "rationale_ro": "Descrierea oferă un flux concret pentru utilizare obișnuită de către publicul țintă. Motorul este descris ca folosit zilnic pentru căutarea licitațiilor; marca .ai nu demonstrează AI. Încadrare: Operațional."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "sicap-ai:acoperire_original",
+          "locator": "clasificare-input.csv:sicap-ai:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "sicap-ai:acoperire_original",
+          "locator": "clasificare-input.csv:sicap-ai:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": null,
+      "object_literal": "Radu Ciocan",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "sicap-ai:autor_original",
+          "locator": "clasificare-input.csv:sicap-ai:autor_original",
+          "excerpt": "Radu Ciocan"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "instrument",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "bani-publici",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "licitații",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "ai",
+      "reason_ro": "Eticheta nu dovedește tehnologia folosită sau oferită."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

@@ -1,0 +1,269 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "posturi-gov2",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:economie-munca",
+    "subiecte": [
+      "subiect:economie-munca",
+      "subiect:guvernare-democratie"
+    ],
+    "teme": [
+      "subiect:ocupare-cariere",
+      "subiect:administratie-publica"
+    ],
+    "scopuri": [
+      "scop:acces-servicii"
+    ],
+    "functionalitati": [
+      "functie:cautare"
+    ],
+    "formate": [
+      "format:registru"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "posturi-gov2:tip_entitate_original",
+          "locator": "clasificare-input.csv:posturi-gov2:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:economie-munca",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "posturi-gov2:descriere_scurta",
+          "locator": "clasificare-input.csv:posturi-gov2:descriere_scurta",
+          "excerpt": "Posturi vacante în sectorul public"
+        },
+        {
+          "source_id": "posturi-gov2:descriere",
+          "locator": "clasificare-input.csv:posturi-gov2:descriere",
+          "excerpt": "Anunțuri de angajare, posturi în domeniul public"
+        }
+      ],
+      "rationale_ro": "Anunțurile privesc posturi vacante în sectorul public. Conceptul subiect:ocupare-cariere are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:economie-munca",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "posturi-gov2:descriere_scurta",
+          "locator": "clasificare-input.csv:posturi-gov2:descriere_scurta",
+          "excerpt": "Posturi vacante în sectorul public"
+        },
+        {
+          "source_id": "posturi-gov2:descriere",
+          "locator": "clasificare-input.csv:posturi-gov2:descriere",
+          "excerpt": "Anunțuri de angajare, posturi în domeniul public"
+        }
+      ],
+      "rationale_ro": "Anunțurile privesc posturi vacante în sectorul public. Conceptul subiect:ocupare-cariere are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "posturi-gov2:descriere_scurta",
+          "locator": "clasificare-input.csv:posturi-gov2:descriere_scurta",
+          "excerpt": "Posturi vacante în sectorul public"
+        },
+        {
+          "source_id": "posturi-gov2:descriere",
+          "locator": "clasificare-input.csv:posturi-gov2:descriere",
+          "excerpt": "Anunțuri de angajare, posturi în domeniul public"
+        }
+      ],
+      "rationale_ro": "Anunțurile privesc posturi vacante în sectorul public. Conceptul subiect:administratie-publica are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:ocupare-cariere",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "posturi-gov2:descriere_scurta",
+          "locator": "clasificare-input.csv:posturi-gov2:descriere_scurta",
+          "excerpt": "Posturi vacante în sectorul public"
+        },
+        {
+          "source_id": "posturi-gov2:descriere",
+          "locator": "clasificare-input.csv:posturi-gov2:descriere",
+          "excerpt": "Anunțuri de angajare, posturi în domeniul public"
+        }
+      ],
+      "rationale_ro": "Anunțurile privesc posturi vacante în sectorul public. Încadrare: Ocupare și cariere."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:administratie-publica",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "posturi-gov2:descriere_scurta",
+          "locator": "clasificare-input.csv:posturi-gov2:descriere_scurta",
+          "excerpt": "Posturi vacante în sectorul public"
+        },
+        {
+          "source_id": "posturi-gov2:descriere",
+          "locator": "clasificare-input.csv:posturi-gov2:descriere",
+          "excerpt": "Anunțuri de angajare, posturi în domeniul public"
+        }
+      ],
+      "rationale_ro": "Anunțurile privesc posturi vacante în sectorul public. Încadrare: Administrație publică."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:acces-servicii",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "posturi-gov2:descriere_scurta",
+          "locator": "clasificare-input.csv:posturi-gov2:descriere_scurta",
+          "excerpt": "Posturi vacante în sectorul public"
+        },
+        {
+          "source_id": "posturi-gov2:descriere",
+          "locator": "clasificare-input.csv:posturi-gov2:descriere",
+          "excerpt": "Anunțuri de angajare, posturi în domeniul public"
+        }
+      ],
+      "rationale_ro": "Anunțurile privesc posturi vacante în sectorul public. Încadrare: Acces la servicii."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:cautare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "posturi-gov2:descriere_scurta",
+          "locator": "clasificare-input.csv:posturi-gov2:descriere_scurta",
+          "excerpt": "Posturi vacante în sectorul public"
+        },
+        {
+          "source_id": "posturi-gov2:descriere",
+          "locator": "clasificare-input.csv:posturi-gov2:descriere",
+          "excerpt": "Anunțuri de angajare, posturi în domeniul public"
+        }
+      ],
+      "rationale_ro": "Anunțurile privesc posturi vacante în sectorul public. Încadrare: Caută și consultă."
+    },
+    {
+      "field": "formate",
+      "value": "format:registru",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "posturi-gov2:descriere_scurta",
+          "locator": "clasificare-input.csv:posturi-gov2:descriere_scurta",
+          "excerpt": "Posturi vacante în sectorul public"
+        },
+        {
+          "source_id": "posturi-gov2:descriere",
+          "locator": "clasificare-input.csv:posturi-gov2:descriere",
+          "excerpt": "Anunțuri de angajare, posturi în domeniul public"
+        }
+      ],
+      "rationale_ro": "Anunțurile privesc posturi vacante în sectorul public. Încadrare: Registru sau bază de date."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "posturi-gov2:acoperire_original",
+          "locator": "clasificare-input.csv:posturi-gov2:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "posturi-gov2:acoperire_original",
+          "locator": "clasificare-input.csv:posturi-gov2:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": null,
+      "object_literal": "GOV2",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "posturi-gov2:autor_original",
+          "locator": "clasificare-input.csv:posturi-gov2:autor_original",
+          "excerpt": "GOV2"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    },
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "baza-de-date",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

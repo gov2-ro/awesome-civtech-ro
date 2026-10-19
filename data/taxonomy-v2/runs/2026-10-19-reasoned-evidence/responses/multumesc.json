@@ -1,0 +1,208 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "multumesc",
+  "result_status": "partial",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:guvernare-democratie",
+    "subiecte": [
+      "subiect:guvernare-democratie"
+    ],
+    "teme": [
+      "subiect:activitate-parlamentara"
+    ],
+    "scopuri": [
+      "scop:transparenta",
+      "scop:responsabilizare"
+    ],
+    "functionalitati": [
+      "functie:monitorizare"
+    ],
+    "formate": [
+      "format:vizualizare"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [
+      "institutie:parlament"
+    ],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "multumesc:tip_entitate_original",
+          "locator": "clasificare-input.csv:multumesc:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn4search5",
+          "locator": "https://ziaruldebacau.ro/bataie-de-joc-noua-din-zece-deputati-bacauani-au-lipsit-de-la-munca-o-treime-din-mandat-vreme-si-ciubotaru-record-de-absente/#turn4search5",
+          "excerpt": "citeturn4search5 [wordlim: 200] Published: 10.6 years ago; Crawled: last week; Multumesc.org este un proiect non-profit care se bazează pe datele publicate pe site-ul Camerei Deputaţilor. ... Statisticile de pe situl multumesc.org mai arată și de câte ori a apărut numele deputaților în comunicatele DNA."
+        }
+      ],
+      "rationale_ro": "Relatarea din 2016 identifică monitorizarea prezenței deputaților; funcționarea actuală este necunoscută. Conceptul subiect:activitate-parlamentara are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:guvernare-democratie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn4search5",
+          "locator": "https://ziaruldebacau.ro/bataie-de-joc-noua-din-zece-deputati-bacauani-au-lipsit-de-la-munca-o-treime-din-mandat-vreme-si-ciubotaru-record-de-absente/#turn4search5",
+          "excerpt": "citeturn4search5 [wordlim: 200] Published: 10.6 years ago; Crawled: last week; Multumesc.org este un proiect non-profit care se bazează pe datele publicate pe site-ul Camerei Deputaţilor. ... Statisticile de pe situl multumesc.org mai arată și de câte ori a apărut numele deputaților în comunicatele DNA."
+        }
+      ],
+      "rationale_ro": "Relatarea din 2016 identifică monitorizarea prezenței deputaților; funcționarea actuală este necunoscută. Conceptul subiect:activitate-parlamentara are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:activitate-parlamentara",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn4search5",
+          "locator": "https://ziaruldebacau.ro/bataie-de-joc-noua-din-zece-deputati-bacauani-au-lipsit-de-la-munca-o-treime-din-mandat-vreme-si-ciubotaru-record-de-absente/#turn4search5",
+          "excerpt": "citeturn4search5 [wordlim: 200] Published: 10.6 years ago; Crawled: last week; Multumesc.org este un proiect non-profit care se bazează pe datele publicate pe site-ul Camerei Deputaţilor. ... Statisticile de pe situl multumesc.org mai arată și de câte ori a apărut numele deputaților în comunicatele DNA."
+        }
+      ],
+      "rationale_ro": "Relatarea din 2016 identifică monitorizarea prezenței deputaților; funcționarea actuală este necunoscută. Încadrare: Activitate parlamentară."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:transparenta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn4search5",
+          "locator": "https://ziaruldebacau.ro/bataie-de-joc-noua-din-zece-deputati-bacauani-au-lipsit-de-la-munca-o-treime-din-mandat-vreme-si-ciubotaru-record-de-absente/#turn4search5",
+          "excerpt": "citeturn4search5 [wordlim: 200] Published: 10.6 years ago; Crawled: last week; Multumesc.org este un proiect non-profit care se bazează pe datele publicate pe site-ul Camerei Deputaţilor. ... Statisticile de pe situl multumesc.org mai arată și de câte ori a apărut numele deputaților în comunicatele DNA."
+        }
+      ],
+      "rationale_ro": "Relatarea din 2016 identifică monitorizarea prezenței deputaților; funcționarea actuală este necunoscută. Încadrare: Transparență."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:responsabilizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn4search5",
+          "locator": "https://ziaruldebacau.ro/bataie-de-joc-noua-din-zece-deputati-bacauani-au-lipsit-de-la-munca-o-treime-din-mandat-vreme-si-ciubotaru-record-de-absente/#turn4search5",
+          "excerpt": "citeturn4search5 [wordlim: 200] Published: 10.6 years ago; Crawled: last week; Multumesc.org este un proiect non-profit care se bazează pe datele publicate pe site-ul Camerei Deputaţilor. ... Statisticile de pe situl multumesc.org mai arată și de câte ori a apărut numele deputaților în comunicatele DNA."
+        }
+      ],
+      "rationale_ro": "Relatarea din 2016 identifică monitorizarea prezenței deputaților; funcționarea actuală este necunoscută. Încadrare: Responsabilizare publică."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:monitorizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn4search5",
+          "locator": "https://ziaruldebacau.ro/bataie-de-joc-noua-din-zece-deputati-bacauani-au-lipsit-de-la-munca-o-treime-din-mandat-vreme-si-ciubotaru-record-de-absente/#turn4search5",
+          "excerpt": "citeturn4search5 [wordlim: 200] Published: 10.6 years ago; Crawled: last week; Multumesc.org este un proiect non-profit care se bazează pe datele publicate pe site-ul Camerei Deputaţilor. ... Statisticile de pe situl multumesc.org mai arată și de câte ori a apărut numele deputaților în comunicatele DNA."
+        }
+      ],
+      "rationale_ro": "Relatarea din 2016 identifică monitorizarea prezenței deputaților; funcționarea actuală este necunoscută. Încadrare: Monitorizează."
+    },
+    {
+      "field": "formate",
+      "value": "format:vizualizare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn4search5",
+          "locator": "https://ziaruldebacau.ro/bataie-de-joc-noua-din-zece-deputati-bacauani-au-lipsit-de-la-munca-o-treime-din-mandat-vreme-si-ciubotaru-record-de-absente/#turn4search5",
+          "excerpt": "citeturn4search5 [wordlim: 200] Published: 10.6 years ago; Crawled: last week; Multumesc.org este un proiect non-profit care se bazează pe datele publicate pe site-ul Camerei Deputaţilor. ... Statisticile de pe situl multumesc.org mai arată și de câte ori a apărut numele deputaților în comunicatele DNA."
+        }
+      ],
+      "rationale_ro": "Relatarea din 2016 identifică monitorizarea prezenței deputaților; funcționarea actuală este necunoscută. Încadrare: Vizualizare de date."
+    },
+    {
+      "field": "institutii_vizate",
+      "value": "institutie:parlament",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn4search5",
+          "locator": "https://ziaruldebacau.ro/bataie-de-joc-noua-din-zece-deputati-bacauani-au-lipsit-de-la-munca-o-treime-din-mandat-vreme-si-ciubotaru-record-de-absente/#turn4search5",
+          "excerpt": "citeturn4search5 [wordlim: 200] Published: 10.6 years ago; Crawled: last week; Multumesc.org este un proiect non-profit care se bazează pe datele publicate pe site-ul Camerei Deputaţilor. ... Statisticile de pe situl multumesc.org mai arată și de câte ori a apărut numele deputaților în comunicatele DNA."
+        }
+      ],
+      "rationale_ro": "Relatarea din 2016 identifică monitorizarea prezenței deputaților; funcționarea actuală este necunoscută. Încadrare: Parlament."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn4search5",
+          "locator": "https://ziaruldebacau.ro/bataie-de-joc-noua-din-zece-deputati-bacauani-au-lipsit-de-la-munca-o-treime-din-mandat-vreme-si-ciubotaru-record-de-absente/#turn4search5",
+          "excerpt": "citeturn4search5 [wordlim: 200] Published: 10.6 years ago; Crawled: last week; Multumesc.org este un proiect non-profit care se bazează pe datele publicate pe site-ul Camerei Deputaţilor. ... Statisticile de pe situl multumesc.org mai arată și de câte ori a apărut numele deputaților în comunicatele DNA."
+        }
+      ],
+      "rationale_ro": "Aplicabilitatea rezultă din descrierea specifică intrării, nu din adresa editorului. Relatarea din 2016 identifică monitorizarea prezenței deputaților; funcționarea actuală este necunoscută."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn4search5",
+          "locator": "https://ziaruldebacau.ro/bataie-de-joc-noua-din-zece-deputati-bacauani-au-lipsit-de-la-munca-o-treime-din-mandat-vreme-si-ciubotaru-record-de-absente/#turn4search5",
+          "excerpt": "citeturn4search5 [wordlim: 200] Published: 10.6 years ago; Crawled: last week; Multumesc.org este un proiect non-profit care se bazează pe datele publicate pe site-ul Camerei Deputaţilor. ... Statisticile de pe situl multumesc.org mai arată și de câte ori a apărut numele deputaților în comunicatele DNA."
+        }
+      ],
+      "rationale_ro": "Aplicabilitatea rezultă din descrierea specifică intrării, nu din adresa editorului. Relatarea din 2016 identifică monitorizarea prezenței deputaților; funcționarea actuală este necunoscută."
+    }
+  ],
+  "attributions": [],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    },
+    {
+      "field": "classification",
+      "reason_ro": "Relatarea din 2016 identifică monitorizarea prezenței deputaților; funcționarea actuală este necunoscută.",
+      "needed_evidence_ro": "Documentație primară care rezolvă ambiguitatea indicată."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

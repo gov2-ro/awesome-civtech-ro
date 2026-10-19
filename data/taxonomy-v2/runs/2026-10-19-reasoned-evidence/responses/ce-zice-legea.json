@@ -1,0 +1,224 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "ce-zice-legea",
+  "result_status": "partial",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:drept-justitie",
+    "subiecte": [
+      "subiect:drept-justitie"
+    ],
+    "teme": [
+      "subiect:legislatie"
+    ],
+    "scopuri": [
+      "scop:informare",
+      "scop:aparare-drepturi"
+    ],
+    "functionalitati": [
+      "functie:invatare"
+    ],
+    "formate": [
+      "format:ghid"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "ce-zice-legea:tip_entitate_original",
+          "locator": "clasificare-input.csv:ce-zice-legea:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:drept-justitie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn7search12",
+          "locator": "https://diaspora.gov.ro/images/content/intern/03-2025/NEWSLETTER_455.pdf#turn7search12",
+          "excerpt": "citeturn7search12 [wordlim: 200] Published: 1.6 years ago; | | | --- | --- | --- | --- | LEGI | | | | PLATFORMA ”CE ZICE LEGEA” - INFORMAȚII ACCESIBILE ROMÂNILOR DIN ȚARĂ ȘI DIN STRĂINĂTATE DESPRE LEGILE CARE NE INFLUENȚEAZĂ VIAȚA (PE TEME PRECUM EDUCAȚIE, VIAȚĂ PROFESIONALĂ, NAȘTERE, CĂSĂTORIE, DECES, IMPLICARE CIVICĂ) (R) Asociația Code for Romania a creat platforma ”Ce Zice Legea”, care explică legislația în termeni simpli, astfel încât textele juridice să fie ușor de înțeles. ... Platforma poate fi accesată aici: https://cezicelegea.ro/ro/despre-proiect | | ACTE DE STARE CIVILĂ ȘI CĂLĂTORIE | | | | DUPĂ ACORDAREA/REDOBÂNDIREA CETĂȚENIEI ROMÂNE, SOLICITANȚILOR LE VA FI ELIBERAT CARDUL DE CETĂȚENIE ROMÂNĂ (R) Conform Direcției Generale de Pașapoarte, cetăţeanul român care şi-a stabilit domiciliul în străinătate poate depune cerere pentru eliberarea unui paşaport simplu electronic sau a unui paşaport simplu temporar, cu menţionarea statului de domiciliu (Pașaport CRDS)."
+        }
+      ],
+      "rationale_ro": "Documentarea publică descrie explicarea legislației; proiectele GitHub istorice au altă accentuare. Conceptul subiect:legislatie are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:drept-justitie",
+      "basis": "hierarchy",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn7search12",
+          "locator": "https://diaspora.gov.ro/images/content/intern/03-2025/NEWSLETTER_455.pdf#turn7search12",
+          "excerpt": "citeturn7search12 [wordlim: 200] Published: 1.6 years ago; | | | --- | --- | --- | --- | LEGI | | | | PLATFORMA ”CE ZICE LEGEA” - INFORMAȚII ACCESIBILE ROMÂNILOR DIN ȚARĂ ȘI DIN STRĂINĂTATE DESPRE LEGILE CARE NE INFLUENȚEAZĂ VIAȚA (PE TEME PRECUM EDUCAȚIE, VIAȚĂ PROFESIONALĂ, NAȘTERE, CĂSĂTORIE, DECES, IMPLICARE CIVICĂ) (R) Asociația Code for Romania a creat platforma ”Ce Zice Legea”, care explică legislația în termeni simpli, astfel încât textele juridice să fie ușor de înțeles. ... Platforma poate fi accesată aici: https://cezicelegea.ro/ro/despre-proiect | | ACTE DE STARE CIVILĂ ȘI CĂLĂTORIE | | | | DUPĂ ACORDAREA/REDOBÂNDIREA CETĂȚENIEI ROMÂNE, SOLICITANȚILOR LE VA FI ELIBERAT CARDUL DE CETĂȚENIE ROMÂNĂ (R) Conform Direcției Generale de Pașapoarte, cetăţeanul român care şi-a stabilit domiciliul în străinătate poate depune cerere pentru eliberarea unui paşaport simplu electronic sau a unui paşaport simplu temporar, cu menţionarea statului de domiciliu (Pașaport CRDS)."
+        }
+      ],
+      "rationale_ro": "Documentarea publică descrie explicarea legislației; proiectele GitHub istorice au altă accentuare. Conceptul subiect:legislatie are acest strămoș în vocabularul înghețat."
+    },
+    {
+      "field": "teme",
+      "value": "subiect:legislatie",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn7search12",
+          "locator": "https://diaspora.gov.ro/images/content/intern/03-2025/NEWSLETTER_455.pdf#turn7search12",
+          "excerpt": "citeturn7search12 [wordlim: 200] Published: 1.6 years ago; | | | --- | --- | --- | --- | LEGI | | | | PLATFORMA ”CE ZICE LEGEA” - INFORMAȚII ACCESIBILE ROMÂNILOR DIN ȚARĂ ȘI DIN STRĂINĂTATE DESPRE LEGILE CARE NE INFLUENȚEAZĂ VIAȚA (PE TEME PRECUM EDUCAȚIE, VIAȚĂ PROFESIONALĂ, NAȘTERE, CĂSĂTORIE, DECES, IMPLICARE CIVICĂ) (R) Asociația Code for Romania a creat platforma ”Ce Zice Legea”, care explică legislația în termeni simpli, astfel încât textele juridice să fie ușor de înțeles. ... Platforma poate fi accesată aici: https://cezicelegea.ro/ro/despre-proiect | | ACTE DE STARE CIVILĂ ȘI CĂLĂTORIE | | | | DUPĂ ACORDAREA/REDOBÂNDIREA CETĂȚENIEI ROMÂNE, SOLICITANȚILOR LE VA FI ELIBERAT CARDUL DE CETĂȚENIE ROMÂNĂ (R) Conform Direcției Generale de Pașapoarte, cetăţeanul român care şi-a stabilit domiciliul în străinătate poate depune cerere pentru eliberarea unui paşaport simplu electronic sau a unui paşaport simplu temporar, cu menţionarea statului de domiciliu (Pașaport CRDS)."
+        }
+      ],
+      "rationale_ro": "Documentarea publică descrie explicarea legislației; proiectele GitHub istorice au altă accentuare. Încadrare: Legislație."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn7search12",
+          "locator": "https://diaspora.gov.ro/images/content/intern/03-2025/NEWSLETTER_455.pdf#turn7search12",
+          "excerpt": "citeturn7search12 [wordlim: 200] Published: 1.6 years ago; | | | --- | --- | --- | --- | LEGI | | | | PLATFORMA ”CE ZICE LEGEA” - INFORMAȚII ACCESIBILE ROMÂNILOR DIN ȚARĂ ȘI DIN STRĂINĂTATE DESPRE LEGILE CARE NE INFLUENȚEAZĂ VIAȚA (PE TEME PRECUM EDUCAȚIE, VIAȚĂ PROFESIONALĂ, NAȘTERE, CĂSĂTORIE, DECES, IMPLICARE CIVICĂ) (R) Asociația Code for Romania a creat platforma ”Ce Zice Legea”, care explică legislația în termeni simpli, astfel încât textele juridice să fie ușor de înțeles. ... Platforma poate fi accesată aici: https://cezicelegea.ro/ro/despre-proiect | | ACTE DE STARE CIVILĂ ȘI CĂLĂTORIE | | | | DUPĂ ACORDAREA/REDOBÂNDIREA CETĂȚENIEI ROMÂNE, SOLICITANȚILOR LE VA FI ELIBERAT CARDUL DE CETĂȚENIE ROMÂNĂ (R) Conform Direcției Generale de Pașapoarte, cetăţeanul român care şi-a stabilit domiciliul în străinătate poate depune cerere pentru eliberarea unui paşaport simplu electronic sau a unui paşaport simplu temporar, cu menţionarea statului de domiciliu (Pașaport CRDS)."
+        }
+      ],
+      "rationale_ro": "Documentarea publică descrie explicarea legislației; proiectele GitHub istorice au altă accentuare. Încadrare: Informare și înțelegere."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:aparare-drepturi",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn7search12",
+          "locator": "https://diaspora.gov.ro/images/content/intern/03-2025/NEWSLETTER_455.pdf#turn7search12",
+          "excerpt": "citeturn7search12 [wordlim: 200] Published: 1.6 years ago; | | | --- | --- | --- | --- | LEGI | | | | PLATFORMA ”CE ZICE LEGEA” - INFORMAȚII ACCESIBILE ROMÂNILOR DIN ȚARĂ ȘI DIN STRĂINĂTATE DESPRE LEGILE CARE NE INFLUENȚEAZĂ VIAȚA (PE TEME PRECUM EDUCAȚIE, VIAȚĂ PROFESIONALĂ, NAȘTERE, CĂSĂTORIE, DECES, IMPLICARE CIVICĂ) (R) Asociația Code for Romania a creat platforma ”Ce Zice Legea”, care explică legislația în termeni simpli, astfel încât textele juridice să fie ușor de înțeles. ... Platforma poate fi accesată aici: https://cezicelegea.ro/ro/despre-proiect | | ACTE DE STARE CIVILĂ ȘI CĂLĂTORIE | | | | DUPĂ ACORDAREA/REDOBÂNDIREA CETĂȚENIEI ROMÂNE, SOLICITANȚILOR LE VA FI ELIBERAT CARDUL DE CETĂȚENIE ROMÂNĂ (R) Conform Direcției Generale de Pașapoarte, cetăţeanul român care şi-a stabilit domiciliul în străinătate poate depune cerere pentru eliberarea unui paşaport simplu electronic sau a unui paşaport simplu temporar, cu menţionarea statului de domiciliu (Pașaport CRDS)."
+        }
+      ],
+      "rationale_ro": "Documentarea publică descrie explicarea legislației; proiectele GitHub istorice au altă accentuare. Încadrare: Apărarea drepturilor."
+    },
+    {
+      "field": "functionalitati",
+      "value": "functie:invatare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn7search12",
+          "locator": "https://diaspora.gov.ro/images/content/intern/03-2025/NEWSLETTER_455.pdf#turn7search12",
+          "excerpt": "citeturn7search12 [wordlim: 200] Published: 1.6 years ago; | | | --- | --- | --- | --- | LEGI | | | | PLATFORMA ”CE ZICE LEGEA” - INFORMAȚII ACCESIBILE ROMÂNILOR DIN ȚARĂ ȘI DIN STRĂINĂTATE DESPRE LEGILE CARE NE INFLUENȚEAZĂ VIAȚA (PE TEME PRECUM EDUCAȚIE, VIAȚĂ PROFESIONALĂ, NAȘTERE, CĂSĂTORIE, DECES, IMPLICARE CIVICĂ) (R) Asociația Code for Romania a creat platforma ”Ce Zice Legea”, care explică legislația în termeni simpli, astfel încât textele juridice să fie ușor de înțeles. ... Platforma poate fi accesată aici: https://cezicelegea.ro/ro/despre-proiect | | ACTE DE STARE CIVILĂ ȘI CĂLĂTORIE | | | | DUPĂ ACORDAREA/REDOBÂNDIREA CETĂȚENIEI ROMÂNE, SOLICITANȚILOR LE VA FI ELIBERAT CARDUL DE CETĂȚENIE ROMÂNĂ (R) Conform Direcției Generale de Pașapoarte, cetăţeanul român care şi-a stabilit domiciliul în străinătate poate depune cerere pentru eliberarea unui paşaport simplu electronic sau a unui paşaport simplu temporar, cu menţionarea statului de domiciliu (Pașaport CRDS)."
+        }
+      ],
+      "rationale_ro": "Documentarea publică descrie explicarea legislației; proiectele GitHub istorice au altă accentuare. Încadrare: Învață sau exersează."
+    },
+    {
+      "field": "formate",
+      "value": "format:ghid",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "turn7search12",
+          "locator": "https://diaspora.gov.ro/images/content/intern/03-2025/NEWSLETTER_455.pdf#turn7search12",
+          "excerpt": "citeturn7search12 [wordlim: 200] Published: 1.6 years ago; | | | --- | --- | --- | --- | LEGI | | | | PLATFORMA ”CE ZICE LEGEA” - INFORMAȚII ACCESIBILE ROMÂNILOR DIN ȚARĂ ȘI DIN STRĂINĂTATE DESPRE LEGILE CARE NE INFLUENȚEAZĂ VIAȚA (PE TEME PRECUM EDUCAȚIE, VIAȚĂ PROFESIONALĂ, NAȘTERE, CĂSĂTORIE, DECES, IMPLICARE CIVICĂ) (R) Asociația Code for Romania a creat platforma ”Ce Zice Legea”, care explică legislația în termeni simpli, astfel încât textele juridice să fie ușor de înțeles. ... Platforma poate fi accesată aici: https://cezicelegea.ro/ro/despre-proiect | | ACTE DE STARE CIVILĂ ȘI CĂLĂTORIE | | | | DUPĂ ACORDAREA/REDOBÂNDIREA CETĂȚENIEI ROMÂNE, SOLICITANȚILOR LE VA FI ELIBERAT CARDUL DE CETĂȚENIE ROMÂNĂ (R) Conform Direcției Generale de Pașapoarte, cetăţeanul român care şi-a stabilit domiciliul în străinătate poate depune cerere pentru eliberarea unui paşaport simplu electronic sau a unui paşaport simplu temporar, cu menţionarea statului de domiciliu (Pașaport CRDS)."
+        }
+      ],
+      "rationale_ro": "Documentarea publică descrie explicarea legislației; proiectele GitHub istorice au altă accentuare. Încadrare: Ghid."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ce-zice-legea:acoperire_original",
+          "locator": "clasificare-input.csv:ce-zice-legea:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "ce-zice-legea:acoperire_original",
+          "locator": "clasificare-input.csv:ce-zice-legea:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": "code4ro",
+      "object_literal": null,
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "ce-zice-legea:autor_original",
+          "locator": "clasificare-input.csv:ce-zice-legea:autor_original",
+          "excerpt": "code4ro"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    },
+    {
+      "field": "classification",
+      "reason_ro": "Documentarea publică descrie explicarea legislației; proiectele GitHub istorice au altă accentuare.",
+      "needed_evidence_ro": "Documentație primară care rezolvă ambiguitatea indicată."
+    },
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "tip",
+      "original_value": "instrument",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    },
+    {
+      "original_field": "cuvinte",
+      "original_value": "legea-544",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}

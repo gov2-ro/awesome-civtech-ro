@@ -1,0 +1,172 @@
+{
+  "schema_version": "taxonomy-v2-classification/1",
+  "slug": "harta-tv-locale",
+  "result_status": "classified",
+  "classification": {
+    "tip_entitate": "proiect",
+    "subiect_principal": "subiect:media-informare",
+    "subiecte": [
+      "subiect:media-informare"
+    ],
+    "teme": [],
+    "scopuri": [
+      "scop:informare"
+    ],
+    "functionalitati": [],
+    "formate": [
+      "format:harta"
+    ],
+    "tehnologii": [],
+    "institutii_vizate": [],
+    "tip_organizatie": [],
+    "maturitate": null,
+    "nivel_acoperire": "national",
+    "arii_acoperite": [
+      "tara:RO"
+    ]
+  },
+  "justifications": [
+    {
+      "field": "tip_entitate",
+      "value": "proiect",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "harta-tv-locale:tip_entitate_original",
+          "locator": "clasificare-input.csv:harta-tv-locale:tip_entitate_original",
+          "excerpt": "proiect"
+        }
+      ],
+      "rationale_ro": "Păstrez tipul entității din înregistrarea originală; acesta nu dovedește funcționalități."
+    },
+    {
+      "field": "subiect_principal",
+      "value": "subiect:media-informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "harta-tv-locale:descriere_scurta",
+          "locator": "clasificare-input.csv:harta-tv-locale:descriere_scurta",
+          "excerpt": "Televiziunile locale, pe hartă"
+        }
+      ],
+      "rationale_ro": "Descrierea scurtă identifică televiziunile locale pe hartă; primăriile nu sunt dovedite ca subiect."
+    },
+    {
+      "field": "subiecte",
+      "value": "subiect:media-informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "harta-tv-locale:descriere_scurta",
+          "locator": "clasificare-input.csv:harta-tv-locale:descriere_scurta",
+          "excerpt": "Televiziunile locale, pe hartă"
+        }
+      ],
+      "rationale_ro": "Descrierea scurtă identifică televiziunile locale pe hartă; primăriile nu sunt dovedite ca subiect."
+    },
+    {
+      "field": "scopuri",
+      "value": "scop:informare",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "harta-tv-locale:descriere_scurta",
+          "locator": "clasificare-input.csv:harta-tv-locale:descriere_scurta",
+          "excerpt": "Televiziunile locale, pe hartă"
+        }
+      ],
+      "rationale_ro": "Descrierea scurtă identifică televiziunile locale pe hartă; primăriile nu sunt dovedite ca subiect. Încadrare: Informare și înțelegere."
+    },
+    {
+      "field": "formate",
+      "value": "format:harta",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "harta-tv-locale:descriere_scurta",
+          "locator": "clasificare-input.csv:harta-tv-locale:descriere_scurta",
+          "excerpt": "Televiziunile locale, pe hartă"
+        }
+      ],
+      "rationale_ro": "Descrierea scurtă identifică televiziunile locale pe hartă; primăriile nu sunt dovedite ca subiect. Încadrare: Hartă."
+    },
+    {
+      "field": "nivel_acoperire",
+      "value": "national",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "harta-tv-locale:acoperire_original",
+          "locator": "clasificare-input.csv:harta-tv-locale:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    },
+    {
+      "field": "arii_acoperite",
+      "value": "tara:RO",
+      "basis": "inference",
+      "confidence": "medie",
+      "evidence": [
+        {
+          "source_id": "harta-tv-locale:acoperire_original",
+          "locator": "clasificare-input.csv:harta-tv-locale:acoperire_original",
+          "excerpt": "national"
+        }
+      ],
+      "rationale_ro": "Păstrez declarația geografică originală; nu confirm existența datelor pentru fiecare localitate."
+    }
+  ],
+  "attributions": [
+    {
+      "predicate": "atribuit_in_sursa",
+      "object_slug": null,
+      "object_literal": "geo-spatial.org",
+      "basis": "identity_preservation",
+      "confidence": "mare",
+      "evidence": [
+        {
+          "source_id": "harta-tv-locale:autor_original",
+          "locator": "clasificare-input.csv:harta-tv-locale:autor_original",
+          "excerpt": "geo-spatial.org"
+        }
+      ],
+      "rationale_ro": "Păstrez atribuirea originală; câmpul autor nu stabilește separat creatorul, editorul sau administratorul."
+    }
+  ],
+  "uncertainties": [
+    {
+      "field": "maturitate",
+      "reason_ro": "Dovezile nu stabilesc fără ambiguitate o etapă de utilizare actuală.",
+      "needed_evidence_ro": "Declarație explicită sau documentare a utilizării în condiții reale."
+    },
+    {
+      "field": "classification",
+      "reason_ro": "Lipsește descrierea detaliată; titlul, textul scurt și etichetele au precizie limitată.",
+      "needed_evidence_ro": "Documentație publică specifică intrării."
+    },
+    {
+      "field": "attributions",
+      "reason_ro": "Rolurile rămân nespecificate în câmpul original autor.",
+      "needed_evidence_ro": "Declarație explicită despre rolul fiecărei persoane sau organizații."
+    }
+  ],
+  "conflicts": [],
+  "excluded_legacy_tags": [
+    {
+      "original_field": "cuvinte",
+      "original_value": "primării",
+      "reason_ro": "Etichetă istorică mixtă sau nesusținută suficient; folosesc sensul concret al descrierii și fațetele independente."
+    }
+  ],
+  "new_concept_proposals": [],
+  "new_area_proposals": []
+}
