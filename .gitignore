@@ -79,6 +79,7 @@ docs/reference/init-prototype/*
 !/data/*.csv
 !/data/taxonomy.json
 !/data/form.json
+!/data/form-v2.json
 !/data/site.json
 # Isolated taxonomy proposal and its immutable source/reference snapshots.
 !/data/taxonomy-v2/

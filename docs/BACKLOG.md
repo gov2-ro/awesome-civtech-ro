@@ -183,9 +183,10 @@ Existing items below also cover profile refresh data loss, Sheets merge conflict
       home page. Today a removed entry returns the GitHub Pages 404.
 - [ ] The og images are WebP. Check a link preview on the networks that matter (Facebook, LinkedIn,
       Telegram, WhatsApp) once the pages are live.
-- [ ] `docs/DATA-SCHEMA.md` can drift from `scripts/common.py`. Add a check to `validate.py` (or CI) that
+- [x] `docs/DATA-SCHEMA.md` can drift from `scripts/common.py`. Add a check to `validate.py` (or CI) that
       every column in `PROIECTE_COLS`, `ORGS_COLS`, `PROFIL_COLS`, `MENTIUNI_COLS` and `ETICHETE_COLS` appears
       in that file.
+      Done 2026-10-20: `scripts/test_docs.py` (also the v2 headers), run by `validate.yml`.
 - [ ] The longest help text (Domeniu, 11 hints) has 772 characters. If the Forms API or the layout
       rejects it, set `HINT_MAX` in `form.py` to 0 to drop the hints from the help text.
 

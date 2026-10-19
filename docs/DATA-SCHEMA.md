@@ -738,8 +738,8 @@ only after the owner accepts the classifications.
 ## Keeping this file complete
 
 Every column of `PROIECTE_COLS`, `ORGS_COLS`, `PROFIL_COLS`, `MENTIUNI_COLS` and `ETICHETE_COLS`, and every header of
-`schema.json` and `pachet.json`, must appear in this file as a name between backticks. Run this from the repository root
-after a column changes. It prints the missing names, or `none`.
+`schema.json` and `pachet.json`, must appear in this file as a name between backticks. `scripts/test_docs.py` checks it in CI. The same check by hand,
+from the repository root, prints the missing names, or `none`:
 
 ```sh
 python3 - <<'EOF'
