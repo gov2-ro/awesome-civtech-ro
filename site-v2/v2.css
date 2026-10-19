@@ -11,3 +11,5 @@
 .d-class .tags { gap: 4px; }
 .d-class .tag { font-size: calc(13px * var(--fs)); }
 .d-class > .small { margin: 10px 0 0; }
+.fmore { margin: 8px 0 0; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; font-size: calc(12.5px * var(--fs)); }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

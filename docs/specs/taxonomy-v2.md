@@ -771,3 +771,10 @@ These decisions refine the specification where it left a choice open.
   Each item carries the facets in the table above and `legacy` (`domeniu`, `tips`, `keywords`, `fel`, `acoperire`, `oras`).
 - **Area filter.** An entry applies in an area when one of its areas is that area, contains it, or lies inside it.
 - **Licence.** The detail panel shows the code link and the licence on separate rows. `cod public` replaces `cod deschis`.
+- **Topic list.** Without a subject, `Temă` shows the 12 most used topics of the tab, plus the selected ones.
+  A button shows all of them. A selected subject limits the list to its branches.
+- **Badges and groups.** Each result badge names its facet in a tooltip and in hidden text for screen readers.
+  Each facet's choices form a named group.
+- **Focus.** A filter change keeps the focus on the same control, also in the mobile sheet and on toggles.
+  The sheet keeps its scroll position. The search shortcut does nothing while a dialog is open.
+  The dialog focus trap skips controls inside a closed panel.

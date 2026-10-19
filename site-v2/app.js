@@ -81,6 +81,9 @@ const state = { ...DEFAULTS };
 const wide = matchMedia('(min-width: 1024px)').matches;
 const closed = new Set(store.get('ct2.closed', wide ? ['cap', 'fmt', 'area', 'more', 'optiuni'] : ['topic', 'cap', 'fmt', 'area', 'more']));
 let lastFocus = null;
+// Without a subject, "Temă" shows the most used topics first; the visitor can ask for all of them.
+const TOPIC_TOP = 12;
+let allTopics = false;
 
 const isInactive = it => STATUS[it.status].group === 'inactiv';
 const listOf = key => state[key] ? state[key].split(',') : [];
@@ -222,7 +225,8 @@ const placeLabel = it => it.coverageLevel === 'local'
   ? it.areas.filter(a => /^(localitate|judet):/.test(a)).map(label).join(', ') || 'Local'
   : state.area && it.coverageLevel !== 'necunoscut' ? TAX.cov[it.coverageLevel]?.label || '' : '';
 // About three useful classifications per row: a topic, a format, a capability. The detail panel has them all.
-const badgeIds = it => [it.topics[0], it.formats[0], it.capabilities[0]].filter(Boolean);
+const badgeIds = it => [['topic', it.topics[0]], ['fmt', it.formats[0]], ['cap', it.capabilities[0]]].filter(([, id]) => id);
+const badgesHTML = it => badgeIds(it).map(([key, id]) => `<span title="${esc(facetTitle(key))}"><span class="vh">${esc(facetTitle(key))}: </span>${esc(label(id))}</span>`).join('');
 function metaLine(it, withDomain) {
   const st = STATUS[it.status];
   const parts = [...new Set([entLabel(it), placeLabel(it)])];
@@ -314,7 +318,7 @@ function row(it, withDomain) {
       <div class="row-title">${logo(it)}${nameLink(it)} ${statusDot(it)} ${newTag(it)} ${codeTag(it)} ${extLink(it, '', 'ext-m')}</div>
       ${blurb(it) ? `<div class="row-tag">${esc(blurb(it))}</div>` : ''}
       ${desc ? `<div class="row-desc">${esc(clip(desc, 160))}</div>` : ''}
-      ${badgeIds(it).length ? `<div class="row-kw">${badgeIds(it).map(c => `<span>${esc(label(c))}</span>`).join('')}</div>` : ''}
+      ${badgeIds(it).length ? `<div class="row-kw">${badgesHTML(it)}</div>` : ''}
       <div class="meta meta-m">${metaLine(it, withDomain)}${dates ? ` · ${esc(dates)}` : ''}</div>
     </div>
     <div class="row-side row-links">${rowLinks(it)}</div>
@@ -335,9 +339,6 @@ function renderTabs() {
   ).join('');
 }
 
-function facet(id, label, body) {
-  return `<details class="facet" data-facet="${id}" ${closed.has(id) ? '' : 'open'}><summary><span class="kicker">${label}</span></summary>${body}</details>`;
-}
 // The options of a facet on this tab: values some entry here has, plus the selected ones. Hidden when unused.
 function optionsOf(key) {
   const mine = kindItems(), sel = listOf(key), seen = new Set(sel);
@@ -365,7 +366,7 @@ function facet(id, title, body, selected = false) {
 }
 function tagsHTML(key, options, counts) {
   const sel = listOf(key);
-  return `<div class="tags">${options.map(val => {
+  return `<div class="tags" role="group" aria-label="${esc(facetTitle(key))}">${options.map(val => {
     const on = sel.includes(val), n = counts[val] || 0, def = CONCEPT.get(val)?.def;
     return `<button class="tag" data-act="multi" data-key="${key}" data-val="${esc(val)}" aria-pressed="${on}" ${!n && !on ? 'disabled' : ''}${def ? ` title="${esc(def)}"` : ''}>${esc(optLabel(key, val))}<span class="n">${n}</span></button>`;
   }).join('')}</div>`;
@@ -380,11 +381,19 @@ function facetsHTML() {
     const total = DB.items.filter(i => matches(i, 'subj')).length;
     const opt = (val, text, n, on) => `<button class="fopt check" data-act="${val ? 'multi' : 'clear'}" data-key="subj" data-val="${esc(val)}" aria-pressed="${on}" ${!n && !on ? 'disabled' : ''}>
       <span class="l">${esc(text)}</span><span class="n">${n || 0}</span></button>`;
-    out.push(facet('subj', facetTitle('subj'), `<div class="flist">${opt('', 'Toate', total, !sel.length)}${subj.map(v => opt(v, label(v), c[v], sel.includes(v))).join('')}</div>`));
+    out.push(facet('subj', facetTitle('subj'), `<div class="flist" role="group" aria-label="${esc(facetTitle('subj'))}">${opt('', 'Toate', total, !sel.length)}${subj.map(v => opt(v, label(v), c[v], sel.includes(v))).join('')}</div>`));
   }
   for (const key of ['topic', 'cap', 'fmt', 'area']) {
-    const options = optionsOf(key);
-    if (useful(key, options)) out.push(facet(key, facetTitle(key), tagsHTML(key, options, facetCounts(key, options)), !!state[key]));
+    let options = optionsOf(key), extra = '';
+    if (!useful(key, options)) continue;
+    // Not every topic of the tab at once: the most used ones, until a subject narrows the list or the visitor asks for all.
+    if (key === 'topic' && !state.subj && options.length > TOPIC_TOP) {
+      const sel = listOf('topic');
+      if (!allTopics) options = options.filter((t, i) => i < TOPIC_TOP || sel.includes(t));
+      extra = `<p class="fmore"><button class="linkbtn" data-act="topics" aria-expanded="${allTopics}">${allTopics ? 'Mai puține teme' : `Toate temele (${optionsOf('topic').length})`}</button>
+        <span class="muted">Alege un subiect pentru temele lui.</span></p>`;
+    }
+    out.push(facet(key, facetTitle(key), tagsHTML(key, options, facetCounts(key, options)) + extra, !!state[key]));
   }
   const more = MORE.filter(k => k !== 'orgt' || state.k === 'organizatie').map(key => {
     const options = optionsOf(key);
@@ -482,7 +491,7 @@ function renderResults() {
 // Re-rendering the filters replaces their buttons; give the focus back to the same control, wherever it was.
 function renderFilters() {
   const a = document.activeElement, where = a?.closest?.('[data-slot]')?.dataset.slot;
-  const sel = a?.dataset?.act && `[data-act="${a.dataset.act}"][data-key="${a.dataset.key || ''}"][data-val="${CSS.escape(a.dataset.val || '')}"]`;
+  const sel = a?.dataset?.act && ['act', 'key', 'val'].filter(k => k in a.dataset).map(k => `[data-${k}="${CSS.escape(a.dataset[k])}"]`).join('');
   // The toggle event comes later than a quick click after opening a facet: read the open state from the page itself.
   for (const d of document.querySelectorAll(`[data-slot="${where === 'sheet' ? 'sheet' : 'side'}"] details[data-facet]`)) d.open ? closed.delete(d.dataset.facet) : closed.add(d.dataset.facet);
   slot('side').innerHTML = facetsHTML();
@@ -689,11 +698,13 @@ function renderDetail() {
 
 function renderSheet() {
   const n = DB.items.filter(i => matches(i)).length;
+  const top = $('.d-scroll', slot('sheet'))?.scrollTop || 0;
   slot('sheet').innerHTML = `
     <div class="grab" aria-hidden="true"></div>
     <div class="d-bar"><span class="kicker">Filtre</span><button class="btn btn-ghost btn-icon" data-act="close" aria-label="Închide" data-autofocus>${ICON.x}</button></div>
     <div class="d-scroll">${facetsHTML()}</div>
     <div class="d-cta"><button class="btn btn-outline" data-act="reset">Șterge</button><button class="btn btn-primary" data-act="close">Arată ${plural(n, 'rezultat', 'rezultate')}</button></div>`;
+  $('.d-scroll', slot('sheet')).scrollTop = top;
 }
 
 /* ---------- autocomplete ---------- */
@@ -892,6 +903,7 @@ document.addEventListener('click', e => {
   else if (act === 'view') { state.v = val; writeURL(); renderResults(); }
   else if (act === 'fs') { store.set('ct.fs', val); applyPrefs(); }
   else if (act === 'theme') { store.set('ct.theme', val); applyPrefs(); }
+  else if (act === 'topics') { allTopics = !allTopics; renderFilters(); }
   else if (act === 'sheet') { renderSheet(); openLayer(slot('sheet')); }
   else if (act === 'close') {
     if (!slot('drawer').hidden && state.p) { state.p = ''; writeURL(); }
@@ -944,14 +956,15 @@ qInput.addEventListener('keydown', e => {
 document.addEventListener('keydown', e => {
   const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName);
   if (e.key === 'Escape' && !slot('scrim').hidden) { $('[data-act="close"]', slot('drawer').hidden ? slot('sheet') : slot('drawer'))?.click(); return; }
-  if ((e.key === '/' && !typing) || (e.key.toLowerCase() === 'k' && (e.metaKey || e.ctrlKey))) {
+  if (slot('scrim').hidden && ((e.key === '/' && !typing) || (e.key.toLowerCase() === 'k' && (e.metaKey || e.ctrlKey)))) {
     e.preventDefault();
     qInput.focus(); qInput.select();
   }
   if (e.key === 'Tab' && !slot('scrim').hidden) {
     // Keep focus inside the open layer.
     const layer = slot('drawer').hidden ? slot('sheet') : slot('drawer');
-    const f = [...layer.querySelectorAll('a[href], button:not([disabled]), input, select, summary')];
+    // Controls inside a closed <details> are not rendered; they cannot take the focus.
+    const f = [...layer.querySelectorAll('a[href], button:not([disabled]), input, select, summary')].filter(el => el.getClientRects().length && !el.closest('details:not([open]) > :not(summary)'));
     if (!f.length) return;
     if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f.at(-1).focus(); }
     else if (!e.shiftKey && document.activeElement === f.at(-1)) { e.preventDefault(); f[0].focus(); }

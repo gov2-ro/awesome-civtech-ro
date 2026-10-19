@@ -9,3 +9,4 @@
 - **v0.4.0** (2026-10-19): frozen taxonomy classification for 122 entries, four maturity stages, cited evidence, and withheld-baseline evaluation. Production remains unchanged.
 - **v0.5.0** (2026-10-19): preserve the isolated taxonomy proposal, source snapshots, draft.2 specification, classifier contract, implementation handoff, and audit notes.
 - **v0.6.0** (2026-10-19): taxonomy v2 core slices 1–4 as a local preview: draft.2 package with CSV code lists and roles, integration copy of the sealed run with the three evaluation corrections, schema-aware loaders and validation, `build.py --data-dir --site-dir --allow-draft`, v2 browser facets in `site-v2/`, 40 tests and 47 browser checks. Production remains unchanged.
+- **v0.6.1** (2026-10-19): v2 preview UI corrections from the specification and audit: a short topic list, labelled badges and facet groups, focus kept in the mobile sheet and dialogs; 55 browser checks.

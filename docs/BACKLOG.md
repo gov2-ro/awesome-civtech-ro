@@ -24,7 +24,7 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [ ] Choose the ID style for proposed areas before accepting them (`tara:republica-moldova` now; existing countries use ISO codes, `tara:RO`).
 - [ ] Implement an automated inference runner and no-call dry run if a later repeatable experiment needs them. This does not block the current preview.
 - [x] Implement the v2 loaders, validator branch, build contract, and browser facets together. Keep the current data source as the default until cutover.
-- [x] Verify the isolated preview: 40 unit tests (`scripts/test_taxonomy_v2.py`) and 47 browser checks (`scripts/check_preview.py`).
+- [x] Verify the isolated preview: 40 unit tests (`scripts/test_taxonomy_v2.py`) and 55 browser checks (`scripts/check_preview.py`).
 - [ ] Run `scripts/test_taxonomy_v2.py` in `validate.yml`, with the CI slice. Include `site-v2/` changes in PR validation.
 - [ ] At the cutover, replace `site/app.js` with `site-v2/app.js`, merge `site-v2/v2.css` into `style.css`, and remove `site-v2/`.
 - [ ] Adapt enrichment, Sheets, Form, and CI to the accepted schema. Use separate v2 Sheet tabs during migration.
@@ -43,6 +43,7 @@ The public site does not consume this package. Production data and the v1 build 
 - [ ] Repair dialog focus. Ctrl/Cmd+K can focus the background search while a dialog stays open.
       Shift+Tab from Close selects a hidden link inside the collapsed report panel; focus stays on Close.
       Changing a mobile filter rebuilds the sheet and drops focus to the body.
+      `site-v2/app.js` fixes all three (v0.6.1, with browser checks); `site/app.js` keeps them until the cutover.
 - [ ] Separate observed dates from confirmed launch dates. `isLaunched` uses `since`, which comes from Wayback, repo creation, or TLS.
       Rename inferred badges or add a curated launch date. Do not treat the first observed trace as a confirmed launch.
 - [ ] Remove the future date from `last_activity`. A 2026 copyright footer produces `2026-12-31` during October.

@@ -1,5 +1,29 @@
 # Activity
 
+## 2026-10-19 — Taxonomy v2 preview: missing UI recommendations
+
+**Done**
+- Compared `site-v2/app.js` with the specification's "Visible filter design" and "Browser filtering and search" sections,
+  and with the audit's dialog defects. Most items were in v0.6.0. These were missing:
+  - `Temă` showed all 52 project topics as one tag cloud. It now shows the 12 most used, plus a button for all of them.
+  - Result badges had no facet name. Each badge now names its facet in a tooltip and in hidden text.
+  - Facet choices had no group name for screen readers. Each facet's choices now form a named group.
+  - Ctrl/Cmd+K and `/` moved the focus to the search box behind an open dialog. They now do nothing while a dialog is open.
+  - Shift+Tab from Close tried to focus a link inside the closed report panel, so the focus stayed on Close.
+    The focus trap now skips controls inside a closed panel.
+  - A toggle or the reset button lost the focus after a filter change. The focus selector now uses only the control's own attributes.
+    The mobile sheet also keeps its scroll position.
+- Removed a dead first definition of `facet()`.
+- Measured: `scripts/check_preview.py` 55/55 (8 new checks); `scripts/test_taxonomy_v2.py` 40 tests pass. `site/` is unchanged.
+
+**Hard**
+- In Chrome, a link inside a closed `<details>` still has client rectangles. A visibility test alone did not exclude it.
+
+**Decided**
+- Show the most used topics instead of grouping all topics under subject headings. Grouping would still show 52 choices.
+  The subject filter already gives the hierarchical route.
+- Fix the audit's dialog defects in `site-v2/` only. `site/app.js` gets them at the cutover, so the v1 build stays byte-identical.
+
 ## 2026-10-19 — Taxonomy v2 core slices 1–4: draft.2 package, integration copy, loaders, build, preview
 
 **Done**

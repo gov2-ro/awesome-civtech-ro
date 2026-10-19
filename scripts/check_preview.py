@@ -213,7 +213,30 @@ with sync_playwright() as pw:
     page.wait_for_timeout(400)
     ok("free-text search still works without a concept", count_text(page) > 0, str(count_text(page)))
 
-    # 12. Mobile: subject chips, filter sheet, counts.
+    # 12. Short topic list, labelled badges, dialog focus.
+    go("")
+    tab_topics = {t for i in DB["items"] if i["kind"] == "proiect" for t in i["topics"]}
+    shown_topics = page.locator('[data-slot="side"] [data-facet="topic"] .tag').count()
+    ok("topic facet starts short without a subject", len(tab_topics) <= 12 or shown_topics == 12, f"{shown_topics} of {len(tab_topics)}")
+    if len(tab_topics) > 12:
+        page.click('[data-slot="side"] [data-act="topics"]')
+        ok("topic facet expands on request", page.locator('[data-slot="side"] [data-facet="topic"] .tag').count() == len(tab_topics))
+        ok("focus stays on the expand button", page.evaluate("document.activeElement?.dataset?.act") == "topics")
+    go("?v=list")
+    hidden = page.locator('[data-slot="results"] .row-kw .vh').first.inner_text()
+    ok("result badges name their facet", hidden.rstrip(": ") in ("Temă", "Format", "Ce poți face"), hidden)
+    page.locator('[data-slot="results"] [data-open]').first.click()
+    page.wait_for_selector('[data-slot="drawer"]:not([hidden])')
+    page.wait_for_timeout(100)
+    page.keyboard.press("Control+k")
+    ok("search shortcut stays out of an open dialog", page.evaluate("!!document.activeElement.closest('[data-slot=\"drawer\"]')"))
+    page.focus('[data-slot="drawer"] [data-act="close"]')
+    page.keyboard.press("Shift+Tab")
+    ok("Shift+Tab from Close reaches a visible control", page.evaluate(
+        "(() => { const a = document.activeElement; return !!a.closest('[data-slot=\"drawer\"]') && a.dataset.act !== 'close' && a.checkVisibility(); })()"))
+    page.keyboard.press("Escape")
+
+    # 13. Mobile: subject chips, filter sheet, counts.
     m = browser.new_page(viewport={"width": 390, "height": 844}, is_mobile=True, has_touch=True)
     m.on("pageerror", lambda e: errors.append(str(e)))
     m.goto(BASE)
@@ -235,6 +258,13 @@ with sync_playwright() as pw:
     first.click()
     btn = m.locator('[data-slot="sheet"] .d-cta .btn-primary').inner_text()
     ok("mobile sheet count follows the choice", str(n) in btn and n == sum(fin in subj_set(i) and val in i["formats"] for i in projects), f"{btn}; {val}")
+    ok("mobile sheet keeps the focus on the pressed choice", m.evaluate("document.activeElement?.closest('[data-slot=\"sheet\"]') && document.activeElement.dataset.val") == val)
+    toggle = m.locator('[data-slot="sheet"] input[data-act="toggle"]').first
+    if toggle.count():
+        m.locator('[data-slot="sheet"] [data-facet="optiuni"]').evaluate("d => d.open = true")
+        toggle.focus()
+        m.keyboard.press("Space")
+        ok("mobile sheet keeps the focus on a toggle", m.evaluate("document.activeElement?.dataset?.act") == "toggle")
     m.close()
 
     ok("no page errors", not errors, "; ".join(errors[:3]))
