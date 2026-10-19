@@ -84,6 +84,8 @@ docs/reference/init-prototype/*
 !/data/taxonomy-v2/
 !/data/taxonomy-v2/**
 /data/taxonomy-v2/**/__pycache__/
+# raw answers and suggestions of review.py on a v2 root (suggestions only; a person accepts them by hand)
+/data/taxonomy-v2/observatii/review/
 /data/taxonomy-v2/**/.~lock.*#
 # one page per entry, written by scripts/build.py (the Pages workflow builds them)
 /site/proiect/

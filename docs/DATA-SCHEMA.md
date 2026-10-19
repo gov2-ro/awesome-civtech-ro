@@ -183,8 +183,11 @@ Filled from the first repository in `repos`. All are empty when there is no repo
 | `mention_hosts` | Those hosts, space-separated, at most 12, in the order of the file. | `search.py` |
 | `search_social` | JSON: social profiles and a GitHub profile that the search found, `{"instagram": "https://…"}`. Only handles that carry the entry's name count. | `search.py` |
 
-`profile.py --force` drops `mentions`, `mention_hosts` and `search_social`. Run
-`search.py --prune-only` after it to restore them.
+A refresh of a profile row (`profile.py`, also with `--force`) keeps the columns that other stages wrote:
+`mentions`, `mention_hosts` and `search_social` (`search.py`), `opr` (`--opr`), and each `--extra` signal for which
+the new fetch found nothing (`cert_first`, `wiki_refs`, the repository columns, and so on). A failed call never turns a
+known value into a blank. A row for a changed `url` keeps only the three `search.py` columns. The rule is
+`merge_profile` in `scripts/common.py`.
 
 ## mentiuni.csv
 
@@ -226,6 +229,13 @@ counts that feed the relevance score.
 
 `review.py` also writes `data/review/raw.jsonl` and `data/review/sugestii.csv`. Those files are
 suggestions for corrections to `proiecte.csv`. A person accepts them by hand. Git ignores them.
+Each answer in `raw.jsonl` carries `inputs`: five hashes (the entry text, the set of result URLs sent, the vocabulary,
+the prompt with its answer schema, and the model). `review.py` reviews an entry again when one of them changes.
+A v2 root keeps these files in its `observatii/review/` folder, with `propuneri-vocabular.csv` for terms that no
+concept covers.
+
+`build.py` counts a label only for a kept row of the same `slug` and `url`. It reports the label coverage (labelled
+kept rows over all kept rows) in its last line, and `review.py` reports it after every run.
 
 ## form.json
 
@@ -273,7 +283,11 @@ What the browser loads: `generated` (time), `checked` (the newest `fetched_at`),
 - `score`: 0 to 100 for the "Relevanță" sort. Activity counts 30, reach 25, volume 15, longevity 15
   and documentation 15.
 - `stale`: the year of the last sign of life, when an active site shows no sign of an edit for three
-  years, or its repository is archived.
+  years, or its repository is archived. A dated update (`updated`) is the last sign of life. Only without one, the
+  `copyright_year` stands in, as `<year>-01-01`, and never after today.
+- `reach`: `indep`, `stiri`, `cercetare`, `guvern` and `ultima` (see `search.py` and `review.py`). With labels for only some
+  of the kept rows of an entry, `indep` also counts the hosts of the unlabelled kept rows, the other counts come from the
+  labels alone, and the entry has `provisional: true`. Without any label, the kept hosts stand in for `indep`.
 
 ## Taxonomy v2 preview
 
