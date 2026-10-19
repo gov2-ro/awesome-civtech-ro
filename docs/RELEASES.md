@@ -12,3 +12,4 @@
 - **v0.6.1** (2026-10-19): v2 preview UI corrections from the specification and audit: a short topic list, labelled badges and facet groups, focus kept in the mobile sheet and dialogs; 55 browser checks.
 - **v0.6.2** (2026-10-19): the detail panel's site link is the plain address; the footer offers "Corectează în tabel"; the v2 preview gets back the Sheet row, v1 search words, related entries, card types, and archive hints; 61 browser checks.
 - **v0.6.3** (2026-10-19): on phones, cards are rows with a small picture on the left and the list has no picture; the site address sits right under the name in the detail panel; 63 browser checks.
+- **v0.6.4** (2026-10-19): the footer names the three ways to correct an entry in one line (table, form, GitHub); the preview hides its "classifications are proposals" notices for now.

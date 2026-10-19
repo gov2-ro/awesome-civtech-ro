@@ -785,5 +785,8 @@ These decisions refine the specification where it left a choice open.
   These words are never shown or used as filters; old bookmarks use them as before.
 - **Related entries.** "Tot din" lists entries of the same tab that have the primary subject in any position.
   Entries with it as their primary subject come first.
+- **Draft notices.** The owner hid the "classifications are proposals" notices for now (2026-10-19).
+  `DRAFT_NOTE` in `site-v2/app.js` (toolbar and detail panel) and in `scripts/build.py` (archives, `llms.txt`) turns them back on.
+  The payload keeps `draft`, and the publication gate is unchanged.
 - **Cards and archives.** The card's grey line names the first format, as the v1 card named its type.
   Each archive subject group has a hint: its four most frequent topics.

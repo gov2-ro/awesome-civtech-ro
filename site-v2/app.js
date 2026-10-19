@@ -65,6 +65,8 @@ const DEFAULTS = { k: 'proiect', q: '', subj: '', topic: '', cap: '', fmt: '', a
 const FACETS = ['subj', 'topic', 'cap', 'fmt', 'area', 'purpose', 'tech', 'inst', 'ent', 'orgt'];
 const MORE = ['purpose', 'tech', 'inst', 'ent', 'orgt'];  // under "Mai multe filtre"
 const LEGACY = ['d', 't', 'kw', 'c'];
+// The "classifications are proposals" notices (toolbar and detail panel); hidden for now. build.py has its own switch.
+const DRAFT_NOTE = false;
 const MULTI = [...FACETS, 't', 'kw'];
 const FILTERS = ['q', ...FACETS, ...LEGACY, 'org', 'a', 's', 'cod', 'civ', 'nou', 'ina'];
 // The concept scheme behind each facet (its title comes from the scheme's label in data.json).
@@ -443,7 +445,7 @@ function renderToolbar(n) {
   if (query()) pill('q', '', `„${state.q}”`);
   const view = currentView();
   slot('toolbar').innerHTML = `
-    ${DB.draft ? '<p class="draft-note">Previzualizare: clasificările sunt propuneri, încă neacceptate de editor.</p>' : ''}
+    ${DB.draft && DRAFT_NOTE ? '<p class="draft-note">Previzualizare: clasificările sunt propuneri, încă neacceptate de editor.</p>' : ''}
     <span class="count"><b>${n}</b> ${n === 1 ? 'rezultat' : 'rezultate'}</span>
     ${pills.length ? `<span class="active">${pills.join('')}</span><button class="linkbtn" data-act="reset">Șterge filtrele</button>` : ''}
     <span class="tool-right">
@@ -635,7 +637,7 @@ function classHTML(it) {
   ].map(([title, rows]) => [title, rows.filter(Boolean)]).filter(([, rows]) => rows.length);
   if (!it.primarySubject) groups.unshift(['Clasificare', [['', '<span class="muted">Sursele disponibile nu stabilesc încă subiectul acestei intrări.</span>']]]);
   return `<div class="d-class">${groups.map(([title, rows]) => `<section><p class="kicker">${title}</p><dl class="dl">${rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl></section>`).join('')}
-    ${DB.draft ? '<p class="small muted">Clasificare propusă, neverificată încă de editor.</p>' : ''}</div>`;
+    ${DB.draft && DRAFT_NOTE ? '<p class="small muted">Clasificare propusă, neverificată încă de editor.</p>' : ''}</div>`;
 }
 
 function renderDetail() {

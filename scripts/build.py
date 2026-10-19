@@ -636,6 +636,8 @@ def items_v2(root: Path, site: Path) -> tuple[list[dict], dict]:
 
 
 ARCHIVE_LEAD_V2 = {**ARCHIVE_LEAD, "proiect": "{n} proiecte civic tech din România, pe subiecte."}
+# The "classifications are proposals" note in the archives and llms.txt; hidden for now. site-v2/app.js has its own switch.
+DRAFT_NOTE = False
 NO_SUBJECT = ("Fără subiect stabilit", "clasificare incompletă: sursele nu stabilesc subiectul")
 
 
@@ -664,7 +666,7 @@ def pages_v2(items: list[dict], head: dict, site: Path) -> tuple[str, int]:
     def groups(kind: str, mine: list[dict]):
         return [(t, h, rows) for t, h, rows in by_subject(mine)] if kind == "proiect" else [("", "", mine)]
 
-    note = "Previzualizare: clasificările sunt propuneri, încă neacceptate." if head["draft"] else ""
+    note = "Previzualizare: clasificările sunt propuneri, încă neacceptate." if head["draft"] and DRAFT_NOTE else ""
     archives = write_archives(items, {k["key"]: k["label"] for k in v["kinds"]}, groups, meta, site, ARCHIVE_LEAD_V2, note)
     projects = [i for i in items if i["kind"] == "proiect"]
     res = [i for i in items if i["kind"] == "resursa"]

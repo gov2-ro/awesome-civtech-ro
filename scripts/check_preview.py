@@ -82,7 +82,7 @@ with sync_playwright() as pw:
     heads = page.locator('[data-slot="results"] .group-head h2').all_inner_texts()
     expected_heads = [C[s]["label"] for s in DB["vocabulary"]["subjectOrder"] if any(i["primarySubject"] == s for i in projects)]
     ok("default groups follow the primary subjects", heads == expected_heads, f"{len(heads)} groups")
-    ok("draft notice is visible", page.locator(".draft-note").is_visible())
+    ok("draft notice is hidden for now", page.locator(".draft-note").count() == 0)
     titles = page.locator('[data-slot="side"] .facet > summary .kicker').all_inner_texts()
     ok("sidebar order", titles[:6] == ["SUBIECT", "TEMĂ", "CE POȚI FACE", "FORMAT", "UNDE SE APLICĂ", "MAI MULTE FILTRE"] or
        [t.upper() for t in titles[:6]] == ["SUBIECT", "TEMĂ", "CE POȚI FACE", "FORMAT", "UNDE SE APLICĂ", "MAI MULTE FILTRE"], " / ".join(titles))
@@ -252,7 +252,7 @@ with sync_playwright() as pw:
         go(f"organizatie/{alone[0]['slug']}/")
         page.wait_for_selector('[data-slot="drawer"]:not([hidden]) h2')
         ok("related entries include secondary-subject matches", page.locator('[data-slot="drawer"] .related [data-open]').count() > 0, alone[0]["slug"])
-    ok("footer offers the Sheet", page.locator("footer a", has_text="Corectează în tabel").count() == 1)
+    ok("footer offers the Sheet, the Form and GitHub", all(page.locator(f'footer a[href*="{h}"]').count() == 1 for h in ("docs.google.com/spreadsheets", "forms.gle", "/issues/new")))
     go("?o=az&v=cards")
     fmt_item = next(i for i in sorted(projects, key=lambda i: i["name"].lower()) if i["formats"] and i["entityType"] == "proiect")
     meta = page.locator(f'[data-slot="results"] .card[data-open="{fmt_item["slug"]}"] .meta').inner_text()

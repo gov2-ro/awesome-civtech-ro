@@ -1,5 +1,18 @@
 # Activity
 
+## 2026-10-19 — One footer line for corrections; draft notices hidden
+
+**Done**
+- Owner request: the footer's "Propune un proiect" block has one line with the three ways to correct an entry:
+  the Sheet (`tabel`), the Google Form (`formular`), and a GitHub issue. The text is in `site/index.html`.
+- Owner request: the preview hides the "classifications are proposals" notices in the toolbar, the detail panel,
+  the archives, and `llms.txt`. One `DRAFT_NOTE` switch in `site-v2/app.js` and one in `scripts/build.py` turn them back on.
+- Measured: `scripts/check_preview.py` 63/63.
+
+**Decided**
+- Hide the notices with a switch instead of deleting them. The preview still sets `draft`, and a build without
+  `--allow-draft` still refuses proposed classifications.
+
 ## 2026-10-19 — Phone layouts for cards and list; site address under the name
 
 **Done**
