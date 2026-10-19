@@ -44,7 +44,7 @@ import unicodedata
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from common import load_env, DATA, data_schema, split_list
+from common import load_env, DATA, PUBLIC_ROOT, data_schema, split_list
 
 # Question titles, in Form order. The response columns in the Sheet tab `propuneri` are named after these titles:
 # renaming one renames a column there (and breaks any importer that reads it). Change a title only together with
@@ -649,7 +649,7 @@ def main():
     ap.add_argument("--apply", action="store_true", help="replace all items of the Form with the planned ones")
     ap.add_argument("--json", action="store_true", help="also print the batchUpdate body")
     ap.add_argument("--save", action="store_true", help=f"store the Form as it is now in {TEMPLATE.relative_to(DATA.parent)}")
-    ap.add_argument("--data-dir", type=Path, default=DATA, help="data root (default: data/, the v1 Form; a v2 root plans offline)")
+    ap.add_argument("--data-dir", type=Path, default=PUBLIC_ROOT, help="data root (default: the public root, PUBLIC_ROOT in common.py; a v1 root plans the v1 Form, a v2 root plans offline)")
     ap.add_argument("--answer-map", type=Path, default=ANSWER_MAP, help="v2: the versioned label -> ID file")
     ap.add_argument("--write-map", action="store_true", help="v2: add the labels of the plan to the answer map (version + 1)")
     ap.add_argument("--check", action="store_true", help="v2: exit 1 when the answer map lacks a label of the plan")

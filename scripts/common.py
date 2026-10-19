@@ -1,7 +1,7 @@
 """Shared loading of the editable CSVs (proiecte, orgs) and the generated profile and mention CSVs.
 
-A data root is either the production v1 layout (data/: proiecte.csv, orgs.csv, taxonomy.json) or a taxonomy v2
-package or overlay (schema.json or pachet.json; see scripts/taxonomy_v2.py). data/ stays the default everywhere.
+A data root is either the v1 layout (data/: proiecte.csv, orgs.csv, taxonomy.json) or a taxonomy v2 package or
+overlay (schema.json or pachet.json; see scripts/taxonomy_v2.py). PUBLIC_ROOT is the default root of every script.
 """
 import csv
 import json
@@ -13,6 +13,9 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 SITE = ROOT / "site"
+# The data root that feeds the public site, and the default --data-dir of every script. It is the v1 root until the
+# cutover; scripts/cutover_v2.py then points it at the taxonomy v2 integration copy. Only this root may write site/.
+PUBLIC_ROOT = DATA
 
 
 def load_env(path: Path = ROOT / ".env"):
@@ -141,7 +144,7 @@ def load_entries(data_dir: Path = DATA) -> list[dict]:
     return out
 
 
-def data_schema(data_dir: Path = DATA) -> str:
+def data_schema(data_dir: Path = PUBLIC_ROOT) -> str:
     """'v2' for a taxonomy v2 package or overlay, 'v1' for the production layout. Anything else is an error."""
     from taxonomy_v2 import is_v2
     if is_v2(data_dir):
@@ -151,7 +154,7 @@ def data_schema(data_dir: Path = DATA) -> str:
     raise SystemExit(f"{data_dir}: not a data root (no proiecte.csv + taxonomy.json, schema.json or pachet.json)")
 
 
-def observation_paths(data_dir: Path = DATA) -> dict[str, Path]:
+def observation_paths(data_dir: Path = PUBLIC_ROOT) -> dict[str, Path]:
     """The generated observation files of a root: data/*.csv for v1, observatii/*.csv for v2 (an overlay uses its
     base's). `review` is the folder of review.py's raw answers and suggestions. A v2 run never reads or writes the
     immutable copies in source/."""
@@ -169,7 +172,7 @@ def split_ids(cell: str) -> list[str]:
     return values(cell)
 
 
-def load_vocabulary(data_dir: Path = DATA) -> dict:
+def load_vocabulary(data_dir: Path = PUBLIC_ROOT) -> dict:
     """The controlled lists of a root. v1: taxonomy.json as it is. v2: concepts, code lists (with labels), areas and
     link roles from their CSVs, assembled in memory; nothing is written back."""
     if data_schema(data_dir) == "v1":
@@ -180,13 +183,13 @@ def load_vocabulary(data_dir: Path = DATA) -> dict:
             "roles": pkg.link_roles(), "sections": pkg.sections(), "site": pkg.settings["site"], "package": pkg}
 
 
-def link_roles(data_dir: Path = DATA) -> list[dict]:
+def link_roles(data_dir: Path = PUBLIC_ROOT) -> list[dict]:
     """The link roles [{key, label, hosts}] of a root, in their editorial order."""
     voc = load_vocabulary(data_dir)
     return voc["roles"] if "roles" in voc else voc["linkuri"]["roluri"]
 
 
-def load_catalogue(data_dir: Path = DATA) -> list[dict]:
+def load_catalogue(data_dir: Path = PUBLIC_ROOT) -> list[dict]:
     """Every entry of a root, with the fields that both schemas share: slug, nume, descriere_scurta, descriere,
     url, linkuri, stare, contact, kind (the URL section) and row (its record in the edited table, header = 1).
     v2 entries add their facets (lists; maturity and the primary subject are a string or None), the resolved

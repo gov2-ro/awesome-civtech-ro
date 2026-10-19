@@ -1,12 +1,12 @@
-"""Check proiecte.csv and orgs.csv before they are merged (CI on every PR, and for rows coming from the Google Sheet).
+"""Check the data root before it is merged (CI on every PR, and for rows coming from the Google Sheet). v1: proiecte.csv and orgs.csv.
 
-    python3 scripts/validate.py                 # the repo files
+    python3 scripts/validate.py                 # the public root (until the cutover: the v1 files)
     python3 scripts/validate.py some.csv ...    # extra files in the proiecte.csv format (e.g. a Sheet export)
     python3 scripts/validate.py --data-dir data/taxonomy-v2/integrare                 # a taxonomy v2 root (draft rules)
     python3 scripts/validate.py --data-dir data/taxonomy-v2/integrare --publication   # ... and the public-build gate
 
---data-dir selects the data root; data/ (v1) stays the default. A v2 root gets the package checks of
-scripts/taxonomy_v2.py: they permit proposed classifications. --publication also requires every entry to be
+--data-dir selects the data root; the default is PUBLIC_ROOT (common.py; data/, the v1 root, until the cutover).
+A v2 root gets the package checks of scripts/taxonomy_v2.py: they permit proposed classifications. --publication also requires every entry to be
 accepted and no high-priority review item to be open, as a public build does.
 Exits 1 on errors; warnings don't fail. Messages are file:line, and GitHub Actions shows them on the PR diff.
 """
@@ -18,7 +18,7 @@ import re
 import sys
 from pathlib import Path
 
-from common import DATA, MENTIUNI_COLS, ORGS_COLS, PROIECTE_COLS, data_schema, observation_paths, split_list, split_tip, to_href
+from common import PUBLIC_ROOT, MENTIUNI_COLS, ORGS_COLS, PROIECTE_COLS, data_schema, observation_paths, split_list, split_tip, to_href
 
 TAX = DOMENII = TIPURI = ACOPERIRE = FEL = ROLURI = ORG_SLUGS = None  # set by setup(), from the selected v1 root
 SLUG = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
@@ -163,7 +163,7 @@ def check_v2(root: Path, publication: bool):
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("extra", nargs="*", type=Path, help="more CSVs in the proiecte.csv format (v1 only)")
-    parser.add_argument("--data-dir", type=Path, default=DATA, help="data root (default: data/)")
+    parser.add_argument("--data-dir", type=Path, default=PUBLIC_ROOT, help="data root (default: the public root, PUBLIC_ROOT in common.py)")
     parser.add_argument("--publication", action="store_true", help="v2: require accepted classifications, as a public build")
     args = parser.parse_args()
     root = args.data_dir.resolve()

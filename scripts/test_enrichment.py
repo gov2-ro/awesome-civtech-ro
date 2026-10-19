@@ -250,7 +250,8 @@ class ScriptsImportAndRoots(unittest.TestCase):
             self.assertEqual(result.returncode, 0, f"{script}: {result.stderr[-400:]}")
 
     def test_observation_paths_for_each_root(self):
-        self.assertEqual(common.observation_paths()["review"], DATA / "review")
+        self.assertEqual(common.observation_paths(DATA)["review"], DATA / "review")
+        self.assertEqual(common.observation_paths()["review"], common.observation_paths(common.PUBLIC_ROOT)["review"])  # the default root
         self.assertEqual(common.observation_paths(OVERLAY)["review"], PACKAGE / "observatii" / "review")
         self.assertEqual(common.observation_paths(PACKAGE)["profile"], PACKAGE / "observatii" / "profil.csv")
 
@@ -285,7 +286,7 @@ class SearchFromRelations(unittest.TestCase):
     def setUpClass(cls):
         cls.search = load_script("search")
         cls.v2 = {e["slug"]: e for e in common.load_catalogue(OVERLAY)}
-        cls.v1 = {e["slug"]: e for e in common.load_catalogue()}
+        cls.v1 = {e["slug"]: e for e in common.load_catalogue(DATA)}
         cls.both = {"serper", "brave"}
 
     def queries(self, entry):
@@ -628,7 +629,7 @@ class LabelInvalidation(unittest.TestCase):
         self.assertNotEqual(self.hashes(results=sent)["urls"], self.hashes(results=self.review.kept_results(rows))["urls"])
 
     def test_v1_hashes_ignore_the_keyword_counts_but_not_the_keywords(self):
-        entries = common.load_catalogue()
+        entries = common.load_catalogue(DATA)
         tax = json.loads((DATA / "taxonomy.json").read_text())
         fp = lambda es: (lambda d: {**d, "vocabular_cuvinte": sorted(d["vocabular_cuvinte"])})(self.review.taxonomy_data(es, tax))
         more = [dict(e, cuvinte=e["cuvinte"] + ", " + e["cuvinte"].split(",")[0]) if e["cuvinte"] and i == 0 else e for i, e in enumerate(entries)]

@@ -1000,10 +1000,15 @@ class Workflows(unittest.TestCase):
         self.assertIn("fetch-depth: 0", text)
         self.assertIn('"$code" -eq 3', text)
 
-    def test_no_workflow_runs_a_v2_job_yet(self):
+    def test_the_workflows_follow_the_public_root(self):
+        """Before the cutover no Sheets workflow names the v2 root (the v1 tabs stay as they are). After it
+        (common.PUBLIC_ROOT is the integration copy), both name it and the tab v2-intrari, and none names the v1 CSVs."""
+        cut_over = common.PUBLIC_ROOT != common.DATA
         for text in (self.pull, self.push):
-            self.assertNotIn("data-dir", text)
-            self.assertNotIn("taxonomy-v2", text)
+            self.assertEqual("--data-dir data/taxonomy-v2/integrare" in text, cut_over)
+            self.assertEqual("--tabs v2-intrari" in text, cut_over)
+            self.assertEqual("data/proiecte.csv" in text, not cut_over)
+            self.assertEqual("data/orgs.csv" in text, not cut_over)
 
 
 def step_body(text: str, name: str) -> str:
@@ -1118,12 +1123,13 @@ class WorkflowShell(unittest.TestCase):
         r, calls = self.step(self.push, "Write the CSVs to the Sheet", {"SINCE": "", "FORCE": "false"})
         self.assertEqual(r.returncode, 3)
         self.assertIn("::error::Tabelul are modificări nesincronizate", r.stdout)
-        self.assertEqual(calls.strip(), "uv run scripts/sheets.py push")  # no --since: the marker is the base
+        root = "" if common.PUBLIC_ROOT == common.DATA else " --data-dir data/taxonomy-v2/integrare --tabs v2-intrari"
+        self.assertEqual(calls.strip(), f"uv run scripts/sheets.py push{root}")  # no --since: the marker is the base
         self.log.unlink()
         self.stub("uv", "exit 0")
         r, calls = self.step(self.push, "Write the CSVs to the Sheet", {"SINCE": "abc", "FORCE": "true"})
         self.assertEqual(r.returncode, 0, r.stderr)
-        self.assertEqual(calls.strip(), "uv run scripts/sheets.py push --since abc --force")
+        self.assertEqual(calls.strip(), f"uv run scripts/sheets.py push{root} --since abc --force")
 
     def test_push_keeps_other_failures_as_they_are(self):
         self.stub("uv", "exit 1")
@@ -1226,8 +1232,8 @@ class FormV2Plan(unittest.TestCase):
         self.assertIn('"createItem"', out.getvalue())
 
     def test_v2_options_are_refused_on_a_v1_root(self):
-        r = subprocess.run([sys.executable, str(HERE / "form.py"), "--write-map"], capture_output=True, text=True,
-                           env={"PATH": os.environ["PATH"]})
+        r = subprocess.run([sys.executable, str(HERE / "form.py"), "--data-dir", str(DATA), "--write-map"], capture_output=True, text=True,
+                           env={"PATH": os.environ["PATH"]})  # the v1 root, whatever the public root is
         self.assertEqual(r.returncode, 1)
         self.assertIn("need a v2 --data-dir", r.stderr)
 
