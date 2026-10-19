@@ -127,3 +127,27 @@ Their `valoare_originala` and `propunere` describe values the integration copy m
    recommendation for the owner, not as a decision. Do not change any classification in `intrari.csv`.
 5. Report counts before and after: by prefix, priority and state, and the open high-priority items by slug.
    Report each `tehnic` closure with its reason so Opus can check them.
+
+## Slice F — prepare the cutover (Opus decisions, 2026-10-20)
+
+Slices A–E are merged (v0.7.0). The cutover itself is an owner action. This slice makes it one tested command.
+
+Decisions:
+- **F1. Detach the integration copy before the owner edits it.** Today `integrare.py` regenerates `integrare/` from the sealed
+  run, so a direct edit (by hand or by `sheets.py pull` into `v2-intrari`) fails the reproduction check.
+  `integrare.py --detach` records `{"detached": {"commit": <HEAD>, "date": …}}` in `pachet.json`. After that, the check verifies
+  only the run's seal and that `git show <commit>:…` of the overlay still reproduces from the run (the derivation stays provable);
+  the current overlay files are editorial. The owner runs `--detach`; the agent does not.
+- **F2. One switch for the public root.** `common.PUBLIC_ROOT` (today `DATA`) is the default `--data-dir` of every script.
+  `build.py` may write `site/` from a v2 root only when that root is `PUBLIC_ROOT`, and then always with the publication gate
+  (`--allow-draft` never writes `site/`).
+- **F3. `scripts/cutover_v2.py`.** `--plan` prints the steps and the blockers (publication gate errors, `tabs.intrari` null,
+  not detached). `--apply` refuses while a blocker exists; otherwise it edits the working tree: `PUBLIC_ROOT`, `site-v2/app.js`
+  → `site/app.js`, `v2.css` appended to `style.css`, `site-v2/` removed, `SITE_V2` copying retired, the Sheets workflows switched
+  to `--data-dir` and the `v2-intrari` tab, `pages.yml` with the publication gate. It never commits, pushes or calls Google.
+  `--rehearse DIR` runs `--apply` on a copy of the repository in DIR with the blockers waived, then runs `validate.py`, `build.py`
+  into the copy's `site/`, and the unit tests there.
+- **F4. Runbook `docs/briefs/cutover-taxonomy-v2.md`.** Preconditions (owner decisions), the order of the external actions
+  (detach, create `v2-intrari` with `sheets.py push`, set `tabs.intrari`, freeze the v1 tabs, Form v2), the command, checks after
+  the deploy, and the rollback (revert the commit; `data/` v1 stays intact).
+- CI: `validate.yml` runs `cutover_v2.py --rehearse "$RUNNER_TEMP/rehearsal"`, so the cutover keeps working as the code changes.
