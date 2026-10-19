@@ -7,7 +7,7 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 Branch `taxonomy-v2-migration`. Production stays on v1. No Google, workflow, deploy or release action.
 
 - [x] A. Enrichment on explicit roots: `profile.py`, `search.py`, `review.py --data-dir`; profile merge; label hashes and coverage; copyright date.
-- [~] B. Sheets and Form for v2: new tabs, `_sync` marker as the base, 3-way pull, blocking validation, offline round trips, Form plan and importer.
+- [x] B. Sheets and Form for v2: new tabs, `_sync` marker as the base, 3-way pull, blocking validation, offline round trips, Form plan and importer.
 - [x] C. Frontend audit defects in `site-v2/`: failed data load, noscript, canonical, observed dates, methodology page.
 - [~] D. Review queue: reconcile R001–R066 with the integration copy; `tehnic` state for non-editorial items; a recommendation on every open item.
 - [x] E. CI: tests, v2 validation and preview build, JS syntax, browser checks, workflow lint; path filters for `site/`, `site-v2/`, workflows.
@@ -36,7 +36,8 @@ Branch `taxonomy-v2-migration`. Production stays on v1. No Google, workflow, dep
 - [ ] Implement an automated inference runner and no-call dry run if a later repeatable experiment needs them. This does not block the current preview.
 - [x] Implement the v2 loaders, validator branch, build contract, and browser facets together. Keep the current data source as the default until cutover.
 - [x] Verify the isolated preview: 40 unit tests (`scripts/test_taxonomy_v2.py`) and 63 browser checks (`scripts/check_preview.py`).
-- [ ] Run `scripts/test_taxonomy_v2.py` in `validate.yml`, with the CI slice. Include `site-v2/` changes in PR validation.
+- [x] Run `scripts/test_taxonomy_v2.py` in `validate.yml`, with the CI slice. Include `site-v2/` changes in PR validation.
+      Done 2026-10-20: `validate.yml` runs every `scripts/test_*.py` and the browser checks.
 - [ ] At the cutover, replace `site/app.js` with `site-v2/app.js`, merge `site-v2/v2.css` into `style.css`, and remove `site-v2/`.
 - [ ] Adapt enrichment, Sheets, Form, and CI to the accepted schema. Use separate v2 Sheet tabs during migration.
 
@@ -47,8 +48,9 @@ The public site does not consume this package. Production data and the v1 build 
 - [ ] `site/app.js`: a quick click on a choice just after opening a facet can close that facet again. The `toggle` event
       arrives after the re-render, so `closed` still lists the facet. `site-v2/app.js` reads the open state from the page first.
 
-- [ ] Make Sheets validation a blocking check. `sheets-pull.yml` records both exit codes, but opens the PR even when either command fails.
+- [x] Make Sheets validation a blocking check. `sheets-pull.yml` records both exit codes, but opens the PR even when either command fails.
       The workflow uses `GITHUB_TOKEN`; its PR does not start the normal validation workflow.
+      Done 2026-10-20: the job fails after it opens the PR and sets the status `validate / sheets-pull` (slice B).
 - [ ] Add data-load error handling and a retry to `site/app.js`. An aborted `data.json` request leaves the results blank.
       Offer the static archives when JavaScript fails. The home page also has no main content without JavaScript.
 - [ ] Repair dialog focus. Ctrl/Cmd+K can focus the background search while a dialog stays open.
@@ -57,14 +59,16 @@ The public site does not consume this package. Production data and the v1 build 
       `site-v2/app.js` fixes all three (v0.6.1, with browser checks); `site/app.js` keeps them until the cutover.
 - [ ] Separate observed dates from confirmed launch dates. `isLaunched` uses `since`, which comes from Wayback, repo creation, or TLS.
       Rename inferred badges or add a curated launch date. Do not treat the first observed trace as a confirmed launch.
-- [ ] Remove the future date from `last_activity`. A 2026 copyright footer produces `2026-12-31` during October.
+- [x] Remove the future date from `last_activity`. A 2026 copyright footer produces `2026-12-31` during October.
       Give copyright evidence less weight than a dated content update.
+      Done 2026-10-20 (slice A): a dated update wins; the copyright year is `<year>-01-01`, never after today.
 - [ ] Explain the status and ranking methodology. HTTP reachability does not confirm an operating service.
       A source-code link does not establish an open-source licence. The score favours age, page count, and visibility.
 - [ ] Fill the 12 live entries with neither a tagline nor a description in the audit build.
       Validation passes with 28 warnings. Separate publication requirements from optional enrichment.
-- [ ] Invalidate review labels when the input URL set or entry changes. `review.py` only detects the old format without `mentiuni_map`.
+- [x] Invalidate review labels when the input URL set or entry changes. `review.py` only detects the old format without `mentiuni_map`.
       Report label coverage: once any label exists for a slug, `reach_features` ignores its unlabelled mentions.
+      Done 2026-10-20 (slice A): input hashes per answer; per-URL label join; coverage line in `review.py` and `build.py`.
 - [ ] Keep canonical and share metadata aligned with SPA navigation. Opening Factual directly, then closing it, leaves its canonical URL on the home view.
 - [ ] Clarify the primary audience and catalogue scope in the visible introduction. Review the rotating political jokes against that audience.
       Simplify the competing relevance sorts and explain the abbreviated date columns.
@@ -90,8 +94,9 @@ Existing items below also cover profile refresh data loss, Sheets merge conflict
 - [x] `README.md` line 54 still lists `profile.py --search --gdelt --opr` (flags removed)
 - [x] `declic`: `url` de-clic.ro is offline; the search finds the live site at declic.ro. Editor
       decides whether to change the url. The `url` is now declic.ro
-- [ ] `profile.py --force` replaces the whole profile row and drops `mentions`, `search_social`
+- [x] `profile.py --force` replaces the whole profile row and drops `mentions`, `search_social`
       and `opr`. Run `search.py --prune-only` after it, or make `profile.py` keep these columns
+      Done 2026-10-20: `common.merge_profile` keeps the columns of other stages (slice A).
 - [ ] Name-collision noise (`465`, `the-sponge`, `declic`, author names such as "Gabriel Popa"):
       check what the labels fix; if too much remains, add per-entry `search_exclude` terms
 - [ ] UI: show the reach features (independent mentions, news, latest mention) on the entry card
@@ -113,14 +118,17 @@ Existing items below also cover profile refresh data loss, Sheets merge conflict
       The first `push` to the real tabs is not done yet.
 - [x] Trim the trailing space in `orgs.csv`, `descriere_scurta` of `code4ro` and `techsoup`. `pull`
       strips it (D2), so the next pull otherwise rewrites the file.
-- [ ] `pull` copies the Sheet over the CSVs with no base. A CSV edit on `main` that `sheets-push` has
+- [x] `pull` copies the Sheet over the CSVs with no base. A CSV edit on `main` that `sheets-push` has
       not written yet shows as a revert in the next pull request. Option: a 3-way merge with the last
       synced commit (needs a marker: a git tag or a cell in the Sheet).
-- [ ] `push --since REF` stops with "row 1 differs" when the columns changed between REF and now.
+      Done 2026-10-20: the Sheet's `_sync` tab names the last pushed commit; `pull` merges three ways and stops on a conflict (exit 3).
+- [x] `push --since REF` stops with "row 1 differs" when the columns changed between REF and now.
       Run `push --force` once after a column change (README says so). Option: detect this case.
-- [ ] GitHub keeps one pending run per concurrency group. If `sheets-push` runs are superseded, the
+      Done 2026-10-20: `push` reads by column name and clears stale columns; `--force` is no longer needed after a column change.
+- [x] GitHub keeps one pending run per concurrency group. If `sheets-push` runs are superseded, the
       next run's `before` is not the state the Sheet was synced from, and the check can give a false
       exit 3. Recovery: run `sheets-push` by hand with `since` or `force`.
+      Done 2026-10-20: `sheets-push` uses the `_sync` marker, not `before`.
 - [ ] The Sheet has a third tab, `propuneri` (Form responses). `sheets.py` ignores it. The
       "Propune un proiect" form is not wired to the pipeline.
 - [x] `CLAUDE.md`: add `sheets.py` to *Commands*, the pipeline sketch and the *Deployment* section.
@@ -136,11 +144,12 @@ Existing items below also cover profile refresh data loss, Sheets merge conflict
       delete that column by hand (0 responses).
 - [ ] Importer for `propuneri`: map the answers to a `proiecte.csv` / `orgs.csv` row with `ANSWER_KEYS`
       in `form.py` (needs a `slug`; the editor accepts each row by hand, as for `review.py`).
-- [ ] Order the Form questions like the `proiecte` columns, so one paste moves a `propuneri` row to
+- [x] Order the Form questions like the `proiecte` columns, so one paste moves a `propuneri` row to
       the tab `proiecte`: Ce propui? (`fel`), Nume, Pe scurt, Descriere, Adresa (URL), Alte linkuri,
       Domeniu, Tip, Acoperire, Oraș, Autor. Today "Adresa (URL)" comes before "Pe scurt". The first
       row pasted by hand (`registrul-firmelor`, 2026-10-18) has `descriere_scurta` and `descriere`
       swapped; it is not known whether the swap came from the Form or from the paste.
+      Done for v2 2026-10-20: `form.py --data-dir` plans the questions in `intrari.csv` column order. The live v1 Form is unchanged.
 - [ ] The Form's first question ("Ce propui?") offers only Proiect, Resursă and Organizație. It does not
       offer `articol`, `ghid`, `campanie` or `cercetare`. Decide whether to add them (`FEL_CHOICES` in
       `form.py`, then `form.py --apply`) or to let the editor set `fel` when copying a row.
@@ -176,9 +185,10 @@ Existing items below also cover profile refresh data loss, Sheets merge conflict
       drawer (D5, D6). 19 repos.
 - [ ] A logo that is an SVG is skipped: Pillow cannot decode it (factual.ro has an SVG logo and a
       32 px favicon). Option: rasterise it with Playwright in the browser pass.
-- [ ] `profile.py --only` / `--force` drops `cert_first` while crt.sh answers 502 (2026-10-18:
+- [x] `profile.py --only` / `--force` drops `cert_first` while crt.sh answers 502 (2026-10-18:
       factual, code4ro; restored later with `--extra --only`). `extras_one` keeps an old value only
       when the profile row survives.
+      Done 2026-10-20: the merge keeps `cert_first` when the new fetch has none.
 - [ ] `profile.py --extra` runs a GitHub search for every live entry without a repo, on every run
       (about 75 requests, about 3 minutes at the 30 per minute limit). Store the miss to skip it.
 - [ ] A link host whose favicon fails is fetched again on every run (no stored miss). Today: 0 failures.

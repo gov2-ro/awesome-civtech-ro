@@ -1,5 +1,39 @@
 # Activity
 
+## 2026-10-20 — Sheets and Form for v2: sync marker, three-way pull, blocking validation (slice B)
+
+**Done**
+- `sheets.py --data-dir <v2 root>` works only on new tabs: `v2-intrari` (mirror of `intrari.csv`) and, with `--tabs`, `v2-revizuire`.
+  A v2 root refuses `proiecte`, `orgs`, `propuneri` and `_sync`; a v1 root refuses the `v2-` tabs. Every cell is text; multi-value
+  `|` cells get at most a suggestion list, never a strict drop-down.
+- Sync base: a tab `_sync` (`tab, commit, sha256, time`). `push` writes it last, and only when the pushed bytes equal the CSV at
+  `HEAD`. `pull` merges three ways (base = the CSV at the marker's commit) and writes nothing when the Sheet and the repo changed
+  the same cell (exit 3). `push` reads by column name and clears stale columns to the right (a latent bug of the old `push_tab`).
+- `pull --check` validates the pulled rows with the root's checks (v2: per-token IDs and schemes) and exits 1 on errors.
+- `sheets-pull.yml`: a conflict fails the job before any PR change. A failed `validate.py` or `build.py` still opens or updates
+  the PR, then sets the commit status `validate / sheets-pull` to failure and fails the job. `sheets-push.yml` uses the marker, not `before`.
+- `form.py --data-dir <v2 root>` plans 13 questions in `intrari.csv` order (6 kinds, 13 root subjects and 12 formats as
+  checkboxes, 4 coverage levels). `data/form-v2.json` (version 1) maps labels to IDs; it never re-maps a label.
+  `--import FILE.csv` turns `propuneri` rows into `intrari.csv` rows and reports unknown labels. `--apply` and `--save` refuse v2.
+- `scripts/test_sheets_form.py`: 122 tests with an in-memory Sheet, no Google and no network. Real data round trips byte for byte:
+  109 + 13 v1 rows and 122 × 31 v2 cells. The workflow steps run in `bash -e` against stub `uv`, `gh` and `python3`.
+- Measured: 217 unit tests pass; `actionlint` passes on the four workflows.
+
+**Hard**
+- This worktree also started at `v0.3.1` and was fast-forwarded before work.
+- A checkbox cell joins labels with commas, and one subject label contains commas ("Drept, justiție și drepturi").
+  The importer splits by known labels, longest first.
+
+**Decided**
+- A conflict writes nothing for any tab. Cost: one conflicting cell holds back the other Sheet edits until it is settled.
+- An unusable marker (unknown commit, other bytes) is an error, not a silent two-way fallback, which would bring back the
+  "revert" defect. Cost: the owner repairs it once (`--since` or `push --force`).
+- The importer sets `de-revizuit` with an empty subject when a response ticks no subject or several; the ticked IDs go to
+  `nota_clasificare`. Taking the first one would be a guess. This differs from the brief's `propus`; accepted.
+- Do not require `validate / sheets-pull` in branch protection: only the `sheets-sync` PR gets it, so it would block the others.
+- Not verified against Google: `add_worksheet` by the service account, `batch_clear` with two ranges, an empty new tab's values,
+  and `gh api …/statuses` with `GITHUB_TOKEN`.
+
 ## 2026-10-20 — Enrichment on explicit roots; profile merge; label hashes; dated last activity (slice A)
 
 **Done**
