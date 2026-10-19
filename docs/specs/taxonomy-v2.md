@@ -778,3 +778,12 @@ These decisions refine the specification where it left a choice open.
 - **Focus.** A filter change keeps the focus on the same control, also in the mobile sheet and on toggles.
   The sheet keeps its scroll position. The search shortcut does nothing while a dialog is open.
   The dialog focus trap skips controls inside a closed panel.
+- **Report row.** Each item carries `sheet` (`tab`, `row`). While `setari.json` has `tabs.intrari: null`, the build
+  takes the v1 tab ids from `data/site.json` and the v1 row from `data/`, which the Sheet mirrors.
+  "Corectează în tabel" then opens the v1 row, which holds the entry's texts and links. It cannot edit v2 facets.
+- **Search.** Free text also reads each item's `legacy` category, types, keywords, and town. A v1 search finds the same entries.
+  These words are never shown or used as filters; old bookmarks use them as before.
+- **Related entries.** "Tot din" lists entries of the same tab that have the primary subject in any position.
+  Entries with it as their primary subject come first.
+- **Cards and archives.** The card's grey line names the first format, as the v1 card named its type.
+  Each archive subject group has a hint: its four most frequent topics.

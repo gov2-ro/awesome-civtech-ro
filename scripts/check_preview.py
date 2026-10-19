@@ -236,7 +236,34 @@ with sync_playwright() as pw:
         "(() => { const a = document.activeElement; return !!a.closest('[data-slot=\"drawer\"]') && a.dataset.act !== 'close' && a.checkVisibility(); })()"))
     page.keyboard.press("Escape")
 
-    # 13. Mobile: subject chips, filter sheet, counts.
+    # 13. What the v1 site shows must stay: report options, site link, related entries, card types, v1 search words.
+    it = next(i for i in DB["items"] if i["kind"] == "organizatie" and i["sheet"])
+    go(f"organizatie/{it['slug']}/")
+    page.wait_for_selector('[data-slot="drawer"]:not([hidden]) h2')
+    flag = page.locator('[data-slot="drawer"] .flag a', has_text="Corectează în tabel")
+    ok("report panel opens the entry's Sheet row", flag.count() == 1 and f"gid={DB['site']['tabs'][it['sheet']['tab']]}&range=A{it['sheet']['row']}" in flag.get_attribute("href"),
+       str(it["sheet"]))
+    link = page.locator('[data-slot="drawer"] .d-url')
+    ok("site link is the plain address", link.count() == 1 and it["domain"] in link.inner_text() and "Deschide" not in link.inner_text(), link.inner_text() if link.count() else "none")
+    alone = [i for i in DB["items"] if i["kind"] == "organizatie" and i["primarySubject"] and i["status"] not in INACTIVE
+             and not any(j["primarySubject"] == i["primarySubject"] and j["slug"] != i["slug"] for j in DB["items"] if j["kind"] == "organizatie")
+             and any(i["primarySubject"] in subj_set(j) and j["slug"] != i["slug"] and j["status"] not in INACTIVE for j in DB["items"] if j["kind"] == "organizatie")]
+    if alone:
+        go(f"organizatie/{alone[0]['slug']}/")
+        page.wait_for_selector('[data-slot="drawer"]:not([hidden]) h2')
+        ok("related entries include secondary-subject matches", page.locator('[data-slot="drawer"] .related [data-open]').count() > 0, alone[0]["slug"])
+    ok("footer offers the Sheet", page.locator("footer a", has_text="Corectează în tabel").count() == 1)
+    go("?o=az&v=cards")
+    fmt_item = next(i for i in sorted(projects, key=lambda i: i["name"].lower()) if i["formats"] and i["entityType"] == "proiect")
+    meta = page.locator(f'[data-slot="results"] .card[data-open="{fmt_item["slug"]}"] .meta').inner_text()
+    ok("card meta names a format", C[fmt_item["formats"][0]]["label"].upper() in meta.upper(), meta)
+    old_kw = [i for i in DB["items"] if "date-deschise" in i["legacy"].get("keywords", [])]
+    go("?k=" + old_kw[0]["kind"] + "&q=date%20deschise&ina=1")
+    shown = page.locator('[data-slot="results"] [data-open]').evaluate_all("els => els.map(e => e.dataset.open)")
+    want = [i["slug"] for i in old_kw if i["kind"] == old_kw[0]["kind"]]
+    ok("a v1 keyword still finds its entries", all(s in shown for s in want), f"{len(want)} expected")
+
+    # 14. Mobile: subject chips, filter sheet, counts.
     m = browser.new_page(viewport={"width": 390, "height": 844}, is_mobile=True, has_touch=True)
     m.on("pageerror", lambda e: errors.append(str(e)))
     m.goto(BASE)

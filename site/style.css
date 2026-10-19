@@ -417,6 +417,9 @@ svg.gh { width: 20px; height: 20px; fill: currentColor; stroke: none; }
 .d-scroll h2 { font-size: calc(clamp(24px, 4vw, 32px) * var(--fs)); font-weight: 700; letter-spacing: -.025em; overflow-wrap: anywhere; }
 .d-open { display: flex; }
 .d-open .btn { white-space: normal; text-align: left; }
+.d-url { display: inline-flex; align-items: center; gap: 4px; color: var(--accent); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; font-size: calc(16px * var(--fs)); }
+.d-url:hover { color: var(--accent-ink); }
+.d-url svg { flex: none; width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2; }
 .d-tag { font-size: calc(17px * var(--fs)); color: var(--ink-2); line-height: 1.4; margin-top: -6px; }
 .d-desc { font-size: calc(16px * var(--fs)); line-height: 1.6; }
 .d-src { font: 400 calc(12px * var(--fs))/1.4 var(--font-mono); color: var(--muted); margin-top: -8px; }

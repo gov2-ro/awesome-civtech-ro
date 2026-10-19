@@ -1,5 +1,33 @@
 # Activity
 
+## 2026-10-19 — v1 details restored in the v2 preview; site link and footer note
+
+**Done**
+- Owner request: the detail panel's site link is now the plain address (blue, underlined, with the arrow), not a "Deschide …" button.
+  Changed in `site/app.js` and `site-v2/app.js`; style in `site/style.css`. The archive button ("Vezi în arhivă") is unchanged.
+- Owner request: the footer's "Propune un proiect" block has a "Corectează în tabel" link to the Sheet, with the panel's note.
+  Changed in `site/index.html`, so the production site also gets it at the next push.
+- Compared v1 and v2 builds entry by entry (122 detail panels, cards and list rows on three tabs, archives, llms.txt, feed)
+  and by free-text search over all 55 v1 keywords. Restored in the v2 preview:
+  - "Corectează în tabel" was missing on all 122 entries, because the Sheet has no v2 tab. The build now gives each item the v1 tab and row.
+    All 122 rows equal the v1 build's rows.
+  - Free-text search lost 133 entry–keyword matches (36 of 55 keywords, for example `date deschise`, `primării`, `alegeri`).
+    Now 0: the search also reads the `legacy` words.
+  - "Tot din …" was missing on 6 entries, because related entries had to share the primary subject. Now 4 remain:
+    3 resources whose subject no other resource has, and `incentru`, which has no subject.
+  - Cards lost their type (for example "Bază de date"). The grey line now names the first format.
+  - Archive subject groups lost their hint line. Each now shows its four most frequent topics.
+- Measured: `scripts/check_preview.py` 61/61 (6 new checks); `scripts/test_taxonomy_v2.py` 40 tests pass; v1 validator 0 errors.
+
+**Hard**
+- The comparison also shows intended differences: "Autor" is now "Atribuire · rol neconfirmat", "cod deschis" is "cod public",
+  and v1 types and `#keywords` are replaced by the classification groups. These follow the specification and stay.
+
+**Decided**
+- Use the v1 Sheet row until the v2 tab exists. A report then reaches a real row; the alternative showed no Sheet option at all.
+  The v1 row cannot hold v2 facets, so classification corrections still need GitHub or the review queue.
+- Keep v1 words in the search index only. The vocabulary is frozen, so adding alternative labels was not an option.
+
 ## 2026-10-19 — Taxonomy v2 preview: missing UI recommendations
 
 **Done**

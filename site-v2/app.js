@@ -88,6 +88,10 @@ let allTopics = false;
 const isInactive = it => STATUS[it.status].group === 'inactiv';
 const listOf = key => state[key] ? state[key].split(',') : [];
 const kwLabel = k => k.replace(/-/g, ' ');
+// The v1 words of an entry (category, types, keywords, town). Free-text search reads them, so that a v1 search still
+// finds the same entries; they are never shown or used as classification.
+const legacyWords = ({ legacy: l = {} }) => [TAX.dom[l.domeniu]?.label, ...(l.tips || []).map(t => TAX.tip[t]?.label),
+  ...(l.keywords || []).map(kwLabel), l.oras].filter(Boolean);
 const query = () => state.q.length >= MIN_Q ? state.q : '';
 const label = id => CONCEPT.get(id)?.label || AREA.get(id)?.label || id;
 // A facet's visible title: the scheme label, with the few that differ by tab or have no scheme.
@@ -227,9 +231,9 @@ const placeLabel = it => it.coverageLevel === 'local'
 // About three useful classifications per row: a topic, a format, a capability. The detail panel has them all.
 const badgeIds = it => [['topic', it.topics[0]], ['fmt', it.formats[0]], ['cap', it.capabilities[0]]].filter(([, id]) => id);
 const badgesHTML = it => badgeIds(it).map(([key, id]) => `<span title="${esc(facetTitle(key))}"><span class="vh">${esc(facetTitle(key))}: </span>${esc(label(id))}</span>`).join('');
-function metaLine(it, withDomain) {
+function metaLine(it, withDomain, withFormat = false) {
   const st = STATUS[it.status];
-  const parts = [...new Set([entLabel(it), placeLabel(it)])];
+  const parts = [...new Set([entLabel(it), withFormat && it.formats[0] ? label(it.formats[0]) : '', placeLabel(it)])];
   if (withDomain) parts.unshift(it.primarySubject ? label(it.primarySubject) : '');
   let html = parts.filter(Boolean).map(esc).join(' · ');
   if (st.group !== 'activ') html += ` <span class="status-tag ${st.cls}">· ${st.label}</span>`;
@@ -289,7 +293,7 @@ function card(it, withDomain) {
   return `<div class="card${isInactive(it) ? ' inactive' : ''}" data-open="${it.slug}"${hint(it)}>
     ${media(it)}
     <div class="card-body">
-      <div class="meta">${metaLine(it, withDomain)}</div>
+      <div class="meta">${metaLine(it, withDomain, true)}</div>
       <h3>${nameLink(it)}</h3>
       ${blurb(it) ? `<p class="tagline">${esc(blurb(it))}</p>` : ''}
       <div class="foot">${statusDot(it)}${extLink(it, `<span class="dom">${esc(it.domain)}</span>`)}${newTag(it)}${codeTag(it)}</div>
@@ -593,13 +597,14 @@ function worksHTML(it) {
 // "Semnalează o problemă": three ways to tell us, each prefilled with the entry's name and address. data/site.json
 // (copied into data.json as `site`) says which ones exist: an empty address hides its option.
 function flagHTML(it) {
-  const site = DB.site || {}, tab = 'intrari';  // one v2 table for all three tabs
+  // The entry's row in the Sheet: the v2 tab once it exists, until then the v1 tab that still holds its text (see build.py).
+  const site = DB.site || {}, { tab, row } = it.sheet || {};
   const subject = `Problemă la „${it.name}” (${it.slug})`;
-  const body = `Pagina: ${location.origin}${entryPath(it.slug)}\nÎn tabel: fila ${tab}, rândul ${it.row}\n\nCe nu e corect sau lipsește?\n`;
+  const body = `Pagina: ${location.origin}${entryPath(it.slug)}\n${tab ? `În tabel: fila ${tab}, rândul ${row}\n` : ''}\nCe nu e corect sau lipsește?\n`;
   const q = `${encodeURIComponent(subject)}`, b = `${encodeURIComponent(body)}`;
   const opts = [
-    site.sheet && site.tabs?.[tab] != null && [`${site.sheet}#gid=${site.tabs[tab]}&range=A${it.row}`, 'Corectează în tabel',
-      `Deschide rândul ${it.row} din fila „${tab}”. Modifici direct; schimbarea e verificată înainte să apară pe site.`],
+    site.sheet && tab && site.tabs?.[tab] != null && [`${site.sheet}#gid=${site.tabs[tab]}&range=A${row}`, 'Corectează în tabel',
+      `Deschide rândul ${row} din fila „${tab}”. Modifici direct; schimbarea e verificată înainte să apară pe site.`],
     site.email && [`mailto:${site.email}?subject=${q}&body=${b}`, 'Trimite un e-mail', 'Mesajul pornește cu numele și adresa paginii.'],
     site.issues && [`${site.issues}?title=${q}&body=${b}`, 'Deschide o problemă pe GitHub', 'Cere cont GitHub; discuția e publică.'],
   ].filter(Boolean);
@@ -642,8 +647,8 @@ function renderDetail() {
   const st = STATUS[it.status];
   const alive = !isInactive(it);
   const shared = i => i.topics.filter(t => it.topics.includes(t)).length;
-  const related = !it.primarySubject ? [] : DB.items.filter(i => i.kind === it.kind && i.primarySubject === it.primarySubject && i.slug !== it.slug && !isInactive(i))
-    .sort((a, b) => shared(b) - shared(a) || byName(a, b)).slice(0, 4);
+  const related = !it.primarySubject ? [] : DB.items.filter(i => i.kind === it.kind && i._f.subj.has(it.primarySubject) && i.slug !== it.slug && !isInactive(i))
+    .sort((a, b) => (b.primarySubject === it.primarySubject) - (a.primarySubject === it.primarySubject) || shared(b) - shared(a) || byName(a, b)).slice(0, 4);
   const dl = [
     ...attributionRows(it),
     it.contact && ['Contact', esc(it.contact)],
@@ -658,7 +663,7 @@ function renderDetail() {
     ['Stare', `${statusDot(it)} ${st.label}${it.stale ? ` <span class="muted small">· niciun semn de actualizare după ${it.stale}</span>` : ''}${it.checked ? ` <span class="muted small mono">· verificat ${esc(it.checked)}${it.httpStatus ? ` · HTTP ${it.httpStatus}` : ''}</span>` : ''}`],
   ].filter(Boolean);
   const cta = alive && it.url
-    ? `<a class="btn btn-primary" href="${esc(it.url)}" target="_blank" rel="noopener">Deschide ${esc(it.domain)}${ICON.out}</a>`
+    ? `<a class="d-url" href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''))}${ICON.out}</a>`
     : it.wayback ? `<a class="btn btn-primary" href="${esc(it.wayback)}" target="_blank" rel="noopener">${ICON.archive}Vezi în arhivă</a>` : '';
   drawer.innerHTML = `
     <div class="d-bar"><span class="kicker">${esc(subject)}</span>
@@ -1048,7 +1053,7 @@ fetch(ROOT + 'data.json', { cache: 'no-cache' }).then(r => r.json()).then(db => 
     it._akeys = it.attributions.map(a => a.org || norm(a.name));
     const concepts = [...new Set([...it._f.subj, ...it._f.topic, ...['cap', 'fmt', 'purpose', 'tech', 'inst', 'orgt'].flatMap(k => [...it._f[k]])])];
     it._hay = norm([it.name, it.tagline, it.desc, ...it._orgs, it.domain, TAX.ent[it.entityType]?.label, ...it.areas.flatMap(names),
-      ...concepts.flatMap(names)].join(' '));
+      ...concepts.flatMap(names), ...legacyWords(it)].join(' '));
   }
   SUGGEST = buildSuggestions();
   readURL();

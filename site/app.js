@@ -527,7 +527,7 @@ function renderDetail() {
     ['Stare', `${statusDot(it)} ${st.label}${it.stale ? ` <span class="muted small">· niciun semn de actualizare după ${it.stale}</span>` : ''}${it.checked ? ` <span class="muted small mono">· verificat ${esc(it.checked)}${it.httpStatus ? ` · HTTP ${it.httpStatus}` : ''}</span>` : ''}`],
   ].filter(Boolean);
   const cta = alive && it.url
-    ? `<a class="btn btn-primary" href="${esc(it.url)}" target="_blank" rel="noopener">Deschide ${esc(it.domain)}${ICON.out}</a>`
+    ? `<a class="d-url" href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''))}${ICON.out}</a>`
     : it.wayback ? `<a class="btn btn-primary" href="${esc(it.wayback)}" target="_blank" rel="noopener">${ICON.archive}Vezi în arhivă</a>` : '';
   drawer.innerHTML = `
     <div class="d-bar"><span class="kicker">${esc(dom?.label || '')}</span>

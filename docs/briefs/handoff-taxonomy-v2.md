@@ -9,7 +9,7 @@ This is the entry point for a fresh implementation session in this repository.
   It applies the evaluation's three corrections from `integrare/modificari.csv`. 121 entries are `propus`; `incentru` is `de-revizuit`.
 - Slice 2: `scripts/taxonomy_v2.py`, `common.load_catalogue` / `load_vocabulary` / `observation_paths`, `validate.py --data-dir --publication`.
 - Slice 3: `build.py --data-dir --site-dir --allow-draft` and the v2 browser code in `site-v2/`.
-- Slice 4: `scripts/test_taxonomy_v2.py` (40 tests) and `scripts/check_preview.py` (55 browser checks) pass.
+- Slice 4: `scripts/test_taxonomy_v2.py` (40 tests) and `scripts/check_preview.py` (61 browser checks) pass.
   The v1 build is unchanged; production data and `site/` are unchanged.
 
 Next: owner review of the integration queue, then enrichment, Sheets, Forms and CI in separate slices.

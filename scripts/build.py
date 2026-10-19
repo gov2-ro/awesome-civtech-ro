@@ -22,6 +22,7 @@ import math
 import re
 import shutil
 import sys
+from collections import Counter
 from email.utils import format_datetime
 from xml.sax.saxutils import escape
 from datetime import date, datetime, timezone
@@ -530,6 +531,13 @@ def items_v2(root: Path, site: Path) -> tuple[list[dict], dict]:
     obs = observation_paths(root)
     profile = load_profile(obs["profile"])
     features = reach_features(load_mentions(obs["mentions"]), read_csv(obs["labels"]) if obs["labels"].exists() else [])
+    # "Corectează în tabel" opens the entry's row in the Sheet. Until the Sheet has the v2 tab (tabs.intrari is null),
+    # it opens the v1 tab, which still holds the entry's texts and links; the v1 row comes from data/, which the Sheet mirrors.
+    site_cfg = {k: v for k, v in pkg.settings["site"].items() if k != "_doc"}
+    v1_rows = None
+    if site_cfg.get("tabs", {}).get("intrari") is None and (DATA / "site.json").exists():
+        site_cfg["tabs"] = {**json.loads((DATA / "site.json").read_text(encoding="utf-8")).get("tabs", {}), **site_cfg.get("tabs", {})}
+        v1_rows = {e["slug"]: {"tab": "orgs" if e["kind"] == "organizatie" else "proiecte", "row": e["row"]} for e in load_catalogue(DATA)}
     items = []
     for n, e in enumerate(load_catalogue(root)):
         p = profile.get(e["slug"], {})
@@ -542,6 +550,7 @@ def items_v2(root: Path, site: Path) -> tuple[list[dict], dict]:
             "kind": e["kind"],
             "entityType": e["entity_type"],
             "row": e["row"],
+            "sheet": {"tab": "intrari", "row": e["row"]} if v1_rows is None else v1_rows.get(e["slug"]),
             "civictech": e["civictech"] == "1",
             "name": e["nume"],
             "tagline": e["descriere_scurta"],
@@ -621,7 +630,7 @@ def items_v2(root: Path, site: Path) -> tuple[list[dict], dict]:
             "predicates": code_list("relatie_predicat"),
         },
         "legacyTaxonomy": {k: legacy_tax[k] for k in ("domenii", "tipuri", "fel", "acoperire")},
-        "site": {k: v for k, v in pkg.settings["site"].items() if k != "_doc"},
+        "site": site_cfg,
     }
     return items, head
 
@@ -637,7 +646,12 @@ def pages_v2(items: list[dict], head: dict, site: Path) -> tuple[str, int]:
     label = {c["id"]: c["label"] for c in v["concepts"]} | {a["id"]: a["label"] for a in v["areas"]}
     ent = {t["key"]: t["label"] for t in v["entityTypes"]}
     order = v["subjectOrder"]
-    by_subject = lambda rows: [(label[s], "", [i for i in rows if i["primarySubject"] == s]) for s in order] + [
+
+    def hint(rows: list[dict]) -> str:
+        # The group's most frequent topics, in the style of the v1 domain hints ("buget, achiziții, ...").
+        top = Counter(t for i in rows for t in i["topics"]).most_common(4)
+        return ", ".join(l[0].lower() + l[1:] if l[1:2].islower() else l for l in (label[t] for t, _ in top))
+    by_subject = lambda rows: [(label[s], hint([i for i in rows if i["primarySubject"] == s]), [i for i in rows if i["primarySubject"] == s]) for s in order] + [
         (NO_SUBJECT[0], NO_SUBJECT[1], [i for i in rows if not i["primarySubject"]])]
 
     def meta(i: dict) -> str:
