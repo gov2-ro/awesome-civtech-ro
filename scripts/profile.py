@@ -13,7 +13,7 @@
     uv run scripts/profile.py --data-dir data/taxonomy-v2/integrare --only a,b   # a v2 root
 
 Writes data/profil.csv and images into site/img/{og,icon,linkicon}/. Web search lives in scripts/search.py.
---data-dir selects the data root (default data/). A v2 root supplies the entries and keeps its profile in its
+--data-dir selects the data root (default: the public root, PUBLIC_ROOT in common.py). A v2 root supplies the entries and keeps its profile in its
 observatii/profil.csv (an overlay uses its base's). Images stay in site/img/, named by slug.
 
 A refresh never drops what other stages wrote: common.merge_profile keeps mentions, mention_hosts and search_social
@@ -44,7 +44,7 @@ try:
 except ImportError:  # the pure helpers (and the tests) work without them; main() asks for them
     httpx = Image = ImageOps = HTMLParser = None
 
-from common import (load_env, DATA, LINKICON_DIR, NETWORK_ROLES, ROLES, SHARE, SITE, SOCIAL_HOSTS, domain_of, link_host, link_roles, load_catalogue,
+from common import (load_env, PUBLIC_ROOT, LINKICON_DIR, NETWORK_ROLES, ROLES, SHARE, SITE, SOCIAL_HOSTS, domain_of, link_host, link_roles, load_catalogue,
                     load_profile, merge_profile, observation_paths, parse_link, save_profile, split_list)
 
 UA = (
@@ -751,7 +751,7 @@ def need_libraries():
 async def main():
     load_env()
     ap = argparse.ArgumentParser()
-    ap.add_argument("--data-dir", type=Path, default=DATA, help="data root (default: data/); a v2 root keeps its profile in observatii/")
+    ap.add_argument("--data-dir", type=Path, default=PUBLIC_ROOT, help="data root (default: the public root, PUBLIC_ROOT in common.py); a v2 root keeps its profile in observatii/")
     ap.add_argument("--force", action="store_true", help="re-profile everything; with --extra, fetch the link favicons again")
     ap.add_argument("--only", default="")
     ap.add_argument("--no-shots", action="store_true")

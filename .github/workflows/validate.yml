@@ -3,6 +3,7 @@ name: validate
 # Checks every change to the data, the scripts, the site, the v2 browser code or the workflows.
 # v1 (data/) is the public source: its validation and build block. Taxonomy v2 is a preview until the cutover:
 # its package checks, tests and preview build block too, but its publication gate only reports.
+# The cutover rehearsal (scripts/cutover_v2.py --rehearse) blocks as well: it keeps the one-command cutover working.
 on:
   pull_request:
     paths: ["data/**", "scripts/**", "site/**", "site-v2/**", ".github/workflows/**"]
@@ -19,6 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0 # integrare.py proves a detached overlay at its detach commit, and the rehearsal clones the history
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
@@ -52,6 +55,10 @@ jobs:
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
           exit 0
+      - name: Rehearse the v2 cutover on a copy
+        run: |
+          bash <(curl -fsSL https://raw.githubusercontent.com/rhysd/actionlint/v1.7.12/scripts/download-actionlint.bash) 1.7.12
+          ACTIONLINT="$PWD/actionlint" python3 scripts/cutover_v2.py --rehearse "$RUNNER_TEMP/rehearsal"
       - uses: actions/upload-artifact@v7
         with:
           name: site-v2-preview

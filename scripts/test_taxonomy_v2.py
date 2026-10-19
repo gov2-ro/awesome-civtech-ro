@@ -3,7 +3,13 @@
     python3 scripts/test_taxonomy_v2.py          # or: python3 -m unittest scripts/test_taxonomy_v2.py -v
 
 Every mutation runs on a temporary copy; the repository's data and site/ are only read.
+
+PACKAGE and OVERLAY are the package and the integration copy in their derived state: the classifications of the sealed run
+that these tests describe (counts, states, the baseline). While integrare/ is derived they are the real folders. After
+`integrare.py --detach` the owner edits the real files, so they are the package as of the detach commit; REAL_PACKAGE and
+REAL_OVERLAY stay the real folders.
 """
+import atexit
 import csv
 import hashlib
 import importlib.util
@@ -21,8 +27,33 @@ import common  # noqa: E402
 import taxonomy_v2  # noqa: E402
 
 ROOT = HERE.parent
-PACKAGE = ROOT / "data" / "taxonomy-v2"
-OVERLAY = PACKAGE / "integrare"
+REAL_PACKAGE = ROOT / "data" / "taxonomy-v2"
+REAL_OVERLAY = REAL_PACKAGE / "integrare"
+
+
+def load_integrare():
+    """data/taxonomy-v2/integrare.py as a module (it is a script, not a package member)."""
+    spec = importlib.util.spec_from_file_location("integrare", REAL_PACKAGE / "integrare.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def derived_roots() -> tuple[Path, Path]:
+    """(package, overlay) in the derived state; see the module docstring."""
+    record = json.loads((REAL_OVERLAY / "pachet.json").read_text(encoding="utf-8")).get("detached")
+    if not record:
+        return REAL_PACKAGE, REAL_OVERLAY
+    tmp = tempfile.TemporaryDirectory()
+    atexit.register(tmp.cleanup)
+    try:
+        package = load_integrare().export_tree(record["commit"], Path(tmp.name).resolve())
+    except SystemExit as e:  # export_tree names the problem, for instance a clone without the detach commit
+        raise RuntimeError(f"the tests need the package as of the detach commit {record['commit']}: {e}") from e
+    return package, package / "integrare"
+
+
+PACKAGE, OVERLAY = derived_roots()
 
 
 def run(*args) -> subprocess.CompletedProcess:
@@ -205,7 +236,7 @@ class PackageChecks(unittest.TestCase):
         self.assertEqual([s["key"] for s in data["settings"]["sectiuni"]], ["proiect", "organizatie", "resursa"])
 
     def test_integration_copy_is_reproducible(self):
-        result = run(PACKAGE / "integrare.py")
+        result = run(REAL_PACKAGE / "integrare.py")  # the real overlay: derived (matches a fresh assembly) or detached (seal and commit hold)
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
     def test_technology_claims_have_evidence(self):
@@ -223,9 +254,13 @@ class PackageChecks(unittest.TestCase):
 class RootSelection(unittest.TestCase):
     """Slice 2: explicit data roots, v1 by default; observations and snapshots stay where they belong."""
 
-    def test_default_root_is_v1(self):
-        self.assertEqual(common.data_schema(), "v1")
-        self.assertEqual(common.observation_paths()["profile"], common.DATA / "profil.csv")
+    def test_default_root_is_the_public_root(self):
+        """Before the cutover the public root is the v1 root data/; after it, the integration copy."""
+        self.assertIn(common.PUBLIC_ROOT, (common.DATA, REAL_OVERLAY))
+        self.assertEqual(common.data_schema(), common.data_schema(common.PUBLIC_ROOT))
+        self.assertEqual(common.observation_paths(), common.observation_paths(common.PUBLIC_ROOT))
+        self.assertEqual(common.data_schema(common.DATA), "v1")  # data/ stays a readable v1 root
+        self.assertEqual(common.observation_paths(common.DATA)["profile"], common.DATA / "profil.csv")
 
     def test_v2_roots_are_detected(self):
         self.assertEqual(common.data_schema(PACKAGE), "v2")
@@ -261,9 +296,12 @@ class RootSelection(unittest.TestCase):
     def test_validate_cli_selects_the_root(self):
         self.assertEqual(run("scripts/validate.py").returncode, 0)
         self.assertEqual(run("scripts/validate.py", "--data-dir", OVERLAY).returncode, 0)
-        gate = run("scripts/validate.py", "--data-dir", OVERLAY, "--publication")
+        c = Copy()  # a copy that holds a proposal, whatever the state of the repository's data
+        self.addCleanup(c.close)
+        c.edit("intrari.csv", lambda rows: rows[0].update(clasificare_stare="propus"), c.overlay)
+        gate = run("scripts/validate.py", "--data-dir", c.overlay, "--publication")
         self.assertEqual(gate.returncode, 1)
-        self.assertIn("publication: incentru", gate.stdout + gate.stderr)
+        self.assertIn(f"publication: {c.rows('intrari.csv', c.overlay)[1][0]['slug']}", gate.stdout + gate.stderr)
 
     def test_publication_gate_passes_when_everything_is_accepted(self):
         c = Copy()
@@ -281,14 +319,6 @@ class RootSelection(unittest.TestCase):
                     r["stare"], r["decizie_editor"] = "amanat", "test"
         c.edit("revizuire.csv", close)
         self.assertEqual(c.errors(publication=True), [])
-
-
-def load_integrare():
-    """data/taxonomy-v2/integrare.py as a module (it is a script, not a package member)."""
-    spec = importlib.util.spec_from_file_location("integrare", PACKAGE / "integrare.py")
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
 
 
 # What a recommendation must not be: the empty or placeholder proposals of the generated queue.
@@ -421,10 +451,10 @@ class ReviewReconciliation(unittest.TestCase):
             tokens = r["dovada"].split("|") if r["dovada"] else []
             self.assertTrue(tokens, r["id"])
             for token in tokens:
-                self.assertTrue(self.integrare.citation_exists(token, generated), f"{r['id']}: {token}")
+                self.assertTrue(self.integrare.citation_exists(token, generated, PACKAGE), f"{r['id']}: {token}")
 
     def test_invented_evidence_is_refused(self):
-        exists = self.integrare.citation_exists
+        exists = lambda token, generated: self.integrare.citation_exists(token, generated, PACKAGE)
         slug = "7-ani-de-acasa"
         self.assertTrue(exists(f"clasificare-input.csv:{slug}:descriere", {}))  # an empty cell proves an absent description
         self.assertTrue(exists(f"runs/2026-10-19-reasoned-evidence/responses/{slug}.json:justifications[subiect_principal]", {}))
@@ -492,12 +522,16 @@ class Build(unittest.TestCase):
         cls.tmp.cleanup()
 
     def test_v2_build_needs_a_separate_site_dir(self):
-        result = run("scripts/build.py", "--data-dir", OVERLAY, "--allow-draft")
+        """A v2 root that is not the public root never writes site/, whatever the public root is (PACKAGE never is)."""
+        result = run("scripts/build.py", "--data-dir", PACKAGE, "--allow-draft")
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("separate --site-dir", result.stderr)
 
     def test_v2_build_needs_allow_draft_for_proposals(self):
-        result = run("scripts/build.py", "--data-dir", OVERLAY, "--site-dir", Path(self.tmp.name) / "refused")
+        c = Copy()  # a copy that holds proposals, whatever the state of the repository's data
+        self.addCleanup(c.close)
+        c.edit("intrari.csv", lambda rows: rows[0].update(clasificare_stare="propus"), c.overlay)
+        result = run("scripts/build.py", "--data-dir", c.overlay, "--site-dir", Path(self.tmp.name) / "refused")
         self.assertNotEqual(result.returncode, 0)
         self.assertFalse((Path(self.tmp.name) / "refused").exists())
 
@@ -513,7 +547,11 @@ class Build(unittest.TestCase):
         pages = [p for k in ("proiect", "organizatie", "resursa") for p in (self.out / k).glob("*/index.html")]
         self.assertEqual(len(pages), 122)
         self.assertTrue(all((self.out / k / "index.html").exists() for k in ("proiect", "organizatie", "resursa")))
-        self.assertIn('href="v2.css?v=', (self.out / "index.html").read_text())
+        index = (self.out / "index.html").read_text()
+        if (ROOT / "site-v2").is_dir():  # before the cutover a v2 preview links the extra stylesheet
+            self.assertIn('href="v2.css?v=', index)
+        else:  # after it, style.css holds those rules
+            self.assertNotIn("v2.css", index)
 
     def test_payload_contract(self):
         d = self.data

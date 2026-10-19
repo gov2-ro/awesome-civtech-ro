@@ -171,8 +171,11 @@ def load(root) -> Package:
 
 def check(root, baseline: bool = False, publication: bool = False) -> tuple[list[str], dict]:
     """Structural errors of the package at `root`, and a summary of its counts. `baseline` also proves that the copy
-    preserves the source snapshots; `publication` adds the public-build gate (accepted classifications only)."""
+    preserves the source snapshots; `publication` adds the public-build gate (accepted classifications only).
+    A detached overlay (pachet.json has `detached`, see integrare.py) is editorial: it stops proving the initial state,
+    so `baseline` does not apply to it."""
     pkg = load(root)
+    baseline = baseline and not (pkg.files.overlay or {}).get("detached")
     errors = list(pkg.problems)
     fail = errors.append
     schema, settings = pkg.schema, pkg.settings
@@ -370,6 +373,7 @@ def check(root, baseline: bool = False, publication: bool = False) -> tuple[list
     entries = pkg.entries.values()
     summary = {
         "schema_version": pkg.version, "root": str(pkg.files.root), "overlay": pkg.files.overlay is not None,
+        "detached": (pkg.files.overlay or {}).get("detached"),
         "entries": len(pkg.entries), "concepts": len(pkg.concepts), "code_lists": len(pkg.codes),
         "codes": sum(len(c) for c in pkg.codes.values()), "link_roles": len(pkg.roles), "link_hosts": len(pkg.hosts),
         "relations": len(pkg.tables.get("relatii.csv", [])), "review_items": len(pkg.tables.get("revizuire.csv", [])),

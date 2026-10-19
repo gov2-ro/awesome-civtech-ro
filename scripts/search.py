@@ -16,7 +16,7 @@ keeps the rule that would drop it (`regula`); a person overrides the rules in th
 (1 keeps, 0 drops) and search.py keeps that column on every rewrite. Then it recomputes `mentions`,
 `mention_hosts` and `search_social` in data/profil.csv from the kept rows.
 
---data-dir selects the data root (default data/). A v2 root supplies the entries and keeps mentiuni.csv and
+--data-dir selects the data root (default: the public root, PUBLIC_ROOT in common.py). A v2 root supplies the entries and keeps mentiuni.csv and
 profil.csv in its observatii/ folder (an overlay uses its base's). On a v2 root the author names come from the
 attribution relations (a literal, or the name of the target entry), with `autor_original` as the fallback, and the
 author's own site is the URL of a relation target that is an organisation entry. A literal never matches an
@@ -41,7 +41,7 @@ try:
 except ImportError:  # the pure functions (and the tests) work without it; the search itself needs it
     httpx = None
 
-from common import (load_env, DATA, MENTIUNI_COLS, SHARE, SOCIAL_HOSTS, data_schema, domain_of, is_kept, is_url, load_catalogue,
+from common import (load_env, PUBLIC_ROOT, MENTIUNI_COLS, SHARE, SOCIAL_HOSTS, data_schema, domain_of, is_kept, is_url, load_catalogue,
                     load_mentions, load_profile, observation_paths, save_profile, split_list, write_csv)
 
 SERPER = "https://google.serper.dev/search"
@@ -410,7 +410,7 @@ async def run(todo: list[dict], plans: dict, old: dict[str, list[dict]], rows: l
 def main():
     load_env()
     ap = argparse.ArgumentParser()
-    ap.add_argument("--data-dir", type=Path, default=DATA, help="data root (default: data/); a v2 root keeps its files in observatii/")
+    ap.add_argument("--data-dir", type=Path, default=PUBLIC_ROOT, help="data root (default: the public root, PUBLIC_ROOT in common.py); a v2 root keeps its files in observatii/")
     ap.add_argument("--only", default="", help="comma-separated slugs")
     ap.add_argument("--force", action="store_true", help="query again the slugs that already have rows")
     ap.add_argument("--provider", choices=["serper", "brave", "all"], default="all")

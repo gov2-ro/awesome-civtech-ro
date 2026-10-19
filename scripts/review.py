@@ -22,7 +22,7 @@ sent, the vocabulary, the prompt with its answer schema, and the model. A change
 again. An answer without hashes (an earlier version of this script) is due too. After every run the script reports the
 label coverage: the labelled kept rows over all kept rows.
 
---data-dir selects the data root (default data/). On a v2 root (taxonomy v2 package or overlay) the request lists every
+--data-dir selects the data root (default: the public root, PUBLIC_ROOT in common.py). On a v2 root (taxonomy v2 package or overlay) the request lists every
 facet with scheme-qualified ids and definitions, and the answer has one array per facet (subiecte, teme, scopuri,
 functionalitati, formate, tehnologii, institutii_vizate). A technology or a typed role (creat_de, mentinut_de, publicat_de,
 finantat_de) needs a source: a supplied url and a quote that the supplied text contains; the script drops the rest.
@@ -51,7 +51,7 @@ try:
 except ImportError:  # the pure functions, the dry run and the tests work without them; a real run needs them
     anthropic = httpx = HTMLParser = None
 
-from common import (load_env, DATA, ETICHETE_COLS, coverage_line, data_schema, domain_of, is_kept, label_coverage, load_catalogue,
+from common import (load_env, DATA, PUBLIC_ROOT, ETICHETE_COLS, coverage_line, data_schema, domain_of, is_kept, label_coverage, load_catalogue,
                     load_mentions, load_profile, load_vocabulary, observation_paths, read_csv, split_list, split_tip, write_csv)
 
 MODEL = "claude-haiku-5-5"
@@ -704,7 +704,7 @@ def need_libraries():
 def main():
     load_env()
     ap = argparse.ArgumentParser()
-    ap.add_argument("--data-dir", type=Path, default=DATA, help="data root (default: data/); a v2 root keeps its files in observatii/")
+    ap.add_argument("--data-dir", type=Path, default=PUBLIC_ROOT, help="data root (default: the public root, PUBLIC_ROOT in common.py); a v2 root keeps its files in observatii/")
     ap.add_argument("--only", default="")
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--force", action="store_true")

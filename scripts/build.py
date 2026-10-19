@@ -8,11 +8,13 @@ The page's folder is the entry's tab: site/proiect/, site/organizatie/ or site/r
     python3 scripts/build.py --site-dir /tmp/civtech-v1                     # the same site, written elsewhere
     python3 scripts/build.py --data-dir data/taxonomy-v2/integrare --site-dir /tmp/civtech-v2 --allow-draft
 
---data-dir selects the data root (default data/, the v1 layout). A taxonomy v2 root builds the v2 payload
-(schemaVersion 2) with the v2 browser code from site-v2/. --site-dir writes every output, page deletion, asset stamp
-and image there: it first copies the template, assets and images of site/, so a preview never touches site/.
-A v2 build needs --site-dir until the source cutover. It also refuses proposed classifications unless
---allow-draft is given; the preview then says that its classifications are proposals.
+--data-dir selects the data root (default: the public root, PUBLIC_ROOT in common.py; data/, the v1 layout, until the
+cutover). A taxonomy v2 root builds the v2 payload (schemaVersion 2). --site-dir writes every output, page deletion,
+asset stamp and image there: it first copies the template, assets and images of site/, so a preview never touches site/.
+Only the public root may write site/ (the default --site-dir). A v2 public root always passes the publication gate:
+it needs accepted classifications and no open high-priority review item. Any other v2 root needs a separate --site-dir
+and --allow-draft; the preview then says that its classifications are proposals. --allow-draft never writes site/.
+Before the cutover, a v2 preview copies the v2 browser code from site-v2/ over the template.
 """
 import argparse
 import hashlib
@@ -29,7 +31,7 @@ from datetime import date, datetime, timezone
 
 from pathlib import Path
 
-from common import (BOILERPLATE, DATA, NETWORK_ROLES, ROOT, SITE, coverage_line, data_schema, domain_of, kept_by_slug, label_coverage,
+from common import (BOILERPLATE, DATA, NETWORK_ROLES, PUBLIC_ROOT, ROOT, SITE, coverage_line, data_schema, domain_of, kept_by_slug, label_coverage,
                     link_host, load_catalogue, load_entries, load_mentions, load_profile, load_vocabulary, observation_paths,
                     parse_link, read_csv, split_list, split_tip)
 
@@ -712,16 +714,20 @@ def prepare_site(site: Path, v2: bool):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--data-dir", type=Path, default=DATA, help="data root (default: data/)")
-    parser.add_argument("--site-dir", type=Path, default=SITE, help="output folder (default: site/)")
-    parser.add_argument("--allow-draft", action="store_true", help="v2 preview: allow proposed classifications")
+    parser.add_argument("--data-dir", type=Path, default=PUBLIC_ROOT, help="data root (default: the public root, PUBLIC_ROOT in common.py)")
+    parser.add_argument("--site-dir", type=Path, default=SITE, help="output folder (default: site/, for the public root only)")
+    parser.add_argument("--allow-draft", action="store_true", help="v2 preview: allow proposed classifications (never for site/)")
     args = parser.parse_args()
     data_dir, site = args.data_dir.resolve(), args.site_dir.resolve()
-    v2 = data_schema(data_dir) == "v2"
+    schema, public = data_schema(data_dir), PUBLIC_ROOT.resolve()
+    v2 = schema == "v2"
+    if site == SITE and data_dir != public and "v2" in (schema, data_schema(public)):
+        # site/ belongs to the public root's schema: another v2 root, or a v1 root once the public root is v2, never writes it.
+        raise SystemExit(f"{data_dir} is not the public root ({public}): a build from it writes to a separate --site-dir, and site/ stays the public site")
     if v2:
         import taxonomy_v2
-        if site == SITE:
-            raise SystemExit("a v2 build writes to a separate --site-dir until the source cutover; site/ stays the v1 site")
+        if site == SITE and args.allow_draft:
+            raise SystemExit("--allow-draft cannot write the public site: site/ takes accepted classifications only (use a separate --site-dir for a preview)")
         errors, _ = taxonomy_v2.check(data_dir, publication=not args.allow_draft)
         if errors:
             print("\n".join(errors[:20]), file=sys.stderr)

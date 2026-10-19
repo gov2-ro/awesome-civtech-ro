@@ -14,9 +14,9 @@
 Needs SHEET_ID and a service-account key: GOOGLE_SA_KEY (the JSON text) or GOOGLE_APPLICATION_CREDENTIALS (a path).
 The repo is the source of truth. `diff` and `pull` read the Sheet; `push` overwrites it, so it checks first.
 
-Data roots. The default root is data/ (v1): tabs `proiecte` and `orgs`. A taxonomy v2 root (--data-dir) uses new tabs only:
-`v2-intrari` mirrors intrari.csv, `v2-revizuire` mirrors revizuire.csv; headers come from schema.json. A v2 root refuses
-to touch the live v1 tabs, and a v1 root refuses the v2 tabs.
+Data roots. The default root is PUBLIC_ROOT (common.py; data/ until the cutover). The v1 root (data/) uses the tabs
+`proiecte` and `orgs`. A taxonomy v2 root uses new tabs only: `v2-intrari` mirrors intrari.csv, `v2-revizuire` mirrors
+revizuire.csv; headers come from schema.json. A v2 root refuses to touch the live v1 tabs, and a v1 root refuses the v2 tabs.
 
 The sync marker is the tab `_sync` of the Sheet, one row per synced tab: tab, commit, SHA-256 of the CSV text pushed,
 time. `push` writes it last, and only when the CSV it pushed equals the file at HEAD. It is the base of a three-way
@@ -43,7 +43,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Callable
 
-from common import DATA, ORGS_COLS, PROIECTE_COLS, ROOT, data_schema, load_env, write_csv
+from common import PUBLIC_ROOT, ORGS_COLS, PROIECTE_COLS, ROOT, data_schema, load_env, write_csv
 
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 PENDING = 3  # exit code: the Sheet holds edits that are not in the repo, or both sides changed a cell
@@ -772,7 +772,7 @@ def main():
     load_env()
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     shared = argparse.ArgumentParser(add_help=False)
-    shared.add_argument("--data-dir", type=Path, default=DATA, help="data root (default: data/, the v1 tabs)")
+    shared.add_argument("--data-dir", type=Path, default=PUBLIC_ROOT, help="data root (default: the public root, PUBLIC_ROOT in common.py; v1: tabs proiecte and orgs, v2: tab v2-intrari)")
     shared.add_argument("--tabs", default="", help="comma-separated tabs of the root (v2: v2-intrari, v2-revizuire)")
     shared.add_argument("--since", default="", metavar="REF", help="commit whose CSVs are the base, instead of the sync marker")
     sub = ap.add_subparsers(dest="cmd", required=True)
