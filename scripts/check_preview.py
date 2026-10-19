@@ -3,7 +3,9 @@
 # dependencies = ["playwright>=1.48"]
 # ///
 """Browser acceptance checks for a v2 preview: desktop and mobile filtering, counts, direct links, archives, old
-bookmarks, search labels. It reads the preview's own data.json for the expected numbers; it changes nothing.
+bookmarks, search labels, a failed data load and its retry, the page without JavaScript, the canonical and share tags
+after opening and closing an entry, and the wording of the observed dates. It reads the preview's own data.json for the
+expected numbers; it changes nothing (two checks rewrite data.json in the browser only, with Playwright's `page.route`).
 
     python3 scripts/build.py --data-dir data/taxonomy-v2/integrare --site-dir /tmp/civtech-v2 --allow-draft
     python3 -m http.server -d /tmp/civtech-v2 8765 &
@@ -11,10 +13,13 @@ bookmarks, search labels. It reads the preview's own data.json for the expected 
 
 Exits 1 when a check fails. Playwright needs its Chromium (`uv run --with playwright playwright install chromium`).
 """
+import copy
 import json
 import sys
 import urllib.parse
 import urllib.request
+from datetime import date, datetime, timedelta, timezone
+from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 BASE = sys.argv[1] if len(sys.argv) > 1 else "http://localhost:8765/"
@@ -302,6 +307,207 @@ with sync_playwright() as pw:
         m.keyboard.press("Space")
         ok("mobile sheet keeps the focus on a toggle", m.evaluate("document.activeElement?.dataset?.act") == "toggle")
     m.close()
+
+    # 15. A failed data load: a message, a retry button and the three static lists; the retry loads the page.
+    def flaky(fail_times, status=None):
+        """A route handler that fails the first `fail_times` requests (aborted, or answered with `status`), then lets them through."""
+        calls = {"n": 0}
+
+        def handler(route):
+            calls["n"] += 1
+            if calls["n"] > fail_times:
+                route.continue_()
+            elif status:
+                route.fulfill(status=status, body="unavailable", content_type="text/plain")
+            else:
+                route.abort()
+        return handler, calls
+
+    archive_hrefs = [BASE + f"{k}/" for k in ("proiect", "organizatie", "resursa")]
+    hrefs_in = lambda p, sel: p.evaluate("sel => [...document.querySelectorAll(sel)].map(a => a.href)", sel)
+    load_errors = []
+    f = browser.new_page(viewport={"width": 1280, "height": 900})
+    f.on("pageerror", lambda e: load_errors.append(str(e)))
+    handler, calls = flaky(2)
+    f.route("**/data.json", handler)
+    f.goto(BASE)
+    f.wait_for_selector('[data-slot="results"] [data-act="retry"]')
+    alert = f.locator('[data-slot="results"] [role="alert"]')
+    ok("failed data load shows a message and a retry button", alert.count() == 1 and "Nu am putut încărca" in alert.inner_text()
+       and "Încearcă din nou" in alert.locator('[data-act="retry"]').inner_text(), alert.inner_text().replace("\n", " | ")[:120])
+    ok("failed data load links the three static lists", hrefs_in(f, '[data-slot="results"] [role="alert"] a') == archive_hrefs)
+    f.fill('[data-slot="q"]', "achizitii")
+    f.evaluate("document.querySelector('[data-act=\"sheet\"]').click()")
+    f.wait_for_timeout(300)
+    ok("search box and filter button do nothing while the data is missing", not load_errors and f.locator('[data-slot="sheet"]').is_hidden(), "; ".join(load_errors[:2]))
+    f.click('[data-act="retry"]')
+    f.wait_for_selector('[data-slot="results"] [data-act="retry"]')
+    ok("a retry that fails again keeps the message and the focus on the button", f.locator('[data-slot="results"] [role="alert"]').count() == 1
+       and f.evaluate("document.activeElement?.dataset?.act") == "retry", f"{calls['n']} requests")
+    f.fill('[data-slot="q"]', "")
+    f.click('[data-act="retry"]')
+    f.wait_for_selector('[data-slot="toolbar"] .count')
+    ok("a retry that succeeds loads the list", count_text(f) == len(projects) and f.locator('[role="alert"]').count() == 0 and calls["n"] == 3,
+       f"{count_text(f)} results, {calls['n']} requests")
+    f.close()
+    f = browser.new_page(viewport={"width": 1280, "height": 900})
+    handler, calls = flaky(1, status=500)
+    f.route("**/data.json", handler)
+    f.goto(BASE)
+    f.wait_for_selector('[data-slot="results"] [data-act="retry"]')
+    shown = "Nu am putut încărca" in f.locator('[data-slot="results"]').inner_text()
+    f.click('[data-act="retry"]')
+    f.wait_for_selector('[data-slot="toolbar"] .count')
+    ok("a server error shows the same message, and the retry works", shown and count_text(f) == len(projects))
+    f.close()
+    f = browser.new_page(viewport={"width": 1280, "height": 900})
+    handler, calls = flaky(1)
+    f.route("**/data.json", handler)
+    f.goto(BASE + f"proiect/{proj['slug']}/")
+    f.wait_for_selector('[data-slot="results"] [data-act="retry"]')
+    ok("failed load on an entry page links the lists from the site root", hrefs_in(f, '[data-slot="results"] [role="alert"] a') == archive_hrefs)
+    f.click('[data-act="retry"]')
+    f.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
+    ok("retry on an entry page opens the entry", f.locator("#d-title").inner_text() == proj["name"])
+    f.close()
+
+    # 16. Without JavaScript: an introduction and the three archives; the footer links the methodology page.
+    nojs = browser.new_context(java_script_enabled=False)
+    n = nojs.new_page()
+    n.goto(BASE)
+    intro = n.locator("#results").inner_text()
+    ok("without JavaScript the home page has an introduction", "JavaScript" in intro and "Director de instrumente civice" in intro, intro.replace("\n", " | ")[:100])
+    links = hrefs_in(n, "#results a")
+    ok("without JavaScript the home page links the three archives", links == archive_hrefs and all(nojs.request.get(h).status == 200 for h in links), str(links))
+    n.goto(BASE + f"proiect/{proj['slug']}/")
+    ok("without JavaScript an entry page shows the entry and links the archives", n.locator("article.nojs h1").inner_text() == proj["name"]
+       and hrefs_in(n, "#results a") == archive_hrefs)
+    method = "https://github.com/gov2-ro/awesome-civtech-ro/blob/main/docs/METODOLOGIE.md"
+    ok("footer links the methodology page", hrefs_in(n, "footer a").count(method) == 1)
+    page.goto(BASE)
+    page.wait_for_selector('[data-slot="toolbar"] .count')
+    ok("footer links the methodology page (with JavaScript)", page.locator(f'footer a[href="{method}"]').count() == 1)
+    doc = (Path(__file__).resolve().parent.parent / "docs" / "METODOLOGIE.md").read_text(encoding="utf-8")
+    ok("the methodology page is in the repo and covers status, code link, first trace, activity and score",
+       all(t in doc for t in ("## 1. Starea", "nu este o licență open source", "Nu este data lansării", "## 4. Ultima actualizare", "## 6. Scorul de relevanță", "Ce favorizează scorul")))
+
+    # 17. Canonical and share metadata follow the address: the static head of an entry page, the home head, and back.
+    HEAD_JS = """() => { const g = (s, a = 'content') => document.querySelector(s)?.getAttribute(a) ?? null;
+      return { canonical: g('link[rel="canonical"]', 'href'), 'og:url': g('meta[property="og:url"]'), description: g('meta[name="description"]'),
+        'og:title': g('meta[property="og:title"]'), 'og:description': g('meta[property="og:description"]'),
+        'twitter:title': g('meta[name="twitter:title"]'), 'twitter:description': g('meta[name="twitter:description"]'),
+        'og:image': g('meta[property="og:image"]'), 'twitter:image': g('meta[name="twitter:image"]'),
+        'og:image:width': g('meta[property="og:image:width"]'), 'og:image:height': g('meta[property="og:image:height"]'),
+        'og:image:alt': g('meta[property="og:image:alt"]') }; }"""
+    TEXTS = ("description", "og:description", "twitter:description")
+    head = lambda p: p.evaluate(HEAD_JS)
+    differs = lambda got, want, skip=(): {k: got[k] for k in want if k not in skip and got[k] != want[k]}
+    raw = nojs.new_page()  # no script runs here: its head is what build.py wrote
+
+    def raw_head(path):
+        raw.goto(BASE + path)
+        return head(raw)
+    home_head = raw_head("")
+    cover = next(i for i in DB["items"] if i["img"] and i["img"]["kind"] != "logo" and i["status"] not in INACTIVE)
+    plain = next(i for i in DB["items"] if (not i["img"] or i["img"]["kind"] == "logo") and i["status"] not in INACTIVE)  # no cover: the shared image
+    x_head, y_head = raw_head(f"{plain['kind']}/{plain['slug']}/"), raw_head(f"{cover['kind']}/{cover['slug']}/")
+    ok("static heads differ: home, entry without a cover, entry with a cover", len({home_head["canonical"], x_head["canonical"], y_head["canonical"]}) == 3
+       and y_head["og:image"] != home_head["og:image"] and x_head["og:image"] == home_head["og:image"])
+    h = browser.new_page(viewport={"width": 1280, "height": 900})
+    h.on("pageerror", lambda e: errors.append(str(e)))
+    h.goto(BASE + f"{plain['kind']}/{plain['slug']}/")
+    h.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
+    ok("an entry opened directly keeps its own head", not differs(head(h), x_head), str(differs(head(h), x_head)))
+    h.click('[data-slot="drawer"] [data-act="close"]')
+    h.wait_for_selector('[data-slot="drawer"][hidden]', state="attached")
+    ok("closing a directly opened entry restores the home canonical and share tags", not differs(head(h), home_head), str(differs(head(h), home_head)))
+    ok("closing an entry restores the page title", plain["name"] not in h.title())
+    h.goto(BASE + f"?k={cover['kind']}&ina=1&o=az")
+    h.wait_for_selector('[data-slot="toolbar"] .count')
+    ok("the home page keeps its own head", not differs(head(h), home_head), str(differs(head(h), home_head)))
+    h.locator(f'[data-slot="results"] [data-open="{cover["slug"]}"] a.stretch').first.click()
+    h.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
+    got = head(h)
+    ok("opening an entry in the page sets its canonical and share tags", not differs(got, y_head, TEXTS) and all(got[k].startswith(y_head[k][:30]) for k in TEXTS),
+       str(differs(got, y_head, TEXTS)))
+    h.go_back()
+    h.wait_for_selector('[data-slot="drawer"][hidden]', state="attached")
+    ok("Back restores the home canonical and share tags", not differs(head(h), home_head), str(differs(head(h), home_head)))
+    h.locator(f'[data-slot="results"] [data-open="{cover["slug"]}"] a.stretch').first.click()
+    h.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
+    h.keyboard.press("Escape")
+    h.wait_for_selector('[data-slot="drawer"][hidden]', state="attached")
+    ok("Escape restores the home canonical and share tags", not differs(head(h), home_head), str(differs(head(h), home_head)))
+    h.goto(BASE + f"?p={plain['slug']}")
+    h.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
+    ok("an old ?p= link gets the entry's canonical", not differs(head(h), x_head, TEXTS), str(differs(head(h), x_head, TEXTS)))
+    h.close()
+
+    # 18. Observed dates: badges, columns, sort and toggle say "observed", not "launched" (data.json is rewritten with known dates).
+    today = datetime.now(timezone.utc).date()
+    a_item, b_item = projects[0], projects[1]
+    altered = copy.deepcopy(DB)
+    for it, days, src in ((a_item, 30, "arhiva"), (b_item, 120, "cod")):
+        row = next(i for i in altered["items"] if i["slug"] == it["slug"])
+        row["since"], row["sinceSrc"] = (today - timedelta(days=days)).isoformat(), src
+    by_slug = {i["slug"]: i for i in altered["items"]}
+    fresh_n = sum(1 for i in altered["items"] if i["kind"] == "proiect" and i["status"] not in INACTIVE and i["since"]
+                  and (today - date.fromisoformat(i["since"])).days < 183)
+    body = json.dumps(altered, ensure_ascii=False)
+    w = browser.new_page(viewport={"width": 1280, "height": 900})
+    w.on("pageerror", lambda e: errors.append(str(e)))
+    w.route("**/data.json", lambda route: route.fulfill(body=body, content_type="application/json"))
+    w.goto(BASE + "?v=list")
+    w.wait_for_selector('[data-slot="results"] .row')
+    row_a, row_b = (w.locator(f'[data-slot="results"] .row[data-open="{i["slug"]}"]') for i in (a_item, b_item))
+    tag_a, tag_b = row_a.locator(".new-tag"), row_b.locator(".new-tag")
+    ok("a recent first trace reads \"apărut recent\", not \"lansat\" or \"nou\"", tag_a.inner_text().lower() == "apărut recent" and tag_b.inner_text().lower() == "apărut recent",
+       f"{tag_a.inner_text()!r} / {tag_b.inner_text()!r}")
+    ok("the badge tooltip says observed, names the date and source, and denies a launch", all(t in tag_a.get_attribute("title") for t in (
+        "Prima urmă observată", "acum 30 de zile", (today - timedelta(days=30)).isoformat(), "prima arhivare Wayback", "Nu este data lansării")), tag_a.get_attribute("title"))
+    ok("the 60-day and 183-day tiers keep their two looks", "launch" in tag_a.get_attribute("class") and "launch" not in tag_b.get_attribute("class"))
+    head_row = w.locator(".list-head").first
+    titles = head_row.locator("span").all_inner_texts()
+    helps = head_row.locator("span[title]").evaluate_all("els => els.map(e => e.title)")
+    ok("date column headers are Romanian words with tooltips that explain Z, L, A", "PRIMA URMĂ" in [t.upper() for t in titles] and "ACTUALIZAT" in [t.upper() for t in titles]
+       and len(helps) == 2 and all("Z = zile, L = luni, A = ani" in t for t in helps) and "Nu este data lansării" in helps[0], " | ".join(helps)[:90])
+    cell = row_a.locator(".row-side").nth(1)
+    ok("the first-trace cell shows the short span and gives screen readers the words", cell.text_content().startswith("30Z") and "prima urmă observată acum 30 de zile" in cell.text_content(),
+       cell.text_content())
+    option = w.locator('#sort option[value="nou"]')
+    ok("sort label says first trace", option.inner_text() == "Apărute recent (prima urmă)" and "Prima urmă observată" in option.get_attribute("title"), option.inner_text())
+    w.select_option("#sort", "nou")
+    w.wait_for_timeout(100)
+    first = w.locator('[data-slot="results"] [data-open]').first.get_attribute("data-open")
+    top = max(i["since"] for i in altered["items"] if i["kind"] == "proiect" and i["status"] not in INACTIVE)
+    ok("sorting by first trace puts the newest trace first", by_slug[first]["since"] == top, f"{first} {by_slug[first]['since']} vs {top}")
+    w.goto(BASE + "?v=list")
+    w.wait_for_selector('[data-slot="results"] .row')
+    if w.locator('[data-facet="optiuni"]').get_attribute("open") is None:
+        w.click('[data-facet="optiuni"] > summary')
+    toggle = w.locator('[data-act="toggle"][data-key="nou"]')
+    ok("the new-entries toggle says appeared recently", "Doar proiecte apărute recent" in toggle.locator("xpath=..").text_content(), toggle.locator("xpath=..").text_content().strip())
+    toggle.check()
+    w.wait_for_selector('[data-slot="toolbar"] .pill')
+    pills = w.locator('[data-slot="toolbar"] .pill').all_inner_texts()
+    ok("the toggle's pill and count match", "Apărute recent" in pills and count_text(w) == fresh_n, f"{pills}; {count_text(w)} vs {fresh_n}")
+    w.goto(BASE + f"proiect/{a_item['slug']}/")
+    w.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
+    drawer_text = w.locator('[data-slot="drawer"]').inner_text()
+    badge = w.locator('[data-slot="drawer"] .d-badges .new')
+    ok("detail row is \"Prima urmă observată\" and says it is not a launch date", "PRIMA URMĂ OBSERVATĂ" in drawer_text.upper() and "VECHIME" not in drawer_text.upper()
+       and "nu este data lansării" in drawer_text, "")
+    ok("detail badge says apărut recent with the age", badge.count() == 1 and badge.inner_text().startswith("apărut recent · acum 30 de zile"), badge.inner_text() if badge.count() else "none")
+    mw = browser.new_page(viewport={"width": 390, "height": 844}, is_mobile=True, has_touch=True)
+    mw.on("pageerror", lambda e: errors.append(str(e)))
+    mw.route("**/data.json", lambda route: route.fulfill(body=body, content_type="application/json"))
+    mw.goto(BASE + "?v=list")
+    mw.wait_for_selector('[data-slot="results"] .row')
+    meta = mw.locator(f'[data-slot="results"] .row[data-open="{a_item["slug"]}"] .meta-m').inner_text().lower()
+    ok("mobile list line says prima urmă, not vechime", "prima urmă acum 30 de zile" in meta and "vechime" not in meta, meta)
+    mw.close()
+    w.close()
+    nojs.close()
 
     ok("no page errors", not errors, "; ".join(errors[:3]))
     browser.close()

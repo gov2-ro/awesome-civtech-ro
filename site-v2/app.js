@@ -54,7 +54,14 @@ const STATUS = {
   necunoscut: { label: 'Neconfirmat', cls: 'warn', group: 'neconfirmat' },
   neverificat: { label: 'Neverificat', cls: 'warn', group: 'neconfirmat' },
 };
-const SORTS = [['subiect', 'Pe subiecte'], ['az', 'A–Z'], ['top', 'Active și relevante'], ['relevanta', 'Relevanță'], ['nou', 'Cele mai noi'], ['recent', 'Actualizate recent'], ['random', 'Aleatoriu']];
+const SORTS = [['subiect', 'Pe subiecte'], ['az', 'A–Z'], ['top', 'Active și relevante'], ['relevanta', 'Relevanță'], ['nou', 'Apărute recent (prima urmă)'], ['recent', 'Actualizate recent'], ['random', 'Aleatoriu']];
+// What the two date columns and their sorts mean. `since` is the first trace the profiler observed (a web archive capture,
+// the creation of the code repository, or the first TLS certificate of the domain); it is not the date the project launched.
+const DATE_HELP = {
+  since: 'Prima urmă observată: arhivă web, depozit de cod sau certificat TLS. Nu este data lansării. Z = zile, L = luni, A = ani de atunci.',
+  updated: 'Ultima actualizare observată: depozit de cod, feed, WordPress, sitemap, antet de server sau arhivă web. Z = zile, L = luni, A = ani de atunci.',
+};
+const SORT_HELP = { nou: DATE_HELP.since, recent: DATE_HELP.updated };
 const MIN_Q = 3;
 // ina=1 shows inactive projects (hidden by default); a and s are kept for URLs but have no UI for now.
 // The facets hold comma-separated concept or area IDs: OR within a facet, AND between facets.
@@ -73,7 +80,8 @@ const FILTERS = ['q', ...FACETS, ...LEGACY, 'org', 'a', 's', 'cod', 'civ', 'nou'
 const SCHEME_OF = { subj: 'subiect', topic: 'subiect', cap: 'functie', fmt: 'format', purpose: 'scop', tech: 'tehnologie', inst: 'institutie', orgt: 'organizatie' };
 const FIELD = { subj: 'subjects', topic: 'topics', cap: 'capabilities', fmt: 'formats', area: 'areas', purpose: 'purposes', tech: 'technologies',
   inst: 'institutions', orgt: 'organisationTypes' };
-const FRESH_DAYS = 183, LAUNCH_DAYS = 60;
+// A first observed trace this recent counts as fresh; this recent again, as the newest (never as a confirmed launch).
+const FRESH_DAYS = 183, NEWEST_DAYS = 60;
 
 let DB = null, TAX = null, seed = Math.random();
 const BY_SLUG = new Map(), CONCEPT = new Map(), AREA = new Map();
@@ -182,15 +190,15 @@ const activeFilterCount = () => ['d', 'c', 'org', 'a', 's', 'cod', 'civ', 'nou',
   + MULTI.reduce((n, k) => n + listOf(k).length, 0);
 const rank = it => ({ activ: 0, neconfirmat: 1, inactiv: 2 })[STATUS[it.status].group];
 const byName = (a, b) => a._sort.localeCompare(b._sort);
-// Last sign of life: the last update, or the launch date when that is later. A recent launch thus
+// Last sign of life: the last update, or the first observed trace when that is later. A recent first trace thus
 // sorts like a recent update. Entries with neither go last.
-const lastSign = it => [it.updated, isLaunched(it) ? it.since : ''].sort().at(-1) || '';
+const lastSign = it => [it.updated, isNewest(it) ? it.since : ''].sort().at(-1) || '';
 // "Active și relevante": the build's relevance score, discounted by time since the last sign of life
-// (half-life ~8 months; unknown counts as old), plus a small bump for a launch in the last 60 days.
+// (half-life ~8 months; unknown counts as old), plus a small bump for a first trace in the last 60 days.
 function topScore(it) {
   const d = lastSign(it);
   const recency = d ? Math.exp(-daysSince(d) / 365) : .25;
-  return it.score * (.5 + .5 * recency) + (isLaunched(it) ? 8 : 0);
+  return it.score * (.5 + .5 * recency) + (isNewest(it) ? 8 : 0);
 }
 function sorted(list) {
   if (state.o === 'random') {
@@ -200,7 +208,7 @@ function sorted(list) {
   if (state.o === 'top') return [...list].sort((a, b) => topScore(b) - topScore(a) || byName(a, b));
   if (state.o === 'subiect') return [...list].sort((a, b) => rank(a) - rank(b) || lastSign(b).localeCompare(lastSign(a)) || byName(a, b));
   if (state.o === 'relevanta') return [...list].sort((a, b) => b.score - a.score || byName(a, b));
-  // Entries with no known start date go last.
+  // Entries with no observed first trace go last.
   if (state.o === 'nou') return [...list].sort((a, b) => (b.since || '0').localeCompare(a.since || '0') || byName(a, b));
   if (state.o === 'recent') return [...list].sort((a, b) => (b.updated || '').localeCompare(a.updated || '') || byName(a, b));
   return [...list].sort((a, b) => rank(a) - rank(b) || byName(a, b));
@@ -245,8 +253,9 @@ function metaLine(it, withDomain, withFormat = false) {
 const statusDot = it => `<span class="dot ${STATUS[it.status].cls}" title="${STATUS[it.status].label}"></span>`;
 // A code link says that the source is public; a licence is a separate fact (the detail panel shows it when known).
 const codeTag = it => it.code ? `<span class="code-tag" title="Cod sursă public">${ICON.code}cod</span>` : '';
+// "Apărut recent" says what was observed: the first trace of the entry on the web is recent. It does not say when it launched.
 const newTag = it => !isFresh(it) ? ''
-  : `<span class="code-tag new-tag${isLaunched(it) ? ' launch' : ''}" title="Apărut acum ${esc(age(it))} · ${esc(ageTitle(it))}">${isLaunched(it) ? 'lansat recent' : 'nou'}</span>`;
+  : `<span class="code-tag new-tag${isNewest(it) ? ' launch' : ''}" title="${esc(sinceTitle(it))}">apărut recent</span>`;
 const blurb = it => it.tagline || it.desc;
 const clip = (s, n) => s.length > n ? s.slice(0, s.lastIndexOf(' ', n) > n * .6 ? s.lastIndexOf(' ', n) : n).replace(/[\s,.;:–-]+$/, '') + '…' : s;
 // Native tooltip: the start of the long description, when there is more to say than the tagline.
@@ -268,17 +277,22 @@ function shortSpan(days) {
   return `${Math.floor(days / 365.25)}A`;
 }
 const daysSince = d => (Date.now() - Date.parse(d)) / DAY;
-// "Fresh": first seen less than FRESH_DAYS ago, by the same date the Vechime column shows.
+// "Fresh": the first observed trace is less than FRESH_DAYS old, by the same date the "Prima urmă" column shows.
 const isFresh = it => !!it.since && daysSince(it.since) < FRESH_DAYS;
-const isLaunched = it => !!it.since && daysSince(it.since) < LAUNCH_DAYS;
-const age = it => it.since ? span(daysSince(it.since)) : '';
+const isNewest = it => !!it.since && daysSince(it.since) < NEWEST_DAYS;
+const ago = d => daysSince(d) < 1 ? 'azi' : `acum ${span(daysSince(d))}`;
 const ageShort = it => it.since ? shortSpan(daysSince(it.since)) : '';
 const updatedShort = it => it.updated ? shortSpan(daysSince(it.updated)) : '';
-const updatedLabel = it => !it.updated ? '' : daysSince(it.updated) < 1 ? 'azi' : `acum ${span(daysSince(it.updated))}`;
-const UPDATED_SRC = { cod: 'ultimul commit', sitemap: 'sitemap', server: 'antetul Last-Modified', arhiva: 'ultima arhivare Wayback' };
+const sinceLabel = it => it.since ? ago(it.since) : '';
+const updatedLabel = it => it.updated ? ago(it.updated) : '';
+const UPDATED_SRC = { cod: 'ultimul push în depozitul de cod', feed: 'cel mai nou articol din feed', wordpress: 'ultima modificare în WordPress',
+  sitemap: 'sitemap', server: 'antetul Last-Modified', arhiva: 'ultima arhivare Wayback' };
 const SINCE_SRC = { arhiva: 'prima arhivare Wayback', cod: 'crearea depozitului de cod', certificat: 'primul certificat TLS al domeniului' };
 const ageTitle = it => !it.since ? 'Necunoscut' : it.sinceSrc ? `${it.since} · după ${SINCE_SRC[it.sinceSrc] || it.sinceSrc}` : it.since;
+const sinceTitle = it => it.since ? `Prima urmă observată ${sinceLabel(it)}: ${ageTitle(it)}. Nu este data lansării.` : 'Nicio urmă observată';
 const updatedTitle = it => it.updated ? `${it.updated} · după ${UPDATED_SRC[it.updatedSrc] || it.updatedSrc}` : 'Necunoscut';
+// The list columns show "13A", "2L", "9Z": the column headers explain the letters (DATE_HELP), and screen readers get the words.
+const sideDate = (short, words) => `<span aria-hidden="true">${esc(short || '—')}</span><span class="vh">${esc(words)}</span>`;
 
 // Cards and rows are not links themselves: the name is (stretched over the whole item, opening the
 // detail panel), so the project's own site can sit inside as a second, real link.
@@ -317,7 +331,7 @@ function rowLinks(it) {
 }
 function row(it, withDomain) {
   const desc = it.tagline && it.desc && it.desc !== it.tagline ? it.desc : '';
-  const dates = [age(it) && `${age(it)} vechime`, updatedLabel(it) && `actualizat ${updatedLabel(it)}`].filter(Boolean).join(' · ');
+  const dates = [sinceLabel(it) && `prima urmă ${sinceLabel(it)}`, updatedLabel(it) && `actualizat ${updatedLabel(it)}`].filter(Boolean).join(' · ');
   return `<div class="row${isInactive(it) ? ' inactive' : ''}" data-open="${it.slug}"${hint(it)}>
     ${thumb(it)}
     <div class="row-main">
@@ -328,12 +342,12 @@ function row(it, withDomain) {
       <div class="meta meta-m">${[metaLine(it, withDomain), dates && esc(dates)].filter(Boolean).join(' · ')}</div>
     </div>
     <div class="row-side row-links">${rowLinks(it)}</div>
-    <div class="row-side" title="${esc(ageTitle(it))}">${esc(ageShort(it) || '—')}</div>
-    <div class="row-side${it.updatedSrc === 'arhiva' ? ' faint' : ''}" title="${esc(updatedTitle(it))}">${esc(updatedShort(it) || '—')}</div>
+    <div class="row-side" title="${esc(sinceTitle(it))}">${sideDate(ageShort(it), it.since ? `prima urmă observată ${sinceLabel(it)}` : 'prima urmă necunoscută')}</div>
+    <div class="row-side${it.updatedSrc === 'arhiva' ? ' faint' : ''}" title="${esc(updatedTitle(it))}">${sideDate(updatedShort(it), it.updated ? `actualizat ${updatedLabel(it)}` : 'actualizare necunoscută')}</div>
     <div class="row-side">${extLink(it, `<span class="dom">${esc(it.domain)}</span>`)}</div>
   </div>`;
 }
-const LIST_HEAD = '<div class="list-head" aria-hidden="true"><span>Proiect</span><span>Links</span><span>Age</span><span>Updated</span><span>Site</span></div>';
+const LIST_HEAD = `<div class="list-head" aria-hidden="true"><span>Proiect</span><span>Linkuri</span><span title="${esc(DATE_HELP.since)}">Prima urmă</span><span title="${esc(DATE_HELP.updated)}">Actualizat</span><span>Site</span></div>`;
 
 /* ---------- filters ---------- */
 function renderTabs() {
@@ -411,7 +425,7 @@ function facetsHTML() {
   const toggles = [];
   const toggle = (key, text, checked, n) => toggles.push(`<label class="toggle"><input type="checkbox" data-act="toggle" data-key="${key}" ${checked ? 'checked' : ''}><span class="l">${text}</span>${n != null ? `<span class="n">${n}</span>` : ''}</label>`);
   if (has(i => i.code) && has(i => !i.code)) toggle('cod', 'Doar cu cod sursă public', state.cod, DB.items.filter(i => matches(i, 'cod') && i.code).length);
-  if (has(isFresh) && has(i => !isFresh(i))) toggle('nou', 'Doar proiecte noi', state.nou, DB.items.filter(i => matches(i, 'nou') && isFresh(i)).length);
+  if (has(isFresh) && has(i => !isFresh(i))) toggle('nou', 'Doar proiecte apărute recent', state.nou, DB.items.filter(i => matches(i, 'nou') && isFresh(i)).length);
   if (has(isInactive)) toggle('ina', 'Ascunde proiecte inactive', !state.ina, null);
   if (has(i => i.civictech) && has(i => !i.civictech)) toggle('civ', 'Doar proiecte civtech', state.civ, DB.items.filter(i => matches(i, 'civ') && i.civictech).length);
   if (toggles.length) out.push(facet('optiuni', 'Opțiuni', toggles.join('')));
@@ -440,7 +454,7 @@ function renderToolbar(n) {
   if (state.s) pill('s', '', state.s);
   if (state.cod) pill('cod', '', 'Cod public');
   if (state.civ) pill('civ', '', 'Civtech');
-  if (state.nou) pill('nou', '', 'Noi');
+  if (state.nou) pill('nou', '', 'Apărute recent');
   if (state.ina) pill('ina', '', 'Inclusiv inactive');
   if (query()) pill('q', '', `„${state.q}”`);
   const view = currentView();
@@ -450,7 +464,7 @@ function renderToolbar(n) {
     ${pills.length ? `<span class="active">${pills.join('')}</span><button class="linkbtn" data-act="reset">Șterge filtrele</button>` : ''}
     <span class="tool-right">
       <label class="sr" for="sort">Ordonare</label>
-      <select class="select" id="sort" data-act="sort">${SORTS.map(([k, l]) => `<option value="${k}" ${state.o === k ? 'selected' : ''}>${l}</option>`).join('')}</select>
+      <select class="select" id="sort" data-act="sort">${SORTS.map(([k, l]) => `<option value="${k}" ${state.o === k ? 'selected' : ''}${SORT_HELP[k] ? ` title="${esc(SORT_HELP[k])}"` : ''}>${l}</option>`).join('')}</select>
       <span class="seg" role="group" aria-label="Mod de afișare">
         <button data-act="view" data-val="cards" aria-pressed="${view === 'cards'}" aria-label="Carduri">${ICON.grid}</button>
         <button data-act="view" data-val="list" aria-pressed="${view === 'list'}" aria-label="Listă">${ICON.list}</button>
@@ -528,7 +542,34 @@ function closeLayers() {
   lastFocus?.focus?.({ preventScroll: true });
 }
 const current = () => state.p && DB.items.find(i => i.slug === state.p);
-const syncTitle = () => { const it = current(); document.title = it ? `${it.name} — ${title}` : title; };
+
+/* ---------- title, address and share metadata ---------- */
+// scripts/build.py writes a head for the home page and one for each entry page. Opening or closing an entry changes the
+// address in the page, so the tags that name the address follow it. The home values live here because a page loaded at an
+// entry's address carries that entry's head: keep them in step with site/index.html (scripts/check_preview.py compares them).
+const HOME = { share: 'Colecție proiecte CivTech', text: 'Director de instrumente civice, date deschise și proiecte de bună guvernare din România.',
+  image: 'img/share.png', w: 1106, h: 558, alt: 'Colecție proiecte CivTech — civtech.gov2.ro' };
+const NO_TEXT = 'Colecție de instrumente civice, date deschise și proiecte de bună guvernare din România.';  // an entry with no text, as in build.py
+const SITE = ($('link[rel="canonical"]')?.href || '').replace(new RegExp(`(${KINDS})/[^/]*/?$`), '');
+const META = [['link[rel="canonical"]', 'href', 'url'], ['meta[property="og:url"]', 'content', 'url'], ['meta[name="description"]', 'content', 'text'],
+  ['meta[property="og:title"]', 'content', 'share'], ['meta[name="twitter:title"]', 'content', 'share'],
+  ['meta[property="og:description"]', 'content', 'text'], ['meta[name="twitter:description"]', 'content', 'text'],
+  ['meta[property="og:image"]', 'content', 'image'], ['meta[name="twitter:image"]', 'content', 'image'],
+  ['meta[property="og:image:width"]', 'content', 'w'], ['meta[property="og:image:height"]', 'content', 'h'], ['meta[property="og:image:alt"]', 'content', 'alt']];
+let metaFor = pathSlug();  // the entry whose head the page holds now ('' for the home page)
+function syncMeta(it) {
+  const pic = it?.img && it.img.kind !== 'logo' ? it.img : null;
+  const v = it
+    ? { url: `${SITE}${it.kind}/${it.slug}/`, share: `${it.name} — CivTech România`, text: clip(it.desc || it.tagline || '', 200) || NO_TEXT,
+      image: SITE + (pic ? pic.src.slice(ROOT.length) : HOME.image), w: pic ? pic.w : HOME.w, h: pic ? pic.h : HOME.h, alt: it.name }
+    : { url: SITE, share: HOME.share, text: HOME.text, image: SITE + HOME.image, w: HOME.w, h: HOME.h, alt: HOME.alt };
+  for (const [sel, attr, key] of META) $(sel)?.setAttribute(attr, v[key]);
+}
+function syncTitle() {
+  const it = current();
+  document.title = it ? `${it.name} — ${title}` : title;
+  if ((it?.slug || '') !== metaFor) { metaFor = it?.slug || ''; syncMeta(it); }
+}
 
 // A network shows its logo only, named for screen readers and the tooltip; any other link shows the favicon of its host
 // (when the profiler stored one) before its label.
@@ -660,7 +701,7 @@ function renderDetail() {
     repoRow(it),
     it.repo?.license && ['Licență', esc(it.repo.license)],
     it.wayback && ['Arhivă', `<a href="${esc(it.wayback)}" target="_blank" rel="noopener">Wayback Machine</a>`],
-    it.since && ['Vechime', `${esc(age(it))} <span class="muted small mono">· ${esc(ageTitle(it))}</span>`],
+    it.since && ['Prima urmă observată', `${esc(sinceLabel(it))} <span class="muted small mono">· ${esc(ageTitle(it))}</span> <span class="muted small">· nu este data lansării</span>`],
     it.updated && ['Actualizat', `${esc(updatedLabel(it))} <span class="muted small mono">· ${esc(it.updated)} după ${esc(UPDATED_SRC[it.updatedSrc] || it.updatedSrc)}</span>`],
     ['Stare', `${statusDot(it)} ${st.label}${it.stale ? ` <span class="muted small">· niciun semn de actualizare după ${it.stale}</span>` : ''}${it.checked ? ` <span class="muted small mono">· verificat ${esc(it.checked)}${it.httpStatus ? ` · HTTP ${it.httpStatus}` : ''}</span>` : ''}`],
   ].filter(Boolean);
@@ -684,7 +725,7 @@ function renderDetail() {
         <span>${statusDot(it)}${st.label}</span>
         ${entLabel(it) ? `<span>${esc(entLabel(it))}</span>` : ''}
         ${placeLabel(it) ? `<span>${esc(placeLabel(it))}</span>` : ''}
-        ${isFresh(it) ? `<span class="new${isLaunched(it) ? ' launch' : ''}">${isLaunched(it) ? 'lansat recent' : 'nou'} · ${esc(age(it))}</span>` : ''}
+        ${isFresh(it) ? `<span class="new${isNewest(it) ? ' launch' : ''}" title="${esc(sinceTitle(it))}">apărut recent · ${esc(sinceLabel(it))}</span>` : ''}
         ${it.code ? `<span>${ICON.code}cod public</span>` : ''}
       </div>
       ${it.desc ? `<p class="d-desc">${esc(it.desc)}</p>${it.descSrc === 'site' ? '<p class="d-src">Descriere preluată de pe site-ul proiectului.</p>' : ''}` : ''}
@@ -759,7 +800,7 @@ function highlight(label, q) {
 function renderAC() {
   const box = slot('ac'), input = slot('q');
   const q = norm(input.value.trim());
-  if (q.length < MIN_Q || document.activeElement !== input) { closeAC(); return; }
+  if (!DB || q.length < MIN_Q || document.activeElement !== input) { closeAC(); return; }
   const scored = SUGGEST.map(s => { const [sc, via] = scoreOf(s._n, q); return { s, sc, via, n: sc < 0 ? 0 : countFor(s) }; })
     .filter(x => x.sc >= 0 && x.n !== 0)
     .sort((a, b) => a.sc - b.sc || a.s.label.length - b.s.label.length);
@@ -894,6 +935,8 @@ document.addEventListener('click', e => {
   const a = e.target.closest('[data-act]');
   if (!a || a.tagName === 'INPUT' || a.tagName === 'SELECT') return;
   const { act, key, val } = a.dataset;
+  if (act === 'retry') { boot(true); return; }
+  if (!DB && act !== 'fs' && act !== 'theme') return;  // nothing to act on until the data has loaded
   if (act === 'set') setFilter(key, val);
   else if (act === 'multi') {
     const l = listOf(key);
@@ -939,6 +982,7 @@ document.addEventListener('toggle', e => {
 let qTimer;
 const qInput = slot('q');
 qInput.addEventListener('input', () => {
+  if (!DB) return;
   renderAC();
   clearTimeout(qTimer);
   qTimer = setTimeout(() => {
@@ -995,7 +1039,7 @@ slot('drawer').addEventListener('touchend', e => {
   if (Math.abs(dx) > 60 && Math.abs(dx) > 2 * Math.abs(dy) && Date.now() - touch.t < 600) step(dx < 0 ? 1 : -1);
   touch = null;
 }, { passive: true });
-window.addEventListener('popstate', () => { readURL(); renderAll(); renderDetail(); });
+window.addEventListener('popstate', () => { if (DB) { readURL(); renderAll(); renderDetail(); } });
 
 // Below 1024px the header is taller than one row; stick it so only the search and chips stay visible.
 function fitHeader() {
@@ -1022,11 +1066,39 @@ function applyPrefs() {
 applyPrefs();
 
 /* ---------- boot ---------- */
-fetch(ROOT + 'data.json', { cache: 'no-cache' }).then(r => r.json()).then(db => {
+// A load that fails (no connection, a server error, unreadable data) says so, offers a retry, and links to the three static
+// lists: they need neither data.json nor scripts. After a retry that fails again, the focus goes to the new button.
+function loadFailed(byUser) {
+  DB = null;
+  slot('results').innerHTML = `<div class="empty" role="alert">
+    <h3>Nu am putut încărca lista.</h3>
+    <p>Verifică conexiunea la internet și încearcă din nou.</p>
+    <p><button class="btn btn-outline" data-act="retry">Încearcă din nou</button></p>
+    <p>Până atunci, citește listele simple: <a href="${ROOT}proiect/">proiecte</a> · <a href="${ROOT}organizatie/">organizații</a> · <a href="${ROOT}resursa/">resurse</a>.</p>
+  </div>`;
+  if (byUser) $('[data-act="retry"]', slot('results'))?.focus();
+}
+
+async function boot(byUser = false) {
+  if (byUser) slot('results').innerHTML = '<div class="empty" role="status"><p>Se încarcă…</p></div>';
+  let db;
+  try {
+    const r = await fetch(ROOT + 'data.json', { cache: 'no-cache' });
+    if (!r.ok) throw new Error(`data.json: HTTP ${r.status}`);
+    db = await r.json();
+  } catch { loadFailed(byUser); return; }
   if (!String(db.schemaVersion || '').startsWith('2.')) {
     slot('results').innerHTML = '<div class="empty"><h3>Date incompatibile.</h3><p>Această pagină citește datele taxonomiei v2.</p></div>';
     return;
   }
+  try { start(db); } catch (e) {
+    console.error(e);
+    BY_SLUG.clear(); CONCEPT.clear(); AREA.clear();
+    loadFailed(byUser);
+  }
+}
+
+function start(db) {
   DB = db;
   const map = arr => Object.fromEntries(arr.map(x => [x.key, x]));
   const v = db.vocabulary;
@@ -1065,4 +1137,6 @@ fetch(ROOT + 'data.json', { cache: 'no-cache' }).then(r => r.json()).then(db => 
   renderDetail();
   fitHeader();
   setTimeout(rotateTitle, 3000 + Math.random() * 2000);
-});
+}
+
+boot();

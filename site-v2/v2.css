@@ -13,3 +13,8 @@
 .d-class > .small { margin: 10px 0 0; }
 .fmore { margin: 8px 0 0; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; font-size: calc(12.5px * var(--fs)); }
 .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+/* List columns: the headers "Prima urmă" (wraps in two lines) and "Actualizat" are longer than the v1 ones; the Site column gives up the room. */
+@media (min-width: 720px) {
+  .row, .list-head { grid-template-columns: 75px minmax(0, 1fr) 96px calc(48px * var(--fs)) calc(84px * var(--fs)) 150px; }
+  .list-head span[title] { cursor: help; }
+}
