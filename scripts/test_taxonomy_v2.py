@@ -6,6 +6,7 @@ Every mutation runs on a temporary copy; the repository's data and site/ are onl
 """
 import csv
 import hashlib
+import importlib.util
 import json
 import shutil
 import subprocess
@@ -280,6 +281,190 @@ class RootSelection(unittest.TestCase):
                     r["stare"], r["decizie_editor"] = "amanat", "test"
         c.edit("revizuire.csv", close)
         self.assertEqual(c.errors(publication=True), [])
+
+
+def load_integrare():
+    """data/taxonomy-v2/integrare.py as a module (it is a script, not a package member)."""
+    spec = importlib.util.spec_from_file_location("integrare", PACKAGE / "integrare.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+# What a recommendation must not be: the empty or placeholder proposals of the generated queue.
+GENERIC_PROPOSALS = {"", "verificare manuală", "verificare cu dovezi primare", "dovadă primară pentru format"}
+
+
+class ReviewReconciliation(unittest.TestCase):
+    """Slice D: the technical closure `tehnic`, the reconciliation of the review queue, and the recommendations."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.base = taxonomy_v2.read_table(PACKAGE / "revizuire.csv")[1]
+        cls.queue = taxonomy_v2.read_table(OVERLAY / "revizuire.csv")[1]
+        cls.recon = taxonomy_v2.read_table(OVERLAY / "reconciliere.csv")[1]
+        cls.integrare = load_integrare()
+
+    def setUp(self):
+        self.c = Copy()
+        self.addCleanup(self.c.close)
+
+    # --- the code `tehnic` and its rule ---------------------------------------------------------------------------------
+
+    def test_tehnic_is_a_code_of_the_review_states(self):
+        self.assertIn("tehnic", taxonomy_v2.load(PACKAGE).codes["revizuire_stare"])
+
+    def test_technical_closure_needs_a_reason(self):
+        def close(rows):
+            rows[0].update(stare="tehnic", motiv="  ", decizie_editor="")
+        self.c.edit("revizuire.csv", close, self.c.overlay)
+        self.assertTrue(any("a technical closure needs a reason" in e for e in self.c.errors(self.c.overlay)))
+
+    def test_technical_closure_refuses_an_editor_decision(self):
+        def close(rows):
+            rows[0].update(stare="tehnic", motiv="Premisa nu se aplică.", decizie_editor="acceptat de test")
+        self.c.edit("revizuire.csv", close, self.c.overlay)
+        self.assertTrue(any("no editor decision" in e for e in self.c.errors(self.c.overlay)))
+
+    def test_technical_closure_with_a_reason_passes(self):
+        def close(rows):
+            rows[0].update(stare="tehnic", motiv="Premisa nu se aplică.", decizie_editor="")
+        self.c.edit("revizuire.csv", close, self.c.overlay)
+        self.assertEqual(self.c.errors(self.c.overlay), [])
+
+    def test_gate_ignores_technical_closures(self):
+        def accept(rows):
+            for r in rows:
+                r["clasificare_stare"] = "acceptat"
+
+        def close(rows):
+            for r in rows:
+                if r["prioritate"] == "mare":
+                    r.update(stare="tehnic", motiv="Închis tehnic de test.", decizie_editor="")
+        self.c.edit("intrari.csv", accept)
+        self.assertNotEqual(self.c.errors(publication=True), [])  # open high-priority items still block
+        self.c.edit("revizuire.csv", close)
+        self.assertEqual(self.c.errors(publication=True), [])
+
+    def test_gate_counts_only_open_high_priority_items(self):
+        errors = taxonomy_v2.check(OVERLAY, publication=True)[0]
+        blocking = {r["id"] for r in self.queue if r["stare"] == "deschis" and r["prioritate"] == "mare"}
+        listed = {e.rsplit(" ", 1)[-1] for e in errors if "review item" in e}
+        self.assertEqual(listed, blocking)
+        self.assertTrue(all(r["stare"] == "tehnic" for r in self.queue if r["id"] in ("R004", "R015", "R030")))
+
+    # --- the reconciliation table ----------------------------------------------------------------------------------------
+
+    def test_every_r_item_has_a_reconciliation_row(self):
+        r_ids = [r["id"] for r in self.base]
+        self.assertEqual(r_ids, [f"R{n:03d}" for n in range(1, 67)])
+        recon_ids = [r["id"] for r in self.recon]
+        self.assertEqual(len(recon_ids), len(set(recon_ids)))
+        self.assertLessEqual(set(r_ids), set(recon_ids))
+        self.assertLessEqual(set(recon_ids), {r["id"] for r in self.queue})  # no row for an item that does not exist
+
+    def test_reconciliation_keeps_priorities_and_takes_no_decision(self):
+        old = {r["id"]: r for r in self.base}
+        for r in self.queue:
+            if r["id"] in old:
+                self.assertEqual(r["prioritate"], old[r["id"]]["prioritate"], r["id"])
+            self.assertIn(r["stare"], ("deschis", "tehnic"), r["id"])  # nothing is accepted, rejected or deferred
+            self.assertEqual(r["decizie_editor"], "", r["id"])
+        self.assertEqual({r["stare"] for r in self.base}, {"deschis"})  # the base queue is unchanged
+
+    def test_every_technical_closure_says_why_and_cites_evidence(self):
+        recon = {r["id"]: r for r in self.recon}
+        closed = [r for r in self.queue if r["stare"] == "tehnic"]
+        self.assertTrue(closed)
+        for r in closed:
+            self.assertEqual(recon[r["id"]]["rezultat"], "tehnic", r["id"])
+            self.assertGreater(len(r["motiv"].split()), 12, r["id"])
+            self.assertIn("Dovadă:", r["motiv"], r["id"])
+
+    def test_every_open_item_has_a_concrete_recommendation(self):
+        opened = [r for r in self.queue if r["stare"] == "deschis"]
+        self.assertTrue(opened)
+        for r in opened:
+            self.assertNotIn(r["propunere"].strip(), GENERIC_PROPOSALS, r["id"])
+            self.assertTrue(r["propunere"].startswith("Recomandare: "), f"{r['id']}: {r['propunere'][:60]}")
+            self.assertGreaterEqual(len(r["propunere"].split()), 5, r["id"])  # a verb and a named value, not a label
+            self.assertGreater(len(r["motiv"].split()), 12, r["id"])
+            self.assertIn("Dovadă:", r["motiv"], r["id"])
+
+    def test_moldova_recommendation_uses_the_iso_style_id(self):
+        carrying = [r["id"] for r in self.queue if r["stare"] == "deschis" and "tara:MD" in r["propunere"] and "cod_iso_3166_1=MD" in r["propunere"]]
+        self.assertTrue(carrying, "no open item recommends tara:MD with cod_iso_3166_1=MD")
+        areas = taxonomy_v2.load(PACKAGE).areas
+        self.assertNotIn("tara:MD", areas)  # the recommendation does not add the area
+        self.assertNotIn("tara:republica-moldova", areas)
+        self.assertEqual(areas["tara:RO"]["cod_iso_3166_1"], "RO")  # the style that the recommendation follows
+
+    def test_reconciliation_table_has_the_expected_header(self):
+        header = taxonomy_v2.read_table(OVERLAY / "reconciliere.csv")[0]
+        self.assertEqual(header, ["id", "rezultat", "camp", "valoare_originala", "propunere", "motiv", "dovada"])
+        self.assertTrue({r["rezultat"] for r in self.recon} <= {"pastrat", "rescris", "tehnic"})
+
+    # --- the evidence of every row must exist -------------------------------------------------------------------------------
+
+    def test_every_citation_in_the_table_resolves(self):
+        generated = {}
+        for r in self.recon:
+            tokens = r["dovada"].split("|") if r["dovada"] else []
+            self.assertTrue(tokens, r["id"])
+            for token in tokens:
+                self.assertTrue(self.integrare.citation_exists(token, generated), f"{r['id']}: {token}")
+
+    def test_invented_evidence_is_refused(self):
+        exists = self.integrare.citation_exists
+        slug = "7-ani-de-acasa"
+        self.assertTrue(exists(f"clasificare-input.csv:{slug}:descriere", {}))  # an empty cell proves an absent description
+        self.assertTrue(exists(f"runs/2026-10-19-reasoned-evidence/responses/{slug}.json:justifications[subiect_principal]", {}))
+        self.assertTrue(exists(f"runs/2026-10-19-reasoned-evidence/responses/{slug}.json:excluded_legacy_tags[tip=educativ]", {}))
+        for token in (f"clasificare-input.csv:{slug}:nu_exista",                      # unknown column
+                      "clasificare-input.csv:slug-inventat:descriere",                 # unknown row
+                      f"runs/2026-10-19-reasoned-evidence/responses/{slug}.json:justifications[teme=subiect:inventat]",  # unknown value
+                      f"runs/2026-10-19-reasoned-evidence/responses/{slug}.json:cheie_inventata",  # unknown key
+                      "runs/2026-10-19-reasoned-evidence/responses/slug-inventat.json:uncertainties",  # unknown file
+                      "../scripts/common.py:x:y",                                      # outside the package
+                      "/etc/hosts:x:y", "concepte.csv", "", f" clasificare-input.csv:{slug}:descriere"):
+            self.assertFalse(exists(token, {}), token)
+
+    def test_reconcile_rejects_bad_tables(self):
+        reconcile = self.integrare.reconcile
+        columns = taxonomy_v2.read_table(OVERLAY / "intrari.csv")[0]
+        good = {"id": "R001", "rezultat": "rescris", "camp": "clasificare", "valoare_originala": "x", "propunere": "Recomandare: păstrați x.",
+                "motiv": "Motiv.", "dovada": "clasificare-input.csv:7-ani-de-acasa:descriere"}
+
+        def queue():
+            return [{"id": "R001", "slug": "7-ani-de-acasa", "camp": "clasificare", "valoare_originala": "descriere absentă",
+                     "propunere": "verificare manuală", "motiv": "Motiv vechi.", "prioritate": "mare", "stare": "deschis", "decizie_editor": ""}]
+
+        def fails(*rows, items=None):
+            with self.assertRaises(SystemExit):
+                reconcile(items or queue(), list(rows), columns, {})
+
+        items = queue()
+        reconcile(items, [good], columns, {})  # the good row is applied
+        self.assertEqual((items[0]["propunere"], items[0]["stare"]), ("Recomandare: păstrați x.", "deschis"))
+        self.assertTrue(items[0]["motiv"].endswith("Dovadă: clasificare-input.csv:7-ani-de-acasa:descriere"))
+        items = queue()
+        reconcile(items, [dict(good, rezultat="tehnic")], columns, {})
+        self.assertEqual(items[0]["stare"], "tehnic")
+        fails()                                                                    # an R item without a row
+        fails(good, dict(good))                                                    # duplicate id
+        fails(good, dict(good, id="R999"))                                         # row for an item that does not exist
+        fails(dict(good, rezultat="inchis"))                                       # unknown result
+        fails(dict(good, camp="localitati_acoperite"))                             # not a column
+        fails(dict(good, rezultat="tehnic", dovada=""))                            # a closure without evidence
+        fails(dict(good, rezultat="tehnic", motiv=" "))                            # a closure without a reason
+        fails(dict(good, dovada="clasificare-input.csv:7-ani-de-acasa:inventat"))  # invented evidence
+        fails(dict(good, rezultat="pastrat"))                                      # pastrat must keep the text and carry no evidence
+        keep = {"id": "R001", "rezultat": "pastrat", "camp": "clasificare", "valoare_originala": "descriere absentă",
+                "propunere": "verificare manuală", "motiv": "Motiv vechi.", "dovada": ""}
+        items = queue()
+        reconcile(items, [keep], columns, {})
+        self.assertEqual(items[0]["stare"], "deschis")
+        self.assertEqual(items[0]["motiv"], "Motiv vechi.")
 
 
 class Build(unittest.TestCase):

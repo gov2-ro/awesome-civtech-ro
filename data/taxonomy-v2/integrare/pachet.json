@@ -4,6 +4,7 @@
   "local_files": [
     "intrari.csv",
     "revizuire.csv",
+    "reconciliere.csv",
     "modificari.csv",
     "rezultate.csv",
     "propuneri-vocabular.csv",
@@ -42,6 +43,15 @@
       "motiv",
       "dovada",
       "stare"
+    ],
+    "reconciliere.csv": [
+      "id",
+      "rezultat",
+      "camp",
+      "valoare_originala",
+      "propunere",
+      "motiv",
+      "dovada"
     ]
   },
   "source_run": {
@@ -53,10 +63,11 @@
     "frozen_areas_sha256": "6a8c624463d0d6a6dd2ab0a264e19faee579e174ac34ff3584e8e9e0afe3bb20"
   },
   "notes": [
-    "Review items R001-R066 are copied unchanged from the base queue. They were written for the draft.1 manual proposal.",
+    "Review items R001-R066 come from the base queue, which was written for the draft.1 manual proposal and stays unchanged. reconciliere.csv compares each one with this copy and keeps, rewrites or closes it technically (state tehnic).",
     "C items carry the run's specific uncertainties and conflicts. Generic maturity and attribution-role uncertainties stay in the responses.",
     "S items are the evaluation's three semantic concerns; modificari.csv records the corresponding changes.",
-    "V items point to vocabulary proposals; none of them is in concepte.csv or arii.csv."
+    "V items point to vocabulary proposals; none of them is in concepte.csv or arii.csv.",
+    "Every open item carries a recommendation for the editor, with evidence. A technical closure (tehnic) needs a reason and no editor decision. The editor still decides every open item."
   ],
   "counts": {
     "entries": 122,
@@ -67,6 +78,10 @@
     },
     "changes": 4,
     "review_items": 103,
+    "review_states": {
+      "deschis": 66,
+      "tehnic": 37
+    },
     "vocabulary_proposals": 10
   }
 }

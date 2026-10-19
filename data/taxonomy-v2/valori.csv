@@ -49,6 +49,7 @@ revizuire_stare,deschis,Deschis,Open,Punct nerezolvat.,propus,0
 revizuire_stare,acceptat,Acceptat,Accepted,Editorul a acceptat propunerea.,propus,1
 revizuire_stare,respins,Respins,Rejected,Editorul a respins propunerea.,propus,2
 revizuire_stare,amanat,Amânat,Deferred,Editorul a amânat decizia.,propus,3
+revizuire_stare,tehnic,Închis tehnic,Closed technically,"Punctul nu cere decizie editorială: premisa lui nu se aplică clasificării curente, dublează alt punct sau o corecție de cod ori de date l-a rezolvat. Cere motiv și nu are decizie a editorului.",propus,4
 prioritate,mare,Mare,High,Se rezolvă înainte de publicare.,propus,0
 prioritate,medie,Medie,Medium,Se rezolvă înainte de acceptarea intrării.,propus,1
 prioritate,mica,Mică,Low,Se rezolvă când există timp.,propus,2

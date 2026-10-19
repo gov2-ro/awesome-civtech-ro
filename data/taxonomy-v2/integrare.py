@@ -11,6 +11,12 @@ The copy is an overlay of this package (see integrare/pachet.json). Its intrari.
 Every imported classification stays `propus`. The abstention keeps its empty classification as `de-revizuit`.
 Partial results stay partial: rezultate.csv keeps each result status and response hash, and revizuire.csv
 lists their uncertainties. Vocabulary gaps go to propuneri-vocabular.csv, never to concepte.csv.
+
+The review queue comes from three places. The base queue R001-R066 was written for the draft.1 manual proposal, so
+integrare/reconciliere.csv (a human-edited input, never written here) compares each R item with this copy. A row has the
+result `pastrat` (text unchanged), `rescris` (field, current value, recommendation, reason and evidence rewritten) or
+`tehnic` (state `tehnic`: the item needs no editorial decision). The same file can carry a recommendation for any C, S or V
+item. Every `dovada` token must resolve to a real file and field. The base queue is never changed.
 """
 import argparse
 import csv
@@ -36,7 +42,11 @@ EXTRA_HEADERS = {
     "modificari.csv": ["id", "data", "slug", "camp", "tip", "inainte", "dupa", "motiv", "dovada"],
     "rezultate.csv": ["slug", "rezultat", "raspuns", "sha256", "incertitudini", "conflicte", "modificari"],
     "propuneri-vocabular.csv": ["id", "tip", "schema", "eticheta_ro", "eticheta_en", "definitie_ro", "mai_larg", "slug", "motiv", "dovada", "stare"],
+    "reconciliere.csv": ["id", "rezultat", "camp", "valoare_originala", "propunere", "motiv", "dovada"],
 }
+RECONCILIATION_RESULTS = ("pastrat", "rescris", "tehnic")
+# Besides the columns of intrari.csv, a review item can name the whole classification or a vocabulary proposal.
+REVIEW_PSEUDO_FIELDS = ("clasificare", "vocabular")
 # Purposes and areas named by the post-seal semantic review (evaluation/REPORT.md), outside the run's own gap list.
 REVIEW_PROPOSALS = [
     {"id": "scop:sustenabilitate-presa", "tip": "concept", "schema": "scop", "eticheta_ro": "Sustenabilitatea presei",
@@ -121,6 +131,84 @@ def evidence_exists(ref: str) -> bool:
     return excerpt in rows.get(slug, {}).get(col, "")
 
 
+def citation_exists(token: str, generated: dict[str, str]) -> bool:
+    """One `dovada` token of reconciliere.csv must name a file inside data/taxonomy-v2/ and a field that exists:
+    - `<file>.csv:<row key>:<column>`: the key is the value in the first column of that CSV, the column must be in its header
+      (a cell may be empty: an empty description is evidence of an absent description);
+    - `<file>.json:<key>` or `<file>.json:<key>[<field>[=<value>]]`: a key of a sealed response, with an optional filter on the
+      list items (`field`/`value`; `original_field`/`original_value` for excluded_legacy_tags).
+    A file under integrare/ that this run assembles is read from `generated`, so the check does not depend on the files on disk."""
+    path, _, rest = token.partition(":")
+    parts = path.split("/")
+    if not rest or path != path.strip() or token != token.strip() or path.startswith("/") or ".." in parts:
+        return False
+    if path.endswith(".json"):
+        target = HERE / path
+        match = re.fullmatch(r"(\w+)(?:\[([^\]]+)\])?", rest)
+        if not target.is_file() or not match:
+            return False
+        key, flt = match.groups()
+        node = json.loads(target.read_text(encoding="utf-8")).get(key)
+        if not node:
+            return False
+        if flt is None:
+            return True
+        field, _, value = flt.partition("=")
+        name_key, value_key = ("original_field", "original_value") if key == "excluded_legacy_tags" else ("field", "value")
+        return isinstance(node, list) and any(isinstance(i, dict) and i.get(name_key) == field and (not value or i.get(value_key) == value) for i in node)
+    if path.endswith(".csv"):
+        key, _, column = rest.rpartition(":")
+        local = path.removeprefix("integrare/") if path.startswith("integrare/") else None
+        if local in generated:
+            reader = csv.DictReader(io.StringIO(generated[local]))
+            header, rows = list(reader.fieldnames or []), list(reader)
+        else:
+            target = HERE / path
+            if not target.is_file():
+                return False
+            header, rows = taxonomy_v2.read_table(target)
+        return bool(key) and column in header and any(r[header[0]] == key for r in rows)
+    return False
+
+
+def reconcile(reviews: list[dict], recon: list[dict], intrari_columns: list[str], generated: dict[str, str]) -> None:
+    """Apply integrare/reconciliere.csv to the review queue in place. Every R item needs a row; a C, S or V item may have one.
+    `rescris` and `tehnic` need a recommendation or reason and evidence that resolves. `tehnic` also sets the state `tehnic`."""
+    by_id: dict[str, dict] = {}
+    for rec in recon:
+        if rec["id"] in by_id:
+            raise SystemExit(f"reconciliere.csv: duplicate id {rec['id']}")
+        by_id[rec["id"]] = rec
+    items = {r["id"]: r for r in reviews}
+    unknown = [i for i in by_id if i not in items]
+    if unknown:
+        raise SystemExit(f"reconciliere.csv: no review item for {', '.join(unknown)}")
+    uncovered = [i for i in items if i.startswith("R") and i not in by_id]
+    if uncovered:
+        raise SystemExit(f"reconciliere.csv: no row for {', '.join(uncovered)}")
+    fields = set(intrari_columns) | set(REVIEW_PSEUDO_FIELDS)
+    for ident, rec in by_id.items():
+        item = items[ident]
+        if rec["rezultat"] not in RECONCILIATION_RESULTS:
+            raise SystemExit(f"reconciliere.csv {ident}: rezultat must be one of {', '.join(RECONCILIATION_RESULTS)}")
+        if rec["camp"] not in fields:
+            raise SystemExit(f"reconciliere.csv {ident}: camp {rec['camp']!r} is not a column of intrari.csv, clasificare or vocabular")
+        if rec["rezultat"] == "pastrat":
+            if any(rec[c] != item[c] for c in ("camp", "valoare_originala", "propunere", "motiv")) or rec["dovada"]:
+                raise SystemExit(f"reconciliere.csv {ident}: pastrat keeps the text of the item and carries no evidence")
+            continue
+        if not rec["propunere"].strip() or not rec["motiv"].strip():
+            raise SystemExit(f"reconciliere.csv {ident}: {rec['rezultat']} needs a propunere and a motiv")
+        tokens = rec["dovada"].split("|") if rec["dovada"] else []
+        bad = [t for t in tokens if not citation_exists(t, generated)]
+        if not tokens or bad:
+            raise SystemExit(f"reconciliere.csv {ident}: {rec['rezultat']} needs evidence that exists; not found: {bad or 'no dovada'}")
+        item.update(camp=rec["camp"], valoare_originala=rec["valoare_originala"], propunere=rec["propunere"],
+                    motiv=f"{rec['motiv']} Dovadă: {'; '.join(tokens)}")
+        if rec["rezultat"] == "tehnic":
+            item["stare"] = "tehnic"
+
+
 def assemble() -> dict[str, str]:
     pkg = taxonomy_v2.load(HERE)
     run = verify_run(pkg)
@@ -181,7 +269,7 @@ def assemble() -> dict[str, str]:
         row["nota_clasificare"] += f" Modificare {ch['id']}."
         by_slug[ch["slug"]]["modificari"] = "|".join(filter(None, [by_slug[ch["slug"]]["modificari"], ch["id"]]))
 
-    reviews = list(pkg.tables["revizuire.csv"])
+    reviews = [dict(r) for r in pkg.tables["revizuire.csv"]]  # copies: the base queue stays unchanged
     queue = json.loads((RUN / "candidate/review-queue.json").read_text(encoding="utf-8"))
     for n, item in enumerate(queue, 1):
         specific = [u for u in item["uncertainties"] if u["field"] not in ("maturitate", "attributions")]
@@ -228,11 +316,22 @@ def assemble() -> dict[str, str]:
                             "propunere": p["id"], "motiv": f"Propunere de {p['tip']}: {p['eticheta_ro']}. {p['motiv']}",
                             "prioritate": "mica", "stare": "deschis", "decizie_editor": ""})
 
+    # Reconcile the queue with this copy. Files under integrare/ that this run assembles are cited from memory, not from disk.
+    review_cols = pkg.schema["headers"]["revizuire.csv"]
+    generated = {"intrari.csv": csv_text(columns, list(entries.values())), "rezultate.csv": csv_text(EXTRA_HEADERS["rezultate.csv"], results),
+                 "propuneri-vocabular.csv": csv_text(EXTRA_HEADERS["propuneri-vocabular.csv"], proposals)}
+    if not (OUT / "reconciliere.csv").exists():
+        raise SystemExit("integrare/reconciliere.csv is missing: it holds one row for each R item of the review queue")
+    header, recon = taxonomy_v2.read_table(OUT / "reconciliere.csv")
+    if header != EXTRA_HEADERS["reconciliere.csv"]:
+        raise SystemExit("reconciliere.csv: the header differs from the expected columns")
+    reconcile(reviews, recon, columns, generated)
+
     overlay = {
         "purpose": f"Integration copy of the sealed run {RUN_ID}, with the evaluation's three semantic corrections. "
                    "All classifications remain proposals; this is not an accepted catalogue.",
         "base": "..",
-        "local_files": ["intrari.csv", "revizuire.csv", "modificari.csv", "rezultate.csv", "propuneri-vocabular.csv", "catalogue.json"],
+        "local_files": ["intrari.csv", "revizuire.csv", "reconciliere.csv", "modificari.csv", "rezultate.csv", "propuneri-vocabular.csv", "catalogue.json"],
         "headers": EXTRA_HEADERS,
         "source_run": {
             "id": RUN_ID, "path": f"runs/{RUN_ID}",
@@ -242,23 +341,27 @@ def assemble() -> dict[str, str]:
             "frozen_areas_sha256": run["manifest"]["frozen_files"]["frozen/arii.csv"],
         },
         "notes": [
-            "Review items R001-R066 are copied unchanged from the base queue. They were written for the draft.1 manual proposal.",
+            "Review items R001-R066 come from the base queue, which was written for the draft.1 manual proposal and stays unchanged. "
+            "reconciliere.csv compares each one with this copy and keeps, rewrites or closes it technically (state tehnic).",
             "C items carry the run's specific uncertainties and conflicts. Generic maturity and attribution-role uncertainties stay in the responses.",
             "S items are the evaluation's three semantic concerns; modificari.csv records the corresponding changes.",
             "V items point to vocabulary proposals; none of them is in concepte.csv or arii.csv.",
+            "Every open item carries a recommendation for the editor, with evidence. A technical closure (tehnic) needs a reason and no editor decision. "
+            "The editor still decides every open item.",
         ],
         "counts": {
             "entries": len(entries),
             "results": {s: sum(r["rezultat"] == s for r in results) for s in ("classified", "partial", "insufficient_evidence")},
-            "changes": len(changes), "review_items": len(reviews), "vocabulary_proposals": len(proposals),
+            "changes": len(changes), "review_items": len(reviews),
+            "review_states": {s: sum(r["stare"] == s for r in reviews) for s in ("deschis", "tehnic")},
+            "vocabulary_proposals": len(proposals),
         },
     }
-    review_cols = pkg.schema["headers"]["revizuire.csv"]
     return {
-        "intrari.csv": csv_text(columns, list(entries.values())),
-        "rezultate.csv": csv_text(EXTRA_HEADERS["rezultate.csv"], results),
+        "intrari.csv": generated["intrari.csv"],
+        "rezultate.csv": generated["rezultate.csv"],
         "revizuire.csv": csv_text(review_cols, reviews),
-        "propuneri-vocabular.csv": csv_text(EXTRA_HEADERS["propuneri-vocabular.csv"], proposals),
+        "propuneri-vocabular.csv": generated["propuneri-vocabular.csv"],
         "pachet.json": json.dumps(overlay, ensure_ascii=False, indent=2) + "\n",
     }
 
