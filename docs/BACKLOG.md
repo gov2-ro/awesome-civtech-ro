@@ -24,7 +24,7 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [ ] Choose the ID style for proposed areas before accepting them (`tara:republica-moldova` now; existing countries use ISO codes, `tara:RO`).
 - [ ] Implement an automated inference runner and no-call dry run if a later repeatable experiment needs them. This does not block the current preview.
 - [x] Implement the v2 loaders, validator branch, build contract, and browser facets together. Keep the current data source as the default until cutover.
-- [x] Verify the isolated preview: 40 unit tests (`scripts/test_taxonomy_v2.py`) and 61 browser checks (`scripts/check_preview.py`).
+- [x] Verify the isolated preview: 40 unit tests (`scripts/test_taxonomy_v2.py`) and 63 browser checks (`scripts/check_preview.py`).
 - [ ] Run `scripts/test_taxonomy_v2.py` in `validate.yml`, with the CI slice. Include `site-v2/` changes in PR validation.
 - [ ] At the cutover, replace `site/app.js` with `site-v2/app.js`, merge `site-v2/v2.css` into `style.css`, and remove `site-v2/`.
 - [ ] Adapt enrichment, Sheets, Form, and CI to the accepted schema. Use separate v2 Sheet tabs during migration.

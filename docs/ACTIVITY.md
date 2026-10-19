@@ -1,5 +1,17 @@
 # Activity
 
+## 2026-10-19 — Phone layouts for cards and list; site address under the name
+
+**Done**
+- Owner request, in `site/style.css` (production and preview): below 720 px, a card is a row with the picture as a
+  75 px square on the left, with type, name, tagline, and status. The list hides the picture and keeps the logo,
+  description, badges, and dates. The detail panel puts the site address right under the name.
+- The list row's date line started with "·" when the grey line was empty (v2 projects). Both browsers now join the parts.
+- Measured: `scripts/check_preview.py` 63/63 (2 new checks for the phone layouts).
+
+**Decided**
+- Change the layout with CSS only. The card and row markup stays the same, so the desktop layouts are unchanged.
+
 ## 2026-10-19 — v1 details restored in the v2 preview; site link and footer note
 
 **Done**

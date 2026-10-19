@@ -272,7 +272,7 @@ function row(it, withDomain) {
       ${blurb(it) ? `<div class="row-tag">${esc(blurb(it))}</div>` : ''}
       ${desc ? `<div class="row-desc">${esc(clip(desc, 160))}</div>` : ''}
       ${it.keywords.length ? `<div class="row-kw">${it.keywords.map(k => `<span>#${esc(kwLabel(k))}</span>`).join('')}</div>` : ''}
-      <div class="meta meta-m">${metaLine(it, withDomain)}${dates ? ` · ${esc(dates)}` : ''}</div>
+      <div class="meta meta-m">${[metaLine(it, withDomain), dates && esc(dates)].filter(Boolean).join(' · ')}</div>
     </div>
     <div class="row-side row-links">${rowLinks(it)}</div>
     <div class="row-side" title="${esc(ageTitle(it))}">${esc(ageShort(it) || '—')}</div>

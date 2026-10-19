@@ -323,7 +323,7 @@ function row(it, withDomain) {
       ${blurb(it) ? `<div class="row-tag">${esc(blurb(it))}</div>` : ''}
       ${desc ? `<div class="row-desc">${esc(clip(desc, 160))}</div>` : ''}
       ${badgeIds(it).length ? `<div class="row-kw">${badgesHTML(it)}</div>` : ''}
-      <div class="meta meta-m">${metaLine(it, withDomain)}${dates ? ` · ${esc(dates)}` : ''}</div>
+      <div class="meta meta-m">${[metaLine(it, withDomain), dates && esc(dates)].filter(Boolean).join(' · ')}</div>
     </div>
     <div class="row-side row-links">${rowLinks(it)}</div>
     <div class="row-side" title="${esc(ageTitle(it))}">${esc(ageShort(it) || '—')}</div>
