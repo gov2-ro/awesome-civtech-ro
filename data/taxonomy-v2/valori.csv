@@ -1,0 +1,66 @@
+lista,cod,eticheta_ro,eticheta_en,definitie_ro,statut,ordine
+tip_entitate,proiect,Proiect,Project,"Instrument, platformă sau inițiativă civică.",propus,0
+tip_entitate,organizatie,Organizație,Organisation,"Organizație, rețea sau comunitate catalogată ca atare.",propus,1
+tip_entitate,resursa,Resursă,Resource,"Listă, colecție sau altă resursă care nu este o publicație individuală.",propus,2
+tip_entitate,publicatie,Publicație,Publication,"Articol, ghid, raport sau investigație identificabilă.",propus,3
+tip_entitate,set-date,Set de date,Dataset,"Set de date identificabil, catalogat separat.",propus,4
+tip_entitate,campanie,Campanie,Campaign,Campanie publică delimitată.,propus,5
+sectiune_url,proiect,Proiecte,Projects,Fila și adresa /proiect/.,propus,0
+sectiune_url,organizatie,Organizații,Organisations,Fila și adresa /organizatie/.,propus,1
+sectiune_url,resursa,Resurse & liste,Resources & lists,Fila și adresa /resursa/.,propus,2
+nivel_acoperire,national,Național,National,Se aplică în toată țara.,propus,0
+nivel_acoperire,local,Local,Local,Se aplică într-o localitate sau un județ.,propus,1
+nivel_acoperire,international,Internațional,International,Se aplică în mai multe țări sau la nivel european.,propus,2
+nivel_acoperire,necunoscut,Necunoscut,Unknown,Sursa nu stabilește acoperirea. Nu înseamnă național.,propus,3
+clasificare_stare,propus,Propus,Proposed,"Clasificare propusă, neacceptată de editor.",propus,0
+clasificare_stare,acceptat,Acceptat,Accepted,Editorul a verificat toate fațetele intrării.,propus,1
+clasificare_stare,de-revizuit,De revizuit,Needs review,Clasificarea lipsește sau este incompletă și necesită verificare.,propus,2
+incredere,mica,Mică,Low,Dovezi puține sau indirecte.,propus,0
+incredere,medie,Medie,Medium,"Dovezi directe, dar incomplete.",propus,1
+incredere,mare,Mare,High,Dovezi directe și suficiente.,propus,2
+stare_manual,arhivat,Arhivat,Archived,Editorul declară proiectul încheiat.,propus,0
+stare_manual,offline,Offline,Offline,Editorul declară site-ul indisponibil.,propus,1
+civictech_original,0,Nu,No,Valoare v1 păstrată: nu este marcat civic tech.,propus,0
+civictech_original,1,Da,Yes,Valoare v1 păstrată: marcat civic tech.,propus,1
+concept_schema,subiect,Subiect,Subject,Subiecte generale și teme mai precise.,propus,0
+concept_schema,scop,Scop civic,Civic purpose,Scopul civic sprijinit.,propus,1
+concept_schema,functie,Ce poți face,What you can do,Acțiuni oferite de instrument sau activități ale organizației.,propus,2
+concept_schema,format,Format,Format,Forma în care este oferit conținutul.,propus,3
+concept_schema,tehnologie,Tehnologie,Technology,Tehnologie folosită sau oferită explicit.,propus,4
+concept_schema,institutie,Instituții vizate,Institutions concerned,"Instituții discutate, servite sau folosite ca sursă de date.",propus,5
+concept_schema,maturitate,Maturitate,Maturity,Etapa de dezvoltare declarată sau dovedită.,propus,6
+concept_schema,organizatie,Tip de organizație,Organisation type,Categoria organizației.,propus,7
+concept_statut,propus,Propus,Proposed,Concept propus.,propus,0
+concept_statut,acceptat,Acceptat,Accepted,Concept acceptat în vocabular.,propus,1
+concept_statut,retras,Retras,Retired,Concept retras; nu se mai atribuie.,propus,2
+relatie_predicat,atribuit_in_sursa,Atribuit în sursă,Attributed in source,Vechiul câmp autor numește persoana sau organizația; rolul nu este stabilit.,propus,0
+relatie_predicat,creat_de,Creat de,Created by,Persoana sau organizația a creat intrarea.,propus,1
+relatie_predicat,mentinut_de,Menținut de,Maintained by,Persoana sau organizația menține intrarea.,propus,2
+relatie_predicat,publicat_de,Publicat de,Published by,Persoana sau organizația publică intrarea.,propus,3
+relatie_predicat,finantat_de,Finanțat de,Funded by,Persoana sau organizația finanțează intrarea.,propus,4
+relatie_predicat,parte_din,Parte din,Part of,Intrarea face parte din altă intrare.,propus,5
+relatie_predicat,ofera,Oferă,Offers,Intrarea oferă altă intrare.,propus,6
+relatie_predicat,foloseste,Folosește,Uses,Intrarea folosește altă intrare.,propus,7
+relatie_stare,rol_neconfirmat,Rol neconfirmat,Unconfirmed role,"Atribuire păstrată din sursă, fără rol verificat.",propus,0
+relatie_stare,propus,Propus,Proposed,Rol propus.,propus,1
+relatie_stare,acceptat,Acceptat,Accepted,"Rol acceptat de editor, cu dovadă.",propus,2
+relatie_stare,respins,Respins,Rejected,Rol respins de editor.,propus,3
+revizuire_stare,deschis,Deschis,Open,Punct nerezolvat.,propus,0
+revizuire_stare,acceptat,Acceptat,Accepted,Editorul a acceptat propunerea.,propus,1
+revizuire_stare,respins,Respins,Rejected,Editorul a respins propunerea.,propus,2
+revizuire_stare,amanat,Amânat,Deferred,Editorul a amânat decizia.,propus,3
+prioritate,mare,Mare,High,Se rezolvă înainte de publicare.,propus,0
+prioritate,medie,Medie,Medium,Se rezolvă înainte de acceptarea intrării.,propus,1
+prioritate,mica,Mică,Low,Se rezolvă când există timp.,propus,2
+tip_arie,tara,Țară,Country,Stat.,propus,0
+tip_arie,regiune,Regiune,Region,Grupare de state sau regiune geografică.,propus,1
+tip_arie,judet,Județ,County,Județ.,propus,2
+tip_arie,localitate,Localitate,Locality,"Oraș, comună sau sector.",propus,3
+mapare_relatie,closeMatch,closeMatch,closeMatch,"Sens apropiat, nu identic.",propus,0
+mapare_relatie,exactMatch,exactMatch,exactMatch,Sens echivalent.,propus,1
+mapare_relatie,broadMatch,broadMatch,broadMatch,Ținta este mai largă.,propus,2
+mapare_relatie,narrowMatch,narrowMatch,narrowMatch,Ținta este mai îngustă.,propus,3
+mapare_relatie,relatedMatch,relatedMatch,relatedMatch,Ținta este asociată.,propus,4
+mapare_stare,propus,Propus,Proposed,Corespondență propusă.,propus,0
+mapare_stare,acceptat,Acceptat,Accepted,Corespondență acceptată de editor.,propus,1
+mapare_stare,respins,Respins,Rejected,Corespondență respinsă.,propus,2

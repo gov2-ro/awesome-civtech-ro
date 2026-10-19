@@ -20,6 +20,10 @@ The column lists are in `scripts/common.py` (`PROIECTE_COLS`, `ORGS_COLS`, `PROF
 | `data/site.json` | a person | [site.json](#sitejson) |
 | `site/data.json` | `build.py` | [data.json](#datajson) |
 
+Taxonomy v2 is a separate proposal in `data/taxonomy-v2/`. The production site does not read it. Its structural
+contract is `data/taxonomy-v2/schema.json`; the editing guide is `data/taxonomy-v2/README.md`; the model is
+`docs/specs/taxonomy-v2.md`. See [Taxonomy v2 preview](#taxonomy-v2-preview) for its `data.json`.
+
 ## Rules for every CSV
 
 - Encoding is UTF-8. The separator is a comma. A cell that holds a comma, a quote or a new line
@@ -270,3 +274,22 @@ What the browser loads: `generated` (time), `checked` (the newest `fetched_at`),
   and documentation 15.
 - `stale`: the year of the last sign of life, when an active site shows no sign of an edit for three
   years, or its repository is archived.
+
+## Taxonomy v2 preview
+
+`build.py --data-dir <v2 root> --site-dir <folder> --allow-draft` writes a `data.json` with `schemaVersion` 2 for
+`site-v2/app.js`. It keeps the v1 fields whose meaning is unchanged (text, links, profile, status, score, images)
+and replaces the v1 classification:
+
+- `kind` is `sectiune_url`; `entityType` is `tip_entitate`; `row` is the entry's record in `intrari.csv`.
+- `primarySubject` (an ID or null), `subjects`, `topics`, `purposes`, `capabilities`, `formats`, `technologies`,
+  `institutions`, `organisationTypes`: concept IDs. `maturity` is one ID or null, never an array.
+- `coverageLevel` and `areas`: the coverage code and area IDs.
+- `attributions`: `{name, org, role, accepted}`. `role` is the relation predicate; an unconfirmed role shows neutrally.
+- `legacy`: the original `domeniu`, `tips`, `keywords`, `fel`, `acoperire` and `oras`, only for old bookmarks.
+- Top level: `draft` (true while any classification is not accepted), `vocabulary` (the used concepts with labels,
+  alternative labels, definitions and broader IDs; the used areas; the scheme, section, entity-type, coverage and
+  predicate labels; the subject order) and `legacyTaxonomy`.
+
+The v2 `score` replaces the keyword term of documentation with one yes/no signal: a primary subject exists.
+Notes, source rows, confidence, review items and model evidence never reach `data.json`.

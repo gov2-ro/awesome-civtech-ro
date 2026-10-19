@@ -120,7 +120,10 @@ institutie:anaf,institutie,ANAF,Romanian tax administration,,"Instituție vizat�
 institutie:scoala,institutie,Școală sau instituție de învățământ,Educational institution,,Instituție de învățământ vizată.,,,propus
 institutie:instanta,institutie,Instanță judecătorească,Court,,Instanță vizată sau sursă a informațiilor.,,,propus
 institutie:institutie-ue,institutie,Instituție a Uniunii Europene,EU institution,,Instituție a Uniunii Europene vizată.,,,propus
-maturitate:prototip,maturitate,Prototip,Prototype,,Prototip declarat în sursa editorială. Nu este un statut HTTP.,,,propus
 organizatie:ong,organizatie,Organizație neguvernamentală,Non-governmental organisation,,Tip declarat în sursă; nu reprezintă o verificare juridică.,,,propus
 organizatie:think-tank,organizatie,Think-tank,Think tank,,Organizație axată pe cercetare și politici publice.,,,propus
 organizatie:retea,organizatie,Rețea sau comunitate,Network or community,,Rețea ori comunitate de persoane sau organizații.,,,propus
+maturitate:experiment,maturitate,Experiment,Experiment,,Explorează o idee sau o abordare; utilizarea practică nu este stabilită.,,,propus
+maturitate:prototip,maturitate,Prototip,Prototype,,Demonstrează funcționalitatea propusă.,,,propus
+maturitate:pilot,maturitate,Pilot,Pilot,,Este utilizat într-o implementare limitată în condiții reale sau într-un test cu utilizatori reali.,,,propus
+maturitate:operational,maturitate,Operațional,Operational,,Este oferit pentru utilizare obișnuită de către publicul său țintă.,,,propus

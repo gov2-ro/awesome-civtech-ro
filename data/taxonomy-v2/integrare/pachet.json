@@ -1,0 +1,72 @@
+{
+  "purpose": "Integration copy of the sealed run 2026-10-19-reasoned-evidence, with the evaluation's three semantic corrections. All classifications remain proposals; this is not an accepted catalogue.",
+  "base": "..",
+  "local_files": [
+    "intrari.csv",
+    "revizuire.csv",
+    "modificari.csv",
+    "rezultate.csv",
+    "propuneri-vocabular.csv",
+    "catalogue.json"
+  ],
+  "headers": {
+    "modificari.csv": [
+      "id",
+      "data",
+      "slug",
+      "camp",
+      "tip",
+      "inainte",
+      "dupa",
+      "motiv",
+      "dovada"
+    ],
+    "rezultate.csv": [
+      "slug",
+      "rezultat",
+      "raspuns",
+      "sha256",
+      "incertitudini",
+      "conflicte",
+      "modificari"
+    ],
+    "propuneri-vocabular.csv": [
+      "id",
+      "tip",
+      "schema",
+      "eticheta_ro",
+      "eticheta_en",
+      "definitie_ro",
+      "mai_larg",
+      "slug",
+      "motiv",
+      "dovada",
+      "stare"
+    ]
+  },
+  "source_run": {
+    "id": "2026-10-19-reasoned-evidence",
+    "path": "runs/2026-10-19-reasoned-evidence",
+    "classification_seal_sha256": "be98e70a77a3b94607918947305b7b2f4de740920f61fe7d3e80b05aabe3cdf2",
+    "candidate_csv_sha256": "19d69885354f076c2b674e283641ccbc0b029e7e8da51fa8b5cdf225dbe7b16f",
+    "frozen_concepts_sha256": "e796f3f275eca90a8ac39f798d7d295a85694059f05b22bc70a9f69c5021b849",
+    "frozen_areas_sha256": "6a8c624463d0d6a6dd2ab0a264e19faee579e174ac34ff3584e8e9e0afe3bb20"
+  },
+  "notes": [
+    "Review items R001-R066 are copied unchanged from the base queue. They were written for the draft.1 manual proposal.",
+    "C items carry the run's specific uncertainties and conflicts. Generic maturity and attribution-role uncertainties stay in the responses.",
+    "S items are the evaluation's three semantic concerns; modificari.csv records the corresponding changes.",
+    "V items point to vocabulary proposals; none of them is in concepte.csv or arii.csv."
+  ],
+  "counts": {
+    "entries": 122,
+    "results": {
+      "classified": 105,
+      "partial": 16,
+      "insufficient_evidence": 1
+    },
+    "changes": 4,
+    "review_items": 103,
+    "vocabulary_proposals": 10
+  }
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "version": "2.0.0-draft.1",
+    "date": "2026-10-19",
+    "record": "manifest.json",
+    "summary": "Initial copy of 122 entries, 125 concepts, 13 subjects, 86 attributions, 66 review items and 822 initial assignments."
+  },
+  {
+    "version": "2.0.0-draft.2",
+    "date": "2026-10-19",
+    "summary": "Agreed implementation revision. No entry was reclassified.",
+    "changes": [
+      "concepte.csv: added maturitate:experiment, maturitate:pilot and maturitate:operational; replaced the maturitate:prototip definition. 125 -> 128 concepts. The table equals the frozen vocabulary of runs/2026-10-19-reasoned-evidence (LF line endings).",
+      "maturitate holds zero or one concept: a field rule with max_items=1; catalogue.json exports a string or null.",
+      "valori.csv: 16 named code lists, 65 codes, moved from the draft.1 schema.json enums and relation predicates, the validator's hardcoded lists, and the section labels of setari.json. No blank-code rows.",
+      "roluri-linkuri.csv and gazde-linkuri.csv: 22 link roles and 29 hosts, moved from setari.json without changing role IDs or host lookup.",
+      "schema.json: field_rules name a code list or concept scheme, with cardinality. Removed enums, relation_predicates and concept_fields.",
+      "setari.json: kept only the reporting addresses and a note. tabs.intrari is null until a v2 Sheet tab exists."
+    ],
+    "unchanged": "intrari.csv, relatii.csv, revizuire.csv, atribuiri-initiale.csv, corespondente-v1.csv, mapari-externe.csv, arii.csv, source/, reference/, observatii/ and manifest.json."
+  }
+]

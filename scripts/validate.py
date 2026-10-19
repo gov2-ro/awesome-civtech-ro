@@ -2,9 +2,15 @@
 
     python3 scripts/validate.py                 # the repo files
     python3 scripts/validate.py some.csv ...    # extra files in the proiecte.csv format (e.g. a Sheet export)
+    python3 scripts/validate.py --data-dir data/taxonomy-v2/integrare                 # a taxonomy v2 root (draft rules)
+    python3 scripts/validate.py --data-dir data/taxonomy-v2/integrare --publication   # ... and the public-build gate
 
+--data-dir selects the data root; data/ (v1) stays the default. A v2 root gets the package checks of
+scripts/taxonomy_v2.py: they permit proposed classifications. --publication also requires every entry to be
+accepted and no high-priority review item to be open, as a public build does.
 Exits 1 on errors; warnings don't fail. Messages are file:line, and GitHub Actions shows them on the PR diff.
 """
+import argparse
 import csv
 import json
 import os
@@ -12,14 +18,9 @@ import re
 import sys
 from pathlib import Path
 
-from common import DATA, MENTIUNI, MENTIUNI_COLS, ORGS_COLS, PROIECTE_COLS, split_list, split_tip, to_href
+from common import DATA, MENTIUNI_COLS, ORGS_COLS, PROIECTE_COLS, data_schema, observation_paths, split_list, split_tip, to_href
 
-TAX = json.loads((DATA / "taxonomy.json").read_text())
-DOMENII = {d["key"] for d in TAX["domenii"]}
-TIPURI = {t["key"] for t in TAX["tipuri"]}
-ACOPERIRE = {a["key"] for a in TAX["acoperire"]}
-FEL = [f["key"] for f in TAX["fel"]]
-ROLURI = {r["key"] for r in TAX["linkuri"]["roluri"]}
+TAX = DOMENII = TIPURI = ACOPERIRE = FEL = ROLURI = ORG_SLUGS = None  # set by setup(), from the selected v1 root
 SLUG = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 URL = re.compile(r"^https?://[^\s/$.?#][^\s]*\.[^\s]+$", re.I)
 GH = os.environ.get("GITHUB_ACTIONS") == "true"
@@ -123,21 +124,63 @@ def check_mentiuni(path: Path):
                 report("error", path, reader.line_num, f"{r['slug']}: editor: '{r['editor']}' (gol, 0 sau 1)")
 
 
-def org_slugs() -> set[str]:
-    with open(DATA / "orgs.csv", encoding="utf-8-sig", newline="") as f:
+def org_slugs(data_dir: Path) -> set[str]:
+    with open(data_dir / "orgs.csv", encoding="utf-8-sig", newline="") as f:
         return {(r.get("slug") or "").strip() for r in csv.DictReader(f)}
 
 
-ORG_SLUGS = org_slugs()
+def setup(data_dir: Path):
+    """The controlled lists of the selected v1 root."""
+    global TAX, DOMENII, TIPURI, ACOPERIRE, FEL, ROLURI, ORG_SLUGS
+    TAX = json.loads((data_dir / "taxonomy.json").read_text())
+    DOMENII = {d["key"] for d in TAX["domenii"]}
+    TIPURI = {t["key"] for t in TAX["tipuri"]}
+    ACOPERIRE = {a["key"] for a in TAX["acoperire"]}
+    FEL = [f["key"] for f in TAX["fel"]]
+    ROLURI = {r["key"] for r in TAX["linkuri"]["roluri"]}
+    ORG_SLUGS = org_slugs(data_dir)
+
+
+def check_v2(root: Path, publication: bool):
+    """The package checks of a v2 root, reported like the v1 checks (file:line when the message names them)."""
+    import taxonomy_v2
+    try:
+        found, summary = taxonomy_v2.check(root, publication=publication)
+    except taxonomy_v2.PackageError as e:
+        report("error", root, 1, str(e))
+        return
+    files = taxonomy_v2.Files(root)
+    for msg in found:
+        m = re.match(r"^(?:baseline: |publication: )?([\w./-]+\.(?:csv|json))(?::(\d+))?[ :]", msg)
+        name = m.group(1) if m else ("revizuire.csv" if "review item" in msg else "intrari.csv" if msg.startswith("publication") else "")
+        report("error", files.path(name) if name else files.root, int(m.group(2)) if m and m.group(2) else 1, msg)
+    check_mentiuni(observation_paths(root)["mentions"])
+    if summary:
+        states = ", ".join(f"{k}: {v}" for k, v in sorted(summary["classification_states"].items()))
+        print(f"{summary['schema_version']}: {summary['entries']} intrări ({states}), {summary['concepts']} concepte", file=sys.stderr)
 
 
 def main():
-    seen, urls = {}, {}
-    check(DATA / "proiecte.csv", PROIECTE_COLS, seen, urls, False)
-    check(DATA / "orgs.csv", ORGS_COLS, seen, urls, True)
-    check_mentiuni(MENTIUNI)
-    for extra in sys.argv[1:]:
-        check(Path(extra).resolve(), PROIECTE_COLS, seen, urls, False)
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("extra", nargs="*", type=Path, help="more CSVs in the proiecte.csv format (v1 only)")
+    parser.add_argument("--data-dir", type=Path, default=DATA, help="data root (default: data/)")
+    parser.add_argument("--publication", action="store_true", help="v2: require accepted classifications, as a public build")
+    args = parser.parse_args()
+    root = args.data_dir.resolve()
+    if data_schema(root) == "v2":
+        if args.extra:
+            parser.error("extra CSVs are in the v1 format; use them without a v2 --data-dir")
+        check_v2(root, args.publication)
+    else:
+        if args.publication:
+            parser.error("--publication applies to a v2 root")
+        setup(root)
+        seen, urls = {}, {}
+        check(root / "proiecte.csv", PROIECTE_COLS, seen, urls, False)
+        check(root / "orgs.csv", ORGS_COLS, seen, urls, True)
+        check_mentiuni(observation_paths(root)["mentions"])
+        for extra in args.extra:
+            check(extra.resolve(), PROIECTE_COLS, seen, urls, False)
     print(f"{errors} erori, {warnings} avertismente", file=sys.stderr)
     sys.exit(1 if errors else 0)
 

@@ -1,4 +1,8 @@
-"""Shared loading of the editable CSVs (proiecte, orgs) and the generated profile and mention CSVs."""
+"""Shared loading of the editable CSVs (proiecte, orgs) and the generated profile and mention CSVs.
+
+A data root is either the production v1 layout (data/: proiecte.csv, orgs.csv, taxonomy.json) or a taxonomy v2
+package or overlay (schema.json or pachet.json; see scripts/taxonomy_v2.py). data/ stays the default everywhere.
+"""
 import csv
 import json
 import os
@@ -42,10 +46,11 @@ MENTIUNI_COLS = ["slug", "provider", "query", "rank", "url", "host", "title", "s
 # LLM labels of the kept results (scripts/review.py); generated, never hand-edited.
 ETICHETE_COLS = ["slug", "url", "despre_proiect", "tip_sursa", "independent", "model", "labelled_at"]
 
-_TAX = json.loads((DATA / "taxonomy.json").read_text())
-ROLES = _TAX["linkuri"]["roluri"]
+# The production taxonomy, for the v1 scripts. A v2 root has its own lists: load_vocabulary(data_dir).
+_TAX = json.loads((DATA / "taxonomy.json").read_text()) if (DATA / "taxonomy.json").exists() else {}
+ROLES = _TAX.get("linkuri", {}).get("roluri", [])
 # `fel` (the column of proiecte.csv) -> the tab it belongs to: articles, guides, campaigns and research all sit under "resursa".
-FEL_KIND = {f["key"]: f["kind"] for f in _TAX["fel"]}
+FEL_KIND = {f["key"]: f["kind"] for f in _TAX.get("fel", [])}
 # Profile links by network: host -> role key, from the taxonomy (GitHub and GitLab are code, not social).
 SOCIAL_HOSTS = {h: r["key"] for r in ROLES if r["key"] not in ("github", "gitlab") for h in r["hosts"]}
 # Link roles that show a network logo in the drawer (NETWORK in site/app.js). Every other link shows the favicon of its host.
@@ -119,27 +124,109 @@ def is_kept(row: dict) -> bool:
     return row["editor"] == "1" or (row["editor"] == "" and row["regula"] == "")
 
 
-def load_mentions() -> list[dict]:
+def load_mentions(path: Path = MENTIUNI) -> list[dict]:
     """Every row of mentiuni.csv (empty when search.py has not run)."""
-    return read_csv(MENTIUNI) if MENTIUNI.exists() else []
+    return read_csv(path) if path.exists() else []
 
 
-def load_entries() -> list[dict]:
-    """Every listed entry: projects and resources from proiecte.csv, organisations from orgs.csv."""
+def load_entries(data_dir: Path = DATA) -> list[dict]:
+    """Every listed entry of a v1 root: projects and resources from proiecte.csv, organisations from orgs.csv."""
+    tax = json.loads((data_dir / "taxonomy.json").read_text()) if data_dir != DATA else _TAX
+    fel_kind = {f["key"]: f["kind"] for f in tax.get("fel", [])}
     out = []
-    for r in read_csv(DATA / "proiecte.csv"):
-        out.append({**r, "kind": FEL_KIND.get(r["fel"] or "proiect", "proiect"), "url": to_href(r["url"]) if r["url"] else ""})
-    for r in read_csv(DATA / "orgs.csv"):
+    for r in read_csv(data_dir / "proiecte.csv"):
+        out.append({**r, "kind": fel_kind.get(r["fel"] or "proiect", "proiect"), "url": to_href(r["url"]) if r["url"] else ""})
+    for r in read_csv(data_dir / "orgs.csv"):
         out.append({**r, "kind": "organizatie", "url": to_href(r["url"]) if r["url"] else ""})
     return out
 
 
-def load_profile() -> dict:
+def data_schema(data_dir: Path = DATA) -> str:
+    """'v2' for a taxonomy v2 package or overlay, 'v1' for the production layout. Anything else is an error."""
+    from taxonomy_v2 import is_v2
+    if is_v2(data_dir):
+        return "v2"
+    if (data_dir / "proiecte.csv").exists() and (data_dir / "taxonomy.json").exists():
+        return "v1"
+    raise SystemExit(f"{data_dir}: not a data root (no proiecte.csv + taxonomy.json, schema.json or pachet.json)")
+
+
+def observation_paths(data_dir: Path = DATA) -> dict[str, Path]:
+    """The generated observation CSVs of a root: data/*.csv for v1, observatii/*.csv for v2 (an overlay uses its
+    base's). A v2 run never reads or writes the immutable copies in source/."""
+    if data_schema(data_dir) == "v1":
+        return {"profile": data_dir / "profil.csv", "mentions": data_dir / "mentiuni.csv", "labels": data_dir / "mentiuni_etichete.csv"}
+    from taxonomy_v2 import Files
+    obs = Files(data_dir).observations
+    return {"profile": obs / "profil.csv", "mentions": obs / "mentiuni.csv", "labels": obs / "mentiuni_etichete.csv"}
+
+
+def split_ids(cell: str) -> list[str]:
+    """A v2 ID list cell: values separated by `|`, without spaces. Not the comma rule of split_tip."""
+    from taxonomy_v2 import values
+    return values(cell)
+
+
+def load_vocabulary(data_dir: Path = DATA) -> dict:
+    """The controlled lists of a root. v1: taxonomy.json as it is. v2: concepts, code lists (with labels), areas and
+    link roles from their CSVs, assembled in memory; nothing is written back."""
+    if data_schema(data_dir) == "v1":
+        return json.loads((data_dir / "taxonomy.json").read_text())
+    from taxonomy_v2 import load
+    pkg = load(data_dir)
+    return {"schema_version": pkg.version, "concepts": pkg.concepts, "codes": pkg.codes, "areas": pkg.areas,
+            "roles": pkg.link_roles(), "sections": pkg.sections(), "site": pkg.settings["site"], "package": pkg}
+
+
+def load_catalogue(data_dir: Path = DATA) -> list[dict]:
+    """Every entry of a root, with the fields that both schemas share: slug, nume, descriere_scurta, descriere,
+    url, linkuri, stare, contact, kind (the URL section) and row (its record in the edited table, header = 1).
+    v2 entries add their facets (lists; maturity and the primary subject are a string or None), the resolved
+    attribution relations, and `legacy`: the original v1 record's category, types and keywords, read from the
+    source snapshot, for old bookmarks. Private notes and source metadata stay out."""
+    if data_schema(data_dir) == "v1":
+        rows = {"proiecte": 1, "orgs": 1}
+        out = []
+        for e in load_entries(data_dir):
+            tab = "orgs" if e["kind"] == "organizatie" else "proiecte"
+            rows[tab] += 1
+            out.append({**e, "row": rows[tab]})
+        return out
+    from taxonomy_v2 import load, read_table, source_row, values
+    pkg = load(data_dir)
+    sources = {n: read_table(pkg.files.path(f"source/{n}"))[1] for n in ("proiecte.csv", "orgs.csv") if pkg.files.path(f"source/{n}").exists()}
+    relations: dict[str, list[dict]] = {}
+    for r in pkg.tables["relatii.csv"]:
+        target = pkg.entries.get(r["obiect"])
+        relations.setdefault(r["subiect"], []).append({
+            "predicate": r["predicat"], "state": r["stare"], "slug": r["obiect"], "literal": r["obiect_literal"],
+            "name": target["nume"] if target else r["obiect_literal"]})
+    out = []
+    for n, (slug, raw) in enumerate(pkg.entries.items(), 2):
+        original = source_row(pkg, sources, raw) or {}
+        r = {k: v.strip() for k, v in raw.items()}  # the CSV keeps the original bytes; display them trimmed, as v1 does
+        out.append({
+            "slug": slug, "nume": r["nume"], "descriere_scurta": r["descriere_scurta"], "descriere": r["descriere"],
+            "url": to_href(r["url"]) if r["url"] else "", "linkuri": r["linkuri"], "stare": r["stare"], "contact": r["contact"],
+            "kind": r["sectiune_url"], "row": n, "entity_type": r["tip_entitate"],
+            "primary_subject": r["subiect_principal"] or None, "subjects": values(r["subiecte"]), "topics": values(r["teme"]),
+            "purposes": values(r["scopuri"]), "capabilities": values(r["functionalitati"]), "formats": values(r["formate"]),
+            "technologies": values(r["tehnologii"]), "institutions": values(r["institutii_vizate"]),
+            "organisation_types": values(r["tip_organizatie"]), "maturity": r["maturitate"] or None,
+            "coverage_level": r["nivel_acoperire"], "areas": values(r["arii_acoperite"]), "locality": r["localitate_originala"],
+            "civictech": r["civictech_original"], "classification_state": r["clasificare_stare"],
+            "attributions": relations.get(slug, []),
+            "legacy": {k: original.get(k, "") for k in ("fel", "domeniu", "tip", "cuvinte", "acoperire", "oras")} if original else {},
+        })
+    return out
+
+
+def load_profile(path: Path = PROFILE) -> dict:
     """slug -> profile dict, in the shape scripts/profile.py produces."""
-    if not PROFILE.exists():
+    if not path.exists():
         return {}
     out = {}
-    for r in read_csv(PROFILE):
+    for r in read_csv(path):
         p = {k: r[k] for k in PROFIL_COLS if r.get(k) and not k.startswith("img_") and k not in ("slug", "repos", "social")}
         if r["http_status"]:
             p["http_status"] = int(r["http_status"])
@@ -156,7 +243,7 @@ def load_profile() -> dict:
     return out
 
 
-def save_profile(profile: dict):
+def save_profile(profile: dict, path: Path = PROFILE):
     rows = []
     for slug, p in sorted(profile.items()):
         im = p.get("image") or {}
@@ -172,4 +259,4 @@ def save_profile(profile: dict):
             "img_src": im.get("src", ""), "img_kind": im.get("kind", ""), "img_w": im.get("w", ""),
             "img_h": im.get("h", ""), "img_color": im.get("color", ""), "img_source": im.get("source_url", ""),
         })
-    write_csv(PROFILE, PROFIL_COLS, rows)
+    write_csv(path, PROFIL_COLS, rows)

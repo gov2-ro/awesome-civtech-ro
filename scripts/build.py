@@ -5,19 +5,32 @@ search engines; git ignores them, the Pages workflow builds them). All generated
 The page's folder is the entry's tab: site/proiect/, site/organizatie/ or site/resursa/.
 
     python3 scripts/build.py
+    python3 scripts/build.py --site-dir /tmp/civtech-v1                     # the same site, written elsewhere
+    python3 scripts/build.py --data-dir data/taxonomy-v2/integrare --site-dir /tmp/civtech-v2 --allow-draft
+
+--data-dir selects the data root (default data/, the v1 layout). A taxonomy v2 root builds the v2 payload
+(schemaVersion 2) with the v2 browser code from site-v2/. --site-dir writes every output, page deletion, asset stamp
+and image there: it first copies the template, assets and images of site/, so a preview never touches site/.
+A v2 build needs --site-dir until the source cutover. It also refuses proposed classifications unless
+--allow-draft is given; the preview then says that its classifications are proposals.
 """
+import argparse
 import hashlib
 import html
 import json
 import math
 import re
 import shutil
+import sys
 from email.utils import format_datetime
 from xml.sax.saxutils import escape
 from datetime import date, datetime, timezone
 
-from common import (BOILERPLATE, DATA, ETICHETE, LINKICON_DIR, NETWORK_ROLES, SITE, domain_of, is_kept, link_host, load_entries,
-                    load_mentions, load_profile, parse_link, read_csv, split_list, split_tip)
+from pathlib import Path
+
+from common import (BOILERPLATE, DATA, NETWORK_ROLES, ROOT, SITE, data_schema, domain_of, is_kept, link_host, load_catalogue,
+                    load_entries, load_mentions, load_profile, load_vocabulary, observation_paths, parse_link, read_csv,
+                    split_list, split_tip)
 
 CODE_ROLES = ("github", "gitlab", "cod")
 SITE_URL = "https://civtech.gov2.ro/"
@@ -25,6 +38,8 @@ FEED_SIZE = 40
 REPO_URL = "https://github.com/gov2-ro/awesome-civtech-ro"
 PAGE_KINDS = ("proiect", "organizatie", "resursa")  # the folders under site/ that entry_pages() owns
 DEFAULT_SHARE = {"src": "img/share.png", "w": 1106, "h": 558}
+SITE_V2 = ROOT / "site-v2"  # the v2 browser code; a v2 build copies it over the template in its --site-dir
+GENERATED = ("data.json", "feed.xml", "llms.txt", *PAGE_KINDS)  # what a build writes; never copied from site/
 
 
 def pick_desc(desc: str, prof: dict) -> tuple[str, str]:
@@ -68,7 +83,7 @@ def keywords(cell: str, rules: dict) -> list[str]:
     return out
 
 
-def links(cell: str, social: dict, roles: list[dict]) -> list[dict]:
+def links(cell: str, social: dict, roles: list[dict], site: Path = SITE) -> list[dict]:
     """The 'linkuri' cell ("rol:URL" or bare URL), then social links the profiler found on the homepage."""
     label = {r["key"]: r["label"] for r in roles}
     out = {}
@@ -83,7 +98,7 @@ def links(cell: str, social: dict, roles: list[dict]) -> list[dict]:
     # A link that shows no network logo shows the favicon of its host, when the profiler stored one.
     for l in out.values():
         host = link_host(l["url"])
-        if l["role"] not in NETWORK_ROLES and (LINKICON_DIR / f"{host}.webp").exists():
+        if l["role"] not in NETWORK_ROLES and (site / "img" / "linkicon" / f"{host}.webp").exists():
             l["icon"] = f"img/linkicon/{host}.webp"
     order = list(label)
     return sorted(out.values(), key=lambda l: order.index(l["role"]))
@@ -168,9 +183,10 @@ def reach_features(mentions: list[dict], labels: list[dict]) -> dict[str, dict]:
 NO_REACH = {"indep": 0, "stiri": 0, "cercetare": 0, "guvern": 0, "ultima": ""}
 
 
-def score(e: dict, p: dict, alive: bool, desc: str, img, reach: dict) -> int:
+def score(e: dict, p: dict, alive: bool, desc: str, img, reach: dict, classified: bool) -> int:
     """0–100 relevance estimate: recent activity, reach, volume, longevity and how well it is documented.
-    A heuristic for ordering, not a verdict; the weights are meant to be tuned."""
+    A heuristic for ordering, not a verdict; the weights are meant to be tuned. `classified` is one yes/no signal
+    (v1: keywords exist; v2: a primary subject exists), so more assigned concepts never raise the score."""
     lg = lambda v, top: min(1.0, math.log1p(num(v)) / math.log1p(top))
     act = years_since(last_activity(p))
     activity = 0.3 if act is None else 1 if act < .25 else .75 if act < 1 else .45 if act < 2 else .2 if act < 4 else 0
@@ -182,7 +198,7 @@ def score(e: dict, p: dict, alive: bool, desc: str, img, reach: dict) -> int:
     volume = lg(p.get("sitemap_urls"), 5000)
     age = years_since(since(p)[0])
     longevity = min(1.0, (age or 0) / 8)
-    docs = sum([bool(e["descriere_scurta"]), bool(desc), bool(e.get("cuvinte")), bool(img)]) / 4
+    docs = sum([bool(e["descriere_scurta"]), bool(desc), classified, bool(img)]) / 4
     total = 30 * activity + 25 * r + 15 * volume + 15 * longevity + 15 * docs
     return round(total * (1 if alive else .4))
 
@@ -215,21 +231,24 @@ def clip(text: str, n: int) -> str:
     return cut.rstrip(" ,.;:–-") + "…"
 
 
-ASSET_LINKS = {"style.css": r'(href="style\.css)(\?v=[0-9a-f]+)?(")', "app.js": r'(src="app\.js)(\?v=[0-9a-f]+)?(")'}
+ASSET_LINKS = {"style.css": r'(href="style\.css)(\?v=[0-9a-f]+)?(")', "app.js": r'(src="app\.js)(\?v=[0-9a-f]+)?(")',
+               "v2.css": r'(href="v2\.css)(\?v=[0-9a-f]+)?(")'}
 
 
-def stamp_assets() -> bool:
+def stamp_assets(site: Path = SITE) -> bool:
     """Put a hash of style.css and app.js in their links in site/index.html (?v=<hash>). Cloudflare and browsers keep
     these two files for hours (measured: cache-control max-age=14400, cf-cache-status HIT), while the page itself is not
     cached; a changed file gets a new address, so the new page never meets the old file. Run it before the page writers,
     which copy index.html. Returns True when index.html changed."""
-    path = SITE / "index.html"
+    path = site / "index.html"
     doc = path.read_text(encoding="utf-8")
     for name, rx in ASSET_LINKS.items():
-        digest = hashlib.sha1((SITE / name).read_bytes()).hexdigest()[:10]
+        if not (site / name).exists() and name not in ("style.css", "app.js"):
+            continue
+        digest = hashlib.sha1((site / name).read_bytes()).hexdigest()[:10]
         doc, n = re.subn(rx, lambda m: f"{m.group(1)}?v={digest}{m.group(3)}", doc)
         if n != 1:
-            raise SystemExit(f"site/index.html must link {name} exactly once (found {n})")
+            raise SystemExit(f"{path} must link {name} exactly once (found {n})")
     changed = doc != path.read_text(encoding="utf-8")
     if changed:
         path.write_text(doc, encoding="utf-8")
@@ -262,12 +281,12 @@ def page_head(template: str, *, title: str, text: str, url: str, img: dict, alt:
     return doc
 
 
-def entry_pages(items: list[dict]) -> int:
+def entry_pages(items: list[dict], site: Path = SITE) -> int:
     """One page per entry at site/<kind>/<slug>/index.html: index.html with that entry's own <head> (see page_head)
     and the entry's text in <noscript>. app.js reads the slug from the path and opens the entry."""
-    template = (SITE / "index.html").read_text(encoding="utf-8")
+    template = (site / "index.html").read_text(encoding="utf-8")
     for kind in {i["kind"] for i in items} | set(PAGE_KINDS):
-        shutil.rmtree(SITE / kind, ignore_errors=True)
+        shutil.rmtree(site / kind, ignore_errors=True)
     for i in items:
         slug, name, kind = i["slug"], i["name"], i["kind"]
         text = clip(i["desc"] or i["tagline"] or "", 200) or "Colecție de instrumente civice, date deschise și proiecte de bună guvernare din România."
@@ -281,7 +300,7 @@ def entry_pages(items: list[dict]) -> int:
                 + (f'<p><a href="{esc(i["url"])}">{esc(i["domain"])}</a></p>' if i["url"] else "")
                 + '<p><a href="./">CivTech România</a></p></article></noscript>')
         doc = swap(doc, r'<a class="skip"', nojs + '\n<a class="skip"')
-        out = SITE / kind / slug
+        out = site / kind / slug
         out.mkdir(parents=True)
         (out / "index.html").write_text(doc, encoding="utf-8")
     return len(items)
@@ -294,37 +313,46 @@ ARCHIVE_LEAD = {
 }
 
 
-def archive_pages(items: list[dict], tax: dict) -> int:
-    """One list of every entry of a kind at site/<kind>/index.html (/proiect/, /organizatie/, /resursa/): plain HTML,
-    readable without scripts, each entry linking to its own page. Projects are grouped by domain, the others run A-Z.
-    Call it after entry_pages(), which clears the folders."""
-    template = (SITE / "index.html").read_text(encoding="utf-8")
-    kinds = {k["key"]: k["label"] for k in tax["kinds"]}
+def archive_pages(items: list[dict], tax: dict, site: Path = SITE) -> int:
+    """The v1 archives: projects grouped by domain, the others A-Z (see write_archives)."""
     domains = {d["key"]: d for d in tax["domenii"]}
     tips = {t["key"]: t["label"] for t in tax["tipuri"]}
     fels = {f["key"]: f["label"] for f in tax["fel"]}
+
+    def meta(i: dict) -> str:
+        kind_label = fels.get(i["fel"], "") if i["kind"] == "resursa" and i["fel"] != "resursa" else ""
+        parts = [kind_label, *(tips.get(t, "") for t in i["tips"]), i["oras"] if i["acoperire"] == "local" else ""]
+        return " · ".join(dict.fromkeys(p for p in parts if p))
+
+    def groups(kind: str, mine: list[dict]) -> list[tuple[str, str, list[dict]]]:
+        if kind == "proiect":
+            return [(d["label"], d["hint"], [i for i in mine if i["domeniu"] == d["key"]]) for d in domains.values()]
+        return [("", "", mine)]
+
+    return write_archives(items, {k["key"]: k["label"] for k in tax["kinds"]}, groups, meta, site)
+
+
+def write_archives(items: list[dict], kinds: dict[str, str], groups, meta, site: Path, leads: dict = ARCHIVE_LEAD, note: str = "") -> int:
+    """One list of every entry of a kind at site/<kind>/index.html (/proiect/, /organizatie/, /resursa/): plain HTML,
+    readable without scripts, each entry linking to its own page. `groups(kind, items)` gives (title, hint, items)
+    sections and `meta(item)` its small grey line. Call it after entry_pages(), which clears the folders."""
+    template = (site / "index.html").read_text(encoding="utf-8")
     counts = {k: sum(1 for i in items if i["kind"] == k) for k in kinds}
 
     def entry(i: dict) -> str:
-        kind_label = fels.get(i["fel"], "") if i["kind"] == "resursa" and i["fel"] != "resursa" else ""
-        parts = [kind_label, *(tips.get(t, "") for t in i["tips"]), i["oras"] if i["acoperire"] == "local" else ""]
-        meta = " · ".join(dict.fromkeys(p for p in parts if p))
+        meta_line = meta(i)
         gone = f' <span class="arch-gone">{esc(i["status"])}</span>' if i["status"] in ("arhivat", "offline") else ""
         icon = f'<img class="fav fav-name" src="{esc(i["icon"])}" alt="" width="24" height="24" loading="lazy">' if i["icon"] else ""
         blurb = clip(i["tagline"] or i["desc"], 160)
         return (f'<li class="arch-item"><a class="arch-name" href="{i["kind"]}/{esc(i["slug"])}/">{icon}{esc(i["name"])}</a>{gone}'
-                + (f'<span class="arch-meta">{esc(meta)}</span>' if meta else "")
+                + (f'<span class="arch-meta">{esc(meta_line)}</span>' if meta_line else "")
                 + (f'<p class="arch-blurb">{esc(blurb)}</p>' if blurb else "") + "</li>")
 
     for kind, label in kinds.items():
         mine = [i for i in items if i["kind"] == kind]
-        if kind == "proiect":
-            groups = [(d["label"], d["hint"], [i for i in mine if i["domeniu"] == d["key"]]) for d in domains.values()]
-        else:
-            groups = [("", "", mine)]
         body = "".join((f'<section class="arch-group"><h2>{esc(g)} <span class="n">{len(rows)}</span></h2>' + (f'<p class="arch-hint">{esc(h)}</p>' if h else "") if g else "<section>")
-                       + f'<ul class="arch-list">{"".join(entry(i) for i in rows)}</ul></section>' for g, h, rows in groups if rows)
-        lead = ARCHIVE_LEAD[kind].format(n=len(mine))
+                       + f'<ul class="arch-list">{"".join(entry(i) for i in rows)}</ul></section>' for g, h, rows in groups(kind, mine) if rows)
+        lead = leads[kind].format(n=len(mine)) + (f" {note}" if note else "")
         nav = "".join(f'<a href="{k}/"{" aria-current=" + chr(34) + "page" + chr(34) if k == kind else ""}>{esc(name)} <span class="n">{counts[k]}</span></a>'
                       for k, name in kinds.items())
         doc = page_head(template, title=f"{label} — CivTech România", text=lead, url=f"{SITE_URL}{kind}/", img=DEFAULT_SHARE,
@@ -345,15 +373,28 @@ def archive_pages(items: list[dict], tax: dict) -> int:
 </body>
 </html>
 """
-        (SITE / kind / "index.html").write_text(page, encoding="utf-8")
+        (site / kind / "index.html").write_text(page, encoding="utf-8")
     return len(kinds)
 
 
 def llms_txt(items: list[dict], tax: dict) -> str:
-    """site/llms.txt (format: llmstxt.org): what the site is, where the data is, and every entry as a Markdown link to
-    its own page. Projects are grouped by domain, resources by `fel`, organisations run A-Z (`items` is sorted)."""
+    """site/llms.txt of a v1 build: projects grouped by domain, resources by `fel`, organisations A-Z (see llms_doc)."""
     domains = tax["domenii"]
     fels = {f["key"]: f["label"] for f in tax["fel"] if f["kind"] == "resursa"} | {"resursa": "Liste și colecții"}
+    projects = [i for i in items if i["kind"] == "proiect"]
+    res = [i for i in items if i["kind"] == "resursa"]
+    sections = [(f"Proiecte: {d['label']}", [i for i in projects if i["domeniu"] == d["key"]]) for d in domains]
+    sections.append(("Organizații", [i for i in items if i["kind"] == "organizatie"]))
+    sections += [(f"Resurse: {label}", [i for i in res if i["fel"] == key]) for key, label in fels.items()]
+    sections.append(("Resurse: altele", [i for i in res if i["fel"] not in fels]))
+    sources = (f"- [proiecte.csv]({REPO_URL}/blob/main/data/proiecte.csv): sursa editată de om pentru proiecte și resurse\n"
+               f"- [orgs.csv]({REPO_URL}/blob/main/data/orgs.csv): sursa editată de om pentru organizații\n")
+    return llms_doc(items, sections, sources)
+
+
+def llms_doc(items: list[dict], sections: list[tuple[str, list[dict]]], sources: str, note: str = "") -> str:
+    """site/llms.txt (format: llmstxt.org): what the site is, where the data is, and every entry as a Markdown link to
+    its own page, in the given (title, items) sections (`items` is sorted)."""
 
     def line(i: dict) -> str:
         blurb = clip(i["tagline"] or i["desc"], 200).rstrip(".")
@@ -375,50 +416,59 @@ def llms_txt(items: list[dict], tax: dict) -> str:
 
 Fiecare intrare are o pagină proprie la {SITE_URL}<tip>/<slug>/ (tip: proiect, organizatie, resursa). Starea
 (activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: {checked}. Textele sunt în
-limba română. Datele sunt reutilizabile conform EUPL v1.2.
+limba română. Datele sunt reutilizabile conform EUPL v1.2.{note}
 
 ## Date
 
 - [data.json]({SITE_URL}data.json): toate intrările, cu taxonomia, linkurile, starea și scorul de relevanță
-- [proiecte.csv]({REPO_URL}/blob/main/data/proiecte.csv): sursa editată de om pentru proiecte și resurse
-- [orgs.csv]({REPO_URL}/blob/main/data/orgs.csv): sursa editată de om pentru organizații
-- [DATA-SCHEMA.md]({REPO_URL}/blob/main/docs/DATA-SCHEMA.md): coloanele fiecărui fișier
+{sources}- [DATA-SCHEMA.md]({REPO_URL}/blob/main/docs/DATA-SCHEMA.md): coloanele fiecărui fișier
 - [CONTRIBUTING.md]({REPO_URL}/blob/main/CONTRIBUTING.md): cum se propune un proiect
 - [feed.xml]({SITE_URL}feed.xml): RSS cu cele mai noi proiecte
 """]
-    parts += [section(f"Proiecte: {d['label']}", [i for i in projects if i["domeniu"] == d["key"]]) for d in domains]
-    parts.append(section("Organizații", orgs))
-    parts += [section(f"Resurse: {label}", [i for i in res if i["fel"] == key]) for key, label in fels.items()]
-    parts.append(section("Resurse: altele", [i for i in res if i["fel"] not in fels]))
+    parts += [section(title, rows) for title, rows in sections]
     return "\n".join(p for p in parts if p)
 
 
-def main():
-    tax = json.loads((DATA / "taxonomy.json").read_text())
+def observed(e: dict, p: dict, roles: list[dict], site: Path) -> dict:
+    """The fields that come from the profile and links rather than from classification, shared by both schemas."""
+    # A retired project's live URL shows something else now: ignore what the profiler saw there.
+    retired = e["stare"] in ("arhivat", "offline")
+    live = {} if retired else p
+    desc, desc_src = pick_desc(e["descriere"], live)
+    lk = links(e["linkuri"], live.get("social") or {}, roles, site)
+    code_link = next((l for l in lk if l["role"] in CODE_ROLES), None)
+    moved = live.get("status") == "mutat"
+    final = live.get("final_url") or e["url"]
+    status = status_of(e["stare"], p)
+    act = last_activity(p)
+    alive = status in ("activ", "necunoscut")
+    return {
+        "live": live, "desc": desc, "descSrc": desc_src, "links": [l for l in lk if l is not code_link],
+        "url": final if moved else e["url"], "domain": domain_of(final if moved else e["url"]) if e["url"] else "",
+        "movedFrom": domain_of(e["url"]) if moved else "",
+        "code": code_link["url"] if code_link else (live.get("repos") or [""])[0], "repo": repo_stats(p),
+        "status": status, "alive": alive, "img": live.get("image"),
+        # Up, but no sign of an edit in three years.
+        "stale": act[:4] if alive and act and (years_since(act) > 3 or p.get("repo_archived")) else "",
+        "wayback": p.get("wayback") or (f"https://web.archive.org/web/{e['url']}" if e["url"] and status in ("offline", "arhivat") else ""),
+    }
+
+
+def items_v1(data_dir: Path, site: Path) -> tuple[list[dict], dict]:
+    """The v1 items and the rest of data.json, from proiecte.csv, orgs.csv and taxonomy.json."""
+    tax = json.loads((data_dir / "taxonomy.json").read_text())
     roles = tax["linkuri"]["roluri"]
-    profile = load_profile()
-    features = reach_features(load_mentions(), read_csv(ETICHETE) if ETICHETE.exists() else [])
+    obs = observation_paths(data_dir)
+    profile = load_profile(obs["profile"])
+    features = reach_features(load_mentions(obs["mentions"]), read_csv(obs["labels"]) if obs["labels"].exists() else [])
     items = []
-    entries = load_entries()
+    entries = load_entries(data_dir)
     orgs = {e["slug"]: e for e in entries if e["kind"] == "organizatie"}
     rows = {"proiecte": 1, "orgs": 1}  # the Sheet's row of an entry: row 1 is the header, then the CSV order
     for n, e in enumerate(entries):
         p = profile.get(e["slug"], {})
-        # A retired project's live URL shows something else now: ignore what the profiler saw there.
-        retired = e["stare"] in ("arhivat", "offline")
-        live = {} if retired else p
-        desc, desc_src = pick_desc(e["descriere"], live)
-        lk = links(e["linkuri"], live.get("social") or {}, roles)
-        code_link = next((l for l in lk if l["role"] in CODE_ROLES), None)
-        code = code_link["url"] if code_link else (live.get("repos") or [""])[0]
-        img = live.get("image")
-        moved = live.get("status") == "mutat"
-        final = live.get("final_url") or e["url"]
-        status = status_of(e["stare"], p)
-        alive = status in ("activ", "necunoscut")
-        act = last_activity(p)
+        o = observed(e, p, roles, site)
         reach = features.get(e["slug"], NO_REACH)
-        repo = repo_stats(p)
         items.append({
             "id": n + 1,
             "slug": e["slug"],
@@ -428,57 +478,259 @@ def main():
             "civictech": e.get("civictech") == "1",
             "name": e["nume"],
             "tagline": e["descriere_scurta"],
-            "desc": desc,
-            "descSrc": desc_src,
+            "desc": o["desc"],
+            "descSrc": o["descSrc"],
             "domeniu": e["domeniu"],
             "tips": split_tip(e.get("tip", "")),
             "acoperire": e["acoperire"] or "national",  # a missing value means national
             "oras": e["oras"],
             "keywords": keywords(e.get("cuvinte", ""), tax["cuvinte"]),
-            "links": [l for l in lk if l is not code_link],
-            "url": final if moved else e["url"],
-            "domain": domain_of(final if moved else e["url"]) if e["url"] else "",
-            "movedFrom": domain_of(e["url"]) if moved else "",
+            "links": o["links"],
+            "url": o["url"],
+            "domain": o["domain"],
+            "movedFrom": o["movedFrom"],
             "authors": authors(e.get("autor", ""), orgs),
-            "code": code,
-            **({"repo": repo} if repo else {}),
+            "code": o["code"],
+            **({"repo": o["repo"]} if o["repo"] else {}),
             "contact": e.get("contact", ""),
-            "status": status,
-            "httpStatus": live.get("http_status"),
+            "status": o["status"],
+            "httpStatus": o["live"].get("http_status"),
             "checked": (p.get("fetched_at") or "")[:10],
             "since": since(p)[0],
             "sinceSrc": since(p)[1],
             "updated": p.get("updated", ""),
             "updatedSrc": p.get("updated_src", ""),
-            # Up, but no sign of an edit in three years.
-            "stale": act[:4] if alive and act and (years_since(act) > 3 or p.get("repo_archived")) else "",
-            "score": score(e, p, alive, desc, img, reach),
+            "stale": o["stale"],
+            "score": score(e, p, o["alive"], o["desc"], o["img"], reach, bool(e.get("cuvinte"))),
             "reach": reach,
-            "img": img,
-            "icon": live.get("icon", ""),
-            "wayback": p.get("wayback") or (f"https://web.archive.org/web/{e['url']}" if e["url"] and status in ("offline", "arhivat") else ""),
+            "img": o["img"],
+            "icon": o["live"].get("icon", ""),
+            "wayback": o["wayback"],
         })
     items.sort(key=lambda x: re.sub(r"[^a-z0-9]", "", x["name"].lower()))
-    checked = sorted({i["checked"] for i in items if i["checked"]})
-    tax_out = {k: v for k, v in tax.items() if k != "cuvinte"}
-    now = datetime.now(timezone.utc)
-    out = {
-        "generated": now.isoformat(timespec="seconds"),
-        "checked": checked[-1] if checked else "",
-        "taxonomy": tax_out,
-        "site": {k: v for k, v in json.loads((DATA / "site.json").read_text(encoding="utf-8")).items() if k != "_doc"},
-        "items": items,
+    head = {
+        "taxonomy": {k: v for k, v in tax.items() if k != "cuvinte"},
+        "site": {k: v for k, v in json.loads((data_dir / "site.json").read_text(encoding="utf-8")).items() if k != "_doc"},
     }
-    (SITE / "data.json").write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")))
+    return items, head
+
+
+def subject_groups(pkg) -> list[dict]:
+    """The top-level subjects, in the concept table's order."""
+    return [c for c in pkg.concepts.values() if c["schema"] == "subiect" and not c["mai_larg"] and c["statut"] != "retras"]
+
+
+def items_v2(root: Path, site: Path) -> tuple[list[dict], dict]:
+    """The v2 items and the rest of data.json, from a taxonomy v2 root. Facets are concept and area IDs; the
+    vocabulary block gives their labels. Private columns (notes, source rows, confidence, review) stay out."""
+    vocab = load_vocabulary(root)
+    pkg = vocab["package"]
+    roles = vocab["roles"]
+    legacy_tax = json.loads(pkg.files.path("source/taxonomy.json").read_text(encoding="utf-8"))
+    obs = observation_paths(root)
+    profile = load_profile(obs["profile"])
+    features = reach_features(load_mentions(obs["mentions"]), read_csv(obs["labels"]) if obs["labels"].exists() else [])
+    items = []
+    for n, e in enumerate(load_catalogue(root)):
+        p = profile.get(e["slug"], {})
+        o = observed(e, p, roles, site)
+        reach = features.get(e["slug"], NO_REACH)
+        legacy = e["legacy"]
+        items.append({
+            "id": n + 1,
+            "slug": e["slug"],
+            "kind": e["kind"],
+            "entityType": e["entity_type"],
+            "row": e["row"],
+            "civictech": e["civictech"] == "1",
+            "name": e["nume"],
+            "tagline": e["descriere_scurta"],
+            "desc": o["desc"],
+            "descSrc": o["descSrc"],
+            "primarySubject": e["primary_subject"],
+            "subjects": e["subjects"],
+            "topics": e["topics"],
+            "purposes": e["purposes"],
+            "capabilities": e["capabilities"],
+            "formats": e["formats"],
+            "technologies": e["technologies"],
+            "institutions": e["institutions"],
+            "organisationTypes": e["organisation_types"],
+            "maturity": e["maturity"],
+            "coverageLevel": e["coverage_level"],
+            "areas": e["areas"],
+            # Unresolved roles stay neutral: `role` is the predicate, `accepted` says whether an editor confirmed it.
+            "attributions": [{"name": a["name"], "org": a["slug"] if a["slug"] in pkg.entries else "", "role": a["predicate"],
+                              "accepted": a["state"] == "acceptat"} for a in e["attributions"]],
+            "links": o["links"],
+            "url": o["url"],
+            "domain": o["domain"],
+            "movedFrom": o["movedFrom"],
+            "code": o["code"],
+            **({"repo": o["repo"]} if o["repo"] else {}),
+            "contact": e["contact"],
+            "status": o["status"],
+            "httpStatus": o["live"].get("http_status"),
+            "checked": (p.get("fetched_at") or "")[:10],
+            "since": since(p)[0],
+            "sinceSrc": since(p)[1],
+            "updated": p.get("updated", ""),
+            "updatedSrc": p.get("updated_src", ""),
+            "stale": o["stale"],
+            "score": score(e, p, o["alive"], o["desc"], o["img"], reach, bool(e["primary_subject"])),
+            "reach": reach,
+            "img": o["img"],
+            "icon": o["live"].get("icon", ""),
+            "wayback": o["wayback"],
+            # The original v1 classification, only to interpret old bookmarks (?d=, ?t=, ?kw=, ?c=) with their v1 meaning.
+            "legacy": {"domeniu": legacy.get("domeniu", ""), "tips": split_tip(legacy.get("tip", "")),
+                       "keywords": keywords(legacy.get("cuvinte", ""), legacy_tax["cuvinte"]), "fel": legacy.get("fel", ""),
+                       "acoperire": legacy.get("acoperire", "") or "national", "oras": legacy.get("oras", "")} if legacy else {},
+        })
+    items.sort(key=lambda x: re.sub(r"[^a-z0-9]", "", x["name"].lower()))
+
+    # Only the concepts and areas that some entry uses, plus their broader concepts: unused choices stay hidden.
+    used = {c for i in items for f in ("subjects", "topics", "purposes", "capabilities", "formats", "technologies", "institutions",
+                                        "organisationTypes") for c in i[f]} | {i["maturity"] for i in items if i["maturity"]}
+    used |= {a for c in list(used) for a in pkg.ancestors(c)}
+    areas = {a for i in items for a in i["areas"]}
+    todo = list(areas)
+    while todo:
+        parent = pkg.areas[todo.pop()]["parinte"]
+        for a in filter(None, parent.split("|")):
+            if a not in areas:
+                areas.add(a)
+                todo.append(a)
+    code_list = lambda lst: [{"key": k, "label": r["eticheta_ro"], "labelEn": r["eticheta_en"]}
+                             for k, r in pkg.codes.get(lst, {}).items() if r["statut"] != "retras"]
+    head = {
+        "schemaVersion": pkg.version,
+        # Proposed classifications reach the page only in an --allow-draft preview, which says so.
+        "draft": any(e["clasificare_stare"] != "acceptat" for e in pkg.entries.values()),
+        "vocabulary": {
+            "schemes": code_list("concept_schema"),
+            "concepts": [{"id": c["id"], "scheme": c["schema"], "label": c["eticheta_ro"], "labelEn": c["eticheta_en"],
+                          "alt": [a for a in c["alternative_ro"].split("|") if a], "def": c["definitie_ro"],
+                          "broader": [b for b in c["mai_larg"].split("|") if b]} for c in pkg.concepts.values() if c["id"] in used],
+            "subjectOrder": [c["id"] for c in subject_groups(pkg)],
+            "areas": [{"id": a["id"], "label": a["eticheta_ro"], "type": a["tip"], "parent": a["parinte"]}
+                      for a in pkg.areas.values() if a["id"] in areas],
+            "kinds": [{"key": s["key"], "label": s["label"]} for s in pkg.sections()],
+            "entityTypes": code_list("tip_entitate"),
+            "coverage": code_list("nivel_acoperire"),
+            "predicates": code_list("relatie_predicat"),
+        },
+        "legacyTaxonomy": {k: legacy_tax[k] for k in ("domenii", "tipuri", "fel", "acoperire")},
+        "site": {k: v for k, v in pkg.settings["site"].items() if k != "_doc"},
+    }
+    return items, head
+
+
+ARCHIVE_LEAD_V2 = {**ARCHIVE_LEAD, "proiect": "{n} proiecte civic tech din România, pe subiecte."}
+NO_SUBJECT = ("Fără subiect stabilit", "clasificare incompletă: sursele nu stabilesc subiectul")
+
+
+def pages_v2(items: list[dict], head: dict, site: Path) -> tuple[str, int]:
+    """llms.txt and the archives of a v2 build: projects grouped by primary subject (each entry once), the other
+    kinds A-Z; the grey line names the entity type, a format, the local areas and the other subjects."""
+    v = head["vocabulary"]
+    label = {c["id"]: c["label"] for c in v["concepts"]} | {a["id"]: a["label"] for a in v["areas"]}
+    ent = {t["key"]: t["label"] for t in v["entityTypes"]}
+    order = v["subjectOrder"]
+    by_subject = lambda rows: [(label[s], "", [i for i in rows if i["primarySubject"] == s]) for s in order] + [
+        (NO_SUBJECT[0], NO_SUBJECT[1], [i for i in rows if not i["primarySubject"]])]
+
+    def meta(i: dict) -> str:
+        kind_label = ent[i["entityType"]] if i["entityType"] not in (i["kind"], "organizatie") else ""
+        local = [label[a] for a in i["areas"] if a.split(":")[0] in ("localitate", "judet")]
+        others = [label[s] for s in i["subjects"] if s != i["primarySubject"]]
+        parts = [kind_label, *(label[f] for f in i["formats"][:1]), *local, f"și: {', '.join(others)}" if others else ""]
+        return " · ".join(dict.fromkeys(p for p in parts if p))
+
+    def groups(kind: str, mine: list[dict]):
+        return [(t, h, rows) for t, h, rows in by_subject(mine)] if kind == "proiect" else [("", "", mine)]
+
+    note = "Previzualizare: clasificările sunt propuneri, încă neacceptate." if head["draft"] else ""
+    archives = write_archives(items, {k["key"]: k["label"] for k in v["kinds"]}, groups, meta, site, ARCHIVE_LEAD_V2, note)
+    projects = [i for i in items if i["kind"] == "proiect"]
+    res = [i for i in items if i["kind"] == "resursa"]
+    sections = [(f"Proiecte: {t}", rows) for t, _, rows in by_subject(projects)]
+    sections.append(("Organizații", [i for i in items if i["kind"] == "organizatie"]))
+    sections += [(f"Resurse: {t['label']}", [i for i in res if i["entityType"] == t["key"]]) for t in v["entityTypes"]]
+    sources = f"- [intrari.csv]({REPO_URL}/blob/main/data/taxonomy-v2/intrari.csv): tabelul editat de om (propunere v2)\n"
+    return llms_doc(items, sections, sources, f" {note}" if note else ""), archives
+
+
+def prepare_site(site: Path, v2: bool):
+    """Copy the template, assets and images of site/ into a separate output folder (and the v2 browser code over them),
+    so that the build there never changes site/. Refuse a folder that holds something other than a site."""
+    if site.exists() and any(site.iterdir()) and not (site / "index.html").exists():
+        raise SystemExit(f"{site} is not empty and has no index.html; choose a new or a previous output folder")
+    if site.is_relative_to(ROOT):
+        raise SystemExit(f"{site}: write a separate build outside the repository")
+    site.mkdir(parents=True, exist_ok=True)
+    for src in SITE.iterdir():
+        if src.name in GENERATED:
+            continue
+        if src.is_dir():
+            shutil.copytree(src, site / src.name, dirs_exist_ok=True)
+        else:
+            shutil.copy2(src, site / src.name)
+    if v2:
+        for src in SITE_V2.iterdir():
+            shutil.copy2(src, site / src.name)
+        index = site / "index.html"
+        doc = index.read_text(encoding="utf-8")
+        if 'href="v2.css' not in doc:
+            link = re.search(r'<link rel="stylesheet" href="style\.css[^"]*">', doc).group(0)
+            index.write_text(doc.replace(link, link + '\n<link rel="stylesheet" href="v2.css">'), encoding="utf-8")
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("--data-dir", type=Path, default=DATA, help="data root (default: data/)")
+    parser.add_argument("--site-dir", type=Path, default=SITE, help="output folder (default: site/)")
+    parser.add_argument("--allow-draft", action="store_true", help="v2 preview: allow proposed classifications")
+    args = parser.parse_args()
+    data_dir, site = args.data_dir.resolve(), args.site_dir.resolve()
+    v2 = data_schema(data_dir) == "v2"
+    if v2:
+        import taxonomy_v2
+        if site == SITE:
+            raise SystemExit("a v2 build writes to a separate --site-dir until the source cutover; site/ stays the v1 site")
+        errors, _ = taxonomy_v2.check(data_dir, publication=not args.allow_draft)
+        if errors:
+            print("\n".join(errors[:20]), file=sys.stderr)
+            hint = "" if args.allow_draft else " (a preview of proposed classifications needs --allow-draft)"
+            raise SystemExit(f"{len(errors)} errors in {data_dir}{hint}")
+    elif args.allow_draft:
+        parser.error("--allow-draft applies to a v2 data root")
+    if site != SITE:
+        prepare_site(site, v2)
+    items, head = (items_v2 if v2 else items_v1)(data_dir, site)
+    checked = sorted({i["checked"] for i in items if i["checked"]})
+    now = datetime.now(timezone.utc)
+    out = {"generated": now.isoformat(timespec="seconds"), "checked": checked[-1] if checked else ""}
+    if v2:
+        out = {"schemaVersion": head.pop("schemaVersion"), **out}
+    out |= {**head, "items": items}
+    (site / "data.json").write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")))
     by = {}
     for i in items:
         by[i["status"]] = by.get(i["status"], 0) + 1
-    (SITE / "feed.xml").write_text(feed(items, now))
-    (SITE / "llms.txt").write_text(llms_txt(items, tax), encoding="utf-8")
-    stamp_assets()
-    pages = entry_pages(items)
-    archives = archive_pages(items, tax)
-    print(f"wrote {len(items)} entries to site/data.json  {by}; site/feed.xml; site/llms.txt; {pages} entry pages and {archives} archives in site/{{{','.join(PAGE_KINDS)}}}/")
+    (site / "feed.xml").write_text(feed(items, now))
+    stamp_assets(site)
+    if v2:
+        pages = entry_pages(items, site)
+        llms, archives = pages_v2(items, out, site)
+    else:
+        llms = llms_txt(items, head["taxonomy"])
+        pages = entry_pages(items, site)
+        archives = archive_pages(items, head["taxonomy"], site)
+    (site / "llms.txt").write_text(llms, encoding="utf-8")
+    where = site.relative_to(ROOT) if site.is_relative_to(ROOT) else site
+    print(f"wrote {len(items)} entries to {where}/data.json  {by}; {where}/feed.xml; {where}/llms.txt; {pages} entry pages and "
+          f"{archives} archives in {where}/{{{','.join(PAGE_KINDS)}}}/" + (f"  [{out['schemaVersion']}{', draft' if out['draft'] else ''}]" if v2 else ""))
 
 
 if __name__ == "__main__":

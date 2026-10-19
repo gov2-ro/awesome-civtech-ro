@@ -2,6 +2,19 @@
 
 This is the entry point for a fresh implementation session in this repository.
 
+## Implementation status — core slices 1–4 done (2026-10-19)
+
+- Slice 1: the package is `2.0.0-draft.2` (128 concepts, 16 code lists, 22 link roles, 29 hosts). See `data/taxonomy-v2/versiuni.json`.
+- Integration copy: `data/taxonomy-v2/integrare/`, built by `data/taxonomy-v2/integrare.py` from the sealed run.
+  It applies the evaluation's three corrections from `integrare/modificari.csv`. 121 entries are `propus`; `incentru` is `de-revizuit`.
+- Slice 2: `scripts/taxonomy_v2.py`, `common.load_catalogue` / `load_vocabulary` / `observation_paths`, `validate.py --data-dir --publication`.
+- Slice 3: `build.py --data-dir --site-dir --allow-draft` and the v2 browser code in `site-v2/`.
+- Slice 4: `scripts/test_taxonomy_v2.py` (40 tests) and `scripts/check_preview.py` (47 browser checks) pass.
+  The v1 build is unchanged; production data and `site/` are unchanged.
+
+Next: owner review of the integration queue, then enrichment, Sheets, Forms and CI in separate slices.
+The sections below record the earlier handoff.
+
 ## Continuation update — classification completed
 
 The classification experiment and evaluation are now complete in

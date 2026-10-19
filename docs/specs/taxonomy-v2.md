@@ -2,9 +2,14 @@
 
 ## Status and boundaries
 
-Status: **implementation approved; entry classifications remain proposed**, dated 2026-10-19.
-Current package version: `2.0.0-draft.1`. Agreed implementation target: `2.0.0-draft.2`.
+Status: **core slices 1–4 implemented as a local preview; entry classifications remain proposed**, dated 2026-10-19.
+Current package version: `2.0.0-draft.2`. The production site still reads the v1 source in `data/`.
 These are proposal schema versions, not project releases.
+
+Implemented: the draft.2 package and its checks, the integration copy `data/taxonomy-v2/integrare/`,
+schema-aware loaders, `scripts/validate.py --data-dir`, `scripts/build.py --data-dir --site-dir --allow-draft`,
+and the v2 browser code in `site-v2/`. See [Implementation notes](#implementation-notes-2026-10-19).
+Enrichment, Sheets, Forms, CI and the source cutover remain later slices.
 
 The deliverable is `data/taxonomy-v2/`. It contains all 122 current catalogue entries.
 The original CSVs, taxonomy, site assets, and production scripts remain unchanged.
@@ -211,9 +216,11 @@ Start with [the package README](../../data/taxonomy-v2/README.md).
 | `relatii.csv` | Editable entity relationships, with the original attribution and its unresolved role. |
 | `mapari-externe.csv` | Editable, proposed EuroVoc mappings; accept them independently from entry classifications. |
 | `revizuire.csv` | Editable review queue, including the owner's decisions. |
-| `setari.json` | draft.1 contains sections, roles, and reporting addresses. In draft.2, keep only genuine site settings and addresses. |
+| `setari.json` | Reporting addresses only. Sections and link roles moved to CSV in draft.2. |
 | `schema.json` | Versioned structural contract. draft.2 replaces duplicate enums with named CSV code-list references and explicit cardinality. |
-| `valori.csv`, `roluri-linkuri.csv`, `gazde-linkuri.csv` | Planned authoritative draft.2 code lists and role lookup tables; create them during the first implementation step. |
+| `valori.csv`, `roluri-linkuri.csv`, `gazde-linkuri.csv` | Authoritative draft.2 code lists, link roles, and host lookup. |
+| `versiuni.json` | Version history of the package; the last entry matches `schema.json`. |
+| `integrare/` | Overlay of the sealed run's candidate, with the evaluation's corrections. See its `pachet.json`. |
 | `catalogue.json` | Generated export of the editable tables, vocabulary, areas, relations, and settings. |
 | `observatii/` | Working copies of the profile and mentions, initially identical to the source snapshots. |
 | `source/` | Immutable snapshots of every top-level CSV/JSON file in the original `data/`. |
@@ -431,8 +438,8 @@ Neither should become an automatic replacement for civic-purpose or capability f
 
 ## Script and interface changes
 
-These changes are **specified, not implemented**. The current executables are the isolated package validator/exporter and Mermaid exporter.
-The first implementation step must reconcile the current draft.1 files with the agreed draft.2 revision above.
+The shared loading, validation, build, and browser changes below are **implemented for the preview**.
+Profiling, search, model review, Sheets, Forms, and CI remain **specified, not implemented**.
 
 ### Shared loading and file ownership
 
@@ -456,9 +463,8 @@ Preserve fields owned by other enrichment stages when replacing an HTTP profile 
 Proposed preview options for the implementation:
 
 ```sh
-# These options do not exist yet. Implement them before using this sequence.
-python3 scripts/validate.py --data-dir data/taxonomy-v2
-python3 scripts/build.py --data-dir data/taxonomy-v2 --site-dir /tmp/civtech-v2-preview --allow-draft
+python3 scripts/validate.py --data-dir data/taxonomy-v2/integrare
+python3 scripts/build.py --data-dir data/taxonomy-v2/integrare --site-dir /tmp/civtech-v2-preview --allow-draft
 ```
 
 `--site-dir` must control every output, page deletion, asset stamp, and image reference.
@@ -485,8 +491,8 @@ In `scripts/validate.py`, retain the v1 checks and add a v2 branch:
 - For publication, fail when an entry classification is unaccepted or it has an unresolved high-priority review item.
 - Keep internal notes, source ledger details, and reviewer comments out of public output.
 
-The package validator implements the initial structural checks. It deliberately permits proposals for manual review.
-The publication gate belongs to the later production integration.
+`scripts/taxonomy_v2.py` implements these checks for both validators. They permit proposals for manual review.
+`--publication` adds the gate; `build.py` applies it to a v2 root unless `--allow-draft` is given.
 
 ### Build and exported browser data
 
@@ -741,4 +747,27 @@ Record any changed definitions and decisions in the activity log and vocabulary 
 - Profile refresh and search pruning preserve classification data and unrelated observation fields.
 - Model suggestions never become accepted assignments without an editorial action.
 
-These are acceptance criteria for the later implementation. They are not claims that the current scripts already support v2.
+These are acceptance criteria for the whole migration. The preview meets the build, URL, count, search, bookmark,
+privacy, and draft-gate criteria; the Sheets, enrichment, and workflow criteria wait for their slices.
+
+## Implementation notes (2026-10-19)
+
+These decisions refine the specification where it left a choice open.
+
+- **Overlay root.** A data root with `pachet.json` takes every file that is not in `local_files` from its `base`.
+  The integration copy owns only its entry-level tables. One vocabulary, one set of code lists, one source snapshot.
+- **Column lists.** `schema.json` is the only source of v2 headers. Python reads it at run time; no second constant list exists.
+- **Field rules.** Each rule has `kind` (`code`, `concept`, `area`, `lifecycle`, `integer`, `role`, `slug`, `text`) and,
+  as applicable, `list` or `scheme`, `min_items`, `max_items`, `level` (`root`/`narrower`), `required`, `private`,
+  and `empty_allowed_when`. An empty primary subject is allowed only in the state `de-revizuit`.
+- **Abstention.** `incentru` keeps its entry, text and links. Its classification stays empty and `de-revizuit`.
+  The grouped list and the archive show it under `Fără subiect stabilit`.
+- **Partial results.** They stay `propus`. `integrare/rezultate.csv` keeps the result status and response hash.
+- **Entry confidence.** `incredere` is the lowest confidence among the entry's classification claims.
+- **Browser code.** `site-v2/app.js` forks `site/app.js`, and `site-v2/v2.css` adds a few rules.
+  A v2 build copies them into its output folder. `site/` is unchanged until the cutover.
+- **Payload.** `data.json` adds `schemaVersion`, `draft`, `vocabulary` (used concepts and areas, scheme labels,
+  section, entity-type, coverage and predicate lists), and `legacyTaxonomy` (labels for old bookmark pills).
+  Each item carries the facets in the table above and `legacy` (`domeniu`, `tips`, `keywords`, `fel`, `acoperire`, `oras`).
+- **Area filter.** An entry applies in an area when one of its areas is that area, contains it, or lies inside it.
+- **Licence.** The detail panel shows the code link and the licence on separate rows. `cod public` replaces `cod deschis`.

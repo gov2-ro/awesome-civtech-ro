@@ -16,16 +16,25 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [x] Record the agreed draft.2 revision: single-valued maturity with four stages, CSV-owned code lists/roles, and structural JSON rules.
 - [x] Prepare the fresh-session implementation handoff and the automated classifier prompt with its JSON output schema.
 - [x] Consolidate all 122 original entries into a single inference input CSV, without leaking the manual v2 classifications into the experiment.
-- [ ] Implement core handoff slice 1: upgrade the isolated package and validator to draft.2 without reclassifying entries.
+- [x] Implement core handoff slice 1: upgrade the isolated package and validator to draft.2 without reclassifying entries.
 - [x] Classify all 122 original entries and evaluate against the withheld draft. Preserve the sealed run in `data/taxonomy-v2/runs/2026-10-19-reasoned-evidence/`.
-- [ ] Resolve the evaluation's three semantic concerns in a separate integration copy. Review partial records, the abstention, attribution roles, and external mappings before acceptance.
+- [x] Resolve the evaluation's three semantic concerns in a separate integration copy (`data/taxonomy-v2/integrare/`, change log `modificari.csv`).
+- [ ] Owner review of the integration queue (103 open items, 28 high priority): partial records, the abstention, attribution roles, external mappings, and 10 vocabulary proposals. Accept entries only after that review.
+- [ ] Rewrite or close review items R001–R066 against the integration copy. Their texts describe the draft.1 manual proposal.
+- [ ] Choose the ID style for proposed areas before accepting them (`tara:republica-moldova` now; existing countries use ISO codes, `tara:RO`).
 - [ ] Implement an automated inference runner and no-call dry run if a later repeatable experiment needs them. This does not block the current preview.
-- [ ] Implement the v2 loaders, validator branch, build contract, and browser facets together. Keep the current data source as the default until cutover.
+- [x] Implement the v2 loaders, validator branch, build contract, and browser facets together. Keep the current data source as the default until cutover.
+- [x] Verify the isolated preview: 40 unit tests (`scripts/test_taxonomy_v2.py`) and 47 browser checks (`scripts/check_preview.py`).
+- [ ] Run `scripts/test_taxonomy_v2.py` in `validate.yml`, with the CI slice. Include `site-v2/` changes in PR validation.
+- [ ] At the cutover, replace `site/app.js` with `site-v2/app.js`, merge `site-v2/v2.css` into `style.css`, and remove `site-v2/`.
 - [ ] Adapt enrichment, Sheets, Form, and CI to the accepted schema. Use separate v2 Sheet tabs during migration.
 
-This package is not consumed by the current site. The existing production taxonomy and scripts are unchanged.
+The public site does not consume this package. Production data and the v1 build output are unchanged; the scripts read v2 only with `--data-dir`.
 
 ## Audit — 2026-10-19
+
+- [ ] `site/app.js`: a quick click on a choice just after opening a facet can close that facet again. The `toggle` event
+      arrives after the re-render, so `closed` still lists the facet. `site-v2/app.js` reads the open state from the page first.
 
 - [ ] Make Sheets validation a blocking check. `sheets-pull.yml` records both exit codes, but opens the PR even when either command fails.
       The workflow uses `GITHUB_TOKEN`; its PR does not start the normal validation workflow.

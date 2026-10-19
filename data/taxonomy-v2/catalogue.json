@@ -1,5 +1,5 @@
 {
-  "schema_version": "2.0.0-draft.1",
+  "schema_version": "2.0.0-draft.2",
   "status": "editorial_proposal",
   "snapshot_date": "2026-10-19",
   "entries": [
@@ -35,7 +35,7 @@
         "institutie:parlament"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -76,7 +76,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -129,7 +129,7 @@
         "institutie:primarie"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -177,7 +177,7 @@
         "institutie:primarie"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "local",
       "arii_acoperite": [
         "localitate:bucuresti",
@@ -227,7 +227,7 @@
         "institutie:primarie"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -273,7 +273,7 @@
       ],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -324,7 +324,7 @@
         "institutie:instanta"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -370,7 +370,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -420,7 +420,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -471,7 +471,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -514,7 +514,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -565,7 +565,7 @@
       ],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -613,7 +613,7 @@
         "institutie:primarie"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "local",
       "arii_acoperite": [
         "localitate:bucuresti"
@@ -663,7 +663,7 @@
         "institutie:primarie"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "local",
       "arii_acoperite": [
         "localitate:bucuresti"
@@ -704,7 +704,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "local",
       "arii_acoperite": [
         "localitate:arad"
@@ -752,7 +752,7 @@
         "institutie:primarie"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "local",
       "arii_acoperite": [
         "localitate:radauti"
@@ -801,7 +801,7 @@
         "institutie:primarie"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -846,7 +846,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -889,7 +889,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -930,7 +930,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -975,7 +975,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -1022,7 +1022,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -1066,7 +1066,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -1109,7 +1109,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -1152,7 +1152,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -1195,7 +1195,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -1243,9 +1243,7 @@
         "institutie:anaf"
       ],
       "tip_organizatie": [],
-      "maturitate": [
-        "maturitate:prototip"
-      ],
+      "maturitate": "maturitate:prototip",
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -1288,9 +1286,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [
-        "maturitate:prototip"
-      ],
+      "maturitate": "maturitate:prototip",
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -1338,7 +1334,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -1382,7 +1378,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -1428,7 +1424,7 @@
         "institutie:primarie"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -1472,7 +1468,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -1517,7 +1513,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "local",
       "arii_acoperite": [
         "localitate:bucuresti"
@@ -1561,7 +1557,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -1604,7 +1600,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -1654,7 +1650,7 @@
         "institutie:institutie-ue"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "international",
       "arii_acoperite": [
         "regiune:UE"
@@ -1697,7 +1693,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -1746,7 +1742,7 @@
         "institutie:primarie"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -1791,7 +1787,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -1840,7 +1836,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -1883,7 +1879,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -1931,7 +1927,7 @@
         "institutie:primarie"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -1983,7 +1979,7 @@
         "institutie:anaf"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -2029,7 +2025,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -2072,7 +2068,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -2115,7 +2111,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -2158,7 +2154,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -2201,7 +2197,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -2247,7 +2243,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -2298,7 +2294,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -2344,7 +2340,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -2381,7 +2377,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -2429,7 +2425,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -2477,7 +2473,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -2520,7 +2516,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -2566,7 +2562,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -2612,7 +2608,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -2655,7 +2651,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -2704,7 +2700,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -2747,7 +2743,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -2795,7 +2791,7 @@
         "institutie:parlament"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -2832,7 +2828,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -2876,7 +2872,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -2925,7 +2921,7 @@
         "institutie:primarie"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -2967,7 +2963,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -3020,7 +3016,7 @@
         "institutie:primarie"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "local",
       "arii_acoperite": [
         "localitate:onesti"
@@ -3065,7 +3061,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -3110,7 +3106,7 @@
         "institutie:instanta"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -3153,7 +3149,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -3198,7 +3194,7 @@
         "institutie:primarie"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "local",
       "arii_acoperite": [
         "localitate:oradea"
@@ -3243,7 +3239,7 @@
         "institutie:parlament"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -3286,7 +3282,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -3332,7 +3328,7 @@
         "institutie:primarie"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -3383,7 +3379,7 @@
         "institutie:instanta"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -3433,7 +3429,7 @@
         "institutie:instanta"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -3480,7 +3476,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -3527,7 +3523,7 @@
       ],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -3572,7 +3568,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -3616,7 +3612,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -3659,7 +3655,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -3711,7 +3707,7 @@
         "institutie:primarie"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -3764,7 +3760,7 @@
         "institutie:scoala"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -3807,7 +3803,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -3848,7 +3844,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -3889,7 +3885,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -3932,7 +3928,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -3979,7 +3975,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -4028,7 +4024,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -4074,7 +4070,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -4118,7 +4114,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -4172,7 +4168,7 @@
       ],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -4217,7 +4213,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -4260,7 +4256,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -4312,7 +4308,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -4362,7 +4358,7 @@
         "institutie:primarie"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "local",
       "arii_acoperite": [
         "localitate:craiova"
@@ -4404,7 +4400,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -4446,7 +4442,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -4492,7 +4488,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -4533,7 +4529,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -4581,7 +4577,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -4627,7 +4623,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -4671,7 +4667,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -4722,7 +4718,7 @@
         "institutie:scoala"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -4767,7 +4763,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -4816,7 +4812,7 @@
         "institutie:anaf"
       ],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -4860,7 +4856,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -4907,7 +4903,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -4956,7 +4952,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "international",
       "arii_acoperite": [
         "regiune:Europa"
@@ -4999,7 +4995,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -5055,7 +5051,7 @@
       "tip_organizatie": [
         "organizatie:think-tank"
       ],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -5109,7 +5105,7 @@
       "tip_organizatie": [
         "organizatie:ong"
       ],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -5154,7 +5150,7 @@
       "tip_organizatie": [
         "organizatie:ong"
       ],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -5202,7 +5198,7 @@
       "tip_organizatie": [
         "organizatie:think-tank"
       ],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -5245,7 +5241,7 @@
       "tehnologii": [],
       "institutii_vizate": [],
       "tip_organizatie": [],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -5293,7 +5289,7 @@
       "tip_organizatie": [
         "organizatie:retea"
       ],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -5343,7 +5339,7 @@
       "tip_organizatie": [
         "organizatie:ong"
       ],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -5388,7 +5384,7 @@
       "tip_organizatie": [
         "organizatie:ong"
       ],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -5442,7 +5438,7 @@
       "tip_organizatie": [
         "organizatie:retea"
       ],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -5494,7 +5490,7 @@
       "tip_organizatie": [
         "organizatie:ong"
       ],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -5543,7 +5539,7 @@
       "tip_organizatie": [
         "organizatie:ong"
       ],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "local",
       "arii_acoperite": [
         "localitate:radauti"
@@ -5592,7 +5588,7 @@
       "tip_organizatie": [
         "organizatie:ong"
       ],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "local",
       "arii_acoperite": [
         "localitate:iasi"
@@ -5644,7 +5640,7 @@
       "tip_organizatie": [
         "organizatie:ong"
       ],
-      "maturitate": [],
+      "maturitate": null,
       "nivel_acoperire": "national",
       "arii_acoperite": [
         "tara:RO"
@@ -7144,17 +7140,6 @@
       "statut": "propus"
     },
     {
-      "id": "maturitate:prototip",
-      "schema": "maturitate",
-      "eticheta_ro": "Prototip",
-      "eticheta_en": "Prototype",
-      "alternative_ro": [],
-      "definitie_ro": "Prototip declarat în sursa editorială. Nu este un statut HTTP.",
-      "mai_larg": [],
-      "asociate": [],
-      "statut": "propus"
-    },
-    {
       "id": "organizatie:ong",
       "schema": "organizatie",
       "eticheta_ro": "Organizație neguvernamentală",
@@ -7183,6 +7168,50 @@
       "eticheta_en": "Network or community",
       "alternative_ro": [],
       "definitie_ro": "Rețea ori comunitate de persoane sau organizații.",
+      "mai_larg": [],
+      "asociate": [],
+      "statut": "propus"
+    },
+    {
+      "id": "maturitate:experiment",
+      "schema": "maturitate",
+      "eticheta_ro": "Experiment",
+      "eticheta_en": "Experiment",
+      "alternative_ro": [],
+      "definitie_ro": "Explorează o idee sau o abordare; utilizarea practică nu este stabilită.",
+      "mai_larg": [],
+      "asociate": [],
+      "statut": "propus"
+    },
+    {
+      "id": "maturitate:prototip",
+      "schema": "maturitate",
+      "eticheta_ro": "Prototip",
+      "eticheta_en": "Prototype",
+      "alternative_ro": [],
+      "definitie_ro": "Demonstrează funcționalitatea propusă.",
+      "mai_larg": [],
+      "asociate": [],
+      "statut": "propus"
+    },
+    {
+      "id": "maturitate:pilot",
+      "schema": "maturitate",
+      "eticheta_ro": "Pilot",
+      "eticheta_en": "Pilot",
+      "alternative_ro": [],
+      "definitie_ro": "Este utilizat într-o implementare limitată în condiții reale sau într-un test cu utilizatori reali.",
+      "mai_larg": [],
+      "asociate": [],
+      "statut": "propus"
+    },
+    {
+      "id": "maturitate:operational",
+      "schema": "maturitate",
+      "eticheta_ro": "Operațional",
+      "eticheta_en": "Operational",
+      "alternative_ro": [],
+      "definitie_ro": "Este oferit pentru utilizare obișnuită de către publicul său țintă.",
       "mai_larg": [],
       "asociate": [],
       "statut": "propus"
@@ -8373,6 +8402,495 @@
       "nota": "Identificatorul și etichetele provin din endpointul oficial; echivalența semantică necesită acceptarea editorului."
     }
   ],
+  "code_lists": {
+    "civictech_original": [
+      {
+        "cod": "0",
+        "eticheta_ro": "Nu",
+        "eticheta_en": "No",
+        "definitie_ro": "Valoare v1 păstrată: nu este marcat civic tech.",
+        "statut": "propus"
+      },
+      {
+        "cod": "1",
+        "eticheta_ro": "Da",
+        "eticheta_en": "Yes",
+        "definitie_ro": "Valoare v1 păstrată: marcat civic tech.",
+        "statut": "propus"
+      }
+    ],
+    "clasificare_stare": [
+      {
+        "cod": "propus",
+        "eticheta_ro": "Propus",
+        "eticheta_en": "Proposed",
+        "definitie_ro": "Clasificare propusă, neacceptată de editor.",
+        "statut": "propus"
+      },
+      {
+        "cod": "acceptat",
+        "eticheta_ro": "Acceptat",
+        "eticheta_en": "Accepted",
+        "definitie_ro": "Editorul a verificat toate fațetele intrării.",
+        "statut": "propus"
+      },
+      {
+        "cod": "de-revizuit",
+        "eticheta_ro": "De revizuit",
+        "eticheta_en": "Needs review",
+        "definitie_ro": "Clasificarea lipsește sau este incompletă și necesită verificare.",
+        "statut": "propus"
+      }
+    ],
+    "concept_schema": [
+      {
+        "cod": "subiect",
+        "eticheta_ro": "Subiect",
+        "eticheta_en": "Subject",
+        "definitie_ro": "Subiecte generale și teme mai precise.",
+        "statut": "propus"
+      },
+      {
+        "cod": "scop",
+        "eticheta_ro": "Scop civic",
+        "eticheta_en": "Civic purpose",
+        "definitie_ro": "Scopul civic sprijinit.",
+        "statut": "propus"
+      },
+      {
+        "cod": "functie",
+        "eticheta_ro": "Ce poți face",
+        "eticheta_en": "What you can do",
+        "definitie_ro": "Acțiuni oferite de instrument sau activități ale organizației.",
+        "statut": "propus"
+      },
+      {
+        "cod": "format",
+        "eticheta_ro": "Format",
+        "eticheta_en": "Format",
+        "definitie_ro": "Forma în care este oferit conținutul.",
+        "statut": "propus"
+      },
+      {
+        "cod": "tehnologie",
+        "eticheta_ro": "Tehnologie",
+        "eticheta_en": "Technology",
+        "definitie_ro": "Tehnologie folosită sau oferită explicit.",
+        "statut": "propus"
+      },
+      {
+        "cod": "institutie",
+        "eticheta_ro": "Instituții vizate",
+        "eticheta_en": "Institutions concerned",
+        "definitie_ro": "Instituții discutate, servite sau folosite ca sursă de date.",
+        "statut": "propus"
+      },
+      {
+        "cod": "maturitate",
+        "eticheta_ro": "Maturitate",
+        "eticheta_en": "Maturity",
+        "definitie_ro": "Etapa de dezvoltare declarată sau dovedită.",
+        "statut": "propus"
+      },
+      {
+        "cod": "organizatie",
+        "eticheta_ro": "Tip de organizație",
+        "eticheta_en": "Organisation type",
+        "definitie_ro": "Categoria organizației.",
+        "statut": "propus"
+      }
+    ],
+    "concept_statut": [
+      {
+        "cod": "propus",
+        "eticheta_ro": "Propus",
+        "eticheta_en": "Proposed",
+        "definitie_ro": "Concept propus.",
+        "statut": "propus"
+      },
+      {
+        "cod": "acceptat",
+        "eticheta_ro": "Acceptat",
+        "eticheta_en": "Accepted",
+        "definitie_ro": "Concept acceptat în vocabular.",
+        "statut": "propus"
+      },
+      {
+        "cod": "retras",
+        "eticheta_ro": "Retras",
+        "eticheta_en": "Retired",
+        "definitie_ro": "Concept retras; nu se mai atribuie.",
+        "statut": "propus"
+      }
+    ],
+    "incredere": [
+      {
+        "cod": "mica",
+        "eticheta_ro": "Mică",
+        "eticheta_en": "Low",
+        "definitie_ro": "Dovezi puține sau indirecte.",
+        "statut": "propus"
+      },
+      {
+        "cod": "medie",
+        "eticheta_ro": "Medie",
+        "eticheta_en": "Medium",
+        "definitie_ro": "Dovezi directe, dar incomplete.",
+        "statut": "propus"
+      },
+      {
+        "cod": "mare",
+        "eticheta_ro": "Mare",
+        "eticheta_en": "High",
+        "definitie_ro": "Dovezi directe și suficiente.",
+        "statut": "propus"
+      }
+    ],
+    "mapare_relatie": [
+      {
+        "cod": "closeMatch",
+        "eticheta_ro": "closeMatch",
+        "eticheta_en": "closeMatch",
+        "definitie_ro": "Sens apropiat, nu identic.",
+        "statut": "propus"
+      },
+      {
+        "cod": "exactMatch",
+        "eticheta_ro": "exactMatch",
+        "eticheta_en": "exactMatch",
+        "definitie_ro": "Sens echivalent.",
+        "statut": "propus"
+      },
+      {
+        "cod": "broadMatch",
+        "eticheta_ro": "broadMatch",
+        "eticheta_en": "broadMatch",
+        "definitie_ro": "Ținta este mai largă.",
+        "statut": "propus"
+      },
+      {
+        "cod": "narrowMatch",
+        "eticheta_ro": "narrowMatch",
+        "eticheta_en": "narrowMatch",
+        "definitie_ro": "Ținta este mai îngustă.",
+        "statut": "propus"
+      },
+      {
+        "cod": "relatedMatch",
+        "eticheta_ro": "relatedMatch",
+        "eticheta_en": "relatedMatch",
+        "definitie_ro": "Ținta este asociată.",
+        "statut": "propus"
+      }
+    ],
+    "mapare_stare": [
+      {
+        "cod": "propus",
+        "eticheta_ro": "Propus",
+        "eticheta_en": "Proposed",
+        "definitie_ro": "Corespondență propusă.",
+        "statut": "propus"
+      },
+      {
+        "cod": "acceptat",
+        "eticheta_ro": "Acceptat",
+        "eticheta_en": "Accepted",
+        "definitie_ro": "Corespondență acceptată de editor.",
+        "statut": "propus"
+      },
+      {
+        "cod": "respins",
+        "eticheta_ro": "Respins",
+        "eticheta_en": "Rejected",
+        "definitie_ro": "Corespondență respinsă.",
+        "statut": "propus"
+      }
+    ],
+    "nivel_acoperire": [
+      {
+        "cod": "national",
+        "eticheta_ro": "Național",
+        "eticheta_en": "National",
+        "definitie_ro": "Se aplică în toată țara.",
+        "statut": "propus"
+      },
+      {
+        "cod": "local",
+        "eticheta_ro": "Local",
+        "eticheta_en": "Local",
+        "definitie_ro": "Se aplică într-o localitate sau un județ.",
+        "statut": "propus"
+      },
+      {
+        "cod": "international",
+        "eticheta_ro": "Internațional",
+        "eticheta_en": "International",
+        "definitie_ro": "Se aplică în mai multe țări sau la nivel european.",
+        "statut": "propus"
+      },
+      {
+        "cod": "necunoscut",
+        "eticheta_ro": "Necunoscut",
+        "eticheta_en": "Unknown",
+        "definitie_ro": "Sursa nu stabilește acoperirea. Nu înseamnă național.",
+        "statut": "propus"
+      }
+    ],
+    "prioritate": [
+      {
+        "cod": "mare",
+        "eticheta_ro": "Mare",
+        "eticheta_en": "High",
+        "definitie_ro": "Se rezolvă înainte de publicare.",
+        "statut": "propus"
+      },
+      {
+        "cod": "medie",
+        "eticheta_ro": "Medie",
+        "eticheta_en": "Medium",
+        "definitie_ro": "Se rezolvă înainte de acceptarea intrării.",
+        "statut": "propus"
+      },
+      {
+        "cod": "mica",
+        "eticheta_ro": "Mică",
+        "eticheta_en": "Low",
+        "definitie_ro": "Se rezolvă când există timp.",
+        "statut": "propus"
+      }
+    ],
+    "relatie_predicat": [
+      {
+        "cod": "atribuit_in_sursa",
+        "eticheta_ro": "Atribuit în sursă",
+        "eticheta_en": "Attributed in source",
+        "definitie_ro": "Vechiul câmp autor numește persoana sau organizația; rolul nu este stabilit.",
+        "statut": "propus"
+      },
+      {
+        "cod": "creat_de",
+        "eticheta_ro": "Creat de",
+        "eticheta_en": "Created by",
+        "definitie_ro": "Persoana sau organizația a creat intrarea.",
+        "statut": "propus"
+      },
+      {
+        "cod": "mentinut_de",
+        "eticheta_ro": "Menținut de",
+        "eticheta_en": "Maintained by",
+        "definitie_ro": "Persoana sau organizația menține intrarea.",
+        "statut": "propus"
+      },
+      {
+        "cod": "publicat_de",
+        "eticheta_ro": "Publicat de",
+        "eticheta_en": "Published by",
+        "definitie_ro": "Persoana sau organizația publică intrarea.",
+        "statut": "propus"
+      },
+      {
+        "cod": "finantat_de",
+        "eticheta_ro": "Finanțat de",
+        "eticheta_en": "Funded by",
+        "definitie_ro": "Persoana sau organizația finanțează intrarea.",
+        "statut": "propus"
+      },
+      {
+        "cod": "parte_din",
+        "eticheta_ro": "Parte din",
+        "eticheta_en": "Part of",
+        "definitie_ro": "Intrarea face parte din altă intrare.",
+        "statut": "propus"
+      },
+      {
+        "cod": "ofera",
+        "eticheta_ro": "Oferă",
+        "eticheta_en": "Offers",
+        "definitie_ro": "Intrarea oferă altă intrare.",
+        "statut": "propus"
+      },
+      {
+        "cod": "foloseste",
+        "eticheta_ro": "Folosește",
+        "eticheta_en": "Uses",
+        "definitie_ro": "Intrarea folosește altă intrare.",
+        "statut": "propus"
+      }
+    ],
+    "relatie_stare": [
+      {
+        "cod": "rol_neconfirmat",
+        "eticheta_ro": "Rol neconfirmat",
+        "eticheta_en": "Unconfirmed role",
+        "definitie_ro": "Atribuire păstrată din sursă, fără rol verificat.",
+        "statut": "propus"
+      },
+      {
+        "cod": "propus",
+        "eticheta_ro": "Propus",
+        "eticheta_en": "Proposed",
+        "definitie_ro": "Rol propus.",
+        "statut": "propus"
+      },
+      {
+        "cod": "acceptat",
+        "eticheta_ro": "Acceptat",
+        "eticheta_en": "Accepted",
+        "definitie_ro": "Rol acceptat de editor, cu dovadă.",
+        "statut": "propus"
+      },
+      {
+        "cod": "respins",
+        "eticheta_ro": "Respins",
+        "eticheta_en": "Rejected",
+        "definitie_ro": "Rol respins de editor.",
+        "statut": "propus"
+      }
+    ],
+    "revizuire_stare": [
+      {
+        "cod": "deschis",
+        "eticheta_ro": "Deschis",
+        "eticheta_en": "Open",
+        "definitie_ro": "Punct nerezolvat.",
+        "statut": "propus"
+      },
+      {
+        "cod": "acceptat",
+        "eticheta_ro": "Acceptat",
+        "eticheta_en": "Accepted",
+        "definitie_ro": "Editorul a acceptat propunerea.",
+        "statut": "propus"
+      },
+      {
+        "cod": "respins",
+        "eticheta_ro": "Respins",
+        "eticheta_en": "Rejected",
+        "definitie_ro": "Editorul a respins propunerea.",
+        "statut": "propus"
+      },
+      {
+        "cod": "amanat",
+        "eticheta_ro": "Amânat",
+        "eticheta_en": "Deferred",
+        "definitie_ro": "Editorul a amânat decizia.",
+        "statut": "propus"
+      }
+    ],
+    "sectiune_url": [
+      {
+        "cod": "proiect",
+        "eticheta_ro": "Proiecte",
+        "eticheta_en": "Projects",
+        "definitie_ro": "Fila și adresa /proiect/.",
+        "statut": "propus"
+      },
+      {
+        "cod": "organizatie",
+        "eticheta_ro": "Organizații",
+        "eticheta_en": "Organisations",
+        "definitie_ro": "Fila și adresa /organizatie/.",
+        "statut": "propus"
+      },
+      {
+        "cod": "resursa",
+        "eticheta_ro": "Resurse & liste",
+        "eticheta_en": "Resources & lists",
+        "definitie_ro": "Fila și adresa /resursa/.",
+        "statut": "propus"
+      }
+    ],
+    "stare_manual": [
+      {
+        "cod": "arhivat",
+        "eticheta_ro": "Arhivat",
+        "eticheta_en": "Archived",
+        "definitie_ro": "Editorul declară proiectul încheiat.",
+        "statut": "propus"
+      },
+      {
+        "cod": "offline",
+        "eticheta_ro": "Offline",
+        "eticheta_en": "Offline",
+        "definitie_ro": "Editorul declară site-ul indisponibil.",
+        "statut": "propus"
+      }
+    ],
+    "tip_arie": [
+      {
+        "cod": "tara",
+        "eticheta_ro": "Țară",
+        "eticheta_en": "Country",
+        "definitie_ro": "Stat.",
+        "statut": "propus"
+      },
+      {
+        "cod": "regiune",
+        "eticheta_ro": "Regiune",
+        "eticheta_en": "Region",
+        "definitie_ro": "Grupare de state sau regiune geografică.",
+        "statut": "propus"
+      },
+      {
+        "cod": "judet",
+        "eticheta_ro": "Județ",
+        "eticheta_en": "County",
+        "definitie_ro": "Județ.",
+        "statut": "propus"
+      },
+      {
+        "cod": "localitate",
+        "eticheta_ro": "Localitate",
+        "eticheta_en": "Locality",
+        "definitie_ro": "Oraș, comună sau sector.",
+        "statut": "propus"
+      }
+    ],
+    "tip_entitate": [
+      {
+        "cod": "proiect",
+        "eticheta_ro": "Proiect",
+        "eticheta_en": "Project",
+        "definitie_ro": "Instrument, platformă sau inițiativă civică.",
+        "statut": "propus"
+      },
+      {
+        "cod": "organizatie",
+        "eticheta_ro": "Organizație",
+        "eticheta_en": "Organisation",
+        "definitie_ro": "Organizație, rețea sau comunitate catalogată ca atare.",
+        "statut": "propus"
+      },
+      {
+        "cod": "resursa",
+        "eticheta_ro": "Resursă",
+        "eticheta_en": "Resource",
+        "definitie_ro": "Listă, colecție sau altă resursă care nu este o publicație individuală.",
+        "statut": "propus"
+      },
+      {
+        "cod": "publicatie",
+        "eticheta_ro": "Publicație",
+        "eticheta_en": "Publication",
+        "definitie_ro": "Articol, ghid, raport sau investigație identificabilă.",
+        "statut": "propus"
+      },
+      {
+        "cod": "set-date",
+        "eticheta_ro": "Set de date",
+        "eticheta_en": "Dataset",
+        "definitie_ro": "Set de date identificabil, catalogat separat.",
+        "statut": "propus"
+      },
+      {
+        "cod": "campanie",
+        "eticheta_ro": "Campanie",
+        "eticheta_en": "Campaign",
+        "definitie_ro": "Campanie publică delimitată.",
+        "statut": "propus"
+      }
+    ]
+  },
   "settings": {
     "sectiuni": [
       {
@@ -8545,15 +9063,13 @@
       }
     ],
     "site": {
-      "_doc": "Where a visitor can report a problem with an entry (the drawer's \"Semnalează o problemă\"). build.py copies this into site/data.json. An empty value hides that option. `sheet` is the Google Sheet's address; `tabs` holds the tab ids (the number after gid= in the Sheet's address).",
+      "_doc": "Where a visitor can report a problem with an entry. build.py copies this into data.json. An empty value hides that option. `sheet` is the Google Sheet address; `tabs.intrari` is the gid of the v2 entry tab. It stays null until that tab exists; the original v1 tab ids remain in source/site.json.",
       "issues": "https://github.com/gov2-ro/awesome-civtech-ro/issues/new",
       "sheet": "https://docs.google.com/spreadsheets/d/1W0skZrsxyi3a6D59qMN6CbyXFVS18LyS_ftnhNUoSkA/edit",
       "tabs": {
-        "proiecte": 0,
-        "orgs": 631541810
+        "intrari": null
       },
       "email": ""
-    },
-    "nota": "Configurație copiată. Nu este conectată la site-ul public."
+    }
   }
 }

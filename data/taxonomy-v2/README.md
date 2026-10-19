@@ -1,24 +1,25 @@
 # Propunere de taxonomie v2
 
-Pachetul curent este `2.0.0-draft.1`. Modelul aprobat pentru implementare este `2.0.0-draft.2`.
-Actualizarea trebuie să adauge cele patru etape de maturitate, cardinalitatea și listele de coduri în CSV.
-Începeți implementarea din [brief-ul de predare](../../docs/briefs/handoff-taxonomy-v2.md).
+Pachetul curent este `2.0.0-draft.2`. Are patru etape de maturitate, cel mult o etapă pe intrare,
+și liste de coduri, roluri și gazde de linkuri în fișiere CSV. [versiuni.json](versiuni.json) descrie schimbările față de draft.1.
 Promptul pentru experimentul automat este în [docs/prompts/taxonomy-v2-classifier.md](../../docs/prompts/taxonomy-v2-classifier.md).
-Experimentul și evaluarea sunt în [runs/2026-10-19-reasoned-evidence/](runs/2026-10-19-reasoned-evidence/README.md).
-Consultați raportul înainte de integrare. Păstrați rularea înghețată și aplicați corecțiile într-o copie separată.
-Instrucțiunile de pregătire de mai jos descriu copia inițială draft.1; repetarea clasificării nu este o condiție pentru implementare.
+Experimentul și evaluarea sunt în [runs/2026-10-19-reasoned-evidence/](runs/2026-10-19-reasoned-evidence/README.md). Rularea rămâne neschimbată.
+Copia de integrare [integrare/](integrare/) preia clasificarea acelei rulări, cu cele trei corecții din evaluare.
+Toate clasificările rămân propuneri. Site-ul public folosește în continuare datele din `data/`.
 
-Aceasta este o copie separată pentru revizuire. Site-ul și scripturile curente nu o citesc.
+Aceasta este o copie separată pentru revizuire. Site-ul public nu o citește. Scripturile o citesc numai când primesc
+`--data-dir` (vezi [Previzualizare](#previzualizare)).
 Datele originale din `data/` rămân neschimbate. Specificația pentru integrare este în
 [docs/specs/taxonomy-v2.md](../../docs/specs/taxonomy-v2.md).
 Consultați [diagramele complete ale vocabularului](../../docs/specs/taxonomy-v2-vocabulary.md)
 și [diagrama modelului și implicațiile pentru interfață](../../docs/specs/taxonomy-v2.md#model-diagram).
 Regenerați diagramele după modificarea conceptelor cu `python3 data/taxonomy-v2/export_mermaid.py`.
 
-Copie inițială: **122 de intrări**, **125 de concepte**, **13 subiecte generale**,
+Copie inițială (draft.1): **122 de intrări**, **125 de concepte**, **13 subiecte generale**,
 **86 de atribuiri originale** și **66 de puncte de revizuit**.
 Cele **22 de corespondențe EuroVoc** folosesc identificatori și etichete verificate la sursa oficială.
 Echivalența semantică rămâne o propunere. Nicio intrare nu este acceptată automat.
+Draft.2 are **128 de concepte**: s-au adăugat `maturitate:experiment`, `maturitate:pilot` și `maturitate:operational`.
 
 ## Începeți aici
 
@@ -59,15 +60,20 @@ Un rezultat cu zero erori verifică structura. Nu confirmă corectitudinea clasi
 | `arii.csv` | Zonele geografice folosite în clasificare | Da |
 | `revizuire.csv` | Întrebări concrete și deciziile editorului | Da |
 | `mapari-externe.csv` | Corespondențe propuse cu EuroVoc | Da, după verificarea sensului |
-| `setari.json` | Secțiunile, rolurile linkurilor și adresele de raportare copiate | Da |
+| `valori.csv` | Listele de coduri: o valoare pe rând, cu etichete, definiție, statut și ordine | Da |
+| `roluri-linkuri.csv` | Rolurile linkurilor (`github`, `donatii` …), cu etichete și ordine | Da |
+| `gazde-linkuri.csv` | Gazda unui link și rolul ei, o gazdă pe rând | Da |
+| `setari.json` | Adresele de raportare a unei probleme | Da |
 | `catalogue.json` | Export al tabelelor pentru consum programatic | Nu; rulați `validate.py --export` |
-| `schema.json` | Contractul structurii: coloane, liste și valori admise | Numai când schimbați modelul |
+| `schema.json` | Contractul structurii: coloane, chei, regulile câmpurilor și lista de coduri a fiecărui câmp | Numai când schimbați modelul |
+| `versiuni.json` | Istoricul versiunilor pachetului | Numai la o versiune nouă |
+| `integrare/` | Copia de integrare a rulării înghețate (vezi mai jos) | Numai `modificari.csv`; restul se regenerează |
 | `corespondente-v1.csv` | Trecerea de la categorii și etichete vechi la concepte candidate | Istoric de migrare |
 | `atribuiri-initiale.csv` | Dovada locală și raționamentul pentru clasificarea inițială | Istoric de migrare |
 | `observatii/` | Copii de lucru ale profilurilor și mențiunilor; același format ca înainte | Numai prin viitoarele scripturi adaptate |
 | `source/` | Copii exacte ale tuturor fișierelor CSV/JSON de la primul nivel din `data/` | Nu |
 | `reference/` | Interogarea și răspunsul oficial EuroVoc, plus sursele metodologice | Nu modificați răspunsul sau interogarea |
-| `manifest.json` | Numerele inițiale și hashurile copiilor originale | Nu |
+| `manifest.json` | Numerele inițiale draft.1 și hashurile copiilor originale | Nu |
 
 `international.csv` este păstrat numai în `source/`. Nu a fost introdus în cele 122 de intrări.
 Imaginile nu sunt duplicate. Căile din profiluri se referă la imaginile existente din `site/img/`.
@@ -102,7 +108,7 @@ Exemplu existent: `ce-cumpara-primaria` are `subiect:finante-publice` ca subiect
 | `tehnologii` | Ce tehnologie folosește sau oferă explicit? | `tehnologie:ai` |
 | `institutii_vizate` | Ce tip de instituție vizează? | `institutie:primarie` |
 | `tip_organizatie` | Ce fel de organizație este? | `organizatie:think-tank` |
-| `maturitate` | Este declarat un prototip? | `maturitate:prototip` |
+| `maturitate` | În ce etapă este, după dovezi? Cel mult o valoare. | `maturitate:operational` |
 | `nivel_acoperire` | Care este întinderea geografică? | `local` |
 | `arii_acoperite` | Ce zone acoperă? | `localitate:bucuresti` |
 
@@ -125,3 +131,47 @@ Mapările EuroVoc au `stare_mapare=propus` și `relatie=closeMatch`.
 Acceptați o mapare numai după compararea definițiilor. Folosiți `exactMatch` numai pentru sensuri echivalente.
 
 Modelul este inspirat de SKOS. Fișierele CSV/JSON nu sunt un export RDF și nu declară conformitate ISO.
+
+## Liste de coduri
+
+`valori.csv` are coloanele `lista,cod,eticheta_ro,eticheta_en,definitie_ro,statut,ordine`.
+Perechea `(lista,cod)` este unică. `ordine` este un număr întreg, unic în listă.
+`schema.json` leagă fiecare coloană de lista ei, de exemplu `stare` → `stare_manual`.
+Un câmp opțional rămâne gol. Nu adăugați un rând cu cod gol.
+Un cod cu `statut=retras` nu mai poate fi folosit.
+Un rol nou din `roluri-linkuri.csv` are nevoie și de suport în cod pentru a apărea corect pe site.
+`setari.json` nu mai conține secțiuni sau roluri. Validatorul respinge o a doua sursă pentru aceste liste.
+
+## Copia de integrare
+
+`integrare/` este o copie suprapusă peste acest pachet. `pachet.json` numește fișierele proprii.
+Vocabularul, listele, ariile, relațiile, observațiile și copiile sursă vin din pachet.
+
+| Fișier | Conținut |
+| --- | --- |
+| `intrari.csv` | Clasificarea rulării; textele, linkurile, contactele, `stare` și `nota` din `source/`, după `sursa_fisier` și `sursa_rand` |
+| `modificari.csv` | Jurnalul corecțiilor făcute de om. Se adaugă rânduri; nu se rescriu cele existente |
+| `rezultate.csv` | Rezultatul fiecărui răspuns (`classified`, `partial`, `insufficient_evidence`) și hashul lui |
+| `revizuire.csv` | R001–R066 din pachet, C pentru incertitudinile rulării, S pentru cele trei probleme semantice, V pentru propuneri |
+| `propuneri-vocabular.csv` | Concepte și arii propuse. Nu sunt în `concepte.csv` și nu sunt atribuite |
+
+Intrarea `incentru` nu are subiect: rularea s-a abținut. Are `clasificare_stare=de-revizuit`.
+Celelalte 121 de intrări au `propus`. Cele 16 rezultate parțiale rămân marcate în `rezultate.csv` și în `revizuire.csv`.
+
+```sh
+python3 data/taxonomy-v2/integrare.py           # verifică dacă integrare/ corespunde rulării și jurnalului
+python3 data/taxonomy-v2/integrare.py --write   # regenerează integrare/ după o modificare în modificari.csv
+python3 data/taxonomy-v2/validate.py --root data/taxonomy-v2/integrare --baseline --export
+```
+
+## Previzualizare
+
+```sh
+python3 scripts/validate.py --data-dir data/taxonomy-v2/integrare
+python3 scripts/build.py --data-dir data/taxonomy-v2/integrare --site-dir /tmp/civtech-v2 --allow-draft
+python3 -m http.server -d /tmp/civtech-v2 8765
+python3 scripts/test_taxonomy_v2.py
+```
+
+Construirea fără `--allow-draft` refuză clasificările neacceptate. `--site-dir` trebuie să fie în afara depozitului.
+Previzualizarea nu modifică `site/`. Pagina afișează că clasificările sunt propuneri.

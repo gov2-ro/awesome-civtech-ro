@@ -1,10 +1,19 @@
 {
-  "version": "2.0.0-draft.1",
+  "version": "2.0.0-draft.2",
   "status": "editorial_proposal",
+  "_doc": "Structural contract. Code values, labels and order live in valori.csv; link roles in roluri-linkuri.csv; host lookup in gazde-linkuri.csv. A field rule names its code list or concept scheme. max_items=null means unbounded. An optional field (required=false, min_items=0) may be empty; absence is never a code row. empty_allowed_when lists the states in which a required field may stay empty (an incomplete classification). private=true keeps a column out of the public site data.",
   "list_separator": "|",
+  "lifecycle_status": [
+    "propus",
+    "acceptat",
+    "retras"
+  ],
   "authoritative_files": [
     "intrari.csv",
     "concepte.csv",
+    "valori.csv",
+    "roluri-linkuri.csv",
+    "gazde-linkuri.csv",
     "relatii.csv",
     "arii.csv",
     "mapari-externe.csv",
@@ -19,69 +28,344 @@
     "atribuiri-initiale.csv",
     "corespondente-v1.csv"
   ],
-  "enums": {
-    "tip_entitate": [
-      "proiect",
-      "organizatie",
-      "resursa",
-      "publicatie",
-      "set-date",
-      "campanie"
+  "settings_keys": [
+    "site",
+    "nota"
+  ],
+  "keys": {
+    "intrari.csv": [
+      "slug"
     ],
-    "sectiune_url": [
-      "proiect",
-      "organizatie",
-      "resursa"
+    "concepte.csv": [
+      "id"
     ],
-    "nivel_acoperire": [
-      "national",
-      "local",
-      "international",
-      "necunoscut"
+    "arii.csv": [
+      "id"
     ],
-    "clasificare_stare": [
-      "propus",
-      "acceptat",
-      "de-revizuit"
+    "relatii.csv": [
+      "id"
     ],
-    "incredere": [
-      "mica",
-      "medie",
-      "mare"
+    "revizuire.csv": [
+      "id"
     ],
-    "stare": [
-      "",
-      "arhivat",
-      "offline"
+    "valori.csv": [
+      "lista",
+      "cod"
     ],
-    "civictech_original": [
-      "",
-      "0",
-      "1"
+    "roluri-linkuri.csv": [
+      "id"
+    ],
+    "gazde-linkuri.csv": [
+      "gazda"
     ]
   },
-  "concept_fields": {
-    "subiect_principal": "subiect",
-    "subiecte": "subiect",
-    "teme": "subiect",
-    "scopuri": "scop",
-    "functionalitati": "functie",
-    "formate": "format",
-    "tehnologii": "tehnologie",
-    "institutii_vizate": "institutie",
-    "tip_organizatie": "organizatie",
-    "maturitate": "maturitate"
+  "field_rules": {
+    "intrari.csv": {
+      "slug": {
+        "kind": "slug",
+        "required": true
+      },
+      "tip_entitate": {
+        "kind": "code",
+        "list": "tip_entitate",
+        "required": true
+      },
+      "sectiune_url": {
+        "kind": "code",
+        "list": "sectiune_url",
+        "required": true
+      },
+      "nume": {
+        "kind": "text",
+        "required": true
+      },
+      "descriere_scurta": {
+        "kind": "text",
+        "required": false
+      },
+      "descriere": {
+        "kind": "text",
+        "required": false
+      },
+      "url": {
+        "kind": "text",
+        "required": false
+      },
+      "linkuri": {
+        "kind": "links",
+        "required": false
+      },
+      "subiect_principal": {
+        "kind": "concept",
+        "scheme": "subiect",
+        "min_items": 1,
+        "max_items": 1,
+        "level": "root",
+        "empty_allowed_when": {
+          "clasificare_stare": [
+            "de-revizuit"
+          ]
+        }
+      },
+      "subiecte": {
+        "kind": "concept",
+        "scheme": "subiect",
+        "min_items": 1,
+        "max_items": null,
+        "level": "root",
+        "empty_allowed_when": {
+          "clasificare_stare": [
+            "de-revizuit"
+          ]
+        }
+      },
+      "teme": {
+        "kind": "concept",
+        "scheme": "subiect",
+        "min_items": 0,
+        "max_items": null,
+        "level": "narrower"
+      },
+      "scopuri": {
+        "kind": "concept",
+        "scheme": "scop",
+        "min_items": 0,
+        "max_items": null
+      },
+      "functionalitati": {
+        "kind": "concept",
+        "scheme": "functie",
+        "min_items": 0,
+        "max_items": null
+      },
+      "formate": {
+        "kind": "concept",
+        "scheme": "format",
+        "min_items": 0,
+        "max_items": null
+      },
+      "tehnologii": {
+        "kind": "concept",
+        "scheme": "tehnologie",
+        "min_items": 0,
+        "max_items": null
+      },
+      "institutii_vizate": {
+        "kind": "concept",
+        "scheme": "institutie",
+        "min_items": 0,
+        "max_items": null
+      },
+      "tip_organizatie": {
+        "kind": "concept",
+        "scheme": "organizatie",
+        "min_items": 0,
+        "max_items": null
+      },
+      "maturitate": {
+        "kind": "concept",
+        "scheme": "maturitate",
+        "min_items": 0,
+        "max_items": 1
+      },
+      "nivel_acoperire": {
+        "kind": "code",
+        "list": "nivel_acoperire",
+        "required": true
+      },
+      "arii_acoperite": {
+        "kind": "area",
+        "min_items": 0,
+        "max_items": null
+      },
+      "localitate_originala": {
+        "kind": "text",
+        "required": false
+      },
+      "autor_original": {
+        "kind": "text",
+        "required": false
+      },
+      "contact": {
+        "kind": "text",
+        "required": false
+      },
+      "civictech_original": {
+        "kind": "code",
+        "list": "civictech_original",
+        "required": false
+      },
+      "stare": {
+        "kind": "code",
+        "list": "stare_manual",
+        "required": false
+      },
+      "nota": {
+        "kind": "text",
+        "required": false,
+        "private": true
+      },
+      "clasificare_stare": {
+        "kind": "code",
+        "list": "clasificare_stare",
+        "required": true
+      },
+      "incredere": {
+        "kind": "code",
+        "list": "incredere",
+        "required": true
+      },
+      "sursa_fisier": {
+        "kind": "text",
+        "required": false,
+        "private": true
+      },
+      "sursa_rand": {
+        "kind": "integer",
+        "required": false,
+        "private": true
+      },
+      "nota_clasificare": {
+        "kind": "text",
+        "required": false,
+        "private": true
+      }
+    },
+    "concepte.csv": {
+      "id": {
+        "kind": "concept_id",
+        "required": true
+      },
+      "schema": {
+        "kind": "code",
+        "list": "concept_schema",
+        "required": true
+      },
+      "eticheta_ro": {
+        "kind": "text",
+        "required": true
+      },
+      "eticheta_en": {
+        "kind": "text",
+        "required": true
+      },
+      "alternative_ro": {
+        "kind": "text_list"
+      },
+      "definitie_ro": {
+        "kind": "text",
+        "required": true
+      },
+      "mai_larg": {
+        "kind": "concept_ref",
+        "same_scheme": true
+      },
+      "asociate": {
+        "kind": "concept_ref"
+      },
+      "statut": {
+        "kind": "code",
+        "list": "concept_statut",
+        "required": true
+      }
+    },
+    "relatii.csv": {
+      "predicat": {
+        "kind": "code",
+        "list": "relatie_predicat",
+        "required": true
+      },
+      "stare": {
+        "kind": "code",
+        "list": "relatie_stare",
+        "required": true
+      }
+    },
+    "arii.csv": {
+      "tip": {
+        "kind": "code",
+        "list": "tip_arie",
+        "required": true
+      },
+      "parinte": {
+        "kind": "area"
+      }
+    },
+    "revizuire.csv": {
+      "prioritate": {
+        "kind": "code",
+        "list": "prioritate",
+        "required": true
+      },
+      "stare": {
+        "kind": "code",
+        "list": "revizuire_stare",
+        "required": true
+      }
+    },
+    "mapari-externe.csv": {
+      "relatie": {
+        "kind": "code",
+        "list": "mapare_relatie",
+        "required": true
+      },
+      "stare_mapare": {
+        "kind": "code",
+        "list": "mapare_stare",
+        "required": true
+      }
+    },
+    "valori.csv": {
+      "lista": {
+        "kind": "text",
+        "required": true
+      },
+      "cod": {
+        "kind": "text",
+        "required": true
+      },
+      "eticheta_ro": {
+        "kind": "text",
+        "required": true
+      },
+      "statut": {
+        "kind": "lifecycle",
+        "required": true
+      },
+      "ordine": {
+        "kind": "integer",
+        "required": true
+      }
+    },
+    "roluri-linkuri.csv": {
+      "id": {
+        "kind": "text",
+        "required": true
+      },
+      "eticheta_ro": {
+        "kind": "text",
+        "required": true
+      },
+      "statut": {
+        "kind": "lifecycle",
+        "required": true
+      },
+      "ordine": {
+        "kind": "integer",
+        "required": true
+      }
+    },
+    "gazde-linkuri.csv": {
+      "gazda": {
+        "kind": "text",
+        "required": true
+      },
+      "rol": {
+        "kind": "role",
+        "required": true
+      }
+    }
   },
-  "relation_predicates": [
-    "atribuit_in_sursa",
-    "creat_de",
-    "mentinut_de",
-    "publicat_de",
-    "finantat_de",
-    "parte_din",
-    "ofera",
-    "foloseste"
-  ],
   "headers": {
     "intrari.csv": [
       "slug",
@@ -182,6 +466,27 @@
       "identificator_verificat_la",
       "stare_mapare",
       "nota"
+    ],
+    "valori.csv": [
+      "lista",
+      "cod",
+      "eticheta_ro",
+      "eticheta_en",
+      "definitie_ro",
+      "statut",
+      "ordine"
+    ],
+    "roluri-linkuri.csv": [
+      "id",
+      "eticheta_ro",
+      "eticheta_en",
+      "definitie_ro",
+      "statut",
+      "ordine"
+    ],
+    "gazde-linkuri.csv": [
+      "gazda",
+      "rol"
     ]
   }
 }

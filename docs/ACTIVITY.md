@@ -1,5 +1,51 @@
 # Activity
 
+## 2026-10-19 — Taxonomy v2 core slices 1–4: draft.2 package, integration copy, loaders, build, preview
+
+**Done**
+- Upgraded `data/taxonomy-v2/` to `2.0.0-draft.2`. `concepte.csv` equals the frozen run's 128-concept table (content; LF endings).
+  New `valori.csv` (16 lists, 65 codes), `roluri-linkuri.csv` (22 roles), `gazde-linkuri.csv` (29 hosts), `versiuni.json`.
+  `schema.json` has field rules with list/scheme references and cardinality; `setari.json` keeps only the reporting addresses.
+  `manifest.json`, `source/`, `reference/`, `observatii/`, the initial ledger and the base `intrari.csv` are unchanged.
+- Moved the checks to `scripts/taxonomy_v2.py`. `data/taxonomy-v2/validate.py` is now a thin wrapper with `--root` and `--publication`.
+  Measured: base package `--baseline` 0 errors; integration copy `--baseline` 0 errors.
+- Added `data/taxonomy-v2/integrare.py` and the overlay `integrare/`. It verifies the run's seal (258 hashes) and frozen
+  files before reading, and refuses a vocabulary that differs from the frozen one. 122 entries: 121 `propus`, `incentru`
+  `de-revizuit`; results 105 classified, 16 partial, 1 abstention. Texts, links, contacts, `stare` and `nota` come from
+  `source/` by source identity. Queue: 103 items (66 R, 23 C, 3 S, 11 V); 10 vocabulary proposals (8 concepts, 2 areas).
+- Addressed the three semantic concerns in `integrare/modificari.csv` (4 rows): M001 keeps `data-expertforum`'s media root
+  with an exact excerpt from the stored source's Media section; M002 lowers its confidence and S001 asks for the Moldova
+  area; M003 removes `jailando`'s `format:registru`; M004 removes `presspay`'s `scop:sprijin-organizatii` and proposes
+  `scop:sustenabilitate-presa`. The sealed run is unchanged.
+- `common.py`: `data_schema`, `observation_paths`, `split_ids`, `load_vocabulary`, `load_catalogue`; loaders take a root.
+  `validate.py --data-dir [--publication]`. Publication gate on the integration copy: 150 errors (122 unaccepted, 28 open high-priority items).
+- `build.py --data-dir --site-dir --allow-draft`; the v2 browser code is in `site-v2/` (`app.js` fork, `v2.css`).
+- Verified: v1 validator 0 errors, 28 warnings. An isolated v1 build and a default build in a copy equal the HEAD build
+  (all pages, archives, `llms.txt`, `index.html` identical; `data.json` and `feed.xml` differ only in timestamps).
+  v2 preview: 122 entry pages, 3 archives, 120 of 128 concepts and 10 areas in the payload, maturity 29 operational,
+  1 prototype, 92 null. `scripts/test_taxonomy_v2.py`: 40 tests pass. `scripts/check_preview.py`: 47 browser checks pass
+  (desktop 1280×900, mobile 390×844). Technology claims: 6 on 5 entries, each with a non-legacy justification.
+
+**Hard**
+- The run's frozen CSVs have CRLF endings and the package has LF. The adapter compares parsed rows, not bytes.
+- v1 output had to stay byte-identical: the refactored builder keeps the v1 item key order and the v1 score inputs.
+- A facet opened and clicked quickly lost its open state: the `toggle` event fires after the re-render. The v2 code reads
+  the open state from the page. The same race exists in `site/app.js` (backlog).
+- The AI topic is assigned only to organisations, so the project tab never suggests it. The check tests each tab separately.
+
+**Decided**
+- The integration copy is an overlay (`pachet.json`, `local_files`), not a full copy. One vocabulary, one set of lists
+  and one source snapshot. Cost: loaders resolve two folders, and an overlay cannot replace a base table silently.
+- Fork `site/app.js` into `site-v2/app.js` instead of a dual-mode file. Production JS stays byte-identical until the cutover.
+  Cost: two browser files to keep in step until then.
+- `schema.json` is the only source of v2 column lists; Python reads it. Cost: no import-time constants for v2.
+- The abstention keeps its entry with an empty classification as `de-revizuit`; no subject was invented. Partial results stay `propus`.
+- Entry `incredere` is the lowest confidence among the entry's classification claims.
+- A build folder must be outside the repository; a v2 build must not target `site/`. Proposals need `--allow-draft`,
+  and the preview says that its classifications are proposals.
+- Old `d`, `t`, `kw`, `c` bookmarks filter on `legacy` fields with their v1 meaning and show `(v1)` pills; they are not translated.
+- Nothing was pushed or deployed; no workflow, Sheet or Form changed. `site/`, `data/*.csv` and `data/taxonomy.json` are unchanged.
+
 ## 2026-10-19 — Preserve taxonomy work for implementation
 
 **Done**

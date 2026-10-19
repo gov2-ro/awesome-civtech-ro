@@ -1,0 +1,23 @@
+id,eticheta_ro,eticheta_en,definitie_ro,statut,ordine
+facebook,Facebook,Facebook,Profil sau pagină Facebook.,propus,0
+instagram,Instagram,Instagram,Profil sau pagină Instagram.,propus,1
+linkedin,LinkedIn,LinkedIn,Profil sau pagină LinkedIn.,propus,2
+x,X,X,Profil sau pagină X.,propus,3
+bluesky,Bluesky,Bluesky,Profil sau pagină Bluesky.,propus,4
+mastodon,Mastodon,Mastodon,Profil sau pagină Mastodon.,propus,5
+threads,Threads,Threads,Profil sau pagină Threads.,propus,6
+tiktok,TikTok,TikTok,Profil sau pagină TikTok.,propus,7
+youtube,YouTube,YouTube,Profil sau pagină YouTube.,propus,8
+telegram,Telegram,Telegram,Profil sau pagină Telegram.,propus,9
+discord,Discord,Discord,Profil sau pagină Discord.,propus,10
+github,GitHub,GitHub,Profil sau pagină GitHub.,propus,11
+gitlab,GitLab,GitLab,Profil sau pagină GitLab.,propus,12
+cod,Cod sursă,Source code,Depozit de cod în afara GitHub și GitLab.,propus,13
+donatii,Donații,Donations,Pagină pentru donații.,propus,14
+despre,Despre,About,Pagină de prezentare.,propus,15
+contact,Contact,Contact,Pagină de contact.,propus,16
+termeni,Termeni și condiții,Terms and conditions,Termeni și condiții.,propus,17
+date,Date (descărcare),Data (download),Date pentru descărcare.,propus,18
+api,API,API,Documentația unui API.,propus,19
+mcp,MCP,MCP,Un server MCP.,propus,20
+web,Link,Link,"Alt link, fără rol.",propus,21

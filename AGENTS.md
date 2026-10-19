@@ -11,6 +11,11 @@ python3 scripts/validate.py                 # check proiecte.csv / orgs.csv (CI 
 python3 scripts/build.py                    # merge everything into site/data.json
 python3 -m http.server -d site 8000         # preview at http://localhost:8000
 
+python3 scripts/validate.py --data-dir data/taxonomy-v2/integrare      # taxonomy v2 root (draft rules; --publication adds the public gate)
+python3 scripts/build.py --data-dir data/taxonomy-v2/integrare --site-dir /tmp/civtech-v2 --allow-draft   # isolated v2 preview
+python3 scripts/test_taxonomy_v2.py         # v2 package, root selection and isolated-build tests (stdlib)
+uv run scripts/check_preview.py http://localhost:8765/   # browser checks of a served v2 preview (Playwright)
+
 uv run scripts/profile.py                   # profile entries missing from profil.csv (--force all, --only slug,slug, --no-shots)
 uv run scripts/profile.py --extra           # age / activity / repo / Wayback / cert / Wikipedia signals (free)
 uv run scripts/profile.py --opr             # Open PageRank (OPR_API_KEY)
@@ -22,7 +27,7 @@ uv run scripts/sheets.py diff|pull|push   # Google Sheet ⇄ proiecte.csv/orgs.c
 uv run scripts/form.py [--apply]            # proposal Form questions from taxonomy.json (FORM_ID); default prints the plan
 ```
 
-`validate.py` and `build.py` are stdlib-only and run with plain `python3` (CI uses 3.12). `profile.py`, `search.py` and `review.py` declare their dependencies inline (PEP 723 `# /// script` header) and must be run with `uv run`; `profile.py` and `review.py` use Playwright for JS-rendered pages. There are no tests: after changing scripts, run `validate.py` then `build.py` (that is exactly what CI does).
+`validate.py` and `build.py` are stdlib-only and run with plain `python3` (CI uses 3.12). `profile.py`, `search.py` and `review.py` declare their dependencies inline (PEP 723 `# /// script` header) and must be run with `uv run`; `profile.py` and `review.py` use Playwright for JS-rendered pages. After changing scripts, run `validate.py` then `build.py` (that is exactly what CI does). The only automated tests cover taxonomy v2 (`scripts/test_taxonomy_v2.py`); CI does not run them yet.
 
 ## Data pipeline
 
@@ -45,6 +50,7 @@ scripts/build.py → site/data.json  →  site/app.js (vanilla JS, fetches data.
 - `build.py` decides what the site shows: curated description vs. the site's meta description (`pick_desc`, filtering `BOILERPLATE`), link roles from `linkuri` + profiler-found socials, `status` (manual `stare` = `arhivat`/`offline` overrides the profiler; a profiler `offline` with no Wayback capture for over a year shows as `arhivat`; and a retired entry ignores what is live at its old URL), `since` / `stale`, and `score` (0–100: activity 30, reach 25, volume 15, longevity 15, documentation 15) used by the "Relevanță" sort.
 - `site/app.js` keeps all UI state in URL query params (`DEFAULTS` / `FILTERS`), with a few per-browser prefs in localStorage. An open entry lives in the path, `/<kind>/<slug>/` with kind `proiect`, `organizatie` or `resursa` (the old `?p=<slug>` still works). `build.py` writes one page per entry to `site/<kind>/<slug>/` from `site/index.html` (git ignores them; the Pages workflow builds them), so preview with `build.py` first. A new `href`, `src` or `fetch` in `site/index.html` or `app.js` must resolve from that path: the pages carry `<base href="../../">`, and `app.js` prefixes data paths with `ROOT`. `build.py` rewrites the `?v=<hash>` on the `style.css` and `app.js` links in `site/index.html` (Cloudflare caches those two files for hours), so commit `index.html` after a CSS or JS change. `data/site.json` (report-a-problem addresses) is hand-edited; `.gitignore` lists it as an exception.
 - `data/curation.csv`, `data/international.csv`, `data/_OBSOLETE/` aren't read by any script; `international.csv` is the seed for a planned international mirror.
+- **Taxonomy v2 (preview only)**: `data/taxonomy-v2/` is a draft.2 package; `integrare/` is an overlay with the sealed run's classifications. `scripts/taxonomy_v2.py` loads and checks it; `--data-dir` selects it; `--site-dir` keeps a build out of `site/`; `site-v2/` holds the v2 browser code. `data/` (v1) stays the default and the public source until an explicit cutover. Never write into `data/taxonomy-v2/source/`, `reference/` or `runs/`.
 
 ## Deployment
 
