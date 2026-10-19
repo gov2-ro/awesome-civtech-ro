@@ -329,6 +329,9 @@ def check(root, baseline: bool = False, publication: bool = False) -> tuple[list
             fail(f"revizuire.csv {row['id']}: unknown entry {row['slug']}")
         if row["stare"] in ("acceptat", "respins") and not row["decizie_editor"]:
             fail(f"revizuire.csv {row['id']}: a closed item needs an editor decision")
+        # A technical closure needs no editorial decision: it says why in `motiv` and never carries a decision of the editor.
+        if row["stare"] == "tehnic" and (not row["motiv"].strip() or row["decizie_editor"].strip()):
+            fail(f"revizuire.csv {row['id']}: a technical closure needs a reason (motiv) and no editor decision")
     if pkg.files.overlay is None:
         for row in pkg.tables.get("atribuiri-initiale.csv", []):
             if row["slug"] not in pkg.entries or row["concept"] not in pkg.concepts:
@@ -360,6 +363,7 @@ def check(root, baseline: bool = False, publication: bool = False) -> tuple[list
             if row["clasificare_stare"] != "acceptat":
                 fail(f"publication: {slug} has the classification state {row['clasificare_stare']!r}, not acceptat")
         for row in pkg.tables.get("revizuire.csv", []):
+            # Only `deschis` blocks the gate. A technical closure (`tehnic`) never counts, whatever its priority.
             if row["stare"] == "deschis" and row["prioritate"] == "mare":
                 fail(f"publication: {row['slug']} has the open high-priority review item {row['id']}")
 
@@ -370,6 +374,7 @@ def check(root, baseline: bool = False, publication: bool = False) -> tuple[list
         "codes": sum(len(c) for c in pkg.codes.values()), "link_roles": len(pkg.roles), "link_hosts": len(pkg.hosts),
         "relations": len(pkg.tables.get("relatii.csv", [])), "review_items": len(pkg.tables.get("revizuire.csv", [])),
         "open_review_items": sum(r["stare"] == "deschis" for r in pkg.tables.get("revizuire.csv", [])),
+        "technical_review_items": sum(r["stare"] == "tehnic" for r in pkg.tables.get("revizuire.csv", [])),
         "classification_states": dict(Counter(r["clasificare_stare"] for r in entries)),
         "without_primary_subject": sum(not r["subiect_principal"] for r in entries),
         "maturity": dict(Counter(r["maturitate"] or "-" for r in entries)),
