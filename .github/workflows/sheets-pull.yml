@@ -7,7 +7,8 @@ name: sheets-pull
 # `sheets.py pull` merges three ways, with the CSVs at the commit named in the Sheet's `_sync` tab as the base. When the Sheet
 # and main changed the same cell, it exits 3 and writes nothing: the job fails and the pull request stays as it was.
 # When validate.py or build.py fails, the job opens or updates the pull request first, sets the commit status
-# `validate / sheets-pull` to failure on its head, and then fails. Require that status in the branch protection of main.
+# `validate / sheets-pull` to failure on its head, and then fails. Do not make that status required in the branch protection
+# of main: other pull requests never get it, so a required status would block them.
 on:
   schedule:
     - cron: "17 */6 * * *"
