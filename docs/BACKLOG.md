@@ -47,35 +47,49 @@ The public site does not consume this package. Production data and the v1 build 
 
 ## Audit — 2026-10-19
 
-- [ ] `site/app.js`: a quick click on a choice just after opening a facet can close that facet again. The `toggle` event
+- [~] `site/app.js`: a quick click on a choice just after opening a facet can close that facet again. The `toggle` event
       arrives after the re-render, so `closed` still lists the facet. `site-v2/app.js` reads the open state from the page first.
+      Fixed in `site-v2/app.js`; production gets it with the cutover (`scripts/cutover_v2.py` replaces `site/app.js`).
 
 - [x] Make Sheets validation a blocking check. `sheets-pull.yml` records both exit codes, but opens the PR even when either command fails.
       The workflow uses `GITHUB_TOKEN`; its PR does not start the normal validation workflow.
       Done 2026-10-20: the job fails after it opens the PR and sets the status `validate / sheets-pull` (slice B).
-- [ ] Add data-load error handling and a retry to `site/app.js`. An aborted `data.json` request leaves the results blank.
+- [~] Add data-load error handling and a retry to `site/app.js`. An aborted `data.json` request leaves the results blank.
       Offer the static archives when JavaScript fails. The home page also has no main content without JavaScript.
-- [ ] Repair dialog focus. Ctrl/Cmd+K can focus the background search while a dialog stays open.
+      2026-10-20 (slice C): `site-v2/app.js` shows a message, a retry button and the archives; `site/index.html` has a `<noscript>` block.
+      Production JS gets the retry with the cutover.
+- [~] Repair dialog focus. Ctrl/Cmd+K can focus the background search while a dialog stays open.
       Shift+Tab from Close selects a hidden link inside the collapsed report panel; focus stays on Close.
       Changing a mobile filter rebuilds the sheet and drops focus to the body.
       `site-v2/app.js` fixes all three (v0.6.1, with browser checks); `site/app.js` keeps them until the cutover.
-- [ ] Separate observed dates from confirmed launch dates. `isLaunched` uses `since`, which comes from Wayback, repo creation, or TLS.
+- [~] Separate observed dates from confirmed launch dates. `isLaunched` uses `since`, which comes from Wayback, repo creation, or TLS.
       Rename inferred badges or add a curated launch date. Do not treat the first observed trace as a confirmed launch.
+      2026-10-20 (slice C): `site-v2/` says "prima urmă observată" and "apărut recent", with "nu este data lansării".
+      Owner decision: a curated launch-date column. Recommendation: none until a "lansat" badge is wanted again; the observed wording is accurate.
 - [x] Remove the future date from `last_activity`. A 2026 copyright footer produces `2026-12-31` during October.
       Give copyright evidence less weight than a dated content update.
       Done 2026-10-20 (slice A): a dated update wins; the copyright year is `<year>-01-01`, never after today.
-- [ ] Explain the status and ranking methodology. HTTP reachability does not confirm an operating service.
+- [x] Explain the status and ranking methodology. HTTP reachability does not confirm an operating service.
       A source-code link does not establish an open-source licence. The score favours age, page count, and visibility.
+      Done 2026-10-20: `docs/METODOLOGIE.md` (Romanian), linked from the footer.
 - [ ] Fill the 12 live entries with neither a tagline nor a description in the audit build.
       Validation passes with 28 warnings. Separate publication requirements from optional enrichment.
+      Measured 2026-10-20 (12): reciclare-arad, centrul-pentru-cariere, ce-zice-legea, scoala-pentru-democratie, companii-publice-ro,
+      data-expertforum, e-cutremur, observatori-votcorect, onorata-instanta, open-budget, rezultate-vot, sanatate-mintala.
+      Owner: write the texts (editorial). In v2, the open high-priority R items ("descriere absentă") already block publication.
+      Recommendation: make "a live entry has a tagline or a description" a publication rule of `--publication`; keep the rest as enrichment warnings.
 - [x] Invalidate review labels when the input URL set or entry changes. `review.py` only detects the old format without `mentiuni_map`.
       Report label coverage: once any label exists for a slug, `reach_features` ignores its unlabelled mentions.
       Done 2026-10-20 (slice A): input hashes per answer; per-URL label join; coverage line in `review.py` and `build.py`.
-- [ ] Keep canonical and share metadata aligned with SPA navigation. Opening Factual directly, then closing it, leaves its canonical URL on the home view.
+- [~] Keep canonical and share metadata aligned with SPA navigation. Opening Factual directly, then closing it, leaves its canonical URL on the home view.
+      Fixed in `site-v2/app.js` (slice C, with browser checks); production at the cutover.
 - [ ] Clarify the primary audience and catalogue scope in the visible introduction. Review the rotating political jokes against that audience.
       Simplify the competing relevance sorts and explain the abbreviated date columns.
-- [ ] Add focused regression checks for profile preservation, label invalidation, score dates, dialog focus, and failed data loads.
+      2026-10-20: the date columns have tooltips in `site-v2/`. Owner decisions: the introduction text, the jokes, and the sorts
+      (the owner's note under *Misc*: one "Relevanță" sort, remove "Active și relevante", add "Cele mai vechi").
+- [x] Add focused regression checks for profile preservation, label invalidation, score dates, dialog focus, and failed data loads.
       Include site changes in PR validation; the current workflow filters only `data/**` and `scripts/**`.
+      Done 2026-10-20: `scripts/test_enrichment.py`, `scripts/check_preview.py` (98 checks), `validate.yml` paths and jobs.
 
 Existing items below also cover profile refresh data loss, Sheets merge conflicts, proposal intake, inactive discovery, and sitemap generation.
 
@@ -234,7 +248,9 @@ Existing items below also cover profile refresh data loss, Sheets merge conflict
 - [ ] Profiler: a connection timeout gives `blocat` → "Neconfirmat", which the main list shows.
       Two such entries were dead (parlament-transparent, piata-de-spaga; set `stare=offline` by hand
       2026-10-18). Retry from a second network, or count repeated timeouts as `offline`.
-- [ ] CI: actions target Node.js 20 (deprecated); bump `actions/checkout` and the Pages actions.
+- [~] CI: actions target Node.js 20 (deprecated); bump `actions/checkout` and the Pages actions.
+      `validate.yml` uses checkout v7, setup-python v7, upload-artifact v7, setup-uv v10 (latest majors on 2026-10-19; not yet run on GitHub).
+      `pages.yml` and the Sheets workflows still use v4/v5: bump them after the first green `validate.yml` run.
 
 ## Editorial checks
 
