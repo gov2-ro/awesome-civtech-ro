@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-CivTech România: a curated directory of Romanian civic-tech projects, resources and organisations, published as a static site. No framework, no package.json, no test suite. User-facing text (site UI, CONTRIBUTING.md, column names, taxonomy keys) is in Romanian; code and comments are in English.
+CivTech România: a curated directory of Romanian civic-tech projects, resources and organisations, published as a static site. No framework, no package.json; stdlib `unittest` files in `scripts/`. User-facing text (site UI, CONTRIBUTING.md, column names, taxonomy keys) is in Romanian; code and comments are in English.
 
 ## Commands
 
@@ -25,7 +25,7 @@ uv run scripts/profile.py --extra           # age / activity / repo / Wayback / 
 uv run scripts/profile.py --opr             # Open PageRank (OPR_API_KEY)
 uv run scripts/search.py --dry-run --only slug,slug   # print the search queries; no requests
 uv run scripts/search.py                    # Serper + Brave (SERPER_API_KEY, BRAVE_API_KEY, paid): entries without rows in data/mentiuni.csv (--only, --force, --provider serper|brave|all)
-uv run scripts/search.py --prune-only       # apply the prune rules to the stored rows and recompute mentions in profil.csv (run it after profile.py --force, which drops them); no requests
+uv run scripts/search.py --prune-only       # apply the prune rules to the stored rows and recompute mentions in profil.csv; no requests (profile.py keeps these columns since v0.7.0)
 uv run scripts/profile.py --data-dir data/taxonomy-v2/integrare --only slug,slug   # v2 root; profile and search files in observatii/ (also search.py, review.py)
 uv run scripts/review.py --only slug,slug   # Claude Haiku review + labels for the kept search results (ANTHROPIC_API_KEY); --dry-run prints the request, no API call
 uv run scripts/sheets.py diff|pull|push   # Google Sheet ⇄ proiecte.csv/orgs.csv (GOOGLE_APPLICATION_CREDENTIALS, SHEET_ID in .env); push refuses to overwrite unsynced Sheet edits
