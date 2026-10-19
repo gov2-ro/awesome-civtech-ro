@@ -1,0 +1,87 @@
+id,subiect,predicat,obiect,obiect_literal,camp_sursa,valoare_sursa,stare
+L001,465,atribuit_in_sursa,,Adriana Diaconu,autor,Adriana Diaconu,rol_neconfirmat
+L002,7-ani-de-acasa,atribuit_in_sursa,funky-citizens,,autor,funky-citizens,rol_neconfirmat
+L003,accesinfo,atribuit_in_sursa,radautiul-civic,,autor,radautiul-civic,rol_neconfirmat
+L004,aerlive,atribuit_in_sursa,,Ecopolis,autor,Ecopolis,rol_neconfirmat
+L005,afacut,atribuit_in_sursa,,Gabriel Popa,autor,Gabriel Popa,rol_neconfirmat
+L006,ai-aflat,atribuit_in_sursa,,Vlad Tudor,autor,Vlad Tudor,rol_neconfirmat
+L007,antibunk,atribuit_in_sursa,,Alexandru Gurău (AI de noi),autor,Alexandru Gurău (AI de noi),rol_neconfirmat
+L008,bani-partide,atribuit_in_sursa,efor,,autor,efor,rol_neconfirmat
+L009,bani-pierduti,atribuit_in_sursa,funky-citizens,,autor,funky-citizens,rol_neconfirmat
+L010,barometrul-digital,atribuit_in_sursa,,Mircea Șerdin,autor,Mircea Șerdin,rol_neconfirmat
+L011,bucuresti-help,atribuit_in_sursa,,Marius Funie,autor,Marius Funie,rol_neconfirmat
+L012,bucuresti-verde,atribuit_in_sursa,,Alex Ifrimenco,autor,Alex Ifrimenco / Beniamin Gheorghiță / Alexandru Lisman,rol_neconfirmat
+L013,bucuresti-verde,atribuit_in_sursa,,Beniamin Gheorghiță,autor,Alex Ifrimenco / Beniamin Gheorghiță / Alexandru Lisman,rol_neconfirmat
+L014,bucuresti-verde,atribuit_in_sursa,,Alexandru Lisman,autor,Alex Ifrimenco / Beniamin Gheorghiță / Alexandru Lisman,rol_neconfirmat
+L015,calitate-aer-radauti,atribuit_in_sursa,radautiul-civic,,autor,radautiul-civic,rol_neconfirmat
+L016,ce-cumpara-primaria,atribuit_in_sursa,,Victor Rotariu,autor,Victor Rotariu,rol_neconfirmat
+L017,centrul-pentru-cariere,atribuit_in_sursa,code4ro,,autor,code4ro,rol_neconfirmat
+L018,ce-zice-legea,atribuit_in_sursa,code4ro,,autor,code4ro,rol_neconfirmat
+L019,companii-de-stat,atribuit_in_sursa,,Andrei Miclea,autor,Andrei Miclea / Ioan G. Lazarovici-Georgiu,rol_neconfirmat
+L020,companii-de-stat,atribuit_in_sursa,,Ioan G. Lazarovici-Georgiu,autor,Andrei Miclea / Ioan G. Lazarovici-Georgiu,rol_neconfirmat
+L021,data-expertforum,atribuit_in_sursa,efor,,autor,efor,rol_neconfirmat
+L022,ins-gov2,atribuit_in_sursa,,GOV2,autor,GOV2,rol_neconfirmat
+L023,de-obste,atribuit_in_sursa,,Gabriel Popa,autor,Gabriel Popa,rol_neconfirmat
+L024,despre-femicid,atribuit_in_sursa,,Adriana Diaconu,autor,Adriana Diaconu,rol_neconfirmat
+L025,didi365,atribuit_in_sursa,,Top Clossers SRL,autor,Top Clossers SRL,rol_neconfirmat
+L026,drepturi-civile,atribuit_in_sursa,,APADOR-CH,autor,APADOR-CH,rol_neconfirmat
+L027,dupa-cutremur,atribuit_in_sursa,,Re:Rise,autor,Re:Rise & geo-spatial.org,rol_neconfirmat
+L028,dupa-cutremur,atribuit_in_sursa,,geo-spatial.org,autor,Re:Rise & geo-spatial.org,rol_neconfirmat
+L029,europescope,atribuit_in_sursa,,Gabriel-Eugen Tecar,autor,Gabriel-Eugen Tecar / Paul Foltrauer / Lucian Ioncelescu,rol_neconfirmat
+L030,europescope,atribuit_in_sursa,,Paul Foltrauer,autor,Gabriel-Eugen Tecar / Paul Foltrauer / Lucian Ioncelescu,rol_neconfirmat
+L031,europescope,atribuit_in_sursa,,Lucian Ioncelescu,autor,Gabriel-Eugen Tecar / Paul Foltrauer / Lucian Ioncelescu,rol_neconfirmat
+L032,executii-bugetare,atribuit_in_sursa,,Florin Pop,autor,Florin Pop,rol_neconfirmat
+L033,factual,atribuit_in_sursa,funky-citizens,,autor,funky-citizens,rol_neconfirmat
+L034,harta-banilor-publici,atribuit_in_sursa,,Inițiativa România,autor,Inițiativa România,rol_neconfirmat
+L035,harta-digitalizarii-primariilor,atribuit_in_sursa,,Diana Oncioiu,autor,Diana Oncioiu,rol_neconfirmat
+L036,harta-firmelor,atribuit_in_sursa,,Radu Ciocan,autor,Radu Ciocan,rol_neconfirmat
+L037,monitorul-ai-integritate,atribuit_in_sursa,,Radu Ciocan,autor,Radu Ciocan,rol_neconfirmat
+L038,harta-tv-locale,atribuit_in_sursa,,geo-spatial.org,autor,geo-spatial.org,rol_neconfirmat
+L039,hoover,atribuit_in_sursa,,CRJI,autor,CRJI,rol_neconfirmat
+L040,ia-statul-la-intrebari,atribuit_in_sursa,,Alianța pentru o Românie Curată,autor,Alianța pentru o Românie Curată,rol_neconfirmat
+L041,igov,atribuit_in_sursa,,Marius Dima,autor,Marius Dima / Andra Martinescu,rol_neconfirmat
+L042,igov,atribuit_in_sursa,,Andra Martinescu,autor,Marius Dima / Andra Martinescu,rol_neconfirmat
+L043,imobile-rapps,atribuit_in_sursa,,Mircea Șerdin,autor,Mircea Șerdin,rol_neconfirmat
+L044,interoperabilitate,atribuit_in_sursa,,Gabriel Popa,autor,Gabriel Popa,rol_neconfirmat
+L045,mari-corupti,atribuit_in_sursa,funky-citizens,,autor,funky-citizens,rol_neconfirmat
+L046,monarh-ai,atribuit_in_sursa,,Matei-Șerban Călin,autor,Matei-Șerban Călin,rol_neconfirmat
+L047,monitor-cetatenie,atribuit_in_sursa,,Augustin Gregorieu,autor,Augustin Gregorieu,rol_neconfirmat
+L048,monitor-safe,atribuit_in_sursa,,Andrei Miclea,autor,Andrei Miclea / Ioan G. Lazarovici-Georgiu,rol_neconfirmat
+L049,monitor-safe,atribuit_in_sursa,,Ioan G. Lazarovici-Georgiu,autor,Andrei Miclea / Ioan G. Lazarovici-Georgiu,rol_neconfirmat
+L050,monitor-social,atribuit_in_sursa,,Friedrich-Ebert-Stiftung,autor,Friedrich-Ebert-Stiftung,rol_neconfirmat
+L051,monitorul-ai,atribuit_in_sursa,,Radu Ciocan,autor,Radu Ciocan,rol_neconfirmat
+L052,muzeul-coruptiei,atribuit_in_sursa,,Kinecto Isobar,autor,Kinecto Isobar,rol_neconfirmat
+L053,nu-astepta-supereroi,atribuit_in_sursa,,CeRe,autor,CeRe,rol_neconfirmat
+L054,onesti-city,atribuit_in_sursa,,Marius Dima,autor,Marius Dima,rol_neconfirmat
+L055,ong-camera-deputatilor,atribuit_in_sursa,,Camera Deputaților,autor,Camera Deputaților,rol_neconfirmat
+L056,onorata-instanta,atribuit_in_sursa,funky-citizens,,autor,funky-citizens,rol_neconfirmat
+L057,open-budget,atribuit_in_sursa,,SoLib,autor,SoLib,rol_neconfirmat
+L058,oradea-city-report,atribuit_in_sursa,,Primăria Oradea,autor,Primăria Oradea,rol_neconfirmat
+L059,parlament-transparent,atribuit_in_sursa,,Median Research Centre,autor,Median Research Centre,rol_neconfirmat
+L060,piata-de-spaga,atribuit_in_sursa,funky-citizens,,autor,funky-citizens,rol_neconfirmat
+L061,political-colours,atribuit_in_sursa,,geo-spatial.org,autor,geo-spatial.org,rol_neconfirmat
+L062,posturi-gov2,atribuit_in_sursa,,GOV2,autor,GOV2,rol_neconfirmat
+L063,radar-digital,atribuit_in_sursa,,Florin Scripcaru,autor,Florin Scripcaru,rol_neconfirmat
+L064,redirectioneaza,atribuit_in_sursa,code4ro,,autor,code4ro,rol_neconfirmat
+L065,rezultate-vot,atribuit_in_sursa,code4ro,,autor,code4ro,rol_neconfirmat
+L066,romania-transparenta,atribuit_in_sursa,,Andreea Moldovan,autor,Andreea Moldovan / Alex Mantello,rol_neconfirmat
+L067,romania-transparenta,atribuit_in_sursa,,Alex Mantello,autor,Andreea Moldovan / Alex Mantello,rol_neconfirmat
+L068,sicap-ai,atribuit_in_sursa,,Radu Ciocan,autor,Radu Ciocan,rol_neconfirmat
+L069,site-uri-utile-funky,atribuit_in_sursa,funky-citizens,,autor,funky-citizens,rol_neconfirmat
+L070,etherpad-situri-civice,atribuit_in_sursa,,Ceata,autor,Ceata,rol_neconfirmat
+L071,sanatate-mintala,atribuit_in_sursa,code4ro,,autor,code4ro,rol_neconfirmat
+L072,testvot,atribuit_in_sursa,,Median Research Centre,autor,Median Research Centre,rol_neconfirmat
+L073,apti-unelte-democratie,atribuit_in_sursa,,ApTI,autor,ApTI,rol_neconfirmat
+L074,transparenta-eu,atribuit_in_sursa,,Claudiu Bogdan,autor,Claudiu Bogdan,rol_neconfirmat
+L075,unde-locuiesc-romanii,atribuit_in_sursa,,geo-spatial.org,autor,geo-spatial.org,rol_neconfirmat
+L076,vocea-cartierului-tau,atribuit_in_sursa,,Silviu Ionuț Carp,autor,Silviu Ionuț Carp,rol_neconfirmat
+L077,votdiaspora,atribuit_in_sursa,code4ro,,autor,code4ro,rol_neconfirmat
+L078,votez-info,atribuit_in_sursa,,Inițiativa România,autor,Inițiativa România,rol_neconfirmat
+L079,ghiduri-efor,atribuit_in_sursa,efor,,autor,efor,rol_neconfirmat
+L080,jurnalism-independent,atribuit_in_sursa,,GOV2,autor,GOV2,rol_neconfirmat
+L081,presspay,atribuit_in_sursa,ethical-media,,autor,ethical-media,rol_neconfirmat
+L082,aiparte-research,atribuit_in_sursa,ai-parte,,autor,ai-parte,rol_neconfirmat
+L083,ro-api-hub,atribuit_in_sursa,,Alex Mantello,autor,Alex Mantello,rol_neconfirmat
+L084,registrul-firmelor,atribuit_in_sursa,,Alex Mantello,autor,Alex Mantello,rol_neconfirmat
+L085,monitorizare-plan-digital-national,atribuit_in_sursa,,CRPE,autor,CRPE,rol_neconfirmat
+L086,proiecte-geo-spatial,atribuit_in_sursa,,geo-spatial.org,autor,geo-spatial.org,rol_neconfirmat

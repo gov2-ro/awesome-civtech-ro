@@ -1,0 +1,82 @@
+{
+  "created": "2026-10-19",
+  "version": "2.0.0-draft.1",
+  "purpose": "Separate draft; not consumed by production scripts.",
+  "sources": [
+    {
+      "path": "data/form.json",
+      "snapshot": "source/form.json",
+      "sha256": "888e030ccbee98cbbcb1456239e4b43a5db6b3eb1c7d55f9320a6a7111f26b12",
+      "bytes": 3363
+    },
+    {
+      "path": "data/international.csv",
+      "snapshot": "source/international.csv",
+      "sha256": "60026746f538f956dabc8f694f6d8f05aeee4b7dcfbe08af26e4105025c02e1b",
+      "bytes": 5252
+    },
+    {
+      "path": "data/mentiuni.csv",
+      "snapshot": "source/mentiuni.csv",
+      "sha256": "3dc8174a91fa718c0941b6d52f4d2e14b09fc930ea95688f73a242a74707cdb7",
+      "bytes": 1500636
+    },
+    {
+      "path": "data/orgs.csv",
+      "snapshot": "source/orgs.csv",
+      "sha256": "e6eab9da815daabd027590df35d230342142bd771649764c411f1ab86f5e93c2",
+      "bytes": 8484
+    },
+    {
+      "path": "data/profil.csv",
+      "snapshot": "source/profil.csv",
+      "sha256": "aaedc02f371cba9a82a6ecadace564d66253439b977add14fd6964ee19f860ae",
+      "bytes": 94507
+    },
+    {
+      "path": "data/proiecte.csv",
+      "snapshot": "source/proiecte.csv",
+      "sha256": "586ad8d4f7ac821e94122451b5f453746dd400c3b015718a82953ade679f781d",
+      "bytes": 37563
+    },
+    {
+      "path": "data/site.json",
+      "snapshot": "source/site.json",
+      "sha256": "9398ac6cee99c1f8e451fa95a89ef81a235d6d78579a01aee123a962f00304f3",
+      "bytes": 547
+    },
+    {
+      "path": "data/taxonomy.json",
+      "snapshot": "source/taxonomy.json",
+      "sha256": "66120a04224a30ca4c284add662ba5692a31f7e6d53dd52fcf4990ea2255a6dd",
+      "bytes": 8740
+    }
+  ],
+  "counts": {
+    "entries": 122,
+    "concepts": 125,
+    "relations": 86,
+    "review_items": 66,
+    "initial_assignments": 822,
+    "external_mappings": 22,
+    "top_subjects": 13
+  },
+  "scope": "All 122 catalogue entries. international.csv is snapshotted only; it remains an inactive seed.",
+  "images": "Not duplicated. Profile image paths still refer to the existing site/img tree.",
+  "standards": {
+    "representation": "SKOS-inspired local CSV model; not an RDF or ISO compliance claim.",
+    "reference": "EuroVoc official SPARQL response, fetched 2026-10-19; semantic mappings proposed.",
+    "endpoint": "https://publications.europa.eu/webapi/rdf/sparql"
+  },
+  "references": [
+    {
+      "path": "reference/eurovoc-query.rq",
+      "sha256": "38c1658aaf5a6724ebe2963f722c291d46062cc7f0dd35681c2c33b40e13e5c1"
+    },
+    {
+      "path": "reference/eurovoc-response.json",
+      "sha256": "5fac302411802cd0735916144d99336e834d4926a32faf1ffa8c14f1f02ea1b8"
+    }
+  ],
+  "observations": "observatii/ starts as a byte-identical working copy of the generated CSVs in source/. No enrichment was run."
+}

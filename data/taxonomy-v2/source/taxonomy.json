@@ -1,0 +1,391 @@
+{
+  "domenii": [
+    {
+      "key": "bani",
+      "label": "Bani publici",
+      "short": "Bani publici",
+      "hint": "buget, achiziții, companii de stat, fonduri UE"
+    },
+    {
+      "key": "politica",
+      "label": "Politică & alegeri",
+      "short": "Politică",
+      "hint": "aleși, partide, vot, sondaje, promisiuni"
+    },
+    {
+      "key": "justitie",
+      "label": "Legislație, justiție & drepturi",
+      "short": "Justiție",
+      "hint": "legi, instanțe, drepturi civile"
+    },
+    {
+      "key": "integritate",
+      "label": "Integritate & anticorupție",
+      "short": "Integritate",
+      "hint": "dosare, condamnări, legături de interese"
+    },
+    {
+      "key": "media",
+      "label": "Media & dezinformare",
+      "short": "Media",
+      "hint": "fact-checking, monitorizarea conținutului online"
+    },
+    {
+      "key": "local",
+      "label": "Comunitate locală & sesizări",
+      "short": "Local",
+      "hint": "primării, consilieri, probleme urbane"
+    },
+    {
+      "key": "mediu",
+      "label": "Mediu, energie & riscuri",
+      "short": "Mediu",
+      "hint": "aer, păduri, deșeuri, cutremur"
+    },
+    {
+      "key": "servicii",
+      "label": "Servicii publice & formalități",
+      "short": "Servicii",
+      "hint": "formulare, ANAF, sănătate, locuri de muncă"
+    },
+    {
+      "key": "date",
+      "label": "Transparență & date deschise",
+      "short": "Date deschise",
+      "hint": "Legea 544, statistici, registre publice"
+    },
+    {
+      "key": "digital",
+      "label": "Stat digital & drepturi digitale",
+      "short": "Digital",
+      "hint": "digitalizare, securitate, confidențialitate"
+    },
+    {
+      "key": "civic",
+      "label": "Societate civilă & participare",
+      "short": "Participare",
+      "hint": "ONG-uri, donații, educație civică, deliberare"
+    },
+    {
+      "key": "altele",
+      "label": "Altele",
+      "short": "Altele",
+      "hint": "ce nu încape în celelalte domenii"
+    }
+  ],
+  "tipuri": [
+    {
+      "key": "instrument",
+      "label": "Instrument",
+      "hint": "face ceva pentru tine: caută, generează, trimite"
+    },
+    {
+      "key": "vizualizare",
+      "label": "Vizualizare date",
+      "hint": "dashboard, grafice, statistici"
+    },
+    {
+      "key": "harta",
+      "label": "Hartă",
+      "hint": "informația e organizată pe hartă"
+    },
+    {
+      "key": "baza-de-date",
+      "label": "Bază de date",
+      "hint": "registru, arhivă, catalog"
+    },
+    {
+      "key": "monitorizare",
+      "label": "Monitorizare",
+      "hint": "urmărește în timp o instituție, o persoană, un fenomen"
+    },
+    {
+      "key": "educativ",
+      "label": "Educativ / joc",
+      "hint": "joc, test, curs"
+    },
+    {
+      "key": "ghid",
+      "label": "Ghid",
+      "hint": "informații și explicații"
+    },
+    {
+      "key": "colectie",
+      "label": "Colecție",
+      "hint": "listă sau colecție de proiecte, publicații, surse"
+    },
+    {
+      "key": "serviciu",
+      "label": "Serviciu",
+      "hint": "serviciu sau platformă pe care o folosești direct"
+    }
+  ],
+  "acoperire": [
+    {
+      "key": "national",
+      "label": "Național"
+    },
+    {
+      "key": "local",
+      "label": "Local"
+    },
+    {
+      "key": "international",
+      "label": "Internațional"
+    }
+  ],
+  "fel": [
+    {
+      "key": "proiect",
+      "label": "Proiect",
+      "kind": "proiect"
+    },
+    {
+      "key": "resursa",
+      "label": "Resursă",
+      "kind": "resursa"
+    },
+    {
+      "key": "articol",
+      "label": "Articol",
+      "kind": "resursa"
+    },
+    {
+      "key": "ghid",
+      "label": "Ghid",
+      "kind": "resursa"
+    },
+    {
+      "key": "campanie",
+      "label": "Campanie",
+      "kind": "resursa"
+    },
+    {
+      "key": "cercetare",
+      "label": "Cercetare",
+      "kind": "resursa"
+    }
+  ],
+  "kinds": [
+    {
+      "key": "proiect",
+      "label": "Proiecte"
+    },
+    {
+      "key": "organizatie",
+      "label": "Organizații"
+    },
+    {
+      "key": "resursa",
+      "label": "Resurse & liste"
+    }
+  ],
+  "cuvinte": {
+    "_doc": "Curățarea cuvintelor cheie din projects.csv: 'ignora' sunt eliminate, 'alias' rescrie variantele către o formă canonică. Prefixele local:* sunt eliminate (orașul are coloana lui).",
+    "ignora": [
+      "civic-tech",
+      "utilitar",
+      "generic",
+      "tool",
+      "tools",
+      "util",
+      "helper",
+      "proiect",
+      "proiecte",
+      "soluție",
+      "local",
+      "monitor",
+      "monitorizare",
+      "dashboard",
+      "joc",
+      "arhivat",
+      "campanie"
+    ],
+    "alias": {
+      "inteligenta-artificiala": "ai",
+      "sesizari": "sesizări",
+      "infrastructura": "infrastructură",
+      "bugete": "buget",
+      "primarie": "primării",
+      "statistica": "statistică",
+      "statistici": "statistică",
+      "achizitii-publice": "achiziții-publice",
+      "licitatii": "licitații",
+      "eco": "ecologie",
+      "544/2001": "legea-544",
+      "544": "legea-544",
+      "companii-publice": "companii-de-stat",
+      "corupție": "anticorupție",
+      "legal": "legislație",
+      "electoral": "alegeri",
+      "societate-civica": "societate-civilă",
+      "open-data": "date-deschise",
+      "date-publice-generic": "date-publice",
+      "demo": "prototip",
+      "poc": "prototip",
+      "educație": "educație-civică",
+      "ghiduri": "ghid",
+      "mobile-app": "aplicație-mobilă",
+      "condamnări": "anticorupție"
+    }
+  },
+  "linkuri": {
+    "_doc": "Roluri pentru coloana 'linkuri' (proiecte.csv, orgs.csv): toate linkurile secundare într-o singură celulă, separate prin spațiu, linie nouă sau |, ori ca listă JSON. Opțional cu prefix 'rol:' (ex. donatii:https://...). Fără prefix, rolul se deduce din domeniu. Primul link github/gitlab/cod devine codul sursă.",
+    "roluri": [
+      {
+        "key": "facebook",
+        "label": "Facebook",
+        "hosts": [
+          "facebook.com",
+          "fb.com",
+          "fb.me"
+        ]
+      },
+      {
+        "key": "instagram",
+        "label": "Instagram",
+        "hosts": [
+          "instagram.com"
+        ]
+      },
+      {
+        "key": "linkedin",
+        "label": "LinkedIn",
+        "hosts": [
+          "linkedin.com"
+        ]
+      },
+      {
+        "key": "x",
+        "label": "X",
+        "hosts": [
+          "x.com",
+          "twitter.com"
+        ]
+      },
+      {
+        "key": "bluesky",
+        "label": "Bluesky",
+        "hosts": [
+          "bsky.app"
+        ]
+      },
+      {
+        "key": "mastodon",
+        "label": "Mastodon",
+        "hosts": [
+          "mastodon.social",
+          "mastodon.online",
+          "mastodon.ro"
+        ]
+      },
+      {
+        "key": "threads",
+        "label": "Threads",
+        "hosts": [
+          "threads.net",
+          "threads.com"
+        ]
+      },
+      {
+        "key": "tiktok",
+        "label": "TikTok",
+        "hosts": [
+          "tiktok.com"
+        ]
+      },
+      {
+        "key": "youtube",
+        "label": "YouTube",
+        "hosts": [
+          "youtube.com",
+          "youtu.be"
+        ]
+      },
+      {
+        "key": "telegram",
+        "label": "Telegram",
+        "hosts": [
+          "t.me",
+          "telegram.me"
+        ]
+      },
+      {
+        "key": "discord",
+        "label": "Discord",
+        "hosts": [
+          "discord.gg",
+          "discord.com"
+        ]
+      },
+      {
+        "key": "github",
+        "label": "GitHub",
+        "hosts": [
+          "github.com"
+        ]
+      },
+      {
+        "key": "gitlab",
+        "label": "GitLab",
+        "hosts": [
+          "gitlab.com"
+        ]
+      },
+      {
+        "key": "cod",
+        "label": "Cod sursă",
+        "hosts": [
+          "codeberg.org",
+          "bitbucket.org"
+        ]
+      },
+      {
+        "key": "donatii",
+        "label": "Donații",
+        "hosts": [
+          "patreon.com",
+          "buymeacoffee.com",
+          "ko-fi.com",
+          "donorbox.org",
+          "opencollective.com"
+        ]
+      },
+      {
+        "key": "despre",
+        "label": "Despre",
+        "hosts": []
+      },
+      {
+        "key": "contact",
+        "label": "Contact",
+        "hosts": []
+      },
+      {
+        "key": "termeni",
+        "label": "Termeni și condiții",
+        "hosts": []
+      },
+      {
+        "key": "date",
+        "label": "Date (descărcare)",
+        "hosts": []
+      },
+      {
+        "key": "api",
+        "label": "API",
+        "hosts": []
+      },
+      {
+        "key": "mcp",
+        "label": "MCP",
+        "hosts": []
+      },
+      {
+        "key": "web",
+        "label": "Link",
+        "hosts": []
+      }
+    ]
+  }
+}

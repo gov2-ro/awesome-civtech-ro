@@ -80,6 +80,11 @@ docs/reference/init-prototype/*
 !/data/taxonomy.json
 !/data/form.json
 !/data/site.json
+# Isolated taxonomy proposal and its immutable source/reference snapshots.
+!/data/taxonomy-v2/
+!/data/taxonomy-v2/**
+/data/taxonomy-v2/**/__pycache__/
+/data/taxonomy-v2/**/.~lock.*#
 # one page per entry, written by scripts/build.py (the Pages workflow builds them)
 /site/proiect/
 /site/organizatie/

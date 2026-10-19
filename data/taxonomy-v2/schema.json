@@ -1,0 +1,187 @@
+{
+  "version": "2.0.0-draft.1",
+  "status": "editorial_proposal",
+  "list_separator": "|",
+  "authoritative_files": [
+    "intrari.csv",
+    "concepte.csv",
+    "relatii.csv",
+    "arii.csv",
+    "mapari-externe.csv",
+    "revizuire.csv",
+    "setari.json"
+  ],
+  "generated_files": [
+    "catalogue.json"
+  ],
+  "historical_files": [
+    "source/*",
+    "atribuiri-initiale.csv",
+    "corespondente-v1.csv"
+  ],
+  "enums": {
+    "tip_entitate": [
+      "proiect",
+      "organizatie",
+      "resursa",
+      "publicatie",
+      "set-date",
+      "campanie"
+    ],
+    "sectiune_url": [
+      "proiect",
+      "organizatie",
+      "resursa"
+    ],
+    "nivel_acoperire": [
+      "national",
+      "local",
+      "international",
+      "necunoscut"
+    ],
+    "clasificare_stare": [
+      "propus",
+      "acceptat",
+      "de-revizuit"
+    ],
+    "incredere": [
+      "mica",
+      "medie",
+      "mare"
+    ],
+    "stare": [
+      "",
+      "arhivat",
+      "offline"
+    ],
+    "civictech_original": [
+      "",
+      "0",
+      "1"
+    ]
+  },
+  "concept_fields": {
+    "subiect_principal": "subiect",
+    "subiecte": "subiect",
+    "teme": "subiect",
+    "scopuri": "scop",
+    "functionalitati": "functie",
+    "formate": "format",
+    "tehnologii": "tehnologie",
+    "institutii_vizate": "institutie",
+    "tip_organizatie": "organizatie",
+    "maturitate": "maturitate"
+  },
+  "relation_predicates": [
+    "atribuit_in_sursa",
+    "creat_de",
+    "mentinut_de",
+    "publicat_de",
+    "finantat_de",
+    "parte_din",
+    "ofera",
+    "foloseste"
+  ],
+  "headers": {
+    "intrari.csv": [
+      "slug",
+      "tip_entitate",
+      "sectiune_url",
+      "nume",
+      "descriere_scurta",
+      "descriere",
+      "url",
+      "linkuri",
+      "subiect_principal",
+      "subiecte",
+      "teme",
+      "scopuri",
+      "functionalitati",
+      "formate",
+      "tehnologii",
+      "institutii_vizate",
+      "tip_organizatie",
+      "maturitate",
+      "nivel_acoperire",
+      "arii_acoperite",
+      "localitate_originala",
+      "autor_original",
+      "contact",
+      "civictech_original",
+      "stare",
+      "nota",
+      "clasificare_stare",
+      "incredere",
+      "sursa_fisier",
+      "sursa_rand",
+      "nota_clasificare"
+    ],
+    "concepte.csv": [
+      "id",
+      "schema",
+      "eticheta_ro",
+      "eticheta_en",
+      "alternative_ro",
+      "definitie_ro",
+      "mai_larg",
+      "asociate",
+      "statut"
+    ],
+    "relatii.csv": [
+      "id",
+      "subiect",
+      "predicat",
+      "obiect",
+      "obiect_literal",
+      "camp_sursa",
+      "valoare_sursa",
+      "stare"
+    ],
+    "arii.csv": [
+      "id",
+      "eticheta_ro",
+      "tip",
+      "parinte",
+      "cod_iso_3166_1"
+    ],
+    "revizuire.csv": [
+      "id",
+      "slug",
+      "camp",
+      "valoare_originala",
+      "propunere",
+      "motiv",
+      "prioritate",
+      "stare",
+      "decizie_editor"
+    ],
+    "atribuiri-initiale.csv": [
+      "slug",
+      "camp",
+      "concept",
+      "baza",
+      "campuri_sursa",
+      "dovada",
+      "stare",
+      "data"
+    ],
+    "corespondente-v1.csv": [
+      "camp_original",
+      "termen_original",
+      "concepte_candidate",
+      "regula",
+      "nota"
+    ],
+    "mapari-externe.csv": [
+      "concept_local",
+      "vocabular",
+      "relatie",
+      "uri_tinta",
+      "eticheta_tinta_ro",
+      "eticheta_tinta_en",
+      "identificator_verificat_la",
+      "stare_mapare",
+      "nota"
+    ]
+  }
+}

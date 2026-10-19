@@ -1,0 +1,12 @@
+id,eticheta_ro,tip,parinte,cod_iso_3166_1
+tara:RO,România,tara,,RO
+regiune:UE,Uniunea Europeană,regiune,,
+regiune:Europa,Europa,regiune,,
+judet:ilfov,Ilfov,judet,tara:RO,
+localitate:bucuresti,București,localitate,tara:RO,
+localitate:arad,Arad,localitate,tara:RO,
+localitate:radauti,Rădăuți,localitate,tara:RO,
+localitate:onesti,Onești,localitate,tara:RO,
+localitate:oradea,Oradea,localitate,tara:RO,
+localitate:craiova,Craiova,localitate,tara:RO,
+localitate:iasi,Iași,localitate,tara:RO,

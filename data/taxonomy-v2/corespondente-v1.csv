@@ -1,0 +1,129 @@
+camp_original,termen_original,concepte_candidate,regula,nota
+domeniu,bani,subiect:finante-publice,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+domeniu,politica,subiect:guvernare-democratie,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+domeniu,justitie,subiect:drept-justitie,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+domeniu,integritate,subiect:integritate-publica,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+domeniu,media,subiect:media-informare,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+domeniu,local,,context_obligatoriu,Verificați sensul și rolul în fiecare intrare; nu aplicați toate alternativele.
+domeniu,mediu,subiect:mediu-energie,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+domeniu,servicii,,context_obligatoriu,Verificați sensul și rolul în fiecare intrare; nu aplicați toate alternativele.
+domeniu,date,,context_obligatoriu,Verificați sensul și rolul în fiecare intrare; nu aplicați toate alternativele.
+domeniu,digital,subiect:societate-digitala,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+domeniu,civic,,context_obligatoriu,Verificați sensul și rolul în fiecare intrare; nu aplicați toate alternativele.
+domeniu,altele,,context_obligatoriu,Verificați sensul și rolul în fiecare intrare; nu aplicați toate alternativele.
+tip,harta,format:harta,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+tip,vizualizare,format:vizualizare,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+tip,baza-de-date,format:registru,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+tip,monitorizare,functie:monitorizare,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+tip,ghid,format:ghid,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+tip,colectie,format:colectie,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+tip,instrument,,context_obligatoriu,Verificați sensul și rolul în fiecare intrare; nu aplicați toate alternativele.
+tip,serviciu,,context_obligatoriu,Verificați sensul și rolul în fiecare intrare; nu aplicați toate alternativele.
+tip,educativ,,context_obligatoriu,Verificați sensul și rolul în fiecare intrare; nu aplicați toate alternativele.
+cuvinte,advocacy,functie:advocacy,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,ai,tehnologie:ai|subiect:inteligenta-artificiala,context_obligatoriu,Verificați sensul și rolul în fiecare intrare; nu aplicați toate alternativele.
+cuvinte,alegeri,subiect:alegeri,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,anaf,institutie:anaf,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,anticorupție,scop:anticoruptie,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,api,format:api|subiect:interfete-programare,context_obligatoriu,Verificați sensul și rolul în fiecare intrare; nu aplicați toate alternativele.
+cuvinte,aplicație-mobilă,tehnologie:aplicatie-mobila,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,bacalaureat,subiect:bacalaureat,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,bani-publici,subiect:finante-publice,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,buget,subiect:buget,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,companii-de-stat,subiect:companii-de-stat,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,date-deschise,subiect:date-deschise,context_obligatoriu,Verificați sensul și rolul în fiecare intrare; nu aplicați toate alternativele.
+cuvinte,digital,subiect:societate-digitala,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,digitalizare,subiect:digitalizare,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,disinfo,subiect:dezinformare,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,donații,functie:donatii,context_obligatoriu,Verificați sensul și rolul în fiecare intrare; nu aplicați toate alternativele.
+cuvinte,ecologie,subiect:mediu,context_obligatoriu,Verificați sensul și rolul în fiecare intrare; nu aplicați toate alternativele.
+cuvinte,educație-civică,subiect:educatie-civica,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,electoral,subiect:alegeri,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,energie,subiect:energie,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,fact-checking,functie:verificare-fapte,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,formulare,format:formular,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,funcții-publice,subiect:administratie-publica,context_obligatoriu,Verificați sensul și rolul în fiecare intrare; nu aplicați toate alternativele.
+cuvinte,ghid,format:ghid,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,infrastructură,subiect:infrastructura-locala|subiect:infrastructura-digitala,context_obligatoriu,Verificați sensul și rolul în fiecare intrare; nu aplicați toate alternativele.
+cuvinte,integritate,subiect:integritate-publica,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,jurnalism,subiect:jurnalism,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,legea-544,subiect:legea-544-2001,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,legislație,subiect:legislatie,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,licitații,subiect:achizitii-publice,context_obligatoriu,Verificați sensul și rolul în fiecare intrare; nu aplicați toate alternativele.
+cuvinte,mcp,tehnologie:mcp,context_obligatoriu,Verificați sensul și rolul în fiecare intrare; nu aplicați toate alternativele.
+cuvinte,medical,subiect:sanatate,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,mediu,subiect:mediu,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,mentorat,functie:mentorat,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,migrație,subiect:migratie,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,ong,organizatie:ong|subiect:societate-civila,context_obligatoriu,Verificați sensul și rolul în fiecare intrare; nu aplicați toate alternativele.
+cuvinte,parlament,institutie:parlament|subiect:activitate-parlamentara,context_obligatoriu,Verificați sensul și rolul în fiecare intrare; nu aplicați toate alternativele.
+cuvinte,partide,subiect:partide-politice,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,petiții,functie:petitii,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,politicieni,subiect:reprezentanti-alesi,context_obligatoriu,Verificați sensul și rolul în fiecare intrare; nu aplicați toate alternativele.
+cuvinte,presă-independentă,subiect:presa-independenta,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,primării,institutie:primarie,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,proiecte-publice,subiect:investitii-publice,context_obligatoriu,Verificați sensul și rolul în fiecare intrare; nu aplicați toate alternativele.
+cuvinte,prototip,maturitate:prototip,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,publicitate-etică,subiect:publicitate-etica,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,securitate,subiect:securitate-cibernetica,context_obligatoriu,Verificați sensul și rolul în fiecare intrare; nu aplicați toate alternativele.
+cuvinte,sesizări,functie:sesizare,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,societate-civilă,subiect:societate-civila,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,sondaje,subiect:sondaje,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,statistică,subiect:statistica,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,think-tank,organizatie:think-tank,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,transparență,scop:transparenta,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,uniunea-europeană,subiect:afaceri-europene,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,voluntariat,subiect:voluntariat,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,vot,subiect:vot,corespondenta_propusa,Corespondență editorială locală; nu declară echivalență SKOS externă.
+cuvinte,școli,institutie:scoala|subiect:invatamant,context_obligatoriu,Verificați sensul și rolul în fiecare intrare; nu aplicați toate alternativele.
+alias_v1,inteligenta-artificiala,tehnologie:ai|subiect:inteligenta-artificiala,revizuire_alias,Verificați sensul înainte de normalizare.
+alias_v1,sesizari,functie:sesizare,revizuire_alias,Verificați sensul înainte de normalizare.
+alias_v1,infrastructura,subiect:infrastructura-locala|subiect:infrastructura-digitala,revizuire_alias,Verificați sensul înainte de normalizare.
+alias_v1,bugete,subiect:buget,revizuire_alias,Verificați sensul înainte de normalizare.
+alias_v1,primarie,institutie:primarie,revizuire_alias,Verificați sensul înainte de normalizare.
+alias_v1,statistica,subiect:statistica,revizuire_alias,Verificați sensul înainte de normalizare.
+alias_v1,statistici,subiect:statistica,revizuire_alias,Verificați sensul înainte de normalizare.
+alias_v1,achizitii-publice,,revizuire_alias,Verificați sensul înainte de normalizare.
+alias_v1,licitatii,subiect:achizitii-publice,revizuire_alias,Verificați sensul înainte de normalizare.
+alias_v1,eco,subiect:mediu,revizuire_alias,Verificați sensul înainte de normalizare.
+alias_v1,544/2001,subiect:legea-544-2001,revizuire_alias,Verificați sensul înainte de normalizare.
+alias_v1,544,subiect:legea-544-2001,revizuire_alias,Verificați sensul înainte de normalizare.
+alias_v1,companii-publice,subiect:companii-de-stat,revizuire_alias,Verificați sensul înainte de normalizare.
+alias_v1,corupție,subiect:coruptie,revizuire_alias,Corupția este un subiect; anticorupția este un scop.
+alias_v1,legal,subiect:legislatie,revizuire_alias,Verificați sensul înainte de normalizare.
+alias_v1,electoral,subiect:alegeri,revizuire_alias,Verificați sensul înainte de normalizare.
+alias_v1,societate-civica,subiect:societate-civila,revizuire_alias,Verificați sensul înainte de normalizare.
+alias_v1,open-data,subiect:date-deschise,revizuire_alias,Verificați sensul înainte de normalizare.
+alias_v1,date-publice-generic,,revizuire_alias,Verificați sensul înainte de normalizare.
+alias_v1,demo,maturitate:prototip,revizuire_alias,Verificați sensul înainte de normalizare.
+alias_v1,poc,maturitate:prototip,revizuire_alias,Verificați sensul înainte de normalizare.
+alias_v1,educație,subiect:invatamant,revizuire_alias,Nu restrângeți educația la educație civică.
+alias_v1,ghiduri,format:ghid,revizuire_alias,Verificați sensul înainte de normalizare.
+alias_v1,mobile-app,tehnologie:aplicatie-mobila,revizuire_alias,Verificați sensul înainte de normalizare.
+alias_v1,condamnări,subiect:condamnari,revizuire_alias,Nu transformați condamnările în anticorupție.
+ignora_v1,civic-tech,,nu_sterge_automat,Mutați conceptul în fațeta potrivită sau păstrați termenul pentru revizuire; nu eliminați informații în tăcere.
+ignora_v1,utilitar,,nu_sterge_automat,Mutați conceptul în fațeta potrivită sau păstrați termenul pentru revizuire; nu eliminați informații în tăcere.
+ignora_v1,generic,,nu_sterge_automat,Mutați conceptul în fațeta potrivită sau păstrați termenul pentru revizuire; nu eliminați informații în tăcere.
+ignora_v1,tool,,nu_sterge_automat,Mutați conceptul în fațeta potrivită sau păstrați termenul pentru revizuire; nu eliminați informații în tăcere.
+ignora_v1,tools,,nu_sterge_automat,Mutați conceptul în fațeta potrivită sau păstrați termenul pentru revizuire; nu eliminați informații în tăcere.
+ignora_v1,util,,nu_sterge_automat,Mutați conceptul în fațeta potrivită sau păstrați termenul pentru revizuire; nu eliminați informații în tăcere.
+ignora_v1,helper,,nu_sterge_automat,Mutați conceptul în fațeta potrivită sau păstrați termenul pentru revizuire; nu eliminați informații în tăcere.
+ignora_v1,proiect,,nu_sterge_automat,Mutați conceptul în fațeta potrivită sau păstrați termenul pentru revizuire; nu eliminați informații în tăcere.
+ignora_v1,proiecte,,nu_sterge_automat,Mutați conceptul în fațeta potrivită sau păstrați termenul pentru revizuire; nu eliminați informații în tăcere.
+ignora_v1,soluție,,nu_sterge_automat,Mutați conceptul în fațeta potrivită sau păstrați termenul pentru revizuire; nu eliminați informații în tăcere.
+ignora_v1,local,,nu_sterge_automat,Mutați conceptul în fațeta potrivită sau păstrați termenul pentru revizuire; nu eliminați informații în tăcere.
+ignora_v1,monitor,,nu_sterge_automat,Mutați conceptul în fațeta potrivită sau păstrați termenul pentru revizuire; nu eliminați informații în tăcere.
+ignora_v1,monitorizare,functie:monitorizare,nu_sterge_automat,Mutați conceptul în fațeta potrivită sau păstrați termenul pentru revizuire; nu eliminați informații în tăcere.
+ignora_v1,dashboard,,nu_sterge_automat,Mutați conceptul în fațeta potrivită sau păstrați termenul pentru revizuire; nu eliminați informații în tăcere.
+ignora_v1,joc,,nu_sterge_automat,Mutați conceptul în fațeta potrivită sau păstrați termenul pentru revizuire; nu eliminați informații în tăcere.
+ignora_v1,arhivat,,nu_sterge_automat,Mutați conceptul în fațeta potrivită sau păstrați termenul pentru revizuire; nu eliminați informații în tăcere.
+ignora_v1,campanie,,nu_sterge_automat,Mutați conceptul în fațeta potrivită sau păstrați termenul pentru revizuire; nu eliminați informații în tăcere.
+fel,proiect,,tip_entitate=proiect,"Păstrați secțiunea URL veche. Articolul, ghidul și raportul au și un format separat."
+fel,resursa,,tip_entitate=resursa,"Păstrați secțiunea URL veche. Articolul, ghidul și raportul au și un format separat."
+fel,articol,,tip_entitate=publicatie,"Păstrați secțiunea URL veche. Articolul, ghidul și raportul au și un format separat."
+fel,ghid,,tip_entitate=publicatie,"Păstrați secțiunea URL veche. Articolul, ghidul și raportul au și un format separat."
+fel,campanie,,tip_entitate=campanie,"Păstrați secțiunea URL veche. Articolul, ghidul și raportul au și un format separat."
+fel,cercetare,,tip_entitate=publicatie,"Păstrați secțiunea URL veche. Articolul, ghidul și raportul au și un format separat."
+acoperire,national,,pastreaza_cu_arii,Separați întinderea acoperirii de sediu și de subiect.
+acoperire,local,,pastreaza_cu_arii,Separați întinderea acoperirii de sediu și de subiect.
+acoperire,international,,pastreaza_cu_arii,Separați întinderea acoperirii de sediu și de subiect.

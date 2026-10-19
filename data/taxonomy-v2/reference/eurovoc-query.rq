@@ -1,0 +1,7 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+SELECT DISTINCT ?concept ?en ?ro WHERE {
+ ?concept skos:prefLabel ?en .
+ FILTER(STRSTARTS(STR(?concept), "http://eurovoc.europa.eu/"))
+ VALUES ?en {"public finance"@en "public procurement"@en "election"@en "health"@en "education"@en "environmental protection"@en "justice"@en "human rights"@en "civil society"@en "information technology"@en "disinformation"@en "corruption"@en "local authority"@en "access to information"@en "public administration"@en "energy"@en "culture"@en "migration"@en "employment"@en "transport"@en "housing"@en "defence"@en "democracy"@en "political party"@en "budget"@en "artificial intelligence"@en "personal data"@en "statistics"@en "open data"@en "social protection"@en}
+ OPTIONAL { ?concept skos:prefLabel ?ro . FILTER(LANG(?ro)="ro") }
+} ORDER BY ?en

@@ -1,0 +1,10 @@
+{
+  "_doc": "Where a visitor can report a problem with an entry (the drawer's \"Semnalează o problemă\"). build.py copies this into site/data.json. An empty value hides that option. `sheet` is the Google Sheet's address; `tabs` holds the tab ids (the number after gid= in the Sheet's address).",
+  "issues": "https://github.com/gov2-ro/awesome-civtech-ro/issues/new",
+  "sheet": "https://docs.google.com/spreadsheets/d/1W0skZrsxyi3a6D59qMN6CbyXFVS18LyS_ftnhNUoSkA/edit",
+  "tabs": {
+    "proiecte": 0,
+    "orgs": 631541810
+  },
+  "email": ""
+}

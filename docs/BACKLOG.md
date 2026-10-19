@@ -2,6 +2,56 @@
 
 Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
+## Taxonomy v2 — isolated proposal (spec: `docs/specs/taxonomy-v2.md`)
+
+- [x] Copy all 122 entries into `data/taxonomy-v2/intrari.csv`, with separate subject, purpose, capability, format, technology, and geography facets.
+- [x] Supply 125 defined concepts, including 13 local browsing subjects, and a complete crosswalk for the used v1 terms.
+- [x] Preserve all eight original top-level data files as hashed snapshots. Keep working observation copies separate.
+- [x] Verify 22 EuroVoc target identifiers and Romanian/English labels through the official endpoint. Leave semantic mappings proposed.
+- [x] Preserve 86 source attributions without guessing their roles. Supply 66 specific review items and the initial assignment evidence.
+- [x] Document the column contract, editing process, integration functions, migration order, and acceptance checks.
+- [x] Validate the initial copy and JSON export. Run 12 focused integrity checks on temporary copies.
+- [x] Add the Mermaid model overview and complete vocabulary diagrams, with an exporter that reads all 125 concepts.
+- [x] Specify the visible filter labels, progressive disclosure, multi-select logic, counts, and grouping behaviour.
+- [x] Record the agreed draft.2 revision: single-valued maturity with four stages, CSV-owned code lists/roles, and structural JSON rules.
+- [x] Prepare the fresh-session implementation handoff and the automated classifier prompt with its JSON output schema.
+- [x] Consolidate all 122 original entries into a single inference input CSV, without leaking the manual v2 classifications into the experiment.
+- [ ] Implement core handoff slice 1: upgrade the isolated package and validator to draft.2 without reclassifying entries.
+- [x] Classify all 122 original entries and evaluate against the withheld draft. Preserve the sealed run in `data/taxonomy-v2/runs/2026-10-19-reasoned-evidence/`.
+- [ ] Resolve the evaluation's three semantic concerns in a separate integration copy. Review partial records, the abstention, attribution roles, and external mappings before acceptance.
+- [ ] Implement an automated inference runner and no-call dry run if a later repeatable experiment needs them. This does not block the current preview.
+- [ ] Implement the v2 loaders, validator branch, build contract, and browser facets together. Keep the current data source as the default until cutover.
+- [ ] Adapt enrichment, Sheets, Form, and CI to the accepted schema. Use separate v2 Sheet tabs during migration.
+
+This package is not consumed by the current site. The existing production taxonomy and scripts are unchanged.
+
+## Audit — 2026-10-19
+
+- [ ] Make Sheets validation a blocking check. `sheets-pull.yml` records both exit codes, but opens the PR even when either command fails.
+      The workflow uses `GITHUB_TOKEN`; its PR does not start the normal validation workflow.
+- [ ] Add data-load error handling and a retry to `site/app.js`. An aborted `data.json` request leaves the results blank.
+      Offer the static archives when JavaScript fails. The home page also has no main content without JavaScript.
+- [ ] Repair dialog focus. Ctrl/Cmd+K can focus the background search while a dialog stays open.
+      Shift+Tab from Close selects a hidden link inside the collapsed report panel; focus stays on Close.
+      Changing a mobile filter rebuilds the sheet and drops focus to the body.
+- [ ] Separate observed dates from confirmed launch dates. `isLaunched` uses `since`, which comes from Wayback, repo creation, or TLS.
+      Rename inferred badges or add a curated launch date. Do not treat the first observed trace as a confirmed launch.
+- [ ] Remove the future date from `last_activity`. A 2026 copyright footer produces `2026-12-31` during October.
+      Give copyright evidence less weight than a dated content update.
+- [ ] Explain the status and ranking methodology. HTTP reachability does not confirm an operating service.
+      A source-code link does not establish an open-source licence. The score favours age, page count, and visibility.
+- [ ] Fill the 12 live entries with neither a tagline nor a description in the audit build.
+      Validation passes with 28 warnings. Separate publication requirements from optional enrichment.
+- [ ] Invalidate review labels when the input URL set or entry changes. `review.py` only detects the old format without `mentiuni_map`.
+      Report label coverage: once any label exists for a slug, `reach_features` ignores its unlabelled mentions.
+- [ ] Keep canonical and share metadata aligned with SPA navigation. Opening Factual directly, then closing it, leaves its canonical URL on the home view.
+- [ ] Clarify the primary audience and catalogue scope in the visible introduction. Review the rotating political jokes against that audience.
+      Simplify the competing relevance sorts and explain the abbreviated date columns.
+- [ ] Add focused regression checks for profile preservation, label invalidation, score dates, dialog focus, and failed data loads.
+      Include site changes in PR validation; the current workflow filters only `data/**` and `scripts/**`.
+
+Existing items below also cover profile refresh data loss, Sheets merge conflicts, proposal intake, inactive discovery, and sitemap generation.
+
 ## Search → relevance (spec: `docs/specs/search-relevance.md`)
 
 - [x] `scripts/search.py`: Serper + Brave, full results in `data/mentiuni.csv` (D1, D3, D4).

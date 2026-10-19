@@ -1,0 +1,111 @@
+[
+ {
+  "title": "Ce propui?",
+  "required": true,
+  "kind": "radio",
+  "choices": [
+   "Proiect",
+   "Resursă (listă, ghid, colecție)",
+   "Organizație"
+  ]
+ },
+ {
+  "title": "Nume",
+  "required": true,
+  "kind": "short",
+  "help": "Așa cum îl numește proiectul însuși."
+ },
+ {
+  "title": "Adresa (URL)",
+  "required": true,
+  "kind": "short",
+  "help": "Adresa principală, cu https://"
+ },
+ {
+  "title": "Pe scurt",
+  "required": false,
+  "kind": "short",
+  "help": "O frază, sub 90 de caractere."
+ },
+ {
+  "title": "Descriere",
+  "required": false,
+  "kind": "paragraph",
+  "help": "Ce face, pentru cine, din ce date."
+ },
+ {
+  "title": "Domeniu",
+  "required": false,
+  "kind": "dropdown",
+  "choices": [
+   "Bani publici",
+   "Politică & alegeri",
+   "Legislație, justiție & drepturi",
+   "Integritate & anticorupție",
+   "Media & dezinformare",
+   "Comunitate locală & sesizări",
+   "Mediu, energie & riscuri",
+   "Servicii publice & formalități",
+   "Transparență & date deschise",
+   "Stat digital & drepturi digitale",
+   "Societate civilă & participare"
+  ],
+  "help": "Domeniul principal.\nBani publici: buget, achiziții, companii de stat, fonduri UE\nPolitică & alegeri: aleși, partide, vot, sondaje, promisiuni\nLegislație, justiție & drepturi: legi, instanțe, drepturi civile\nIntegritate & anticorupție: dosare, condamnări, legături de interese\nMedia & dezinformare: fact-checking, monitorizarea conținutului online\nComunitate locală & sesizări: primării, consilieri, probleme urbane\nMediu, energie & riscuri: aer, păduri, deșeuri, cutremur\nServicii publice & formalități: formulare, ANAF, sănătate, locuri de muncă\nTransparență & date deschise: Legea 544, statistici, registre publice\nStat digital & drepturi digitale: digitalizare, securitate, confidențialitate\nSocietate civilă & participare: ONG-uri, donații, educație civică, deliberare"
+ },
+ {
+  "title": "Tip",
+  "required": false,
+  "kind": "checkbox",
+  "choices": [
+   "Instrument",
+   "Vizualizare date",
+   "Hartă",
+   "Bază de date",
+   "Monitorizare",
+   "Educativ / joc",
+   "Ghid",
+   "Colecție",
+   "Serviciu"
+  ],
+  "help": "Alege unul sau mai multe.\nInstrument: face ceva pentru tine: caută, generează, trimite\nVizualizare date: dashboard, grafice, statistici\nHartă: informația e organizată pe hartă\nBază de date: registru, arhivă, catalog\nMonitorizare: urmărește în timp o instituție, o persoană, un fenomen\nEducativ / joc: joc, test, curs\nGhid: informații și explicații\nColecție: listă sau colecție de proiecte, publicații, surse\nServiciu: serviciu sau platformă pe care o folosești direct"
+ },
+ {
+  "title": "Acoperire",
+  "required": false,
+  "kind": "radio",
+  "choices": [
+   "Național",
+   "Local",
+   "Internațional"
+  ]
+ },
+ {
+  "title": "Oraș",
+  "required": false,
+  "kind": "short",
+  "help": "Pentru proiectele locale."
+ },
+ {
+  "title": "Autor",
+  "required": false,
+  "kind": "short",
+  "help": "Oameni sau organizații."
+ },
+ {
+  "title": "Alte linkuri",
+  "required": false,
+  "kind": "paragraph",
+  "help": "Rețele sociale, cod sursă, donații; câte unul pe rând."
+ },
+ {
+  "title": "E-mailul tău",
+  "required": false,
+  "kind": "short",
+  "help": "Doar dacă vrei să te contactăm."
+ },
+ {
+  "title": "Altceva?",
+  "required": false,
+  "kind": "paragraph"
+ }
+]

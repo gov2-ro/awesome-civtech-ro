@@ -1,0 +1,126 @@
+id,schema,eticheta_ro,eticheta_en,alternative_ro,definitie_ro,mai_larg,asociate,statut
+subiect:guvernare-democratie,subiect,Guvernare și democrație,Governance and democracy,,"Instituții publice, reprezentare politică, alegeri și procese democratice.",,,propus
+subiect:finante-publice,subiect,Finanțe publice,Public finance,bani publici,"Venituri, cheltuieli, bugete, achiziții și active publice.",,,propus
+subiect:drept-justitie,subiect,"Drept, justiție și drepturi","Law, justice and rights",,"Legislație, proceduri judiciare și exercitarea drepturilor.",,,propus
+subiect:media-informare,subiect,Media și informare,Media and information,,"Jurnalism, ecosistemul informațional și dezinformare.",,,propus
+subiect:mediu-energie,subiect,Mediu și energie,Environment and energy,,"Protecția mediului, resurse naturale și sisteme energetice.",,,propus
+subiect:sanatate,subiect,Sănătate,Health,,Sănătate fizică și mintală și acces la îngrijire.,,,propus
+subiect:educatie-cultura,subiect,Educație și cultură,Education and culture,,"Învățământ, învățare, educație civică și activități culturale.",,,propus
+subiect:comunitati-teritoriu,subiect,Comunități și teritoriu,Communities and territory,,"Viață urbană, infrastructură locală, locuire și distribuția populației.",,,propus
+subiect:economie-munca,subiect,Economie și muncă,Economy and work,,"Firme, relații economice, piața muncii și cariere.",,,propus
+subiect:societate-digitala,subiect,Societate digitală,Digital society,,"Digitalizare, infrastructură digitală și impactul social al tehnologiei.",,,propus
+subiect:societate-civila,subiect,Societate civilă,Civil society,,"Organizații și grupuri civice, resursele și dezvoltarea lor.",,,propus
+subiect:protectie-sociala,subiect,Protecție socială și incluziune,Social protection and inclusion,,"Situație socială, inegalități, incluziune și migrație.",,,propus
+subiect:securitate-rezilienta,subiect,Securitate și reziliență,Security and resilience,,"Apărare, amenințări hibride, dezastre și pregătire pentru situații de urgență.",,,propus
+subiect:administratie-publica,subiect,Administrație publică,Public administration,,"Instituții, organizare și activitate administrativă.",subiect:guvernare-democratie,,propus
+subiect:democratie,subiect,Democrație,Democracy,,"Reprezentare, instituții și procese democratice.",subiect:guvernare-democratie,,propus
+subiect:alegeri,subiect,Alegeri,Elections,,"Organizarea, observarea și rezultatele alegerilor.",subiect:guvernare-democratie,,propus
+subiect:vot,subiect,Vot,Voting,,Exercitarea votului electoral sau instituțional.,subiect:guvernare-democratie,,propus
+subiect:activitate-parlamentara,subiect,Activitate parlamentară,Parliamentary activity,,"Dezbateri, voturi și documente parlamentare.",subiect:guvernare-democratie,,propus
+subiect:finantare-politica,subiect,Finanțare politică,Political finance,,Venituri și cheltuieli ale partidelor și campaniilor electorale.,subiect:guvernare-democratie,subiect:finante-publice,propus
+subiect:partide-politice,subiect,Partide politice,Political parties,,Organizarea și activitatea partidelor politice.,subiect:guvernare-democratie,,propus
+subiect:reprezentanti-alesi,subiect,Reprezentanți aleși,Elected representatives,,Mandatele și activitatea reprezentanților aleși.,subiect:guvernare-democratie,,propus
+subiect:integritate-publica,subiect,Integritate publică,Public integrity,,"Conflicte de interese, avere și integritatea funcției publice.",subiect:guvernare-democratie,,propus
+subiect:coruptie,subiect,Corupție,Corruption,,Fenomenul corupției și cazurile documentate. Nu implică vinovăție stabilită pentru fiecare persoană.,subiect:guvernare-democratie,,propus
+subiect:sondaje,subiect,Sondaje de opinie,Opinion polls,,Măsurarea opiniilor și intențiilor electorale.,subiect:guvernare-democratie,,propus
+subiect:afaceri-europene,subiect,Afaceri europene,European affairs,,"Instituțiile, politicile și procesele Uniunii Europene.",subiect:guvernare-democratie,,propus
+subiect:buget,subiect,Buget public,Public budget,,Venituri și cheltuieli planificate sau executate ale instituțiilor publice.,subiect:finante-publice,,propus
+subiect:achizitii-publice,subiect,Achiziții publice,Public procurement,achiziții publice,"Cumpărarea de bunuri, servicii și lucrări de către sectorul public.",subiect:finante-publice,,propus
+subiect:investitii-publice,subiect,Investiții publice,Public investment,,Proiecte de investiții finanțate din resurse publice.,subiect:finante-publice,,propus
+subiect:companii-de-stat,subiect,Companii de stat,State-owned enterprises,companii publice,Companii deținute sau controlate de stat.,subiect:finante-publice,,propus
+subiect:active-publice,subiect,Active publice,Public assets,,Bunuri și proprietăți ale statului sau administrației locale.,subiect:finante-publice,,propus
+subiect:fiscalitate,subiect,Fiscalitate,Taxation,,"Impozite, obligații fiscale și administrare fiscală.",subiect:finante-publice,,propus
+subiect:legislatie,subiect,Legislație,Legislation,,Texte legislative și interpretarea lor.,subiect:drept-justitie,,propus
+subiect:drepturile-omului,subiect,Drepturile omului,Human rights,,Drepturi și libertăți fundamentale.,subiect:drept-justitie,,propus
+subiect:acces-informatii,subiect,Acces la informații publice,Access to public information,,Dreptul de acces și procedurile pentru informațiile de interes public.,subiect:drept-justitie,,propus
+subiect:legea-544-2001,subiect,Legea 544/2001,Romanian Law 544/2001,legea 544|544/2001,Legea română privind liberul acces la informațiile de interes public.,subiect:acces-informatii,,propus
+subiect:proceduri-judiciare,subiect,Proceduri judiciare,Judicial proceedings,,"Dosare, termene, hotărâri și proceduri în instanțe.",subiect:drept-justitie,,propus
+subiect:condamnari,subiect,Condamnări,Convictions,,Hotărâri de condamnare. Nu este sinonim cu anticorupție.,subiect:drept-justitie,subiect:coruptie,propus
+subiect:violenta-gen,subiect,Violență de gen,Gender-based violence,,"Violență de gen, inclusiv femicid.",subiect:drept-justitie,,propus
+subiect:cetatenie,subiect,Cetățenie,Citizenship,,Dobândirea și administrarea statutului de cetățean.,subiect:drept-justitie,,propus
+subiect:jurnalism,subiect,Jurnalism,Journalism,,"Documentare, investigații și publicare jurnalistică.",subiect:media-informare,,propus
+subiect:presa-independenta,subiect,Presă independentă,Independent media,,Publicații și sustenabilitatea presei independente.,subiect:jurnalism,,propus
+subiect:dezinformare,subiect,Dezinformare,Disinformation,disinfo,"Dezinformare, propagandă și manipularea informațiilor.",subiect:media-informare,,propus
+subiect:publicitate-etica,subiect,Publicitate etică,Ethical advertising,,Practici și modele de publicitate responsabile.,subiect:media-informare,,propus
+subiect:mediu,subiect,Protecția mediului,Environmental protection,,Protejarea mediului înconjurător.,subiect:mediu-energie,,propus
+subiect:calitate-aer,subiect,Calitatea aerului,Air quality,,Poluanți și măsurători ale calității aerului.,subiect:mediu-energie,,propus
+subiect:paduri-arbori,subiect,Păduri și arbori,Forests and trees,,"Păduri, arbori urbani și tăieri.",subiect:mediu-energie,,propus
+subiect:deseuri,subiect,Deșeuri și reciclare,Waste and recycling,,Gestionarea deșeurilor și reciclarea.,subiect:mediu-energie,,propus
+subiect:energie,subiect,Energie,Energy,,"Producție, consum și politici energetice.",subiect:mediu-energie,,propus
+subiect:sanatate-mintala,subiect,Sănătate mintală,Mental health,,Sănătate mintală și servicii psihologice.,subiect:sanatate,,propus
+subiect:servicii-medicale,subiect,Servicii medicale,Healthcare services,,Acces la furnizori și servicii medicale.,subiect:sanatate,,propus
+subiect:invatamant,subiect,Învățământ,Education,învățământ,"Sistemul de învățământ, școli și rezultate educaționale.",subiect:educatie-cultura,,propus
+subiect:educatie-civica,subiect,Educație civică,Civic education,,"Învățare despre drepturi, instituții și participare democratică.",subiect:educatie-cultura,,propus
+subiect:bacalaureat,subiect,Bacalaureat,Baccalaureate examination,,Examenul de bacalaureat și rezultatele sale.,subiect:invatamant,,propus
+subiect:cultura,subiect,Cultură,Culture,,"Activități, expresii și participare culturală.",subiect:educatie-cultura,,propus
+subiect:infrastructura-locala,subiect,Infrastructură locală,Local infrastructure,,"Drumuri, iluminat și alte dotări fizice locale.",subiect:comunitati-teritoriu,,propus
+subiect:locuire,subiect,Locuire,Housing,,Locuințe și condiții de locuire.,subiect:comunitati-teritoriu,,propus
+subiect:populatie,subiect,Populație și demografie,Population and demography,,Distribuția și caracteristicile populației.,subiect:comunitati-teritoriu,,propus
+subiect:firme,subiect,Firme,Businesses,,"Identitate, situație și relații între firme.",subiect:economie-munca,,propus
+subiect:ocupare-cariere,subiect,Ocupare și cariere,Employment and careers,,"Locuri de muncă, recrutare și orientare profesională.",subiect:economie-munca,,propus
+subiect:digitalizare,subiect,Digitalizare,Digitalisation,,Transformarea digitală a serviciilor și instituțiilor.,subiect:societate-digitala,,propus
+subiect:infrastructura-digitala,subiect,Infrastructură digitală,Digital infrastructure,,"Platforme, registre și infrastructură informatică.",subiect:societate-digitala,,propus
+subiect:securitate-cibernetica,subiect,Securitate cibernetică,Cybersecurity,,Securitatea sistemelor și serviciilor digitale.,subiect:societate-digitala,,propus
+subiect:date-personale,subiect,Date personale,Personal data,,Date referitoare la persoane și protecția lor.,subiect:societate-digitala,,propus
+subiect:inteligenta-artificiala,subiect,Inteligență artificială ca subiect,Artificial intelligence as a subject,AI ca temă,"Cercetare, cursuri sau impact social al AI. Nu afirmă utilizarea AI de către intrare.",subiect:societate-digitala,,propus
+subiect:tehnologia-informatiei,subiect,Tehnologia informației,Information technology,,Tehnologii și sisteme pentru prelucrarea informației.,subiect:societate-digitala,,propus
+subiect:interfete-programare,subiect,Interfețe de programare ca subiect,APIs as a subject,,Documentare sau cataloage despre API. Nu afirmă că intrarea oferă un API.,subiect:societate-digitala,,propus
+subiect:statistica,subiect,Statistică,Statistics,statistică,"Date și metode statistice, inclusiv statistici oficiale.",subiect:guvernare-democratie,,propus
+subiect:date-deschise,subiect,Date deschise,Open data,,"Date care pot fi accesate, reutilizate și redistribuite. Simplul acces public nu dovedește o licență deschisă.",subiect:societate-digitala,,propus
+subiect:situatie-sociala,subiect,Situație socială,Social conditions,,Indicatori și condiții sociale.,subiect:protectie-sociala,,propus
+subiect:migratie,subiect,Migrație,Migration,,Mobilitate și migrație a persoanelor.,subiect:protectie-sociala,,propus
+subiect:aparare,subiect,Apărare,Defence,,"Politici, capacități și investiții de apărare.",subiect:securitate-rezilienta,,propus
+subiect:amenintari-hibride,subiect,Amenințări hibride,Hybrid threats,,"Sabotaj, spionaj și alte acțiuni hibride documentate.",subiect:securitate-rezilienta,,propus
+subiect:cutremure,subiect,Cutremure,Earthquakes,,"Risc seismic, vulnerabilitate și pregătire pentru cutremure.",subiect:securitate-rezilienta,,propus
+subiect:dezvoltare-ong,subiect,Dezvoltarea organizațiilor civice,Civic organisation development,,"Resurse, capacitate și colaborare pentru organizații civice.",subiect:societate-civila,,propus
+subiect:voluntariat,subiect,Voluntariat,Volunteering,,Participarea voluntară la activități civice.,subiect:societate-civila,,propus
+scop:transparenta,scop,Transparență,Transparency,,"Face vizibile informații, decizii sau utilizarea resurselor.",,,propus
+scop:responsabilizare,scop,Responsabilizare publică,Public accountability,,Sprijină urmărirea și contestarea acțiunilor celor care exercită puterea.,,,propus
+scop:participare,scop,Participare civică,Civic participation,,Sprijină implicarea cetățenilor în viața publică.,,,propus
+scop:acces-servicii,scop,Acces la servicii,Access to services,,Ajută persoanele să acceseze servicii sau proceduri.,,,propus
+scop:informare,scop,Informare și înțelegere,Information and understanding,,Explică informații și sprijină înțelegerea lor.,,,propus
+scop:educatie,scop,Învățare,Learning,,Sprijină dobândirea de cunoștințe sau competențe.,,,propus
+scop:sprijin-organizatii,scop,Sprijin pentru organizații civice,Support for civic organisations,,Sprijină resursele și capacitatea organizațiilor civice.,,,propus
+scop:aparare-drepturi,scop,Apărarea drepturilor,Rights protection,,Sprijină cunoașterea și exercitarea drepturilor.,,,propus
+scop:anticoruptie,scop,Prevenirea și combaterea corupției,Anti-corruption,,Sprijină prevenirea sau combaterea corupției; nu este sinonim cu fenomenul corupției.,,,propus
+scop:pregatire-riscuri,scop,Pregătire pentru riscuri,Risk preparedness,,Sprijină pregătirea și reacția la riscuri.,,,propus
+functie:cautare,functie,Caută și consultă,Search and browse,,Permite găsirea și consultarea unor înregistrări sau documente.,,,propus
+functie:comparare,functie,Compară,Compare,,"Permite compararea unor opțiuni, indicatori sau entități.",,,propus
+functie:monitorizare,functie,Monitorizează,Monitor,,Urmărește evoluții sau activități în timp.,,,propus
+functie:sesizare,functie,Trimite sau urmărește o sesizare,Report an issue,,"Sprijină documentarea, trimiterea sau urmărirea sesizărilor.",,,propus
+functie:cerere-informatii,functie,Solicită informații publice,Request public information,,Sprijină formularea sau urmărirea cererilor de informații.,,,propus
+functie:generare-documente,functie,Completează sau generează documente,Generate documents,,Completează sau generează formulare și documente.,,,propus
+functie:verificare,functie,Verifică informații,Verify information,,"Sprijină verificarea unor date, afirmații sau documente; nu garantează adevărul rezultatului.",,,propus
+functie:verificare-fapte,functie,Verifică fapte,Fact checking,fact-checking,Verificare jurnalistică a afirmațiilor cu surse.,,,propus
+functie:analiza,functie,Analizează date,Analyse data,,Sprijină analiza datelor sau documentelor.,,,propus
+functie:invatare,functie,Învață sau exersează,Learn or practise,,Oferă materiale sau activități educative.,,,propus
+functie:donatii,functie,Donează sau redirecționează fonduri,Donate or redirect funds,,Permite susținerea financiară a unei cauze sau publicații.,,,propus
+functie:petitii,functie,Semnează sau organizează petiții,Petitions,,Sprijină inițierea sau semnarea petițiilor.,,,propus
+functie:advocacy,functie,Organizează advocacy,Advocacy,,Sprijină influențarea politicilor și deciziilor publice.,,,propus
+functie:mentorat,functie,Primește mentorat,Mentoring,,Oferă mentorat sau consiliere pentru dezvoltare.,,,propus
+functie:alerte,functie,Primește alerte,Alerts,,Trimite notificări sau alerte despre schimbări.,,,propus
+format:harta,format,Hartă,Map,,Informații prezentate geografic pe o hartă.,,,propus
+format:vizualizare,format,Vizualizare de date,Data visualisation,,"Grafice, tablouri de bord și alte vizualizări.",,,propus
+format:registru,format,Registru sau bază de date,Register or database,,Colecție structurată de înregistrări. Nu presupune descărcare sau licență deschisă.,,,propus
+format:ghid,format,Ghid,Guide,,Explicații și îndrumări organizate pentru o sarcină sau temă.,,,propus
+format:colectie,format,Catalog sau colecție,Catalogue or collection,,Listă sau colecție de resurse ori proiecte.,,,propus
+format:joc-test,format,Joc sau test,Game or quiz,,Activitate interactivă de joc sau test.,,,propus
+format:curs,format,Curs sau atelier,Course or workshop,,Activitate structurată de învățare.,,,propus
+format:articol,format,Articol,Article,,Material editorial sau jurnalistic individual.,,,propus
+format:raport,format,Raport sau cercetare,Report or research,,Publicație de analiză sau cercetare.,,,propus
+format:formular,format,Formular,Form,,Interfață sau document pentru introducerea de date.,,,propus
+format:api,format,API oferit,API offered,,Interfață programatică oferită de intrare. Un catalog despre API nu este suficient.,,,propus
+format:set-date,format,Set de date oferit,Dataset offered,,Un set de date identificabil oferit pentru acces sau descărcare.,,,propus
+tehnologie:ai,tehnologie,Utilizează inteligență artificială,Uses artificial intelligence,AI,Descrierea afirmă utilizarea AI în funcționare. Numele proiectului sau o etichetă nu sunt suficiente.,,,propus
+tehnologie:aplicatie-mobila,tehnologie,Aplicație mobilă,Mobile application,,Intrarea oferă o aplicație mobilă.,,,propus
+tehnologie:mcp,tehnologie,Server MCP oferit,MCP server offered,,Intrarea oferă un server MCP. Menționarea unor proiecte MCP asociate nu este suficientă.,,,propus
+institutie:primarie,institutie,Primărie sau administrație locală,Municipality or local administration,,Tip de instituție vizată. Nu indică proprietarul sau partenerul proiectului.,,,propus
+institutie:parlament,institutie,Parlament,Parliament,,Instituție parlamentară vizată.,,,propus
+institutie:anaf,institutie,ANAF,Romanian tax administration,,"Instituție vizată sau sursă de date, fără a implica un parteneriat.",,,propus
+institutie:scoala,institutie,Școală sau instituție de învățământ,Educational institution,,Instituție de învățământ vizată.,,,propus
+institutie:instanta,institutie,Instanță judecătorească,Court,,Instanță vizată sau sursă a informațiilor.,,,propus
+institutie:institutie-ue,institutie,Instituție a Uniunii Europene,EU institution,,Instituție a Uniunii Europene vizată.,,,propus
+maturitate:prototip,maturitate,Prototip,Prototype,,Prototip declarat în sursa editorială. Nu este un statut HTTP.,,,propus
+organizatie:ong,organizatie,Organizație neguvernamentală,Non-governmental organisation,,Tip declarat în sursă; nu reprezintă o verificare juridică.,,,propus
+organizatie:think-tank,organizatie,Think-tank,Think tank,,Organizație axată pe cercetare și politici publice.,,,propus
+organizatie:retea,organizatie,Rețea sau comunitate,Network or community,,Rețea ori comunitate de persoane sau organizații.,,,propus

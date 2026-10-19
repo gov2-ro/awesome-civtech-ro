@@ -1,5 +1,128 @@
 # Activity
 
+## 2026-10-19 — Preserve taxonomy work for implementation
+
+**Done**
+- Committed the frozen classification run as `3a1c8fe`, tagged `v0.4.0`.
+- Prepared the remaining proposal, snapshots, specification, classifier contract, audit notes, and handoff for a separate commit.
+- Added the completed-run pointer to the handoff. The shared package remains draft.1; production remains unchanged.
+- Rechecked the package baseline: 122 entries, 125 concepts, and zero errors. Production validation reports zero errors and 28 existing warnings.
+- Excluded editor locks and Python caches from the package's Git exception.
+
+**Hard**
+- The original handoff described classification as future work. Its continuation update now records the completed experiment.
+- Preserved source CSV text includes trailing spaces and CRLF line endings. Those bytes remain unchanged.
+
+**Decided**
+- Use the sealed candidate for core slices 1–4. Apply semantic corrections in a separate integration copy.
+- Keep an automated inference runner optional for this preview; implementing it first would repeat completed classification work.
+- Record this specification and data-package deliverable as `v0.5.0`. This repository has no `Cargo.toml`.
+
+## 2026-10-19 — Consolidated classification input
+
+**Done**
+- Added `data/taxonomy-v2/clasificare-input.csv`: 122 unique original entries from the two immutable source CSVs.
+- Preserved original descriptions, links, categories, types, keywords, geography, attribution, and source record references.
+- Excluded manually proposed v2 assignments, private notes, and contact fields. Verified CSV round-trip equality.
+
+**Hard**
+- The consolidated input still has the original evidence gaps. One file does not make missing descriptions available.
+
+**Decided**
+- Prepare the agreed schema and vocabulary first, run and evaluate automated classification second, then integrate the build and UI.
+- Keep the classification input separate from the controlled vocabulary and output contract.
+
+## 2026-10-19 — Implementation handoff and automated classification prompt
+
+**Done**
+- Updated `docs/specs/taxonomy-v2.md` with the owner's agreed draft.2 decisions.
+- Specified zero-or-one maturity: experiment, prototype, pilot, or operational. Reliability, adoption, and novelty remain separate dimensions.
+- Specified CSV-owned code lists, link roles, and host lookup, with structural JSON rules and no independently edited duplicate enums.
+- Added `docs/briefs/handoff-taxonomy-v2.md` as the fresh-session entry point, with core implementation slices and preview acceptance checks.
+- Added `docs/prompts/taxonomy-v2-classifier.md` and its machine-readable JSON output schema.
+- Defined an initially automated experiment with evidence citations, per-assignment confidence, vocabulary-gap proposals, abstentions, and independent evaluation.
+- Checked the output JSON Schema with Draft 2020-12 validation and 12 structural cases. The current draft baseline still passes with 0 errors.
+  Citation accuracy, supplied-ID membership, justification coverage, and original-attribution preservation are explicit checks for the future runner.
+
+**Hard**
+- The actual package remains draft.1. It has one maturity concept and the earlier JSON-owned lists.
+  The handoff makes draft.2 package preparation a prerequisite for the classifier so that prompt and data cannot disagree.
+
+**Decided**
+- Treat the new request as preparation for implementation in a fresh session. Production code and source data remain unchanged in this turn.
+- Keep the manually proposed assignments out of model input; compare them with automated results only after inference.
+- Distinguish a valid model response, a complete candidate, and an editorially accepted entry.
+- Preserve incomplete model output and uncertainty instead of manufacturing a primary subject.
+- No provider was selected and no model calls were run. The next step for inference is a runner with a no-call dry run.
+
+## 2026-10-19 — Taxonomy diagrams and filter implications
+
+**Done**
+- Added a Mermaid model overview and a filter-combination example to `docs/specs/taxonomy-v2.md`.
+- Added `data/taxonomy-v2/export_mermaid.py`. It generates `docs/specs/taxonomy-v2-vocabulary.md` from the editable concept table.
+- Measured complete coverage: 125 concepts across 13 subject hierarchy diagrams and 7 independent facet diagrams.
+- Specified public filter labels, conditional facets, topic ancestry, unique counts, result badges, and detail-panel grouping.
+- Verified the diagram export and the draft baseline validator. The draft still has 0 validation errors. `git diff --check` passes.
+
+**Hard**
+- One diagram with all 125 concepts would be difficult to read. The complete reference therefore uses smaller diagrams.
+
+**Decided**
+- Keep the current tabs, desktop sidebar, mobile filter sheet, list, and detail panel as the proposed interface structure.
+- Replace mixed types and keywords with subject, topic, capability, and format filters. Put specialist facets under more filters.
+- Use a flat list after subject filtering. An entry matched through a secondary subject should not appear under an unrelated primary heading.
+- Distinguish national applicability from the availability of data for a particular locality. These require different evidence.
+- This change documents the proposed interface. It does not modify the current frontend or production data.
+
+## 2026-10-19 — Separate taxonomy v2 review copy
+
+**Done**
+- Created `data/taxonomy-v2/` and the integration specification `docs/specs/taxonomy-v2.md` at the owner's request.
+- Proposed classifications for all 122 entries: 100 projects, 13 organisations, and 9 resources in the existing URL sections.
+- Added 125 controlled concepts, including 13 local browsing subjects, with Romanian/English labels and Romanian definitions.
+- Preserved the original eight top-level CSV/JSON files byte for byte. Recorded their SHA-256 hashes and copied generated observations separately.
+- Added 822 initial assignment records, 86 unresolved source attributions, and 66 specific editorial review items.
+- Retrieved 22 EuroVoc identifiers and Romanian/English labels from the official SPARQL endpoint. Stored the exact query and response.
+- Kept every external semantic mapping and every entry classification proposed. No individual project site was fetched for this pass.
+- `validate.py --baseline --export` passes with 0 errors. Twelve focused integrity checks pass on temporary copies.
+  The checks cover unknown IDs, wrong schemes, duplicate slugs, missing roots, hierarchy cycles, retired concepts, external identifiers,
+  relation endpoints, review decisions, manual edits, snapshot integrity, and the initial export.
+- Production validation still reports 0 errors and the same 28 warnings. An isolated v1 build still produces 122 entries and 3 archives.
+  All eight original data files retain their source hashes.
+- Added a scoped `.gitignore` exception so that the separate proposal and its snapshots are not silently ignored.
+
+**Hard**
+- The first SPARQL query timed out after 40 seconds. A query with directly bound English labels returned the verified subset.
+- Sparse descriptions cannot establish precise capabilities or technology use. Such entries retain low confidence and explicit review items.
+- The document connector was unavailable. The requested specification is repository Markdown.
+
+**Decided**
+- Keep human-readable CSVs authoritative; generate `catalogue.json` from them with the package's standalone stdlib validator.
+- Keep the thirteen browsing roots local. Use EuroVoc as a reference and SKOS as a modelling guide, without claiming conformance.
+- Distinguish subjects from civic purposes, capabilities, formats, technologies, institution types, and geographic coverage.
+- Preserve uncertain author roles as `atribuit_in_sursa`; guessing a maintainer or funder would create unsupported claims.
+- Do not adapt production scripts or publish the proposal. The owner will review the copy and carry out the later integration.
+
+## 2026-10-19 — Product, UX, and architecture audit
+
+**Done**
+- Reviewed the purpose, data flow, frontend, enrichment scripts, and publishing workflows.
+- Ran validation: 0 errors, 28 warnings. Built a temporary copy: 122 entries, comprising 100 projects, 13 organisations, and 9 resources.
+- The build has 101 active entries, 1 unconfirmed entry, and 20 inactive entries. Twelve live entries have no descriptive text.
+- Checked Chrome at widths 320, 390, 768, 1024, and 1440. No page-level horizontal overflow or normal-load JavaScript errors appeared.
+- Reproduced blank results after a failed data request, dialog focus defects, mobile filter focus loss, and stale canonical metadata.
+- All eight Python scripts parse. `node --check site/app.js` passes.
+- Recorded findings in BACKLOG.md. No implementation or source data changed.
+
+**Hard**
+- The configured Playwright browser binary was absent. The audit used installed Chrome.
+- The audit did not run paid enrichment, write to Google, trigger workflows, or verify live hosting settings.
+
+**Decided**
+- Keep the static architecture. Current size does not justify an application server or a database.
+- Prioritise evidence quality, failure handling, and editorial checks before adding ranking signals.
+  These are audit recommendations; no product or specification changes were applied.
+
 ## 2026-10-19 — llms.txt
 
 **Done**

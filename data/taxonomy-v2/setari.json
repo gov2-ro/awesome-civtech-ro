@@ -1,0 +1,183 @@
+{
+  "sectiuni": [
+    {
+      "key": "proiect",
+      "label": "Proiecte"
+    },
+    {
+      "key": "organizatie",
+      "label": "Organizații"
+    },
+    {
+      "key": "resursa",
+      "label": "Resurse & liste"
+    }
+  ],
+  "roluri_linkuri": [
+    {
+      "key": "facebook",
+      "label": "Facebook",
+      "hosts": [
+        "facebook.com",
+        "fb.com",
+        "fb.me"
+      ]
+    },
+    {
+      "key": "instagram",
+      "label": "Instagram",
+      "hosts": [
+        "instagram.com"
+      ]
+    },
+    {
+      "key": "linkedin",
+      "label": "LinkedIn",
+      "hosts": [
+        "linkedin.com"
+      ]
+    },
+    {
+      "key": "x",
+      "label": "X",
+      "hosts": [
+        "x.com",
+        "twitter.com"
+      ]
+    },
+    {
+      "key": "bluesky",
+      "label": "Bluesky",
+      "hosts": [
+        "bsky.app"
+      ]
+    },
+    {
+      "key": "mastodon",
+      "label": "Mastodon",
+      "hosts": [
+        "mastodon.social",
+        "mastodon.online",
+        "mastodon.ro"
+      ]
+    },
+    {
+      "key": "threads",
+      "label": "Threads",
+      "hosts": [
+        "threads.net",
+        "threads.com"
+      ]
+    },
+    {
+      "key": "tiktok",
+      "label": "TikTok",
+      "hosts": [
+        "tiktok.com"
+      ]
+    },
+    {
+      "key": "youtube",
+      "label": "YouTube",
+      "hosts": [
+        "youtube.com",
+        "youtu.be"
+      ]
+    },
+    {
+      "key": "telegram",
+      "label": "Telegram",
+      "hosts": [
+        "t.me",
+        "telegram.me"
+      ]
+    },
+    {
+      "key": "discord",
+      "label": "Discord",
+      "hosts": [
+        "discord.gg",
+        "discord.com"
+      ]
+    },
+    {
+      "key": "github",
+      "label": "GitHub",
+      "hosts": [
+        "github.com"
+      ]
+    },
+    {
+      "key": "gitlab",
+      "label": "GitLab",
+      "hosts": [
+        "gitlab.com"
+      ]
+    },
+    {
+      "key": "cod",
+      "label": "Cod sursă",
+      "hosts": [
+        "codeberg.org",
+        "bitbucket.org"
+      ]
+    },
+    {
+      "key": "donatii",
+      "label": "Donații",
+      "hosts": [
+        "patreon.com",
+        "buymeacoffee.com",
+        "ko-fi.com",
+        "donorbox.org",
+        "opencollective.com"
+      ]
+    },
+    {
+      "key": "despre",
+      "label": "Despre",
+      "hosts": []
+    },
+    {
+      "key": "contact",
+      "label": "Contact",
+      "hosts": []
+    },
+    {
+      "key": "termeni",
+      "label": "Termeni și condiții",
+      "hosts": []
+    },
+    {
+      "key": "date",
+      "label": "Date (descărcare)",
+      "hosts": []
+    },
+    {
+      "key": "api",
+      "label": "API",
+      "hosts": []
+    },
+    {
+      "key": "mcp",
+      "label": "MCP",
+      "hosts": []
+    },
+    {
+      "key": "web",
+      "label": "Link",
+      "hosts": []
+    }
+  ],
+  "site": {
+    "_doc": "Where a visitor can report a problem with an entry (the drawer's \"Semnalează o problemă\"). build.py copies this into site/data.json. An empty value hides that option. `sheet` is the Google Sheet's address; `tabs` holds the tab ids (the number after gid= in the Sheet's address).",
+    "issues": "https://github.com/gov2-ro/awesome-civtech-ro/issues/new",
+    "sheet": "https://docs.google.com/spreadsheets/d/1W0skZrsxyi3a6D59qMN6CbyXFVS18LyS_ftnhNUoSkA/edit",
+    "tabs": {
+      "proiecte": 0,
+      "orgs": 631541810
+    },
+    "email": ""
+  },
+  "nota": "Configurație copiată. Nu este conectată la site-ul public."
+}
