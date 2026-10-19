@@ -351,7 +351,16 @@ class ReviewReconciliation(unittest.TestCase):
         blocking = {r["id"] for r in self.queue if r["stare"] == "deschis" and r["prioritate"] == "mare"}
         listed = {e.rsplit(" ", 1)[-1] for e in errors if "review item" in e}
         self.assertEqual(listed, blocking)
-        self.assertTrue(all(r["stare"] == "tehnic" for r in self.queue if r["id"] in ("R004", "R015", "R030")))
+
+    def test_a_duplicate_closure_never_lowers_the_priority(self):
+        """A closed duplicate points to an open item of the same or a higher priority, so the gate loses nothing."""
+        rank = {"mare": 0, "medie": 1, "mica": 2}
+        items = {r["id"]: r for r in self.queue}
+        for r in self.queue:
+            if r["stare"] == "tehnic" and r["motiv"].startswith("Dublură a "):
+                kept = items[r["motiv"].split()[2].rstrip(":")]
+                self.assertEqual(kept["stare"], "deschis", r["id"])
+                self.assertLessEqual(rank[kept["prioritate"]], rank[r["prioritate"]], r["id"])
 
     # --- the reconciliation table ----------------------------------------------------------------------------------------
 

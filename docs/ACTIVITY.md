@@ -1,5 +1,33 @@
 # Activity
 
+## 2026-10-20 — Integration review queue reconciled with the current classifications (slice D)
+
+**Done**
+- New code `revizuire_stare:tehnic` ("Închis tehnic"): a closure without an editorial decision. It needs a reason and refuses
+  `decizie_editor`. The publication gate counts only `deschis`. Recorded as a draft.2 amendment in `versiuni.json`.
+- `integrare/reconciliere.csv` (editable, 103 rows): every R, C, S and V item rewritten against `integrare/intrari.csv`, the sealed
+  responses and the C/S items. `integrare.py` applies it and refuses any evidence token that does not resolve (400 tokens, all resolve).
+  The base queue and every `intrari.csv` are unchanged; no classification changed.
+- Result: 66 open (29 R, 23 C, 3 S, 11 V), 37 `tehnic` (31 premise not applicable, 6 duplicates). Open high priority: 28 → 27.
+  Publication gate: 150 → 149 errors (122 unaccepted entries, 27 open high-priority items).
+- Every open item has a "Recomandare: …" with its rationale and evidence. The Moldova area recommendation is `tara:MD`
+  (ISO style, like `tara:RO`); the area is not added.
+- Tests: `scripts/test_taxonomy_v2.py` 56 (16 new). Unit tests overall: 233.
+
+**Hard**
+- "The questioned value" is ambiguous when the integration value equals the draft.1 proposal. The agent closed such an item
+  only when the old label is absent and the description settles the question; otherwise it stays open.
+- The run attaches one excerpt to many facets, so several facet claims are weaker than the response summary. The recommendations say so.
+
+**Decided**
+- Opus review changed one rule: the agent had closed three high-priority R items (R004, R015, R030) as duplicates of medium C items,
+  which removed 3 gate errors. Now the C items (C001, C008, C015) close as duplicates, and the R items stay open at high priority
+  with the C texts. A test checks that a duplicate closure never points to a lower priority.
+- One table for all four prefixes, and the evidence goes into `motiv`, so `schema.json` and the Sheet tab layout stay unchanged.
+  Cost: the evidence is text, not a column a filter can read.
+- The agent's rule for vocabulary proposals ("accept a new concept with two or more evidenced entries") is a recommendation only.
+  It is not in the specification; the owner decides.
+
 ## 2026-10-20 — Sheets and Form for v2: sync marker, three-way pull, blocking validation (slice B)
 
 **Done**

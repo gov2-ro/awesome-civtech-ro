@@ -17,6 +17,12 @@
       "schema.json: field_rules name a code list or concept scheme, with cardinality. Removed enums, relation_predicates and concept_fields.",
       "setari.json: kept only the reporting addresses and a note. tabs.intrari is null until a v2 Sheet tab exists."
     ],
-    "unchanged": "intrari.csv, relatii.csv, revizuire.csv, atribuiri-initiale.csv, corespondente-v1.csv, mapari-externe.csv, arii.csv, source/, reference/, observatii/ and manifest.json."
+    "unchanged": "intrari.csv, relatii.csv, revizuire.csv, atribuiri-initiale.csv, corespondente-v1.csv, mapari-externe.csv, arii.csv, source/, reference/, observatii/ and manifest.json.",
+    "amendments": [
+      {
+        "date": "2026-10-20",
+        "change": "valori.csv: added revizuire_stare:tehnic (65 -> 66 codes). A technical closure needs a reason and no editor decision; the publication gate counts only open items. No entry was reclassified."
+      }
+    ]
   }
 ]

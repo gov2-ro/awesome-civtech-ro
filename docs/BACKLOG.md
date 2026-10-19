@@ -9,7 +9,7 @@ Branch `taxonomy-v2-migration`. Production stays on v1. No Google, workflow, dep
 - [x] A. Enrichment on explicit roots: `profile.py`, `search.py`, `review.py --data-dir`; profile merge; label hashes and coverage; copyright date.
 - [x] B. Sheets and Form for v2: new tabs, `_sync` marker as the base, 3-way pull, blocking validation, offline round trips, Form plan and importer.
 - [x] C. Frontend audit defects in `site-v2/`: failed data load, noscript, canonical, observed dates, methodology page.
-- [~] D. Review queue: reconcile R001–R066 with the integration copy; `tehnic` state for non-editorial items; a recommendation on every open item.
+- [x] D. Review queue: reconcile R001–R066 with the integration copy; `tehnic` state for non-editorial items; a recommendation on every open item.
 - [x] E. CI: tests, v2 validation and preview build, JS syntax, browser checks, workflow lint; path filters for `site/`, `site-v2/`, workflows.
 - [ ] F. Cutover preparation: runbook, a dry-run check of the cutover, documentation of the v2 model.
 
@@ -30,9 +30,11 @@ Branch `taxonomy-v2-migration`. Production stays on v1. No Google, workflow, dep
 - [x] Implement core handoff slice 1: upgrade the isolated package and validator to draft.2 without reclassifying entries.
 - [x] Classify all 122 original entries and evaluate against the withheld draft. Preserve the sealed run in `data/taxonomy-v2/runs/2026-10-19-reasoned-evidence/`.
 - [x] Resolve the evaluation's three semantic concerns in a separate integration copy (`data/taxonomy-v2/integrare/`, change log `modificari.csv`).
-- [ ] Owner review of the integration queue (103 open items, 28 high priority): partial records, the abstention, attribution roles, external mappings, and 10 vocabulary proposals. Accept entries only after that review.
-- [ ] Rewrite or close review items R001–R066 against the integration copy. Their texts describe the draft.1 manual proposal.
+- [ ] Owner review of the integration queue: 66 open items (27 high priority: 26 R "description absent" + C009 `incentru`), each with a recommendation; 37 closed `tehnic`. Then accept entries one by one (122 are unaccepted). Publication gate: 149 errors on 2026-10-20.
+- [x] Rewrite or close review items R001–R066 against the integration copy. Their texts describe the draft.1 manual proposal.
+      Done 2026-10-20 (slice D): `integrare/reconciliere.csv`; 29 R open with current values, 37 items `tehnic`.
 - [ ] Choose the ID style for proposed areas before accepting them (`tara:republica-moldova` now; existing countries use ISO codes, `tara:RO`).
+      Recommendation (S001, V009, V010): `tara:MD` with `cod_iso_3166_1=MD`, like `tara:RO`. Owner decision.
 - [ ] Implement an automated inference runner and no-call dry run if a later repeatable experiment needs them. This does not block the current preview.
 - [x] Implement the v2 loaders, validator branch, build contract, and browser facets together. Keep the current data source as the default until cutover.
 - [x] Verify the isolated preview: 40 unit tests (`scripts/test_taxonomy_v2.py`) and 63 browser checks (`scripts/check_preview.py`).
