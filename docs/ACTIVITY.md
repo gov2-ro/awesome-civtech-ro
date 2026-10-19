@@ -1,5 +1,32 @@
 # Activity
 
+## 2026-10-19 — v2 browser code: failed load, noscript, head metadata, observed dates, methodology (slice C)
+
+**Done**
+- Work moved to branch `taxonomy-v2-migration`; `main` (8 unpushed commits) is unchanged. Slices A–D ran as Sonnet agents in
+  separate worktrees from the brief `docs/briefs/v2-migration-completion.md`; Opus reviewed and merged each one.
+- CI (`validate.yml`): runs on `site/**`, `site-v2/**` and workflow changes too. Jobs: v1 validation and build, all `scripts/test_*.py`,
+  v2 package and overlay baselines, `integrare.py` reproduction, v2 validation and preview build (uploaded as an artifact),
+  a non-blocking report of the v2 publication gate, `node --check` of both browser files, the browser checks, and `actionlint`.
+  Measured locally: `actionlint` 1.7.12 with shellcheck 0.10.0 passes on all four workflows.
+- Slice C, in `site-v2/app.js` (production `site/app.js` is unchanged; the cutover brings the fixes):
+  a failed or aborted `data.json` request shows a message, a retry button and the three archive links;
+  `canonical`, `og:*` and `twitter:*` follow the open entry and return to the home values on close;
+  `since` is called "prima urmă observată" everywhere ("apărut recent", "nu este data lansării"), with tooltips for Z/L/A.
+- `site/index.html` (shared): a `<noscript>` block with the archive links, and a footer link to the new `docs/METODOLOGIE.md`
+  (Romanian; statuses, dates, score weights, what the score favours, limits; written from the code).
+- Measured: `scripts/check_preview.py` 98/98 (35 new; 4 fail as expected with the old head and badge code).
+  The v1 build differs from the previous build only in `index.html` and the 122 entry pages (the noscript and the footer link).
+
+**Hard**
+- One agent worktree started at `v0.3.1`, not at the branch. The agent fast-forwarded it before working; the others started correctly.
+- `entry_pages()` already puts its own `<noscript>` at the top of each entry page, so the template's block sits inside `#results`.
+
+**Decided**
+- Fix the audit's browser defects in `site-v2/` only, as in v0.6.1. Cost: production keeps them until the cutover.
+- Keep the `nou` URL value; only the wording changes. Old links keep working.
+- The footer link and noscript reach production with the next merge to `main`. The methodology page names the v1 wording too.
+
 ## 2026-10-19 — One footer line for corrections; draft notices hidden
 
 **Done**
