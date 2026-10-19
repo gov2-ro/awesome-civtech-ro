@@ -29,9 +29,9 @@ from datetime import date, datetime, timezone
 
 from pathlib import Path
 
-from common import (BOILERPLATE, DATA, NETWORK_ROLES, ROOT, SITE, data_schema, domain_of, is_kept, link_host, load_catalogue,
-                    load_entries, load_mentions, load_profile, load_vocabulary, observation_paths, parse_link, read_csv,
-                    split_list, split_tip)
+from common import (BOILERPLATE, DATA, NETWORK_ROLES, ROOT, SITE, coverage_line, data_schema, domain_of, kept_by_slug, label_coverage,
+                    link_host, load_catalogue, load_entries, load_mentions, load_profile, load_vocabulary, observation_paths,
+                    parse_link, read_csv, split_list, split_tip)
 
 CODE_ROLES = ("github", "gitlab", "cod")
 SITE_URL = "https://civtech.gov2.ro/"
@@ -143,10 +143,14 @@ def years_since(d: str) -> float | None:
     return (date.today() - date.fromisoformat(d)).days / 365.25 if d else None
 
 
-def last_activity(p: dict) -> str:
-    """Newest sign of life: a dated update, else the copyright year in the footer."""
+def last_activity(p: dict, today: date | None = None) -> str:
+    """Newest sign of life: a dated update wins. Only without one, the copyright year in the footer stands in, as
+    <year>-01-01 and never after today (many footers print the current year by script, so it is weak evidence)."""
+    if p.get("updated"):
+        return p["updated"]
     cy = num(p.get("copyright_year"))
-    return max(p.get("updated", ""), f"{cy}-12-31" if cy and cy <= date.today().year else "")
+    fallback = f"{cy:04d}-01-01" if cy else ""
+    return fallback if fallback and fallback <= (today or date.today()).isoformat() else ""
 
 
 def since(p: dict) -> tuple[str, str]:
@@ -160,24 +164,28 @@ def since(p: dict) -> tuple[str, str]:
 def reach_features(mentions: list[dict], labels: list[dict]) -> dict[str, dict]:
     """Per slug, from the kept search results: how many distinct hosts give independent attention (the page is about
     the entry, and the page is not the entry's own channel, as labelled by review.py), split by kind of source, and
-    the date of the newest such page. Without labels the kept hosts stand in for `indep` and the rest is 0."""
-    kept: dict[str, list[dict]] = {}
-    for r in mentions:
-        if is_kept(r):
-            kept.setdefault(r["slug"], []).append(r)
+    the date of the newest such page. A label counts for the kept row of the same slug and URL; a label for a URL that
+    is no longer kept counts for nothing. Three cases:
+    - every kept row is labelled: `indep` counts the labelled independent hosts only;
+    - some are: `indep` also counts the hosts of the unlabelled kept rows, and the entry carries `provisional: true`
+      (the other counts and `ultima` come from the labels, so they are lower bounds);
+    - none is (no review yet, or every label is stale): the kept hosts stand in for `indep` and the rest is 0."""
+    kept = kept_by_slug(mentions)
     label = {(l["slug"], l["url"]): l for l in labels}
-    labelled = {l["slug"] for l in labels}
     hosts = lambda rows: len({r["host"] for r in rows})
     out = {}
-    for slug in kept.keys() | labelled:
+    for slug in kept.keys() | {l["slug"] for l in labels}:
         rows = kept.get(slug, [])
-        if slug not in labelled:
+        done = [r for r in rows if (slug, r["url"]) in label]
+        if rows and not done:
             out[slug] = {"indep": hosts(rows), "stiri": 0, "cercetare": 0, "guvern": 0, "ultima": ""}
             continue
-        good = [r for r in rows if (l := label.get((slug, r["url"]))) and l["despre_proiect"] == "1" and l["independent"] == "1"]
+        good = [r for r in done if label[(slug, r["url"])]["despre_proiect"] == "1" and label[(slug, r["url"])]["independent"] == "1"]
+        open_rows = [r for r in rows if (slug, r["url"]) not in label]
         of = lambda kind: [r for r in good if label[(slug, r["url"])]["tip_sursa"] == kind]
-        out[slug] = {"indep": hosts(good), "stiri": hosts(of("stire")), "cercetare": hosts(of("cercetare")),
-                     "guvern": hosts(of("guvern")), "ultima": max((r["date"] for r in good), default="")}
+        out[slug] = {"indep": hosts(good + open_rows), "stiri": hosts(of("stire")), "cercetare": hosts(of("cercetare")),
+                     "guvern": hosts(of("guvern")), "ultima": max((r["date"] for r in good), default=""),
+                     **({"provisional": True} if open_rows else {})}
     return out
 
 
@@ -745,8 +753,11 @@ def main():
         archives = archive_pages(items, head["taxonomy"], site)
     (site / "llms.txt").write_text(llms, encoding="utf-8")
     where = site.relative_to(ROOT) if site.is_relative_to(ROOT) else site
+    obs = observation_paths(data_dir)
+    coverage = label_coverage(load_mentions(obs["mentions"]), read_csv(obs["labels"]) if obs["labels"].exists() else [])
     print(f"wrote {len(items)} entries to {where}/data.json  {by}; {where}/feed.xml; {where}/llms.txt; {pages} entry pages and "
-          f"{archives} archives in {where}/{{{','.join(PAGE_KINDS)}}}/" + (f"  [{out['schemaVersion']}{', draft' if out['draft'] else ''}]" if v2 else ""))
+          f"{archives} archives in {where}/{{{','.join(PAGE_KINDS)}}}/" + (f"  [{out['schemaVersion']}{', draft' if out['draft'] else ''}]" if v2 else "")
+          + f"; {coverage_line(coverage)}")
 
 
 if __name__ == "__main__":
