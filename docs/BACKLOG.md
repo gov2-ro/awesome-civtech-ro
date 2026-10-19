@@ -2,6 +2,17 @@
 
 Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
+## v2 migration completion — execution checklist (brief: `docs/briefs/v2-migration-completion.md`)
+
+Branch `taxonomy-v2-migration`. Production stays on v1. No Google, workflow, deploy or release action.
+
+- [~] A. Enrichment on explicit roots: `profile.py`, `search.py`, `review.py --data-dir`; profile merge; label hashes and coverage; copyright date.
+- [~] B. Sheets and Form for v2: new tabs, `_sync` marker as the base, 3-way pull, blocking validation, offline round trips, Form plan and importer.
+- [~] C. Frontend audit defects in `site-v2/`: failed data load, noscript, canonical, observed dates, methodology page.
+- [~] D. Review queue: reconcile R001–R066 with the integration copy; `tehnic` state for non-editorial items; a recommendation on every open item.
+- [ ] E. CI: tests, v2 validation and preview build, JS syntax, browser checks, workflow lint; path filters for `site/`, `site-v2/`, workflows.
+- [ ] F. Cutover preparation: runbook, a dry-run check of the cutover, documentation of the v2 model.
+
 ## Taxonomy v2 — isolated proposal (spec: `docs/specs/taxonomy-v2.md`)
 
 - [x] Copy all 122 entries into `data/taxonomy-v2/intrari.csv`, with separate subject, purpose, capability, format, technology, and geography facets.
