@@ -1,7 +1,7 @@
 """Shared loading of the editable CSVs (proiecte, orgs) and the generated profile and mention CSVs.
 
-A data root is either the production v1 layout (data/: proiecte.csv, orgs.csv, taxonomy.json) or a taxonomy v2
-package or overlay (schema.json or pachet.json; see scripts/taxonomy_v2.py). data/ stays the default everywhere.
+A data root is either the v1 layout (data/: proiecte.csv, orgs.csv, taxonomy.json) or a taxonomy v2 package or
+overlay (schema.json or pachet.json; see scripts/taxonomy_v2.py). PUBLIC_ROOT is the default root of every script.
 """
 import csv
 import json
@@ -13,6 +13,9 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 SITE = ROOT / "site"
+# The data root that feeds the public site, and the default --data-dir of every script. It is the v1 root until the
+# cutover; scripts/cutover_v2.py then points it at the taxonomy v2 integration copy. Only this root may write site/.
+PUBLIC_ROOT = DATA
 
 
 def load_env(path: Path = ROOT / ".env"):
@@ -141,7 +144,7 @@ def load_entries(data_dir: Path = DATA) -> list[dict]:
     return out
 
 
-def data_schema(data_dir: Path = DATA) -> str:
+def data_schema(data_dir: Path = PUBLIC_ROOT) -> str:
     """'v2' for a taxonomy v2 package or overlay, 'v1' for the production layout. Anything else is an error."""
     from taxonomy_v2 import is_v2
     if is_v2(data_dir):
@@ -151,14 +154,16 @@ def data_schema(data_dir: Path = DATA) -> str:
     raise SystemExit(f"{data_dir}: not a data root (no proiecte.csv + taxonomy.json, schema.json or pachet.json)")
 
 
-def observation_paths(data_dir: Path = DATA) -> dict[str, Path]:
-    """The generated observation CSVs of a root: data/*.csv for v1, observatii/*.csv for v2 (an overlay uses its
-    base's). A v2 run never reads or writes the immutable copies in source/."""
+def observation_paths(data_dir: Path = PUBLIC_ROOT) -> dict[str, Path]:
+    """The generated observation files of a root: data/*.csv for v1, observatii/*.csv for v2 (an overlay uses its
+    base's). `review` is the folder of review.py's raw answers and suggestions. A v2 run never reads or writes the
+    immutable copies in source/."""
     if data_schema(data_dir) == "v1":
-        return {"profile": data_dir / "profil.csv", "mentions": data_dir / "mentiuni.csv", "labels": data_dir / "mentiuni_etichete.csv"}
+        return {"profile": data_dir / "profil.csv", "mentions": data_dir / "mentiuni.csv", "labels": data_dir / "mentiuni_etichete.csv",
+                "review": data_dir / "review"}
     from taxonomy_v2 import Files
     obs = Files(data_dir).observations
-    return {"profile": obs / "profil.csv", "mentions": obs / "mentiuni.csv", "labels": obs / "mentiuni_etichete.csv"}
+    return {"profile": obs / "profil.csv", "mentions": obs / "mentiuni.csv", "labels": obs / "mentiuni_etichete.csv", "review": obs / "review"}
 
 
 def split_ids(cell: str) -> list[str]:
@@ -167,7 +172,7 @@ def split_ids(cell: str) -> list[str]:
     return values(cell)
 
 
-def load_vocabulary(data_dir: Path = DATA) -> dict:
+def load_vocabulary(data_dir: Path = PUBLIC_ROOT) -> dict:
     """The controlled lists of a root. v1: taxonomy.json as it is. v2: concepts, code lists (with labels), areas and
     link roles from their CSVs, assembled in memory; nothing is written back."""
     if data_schema(data_dir) == "v1":
@@ -178,7 +183,13 @@ def load_vocabulary(data_dir: Path = DATA) -> dict:
             "roles": pkg.link_roles(), "sections": pkg.sections(), "site": pkg.settings["site"], "package": pkg}
 
 
-def load_catalogue(data_dir: Path = DATA) -> list[dict]:
+def link_roles(data_dir: Path = PUBLIC_ROOT) -> list[dict]:
+    """The link roles [{key, label, hosts}] of a root, in their editorial order."""
+    voc = load_vocabulary(data_dir)
+    return voc["roles"] if "roles" in voc else voc["linkuri"]["roluri"]
+
+
+def load_catalogue(data_dir: Path = PUBLIC_ROOT) -> list[dict]:
     """Every entry of a root, with the fields that both schemas share: slug, nume, descriere_scurta, descriere,
     url, linkuri, stare, contact, kind (the URL section) and row (its record in the edited table, header = 1).
     v2 entries add their facets (lists; maturity and the primary subject are a string or None), the resolved
@@ -211,7 +222,7 @@ def load_catalogue(data_dir: Path = DATA) -> list[dict]:
             "kind": r["sectiune_url"], "row": n, "entity_type": r["tip_entitate"],
             "primary_subject": r["subiect_principal"] or None, "subjects": values(r["subiecte"]), "topics": values(r["teme"]),
             "purposes": values(r["scopuri"]), "capabilities": values(r["functionalitati"]), "formats": values(r["formate"]),
-            "technologies": values(r["tehnologii"]), "institutions": values(r["institutii_vizate"]),
+            "technologies": values(r["tehnologii"]), "institutions": values(r["institutii_vizate"]), "autor": r["autor_original"],
             "organisation_types": values(r["tip_organizatie"]), "maturity": r["maturitate"] or None,
             "coverage_level": r["nivel_acoperire"], "areas": values(r["arii_acoperite"]), "locality": r["localitate_originala"],
             "civictech": r["civictech_original"], "classification_state": r["clasificare_stare"],
@@ -260,3 +271,79 @@ def save_profile(profile: dict, path: Path = PROFILE):
             "img_h": im.get("h", ""), "img_color": im.get("color", ""), "img_source": im.get("source_url", ""),
         })
     write_csv(path, PROFIL_COLS, rows)
+
+
+# Profile columns that other stages write. A fresh HTTP profile never has them, and a refresh never drops them.
+SEARCH_COLS = ("mentions", "mention_hosts", "search_social")  # scripts/search.py
+OPR_COLS = ("opr",)  # scripts/profile.py --opr
+# Signals of `profile.py --extra`, in groups that change together; the first column leads. A refresh that finds
+# nothing for the lead keeps the old group: a failed call must never turn a known value into a blank.
+EXTRA_GROUPS = (("archive_months", "first_seen", "last_capture"), ("updated", "updated_src"), ("cert_first",), ("wiki_refs",),
+                ("repo", "repo_created", "repo_archived", "stars", "forks", "open_issues", "commits", "contributors",
+                 "last_commit", "license", "language"),
+                ("feed",), ("generator",), ("words",), ("copyright_year",), ("sitemap_urls",), ("icon",))
+
+
+def has_value(v) -> bool:
+    """A found value. 0 and False are values; None and the empty string are not."""
+    return v is not None and v != ""
+
+
+def merge_profile(old: dict | None, fresh: dict) -> dict:
+    """A fresh HTTP profile joined with the stored row of the same slug (both in the shape of load_profile). Pure.
+    Columns of the other stages (SEARCH_COLS, OPR_COLS) survive. A group of EXTRA_GROUPS keeps its old values when the
+    fresh profile found nothing for its lead column; with the same lead value (the same repository), it keeps the old
+    members that the fresh profile lacks. A row for a new address (`url` differs) keeps only SEARCH_COLS: the other
+    signals describe the old site."""
+    out = dict(fresh)
+    if not old:
+        return out
+    for col in SEARCH_COLS:
+        if not has_value(out.get(col)) and has_value(old.get(col)):
+            out[col] = old[col]
+    if has_value(old.get("url")) and has_value(out.get("url")) and old["url"] != out["url"]:
+        return out
+    for col in OPR_COLS:
+        if not has_value(out.get(col)) and has_value(old.get(col)):
+            out[col] = old[col]
+    for lead, *members in EXTRA_GROUPS:
+        if has_value(out.get(lead)) and str(out[lead]) != str(old.get(lead)):
+            continue  # a new lead value: the fresh group replaces the old one
+        for col in (lead, *members):
+            if not has_value(out.get(col)) and has_value(old.get(col)):
+                out[col] = old[col]
+    return out
+
+
+def kept_by_slug(mentions: list[dict]) -> dict[str, list[dict]]:
+    """The kept rows of mentiuni.csv, grouped by slug."""
+    out: dict[str, list[dict]] = {}
+    for r in mentions:
+        if is_kept(r):
+            out.setdefault(r["slug"], []).append(r)
+    return out
+
+
+def label_coverage(mentions: list[dict], labels: list[dict]) -> dict:
+    """How much of the kept search results the labels cover. A label belongs to the kept row of the same slug and URL;
+    a label whose URL is no longer kept (the editor dropped it, or the search no longer returns it) counts for nothing.
+    Returns the kept rows (`kept`), the labelled ones (`labelled`), `ratio` (1.0 when nothing is kept) and, for the slugs
+    that have kept rows, how many are `full` (every kept row labelled), `partial` or `none`."""
+    have = {(l["slug"], l["url"]) for l in labels}
+    kept = kept_by_slug(mentions)
+    labelled = full = partial = none = 0
+    for slug, rows in kept.items():
+        n = sum(1 for r in rows if (slug, r["url"]) in have)
+        labelled += n
+        full += n == len(rows)
+        partial += 0 < n < len(rows)
+        none += n == 0
+    total = sum(len(rows) for rows in kept.values())
+    return {"kept": total, "labelled": labelled, "ratio": labelled / total if total else 1.0,
+            "slugs": len(kept), "full": full, "partial": partial, "none": none}
+
+
+def coverage_line(cov: dict) -> str:
+    """The coverage in one line, for the output of review.py and build.py."""
+    return (f"labels {cov['labelled']}/{cov['kept']} kept rows ({cov['ratio']:.0%}); of {cov['slugs']} entries with kept rows, "
+            f"{cov['full']} are fully labelled, {cov['partial']} partly, {cov['none']} not at all")

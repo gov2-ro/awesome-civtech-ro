@@ -2,6 +2,46 @@
 
 Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
+## v2 migration completion — execution checklist (brief: `docs/briefs/v2-migration-completion.md`)
+
+Branch `taxonomy-v2-migration`. Production stays on v1. No Google, workflow, deploy or release action.
+
+- [x] A. Enrichment on explicit roots: `profile.py`, `search.py`, `review.py --data-dir`; profile merge; label hashes and coverage; copyright date.
+- [x] B. Sheets and Form for v2: new tabs, `_sync` marker as the base, 3-way pull, blocking validation, offline round trips, Form plan and importer.
+- [x] C. Frontend audit defects in `site-v2/`: failed data load, noscript, canonical, observed dates, methodology page.
+- [x] D. Review queue: reconcile R001–R066 with the integration copy; `tehnic` state for non-editorial items; a recommendation on every open item.
+- [x] E. CI: tests, v2 validation and preview build, JS syntax, browser checks, workflow lint; path filters for `site/`, `site-v2/`, workflows.
+- [x] F. Cutover preparation: runbook, a dry-run check of the cutover, documentation of the v2 model.
+
+### Owner decisions and external activation (nothing here was done; each needs the owner)
+
+Editorial, in this order (runbook `docs/briefs/cutover-taxonomy-v2.md`):
+- [x] Merge `taxonomy-v2-migration` into `main` and push (2026-10-22, owner instruction; this deploys the v1 site with the noscript block, the footer methodology link,
+      and the `last_activity` correction: 2 `stale` and 19 `score` changes). Then push. Optional: bump `pages.yml` and the Sheets workflows' action versions after the first green `validate.yml`.
+- [x] Detach the integration copy: the owner ran `--detach` on 2026-10-21 (recorded commit 97304fa); `integrare/pachet.json` committed on 2026-10-22.
+- [x] Decide the 66 open review items (2026-10-22, owner delegated the decisions): 65 closed with their recommendations; C009 left the queue with `incentru`.
+- [x] Moldova area ID `tara:MD` and vocabulary proposals (2026-10-22): accepted `tara:MD`, `tehnologie:retea-de-senzori`, `scop:sustenabilitate-presa`;
+      deferred 6; rejected `regiune:europa-de-est`. `form.py --write-map` ran; `data/form-v2.json` did not change.
+- [x] C013 `nu-astepta-supereroi`: set to `national` + `tara:RO` (2026-10-22).
+- [ ] Write a tagline or description for the 12 live entries without text (see the audit item); decide whether that becomes a publication rule.
+- [x] Accept the entries (`clasificare_stare=acceptat`). 2026-10-22: 121 accepted in bulk on the owner's instruction, not one by one. The owner gave up `incentru` (parked domain, no text, no evidence), so it left the catalogue. 140 entries, all accepted.
+- [ ] Product: introduction text and audience, the rotating jokes, the sort options, and a curated launch date (all in the audit section).
+
+External (Google, GitHub), after the editorial work:
+- [ ] Sheets v1: allow Actions to create PRs; decide the `demoanaf` cell; run `sheets-push` with `force` once to create `_sync`. Do not require `validate / sheets-pull` in branch protection.
+- [~] Sheets v2: the owner created `v2-intrari` on 2026-10-22; its gid 541482181 is in `setari.json`. The tab holds 141 rows (it still has `incentru`): push again from the committed `intrari.csv` before the cutover.
+- [ ] Form v2: no command applies the v2 questions to the live Form yet (`form.py --apply` refuses a v2 root). Implement it, or edit the Form by hand from the plan, before the cutover.
+- [ ] Cutover: `python3 scripts/cutover_v2.py --apply` (refuses while a blocker exists; `--plan` shows none since 2026-10-22), review the diff, commit, push. Rollback: revert that commit.
+
+## mariuscomper.uk import (2026-10-21)
+
+- [x] Add the 20 pages to `proiecte.csv` (v1), profile them, search them. 19 remain.
+- [x] Classify the 19 entries in the v2 integration copy (2026-10-22, after the detach; accepted, confidence `medie`; profile and search rows copied into `observatii/`). Review the facets.
+- [-] `tuneluri-feroviare`: dropped by the owner on 2026-10-22 (weak civic fit: a rail-engineering map, no public-interest question).
+- [ ] Review the 3 entries in `altele` (`ani-de-pensie`, `pensie-din-bursa`, `trei-din-patru`); v1 has no pensions or education domain.
+- [ ] Review the kept search results for name collisions: `iqads.ro` (6) and `republica.ro` (3) name a "Marius Comper"; the law-coverage results of `codurbanism` discuss the law, not the page.
+- [ ] Decide the `--prune-only` drift: on `HEAD` it changes `regula` on 53 rows and `mentions` on 10 other entries. The import reverted it; review it as a separate change.
+
 ## Taxonomy v2 — isolated proposal (spec: `docs/specs/taxonomy-v2.md`)
 
 - [x] Copy all 122 entries into `data/taxonomy-v2/intrari.csv`, with separate subject, purpose, capability, format, technology, and geography facets.
@@ -19,46 +59,68 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [x] Implement core handoff slice 1: upgrade the isolated package and validator to draft.2 without reclassifying entries.
 - [x] Classify all 122 original entries and evaluate against the withheld draft. Preserve the sealed run in `data/taxonomy-v2/runs/2026-10-19-reasoned-evidence/`.
 - [x] Resolve the evaluation's three semantic concerns in a separate integration copy (`data/taxonomy-v2/integrare/`, change log `modificari.csv`).
-- [ ] Owner review of the integration queue (103 open items, 28 high priority): partial records, the abstention, attribution roles, external mappings, and 10 vocabulary proposals. Accept entries only after that review.
-- [ ] Rewrite or close review items R001–R066 against the integration copy. Their texts describe the draft.1 manual proposal.
+- [ ] Owner review of the integration queue: 66 open items (27 high priority: 26 R "description absent" + C009 `incentru`), each with a recommendation; 37 closed `tehnic`. Then accept entries one by one (122 are unaccepted). Publication gate: 149 errors on 2026-10-20.
+- [x] Rewrite or close review items R001–R066 against the integration copy. Their texts describe the draft.1 manual proposal.
+      Done 2026-10-20 (slice D): `integrare/reconciliere.csv`; 29 R open with current values, 37 items `tehnic`.
 - [ ] Choose the ID style for proposed areas before accepting them (`tara:republica-moldova` now; existing countries use ISO codes, `tara:RO`).
+      Recommendation (S001, V009, V010): `tara:MD` with `cod_iso_3166_1=MD`, like `tara:RO`. Owner decision.
 - [ ] Implement an automated inference runner and no-call dry run if a later repeatable experiment needs them. This does not block the current preview.
 - [x] Implement the v2 loaders, validator branch, build contract, and browser facets together. Keep the current data source as the default until cutover.
 - [x] Verify the isolated preview: 40 unit tests (`scripts/test_taxonomy_v2.py`) and 63 browser checks (`scripts/check_preview.py`).
-- [ ] Run `scripts/test_taxonomy_v2.py` in `validate.yml`, with the CI slice. Include `site-v2/` changes in PR validation.
-- [ ] At the cutover, replace `site/app.js` with `site-v2/app.js`, merge `site-v2/v2.css` into `style.css`, and remove `site-v2/`.
-- [ ] Adapt enrichment, Sheets, Form, and CI to the accepted schema. Use separate v2 Sheet tabs during migration.
+- [x] Run `scripts/test_taxonomy_v2.py` in `validate.yml`, with the CI slice. Include `site-v2/` changes in PR validation.
+      Done 2026-10-20: `validate.yml` runs every `scripts/test_*.py` and the browser checks.
+- [~] At the cutover, replace `site/app.js` with `site-v2/app.js`, merge `site-v2/v2.css` into `style.css`, and remove `site-v2/`.
+      Prepared 2026-10-20: `scripts/cutover_v2.py --apply` does it; `--rehearse` checks it in CI.
+- [~] Adapt enrichment, Sheets, Form, and CI to the accepted schema. Use separate v2 Sheet tabs during migration.
+      Done 2026-10-20 for explicit v2 roots (slices A, B, E, F). Open: applying the v2 Form questions to the live Form.
 
-The public site does not consume this package. Production data and the v1 build output are unchanged; the scripts read v2 only with `--data-dir`.
+The public site does not consume this package. `common.PUBLIC_ROOT` is `data/` (v1); the scripts read v2 only with `--data-dir` until `cutover_v2.py --apply`.
 
 ## Audit — 2026-10-19
 
-- [ ] `site/app.js`: a quick click on a choice just after opening a facet can close that facet again. The `toggle` event
+- [~] `site/app.js`: a quick click on a choice just after opening a facet can close that facet again. The `toggle` event
       arrives after the re-render, so `closed` still lists the facet. `site-v2/app.js` reads the open state from the page first.
+      Fixed in `site-v2/app.js`; production gets it with the cutover (`scripts/cutover_v2.py` replaces `site/app.js`).
 
-- [ ] Make Sheets validation a blocking check. `sheets-pull.yml` records both exit codes, but opens the PR even when either command fails.
+- [x] Make Sheets validation a blocking check. `sheets-pull.yml` records both exit codes, but opens the PR even when either command fails.
       The workflow uses `GITHUB_TOKEN`; its PR does not start the normal validation workflow.
-- [ ] Add data-load error handling and a retry to `site/app.js`. An aborted `data.json` request leaves the results blank.
+      Done 2026-10-20: the job fails after it opens the PR and sets the status `validate / sheets-pull` (slice B).
+- [~] Add data-load error handling and a retry to `site/app.js`. An aborted `data.json` request leaves the results blank.
       Offer the static archives when JavaScript fails. The home page also has no main content without JavaScript.
-- [ ] Repair dialog focus. Ctrl/Cmd+K can focus the background search while a dialog stays open.
+      2026-10-20 (slice C): `site-v2/app.js` shows a message, a retry button and the archives; `site/index.html` has a `<noscript>` block.
+      Production JS gets the retry with the cutover.
+- [~] Repair dialog focus. Ctrl/Cmd+K can focus the background search while a dialog stays open.
       Shift+Tab from Close selects a hidden link inside the collapsed report panel; focus stays on Close.
       Changing a mobile filter rebuilds the sheet and drops focus to the body.
       `site-v2/app.js` fixes all three (v0.6.1, with browser checks); `site/app.js` keeps them until the cutover.
-- [ ] Separate observed dates from confirmed launch dates. `isLaunched` uses `since`, which comes from Wayback, repo creation, or TLS.
+- [~] Separate observed dates from confirmed launch dates. `isLaunched` uses `since`, which comes from Wayback, repo creation, or TLS.
       Rename inferred badges or add a curated launch date. Do not treat the first observed trace as a confirmed launch.
-- [ ] Remove the future date from `last_activity`. A 2026 copyright footer produces `2026-12-31` during October.
+      2026-10-20 (slice C): `site-v2/` says "prima urmă observată" and "apărut recent", with "nu este data lansării".
+      Owner decision: a curated launch-date column. Recommendation: none until a "lansat" badge is wanted again; the observed wording is accurate.
+- [x] Remove the future date from `last_activity`. A 2026 copyright footer produces `2026-12-31` during October.
       Give copyright evidence less weight than a dated content update.
-- [ ] Explain the status and ranking methodology. HTTP reachability does not confirm an operating service.
+      Done 2026-10-20 (slice A): a dated update wins; the copyright year is `<year>-01-01`, never after today.
+- [x] Explain the status and ranking methodology. HTTP reachability does not confirm an operating service.
       A source-code link does not establish an open-source licence. The score favours age, page count, and visibility.
+      Done 2026-10-20: `docs/METODOLOGIE.md` (Romanian), linked from the footer.
 - [ ] Fill the 12 live entries with neither a tagline nor a description in the audit build.
       Validation passes with 28 warnings. Separate publication requirements from optional enrichment.
-- [ ] Invalidate review labels when the input URL set or entry changes. `review.py` only detects the old format without `mentiuni_map`.
+      Measured 2026-10-20 (12): reciclare-arad, centrul-pentru-cariere, ce-zice-legea, scoala-pentru-democratie, companii-publice-ro,
+      data-expertforum, e-cutremur, observatori-votcorect, onorata-instanta, open-budget, rezultate-vot, sanatate-mintala.
+      Owner: write the texts (editorial). In v2, the open high-priority R items ("descriere absentă") already block publication.
+      Recommendation: make "a live entry has a tagline or a description" a publication rule of `--publication`; keep the rest as enrichment warnings.
+- [x] Invalidate review labels when the input URL set or entry changes. `review.py` only detects the old format without `mentiuni_map`.
       Report label coverage: once any label exists for a slug, `reach_features` ignores its unlabelled mentions.
-- [ ] Keep canonical and share metadata aligned with SPA navigation. Opening Factual directly, then closing it, leaves its canonical URL on the home view.
+      Done 2026-10-20 (slice A): input hashes per answer; per-URL label join; coverage line in `review.py` and `build.py`.
+- [~] Keep canonical and share metadata aligned with SPA navigation. Opening Factual directly, then closing it, leaves its canonical URL on the home view.
+      Fixed in `site-v2/app.js` (slice C, with browser checks); production at the cutover.
 - [ ] Clarify the primary audience and catalogue scope in the visible introduction. Review the rotating political jokes against that audience.
       Simplify the competing relevance sorts and explain the abbreviated date columns.
-- [ ] Add focused regression checks for profile preservation, label invalidation, score dates, dialog focus, and failed data loads.
+      2026-10-20: the date columns have tooltips in `site-v2/`. Owner decisions: the introduction text, the jokes, and the sorts
+      (the owner's note under *Misc*: one "Relevanță" sort, remove "Active și relevante", add "Cele mai vechi").
+- [x] Add focused regression checks for profile preservation, label invalidation, score dates, dialog focus, and failed data loads.
       Include site changes in PR validation; the current workflow filters only `data/**` and `scripts/**`.
+      Done 2026-10-20: `scripts/test_enrichment.py`, `scripts/check_preview.py` (98 checks), `validate.yml` paths and jobs.
 
 Existing items below also cover profile refresh data loss, Sheets merge conflicts, proposal intake, inactive discovery, and sitemap generation.
 
@@ -79,8 +141,9 @@ Existing items below also cover profile refresh data loss, Sheets merge conflict
 - [x] `README.md` line 54 still lists `profile.py --search --gdelt --opr` (flags removed)
 - [x] `declic`: `url` de-clic.ro is offline; the search finds the live site at declic.ro. Editor
       decides whether to change the url. The `url` is now declic.ro
-- [ ] `profile.py --force` replaces the whole profile row and drops `mentions`, `search_social`
+- [x] `profile.py --force` replaces the whole profile row and drops `mentions`, `search_social`
       and `opr`. Run `search.py --prune-only` after it, or make `profile.py` keep these columns
+      Done 2026-10-20: `common.merge_profile` keeps the columns of other stages (slice A).
 - [ ] Name-collision noise (`465`, `the-sponge`, `declic`, author names such as "Gabriel Popa"):
       check what the labels fix; if too much remains, add per-entry `search_exclude` terms
 - [ ] UI: show the reach features (independent mentions, news, latest mention) on the entry card
@@ -102,14 +165,17 @@ Existing items below also cover profile refresh data loss, Sheets merge conflict
       The first `push` to the real tabs is not done yet.
 - [x] Trim the trailing space in `orgs.csv`, `descriere_scurta` of `code4ro` and `techsoup`. `pull`
       strips it (D2), so the next pull otherwise rewrites the file.
-- [ ] `pull` copies the Sheet over the CSVs with no base. A CSV edit on `main` that `sheets-push` has
+- [x] `pull` copies the Sheet over the CSVs with no base. A CSV edit on `main` that `sheets-push` has
       not written yet shows as a revert in the next pull request. Option: a 3-way merge with the last
       synced commit (needs a marker: a git tag or a cell in the Sheet).
-- [ ] `push --since REF` stops with "row 1 differs" when the columns changed between REF and now.
+      Done 2026-10-20: the Sheet's `_sync` tab names the last pushed commit; `pull` merges three ways and stops on a conflict (exit 3).
+- [x] `push --since REF` stops with "row 1 differs" when the columns changed between REF and now.
       Run `push --force` once after a column change (README says so). Option: detect this case.
-- [ ] GitHub keeps one pending run per concurrency group. If `sheets-push` runs are superseded, the
+      Done 2026-10-20: `push` reads by column name and clears stale columns; `--force` is no longer needed after a column change.
+- [x] GitHub keeps one pending run per concurrency group. If `sheets-push` runs are superseded, the
       next run's `before` is not the state the Sheet was synced from, and the check can give a false
       exit 3. Recovery: run `sheets-push` by hand with `since` or `force`.
+      Done 2026-10-20: `sheets-push` uses the `_sync` marker, not `before`.
 - [ ] The Sheet has a third tab, `propuneri` (Form responses). `sheets.py` ignores it. The
       "Propune un proiect" form is not wired to the pipeline.
 - [x] `CLAUDE.md`: add `sheets.py` to *Commands*, the pipeline sketch and the *Deployment* section.
@@ -125,11 +191,12 @@ Existing items below also cover profile refresh data loss, Sheets merge conflict
       delete that column by hand (0 responses).
 - [ ] Importer for `propuneri`: map the answers to a `proiecte.csv` / `orgs.csv` row with `ANSWER_KEYS`
       in `form.py` (needs a `slug`; the editor accepts each row by hand, as for `review.py`).
-- [ ] Order the Form questions like the `proiecte` columns, so one paste moves a `propuneri` row to
+- [x] Order the Form questions like the `proiecte` columns, so one paste moves a `propuneri` row to
       the tab `proiecte`: Ce propui? (`fel`), Nume, Pe scurt, Descriere, Adresa (URL), Alte linkuri,
       Domeniu, Tip, Acoperire, Oraș, Autor. Today "Adresa (URL)" comes before "Pe scurt". The first
       row pasted by hand (`registrul-firmelor`, 2026-10-18) has `descriere_scurta` and `descriere`
       swapped; it is not known whether the swap came from the Form or from the paste.
+      Done for v2 2026-10-20: `form.py --data-dir` plans the questions in `intrari.csv` column order. The live v1 Form is unchanged.
 - [ ] The Form's first question ("Ce propui?") offers only Proiect, Resursă and Organizație. It does not
       offer `articol`, `ghid`, `campanie` or `cercetare`. Decide whether to add them (`FEL_CHOICES` in
       `form.py`, then `form.py --apply`) or to let the editor set `fel` when copying a row.
@@ -147,9 +214,10 @@ Existing items below also cover profile refresh data loss, Sheets merge conflict
       home page. Today a removed entry returns the GitHub Pages 404.
 - [ ] The og images are WebP. Check a link preview on the networks that matter (Facebook, LinkedIn,
       Telegram, WhatsApp) once the pages are live.
-- [ ] `docs/DATA-SCHEMA.md` can drift from `scripts/common.py`. Add a check to `validate.py` (or CI) that
+- [x] `docs/DATA-SCHEMA.md` can drift from `scripts/common.py`. Add a check to `validate.py` (or CI) that
       every column in `PROIECTE_COLS`, `ORGS_COLS`, `PROFIL_COLS`, `MENTIUNI_COLS` and `ETICHETE_COLS` appears
       in that file.
+      Done 2026-10-20: `scripts/test_docs.py` (also the v2 headers), run by `validate.yml`.
 - [ ] The longest help text (Domeniu, 11 hints) has 772 characters. If the Forms API or the layout
       rejects it, set `HINT_MAX` in `form.py` to 0 to drop the hints from the help text.
 
@@ -165,9 +233,10 @@ Existing items below also cover profile refresh data loss, Sheets merge conflict
       drawer (D5, D6). 19 repos.
 - [ ] A logo that is an SVG is skipped: Pillow cannot decode it (factual.ro has an SVG logo and a
       32 px favicon). Option: rasterise it with Playwright in the browser pass.
-- [ ] `profile.py --only` / `--force` drops `cert_first` while crt.sh answers 502 (2026-10-18:
+- [x] `profile.py --only` / `--force` drops `cert_first` while crt.sh answers 502 (2026-10-18:
       factual, code4ro; restored later with `--extra --only`). `extras_one` keeps an old value only
       when the profile row survives.
+      Done 2026-10-20: the merge keeps `cert_first` when the new fetch has none.
 - [ ] `profile.py --extra` runs a GitHub search for every live entry without a repo, on every run
       (about 75 requests, about 3 minutes at the 30 per minute limit). Store the miss to skip it.
 - [ ] A link host whose favicon fails is fetched again on every run (no stored miss). Today: 0 failures.
@@ -211,7 +280,9 @@ Existing items below also cover profile refresh data loss, Sheets merge conflict
 - [ ] Profiler: a connection timeout gives `blocat` → "Neconfirmat", which the main list shows.
       Two such entries were dead (parlament-transparent, piata-de-spaga; set `stare=offline` by hand
       2026-10-18). Retry from a second network, or count repeated timeouts as `offline`.
-- [ ] CI: actions target Node.js 20 (deprecated); bump `actions/checkout` and the Pages actions.
+- [~] CI: actions target Node.js 20 (deprecated); bump `actions/checkout` and the Pages actions.
+      `validate.yml` uses checkout v7, setup-python v7, upload-artifact v7, setup-uv v10 (latest majors on 2026-10-19; not yet run on GitHub).
+      `pages.yml` and the Sheets workflows still use v4/v5: bump them after the first green `validate.yml` run.
 
 ## Editorial checks
 

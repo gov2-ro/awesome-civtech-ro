@@ -8775,6 +8775,13 @@
         "eticheta_en": "Deferred",
         "definitie_ro": "Editorul a amânat decizia.",
         "statut": "propus"
+      },
+      {
+        "cod": "tehnic",
+        "eticheta_ro": "Închis tehnic",
+        "eticheta_en": "Closed technically",
+        "definitie_ro": "Punctul nu cere decizie editorială: premisa lui nu se aplică clasificării curente, dublează alt punct sau o corecție de cod ori de date l-a rezolvat. Cere motiv și nu are decizie a editorului.",
+        "statut": "propus"
       }
     ],
     "sectiune_url": [

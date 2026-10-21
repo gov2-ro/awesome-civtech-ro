@@ -788,5 +788,9 @@ These decisions refine the specification where it left a choice open.
 - **Draft notices.** The owner hid the "classifications are proposals" notices for now (2026-10-19).
   `DRAFT_NOTE` in `site-v2/app.js` (toolbar and detail panel) and in `scripts/build.py` (archives, `llms.txt`) turns them back on.
   The payload keeps `draft`, and the publication gate is unchanged.
+- **Review queue reconciliation (2026-10-20).** `integrare/reconciliere.csv` rewrites every review item against the integration copy.
+  `integrare.py` applies it and refuses evidence that does not resolve. The new state `tehnic` closes an item that needs no
+  editorial decision: its premise does not apply to the current value, it duplicates an open item of the same or higher priority,
+  or a fix resolved it. It needs a reason and no editor decision. Open items keep a concrete recommendation for the owner.
 - **Cards and archives.** The card's grey line names the first format, as the v1 card named its type.
   Each archive subject group has a hint: its four most frequent topics.

@@ -9,12 +9,21 @@
     uv run scripts/search.py --only a,b --force                # query these again
     uv run scripts/search.py --provider brave                  # one provider only (serper | brave | all)
     uv run scripts/search.py --prune-only                      # apply the rules to the stored rows; no requests
+    uv run scripts/search.py --data-dir data/taxonomy-v2/integrare --dry-run --only a,b   # a v2 root
 
 Needs SERPER_API_KEY and BRAVE_API_KEY. Writes data/mentiuni.csv, one row per (slug, url). Every row
 keeps the rule that would drop it (`regula`); a person overrides the rules in the `editor` column
 (1 keeps, 0 drops) and search.py keeps that column on every rewrite. Then it recomputes `mentions`,
 `mention_hosts` and `search_social` in data/profil.csv from the kept rows.
+
+--data-dir selects the data root (default: the public root, PUBLIC_ROOT in common.py). A v2 root supplies the entries and keeps mentiuni.csv and
+profil.csv in its observatii/ folder (an overlay uses its base's). On a v2 root the author names come from the
+attribution relations (a literal, or the name of the target entry), with `autor_original` as the fallback, and the
+author's own site is the URL of a relation target that is an organisation entry. A literal never matches an
+organisation by its name.
 """
+from __future__ import annotations
+
 import argparse
 import asyncio
 import os
@@ -24,12 +33,16 @@ import time
 import unicodedata
 from datetime import date, datetime, timedelta, timezone
 from html import unescape
+from pathlib import Path
 from urllib.parse import urlparse
 
-import httpx
+try:
+    import httpx
+except ImportError:  # the pure functions (and the tests) work without it; the search itself needs it
+    httpx = None
 
-from common import (load_env, MENTIUNI, MENTIUNI_COLS, SHARE, SOCIAL_HOSTS, domain_of, is_kept, is_url, load_entries, load_mentions,
-                    load_profile, save_profile, split_list, write_csv)
+from common import (load_env, PUBLIC_ROOT, MENTIUNI_COLS, SHARE, SOCIAL_HOSTS, data_schema, domain_of, is_kept, is_url, load_catalogue,
+                    load_mentions, load_profile, observation_paths, save_profile, split_list, write_csv)
 
 SERPER = "https://google.serper.dev/search"
 BRAVE = "https://api.search.brave.com/res/v1/web/search"
@@ -191,13 +204,42 @@ def first_author(autor: str) -> str:
     return re.sub(r"\s*\(.*?\)", "", re.split(r"\s*[/&;]\s*", autor.strip())[0]).strip()
 
 
+# v2 attribution predicates that name who made the entry. A funder, a parent or a used entry is not its author.
+AUTHOR_PREDICATES = ("atribuit_in_sursa", "creat_de", "mentinut_de", "publicat_de")
+note_off = lambda name: re.sub(r"\s*\(.*?\)", "", name).strip()
+
+
+def relation_authors(e: dict) -> list[dict]:
+    """The attribution relations of a v2 entry that name an author (see AUTHOR_PREDICATES), in table order."""
+    return [a for a in e.get("attributions") or [] if a["predicate"] in AUTHOR_PREDICATES and a["name"]]
+
+
+def author_name(e: dict) -> str:
+    """The author for the queries: the first author. v2: the first relation (a literal, or the name of the target
+    entry); without relations, and for v1, the first part of the original `autor` text."""
+    rel = relation_authors(e)
+    return note_off(rel[0]["name"]) if rel else first_author(e.get("autor", ""))
+
+
+def author_parts(e: dict) -> list[tuple[str, str]]:
+    """(name, key into `orgs`) of each author, for own_sites(). v2 with relations: the key is the target's slug (empty
+    for a literal: a similar name is no identity). The original text is the fallback; v1 reads the `autor` cell and
+    looks organisations up by their flat name."""
+    rel = relation_authors(e)
+    if rel:
+        return [(note_off(a["name"]), a["slug"]) for a in rel]
+    v2 = "attributions" in e
+    parts = (note_off(a) for a in re.split(r"\s*[/&;]\s*", e.get("autor", "")))
+    return [(a, "" if v2 else flat(a)) for a in parts if a]
+
+
 def is_rooted(e: dict) -> bool:
     return bool(e["url"]) and urlparse(e["url"]).path.strip("/") == ""
 
 
 def plan(e: dict, providers: set[str]) -> list[tuple[str, str, int]]:
     """(provider, query, pages). A path-based entry gets name queries only: the domain describes the host, not the entry."""
-    dom, nume, autor = domain_of(e["url"]), re.sub(r'["\s]+', " ", e["nume"]).strip(), first_author(e.get("autor", ""))
+    dom, nume, autor = domain_of(e["url"]), re.sub(r'["\s]+', " ", e["nume"]).strip(), author_name(e)
     if autor.lower() in nume.lower():  # "gov2 gov2": the author adds nothing
         autor = ""
     out = []
@@ -224,12 +266,21 @@ def flat(x: str) -> str:
 
 def own_sites(e: dict, p: dict, orgs: dict[str, str]) -> set[str]:
     """Sites that are the entry's own channel: its url (and where that redirects), every site in `linkuri`, and the
-    sites of its authors (an organisation listed in orgs.csv, a domain used as a name, or AUTOR_SITES)."""
+    sites of its authors (an organisation of the catalogue, a domain used as a name, or AUTOR_SITES). `orgs` maps the
+    key of author_parts() to the organisation's URL: v1 the flat name, v2 the slug of an organisation entry."""
     urls = [e["url"], p.get("final_url", ""), *(re.sub(r"^[a-z]+:(?=https?://)", "", t) for t in split_list(e.get("linkuri", "")))]
-    for a in re.split(r"\s*[/&;]\s*", e.get("autor", "")):
-        a = re.sub(r"\s*\(.*?\)", "", a).strip()
-        urls += [orgs.get(flat(a), ""), a if is_url(a) else "", *AUTOR_SITES.get(a.lower(), [])]
+    for a, key in author_parts(e):
+        urls += [orgs.get(key, "") if key else "", a if is_url(a) else "", *AUTOR_SITES.get(a.lower(), [])]
     return {site_key(h) for u in urls if u and (h := urlparse(u if "//" in u else "//" + u).hostname)}
+
+
+def organisation_urls(entries: dict[str, dict], v2: bool) -> dict[str, str]:
+    """The URLs that count as an author's own site, keyed as author_parts() looks them up. v1: the flat name of each
+    organisation row. v2: the slug of each entry of type organizatie, and no other target (a project or a resource
+    that a relation names is not an organisation)."""
+    if v2:
+        return {s: e["url"] for s, e in entries.items() if e["entity_type"] == "organizatie" and e["url"]}
+    return {flat(e["nume"]): e["url"] for e in entries.values() if e["kind"] == "organizatie" and e["url"]}
 
 
 def rule_of(row: dict, own: set[str]) -> str:
@@ -289,20 +340,20 @@ def social_profiles(rows: list[dict], e: dict) -> dict:
     return out
 
 
-def update_profile(rows: list[dict], entries: dict[str, dict]):
-    """mentions, mention_hosts and search_social in profil.csv, from the kept rows of every slug that has rows."""
-    profile = load_profile()
+def update_profile(rows: list[dict], entries: dict[str, dict], path: Path):
+    """mentions, mention_hosts and search_social in the profile CSV at `path`, from the kept rows of every slug that has rows."""
+    profile = load_profile(path)
     for slug in dict.fromkeys(r["slug"] for r in rows):
         if slug not in profile or slug not in entries:
             continue
         mine = [r for r in rows if r["slug"] == slug]
         hosts = list(dict.fromkeys(r["host"] for r in mine if is_kept(r)))
         profile[slug].update(mentions=len(hosts), mention_hosts=" ".join(hosts[:12]), search_social=social_profiles(mine, entries[slug]))
-    save_profile(profile)
+    save_profile(profile, path)
 
 
-def write_rows(rows: list[dict]):
-    write_csv(MENTIUNI, MENTIUNI_COLS, sorted(rows, key=lambda r: r["slug"]))  # stable: query order stays within a slug
+def write_rows(rows: list[dict], path: Path):
+    write_csv(path, MENTIUNI_COLS, sorted(rows, key=lambda r: r["slug"]))  # stable: query order stays within a slug
 
 
 def report(rows: list[dict]):
@@ -320,7 +371,7 @@ def report(rows: list[dict]):
         log(f"  {len(s):4} {len(set(s)):3}  {h}")
 
 
-async def run(todo: list[dict], plans: dict, old: dict[str, list[dict]], rows: list[dict], profile: dict, orgs: dict[str, str]):
+async def run(todo: list[dict], plans: dict, old: dict[str, list[dict]], rows: list[dict], profile: dict, orgs: dict[str, str], path: Path):
     failed, sem = [], asyncio.Semaphore(4)
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
 
@@ -349,7 +400,7 @@ async def run(todo: list[dict], plans: dict, old: dict[str, list[dict]], rows: l
         for r in mine:
             r["regula"] = rule_of(r, own)
         rows[:] = [r for r in rows if r["slug"] != slug] + mine
-        write_rows(rows)  # after every entry: paid results must survive a crash
+        write_rows(rows, path)  # after every entry: paid results must survive a crash
 
     async with httpx.AsyncClient(follow_redirects=True) as client:
         await asyncio.gather(*(one(client, e) for e in todo))
@@ -359,6 +410,7 @@ async def run(todo: list[dict], plans: dict, old: dict[str, list[dict]], rows: l
 def main():
     load_env()
     ap = argparse.ArgumentParser()
+    ap.add_argument("--data-dir", type=Path, default=PUBLIC_ROOT, help="data root (default: the public root, PUBLIC_ROOT in common.py); a v2 root keeps its files in observatii/")
     ap.add_argument("--only", default="", help="comma-separated slugs")
     ap.add_argument("--force", action="store_true", help="query again the slugs that already have rows")
     ap.add_argument("--provider", choices=["serper", "brave", "all"], default="all")
@@ -366,25 +418,27 @@ def main():
     ap.add_argument("--prune-only", action="store_true", help="apply the rules to the stored rows; no requests")
     args = ap.parse_args()
 
-    entries = {e["slug"]: e for e in load_entries()}
-    profile = load_profile()
-    rows = load_mentions()
+    root = args.data_dir.resolve()
+    obs = observation_paths(root)
+    entries = {e["slug"]: e for e in load_catalogue(root)}
+    profile = load_profile(obs["profile"])
+    rows = load_mentions(obs["mentions"])
     old: dict[str, list[dict]] = {}
     for r in rows:
         old.setdefault(r["slug"], []).append(r)
-    orgs = {flat(e["nume"]): e["url"] for e in entries.values() if e["kind"] == "organizatie" and e["url"]}
+    orgs = organisation_urls(entries, data_schema(root) == "v2")
     only = {s for s in args.only.split(",") if s}
     if unknown := only - entries.keys():
         sys.exit(f"unknown slugs: {', '.join(sorted(unknown))}")
 
     if args.prune_only:
         if not rows:
-            sys.exit(f"{MENTIUNI.name} is empty: run search.py first")
+            sys.exit(f"{obs['mentions']} is empty: run search.py first")
         owns = {s: own_sites(entries[s], profile.get(s, {}), orgs) for s in old if s in entries}
         for r in rows:
             r["regula"] = rule_of(r, owns.get(r["slug"], set()))
-        write_rows(rows)
-        update_profile(rows, entries)
+        write_rows(rows, obs["mentions"])
+        update_profile(rows, entries, obs["profile"])
         report(rows)
         return
 
@@ -403,13 +457,15 @@ def main():
     for p in providers:
         if not os.environ.get(f"{p.upper()}_API_KEY"):
             sys.exit(f"{p.upper()}_API_KEY not set")
+    if httpx is None:
+        sys.exit("httpx is missing: run this script with `uv run scripts/search.py`")
     LIMIT.update({p: Limiter(g) for p, g in GAP.items()})
     failed = []
     try:
-        failed = asyncio.run(run(todo, plans, old, rows, profile, orgs))
+        failed = asyncio.run(run(todo, plans, old, rows, profile, orgs, obs["mentions"]))
     finally:
         if rows:
-            update_profile(rows, entries)
+            update_profile(rows, entries, obs["profile"])
     cost = sum(STATS[p]["credits"] * USD[p] if p == "serper" else STATS[p]["requests"] * USD[p] for p in GAP)
     for p in GAP:
         log(f"{p:6} requests {STATS[p]['requests']}  ok {STATS[p]['ok']}  errors {STATS[p]['errors']}"

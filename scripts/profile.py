@@ -10,13 +10,22 @@
     uv run scripts/profile.py --no-shots      # skip the browser screenshot pass
     uv run scripts/profile.py --extra         # only refresh age, activity, GitHub stats and link favicons for every entry
     uv run scripts/profile.py --opr           # Open PageRank (key: OPR_API_KEY)
+    uv run scripts/profile.py --data-dir data/taxonomy-v2/integrare --only a,b   # a v2 root
 
 Writes data/profil.csv and images into site/img/{og,icon,linkicon}/. Web search lives in scripts/search.py.
+--data-dir selects the data root (default: the public root, PUBLIC_ROOT in common.py). A v2 root supplies the entries and keeps its profile in its
+observatii/profil.csv (an overlay uses its base's). Images stay in site/img/, named by slug.
+
+A refresh never drops what other stages wrote: common.merge_profile keeps mentions, mention_hosts and search_social
+(search.py), opr (--opr), and the --extra signals for which the new fetch found nothing (cert_first, wiki_refs, repo
+fields...). The merge runs on every path that replaces a row, --force included.
 
 A person can set an entry's image: save it as site/img/og/<slug>.webp, then run the profiler for that slug (--only).
 The profiler records it with img_source "manual" and never fetches over it. (An image that the profiler wrote
 itself names its source, and is refreshed on --force.)
 """
+from __future__ import annotations
+
 import argparse
 import asyncio
 import io
@@ -25,14 +34,18 @@ import re
 import sys
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 from urllib.parse import urljoin, urlparse
 
-import httpx
-from PIL import Image, ImageOps
-from selectolax.lexbor import LexborHTMLParser as HTMLParser
+try:
+    import httpx
+    from PIL import Image, ImageOps
+    from selectolax.lexbor import LexborHTMLParser as HTMLParser
+except ImportError:  # the pure helpers (and the tests) work without them; main() asks for them
+    httpx = Image = ImageOps = HTMLParser = None
 
-from common import (load_env, LINKICON_DIR, NETWORK_ROLES, ROLES, SHARE, SITE, SOCIAL_HOSTS, domain_of, link_host, load_entries,
-                    load_profile, parse_link, save_profile, split_list)
+from common import (load_env, PUBLIC_ROOT, LINKICON_DIR, NETWORK_ROLES, ROLES, SHARE, SITE, SOCIAL_HOSTS, domain_of, link_host, link_roles, load_catalogue,
+                    load_profile, merge_profile, observation_paths, parse_link, save_profile, split_list)
 
 UA = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
@@ -520,17 +533,20 @@ async def wp_latest(client, base: str) -> str:
     return out
 
 
-async def wiki_refs(client, domain: str) -> int:
-    """Wikipedia articles (ro + en) linking to the domain."""
+async def wiki_refs(client, domain: str) -> int | None:
+    """Wikipedia articles (ro + en) linking to the domain. None when a call failed: the count is unknown, not 0."""
     n = 0
     for lang in ("ro", "en"):
         try:
             r = await client.get(f"https://{lang}.wikipedia.org/w/api.php", timeout=20, params={
                 "action": "query", "list": "exturlusage", "euquery": domain, "eulimit": 500,
                 "eunamespace": 0, "format": "json", "euprop": "title"})
-            n += len({x["title"] for x in r.json().get("query", {}).get("exturlusage", [])})
+            js = r.json()
+            if not isinstance(js, dict) or "query" not in js:  # an error object or a rate-limit page
+                return None
+            n += len({x["title"] for x in js["query"].get("exturlusage", [])})
         except Exception:
-            pass
+            return None
     return n
 
 
@@ -601,12 +617,14 @@ async def extras_one(sem, client, e: dict, p: dict):
             cands += [(feed_date, "feed"), (wp, "wordpress"), (lastmod, "sitemap"), (await header_lastmod(client, url), "server")]
         else:
             cands.append((p.get("last_capture", ""), "arhiva"))
-        p["wiki_refs"] = await wiki_refs(client, domain_of(e["url"]) if rooted else re.sub(r"^https?://(www\.)?", "", e["url"]).rstrip("/"))
+        refs = await wiki_refs(client, domain_of(e["url"]) if rooted else re.sub(r"^https?://(www\.)?", "", e["url"]).rstrip("/"))
+        if refs is not None:  # a failed call leaves the stored count as it was
+            p["wiki_refs"] = refs
         recent = (datetime.now(timezone.utc) - timedelta(days=1)).strftime("%Y-%m-%d")
         best = max(((d, s) for d, s in cands if d and d < recent), default=("", ""))
         p["updated"], p["updated_src"] = best
         log(f"  extra    {p.get('first_seen') or '----------'} {best[0] or '----------'} {best[1]:9} "
-            f"arch:{p.get('archive_months', 0):<3} pages:{p.get('sitemap_urls', '-')!s:<5} wiki:{p['wiki_refs']} {e['slug']}")
+            f"arch:{p.get('archive_months', 0):<3} pages:{p.get('sitemap_urls', '-')!s:<5} wiki:{p.get('wiki_refs', '-')} {e['slug']}")
 
 
 async def link_icon_one(sem, client, host: str, url: str) -> bool:
@@ -624,12 +642,12 @@ async def link_icon_one(sem, client, host: str, url: str) -> bool:
         return ok
 
 
-async def link_icons(client, entries: list[dict], profile: dict, force: bool):
+async def link_icons(client, entries: list[dict], profile: dict, force: bool, roles: list[dict] = ROLES):
     """Favicons for the links that show no network logo: the hosts in `linkuri` and in the social links the
     profiler found, once per host (an existing file is kept unless `force`)."""
     hosts = {}
     for e in entries:
-        links = [parse_link(t, ROLES) for t in split_list(e.get("linkuri", ""))]
+        links = [parse_link(t, roles) for t in split_list(e.get("linkuri", ""))]
         links += list((profile.get(e["slug"], {}).get("social") or {}).items())
         for role, url in links:
             if role not in NETWORK_ROLES and (h := link_host(url)):
@@ -725,21 +743,31 @@ def github_report():
         sys.exit("GitHub refused on a rate limit: the stats of the entries after that call are not updated. Run it again later.")
 
 
+def need_libraries():
+    if httpx is None or Image is None or HTMLParser is None:
+        sys.exit("httpx, pillow and selectolax are missing: run this script with `uv run scripts/profile.py`")
+
+
 async def main():
     load_env()
     ap = argparse.ArgumentParser()
+    ap.add_argument("--data-dir", type=Path, default=PUBLIC_ROOT, help="data root (default: the public root, PUBLIC_ROOT in common.py); a v2 root keeps its profile in observatii/")
     ap.add_argument("--force", action="store_true", help="re-profile everything; with --extra, fetch the link favicons again")
     ap.add_argument("--only", default="")
     ap.add_argument("--no-shots", action="store_true")
     ap.add_argument("--extra", action="store_true", help="age, activity and reach signals (free)")
     ap.add_argument("--opr", action="store_true", help="Open PageRank (OPR_API_KEY)")
     args = ap.parse_args()
+    need_libraries()
 
+    root = args.data_dir.resolve()
+    path = observation_paths(root)["profile"]
+    roles = link_roles(root)
     OG_DIR.mkdir(parents=True, exist_ok=True)
     ICON_DIR.mkdir(parents=True, exist_ok=True)
     LINKICON_DIR.mkdir(parents=True, exist_ok=True)
-    profile = load_profile()
-    entries = [e for e in load_entries() if e["url"]]
+    profile = load_profile(path)
+    entries = [e for e in load_catalogue(root) if e["url"]]
     only = {s for s in args.only.split(",") if s}
     if only:
         todo = [e for e in entries if e["slug"] in only]
@@ -749,15 +777,18 @@ async def main():
     opts = dict(headers=HEADERS, follow_redirects=True, timeout=httpx.Timeout(20, connect=10), max_redirects=8)
     if args.extra or args.opr:
         todo = [e for e in (todo if only else entries) if e["slug"] in profile]
+        before = {e["slug"]: dict(profile[e["slug"]]) for e in todo}
         async with httpx.AsyncClient(verify=False, **opts) as client:
             if args.extra:
                 log(f"extra signals for {len(todo)} entries")
                 sem = asyncio.Semaphore(3)
                 await asyncio.gather(*(extras_one(sem, client, e, profile[e["slug"]]) for e in todo))
-                await link_icons(client, todo, profile, args.force)
+                await link_icons(client, todo, profile, args.force, roles)
             if args.opr:
                 await open_pagerank(client, profile, todo)
-        save_profile(profile)
+        for slug, old in before.items():  # a call that failed in this run leaves the stored value
+            profile[slug] = merge_profile(old, profile[slug])
+        save_profile(profile, path)
         github_report()
         return
     log(f"profiling {len(todo)} of {len(entries)} entries")
@@ -767,8 +798,8 @@ async def main():
         results = await asyncio.gather(*(profile_one(sem, client, insecure, e, profile.get(e["slug"])) for e in todo))
         await asyncio.gather(*(extras_one(sem, insecure, e, p) for e, p in zip(todo, results)))
         for e, p in zip(todo, results):
-            profile[e["slug"]] = p
-        await link_icons(insecure, todo, profile, args.force)
+            profile[e["slug"]] = merge_profile(profile.get(e["slug"]), p)
+        await link_icons(insecure, todo, profile, args.force, roles)
 
     if not args.no_shots:
         need = [e["slug"] for e in todo if profile[e["slug"]]["status"] == "blocat"
@@ -777,7 +808,7 @@ async def main():
         if need:
             await screenshots(profile, need)
 
-    save_profile(profile)
+    save_profile(profile, path)
     counts = {}
     for p in profile.values():
         counts[p["status"]] = counts.get(p["status"], 0) + 1

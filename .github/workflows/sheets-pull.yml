@@ -4,6 +4,11 @@ name: sheets-pull
 # Needs: secret GOOGLE_SA_KEY (the service-account key, JSON), variable SHEET_ID, and
 # Settings -> Actions -> General -> "Allow GitHub Actions to create and approve pull requests".
 # A pull request opened with GITHUB_TOKEN does not start validate.yml, so this job runs validate.py and build.py itself.
+# `sheets.py pull` merges three ways, with the CSVs at the commit named in the Sheet's `_sync` tab as the base. When the Sheet
+# and main changed the same cell, it exits 3 and writes nothing: the job fails and the pull request stays as it was.
+# When validate.py or build.py fails, the job opens or updates the pull request first, sets the commit status
+# `validate / sheets-pull` to failure on its head, and then fails. Do not make that status required in the branch protection
+# of main: other pull requests never get it, so a required status would block them.
 on:
   schedule:
     - cron: "17 */6 * * *"
@@ -12,6 +17,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  statuses: write
 
 concurrency:
   group: sheets
@@ -27,6 +33,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+          fetch-depth: 0 # `sheets.py pull` reads the CSVs at the commit named in the Sheet's sync marker
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -39,7 +46,12 @@ jobs:
         run: |
           uv run scripts/sheets.py diff > "$RUNNER_TEMP/diff.txt"
           cat "$RUNNER_TEMP/diff.txt"
-          uv run scripts/sheets.py pull
+          code=0
+          uv run scripts/sheets.py pull || code=$?
+          if [ "$code" -eq 3 ]; then
+            echo "::error::Conflict: aceeași celulă a fost schimbată în tabel și în main. Lista este în jurnalul acestui pas. Egalați valorile (în tabel sau în CSV), apoi rulați din nou sheets-pull."
+          fi
+          exit "$code"
 
       - name: Check the CSVs
         id: state
@@ -51,6 +63,7 @@ jobs:
           fi
 
       - name: Validate and build
+        id: check
         if: steps.state.outputs.changed == 'true'
         run: |
           # GITHUB_ACTIONS=false: plain "file:line: error: message" lines, which read well in the PR text.
@@ -59,6 +72,8 @@ jobs:
           validate=$?
           python3 scripts/build.py > "$RUNNER_TEMP/build.txt" 2>&1
           build=$?
+          echo "validate=$validate" >> "$GITHUB_OUTPUT"
+          echo "build=$build" >> "$GITHUB_OUTPUT"
           {
             echo "Modificările din tabelul Google, față de \`main\`. Controlați-le, apoi îmbinați cererea (merge)."
             echo "După îmbinare, \`sheets-push\` rescrie tabelul din CSV."
@@ -83,6 +98,7 @@ jobs:
           cat "$RUNNER_TEMP/body.md"
 
       - name: Open or update the pull request
+        id: pr
         if: steps.state.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
@@ -93,11 +109,37 @@ jobs:
           git add data/proiecte.csv data/orgs.csv
           git commit -m "$TITLE"
           git push --force origin "$BRANCH"
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           number=$(gh pr list --head "$BRANCH" --base main --state open --json number --jq '.[0].number // empty')
           if [ -n "$number" ]; then
             gh pr edit "$number" --title "$TITLE" --body-file "$RUNNER_TEMP/body.md"
           else
             gh pr create --base main --head "$BRANCH" --title "$TITLE" --body-file "$RUNNER_TEMP/body.md"
+          fi
+
+      - name: Set the commit status and fail on errors
+        if: steps.state.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SHA: ${{ steps.pr.outputs.sha }}
+          VALIDATE: ${{ steps.check.outputs.validate }}
+          BUILD: ${{ steps.check.outputs.build }}
+        run: |
+          if [ "$VALIDATE" = "0" ] && [ "$BUILD" = "0" ]; then
+            state=success
+            description="validate.py și build.py au trecut"
+          else
+            state=failure
+            description="validate.py: cod $VALIDATE; build.py: cod $BUILD"
+          fi
+          gh api repos/${{ github.repository }}/statuses/"$SHA" \
+            -f state="$state" \
+            -f context='validate / sheets-pull' \
+            -f description="$description" \
+            -f target_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          if [ "$state" = "failure" ]; then
+            echo "::error::validate.py sau build.py a eșuat. Cererea de îmbinare este deschisă, dar starea «validate / sheets-pull» este «failure»."
+            exit 1
           fi
 
       - name: Close the pull request when the Sheet matches main

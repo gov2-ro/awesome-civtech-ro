@@ -2,7 +2,7 @@
 
 This file provides guidance to Codex (claude.ai/code) when working with code in this repository.
 
-CivTech România: a curated directory of Romanian civic-tech projects, resources and organisations, published as a static site. No framework, no package.json, no test suite. User-facing text (site UI, CONTRIBUTING.md, column names, taxonomy keys) is in Romanian; code and comments are in English.
+CivTech România: a curated directory of Romanian civic-tech projects, resources and organisations, published as a static site. No framework, no package.json; stdlib `unittest` files in `scripts/`. User-facing text (site UI, CONTRIBUTING.md, column names, taxonomy keys) is in Romanian; code and comments are in English.
 
 ## Commands
 
@@ -14,20 +14,31 @@ python3 -m http.server -d site 8000         # preview at http://localhost:8000
 python3 scripts/validate.py --data-dir data/taxonomy-v2/integrare      # taxonomy v2 root (draft rules; --publication adds the public gate)
 python3 scripts/build.py --data-dir data/taxonomy-v2/integrare --site-dir /tmp/civtech-v2 --allow-draft   # isolated v2 preview
 python3 scripts/test_taxonomy_v2.py         # v2 package, root selection and isolated-build tests (stdlib)
+python3 scripts/test_enrichment.py          # enrichment stages on explicit data roots (offline)
+python3 scripts/test_sheets_form.py         # sheets.py and form.py, offline (no Google, no credentials)
+python3 -m unittest discover -s scripts -p "test_*.py" -v   # all unit tests (CI runs this)
 uv run scripts/check_preview.py http://localhost:8765/   # browser checks of a served v2 preview (Playwright)
+python3 data/taxonomy-v2/integrare.py       # check integrare/ against a fresh assembly; --write writes it
+python3 data/taxonomy-v2/integrare.py --detach   # owner only, once: integrare/ becomes editable (CI then proves the detach commit)
+python3 scripts/cutover_v2.py --plan|--rehearse DIR   # v2 cutover: blockers and steps / full rehearsal on a copy; --apply only by the owner
 
 uv run scripts/profile.py                   # profile entries missing from profil.csv (--force all, --only slug,slug, --no-shots)
 uv run scripts/profile.py --extra           # age / activity / repo / Wayback / cert / Wikipedia signals (free)
 uv run scripts/profile.py --opr             # Open PageRank (OPR_API_KEY)
 uv run scripts/search.py --dry-run --only slug,slug   # print the search queries; no requests
 uv run scripts/search.py                    # Serper + Brave (SERPER_API_KEY, BRAVE_API_KEY, paid): entries without rows in data/mentiuni.csv (--only, --force, --provider serper|brave|all)
-uv run scripts/search.py --prune-only       # apply the prune rules to the stored rows and recompute mentions in profil.csv (run it after profile.py --force, which drops them); no requests
+uv run scripts/search.py --prune-only       # apply the prune rules to the stored rows and recompute mentions in profil.csv; no requests (profile.py keeps these columns since v0.7.0)
+uv run scripts/profile.py --data-dir data/taxonomy-v2/integrare --only slug,slug   # v2 root; profile and search files in observatii/ (also search.py, review.py)
 uv run scripts/review.py --only slug,slug   # Codex Haiku review + labels for the kept search results (ANTHROPIC_API_KEY); --dry-run prints the request, no API call
 uv run scripts/sheets.py diff|pull|push   # Google Sheet ⇄ proiecte.csv/orgs.csv (GOOGLE_APPLICATION_CREDENTIALS, SHEET_ID in .env); push refuses to overwrite unsynced Sheet edits
+uv run scripts/sheets.py pull --check       # pull, then validate.py; exit 1 on errors
+uv run scripts/sheets.py diff|pull|push --data-dir data/taxonomy-v2/integrare   # v2 tabs: v2-intrari, v2-revizuire
 uv run scripts/form.py [--apply]            # proposal Form questions from taxonomy.json (FORM_ID); default prints the plan
+uv run scripts/form.py --data-dir data/taxonomy-v2/integrare   # v2 questions; offline, no Google call
+uv run scripts/form.py --data-dir data/taxonomy-v2/integrare --import propuneri.csv   # v2: tab `propuneri` export -> intrari.csv rows (--out FILE)
 ```
 
-`validate.py` and `build.py` are stdlib-only and run with plain `python3` (CI uses 3.12). `profile.py`, `search.py` and `review.py` declare their dependencies inline (PEP 723 `# /// script` header) and must be run with `uv run`; `profile.py` and `review.py` use Playwright for JS-rendered pages. After changing scripts, run `validate.py` then `build.py` (that is exactly what CI does). The only automated tests cover taxonomy v2 (`scripts/test_taxonomy_v2.py`); CI does not run them yet.
+`validate.py` and `build.py` are stdlib-only and run with plain `python3` (CI uses 3.12). `profile.py`, `search.py` and `review.py` declare their dependencies inline (PEP 723 `# /// script` header) and must be run with `uv run`; `profile.py` and `review.py` use Playwright for JS-rendered pages. After changing scripts, run `validate.py` then `build.py` (that is exactly what CI does). Three test files cover the scripts: `scripts/test_taxonomy_v2.py`, `scripts/test_enrichment.py` and `scripts/test_sheets_form.py`. `validate.yml` runs all of them, then the v2 package checks, the v2 preview build, the browser checks (`scripts/check_preview.py`) and actionlint.
 
 ## Data pipeline
 
@@ -50,11 +61,11 @@ scripts/build.py → site/data.json  →  site/app.js (vanilla JS, fetches data.
 - `build.py` decides what the site shows: curated description vs. the site's meta description (`pick_desc`, filtering `BOILERPLATE`), link roles from `linkuri` + profiler-found socials, `status` (manual `stare` = `arhivat`/`offline` overrides the profiler; a profiler `offline` with no Wayback capture for over a year shows as `arhivat`; and a retired entry ignores what is live at its old URL), `since` / `stale`, and `score` (0–100: activity 30, reach 25, volume 15, longevity 15, documentation 15) used by the "Relevanță" sort.
 - `site/app.js` keeps all UI state in URL query params (`DEFAULTS` / `FILTERS`), with a few per-browser prefs in localStorage. An open entry lives in the path, `/<kind>/<slug>/` with kind `proiect`, `organizatie` or `resursa` (the old `?p=<slug>` still works). `build.py` writes one page per entry to `site/<kind>/<slug>/` from `site/index.html` (git ignores them; the Pages workflow builds them), so preview with `build.py` first. A new `href`, `src` or `fetch` in `site/index.html` or `app.js` must resolve from that path: the pages carry `<base href="../../">`, and `app.js` prefixes data paths with `ROOT`. `build.py` rewrites the `?v=<hash>` on the `style.css` and `app.js` links in `site/index.html` (Cloudflare caches those two files for hours), so commit `index.html` after a CSS or JS change. `data/site.json` (report-a-problem addresses) is hand-edited; `.gitignore` lists it as an exception.
 - `data/curation.csv`, `data/international.csv`, `data/_OBSOLETE/` aren't read by any script; `international.csv` is the seed for a planned international mirror.
-- **Taxonomy v2 (preview only)**: `data/taxonomy-v2/` is a draft.2 package; `integrare/` is an overlay with the sealed run's classifications. `scripts/taxonomy_v2.py` loads and checks it; `--data-dir` selects it; `--site-dir` keeps a build out of `site/`; `site-v2/` holds the v2 browser code. `data/` (v1) stays the default and the public source until an explicit cutover. Never write into `data/taxonomy-v2/source/`, `reference/` or `runs/`.
+- **Taxonomy v2 (preview only)**: `data/taxonomy-v2/` is a draft.2 package; `integrare/` is an overlay with the sealed run's classifications. `scripts/taxonomy_v2.py` loads and checks it; `--data-dir` selects it; `--site-dir` keeps a build out of `site/`; `site-v2/` holds the v2 browser code. `common.PUBLIC_ROOT` (today `data/`, v1) is the default root and the public source until an explicit cutover (`scripts/cutover_v2.py`, runbook `docs/briefs/cutover-taxonomy-v2.md`). Never write into `data/taxonomy-v2/source/`, `reference/` or `runs/`.
 
 ## Deployment
 
-`.github/workflows/pages.yml` runs `validate.py` + `build.py` on push to `main` and publishes `site/` to GitHub Pages. `sheets-pull.yml` (every 6 h) opens/updates a PR from branch `sheets-sync` with the Sheet's edits; `sheets-push.yml` rewrites the Sheet after a push to `main` that touches the two CSVs. `validate.yml` runs the same two steps on PRs touching `data/` or `scripts/`; `validate.py` emits GitHub annotations when `GITHUB_ACTIONS=true`.
+`.github/workflows/pages.yml` runs `validate.py` + `build.py` on push to `main` and publishes `site/` to GitHub Pages. `sheets-pull.yml` (every 6 h) opens or updates a PR from branch `sheets-sync` with the Sheet's edits. If `validate.py` or `build.py` fails, it still opens the PR, sets the commit status `validate / sheets-pull` to failure, and then fails. `sheets-push.yml` rewrites the Sheet after a push to `main` that touches the two CSVs; `sheets.py push` compares the Sheet with the commit in its `_sync` tab (the last successful push) and writes that marker last. `validate.yml` runs on PRs and pushes to `main` that touch `data/`, `scripts/`, `site/`, `site-v2/` or `.github/workflows/`; `validate.py` emits GitHub annotations when `GITHUB_ACTIONS=true`.
 
 ## Notes
 

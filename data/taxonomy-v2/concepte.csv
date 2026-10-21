@@ -84,6 +84,7 @@ scop:sprijin-organizatii,scop,Sprijin pentru organizații civice,Support for civ
 scop:aparare-drepturi,scop,Apărarea drepturilor,Rights protection,,Sprijină cunoașterea și exercitarea drepturilor.,,,propus
 scop:anticoruptie,scop,Prevenirea și combaterea corupției,Anti-corruption,,Sprijină prevenirea sau combaterea corupției; nu este sinonim cu fenomenul corupției.,,,propus
 scop:pregatire-riscuri,scop,Pregătire pentru riscuri,Risk preparedness,,Sprijină pregătirea și reacția la riscuri.,,,propus
+scop:sustenabilitate-presa,scop,Sustenabilitatea presei,Press sustainability,,Sprijină finanțarea și continuitatea publicațiilor de presă.,,,propus
 functie:cautare,functie,Caută și consultă,Search and browse,,Permite găsirea și consultarea unor înregistrări sau documente.,,,propus
 functie:comparare,functie,Compară,Compare,,"Permite compararea unor opțiuni, indicatori sau entități.",,,propus
 functie:monitorizare,functie,Monitorizează,Monitor,,Urmărește evoluții sau activități în timp.,,,propus
@@ -114,6 +115,7 @@ format:set-date,format,Set de date oferit,Dataset offered,,Un set de date identi
 tehnologie:ai,tehnologie,Utilizează inteligență artificială,Uses artificial intelligence,AI,Descrierea afirmă utilizarea AI în funcționare. Numele proiectului sau o etichetă nu sunt suficiente.,,,propus
 tehnologie:aplicatie-mobila,tehnologie,Aplicație mobilă,Mobile application,,Intrarea oferă o aplicație mobilă.,,,propus
 tehnologie:mcp,tehnologie,Server MCP oferit,MCP server offered,,Intrarea oferă un server MCP. Menționarea unor proiecte MCP asociate nu este suficientă.,,,propus
+tehnologie:retea-de-senzori,tehnologie,Rețea de senzori,Sensor network,,Folosește senzori fizici pentru colectarea sistematică de măsurători.,,,propus
 institutie:primarie,institutie,Primărie sau administrație locală,Municipality or local administration,,Tip de instituție vizată. Nu indică proprietarul sau partenerul proiectului.,,,propus
 institutie:parlament,institutie,Parlament,Parliament,,Instituție parlamentară vizată.,,,propus
 institutie:anaf,institutie,ANAF,Romanian tax administration,,"Instituție vizată sau sursă de date, fără a implica un parteneriat.",,,propus

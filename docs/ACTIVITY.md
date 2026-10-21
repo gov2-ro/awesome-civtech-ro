@@ -1,5 +1,221 @@
 # Activity
 
+## 2026-10-22 — v2 editorial decisions taken on the recommendations; 19 entries added to the integration copy
+
+The owner detached the copy on 2026-10-21 and asked for the decisions "as much as possible", because the project is not live. These are assistant decisions, not owner review.
+
+**Done**
+- Review queue: 65 of 66 open items closed with `decizie_editor` text. Most recommendations said "keep"; 10 items changed 12 entries in `intrari.csv`:
+  `format:ghid` removed from 2 entries (R062, R063) and `format:vizualizare` from `ins-gov2` (C003); `nu-astepta-supereroi` is `national` + `tara:RO` (C013);
+  `data-expertforum` and `crpe` cover `tara:MD`; the two hybrid-war entries cover `regiune:Europa`; `tehnologie:retea-de-senzori` and `scop:sustenabilitate-presa` are assigned.
+- Vocabulary: `tara:MD`, `tehnologie:retea-de-senzori` and `scop:sustenabilitate-presa` added (130 concepts). Of the other proposals: 6 deferred, `regiune:europa-de-est` rejected.
+- Entries: 121 of 122 set to `acceptat` in one pass. The pass checked only that each has a primary subject. It did not review each entry.
+- The 19 mariuscomper.uk entries added to `integrare/intrari.csv` (7 `proiect`, 12 `publicatie`), `acceptat`, confidence `medie`.
+  Their profile and search rows were copied from `data/` into `observatii/` (19 and 213 rows); no new requests.
+- Three tests pinned entry counts (122 and 121). They now read the counts from the data. 269 tests pass.
+- `cutover_v2.py --plan`: 3 blockers, down from 4 on 2026-10-20 (detach done by the owner): `incentru` not accepted, C009 open, `tabs.intrari` null.
+- Later the same day the owner gave up `incentru` and created the tab `v2-intrari`. `incentru` left v1 (`proiecte.csv`, `profil.csv`, `mentiuni.csv`: 34 rows)
+  and v2 (`intrari.csv`, `rezultate.csv`, and its three review items: the validator refuses an item for an unknown entry). Its rows in `observatii/` stay: that folder keeps records of entries that left.
+  `setari.json` has `tabs.intrari = 541482181`, read from the Sheet. `--plan` now shows no blocker: 140 entries, all `acceptat`. The `sursa_rand` of the 19 new entries was recomputed (the removal shifted `proiecte.csv` by one row).
+- `check_preview.py` opened `incentru` to test the abstention panel. It now tests that panel only when an entry has no primary subject. 97 of 97 checks pass.
+
+**Hard**
+- The validator requires the top-level parent of every theme in `subiecte`. `subiect:statistica` has the parent `guvernare-democratie` and `subiect:populatie` has `comunitati-teritoriu`.
+  Adding those parents would misdescribe the entries, so five entries dropped the theme `statistica`, and `ani-de-pensie` and `pensie-din-bursa` use `situatie-sociala`. Statistics is not searchable as a theme for them.
+- `incentru` had no description, a parked domain (last capture 2025-08-16) and no evidence of its purpose. The Wayback lookup timed out. The owner decided to give it up.
+- The two new concepts follow the existing `propus` convention for `statut`.
+
+**Decided**
+- `modificari.csv` is not extended. After the detach the file is not applied, and its rows must match the sealed assembly. Git history and `decizie_editor` are the record.
+- Calculators use `format:formular` (no better format in the vocabulary). Articles use `format:raport` (research) or `format:articol` (explainers). `maturitate` is empty where the page does not state it.
+- Not done: the Form, the v1 tab freeze, the 26 entries without text, and the cutover itself. The tab `v2-intrari` has 141 rows and needs a new push from the committed `intrari.csv`.
+
+## 2026-10-21 — 19 mariuscomper.uk pages added to the v1 data
+
+**Done**
+- Added 20 rows to `data/proiecte.csv`: 7 `proiect`, 10 `cercetare`, 3 `articol`. Author Marius Comper, `civictech=1`. Each text comes from the live page
+  (meta description and page text). A script checked every figure in the descriptions against the page text.
+- On 2026-10-22 the owner dropped `tuneluri-feroviare` (weak civic fit). Its rows left `proiecte.csv`, `profil.csv` and `mentiuni.csv` (4 rows, 0 kept),
+  and its two images were deleted. 19 entries remain: 7 `proiect`, 10 `cercetare`, 2 `articol`.
+- Profiled the 20 (`profile.py --only`): all `activ`, HTTP 200. Image (19 entries after the drop): 16 OG, 3 screenshots (`ani-de-pensie`, `achizitii-directe-ti-2026`, `trei-din-patru`).
+  Icon: 18 (`achizitii-directe-ti-2026` has none).
+- Searched the 20 (`search.py --only`): 22 Serper and 20 Brave requests, 0 errors, ≈ $0.12. 217 result rows (213 after the drop); 103 kept by the rules, 84 after pruning.
+- Measured: `validate.py` 0 errors, 28 warnings (all in older rows). `build.py` writes 141 entries after the drop; the pages build with scores from 25 to 43.
+- `test_cutover.py` pinned the v1 entry count at 122, so it failed at 142. It now counts the rows of `proiecte.csv` and `orgs.csv`. 269 tests pass.
+
+**Hard**
+- The `mc-i` index row for `achizitii-directe-ti-2026` described another page (AFCN funding). The live page is a dashboard of direct-procurement
+  signals. The row uses the live page; the `mc-i` summary for that id is not used.
+- Surname collision: 19 kept results came from `concursurilecomper.ro` and `edituracomper.ro` (a competitions publisher). They are `editor=0` now.
+  Open: 6 `iqads.ro` and 3 `republica.ro` results name a "Marius Comper"; nobody confirmed that it is the same person.
+- `search.py --prune-only` re-applies the rules to all entries. It changed `regula` on 53 older rows and `mentions` on 10 other entries in
+  `profil.csv`: the stored values were older than the current rules. The import reverted both, so the diff holds only the 20 entries.
+
+**Decided**
+- `fel`: v1 has no content tab. Explainers and investigations use `cercetare` or `articol` (tab "Resurse & liste"); tools use `proiect`.
+  The v2 plan moves `cercetare` and `articol` to a new tab. Cost of the alternative (`proiect` for all 20): the pieces would crowd the main tab.
+- The pages have no repository or social links of their own. `linkuri` holds only four dataset links (`date:`).
+- Three entries use `altele`, because v1 has no domain for pensions or education.
+- Not done: classification of the 19 in the v2 integration copy (see BACKLOG). No runbook step covers entries added to v1 after the sealed run.
+
+## 2026-10-20 — Cutover prepared as one tested command; documentation of the v2 preview (slice F)
+
+**Done**
+- `integrare.py --detach` (owner, once): records the commit in `pachet.json`. After it, `integrare/` is editorial, and the check proves
+  only that the overlay at the detach commit still assembles from the sealed run. Tested on temporary copies; the real overlay is not detached.
+- `common.PUBLIC_ROOT` (today `data/`) is the default root of all seven scripts and the loaders. Only the public root may write `site/`;
+  a v2 public root always runs the publication gate, and `--allow-draft` can never target `site/`.
+- `scripts/cutover_v2.py`: `--plan` (blockers and steps), `--apply` (24 exact text edits in 10 files plus the `site-v2/` move; refuses
+  while a blocker exists and writes nothing on any mismatch), `--rehearse DIR` (the whole cutover on a clone, then validation, build,
+  script dry runs, unit tests and `actionlint` there). CI runs the rehearsal on every PR.
+- Runbook `docs/briefs/cutover-taxonomy-v2.md`: owner decisions in order, external actions with commands, post-deploy checks, rollback.
+- Documentation: `DATA-SCHEMA.md` (v1 and v2 files, `observatii/`, `_sync`), `ARCHITECTURE.md` (v2 roots, enrichment, `_sync`,
+  CI; 9 Mermaid blocks parse), `CONTRIBUTING.md` (proposal routes as the code supports them; v2 is not editable by contributors yet),
+  `README.md`, `CLAUDE.md`/`AGENTS.md` command lists (Haiku), `data/taxonomy-v2/README.md` (detach). `scripts/test_docs.py` fails
+  when a column is missing from `DATA-SCHEMA.md`.
+- Measured on the merged branch: 269 unit tests pass (34 cutover, 2 docs). `check_preview.py` 98/98. Rehearsal passes
+  (269 tests in the copy, 6 skipped as cutover-state tests). `actionlint` 1.7.12 + shellcheck 0.10.0 pass on the four workflows.
+  `--plan` lists 4 blockers: 122 unaccepted entries, 27 open high-priority items, `tabs.intrari` null, not detached.
+  The v1 build is byte-identical to the build before slice F (timestamps aside).
+
+**Hard**
+- Existing tests pinned the draft data and the v1 default root. A simulated owner state (detached, accepted, items closed, vocabulary added)
+  exposed 19 failures; the tests now read `PUBLIC_ROOT` and the derived roots, so they hold before and after the cutover.
+- Two local preview servers from earlier sessions held ports 8765 and 8766, so the first browser run checked a stale build.
+  The final run used port 8791. The servers were left running: they are not from this session.
+
+**Decided**
+- Detach before the owner edits, instead of routing every decision through `modificari.csv`. A direct edit and a Sheet pull into
+  `v2-intrari` then work. Cost: after detach, CI proves the derivation only at the detach commit, and `--baseline` is skipped for the overlay.
+- The rehearsal waives the gate only inside its copy, through a driver script. A flag or environment variable in `build.py` would be
+  a way to publish drafts. Cost: the waiver lives in rehearsal code that the tests must keep in step.
+- The cutover removes its own rehearsal step from `validate.yml`; `--rehearse` reports "already applied" afterwards.
+- Not done: applying the v2 questions to the live Form (`form.py --apply` refuses a v2 root). It is an owner item before the cutover.
+
+## 2026-10-20 — Integration review queue reconciled with the current classifications (slice D)
+
+**Done**
+- New code `revizuire_stare:tehnic` ("Închis tehnic"): a closure without an editorial decision. It needs a reason and refuses
+  `decizie_editor`. The publication gate counts only `deschis`. Recorded as a draft.2 amendment in `versiuni.json`.
+- `integrare/reconciliere.csv` (editable, 103 rows): every R, C, S and V item rewritten against `integrare/intrari.csv`, the sealed
+  responses and the C/S items. `integrare.py` applies it and refuses any evidence token that does not resolve (400 tokens, all resolve).
+  The base queue and every `intrari.csv` are unchanged; no classification changed.
+- Result: 66 open (29 R, 23 C, 3 S, 11 V), 37 `tehnic` (31 premise not applicable, 6 duplicates). Open high priority: 28 → 27.
+  Publication gate: 150 → 149 errors (122 unaccepted entries, 27 open high-priority items).
+- Every open item has a "Recomandare: …" with its rationale and evidence. The Moldova area recommendation is `tara:MD`
+  (ISO style, like `tara:RO`); the area is not added.
+- Tests: `scripts/test_taxonomy_v2.py` 56 (16 new). Unit tests overall: 233.
+
+**Hard**
+- "The questioned value" is ambiguous when the integration value equals the draft.1 proposal. The agent closed such an item
+  only when the old label is absent and the description settles the question; otherwise it stays open.
+- The run attaches one excerpt to many facets, so several facet claims are weaker than the response summary. The recommendations say so.
+
+**Decided**
+- Opus review changed one rule: the agent had closed three high-priority R items (R004, R015, R030) as duplicates of medium C items,
+  which removed 3 gate errors. Now the C items (C001, C008, C015) close as duplicates, and the R items stay open at high priority
+  with the C texts. A test checks that a duplicate closure never points to a lower priority.
+- One table for all four prefixes, and the evidence goes into `motiv`, so `schema.json` and the Sheet tab layout stay unchanged.
+  Cost: the evidence is text, not a column a filter can read.
+- The agent's rule for vocabulary proposals ("accept a new concept with two or more evidenced entries") is a recommendation only.
+  It is not in the specification; the owner decides.
+
+## 2026-10-20 — Sheets and Form for v2: sync marker, three-way pull, blocking validation (slice B)
+
+**Done**
+- `sheets.py --data-dir <v2 root>` works only on new tabs: `v2-intrari` (mirror of `intrari.csv`) and, with `--tabs`, `v2-revizuire`.
+  A v2 root refuses `proiecte`, `orgs`, `propuneri` and `_sync`; a v1 root refuses the `v2-` tabs. Every cell is text; multi-value
+  `|` cells get at most a suggestion list, never a strict drop-down.
+- Sync base: a tab `_sync` (`tab, commit, sha256, time`). `push` writes it last, and only when the pushed bytes equal the CSV at
+  `HEAD`. `pull` merges three ways (base = the CSV at the marker's commit) and writes nothing when the Sheet and the repo changed
+  the same cell (exit 3). `push` reads by column name and clears stale columns to the right (a latent bug of the old `push_tab`).
+- `pull --check` validates the pulled rows with the root's checks (v2: per-token IDs and schemes) and exits 1 on errors.
+- `sheets-pull.yml`: a conflict fails the job before any PR change. A failed `validate.py` or `build.py` still opens or updates
+  the PR, then sets the commit status `validate / sheets-pull` to failure and fails the job. `sheets-push.yml` uses the marker, not `before`.
+- `form.py --data-dir <v2 root>` plans 13 questions in `intrari.csv` order (6 kinds, 13 root subjects and 12 formats as
+  checkboxes, 4 coverage levels). `data/form-v2.json` (version 1) maps labels to IDs; it never re-maps a label.
+  `--import FILE.csv` turns `propuneri` rows into `intrari.csv` rows and reports unknown labels. `--apply` and `--save` refuse v2.
+- `scripts/test_sheets_form.py`: 122 tests with an in-memory Sheet, no Google and no network. Real data round trips byte for byte:
+  109 + 13 v1 rows and 122 × 31 v2 cells. The workflow steps run in `bash -e` against stub `uv`, `gh` and `python3`.
+- Measured: 217 unit tests pass; `actionlint` passes on the four workflows.
+
+**Hard**
+- This worktree also started at `v0.3.1` and was fast-forwarded before work.
+- A checkbox cell joins labels with commas, and one subject label contains commas ("Drept, justiție și drepturi").
+  The importer splits by known labels, longest first.
+
+**Decided**
+- A conflict writes nothing for any tab. Cost: one conflicting cell holds back the other Sheet edits until it is settled.
+- An unusable marker (unknown commit, other bytes) is an error, not a silent two-way fallback, which would bring back the
+  "revert" defect. Cost: the owner repairs it once (`--since` or `push --force`).
+- The importer sets `de-revizuit` with an empty subject when a response ticks no subject or several; the ticked IDs go to
+  `nota_clasificare`. Taking the first one would be a guess. This differs from the brief's `propus`; accepted.
+- Do not require `validate / sheets-pull` in branch protection: only the `sheets-sync` PR gets it, so it would block the others.
+- Not verified against Google: `add_worksheet` by the service account, `batch_clear` with two ranges, an empty new tab's values,
+  and `gh api …/statuses` with `GITHUB_TOKEN`.
+
+## 2026-10-20 — Enrichment on explicit roots; profile merge; label hashes; dated last activity (slice A)
+
+**Done**
+- `profile.py`, `search.py`, `review.py` take `--data-dir` (default `data/`). A v2 run reads entries from `load_catalogue` and
+  reads and writes only the root's `observatii/` files. Images stay in `site/img/`. The three scripts now import under plain
+  `python3`; each asks for its libraries only when it needs them.
+- `common.merge_profile(old, fresh)`: a refresh (also `--force`) keeps `mentions`, `mention_hosts`, `search_social`, `opr`, and
+  the `--extra` signals that the new fetch did not return (`cert_first`, `wiki_refs`, the repo group, …). `wiki_refs()` returns
+  None on a failed call instead of a false 0.
+- `search.py` on v2: author names from the attribution relations, `autor_original` as fallback; organisation sites only from
+  relation targets that are organisation entries. Example: `7-ani-de-acasa` now searches "Funky Citizens", not `funky-citizens`.
+- `review.py` on v2: facet IDs with definitions, one array per facet, cited evidence for technologies and typed roles
+  (a quote of at least 12 characters from the supplied text), unknown terms to a proposal list. Output in
+  `observatii/review/` (gitignored); `intrari.csv` is never written. The v1 prompt, schema and suggestion rows are unchanged
+  (compared on all 122 entries).
+- Each review answer stores hashes of the entry text, the sent URL set, the vocabulary, the prompt and the model. A changed hash
+  makes the entry due again. `build.py` counts a label only for a kept row with the same URL; a partly labelled entry adds its
+  unlabelled kept hosts and carries `provisional: true`. `review.py` and `build.py` print the label coverage.
+- `last_activity`: a dated update wins; the copyright year is a fallback, as `<year>-01-01`, never after today.
+- `scripts/test_enrichment.py`: 55 tests, no network. All 95 unit tests pass (also on Python 3.12).
+- Measured: label coverage 0/1408 kept rows (no labels exist yet). Before the fix, 27 profiles had a future
+  last activity (`2026-12-31`). v1 build: `stale` changes on 2 of 122 items (`code4ro` 2026 → 2023; `e-cutremur` empty → 2023),
+  `score` on 19, all lower (17 by 7–8 points; `code4ro` 73 → 49, `e-cutremur` 57 → 33). Nothing else in the build changed.
+- `docs/METODOLOGIE.md` and `docs/DATA-SCHEMA.md` describe the new rules.
+
+**Hard**
+- This worktree also started at `v0.3.1`; the agent rebased its empty branch onto the brief's commit.
+
+**Decided**
+- The hashes stay in the local, untracked `raw.jsonl`. Cost: a fresh checkout treats every entry as due (a paid re-run).
+  A tracked hash file would avoid it, but it adds a file; revisit before the first paid run.
+- A failed fetch never blanks a known value. Cost: a feed that a site really removed stays in the profile until `--extra` finds another.
+- `review.py --dry-run` no longer fetches the homepage (also v1); `--fetch` restores it. A dry run must work offline.
+- The v2 review does not propose `maturitate` or `tip_organizatie`. Maturity needs an explicit declaration (specification).
+
+## 2026-10-19 — v2 browser code: failed load, noscript, head metadata, observed dates, methodology (slice C)
+
+**Done**
+- Work moved to branch `taxonomy-v2-migration`; `main` (8 unpushed commits) is unchanged. Slices A–D ran as Sonnet agents in
+  separate worktrees from the brief `docs/briefs/v2-migration-completion.md`; Opus reviewed and merged each one.
+- CI (`validate.yml`): runs on `site/**`, `site-v2/**` and workflow changes too. Jobs: v1 validation and build, all `scripts/test_*.py`,
+  v2 package and overlay baselines, `integrare.py` reproduction, v2 validation and preview build (uploaded as an artifact),
+  a non-blocking report of the v2 publication gate, `node --check` of both browser files, the browser checks, and `actionlint`.
+  Measured locally: `actionlint` 1.7.12 with shellcheck 0.10.0 passes on all four workflows.
+- Slice C, in `site-v2/app.js` (production `site/app.js` is unchanged; the cutover brings the fixes):
+  a failed or aborted `data.json` request shows a message, a retry button and the three archive links;
+  `canonical`, `og:*` and `twitter:*` follow the open entry and return to the home values on close;
+  `since` is called "prima urmă observată" everywhere ("apărut recent", "nu este data lansării"), with tooltips for Z/L/A.
+- `site/index.html` (shared): a `<noscript>` block with the archive links, and a footer link to the new `docs/METODOLOGIE.md`
+  (Romanian; statuses, dates, score weights, what the score favours, limits; written from the code).
+- Measured: `scripts/check_preview.py` 98/98 (35 new; 4 fail as expected with the old head and badge code).
+  The v1 build differs from the previous build only in `index.html` and the 122 entry pages (the noscript and the footer link).
+
+**Hard**
+- One agent worktree started at `v0.3.1`, not at the branch. The agent fast-forwarded it before working; the others started correctly.
+- `entry_pages()` already puts its own `<noscript>` at the top of each entry page, so the template's block sits inside `#results`.
+
+**Decided**
+- Fix the audit's browser defects in `site-v2/` only, as in v0.6.1. Cost: production keeps them until the cutover.
+- Keep the `nou` URL value; only the wording changes. Old links keep working.
+- The footer link and noscript reach production with the next merge to `main`. The methodology page names the v1 wording too.
+
 ## 2026-10-19 — One footer line for corrections; draft notices hidden
 
 **Done**

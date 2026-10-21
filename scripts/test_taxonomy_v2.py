@@ -3,9 +3,16 @@
     python3 scripts/test_taxonomy_v2.py          # or: python3 -m unittest scripts/test_taxonomy_v2.py -v
 
 Every mutation runs on a temporary copy; the repository's data and site/ are only read.
+
+PACKAGE and OVERLAY are the package and the integration copy in their derived state: the classifications of the sealed run
+that these tests describe (counts, states, the baseline). While integrare/ is derived they are the real folders. After
+`integrare.py --detach` the owner edits the real files, so they are the package as of the detach commit; REAL_PACKAGE and
+REAL_OVERLAY stay the real folders.
 """
+import atexit
 import csv
 import hashlib
+import importlib.util
 import json
 import shutil
 import subprocess
@@ -20,8 +27,33 @@ import common  # noqa: E402
 import taxonomy_v2  # noqa: E402
 
 ROOT = HERE.parent
-PACKAGE = ROOT / "data" / "taxonomy-v2"
-OVERLAY = PACKAGE / "integrare"
+REAL_PACKAGE = ROOT / "data" / "taxonomy-v2"
+REAL_OVERLAY = REAL_PACKAGE / "integrare"
+
+
+def load_integrare():
+    """data/taxonomy-v2/integrare.py as a module (it is a script, not a package member)."""
+    spec = importlib.util.spec_from_file_location("integrare", REAL_PACKAGE / "integrare.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def derived_roots() -> tuple[Path, Path]:
+    """(package, overlay) in the derived state; see the module docstring."""
+    record = json.loads((REAL_OVERLAY / "pachet.json").read_text(encoding="utf-8")).get("detached")
+    if not record:
+        return REAL_PACKAGE, REAL_OVERLAY
+    tmp = tempfile.TemporaryDirectory()
+    atexit.register(tmp.cleanup)
+    try:
+        package = load_integrare().export_tree(record["commit"], Path(tmp.name).resolve())
+    except SystemExit as e:  # export_tree names the problem, for instance a clone without the detach commit
+        raise RuntimeError(f"the tests need the package as of the detach commit {record['commit']}: {e}") from e
+    return package, package / "integrare"
+
+
+PACKAGE, OVERLAY = derived_roots()
 
 
 def run(*args) -> subprocess.CompletedProcess:
@@ -204,7 +236,7 @@ class PackageChecks(unittest.TestCase):
         self.assertEqual([s["key"] for s in data["settings"]["sectiuni"]], ["proiect", "organizatie", "resursa"])
 
     def test_integration_copy_is_reproducible(self):
-        result = run(PACKAGE / "integrare.py")
+        result = run(REAL_PACKAGE / "integrare.py")  # the real overlay: derived (matches a fresh assembly) or detached (seal and commit hold)
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
     def test_technology_claims_have_evidence(self):
@@ -222,9 +254,13 @@ class PackageChecks(unittest.TestCase):
 class RootSelection(unittest.TestCase):
     """Slice 2: explicit data roots, v1 by default; observations and snapshots stay where they belong."""
 
-    def test_default_root_is_v1(self):
-        self.assertEqual(common.data_schema(), "v1")
-        self.assertEqual(common.observation_paths()["profile"], common.DATA / "profil.csv")
+    def test_default_root_is_the_public_root(self):
+        """Before the cutover the public root is the v1 root data/; after it, the integration copy."""
+        self.assertIn(common.PUBLIC_ROOT, (common.DATA, REAL_OVERLAY))
+        self.assertEqual(common.data_schema(), common.data_schema(common.PUBLIC_ROOT))
+        self.assertEqual(common.observation_paths(), common.observation_paths(common.PUBLIC_ROOT))
+        self.assertEqual(common.data_schema(common.DATA), "v1")  # data/ stays a readable v1 root
+        self.assertEqual(common.observation_paths(common.DATA)["profile"], common.DATA / "profil.csv")
 
     def test_v2_roots_are_detected(self):
         self.assertEqual(common.data_schema(PACKAGE), "v2")
@@ -260,9 +296,12 @@ class RootSelection(unittest.TestCase):
     def test_validate_cli_selects_the_root(self):
         self.assertEqual(run("scripts/validate.py").returncode, 0)
         self.assertEqual(run("scripts/validate.py", "--data-dir", OVERLAY).returncode, 0)
-        gate = run("scripts/validate.py", "--data-dir", OVERLAY, "--publication")
+        c = Copy()  # a copy that holds a proposal, whatever the state of the repository's data
+        self.addCleanup(c.close)
+        c.edit("intrari.csv", lambda rows: rows[0].update(clasificare_stare="propus"), c.overlay)
+        gate = run("scripts/validate.py", "--data-dir", c.overlay, "--publication")
         self.assertEqual(gate.returncode, 1)
-        self.assertIn("publication: incentru", gate.stdout + gate.stderr)
+        self.assertIn(f"publication: {c.rows('intrari.csv', c.overlay)[1][0]['slug']}", gate.stdout + gate.stderr)
 
     def test_publication_gate_passes_when_everything_is_accepted(self):
         c = Copy()
@@ -282,6 +321,191 @@ class RootSelection(unittest.TestCase):
         self.assertEqual(c.errors(publication=True), [])
 
 
+# What a recommendation must not be: the empty or placeholder proposals of the generated queue.
+GENERIC_PROPOSALS = {"", "verificare manuală", "verificare cu dovezi primare", "dovadă primară pentru format"}
+
+
+class ReviewReconciliation(unittest.TestCase):
+    """Slice D: the technical closure `tehnic`, the reconciliation of the review queue, and the recommendations."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.base = taxonomy_v2.read_table(PACKAGE / "revizuire.csv")[1]
+        cls.queue = taxonomy_v2.read_table(OVERLAY / "revizuire.csv")[1]
+        cls.recon = taxonomy_v2.read_table(OVERLAY / "reconciliere.csv")[1]
+        cls.integrare = load_integrare()
+
+    def setUp(self):
+        self.c = Copy()
+        self.addCleanup(self.c.close)
+
+    # --- the code `tehnic` and its rule ---------------------------------------------------------------------------------
+
+    def test_tehnic_is_a_code_of_the_review_states(self):
+        self.assertIn("tehnic", taxonomy_v2.load(PACKAGE).codes["revizuire_stare"])
+
+    def test_technical_closure_needs_a_reason(self):
+        def close(rows):
+            rows[0].update(stare="tehnic", motiv="  ", decizie_editor="")
+        self.c.edit("revizuire.csv", close, self.c.overlay)
+        self.assertTrue(any("a technical closure needs a reason" in e for e in self.c.errors(self.c.overlay)))
+
+    def test_technical_closure_refuses_an_editor_decision(self):
+        def close(rows):
+            rows[0].update(stare="tehnic", motiv="Premisa nu se aplică.", decizie_editor="acceptat de test")
+        self.c.edit("revizuire.csv", close, self.c.overlay)
+        self.assertTrue(any("no editor decision" in e for e in self.c.errors(self.c.overlay)))
+
+    def test_technical_closure_with_a_reason_passes(self):
+        def close(rows):
+            rows[0].update(stare="tehnic", motiv="Premisa nu se aplică.", decizie_editor="")
+        self.c.edit("revizuire.csv", close, self.c.overlay)
+        self.assertEqual(self.c.errors(self.c.overlay), [])
+
+    def test_gate_ignores_technical_closures(self):
+        def accept(rows):
+            for r in rows:
+                r["clasificare_stare"] = "acceptat"
+
+        def close(rows):
+            for r in rows:
+                if r["prioritate"] == "mare":
+                    r.update(stare="tehnic", motiv="Închis tehnic de test.", decizie_editor="")
+        self.c.edit("intrari.csv", accept)
+        self.assertNotEqual(self.c.errors(publication=True), [])  # open high-priority items still block
+        self.c.edit("revizuire.csv", close)
+        self.assertEqual(self.c.errors(publication=True), [])
+
+    def test_gate_counts_only_open_high_priority_items(self):
+        errors = taxonomy_v2.check(OVERLAY, publication=True)[0]
+        blocking = {r["id"] for r in self.queue if r["stare"] == "deschis" and r["prioritate"] == "mare"}
+        listed = {e.rsplit(" ", 1)[-1] for e in errors if "review item" in e}
+        self.assertEqual(listed, blocking)
+
+    def test_a_duplicate_closure_never_lowers_the_priority(self):
+        """A closed duplicate points to an open item of the same or a higher priority, so the gate loses nothing."""
+        rank = {"mare": 0, "medie": 1, "mica": 2}
+        items = {r["id"]: r for r in self.queue}
+        for r in self.queue:
+            if r["stare"] == "tehnic" and r["motiv"].startswith("Dublură a "):
+                kept = items[r["motiv"].split()[2].rstrip(":")]
+                self.assertEqual(kept["stare"], "deschis", r["id"])
+                self.assertLessEqual(rank[kept["prioritate"]], rank[r["prioritate"]], r["id"])
+
+    # --- the reconciliation table ----------------------------------------------------------------------------------------
+
+    def test_every_r_item_has_a_reconciliation_row(self):
+        r_ids = [r["id"] for r in self.base]
+        self.assertEqual(r_ids, [f"R{n:03d}" for n in range(1, 67)])
+        recon_ids = [r["id"] for r in self.recon]
+        self.assertEqual(len(recon_ids), len(set(recon_ids)))
+        self.assertLessEqual(set(r_ids), set(recon_ids))
+        self.assertLessEqual(set(recon_ids), {r["id"] for r in self.queue})  # no row for an item that does not exist
+
+    def test_reconciliation_keeps_priorities_and_takes_no_decision(self):
+        old = {r["id"]: r for r in self.base}
+        for r in self.queue:
+            if r["id"] in old:
+                self.assertEqual(r["prioritate"], old[r["id"]]["prioritate"], r["id"])
+            self.assertIn(r["stare"], ("deschis", "tehnic"), r["id"])  # nothing is accepted, rejected or deferred
+            self.assertEqual(r["decizie_editor"], "", r["id"])
+        self.assertEqual({r["stare"] for r in self.base}, {"deschis"})  # the base queue is unchanged
+
+    def test_every_technical_closure_says_why_and_cites_evidence(self):
+        recon = {r["id"]: r for r in self.recon}
+        closed = [r for r in self.queue if r["stare"] == "tehnic"]
+        self.assertTrue(closed)
+        for r in closed:
+            self.assertEqual(recon[r["id"]]["rezultat"], "tehnic", r["id"])
+            self.assertGreater(len(r["motiv"].split()), 12, r["id"])
+            self.assertIn("Dovadă:", r["motiv"], r["id"])
+
+    def test_every_open_item_has_a_concrete_recommendation(self):
+        opened = [r for r in self.queue if r["stare"] == "deschis"]
+        self.assertTrue(opened)
+        for r in opened:
+            self.assertNotIn(r["propunere"].strip(), GENERIC_PROPOSALS, r["id"])
+            self.assertTrue(r["propunere"].startswith("Recomandare: "), f"{r['id']}: {r['propunere'][:60]}")
+            self.assertGreaterEqual(len(r["propunere"].split()), 5, r["id"])  # a verb and a named value, not a label
+            self.assertGreater(len(r["motiv"].split()), 12, r["id"])
+            self.assertIn("Dovadă:", r["motiv"], r["id"])
+
+    def test_moldova_recommendation_uses_the_iso_style_id(self):
+        carrying = [r["id"] for r in self.queue if r["stare"] == "deschis" and "tara:MD" in r["propunere"] and "cod_iso_3166_1=MD" in r["propunere"]]
+        self.assertTrue(carrying, "no open item recommends tara:MD with cod_iso_3166_1=MD")
+        areas = taxonomy_v2.load(PACKAGE).areas
+        self.assertNotIn("tara:MD", areas)  # the recommendation does not add the area
+        self.assertNotIn("tara:republica-moldova", areas)
+        self.assertEqual(areas["tara:RO"]["cod_iso_3166_1"], "RO")  # the style that the recommendation follows
+
+    def test_reconciliation_table_has_the_expected_header(self):
+        header = taxonomy_v2.read_table(OVERLAY / "reconciliere.csv")[0]
+        self.assertEqual(header, ["id", "rezultat", "camp", "valoare_originala", "propunere", "motiv", "dovada"])
+        self.assertTrue({r["rezultat"] for r in self.recon} <= {"pastrat", "rescris", "tehnic"})
+
+    # --- the evidence of every row must exist -------------------------------------------------------------------------------
+
+    def test_every_citation_in_the_table_resolves(self):
+        generated = {}
+        for r in self.recon:
+            tokens = r["dovada"].split("|") if r["dovada"] else []
+            self.assertTrue(tokens, r["id"])
+            for token in tokens:
+                self.assertTrue(self.integrare.citation_exists(token, generated, PACKAGE), f"{r['id']}: {token}")
+
+    def test_invented_evidence_is_refused(self):
+        exists = lambda token, generated: self.integrare.citation_exists(token, generated, PACKAGE)
+        slug = "7-ani-de-acasa"
+        self.assertTrue(exists(f"clasificare-input.csv:{slug}:descriere", {}))  # an empty cell proves an absent description
+        self.assertTrue(exists(f"runs/2026-10-19-reasoned-evidence/responses/{slug}.json:justifications[subiect_principal]", {}))
+        self.assertTrue(exists(f"runs/2026-10-19-reasoned-evidence/responses/{slug}.json:excluded_legacy_tags[tip=educativ]", {}))
+        for token in (f"clasificare-input.csv:{slug}:nu_exista",                      # unknown column
+                      "clasificare-input.csv:slug-inventat:descriere",                 # unknown row
+                      f"runs/2026-10-19-reasoned-evidence/responses/{slug}.json:justifications[teme=subiect:inventat]",  # unknown value
+                      f"runs/2026-10-19-reasoned-evidence/responses/{slug}.json:cheie_inventata",  # unknown key
+                      "runs/2026-10-19-reasoned-evidence/responses/slug-inventat.json:uncertainties",  # unknown file
+                      "../scripts/common.py:x:y",                                      # outside the package
+                      "/etc/hosts:x:y", "concepte.csv", "", f" clasificare-input.csv:{slug}:descriere"):
+            self.assertFalse(exists(token, {}), token)
+
+    def test_reconcile_rejects_bad_tables(self):
+        reconcile = self.integrare.reconcile
+        columns = taxonomy_v2.read_table(OVERLAY / "intrari.csv")[0]
+        good = {"id": "R001", "rezultat": "rescris", "camp": "clasificare", "valoare_originala": "x", "propunere": "Recomandare: păstrați x.",
+                "motiv": "Motiv.", "dovada": "clasificare-input.csv:7-ani-de-acasa:descriere"}
+
+        def queue():
+            return [{"id": "R001", "slug": "7-ani-de-acasa", "camp": "clasificare", "valoare_originala": "descriere absentă",
+                     "propunere": "verificare manuală", "motiv": "Motiv vechi.", "prioritate": "mare", "stare": "deschis", "decizie_editor": ""}]
+
+        def fails(*rows, items=None):
+            with self.assertRaises(SystemExit):
+                reconcile(items or queue(), list(rows), columns, {})
+
+        items = queue()
+        reconcile(items, [good], columns, {})  # the good row is applied
+        self.assertEqual((items[0]["propunere"], items[0]["stare"]), ("Recomandare: păstrați x.", "deschis"))
+        self.assertTrue(items[0]["motiv"].endswith("Dovadă: clasificare-input.csv:7-ani-de-acasa:descriere"))
+        items = queue()
+        reconcile(items, [dict(good, rezultat="tehnic")], columns, {})
+        self.assertEqual(items[0]["stare"], "tehnic")
+        fails()                                                                    # an R item without a row
+        fails(good, dict(good))                                                    # duplicate id
+        fails(good, dict(good, id="R999"))                                         # row for an item that does not exist
+        fails(dict(good, rezultat="inchis"))                                       # unknown result
+        fails(dict(good, camp="localitati_acoperite"))                             # not a column
+        fails(dict(good, rezultat="tehnic", dovada=""))                            # a closure without evidence
+        fails(dict(good, rezultat="tehnic", motiv=" "))                            # a closure without a reason
+        fails(dict(good, dovada="clasificare-input.csv:7-ani-de-acasa:inventat"))  # invented evidence
+        fails(dict(good, rezultat="pastrat"))                                      # pastrat must keep the text and carry no evidence
+        keep = {"id": "R001", "rezultat": "pastrat", "camp": "clasificare", "valoare_originala": "descriere absentă",
+                "propunere": "verificare manuală", "motiv": "Motiv vechi.", "dovada": ""}
+        items = queue()
+        reconcile(items, [keep], columns, {})
+        self.assertEqual(items[0]["stare"], "deschis")
+        self.assertEqual(items[0]["motiv"], "Motiv vechi.")
+
+
 class Build(unittest.TestCase):
     """Slice 3: the v2 build writes only to its own folder and publishes no private data."""
 
@@ -298,12 +522,16 @@ class Build(unittest.TestCase):
         cls.tmp.cleanup()
 
     def test_v2_build_needs_a_separate_site_dir(self):
-        result = run("scripts/build.py", "--data-dir", OVERLAY, "--allow-draft")
+        """A v2 root that is not the public root never writes site/, whatever the public root is (PACKAGE never is)."""
+        result = run("scripts/build.py", "--data-dir", PACKAGE, "--allow-draft")
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("separate --site-dir", result.stderr)
 
     def test_v2_build_needs_allow_draft_for_proposals(self):
-        result = run("scripts/build.py", "--data-dir", OVERLAY, "--site-dir", Path(self.tmp.name) / "refused")
+        c = Copy()  # a copy that holds proposals, whatever the state of the repository's data
+        self.addCleanup(c.close)
+        c.edit("intrari.csv", lambda rows: rows[0].update(clasificare_stare="propus"), c.overlay)
+        result = run("scripts/build.py", "--data-dir", c.overlay, "--site-dir", Path(self.tmp.name) / "refused")
         self.assertNotEqual(result.returncode, 0)
         self.assertFalse((Path(self.tmp.name) / "refused").exists())
 
@@ -319,7 +547,11 @@ class Build(unittest.TestCase):
         pages = [p for k in ("proiect", "organizatie", "resursa") for p in (self.out / k).glob("*/index.html")]
         self.assertEqual(len(pages), 122)
         self.assertTrue(all((self.out / k / "index.html").exists() for k in ("proiect", "organizatie", "resursa")))
-        self.assertIn('href="v2.css?v=', (self.out / "index.html").read_text())
+        index = (self.out / "index.html").read_text()
+        if (ROOT / "site-v2").is_dir():  # before the cutover a v2 preview links the extra stylesheet
+            self.assertIn('href="v2.css?v=', index)
+        else:  # after it, style.css holds those rules
+            self.assertNotIn("v2.css", index)
 
     def test_payload_contract(self):
         d = self.data

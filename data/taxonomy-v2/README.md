@@ -67,7 +67,7 @@ Un rezultat cu zero erori verifică structura. Nu confirmă corectitudinea clasi
 | `catalogue.json` | Export al tabelelor pentru consum programatic | Nu; rulați `validate.py --export` |
 | `schema.json` | Contractul structurii: coloane, chei, regulile câmpurilor și lista de coduri a fiecărui câmp | Numai când schimbați modelul |
 | `versiuni.json` | Istoricul versiunilor pachetului | Numai la o versiune nouă |
-| `integrare/` | Copia de integrare a rulării înghețate (vezi mai jos) | Numai `modificari.csv`; restul se regenerează |
+| `integrare/` | Copia de integrare a rulării înghețate (vezi mai jos) | Numai `modificari.csv` și `reconciliere.csv`; restul se regenerează |
 | `corespondente-v1.csv` | Trecerea de la categorii și etichete vechi la concepte candidate | Istoric de migrare |
 | `atribuiri-initiale.csv` | Dovada locală și raționamentul pentru clasificarea inițială | Istoric de migrare |
 | `observatii/` | Copii de lucru ale profilurilor și mențiunilor; același format ca înainte | Numai prin viitoarele scripturi adaptate |
@@ -139,6 +139,8 @@ Perechea `(lista,cod)` este unică. `ordine` este un număr întreg, unic în li
 `schema.json` leagă fiecare coloană de lista ei, de exemplu `stare` → `stare_manual`.
 Un câmp opțional rămâne gol. Nu adăugați un rând cu cod gol.
 Un cod cu `statut=retras` nu mai poate fi folosit.
+Lista `revizuire_stare` are și codul `tehnic` (Închis tehnic): punctul nu cere decizie editorială.
+Regula lui este în [Reconcilierea cozii de revizuire](#reconcilierea-cozii-de-revizuire).
 Un rol nou din `roluri-linkuri.csv` are nevoie și de suport în cod pentru a apărea corect pe site.
 `setari.json` nu mai conține secțiuni sau roluri. Validatorul respinge o a doua sursă pentru aceste liste.
 
@@ -152,7 +154,8 @@ Vocabularul, listele, ariile, relațiile, observațiile și copiile sursă vin d
 | `intrari.csv` | Clasificarea rulării; textele, linkurile, contactele, `stare` și `nota` din `source/`, după `sursa_fisier` și `sursa_rand` |
 | `modificari.csv` | Jurnalul corecțiilor făcute de om. Se adaugă rânduri; nu se rescriu cele existente |
 | `rezultate.csv` | Rezultatul fiecărui răspuns (`classified`, `partial`, `insufficient_evidence`) și hashul lui |
-| `revizuire.csv` | R001–R066 din pachet, C pentru incertitudinile rulării, S pentru cele trei probleme semantice, V pentru propuneri |
+| `revizuire.csv` | R001–R066 din pachet, reconciliate cu această copie; C pentru incertitudinile rulării, S pentru cele trei probleme semantice, V pentru propuneri |
+| `reconciliere.csv` | Un rând pentru fiecare punct R, plus recomandarea pentru punctele C, S și V. Se editează; `integrare.py` îl aplică la `revizuire.csv` |
 | `propuneri-vocabular.csv` | Concepte și arii propuse. Nu sunt în `concepte.csv` și nu sunt atribuite |
 
 Intrarea `incentru` nu are subiect: rularea s-a abținut. Are `clasificare_stare=de-revizuit`.
@@ -160,9 +163,59 @@ Celelalte 121 de intrări au `propus`. Cele 16 rezultate parțiale rămân marca
 
 ```sh
 python3 data/taxonomy-v2/integrare.py           # verifică dacă integrare/ corespunde rulării și jurnalului
-python3 data/taxonomy-v2/integrare.py --write   # regenerează integrare/ după o modificare în modificari.csv
+python3 data/taxonomy-v2/integrare.py --write   # regenerează integrare/ după o modificare în modificari.csv sau reconciliere.csv
 python3 data/taxonomy-v2/validate.py --root data/taxonomy-v2/integrare --baseline --export
 ```
+
+### Reconcilierea cozii de revizuire
+
+Punctele R001–R066 din `revizuire.csv` de bază au fost scrise pentru propunerea manuală draft.1.
+Valorile lor originale și propunerile lor pot să nu existe în această copie. Coada de bază rămâne neschimbată.
+`integrare/reconciliere.csv` compară fiecare punct R cu `integrare/intrari.csv`.
+`integrare.py` aplică fișierul când asamblează `integrare/revizuire.csv`. Nicio clasificare nu se schimbă prin reconciliere.
+
+| Coloană | Sens |
+| --- | --- |
+| `id` | Punctul: R001, C001, S001 sau V001. Fiecare punct R are un rând |
+| `rezultat` | `pastrat` (textul rămâne), `rescris` (câmpul, valoarea curentă, recomandarea și motivul se scriu din nou) sau `tehnic` (punctul se închide) |
+| `camp` | Câmpul întrebării: o coloană din `intrari.csv`, `clasificare` sau `vocabular` |
+| `valoare_originala` | Valoarea curentă din `integrare/intrari.csv` |
+| `propunere` | Recomandarea pentru editor. Un punct deschis începe cu «Recomandare:» și numește o valoare sau o acțiune |
+| `motiv` | De ce. `integrare.py` adaugă dovezile la sfârșitul lui, după «Dovadă:» |
+| `dovada` | Dovezi separate prin `|`. Fiecare numește un fișier și un câmp care există |
+
+Starea `tehnic` înseamnă că punctul nu cere decizie editorială. Se folosește numai în trei cazuri:
+
+1. Premisa nu se aplică valorii curente din `integrare/intrari.csv`.
+2. Punctul dublează exact un punct C sau S: aceeași intrare, același câmp, aceeași întrebare.
+3. O corecție de cod sau de date a rezolvat punctul.
+
+Un punct `tehnic` cere un `motiv` și nu are `decizie_editor`. Poarta de publicare numără numai punctele `deschis`.
+Editorul decide în continuare fiecare punct deschis. O recomandare nu este o decizie.
+Dacă nu există certitudine, punctul rămâne deschis.
+
+O dovadă are una dintre formele:
+
+- `fisier.csv:cheie:coloana`. Cheia este valoarea din prima coloană a fișierului.
+  Exemple: `clasificare-input.csv:efor:oras_original`, `integrare/intrari.csv:crpe:arii_acoperite`, `concepte.csv:tehnologie:ai:definitie_ro`, `observatii/profil.csv:jailando:last_capture`.
+  O celulă goală este dovada unei lipse, de exemplu a unei descrieri.
+- `runs/<rulare>/responses/<slug>.json:cheie` sau `cheie[câmp=valoare]`. Cheia este una din cheile răspunsului sigilat, de exemplu
+  `justifications`, `uncertainties`, `conflicts` sau `excluded_legacy_tags`.
+
+`integrare.py` refuză o dovadă care nu există și un punct R fără rând. Fișierele din `runs/`, `source/` și `reference/` nu se modifică.
+
+### Detașarea copiei
+
+Înainte de revizuirea editorială, proprietarul rulează o singură dată:
+
+```sh
+python3 data/taxonomy-v2/integrare.py --detach   # apoi commit
+```
+
+Comanda scrie în `pachet.json` commitul și data detașării. După detașare, fișierele din `integrare/` se editează direct,
+de mână sau prin fila `v2-intrari` a tabelului. `integrare.py` nu le mai regenerează. Verificarea dovedește doar că
+`integrare/` de la commitul detașării corespunde rulării sigilate. Detașați înainte de orice modificare a vocabularului:
+o modificare a vocabularului face rularea să nu mai corespundă, iar `--detach` refuză.
 
 ## Previzualizare
 

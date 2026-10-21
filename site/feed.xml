@@ -3,7 +3,7 @@
 <title>CivTech România — proiecte noi</title><link>https://civtech.gov2.ro/</link>
 <atom:link href="https://civtech.gov2.ro/feed.xml" rel="self" type="application/rss+xml"/>
 <description>Cele mai noi proiecte din colecția CivTech România.</description><language>ro</language>
-<lastBuildDate>Sun, 18 Oct 2026 21:42:56 +0000</lastBuildDate>
+<lastBuildDate>Wed, 21 Oct 2026 23:24:35 +0000</lastBuildDate>
 <item><title>România Interactivă</title><link>https://civtech.gov2.ro/proiect/romania-interactiva/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/romania-interactiva/</guid>
 <description>Clasamente, calculatoare și vizualizări din date oficiale</description><pubDate>Mon, 12 Oct 2026 00:00:00 +0000</pubDate></item>
 <item><title>De Obște</title><link>https://civtech.gov2.ro/proiect/de-obste/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/de-obste/</guid>
@@ -18,12 +18,24 @@
 <description>Joc: ești prim-ministru patru ani. Cu ce politician semeni?</description><pubDate>Thu, 08 Oct 2026 00:00:00 +0000</pubDate></item>
 <item><title>A Făcut?</title><link>https://civtech.gov2.ro/proiect/afacut/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/afacut/</guid>
 <description>Verifică investițiile publice din localitatea ta</description><pubDate>Tue, 06 Oct 2026 00:00:00 +0000</pubDate></item>
+<item><title>Ce face statul cu 1.000 de lei?</title><link>https://civtech.gov2.ro/proiect/ce-face-statul-cu-1000-de-lei/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/ce-face-statul-cu-1000-de-lei/</guid>
+<description>Veniturile și cheltuielile statului, explicate la 1.000 de lei</description><pubDate>Sun, 04 Oct 2026 00:00:00 +0000</pubDate></item>
+<item><title>Câți ani de pensie apuci?</title><link>https://civtech.gov2.ro/proiect/ani-de-pensie/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/ani-de-pensie/</guid>
+<description>Calculator: luna pensionării și anii de după ea (Legea 360/2023)</description><pubDate>Sun, 04 Oct 2026 00:00:00 +0000</pubDate></item>
 <item><title>EuropeScope</title><link>https://civtech.gov2.ro/proiect/europescope/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/europescope/</guid>
 <description>Activitatea Parlamentului European și a Consiliului UE</description><pubDate>Sun, 04 Oct 2026 00:00:00 +0000</pubDate></item>
+<item><title>Hazard seismic 2026 pe localități</title><link>https://civtech.gov2.ro/proiect/cat-de-tare/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/cat-de-tare/</guid>
+<description>Valorile oficiale de hazard seismic pentru 3.181 de localități</description><pubDate>Sun, 04 Oct 2026 00:00:00 +0000</pubDate></item>
+<item><title>România, loc cu loc</title><link>https://civtech.gov2.ro/proiect/biografia-localitatii/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/biografia-localitatii/</guid>
+<description>Biografia statistică a fiecărei localități, din seriile INS TEMPO</description><pubDate>Sun, 04 Oct 2026 00:00:00 +0000</pubDate></item>
+<item><title>Unde ți-ar fi bine să locuiești?</title><link>https://civtech.gov2.ro/proiect/unde-locuiesc/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/unde-locuiesc/</guid>
+<description>Compară opt orașe după populație și legături feroviare directe</description><pubDate>Sun, 04 Oct 2026 00:00:00 +0000</pubDate></item>
 <item><title>Barometrul Digital</title><link>https://civtech.gov2.ro/proiect/barometrul-digital/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/barometrul-digital/</guid>
 <description>Securitatea site-urilor instituțiilor publice</description><pubDate>Mon, 14 Sep 2026 00:00:00 +0000</pubDate></item>
 <item><title>România Transparentă</title><link>https://civtech.gov2.ro/proiect/romania-transparenta/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/romania-transparenta/</guid>
 <description>Registre despre primării, companii de stat, universități</description><pubDate>Fri, 04 Sep 2026 00:00:00 +0000</pubDate></item>
+<item><title>Codul urbanismului</title><link>https://civtech.gov2.ro/proiect/codurbanism/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/codurbanism/</guid>
+<description>Ce reguli se aplică terenului sau dosarului tău după Legea 169/2026</description><pubDate>Sun, 23 Aug 2026 00:00:00 +0000</pubDate></item>
 <item><title>Politicieni Corupți</title><link>https://civtech.gov2.ro/proiect/politicieni-corupti/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/politicieni-corupti/</guid>
 <description>Arhivă independentă despre corupție și integritate</description><pubDate>Sun, 09 Aug 2026 00:00:00 +0000</pubDate></item>
 <item><title>Monitor Energie</title><link>https://civtech.gov2.ro/proiect/monitor-energie/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/monitor-energie/</guid>
@@ -72,16 +84,4 @@
 <description>Monitorizarea manipulării de pe TikTok</description><pubDate>Sat, 10 Jan 2026 00:00:00 +0000</pubDate></item>
 <item><title>iGov</title><link>https://civtech.gov2.ro/proiect/igov/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/igov/</guid>
 <description>Rapoarte verificabile din surse publice</description><pubDate>Wed, 10 Dec 2025 00:00:00 +0000</pubDate></item>
-<item><title>Antibunk</title><link>https://civtech.gov2.ro/proiect/antibunk/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/antibunk/</guid>
-<description>Identificarea și combaterea dezinformării online</description><pubDate>Wed, 26 Nov 2025 00:00:00 +0000</pubDate></item>
-<item><title>Am scăpat</title><link>https://civtech.gov2.ro/proiect/amscapat/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/amscapat/</guid>
-<description>Cazuri de corupție: prescripții, achitări, condamnări</description><pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate></item>
-<item><title>Verifică psiholog</title><link>https://civtech.gov2.ro/proiect/verifica-psiholog/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/verifica-psiholog/</guid>
-<description>Verifică gratuit psihologi autorizați CPR din România. 35.570 psihologi, 63.748 certificate. Date sincronizate zilnic.</description><pubDate>Thu, 21 Aug 2025 00:00:00 +0000</pubDate></item>
-<item><title>PressPay</title><link>https://civtech.gov2.ro/proiect/presspay/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/presspay/</guid>
-<description>Abonament lunar împărțit între publicațiile independente pe care le apreciezi</description><pubDate>Sat, 17 May 2025 00:00:00 +0000</pubDate></item>
-<item><title>Transparenta.eu</title><link>https://civtech.gov2.ro/proiect/transparenta-eu/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/transparenta-eu/</guid>
-<description>Bugete, legislație și justiție, într-un singur loc</description><pubDate>Wed, 07 May 2025 00:00:00 +0000</pubDate></item>
-<item><title>Date statistice INS</title><link>https://civtech.gov2.ro/proiect/ins-gov2/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/ins-gov2/</guid>
-<description>Date de la Institutul Național de Statistică</description><pubDate>Wed, 18 Dec 2024 00:00:00 +0000</pubDate></item>
 </channel></rss>

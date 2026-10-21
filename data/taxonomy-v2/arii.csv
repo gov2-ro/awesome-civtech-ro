@@ -1,5 +1,6 @@
 id,eticheta_ro,tip,parinte,cod_iso_3166_1
 tara:RO,România,tara,,RO
+tara:MD,Republica Moldova,tara,,MD
 regiune:UE,Uniunea Europeană,regiune,,
 regiune:Europa,Europa,regiune,,
 judet:ilfov,Ilfov,judet,tara:RO,

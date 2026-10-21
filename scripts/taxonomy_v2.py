@@ -171,8 +171,11 @@ def load(root) -> Package:
 
 def check(root, baseline: bool = False, publication: bool = False) -> tuple[list[str], dict]:
     """Structural errors of the package at `root`, and a summary of its counts. `baseline` also proves that the copy
-    preserves the source snapshots; `publication` adds the public-build gate (accepted classifications only)."""
+    preserves the source snapshots; `publication` adds the public-build gate (accepted classifications only).
+    A detached overlay (pachet.json has `detached`, see integrare.py) is editorial: it stops proving the initial state,
+    so `baseline` does not apply to it."""
     pkg = load(root)
+    baseline = baseline and not (pkg.files.overlay or {}).get("detached")
     errors = list(pkg.problems)
     fail = errors.append
     schema, settings = pkg.schema, pkg.settings
@@ -329,6 +332,9 @@ def check(root, baseline: bool = False, publication: bool = False) -> tuple[list
             fail(f"revizuire.csv {row['id']}: unknown entry {row['slug']}")
         if row["stare"] in ("acceptat", "respins") and not row["decizie_editor"]:
             fail(f"revizuire.csv {row['id']}: a closed item needs an editor decision")
+        # A technical closure needs no editorial decision: it says why in `motiv` and never carries a decision of the editor.
+        if row["stare"] == "tehnic" and (not row["motiv"].strip() or row["decizie_editor"].strip()):
+            fail(f"revizuire.csv {row['id']}: a technical closure needs a reason (motiv) and no editor decision")
     if pkg.files.overlay is None:
         for row in pkg.tables.get("atribuiri-initiale.csv", []):
             if row["slug"] not in pkg.entries or row["concept"] not in pkg.concepts:
@@ -360,16 +366,19 @@ def check(root, baseline: bool = False, publication: bool = False) -> tuple[list
             if row["clasificare_stare"] != "acceptat":
                 fail(f"publication: {slug} has the classification state {row['clasificare_stare']!r}, not acceptat")
         for row in pkg.tables.get("revizuire.csv", []):
+            # Only `deschis` blocks the gate. A technical closure (`tehnic`) never counts, whatever its priority.
             if row["stare"] == "deschis" and row["prioritate"] == "mare":
                 fail(f"publication: {row['slug']} has the open high-priority review item {row['id']}")
 
     entries = pkg.entries.values()
     summary = {
         "schema_version": pkg.version, "root": str(pkg.files.root), "overlay": pkg.files.overlay is not None,
+        "detached": (pkg.files.overlay or {}).get("detached"),
         "entries": len(pkg.entries), "concepts": len(pkg.concepts), "code_lists": len(pkg.codes),
         "codes": sum(len(c) for c in pkg.codes.values()), "link_roles": len(pkg.roles), "link_hosts": len(pkg.hosts),
         "relations": len(pkg.tables.get("relatii.csv", [])), "review_items": len(pkg.tables.get("revizuire.csv", [])),
         "open_review_items": sum(r["stare"] == "deschis" for r in pkg.tables.get("revizuire.csv", [])),
+        "technical_review_items": sum(r["stare"] == "tehnic" for r in pkg.tables.get("revizuire.csv", [])),
         "classification_states": dict(Counter(r["clasificare_stare"] for r in entries)),
         "without_primary_subject": sum(not r["subiect_principal"] for r in entries),
         "maturity": dict(Counter(r["maturitate"] or "-" for r in entries)),
