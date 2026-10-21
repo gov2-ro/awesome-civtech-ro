@@ -360,7 +360,7 @@ class PublicRoot(unittest.TestCase):
         self.build(public=common.DATA)
         data = json.loads((self.site / "data.json").read_text(encoding="utf-8"))
         self.assertNotIn("schemaVersion", data)
-        self.assertEqual(len(data["items"]), 122)
+        self.assertEqual(len(data["items"]), sum(len(common.read_csv(common.DATA / f)) for f in ("proiecte.csv", "orgs.csv")))
         self.assertIn("taxonomy", data)
 
     def test_every_script_defaults_to_the_public_root(self):
