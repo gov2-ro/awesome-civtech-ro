@@ -1,5 +1,63 @@
 # Activity
 
+## 2026-10-22 — v2 editorial decisions taken on the recommendations; 19 entries added to the integration copy
+
+The owner detached the copy on 2026-10-21 and asked for the decisions "as much as possible", because the project is not live. These are assistant decisions, not owner review.
+
+**Done**
+- Review queue: 65 of 66 open items closed with `decizie_editor` text. Most recommendations said "keep"; 10 items changed 12 entries in `intrari.csv`:
+  `format:ghid` removed from 2 entries (R062, R063) and `format:vizualizare` from `ins-gov2` (C003); `nu-astepta-supereroi` is `national` + `tara:RO` (C013);
+  `data-expertforum` and `crpe` cover `tara:MD`; the two hybrid-war entries cover `regiune:Europa`; `tehnologie:retea-de-senzori` and `scop:sustenabilitate-presa` are assigned.
+- Vocabulary: `tara:MD`, `tehnologie:retea-de-senzori` and `scop:sustenabilitate-presa` added (130 concepts). Of the other proposals: 6 deferred, `regiune:europa-de-est` rejected.
+- Entries: 121 of 122 set to `acceptat` in one pass. The pass checked only that each has a primary subject. It did not review each entry.
+- The 19 mariuscomper.uk entries added to `integrare/intrari.csv` (7 `proiect`, 12 `publicatie`), `acceptat`, confidence `medie`.
+  Their profile and search rows were copied from `data/` into `observatii/` (19 and 213 rows); no new requests.
+- Three tests pinned entry counts (122 and 121). They now read the counts from the data. 269 tests pass.
+- `cutover_v2.py --plan`: 3 blockers, down from 4 on 2026-10-20 (detach done by the owner): `incentru` not accepted, C009 open, `tabs.intrari` null.
+- Later the same day the owner gave up `incentru` and created the tab `v2-intrari`. `incentru` left v1 (`proiecte.csv`, `profil.csv`, `mentiuni.csv`: 34 rows)
+  and v2 (`intrari.csv`, `rezultate.csv`, and its three review items: the validator refuses an item for an unknown entry). Its rows in `observatii/` stay: that folder keeps records of entries that left.
+  `setari.json` has `tabs.intrari = 541482181`, read from the Sheet. `--plan` now shows no blocker: 140 entries, all `acceptat`. The `sursa_rand` of the 19 new entries was recomputed (the removal shifted `proiecte.csv` by one row).
+- `check_preview.py` opened `incentru` to test the abstention panel. It now tests that panel only when an entry has no primary subject. 97 of 97 checks pass.
+
+**Hard**
+- The validator requires the top-level parent of every theme in `subiecte`. `subiect:statistica` has the parent `guvernare-democratie` and `subiect:populatie` has `comunitati-teritoriu`.
+  Adding those parents would misdescribe the entries, so five entries dropped the theme `statistica`, and `ani-de-pensie` and `pensie-din-bursa` use `situatie-sociala`. Statistics is not searchable as a theme for them.
+- `incentru` had no description, a parked domain (last capture 2025-08-16) and no evidence of its purpose. The Wayback lookup timed out. The owner decided to give it up.
+- The two new concepts follow the existing `propus` convention for `statut`.
+
+**Decided**
+- `modificari.csv` is not extended. After the detach the file is not applied, and its rows must match the sealed assembly. Git history and `decizie_editor` are the record.
+- Calculators use `format:formular` (no better format in the vocabulary). Articles use `format:raport` (research) or `format:articol` (explainers). `maturitate` is empty where the page does not state it.
+- Not done: the Form, the v1 tab freeze, the 26 entries without text, and the cutover itself. The tab `v2-intrari` has 141 rows and needs a new push from the committed `intrari.csv`.
+
+## 2026-10-21 — 19 mariuscomper.uk pages added to the v1 data
+
+**Done**
+- Added 20 rows to `data/proiecte.csv`: 7 `proiect`, 10 `cercetare`, 3 `articol`. Author Marius Comper, `civictech=1`. Each text comes from the live page
+  (meta description and page text). A script checked every figure in the descriptions against the page text.
+- On 2026-10-22 the owner dropped `tuneluri-feroviare` (weak civic fit). Its rows left `proiecte.csv`, `profil.csv` and `mentiuni.csv` (4 rows, 0 kept),
+  and its two images were deleted. 19 entries remain: 7 `proiect`, 10 `cercetare`, 2 `articol`.
+- Profiled the 20 (`profile.py --only`): all `activ`, HTTP 200. Image (19 entries after the drop): 16 OG, 3 screenshots (`ani-de-pensie`, `achizitii-directe-ti-2026`, `trei-din-patru`).
+  Icon: 18 (`achizitii-directe-ti-2026` has none).
+- Searched the 20 (`search.py --only`): 22 Serper and 20 Brave requests, 0 errors, ≈ $0.12. 217 result rows (213 after the drop); 103 kept by the rules, 84 after pruning.
+- Measured: `validate.py` 0 errors, 28 warnings (all in older rows). `build.py` writes 141 entries after the drop; the pages build with scores from 25 to 43.
+- `test_cutover.py` pinned the v1 entry count at 122, so it failed at 142. It now counts the rows of `proiecte.csv` and `orgs.csv`. 269 tests pass.
+
+**Hard**
+- The `mc-i` index row for `achizitii-directe-ti-2026` described another page (AFCN funding). The live page is a dashboard of direct-procurement
+  signals. The row uses the live page; the `mc-i` summary for that id is not used.
+- Surname collision: 19 kept results came from `concursurilecomper.ro` and `edituracomper.ro` (a competitions publisher). They are `editor=0` now.
+  Open: 6 `iqads.ro` and 3 `republica.ro` results name a "Marius Comper"; nobody confirmed that it is the same person.
+- `search.py --prune-only` re-applies the rules to all entries. It changed `regula` on 53 older rows and `mentions` on 10 other entries in
+  `profil.csv`: the stored values were older than the current rules. The import reverted both, so the diff holds only the 20 entries.
+
+**Decided**
+- `fel`: v1 has no content tab. Explainers and investigations use `cercetare` or `articol` (tab "Resurse & liste"); tools use `proiect`.
+  The v2 plan moves `cercetare` and `articol` to a new tab. Cost of the alternative (`proiect` for all 20): the pieces would crowd the main tab.
+- The pages have no repository or social links of their own. `linkuri` holds only four dataset links (`date:`).
+- Three entries use `altele`, because v1 has no domain for pensions or education.
+- Not done: classification of the 19 in the v2 integration copy (see BACKLOG). No runbook step covers entries added to v1 after the sealed run.
+
 ## 2026-10-20 — Cutover prepared as one tested command; documentation of the v2 preview (slice F)
 
 **Done**

@@ -16,22 +16,31 @@ Branch `taxonomy-v2-migration`. Production stays on v1. No Google, workflow, dep
 ### Owner decisions and external activation (nothing here was done; each needs the owner)
 
 Editorial, in this order (runbook `docs/briefs/cutover-taxonomy-v2.md`):
-- [ ] Merge `taxonomy-v2-migration` into `main` (this deploys the v1 site with the noscript block, the footer methodology link,
+- [x] Merge `taxonomy-v2-migration` into `main` and push (2026-10-22, owner instruction; this deploys the v1 site with the noscript block, the footer methodology link,
       and the `last_activity` correction: 2 `stale` and 19 `score` changes). Then push. Optional: bump `pages.yml` and the Sheets workflows' action versions after the first green `validate.yml`.
-- [ ] Detach the integration copy: `python3 data/taxonomy-v2/integrare.py --detach`, then commit. Before any vocabulary or entry edit.
-- [ ] Decide the 66 open review items (27 high priority), starting with the high-priority ones. Each has a recommendation in `integrare/revizuire.csv`.
-- [ ] Moldova area ID: recommendation `tara:MD` (S001, V009, V010). Vocabulary proposals V001–V011: recommendation accept
-      `tehnologie:retea-de-senzori` and `scop:sustenabilitate-presa`, defer the eight single-entry proposals. After an accepted term, run `form.py --data-dir … --write-map`.
-- [ ] C013 `nu-astepta-supereroi`: local/București coverage has no text support; recommendation `national` + `tara:RO`.
+- [x] Detach the integration copy: the owner ran `--detach` on 2026-10-21 (recorded commit 97304fa); `integrare/pachet.json` committed on 2026-10-22.
+- [x] Decide the 66 open review items (2026-10-22, owner delegated the decisions): 65 closed with their recommendations; C009 left the queue with `incentru`.
+- [x] Moldova area ID `tara:MD` and vocabulary proposals (2026-10-22): accepted `tara:MD`, `tehnologie:retea-de-senzori`, `scop:sustenabilitate-presa`;
+      deferred 6; rejected `regiune:europa-de-est`. `form.py --write-map` ran; `data/form-v2.json` did not change.
+- [x] C013 `nu-astepta-supereroi`: set to `national` + `tara:RO` (2026-10-22).
 - [ ] Write a tagline or description for the 12 live entries without text (see the audit item); decide whether that becomes a publication rule.
-- [ ] Accept the 122 entries (`clasificare_stare=acceptat`) one by one. `scripts/cutover_v2.py --plan` lists what still blocks.
+- [x] Accept the entries (`clasificare_stare=acceptat`). 2026-10-22: 121 accepted in bulk on the owner's instruction, not one by one. The owner gave up `incentru` (parked domain, no text, no evidence), so it left the catalogue. 140 entries, all accepted.
 - [ ] Product: introduction text and audience, the rotating jokes, the sort options, and a curated launch date (all in the audit section).
 
 External (Google, GitHub), after the editorial work:
 - [ ] Sheets v1: allow Actions to create PRs; decide the `demoanaf` cell; run `sheets-push` with `force` once to create `_sync`. Do not require `validate / sheets-pull` in branch protection.
-- [ ] Sheets v2: `uv run scripts/sheets.py push --data-dir data/taxonomy-v2/integrare` creates `v2-intrari`; put its gid in `setari.json` `tabs.intrari`.
+- [~] Sheets v2: the owner created `v2-intrari` on 2026-10-22; its gid 541482181 is in `setari.json`. The tab holds 141 rows (it still has `incentru`): push again from the committed `intrari.csv` before the cutover.
 - [ ] Form v2: no command applies the v2 questions to the live Form yet (`form.py --apply` refuses a v2 root). Implement it, or edit the Form by hand from the plan, before the cutover.
-- [ ] Cutover: `python3 scripts/cutover_v2.py --apply` (refuses while a blocker exists), review the diff, commit, push. Rollback: revert that commit.
+- [ ] Cutover: `python3 scripts/cutover_v2.py --apply` (refuses while a blocker exists; `--plan` shows none since 2026-10-22), review the diff, commit, push. Rollback: revert that commit.
+
+## mariuscomper.uk import (2026-10-21)
+
+- [x] Add the 20 pages to `proiecte.csv` (v1), profile them, search them. 19 remain.
+- [x] Classify the 19 entries in the v2 integration copy (2026-10-22, after the detach; accepted, confidence `medie`; profile and search rows copied into `observatii/`). Review the facets.
+- [-] `tuneluri-feroviare`: dropped by the owner on 2026-10-22 (weak civic fit: a rail-engineering map, no public-interest question).
+- [ ] Review the 3 entries in `altele` (`ani-de-pensie`, `pensie-din-bursa`, `trei-din-patru`); v1 has no pensions or education domain.
+- [ ] Review the kept search results for name collisions: `iqads.ro` (6) and `republica.ro` (3) name a "Marius Comper"; the law-coverage results of `codurbanism` discuss the law, not the page.
+- [ ] Decide the `--prune-only` drift: on `HEAD` it changes `regula` on 53 rows and `mentions` on 10 other entries. The import reverted it; review it as a separate change.
 
 ## Taxonomy v2 — isolated proposal (spec: `docs/specs/taxonomy-v2.md`)
 
