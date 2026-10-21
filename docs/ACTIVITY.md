@@ -1,5 +1,24 @@
 # Activity
 
+## 2026-10-22 — Cutover to taxonomy v2 applied (branch `cutover-taxonomy-v2`, not merged)
+
+**Done**
+- Sheets first. The owner's `sheets.py pull --check` replaced `data/proiecte.csv` with the Sheet's copy (no sync marker, so two-way: the Sheet won). That copy lacked the 19 new rows
+  and still had `incentru`. I restored the file from git, then ran `push --since 97304fa` (the Sheet equalled the repository at that commit): `proiecte` 127 rows, `orgs` 13, marker 3989209.
+  `v2-intrari` had no marker either, and the plain push refused (exit 3). The diff held only `incentru` and 19 `sursa_rand` values, so I used `--force` on that tab: 140 rows.
+  `sheets.py diff` shows no difference on the three tabs.
+- The owner ran `cutover_v2.py --apply` (my attempt was refused by the permission check as a production deploy): 24 text edits in 10 files, `site-v2/` gone, `PUBLIC_ROOT` is the integration copy.
+- The 19 entries' profile and search rows (19 and 213) went into `observatii/`. `validate.py --publication` passes, `build.py` writes 140 entries, 269 tests pass (6 skipped: tests of the pre-cutover state).
+- Documents the command does not edit: `README.md`, `CLAUDE.md`, `AGENTS.md`, `CONTRIBUTING.md`, `docs/ARCHITECTURE.md`, `docs/DATA-SCHEMA.md`, `docs/METODOLOGIE.md` and `docs/specs/taxonomy-v2.md` now state the new public source, the frozen v1 files and the moved browser code.
+
+**Hard**
+- Only the statements that became false were changed. Long sections still describe the v1 flow or the "preview" in detail (the README editing section, the contributor routes, parts of ARCHITECTURE and the specification). They carry a dated note. See BACKLOG.
+- The contributor route after the cutover is my reading, not a decision: a pull request on `proiecte.csv` no longer reaches the site, and proposals come through the Form or an issue and an editor copies them into `intrari.csv`.
+
+**Decided**
+- Form (runbook step 5): option B. The live Form keeps the v1 questions, and an editor copies each proposal into `intrari.csv`. Cost of option A: editing the live Form by hand to match `form.py`'s plan.
+- Not done: protecting the v1 Sheet tabs (no command; by hand in Google Sheets), the merge (it deploys v2 to the public site), and an actionlint run (not installed locally; CI runs it).
+
 ## 2026-10-22 — v2 editorial decisions taken on the recommendations; 19 entries added to the integration copy
 
 The owner detached the copy on 2026-10-21 and asked for the decisions "as much as possible", because the project is not live. These are assistant decisions, not owner review.

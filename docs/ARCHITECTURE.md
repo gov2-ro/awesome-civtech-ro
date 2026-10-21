@@ -5,6 +5,8 @@ the site at [civtech.gov2.ro](https://civtech.gov2.ro/).
 
 ## The short version
 
+_Status, 2026-10-22: the cutover to taxonomy v2 is applied. The public source is `data/taxonomy-v2/integrare/` (`intrari.csv` and its vocabulary), `site/app.js` is the v2 browser code, and the workflows use the tab `v2-intrari`. The text below that speaks of `data/proiecte.csv` and `data/orgs.csv` as the source describes the frozen v1 flow, which stays for the rollback._
+
 - The catalogue is **two spreadsheets in the repository**: `data/proiecte.csv` (projects and
   resources) and `data/orgs.csv` (organisations). They are the source of truth.
 - A few **scripts** read those files, look at each website, and produce one file for the browser:
@@ -14,8 +16,8 @@ the site at [civtech.gov2.ro](https://civtech.gov2.ro/).
 - **GitHub** stores everything, checks every change, and publishes the site.
 - A **Google Sheet** is a second place to edit the two CSVs, and a **Google Form** collects
   proposals from the public. Both connect to the repository through GitHub workflows.
-- **Taxonomy v2** is a draft of a new classification model. It lives in `data/taxonomy-v2/` and runs only as a preview.
-  Production uses the v1 model that the rest of this page describes. See [Taxonomy v2 (preview)](#taxonomy-v2-preview).
+- **Taxonomy v2** is the classification model of the public site since the cutover of 2026-10-22. It lives in `data/taxonomy-v2/`.
+  Most of this page still describes the v1 model, which stays for the rollback. See [Taxonomy v2 (preview)](#taxonomy-v2-preview).
 
 ```mermaid
 flowchart LR
@@ -98,23 +100,22 @@ GitHub runs four workflows:
 
 | Workflow | Runs on | What it does |
 | --- | --- | --- |
-| `validate.yml` | a pull request, a push to `main` or a manual run, when the change touches `data/`, `scripts/`, `site/`, `site-v2/` or `.github/workflows/` | Three jobs, below. |
-| `pages.yml` | a push to `main` that touches `site/`, `data/`, `scripts/` or `pages.yml`, or a manual run | `validate.py` and `build.py` (v1), then publishes `site/` to GitHub Pages |
+| `validate.yml` | a pull request, a push to `main` or a manual run, when the change touches `data/`, `scripts/`, `site/` or `.github/workflows/` | Three jobs, below. |
+| `pages.yml` | a push to `main` that touches `site/`, `data/`, `scripts/` or `pages.yml`, or a manual run | `validate.py --publication` and `build.py` (the public root), then publishes `site/` to GitHub Pages |
 | `sheets-pull.yml`, `sheets-push.yml` | see [Editing in Google Sheets](#editing-in-google-sheets) | sync the Sheet and the CSVs |
 
 The three jobs of `validate.yml`:
 
-- **data.** `validate.py` and `build.py` on the v1 data. All unit tests (`python3 -m unittest discover -s scripts -p "test_*.py"`:
+- **data.** `validate.py --publication` and `build.py` on the public root (the v2 integration copy). All unit tests (`python3 -m unittest discover -s scripts -p "test_*.py"`:
   taxonomy v2, enrichment, Sheets and Form). The v2 package and overlay checks, and `integrare.py`. `validate.py --data-dir` on the v2 overlay.
   A `build.py --allow-draft` preview build of the overlay, uploaded as the artifact `site-v2-preview` for 14 days.
-  A report of the v2 publication gate in the job summary; it never fails the job.
-- **browser.** `node --check` of `site/app.js` and `site-v2/app.js`. The v2 preview built and served locally, then `scripts/check_preview.py`
+- **browser.** `node --check` of `site/app.js`. The v2 preview built and served locally, then `scripts/check_preview.py`
   (Playwright, desktop and mobile).
 - **workflows.** `actionlint` on the workflow files.
 
 ```mermaid
 flowchart LR
-    change["pull request or push<br/>touching data, scripts, site,<br/>site-v2 or workflows"] --> v["validate.yml"]
+    change["pull request or push<br/>touching data, scripts, site,<br/>or workflows"] --> v["validate.yml"]
     v --> d["job data<br/>v1 checks and build,<br/>unit tests, v2 checks,<br/>v2 preview artifact"]
     v --> b["job browser<br/>node --check,<br/>browser checks of the preview"]
     v --> w["job workflows<br/>actionlint"]
@@ -287,7 +288,7 @@ state (`propus`, `acceptat`, `de-revizuit`) and a confidence. [DATA-SCHEMA.md](D
 | Overlay | `data/taxonomy-v2/integrare/` | the classification of the sealed model run (122 entries), the corrections, and a reconciled review queue |
 | Observations | `data/taxonomy-v2/observatii/` | the v2 copies of `profil.csv`, `mentiuni.csv` and the labels |
 | Snapshots | `source/`, `reference/`, `runs/` | immutable: the v1 files at the start, the EuroVoc response, the sealed run |
-| Browser code | `site-v2/` | `app.js` and `v2.css`; a preview build copies them over the `site/` template |
+| Browser code | `site/app.js`, `site/style.css` | the v2 browser code since the cutover; `site-v2/` is gone |
 
 ### Which data a script reads
 
@@ -355,7 +356,7 @@ python3 scripts/validate.py --data-dir data/taxonomy-v2/integrare --publication 
 
 - A v2 build needs `--site-dir` outside the repository. `site/` is never written from a v2 root.
 - The output has `schemaVersion` 2 in `data.json`, and `draft: true` while any classification is not accepted.
-  `build.py` copies `site-v2/` over the template in `--site-dir`. `site/app.js` does not change.
+  `build.py` builds the template in `--site-dir` from `site/`, which is the v2 browser code since the cutover.
 - Without `--allow-draft`, `build.py` applies the **publication gate** and refuses. The gate asks that every entry is `acceptat`
   and that no review item is `deschis` with priority `mare`. On 2026-10-20 the gate gave 149 errors: 122 entries not accepted and
   27 open high-priority items. The gate passes only after the owner accepts the classifications.

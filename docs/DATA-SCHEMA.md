@@ -708,10 +708,10 @@ subject or several subjects gets `de-revizuit` and empty `subiect_principal` and
 `nota_clasificare`. The proposer's e-mail is not copied. A person copies the rows into `intrari.csv`. `--apply` and `--save`
 refuse a v2 root.
 
-## data.json of the v2 preview
+## data.json of the v2 model
 
 `build.py --data-dir <v2 root> --site-dir <folder> --allow-draft` writes a `data.json` with `schemaVersion` 2 for
-`site-v2/app.js`. It keeps the v1 fields whose meaning is unchanged (text, links, profile, status, score, images)
+`site/app.js`. It keeps the v1 fields whose meaning is unchanged (text, links, profile, status, score, images)
 and replaces the v1 classification:
 
 - `kind` is `sectiune_url`; `entityType` is `tip_entitate`; `row` is the entry's record in `intrari.csv`.

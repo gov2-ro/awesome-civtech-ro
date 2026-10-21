@@ -1,5 +1,7 @@
 # Cum propui un proiect
 
+**Din 2026-10-22** sursa publică este `data/taxonomy-v2/integrare/intrari.csv`, cu clasificarea v2. Fișierele `data/proiecte.csv` și `data/orgs.csv` sunt înghețate: un rând adăugat acolo nu mai ajunge pe site. Pentru o propunere nouă folosește formularul sau un issue; un editor o copiază în `intrari.csv`. Căile de mai jos descriu fluxul v1 și rămân de actualizat (vezi `docs/BACKLOG.md`).
+
 Patru căi. Primele trei folosesc același format de date:
 
 1. **GitHub** — adaugă un rând în `data/proiecte.csv` (proiecte și resurse) sau `data/orgs.csv` (organizații) și deschide un pull request. Verificarea automată (`scripts/validate.py`) îți arată pe PR ce trebuie corectat.
@@ -18,7 +20,7 @@ python3 scripts/validate.py   # verifică data/proiecte.csv și data/orgs.csv
 python3 scripts/build.py      # construiește site/data.json din ele
 ```
 
-GitHub rulează aceleași comenzi pe fiecare pull request care schimbă `data/`, `scripts/`, `site/`, `site-v2/` sau workflow-urile, plus testele unitare și verificările previzualizării v2. Un rând nou apare pe site cu starea „Neverificat” și fără mențiuni, până când un editor rulează `scripts/profile.py` și `scripts/search.py` pe calculatorul lui. GitHub nu le rulează.
+GitHub rulează aceleași comenzi pe fiecare pull request care schimbă `data/`, `scripts/`, `site/` sau workflow-urile, plus testele unitare și verificările din browser. Un rând nou apare pe site cu starea „Neverificat” și fără mențiuni, până când un editor rulează `scripts/profile.py` și `scripts/search.py` pe calculatorul lui. GitHub nu le rulează.
 
 ## Coloane — `proiecte.csv`
 

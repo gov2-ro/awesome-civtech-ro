@@ -29,17 +29,19 @@ Editorial, in this order (runbook `docs/briefs/cutover-taxonomy-v2.md`):
 
 External (Google, GitHub), after the editorial work:
 - [ ] Sheets v1: allow Actions to create PRs; decide the `demoanaf` cell; run `sheets-push` with `force` once to create `_sync`. Do not require `validate / sheets-pull` in branch protection.
-- [~] Sheets v2: the owner created `v2-intrari` on 2026-10-22; its gid 541482181 is in `setari.json`. The tab holds 141 rows (it still has `incentru`): push again from the committed `intrari.csv` before the cutover.
-- [ ] Form v2: no command applies the v2 questions to the live Form yet (`form.py --apply` refuses a v2 root). Implement it, or edit the Form by hand from the plan, before the cutover.
-- [ ] Cutover: `python3 scripts/cutover_v2.py --apply` (refuses while a blocker exists; `--plan` shows none since 2026-10-22), review the diff, commit, push. Rollback: revert that commit.
+- [x] Sheets v2: tab `v2-intrari` (gid 541482181 in `setari.json`) holds the 140 entries; marker 3989209 (2026-10-22).
+- [x] Form v2: option B chosen on 2026-10-22. The live Form keeps the v1 questions; an editor copies each proposal into `intrari.csv`. Open: implement `form.py --apply` for a v2 root, or edit the Form by hand (option A).
+- [~] Cutover: applied by the owner on branch `cutover-taxonomy-v2` on 2026-10-22. Open: CI on the pull request, then the merge (it deploys v2 to the public site). Rollback: revert the merge commit.
+- [ ] Protect the v1 Sheet tabs `proiecte` and `orgs` (by hand in Google Sheets; runbook step 4).
+- [ ] Rewrite the documents for v2 as the public model: the README section "Editing the data", the contributor routes in CONTRIBUTING.md (confirm the route: Form or issue, then an editor copies into `intrari.csv`), the v1 diagrams in ARCHITECTURE.md, and the "preview" wording in DATA-SCHEMA.md and the specification.
 
 ## mariuscomper.uk import (2026-10-21)
 
 - [x] Add the 20 pages to `proiecte.csv` (v1), profile them, search them. 19 remain.
 - [x] Classify the 19 entries in the v2 integration copy (2026-10-22, after the detach; accepted, confidence `medie`; profile and search rows copied into `observatii/`). Review the facets.
 - [-] `tuneluri-feroviare`: dropped by the owner on 2026-10-22 (weak civic fit: a rail-engineering map, no public-interest question).
-- [ ] At the cutover, put the 19 entries' profile and search rows into `observatii/` (19 rows in `profil.csv`, 213 in `mentiuni.csv`, copied from `data/` at commit 953ea90), after `--apply` has dropped `--baseline`. Or run `profile.py` and `search.py --data-dir` on them.
-- [ ] Run `sheets-pull` (the Sheet holds edits that the repository lacks; `sheets-push` refused with exit 3), then push, so the v1 tabs get the 19 rows.
+- [x] At the cutover, put the 19 entries' profile and search rows into `observatii/` (19 rows in `profil.csv`, 213 in `mentiuni.csv`). Done on 2026-10-22, after `--apply` dropped `--baseline`.
+- [x] `sheets-pull`, then push, so the v1 tabs get the 19 rows (2026-10-22; see ACTIVITY).
 - [ ] Review the 3 entries in `altele` (`ani-de-pensie`, `pensie-din-bursa`, `trei-din-patru`); v1 has no pensions or education domain.
 - [ ] Review the kept search results for name collisions: `iqads.ro` (6) and `republica.ro` (3) name a "Marius Comper"; the law-coverage results of `codurbanism` discuss the law, not the page.
 - [ ] Decide the `--prune-only` drift: on `HEAD` it changes `regula` on 53 rows and `mentions` on 10 other entries. The import reverted it; review it as a separate change.

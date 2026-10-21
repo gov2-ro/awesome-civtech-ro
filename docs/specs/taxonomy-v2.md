@@ -3,12 +3,13 @@
 ## Status and boundaries
 
 Status: **core slices 1–4 implemented as a local preview; entry classifications remain proposed**, dated 2026-10-19.
-Current package version: `2.0.0-draft.2`. The production site still reads the v1 source in `data/`.
+_Update, 2026-10-22: the cutover is applied. The production site reads `data/taxonomy-v2/integrare/`, all 140 entries are `acceptat` (in bulk), and `site/app.js` is the v2 browser code. The text below keeps the 2026-10-19 wording._
+Current package version: `2.0.0-draft.2`.
 These are proposal schema versions, not project releases.
 
 Implemented: the draft.2 package and its checks, the integration copy `data/taxonomy-v2/integrare/`,
 schema-aware loaders, `scripts/validate.py --data-dir`, `scripts/build.py --data-dir --site-dir --allow-draft`,
-and the v2 browser code in `site-v2/`. See [Implementation notes](#implementation-notes-2026-10-19).
+and the v2 browser code (`site-v2/`, now `site/app.js`). See [Implementation notes](#implementation-notes-2026-10-19).
 Enrichment, Sheets, Forms, CI and the source cutover remain later slices.
 
 The deliverable is `data/taxonomy-v2/`. It contains all 122 current catalogue entries.
@@ -764,7 +765,7 @@ These decisions refine the specification where it left a choice open.
   The grouped list and the archive show it under `Fără subiect stabilit`.
 - **Partial results.** They stay `propus`. `integrare/rezultate.csv` keeps the result status and response hash.
 - **Entry confidence.** `incredere` is the lowest confidence among the entry's classification claims.
-- **Browser code.** `site-v2/app.js` forks `site/app.js`, and `site-v2/v2.css` adds a few rules.
+- **Browser code.** `site-v2/app.js` forked `site/app.js`, and `site-v2/v2.css` added a few rules; the cutover moved both into `site/`.
   A v2 build copies them into its output folder. `site/` is unchanged until the cutover.
 - **Payload.** `data.json` adds `schemaVersion`, `draft`, `vocabulary` (used concepts and areas, scheme labels,
   section, entity-type, coverage and predicate lists), and `legacyTaxonomy` (labels for old bookmark pills).
@@ -786,7 +787,7 @@ These decisions refine the specification where it left a choice open.
 - **Related entries.** "Tot din" lists entries of the same tab that have the primary subject in any position.
   Entries with it as their primary subject come first.
 - **Draft notices.** The owner hid the "classifications are proposals" notices for now (2026-10-19).
-  `DRAFT_NOTE` in `site-v2/app.js` (toolbar and detail panel) and in `scripts/build.py` (archives, `llms.txt`) turns them back on.
+  `DRAFT_NOTE` in `site/app.js` (toolbar and detail panel) and in `scripts/build.py` (archives, `llms.txt`) turns them back on.
   The payload keeps `draft`, and the publication gate is unchanged.
 - **Review queue reconciliation (2026-10-20).** `integrare/reconciliere.csv` rewrites every review item against the integration copy.
   `integrare.py` applies it and refuses evidence that does not resolve. The new state `tehnic` closes an item that needs no
