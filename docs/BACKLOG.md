@@ -38,6 +38,8 @@ External (Google, GitHub), after the editorial work:
 - [x] Add the 20 pages to `proiecte.csv` (v1), profile them, search them. 19 remain.
 - [x] Classify the 19 entries in the v2 integration copy (2026-10-22, after the detach; accepted, confidence `medie`; profile and search rows copied into `observatii/`). Review the facets.
 - [-] `tuneluri-feroviare`: dropped by the owner on 2026-10-22 (weak civic fit: a rail-engineering map, no public-interest question).
+- [ ] At the cutover, put the 19 entries' profile and search rows into `observatii/` (19 rows in `profil.csv`, 213 in `mentiuni.csv`, copied from `data/` at commit 953ea90), after `--apply` has dropped `--baseline`. Or run `profile.py` and `search.py --data-dir` on them.
+- [ ] Run `sheets-pull` (the Sheet holds edits that the repository lacks; `sheets-push` refused with exit 3), then push, so the v1 tabs get the 19 rows.
 - [ ] Review the 3 entries in `altele` (`ani-de-pensie`, `pensie-din-bursa`, `trei-din-patru`); v1 has no pensions or education domain.
 - [ ] Review the kept search results for name collisions: `iqads.ro` (6) and `republica.ro` (3) name a "Marius Comper"; the law-coverage results of `codurbanism` discuss the law, not the page.
 - [ ] Decide the `--prune-only` drift: on `HEAD` it changes `regula` on 53 rows and `mentions` on 10 other entries. The import reverted it; review it as a separate change.

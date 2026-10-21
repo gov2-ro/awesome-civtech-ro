@@ -11,7 +11,8 @@ The owner detached the copy on 2026-10-21 and asked for the decisions "as much a
 - Vocabulary: `tara:MD`, `tehnologie:retea-de-senzori` and `scop:sustenabilitate-presa` added (130 concepts). Of the other proposals: 6 deferred, `regiune:europa-de-est` rejected.
 - Entries: 121 of 122 set to `acceptat` in one pass. The pass checked only that each has a primary subject. It did not review each entry.
 - The 19 mariuscomper.uk entries added to `integrare/intrari.csv` (7 `proiect`, 12 `publicatie`), `acceptat`, confidence `medie`.
-  Their profile and search rows were copied from `data/` into `observatii/` (19 and 213 rows); no new requests.
+  Their profile and search rows (19 and 213) were first copied from `data/` into `observatii/`, then taken out again: CI runs `validate.py --baseline` on the package,
+  which compares `observatii/` with `source/` byte for byte, and failed on `main`. The cutover drops that flag. Until the rows are copied back, the v2 build shows the 19 as "neverificat", without images.
 - Three tests pinned entry counts (122 and 121). They now read the counts from the data. 269 tests pass.
 - `cutover_v2.py --plan`: 3 blockers, down from 4 on 2026-10-20 (detach done by the owner): `incentru` not accepted, C009 open, `tabs.intrari` null.
 - Later the same day the owner gave up `incentru` and created the tab `v2-intrari`. `incentru` left v1 (`proiecte.csv`, `profil.csv`, `mentiuni.csv`: 34 rows)
@@ -24,6 +25,9 @@ The owner detached the copy on 2026-10-21 and asked for the decisions "as much a
   Adding those parents would misdescribe the entries, so five entries dropped the theme `statistica`, and `ani-de-pensie` and `pensie-din-bursa` use `situatie-sociala`. Statistics is not searchable as a theme for them.
 - `incentru` had no description, a parked domain (last capture 2025-08-16) and no evidence of its purpose. The Wayback lookup timed out. The owner decided to give it up.
 - The two new concepts follow the existing `propus` convention for `statut`.
+- After the push of `main`, `validate.yml` failed twice. The baseline check above was one. The other was `astral-sh/setup-uv@v10`, a version that does not exist;
+  the file now uses `@v6`, as the Sheets workflows do. The local rehearsal passes (24 edits, 269 tests); actionlint was not available locally.
+- After the push, `sheets-push` exited 3 ("Tabelul are modificări nesincronizate; rulează sheets-pull"): it refused to overwrite the Sheet, as designed. The 19 rows are not in the v1 tabs yet.
 
 **Decided**
 - `modificari.csv` is not extended. After the detach the file is not applied, and its rows must match the sealed assembly. Git history and `decizie_editor` are the record.
