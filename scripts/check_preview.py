@@ -179,9 +179,11 @@ with sync_playwright() as pw:
     page.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
     loaded = page.evaluate("[...document.querySelectorAll('[data-slot=drawer] img')].every(i => i.complete && i.naturalWidth > 0)")
     ok("images resolve from an entry page", loaded, img["slug"])
-    page.goto(BASE + "resursa/incentru/") if any(i["slug"] == "incentru" and i["kind"] == "resursa" for i in DB["items"]) else page.goto(BASE + "proiect/incentru/")
-    page.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
-    ok("abstention shows an incomplete classification", "nu stabilesc încă subiectul" in page.locator('[data-slot="drawer"]').inner_text())
+    blank = next((i for i in DB["items"] if not i["primarySubject"]), None)  # an abstention; none once every entry has a subject
+    if blank:
+        page.goto(BASE + f"{blank['kind']}/{blank['slug']}/")
+        page.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
+        ok("abstention shows an incomplete classification", "nu stabilesc încă subiectul" in page.locator('[data-slot="drawer"]').inner_text(), blank["slug"])
 
     # 10. Archives.
     for kind in ("proiect", "organizatie", "resursa"):

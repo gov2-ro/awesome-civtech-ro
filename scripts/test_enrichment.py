@@ -554,7 +554,7 @@ class ReviewV2(unittest.TestCase):
         asked.clear()
         run()  # the reviewed entry is current: everything else is asked, it is not
         self.assertNotIn(slug, asked)
-        self.assertEqual(len(asked), 121)
+        self.assertEqual(len(asked), len(common.read_csv(c.overlay / "intrari.csv")) - 1)
 
         asked.clear()
         run()  # now every answer is current

@@ -504,7 +504,7 @@ class RoundTripV2(EnvCase):
         self.assertEqual(code, 0, err)
         self.assertEqual(self.sh.sheets["v2-intrari"].get_all_values()[0],
                          json.loads((PACKAGE / "schema.json").read_text())["headers"]["intrari.csv"])
-        self.assertEqual(len(self.sh.table("v2-intrari")), 122)
+        self.assertEqual(len(self.sh.table("v2-intrari")), len(taxonomy_v2.load(OVERLAY).entries))
         code, out, _ = self.pull()
         self.assertEqual(code, 0, out)
         self.assertEqual(self.env.bytes("v2-intrari"), before)
@@ -1452,7 +1452,7 @@ class FormV2Import(unittest.TestCase):
             w.writerows(existing + rows)
         errors, summary = taxonomy_v2.check(copy.root)
         self.assertEqual(errors, [])
-        self.assertEqual(summary["entries"], 122 + len(rows))
+        self.assertEqual(summary["entries"], len(self.pkg.entries) + len(rows))
 
     def test_the_cli_import_writes_rows_reports_problems_and_never_touches_intrari_csv(self):
         before = (OVERLAY / "intrari.csv").read_bytes()
