@@ -1,6 +1,10 @@
 {
   "purpose": "Integration copy of the sealed run 2026-10-19-reasoned-evidence, with the evaluation's three semantic corrections. All classifications remain proposals; this is not an accepted catalogue.",
   "base": "..",
+  "detached": {
+    "commit": "97304facad5690edfa8d389c330b0605ac81e5a8",
+    "date": "2026-10-21"
+  },
   "local_files": [
     "intrari.csv",
     "revizuire.csv",
