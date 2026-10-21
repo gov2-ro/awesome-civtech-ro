@@ -29,8 +29,8 @@ jobs:
           python-version: "3.12"
       - name: Validate and build site data
         run: |
-          python3 scripts/validate.py
-          python3 scripts/build.py
+          python3 scripts/validate.py --data-dir data/taxonomy-v2/integrare --publication
+          python3 scripts/build.py --data-dir data/taxonomy-v2/integrare
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

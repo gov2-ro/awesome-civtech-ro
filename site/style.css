@@ -546,3 +546,24 @@ svg.gh { width: 20px; height: 20px; fill: currentColor; stroke: none; }
 .arch-gone { font: 500 calc(11px * var(--fs)) / 1.4 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--bad); }
 .arch-meta { font: 400 calc(12px * var(--fs)) / 1.4 var(--font-mono); letter-spacing: .04em; color: var(--muted); }
 .arch-blurb { flex-basis: 100%; margin: 0; color: var(--ink-2); font-size: calc(14px * var(--fs)); line-height: 1.4; }
+
+/* Taxonomy v2 additions (from site-v2/v2.css, merged at the cutover). The colours are style.css tokens. */
+.fopt.check[aria-pressed="true"] { background: var(--ink); color: var(--bg); font-weight: 500; }
+.fopt.check[aria-pressed="true"] .n { color: inherit; opacity: .7; }
+.subfacet + .subfacet { margin-top: 12px; }
+.subfacet .kicker { margin: 0 0 6px; font-size: calc(11px * var(--fs)); }
+.fhelp { margin: 14px 0 0; padding-top: 10px; border-top: 1px solid var(--line); font-size: calc(12.5px * var(--fs)); color: var(--muted); }
+.draft-note { flex-basis: 100%; margin: 0; padding: 8px 12px; border-radius: 6px; background: var(--surface); color: var(--warn); font-size: calc(13.5px * var(--fs)); }
+.d-class section { margin-top: 14px; }
+.d-class section > .kicker { margin: 0 0 4px; }
+.d-class .dl { padding-top: 8px; }
+.d-class .tags { gap: 4px; }
+.d-class .tag { font-size: calc(13px * var(--fs)); }
+.d-class > .small { margin: 10px 0 0; }
+.fmore { margin: 8px 0 0; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; font-size: calc(12.5px * var(--fs)); }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+/* List columns: the headers "Prima urmă" (wraps in two lines) and "Actualizat" are longer than the v1 ones; the Site column gives up the room. */
+@media (min-width: 720px) {
+  .row, .list-head { grid-template-columns: 75px minmax(0, 1fr) 96px calc(48px * var(--fs)) calc(84px * var(--fs)) 150px; }
+  .list-head span[title] { cursor: help; }
+}

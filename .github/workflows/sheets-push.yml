@@ -1,6 +1,6 @@
 name: sheets-push
 
-# Repo -> Google Sheet. After a push to main that changes proiecte.csv or orgs.csv, rewrites both tabs.
+# Repo -> Google Sheet. After a push to main that changes intrari.csv of the integration copy, rewrites the tab v2-intrari.
 # `sheets.py push` refuses (exit 3) when the Sheet holds edits that are not in the repo yet. Its base is the commit named
 # in the Sheet's `_sync` tab (the last successful push), not the `before` of this run: a skipped run does not move it.
 # It writes that marker last. The manual inputs `since` and `force` replace the marker for one run.
@@ -8,7 +8,7 @@ name: sheets-push
 on:
   push:
     branches: [main]
-    paths: ["data/proiecte.csv", "data/orgs.csv"]
+    paths: ["data/taxonomy-v2/integrare/intrari.csv"]
   workflow_dispatch:
     inputs:
       since:
@@ -50,7 +50,7 @@ jobs:
           if [ -n "$SINCE" ]; then args+=(--since "$SINCE"); fi
           if [ "$FORCE" = "true" ]; then args+=(--force); fi
           set +e
-          uv run scripts/sheets.py push "${args[@]}"
+          uv run scripts/sheets.py push --data-dir data/taxonomy-v2/integrare --tabs v2-intrari "${args[@]}"
           code=$?
           set -e
           if [ "$code" -eq 3 ]; then

@@ -10,13 +10,45 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 ## Date
 
 - [data.json](https://civtech.gov2.ro/data.json): toate intrările, cu taxonomia, linkurile, starea și scorul de relevanță
-- [proiecte.csv](https://github.com/gov2-ro/awesome-civtech-ro/blob/main/data/proiecte.csv): sursa editată de om pentru proiecte și resurse
-- [orgs.csv](https://github.com/gov2-ro/awesome-civtech-ro/blob/main/data/orgs.csv): sursa editată de om pentru organizații
+- [intrari.csv](https://github.com/gov2-ro/awesome-civtech-ro/blob/main/data/taxonomy-v2/intrari.csv): tabelul editat de om (propunere v2)
 - [DATA-SCHEMA.md](https://github.com/gov2-ro/awesome-civtech-ro/blob/main/docs/DATA-SCHEMA.md): coloanele fiecărui fișier
 - [CONTRIBUTING.md](https://github.com/gov2-ro/awesome-civtech-ro/blob/main/CONTRIBUTING.md): cum se propune un proiect
 - [feed.xml](https://civtech.gov2.ro/feed.xml): RSS cu cele mai noi proiecte
 
-## Proiecte: Bani publici
+## Proiecte: Guvernare și democrație
+
+- [465.ro](https://civtech.gov2.ro/proiect/465/): Parlamentarii României și datele lor de contact. Site: https://465.ro/
+- [7 ani de acasă](https://civtech.gov2.ro/proiect/7-ani-de-acasa/) (arhivat): Site: https://www.7anideacasa.eu
+- [Am scăpat](https://civtech.gov2.ro/proiect/amscapat/): Cazuri de corupție: prescripții, achitări, condamnări. Site: https://amscapat.ro/
+- [Bani Partide](https://civtech.gov2.ro/proiect/bani-partide/): Finanțarea partidelor și a campaniilor electorale. Site: https://banipartide.ro/
+- [Ce fac politicienii?](https://civtech.gov2.ro/proiect/ce-fac-politicienii/): Cronologia declarațiilor și faptelor politicienilor, cu surse. Site: https://cefacpoliticienii.ro/
+- [Date statistice INS](https://civtech.gov2.ro/proiect/ins-gov2/): Date de la Institutul Național de Statistică. Site: https://ins.gov2.ro
+- [EuropeScope](https://civtech.gov2.ro/proiect/europescope/): Activitatea Parlamentului European și a Consiliului UE. Site: https://www.europescope.eu/
+- [Harta Politicii](https://civtech.gov2.ro/proiect/harta-politicii/) (offline): Site: https://www.hartapoliticii.ro
+- [iGov](https://civtech.gov2.ro/proiect/igov/): Rapoarte verificabile din surse publice. Site: https://igov.ro/
+- [Mari Corupți](https://civtech.gov2.ro/proiect/mari-corupti/) (offline): Site: https://www.maricorupti.ro
+- [monitorul.ai](https://civtech.gov2.ro/proiect/monitorul-ai/): Arhiva stenogramelor parlamentare. Site: https://monitorul.ai/
+- [Mulțumesc.org](https://civtech.gov2.ro/proiect/multumesc/) (offline): Site: https://www.multumesc.org
+- [Muzeul Corupției](https://civtech.gov2.ro/proiect/muzeul-coruptiei/) (offline): Site: http://www.muzeulcoruptiei.ro/
+- [Nu aștepta supereroi](https://civtech.gov2.ro/proiect/nu-astepta-supereroi/) (offline): Datele de contact ale consilierilor locali. Site: https://www.nuasteptasupereroi.ro
+- [Observatori Vot Corect](https://civtech.gov2.ro/proiect/observatori-votcorect/): Site: https://observatori.votcorect.ro
+- [Parlament Transparent](https://civtech.gov2.ro/proiect/parlament-transparent/) (offline): Site: https://parlament.openpolitics.ro
+- [Pe propria răspundere](https://civtech.gov2.ro/proiect/monitorul-ai-integritate/): Analiză declarații avere & interese. Site: https://monitorul.ai/integritate
+- [Piața de Șpagă](https://civtech.gov2.ro/proiect/piata-de-spaga/) (offline): Site: https://www.piatadespaga.ro
+- [Political Colours](https://civtech.gov2.ro/proiect/political-colours/) (arhivat): Culoarea politică a primarilor, pe hartă. Site: https://www.politicalcolours.ro
+- [Politicieni Corupți](https://civtech.gov2.ro/proiect/politicieni-corupti/): Arhivă independentă despre corupție și integritate. Site: https://politicieni-corupti.ro/
+- [Rezultate Vot](https://civtech.gov2.ro/proiect/rezultate-vot/): Site: https://rezultatevot.ro/
+- [România Interactivă](https://civtech.gov2.ro/proiect/romania-interactiva/): Clasamente, calculatoare și vizualizări din date oficiale. Site: https://romaniainteractiva.ro/
+- [România Transparentă](https://civtech.gov2.ro/proiect/romania-transparenta/): Registre despre primării, companii de stat, universități. Site: https://romaniatransparenta.eu/
+- [Sondaje România](https://civtech.gov2.ro/proiect/sondaje-romania/): Agregator de sondaje electorale. Site: https://sondajeromania.ro/
+- [Testvot](https://civtech.gov2.ro/proiect/testvot/): Test de afinitate politică. Site: https://www.testvot.eu
+- [Tipizatul](https://civtech.gov2.ro/proiect/tipizatul/): Formulare tipizate emise de instituțiile publice. Site: https://www.tipizatul.eu/
+- [VicHub Data](https://civtech.gov2.ro/proiect/vichub-data/): Date publice despre România, în grafice și hărți. Site: https://data.vichub.dev/
+- [Vot Corect](https://civtech.gov2.ro/proiect/votcorect/): Informații și monitorizare alegeri electorale. Răspundem tuturor întrebărilor, sesizărilor și nelămuririlor legate de alegeri. Site: https://votcorect.ro
+- [Vot Diaspora](https://civtech.gov2.ro/proiect/votdiaspora/): Vot Diaspora este o platformă dezvoltată de Code for Romania care oferă rapid românilor din Diaspora informații despre cum pot vota la alegerile din anul 2024. Site: https://votdiaspora.ro/
+- [Votez.Info(rmat)](https://civtech.gov2.ro/proiect/votez-info/): Profiluri și comparator de candidați. Site: http://www.votez.info/
+
+## Proiecte: Finanțe publice
 
 - [Achiziții directe TI 2026](https://civtech.gov2.ro/proiect/achizitii-directe-ti-2026/): Dashboard cu semnale de verificat în achizițiile directe, T1 2026. Site: https://achizitii-directe-ti-2026.mariuscomper.uk/
 - [A Făcut?](https://civtech.gov2.ro/proiect/afacut/): Verifică investițiile publice din localitatea ta. Site: https://afacut.ro/
@@ -26,136 +58,106 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 - [Ce face statul cu 1.000 de lei?](https://civtech.gov2.ro/proiect/ce-face-statul-cu-1000-de-lei/): Veniturile și cheltuielile statului, explicate la 1.000 de lei. Site: https://mariuscomper.uk/ce-face-statul-cu-1000-de-lei/
 - [Companiile de stat](https://civtech.gov2.ro/proiect/companii-de-stat/): Câți bani, câte pierderi și cine le conduce. Site: https://companiidestat.ro/
 - [Companii Publice — România](https://civtech.gov2.ro/proiect/companii-publice-ro/): Site: https://cosettechichirau.github.io/companiipublice/
+- [Data Expert Forum](https://civtech.gov2.ro/proiect/data-expertforum/): Site: https://data.expertforum.ro/
+- [DemoANAF](https://civtech.gov2.ro/proiect/demoanaf/): CUI, curs BNR, IBAN trezorerie, e-Factura — fără cont. Site: https://demoanaf.ro/
 - [Execuții Bugetare](https://civtech.gov2.ro/proiect/executii-bugetare/): Veniturile și cheltuielile autorităților locale. Site: https://executii-bugetare.g4d.ro/
 - [Harta Banilor Publici](https://civtech.gov2.ro/proiect/harta-banilor-publici/) (offline): Achizițiile publice, pe hartă. Site: http://initiativaromania.ro/proiecte/harta-banilor-publici/
 - [Imobilele RA-APPS](https://civtech.gov2.ro/proiect/imobile-rapps/): Imobilele statului administrate de RA-APPS. Site: https://rapps.mirceaserdin.ro/
 - [Monitor SAFE](https://civtech.gov2.ro/proiect/monitor-safe/): Cum folosește România cele 16,68 mld. € din programul SAFE. Site: https://monitorsafe.ro/
 - [Open Budget](https://civtech.gov2.ro/proiect/open-budget/): Site: https://www.openbudget.ro
 - [SICAP.ai](https://civtech.gov2.ro/proiect/sicap-ai/): Motor de căutare pentru licitații și achiziții directe. Site: https://sicap.ai/
+- [Transparenta.eu](https://civtech.gov2.ro/proiect/transparenta-eu/): Bugete, legislație și justiție, într-un singur loc. Site: https://transparenta.eu/
 
-## Proiecte: Politică & alegeri
+## Proiecte: Drept, justiție și drepturi
 
-- [465.ro](https://civtech.gov2.ro/proiect/465/): Parlamentarii României și datele lor de contact. Site: https://465.ro/
-- [Bani Partide](https://civtech.gov2.ro/proiect/bani-partide/): Finanțarea partidelor și a campaniilor electorale. Site: https://banipartide.ro/
-- [Ce fac politicienii?](https://civtech.gov2.ro/proiect/ce-fac-politicienii/): Cronologia declarațiilor și faptelor politicienilor, cu surse. Site: https://cefacpoliticienii.ro/
-- [EuropeScope](https://civtech.gov2.ro/proiect/europescope/): Activitatea Parlamentului European și a Consiliului UE. Site: https://www.europescope.eu/
-- [Guvernezi!](https://civtech.gov2.ro/proiect/guvernezi/): Joc: ești prim-ministru patru ani. Cu ce politician semeni?. Site: https://www.guvernezi.ro/
-- [Harta Politicii](https://civtech.gov2.ro/proiect/harta-politicii/) (offline): Site: https://www.hartapoliticii.ro
-- [monitorul.ai](https://civtech.gov2.ro/proiect/monitorul-ai/): Arhiva stenogramelor parlamentare. Site: https://monitorul.ai/
-- [Mulțumesc.org](https://civtech.gov2.ro/proiect/multumesc/) (offline): Site: https://www.multumesc.org
-- [Observatori Vot Corect](https://civtech.gov2.ro/proiect/observatori-votcorect/): Site: https://observatori.votcorect.ro
-- [Parlament Transparent](https://civtech.gov2.ro/proiect/parlament-transparent/) (offline): Site: https://parlament.openpolitics.ro
-- [Political Colours](https://civtech.gov2.ro/proiect/political-colours/) (arhivat): Culoarea politică a primarilor, pe hartă. Site: https://www.politicalcolours.ro
-- [Rezultate Vot](https://civtech.gov2.ro/proiect/rezultate-vot/): Site: https://rezultatevot.ro/
-- [Sondaje România](https://civtech.gov2.ro/proiect/sondaje-romania/): Agregator de sondaje electorale. Site: https://sondajeromania.ro/
-- [Testvot](https://civtech.gov2.ro/proiect/testvot/): Test de afinitate politică. Site: https://www.testvot.eu
-- [Vot Corect](https://civtech.gov2.ro/proiect/votcorect/): Informații și monitorizare alegeri electorale. Răspundem tuturor întrebărilor, sesizărilor și nelămuririlor legate de alegeri. Site: https://votcorect.ro
-- [Vot Diaspora](https://civtech.gov2.ro/proiect/votdiaspora/): Vot Diaspora este o platformă dezvoltată de Code for Romania care oferă rapid românilor din Diaspora informații despre cum pot vota la alegerile din anul 2024. Site: https://votdiaspora.ro/
-- [Votez.Info(rmat)](https://civtech.gov2.ro/proiect/votez-info/): Profiluri și comparator de candidați. Site: http://www.votez.info/
-
-## Proiecte: Legislație, justiție & drepturi
-
+- [AccesInfo](https://civtech.gov2.ro/proiect/accesinfo/): Redactarea și urmărirea cererilor de informații publice (Legea 544). Site: https://play.google.com/apps/testing/com.radautiul_civic.access_info
 - [AI Aflat](https://civtech.gov2.ro/proiect/ai-aflat/): Asistent AI care explică legislația pe înțeles. Site: https://ai-aflat.ro
 - [Ce zice legea](https://civtech.gov2.ro/proiect/ce-zice-legea/): Site: https://cezicelegea.ro/
-- [Codul urbanismului](https://civtech.gov2.ro/proiect/codurbanism/): Ce reguli se aplică terenului sau dosarului tău după Legea 169/2026. Site: https://mariuscomper.uk/codurbanism/
 - [Despre femicid](https://civtech.gov2.ro/proiect/despre-femicid/): Cazurile de femicid din România. Site: https://desprefemicid.ro/
 - [Drepturi civile](https://civtech.gov2.ro/proiect/drepturi-civile/) (arhivat): Ghid despre drepturile tale în relația cu autoritățile. Site: https://www.drepturicivile.ro
+- [eContractAuto](https://civtech.gov2.ro/proiect/econtractauto/): Contractul de vânzare-cumpărare auto în trei pași. Site: https://econtractauto.ro/
+- [Ia statul la întrebări](https://civtech.gov2.ro/proiect/ia-statul-la-intrebari/) (arhivat): Cereri de informații publice (Legea 544). Site: https://www.romaniacurata.ro
+- [Jailando](https://civtech.gov2.ro/proiect/jailando/) (arhivat): Politicieni condamnați la închisoare. Site: http://jailando.com/
+- [Monitor cetățenie](https://civtech.gov2.ro/proiect/monitor-cetatenie/): Statistici despre cererile de cetățenie română. Site: https://www.gregorieu.com/cetatenie/ro
 - [Onorata Instanță](https://civtech.gov2.ro/proiect/onorata-instanta/): Site: https://www.onoratainstanta.ro
 - [Portal Just Modern](https://civtech.gov2.ro/proiect/portal-just-modern/): Căutarea dosarelor și termenelor din instanțe. Site: https://portaljustmodern.ro/
 
-## Proiecte: Integritate & anticorupție
-
-- [Am scăpat](https://civtech.gov2.ro/proiect/amscapat/): Cazuri de corupție: prescripții, achitări, condamnări. Site: https://amscapat.ro/
-- [Harta Firmelor](https://civtech.gov2.ro/proiect/harta-firmelor/): Legăturile dintre firme, oameni și contracte publice. Site: https://harta-firmelor.ro
-- [Jailando](https://civtech.gov2.ro/proiect/jailando/) (arhivat): Politicieni condamnați la închisoare. Site: http://jailando.com/
-- [Mari Corupți](https://civtech.gov2.ro/proiect/mari-corupti/) (offline): Site: https://www.maricorupti.ro
-- [Muzeul Corupției](https://civtech.gov2.ro/proiect/muzeul-coruptiei/) (offline): Site: http://www.muzeulcoruptiei.ro/
-- [Pe propria răspundere](https://civtech.gov2.ro/proiect/monitorul-ai-integritate/): Analiză declarații avere & interese. Site: https://monitorul.ai/integritate
-- [Piața de Șpagă](https://civtech.gov2.ro/proiect/piata-de-spaga/) (offline): Site: https://www.piatadespaga.ro
-- [Politicieni Corupți](https://civtech.gov2.ro/proiect/politicieni-corupti/): Arhivă independentă despre corupție și integritate. Site: https://politicieni-corupti.ro/
-
-## Proiecte: Media & dezinformare
+## Proiecte: Media și informare
 
 - [Antibunk](https://civtech.gov2.ro/proiect/antibunk/): Identificarea și combaterea dezinformării online. Site: https://antibunk.ro/
 - [Didi365](https://civtech.gov2.ro/proiect/didi365/): Semnalarea afirmațiilor care trebuie verificate. Site: https://didi365.eu
 - [Dignitas](https://civtech.gov2.ro/proiect/dignitas/): Fact-checking colaborativ pentru afirmații politice românești. Site: https://dignitas.ro/
 - [Factual](https://civtech.gov2.ro/proiect/factual/): Fact-checking pentru declarațiile politicienilor. Site: https://www.factual.ro
 - [Harta TV Locale](https://civtech.gov2.ro/proiect/harta-tv-locale/) (arhivat): Televiziunile locale, pe hartă. Site: http://geo-spatial.org/hartatv/
-- [Hoover](https://civtech.gov2.ro/proiect/hoover/) (arhivat): Motor de căutare în colecții mari de documente. Site: https://hoover.grep.ro
 - [Monarh AI](https://civtech.gov2.ro/proiect/monarh-ai/): Monitorizarea manipulării de pe TikTok. Site: https://monarhdef.ro/
 - [PressPay](https://civtech.gov2.ro/proiect/presspay/): Abonament lunar împărțit între publicațiile independente pe care le apreciezi. Site: https://presspay.ro/
 - [Radar Digital](https://civtech.gov2.ro/proiect/radar-digital/): Semnalarea conținutului problematic de pe rețelele sociale. Site: https://radardigital.ro/
 
-## Proiecte: Comunitate locală & sesizări
-
-- [bucuresti.help](https://civtech.gov2.ro/proiect/bucuresti-help/): Fotografiezi problema, AI-ul scrie sesizarea. Site: https://bucuresti.help/
-- [Calitatea Aerului Rădăuți](https://civtech.gov2.ro/proiect/calitate-aer-radauti/): Rețea proprie de senzori pentru calitatea aerului. Site: https://calitateaer.radautiulcivic.ro/
-- [Domnule Primar](https://civtech.gov2.ro/proiect/domnule-primar/) (arhivat): Sesizări către primărie. Site: https://www.domnuleprimar.ro
-- [Nu aștepta supereroi](https://civtech.gov2.ro/proiect/nu-astepta-supereroi/) (offline): Datele de contact ale consilierilor locali. Site: https://www.nuasteptasupereroi.ro
-- [Onești City](https://civtech.gov2.ro/proiect/onesti-city/): Știri locale, anunțuri ale primăriei și sesizări. Site: https://www.onesti.city/
-- [Oradea City Report](https://civtech.gov2.ro/proiect/oradea-city-report/) (arhivat): Sesizări către Primăria Oradea. Site: http://www.oradea.ro/subpagina/oradea-city-report
-- [România fără gropi](https://civtech.gov2.ro/proiect/romania-fara-gropi/): Raportarea gropilor din drumuri. Site: http://romaniafaragropi.ro/
-- [Unde ți-ar fi bine să locuiești?](https://civtech.gov2.ro/proiect/unde-locuiesc/): Compară opt orașe după populație și legături feroviare directe. Site: https://mariuscomper.uk/unde-locuiesc/
-- [Vocea Cartierului Tău](https://civtech.gov2.ro/proiect/vocea-cartierului-tau/): Sesizarea și urmărirea problemelor din cartier. Site: https://vocea-cartierului-tau.ro/
-
-## Proiecte: Mediu, energie & riscuri
+## Proiecte: Mediu și energie
 
 - [aerlive](https://civtech.gov2.ro/proiect/aerlive/): Calitatea aerului în București și Ilfov. Site: https://aerlive.ro/
 - [București Verde](https://civtech.gov2.ro/proiect/bucuresti-verde/): Documentarea și sesizarea tăierilor de arbori. Site: https://bucurestiverde.ro
 - [Calendar ridicare gunoi Arad](https://civtech.gov2.ro/proiect/reciclare-arad/): Site: https://baditaflorin.github.io/calendar-ridicare-gunoi-arad/
-- [După cutremur](https://civtech.gov2.ro/proiect/dupa-cutremur/): Clădiri vulnerabile și străzi care pot fi blocate după un cutremur. Site: https://sites.google.com/rerise.org/dupacutremur
-- [e-cutremur](https://civtech.gov2.ro/proiect/e-cutremur/): Site: https://e-cutremur.ro/
+- [Calitatea Aerului Rădăuți](https://civtech.gov2.ro/proiect/calitate-aer-radauti/): Rețea proprie de senzori pentru calitatea aerului. Site: https://calitateaer.radautiulcivic.ro/
 - [Harta tăierilor de păduri](https://civtech.gov2.ro/proiect/harta-taierilor/) (arhivat): Site: http://harta.plantamfaptebune.ro/Public
-- [Hazard seismic 2026 pe localități](https://civtech.gov2.ro/proiect/cat-de-tare/): Valorile oficiale de hazard seismic pentru 3.181 de localități. Site: https://mariuscomper.uk/cat-de-tare/
 - [Monitor Energie](https://civtech.gov2.ro/proiect/monitor-energie/): Platformă de monitorizare în timp real a Sistemului Energetic Național. Producția de energie electrică, consumul național, importul, exportul și fluxurile transfrontaliere din România, actualizate…. Site: https://monitorenergie.ro/
 
-## Proiecte: Servicii publice & formalități
+## Proiecte: Sănătate
 
-- [Centrul pentru Cariere](https://civtech.gov2.ro/proiect/centrul-pentru-cariere/): Site: https://centrulpentrucariere.ro/
-- [DemoANAF](https://civtech.gov2.ro/proiect/demoanaf/): CUI, curs BNR, IBAN trezorerie, e-Factura — fără cont. Site: https://demoanaf.ro/
-- [eContractAuto](https://civtech.gov2.ro/proiect/econtractauto/): Contractul de vânzare-cumpărare auto în trei pași. Site: https://econtractauto.ro/
 - [Evermed](https://civtech.gov2.ro/proiect/evermed/): Clinici private cu contract CNAS. Site: https://evermed.ro/
-- [Monitor cetățenie](https://civtech.gov2.ro/proiect/monitor-cetatenie/): Statistici despre cererile de cetățenie română. Site: https://www.gregorieu.com/cetatenie/ro
-- [Posturi · gov2](https://civtech.gov2.ro/proiect/posturi-gov2/): Posturi vacante în sectorul public. Site: https://posturi.gov2.ro
 - [Sănătate mintală](https://civtech.gov2.ro/proiect/sanatate-mintala/): Site: https://sanatateamintala.ro/
-- [Tipizatul](https://civtech.gov2.ro/proiect/tipizatul/): Formulare tipizate emise de instituțiile publice. Site: https://www.tipizatul.eu/
 - [Verifică psiholog](https://civtech.gov2.ro/proiect/verifica-psiholog/): Verifică gratuit psihologi autorizați CPR din România. 35.570 psihologi, 63.748 certificate. Date sincronizate zilnic. Site: https://www.verificapsiholog.ro/
 
-## Proiecte: Transparență & date deschise
+## Proiecte: Educație și cultură
 
-- [AccesInfo](https://civtech.gov2.ro/proiect/accesinfo/): Redactarea și urmărirea cererilor de informații publice (Legea 544). Site: https://play.google.com/apps/testing/com.radautiul_civic.access_info
-- [Data Expert Forum](https://civtech.gov2.ro/proiect/data-expertforum/): Site: https://data.expertforum.ro/
-- [Date statistice INS](https://civtech.gov2.ro/proiect/ins-gov2/): Date de la Institutul Național de Statistică. Site: https://ins.gov2.ro
-- [Ia statul la întrebări](https://civtech.gov2.ro/proiect/ia-statul-la-intrebari/) (arhivat): Cereri de informații publice (Legea 544). Site: https://www.romaniacurata.ro
-- [iGov](https://civtech.gov2.ro/proiect/igov/): Rapoarte verificabile din surse publice. Site: https://igov.ro/
-- [Monitor Social](https://civtech.gov2.ro/proiect/monitor-social/): Date despre starea socială a României. Site: http://monitorsocial.ro/
-- [Registrul firmelor](https://civtech.gov2.ro/proiect/registrul-firmelor/): Tot ce se știe public despre o firmă din România. Site: https://registru.horecaos.org/
-- [ro-api-hub](https://civtech.gov2.ro/proiect/ro-api-hub/): Catalog open-source al API-urilor publice și private din România. Site: https://github.com/Jamaalx/ro-api-hub
-- [România Interactivă](https://civtech.gov2.ro/proiect/romania-interactiva/): Clasamente, calculatoare și vizualizări din date oficiale. Site: https://romaniainteractiva.ro/
+- [Școala pentru Democrație](https://civtech.gov2.ro/proiect/scoala-pentru-democratie/): Site: https://scoalapentrudemocratie.ro/
+- [Guvernezi!](https://civtech.gov2.ro/proiect/guvernezi/): Joc: ești prim-ministru patru ani. Cu ce politician semeni?. Site: https://www.guvernezi.ro/
+
+## Proiecte: Comunități și teritoriu
+
+- [bucuresti.help](https://civtech.gov2.ro/proiect/bucuresti-help/): Fotografiezi problema, AI-ul scrie sesizarea. Site: https://bucuresti.help/
+- [Codul urbanismului](https://civtech.gov2.ro/proiect/codurbanism/): Ce reguli se aplică terenului sau dosarului tău după Legea 169/2026. Site: https://mariuscomper.uk/codurbanism/
+- [Domnule Primar](https://civtech.gov2.ro/proiect/domnule-primar/) (arhivat): Sesizări către primărie. Site: https://www.domnuleprimar.ro
+- [Onești City](https://civtech.gov2.ro/proiect/onesti-city/): Știri locale, anunțuri ale primăriei și sesizări. Site: https://www.onesti.city/
+- [Oradea City Report](https://civtech.gov2.ro/proiect/oradea-city-report/) (arhivat): Sesizări către Primăria Oradea. Site: http://www.oradea.ro/subpagina/oradea-city-report
+- [România fără gropi](https://civtech.gov2.ro/proiect/romania-fara-gropi/): Raportarea gropilor din drumuri. Site: http://romaniafaragropi.ro/
 - [România, loc cu loc](https://civtech.gov2.ro/proiect/biografia-localitatii/): Biografia statistică a fiecărei localități, din seriile INS TEMPO. Site: https://mariuscomper.uk/biografia-localitatii/
-- [România Transparentă](https://civtech.gov2.ro/proiect/romania-transparenta/): Registre despre primării, companii de stat, universități. Site: https://romaniatransparenta.eu/
-- [Transparenta.eu](https://civtech.gov2.ro/proiect/transparenta-eu/): Bugete, legislație și justiție, într-un singur loc. Site: https://transparenta.eu/
+- [Unde ți-ar fi bine să locuiești?](https://civtech.gov2.ro/proiect/unde-locuiesc/): Compară opt orașe după populație și legături feroviare directe. Site: https://mariuscomper.uk/unde-locuiesc/
 - [Unde locuiesc românii?](https://civtech.gov2.ro/proiect/unde-locuiesc-romanii/): Date despre populație, pe hartă. Site: https://unde.geo-spatial.org/
-- [VicHub Data](https://civtech.gov2.ro/proiect/vichub-data/): Date publice despre România, în grafice și hărți. Site: https://data.vichub.dev/
+- [Vocea Cartierului Tău](https://civtech.gov2.ro/proiect/vocea-cartierului-tau/): Sesizarea și urmărirea problemelor din cartier. Site: https://vocea-cartierului-tau.ro/
 
-## Proiecte: Stat digital & drepturi digitale
+## Proiecte: Economie și muncă
+
+- [Centrul pentru Cariere](https://civtech.gov2.ro/proiect/centrul-pentru-cariere/): Site: https://centrulpentrucariere.ro/
+- [Harta Firmelor](https://civtech.gov2.ro/proiect/harta-firmelor/): Legăturile dintre firme, oameni și contracte publice. Site: https://harta-firmelor.ro
+- [Posturi · gov2](https://civtech.gov2.ro/proiect/posturi-gov2/): Posturi vacante în sectorul public. Site: https://posturi.gov2.ro
+- [Registrul firmelor](https://civtech.gov2.ro/proiect/registrul-firmelor/): Tot ce se știe public despre o firmă din România. Site: https://registru.horecaos.org/
+
+## Proiecte: Societate digitală
 
 - [Barometrul Digital](https://civtech.gov2.ro/proiect/barometrul-digital/): Securitatea site-urilor instituțiilor publice. Site: https://barometrul-digital.ro/
 - [De Obște](https://civtech.gov2.ro/proiect/de-obste/): Prototip de platformă de servicii publice digitale. Site: https://in.deobste.ro/
 - [Harta digitalizării primăriilor](https://civtech.gov2.ro/proiect/harta-digitalizarii-primariilor/): Starea reală a digitalizării primăriilor din România. Site: https://beta.dela0.ro/harta-digitalizarii-primariilor/
+- [Hoover](https://civtech.gov2.ro/proiect/hoover/) (arhivat): Motor de căutare în colecții mari de documente. Site: https://hoover.grep.ro
 - [Interoperabilitate.ro](https://civtech.gov2.ro/proiect/interoperabilitate/): Investigații despre infrastructura digitală a statului. Site: https://interoperabilitate.ro/
+- [ro-api-hub](https://civtech.gov2.ro/proiect/ro-api-hub/): Catalog open-source al API-urilor publice și private din România. Site: https://github.com/Jamaalx/ro-api-hub
 
-## Proiecte: Societate civilă & participare
+## Proiecte: Societate civilă
 
-- [7 ani de acasă](https://civtech.gov2.ro/proiect/7-ani-de-acasa/) (arhivat): Site: https://www.7anideacasa.eu
-- [Școala pentru Democrație](https://civtech.gov2.ro/proiect/scoala-pentru-democratie/): Site: https://scoalapentrudemocratie.ro/
 - [DeClic](https://civtech.gov2.ro/proiect/declic/): Comunitate de campanii și petiții civice. Site: https://declic.ro
 - [ONG-urile înregistrate la Camera Deputaților](https://civtech.gov2.ro/proiect/ong-camera-deputatilor/): Registrul oficial. Site: http://www.cdep.ro/informatii_publice/ong.chest_aprobate
 - [Redirecționează](https://civtech.gov2.ro/proiect/redirectioneaza/): Redirecționarea a 3,5% din impozit către un ONG. Site: https://redirectioneaza.ro/
 
-## Proiecte: Altele
+## Proiecte: Protecție socială și incluziune
 
 - [Câți ani de pensie apuci?](https://civtech.gov2.ro/proiect/ani-de-pensie/): Calculator: luna pensionării și anii de după ea (Legea 360/2023). Site: https://mariuscomper.uk/ani-de-pensie/
+- [Monitor Social](https://civtech.gov2.ro/proiect/monitor-social/): Date despre starea socială a României. Site: http://monitorsocial.ro/
+
+## Proiecte: Securitate și reziliență
+
+- [După cutremur](https://civtech.gov2.ro/proiect/dupa-cutremur/): Clădiri vulnerabile și străzi care pot fi blocate după un cutremur. Site: https://sites.google.com/rerise.org/dupacutremur
+- [e-cutremur](https://civtech.gov2.ro/proiect/e-cutremur/): Site: https://e-cutremur.ro/
+- [Hazard seismic 2026 pe localități](https://civtech.gov2.ro/proiect/cat-de-tare/): Valorile oficiale de hazard seismic pentru 3.181 de localități. Site: https://mariuscomper.uk/cat-de-tare/
 - [Războiul hibrid al Rusiei](https://civtech.gov2.ro/proiect/semnal-razboiul-hibrid/): Harta incidentelor. Site: https://semnal.eu/ro/razboi-hibrid/
 
 ## Organizații
@@ -174,32 +176,29 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 - [TechSoup](https://civtech.gov2.ro/organizatie/techsoup/): Tehnologie pentru organizații nonprofit. Site: https://www.techsoup.ro/
 - [Tech & Tonic](https://civtech.gov2.ro/organizatie/tech-and-tonic/): Asociație despre impactul social al tehnologiei și al AI-ului. Site: https://techandtonic.ro/
 
-## Resurse: Liste și colecții
+## Resurse: Resursă
 
 - [AIParte Research](https://civtech.gov2.ro/resursa/aiparte-research/): Explorăm datele din educație și administrație pentru a înțelege inegalitățile și a dezvolta soluții. Site: https://aiparte.ro/research/
 - [Ghiduri politici publice, monitorizare date](https://civtech.gov2.ro/resursa/ghiduri-efor/): Detectorul de bani publici, ghid politici publice, baze de date pentru investigații financiare. Site: https://expertforum.ro/ghiduri/
 - [Listă publicații independente](https://civtech.gov2.ro/resursa/jurnalism-independent/): Listă filtrabilă a publicațiilor de presă independentă din România. Site: https://gov2-ro.github.io/repository/jurnalism-independent/
 - [Monitorizarea Planului Național privind Deceniul Digital](https://civtech.gov2.ro/resursa/monitorizare-plan-digital-national/): și evaluarea progresului inițiativelor de incluziune digitală din România. Site: https://www.crpe.ro/ro/295766-2/
-- [Pirații digitali ai Kremlinului](https://civtech.gov2.ro/resursa/piratii-digitali-ai-kremlinului/): Cum fură pixelii rusești datele românilor și finanțează conspirațiile și extremismul. Site: https://snoop.ro/piratii-digitali-ai-kremlinului-cum-fura-pixelii-rusesti-datele-romanilor-si-finanteaza-conspiratiile-si-extremismul/
 - [Proiecte geo-spatial.org](https://civtech.gov2.ro/resursa/proiecte-geo-spatial/): GIS. Site: https://geo-spatial.org/initiative
 - [Site-uri utile pentru cetățeni](https://civtech.gov2.ro/resursa/site-uri-utile-funky/): Lista Funky Citizens. Site: http://www.funkycitizens.org/site-uri-utile-pentru-cetateni/
 - [Situri civice (Etherpad)](https://civtech.gov2.ro/resursa/etherpad-situri-civice/): Listă colaborativă de site-uri civice. Site: https://tableta.ceata.org/p/situricivice
-- [Top 10 unelte de democrație digitală](https://civtech.gov2.ro/resursa/apti-unelte-democratie/): Selecția ApTI. Site: https://www.apti.ro/top-zece-cele-mai-bune-unelte-de-democratie-digitala
 
-## Resurse: Articol
-
-- [Nu toate scumpirile cântăresc la fel](https://civtech.gov2.ro/resursa/recontorizarea/): Coșul de consum al unei familii, numărat de două ori: pondere și scumpire. Site: https://mariuscomper.uk/recontorizarea/
-- [Votul a trecut. Cota ta e încă zero.](https://civtech.gov2.ro/resursa/pensie-din-bursa/): Calculator pentru pensia din conturile de economisire și investiții (CEI). Site: https://mariuscomper.uk/pensie-din-bursa/
-
-## Resurse: Cercetare
+## Resurse: Publicație
 
 - [Arhitectura invizibilă a statului digital](https://civtech.gov2.ro/resursa/statul-digital/): Harta celor 136 de baze de date din Cloudul Privat Guvernamental. Site: https://mariuscomper.uk/statul-digital/
 - [Complet online. La ghișeu.](https://civtech.gov2.ro/resursa/complet-online/): Auditul celor 613 fișe „online” din catalogul serviciilor publice. Site: https://mariuscomper.uk/complet-online/
 - [Deficitul și datoria României, 1995–2025](https://civtech.gov2.ro/resursa/pe-datorie/): Din 100 de lei încasați, cât cheltuiește, împrumută și plătește statul în dobânzi. Site: https://mariuscomper.uk/pe-datorie/
 - [De unde vine apa de la robinet în marile orașe din România](https://civtech.gov2.ro/resursa/de-unde-vine-apa/): Originea apei de la robinet în cele mai mari 10 orașe din România. Site: https://mariuscomper.uk/de-unde-vine-apa/
 - [Legea lui Benford pe achizițiile directe din România](https://civtech.gov2.ro/resursa/prima-cifra/): Testul primei cifre pe aproape 600.000 de achiziții directe pe trimestru. Site: https://mariuscomper.uk/prima-cifra/
+- [Nu toate scumpirile cântăresc la fel](https://civtech.gov2.ro/resursa/recontorizarea/): Coșul de consum al unei familii, numărat de două ori: pondere și scumpire. Site: https://mariuscomper.uk/recontorizarea/
 - [PIB-ul României, trimestru cu trimestru, 2020–2026](https://civtech.gov2.ro/resursa/ultima-noapte-pib/): Cum revizuiește INS PIB-ul trimestrial după prima estimare, 2020–2026. Site: https://mariuscomper.uk/ultima-noapte-pib/
+- [Pirații digitali ai Kremlinului](https://civtech.gov2.ro/resursa/piratii-digitali-ai-kremlinului/): Cum fură pixelii rusești datele românilor și finanțează conspirațiile și extremismul. Site: https://snoop.ro/piratii-digitali-ai-kremlinului-cum-fura-pixelii-rusesti-datele-romanilor-si-finanteaza-conspiratiile-si-extremismul/
 - [România construiește. Dar pentru cine?](https://civtech.gov2.ro/resursa/constru-pentru-cine/): Locuințe versus populație, pe localități, din 1992. Site: https://mariuscomper.uk/constru-pentru-cine/
 - [Satele din România care au rămas fără școală](https://civtech.gov2.ro/resursa/trei-din-patru/): Harta satelor rămase fără școală, 2013–2026. Site: https://mariuscomper.uk/trei-din-patru/
 - [Se golesc de oameni, dar nu de locuințe](https://civtech.gov2.ro/resursa/orasul-care-se-intinde/): Localități cu mai puțini locuitori, dar cu mai multe locuințe, 2000–2020. Site: https://mariuscomper.uk/orasul-care-se-intinde/
+- [Top 10 unelte de democrație digitală](https://civtech.gov2.ro/resursa/apti-unelte-democratie/): Selecția ApTI. Site: https://www.apti.ro/top-zece-cele-mai-bune-unelte-de-democratie-digitala
 - [Unde se termină asfaltul](https://civtech.gov2.ro/resursa/unde-se-termina-asfaltul/): Drumurile neasfaltate din România, județ cu județ: 20.959 km în 2025. Site: https://mariuscomper.uk/unde-se-termina-asfaltul/
+- [Votul a trecut. Cota ta e încă zero.](https://civtech.gov2.ro/resursa/pensie-din-bursa/): Calculator pentru pensia din conturile de economisire și investiții (CEI). Site: https://mariuscomper.uk/pensie-din-bursa/
