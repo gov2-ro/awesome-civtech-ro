@@ -12,6 +12,7 @@
 - Documents the command does not edit: `README.md`, `CLAUDE.md`, `AGENTS.md`, `CONTRIBUTING.md`, `docs/ARCHITECTURE.md`, `docs/DATA-SCHEMA.md`, `docs/METODOLOGIE.md` and `docs/specs/taxonomy-v2.md` now state the new public source, the frozen v1 files and the moved browser code.
 
 **Hard**
+- CI on the pull request failed once in `test_cutover.py`: `shutil.copytree` met a vanished `.git/objects/maintenance.lock`, because git ran background maintenance after the base commit. The tests now run git with `maintenance.auto=false` and `gc.auto=0` and skip `*.lock` files when they copy.
 - Only the statements that became false were changed. Long sections still describe the v1 flow or the "preview" in detail (the README editing section, the contributor routes, parts of ARCHITECTURE and the specification). They carry a dated note. See BACKLOG.
 - The contributor route after the cutover is my reading, not a decision: a pull request on `proiecte.csv` no longer reaches the site, and proposals come through the Form or an issue and an editor copies them into `intrari.csv`.
 
