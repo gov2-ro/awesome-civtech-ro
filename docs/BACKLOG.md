@@ -31,7 +31,7 @@ External (Google, GitHub), after the editorial work:
 - [ ] Sheets v1: allow Actions to create PRs; decide the `demoanaf` cell; run `sheets-push` with `force` once to create `_sync`. Do not require `validate / sheets-pull` in branch protection.
 - [x] Sheets v2: tab `v2-intrari` (gid 541482181 in `setari.json`) holds the 140 entries; marker 3989209 (2026-10-22).
 - [x] Form v2: option B chosen on 2026-10-22. The live Form keeps the v1 questions; an editor copies each proposal into `intrari.csv`. Open: implement `form.py --apply` for a v2 root, or edit the Form by hand (option A).
-- [~] Cutover: applied by the owner on branch `cutover-taxonomy-v2` on 2026-10-22. Open: CI on the pull request, then the merge (it deploys v2 to the public site). Rollback: revert the merge commit.
+- [x] Cutover: applied by the owner on 2026-10-22, merged as pull request #4 (merge commit fda9545) and deployed. Post-deploy checks passed (see ACTIVITY). Rollback: revert the merge commit.
 - [ ] Protect the v1 Sheet tabs `proiecte` and `orgs` (by hand in Google Sheets; runbook step 4).
 - [ ] Rewrite the documents for v2 as the public model: the README section "Editing the data", the contributor routes in CONTRIBUTING.md (confirm the route: Form or issue, then an editor copies into `intrari.csv`), the v1 diagrams in ARCHITECTURE.md, and the "preview" wording in DATA-SCHEMA.md and the specification.
 

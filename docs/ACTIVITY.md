@@ -1,6 +1,6 @@
 # Activity
 
-## 2026-10-22 — Cutover to taxonomy v2 applied (branch `cutover-taxonomy-v2`, not merged)
+## 2026-10-22 — Cutover to taxonomy v2 applied, merged and deployed (pull request #4)
 
 **Done**
 - Sheets first. The owner's `sheets.py pull --check` replaced `data/proiecte.csv` with the Sheet's copy (no sync marker, so two-way: the Sheet won). That copy lacked the 19 new rows
@@ -9,6 +9,10 @@
   `sheets.py diff` shows no difference on the three tabs.
 - The owner ran `cutover_v2.py --apply` (my attempt was refused by the permission check as a production deploy): 24 text edits in 10 files, `site-v2/` gone, `PUBLIC_ROOT` is the integration copy.
 - The 19 entries' profile and search rows (19 and 213) went into `observatii/`. `validate.py --publication` passes, `build.py` writes 140 entries, 269 tests pass (6 skipped: tests of the pre-cutover state).
+- Merged on the owner's instruction (merge commit fda9545). `pages` and `validate` passed on `main`. Post-deploy checks on https://civtech.gov2.ro/: `data.json` has schema `2.0.0-draft.2`, `draft` false,
+  140 entries (106 projects, 21 resources, 13 organisations), `tabs.intrari` 541482181, no `incentru`; an entry page of each kind and the three archives answer 200;
+  `style.css` and `app.js` carry new `?v=` hashes; `check_preview.py` passes 97 of 97; `sheets.py diff` shows no difference; a manual `sheets-pull` ended without a pull request.
+- `check_preview.py` failed on the live site twice: Cloudflare answers 403 to urllib's default User-Agent, and the image check ran before the images arrived over the network. It now names itself and waits up to 10 s.
 - Documents the command does not edit: `README.md`, `CLAUDE.md`, `AGENTS.md`, `CONTRIBUTING.md`, `docs/ARCHITECTURE.md`, `docs/DATA-SCHEMA.md`, `docs/METODOLOGIE.md` and `docs/specs/taxonomy-v2.md` now state the new public source, the frozen v1 files and the moved browser code.
 
 **Hard**

@@ -20,10 +20,11 @@ import urllib.parse
 import urllib.request
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import TimeoutError as PlaywrightTimeout, sync_playwright
 
 BASE = sys.argv[1] if len(sys.argv) > 1 else "http://localhost:8765/"
-DB = json.loads(urllib.request.urlopen(BASE + "data.json").read())
+# Cloudflare answers 403 to urllib's default User-Agent, so a run against the live site names itself.
+DB = json.loads(urllib.request.urlopen(urllib.request.Request(BASE + "data.json", headers={"User-Agent": "Mozilla/5.0 (check_preview.py)"})).read())
 C = {c["id"]: c for c in DB["vocabulary"]["concepts"]}
 A = {a["id"]: a for a in DB["vocabulary"]["areas"]}
 results = []
@@ -177,7 +178,12 @@ with sync_playwright() as pw:
     img = next(i for i in DB["items"] if i["img"])
     page.goto(BASE + f"{img['kind']}/{img['slug']}/")
     page.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
-    loaded = page.evaluate("[...document.querySelectorAll('[data-slot=drawer] img')].every(i => i.complete && i.naturalWidth > 0)")
+    every_image = "[...document.querySelectorAll('[data-slot=drawer] img')].every(i => i.complete && i.naturalWidth > 0)"
+    try:  # over a real network the images arrive after the panel opens
+        page.wait_for_function(every_image, timeout=10000)
+    except PlaywrightTimeout:
+        pass
+    loaded = page.evaluate(every_image)
     ok("images resolve from an entry page", loaded, img["slug"])
     blank = next((i for i in DB["items"] if not i["primarySubject"]), None)  # an abstention; none once every entry has a subject
     if blank:
