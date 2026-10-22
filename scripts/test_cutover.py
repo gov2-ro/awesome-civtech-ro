@@ -46,7 +46,10 @@ def digest(path: Path) -> str:
 
 
 def vcs(repo: Path, *args: str) -> str:
-    return subprocess.run(["git", "-C", str(repo), *args], capture_output=True, text=True, env=GIT_ENV, check=True).stdout.strip()
+    # No background maintenance: after a commit, git starts `maintenance run --auto` and holds objects/maintenance.lock, and a test
+    # that copies the repository at that moment fails on the vanished lock file (seen once on a CI runner).
+    return subprocess.run(["git", "-C", str(repo), "-c", "maintenance.auto=false", "-c", "gc.auto=0", *args],
+                          capture_output=True, text=True, env=GIT_ENV, check=True).stdout.strip()
 
 
 # ---- A temporary repository with the package ---------------------------------------------------------------------------
@@ -80,7 +83,7 @@ class Repo:
         self.tmp = tempfile.TemporaryDirectory()
         test.addCleanup(self.tmp.cleanup)
         self.root = Path(self.tmp.name) / "repo"
-        shutil.copytree(Path(_base.name) / "repo", self.root, symlinks=True)
+        shutil.copytree(Path(_base.name) / "repo", self.root, symlinks=True, ignore=shutil.ignore_patterns("*.lock"))
         self.package = self.root / "data" / "taxonomy-v2"
         self.overlay = self.package / "integrare"
         if own_run:  # a writable copy, for the test that damages a sealed file

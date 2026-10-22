@@ -87,7 +87,7 @@ Dacă niciuna nu există, `since` este data primului certificat TLS al domeniulu
 Certificatul se citește doar pentru intrările al căror URL este rădăcina unui domeniu.
 Un domeniu poate fi mai vechi decât proiectul care îl folosește acum.
 
-Cum se vede în site (cod `site-v2/app.js`; interfața veche, `site/app.js`, numește aceeași dată „Vechime”
+Cum se vede în site (cod `site/app.js`; interfața veche (v1) numea aceeași dată „Vechime”
 și aceeași insignă „nou” sau „lansat recent”):
 
 - „Prima urmă observată” în fișă, cu data și sursa.
@@ -197,7 +197,7 @@ fără depozit public sau fără capturi în arhiva web pierde puncte fără să
 
 ### Ordonarea „Active și relevante”
 
-Această ordonare (în `site-v2/app.js`) pornește de la scor. Ea înmulțește scorul cu `0,5 + 0,5 × proaspăt`
+Această ordonare (în `site/app.js`) pornește de la scor. Ea înmulțește scorul cu `0,5 + 0,5 × proaspăt`
 și adaugă 8 puncte pentru o primă urmă mai nouă de 60 de zile.
 `proaspăt` este `e^(−zile / 365)`, unde `zile` este vârsta ultimului semn de viață: ultima actualizare
 sau, dacă e mai nouă, prima urmă recentă. Fără nicio dată, `proaspăt` este 0,25.
@@ -222,4 +222,4 @@ sau, dacă e mai nouă, prima urmă recentă. Fără nicio dată, `proaspăt` es
 | Prima urmă | `since()` în `scripts/build.py`; surse în `extras_one()` din `scripts/profile.py` |
 | Ultima activitate | `last_activity()` în `scripts/build.py`; surse în `extras_one()` din `scripts/profile.py` |
 | Scorul | `score()` și `reach_features()` în `scripts/build.py` |
-| Insigne, coloane, ordonări | `site-v2/app.js` |
+| Insigne, coloane, ordonări | `site/app.js` |

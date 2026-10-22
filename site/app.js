@@ -1,4 +1,6 @@
 'use strict';
+// The v2 browser code: it reads data.json with schemaVersion 2 (taxonomy v2 facets). It is a fork of site/app.js;
+// scripts/build.py copies it over app.js in a v2 --site-dir, and it replaces site/app.js at the source cutover.
 
 const $ = (s, el = document) => el.querySelector(s);
 const slot = name => $(`[data-slot="${name}"]`);
@@ -52,31 +54,79 @@ const STATUS = {
   necunoscut: { label: 'Neconfirmat', cls: 'warn', group: 'neconfirmat' },
   neverificat: { label: 'Neverificat', cls: 'warn', group: 'neconfirmat' },
 };
-const SORTS = [['domeniu', 'Pe domenii'], ['az', 'A–Z'], ['top', 'Active și relevante'], ['relevanta', 'Relevanță'], ['nou', 'Cele mai noi'], ['recent', 'Actualizate recent'], ['random', 'Aleatoriu']];
+const SORTS = [['subiect', 'Pe subiecte'], ['az', 'A–Z'], ['top', 'Active și relevante'], ['relevanta', 'Relevanță'], ['nou', 'Apărute recent (prima urmă)'], ['recent', 'Actualizate recent'], ['random', 'Aleatoriu']];
+// What the two date columns and their sorts mean. `since` is the first trace the profiler observed (a web archive capture,
+// the creation of the code repository, or the first TLS certificate of the domain); it is not the date the project launched.
+const DATE_HELP = {
+  since: 'Prima urmă observată: arhivă web, depozit de cod sau certificat TLS. Nu este data lansării. Z = zile, L = luni, A = ani de atunci.',
+  updated: 'Ultima actualizare observată: depozit de cod, feed, WordPress, sitemap, antet de server sau arhivă web. Z = zile, L = luni, A = ani de atunci.',
+};
+const SORT_HELP = { nou: DATE_HELP.since, recent: DATE_HELP.updated };
 const MIN_Q = 3;
 // ina=1 shows inactive projects (hidden by default); a and s are kept for URLs but have no UI for now.
-const DEFAULTS = { k: 'proiect', q: '', d: '', t: '', kw: '', c: '', org: '', a: '', s: '', cod: '', civ: '', nou: '', ina: '', v: '', o: '', p: '' };
-const FILTERS = ['q', 'd', 't', 'kw', 'c', 'org', 'a', 's', 'cod', 'civ', 'nou', 'ina'];
-const FRESH_DAYS = 183, LAUNCH_DAYS = 60;
+// The facets hold comma-separated concept or area IDs: OR within a facet, AND between facets.
+// d, t, kw and c are v1 bookmarks (domain, types, keywords, city): they keep their v1 meaning through each entry's
+// `legacy` fields and show as their own pills; they are never translated into the new facets.
+const DEFAULTS = { k: 'proiect', q: '', subj: '', topic: '', cap: '', fmt: '', area: '', purpose: '', tech: '', inst: '', ent: '', orgt: '',
+  d: '', t: '', kw: '', c: '', org: '', a: '', s: '', cod: '', civ: '', nou: '', ina: '', v: '', o: '', p: '' };
+const FACETS = ['subj', 'topic', 'cap', 'fmt', 'area', 'purpose', 'tech', 'inst', 'ent', 'orgt'];
+const MORE = ['purpose', 'tech', 'inst', 'ent', 'orgt'];  // under "Mai multe filtre"
+const LEGACY = ['d', 't', 'kw', 'c'];
+// The "classifications are proposals" notices (toolbar and detail panel); hidden for now. build.py has its own switch.
+const DRAFT_NOTE = false;
+const MULTI = [...FACETS, 't', 'kw'];
+const FILTERS = ['q', ...FACETS, ...LEGACY, 'org', 'a', 's', 'cod', 'civ', 'nou', 'ina'];
+// The concept scheme behind each facet (its title comes from the scheme's label in data.json).
+const SCHEME_OF = { subj: 'subiect', topic: 'subiect', cap: 'functie', fmt: 'format', purpose: 'scop', tech: 'tehnologie', inst: 'institutie', orgt: 'organizatie' };
+const FIELD = { subj: 'subjects', topic: 'topics', cap: 'capabilities', fmt: 'formats', area: 'areas', purpose: 'purposes', tech: 'technologies',
+  inst: 'institutions', orgt: 'organisationTypes' };
+// A first observed trace this recent counts as fresh; this recent again, as the newest (never as a confirmed launch).
+const FRESH_DAYS = 183, NEWEST_DAYS = 60;
 
 let DB = null, TAX = null, seed = Math.random();
-const BY_SLUG = new Map();
+const BY_SLUG = new Map(), CONCEPT = new Map(), AREA = new Map();
 let title = TITLES[0];
 const state = { ...DEFAULTS };
-// First visit on desktop: only "domeniu" is open. Once a visitor toggles a facet, their choice is stored and wins.
+// First visit on desktop: "Subiect" and "Temă" are open. Once a visitor toggles a facet, their choice is stored and wins.
 const wide = matchMedia('(min-width: 1024px)').matches;
-const closed = new Set(store.get('ct.closed', wide ? ['tip', 'cuvinte', 'optiuni'] : ['cuvinte']));
+const closed = new Set(store.get('ct2.closed', wide ? ['cap', 'fmt', 'area', 'more', 'optiuni'] : ['topic', 'cap', 'fmt', 'area', 'more']));
 let lastFocus = null;
+// Without a subject, "Temă" shows the most used topics first; the visitor can ask for all of them.
+const TOPIC_TOP = 12;
+let allTopics = false;
 
 const isInactive = it => STATUS[it.status].group === 'inactiv';
 const listOf = key => state[key] ? state[key].split(',') : [];
-const tips = () => listOf('t');
 const kwLabel = k => k.replace(/-/g, ' ');
+// The v1 words of an entry (category, types, keywords, town). Free-text search reads them, so that a v1 search still
+// finds the same entries; they are never shown or used as classification.
+const legacyWords = ({ legacy: l = {} }) => [TAX.dom[l.domeniu]?.label, ...(l.tips || []).map(t => TAX.tip[t]?.label),
+  ...(l.keywords || []).map(kwLabel), l.oras].filter(Boolean);
 const query = () => state.q.length >= MIN_Q ? state.q : '';
+const label = id => CONCEPT.get(id)?.label || AREA.get(id)?.label || id;
+// A facet's visible title: the scheme label, with the few that differ by tab or have no scheme.
+function facetTitle(key) {
+  if (key === 'cap' && state.k === 'organizatie') return 'Activități';
+  return { topic: 'Temă', area: 'Unde se aplică', ent: 'Tip de intrare' }[key] || TAX.scheme[SCHEME_OF[key]]?.label || key;
+}
+// Where an entry applies: one of its areas is the chosen area, contains it (a national tool applies in Bucharest),
+// or lies inside it (a local tool in Arad applies in Romania). Regions such as the EU contain nothing by inference.
+const areaUp = id => { const out = []; for (let a = AREA.get(id); a?.parent; a = AREA.get(a.parent)) out.push(a.parent); return out; };
+const appliesIn = (it, id) => it.areas.some(a => a === id || areaUp(id).includes(a) || areaUp(a).includes(id));
+// One value of a facet, for one entry: subjects include the roots of its topics; a topic includes its narrower topics.
+const has = (it, key, val) => key === 'area' ? appliesIn(it, val) : it._f[key].has(val);
+function ancestors(id) {
+  const out = [];
+  for (let todo = [...(CONCEPT.get(id)?.broader || [])]; todo.length;) {
+    const b = todo.pop();
+    if (!out.includes(b)) { out.push(b); todo.push(...(CONCEPT.get(b)?.broader || [])); }
+  }
+  return out;
+}
 
 /* ---------- URL state ---------- */
-// Projects read best grouped by domain; the short org/resource lists read best flat.
-const defaultSort = () => state.k === 'proiect' ? 'domeniu' : 'az';
+// Projects read best grouped by subject; the short org/resource lists read best flat.
+const defaultSort = () => state.k === 'proiect' ? 'subiect' : 'az';
 // An entry opens at its own address, /<kind>/<slug>/ with kind = proiect | organizatie | resursa (a page that
 // scripts/build.py writes, so link previews and search engines see it), with the filters in the query. The old
 // ?p=<slug> still opens it. ROOT is the site's path, whatever page loaded.
@@ -90,6 +140,7 @@ function readURL() {
   if (!state.p) state.p = pathSlug();
   // An entry from the address alone (no kind in the query) opens on its own tab: an organisation, not the project list.
   if (state.p && !u.has('k')) { const it = BY_SLUG.get(state.p); if (it) state.k = it.kind; }
+  if (state.o === 'domeniu') state.o = 'subiect';  // a v1 bookmark of the grouped view
   if (!state.o) state.o = defaultSort();
 }
 // The filters, as a query string; the open entry is in the path, not here.
@@ -107,12 +158,14 @@ const hrefFor = slug => entryPath(slug) + filterQuery();
 /* ---------- filtering ---------- */
 function matches(it, skip) {
   if (it.kind !== state.k) return false;
-  if (skip !== 'd' && state.d && it.domeniu !== state.d) return false;
-  if (skip !== 't' && state.t && !tips().some(t => it.tips.includes(t))) return false;
-  if (skip !== 'kw' && state.kw && !listOf('kw').some(k => it.keywords.includes(k))) return false;
-  if (skip !== 'c' && state.c && it.oras !== state.c) return false;
+  for (const key of FACETS) if (skip !== key && state[key] && !listOf(key).some(v => has(it, key, v))) return false;
+  const old = it.legacy || {};
+  if (skip !== 'd' && state.d && old.domeniu !== state.d) return false;
+  if (skip !== 't' && state.t && !listOf('t').some(t => (old.tips || []).includes(t))) return false;
+  if (skip !== 'kw' && state.kw && !listOf('kw').some(k => (old.keywords || []).includes(k))) return false;
+  if (skip !== 'c' && state.c && old.oras !== state.c) return false;
   if (skip !== 'org' && state.org && !it._orgs.includes(state.org)) return false;
-  if (skip !== 'a' && state.a && it.acoperire !== state.a) return false;
+  if (skip !== 'a' && state.a && it.coverageLevel !== state.a) return false;
   if (skip !== 's' && state.s && STATUS[it.status].group !== state.s) return false;
   if (skip !== 'cod' && state.cod && !it.code) return false;
   if (skip !== 'civ' && state.civ && !it.civictech) return false;
@@ -126,24 +179,26 @@ function matches(it, skip) {
   return true;
 }
 const kindItems = () => DB.items.filter(i => i.kind === state.k);
-const countBy = (skip, key) => {
-  const c = {};
-  // key may return several values (an item with two tips counts under both).
-  for (const it of DB.items) if (matches(it, skip)) for (const v of [key(it)].flat()) c[v] = (c[v] || 0) + 1;
+// Entries per option of one facet: the other facets apply, this facet's own selection does not. Each entry counts once
+// per option, also when several of its concepts lead to that option.
+function facetCounts(key, options) {
+  const base = DB.items.filter(i => matches(i, key)), c = {};
+  for (const o of options) c[o] = base.filter(i => has(i, key, o)).length;
   return c;
-};
-const activeFilterCount = () => ['d', 'c', 'org', 'a', 's', 'cod', 'civ', 'nou', 'ina'].filter(k => state[k]).length + tips().length + listOf('kw').length;
+}
+const activeFilterCount = () => ['d', 'c', 'org', 'a', 's', 'cod', 'civ', 'nou', 'ina'].filter(k => state[k]).length
+  + MULTI.reduce((n, k) => n + listOf(k).length, 0);
 const rank = it => ({ activ: 0, neconfirmat: 1, inactiv: 2 })[STATUS[it.status].group];
 const byName = (a, b) => a._sort.localeCompare(b._sort);
-// Last sign of life: the last update, or the launch date when that is later. A recent launch thus
+// Last sign of life: the last update, or the first observed trace when that is later. A recent first trace thus
 // sorts like a recent update. Entries with neither go last.
-const lastSign = it => [it.updated, isLaunched(it) ? it.since : ''].sort().at(-1) || '';
+const lastSign = it => [it.updated, isNewest(it) ? it.since : ''].sort().at(-1) || '';
 // "Active și relevante": the build's relevance score, discounted by time since the last sign of life
-// (half-life ~8 months; unknown counts as old), plus a small bump for a launch in the last 60 days.
+// (half-life ~8 months; unknown counts as old), plus a small bump for a first trace in the last 60 days.
 function topScore(it) {
   const d = lastSign(it);
   const recency = d ? Math.exp(-daysSince(d) / 365) : .25;
-  return it.score * (.5 + .5 * recency) + (isLaunched(it) ? 8 : 0);
+  return it.score * (.5 + .5 * recency) + (isNewest(it) ? 8 : 0);
 }
 function sorted(list) {
   if (state.o === 'random') {
@@ -151,9 +206,9 @@ function sorted(list) {
     return [...list].sort((a, b) => r(a) - r(b));
   }
   if (state.o === 'top') return [...list].sort((a, b) => topScore(b) - topScore(a) || byName(a, b));
-  if (state.o === 'domeniu') return [...list].sort((a, b) => rank(a) - rank(b) || lastSign(b).localeCompare(lastSign(a)) || byName(a, b));
+  if (state.o === 'subiect') return [...list].sort((a, b) => rank(a) - rank(b) || lastSign(b).localeCompare(lastSign(a)) || byName(a, b));
   if (state.o === 'relevanta') return [...list].sort((a, b) => b.score - a.score || byName(a, b));
-  // Entries with no known start date go last.
+  // Entries with no observed first trace go last.
   if (state.o === 'nou') return [...list].sort((a, b) => (b.since || '0').localeCompare(a.since || '0') || byName(a, b));
   if (state.o === 'recent') return [...list].sort((a, b) => (b.updated || '').localeCompare(a.updated || '') || byName(a, b));
   return [...list].sort((a, b) => rank(a) - rank(b) || byName(a, b));
@@ -177,23 +232,30 @@ function thumb(it) {
 }
 // The project's logo (its icon, up to 128 px) before its name in a row. Without one, the name starts at the left edge.
 const logo = it => it.icon ? `<img class="fav fav-name" src="${esc(it.icon)}" alt="" width="24" height="24" loading="lazy">` : '';
-const tipLabels = it => it.tips.map(t => TAX.tip[t]?.label).filter(Boolean);
-// A resource that is an article, guide, campaign or piece of research says so; plain "resursa" says nothing.
-const felLabel = it => it.kind === 'resursa' && it.fel && it.fel !== 'resursa' ? TAX.fel[it.fel]?.label || '' : '';
-const placeLabel = it => it.acoperire === 'local' ? (it.oras || 'Local') : '';
-function metaLine(it, withDomain) {
+// An entity type that differs from its tab says so (a publication on the resources tab); the usual one says nothing.
+const entLabel = it => it.entityType !== it.kind && it.entityType !== 'organizatie' ? TAX.ent[it.entityType]?.label || '' : '';
+// Local entries name their places. With a place filter on, a national entry says that it applies there as national.
+const placeLabel = it => it.coverageLevel === 'local'
+  ? it.areas.filter(a => /^(localitate|judet):/.test(a)).map(label).join(', ') || 'Local'
+  : state.area && it.coverageLevel !== 'necunoscut' ? TAX.cov[it.coverageLevel]?.label || '' : '';
+// About three useful classifications per row: a topic, a format, a capability. The detail panel has them all.
+const badgeIds = it => [['topic', it.topics[0]], ['fmt', it.formats[0]], ['cap', it.capabilities[0]]].filter(([, id]) => id);
+const badgesHTML = it => badgeIds(it).map(([key, id]) => `<span title="${esc(facetTitle(key))}"><span class="vh">${esc(facetTitle(key))}: </span>${esc(label(id))}</span>`).join('');
+function metaLine(it, withDomain, withFormat = false) {
   const st = STATUS[it.status];
-  const parts = [...new Set([felLabel(it), ...tipLabels(it), placeLabel(it)])];
-  if (withDomain) parts.unshift(TAX.domeniu[it.domeniu]?.short);
+  const parts = [...new Set([entLabel(it), withFormat && it.formats[0] ? label(it.formats[0]) : '', placeLabel(it)])];
+  if (withDomain) parts.unshift(it.primarySubject ? label(it.primarySubject) : '');
   let html = parts.filter(Boolean).map(esc).join(' · ');
   if (st.group !== 'activ') html += ` <span class="status-tag ${st.cls}">· ${st.label}</span>`;
   else if (it.stale) html += ` <span class="status-tag warn">· neactualizat din ${it.stale}</span>`;
   return html;
 }
 const statusDot = it => `<span class="dot ${STATUS[it.status].cls}" title="${STATUS[it.status].label}"></span>`;
-const codeTag = it => it.code ? `<span class="code-tag" title="Cod sursă deschis">${ICON.code}cod</span>` : '';
+// A code link says that the source is public; a licence is a separate fact (the detail panel shows it when known).
+const codeTag = it => it.code ? `<span class="code-tag" title="Cod sursă public">${ICON.code}cod</span>` : '';
+// "Apărut recent" says what was observed: the first trace of the entry on the web is recent. It does not say when it launched.
 const newTag = it => !isFresh(it) ? ''
-  : `<span class="code-tag new-tag${isLaunched(it) ? ' launch' : ''}" title="Apărut acum ${esc(age(it))} · ${esc(ageTitle(it))}">${isLaunched(it) ? 'lansat recent' : 'nou'}</span>`;
+  : `<span class="code-tag new-tag${isNewest(it) ? ' launch' : ''}" title="${esc(sinceTitle(it))}">apărut recent</span>`;
 const blurb = it => it.tagline || it.desc;
 const clip = (s, n) => s.length > n ? s.slice(0, s.lastIndexOf(' ', n) > n * .6 ? s.lastIndexOf(' ', n) : n).replace(/[\s,.;:–-]+$/, '') + '…' : s;
 // Native tooltip: the start of the long description, when there is more to say than the tagline.
@@ -215,17 +277,22 @@ function shortSpan(days) {
   return `${Math.floor(days / 365.25)}A`;
 }
 const daysSince = d => (Date.now() - Date.parse(d)) / DAY;
-// "Fresh": first seen less than FRESH_DAYS ago, by the same date the Vechime column shows.
+// "Fresh": the first observed trace is less than FRESH_DAYS old, by the same date the "Prima urmă" column shows.
 const isFresh = it => !!it.since && daysSince(it.since) < FRESH_DAYS;
-const isLaunched = it => !!it.since && daysSince(it.since) < LAUNCH_DAYS;
-const age = it => it.since ? span(daysSince(it.since)) : '';
+const isNewest = it => !!it.since && daysSince(it.since) < NEWEST_DAYS;
+const ago = d => daysSince(d) < 1 ? 'azi' : `acum ${span(daysSince(d))}`;
 const ageShort = it => it.since ? shortSpan(daysSince(it.since)) : '';
 const updatedShort = it => it.updated ? shortSpan(daysSince(it.updated)) : '';
-const updatedLabel = it => !it.updated ? '' : daysSince(it.updated) < 1 ? 'azi' : `acum ${span(daysSince(it.updated))}`;
-const UPDATED_SRC = { cod: 'ultimul commit', sitemap: 'sitemap', server: 'antetul Last-Modified', arhiva: 'ultima arhivare Wayback' };
+const sinceLabel = it => it.since ? ago(it.since) : '';
+const updatedLabel = it => it.updated ? ago(it.updated) : '';
+const UPDATED_SRC = { cod: 'ultimul push în depozitul de cod', feed: 'cel mai nou articol din feed', wordpress: 'ultima modificare în WordPress',
+  sitemap: 'sitemap', server: 'antetul Last-Modified', arhiva: 'ultima arhivare Wayback' };
 const SINCE_SRC = { arhiva: 'prima arhivare Wayback', cod: 'crearea depozitului de cod', certificat: 'primul certificat TLS al domeniului' };
 const ageTitle = it => !it.since ? 'Necunoscut' : it.sinceSrc ? `${it.since} · după ${SINCE_SRC[it.sinceSrc] || it.sinceSrc}` : it.since;
+const sinceTitle = it => it.since ? `Prima urmă observată ${sinceLabel(it)}: ${ageTitle(it)}. Nu este data lansării.` : 'Nicio urmă observată';
 const updatedTitle = it => it.updated ? `${it.updated} · după ${UPDATED_SRC[it.updatedSrc] || it.updatedSrc}` : 'Necunoscut';
+// The list columns show "13A", "2L", "9Z": the column headers explain the letters (DATE_HELP), and screen readers get the words.
+const sideDate = (short, words) => `<span aria-hidden="true">${esc(short || '—')}</span><span class="vh">${esc(words)}</span>`;
 
 // Cards and rows are not links themselves: the name is (stretched over the whole item, opening the
 // detail panel), so the project's own site can sit inside as a second, real link.
@@ -242,7 +309,7 @@ function card(it, withDomain) {
   return `<div class="card${isInactive(it) ? ' inactive' : ''}" data-open="${it.slug}"${hint(it)}>
     ${media(it)}
     <div class="card-body">
-      <div class="meta">${metaLine(it, withDomain)}</div>
+      <div class="meta">${metaLine(it, withDomain, true)}</div>
       <h3>${nameLink(it)}</h3>
       ${blurb(it) ? `<p class="tagline">${esc(blurb(it))}</p>` : ''}
       <div class="foot">${statusDot(it)}${extLink(it, `<span class="dom">${esc(it.domain)}</span>`)}${newTag(it)}${codeTag(it)}</div>
@@ -264,107 +331,140 @@ function rowLinks(it) {
 }
 function row(it, withDomain) {
   const desc = it.tagline && it.desc && it.desc !== it.tagline ? it.desc : '';
-  const dates = [age(it) && `${age(it)} vechime`, updatedLabel(it) && `actualizat ${updatedLabel(it)}`].filter(Boolean).join(' · ');
+  const dates = [sinceLabel(it) && `prima urmă ${sinceLabel(it)}`, updatedLabel(it) && `actualizat ${updatedLabel(it)}`].filter(Boolean).join(' · ');
   return `<div class="row${isInactive(it) ? ' inactive' : ''}" data-open="${it.slug}"${hint(it)}>
     ${thumb(it)}
     <div class="row-main">
       <div class="row-title">${logo(it)}${nameLink(it)} ${statusDot(it)} ${newTag(it)} ${codeTag(it)} ${extLink(it, '', 'ext-m')}</div>
       ${blurb(it) ? `<div class="row-tag">${esc(blurb(it))}</div>` : ''}
       ${desc ? `<div class="row-desc">${esc(clip(desc, 160))}</div>` : ''}
-      ${it.keywords.length ? `<div class="row-kw">${it.keywords.map(k => `<span>#${esc(kwLabel(k))}</span>`).join('')}</div>` : ''}
+      ${badgeIds(it).length ? `<div class="row-kw">${badgesHTML(it)}</div>` : ''}
       <div class="meta meta-m">${[metaLine(it, withDomain), dates && esc(dates)].filter(Boolean).join(' · ')}</div>
     </div>
     <div class="row-side row-links">${rowLinks(it)}</div>
-    <div class="row-side" title="${esc(ageTitle(it))}">${esc(ageShort(it) || '—')}</div>
-    <div class="row-side${it.updatedSrc === 'arhiva' ? ' faint' : ''}" title="${esc(updatedTitle(it))}">${esc(updatedShort(it) || '—')}</div>
+    <div class="row-side" title="${esc(sinceTitle(it))}">${sideDate(ageShort(it), it.since ? `prima urmă observată ${sinceLabel(it)}` : 'prima urmă necunoscută')}</div>
+    <div class="row-side${it.updatedSrc === 'arhiva' ? ' faint' : ''}" title="${esc(updatedTitle(it))}">${sideDate(updatedShort(it), it.updated ? `actualizat ${updatedLabel(it)}` : 'actualizare necunoscută')}</div>
     <div class="row-side">${extLink(it, `<span class="dom">${esc(it.domain)}</span>`)}</div>
   </div>`;
 }
-const LIST_HEAD = '<div class="list-head" aria-hidden="true"><span>Proiect</span><span>Links</span><span>Age</span><span>Updated</span><span>Site</span></div>';
+const LIST_HEAD = `<div class="list-head" aria-hidden="true"><span>Proiect</span><span>Linkuri</span><span title="${esc(DATE_HELP.since)}">Prima urmă</span><span title="${esc(DATE_HELP.updated)}">Actualizat</span><span>Site</span></div>`;
 
 /* ---------- filters ---------- */
 function renderTabs() {
   // Counters show what is alive, not what was ever catalogued.
   const c = {};
   for (const it of DB.items) if (!isInactive(it)) c[it.kind] = (c[it.kind] || 0) + 1;
-  slot('tabs').innerHTML = DB.taxonomy.kinds.map(k =>
+  slot('tabs').innerHTML = DB.vocabulary.kinds.map(k =>
     `<button class="tab" data-act="kind" data-val="${k.key}" ${state.k === k.key ? 'aria-current="page"' : ''}>${esc(k.label)}<span class="n">${c[k.key] || 0}</span></button>`
   ).join('');
 }
 
-function facet(id, label, body) {
-  return `<details class="facet" data-facet="${id}" ${closed.has(id) ? '' : 'open'}><summary><span class="kicker">${label}</span></summary>${body}</details>`;
-}
-function facetsHTML() {
-  const mine = kindItems();
-  const has = (pred) => mine.some(pred);
-  const dC = countBy('d', i => i.domeniu), tC = countBy('t', i => i.tips);
-  const out = [];
-
-  // Only choices that exist for the current tab are offered.
-  const tagFacet = (id, label, key, options, counts) => {
-    const sel = listOf(key);
-    return facet(id, label, `<div class="tags">${options.map(([val, text]) => {
-      const on = sel.includes(val), n = counts[val] || 0;
-      return `<button class="tag" data-act="multi" data-key="${key}" data-val="${esc(val)}" aria-pressed="${on}" ${!n && !on ? 'disabled' : ''}>${esc(text)}<span class="n">${n}</span></button>`;
-    }).join('')}</div>`);
-  };
-  const tipList = DB.taxonomy.tipuri.filter(t => has(i => i.tips.includes(t.key)));
-  if (tipList.length > 1) out.push(tagFacet('tip', 'Tip', 't', tipList.map(t => [t.key, t.label]), tC));
-  const domList = DB.taxonomy.domenii.filter(d => has(i => i.domeniu === d.key));
-  if (domList.length > 1) {
-    const total = DB.items.filter(i => matches(i, 'd')).length;
-    const opt = (val, label, n) => `<button class="fopt radio" data-act="set" data-key="d" data-val="${val}" aria-pressed="${state.d === val}" ${!n && state.d !== val ? 'disabled' : ''}>
-      <span class="l">${esc(label)}</span><span class="n">${n || 0}</span></button>`;
-    out.push(facet('domeniu', 'Domeniu', `<div class="flist">${opt('', 'Toate', total)}${domList.map(d => opt(d.key, d.label, dC[d.key])).join('')}</div>`));
+// The options of a facet on this tab: values some entry here has, plus the selected ones. Hidden when unused.
+function optionsOf(key) {
+  const mine = kindItems(), sel = listOf(key), seen = new Set(sel);
+  if (key === 'area') for (const it of mine) for (const a of it.areas) [a, ...areaUp(a)].forEach(x => seen.add(x));
+  else if (key === 'ent') for (const it of mine) seen.add(it.entityType);
+  else for (const it of mine) for (const v of it._f[key]) seen.add(v);
+  let opts = [...seen];
+  // Topics follow the chosen subjects: only the branches under them, plus what is already selected.
+  if (key === 'topic' && state.subj) opts = opts.filter(t => sel.includes(t) || listOf('subj').some(s => ancestors(t).includes(s)));
+  if (key === 'subj') return DB.vocabulary.subjectOrder.filter(x => seen.has(x));
+  if (key === 'ent') return DB.vocabulary.entityTypes.map(t => t.key).filter(x => seen.has(x));
+  if (key === 'area') {
+    const rank = { tara: 0, regiune: 1, judet: 2, localitate: 3 };
+    return opts.sort((a, b) => rank[AREA.get(a)?.type] - rank[AREA.get(b)?.type] || label(a).localeCompare(label(b), 'ro'));
   }
+  const n = {};
+  for (const it of mine) for (const v of it._f[key]) n[v] = (n[v] || 0) + 1;
+  return opts.sort((a, b) => (n[b] || 0) - (n[a] || 0) || label(a).localeCompare(label(b), 'ro'));
+}
+const optLabel = (key, v) => key === 'ent' ? TAX.ent[v]?.label || v : label(v);
 
-  const kwC = {};
-  for (const it of DB.items) if (matches(it, 'kw')) for (const k of it.keywords) kwC[k] = (kwC[k] || 0) + 1;
-  const kwAll = {};
-  for (const it of mine) for (const k of it.keywords) kwAll[k] = (kwAll[k] || 0) + 1;
-  const kwList = Object.keys(kwAll).sort((a, b) => kwAll[b] - kwAll[a] || a.localeCompare(b));
-  if (kwList.length) out.push(tagFacet('cuvinte', 'Cuvinte cheie', 'kw', kwList.map(k => [k, kwLabel(k)]), kwC));
+// A facet with a selection stays open, so that its choice is never hidden.
+function facet(id, title, body, selected = false) {
+  return `<details class="facet" data-facet="${id}" ${closed.has(id) && !selected ? '' : 'open'}><summary><span class="kicker">${title}</span></summary>${body}</details>`;
+}
+function tagsHTML(key, options, counts) {
+  const sel = listOf(key);
+  return `<div class="tags" role="group" aria-label="${esc(facetTitle(key))}">${options.map(val => {
+    const on = sel.includes(val), n = counts[val] || 0, def = CONCEPT.get(val)?.def;
+    return `<button class="tag" data-act="multi" data-key="${key}" data-val="${esc(val)}" aria-pressed="${on}" ${!n && !on ? 'disabled' : ''}${def ? ` title="${esc(def)}"` : ''}>${esc(optLabel(key, val))}<span class="n">${n}</span></button>`;
+  }).join('')}</div>`;
+}
+// A facet needs a control when it offers a choice: two or more options, or a selection to undo.
+const useful = (key, options) => options.length > 1 || listOf(key).length > 0;
+function facetsHTML() {
+  const out = [];
+  const subj = optionsOf('subj');
+  if (useful('subj', subj)) {
+    const c = facetCounts('subj', subj), sel = listOf('subj');
+    const total = DB.items.filter(i => matches(i, 'subj')).length;
+    const opt = (val, text, n, on) => `<button class="fopt check" data-act="${val ? 'multi' : 'clear'}" data-key="subj" data-val="${esc(val)}" aria-pressed="${on}" ${!n && !on ? 'disabled' : ''}>
+      <span class="l">${esc(text)}</span><span class="n">${n || 0}</span></button>`;
+    out.push(facet('subj', facetTitle('subj'), `<div class="flist" role="group" aria-label="${esc(facetTitle('subj'))}">${opt('', 'Toate', total, !sel.length)}${subj.map(v => opt(v, label(v), c[v], sel.includes(v))).join('')}</div>`));
+  }
+  for (const key of ['topic', 'cap', 'fmt', 'area']) {
+    let options = optionsOf(key), extra = '';
+    if (!useful(key, options)) continue;
+    // Not every topic of the tab at once: the most used ones, until a subject narrows the list or the visitor asks for all.
+    if (key === 'topic' && !state.subj && options.length > TOPIC_TOP) {
+      const sel = listOf('topic');
+      if (!allTopics) options = options.filter((t, i) => i < TOPIC_TOP || sel.includes(t));
+      extra = `<p class="fmore"><button class="linkbtn" data-act="topics" aria-expanded="${allTopics}">${allTopics ? 'Mai puține teme' : `Toate temele (${optionsOf('topic').length})`}</button>
+        <span class="muted">Alege un subiect pentru temele lui.</span></p>`;
+    }
+    out.push(facet(key, facetTitle(key), tagsHTML(key, options, facetCounts(key, options)) + extra, !!state[key]));
+  }
+  const more = MORE.filter(k => k !== 'orgt' || state.k === 'organizatie').map(key => {
+    const options = optionsOf(key);
+    return useful(key, options) ? `<div class="subfacet"><p class="kicker">${esc(facetTitle(key))}</p>${tagsHTML(key, options, facetCounts(key, options))}</div>` : '';
+  }).join('');
+  if (more) out.push(facet('more', 'Mai multe filtre', more, MORE.some(k => state[k])));
 
+  const has = (pred) => kindItems().some(pred);
   const toggles = [];
-  const toggle = (key, label, checked, n) => toggles.push(`<label class="toggle"><input type="checkbox" data-act="toggle" data-key="${key}" ${checked ? 'checked' : ''}><span class="l">${label}</span>${n != null ? `<span class="n">${n}</span>` : ''}</label>`);
-  if (has(i => i.code) && has(i => !i.code)) toggle('cod', 'Doar cu cod sursă deschis', state.cod, DB.items.filter(i => matches(i, 'cod') && i.code).length);
-  if (has(isFresh) && has(i => !isFresh(i))) toggle('nou', 'Doar proiecte noi', state.nou, DB.items.filter(i => matches(i, 'nou') && isFresh(i)).length);
+  const toggle = (key, text, checked, n) => toggles.push(`<label class="toggle"><input type="checkbox" data-act="toggle" data-key="${key}" ${checked ? 'checked' : ''}><span class="l">${text}</span>${n != null ? `<span class="n">${n}</span>` : ''}</label>`);
+  if (has(i => i.code) && has(i => !i.code)) toggle('cod', 'Doar cu cod sursă public', state.cod, DB.items.filter(i => matches(i, 'cod') && i.code).length);
+  if (has(isFresh) && has(i => !isFresh(i))) toggle('nou', 'Doar proiecte apărute recent', state.nou, DB.items.filter(i => matches(i, 'nou') && isFresh(i)).length);
   if (has(isInactive)) toggle('ina', 'Ascunde proiecte inactive', !state.ina, null);
   if (has(i => i.civictech) && has(i => !i.civictech)) toggle('civ', 'Doar proiecte civtech', state.civ, DB.items.filter(i => matches(i, 'civ') && i.civictech).length);
   if (toggles.length) out.push(facet('optiuni', 'Opțiuni', toggles.join('')));
+  out.push('<p class="fhelp">În același filtru: oricare dintre opțiuni. Între filtre: toate condițiile. Numerele arată câte intrări are fiecare opțiune, cu celelalte filtre aplicate.</p>');
   return out.join('');
 }
 
 function renderChips() {
-  const dC = countBy('d', i => i.domeniu);
-  const total = DB.items.filter(i => matches(i, 'd')).length;
-  const chip = (val, label, n) => `<button class="chip" data-act="set" data-key="d" data-val="${val}" aria-pressed="${state.d === val}">${esc(label)}<span class="n">${n || 0}</span></button>`;
-  slot('chips').innerHTML = chip('', 'Toate', total) + DB.taxonomy.domenii.filter(d => dC[d.key] || state.d === d.key).map(d => chip(d.key, d.short, dC[d.key])).join('');
+  const subj = optionsOf('subj'), c = facetCounts('subj', subj), sel = listOf('subj');
+  const total = DB.items.filter(i => matches(i, 'subj')).length;
+  const chip = (val, text, n, on) => `<button class="chip" data-act="${val ? 'multi' : 'clear'}" data-key="subj" data-val="${esc(val)}" aria-pressed="${on}">${esc(text)}<span class="n">${n || 0}</span></button>`;
+  slot('chips').innerHTML = chip('', 'Toate', total, !sel.length) + subj.filter(v => c[v] || sel.includes(v)).map(v => chip(v, label(v), c[v], sel.includes(v))).join('');
 }
 
 function renderToolbar(n) {
   const pills = [];
-  const pill = (key, val, label) => pills.push(`<button class="pill" data-act="unset" data-key="${key}" data-val="${esc(val)}" aria-label="Elimină filtrul ${esc(label)}">${esc(label)}${ICON.x}</button>`);
-  if (state.d) pill('d', '', TAX.domeniu[state.d]?.short);
-  for (const t of tips()) pill('t', t, TAX.tip[t]?.label || t);
-  for (const k of listOf('kw')) pill('kw', k, '#' + kwLabel(k));
-  if (state.c) pill('c', '', state.c);
+  const pill = (key, val, text) => pills.push(`<button class="pill" data-act="unset" data-key="${key}" data-val="${esc(val)}" aria-label="Elimină filtrul ${esc(text)}">${esc(text)}${ICON.x}</button>`);
+  for (const key of FACETS) for (const v of listOf(key)) pill(key, v, `${facetTitle(key)}: ${optLabel(key, v)}`);
+  // v1 bookmarks keep their old meaning and say so.
+  if (state.d) pill('d', '', `Domeniu (v1): ${TAX.dom[state.d]?.short || state.d}`);
+  for (const t of listOf('t')) pill('t', t, `Tip (v1): ${TAX.tip[t]?.label || t}`);
+  for (const k of listOf('kw')) pill('kw', k, `#${kwLabel(k)} (v1)`);
+  if (state.c) pill('c', '', `Oraș (v1): ${state.c}`);
   if (state.org) pill('org', '', state.org);
-  if (state.a) pill('a', '', state.a);
+  if (state.a) pill('a', '', TAX.cov[state.a]?.label || state.a);
   if (state.s) pill('s', '', state.s);
-  if (state.cod) pill('cod', '', 'Cod deschis');
+  if (state.cod) pill('cod', '', 'Cod public');
   if (state.civ) pill('civ', '', 'Civtech');
-  if (state.nou) pill('nou', '', 'Noi');
+  if (state.nou) pill('nou', '', 'Apărute recent');
   if (state.ina) pill('ina', '', 'Inclusiv inactive');
   if (query()) pill('q', '', `„${state.q}”`);
   const view = currentView();
   slot('toolbar').innerHTML = `
+    ${DB.draft && DRAFT_NOTE ? '<p class="draft-note">Previzualizare: clasificările sunt propuneri, încă neacceptate de editor.</p>' : ''}
     <span class="count"><b>${n}</b> ${n === 1 ? 'rezultat' : 'rezultate'}</span>
     ${pills.length ? `<span class="active">${pills.join('')}</span><button class="linkbtn" data-act="reset">Șterge filtrele</button>` : ''}
     <span class="tool-right">
       <label class="sr" for="sort">Ordonare</label>
-      <select class="select" id="sort" data-act="sort">${SORTS.map(([k, l]) => `<option value="${k}" ${state.o === k ? 'selected' : ''}>${l}</option>`).join('')}</select>
+      <select class="select" id="sort" data-act="sort">${SORTS.map(([k, l]) => `<option value="${k}" ${state.o === k ? 'selected' : ''}${SORT_HELP[k] ? ` title="${esc(SORT_HELP[k])}"` : ''}>${l}</option>`).join('')}</select>
       <span class="seg" role="group" aria-label="Mod de afișare">
         <button data-act="view" data-val="cards" aria-pressed="${view === 'cards'}" aria-label="Carduri">${ICON.grid}</button>
         <button data-act="view" data-val="list" aria-pressed="${view === 'list'}" aria-label="Listă">${ICON.list}</button>
@@ -385,12 +485,21 @@ function renderResults() {
   let html;
   if (!list.length) {
     html = `<div class="empty"><h3>Niciun rezultat.</h3><p>Încearcă alt termen de căutare sau elimină unul dintre filtre.</p><p><button class="btn btn-outline" data-act="reset">Șterge filtrele</button></p></div>`;
-  } else if (state.o === 'domeniu') {
-    html = DB.taxonomy.domenii.map(d => {
-      const items = sorted(list.filter(it => it.domeniu === d.key));
+  } else if (state.o === 'subiect' && state.subj) {
+    // Filtered by subject: one flat list under the chosen subjects, so that an entry found through a secondary
+    // subject never hides under an unrelated primary heading.
+    const head = listOf('subj').map(label).join(' sau ');
+    html = `<section class="group" aria-labelledby="g-subj">
+      <div class="group-head"><h2 id="g-subj">${esc(head)}</h2><span class="n">${list.length}</span><p>inclusiv intrările pentru care este un subiect secundar</p></div>
+      ${block(sorted(list), true)}</section>`;
+  } else if (state.o === 'subiect') {
+    // Unfiltered: every entry once, under its primary subject; entries without one come last.
+    const groups = [...DB.vocabulary.subjectOrder.map(id => [id, label(id), '']), ['', 'Fără subiect stabilit', 'clasificare incompletă: sursele nu stabilesc subiectul']];
+    html = groups.map(([id, text, hint], n) => {
+      const items = sorted(list.filter(it => (it.primarySubject || '') === id));
       if (!items.length) return '';
-      return `<section class="group" aria-labelledby="g-${d.key}">
-        <div class="group-head"><h2 id="g-${d.key}">${esc(d.label)}</h2><span class="n">${items.length}</span><p>${esc(d.hint)}</p></div>
+      return `<section class="group" aria-labelledby="g-${n}">
+        <div class="group-head"><h2 id="g-${n}">${esc(text)}</h2><span class="n">${items.length}</span>${hint ? `<p>${esc(hint)}</p>` : ''}</div>
         ${block(items, false)}</section>`;
     }).join('');
   } else {
@@ -399,10 +508,16 @@ function renderResults() {
   slot('results').innerHTML = html;
 }
 
+// Re-rendering the filters replaces their buttons; give the focus back to the same control, wherever it was.
 function renderFilters() {
+  const a = document.activeElement, where = a?.closest?.('[data-slot]')?.dataset.slot;
+  const sel = a?.dataset?.act && ['act', 'key', 'val'].filter(k => k in a.dataset).map(k => `[data-${k}="${CSS.escape(a.dataset[k])}"]`).join('');
+  // The toggle event comes later than a quick click after opening a facet: read the open state from the page itself.
+  for (const d of document.querySelectorAll(`[data-slot="${where === 'sheet' ? 'sheet' : 'side'}"] details[data-facet]`)) d.open ? closed.delete(d.dataset.facet) : closed.add(d.dataset.facet);
   slot('side').innerHTML = facetsHTML();
   renderChips();
   if (!slot('sheet').hidden) renderSheet();
+  if (sel && where && !document.contains(a)) slot(where)?.querySelector(sel)?.focus({ preventScroll: true });
 }
 
 function renderAll() {
@@ -427,7 +542,34 @@ function closeLayers() {
   lastFocus?.focus?.({ preventScroll: true });
 }
 const current = () => state.p && DB.items.find(i => i.slug === state.p);
-const syncTitle = () => { const it = current(); document.title = it ? `${it.name} — ${title}` : title; };
+
+/* ---------- title, address and share metadata ---------- */
+// scripts/build.py writes a head for the home page and one for each entry page. Opening or closing an entry changes the
+// address in the page, so the tags that name the address follow it. The home values live here because a page loaded at an
+// entry's address carries that entry's head: keep them in step with site/index.html (scripts/check_preview.py compares them).
+const HOME = { share: 'Colecție proiecte CivTech', text: 'Director de instrumente civice, date deschise și proiecte de bună guvernare din România.',
+  image: 'img/share.png', w: 1106, h: 558, alt: 'Colecție proiecte CivTech — civtech.gov2.ro' };
+const NO_TEXT = 'Colecție de instrumente civice, date deschise și proiecte de bună guvernare din România.';  // an entry with no text, as in build.py
+const SITE = ($('link[rel="canonical"]')?.href || '').replace(new RegExp(`(${KINDS})/[^/]*/?$`), '');
+const META = [['link[rel="canonical"]', 'href', 'url'], ['meta[property="og:url"]', 'content', 'url'], ['meta[name="description"]', 'content', 'text'],
+  ['meta[property="og:title"]', 'content', 'share'], ['meta[name="twitter:title"]', 'content', 'share'],
+  ['meta[property="og:description"]', 'content', 'text'], ['meta[name="twitter:description"]', 'content', 'text'],
+  ['meta[property="og:image"]', 'content', 'image'], ['meta[name="twitter:image"]', 'content', 'image'],
+  ['meta[property="og:image:width"]', 'content', 'w'], ['meta[property="og:image:height"]', 'content', 'h'], ['meta[property="og:image:alt"]', 'content', 'alt']];
+let metaFor = pathSlug();  // the entry whose head the page holds now ('' for the home page)
+function syncMeta(it) {
+  const pic = it?.img && it.img.kind !== 'logo' ? it.img : null;
+  const v = it
+    ? { url: `${SITE}${it.kind}/${it.slug}/`, share: `${it.name} — CivTech România`, text: clip(it.desc || it.tagline || '', 200) || NO_TEXT,
+      image: SITE + (pic ? pic.src.slice(ROOT.length) : HOME.image), w: pic ? pic.w : HOME.w, h: pic ? pic.h : HOME.h, alt: it.name }
+    : { url: SITE, share: HOME.share, text: HOME.text, image: SITE + HOME.image, w: HOME.w, h: HOME.h, alt: HOME.alt };
+  for (const [sel, attr, key] of META) $(sel)?.setAttribute(attr, v[key]);
+}
+function syncTitle() {
+  const it = current();
+  document.title = it ? `${it.name} — ${title}` : title;
+  if ((it?.slug || '') !== metaFor) { metaFor = it?.slug || ''; syncMeta(it); }
+}
 
 // A network shows its logo only, named for screen readers and the tooltip; any other link shows the favicon of its host
 // (when the profiler stored one) before its label.
@@ -451,19 +593,30 @@ function repoRow(it) {
   const r = it.repo;
   if (!r) return null;
   const n = (v, one, many) => v == null ? '' : `${v.toLocaleString('ro-RO')} ${v === 1 ? one : many}`;
+  // The licence has its own row: public code is not necessarily open source.
   const parts = [r.stars != null && `★ ${r.stars.toLocaleString('ro-RO')}`, n(r.forks, 'fork', 'forks'), n(r.issues, 'issue', 'issues'),
     n(r.commits, 'commit', 'commits'), n(r.contributors, 'contribuitor', 'contribuitori'), r.last && `ultimul commit ${r.last}`,
-    r.license, r.language, r.archived && 'arhivat'].filter(Boolean).map(esc);
+    r.language, r.archived && 'arhivat'].filter(Boolean).map(esc);
   const same = it.code && it.code.replace(/\/+$/, '').toLowerCase() === r.url.toLowerCase();
   if (!same) parts.unshift(`<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a>`);
   return ['Cod', `<span class="repo mono">${parts.join(' · ')}</span>`];
 }
 
-// An author that is an organisation of the catalogue opens its page; any other author is plain text.
+// An attribution that is an organisation of the catalogue opens its page; any other name is plain text.
 const authorLink = a => a.org && BY_SLUG.has(a.org)
   ? `<a href="${hrefFor(a.org)}" data-open="${esc(a.org)}">${esc(a.name)}</a>` : esc(a.name);
+// Attributions by role: an accepted role gets its own heading ("Creat de"); an unconfirmed one stays neutral, because
+// the old `autor` cell never said who created, published, funded or maintains an entry.
+function attributionRows(it) {
+  const groups = new Map();
+  for (const a of it.attributions) {
+    const head = a.accepted ? TAX.pred[a.role]?.label || a.role : 'Atribuire';
+    groups.set(head, [...(groups.get(head) || []), a]);
+  }
+  return [...groups].map(([head, as]) => [head, as.map(authorLink).join(' · ') + (head === 'Atribuire' ? ' <span class="muted small">· rol neconfirmat</span>' : '')]);
+}
 const MAX_WORKS = 15;
-// Entries (projects and resources) by the same author as `it`; for an organisation, the entries that name it as author.
+// Entries (projects and resources) with the same attribution as `it`; for an organisation, the entries that name it.
 function sameAuthor(it) {
   const keys = it.kind === 'organizatie' ? [it.slug] : it._akeys;
   return DB.items.filter(i => i !== it && i.kind !== 'organizatie' && i._akeys.some(k => keys.includes(k)))
@@ -479,7 +632,7 @@ function orgCard(o) {
 function worksHTML(it) {
   const works = sameAuthor(it);
   if (!works.length) return '';
-  const title = it.kind === 'organizatie' ? 'Proiecte și resurse' : 'De același autor';
+  const title = it.kind === 'organizatie' ? 'Proiecte și resurse atribuite' : 'Cu aceeași atribuire';
   const more = works.length - MAX_WORKS;
   return `<div class="related"><p class="kicker">${title} · ${works.length}</p>${works.slice(0, MAX_WORKS).map(r => row(r, true)).join('')}${more > 0 ? `<p class="small muted">… și încă ${more}</p>` : ''}</div>`;
 }
@@ -487,13 +640,14 @@ function worksHTML(it) {
 // "Semnalează o problemă": three ways to tell us, each prefilled with the entry's name and address. data/site.json
 // (copied into data.json as `site`) says which ones exist: an empty address hides its option.
 function flagHTML(it) {
-  const site = DB.site || {}, tab = it.kind === 'organizatie' ? 'orgs' : 'proiecte';
+  // The entry's row in the Sheet: the v2 tab once it exists, until then the v1 tab that still holds its text (see build.py).
+  const site = DB.site || {}, { tab, row } = it.sheet || {};
   const subject = `Problemă la „${it.name}” (${it.slug})`;
-  const body = `Pagina: ${location.origin}${entryPath(it.slug)}\nÎn tabel: fila ${tab}, rândul ${it.row}\n\nCe nu e corect sau lipsește?\n`;
+  const body = `Pagina: ${location.origin}${entryPath(it.slug)}\n${tab ? `În tabel: fila ${tab}, rândul ${row}\n` : ''}\nCe nu e corect sau lipsește?\n`;
   const q = `${encodeURIComponent(subject)}`, b = `${encodeURIComponent(body)}`;
   const opts = [
-    site.sheet && site.tabs?.[tab] != null && [`${site.sheet}#gid=${site.tabs[tab]}&range=A${it.row}`, 'Corectează în tabel',
-      `Deschide rândul ${it.row} din fila „${tab}”. Modifici direct; schimbarea e verificată înainte să apară pe site.`],
+    site.sheet && tab && site.tabs?.[tab] != null && [`${site.sheet}#gid=${site.tabs[tab]}&range=A${row}`, 'Corectează în tabel',
+      `Deschide rândul ${row} din fila „${tab}”. Modifici direct; schimbarea e verificată înainte să apară pe site.`],
     site.email && [`mailto:${site.email}?subject=${q}&body=${b}`, 'Trimite un e-mail', 'Mesajul pornește cu numele și adresa paginii.'],
     site.issues && [`${site.issues}?title=${q}&body=${b}`, 'Deschide o problemă pe GitHub', 'Cere cont GitHub; discuția e publică.'],
   ].filter(Boolean);
@@ -504,25 +658,50 @@ function flagHTML(it) {
   </details>`;
 }
 
+// The full classification, in four groups. Every concept is a button that filters the list by it.
+function classHTML(it) {
+  const tag = (key, id) => `<button class="tag" data-act="multi" data-key="${key}" data-val="${esc(id)}" aria-pressed="${listOf(key).includes(id)}"${CONCEPT.get(id)?.def ? ` title="${esc(CONCEPT.get(id).def)}"` : ''}>${esc(label(id))}</button>`;
+  const tags = (key, ids) => ids.length ? `<span class="tags">${ids.map(id => tag(key, id)).join('')}</span>` : '';
+  const others = it.subjects.filter(s => s !== it.primarySubject);
+  const place = it.coverageLevel === 'necunoscut' && !it.areas.length ? 'necunoscută'
+    : [TAX.cov[it.coverageLevel]?.label, ...it.areas.map(label)].filter(Boolean).join(' · ');
+  const org = it.kind === 'organizatie';
+  const groups = [
+    ['Despre ce', [it.primarySubject && ['Subiect', tags('subj', [it.primarySubject])], others.length && ['Și', tags('subj', others)],
+      it.topics.length && ['Teme', tags('topic', it.topics)], it.institutions.length && ['Instituții vizate', tags('inst', it.institutions)]]],
+    [org ? 'Ce face' : 'Ce oferă', [it.capabilities.length && [facetTitle('cap'), tags('cap', it.capabilities)],
+      it.formats.length && ['Format', tags('fmt', it.formats)], it.technologies.length && ['Tehnologie', tags('tech', it.technologies)],
+      it.organisationTypes.length && ['Tip', tags('orgt', it.organisationTypes)],
+      it.maturity && ['Maturitate', esc(label(it.maturity))]]],
+    ['Scop civic', [it.purposes.length && ['Scop', tags('purpose', it.purposes)]]],
+    ['Acoperire', [['Unde se aplică', esc(place)]]],
+  ].map(([title, rows]) => [title, rows.filter(Boolean)]).filter(([, rows]) => rows.length);
+  if (!it.primarySubject) groups.unshift(['Clasificare', [['', '<span class="muted">Sursele disponibile nu stabilesc încă subiectul acestei intrări.</span>']]]);
+  return `<div class="d-class">${groups.map(([title, rows]) => `<section><p class="kicker">${title}</p><dl class="dl">${rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl></section>`).join('')}
+    ${DB.draft && DRAFT_NOTE ? '<p class="small muted">Clasificare propusă, neverificată încă de editor.</p>' : ''}</div>`;
+}
+
 function renderDetail() {
   const it = current();
   const drawer = slot('drawer');
   syncTitle();
   if (!it) { if (!drawer.hidden) closeLayers(); return; }
-  const dom = TAX.domeniu[it.domeniu];
+  const subject = it.primarySubject ? label(it.primarySubject) : '';
   const st = STATUS[it.status];
   const alive = !isInactive(it);
-  const related = DB.items.filter(i => i.kind === it.kind && i.domeniu === it.domeniu && i.slug !== it.slug && !isInactive(i))
-    .sort((a, b) => b.tips.filter(t => it.tips.includes(t)).length - a.tips.filter(t => it.tips.includes(t)).length || byName(a, b)).slice(0, 4);
+  const shared = i => i.topics.filter(t => it.topics.includes(t)).length;
+  const related = !it.primarySubject ? [] : DB.items.filter(i => i.kind === it.kind && i._f.subj.has(it.primarySubject) && i.slug !== it.slug && !isInactive(i))
+    .sort((a, b) => (b.primarySubject === it.primarySubject) - (a.primarySubject === it.primarySubject) || shared(b) - shared(a) || byName(a, b)).slice(0, 4);
   const dl = [
-    it.authors.length && [it.authors.length > 1 ? 'Autori' : 'Autor', it.authors.map(authorLink).join(' · ')],
+    ...attributionRows(it),
     it.contact && ['Contact', esc(it.contact)],
     it.url && ['Site', `${alive ? `<a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.domain)}</a>` : `<span class="muted">${esc(it.domain)}</span>`}${it.movedFrom ? ` <span class="muted small">(mutat de pe ${esc(it.movedFrom)})</span>` : ''}`],
     ...linkRows(it),
     it.code && ['Cod sursă', `<a href="${esc(it.code)}" target="_blank" rel="noopener">${esc(it.code.replace(/^https?:\/\/(www\.)?/, ''))}</a>`],
     repoRow(it),
+    it.repo?.license && ['Licență', esc(it.repo.license)],
     it.wayback && ['Arhivă', `<a href="${esc(it.wayback)}" target="_blank" rel="noopener">Wayback Machine</a>`],
-    it.since && ['Vechime', `${esc(age(it))} <span class="muted small mono">· ${esc(ageTitle(it))}</span>`],
+    it.since && ['Prima urmă observată', `${esc(sinceLabel(it))} <span class="muted small mono">· ${esc(ageTitle(it))}</span> <span class="muted small">· nu este data lansării</span>`],
     it.updated && ['Actualizat', `${esc(updatedLabel(it))} <span class="muted small mono">· ${esc(it.updated)} după ${esc(UPDATED_SRC[it.updatedSrc] || it.updatedSrc)}</span>`],
     ['Stare', `${statusDot(it)} ${st.label}${it.stale ? ` <span class="muted small">· niciun semn de actualizare după ${it.stale}</span>` : ''}${it.checked ? ` <span class="muted small mono">· verificat ${esc(it.checked)}${it.httpStatus ? ` · HTTP ${it.httpStatus}` : ''}</span>` : ''}`],
   ].filter(Boolean);
@@ -530,7 +709,7 @@ function renderDetail() {
     ? `<a class="d-url" href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''))}${ICON.out}</a>`
     : it.wayback ? `<a class="btn btn-primary" href="${esc(it.wayback)}" target="_blank" rel="noopener">${ICON.archive}Vezi în arhivă</a>` : '';
   drawer.innerHTML = `
-    <div class="d-bar"><span class="kicker">${esc(dom?.label || '')}</span>
+    <div class="d-bar"><span class="kicker">${esc(subject)}</span>
       <button class="btn btn-ghost btn-icon" data-act="close" aria-label="Închide" data-autofocus>${ICON.x}</button></div>
     <div class="d-scroll">
       ${it.img || it.icon ? media(it) : ''}
@@ -544,18 +723,17 @@ function renderDetail() {
       </div>
       <div class="d-badges">
         <span>${statusDot(it)}${st.label}</span>
-        ${felLabel(it) ? `<span>${esc(felLabel(it))}</span>` : ''}
-        ${tipLabels(it).filter(l => l !== felLabel(it)).map(l => `<span>${esc(l)}</span>`).join('')}
+        ${entLabel(it) ? `<span>${esc(entLabel(it))}</span>` : ''}
         ${placeLabel(it) ? `<span>${esc(placeLabel(it))}</span>` : ''}
-        ${isFresh(it) ? `<span class="new${isLaunched(it) ? ' launch' : ''}">${isLaunched(it) ? 'lansat recent' : 'nou'} · ${esc(age(it))}</span>` : ''}
-        ${it.code ? `<span>${ICON.code}cod deschis</span>` : ''}
+        ${isFresh(it) ? `<span class="new${isNewest(it) ? ' launch' : ''}" title="${esc(sinceTitle(it))}">apărut recent · ${esc(sinceLabel(it))}</span>` : ''}
+        ${it.code ? `<span>${ICON.code}cod public</span>` : ''}
       </div>
       ${it.desc ? `<p class="d-desc">${esc(it.desc)}</p>${it.descSrc === 'site' ? '<p class="d-src">Descriere preluată de pe site-ul proiectului.</p>' : ''}` : ''}
-      ${it.keywords.length ? `<div class="tags">${it.keywords.map(k => `<button class="tag" data-act="multi" data-key="kw" data-val="${esc(k)}" aria-pressed="${listOf('kw').includes(k)}">#${esc(kwLabel(k))}</button>`).join('')}</div>` : ''}
-      ${it.authors.filter(a => a.org && BY_SLUG.has(a.org)).map(a => orgCard(BY_SLUG.get(a.org))).join('')}
+      ${classHTML(it)}
+      ${it.attributions.filter(a => a.org && BY_SLUG.has(a.org)).map(a => orgCard(BY_SLUG.get(a.org))).join('')}
       <dl class="dl">${dl.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>
       ${worksHTML(it)}
-      ${related.length ? `<div class="related"><p class="kicker">Tot din ${esc(dom.short)}</p>${related.map(r => row(r, false)).join('')}</div>` : ''}
+      ${related.length ? `<div class="related"><p class="kicker">Tot din ${esc(subject)}</p>${related.map(r => row(r, false)).join('')}</div>` : ''}
       ${flagHTML(it)}
     </div>`;
   if (drawer.hidden) openLayer(drawer);
@@ -568,42 +746,51 @@ function renderDetail() {
 
 function renderSheet() {
   const n = DB.items.filter(i => matches(i)).length;
+  const top = $('.d-scroll', slot('sheet'))?.scrollTop || 0;
   slot('sheet').innerHTML = `
     <div class="grab" aria-hidden="true"></div>
     <div class="d-bar"><span class="kicker">Filtre</span><button class="btn btn-ghost btn-icon" data-act="close" aria-label="Închide" data-autofocus>${ICON.x}</button></div>
     <div class="d-scroll">${facetsHTML()}</div>
     <div class="d-cta"><button class="btn btn-outline" data-act="reset">Șterge</button><button class="btn btn-primary" data-act="close">Arată ${plural(n, 'rezultat', 'rezultate')}</button></div>`;
+  $('.d-scroll', slot('sheet')).scrollTop = top;
 }
 
 /* ---------- autocomplete ---------- */
 let SUGGEST = [], acItems = [], acIndex = -1;
 
+// Concept suggestions carry their facet in the label ("Temă: Inteligență artificială" is not "Tehnologie: Folosește AI").
+// Each one is found by its Romanian and English labels and its alternative labels, without diacritics.
+const FACET_OF_SCHEME = { scop: 'purpose', functie: 'cap', format: 'fmt', tehnologie: 'tech', institutie: 'inst', organizatie: 'orgt' };
+const AC_GROUPS = { Subiecte: 3, Teme: 4, Funcționalități: 3, Formate: 3, Tehnologii: 2, Scopuri: 2, Instituții: 2, Zone: 3, Proiecte: 6, Autori: 3 };
+const GROUP_OF = { subj: 'Subiecte', topic: 'Teme', cap: 'Funcționalități', fmt: 'Formate', tech: 'Tehnologii', purpose: 'Scopuri', inst: 'Instituții', orgt: 'Instituții', area: 'Zone' };
 function buildSuggestions() {
   const out = [];
-  for (const d of DB.taxonomy.domenii) out.push({ g: 'Teme', label: d.label, kind: 'tema', val: d.key });
-  for (const t of DB.taxonomy.tipuri) out.push({ g: 'Tipuri', label: t.label, kind: 'tip', val: t.key });
-  for (const k of new Set(DB.items.flatMap(i => i.keywords))) out.push({ g: 'Cuvinte cheie', label: kwLabel(k), kind: 'kw', val: k });
-  for (const c of new Set(DB.items.map(i => i.oras).filter(Boolean))) out.push({ g: 'Orașe', label: c, kind: 'oras', val: c });
-  for (const it of DB.items) out.push({ g: 'Proiecte', label: it.name, kind: 'item', val: it.slug, it });
-  for (const o of new Set(DB.items.flatMap(i => i._orgs))) out.push({ g: 'Autori', label: o, kind: 'org', val: o });
-  for (const s of out) s._n = norm(s.label);
+  for (const c of DB.vocabulary.concepts) {
+    const key = c.scheme === 'subiect' ? (c.broader.length ? 'topic' : 'subj') : FACET_OF_SCHEME[c.scheme];
+    if (!key) continue;  // maturity is shown, not filtered
+    out.push({ g: GROUP_OF[key], label: c.label, kind: key, val: c.id, names: [c.label, c.labelEn, ...c.alt] });
+  }
+  for (const a of DB.vocabulary.areas) out.push({ g: 'Zone', label: a.label, kind: 'area', val: a.id, names: [a.label] });
+  for (const it of DB.items) out.push({ g: 'Proiecte', label: it.name, kind: 'item', val: it.slug, it, names: [it.name] });
+  for (const o of new Set(DB.items.flatMap(i => i._orgs))) out.push({ g: 'Autori', label: o, kind: 'org', val: o, names: [o] });
+  for (const s of out) s._n = [...new Set(s.names.filter(Boolean).map(norm))];
   return out;
 }
-const GROUP_LIMIT = { Teme: 3, Tipuri: 3, 'Cuvinte cheie': 4, 'Orașe': 3, Proiecte: 6, Autori: 3 };
-function scoreOf(n, q) {
-  if (n.startsWith(q)) return 0;
-  const i = n.indexOf(q);
-  if (i < 0) return -1;
-  return /[\s\-–·./(&]/.test(n[i - 1]) ? 1 : 2;
+const GROUP_LIMIT = AC_GROUPS;
+function scoreOf(names, q) {
+  let best = -1, via = '';
+  for (const n of names) {
+    const i = n.indexOf(q);
+    const sc = i < 0 ? -1 : i === 0 ? 0 : /[\s\-–·./(&]/.test(n[i - 1]) ? 1 : 2;
+    if (sc >= 0 && (best < 0 || sc < best)) { best = sc; via = n; }
+  }
+  return [best, via];
 }
 function countFor(s) {
   const base = DB.items.filter(i => i.kind === state.k && (state.ina || !isInactive(i)));
-  if (s.kind === 'tema') return base.filter(i => i.domeniu === s.val).length;
-  if (s.kind === 'tip') return base.filter(i => i.tips.includes(s.val)).length;
-  if (s.kind === 'kw') return base.filter(i => i.keywords.includes(s.val)).length;
-  if (s.kind === 'oras') return base.filter(i => i.oras === s.val).length;
   if (s.kind === 'org') return DB.items.filter(i => i._orgs.includes(s.val)).length;
-  return null;
+  if (s.kind === 'item') return null;
+  return base.filter(i => has(i, s.kind, s.val)).length;
 }
 function highlight(label, q) {
   const i = norm(label).indexOf(q);
@@ -613,8 +800,8 @@ function highlight(label, q) {
 function renderAC() {
   const box = slot('ac'), input = slot('q');
   const q = norm(input.value.trim());
-  if (q.length < MIN_Q || document.activeElement !== input) { closeAC(); return; }
-  const scored = SUGGEST.map(s => ({ s, sc: scoreOf(s._n, q), n: countFor(s) }))
+  if (!DB || q.length < MIN_Q || document.activeElement !== input) { closeAC(); return; }
+  const scored = SUGGEST.map(s => { const [sc, via] = scoreOf(s._n, q); return { s, sc, via, n: sc < 0 ? 0 : countFor(s) }; })
     .filter(x => x.sc >= 0 && x.n !== 0)
     .sort((a, b) => a.sc - b.sc || a.s.label.length - b.s.label.length);
   const groups = {};
@@ -631,9 +818,11 @@ function renderAC() {
       const lead = x.s.kind === 'item'
         ? (it.icon ? `<img class="ico" src="${esc(it.icon)}" alt="">` : '<span class="ico blank"></span>') : '';
       const right = x.s.kind === 'item'
-        ? (it.kind !== 'proiect' ? TAX.kind[it.kind].label.toLowerCase() : isInactive(it) ? STATUS[it.status].label.toLowerCase() : TAX.domeniu[it.domeniu]?.short || '')
+        ? (it.kind !== 'proiect' ? TAX.kind[it.kind].label.toLowerCase() : isInactive(it) ? STATUS[it.status].label.toLowerCase() : it.primarySubject ? label(it.primarySubject) : '')
         : x.n;
-      html += `<div class="ac-opt" role="option" id="ac-${i}" data-ac="${i}" aria-selected="false">${lead}<span class="l">${highlight(x.s.label, q)}</span><span class="r">${esc(right)}</span></div>`;
+      // A concept found by another name (an English label or a synonym) shows that name too.
+      const shown = FACETS.includes(x.s.kind) ? `${esc(facetTitle(x.s.kind))}: ${highlight(x.s.label, q)}${x.via !== norm(x.s.label) ? ` <span class="muted">(${esc(x.s.names.find(n => norm(n) === x.via) || '')})</span>` : ''}` : highlight(x.s.label, q);
+      html += `<div class="ac-opt" role="option" id="ac-${i}" data-ac="${i}" aria-selected="false">${lead}<span class="l">${shown}</span><span class="r">${esc(right)}</span></div>`;
     });
     box.innerHTML = html;
   }
@@ -666,12 +855,9 @@ function pickAC(i) {
     state.p = s.val; writeURL(true); renderDetail();
     return;
   }
-  if (s.kind === 'tema') state.d = s.val;
-  else if (s.kind === 'tip' || s.kind === 'kw') {
-    const key = s.kind === 'tip' ? 't' : 'kw';
-    if (!listOf(key).includes(s.val)) state[key] = [...listOf(key), s.val].join(',');
+  if (FACETS.includes(s.kind)) {
+    if (!listOf(s.kind).includes(s.val)) state[s.kind] = [...listOf(s.kind), s.val].join(',');
   }
-  else if (s.kind === 'oras') state.c = s.val;
   else if (s.kind === 'org') state.org = s.val;
   writeURL(); renderAll();
   input.blur();
@@ -749,6 +935,8 @@ document.addEventListener('click', e => {
   const a = e.target.closest('[data-act]');
   if (!a || a.tagName === 'INPUT' || a.tagName === 'SELECT') return;
   const { act, key, val } = a.dataset;
+  if (act === 'retry') { boot(true); return; }
+  if (!DB && act !== 'fs' && act !== 'theme') return;  // nothing to act on until the data has loaded
   if (act === 'set') setFilter(key, val);
   else if (act === 'multi') {
     const l = listOf(key);
@@ -756,14 +944,16 @@ document.addEventListener('click', e => {
     if (a.closest('[data-slot="drawer"]')) { state.p = ''; closeLayers(); syncTitle(); }
     writeURL(); renderFilters(); renderResults();
   } else if (act === 'unset') {
-    if (key === 't' || key === 'kw') state[key] = listOf(key).filter(x => x !== val).join(',');
+    if (MULTI.includes(key)) state[key] = listOf(key).filter(x => x !== val).join(',');
     else state[key] = '';
     writeURL(); renderAll();
-  } else if (act === 'reset') { for (const k of FILTERS) state[k] = ''; writeURL(); renderAll(); }
+  } else if (act === 'clear') { state[key] = ''; writeURL(); renderFilters(); renderResults(); }
+  else if (act === 'reset') { for (const k of FILTERS) state[k] = ''; writeURL(); renderAll(); }
   else if (act === 'kind') { state.k = val; state.o = defaultSort(); for (const k of FILTERS) if (k !== 'q') state[k] = ''; writeURL(); renderAll(); }
   else if (act === 'view') { state.v = val; writeURL(); renderResults(); }
   else if (act === 'fs') { store.set('ct.fs', val); applyPrefs(); }
   else if (act === 'theme') { store.set('ct.theme', val); applyPrefs(); }
+  else if (act === 'topics') { allTopics = !allTopics; renderFilters(); }
   else if (act === 'sheet') { renderSheet(); openLayer(slot('sheet')); }
   else if (act === 'close') {
     if (!slot('drawer').hidden && state.p) { state.p = ''; writeURL(); }
@@ -786,12 +976,13 @@ document.addEventListener('toggle', e => {
   const id = e.target.dataset?.facet;
   if (!id) return;
   e.target.open ? closed.delete(id) : closed.add(id);
-  store.set('ct.closed', [...closed]);
+  store.set('ct2.closed', [...closed]);
 }, true);
 
 let qTimer;
 const qInput = slot('q');
 qInput.addEventListener('input', () => {
+  if (!DB) return;
   renderAC();
   clearTimeout(qTimer);
   qTimer = setTimeout(() => {
@@ -816,14 +1007,15 @@ qInput.addEventListener('keydown', e => {
 document.addEventListener('keydown', e => {
   const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName);
   if (e.key === 'Escape' && !slot('scrim').hidden) { $('[data-act="close"]', slot('drawer').hidden ? slot('sheet') : slot('drawer'))?.click(); return; }
-  if ((e.key === '/' && !typing) || (e.key.toLowerCase() === 'k' && (e.metaKey || e.ctrlKey))) {
+  if (slot('scrim').hidden && ((e.key === '/' && !typing) || (e.key.toLowerCase() === 'k' && (e.metaKey || e.ctrlKey)))) {
     e.preventDefault();
     qInput.focus(); qInput.select();
   }
   if (e.key === 'Tab' && !slot('scrim').hidden) {
     // Keep focus inside the open layer.
     const layer = slot('drawer').hidden ? slot('sheet') : slot('drawer');
-    const f = [...layer.querySelectorAll('a[href], button:not([disabled]), input, select, summary')];
+    // Controls inside a closed <details> are not rendered; they cannot take the focus.
+    const f = [...layer.querySelectorAll('a[href], button:not([disabled]), input, select, summary')].filter(el => el.getClientRects().length && !el.closest('details:not([open]) > :not(summary)'));
     if (!f.length) return;
     if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f.at(-1).focus(); }
     else if (!e.shiftKey && document.activeElement === f.at(-1)) { e.preventDefault(); f[0].focus(); }
@@ -847,7 +1039,7 @@ slot('drawer').addEventListener('touchend', e => {
   if (Math.abs(dx) > 60 && Math.abs(dx) > 2 * Math.abs(dy) && Date.now() - touch.t < 600) step(dx < 0 ? 1 : -1);
   touch = null;
 }, { passive: true });
-window.addEventListener('popstate', () => { readURL(); renderAll(); renderDetail(); });
+window.addEventListener('popstate', () => { if (DB) { readURL(); renderAll(); renderDetail(); } });
 
 // Below 1024px the header is taller than one row; stick it so only the search and chips stay visible.
 function fitHeader() {
@@ -874,12 +1066,49 @@ function applyPrefs() {
 applyPrefs();
 
 /* ---------- boot ---------- */
-fetch(ROOT + 'data.json', { cache: 'no-cache' }).then(r => r.json()).then(db => {
+// A load that fails (no connection, a server error, unreadable data) says so, offers a retry, and links to the three static
+// lists: they need neither data.json nor scripts. After a retry that fails again, the focus goes to the new button.
+function loadFailed(byUser) {
+  DB = null;
+  slot('results').innerHTML = `<div class="empty" role="alert">
+    <h3>Nu am putut încărca lista.</h3>
+    <p>Verifică conexiunea la internet și încearcă din nou.</p>
+    <p><button class="btn btn-outline" data-act="retry">Încearcă din nou</button></p>
+    <p>Până atunci, citește listele simple: <a href="${ROOT}proiect/">proiecte</a> · <a href="${ROOT}organizatie/">organizații</a> · <a href="${ROOT}resursa/">resurse</a>.</p>
+  </div>`;
+  if (byUser) $('[data-act="retry"]', slot('results'))?.focus();
+}
+
+async function boot(byUser = false) {
+  if (byUser) slot('results').innerHTML = '<div class="empty" role="status"><p>Se încarcă…</p></div>';
+  let db;
+  try {
+    const r = await fetch(ROOT + 'data.json', { cache: 'no-cache' });
+    if (!r.ok) throw new Error(`data.json: HTTP ${r.status}`);
+    db = await r.json();
+  } catch { loadFailed(byUser); return; }
+  if (!String(db.schemaVersion || '').startsWith('2.')) {
+    slot('results').innerHTML = '<div class="empty"><h3>Date incompatibile.</h3><p>Această pagină citește datele taxonomiei v2.</p></div>';
+    return;
+  }
+  try { start(db); } catch (e) {
+    console.error(e);
+    BY_SLUG.clear(); CONCEPT.clear(); AREA.clear();
+    loadFailed(byUser);
+  }
+}
+
+function start(db) {
   DB = db;
   const map = arr => Object.fromEntries(arr.map(x => [x.key, x]));
-  TAX = { domeniu: map(db.taxonomy.domenii), tip: map(db.taxonomy.tipuri), kind: map(db.taxonomy.kinds), fel: map(db.taxonomy.fel) };
+  const v = db.vocabulary;
+  for (const c of v.concepts) CONCEPT.set(c.id, c);
+  for (const a of v.areas) AREA.set(a.id, a);
+  TAX = { kind: map(v.kinds), ent: map(v.entityTypes), cov: map(v.coverage), pred: map(v.predicates), scheme: map(v.schemes),
+    dom: map(db.legacyTaxonomy.domenii), tip: map(db.legacyTaxonomy.tipuri) };
   // Paths in the data are relative to the site root; the address bar changes with pushState, so make them absolute.
   const abs = p => p ? ROOT + p : p;
+  const names = id => { const c = CONCEPT.get(id) || AREA.get(id); return c ? [c.label, c.labelEn, ...(c.alt || [])] : []; };
   for (const it of db.items) {
     it.icon = abs(it.icon);
     if (it.img) it.img.src = abs(it.img.src);
@@ -887,10 +1116,18 @@ fetch(ROOT + 'data.json', { cache: 'no-cache' }).then(r => r.json()).then(db => 
     if (!STATUS[it.status]) it.status = 'neverificat';
     it._sort = norm(it.name).replace(/[^a-z0-9]/g, '');
     BY_SLUG.set(it.slug, it);
-    it._orgs = it.authors.map(a => a.name);
-    // What ties entries together by author: the slug of an organisation, else the written name.
-    it._akeys = it.authors.map(a => a.org || norm(a.name));
-    it._hay = norm([it.name, it.tagline, it.desc, ...it._orgs, it.domain, it.oras, TAX.domeniu[it.domeniu]?.label, ...tipLabels(it), ...it.keywords.map(kwLabel)].join(' '));
+    // Facet values for matching: subjects include the roots of the topics; a topic includes its broader topics,
+    // so that choosing a broad topic finds the entries assigned to its narrower ones.
+    const up = it.topics.flatMap(ancestors);
+    it._f = Object.fromEntries(FACETS.filter(k => FIELD[k]).map(k => [k, new Set(it[FIELD[k]])]));
+    for (const a of up) (CONCEPT.get(a)?.broader.length ? it._f.topic : it._f.subj).add(a);
+    it._f.ent = new Set([it.entityType]);
+    it._orgs = it.attributions.map(a => a.name);
+    // What ties entries together by attribution: the slug of an organisation, else the written name.
+    it._akeys = it.attributions.map(a => a.org || norm(a.name));
+    const concepts = [...new Set([...it._f.subj, ...it._f.topic, ...['cap', 'fmt', 'purpose', 'tech', 'inst', 'orgt'].flatMap(k => [...it._f[k]])])];
+    it._hay = norm([it.name, it.tagline, it.desc, ...it._orgs, it.domain, TAX.ent[it.entityType]?.label, ...it.areas.flatMap(names),
+      ...concepts.flatMap(names), ...legacyWords(it)].join(' '));
   }
   SUGGEST = buildSuggestions();
   readURL();
@@ -900,4 +1137,6 @@ fetch(ROOT + 'data.json', { cache: 'no-cache' }).then(r => r.json()).then(db => 
   renderDetail();
   fitHeader();
   setTimeout(rotateTitle, 3000 + Math.random() * 2000);
-});
+}
+
+boot();

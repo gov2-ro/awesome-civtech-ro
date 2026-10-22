@@ -14,7 +14,6 @@ asset stamp and image there: it first copies the template, assets and images of 
 Only the public root may write site/ (the default --site-dir). A v2 public root always passes the publication gate:
 it needs accepted classifications and no open high-priority review item. Any other v2 root needs a separate --site-dir
 and --allow-draft; the preview then says that its classifications are proposals. --allow-draft never writes site/.
-Before the cutover, a v2 preview copies the v2 browser code from site-v2/ over the template.
 """
 import argparse
 import hashlib
@@ -41,7 +40,6 @@ FEED_SIZE = 40
 REPO_URL = "https://github.com/gov2-ro/awesome-civtech-ro"
 PAGE_KINDS = ("proiect", "organizatie", "resursa")  # the folders under site/ that entry_pages() owns
 DEFAULT_SHARE = {"src": "img/share.png", "w": 1106, "h": 558}
-SITE_V2 = ROOT / "site-v2"  # the v2 browser code; a v2 build copies it over the template in its --site-dir
 GENERATED = ("data.json", "feed.xml", "llms.txt", *PAGE_KINDS)  # what a build writes; never copied from site/
 
 
@@ -242,8 +240,7 @@ def clip(text: str, n: int) -> str:
     return cut.rstrip(" ,.;:–-") + "…"
 
 
-ASSET_LINKS = {"style.css": r'(href="style\.css)(\?v=[0-9a-f]+)?(")', "app.js": r'(src="app\.js)(\?v=[0-9a-f]+)?(")',
-               "v2.css": r'(href="v2\.css)(\?v=[0-9a-f]+)?(")'}
+ASSET_LINKS = {"style.css": r'(href="style\.css)(\?v=[0-9a-f]+)?(")', "app.js": r'(src="app\.js)(\?v=[0-9a-f]+)?(")'}
 
 
 def stamp_assets(site: Path = SITE) -> bool:
@@ -646,7 +643,7 @@ def items_v2(root: Path, site: Path) -> tuple[list[dict], dict]:
 
 
 ARCHIVE_LEAD_V2 = {**ARCHIVE_LEAD, "proiect": "{n} proiecte civic tech din România, pe subiecte."}
-# The "classifications are proposals" note in the archives and llms.txt; hidden for now. site-v2/app.js has its own switch.
+# The "classifications are proposals" note in the archives and llms.txt; hidden for now. site/app.js has its own switch.
 DRAFT_NOTE = False
 NO_SUBJECT = ("Fără subiect stabilit", "clasificare incompletă: sursele nu stabilesc subiectul")
 
@@ -687,8 +684,8 @@ def pages_v2(items: list[dict], head: dict, site: Path) -> tuple[str, int]:
     return llms_doc(items, sections, sources, f" {note}" if note else ""), archives
 
 
-def prepare_site(site: Path, v2: bool):
-    """Copy the template, assets and images of site/ into a separate output folder (and the v2 browser code over them),
+def prepare_site(site: Path):
+    """Copy the template, assets and images of site/ into a separate output folder,
     so that the build there never changes site/. Refuse a folder that holds something other than a site."""
     if site.exists() and any(site.iterdir()) and not (site / "index.html").exists():
         raise SystemExit(f"{site} is not empty and has no index.html; choose a new or a previous output folder")
@@ -702,14 +699,6 @@ def prepare_site(site: Path, v2: bool):
             shutil.copytree(src, site / src.name, dirs_exist_ok=True)
         else:
             shutil.copy2(src, site / src.name)
-    if v2:
-        for src in SITE_V2.iterdir():
-            shutil.copy2(src, site / src.name)
-        index = site / "index.html"
-        doc = index.read_text(encoding="utf-8")
-        if 'href="v2.css' not in doc:
-            link = re.search(r'<link rel="stylesheet" href="style\.css[^"]*">', doc).group(0)
-            index.write_text(doc.replace(link, link + '\n<link rel="stylesheet" href="v2.css">'), encoding="utf-8")
 
 
 def main():
@@ -736,7 +725,7 @@ def main():
     elif args.allow_draft:
         parser.error("--allow-draft applies to a v2 data root")
     if site != SITE:
-        prepare_site(site, v2)
+        prepare_site(site)
     items, head = (items_v2 if v2 else items_v1)(data_dir, site)
     checked = sorted({i["checked"] for i in items if i["checked"]})
     now = datetime.now(timezone.utc)

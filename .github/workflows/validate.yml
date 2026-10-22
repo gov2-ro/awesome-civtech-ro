@@ -1,9 +1,7 @@
 name: validate
 
 # Checks every change to the data, the scripts, the site, the v2 browser code or the workflows.
-# v1 (data/) is the public source: its validation and build block. Taxonomy v2 is a preview until the cutover:
-# its package checks, tests and preview build block too, but its publication gate only reports.
-# The cutover rehearsal (scripts/cutover_v2.py --rehearse) blocks as well: it keeps the one-command cutover working.
+# The public source is the taxonomy v2 integration copy: its publication gate, build, package checks and tests block.
 on:
   pull_request:
     paths: ["data/**", "scripts/**", "site/**", "site-v2/**", ".github/workflows/**"]
@@ -25,40 +23,20 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
-      - name: Check proiecte.csv and orgs.csv (v1)
-        run: python3 scripts/validate.py
-      - name: Build site data (v1)
+      - name: Check the public data root with the publication gate
+        run: python3 scripts/validate.py --publication
+      - name: Build the public site
         run: python3 scripts/build.py
       - name: Unit tests (taxonomy v2, enrichment, Sheets and Form)
         run: python3 -m unittest discover -s scripts -p "test_*.py" -v
       - name: Check the v2 package and the integration copy
         run: |
-          python3 data/taxonomy-v2/validate.py --baseline > /dev/null
+          python3 data/taxonomy-v2/validate.py > /dev/null
           python3 data/taxonomy-v2/validate.py --root data/taxonomy-v2/integrare --baseline > /dev/null
           python3 data/taxonomy-v2/integrare.py
           python3 scripts/validate.py --data-dir data/taxonomy-v2/integrare
       - name: Build the v2 preview
         run: python3 scripts/build.py --data-dir data/taxonomy-v2/integrare --site-dir "$RUNNER_TEMP/site-v2" --allow-draft
-      - name: Report the v2 publication gate (does not block)
-        run: |
-          set +e
-          GITHUB_ACTIONS=false python3 scripts/validate.py --data-dir data/taxonomy-v2/integrare --publication > "$RUNNER_TEMP/gate.txt" 2>&1
-          code=$?
-          {
-            echo "### Taxonomy v2: publication gate (exit $code)"
-            echo
-            echo "The v2 source can replace v1 only when this gate passes. Open items:"
-            echo
-            echo '```'
-            grep -c "publication:" "$RUNNER_TEMP/gate.txt" || true
-            tail -n 1 "$RUNNER_TEMP/gate.txt"
-            echo '```'
-          } >> "$GITHUB_STEP_SUMMARY"
-          exit 0
-      - name: Rehearse the v2 cutover on a copy
-        run: |
-          bash <(curl -fsSL https://raw.githubusercontent.com/rhysd/actionlint/v1.7.12/scripts/download-actionlint.bash) 1.7.12
-          ACTIONLINT="$PWD/actionlint" python3 scripts/cutover_v2.py --rehearse "$RUNNER_TEMP/rehearsal"
       - uses: actions/upload-artifact@v7
         with:
           name: site-v2-preview
@@ -76,7 +54,6 @@ jobs:
       - name: JavaScript syntax
         run: |
           node --check site/app.js
-          node --check site-v2/app.js
       - name: Build and serve the v2 preview
         run: |
           python3 scripts/build.py --data-dir data/taxonomy-v2/integrare --site-dir "$RUNNER_TEMP/site-v2" --allow-draft

@@ -7,8 +7,8 @@ CivTech România: a curated directory of Romanian civic-tech projects, resources
 ## Commands
 
 ```sh
-python3 scripts/validate.py                 # check proiecte.csv / orgs.csv (CI on every PR); extra args: more CSVs in proiecte format
-python3 scripts/build.py                    # merge everything into site/data.json
+python3 scripts/validate.py                 # check the public root, the v2 integration copy (CI on every PR); --publication adds the gate; --data-dir data checks the frozen v1 CSVs
+python3 scripts/build.py                    # merge everything into site/data.json (public root; applies the publication gate)
 python3 -m http.server -d site 8000         # preview at http://localhost:8000
 
 python3 scripts/validate.py --data-dir data/taxonomy-v2/integrare      # taxonomy v2 root (draft rules; --publication adds the public gate)
@@ -19,8 +19,8 @@ python3 scripts/test_sheets_form.py         # sheets.py and form.py, offline (no
 python3 -m unittest discover -s scripts -p "test_*.py" -v   # all unit tests (CI runs this)
 uv run scripts/check_preview.py http://localhost:8765/   # browser checks of a served v2 preview (Playwright)
 python3 data/taxonomy-v2/integrare.py       # check integrare/ against a fresh assembly; --write writes it
-python3 data/taxonomy-v2/integrare.py --detach   # owner only, once: integrare/ becomes editable (CI then proves the detach commit)
-python3 scripts/cutover_v2.py --plan|--rehearse DIR   # v2 cutover: blockers and steps / full rehearsal on a copy; --apply only by the owner
+python3 data/taxonomy-v2/integrare.py --detach   # owner only, once: integrare/ becomes editable (CI then proves the detach commit) (done on 2026-10-21)
+python3 scripts/cutover_v2.py --plan|--rehearse DIR   # applied on 2026-10-22: --plan now says so; --rehearse DIR reports "already applied"
 
 uv run scripts/profile.py                   # profile entries missing from profil.csv (--force all, --only slug,slug, --no-shots)
 uv run scripts/profile.py --extra           # age / activity / repo / Wayback / cert / Wikipedia signals (free)
@@ -30,10 +30,10 @@ uv run scripts/search.py                    # Serper + Brave (SERPER_API_KEY, BR
 uv run scripts/search.py --prune-only       # apply the prune rules to the stored rows and recompute mentions in profil.csv; no requests (profile.py keeps these columns since v0.7.0)
 uv run scripts/profile.py --data-dir data/taxonomy-v2/integrare --only slug,slug   # v2 root; profile and search files in observatii/ (also search.py, review.py)
 uv run scripts/review.py --only slug,slug   # Claude Haiku review + labels for the kept search results (ANTHROPIC_API_KEY); --dry-run prints the request, no API call
-uv run scripts/sheets.py diff|pull|push   # Google Sheet ⇄ proiecte.csv/orgs.csv (GOOGLE_APPLICATION_CREDENTIALS, SHEET_ID in .env); push refuses to overwrite unsynced Sheet edits
+uv run scripts/sheets.py diff|pull|push   # Google Sheet <-> the public root (tab v2-intrari); --data-dir data for the frozen tabs proiecte/orgs (GOOGLE_APPLICATION_CREDENTIALS, SHEET_ID in .env); push refuses to overwrite unsynced Sheet edits
 uv run scripts/sheets.py pull --check       # pull, then validate.py; exit 1 on errors
 uv run scripts/sheets.py diff|pull|push --data-dir data/taxonomy-v2/integrare   # v2 tabs: v2-intrari, v2-revizuire
-uv run scripts/form.py [--apply]            # proposal Form questions from taxonomy.json (FORM_ID); default prints the plan
+uv run scripts/form.py [--apply]            # the Form plan for the public root (v2: plan only, --apply refuses); --data-dir data for the v1 Form (FORM_ID)
 uv run scripts/form.py --data-dir data/taxonomy-v2/integrare   # v2 questions; offline, no Google call
 uv run scripts/form.py --data-dir data/taxonomy-v2/integrare --import propuneri.csv   # v2: tab `propuneri` export -> intrari.csv rows (--out FILE)
 ```
@@ -43,29 +43,29 @@ uv run scripts/form.py --data-dir data/taxonomy-v2/integrare --import propuneri.
 ## Data pipeline
 
 ```
-Google Sheet ⇄ scripts/sheets.py (pull / push)
+Google Sheet (tab v2-intrari) ⇄ scripts/sheets.py (pull / push)
         │
-data/proiecte.csv + data/orgs.csv  (human-edited)
-        │  scripts/profile.py  → data/profil.csv (generated) + site/img/{og,icon,linkicon}/
-        │  scripts/search.py   → data/mentiuni.csv (generated; the editor prunes in column `editor`)
+data/taxonomy-v2/integrare/intrari.csv  (human-edited; v1: data/proiecte.csv + data/orgs.csv, frozen)
+        │  scripts/profile.py  → data/taxonomy-v2/observatii/profil.csv (generated) + site/img/{og,icon,linkicon}/
+        │  scripts/search.py   → observatii/mentiuni.csv (generated; the editor prunes in column `editor`)
         │                      → profil.csv: mentions, mention_hosts, search_social
-        │  scripts/review.py   → data/review/{raw.jsonl,sugestii.csv} (suggestions only, gitignored)
-        │                      → data/mentiuni_etichete.csv (labels of the kept results, generated)
+        │  scripts/review.py   → observatii/review/{raw.jsonl,sugestii.csv} (suggestions only, gitignored)
+        │                      → observatii/mentiuni_etichete.csv (labels of the kept results, generated)
         ▼
 scripts/build.py → site/data.json  →  site/app.js (vanilla JS, fetches data.json)
 ```
 
-- **Human-edited source of truth**: `proiecte.csv` (`fel` = `proiect` | `resursa` | `articol` | `ghid` | `campanie` | `cercetare`; every `fel` but `proiect` lands on the "Resurse & liste" tab, mapped by `fel` in `taxonomy.json` → `common.FEL_KIND`), `orgs.csv`, and `taxonomy.json` (domenii, tipuri, acoperire, keyword `ignora`/`alias` rules, link roles with host lists). Columns are documented in `docs/DATA-SCHEMA.md` (all files) and CONTRIBUTING.md (for contributors, in Romanian). CSVs must stay round-trippable through Google Sheets/Excel: UTF-8, comma-separated, list cells (`linkuri`) space/newline/`|`-separated or a JSON array, `tip` comma-separated with the main type first.
-- **Never hand-edit generated files**: `site/feed.xml`, `site/llms.txt`, `data/profil.csv`, `data/mentiuni_etichete.csv`, `site/data.json`, `site/proiect/`, `site/organizatie/`, `site/resursa/` (entry pages and the three archive `index.html` files), `site/img/`. The one exception is the column `editor` in `data/mentiuni.csv` (empty, `1` keep, `0` drop); `search.py` keeps it on every rewrite. `review.py` never writes `proiecte.csv` — a person accepts suggestions manually.
+- **Human-edited source of truth** (since the cutover of 2026-10-22): `data/taxonomy-v2/integrare/intrari.csv` (one row per entry: `tip_entitate`, `sectiune_url`, the facets `subiect_principal`, `subiecte`, `teme`, `scopuri`, `functionalitati`, `formate`, `tehnologii`, `institutii_vizate`, `maturitate`, `nivel_acoperire`, `arii_acoperite`, and `clasificare_stare`), the vocabulary files in `data/taxonomy-v2/` (`concepte.csv`, `arii.csv`, `valori.csv`, `roluri-linkuri.csv`, `gazde-linkuri.csv`) and the review queue `integrare/revizuire.csv`. Columns: `docs/DATA-SCHEMA.md`; the editor guide is `data/taxonomy-v2/README.md` (Romanian). The v1 files in `data/` (`proiecte.csv`, `orgs.csv`, `taxonomy.json`, `profil.csv`, `mentiuni.csv`) are frozen: no script reads them by default, and they stay for the rollback and for `--data-dir data`. Frozen v1 rules: `proiecte.csv` (`fel` = `proiect` | `resursa` | `articol` | `ghid` | `campanie` | `cercetare`; every `fel` but `proiect` lands on the "Resurse & liste" tab, mapped by `fel` in `taxonomy.json` → `common.FEL_KIND`), `orgs.csv`, and `taxonomy.json` (domenii, tipuri, acoperire, keyword `ignora`/`alias` rules, link roles with host lists). Columns are documented in `docs/DATA-SCHEMA.md` (all files) and CONTRIBUTING.md (for contributors, in Romanian). CSVs must stay round-trippable through Google Sheets/Excel: UTF-8, comma-separated, list cells (`linkuri`) space/newline/`|`-separated or a JSON array, `tip` comma-separated with the main type first.
+- **Never hand-edit generated files**: `site/feed.xml`, `site/llms.txt`, `data/taxonomy-v2/observatii/profil.csv`, `observatii/mentiuni_etichete.csv`, `site/data.json`, `site/proiect/`, `site/organizatie/`, `site/resursa/` (entry pages and the three archive `index.html` files), `site/img/`. The one exception is the column `editor` in `observatii/mentiuni.csv` (empty, `1` keep, `0` drop); `search.py` keeps it on every rewrite. `review.py` never writes `intrari.csv` — a person accepts suggestions manually.
 - `scripts/common.py` holds the shared loaders and the canonical column lists (`PROIECTE_COLS`, `ORGS_COLS`, `PROFIL_COLS`). Adding a column means updating it there (and in `validate.py` / `build.py` / `docs/DATA-SCHEMA.md` / CONTRIBUTING.md as relevant). `profil.csv` is flat except `social` (a JSON cell).
 - `build.py` decides what the site shows: curated description vs. the site's meta description (`pick_desc`, filtering `BOILERPLATE`), link roles from `linkuri` + profiler-found socials, `status` (manual `stare` = `arhivat`/`offline` overrides the profiler; a profiler `offline` with no Wayback capture for over a year shows as `arhivat`; and a retired entry ignores what is live at its old URL), `since` / `stale`, and `score` (0–100: activity 30, reach 25, volume 15, longevity 15, documentation 15) used by the "Relevanță" sort.
-- `site/app.js` keeps all UI state in URL query params (`DEFAULTS` / `FILTERS`), with a few per-browser prefs in localStorage. An open entry lives in the path, `/<kind>/<slug>/` with kind `proiect`, `organizatie` or `resursa` (the old `?p=<slug>` still works). `build.py` writes one page per entry to `site/<kind>/<slug>/` from `site/index.html` (git ignores them; the Pages workflow builds them), so preview with `build.py` first. A new `href`, `src` or `fetch` in `site/index.html` or `app.js` must resolve from that path: the pages carry `<base href="../../">`, and `app.js` prefixes data paths with `ROOT`. `build.py` rewrites the `?v=<hash>` on the `style.css` and `app.js` links in `site/index.html` (Cloudflare caches those two files for hours), so commit `index.html` after a CSS or JS change. `data/site.json` (report-a-problem addresses) is hand-edited; `.gitignore` lists it as an exception.
+- `site/app.js` keeps all UI state in URL query params (`DEFAULTS` / `FILTERS`), with a few per-browser prefs in localStorage. An open entry lives in the path, `/<kind>/<slug>/` with kind `proiect`, `organizatie` or `resursa` (the old `?p=<slug>` still works). `build.py` writes one page per entry to `site/<kind>/<slug>/` from `site/index.html` (git ignores them; the Pages workflow builds them), so preview with `build.py` first. A new `href`, `src` or `fetch` in `site/index.html` or `app.js` must resolve from that path: the pages carry `<base href="../../">`, and `app.js` prefixes data paths with `ROOT`. `build.py` rewrites the `?v=<hash>` on the `style.css` and `app.js` links in `site/index.html` (Cloudflare caches those two files for hours), so commit `index.html` after a CSS or JS change. `data/taxonomy-v2/setari.json` (report-a-problem addresses and the gid of the Sheet tab) is hand-edited.
 - `data/curation.csv`, `data/international.csv`, `data/_OBSOLETE/` aren't read by any script; `international.csv` is the seed for a planned international mirror.
-- **Taxonomy v2 (preview only)**: `data/taxonomy-v2/` is a draft.2 package; `integrare/` is an overlay with the sealed run's classifications. `scripts/taxonomy_v2.py` loads and checks it; `--data-dir` selects it; `--site-dir` keeps a build out of `site/`; `site-v2/` holds the v2 browser code. `common.PUBLIC_ROOT` (today `data/`, v1) is the default root and the public source until an explicit cutover (`scripts/cutover_v2.py`, runbook `docs/briefs/cutover-taxonomy-v2.md`). Never write into `data/taxonomy-v2/source/`, `reference/` or `runs/`.
+- **Taxonomy v2 (the public model since the cutover of 2026-10-22)**: `data/taxonomy-v2/` is the draft.2 package; `integrare/` is the editable integration copy (detached from the sealed run on 2026-10-21). `scripts/taxonomy_v2.py` loads and checks it. `common.PUBLIC_ROOT` is `data/taxonomy-v2/integrare`: the default root of every script, and the only root that may write `site/`. `site/app.js` is the v2 browser code (`site-v2/` is gone). `--data-dir data` selects the frozen v1 root; `--site-dir` keeps a build out of `site/`. All 140 entries are `acceptat`, in bulk and not one by one. Never write into `data/taxonomy-v2/source/`, `reference/` or `runs/`.
 
 ## Deployment
 
-`.github/workflows/pages.yml` runs `validate.py` + `build.py` on push to `main` and publishes `site/` to GitHub Pages. `sheets-pull.yml` (every 6 h) opens or updates a PR from branch `sheets-sync` with the Sheet's edits. If `validate.py` or `build.py` fails, it still opens the PR, sets the commit status `validate / sheets-pull` to failure, and then fails. `sheets-push.yml` rewrites the Sheet after a push to `main` that touches the two CSVs; `sheets.py push` compares the Sheet with the commit in its `_sync` tab (the last successful push) and writes that marker last. `validate.yml` runs on PRs and pushes to `main` that touch `data/`, `scripts/`, `site/`, `site-v2/` or `.github/workflows/`; `validate.py` emits GitHub annotations when `GITHUB_ACTIONS=true`.
+`.github/workflows/pages.yml` runs `validate.py --publication` + `build.py` on push to `main` and publishes `site/` to GitHub Pages. `sheets-pull.yml` (every 6 h) opens or updates a PR from branch `sheets-sync` with the Sheet's edits. If `validate.py` or `build.py` fails, it still opens the PR, sets the commit status `validate / sheets-pull` to failure, and then fails. `sheets-push.yml` rewrites the tab `v2-intrari` after a push to `main` that touches `intrari.csv`; `sheets.py push` compares the Sheet with the commit in its `_sync` tab (the last successful push) and writes that marker last. `validate.yml` runs on PRs and pushes to `main` that touch `data/`, `scripts/`, `site/` or `.github/workflows/`; `validate.py` emits GitHub annotations when `GITHUB_ACTIONS=true`.
 
 ## Notes
 

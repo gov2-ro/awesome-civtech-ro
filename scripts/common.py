@@ -13,9 +13,9 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 SITE = ROOT / "site"
-# The data root that feeds the public site, and the default --data-dir of every script. It is the v1 root until the
-# cutover; scripts/cutover_v2.py then points it at the taxonomy v2 integration copy. Only this root may write site/.
-PUBLIC_ROOT = DATA
+# The data root that feeds the public site, and the default --data-dir of every script. Since the cutover it is the
+# taxonomy v2 integration copy (before, the v1 root data/). Only this root may write site/.
+PUBLIC_ROOT = DATA / "taxonomy-v2" / "integrare"
 
 
 def load_env(path: Path = ROOT / ".env"):
