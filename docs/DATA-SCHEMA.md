@@ -42,7 +42,7 @@ and in the `pachet.json` of an overlay (`headers`). No Python constant repeats t
 | `data/taxonomy-v2/concepte.csv` | a person | [concepte.csv](#conceptecsv) |
 | `data/taxonomy-v2/valori.csv` | a person | [valori.csv](#valoricsv) |
 | `data/taxonomy-v2/roluri-linkuri.csv`, `gazde-linkuri.csv` | a person | [Link roles and hosts](#link-roles-and-hosts) |
-| `data/taxonomy-v2/relatii.csv` | a person | [relatii.csv](#relatiicsv) |
+| `data/taxonomy-v2/integrare/relatii.csv` | a person | [relatii.csv](#relatiicsv) |
 | `data/taxonomy-v2/arii.csv` | a person | [arii.csv](#ariicsv) |
 | `data/taxonomy-v2/revizuire.csv` | a person | [revizuire.csv (v2)](#revizuirecsv-v2) |
 | `data/taxonomy-v2/mapari-externe.csv` | a person | [mapari-externe.csv](#mapari-externecsv) |

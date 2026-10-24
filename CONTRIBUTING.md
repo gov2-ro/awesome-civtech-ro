@@ -86,7 +86,7 @@ Detalii pentru editori: [data/taxonomy-v2/README.md](data/taxonomy-v2/README.md)
 Adăugați adresa dovezii în `dovada_detaliere`. Lăsați ambele câmpuri goale când detalierea nu este verificată.
 Un proiect național nu primește automat toate județele în `arii_acoperite`.
 
-Sursele de date sunt relații `date_din` în `data/taxonomy-v2/relatii.csv`.
+Sursele de date sunt relații `date_din` în `data/taxonomy-v2/integrare/relatii.csv`.
 Folosiți același nume pentru același furnizor. Puneți adresa paginii care identifică furnizorul în `valoare_sursa`.
 O sursă verificată are `stare=acceptat`. O sugestie are `stare=propus` și un punct deschis în `integrare/revizuire.csv`.
 Site-ul public arată numai sursele acceptate. Autorii și instituțiile vizate rămân câmpuri separate.

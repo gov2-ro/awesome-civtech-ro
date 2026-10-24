@@ -1,5 +1,26 @@
 # Activity
 
+## 2026-10-25 — Repair the base package check after the v0.11.0 push
+
+**Done**
+- Pushed 0fa981b and v0.11.0 on the owner's instruction. Pages and Sheets push passed; CI failed in the base package check.
+- Added a local `integrare/relatii.csv` with all 146 live relations. The base package keeps its 100 valid relations.
+  The live build preserves all public attributions and data sources. Both package roots now have endpoint validation coverage.
+- Both package checks, publication validation and build pass. 285 unit tests pass, with 6 skipped.
+
+**Hard**
+- The base had 46 orphan relations: 19 earlier author attributions and 27 source relations for integration-only entries.
+- I missed the base check's nonzero exit before pushing because later commands in that shell returned zero.
+  A clean git archive reproduced the failure. The workflow had redirected the explanatory errors to /dev/null.
+
+**Decided**
+- Relations are editorial entry data and belong to the detached integration copy. Keep vocabulary shared.
+  Cost of keeping live relations in the base: a 122-entry package cannot validate edges for its 140-entry overlay.
+- The sandbox blocked staging. My sequence then created and pushed v0.11.1 on the old commit.
+  Kept that tag as history; v0.11.2 carries the actual repair. Later mutations now stop on a failed command.
+- Patch version v0.11.2 corrects the package layout. No GitHub release is published.
+
+
 ## 2026-10-25 — First-party documentation collection and five inventory drafts
 
 **Done**

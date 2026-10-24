@@ -12,7 +12,8 @@
     "modificari.csv",
     "rezultate.csv",
     "propuneri-vocabular.csv",
-    "catalogue.json"
+    "catalogue.json",
+    "relatii.csv"
   ],
   "headers": {
     "modificari.csv": [

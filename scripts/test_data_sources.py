@@ -18,6 +18,12 @@ class DataSources(unittest.TestCase):
                 self.assertFalse(taxonomy_v2.http_evidence(value))
         self.assertTrue(taxonomy_v2.http_evidence('https://example.org/method#data'))
 
+    def test_live_and_base_packages_have_valid_relation_endpoints(self):
+        for root in (common.PUBLIC_ROOT, common.PUBLIC_ROOT.parent):
+            with self.subTest(root=root):
+                errors, _ = taxonomy_v2.check(root)
+                self.assertEqual(errors, [])
+
     def test_only_accepted_sources_are_public_and_never_authors(self):
         pkg = copy.deepcopy(taxonomy_v2.load(common.PUBLIC_ROOT))
         slug = next(iter(pkg.entries))
@@ -50,7 +56,7 @@ class DataSources(unittest.TestCase):
             shutil.copytree(common.PUBLIC_ROOT.parent, root,
                             ignore=shutil.ignore_patterns('runs', '__pycache__', 'catalogue.json'))
             for path, field, select in [
-                (root / 'relatii.csv', 'valoare_sursa', lambda r: r['predicat'] == 'date_din' and r['stare'] == 'acceptat'),
+                (root / 'integrare/relatii.csv', 'valoare_sursa', lambda r: r['predicat'] == 'date_din' and r['stare'] == 'acceptat'),
                 (root / 'integrare/intrari.csv', 'dovada_detaliere', lambda r: bool(r['detaliere_date'])),
             ]:
                 with path.open() as f:
