@@ -287,3 +287,17 @@ pull requests from forks.
 
 Copyright (c) 2026 [gov2.ro](https://gov2.ro)
 Date reutilizabile conform [EUPL v1.2](https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12) (the "Licence")
+### Documentarea proiectelor
+
+```sh
+python3 scripts/collect_docs.py --only afacut,ins-gov2,ani-de-pensie
+python3 scripts/collect_docs.py                 # toate intrările; reutilizează rezultatele existente
+python3 scripts/collect_docs.py --force         # descarcă din nou paginile selectate
+```
+
+Colectorul caută metodologie, pagini despre proiect și `llms.txt`, inclusiv secțiuni din pagina inițială.
+Salvează rezultatele în `data/taxonomy-v2/observatii/documentare/`.
+Nu modifică datele editoriale și nu publică automat informații. Nu folosește servicii plătite.
+Paginile brute rămân locale; `index.json` și `rezumat.csv` păstrează rezultatele colectării.
+După o clonare nouă, folosiți `--force` pentru a recupera paginile necesare verificării.
+`pilot-inventare.json` conține primele cinci propuneri de inventar, cu dovezi și lacune explicite.

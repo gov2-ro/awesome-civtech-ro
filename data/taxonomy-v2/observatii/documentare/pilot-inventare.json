@@ -1,0 +1,731 @@
+{
+  "versiune": 1,
+  "stare": "propuneri-pentru-revizuire",
+  "data": "2026-10-25",
+  "nota": "Surse declarate de proiecte, nu validarea independentă a datelor. Tipurile inferate sunt marcate explicit. Nu se publică automat.",
+  "proiecte": [
+    {
+      "slug": "afacut",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": {
+        "descriere": "Sprijină verificarea cheltuielilor pentru investiții publice locale.",
+        "dovada": {
+          "url": "https://afacut.ro/",
+          "sha256": "c0e7b8474b0200e1381ec5f038c88c2d7ee7fdbad7f26efc4d46606b6802fbe7",
+          "snapshot": "pagini/fd4fc35b1707c68b94cf4ddf.json",
+          "interval_caractere": [
+            199,
+            267
+          ]
+        }
+      },
+      "surse": [
+        {
+          "descriere": "Ministerul Dezvoltării și INS; distribuire prin data.gov.ro.",
+          "dovada": {
+            "url": "https://afacut.ro/",
+            "sha256": "c0e7b8474b0200e1381ec5f038c88c2d7ee7fdbad7f26efc4d46606b6802fbe7",
+            "snapshot": "pagini/fd4fc35b1707c68b94cf4ddf.json",
+            "interval_caractere": [
+              2308,
+              2393
+            ]
+          }
+        }
+      ],
+      "campuri": [
+        {
+          "nume": "localitate",
+          "tip": "text",
+          "stare_tip": "propus-din-descriere",
+          "rol": "parametru-utilizator",
+          "unitate": null,
+          "dovada": {
+            "url": "https://afacut.ro/",
+            "sha256": "c0e7b8474b0200e1381ec5f038c88c2d7ee7fdbad7f26efc4d46606b6802fbe7",
+            "snapshot": "pagini/fd4fc35b1707c68b94cf4ddf.json",
+            "interval_caractere": [
+              287,
+              307
+            ]
+          }
+        },
+        {
+          "nume": "sumă alocată",
+          "tip": "numar",
+          "stare_tip": "propus-din-descriere",
+          "rol": "date-sursa",
+          "unitate": "RON",
+          "dovada": {
+            "url": "https://afacut.ro/",
+            "sha256": "c0e7b8474b0200e1381ec5f038c88c2d7ee7fdbad7f26efc4d46606b6802fbe7",
+            "snapshot": "pagini/fd4fc35b1707c68b94cf4ddf.json",
+            "interval_caractere": [
+              314,
+              326
+            ]
+          }
+        },
+        {
+          "nume": "sumă solicitată la decontare",
+          "tip": "numar",
+          "stare_tip": "propus-din-descriere",
+          "rol": "date-sursa",
+          "unitate": "RON",
+          "dovada": {
+            "url": "https://afacut.ro/",
+            "sha256": "c0e7b8474b0200e1381ec5f038c88c2d7ee7fdbad7f26efc4d46606b6802fbe7",
+            "snapshot": "pagini/fd4fc35b1707c68b94cf4ddf.json",
+            "interval_caractere": [
+              328,
+              356
+            ]
+          }
+        },
+        {
+          "nume": "data sursei",
+          "tip": "data",
+          "stare_tip": "propus-din-descriere",
+          "rol": "provenienta",
+          "unitate": null,
+          "dovada": {
+            "url": "https://afacut.ro/",
+            "sha256": "c0e7b8474b0200e1381ec5f038c88c2d7ee7fdbad7f26efc4d46606b6802fbe7",
+            "snapshot": "pagini/fd4fc35b1707c68b94cf4ddf.json",
+            "interval_caractere": [
+              1425,
+              1436
+            ]
+          }
+        }
+      ],
+      "metoda": [
+        {
+          "descriere": "Compară alocările cu cererile de decontare; rezultatele păstrează legătura cu documentul.",
+          "dovada": {
+            "url": "https://afacut.ro/",
+            "sha256": "c0e7b8474b0200e1381ec5f038c88c2d7ee7fdbad7f26efc4d46606b6802fbe7",
+            "snapshot": "pagini/fd4fc35b1707c68b94cf4ddf.json",
+            "interval_caractere": [
+              1824,
+              1874
+            ]
+          }
+        }
+      ],
+      "iesiri": [
+        {
+          "descriere": "Consultare pe localitate, sume și documente justificative.",
+          "dovada": {
+            "url": "https://afacut.ro/",
+            "sha256": "c0e7b8474b0200e1381ec5f038c88c2d7ee7fdbad7f26efc4d46606b6802fbe7",
+            "snapshot": "pagini/fd4fc35b1707c68b94cf4ddf.json",
+            "interval_caractere": [
+              360,
+              389
+            ]
+          }
+        }
+      ],
+      "lacune": [
+        "Nu sunt verificate identificatorii tehnici, tipurile din fișiere și toate formulele.",
+        "Pagina de intrare nu expune formularul fiecărei ediții."
+      ]
+    },
+    {
+      "slug": "ins-gov2",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": {
+        "descriere": "Documentează explorarea matricelor statistice INS TEMPO.",
+        "dovada": {
+          "url": "https://ins.gov2.ro/llms.txt",
+          "sha256": "6cd7b82abecbe5d253804ad42ade61a4c54b8c78127603a7597f4be14f722805",
+          "snapshot": "pagini/02d1c0ba202f746170be686e.json",
+          "interval_caractere": [
+            24,
+            81
+          ]
+        }
+      },
+      "surse": [
+        {
+          "descriere": "Date statistice INS, prin TEMPO Online.",
+          "dovada": {
+            "url": "https://ins.gov2.ro/llms.txt",
+            "sha256": "6cd7b82abecbe5d253804ad42ade61a4c54b8c78127603a7597f4be14f722805",
+            "snapshot": "pagini/02d1c0ba202f746170be686e.json",
+            "interval_caractere": [
+              89,
+              137
+            ]
+          }
+        }
+      ],
+      "campuri": [
+        {
+          "nume": "matrix_code",
+          "tip": "identificator-text",
+          "stare_tip": "propus-din-descriere",
+          "rol": "selectie-set-date",
+          "unitate": null,
+          "dovada": {
+            "url": "https://ins.gov2.ro/llms.txt",
+            "sha256": "6cd7b82abecbe5d253804ad42ade61a4c54b8c78127603a7597f4be14f722805",
+            "snapshot": "pagini/02d1c0ba202f746170be686e.json",
+            "interval_caractere": [
+              333,
+              358
+            ]
+          }
+        },
+        {
+          "nume": "OBS_VALUE",
+          "tip": "numar",
+          "stare_tip": "declarat-explicit",
+          "rol": "masura",
+          "unitate": null,
+          "dovada": {
+            "url": "https://ins.gov2.ro/llms.txt",
+            "sha256": "6cd7b82abecbe5d253804ad42ade61a4c54b8c78127603a7597f4be14f722805",
+            "snapshot": "pagini/02d1c0ba202f746170be686e.json",
+            "interval_caractere": [
+              822,
+              858
+            ]
+          }
+        },
+        {
+          "nume": "TIME_PERIOD",
+          "tip": "perioada",
+          "stare_tip": "propus-din-descriere",
+          "rol": "dimensiune",
+          "unitate": null,
+          "dovada": {
+            "url": "https://ins.gov2.ro/llms.txt",
+            "sha256": "6cd7b82abecbe5d253804ad42ade61a4c54b8c78127603a7597f4be14f722805",
+            "snapshot": "pagini/02d1c0ba202f746170be686e.json",
+            "interval_caractere": [
+              1704,
+              1715
+            ]
+          }
+        },
+        {
+          "nume": "REF_AREA",
+          "tip": "categorie-geografica",
+          "stare_tip": "propus-din-descriere",
+          "rol": "dimensiune",
+          "unitate": null,
+          "dovada": {
+            "url": "https://ins.gov2.ro/llms.txt",
+            "sha256": "6cd7b82abecbe5d253804ad42ade61a4c54b8c78127603a7597f4be14f722805",
+            "snapshot": "pagini/02d1c0ba202f746170be686e.json",
+            "interval_caractere": [
+              1679,
+              1687
+            ]
+          }
+        },
+        {
+          "nume": "SEX",
+          "tip": "categorie",
+          "stare_tip": "propus-din-descriere",
+          "rol": "dimensiune",
+          "unitate": null,
+          "dovada": {
+            "url": "https://ins.gov2.ro/llms.txt",
+            "sha256": "6cd7b82abecbe5d253804ad42ade61a4c54b8c78127603a7597f4be14f722805",
+            "snapshot": "pagini/02d1c0ba202f746170be686e.json",
+            "interval_caractere": [
+              1804,
+              1807
+            ]
+          }
+        },
+        {
+          "nume": "lang",
+          "tip": "categorie",
+          "stare_tip": "propus-din-descriere",
+          "rol": "parametru-api",
+          "unitate": null,
+          "dovada": {
+            "url": "https://ins.gov2.ro/llms.txt",
+            "sha256": "6cd7b82abecbe5d253804ad42ade61a4c54b8c78127603a7597f4be14f722805",
+            "snapshot": "pagini/02d1c0ba202f746170be686e.json",
+            "interval_caractere": [
+              751,
+              758
+            ]
+          }
+        },
+        {
+          "nume": "filters",
+          "tip": "obiect-json",
+          "stare_tip": "declarat-explicit",
+          "rol": "parametru-api",
+          "unitate": null,
+          "dovada": {
+            "url": "https://ins.gov2.ro/llms.txt",
+            "sha256": "6cd7b82abecbe5d253804ad42ade61a4c54b8c78127603a7597f4be14f722805",
+            "snapshot": "pagini/02d1c0ba202f746170be686e.json",
+            "interval_caractere": [
+              1620,
+              1668
+            ]
+          }
+        }
+      ],
+      "metoda": [
+        {
+          "descriere": "Documentația descrie filtrarea și agregarea după dimensiuni.",
+          "dovada": {
+            "url": "https://ins.gov2.ro/llms.txt",
+            "sha256": "6cd7b82abecbe5d253804ad42ade61a4c54b8c78127603a7597f4be14f722805",
+            "snapshot": "pagini/02d1c0ba202f746170be686e.json",
+            "interval_caractere": [
+              1742,
+              1779
+            ]
+          }
+        }
+      ],
+      "iesiri": [
+        {
+          "descriere": "Documentația descrie răspunsuri JSON, exporturi CSV/XLSX și SDMX XML.",
+          "dovada": {
+            "url": "https://ins.gov2.ro/llms.txt",
+            "sha256": "6cd7b82abecbe5d253804ad42ade61a4c54b8c78127603a7597f4be14f722805",
+            "snapshot": "pagini/02d1c0ba202f746170be686e.json",
+            "interval_caractere": [
+              2601,
+              2619
+            ]
+          }
+        }
+      ],
+      "verificari_interfata": [
+        {
+          "url": "https://ins.gov2.ro/llms.txt",
+          "http_status": 200,
+          "rezultat": "Colectat. Copia tmp/ins-llms.txt este identică după eliminarea spațiilor de la margini."
+        },
+        {
+          "url": "https://ins.gov2.ro/api/datasets?limit=1",
+          "http_status": 200,
+          "rezultat": "Lista seturilor de date răspunde cu JSON."
+        },
+        {
+          "url": "https://ins.gov2.ro/api/datasets/ACC102B?lang=en",
+          "http_status": 200,
+          "rezultat": "Metadate și dimensiuni disponibile. ACC102B descrie accidente de muncă, nu PIB."
+        },
+        {
+          "url": "https://ins.gov2.ro/api/datasets/POP101A?lang=ro",
+          "http_status": 404,
+          "rezultat": "Dataset POP101A not found. Nu indică indisponibilitatea întregului API."
+        }
+      ],
+      "lacune": [
+        "Inventarul proiectului rămâne parțial: a fost verificată o singură matrice, ACC102B.",
+        "POP101A lipsește din API la verificare. llms.txt numește greșit ACC102B drept PIB.",
+        "Tipurile din documentație și cele propuse nu devin automat tipuri verificate pentru toate seturile de date."
+      ],
+      "seturi_date_verificate": [
+        {
+          "cod": "ACC102B",
+          "nume": "Accidentati in munca pe categorii de accidente, macroregiuni, regiuni de dezvoltare si judete",
+          "dovada": {
+            "url": "https://ins.gov2.ro/api/datasets/ACC102B?lang=en",
+            "http_status": 200,
+            "snapshot": "pagini/api-ins-acc102b-35e5e81c9a828a6e.json",
+            "sha256": "35e5e81c9a828a6e88d9beb5a74b7447121a52b0948973ae377460032a0b4882"
+          },
+          "distribuitor": "Institutul Național de Statistică",
+          "furnizor_initial_declarat": "Inspecția Muncii — Ministerul Muncii și Protecției Sociale",
+          "pointer_furnizor": "/observatii",
+          "dimensiuni": [
+            {
+              "nume": "CATEGORY",
+              "semnificatie": "Categorii de accidente de munca",
+              "tip_semantic": "indicator",
+              "valori_declarate": 6
+            },
+            {
+              "nume": "REF_AREA",
+              "semnificatie": "Macroregiuni, regiuni de dezvoltare si judete",
+              "tip_semantic": "geo",
+              "valori_declarate": 56
+            },
+            {
+              "nume": "TIME_PERIOD",
+              "semnificatie": "Perioade",
+              "tip_semantic": "time",
+              "valori_declarate": 32
+            },
+            {
+              "nume": "UNIT_MEASURE",
+              "semnificatie": "Unitati de masura",
+              "tip_semantic": "unit",
+              "valori_declarate": 2
+            }
+          ],
+          "perioada": [
+            1992,
+            2023
+          ],
+          "granularitate_timp": "annual",
+          "nota": "Acesta este un exemplu verificat. Dimensiunile sale nu sunt comune obligatoriu tuturor matricelor INS."
+        }
+      ]
+    },
+    {
+      "slug": "ani-de-pensie",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": {
+        "descriere": "Estimează luna pensionării și durata medie de viață după pensionare.",
+        "dovada": {
+          "url": "https://mariuscomper.uk/ani-de-pensie/",
+          "sha256": "7abaab879146cd763197d8e9b7dd14276d8e9bc9c3edb47149858fb7f9f14f69",
+          "snapshot": "pagini/3394f630bf9a725aad473d2c.json",
+          "interval_caractere": [
+            236,
+            285
+          ]
+        }
+      },
+      "surse": [
+        {
+          "descriere": "Eurostat: speranța de viață, viața fără limitări și viața activă.",
+          "dovada": {
+            "url": "https://mariuscomper.uk/ani-de-pensie/",
+            "sha256": "7abaab879146cd763197d8e9b7dd14276d8e9bc9c3edb47149858fb7f9f14f69",
+            "snapshot": "pagini/3394f630bf9a725aad473d2c.json",
+            "interval_caractere": [
+              9009,
+              9021
+            ]
+          }
+        },
+        {
+          "descriere": "Legea 360/2023, inclusiv eșalonarea vârstelor din anexa 5.",
+          "dovada": {
+            "url": "https://mariuscomper.uk/ani-de-pensie/",
+            "sha256": "7abaab879146cd763197d8e9b7dd14276d8e9bc9c3edb47149858fb7f9f14f69",
+            "snapshot": "pagini/3394f630bf9a725aad473d2c.json",
+            "interval_caractere": [
+              9311,
+              9359
+            ]
+          }
+        }
+      ],
+      "campuri": [
+        {
+          "nume": "luna nașterii",
+          "tip": "categorie",
+          "stare_tip": "propus-din-descriere",
+          "rol": "parametru-utilizator",
+          "unitate": null,
+          "dovada": {
+            "url": "https://mariuscomper.uk/ani-de-pensie/",
+            "sha256": "7abaab879146cd763197d8e9b7dd14276d8e9bc9c3edb47149858fb7f9f14f69",
+            "snapshot": "pagini/3394f630bf9a725aad473d2c.json",
+            "interval_caractere": [
+              521,
+              534
+            ]
+          }
+        },
+        {
+          "nume": "anul nașterii",
+          "tip": "intreg",
+          "stare_tip": "propus-din-descriere",
+          "rol": "parametru-utilizator",
+          "unitate": null,
+          "dovada": {
+            "url": "https://mariuscomper.uk/ani-de-pensie/",
+            "sha256": "7abaab879146cd763197d8e9b7dd14276d8e9bc9c3edb47149858fb7f9f14f69",
+            "snapshot": "pagini/3394f630bf9a725aad473d2c.json",
+            "interval_caractere": [
+              633,
+              646
+            ]
+          }
+        },
+        {
+          "nume": "sex",
+          "tip": "categorie",
+          "stare_tip": "propus-din-descriere",
+          "rol": "parametru-utilizator",
+          "unitate": null,
+          "dovada": {
+            "url": "https://mariuscomper.uk/ani-de-pensie/",
+            "sha256": "7abaab879146cd763197d8e9b7dd14276d8e9bc9c3edb47149858fb7f9f14f69",
+            "snapshot": "pagini/3394f630bf9a725aad473d2c.json",
+            "interval_caractere": [
+              992,
+              1011
+            ]
+          }
+        },
+        {
+          "nume": "speranța de viață",
+          "tip": "numar",
+          "stare_tip": "propus-din-descriere",
+          "rol": "date-sursa",
+          "unitate": "ani",
+          "dovada": {
+            "url": "https://mariuscomper.uk/ani-de-pensie/",
+            "sha256": "7abaab879146cd763197d8e9b7dd14276d8e9bc9c3edb47149858fb7f9f14f69",
+            "snapshot": "pagini/3394f630bf9a725aad473d2c.json",
+            "interval_caractere": [
+              8970,
+              9006
+            ]
+          }
+        },
+        {
+          "nume": "ani fără limitări",
+          "tip": "numar",
+          "stare_tip": "propus-din-descriere",
+          "rol": "rezultat-derivat",
+          "unitate": "ani",
+          "dovada": {
+            "url": "https://mariuscomper.uk/ani-de-pensie/",
+            "sha256": "7abaab879146cd763197d8e9b7dd14276d8e9bc9c3edb47149858fb7f9f14f69",
+            "snapshot": "pagini/3394f630bf9a725aad473d2c.json",
+            "interval_caractere": [
+              7826,
+              7873
+            ]
+          }
+        }
+      ],
+      "metoda": [
+        {
+          "descriere": "Folosește mortalitatea din 2024 și interpolează vârstele fracționare.",
+          "dovada": {
+            "url": "https://mariuscomper.uk/ani-de-pensie/",
+            "sha256": "7abaab879146cd763197d8e9b7dd14276d8e9bc9c3edb47149858fb7f9f14f69",
+            "snapshot": "pagini/3394f630bf9a725aad473d2c.json",
+            "interval_caractere": [
+              7786,
+              7824
+            ]
+          }
+        },
+        {
+          "descriere": "Aplică proporția fără limitări observată la 65 de ani și altor vârste de pensionare.",
+          "dovada": {
+            "url": "https://mariuscomper.uk/ani-de-pensie/",
+            "sha256": "7abaab879146cd763197d8e9b7dd14276d8e9bc9c3edb47149858fb7f9f14f69",
+            "snapshot": "pagini/3394f630bf9a725aad473d2c.json",
+            "interval_caractere": [
+              8266,
+              8303
+            ]
+          }
+        }
+      ],
+      "iesiri": [
+        {
+          "descriere": "Luna pensionării, ani estimați după pensionare și reprezentarea lor vizuală.",
+          "dovada": {
+            "url": "https://mariuscomper.uk/ani-de-pensie/",
+            "sha256": "7abaab879146cd763197d8e9b7dd14276d8e9bc9c3edb47149858fb7f9f14f69",
+            "snapshot": "pagini/3394f630bf9a725aad473d2c.json",
+            "interval_caractere": [
+              1424,
+              1464
+            ]
+          }
+        }
+      ],
+      "lacune": [
+        "Tipurile sunt propuneri semantice; nu s-a inspectat schema fișierelor interne.",
+        "Calculatorul descrie medii statistice și vârsta standard; nu confirmă dreptul individual la pensie."
+      ]
+    },
+    {
+      "slug": "calitate-aer-radauti",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": {
+        "descriere": "Monitorizează local particulele fine din aer și publică măsurătorile.",
+        "dovada": {
+          "url": "https://calitateaer.radautiulcivic.ro/despre/",
+          "sha256": "80e2f8fb52f9e98235baf7cbe75626087adc8089a0ce2138d24b2cf07d689313",
+          "snapshot": "pagini/e4b5366afea57d835e0df3a3.json",
+          "interval_caractere": [
+            927,
+            976
+          ]
+        }
+      },
+      "surse": [
+        {
+          "descriere": "Senzori proprii ai Rădăuțiului Civic: AirVisual Pro și AirVisual Outdoor.",
+          "dovada": {
+            "url": "https://calitateaer.radautiulcivic.ro/despre/",
+            "sha256": "80e2f8fb52f9e98235baf7cbe75626087adc8089a0ce2138d24b2cf07d689313",
+            "snapshot": "pagini/e4b5366afea57d835e0df3a3.json",
+            "interval_caractere": [
+              1125,
+              1138
+            ]
+          }
+        }
+      ],
+      "campuri": [
+        {
+          "nume": "concentrație PM2.5",
+          "tip": "numar",
+          "stare_tip": "propus-din-descriere",
+          "rol": "masuratoare",
+          "unitate": null,
+          "dovada": {
+            "url": "https://calitateaer.radautiulcivic.ro/despre/",
+            "sha256": "80e2f8fb52f9e98235baf7cbe75626087adc8089a0ce2138d24b2cf07d689313",
+            "snapshot": "pagini/e4b5366afea57d835e0df3a3.json",
+            "interval_caractere": [
+              1698,
+              1719
+            ]
+          }
+        }
+      ],
+      "metoda": [
+        {
+          "descriere": "Măsurare în puncte fixe; site-ul descrie testarea aparatelor și extinderea rețelei.",
+          "dovada": {
+            "url": "https://calitateaer.radautiulcivic.ro/despre/",
+            "sha256": "80e2f8fb52f9e98235baf7cbe75626087adc8089a0ce2138d24b2cf07d689313",
+            "snapshot": "pagini/e4b5366afea57d835e0df3a3.json",
+            "interval_caractere": [
+              1720,
+              1749
+            ]
+          }
+        }
+      ],
+      "iesiri": [
+        {
+          "descriere": "Măsurători publicate prin IQAir/AirVisual, site și aplicația e-Rădăuți.",
+          "dovada": {
+            "url": "https://calitateaer.radautiulcivic.ro/despre/",
+            "sha256": "80e2f8fb52f9e98235baf7cbe75626087adc8089a0ce2138d24b2cf07d689313",
+            "snapshot": "pagini/e4b5366afea57d835e0df3a3.json",
+            "interval_caractere": [
+              1774,
+              1826
+            ]
+          }
+        }
+      ],
+      "lacune": [
+        "Nu sunt verificate unitatea, frecvența, schema seriilor și exporturile.",
+        "Menționarea ANPM nu dovedește că ANPM furnizează măsurătorile proiectului."
+      ]
+    },
+    {
+      "slug": "codurbanism",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": {
+        "descriere": "Ghid despre modificările Codului urbanismului și aplicarea lor practică.",
+        "dovada": {
+          "url": "https://mariuscomper.uk/codurbanism/llms.txt",
+          "sha256": "8ecd729355be2b46a33d4047721c2228fdba23d92933443d588aac1da7401a96",
+          "snapshot": "pagini/354d443a5e2bbf7dfd84abea.json",
+          "interval_caractere": [
+            65,
+            94
+          ]
+        }
+      },
+      "surse": [
+        {
+          "descriere": "Acte normative, documente administrative și evidențe legislative enumerate de proiect.",
+          "dovada": {
+            "url": "https://mariuscomper.uk/codurbanism/llms.txt",
+            "sha256": "8ecd729355be2b46a33d4047721c2228fdba23d92933443d588aac1da7401a96",
+            "snapshot": "pagini/354d443a5e2bbf7dfd84abea.json",
+            "interval_caractere": [
+              4736,
+              4754
+            ]
+          }
+        }
+      ],
+      "campuri": [
+        {
+          "nume": "întrebare sau termen",
+          "tip": "text",
+          "stare_tip": "propus-din-descriere",
+          "rol": "parametru-utilizator",
+          "unitate": null,
+          "dovada": {
+            "url": "https://mariuscomper.uk/codurbanism/",
+            "sha256": "5e392dbc51a61355ccef4bb5fdebd7ec489a8c29fb0454fcf3d71e95f000d964",
+            "snapshot": "pagini/18e6f09ac71263fe16d51e60.json",
+            "interval_caractere": [
+              3521,
+              3551
+            ]
+          }
+        },
+        {
+          "nume": "situația dosarului",
+          "tip": "categorie",
+          "stare_tip": "propus-din-descriere",
+          "rol": "parametru-utilizator",
+          "unitate": null,
+          "dovada": {
+            "url": "https://mariuscomper.uk/codurbanism/",
+            "sha256": "5e392dbc51a61355ccef4bb5fdebd7ec489a8c29fb0454fcf3d71e95f000d964",
+            "snapshot": "pagini/18e6f09ac71263fe16d51e60.json",
+            "interval_caractere": [
+              2440,
+              2462
+            ]
+          }
+        }
+      ],
+      "metoda": [
+        {
+          "descriere": "Ghidul descrie comparații între reguli, un audit al publicării și un registru de probleme.",
+          "dovada": {
+            "url": "https://mariuscomper.uk/codurbanism/llms.txt",
+            "sha256": "8ecd729355be2b46a33d4047721c2228fdba23d92933443d588aac1da7401a96",
+            "snapshot": "pagini/354d443a5e2bbf7dfd84abea.json",
+            "interval_caractere": [
+              703,
+              730
+            ]
+          }
+        }
+      ],
+      "iesiri": [
+        {
+          "descriere": "Căutare, trasee orientative și fișiere JSON/CSV pentru comparații și implementare.",
+          "dovada": {
+            "url": "https://mariuscomper.uk/codurbanism/llms.txt",
+            "sha256": "8ecd729355be2b46a33d4047721c2228fdba23d92933443d588aac1da7401a96",
+            "snapshot": "pagini/354d443a5e2bbf7dfd84abea.json",
+            "interval_caractere": [
+              4352,
+              4360
+            ]
+          }
+        }
+      ],
+      "lacune": [
+        "Nu s-au inventariat încă proprietățile fișierelor JSON/CSV indicate în llms.txt.",
+        "Inventarul descrie ce declară proiectul; nu validează interpretările juridice."
+      ]
+    }
+  ]
+}

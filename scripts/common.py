@@ -211,7 +211,7 @@ def load_catalogue(data_dir: Path = PUBLIC_ROOT) -> list[dict]:
         target = pkg.entries.get(r["obiect"])
         relations.setdefault(r["subiect"], []).append({
             "predicate": r["predicat"], "state": r["stare"], "slug": r["obiect"], "literal": r["obiect_literal"],
-            "name": target["nume"] if target else r["obiect_literal"]})
+            "name": target["nume"] if target else r["obiect_literal"], "evidence": r["valoare_sursa"]})
     out = []
     for n, (slug, raw) in enumerate(pkg.entries.items(), 2):
         original = source_row(pkg, sources, raw) or {}
@@ -224,9 +224,11 @@ def load_catalogue(data_dir: Path = PUBLIC_ROOT) -> list[dict]:
             "purposes": values(r["scopuri"]), "capabilities": values(r["functionalitati"]), "formats": values(r["formate"]),
             "technologies": values(r["tehnologii"]), "institutions": values(r["institutii_vizate"]), "autor": r["autor_original"],
             "organisation_types": values(r["tip_organizatie"]), "maturity": r["maturitate"] or None,
+            "data_detail": r.get("detaliere_date", ""), "data_detail_evidence": r.get("dovada_detaliere", ""),
             "coverage_level": r["nivel_acoperire"], "areas": values(r["arii_acoperite"]), "locality": r["localitate_originala"],
             "civictech": r["civictech_original"], "classification_state": r["clasificare_stare"],
-            "attributions": relations.get(slug, []),
+            "attributions": [a for a in relations.get(slug, []) if a["predicate"] != "date_din"],
+            "data_sources": [a for a in relations.get(slug, []) if a["predicate"] == "date_din" and a["state"] == "acceptat"],
             "legacy": {k: original.get(k, "") for k in ("fel", "domeniu", "tip", "cuvinte", "acoperire", "oras")} if original else {},
         })
     return out

@@ -571,21 +571,29 @@ Controlled concepts replace the editorial keyword field, while free-text search 
 | Current element | Proposed public interface | Behaviour |
 | --- | --- | --- |
 | `Domeniu` and the mobile domain chips | `Subiect` | Use the broad subjects. Allow multiple selections. |
-| One long `Cuvinte cheie` facet | `Temă` | Show the narrower subject concepts relevant to the current section and selected subjects. |
+| One long `Cuvinte cheie` facet | `Subiect` | Combine broad subjects and narrower themes in one selection. |
 | Mixed `Tip` facet | `Format` plus `Ce poți face` | Separate map, register, and guide from search, comparison, and monitoring. |
-| Geographic hints and search suggestions | `Unde se aplică` | Filter by service coverage, not organisation address. Include national coverage in locality queries when geographically applicable. |
+| Geographic hints and search suggestions | `Unde se aplică` | Filter by service coverage, not organisation address. Match explicit areas and their parents; do not infer local coverage from national coverage. |
 | Other concepts mixed into keywords | Collapsed `Mai multe filtre` | Put purpose, technology, institution, and entity subtype here. Add organisation type only on the organisation tab. |
 | Keyword strings below results | A few labelled badges | Show useful topic, capability, or format badges. Put the complete classification in the detail panel. |
 
 Recommended initial sidebar order:
 
-1. `Subiect`, expanded initially, with the same choices as the mobile subject chips.
-2. `Temă`, shown when relevant topics exist; avoid expanding every hierarchy branch.
-3. `Ce poți face`, collapsed initially unless task-led discovery becomes the main entry point.
+1. `Subiect`, expanded initially. Combine broad subjects and specific themes with OR semantics.
+2. `Ce poți face`, collapsed initially.
+3. `Surse de date`, collapsed initially. Show accepted providers with evidence links in the detail panel.
 4. `Format`, collapsed initially.
-5. `Unde se aplică`, with area search when the locality list grows.
-6. `Mai multe filtre`, containing `Scop civic`, `Tehnologie`, and `Instituții vizate`.
-7. Existing availability options, with wording that matches their evidence.
+5. `Mai multe filtre`, including geography, purpose, technology, monitored institutions, and entry types.
+6. Existing availability options.
+
+Use compact source labels: `INS`, `MDLPA`, `Adm. Prez`, and `MO`. Group the two parliamentary chambers under `Parlament`.
+Keep full provider names and evidence in the data. Search accepts full names; counts use the union of grouped providers.
+Tags flow inline and wrap within long labels. The desktop sidebar is 260 px wide.
+
+Sort every facet's options by its current count, descending. Break ties by the Romanian label.
+Put options with three or fewer matches under `Mai multe`. Keep selected options visible, including zero matches.
+Mobile chips show common broad subjects. The filter sheet offers the full combined selection.
+Keep `topic` URLs working as a separate legacy constraint; new topic selections use `subj`.
 
 On the organisation tab, use `Activități` instead of `Ce poți face`.
 Do not imply that an organisation's advocacy activity is an interactive website feature.
@@ -611,25 +619,30 @@ Example combination:
 ```mermaid
 flowchart LR
     S["Subiect<br/>Finanțe publice OR Guvernare și democrație"]
-    T["Temă<br/>Achiziții publice"]
     C["Ce poți face<br/>Compară"]
     A["AND between facets"]
     S --> A
-    T --> A
     C --> A
     A --> R["Matching entries<br/>one result per slug"]
 ```
 
+Geographic reach and data detail are independent. `nivel_acoperire` records national, local, or international reach.
+`detaliere_date` records national totals, county records, locality records, or both county and locality records.
+A recorded detail needs `dovada_detaliere`, the evidence page URL. An empty detail means unverified or not applicable.
+The secondary `Acoperire` filter distinguishes national totals, nationwide data with local detail, and explicitly local projects.
+National entries without a verified detail have their own option. Do not classify them as national totals by default.
+This filter does not assert that every county or locality has a record. An explicit area filter uses recorded areas only.
+
 For location filtering, distinguish where an entry applies from whether it contains records for a particular place.
-Choosing Bucharest can include national tools applicable in Bucharest, labelled `Național`.
+Choosing Bucharest matches explicitly recorded Bucharest coverage. A Romania-only assignment does not match.
 Do not claim that every national data catalogue contains Bucharest records.
 If that narrower promise is needed, introduce evidence for locality-level data availability as a separate facet.
 
 Search can still accept everyday words such as `bani publici`, `licitații`, or `disinfo`.
-Autocomplete can propose a labelled concept filter, for example `Temă: Achiziții publice`.
+Autocomplete can propose a labelled concept filter, for example `Subiect: Achiziții publice`.
 Typing or submitting text must still allow ordinary full-text search without selecting a concept.
 Aliases are search aids, not destructive replacements of the visitor's query.
-Distinguish `Temă: Inteligență artificială` from `Tehnologie: Folosește AI` in suggestions and active pills.
+Distinguish `Subiect: Inteligență artificială` from `Tehnologie: Folosește AI` in suggestions and active pills.
 
 Limit result badges to about three useful classifications. Avoid displaying every assigned concept on every row.
 In the detail panel, group the full classification under `Despre ce`, `Ce oferă`, `Scop civic`, and `Acoperire`.
@@ -770,10 +783,12 @@ These decisions refine the specification where it left a choice open.
 - **Payload.** `data.json` adds `schemaVersion`, `draft`, `vocabulary` (used concepts and areas, scheme labels,
   section, entity-type, coverage and predicate lists), and `legacyTaxonomy` (labels for old bookmark pills).
   Each item carries the facets in the table above and `legacy` (`domeniu`, `tips`, `keywords`, `fel`, `acoperire`, `oras`).
-- **Area filter.** An entry applies in an area when one of its areas is that area, contains it, or lies inside it.
+- **Area filter.** An entry matches an area when an assigned area equals it or lies inside it.
 - **Licence.** The detail panel shows the code link and the licence on separate rows. `cod public` replaces `cod deschis`.
-- **Topic list.** Without a subject, `Temă` shows the 12 most used topics of the tab, plus the selected ones.
-  A button shows all of them. A selected subject limits the list to its branches.
+- **Combined subjects.** Broad subjects and themes share `Subiect`. Each choice includes narrower descendants.
+  All facet options sort by current count. Options with at most three matches expand under `Mai multe`.
+- **Data sources.** Accepted `date_din` relations become `dataSources`, separate from attributions and monitored institutions.
+  Each source carries its evidence URL. The source filter matches canonical provider names.
 - **Badges and groups.** Each result badge names its facet in a tooltip and in hidden text for screen readers.
   Each facet's choices form a named group.
 - **Focus.** A filter change keeps the focus on the same control, also in the mobile sheet and on toggles.

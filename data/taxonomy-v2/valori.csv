@@ -65,3 +65,8 @@ mapare_relatie,relatedMatch,relatedMatch,relatedMatch,Ținta este asociată.,pro
 mapare_stare,propus,Propus,Proposed,Corespondență propusă.,propus,0
 mapare_stare,acceptat,Acceptat,Accepted,Corespondență acceptată de editor.,propus,1
 mapare_stare,respins,Respins,Rejected,Corespondență respinsă.,propus,2
+relatie_predicat,date_din,Surse de date,Data sources,Furnizorul sau publicația din care provin datele intrării.,propus,8
+detaliere_date,agregat-national,Totaluri naționale,National aggregates,Date agregate la nivel național; fără o detaliere locală verificată.,propus,0
+detaliere_date,judete,Pe județe,By county,Date cu o detaliere pe județe.,propus,1
+detaliere_date,localitati,Pe localități,By locality,Date cu o detaliere pe localități.,propus,2
+detaliere_date,judete-localitati,Pe județe și localități,By county and locality,Date cu o detaliere pe județe și pe localități.,propus,3

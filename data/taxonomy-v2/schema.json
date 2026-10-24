@@ -229,6 +229,15 @@
         "kind": "text",
         "required": false,
         "private": true
+      },
+      "detaliere_date": {
+        "kind": "code",
+        "list": "detaliere_date",
+        "required": false
+      },
+      "dovada_detaliere": {
+        "kind": "text",
+        "required": false
       }
     },
     "concepte.csv": {
@@ -388,6 +397,8 @@
       "maturitate",
       "nivel_acoperire",
       "arii_acoperite",
+      "detaliere_date",
+      "dovada_detaliere",
       "localitate_originala",
       "autor_original",
       "contact",

@@ -78,3 +78,16 @@ Ce înseamnă pentru tine:
 - Dacă schimbi un rând din `proiecte.csv` sau `orgs.csv`, intrarea corespunzătoare din `data/taxonomy-v2/` nu se actualizează singură.
 
 Detalii pentru editori: [data/taxonomy-v2/README.md](data/taxonomy-v2/README.md) (ghidul de editare, în română), [docs/specs/taxonomy-v2.md](docs/specs/taxonomy-v2.md) (specificația) și [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md#taxonomy-v2-preview) (cum se leagă de restul).
+
+### Surse de date și detaliere geografică (2026-10-25)
+
+În `intrari.csv`, `nivel_acoperire` arată întinderea proiectului: națională, locală sau internațională.
+`detaliere_date` arată nivelul datelor: `agregat-national`, `judete`, `localitati` sau `judete-localitati`.
+Adăugați adresa dovezii în `dovada_detaliere`. Lăsați ambele câmpuri goale când detalierea nu este verificată.
+Un proiect național nu primește automat toate județele în `arii_acoperite`.
+
+Sursele de date sunt relații `date_din` în `data/taxonomy-v2/relatii.csv`.
+Folosiți același nume pentru același furnizor. Puneți adresa paginii care identifică furnizorul în `valoare_sursa`.
+O sursă verificată are `stare=acceptat`. O sugestie are `stare=propus` și un punct deschis în `integrare/revizuire.csv`.
+Site-ul public arată numai sursele acceptate. Autorii și instituțiile vizate rămân câmpuri separate.
+Relațiile se modifică în repository; filele Google Sheets existente nu le sincronizează.

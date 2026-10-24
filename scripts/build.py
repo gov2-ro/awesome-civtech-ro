@@ -574,7 +574,10 @@ def items_v2(root: Path, site: Path) -> tuple[list[dict], dict]:
             "organisationTypes": e["organisation_types"],
             "maturity": e["maturity"],
             "coverageLevel": e["coverage_level"],
+            "dataDetail": e["data_detail"],
+            "dataDetailEvidence": e["data_detail_evidence"],
             "areas": e["areas"],
+            "dataSources": [{"name": a["name"], "evidence": a["evidence"]} for a in e["data_sources"]],
             # Unresolved roles stay neutral: `role` is the predicate, `accepted` says whether an editor confirmed it.
             "attributions": [{"name": a["name"], "org": a["slug"] if a["slug"] in pkg.entries else "", "role": a["predicate"],
                               "accepted": a["state"] == "acceptat"} for a in e["attributions"]],

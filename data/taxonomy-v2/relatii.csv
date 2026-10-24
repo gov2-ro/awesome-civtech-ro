@@ -104,3 +104,44 @@ L102,unde-se-termina-asfaltul,atribuit_in_sursa,,Marius Comper,autor,Marius Comp
 L103,de-unde-vine-apa,atribuit_in_sursa,,Marius Comper,autor,Marius Comper,rol_neconfirmat
 L104,recontorizarea,atribuit_in_sursa,,Marius Comper,autor,Marius Comper,rol_neconfirmat
 L105,pensie-din-bursa,atribuit_in_sursa,,Marius Comper,autor,Marius Comper,rol_neconfirmat
+L106,afacut,date_din,,Institutul Național de Statistică (INS),surse_date,https://afacut.ro/,acceptat
+L107,afacut,date_din,,Ministerul Dezvoltării (MDLPA),surse_date,https://afacut.ro/,acceptat
+L108,ins-gov2,date_din,,Institutul Național de Statistică (INS),surse_date,https://github.com/gov2-ro/tempo-ins-dump/,acceptat
+L109,biografia-localitatii,date_din,,Institutul Național de Statistică (INS),surse_date,https://mariuscomper.uk/biografia-localitatii/,acceptat
+L110,ultima-noapte-pib,date_din,,Institutul Național de Statistică (INS),surse_date,https://mariuscomper.uk/ultima-noapte-pib/,acceptat
+L111,constru-pentru-cine,date_din,,Institutul Național de Statistică (INS),surse_date,https://mariuscomper.uk/constru-pentru-cine/,acceptat
+L112,orasul-care-se-intinde,date_din,,Institutul Național de Statistică (INS),surse_date,https://mariuscomper.uk/orasul-care-se-intinde/,acceptat
+L113,orasul-care-se-intinde,date_din,,Ministerul Dezvoltării (MDLPA),surse_date,https://mariuscomper.uk/orasul-care-se-intinde/,acceptat
+L114,orasul-care-se-intinde,date_din,,Copernicus,surse_date,https://mariuscomper.uk/orasul-care-se-intinde/,acceptat
+L115,trei-din-patru,date_din,,Institutul Național de Statistică (INS),surse_date,https://mariuscomper.uk/trei-din-patru/,acceptat
+L116,trei-din-patru,date_din,,Ministerul Educației,surse_date,https://mariuscomper.uk/trei-din-patru/,acceptat
+L117,unde-se-termina-asfaltul,date_din,,Institutul Național de Statistică (INS),surse_date,https://mariuscomper.uk/unde-se-termina-asfaltul/,acceptat
+L118,unde-se-termina-asfaltul,date_din,,OpenStreetMap,surse_date,https://mariuscomper.uk/unde-se-termina-asfaltul/,acceptat
+L119,unde-se-termina-asfaltul,date_din,,ANCPI,surse_date,https://mariuscomper.uk/unde-se-termina-asfaltul/,acceptat
+L120,recontorizarea,date_din,,Institutul Național de Statistică (INS),surse_date,https://mariuscomper.uk/recontorizarea/,acceptat
+L121,pe-datorie,date_din,,Eurostat,surse_date,https://mariuscomper.uk/pe-datorie/,acceptat
+L122,pe-datorie,date_din,,Guvernul României,surse_date,https://mariuscomper.uk/pe-datorie/,acceptat
+L123,pe-datorie,date_din,,Consiliul Uniunii Europene,surse_date,https://mariuscomper.uk/pe-datorie/,acceptat
+L124,pe-datorie,date_din,,S&P,surse_date,https://mariuscomper.uk/pe-datorie/,acceptat
+L125,pe-datorie,date_din,,Moody’s,surse_date,https://mariuscomper.uk/pe-datorie/,acceptat
+L126,codurbanism,date_din,,Monitorul Oficial,surse_date,https://mariuscomper.uk/codurbanism/,acceptat
+L127,codurbanism,date_din,,Senatul României,surse_date,https://mariuscomper.uk/codurbanism/,acceptat
+L128,codurbanism,date_din,,Camera Deputaților,surse_date,https://mariuscomper.uk/codurbanism/,acceptat
+L129,codurbanism,date_din,,Administrația Prezidențială,surse_date,https://mariuscomper.uk/codurbanism/,acceptat
+L130,codurbanism,date_din,,Portal Legislativ,surse_date,https://mariuscomper.uk/codurbanism/,acceptat
+L131,codurbanism,date_din,,Ministerul Dezvoltării (MDLPA),surse_date,https://mariuscomper.uk/codurbanism/,acceptat
+L132,demoanaf,date_din,,ANAF,descriere; candidat neverificat,https://demoanaf.ro/,propus
+L133,demoanaf,date_din,,Banca Națională a României (BNR),descriere; candidat neverificat,https://demoanaf.ro/,propus
+L134,demoanaf,date_din,,Oficiul Național al Registrului Comerțului (ONRC),descriere; candidat neverificat,https://demoanaf.ro/,propus
+L135,executii-bugetare,date_din,,Ministerul Finanțelor,descriere; candidat neverificat,https://executii-bugetare.g4d.ro/,propus
+L136,harta-firmelor,date_din,,Oficiul Național al Registrului Comerțului (ONRC),descriere; candidat neverificat,https://harta-firmelor.ro,propus
+L137,harta-firmelor,date_din,,ANAF,descriere; candidat neverificat,https://harta-firmelor.ro,propus
+L138,harta-firmelor,date_din,,SICAP / SEAP,descriere; candidat neverificat,https://harta-firmelor.ro,propus
+L139,harta-firmelor,date_din,,Monitorul Oficial,descriere; candidat neverificat,https://harta-firmelor.ro,propus
+L140,registrul-firmelor,date_din,,Oficiul Național al Registrului Comerțului (ONRC),descriere; candidat neverificat,https://registru.horecaos.org/,propus
+L141,registrul-firmelor,date_din,,ANAF,descriere; candidat neverificat,https://registru.horecaos.org/,propus
+L142,achizitii-directe-ti-2026,date_din,,SICAP / SEAP,descriere; candidat neverificat,https://achizitii-directe-ti-2026.mariuscomper.uk/,propus
+L143,achizitii-directe-ti-2026,date_din,,Autoritatea pentru Digitalizarea României (ADR),descriere; candidat neverificat,https://achizitii-directe-ti-2026.mariuscomper.uk/,propus
+L144,prima-cifra,date_din,,SICAP / SEAP,descriere; candidat neverificat,https://mariuscomper.uk/prima-cifra/,propus
+L145,recontorizarea,date_din,,Eurostat,descriere; candidat neverificat,https://mariuscomper.uk/recontorizarea/,propus
+L146,sicap-ai,date_din,,SICAP / SEAP,descriere; candidat neverificat,https://sicap.ai/,propus

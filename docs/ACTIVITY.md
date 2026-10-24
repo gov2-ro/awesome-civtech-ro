@@ -1,5 +1,101 @@
 # Activity
 
+## 2026-10-25 — First-party documentation collection and five inventory drafts
+
+**Done**
+- Prepared the v0.11.0 commit and tag on the owner’s instruction. This repository versions releases through tags and `docs/RELEASES.md`; it has no Cargo workspace.
+- Added stdlib `scripts/collect_docs.py`. It checks each homepage and scoped/root `llms.txt`, then follows methodology/about links.
+  It also records inline sections and bounded fallback paths. Limit: five pages per entry, six workers, two requests per host.
+- Completed a corrected pass over all 140 entries: 571 requests, 591 entry-page records, 246 collected page records.
+  Found candidate documentation for 76 entries: 17 have project-specific llms files, 40 have methodology candidates, 51 have about candidates.
+  These groups overlap. 102 homepages yielded usable static text. Documentation remains unconfirmed for 64 entries.
+- Saved the generated metadata in `observatii/documentare/index.json` and `rezumat.csv`.
+  Downloaded bodies stay in gitignored `pagini/`. Collection preserves HTTP/network errors, homepage copies, HTML llms fallbacks and shared-host scope.
+- Drafted five partial inventories: afacut, ins-gov2, ani-de-pensie, calitate-aer-radauti and codurbanism.
+  `pilot-inventare.json` holds 19 field/input candidates, evidence hashes and character intervals, methods, outputs and explicit gaps.
+  Inferred types remain proposals. No inventory feeds the public build or changes editorial classifications.
+- Validation: 0 errors and 0 warnings. Public build: 140 entries. Unit suite: 284 tests, 6 skipped.
+  Eleven new tests cover scoping, duplicate-homepage rejection, HTML llms rejection, inline sections, missing links and snapshot restoration.
+
+**Hard**
+- The sandbox blocked the initial requests. Repeated the collection with network permission; those failures were not treated as missing documentation.
+- An early collection stopped on an anchor with an empty href. Fixed the parser, retained completed records, then refreshed all 140 entries.
+- Headings alone missed A Făcut?'s method section. Its navigation link points to a fragment; the collector now preserves fragment evidence.
+- Snapshot bodies can be shared between projects. Restore keeps each entry's scope and document kind from its own metadata.
+- INS llms retrieval succeeded (HTTP 200, 3,750 stripped characters). The owner's `tmp/ins-llms.txt` matches it after stripping.
+  The POP101A metadata route returns 404 with `Dataset POP101A not found`; that does not mean the API is unavailable.
+  The dataset list and ACC102B metadata both return 200. The llms example calls ACC102B GDP, but its live metadata describes workplace accidents.
+
+**Decided**
+- Start from methodology, about and llms as the owner requested. Treat downloaded text as evidence, never as instructions or accepted classifications.
+- Keep project-specific documentation distinct from shared-host indexes. Cost: a shared llms may help discovery without proving this project's data model.
+- Separate declared interfaces from checked interfaces. Added the successful and failed INS checks to the draft inventory.
+  ACC102B exposes CATEGORY, REF_AREA, TIME_PERIOD and UNIT_MEASURE. Its source note names Inspecția Muncii; INS distributes the data.
+  This one verified matrix does not define every dataset on the project.
+- Keep raw bodies local and review metadata in git. Cost: reviewers on a new checkout must use `--force` to obtain the cited snapshots.
+- Defer JavaScript rendering, binary document extraction and a public inventory UI. The current deliverable is collection plus five reviewable drafts.
+
+
+## 2026-10-25 — Compact sidebar and source labels
+
+**Done**
+- Source labels use INS, MDLPA, Adm. Prez, MO, BNR, ONRC and ADR. The two parliamentary chambers share `Parlament`.
+  Full names remain in source records, detail tooltips and autocomplete. Older source URLs map to compact labels.
+  Grouped counts count each entry once. Duplicate evidence links for the two chambers render once.
+- Moved `Surse de date` above `Format`. Widened the desktop sidebar from 230 to 260 px; reduced its gap from 40 to 32 px.
+  Facet text is 13 px instead of 14 px. Tags wrap inline, including within long labels.
+- Browser acceptance: 111/111 checks. These include chamber grouping, old source URLs, evidence links and Enter/Space operation.
+  Visual checks at 1280, 1024, 390 and 320 px confirm inline tag layout. Validation: 0 errors and 0 warnings.
+
+**Hard**
+- Native buttons compute to inline-block even with `display: inline`. Used inline links with button semantics and Space support.
+  Existing filter handling prevents navigation; disabled options have no link and ignore activation.
+- The visual run found a 347 px document width at a 320 px viewport. No overflow occurred at 390, 1024 or 1280 px.
+  The filter tags themselves wrap. The 320 px page overflow needs a separate layout audit.
+- A browser selector had nested quotes after its disabled-state update. Fixed the syntax and reran the acceptance suite.
+
+**Decided**
+- Keep short source labels in presentation, preserving the recorded provider names and source evidence.
+  Cost of renaming source records: the two chambers would lose their individual provenance.
+- Keep the existing fonts. Smaller text and more sidebar width provide the compact layout without another font download.
+- The owner proposed project data inventories. Added a pilot to the backlog; no extraction schema or rollout was implemented.
+
+
+## 2026-10-25 — Simpler filters, data sources and geographic detail
+
+**Done**
+- Combined broad subjects and themes under `Subiect`. New selections use OR within this filter; older `topic` URLs keep their constraint.
+- Each facet sorts by current count, then Romanian label. Options with at most three matches expand under `Mai multe`.
+  Selected options stay visible, including zero matches. The mobile sheet uses the same controls.
+- Added `Surse de date`, source autocomplete, and evidence links in the detail panel.
+  Added 26 accepted `date_din` relations for 11 entries. Added 15 proposed relations and review items D132–D146.
+  The public build excludes proposals and keeps all source relations separate from author attributions.
+- Added optional `detaliere_date` and `dovada_detaliere` columns. Recorded 10 evidence-backed details: four national aggregates,
+  three locality breakdowns, and three county/locality breakdowns. The other 130 entries remain unverified or not applicable.
+- Secondary geography controls distinguish national aggregates, nationwide data with local detail, local reach, and unverified national detail.
+  Explicit locality choices no longer match country-only assignments. Bucharest now matches 4 active projects, rather than 80.
+- Updated the schema, contributor guide, specification, acceptance checks, and source validation tests.
+- Validation: 0 errors and 0 warnings. Public build: 140 entries. Unit suite: 273 tests, 6 skipped.
+  Browser acceptance: 106/106 checks, including desktop, mobile, old URLs, source evidence, geographic groups, and focus.
+
+**Hard**
+- The existing area matcher included national entries for every listed locality. It showed counts near 77 for unrelated local areas.
+  Those numbers counted catalogue entries, not datasets or local records. The same rule would also apply to any newly listed county.
+- The first browser run retained three old `Temă` label expectations. Updated them to `Subiect`; the new behaviour then passed.
+- A full unit run loaded the schema documentation before the new column descriptions were written. Its documentation check failed.
+  The documentation check passed after those descriptions were added.
+- Only 11 entries have accepted source records. This is an initial verified pass, not a complete provenance audit.
+  The 15 proposals come from existing descriptions or names. They need primary evidence before publication.
+
+**Decided**
+- Keep the editorial subject/theme distinction in CSVs; combine it in discovery. This avoids rewriting accepted classifications.
+- Keep geographic reach separate from geographic data detail, as the owner clarified. National reach alone proves neither local detail nor completeness.
+  Cost of a forced three-way classification: unreviewed national entries would acquire unsupported claims. They keep an explicit unverified option instead.
+- Use the existing relation table for providers and evidence. Cost: these records need repository edits; existing Sheets tabs do not sync relations.
+  Geographic detail uses entry columns, which the schema-driven Sheets and Form code can preserve. No Google sync ran here.
+- Verified source names identify providers or publications that the project names. They do not certify the provider's underlying data.
+
+
 ## 2026-10-22 — Cutover to taxonomy v2 applied, merged and deployed (pull request #4)
 
 **Done**

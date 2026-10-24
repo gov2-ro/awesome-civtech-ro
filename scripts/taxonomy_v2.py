@@ -12,6 +12,7 @@ import json
 import re
 from collections import Counter
 from pathlib import Path
+from urllib.parse import urlsplit
 
 OVERLAY = "pachet.json"
 ID = re.compile(r"^[a-z][a-z0-9-]*:[a-z0-9]+(?:-[a-z0-9]+)*$")
@@ -36,6 +37,15 @@ class PackageError(Exception):
 def values(cell: str) -> list[str]:
     """A v2 list cell: IDs separated by `|`, no spaces. Empty means unknown or not applicable."""
     return cell.split("|") if cell else []
+
+
+def http_evidence(value: str) -> bool:
+    """An evidence link must open an HTTP page. Malformed links are validation errors."""
+    try:
+        url = urlsplit(value)
+        return url.scheme in ("http", "https") and bool(url.hostname) and not any(c.isspace() for c in value)
+    except ValueError:
+        return False
 
 
 def sha256(path: Path) -> str:
@@ -317,6 +327,9 @@ def check(root, baseline: bool = False, publication: bool = False) -> tuple[list
             fail(f"intrari.csv {slug}: local coverage needs a locality or county")
         if row["tip_entitate"] == "organizatie" and row["sectiune_url"] != "organizatie":
             fail(f"intrari.csv {slug}: organisation URL section differs")
+        if row.get("detaliere_date"):
+            if not http_evidence(row.get("dovada_detaliere", "")):
+                fail(f"intrari.csv {slug}: a data breakdown needs an HTTP evidence URL")
         if row["tip_organizatie"] and row["tip_entitate"] != "organizatie":
             fail(f"intrari.csv {slug}: organisation type on a non-organisation")
 
@@ -327,6 +340,9 @@ def check(root, baseline: bool = False, publication: bool = False) -> tuple[list
             fail(f"relatii.csv {row['id']}: choose one object ID or literal")
         if row["predicat"] != "atribuit_in_sursa" and row["stare"] == "acceptat" and not row["valoare_sursa"]:
             fail(f"relatii.csv {row['id']}: an accepted role needs source evidence")
+        if row["predicat"] == "date_din" and row["stare"] == "acceptat":
+            if not http_evidence(row["valoare_sursa"]):
+                fail(f"relatii.csv {row['id']}: a data source needs an HTTP evidence URL")
     for row in pkg.tables.get("revizuire.csv", []):
         if row["slug"] not in pkg.entries:
             fail(f"revizuire.csv {row['id']}: unknown entry {row['slug']}")

@@ -95,3 +95,6 @@ docs/reference/init-prototype/*
 
 # Claude Code agent worktrees
 .claude/worktrees/
+
+# Downloaded documentation bodies stay local; collection metadata is tracked.
+/data/taxonomy-v2/observatii/documentare/pagini/

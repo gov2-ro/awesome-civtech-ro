@@ -67,10 +67,10 @@ const MIN_Q = 3;
 // The facets hold comma-separated concept or area IDs: OR within a facet, AND between facets.
 // d, t, kw and c are v1 bookmarks (domain, types, keywords, city): they keep their v1 meaning through each entry's
 // `legacy` fields and show as their own pills; they are never translated into the new facets.
-const DEFAULTS = { k: 'proiect', q: '', subj: '', topic: '', cap: '', fmt: '', area: '', purpose: '', tech: '', inst: '', ent: '', orgt: '',
+const DEFAULTS = { k: 'proiect', q: '', subj: '', topic: '', cap: '', fmt: '', source: '', coverage: '', area: '', purpose: '', tech: '', inst: '', ent: '', orgt: '',
   d: '', t: '', kw: '', c: '', org: '', a: '', s: '', cod: '', civ: '', nou: '', ina: '', v: '', o: '', p: '' };
-const FACETS = ['subj', 'topic', 'cap', 'fmt', 'area', 'purpose', 'tech', 'inst', 'ent', 'orgt'];
-const MORE = ['purpose', 'tech', 'inst', 'ent', 'orgt'];  // under "Mai multe filtre"
+const FACETS = ['subj', 'topic', 'cap', 'fmt', 'source', 'coverage', 'area', 'purpose', 'tech', 'inst', 'ent', 'orgt'];
+const MORE = ['coverage', 'area', 'purpose', 'tech', 'inst', 'ent', 'orgt'];  // under "Mai multe filtre"
 const LEGACY = ['d', 't', 'kw', 'c'];
 // The "classifications are proposals" notices (toolbar and detail panel); hidden for now. build.py has its own switch.
 const DRAFT_NOTE = false;
@@ -87,13 +87,10 @@ let DB = null, TAX = null, seed = Math.random();
 const BY_SLUG = new Map(), CONCEPT = new Map(), AREA = new Map();
 let title = TITLES[0];
 const state = { ...DEFAULTS };
-// First visit on desktop: "Subiect" and "Temă" are open. Once a visitor toggles a facet, their choice is stored and wins.
-const wide = matchMedia('(min-width: 1024px)').matches;
-const closed = new Set(store.get('ct2.closed', wide ? ['cap', 'fmt', 'area', 'more', 'optiuni'] : ['topic', 'cap', 'fmt', 'area', 'more']));
+// First visit: "Subiect" is open. Once a visitor toggles a facet, their choice is stored and wins.
+const closed = new Set(store.get('ct2.closed', ['cap', 'fmt', 'source', 'area', 'more', 'optiuni']));
 let lastFocus = null;
-// Without a subject, "Temă" shows the most used topics first; the visitor can ask for all of them.
-const TOPIC_TOP = 12;
-let allTopics = false;
+const expandedOptions = new Set();
 
 const isInactive = it => STATUS[it.status].group === 'inactiv';
 const listOf = key => state[key] ? state[key].split(',') : [];
@@ -107,12 +104,11 @@ const label = id => CONCEPT.get(id)?.label || AREA.get(id)?.label || id;
 // A facet's visible title: the scheme label, with the few that differ by tab or have no scheme.
 function facetTitle(key) {
   if (key === 'cap' && state.k === 'organizatie') return 'Activități';
-  return { topic: 'Temă', area: 'Unde se aplică', ent: 'Tip de intrare' }[key] || TAX.scheme[SCHEME_OF[key]]?.label || key;
+  return { topic: 'Subiect', area: 'Acoperire geografică', source: 'Surse de date', coverage: 'Acoperire', ent: 'Tip de intrare' }[key] || TAX.scheme[SCHEME_OF[key]]?.label || key;
 }
-// Where an entry applies: one of its areas is the chosen area, contains it (a national tool applies in Bucharest),
-// or lies inside it (a local tool in Arad applies in Romania). Regions such as the EU contain nothing by inference.
+// Match explicit coverage and its parents. National coverage does not imply a local assignment.
 const areaUp = id => { const out = []; for (let a = AREA.get(id); a?.parent; a = AREA.get(a.parent)) out.push(a.parent); return out; };
-const appliesIn = (it, id) => it.areas.some(a => a === id || areaUp(id).includes(a) || areaUp(a).includes(id));
+const appliesIn = (it, id) => it.areas.some(a => a === id || areaUp(a).includes(id));
 // One value of a facet, for one entry: subjects include the roots of its topics; a topic includes its narrower topics.
 const has = (it, key, val) => key === 'area' ? appliesIn(it, val) : it._f[key].has(val);
 function ancestors(id) {
@@ -137,6 +133,7 @@ const entryPath = slug => `${ROOT}${BY_SLUG.get(slug)?.kind || 'proiect'}/${enco
 function readURL() {
   const u = new URLSearchParams(location.search);
   for (const k of Object.keys(DEFAULTS)) state[k] = u.get(k) ?? DEFAULTS[k];
+  if (state.source) state.source = [...new Set(listOf('source').map(sourceLabel))].join(',');
   if (!state.p) state.p = pathSlug();
   // An entry from the address alone (no kind in the query) opens on its own tab: an organisation, not the project list.
   if (state.p && !u.has('k')) { const it = BY_SLUG.get(state.p); if (it) state.k = it.kind; }
@@ -363,22 +360,49 @@ function renderTabs() {
 function optionsOf(key) {
   const mine = kindItems(), sel = listOf(key), seen = new Set(sel);
   if (key === 'area') for (const it of mine) for (const a of it.areas) [a, ...areaUp(a)].forEach(x => seen.add(x));
+  else if (key === 'source' || key === 'coverage') for (const it of mine) for (const v of it._f[key]) seen.add(v);
   else if (key === 'ent') for (const it of mine) seen.add(it.entityType);
   else for (const it of mine) for (const v of it._f[key]) seen.add(v);
   let opts = [...seen];
   // Topics follow the chosen subjects: only the branches under them, plus what is already selected.
   if (key === 'topic' && state.subj) opts = opts.filter(t => sel.includes(t) || listOf('subj').some(s => ancestors(t).includes(s)));
-  if (key === 'subj') return DB.vocabulary.subjectOrder.filter(x => seen.has(x));
+  if (key === 'subj') return opts;
   if (key === 'ent') return DB.vocabulary.entityTypes.map(t => t.key).filter(x => seen.has(x));
-  if (key === 'area') {
-    const rank = { tara: 0, regiune: 1, judet: 2, localitate: 3 };
-    return opts.sort((a, b) => rank[AREA.get(a)?.type] - rank[AREA.get(b)?.type] || label(a).localeCompare(label(b), 'ro'));
-  }
   const n = {};
   for (const it of mine) for (const v of it._f[key]) n[v] = (n[v] || 0) + 1;
   return opts.sort((a, b) => (n[b] || 0) - (n[a] || 0) || label(a).localeCompare(label(b), 'ro'));
 }
-const optLabel = (key, v) => key === 'ent' ? TAX.ent[v]?.label || v : label(v);
+const COVERAGE_LABELS = { national: 'Totaluri naționale', 'national-local': 'Național · date pe județe sau localități',
+  local: 'Local · orașe sau județe', international: 'Internațional',
+  'national-unknown': 'Național · detaliere neverificată', necunoscut: 'Acoperire necunoscută' };
+const DETAIL_LABELS = { 'agregat-national': 'Totaluri naționale', judete: 'Pe județe', localitati: 'Pe localități', 'judete-localitati': 'Pe județe și localități' };
+const coverageKey = it => it.coverageLevel === 'national'
+  ? (it.dataDetail === 'agregat-national' ? 'national' : it.dataDetail ? 'national-local' : 'national-unknown') : it.coverageLevel;
+// Keep the recorded providers intact; compact labels group related providers in the UI.
+const SOURCE_LABELS = {
+  'Institutul Național de Statistică (INS)': 'INS',
+  'Ministerul Dezvoltării (MDLPA)': 'MDLPA',
+  'Administrația Prezidențială': 'Adm. Prez',
+  'Monitorul Oficial': 'MO',
+  'Camera Deputaților': 'Parlament', 'Senatul României': 'Parlament',
+  'CDep': 'Parlament', 'Senat': 'Parlament',
+  'Banca Națională a României (BNR)': 'BNR',
+  'Oficiul Național al Registrului Comerțului (ONRC)': 'ONRC',
+  'Autoritatea pentru Digitalizarea României (ADR)': 'ADR',
+  'Guvernul României': 'Guvern', 'Consiliul Uniunii Europene': 'Consiliul UE',
+};
+const sourceLabel = name => SOURCE_LABELS[name] || name;
+const sourceGroups = sources => {
+  const groups = new Map();
+  for (const s of sources) {
+    const name = sourceLabel(s.name);
+    if (!groups.has(name)) groups.set(name, { name, names: [], evidence: new Set() });
+    groups.get(name).names.push(s.name);
+    groups.get(name).evidence.add(s.evidence);
+  }
+  return [...groups.values()];
+};
+const optLabel = (key, v) => key === 'coverage' ? COVERAGE_LABELS[v] || v : key === 'ent' ? TAX.ent[v]?.label || v : label(v);
 
 // A facet with a selection stays open, so that its choice is never hidden.
 function facet(id, title, body, selected = false) {
@@ -386,34 +410,22 @@ function facet(id, title, body, selected = false) {
 }
 function tagsHTML(key, options, counts) {
   const sel = listOf(key);
-  return `<div class="tags" role="group" aria-label="${esc(facetTitle(key))}">${options.map(val => {
+  options = [...options].sort((a, b) => (counts[b] || 0) - (counts[a] || 0) || optLabel(key, a).localeCompare(optLabel(key, b), 'ro'));
+  const hidden = options.filter(v => (counts[v] || 0) <= 3 && !sel.includes(v));
+  const shown = expandedOptions.has(key) ? options : options.filter(v => !hidden.includes(v));
+  return `<div class="tags" role="group" aria-label="${esc(facetTitle(key))}">${shown.map(val => {
     const on = sel.includes(val), n = counts[val] || 0, def = CONCEPT.get(val)?.def;
-    return `<button class="tag" data-act="multi" data-key="${key}" data-val="${esc(val)}" aria-pressed="${on}" ${!n && !on ? 'disabled' : ''}${def ? ` title="${esc(def)}"` : ''}>${esc(optLabel(key, val))}<span class="n">${n}</span></button>`;
-  }).join('')}</div>`;
+    return `<a class="tag" role="button" ${!n && !on ? 'aria-disabled="true"' : 'href="#"'} data-act="multi" data-key="${key}" data-val="${esc(val)}" aria-pressed="${on}"${def ? ` title="${esc(def)}"` : ''}>${esc(optLabel(key, val))}<span class="n">${n}</span></a>`;
+  }).join(' ')}</div>${hidden.length ? `<p class="fmore"><button class="linkbtn" data-act="more-options" data-key="${key}" aria-expanded="${expandedOptions.has(key)}">${expandedOptions.has(key) ? 'Mai puține' : `Mai multe (${hidden.length})`}</button></p>` : ''}`;
 }
 // A facet needs a control when it offers a choice: two or more options, or a selection to undo.
 const useful = (key, options) => options.length > 1 || listOf(key).length > 0;
 function facetsHTML() {
   const out = [];
-  const subj = optionsOf('subj');
-  if (useful('subj', subj)) {
-    const c = facetCounts('subj', subj), sel = listOf('subj');
-    const total = DB.items.filter(i => matches(i, 'subj')).length;
-    const opt = (val, text, n, on) => `<button class="fopt check" data-act="${val ? 'multi' : 'clear'}" data-key="subj" data-val="${esc(val)}" aria-pressed="${on}" ${!n && !on ? 'disabled' : ''}>
-      <span class="l">${esc(text)}</span><span class="n">${n || 0}</span></button>`;
-    out.push(facet('subj', facetTitle('subj'), `<div class="flist" role="group" aria-label="${esc(facetTitle('subj'))}">${opt('', 'Toate', total, !sel.length)}${subj.map(v => opt(v, label(v), c[v], sel.includes(v))).join('')}</div>`));
-  }
-  for (const key of ['topic', 'cap', 'fmt', 'area']) {
-    let options = optionsOf(key), extra = '';
+  for (const key of ['subj', 'cap', 'source', 'fmt']) {
+    const options = optionsOf(key);
     if (!useful(key, options)) continue;
-    // Not every topic of the tab at once: the most used ones, until a subject narrows the list or the visitor asks for all.
-    if (key === 'topic' && !state.subj && options.length > TOPIC_TOP) {
-      const sel = listOf('topic');
-      if (!allTopics) options = options.filter((t, i) => i < TOPIC_TOP || sel.includes(t));
-      extra = `<p class="fmore"><button class="linkbtn" data-act="topics" aria-expanded="${allTopics}">${allTopics ? 'Mai puține teme' : `Toate temele (${optionsOf('topic').length})`}</button>
-        <span class="muted">Alege un subiect pentru temele lui.</span></p>`;
-    }
-    out.push(facet(key, facetTitle(key), tagsHTML(key, options, facetCounts(key, options)) + extra, !!state[key]));
+    out.push(facet(key, facetTitle(key), tagsHTML(key, options, facetCounts(key, options)), !!state[key]));
   }
   const more = MORE.filter(k => k !== 'orgt' || state.k === 'organizatie').map(key => {
     const options = optionsOf(key);
@@ -434,10 +446,11 @@ function facetsHTML() {
 }
 
 function renderChips() {
-  const subj = optionsOf('subj'), c = facetCounts('subj', subj), sel = listOf('subj');
+  const subj = optionsOf('subj').filter(v => !CONCEPT.get(v)?.broader.length || listOf('subj').includes(v)), c = facetCounts('subj', subj), sel = listOf('subj');
+  subj.sort((a, b) => c[b] - c[a] || label(a).localeCompare(label(b), 'ro'));
   const total = DB.items.filter(i => matches(i, 'subj')).length;
   const chip = (val, text, n, on) => `<button class="chip" data-act="${val ? 'multi' : 'clear'}" data-key="subj" data-val="${esc(val)}" aria-pressed="${on}">${esc(text)}<span class="n">${n || 0}</span></button>`;
-  slot('chips').innerHTML = chip('', 'Toate', total, !sel.length) + subj.filter(v => c[v] || sel.includes(v)).map(v => chip(v, label(v), c[v], sel.includes(v))).join('');
+  slot('chips').innerHTML = chip('', 'Toate', total, !sel.length) + subj.filter(v => c[v] > 3 || sel.includes(v)).map(v => chip(v, label(v), c[v], sel.includes(v))).join('');
 }
 
 function renderToolbar(n) {
@@ -668,13 +681,14 @@ function classHTML(it) {
   const org = it.kind === 'organizatie';
   const groups = [
     ['Despre ce', [it.primarySubject && ['Subiect', tags('subj', [it.primarySubject])], others.length && ['Și', tags('subj', others)],
-      it.topics.length && ['Teme', tags('topic', it.topics)], it.institutions.length && ['Instituții vizate', tags('inst', it.institutions)]]],
+      it.topics.length && ['Teme', tags('subj', it.topics)], it.institutions.length && ['Instituții vizate', tags('inst', it.institutions)]]],
     [org ? 'Ce face' : 'Ce oferă', [it.capabilities.length && [facetTitle('cap'), tags('cap', it.capabilities)],
       it.formats.length && ['Format', tags('fmt', it.formats)], it.technologies.length && ['Tehnologie', tags('tech', it.technologies)],
       it.organisationTypes.length && ['Tip', tags('orgt', it.organisationTypes)],
       it.maturity && ['Maturitate', esc(label(it.maturity))]]],
+    ['Surse de date', sourceGroups(it.dataSources).map(s => ['', [...s.evidence].map(url => `<a href="${esc(url)}" title="${esc(s.names.join(' · '))}" target="_blank" rel="noopener">${esc(s.name)}</a>`).join(' · ')])],
     ['Scop civic', [it.purposes.length && ['Scop', tags('purpose', it.purposes)]]],
-    ['Acoperire', [['Unde se aplică', esc(place)]]],
+    ['Acoperire', [['Unde se aplică', esc(place)], it.dataDetail && ['Detalierea datelor', `<a href="${esc(it.dataDetailEvidence)}" target="_blank" rel="noopener">${esc(DETAIL_LABELS[it.dataDetail] || it.dataDetail)}</a>`]]],
   ].map(([title, rows]) => [title, rows.filter(Boolean)]).filter(([, rows]) => rows.length);
   if (!it.primarySubject) groups.unshift(['Clasificare', [['', '<span class="muted">Sursele disponibile nu stabilesc încă subiectul acestei intrări.</span>']]]);
   return `<div class="d-class">${groups.map(([title, rows]) => `<section><p class="kicker">${title}</p><dl class="dl">${rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl></section>`).join('')}
@@ -758,18 +772,20 @@ function renderSheet() {
 /* ---------- autocomplete ---------- */
 let SUGGEST = [], acItems = [], acIndex = -1;
 
-// Concept suggestions carry their facet in the label ("Temă: Inteligență artificială" is not "Tehnologie: Folosește AI").
+// Concept suggestions carry their facet in the label ("Subiect: Inteligență artificială" is not "Tehnologie: Folosește AI").
 // Each one is found by its Romanian and English labels and its alternative labels, without diacritics.
 const FACET_OF_SCHEME = { scop: 'purpose', functie: 'cap', format: 'fmt', tehnologie: 'tech', institutie: 'inst', organizatie: 'orgt' };
-const AC_GROUPS = { Subiecte: 3, Teme: 4, Funcționalități: 3, Formate: 3, Tehnologii: 2, Scopuri: 2, Instituții: 2, Zone: 3, Proiecte: 6, Autori: 3 };
-const GROUP_OF = { subj: 'Subiecte', topic: 'Teme', cap: 'Funcționalități', fmt: 'Formate', tech: 'Tehnologii', purpose: 'Scopuri', inst: 'Instituții', orgt: 'Instituții', area: 'Zone' };
+const AC_GROUPS = { Subiecte: 3, Teme: 4, Funcționalități: 3, Formate: 3, Tehnologii: 2, Scopuri: 2, Surse: 3, Instituții: 2, Zone: 3, Proiecte: 6, Autori: 3 };
+const GROUP_OF = { subj: 'Subiecte', topic: 'Teme', source: 'Surse', cap: 'Funcționalități', fmt: 'Formate', tech: 'Tehnologii', purpose: 'Scopuri', inst: 'Instituții', orgt: 'Instituții', area: 'Zone' };
 function buildSuggestions() {
   const out = [];
   for (const c of DB.vocabulary.concepts) {
-    const key = c.scheme === 'subiect' ? (c.broader.length ? 'topic' : 'subj') : FACET_OF_SCHEME[c.scheme];
+    const key = c.scheme === 'subiect' ? 'subj' : FACET_OF_SCHEME[c.scheme];
     if (!key) continue;  // maturity is shown, not filtered
     out.push({ g: GROUP_OF[key], label: c.label, kind: key, val: c.id, names: [c.label, c.labelEn, ...c.alt] });
   }
+  for (const s of sourceGroups(DB.items.flatMap(i => i.dataSources)))
+    out.push({ g: 'Surse', label: s.name, kind: 'source', val: s.name, names: [s.name, ...s.names] });
   for (const a of DB.vocabulary.areas) out.push({ g: 'Zone', label: a.label, kind: 'area', val: a.id, names: [a.label] });
   for (const it of DB.items) out.push({ g: 'Proiecte', label: it.name, kind: 'item', val: it.slug, it, names: [it.name] });
   for (const o of new Set(DB.items.flatMap(i => i._orgs))) out.push({ g: 'Autori', label: o, kind: 'org', val: o, names: [o] });
@@ -934,6 +950,8 @@ document.addEventListener('click', e => {
   }
   const a = e.target.closest('[data-act]');
   if (!a || a.tagName === 'INPUT' || a.tagName === 'SELECT') return;
+  if (a.matches('a[role="button"]')) e.preventDefault();
+  if (a.getAttribute('aria-disabled') === 'true') return;
   const { act, key, val } = a.dataset;
   if (act === 'retry') { boot(true); return; }
   if (!DB && act !== 'fs' && act !== 'theme') return;  // nothing to act on until the data has loaded
@@ -953,7 +971,7 @@ document.addEventListener('click', e => {
   else if (act === 'view') { state.v = val; writeURL(); renderResults(); }
   else if (act === 'fs') { store.set('ct.fs', val); applyPrefs(); }
   else if (act === 'theme') { store.set('ct.theme', val); applyPrefs(); }
-  else if (act === 'topics') { allTopics = !allTopics; renderFilters(); }
+  else if (act === 'more-options') { expandedOptions.has(key) ? expandedOptions.delete(key) : expandedOptions.add(key); renderFilters(); }
   else if (act === 'sheet') { renderSheet(); openLayer(slot('sheet')); }
   else if (act === 'close') {
     if (!slot('drawer').hidden && state.p) { state.p = ''; writeURL(); }
@@ -1005,6 +1023,11 @@ qInput.addEventListener('keydown', e => {
 });
 
 document.addEventListener('keydown', e => {
+  if (e.key === ' ' && e.target.matches('a.tag[role="button"][href]')) {
+    e.preventDefault();
+    e.target.click();
+    return;
+  }
   const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName);
   if (e.key === 'Escape' && !slot('scrim').hidden) { $('[data-act="close"]', slot('drawer').hidden ? slot('sheet') : slot('drawer'))?.click(); return; }
   if (slot('scrim').hidden && ((e.key === '/' && !typing) || (e.key.toLowerCase() === 'k' && (e.metaKey || e.ctrlKey)))) {
@@ -1121,12 +1144,16 @@ function start(db) {
     const up = it.topics.flatMap(ancestors);
     it._f = Object.fromEntries(FACETS.filter(k => FIELD[k]).map(k => [k, new Set(it[FIELD[k]])]));
     for (const a of up) (CONCEPT.get(a)?.broader.length ? it._f.topic : it._f.subj).add(a);
+    for (const t of it._f.topic) it._f.subj.add(t);
+    it.dataSources ||= [];
+    it._f.source = new Set(it.dataSources.map(s => sourceLabel(s.name)));
+    it._f.coverage = new Set([coverageKey(it)]);
     it._f.ent = new Set([it.entityType]);
     it._orgs = it.attributions.map(a => a.name);
     // What ties entries together by attribution: the slug of an organisation, else the written name.
     it._akeys = it.attributions.map(a => a.org || norm(a.name));
     const concepts = [...new Set([...it._f.subj, ...it._f.topic, ...['cap', 'fmt', 'purpose', 'tech', 'inst', 'orgt'].flatMap(k => [...it._f[k]])])];
-    it._hay = norm([it.name, it.tagline, it.desc, ...it._orgs, it.domain, TAX.ent[it.entityType]?.label, ...it.areas.flatMap(names),
+    it._hay = norm([it.name, it.tagline, it.desc, ...it.dataSources.map(s => s.name), ...it._orgs, it.domain, TAX.ent[it.entityType]?.label, ...it.areas.flatMap(names),
       ...concepts.flatMap(names), ...legacyWords(it)].join(' '));
   }
   SUGGEST = buildSuggestions();

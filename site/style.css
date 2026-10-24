@@ -231,7 +231,7 @@ svg.gh { width: 20px; height: 20px; fill: currentColor; stroke: none; }
 .layout { display: grid; gap: 24px; padding-top: 16px; padding-bottom: 48px; }
 .side { display: none; }
 @media (min-width: 1024px) {
-  .layout { grid-template-columns: 230px minmax(0, 1fr); gap: 40px; padding-top: 24px; }
+  .layout { grid-template-columns: 260px minmax(0, 1fr); gap: 32px; padding-top: 24px; }
   .side { display: block; position: sticky; top: 84px; align-self: start; max-height: calc(100vh - 100px); overflow: auto; overflow-x: hidden; scrollbar-width: thin; padding: 0 8px; margin: 0 -8px; }
 }
 
@@ -265,9 +265,15 @@ svg.gh { width: 20px; height: 20px; fill: currentColor; stroke: none; }
 .tag .n { font: 400 calc(11px * var(--fs))/1 var(--font-mono); color: var(--muted); }
 .tag[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
 .tag[aria-pressed="true"] .n { color: inherit; opacity: .7; }
-.tag:disabled { opacity: .35; cursor: default; }
-.tag:disabled:hover { background: var(--surface); color: var(--ink-2); }
-.facet .tags { padding-bottom: 2px; }
+.tag:disabled, .tag[aria-disabled="true"] { opacity: .35; cursor: default; }
+.tag:disabled:hover, .tag[aria-disabled="true"]:hover { background: var(--surface); color: var(--ink-2); }
+.facet .tags { display: block; padding-bottom: 2px; line-height: 1.8; }
+.facet .tag {
+  display: inline; padding: 2px 5px; margin: 0 3px 3px 0;
+  font-size: calc(13px * var(--fs)); line-height: 1.4; letter-spacing: -.015em;
+  text-align: left; text-decoration: none; white-space: normal; box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
+.facet .tag .n { margin-left: 4px; white-space: nowrap; }
 .toggle { display: flex; align-items: center; gap: 8px; min-height: 30px; cursor: pointer; font-size: calc(15px * var(--fs)); }
 .toggle input { width: 14px; height: 14px; accent-color: var(--ink); margin: 0 1px; flex: none; }
 .toggle .l { flex: 1; }

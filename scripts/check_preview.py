@@ -62,7 +62,7 @@ def up(a):
 
 
 def applies(it, x):
-    return any(a == x or a in up(x) or x in up(a) for a in it["areas"])
+    return any(a == x or x in up(a) for a in it["areas"])
 
 
 INACTIVE = ("offline", "arhivat")
@@ -90,17 +90,16 @@ with sync_playwright() as pw:
     ok("default groups follow the primary subjects", heads == expected_heads, f"{len(heads)} groups")
     ok("draft notice is hidden for now", page.locator(".draft-note").count() == 0)
     titles = page.locator('[data-slot="side"] .facet > summary .kicker').all_inner_texts()
-    ok("sidebar order", titles[:6] == ["SUBIECT", "TEMĂ", "CE POȚI FACE", "FORMAT", "UNDE SE APLICĂ", "MAI MULTE FILTRE"] or
-       [t.upper() for t in titles[:6]] == ["SUBIECT", "TEMĂ", "CE POȚI FACE", "FORMAT", "UNDE SE APLICĂ", "MAI MULTE FILTRE"], " / ".join(titles))
+    ok("sidebar order", [t.upper() for t in titles[:4]] == ["SUBIECT", "CE POȚI FACE", "SURSE DE DATE", "FORMAT"] and "TEMĂ" not in [t.upper() for t in titles], " / ".join(titles))
     ok("filter help names OR and AND", "oricare" in page.locator(".fhelp").inner_text())
 
     # 2. Subject counts: each option counts unique entries, with the other facets applied.
     fin, gov = "subiect:finante-publice", "subiect:guvernare-democratie"
     for sid in (fin, gov):
-        n = int(page.locator(f'[data-slot="side"] .fopt[data-val="{sid}"] .n').inner_text())
+        n = int(page.locator(f'[data-slot="side"] .tag[data-val="{sid}"] .n').inner_text())
         ok(f"subject count {sid}", n == sum(sid in subj_set(i) for i in projects), str(n))
     # 3. One subject: a flat list under that subject, including secondary-subject entries.
-    page.click(f'[data-slot="side"] .fopt[data-val="{fin}"]')
+    page.click(f'[data-slot="side"] .tag[data-val="{fin}"]')
     want = [i for i in projects if fin in subj_set(i)]
     ok("subject filter count", count_text(page) == len(want), f"{count_text(page)} vs {len(want)}")
     ok("subject filter is one flat group", page.locator('[data-slot="results"] .group').count() == 1)
@@ -109,7 +108,7 @@ with sync_playwright() as pw:
     ok("secondary-subject entries appear under the selected subject", all(s in shown for s in secondary), f"{len(secondary)} secondary")
     ok("URL holds subj", "subj=" in page.url)
     # 4. OR within the facet.
-    page.click(f'[data-slot="side"] .fopt[data-val="{gov}"]')
+    page.click(f'[data-slot="side"] .tag[data-val="{gov}"]')
     want = [i for i in projects if {fin, gov} & subj_set(i)]
     ok("two subjects: OR, unique entries", count_text(page) == len(want), f"{count_text(page)} vs {len(want)}")
     # 5. AND across facets, with counts that ignore the own facet.
@@ -125,7 +124,7 @@ with sync_playwright() as pw:
     want_and = [i for i in want if cap in i["capabilities"]]
     ok("subject AND capability", count_text(page) == len(want_and), f"{count_text(page)} vs {len(want_and)}")
     ok("focus stays on the pressed facet button", page.evaluate("document.activeElement?.dataset?.val") == cap)
-    sub_counts = {sid: int(page.locator(f'[data-slot="side"] .fopt[data-val="{sid}"] .n').inner_text()) for sid in (fin, gov)}
+    sub_counts = {sid: int(page.locator(f'[data-slot="side"] .tag[data-val="{sid}"] .n').inner_text()) for sid in (fin, gov)}
     ok("subject counts apply the capability filter", all(sub_counts[s] == sum(s in subj_set(i) and cap in i["capabilities"] for i in projects) for s in sub_counts), str(sub_counts))
     pills = page.locator('[data-slot="toolbar"] .pill').all_inner_texts()
     ok("selected filters are labelled pills", any(p.startswith("Subiect: ") for p in pills) and any(p.startswith("Ce poți face: ") for p in pills), " | ".join(pills))
@@ -140,11 +139,11 @@ with sync_playwright() as pw:
         want = [i for i in visible(kind) if parent in topic_set(i)]
         ok(f"topic ancestry {parent} ⊇ {child['id']}", count_text(page) == len(want) and any(child["id"] in i["topics"] for i in want), f"{count_text(page)} vs {len(want)}")
 
-    # 7. Area: Bucharest includes national entries, labelled as national.
+    # 7. Local coverage excludes entries assigned only to the country.
     go("?area=localitate:bucuresti")
     want = [i for i in projects if applies(i, "localitate:bucuresti")]
-    ok("area filter includes national coverage", count_text(page) == len(want) and any(i["coverageLevel"] == "national" for i in want), f"{count_text(page)} vs {len(want)}")
-    ok("national entries say Național", "Național" in page.locator('[data-slot="results"]').inner_text())
+    ok("area filter uses explicit local coverage", count_text(page) == len(want) and all("tara:RO" not in i["areas"] or "localitate:bucuresti" in i["areas"] for i in want), f"{count_text(page)} vs {len(want)}")
+
 
     # 8. Old bookmarks keep their v1 meaning.
     for q, pred in [("d=bani", lambda i: i["legacy"].get("domeniu") == "bani"),
@@ -201,7 +200,7 @@ with sync_playwright() as pw:
 
     # 11. Search: synonyms, English labels, diacritics; concept suggestions say their facet.
     go("")
-    for typed, expect in [("bani publici", "Subiect: Finanțe publice"), ("public procurement", "Temă: Achiziții publice"), ("achizitii", "Temă: Achiziții publice")]:
+    for typed, expect in [("bani publici", "Subiect: Finanțe publice"), ("public procurement", "Subiect: Achiziții publice"), ("achizitii", "Subiect: Achiziții publice")]:
         page.fill('[data-slot="q"]', typed)
         page.wait_for_selector('[data-slot="ac"]:not([hidden])')
         text = page.locator('[data-slot="ac"]').inner_text()
@@ -215,7 +214,7 @@ with sync_playwright() as pw:
     page.fill('[data-slot="q"]', "artificial")
     page.wait_for_selector('[data-slot="ac"]:not([hidden])')
     text = page.locator('[data-slot="ac"]').inner_text()
-    ok("AI topic and AI technology are distinct suggestions", "Temă: Inteligență artificială" in org_text and "Tehnologie: Utilizează inteligență artificială" in text
+    ok("AI topic and AI technology are distinct suggestions", "Subiect: Inteligență artificială" in org_text and "Tehnologie: Utilizează inteligență artificială" in text
        and "Tehnologie:" not in org_text, (org_text + " || " + text).replace("\n", " | ")[:220])
     page.locator('[data-slot="ac"] .ac-opt', has_text="Tehnologie: Utilizează").click()
     pills = page.locator('[data-slot="toolbar"] .pill').all_inner_texts()
@@ -228,16 +227,59 @@ with sync_playwright() as pw:
 
     # 12. Short topic list, labelled badges, dialog focus.
     go("")
-    tab_topics = {t for i in DB["items"] if i["kind"] == "proiect" for t in i["topics"]}
-    shown_topics = page.locator('[data-slot="side"] [data-facet="topic"] .tag').count()
-    ok("topic facet starts short without a subject", len(tab_topics) <= 12 or shown_topics == 12, f"{shown_topics} of {len(tab_topics)}")
-    if len(tab_topics) > 12:
-        page.click('[data-slot="side"] [data-act="topics"]')
-        ok("topic facet expands on request", page.locator('[data-slot="side"] [data-facet="topic"] .tag').count() == len(tab_topics))
-        ok("focus stays on the expand button", page.evaluate("document.activeElement?.dataset?.act") == "topics")
+    subject = page.locator('[data-slot="side"] [data-facet="subj"]')
+    counts = subject.locator('.tag .n').all_inner_texts()
+    ok("common subjects sorted by count", list(map(int, counts)) == sorted(map(int, counts), reverse=True))
+    ok("rare subjects start hidden", all(int(n) > 3 for n in counts))
+    subject.locator('[data-act="more-options"]').click()
+    ok("rare subjects expand on request", any(int(n) <= 3 for n in subject.locator('.tag .n').all_inner_texts()))
+    ok("focus stays on the expand button", page.evaluate("document.activeElement?.dataset?.act") == "more-options")
+    # A root and a topic share OR semantics and count each entry once.
+    topic = "subiect:achizitii-publice"
+    go("?subj=" + urllib.parse.quote(fin + "," + topic))
+    want = [i for i in projects if fin in subj_set(i) or topic in topic_set(i)]
+    ok("combined subject and topic use OR", count_text(page) == len(want))
+    selected = page.locator('[data-slot="side"] [data-facet="subj"] .tag[aria-pressed="true"]')
+    ok("selected options remain visible", selected.count() == 2 and all(selected.nth(i).is_visible() for i in range(2)))
+    sourced = next(i for i in projects if i.get("dataSources"))
+    source = sourced["dataSources"][0]["name"]
+    evidence = sourced["dataSources"][0]["evidence"]
+    go("?source=" + urllib.parse.quote(source))
+    want = [i for i in projects if source in [d["name"] for d in i.get("dataSources", [])]]
+    ok("data source filter counts providers", count_text(page) == len(want))
+    go("proiect/" + sourced["slug"] + "/")
+    ok("detail links source evidence", page.locator('[data-slot="drawer"] .d-class a', has_text='INS').get_attribute("href") == evidence)
+    parliament = next(i for i in DB['items'] if any(d['name'] in ('Camera Deputaților', 'Senatul României') for d in i.get('dataSources', [])))
+    want = [i for i in visible(parliament['kind']) if any(d['name'] in ('Camera Deputaților', 'Senatul României') for d in i.get('dataSources', []))]
+    go('?k=' + parliament['kind'] + '&source=Parlament')
+    ok('Parlament combines chambers and counts each entry once', count_text(page) == len(want))
+    go('?k=' + parliament['kind'] + '&source=' + urllib.parse.quote('Senatul României'))
+    ok('old chamber filter maps to Parlament', count_text(page) == len(want) and 'Parlament' in page.locator('[data-slot="toolbar"] .pill').inner_text())
+    go(parliament['kind'] + '/' + parliament['slug'] + '/')
+    ok('detail combines chamber links', page.locator('[data-slot="drawer"] .d-class a', has_text='Parlament').count() == 1)
+    go('')
+    cap_facet = page.locator('[data-slot="side"] [data-facet="cap"]')
+    cap_facet.evaluate('(d) => d.open = true')
+    tag = cap_facet.locator('.tag[href]').first
+    val = tag.get_attribute('data-val')
+    tag.focus()
+    page.keyboard.press('Space')
+    ok('inline filter supports Space', page.locator('[data-slot="side"] [data-facet="cap"] .tag[aria-pressed="true"]').get_attribute('data-val') == val)
+    page.keyboard.press('Enter')
+    ok('inline filter supports Enter', page.locator('[data-slot="side"] [data-facet="cap"] .tag[aria-pressed="true"]').count() == 0 and not urllib.parse.urlsplit(page.url).fragment)
+    for coverage, predicate in [
+        ('national', lambda i: i['coverageLevel'] == 'national' and i.get('dataDetail') == 'agregat-national'),
+        ('national-local', lambda i: i['coverageLevel'] == 'national' and i.get('dataDetail') in ('judete', 'localitati', 'judete-localitati')),
+        ('local', lambda i: i['coverageLevel'] == 'local'),
+        ('national-unknown', lambda i: i['coverageLevel'] == 'national' and not i.get('dataDetail')),
+    ]:
+        go('?coverage=' + coverage)
+        ok('geographic coverage ' + coverage, count_text(page) == sum(predicate(i) for i in projects))
+    proposed = next((r for r in DB['items'] if r['slug'] == 'demoanaf'), None)
+    ok('unreviewed sources stay out of the public field', proposed is not None and not proposed['dataSources'])
     go("?v=list")
     hidden = page.locator('[data-slot="results"] .row-kw .vh').first.inner_text()
-    ok("result badges name their facet", hidden.rstrip(": ") in ("Temă", "Format", "Ce poți face"), hidden)
+    ok("result badges name their facet", hidden.rstrip(": ") in ("Subiect", "Format", "Ce poți face"), hidden)
     page.locator('[data-slot="results"] [data-open]').first.click()
     page.wait_for_selector('[data-slot="drawer"]:not([hidden])')
     page.wait_for_timeout(100)
@@ -302,7 +344,7 @@ with sync_playwright() as pw:
     fmt_facet = m.locator('[data-slot="sheet"] [data-facet="fmt"]')
     if fmt_facet.get_attribute("open") is None:
         fmt_facet.locator("summary").click()
-    first = fmt_facet.locator(".tag:not([disabled])").first
+    first = fmt_facet.locator('.tag:not([disabled]):not([aria-disabled="true"])').first
     val, n = first.get_attribute("data-val"), int(first.locator(".n").inner_text())
     first.click()
     btn = m.locator('[data-slot="sheet"] .d-cta .btn-primary').inner_text()

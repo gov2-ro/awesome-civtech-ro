@@ -2,6 +2,28 @@
 
 Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
+## Filter simplification and data provenance — 2026-10-25
+
+- [x] Combine subjects and themes in one `Subiect` filter. Keep old topic URLs working.
+- [x] Sort each facet by its current count. Hide options with at most three matches under `Mai multe`.
+- [x] Move geography to secondary filters. Stop adding national projects to each named locality's count.
+- [x] Separate national totals, nationwide data with local detail, and local reach. Preserve unverified detail explicitly.
+- [x] Add evidence-backed data sources, separate from authors and monitored institutions: 26 accepted relations for 11 entries.
+- [x] Add 15 source proposals for review. Proposed sources stay out of the public filter.
+- [x] Compact the sidebar: inline tags, 260 px width, shorter source labels, grouped Parliament, sources before format.
+- [ ] Audit horizontal page overflow at 320 px (347 px measured); filter tags wrap, but the document remains wider.
+- [x] Pilot project data inventories: purpose, source datasets, variables/types/units, user inputs, transformations, and outputs.
+      Collected documentation for 140 entries; drafted five profiles and 19 field candidates with evidence and completeness.
+- [ ] Review the five `observatii/documentare/pilot-inventare.json` profiles. Confirm types and units from data dictionaries or schemas.
+- [ ] Extend the draft inventory beyond the pilot. Reuse shared dataset definitions across projects.
+- [ ] Follow documented data/API links and check actual schemas beyond the pilot. INS+ ACC102B metadata was verified; its four dimensions are recorded.
+- [ ] Correct or report INS llms examples: POP101A is absent; ACC102B is workplace accidents, not GDP. The list and ACC102B API routes work.
+- [ ] Add browser rendering or document-format extraction where static HTML and llms.txt leave gaps.
+- [ ] Review D132–D146 in `data/taxonomy-v2/integrare/revizuire.csv`. Confirm the provider and evidence before accepting each relation.
+- [ ] Continue provenance and geographic-detail review. 129 entries have no accepted source; 130 have no verified data detail.
+      Empty fields can also mean not applicable. Do not infer a provider from monitored institutions or authors.
+      Do not infer complete county or locality coverage from national reach.
+
 ## v2 migration completion — execution checklist (brief: `docs/briefs/v2-migration-completion.md`)
 
 Branch `taxonomy-v2-migration`. Production stays on v1. No Google, workflow, deploy or release action.

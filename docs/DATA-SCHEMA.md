@@ -414,6 +414,8 @@ One row for each entry (project, organisation or resource). Today it holds the 1
 | `maturitate` | The stage, when the sources show one. | Zero or one concept of `maturitate`: `experiment`, `prototip`, `pilot`, `operational`. |
 | `nivel_acoperire` | How far the entry reaches. | Code list `nivel_acoperire`: `national`, `local`, `international`, `necunoscut`. Required. `local` needs an area of type `judet` or `localitate`. |
 | `arii_acoperite` | The areas it covers. | IDs of `arii.csv`. |
+| `detaliere_date` | The geographic detail of the data, independent of project reach. | Optional code: `agregat-national`, `judete`, `localitati`, `judete-localitati`. Empty means unverified or not applicable. |
+| `dovada_detaliere` | The evidence page for the recorded data detail. | An HTTP(S) URL is required when `detaliere_date` is set. |
 | `localitate_originala` | The v1 `oras`, unchanged. | Text. It does not limit the coverage. |
 | `autor_original` | The v1 `autor`, unchanged. | Text. `relatii.csv` holds the structured form. |
 | `contact` | The v1 `contact`. | Text. |
@@ -464,6 +466,7 @@ Every list is used by a column of `schema.json`, and every list that `schema.jso
 | --- | --- | --- |
 | `tip_entitate` | `intrari.csv` `tip_entitate` | `proiect`, `organizatie`, `resursa`, `publicatie`, `set-date`, `campanie` |
 | `sectiune_url` | `intrari.csv` `sectiune_url` | `proiect`, `organizatie`, `resursa` |
+| `detaliere_date` | `intrari.csv` `detaliere_date` | `agregat-national`, `judete`, `localitati`, `judete-localitati` |
 | `nivel_acoperire` | `intrari.csv` | `national`, `local`, `international`, `necunoscut` |
 | `clasificare_stare` | `intrari.csv` | `propus`, `acceptat`, `de-revizuit` |
 | `incredere` | `intrari.csv` | `mica`, `medie`, `mare` |
@@ -471,7 +474,7 @@ Every list is used by a column of `schema.json`, and every list that `schema.jso
 | `civictech_original` | `intrari.csv` | `0`, `1` |
 | `concept_schema` | `concepte.csv` `schema` | `subiect`, `scop`, `functie`, `format`, `tehnologie`, `institutie`, `maturitate`, `organizatie` |
 | `concept_statut` | `concepte.csv` `statut` | `propus`, `acceptat`, `retras` |
-| `relatie_predicat` | `relatii.csv` `predicat` | `atribuit_in_sursa`, `creat_de`, `mentinut_de`, `publicat_de`, `finantat_de`, `parte_din`, `ofera`, `foloseste` |
+| `relatie_predicat` | `relatii.csv` `predicat` | `atribuit_in_sursa`, `creat_de`, `mentinut_de`, `publicat_de`, `finantat_de`, `parte_din`, `ofera`, `foloseste`, `date_din` |
 | `relatie_stare` | `relatii.csv` `stare` | `rol_neconfirmat`, `propus`, `acceptat`, `respins` |
 | `tip_arie` | `arii.csv` `tip` | `tara`, `regiune`, `judet`, `localitate` |
 | `prioritate` | `revizuire.csv` | `mare`, `medie`, `mica` |
@@ -496,8 +499,8 @@ A role that shows a network logo also needs code in `NETWORK_ROLES` (`scripts/co
 
 ### relatii.csv
 
-Structured relations between an entry and a person, an organisation or another entry. Draft.2 holds only the attribution that
-the v1 column `autor` carried.
+Structured relations between an entry and a person, an organisation or another entry. The predicate `date_din` records a named data provider or source publication.
+It remains separate from authorship and monitored institutions.
 
 | Column | Meaning | Rule |
 | --- | --- | --- |
@@ -508,6 +511,13 @@ the v1 column `autor` carried.
 | `obiect_literal` | The other end as text, when it is not an entry. | Text. |
 | `camp_sursa`, `valoare_sursa` | The v1 column and value that the relation comes from. | An accepted role other than `atribuit_in_sursa` needs `valoare_sursa`. |
 | `stare` | Has an editor confirmed it? | Code list `relatie_stare`. `rol_neconfirmat` means the role is not confirmed; the site then shows the name neutrally. |
+
+For `date_din`, use `obiect_literal` for the canonical provider name, or `obiect` for a catalogue entry.
+Set `camp_sursa=surse_date` and put the evidence page URL in `valoare_sursa`.
+The public build exports accepted rows as `dataSources: [{name, evidence}]`.
+It excludes these rows from `attributions`. Empty sources mean unknown, not that the project has no sources.
+Only accept providers explicitly identified by the project. Do not infer them from its subject or author.
+These relations are edited in the repository; the existing Sheets tabs do not sync them.
 
 ### arii.csv
 
@@ -719,6 +729,8 @@ and replaces the v1 classification:
 - `primarySubject` (an ID or null), `subjects`, `topics`, `purposes`, `capabilities`, `formats`, `technologies`,
   `institutions`, `organisationTypes`: concept IDs. `maturity` is one ID or null, never an array.
 - `coverageLevel` and `areas`: the coverage code and area IDs.
+- `dataDetail`, `dataDetailEvidence`: geographic data detail and its evidence URL.
+- `dataSources`: `{name, evidence}` for each accepted data provider or publication.
 - `attributions`: `{name, org, role, accepted}`. `role` is the relation predicate; an unconfirmed role shows neutrally.
 - `legacy`: the original `domeniu`, `tips`, `keywords`, `fel`, `acoperire` and `oras`, only for old bookmarks.
 - Top level: `draft` (true while any classification is not accepted), `vocabulary` (the used concepts with labels,
@@ -755,3 +767,29 @@ for name, cols in lists.items():
     print(name, [c for c in cols if f"`{c}`" not in text] or "none")
 EOF
 ```
+
+
+### Documentation evidence (`observatii/documentare/`)
+
+`scripts/collect_docs.py` collects methodology, about and `llms.txt` pages without a paid service.
+The collector does not change editorial tables or public fields.
+
+- `index.json`: generated collection records, keyed by entry slug. Each page keeps its requested URL, final URL, HTTP status,
+  fetch time, document kind, project/shared-host scope, collection state, text hash and snapshot path.
+- `rezumat.csv`: generated summary. Columns: `slug`, `url`, `stare_colectare`, `pagini_colectate`, `metodologie`, `despre`,
+  `llms`, `completitudine_inventar`. These are collection results, not accepted project classifications.
+- `pagini/*.json`: downloaded text, headings, links, input candidates and table candidates. These files stay local and are gitignored.
+  A snapshot is keyed by URL and text hash. Raw text has a 60,000-character limit; `truncated` records that limit.
+- `pilot-inventare.json`: five editorial draft inventories. Each field records its role, proposed or explicit type, optional unit,
+  source URL, snapshot hash and character interval. Every profile is partial and needs review.
+  Checked dataset examples can also carry JSON pointers, metadata dimensions, upstream providers and separate endpoint probe results.
+  This file is a pilot, not an authoritative schema or a public-build input.
+
+`documentatie-gasita` means that the collector found a candidate first-party page or section. It does not prove completeness.
+`documentatie-neconfirmata` means that this bounded pass found no usable project-specific documentation.
+HTTP errors, network errors, HTML at a `llms.txt` address and homepage copies remain separate page states.
+Shared-host documentation is retained with `scope=gazda-comuna`. It does not become project-specific evidence automatically.
+
+The collector strips scripts and does not run JavaScript. Input and table candidates are not verified variable definitions.
+A declared API route is not a checked working endpoint. Keep API checks and their outcomes separate.
+After a new checkout, use `--force` to retrieve the local snapshots needed to review the evidence intervals.
