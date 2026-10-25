@@ -1,6 +1,53 @@
 {
   "stare": "propunere",
   "nota": "Grupuri pentru descoperire. Același grup nu garantează compatibilitatea seturilor sau o cheie de legătură validă. Fiecare membru păstrează rolul și reprezentarea din sursă; `dovezi` leagă definiția de text păstrat și `--check` semnalează dovezile schimbate.",
+  "familii": [
+    {
+      "id": "identificatori",
+      "label": "Identificatori",
+      "descriere": "Coduri care numesc o firmă, o instituție, o localitate sau un produs: CUI, CPV, SIRUTA."
+    },
+    {
+      "id": "geografie",
+      "label": "Geografie",
+      "descriere": "Unde: județ, localitate și alte niveluri teritoriale."
+    },
+    {
+      "id": "timp",
+      "label": "Timp",
+      "descriere": "Când: anul sau perioada la care se referă o valoare."
+    },
+    {
+      "id": "firme",
+      "label": "Firme și economie",
+      "descriere": "Date financiare și de personal ale firmelor."
+    },
+    {
+      "id": "achizitii",
+      "label": "Achiziții publice",
+      "descriere": "Contracte și achiziții ale autorităților."
+    },
+    {
+      "id": "populatie-teritoriu",
+      "label": "Populație și teritoriu",
+      "descriere": "Locuitori, locuințe și infrastructură locală."
+    },
+    {
+      "id": "mediu",
+      "label": "Mediu și aer",
+      "descriere": "Măsurători de calitate a aerului și meteo."
+    },
+    {
+      "id": "alegeri",
+      "label": "Alegeri",
+      "descriere": "Alegători, prezență și rezultate la vot."
+    },
+    {
+      "id": "parlament",
+      "label": "Vot parlamentar",
+      "descriere": "Voturile și grupurile politice din parlamente."
+    }
+  ],
   "concepte": [
     {
       "id": "cui",
@@ -184,6 +231,7 @@
         }
       ],
       "categorie": "identificator",
+      "familie": "identificatori",
       "baza_definitiei": "parafraza-editoriala",
       "dovezi": [
         {
@@ -277,6 +325,7 @@
         }
       ],
       "categorie": "identificator",
+      "familie": "identificatori",
       "baza_definitiei": "parafraza-editoriala",
       "dovezi": [
         {
@@ -314,6 +363,7 @@
         }
       ],
       "categorie": "identificator",
+      "familie": "identificatori",
       "baza_definitiei": "parafraza-editoriala",
       "dovezi": [
         {
@@ -478,6 +528,7 @@
         }
       ],
       "categorie": "dimensiune",
+      "familie": "geografie",
       "baza_definitiei": "parafraza-editoriala",
       "dovezi": [
         {
@@ -629,6 +680,7 @@
         }
       ],
       "categorie": "dimensiune",
+      "familie": "geografie",
       "baza_definitiei": "parafraza-editoriala",
       "dovezi": [
         {
@@ -655,6 +707,7 @@
       "id": "perioada-de-referinta",
       "label": "An sau perioadă de referință",
       "categorie": "dimensiune",
+      "familie": "timp",
       "baza_definitiei": "parafraza-editoriala",
       "definition": "Anul sau perioada la care se referă o valoare. Granularitatea (an, trimestru, lună) trebuie verificată în sursă; un an din nume nu spune ce an este.",
       "selectors": [
@@ -826,6 +879,7 @@
         }
       ],
       "categorie": "masura",
+      "familie": "populatie-teritoriu",
       "baza_definitiei": "parafraza-editoriala",
       "dovezi": [
         {
@@ -844,6 +898,7 @@
       "id": "locuinte",
       "label": "Locuințe existente",
       "categorie": "masura",
+      "familie": "populatie-teritoriu",
       "baza_definitiei": "parafraza-editoriala",
       "definition": "Numărul locuințelor existente (fondul de locuințe) la sfârșitul anului, pe localități. Nu înseamnă locuințe ocupate și nu include locuințe terminate sau autorizații.",
       "selectors": [
@@ -903,6 +958,7 @@
       "id": "lungime-drumuri",
       "label": "Lungimea drumurilor sau a străzilor",
       "categorie": "masura",
+      "familie": "populatie-teritoriu",
       "baza_definitiei": "parafraza-editoriala",
       "definition": "Lungimea rețelei rutiere în kilometri: drumuri publice (pe județe și regiuni) sau străzi orășenești (pe localități). Grupul servește descoperirii; cele două serii nu se adună.",
       "selectors": [
@@ -1037,6 +1093,7 @@
         }
       ],
       "categorie": "masura",
+      "familie": "firme",
       "baza_definitiei": "parafraza-editoriala",
       "dovezi": [
         {
@@ -1063,6 +1120,7 @@
       "id": "profit-net",
       "label": "Profit net",
       "categorie": "masura",
+      "familie": "firme",
       "baza_definitiei": "parafraza-editoriala",
       "definition": "Profitul net al unei firme într-un an financiar, din situațiile financiare. Unitatea și anul trebuie verificate în sursă.",
       "selectors": [
@@ -1114,6 +1172,7 @@
       "id": "numar-salariati",
       "label": "Număr de salariați",
       "categorie": "masura",
+      "familie": "firme",
       "baza_definitiei": "parafraza-editoriala",
       "definition": "Numărul de salariați al unei firme într-un an. Anul este în nume sau în context; metoda de numărare nu este declarată de surse.",
       "selectors": [
@@ -1176,6 +1235,7 @@
       "id": "valoare-achizitie-directa",
       "label": "Valoarea unei achiziții directe",
       "categorie": "masura",
+      "familie": "achizitii",
       "baza_definitiei": "parafraza-editoriala",
       "definition": "Valoarea unui contract de achiziție directă, la nivelul unui contract. Nu include totaluri pe furnizor sau sume cumulate.",
       "selectors": [
@@ -1247,6 +1307,7 @@
       "id": "co2",
       "label": "Concentrația de CO2",
       "categorie": "masura",
+      "familie": "mediu",
       "baza_definitiei": "parafraza-editoriala",
       "definition": "Concentrația de dioxid de carbon în aer, măsurată de stația din centrul orașului.",
       "selectors": [
@@ -1290,6 +1351,7 @@
       "id": "pm25",
       "label": "Concentrația de PM2,5",
       "categorie": "masura",
+      "familie": "mediu",
       "baza_definitiei": "parafraza-editoriala",
       "definition": "Concentrația de particule cu diametrul sub 2,5 micrometri în aer, pe stații.",
       "selectors": [
@@ -1348,6 +1410,7 @@
       "id": "pm10",
       "label": "Concentrația de PM10",
       "categorie": "masura",
+      "familie": "mediu",
       "baza_definitiei": "parafraza-editoriala",
       "definition": "Concentrația de particule cu diametrul sub 10 micrometri în aer, pe stații.",
       "selectors": [
@@ -1391,6 +1454,7 @@
       "id": "temperatura-aer",
       "label": "Temperatura aerului",
       "categorie": "masura",
+      "familie": "mediu",
       "baza_definitiei": "parafraza-editoriala",
       "definition": "Temperatura aerului măsurată de stații. Stația meteo și stațiile de calitate sunt distincte.",
       "selectors": [
@@ -1448,6 +1512,7 @@
       "id": "umiditate-relativa",
       "label": "Umiditatea relativă",
       "categorie": "masura",
+      "familie": "mediu",
       "baza_definitiei": "parafraza-editoriala",
       "definition": "Umiditatea relativă a aerului, pe stații.",
       "selectors": [
@@ -1505,6 +1570,7 @@
       "id": "presiune-atmosferica",
       "label": "Presiunea atmosferică",
       "categorie": "masura",
+      "familie": "mediu",
       "baza_definitiei": "parafraza-editoriala",
       "definition": "Presiunea atmosferică pe stații. Câmpul Presiunea este text în eșantion; celelalte sunt numere întregi.",
       "selectors": [
@@ -1549,6 +1615,7 @@
       "id": "viteza-vantului",
       "label": "Viteza vântului",
       "categorie": "masura",
+      "familie": "mediu",
       "baza_definitiei": "parafraza-editoriala",
       "definition": "Viteza vântului pe stații; unitatea nu este declarată.",
       "selectors": [
@@ -1591,6 +1658,7 @@
       "id": "alegatori-inscrisi",
       "label": "Alegători înscriși în liste",
       "categorie": "masura",
+      "familie": "alegeri",
       "baza_definitiei": "parafraza-editoriala",
       "definition": "Numărul total de alegători care pot vota la un scrutin, pe secție sau pe nivel de agregare.",
       "selectors": [
@@ -1625,6 +1693,7 @@
       "id": "alegatori-lista-permanenta",
       "label": "Alegători înscriși în lista permanentă",
       "categorie": "masura",
+      "familie": "alegeri",
       "baza_definitiei": "parafraza-editoriala",
       "definition": "Numărul de alegători înscriși în lista electorală permanentă a scrutinului.",
       "selectors": [
@@ -1653,6 +1722,7 @@
       "id": "alegatori-prezenti",
       "label": "Alegători prezenți la vot",
       "categorie": "masura",
+      "familie": "alegeri",
       "baza_definitiei": "parafraza-editoriala",
       "definition": "Numărul de persoane care au votat la un scrutin.",
       "selectors": [
@@ -1694,6 +1764,7 @@
       "id": "voturi-valide",
       "label": "Voturi valabil exprimate",
       "categorie": "masura",
+      "familie": "alegeri",
       "baza_definitiei": "parafraza-editoriala",
       "definition": "Numărul voturilor valabile la un scrutin.",
       "selectors": [
@@ -1725,6 +1796,7 @@
       "id": "voturi-nule",
       "label": "Voturi nule",
       "categorie": "masura",
+      "familie": "alegeri",
       "baza_definitiei": "parafraza-editoriala",
       "definition": "Numărul voturilor nule la un scrutin.",
       "selectors": [
@@ -1756,6 +1828,7 @@
       "id": "rata-prezenta",
       "label": "Rata de prezență la vot",
       "categorie": "iesire-derivata",
+      "familie": "alegeri",
       "baza_definitiei": "parafraza-editoriala",
       "definition": "Procentul alegătorilor prezenți din cei înscriși în lista permanentă. Este calculat în baza de date, nu introdus.",
       "selectors": [
@@ -1804,6 +1877,7 @@
       "id": "voturi-pentru",
       "label": "Voturi pentru",
       "categorie": "masura",
+      "familie": "parlament",
       "baza_definitiei": "parafraza-editoriala",
       "definition": "Numărul de voturi „pentru” la un vot nominal sau electronic dintr-o adunare. Proiectele descriu adunări diferite; grupul servește descoperirii și nu leagă seturile.",
       "selectors": [
@@ -1857,6 +1931,7 @@
       "id": "voturi-impotriva",
       "label": "Voturi împotrivă",
       "categorie": "masura",
+      "familie": "parlament",
       "baza_definitiei": "parafraza-editoriala",
       "definition": "Numărul de voturi „împotrivă” la un vot nominal sau electronic dintr-o adunare. Proiectele descriu adunări diferite; grupul servește descoperirii și nu leagă seturile.",
       "selectors": [
@@ -1910,6 +1985,7 @@
       "id": "voturi-abtinere",
       "label": "Abțineri",
       "categorie": "masura",
+      "familie": "parlament",
       "baza_definitiei": "parafraza-editoriala",
       "definition": "Numărul de voturi „abținere” la un vot nominal sau electronic dintr-o adunare. Proiectele descriu adunări diferite; grupul servește descoperirii și nu leagă seturile.",
       "selectors": [
@@ -1963,6 +2039,7 @@
       "id": "grup-politic",
       "label": "Grup politic sau parlamentar",
       "categorie": "dimensiune",
+      "familie": "parlament",
       "baza_definitiei": "parafraza-editoriala",
       "definition": "Grupul politic sau parlamentar al unui ales la un moment dat. Codurile și numele diferă între instituții.",
       "selectors": [

@@ -47,6 +47,11 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [ ] `inventory_report.py --check --data-dir <other root>` still compares `docs/reports/inventory-expansion.md` under the repository root.
       The review tool's check panel shows that report as out of date on a copy of the data root whose decisions differ. Add a `--report` path if copies need a clean check.
 - [ ] Owner review: decide D132–D162 and the 30 groups with the interface.
+- [x] Group the variable groups into families (identifiers, geography, time, then subject areas); the finder groups its variable facet by family.
+- [x] Per-project list of variables at `/date/lista/` (`source:field`, by family, other fields per source).
+- [ ] Let an editor add a field that the extractors missed: a hand-edited file with slug, source URL, name, locator, role, declared type, unit,
+      description and an evidence fragment; `inventory.py` merges it as an editor-added field and `--check` verifies the fragment. Entry from the review interface.
+      Needs a short brief.
 - [ ] Publish `/date/` on the public build. Needs its own brief after the review: which states appear, labelling of proposals,
       and the change to the `--with-inventory` boundary.
 

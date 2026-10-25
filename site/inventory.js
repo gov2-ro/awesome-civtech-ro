@@ -22,7 +22,9 @@ const categories = {identificator:'Identificator', dimensiune:'Dimensiune', masu
 const stateLabels = {propus:'Propus', revizuit:'Revizuit', amanat:'Amânat'};
 const factKeys = {unitate:'Unitate', formula:'Formulă', rol:'Rol', moment_de_referinta:'Moment de referință'};
 const factBasis = {'declaratie-directa':'declarat', 'observatie-esantion':'observat în eșantion', 'deductie-din-dovezi':'dedus din dovezi', 'parafraza-editoriala':'formulare editorială'};
-let entries = [], labels = {}, definitions = {}, meta = {}, state, shown = 24;
+let entries = [], labels = {}, definitions = {}, meta = {}, families = [], state, shown = 24;
+// Families the visitor opened or closed; the others follow the default (open when one of their variables is common).
+const familyOpen = new Map();
 
 function readState() {
   const p = new URLSearchParams(location.search);
@@ -68,6 +70,16 @@ function renderFacets() {
     const option = ({value,count}) => `<label class="finder-option" title="${esc(definitions[g.key]?.[value] || labels[g.key][value])}">
       <input type="checkbox" data-facet="${g.key}" data-value="${esc(value)}" ${state[g.key].has(value) ? 'checked' : ''}>
       <span>${esc(labels[g.key][value])}</span><small>${count}</small></label>`;
+    if (g.key === 'variables' && families.length) {
+      const known = new Set(families.map(f => f.id));
+      const sets = [...families, {id:'', label:'Altele'}].map(f => ({f, opts:options.filter(o => f.id ? meta[o.value]?.family === f.id : !known.has(meta[o.value]?.family))}))
+        .filter(x => x.opts.length);
+      return `<section class="finder-facet"><h2>${g.label}</h2><p>${g.hint}</p>${sets.map(({f, opts}) => {
+        const open = opts.some(o => state.variables.has(o.value)) || (familyOpen.has(f.id) ? familyOpen.get(f.id) : opts.some(o => o.count > 3));
+        return `<details class="finder-family" data-family="${esc(f.id)}" ${open ? 'open' : ''}><summary>${esc(f.label)} <small>${opts.length}</small></summary>
+          <div class="finder-options">${opts.map(option).join('')}</div></details>`;
+      }).join('')}</section>`;
+    }
     const primary = options.filter(o => state[g.key].has(o.value) || o.count > 3).slice(0,6);
     // Selected values stay visible even when their count falls or the group grows.
     for (const o of options) if (state[g.key].has(o.value) && !primary.includes(o)) primary.push(o);
@@ -174,6 +186,7 @@ $('#data-search').addEventListener('input', () => {
   clearTimeout(searchTimer);
   searchTimer = setTimeout(() => { state.q = $('#data-search').value.trim(); change(); }, 150);
 });
+document.addEventListener('toggle', e => { if (e.target.matches?.('.finder-family')) familyOpen.set(e.target.dataset.family, e.target.open); }, true);
 window.addEventListener('popstate', () => { if (state) { clearTimeout(searchTimer); readState(); shown=24; render(); } });
 
 async function start() {
@@ -183,7 +196,8 @@ async function start() {
     const inventory = await response.json();
     labels = {variables:{}, providers:{}, subjects:{}, institutions:{}};
     definitions = {variables:{}};
-    for (const v of inventory.variables) { labels.variables[v.id]=v.label; definitions.variables[v.id]=v.definition; meta[v.id]={category:v.category, state:v.state || 'propus', ambiguities:v.ambiguities || [], proofs:v.proofs || []}; }
+    for (const v of inventory.variables) { labels.variables[v.id]=v.label; definitions.variables[v.id]=v.definition; meta[v.id]={category:v.category, family:v.family, state:v.state || 'propus', ambiguities:v.ambiguities || [], proofs:v.proofs || []}; }
+    families = inventory.families || [];
     for (const c of inventory.concepts) {
       if (c.scheme === 'subiect') labels.subjects[c.id]=c.label;
       if (c.scheme === 'institutie') labels.institutions[c.id]=c.label;

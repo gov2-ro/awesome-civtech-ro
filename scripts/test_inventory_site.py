@@ -7,7 +7,8 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from inventory_site import BASIS, document_links, group_api_parameters, publish_preview, variable_matches, publish_finder
+from inventory_concepts import validate_families
+from inventory_site import BASIS, document_links, group_api_parameters, publish_overview, publish_preview, variable_matches, publish_finder
 
 
 class InventorySite(unittest.TestCase):
@@ -131,6 +132,45 @@ class InventorySite(unittest.TestCase):
             page = (site / 'date/index.html').read_text()
             self.assertNotIn('v=BUILD', page)
             self.assertIn('<base href="../">', page)
+
+    def test_families_need_known_ids(self):
+        document = {'familii': [{'id': 'geo', 'label': 'Geografie'}, {'id': 'geo', 'label': 'Again'}, {'id': 'x'}],
+                    'concepte': [{'id': 'judet', 'familie': 'geo'}, {'id': 'cui', 'familie': 'nope'}, {'id': 'free'}]}
+        errors = validate_families(document)
+        self.assertEqual(len(errors), 3, errors)
+        self.assertTrue(any('duplicate' in e for e in errors) and any('needs id and label' in e for e in errors) and any("'nope'" in e for e in errors))
+
+    def test_every_group_of_the_dictionary_has_a_known_family(self):
+        document = json.loads((Path(__file__).resolve().parents[1] / 'data/taxonomy-v2/inventar-concepte.json').read_text())
+        self.assertEqual(validate_families(document), [])
+        self.assertTrue(all(c.get('familie') for c in document['concepte']))
+
+    def test_overview_lists_fields_by_family_then_by_source_and_role(self):
+        concepts = [{'id': 'cui', 'label': 'CUI', 'familie': 'ids', 'selectors': [{'projects': ['p'], 'names': ['cui']}]},
+                    {'id': 'gone', 'label': 'Gone', 'familie': 'ids', 'stare': 'respins', 'selectors': [{'projects': ['p'], 'names': ['q']}]}]
+        families = [{'id': 'ids', 'label': 'Identificatori'}]
+        def field(name, role='camp-raspuns', source='s'):
+            return dict(name=name, path='$.' + name, role=role, source=source)
+        fields = [field('cui'), field('cui', 'parametru-api'), field('q', 'parametru-api'), field('<b>x</b>'), field('total', source='t')]
+        sources = [{'id': 's', 'url': 'https://example.org/api/openapi.json'}, {'id': 't', 'url': 'https://example.org/'}]
+        items = [dict(slug='p', name='Proj', kind='proiect'), dict(slug='bare', name='Bare & co', kind='resursa'),
+                 dict(slug='org', name='Org', kind='organizatie')]
+        with tempfile.TemporaryDirectory() as tmp:
+            site = Path(tmp)
+            for name in ('style.css', 'inventory.css'):
+                (site / name).write_text('/* fixture */')
+            publish_overview(items, site, {'p': (fields, sources)}, concepts, families)
+            page = (site / 'date/lista/index.html').read_text()
+        row = page[page.index('class="ov-row"'):page.index('class="ov-bare"')]
+        self.assertIn('<dt>Identificatori</dt>', row)
+        self.assertEqual(row.count('<code>openapi.json:cui</code>'), 1, 'a name repeated in one source is listed once')
+        self.assertIn('<span>intrări:</span> <code>q</code>', row, 'a rejected group leaves its fields with the others')
+        self.assertIn('<code>&lt;b&gt;x&lt;/b&gt;</code>', row)
+        self.assertIn('<h4>example.org</h4>', row, 'a source without a file name is named by its host')
+        self.assertIn('Bare &amp; co', page)
+        self.assertNotIn('Org', page.replace('Organiz', ''))
+        self.assertNotIn('v=BUILD', page)
+        self.assertIn('<base href="../../">', page)
 
     def test_every_selector_of_the_dictionary_matches_a_current_field(self):
         from inventory_concepts import as_list, selector_matches

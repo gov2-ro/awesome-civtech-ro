@@ -1,5 +1,18 @@
 # Activity
 
+## 2026-10-25 — Variable families and a per-project list of variables
+
+**Done**
+- `inventar-concepte.json` has a `familii` list (9 families) and a `familie` on each of the 30 groups. `inventory.py --check` and the review interface validate them.
+- The `/date/` variable facet shows the groups under their families. A family opens when it holds a selected variable or a variable with more than three entries.
+- New static page `/date/lista/` in the inventory preview: 27 rows (entries with extracted fields) with `source:field` names by family, the other names per source
+  (inputs apart from returned fields), and the 100 entries without fields named once. 468 unit tests (6 skipped); `check_data_finder.py` 40/40.
+
+**Decided**
+- Families by what the variable describes: three cross-cutting keys (identifiers, geography, time), then subject areas. The role (`categorie`) stays a separate badge.
+  A role-only split would put CUI next to a party group, and a subject-only split would scatter county and year over every subject.
+- The list page is static HTML. It needs no script, so it stays readable with search in the browser (Ctrl+F).
+
 ## 2026-10-25 — Build the local review interface (v0.20.0)
 
 **Done**

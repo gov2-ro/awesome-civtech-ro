@@ -10,6 +10,9 @@ That is how an ambiguous name such as `REF_AREA` joins the county group for one 
 Review state (written by scripts/review_ui.py; a missing key means `propus`): a group has `stare` (propus | revizuit | respins | amanat),
 `decizie_editor` and `data_revizie`; a selector has `stare` (propus | confirmat | exclus) and `nota_editor`. An `exclus` selector stays in the
 file for history and never matches a field. A `respins` group produces no matches in the finder.
+
+Families (`familii`, top level) sort the groups for browsing by what they describe: identifiers, geography, time, then subject areas.
+A group names its family in `familie`. A family is a reading aid; it says nothing about compatibility. A group without one is listed last.
 """
 from __future__ import annotations
 
@@ -139,6 +142,23 @@ def validate_concept(concept, known_projects=None):
     for evidence in concept.get('dovezi', []):
         if evidence.get('baza') not in EVIDENCE_BASES or not evidence.get('sursa') or not evidence.get('fragment'):
             errors.append(f'{where}: evidence needs sursa, fragment and a baza')
+    return errors
+
+
+def validate_families(document):
+    """The `familii` list and the `familie` of each group: unique ids with a label, and no group pointing at an unknown family."""
+    errors, ids = [], []
+    for number, family in enumerate(document.get('familii', []), 1):
+        if not isinstance(family, dict) or not family.get('id') or not family.get('label'):
+            errors.append(f'familii {number}: a family needs id and label')
+            continue
+        if family['id'] in ids:
+            errors.append(f'familii {number}: duplicate family id {family["id"]}')
+        ids.append(family['id'])
+    for concept in document.get('concepte', []):
+        family = concept.get('familie')
+        if family is not None and family not in ids:
+            errors.append(f'{concept.get("id", "?")}: unknown family {family!r}')
     return errors
 
 

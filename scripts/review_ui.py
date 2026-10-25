@@ -41,7 +41,7 @@ from urllib.parse import urlsplit
 import taxonomy_v2
 from common import PUBLIC_ROOT, ROOT, observation_paths
 from inventory_concepts import (GROUP_REVIEW_KEYS, GROUP_STATES, SELECTOR_REVIEW_KEYS, SELECTOR_STATES, EvidenceLocator, as_list, group_state,
-                                selector_matches, selector_state, sha, validate_concept)
+                                selector_matches, selector_state, sha, validate_concept, validate_families)
 
 SCRIPTS = Path(__file__).resolve().parent
 TEMPLATES = SCRIPTS / 'templates'
@@ -676,7 +676,7 @@ class Store:
             errors.append('inventar-concepte.json: duplicate group ids')
         for concept in data['concepte']:
             errors += validate_concept(concept, known)
-        return errors
+        return errors + validate_families(data)
 
     def current_errors(self, snapshot: dict) -> list[str]:
         """The errors of the files as they are on disk, computed once for each content of the three files."""

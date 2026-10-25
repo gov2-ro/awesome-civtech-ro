@@ -130,6 +130,24 @@ with sync_playwright() as pw:
         page.locator('.finder-card').first.locator('.finder-evidence > summary').click()
         ok(f'{width}px evidence fits the viewport', page.evaluate('document.documentElement.scrollWidth===innerWidth'))
         page.screenshot(path=f'/tmp/civtech-data-finder-{width}.png',full_page=False)
+    # Variables are grouped by family; a family that holds a selected variable is open.
+    page.set_viewport_size({'width':1440,'height':1100})
+    page.goto(BASE + 'date/?variables=cpv')
+    page.wait_for_selector('.finder-card')
+    fams = [f['id'] for f in INDEX.get('families', []) if any(v.get('family') == f['id'] for v in INDEX['variables'])]
+    ok('variables are grouped by family in the index order', page.locator('.finder-family').evaluate_all('els=>els.map(e=>e.dataset.family)')[:len(fams)] == fams)
+    cpv_family = next(v['family'] for v in INDEX['variables'] if v['id'] == 'cpv')
+    ok('the family of a selected variable is open', page.locator(f'.finder-family[data-family="{cpv_family}"]').evaluate('e=>e.open'))
+    # The per-project list: one row per entry with extracted fields, the others named once.
+    page.goto(BASE + 'date/lista/')
+    with_fields = sum(bool(e['inventory'].get('count')) for e in INDEX['entries'])
+    ok('the list has one row per entry with fields', page.locator('.ov-row').count() == with_fields)
+    ok('the list names every entry without fields', page.locator('.ov-bare a').count() == len(INDEX['entries']) - with_fields)
+    ok('the list shows source:field pairs', page.locator('.ov-row code').count() > with_fields)
+    for width in (390, 320):
+        page.set_viewport_size({'width':width,'height':900})
+        page.goto(BASE + 'date/lista/')
+        ok(f'{width}px list fits the viewport', page.evaluate('document.documentElement.scrollWidth===innerWidth'))
     failed = browser.new_page()
     failed.route('**/inventar/index.json', lambda route: route.fulfill(status=503,body='{}'))
     failed.goto(BASE + 'date/')

@@ -1063,6 +1063,9 @@ The check panel runs `validate.py --publication`, `inventory.py --check` and `in
 ### Cross-project data finder preview
 
 The same flag generates `/date/` and `inventar/index.json`. It adds a navigation link in the explorer preview.
+It also generates `/date/lista/`, a static page with one row per project or resource that has extracted fields: the `source:field` names of the
+fields in a group, under the family of the group, then the other field names per source, with inputs (API parameters, request bodies) apart from
+returned fields. The source name is the file name of its URL, or its host. Entries without fields are named once at the end.
 The index includes all 106 projects and 21 resources. Organisations remain in the ordinary explorer.
 Each entry carries its catalogue description, subjects, institutions, accepted providers, inventory summary and proposed variable matches.
 The page fetches one discovery index. Results appear in batches of 24. Full per-project fields remain separate.
@@ -1081,6 +1084,13 @@ membership says that a field plausibly carries the variable, never that two data
   a checkout without that copy reports the evidence as unavailable, never as verified or stale.
 - `ambiguitati`: open questions and candidates that are kept out of the group on purpose.
 - `selectors`: alternatives; a field joins the group when any selector of its project matches.
+- `familie`: the family of the group, an `id` of the top-level `familii` list. Optional; a group without one is listed last as "Altele".
+
+The top-level `familii` list sorts the groups for browsing by what they describe. Each family has `id`, `label` (Romanian) and `descriere`.
+The order of the list is the display order. The current families are `identificatori`, `geografie` and `timp` (keys that cut across subjects),
+then `firme`, `achizitii`, `populatie-teritoriu`, `mediu`, `alegeri` and `parlament`. A family is a reading aid: it says nothing about compatibility,
+and it is separate from `categorie` (the role of the variable: identifier, dimension, measure). `inventory.py --check` and the review interface reject
+a duplicate family id, a family without a label and a group that names an unknown family.
 
 A selector has `projects` (required) and at least one of `names` or `path`. It may also have `source` (a source URL or a list), `role` (field roles), `context`
 (what the field describes in that project, for example the CUI of the authority or of the supplier), `fapte` and `nota`. Every constraint that the selector supplies

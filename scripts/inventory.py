@@ -28,7 +28,7 @@ from urllib.parse import unquote, urlsplit
 
 from collect_docs import Fetcher, canonical, flat, restore, scope_of
 from common import PUBLIC_ROOT, data_schema, load_catalogue, load_vocabulary, observation_paths
-from inventory_concepts import EvidenceLocator, check_concepts
+from inventory_concepts import EvidenceLocator, check_concepts, validate_families
 from inventory_ins import ins_dataset, ins_listing, ins_measure, is_listing
 from inventory_text import EXTENSIONS, read_text
 from inventory_state import (REGISTRY, RequestLog, StateError, active_members, admit, check_text, dump, load_previous,
@@ -517,10 +517,12 @@ def check_dictionary(report, previous, out, observations):
     if not path.exists():
         return
     try:
-        concepts = json.loads(path.read_text()).get('concepte', [])
+        document = json.loads(path.read_text())
     except (OSError, ValueError) as exc:
         report['errors'].append(f'{path}: {exc}')
         return
+    concepts = document.get('concepte', [])
+    report['errors'] += validate_families(document)
     sources = previous['sources']
     fields = {}
     for slug, profile in previous['profiles'].items():

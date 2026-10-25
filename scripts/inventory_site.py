@@ -1,4 +1,5 @@
 """Build a compact, lazy-loaded explorer preview from draft inventory metadata."""
+import html
 import json
 import hashlib
 import re
@@ -61,7 +62,8 @@ def variable_matches(slug, fields, sources, concepts):
 def publish_finder(items, root, site, projections, vocabulary=None):
     """Write a cross-project discovery index and its isolated page."""
     concept_path = root.parent / 'inventar-concepte.json'
-    concepts = json.loads(concept_path.read_text())['concepte'] if concept_path.exists() else []
+    document = json.loads(concept_path.read_text()) if concept_path.exists() else {}
+    concepts, families = document.get('concepte', []), document.get('familii', [])
     entries = []
     for item in items:
         if item.get('kind') not in ('proiect', 'resursa'):
@@ -84,7 +86,9 @@ def publish_finder(items, root, site, projections, vocabulary=None):
                         'keywords': item.get('inventory', {}).get('keywords', '')})
     index = {'partial': True, 'concepts': [{'id': c['id'], 'scheme': c['scheme'], 'label': c['label']}
                                          for c in (vocabulary or {}).get('concepts', []) if c['scheme'] in ('subiect', 'institutie')],
-             'variables': [{**{k: c[k] for k in ('id', 'label', 'definition')}, 'category': c.get('categorie'), 'state': group_state(c),
+             'families': [{'id': f['id'], 'label': f['label']} for f in families],
+             'variables': [{**{k: c[k] for k in ('id', 'label', 'definition')}, 'category': c.get('categorie'), 'family': c.get('familie'),
+                            'state': group_state(c),
                             'basis': c.get('baza_definitiei'), 'ambiguities': c.get('ambiguitati', []),
                             'proofs': [{'url': e['sursa'], 'fragment': e['fragment'][:200], 'basis': e['baza']} for e in c.get('dovezi', [])]}
                            for c in active_groups(concepts)],
@@ -97,6 +101,92 @@ def publish_finder(items, root, site, projections, vocabulary=None):
         doc = doc.replace(f'{asset}?v=BUILD', f'{asset}?v={digest}')
     page = site / 'date'
     page.mkdir(exist_ok=True)
+    (page / 'index.html').write_text(doc)
+    publish_overview(items, site, projections, concepts, families)
+
+
+def source_label(url):
+    """A short name for a source in `source:field` lists: the file name of the URL, or its host when the path has none."""
+    parts = urlsplit(url)
+    return unquote(Path(parts.path).name) or parts.hostname or url
+
+
+def field_groups(slug, fields, sources, concepts):
+    """{field position: group id} for one project, with the same selector rules as `variable_matches`; the first group that matches wins."""
+    urls = {s['id']: s['url'] for s in sources}
+    found = {}
+    for concept in active_groups(concepts):
+        selectors = [r for r in concept['selectors'] if slug in as_list(r['projects'])]
+        for n, f in enumerate(fields):
+            if n not in found and any(selector_matches(r, slug, f, urls[f['source']]) for r in selectors):
+                found[n] = concept['id']
+    return found
+
+
+def publish_overview(items, site, projections, concepts, families):
+    """Write `date/lista/`: one row per project or resource, with its `source:field` names under the families of the proposed groups.
+    Fields in no group are listed per source, inputs apart from returned fields. A static page: it needs no script."""
+    e = html.escape
+    labels = {c['id']: c['label'] for c in concepts}
+    family_of = {c['id']: c.get('familie') for c in concepts}
+    order = [f['id'] for f in families] + [None]
+    family_label = {f['id']: f['label'] for f in families} | {None: 'Fără familie'}
+    rows, bare, listed = [], [], 0
+    entries = sorted((i for i in items if i.get('kind') in ('proiect', 'resursa')), key=lambda i: i['name'].casefold())
+    for item in entries:
+        fields, sources = projections.get(item['slug'], ([], []))
+        link = f'<a href="{e(item["kind"])}/{e(item["slug"])}/">{e(item["name"])}</a>'
+        if not fields:
+            bare.append(link)
+            continue
+        listed += 1
+        names = {s['id']: source_label(s['url']) for s in sources}
+        grouped = field_groups(item['slug'], fields, sources, concepts)
+        by_family = {}
+        for n, gid in grouped.items():
+            ref = f'{names[fields[n]["source"]]}:{fields[n]["name"]}'
+            by_family.setdefault(family_of.get(gid), {}).setdefault(gid, [])
+            if ref not in by_family[family_of.get(gid)][gid]:
+                by_family[family_of.get(gid)][gid].append(ref)
+        lines = []
+        for fam in order:
+            if fam not in by_family:
+                continue
+            parts = []
+            for gid, refs in sorted(by_family[fam].items(), key=lambda kv: labels[kv[0]].casefold()):
+                more = f' <small>+{len(refs) - 6}</small>' if len(refs) > 6 else ''
+                parts.append(f'<li><strong>{e(labels[gid])}</strong> {" ".join(f"<code>{e(r)}</code>" for r in refs[:6])}{more}</li>')
+            lines.append(f'<dt>{e(family_label[fam])}</dt><dd><ul>{"".join(parts)}</ul></dd>')
+        rest = {}
+        for n, f in enumerate(fields):
+            if n in grouped:
+                continue
+            kind = 'in' if f['role'] in ('parametru-api', 'corp-cerere') else 'out'
+            bucket = rest.setdefault(f['source'], {'in': [], 'out': []})[kind]
+            if f['name'] not in bucket:
+                bucket.append(f['name'])
+        other = sum(len(b['in']) + len(b['out']) for b in rest.values())
+        if other:
+            blocks = []
+            for ident, bucket in rest.items():
+                text = ''.join(f'<p><span>{label}</span> {", ".join(f"<code>{e(x)}</code>" for x in bucket[k])}</p>'
+                               for k, label in (('in', 'intrări:'), ('out', 'câmpuri:')) if bucket[k])
+                blocks.append(f'<div><h4>{e(names[ident])}</h4>{text}</div>')
+            lines.append(f'<dt>Alte câmpuri</dt><dd><details><summary>{other} nume, în {len(rest)} surse</summary>{"".join(blocks)}</details></dd>')
+        meta = f'{"Proiect" if item["kind"] == "proiect" else "Resursă"} · {len(sources)} {"sursă" if len(sources) == 1 else "surse"}'
+        rows.append(f'<article class="ov-row" id="{e(item["slug"])}"><div class="ov-name"><h2>{link}</h2><small>{meta}</small></div>'
+                    f'<dl class="ov-vars">{"".join(lines)}</dl></article>')
+    content = (f'<p class="ov-note">{listed} proiecte și resurse cu câmpuri extrase, din {len(entries)}. Grupurile sunt propuneri pentru '
+               f'descoperire: același nume nu înseamnă că datele se pot combina. Formatul este <code>sursă:câmp</code>.</p>'
+               + ''.join(rows)
+               + f'<section class="ov-bare"><h2>Fără câmpuri extrase ({len(bare)})</h2><p>{", ".join(bare)}</p>'
+               f'<p class="ov-note">Lipsa câmpurilor nu înseamnă lipsa datelor: inventarul acestor intrări nu a fost făcut.</p></section>')
+    doc = (Path(__file__).parent / 'templates/inventory-list.html').read_text().replace('<!--LISTA-->', content)
+    for asset in ('style.css', 'inventory.css'):
+        digest = hashlib.sha1((site / asset).read_bytes()).hexdigest()[:10]
+        doc = doc.replace(f'{asset}?v=BUILD', f'{asset}?v={digest}')
+    page = site / 'date' / 'lista'
+    page.mkdir(parents=True, exist_ok=True)
     (page / 'index.html').write_text(doc)
 
 

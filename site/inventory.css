@@ -56,6 +56,27 @@
 .finder-empty p { margin-top:10px; color:var(--muted); }
 .finder-footer { border-top:1px solid var(--line); padding-block:28px; margin-top:48px; font-size:13px; color:var(--muted); }
 .finder-footer p { margin-bottom:8px; }
+.finder-family { margin-bottom:6px; }
+.finder-family > summary { cursor:pointer; font-size:13px; font-weight:600; color:var(--ink-2); padding:4px 0; }
+.finder-family > summary small { font-weight:400; color:var(--muted); margin-left:4px; }
+.finder-family .finder-options { padding:2px 0 6px 14px; }
+.ov-title { font-size:18px; margin:0 0 0 auto; }
+.ov-note { font-size:13px; color:var(--muted); margin:8px 0 20px; max-width:80ch; }
+.ov-row { display:grid; grid-template-columns:220px minmax(0,1fr); gap:24px; padding:18px 0; border-top:1px solid var(--line); }
+.ov-name h2 { font-size:17px; margin-bottom:4px; }
+.ov-name small { font-size:12px; color:var(--muted); }
+.ov-vars { display:grid; grid-template-columns:150px minmax(0,1fr); gap:8px 16px; margin:0; font-size:14px; }
+.ov-vars dt { font-size:12px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); padding-top:2px; }
+.ov-vars dd { margin:0; min-width:0; }
+.ov-vars ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:4px; }
+.ov-vars li strong { font-weight:600; margin-right:6px; }
+.ov-vars code { font-size:12px; overflow-wrap:anywhere; margin-right:6px; color:var(--ink-2); }
+.ov-vars details > summary { cursor:pointer; color:var(--accent); }
+.ov-vars h4 { font-size:13px; margin:10px 0 2px; }
+.ov-vars p span { color:var(--muted); margin-right:4px; }
+.ov-bare { border-top:1px solid var(--line); padding-top:18px; }
+.ov-bare h2 { font-size:17px; margin-bottom:8px; }
+.ov-bare p { font-size:14px; line-height:1.7; }
 @media (max-width:1000px) { #data-cards { grid-template-columns:minmax(0,1fr); } .finder-layout { gap:24px; grid-template-columns:230px minmax(0,1fr); } }
 @media (max-width:700px) {
   .finder-bar { padding-block:12px; }
@@ -68,4 +89,7 @@
   .finder-facet h2 { font-size:16px; }
   .finder-option { font-size:13px; }
   .finder-card { padding:16px; }
+  .ov-row, .ov-vars { grid-template-columns:minmax(0,1fr); gap:6px; }
+  .ov-vars dt { padding-top:8px; }
+  .ov-title { margin-left:0; flex-basis:100%; }
 }
