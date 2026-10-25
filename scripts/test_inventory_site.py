@@ -63,6 +63,24 @@ class InventorySite(unittest.TestCase):
                 publish_preview(items, root, site)
             self.assertFalse((site / 'inventar/stale.json').exists())
 
+    def test_failed_refresh_is_visible_and_the_evidence_is_not_called_fresh(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); obs = root / 'observatii'; inv = obs / 'inventare'; inv.mkdir(parents=True)
+            (inv / 'proiecte.json').write_text(json.dumps({'proiecte': [{'slug': 'x', 'surse_structurate': ['s', 't']}]}))
+            field = {'nume': 'cui', 'cale': '$.cui', 'rol': 'camp-raspuns', 'tip_declarat': 'string', 'stare_tip': 'declarat-in-schema', 'pointer': '/p'}
+            (inv / 'seturi-date.json').write_text(json.dumps({'surse': [
+                {'id': 's', 'url': 'https://example.org/a.json', 'format': 'openapi', 'fetched_at': '2026-10-24T10:00:00+00:00', 'campuri': [field],
+                 'ultima_incercare': {'la': '2026-10-25T09:00:00+00:00', 'stare': 'eroare-http', 'http_status': 503}},
+                {'id': 't', 'url': 'https://example.org/b.json', 'format': 'openapi', 'fetched_at': '2026-10-24T10:00:00+00:00', 'campuri': [field]}]}))
+            site = root / 'site'; site.mkdir(); items = [{'slug': 'x'}]
+            with patch('inventory_site.observation_paths', return_value={'profile': obs / 'profil.csv'}):
+                publish_preview(items, root, site)
+            sources = json.loads((site / 'inventar/x.json').read_text())['sources']
+            self.assertEqual(sources[0]['refreshFailed'], {'date': '2026-10-25', 'status': 503, 'state': 'eroare-http'})
+            self.assertEqual(sources[0]['checked'], '2026-10-24')
+            self.assertNotIn('refreshFailed', sources[1])
+            self.assertEqual(items[0]['inventory']['stale'], 1)
+
     def test_repeated_api_parameters_keep_their_contexts(self):
         def field(pointer, operation, typ='string'):
             return {'source': 's', 'name': 'cpv', 'role': 'parametru-api', 'declaredType': typ,

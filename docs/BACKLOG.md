@@ -27,6 +27,7 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
       A Făcut?’s three edition pages now contribute an actual search control; their raw data schema remains unconfirmed.
 - [ ] Correct or report INS llms examples: POP101A is absent; ACC102B is workplace accidents, not GDP. The list and ACC102B API routes work.
 - [ ] Add browser rendering or document-format extraction where static HTML and llms.txt leave gaps.
+      Done in v0.14.0: the fetcher detects binary bodies (`format-binar`) instead of decoding them. No spreadsheet or PDF reader yet.
 - [ ] Review D132–D146 in `data/taxonomy-v2/integrare/revizuire.csv`. Confirm the provider and evidence before accepting each relation.
 - [ ] Continue provenance and geographic-detail review. 129 entries have no accepted source; 130 have no verified data detail.
       Empty fields can also mean not applicable. Do not infer a provider from monitored institutions or authors.
@@ -42,8 +43,9 @@ The 2,302 field records are source paths, not independent business variables. Se
 The 62 unconfirmed profiles cover the full 140-entry catalogue, including organisations; this is a different measure.
 
 - [x] Write the implementation specification and a copyable prompt for a fresh session.
-- [ ] Fix targeted/offline preservation before new collection. `inventory.py --only` currently rebuilds unrelated records from local caches.
-      A fresh checkout can erase their fields. A smaller file budget can also drop previous source memberships.
+- [x] Fix targeted/offline preservation before new collection (milestone A, v0.14.0). `inventory.py` now reads the tracked state first.
+      `--only` changes only the selected projects. A smaller file limit keeps earlier members. A failed refresh keeps the last evidence.
+      `descoperiri.json` holds 59 discoveries (25 active, 34 found but not admitted). 34 new offline tests cover the failure modes.
 - [ ] Deepen the 14 existing inventories. Follow documented dataset catalogues and endpoint schemas beyond the current three-file discovery limit.
       INS needs dataset-specific dimensions and indicator definitions, rather than one example dataset.
 - [ ] Select 10–15 data-heavy entries without structured inventories. Prioritise those with documentation, downloads or linked repositories.

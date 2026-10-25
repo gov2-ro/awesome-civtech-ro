@@ -195,9 +195,23 @@ def scope_of(project_url, url):
     return 'gazda-comuna'
 
 
+BINARY_MAGIC = (b'PK\x03\x04', b'%PDF', b'\xd0\xcf\x11\xe0', b'\x1f\x8b')
+
+
+def is_binary(raw, content_type=''):
+    """Detect a binary body before decoding it as text. A spreadsheet, a PDF or a gzip file is not text."""
+    return raw.startswith(BINARY_MAGIC) or b'\x00' in raw[:2000] or content_type in (
+        'application/pdf', 'application/zip',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel')
+
+
 class Fetcher:
-    def __init__(self, timeout=8):
+    """GET with a timeout, a size cap, two concurrent requests per host and an optional hard request budget.
+    `log` is a RequestLog; every direct request is logged with its outcome and size. Nothing is retried."""
+
+    def __init__(self, timeout=8, max_requests=None, log=None, purpose=''):
         self.timeout = timeout
+        self.max_requests, self.log, self.purpose = max_requests, log, purpose
         self.cache, self.locks, self.hosts = {}, {}, {}
         self.guard = threading.Lock()
         self.requests = 0
@@ -208,17 +222,25 @@ class Fetcher:
             host = self.hosts.setdefault(urlsplit(url).hostname, threading.Semaphore(2))
         with lock:
             if url in self.cache:
+                if self.log:
+                    self.log.add('GET', url, self.cache[url]['state'], self.cache[url].get('http_status'), None, True, self.purpose)
                 return self.cache[url]
             result = {'url': url, 'final_url': url, 'http_status': None, 'fetched_at': datetime.now(timezone.utc).isoformat()}
             with self.guard:
+                if self.max_requests is not None and self.requests >= self.max_requests:
+                    return {**result, 'state': 'limita-cereri', 'error': 'request budget reached'}
                 self.requests += 1
+            size = None
             try:
                 with host, urlopen(Request(url, headers={'User-Agent': UA, 'Accept-Language': 'ro,en;q=0.8'}), timeout=self.timeout) as response:
                     raw = response.read(MAX_BYTES + 1)
+                    size = len(raw)
                     result.update(http_status=response.status, final_url=response.url,
                                   content_type=response.headers.get_content_type())
                     if len(raw) > MAX_BYTES:
                         result.update(state='raspuns-prea-mare', body='')
+                    elif is_binary(raw, result['content_type']):
+                        result.update(state='format-binar', body='')
                     else:
                         charset = response.headers.get_content_charset() or 'utf-8'
                         result.update(state='ok', body=raw.decode(charset, errors='replace'))
@@ -227,6 +249,8 @@ class Fetcher:
             except (URLError, OSError, ValueError, LookupError, HTTPException) as exc:
                 result.update(state='eroare-retea', error=str(exc))
             self.cache[url] = result
+            if self.log:
+                self.log.add('GET', url, result['state'], result.get('http_status'), size, False, self.purpose)
             return result
 
 
@@ -276,9 +300,34 @@ def collect(entry, fetch, max_pages=5, follow_data_links=False):
                     target = canonical(urljoin(directory, path))
                     if target not in seen:
                         queue.append((target, kind))
-    documentation = [p for p in pages if p['state'] == 'colectat' and (p['kind'] != 'pagina' or p.get('sections')) and p['scope'] == 'proiect']
-    return {'slug': entry['slug'], 'url': start, 'state': 'documentatie-gasita' if documentation else 'documentatie-neconfirmata',
+    return {'slug': entry['slug'], 'url': start, 'state': documentation_state(pages),
             'inventory_completeness': 'neanalizat', 'pages': pages}
+
+
+def documentation_state(pages):
+    documentation = [p for p in pages if p['state'] == 'colectat' and (p['kind'] != 'pagina' or p.get('sections')) and p['scope'] == 'proiect']
+    return 'documentatie-gasita' if documentation else 'documentatie-neconfirmata'
+
+
+def merge_refresh(old, new):
+    """Keep the pages that an earlier run collected and this run could not collect again.
+
+    A page that fails (HTTP error, timeout, thin text) or that the new run never requested stays, with the failed
+    attempt in `ultima_incercare`. A page collected again replaces its earlier copy. A changed project URL starts over."""
+    if not old or old.get('url') != new.get('url') or new.get('state') == 'fara-url-http':
+        return new
+    fresh = {p['url']: p for p in new['pages']}
+    old_pages = {p['url']: p for p in old['pages']}
+    pages = []
+    for page in new['pages']:
+        earlier = old_pages.get(page['url'])
+        if earlier and earlier['state'] == 'colectat' and page['state'] != 'colectat':
+            attempt = {k: page.get(k) for k in ('fetched_at', 'state', 'http_status', 'error') if page.get(k) is not None}
+            page = {**earlier, 'ultima_incercare': attempt}
+        pages.append(page)
+    pages += [p for url, p in old_pages.items() if url not in fresh and p['state'] == 'colectat']
+    state = new['state'] if new.get('state') == 'eroare-colectare' else documentation_state(pages)
+    return {**new, 'state': state, 'pages': pages}
 
 
 def save(records, out):
@@ -294,7 +343,9 @@ def save(records, out):
             if 'text' in page:
                 key = hashlib.sha256((page['url'] + '\n' + page.get('sha256', '')).encode()).hexdigest()[:24]
                 path = raw_dir / (key + '.json')
-                path.write_text(json.dumps(page, ensure_ascii=False, indent=2) + '\n')
+                # The snapshot holds what was collected. Index-only keys stay out, so a restored page rewrites the same bytes.
+                body = {k: v for k, v in page.items() if k not in ('snapshot', 'text_chars', 'ultima_incercare')}
+                path.write_text(json.dumps(body, ensure_ascii=False, indent=2) + '\n')
                 metadata['snapshot'] = str(path.relative_to(out))
                 metadata['text_chars'] = len(page['text'])
             item['pages'].append(metadata)
@@ -362,7 +413,7 @@ def main():
                 record = {'slug': slug, 'url': next(e['url'] for e in todo if e['slug'] == slug),
                           'state': 'eroare-colectare', 'error': f'{type(exc).__name__}: {exc}',
                           'inventory_completeness': 'neanalizat', 'pages': []}
-            records[record['slug']] = record
+            records[record['slug']] = merge_refresh(records.get(record['slug']), record)
             save(records, out)
             found = [p['kind'] for p in record['pages'] if p['state'] == 'colectat']
             print(record['slug'] + ': ' + record['state'] + ' · ' + ', '.join(found), flush=True)

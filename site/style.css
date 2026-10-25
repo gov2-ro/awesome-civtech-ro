@@ -588,6 +588,7 @@ svg.gh { width: 20px; height: 20px; fill: currentColor; stroke: none; }
 .inv-status { font: 400 calc(10px * var(--fs))/1.5 var(--font-mono); color: var(--muted); border: 1px solid var(--line); padding: 2px 6px; border-radius: 4px; }
 .inv-intro { font-size: calc(14px * var(--fs)); color: var(--ink-2); }
 .inv-note { font-size: calc(12px * var(--fs)); color: var(--muted); line-height: 1.5; }
+.inv-stale { color: var(--warn); }
 .inv-examples { display: flex; flex-wrap: wrap; gap: 4px; }
 .inv-examples button { border: 0; padding: 3px 6px; border-radius: 3px; cursor: pointer; background: var(--surface); color: var(--ink-2); max-width: 100%; }
 .inv-examples button:hover { color: var(--accent-ink); background: var(--surface-2); }

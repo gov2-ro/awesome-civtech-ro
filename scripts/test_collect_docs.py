@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from collect_docs import canonical, collect, kind_of, parse_page, restore, save, scope_of
+from collect_docs import canonical, collect, kind_of, merge_refresh, parse_page, restore, save, scope_of
 
 
 def response(url, body, content_type='text/html', state='ok'):
@@ -116,6 +116,45 @@ class DocumentationCollection(unittest.TestCase):
         record = collect(entry, fetch, 4, follow_data_links=True)
         self.assertIn('https://example.org/edition-one/', seen)
         self.assertLessEqual(len(record['pages']), 4)
+
+    def test_failed_refresh_keeps_the_pages_an_earlier_run_collected(self):
+        entry = dict(slug='a', url='https://example.org/')
+        good = collect(entry, lambda url: response(url, html('<h2>Metodologie</h2><p>' + 'Evidence ' * 20 + '</p>')))
+        self.assertEqual(good['state'], 'documentatie-gasita')
+        down = collect(entry, lambda url: response(url, '', state='eroare-retea'))
+        self.assertEqual(down['state'], 'documentatie-neconfirmata')
+        merged = merge_refresh(good, down)
+        self.assertEqual(merged['state'], 'documentatie-gasita')
+        home = next(p for p in merged['pages'] if p['url'] == entry['url'])
+        self.assertEqual(home['state'], 'colectat')
+        self.assertEqual(home['ultima_incercare']['state'], 'eroare-retea')
+        self.assertEqual(home['sha256'], good['pages'][0]['sha256'])
+        # A page that is collected again replaces its earlier copy and carries no failure note.
+        fresh = collect(entry, lambda url: response(url, html('<h2>Metodologie</h2><p>' + 'Newer ' * 30 + '</p>')))
+        replaced = merge_refresh(good, fresh)
+        self.assertNotIn('ultima_incercare', replaced['pages'][0])
+        self.assertNotEqual(replaced['pages'][0]['sha256'], good['pages'][0]['sha256'])
+        # A different project URL is a different site: nothing carries over.
+        moved = collect(dict(slug='a', url='https://elsewhere.org/'), lambda url: response(url, '', state='eroare-http'))
+        self.assertEqual(merge_refresh(good, moved), moved)
+
+    def test_refresh_after_a_crash_in_collection_keeps_pages_and_the_error_state(self):
+        entry = dict(slug='a', url='https://example.org/')
+        good = collect(entry, lambda url: response(url, html('<h2>Metodologie</h2><p>' + 'Evidence ' * 20 + '</p>')))
+        crashed = dict(slug='a', url=good['url'], state='eroare-colectare', error='boom', inventory_completeness='neanalizat', pages=[])
+        merged = merge_refresh(good, crashed)
+        self.assertEqual(merged['state'], 'eroare-colectare')
+        self.assertEqual([p['url'] for p in merged['pages']], [p['url'] for p in good['pages'] if p['state'] == 'colectat'])
+
+    def test_restored_pages_are_saved_without_changing_their_snapshot_content(self):
+        record = collect(dict(slug='a', url='https://example.org/'), lambda url: response(url, html('Evidence ' * 30)))
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp)
+            save({'a': record}, out)
+            read = lambda: {p.name: json.loads(p.read_text()) for p in (out / 'pagini').iterdir()}
+            snapshots = read()
+            save(restore(out), out)
+            self.assertEqual(read(), snapshots)
 
     def test_non_http_urls_and_english_names(self):
         self.assertEqual(canonical('mailto:a@example.org'), '')

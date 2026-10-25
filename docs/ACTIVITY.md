@@ -1,5 +1,39 @@
 # Activity
 
+## 2026-10-25 — Make inventory collection incremental and safe (milestone A)
+
+**Done**
+- Added `scripts/inventory_state.py` (registry, validation, atomic writes, request log) and rebuilt the control flow of `inventory.py` around it.
+  The run reads the tracked profiles, sources and registry first. `--only` changes only the selected projects and the sources they use.
+- Added the generated `observatii/inventare/descoperiri.json`, seeded offline from the tracked memberships and the cached documentation.
+  Measured: 59 records for 140 projects. 25 are active (24 from documentation, 1 from the pilot file) and 34 were found but not admitted.
+  Every locator was recoverable from the local documentation snapshots (page hash plus link index or text interval). None was marked unknown.
+- A smaller `--max-files` no longer removes members. A failed, unparsable or missing-cache refresh keeps the last field evidence and
+  records `ultima_incercare`. A changed body keeps the earlier version in `versiuni_anterioare`. Failed responses no longer overwrite a good cached body.
+- Added `--dry-run`, `--retire` with a required reason, `--add-source`, `--lot`, `--budget`, `--max-requests`, and a request log (`jurnal-cereri.csv`).
+  `--check` now separates corruption from bodies that are absent on the checkout, and never counts absent bodies as verified.
+- The documentation collector keeps pages that an earlier run collected and a later run cannot collect again (audit found the defect, see Hard).
+- The preview marks a source whose last refresh failed (`refreshFailed`, `stale`) so that it is not shown as freshly verified.
+- Replay check: `inventory.py --offline` on a copy of the tracked folder reproduces `proiecte.json`, `seturi-date.json`, `campuri.csv`,
+  `rezumat.csv` and `intrari-utilizator.csv` byte for byte. A copy without any cached body, run with `--only afacut,ins-gov2,demoanaf --offline`,
+  also reproduces all six files. 34 new tests (`test_inventory_state.py`, `test_collect_docs.py`, `test_inventory_site.py`); 342 tests run, 6 skipped.
+- Public build check: the default payload equals the v0.13.0 payload apart from `generated`; classifications and accepted providers are unchanged.
+
+**Hard**
+- The old `main` kept `fetch_urls` only for the selected projects but still rebuilt every profile from caches. A fresh checkout turned every
+  unselected source into `necolectat`. The old cache write also replaced a good body with a failed response on `--force`. Both were read from code;
+  the new tests reproduce each failure mode on fixtures. No tracked evidence was damaged: the baseline `--check` passed with 0 errors.
+- `collect_docs.py` replaced a whole entry record with the new result, so one failed forced refresh would drop its collected pages.
+  The test showed the defect. `merge_refresh` fixes it. Restored snapshots now rewrite their original content (key order may differ).
+- `Python 3.15` is the local interpreter. The code stays inside 3.12 features; CI is the check.
+
+**Decided**
+- Discovery has no per-run limit; admission has. A candidate beyond the limit is recorded as `descoperit`, so a later run with a larger limit needs no new discovery.
+  Cost of the alternative (store only admitted sources): the 34 candidates beyond the old three-file limit would be rediscovered or lost.
+- Offline runs keep a tracked record when its body is absent. They fail only when the tracked files are unreadable or the proposed state is invalid.
+  Cost of failing on every missing body: no targeted run would work on a fresh checkout, which is the case the brief wants to support.
+- `ultima_incercare` is the only stale marker. A source older than some age is not stale by itself; the interface says "consultat la".
+
 ## 2026-10-25 — Specify the next inventory implementation pass
 
 **Done**

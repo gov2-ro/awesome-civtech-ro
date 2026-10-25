@@ -159,8 +159,13 @@ def publish_preview(items, root, site):
             fmt = source.get('format', '')
             filename = unquote(Path(urlsplit(url).path).name)
             title = FORMATS.get(fmt, 'Sursă de date') + (' · ' + filename if filename else '')
-            source_list.append({'id': ident, 'url': url, 'title': title, 'format': fmt,
-                                'checked': str(source.get('fetched_at', ''))[:10]})
+            listed = {'id': ident, 'url': url, 'title': title, 'format': fmt, 'checked': str(source.get('fetched_at', ''))[:10]}
+            attempt = source.get('ultima_incercare')
+            if attempt:
+                # The retained evidence is older than the last attempt. Say so; never present it as freshly verified.
+                listed['refreshFailed'] = {'date': str(attempt.get('la', ''))[:10], 'status': attempt.get('http_status'),
+                                           'state': attempt.get('stare')}
+            source_list.append(listed)
             for field in source['campuri']:
                 basis = BASIS.get(field.get('stare_tip'))
                 if not basis:
@@ -182,6 +187,8 @@ def publish_preview(items, root, site):
         examples = list(dict.fromkeys(f['name'] for f in fields if f['name'].casefold() not in {'q', 'limit', 'offset', 'page', 'lang', 'format'}))[:5]
         item['inventory'] = {'count': len(fields), 'sources': len(source_list), 'examples': examples,
                              'keywords': ' '.join(words)[:16000], 'docs': links, 'partial': True, 'positions': positions}
+        if any(s.get('refreshFailed') for s in source_list):
+            item['inventory']['stale'] = sum(bool(s.get('refreshFailed')) for s in source_list)
         if fields:
             filename = slug + '.json'
             payload = {'slug': slug, 'partial': True, 'sources': source_list, 'fields': fields}

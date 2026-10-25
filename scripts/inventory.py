@@ -1,12 +1,18 @@
 """Draft variable inventories from collected documentation and linked schemas/data. Stdlib only.
 
-    python3 scripts/inventory.py                 # cached docs; fetch at most 3 linked files per entry
+    python3 scripts/inventory.py                 # cached docs; admit at most 3 linked files per entry
     python3 scripts/inventory.py --offline       # no requests; rebuild from local evidence
     python3 scripts/inventory.py --only demoanaf --force
+    python3 scripts/inventory.py --dry-run       # compute and report; write nothing
 
 Outputs stay in observatii/inventare/. No catalogue or site field is changed.
 Declared schema types, observed JSON types and HTML control types stay distinct.
 Every result remains partial and requires editorial review.
+
+Runs are incremental. The tracked state is read first. A run changes only the selected projects (--only) and the
+sources they use. Other projects keep their records, references and evidence. A source that cannot be refreshed
+(failed request, missing cache, failed parse) keeps its last good evidence and records the failed attempt.
+Discoveries live in descoperiri.json, separate from the per-run limits. A run writes all files or none.
 """
 from __future__ import annotations
 
@@ -22,6 +28,9 @@ from urllib.parse import unquote, urlsplit
 
 from collect_docs import Fetcher, canonical, flat, restore, scope_of
 from common import PUBLIC_ROOT, data_schema, load_catalogue, load_vocabulary, observation_paths
+from inventory_state import (REGISTRY, RequestLog, StateError, active_members, admit, check_text, dump, load_previous,
+                             new_discovery, now_utc, priority, registry_map, retire, seed_registry, sorted_registry,
+                             source_id, usable, validate_state, write_atomic, write_file_atomic)
 
 MAX_FIELDS, MAX_DEPTH, SAMPLE_ROWS = 2000, 7, 25
 
@@ -226,41 +235,62 @@ def file_url(url):
     return url
 
 
-def candidate_sources(entry, documentation, maximum=3, verified_metadata=()):
+LINK_IN_TEXT = re.compile(r'https?://[^\s<>`"\])]+')
+EXCLUDED_WORDS = ('package-lock', 'package.json', 'tsconfig.json', 'agent-card', 'mcp.json', 'vendor-list', '/agent-skills/')
+
+
+def related_source(entry, url):
+    """A source belongs to a project when it sits on its site, on an API subdomain, or in an explicitly linked raw file.
+    Shared-host files outside the project path are excluded unless project-specific evidence links them."""
+    host = urlsplit(url).hostname or ''
+    own = urlsplit(entry['url']).hostname or ''
+    related = host.removeprefix('www.') == own.removeprefix('www.') or host.endswith('.' + own.removeprefix('www.'))
+    if not related and host != 'raw.githubusercontent.com':
+        return False
+    return not (host == own and scope_of(entry['url'], url) != 'proiect')
+
+
+def discover_candidates(entry, documentation, verified_metadata=()):
+    """Every structured-source candidate that the entry's own documentation links or names, with its locator.
+    No limit applies here; the per-run limit is applied when a candidate is admitted."""
     found = {}
     for page in documentation.get('pages', []):
         if page['state'] != 'colectat' or page['scope'] != 'proiect':
             continue
-        links = [u for u, _ in page.get('links', [])]
-        links += re.findall(r'https?://[^\s<>`"\])]+', page.get('text', ''))
-        for link in links:
+        snapshot = 'documentare/' + page['snapshot'] if page.get('snapshot') else None
+        located = [(link, 'link-in-documentatie', {'pointer': f'/links/{n}'}) for n, (link, _) in enumerate(page.get('links', []))]
+        for match in LINK_IN_TEXT.finditer(page.get('text', '')):
+            link = match.group(0).rstrip('.,;')
+            located.append((link, 'url-in-text', {'pointer': '/text', 'interval': [match.start(), match.start() + len(link)]}))
+        for link, method, where in located:
             link = link.rstrip('.,;')
             if '{' in link or not re.search(r'\.(json|csv|tsv|geojson)(?:$|\?)', link, re.I):
                 continue
             url = file_url(link)
-            if not url or any(word in url.lower() for word in ('package-lock', 'package.json', 'tsconfig.json', 'agent-card', 'mcp.json', 'vendor-list', '/agent-skills/')):
+            if not url or any(word in url.lower() for word in EXCLUDED_WORDS) or not related_source(entry, url):
                 continue
-            host = urlsplit(url).hostname or ''
-            own = urlsplit(entry['url']).hostname or ''
-            # API subdomains belong to the same site; raw GitHub files must be explicitly linked from its documentation.
-            related = host.removeprefix('www.') == own.removeprefix('www.') or host.endswith('.' + own.removeprefix('www.'))
-            if not related and host != 'raw.githubusercontent.com':
-                continue
-            if host == own and scope_of(entry['url'], url) != 'proiect':
-                continue
-            priority = 0 if 'openapi' in url.lower() or 'swagger' in url.lower() else 1 if '.csv' in url.lower() else 2
-            priority += 3 if '/en/' in url else 0
-            found[url] = {'url': url, 'link_original': link, 'documentatie': page['final_url'], 'prioritate': priority}
+            if url not in found:
+                found[url] = {'url': url, 'link_original': link, 'documentatie': page['final_url'], 'prioritate': priority(url),
+                              'metoda': method, 'parinte': page['final_url'], 'descoperit_la': page.get('fetched_at'),
+                              'dovada': {'url': page['final_url'], 'sha256': page.get('sha256'), 'snapshot': snapshot, **where}}
     # Reuse checked metadata links from editorial pilot records, without project-specific URLs in code.
     for evidence in verified_metadata:
         url = canonical(evidence.get('url', ''))
         if url:
-            found[url] = {'url': url, 'link_original': url, 'documentatie': url, 'prioritate': 0}
-    return sorted(found.values(), key=lambda r: (r['prioritate'], r['url']))[:maximum]
+            found[url] = {'url': url, 'link_original': url, 'documentatie': url, 'prioritate': 0, 'metoda': 'dovada-pilot',
+                          'parinte': None, 'descoperit_la': None,
+                          'dovada': {'url': url, 'sha256': evidence.get('sha256'), 'pointer': '/seturi_date_verificate',
+                                     'snapshot': 'documentare/' + evidence['snapshot'] if evidence.get('snapshot') else None}}
+    return sorted(found.values(), key=lambda r: (r['prioritate'], r['url']))
 
 
-def source_id(url):
-    return hashlib.sha256(url.encode()).hexdigest()[:20]
+def candidate_sources(entry, documentation, maximum=3, verified_metadata=()):
+    return discover_candidates(entry, documentation, verified_metadata)[:maximum]
+
+
+def discovery_record(slug, candidate):
+    return new_discovery(slug, candidate['url'], candidate['metoda'], parent=candidate['parinte'], evidence=candidate['dovada'],
+                         original=candidate['link_original'], discovered_at=candidate['descoperit_la'], rank=candidate['prioritate'])
 
 
 def analyse_source(response):
@@ -280,40 +310,54 @@ def analyse_source(response):
     return metadata
 
 
-def build_profiles(entries, docs, sources, candidates, concepts):
-    profiles = []
-    for entry in entries:
-        record = docs.get(entry['slug'], {})
-        controls = {}
-        for page in record.get('pages', []):
-            if page['state'] != 'colectat' or page['scope'] != 'proiect':
+def control_candidates(record):
+    """HTML control candidates of a project's own pages, and whether every page body was available locally."""
+    controls, complete = {}, True
+    for page in record.get('pages', []):
+        if page['state'] != 'colectat' or page['scope'] != 'proiect':
+            continue
+        if 'input_candidates' not in page:
+            complete = False
+            continue
+        controls_hash = hashlib.sha256(json.dumps(page.get('input_candidates', []), sort_keys=True).encode()).hexdigest()
+        for control_index, control in enumerate(page.get('input_candidates', [])):
+            name = control.get('name') or control.get('id') or control.get('aria-label') or control.get('placeholder')
+            if not name:
                 continue
-            controls_hash = hashlib.sha256(json.dumps(page.get('input_candidates', []), sort_keys=True).encode()).hexdigest()
-            for control_index, control in enumerate(page.get('input_candidates', [])):
-                name = control.get('name') or control.get('id') or control.get('aria-label') or control.get('placeholder')
-                if not name:
-                    continue
-                key = (name, control.get('type', ''))
-                controls.setdefault(key, {'nume': name, 'rol': 'control-utilizator', 'tip_control_html': control.get('type'),
-                                         'descriere': control.get('aria-label') or control.get('placeholder', ''),
-                                         'stare_tip': 'control-html-candidat',
-                                         'dovada': {'url': page['final_url'], 'sha256': page.get('sha256'), 'sha256_lista_controale': controls_hash,
-                                                    'pointer_snapshot': '/input_candidates/' + str(control_index), 'snapshot': 'documentare/' + page['snapshot'] if page.get('snapshot') else None}})
-        refs = [source_id(c['url']) for c in candidates[entry['slug']]]
-        fields = sum(len(sources[r]['campuri']) for r in refs)
-        gaps = ['Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.']
-        if not fields:
-            gaps.append('Nu s-a verificat un dicționar sau o schemă de date în această trecere.')
-        if record.get('state') != 'documentatie-gasita':
-            gaps.append('Colectarea statică nu a confirmat o pagină de documentare specifică proiectului.')
-        profiles.append({'slug': entry['slug'], 'nume': entry['nume'], 'stare': 'propunere', 'completitudine': 'partial' if fields or controls else 'neconfirmat',
-                         'scop': entry['descriere_scurta'] or entry['descriere'],
-                         'permite': [concepts.get(c, c) for c in entry.get('capabilities', [])],
-                         'formate_catalogate': [concepts.get(c, c) for c in entry.get('formats', [])],
-                         'baza_descrierii': {'tabel': 'intrari.csv', 'slug': entry['slug']},
-                         'intrari_utilizator': list(controls.values()), 'surse_structurate': refs,
-                         'campuri_din_surse': fields, 'lacune': gaps})
-    return profiles
+            key = (name, control.get('type', ''))
+            controls.setdefault(key, {'nume': name, 'rol': 'control-utilizator', 'tip_control_html': control.get('type'),
+                                     'descriere': control.get('aria-label') or control.get('placeholder', ''),
+                                     'stare_tip': 'control-html-candidat',
+                                     'dovada': {'url': page['final_url'], 'sha256': page.get('sha256'), 'sha256_lista_controale': controls_hash,
+                                                'pointer_snapshot': '/input_candidates/' + str(control_index), 'snapshot': 'documentare/' + page['snapshot'] if page.get('snapshot') else None}})
+    return list(controls.values()), complete
+
+
+def build_profile(entry, record, sources, refs, concepts, previous=None, notes=None):
+    """One draft profile. When a documentation snapshot is missing locally, the previous controls stay."""
+    controls, complete = control_candidates(record)
+    if not complete and previous is not None:
+        controls = previous.get('intrari_utilizator', [])
+        if notes is not None:
+            notes.append(f'{entry["slug"]}: documentation snapshots missing; previous HTML control candidates kept')
+    fields = sum(len(sources[r]['campuri']) for r in refs if r in sources)
+    gaps = ['Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.']
+    if not fields:
+        gaps.append('Nu s-a verificat un dicționar sau o schemă de date în această trecere.')
+    if record.get('state') != 'documentatie-gasita':
+        gaps.append('Colectarea statică nu a confirmat o pagină de documentare specifică proiectului.')
+    return {'slug': entry['slug'], 'nume': entry['nume'], 'stare': 'propunere', 'completitudine': 'partial' if fields or controls else 'neconfirmat',
+            'scop': entry['descriere_scurta'] or entry['descriere'],
+            'permite': [concepts.get(c, c) for c in entry.get('capabilities', [])],
+            'formate_catalogate': [concepts.get(c, c) for c in entry.get('formats', [])],
+            'baza_descrierii': {'tabel': 'intrari.csv', 'slug': entry['slug']},
+            'intrari_utilizator': controls, 'surse_structurate': refs,
+            'campuri_din_surse': fields, 'lacune': gaps}
+
+
+def build_profiles(entries, docs, sources, candidates, concepts):
+    return [build_profile(entry, docs.get(entry['slug'], {}), sources, [source_id(c['url']) for c in candidates[entry['slug']]], concepts)
+            for entry in entries]
 
 
 def pointer_value(document, pointer):
@@ -326,28 +370,43 @@ def pointer_value(document, pointer):
     return value
 
 
-def check_inventory(out, observations):
-    """Check local evidence hashes, field pointers and source references without requests."""
-    errors = []
+def check_report(out, observations):
+    """Check local evidence hashes, field pointers, references and the registry without requests.
+    `errors` are corrupt or inconsistent records. `unavailable` lists evidence bodies absent from this checkout;
+    those are not hash-verified and are never counted as verified. `stale` lists sources whose last refresh failed."""
+    report = {'errors': [], 'unavailable': [], 'verified': 0, 'stale': []}
+    errors = report['errors']
     try:
-        sources = json.loads((out / 'seturi-date.json').read_text())['surse']
-        profiles = json.loads((out / 'proiecte.json').read_text())['proiecte']
-    except (OSError, ValueError, KeyError) as exc:
-        return [str(exc)]
+        previous = load_previous(out)
+    except StateError as exc:
+        return {**report, 'errors': [str(exc)]}
+    if not (out / 'seturi-date.json').exists() or not (out / 'proiecte.json').exists():
+        return {**report, 'errors': [f'{out}: generated inventory files are missing']}
+    sources, profiles = list(previous['sources'].values()), list(previous['profiles'].values())
     known = {s['id'] for s in sources}
     if len(known) != len(sources):
         errors.append('Duplicate structured source IDs.')
     for source in sources:
         if source_id(source['url']) != source['id']:
             errors.append('Source ID does not match URL: ' + source['url'])
+        if source.get('ultima_incercare'):
+            report['stale'].append(source['url'])
         if not source.get('sha256'):
             continue
         try:
             response = json.loads((out / source['snapshot']).read_text())
+        except FileNotFoundError:
+            report['unavailable'].append(source['url'])
+            continue
+        except (OSError, ValueError) as exc:
+            errors.append(source['url'] + ': ' + str(exc))
+            continue
+        try:
             body = response['body']
             if hashlib.sha256(body.encode()).hexdigest() != source['sha256']:
                 errors.append('Source hash mismatch: ' + source['url'])
                 continue
+            report['verified'] += 1
             if source.get('format') == 'csv':
                 _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''))
                 if [f['nume'] for f in fields] != [f['nume'] for f in source['campuri']]:
@@ -383,35 +442,258 @@ def check_inventory(out, observations):
                 name = candidate.get('name') or candidate.get('id') or candidate.get('aria-label') or candidate.get('placeholder')
                 if name != control['nume'] or candidate.get('type') != control['tip_control_html']:
                     errors.append('Control differs from its evidence: ' + profile['slug'] + ' ' + control['nume'])
+            except FileNotFoundError:
+                report['unavailable'].append('documentation: ' + profile['slug'] + ' ' + str(evidence.get('snapshot')))
             except (OSError, ValueError, KeyError, IndexError, TypeError) as exc:
                 errors.append(profile['slug'] + ': ' + str(exc))
-    return errors
+    if previous['registry']:
+        registry = registry_map(previous['discoveries'])
+        errors += validate_state(profiles, sources, registry)
+    return report
+
+
+def check_inventory(out, observations):
+    """The evidence errors only. Missing local bodies are reported by check_report, not counted as errors."""
+    return check_report(out, observations)['errors']
+
+
+# --- incremental update ------------------------------------------------------------------------------------------
+
+def read_cache(path):
+    try:
+        return json.loads(path.read_text())
+    except (OSError, ValueError):
+        return None
+
+
+def attempt_of(metadata, when):
+    """The last refresh attempt, kept next to (never instead of) the last good evidence."""
+    return {'la': metadata.get('fetched_at') or when, 'stare': metadata.get('state') or metadata.get('stare'),
+            'http_status': metadata.get('http_status'), 'eroare': metadata.get('error')}
+
+
+def reconcile(previous, metadata, fresh, when):
+    """Merge a new analysis of a source with its tracked record. Field evidence is replaced only by better evidence.
+
+    A usable record whose refresh failed (request error, HTTP error, unparsable body) stays and gains `ultima_incercare`.
+    A changed body keeps the earlier version in `versiuni_anterioare`. A fresh success clears an earlier failure."""
+    if not previous:
+        return metadata
+    if usable(previous) and not usable(metadata):
+        return {**previous, 'ultima_incercare': attempt_of(metadata, when)}
+    result = dict(metadata)
+    history = list(previous.get('versiuni_anterioare', []))
+    if usable(previous) and usable(metadata) and previous['sha256'] != metadata['sha256']:
+        history.append({k: previous[k] for k in ('sha256', 'fetched_at', 'snapshot') if k in previous})
+    if history:
+        result['versiuni_anterioare'] = history
+    if not fresh and previous.get('ultima_incercare') and usable(metadata) and previous.get('sha256') == metadata.get('sha256'):
+        result['ultima_incercare'] = previous['ultima_incercare']
+    return result
+
+
+def update_inventory(entries, docs, verified, previous, *, cache, selected=(), offline=False, force=False, max_files=3,
+                     fetch=None, now=None, concepts=None, retire_sources=(), add_sources=()):
+    """Compute the next inventory state from the tracked state, local documentation and caches.
+
+    Only the selected projects change. `fetch` is called only for sources that selected projects use.
+    Raises StateError before returning when the proposed state is invalid."""
+    now = now or now_utc()
+    cache = Path(cache)
+    cache.mkdir(parents=True, exist_ok=True)
+    concepts = concepts or {}
+    slugs = [e['slug'] for e in entries]
+    by_slug = {e['slug']: e for e in entries}
+    selected = set(selected)
+    if selected - set(slugs):
+        raise StateError('Unknown slug: ' + ', '.join(sorted(selected - set(slugs))))
+    # New entries have no tracked record to protect; they are built from whatever local evidence exists.
+    work = (selected or set(slugs)) | {s for s in slugs if s not in previous['profiles']}
+    report = {'pastrate': [], 'reimprospatate': [], 'esuate': [], 'neinspectate': [], 'avertismente': [], 'cereri': 0, 'cache': 0}
+
+    candidates = {s: discover_candidates(by_slug[s], docs.get(s, {}), verified.get(s, [])) for s in slugs}
+    found = {(s, c['url']): discovery_record(s, c) for s in slugs for c in candidates[s]}
+    registry = seed_registry(previous, found)
+    for slug, url, reason in retire_sources:
+        retire(registry, slug, url, reason, now)
+    for slug, spec in add_sources:
+        if slug not in by_slug:
+            raise StateError('Unknown slug: ' + slug)
+        url = canonical(spec['url'])
+        if not url:
+            raise StateError('Not an HTTP URL: ' + spec['url'])
+        key = (slug, url)
+        if key in registry and registry[key]['stare'] == 'retras':
+            registry[key].update(stare='activ', retras=None)
+            registry[key]['istoric'].append({'eveniment': 'reactivat', 'la': now})
+        elif key not in registry:
+            registry[key] = new_discovery(slug, url, spec.get('metoda', 'adaugat-explicit'), state='activ', parent=spec.get('parinte'),
+                                          evidence=spec.get('dovada'), discovered_at=now, note=spec.get('nota'))
+            registry[key]['istoric'].append({'eveniment': 'adaugat', 'la': now})
+        elif registry[key]['stare'] == 'descoperit':
+            registry[key]['stare'] = 'activ'
+            registry[key]['istoric'].append({'eveniment': 'admis', 'la': now})
+    for slug in sorted(work):
+        for candidate in candidates[slug]:
+            key = (slug, candidate['url'])
+            if key not in registry:
+                registry[key] = found[key]
+            elif registry[key]['locator_stare'] == 'necunoscut' and candidate['dovada']:
+                registry[key].update({k: found[key][k] for k in ('metoda', 'parinte', 'link_original', 'dovada', 'locator_stare', 'descoperit_la')})
+                registry[key]['istoric'].append({'eveniment': 'locator-completat', 'la': now})
+        for record in admit(registry, slug, max_files):
+            record['istoric'].append({'eveniment': 'admis', 'la': now})
+    for (slug, url), record in registry.items():
+        if slug not in by_slug and record['stare'] != 'retras':
+            retire(registry, slug, url, 'entry absent from the catalogue', now)
+
+    urls = sorted({d['url'] for d in registry.values() if d['stare'] in ('activ', 'retras')})
+    fetch_urls = {d['url'] for s in (selected or slugs) for d in active_members(registry, s)}
+
+    def obtain(url):
+        ident = source_id(url)
+        path = cache / (ident + '.json')
+        tracked = previous['sources'].get(ident)
+        cached = read_cache(path)
+        refresh = url in fetch_urls and not offline
+        response, origin = None, None
+        if cached is not None and not (refresh and force):
+            response, origin = cached, 'cache'
+        elif refresh:
+            response, origin = fetch(url), 'retea'
+            if response.get('state') == 'limita-cereri':
+                response, origin = None, 'omis'
+        if response is None:
+            if tracked:
+                return url, tracked, ('neinspectat' if origin == 'omis' else 'pastrat-fara-cache' if url in fetch_urls else 'neatins')
+            return url, analyse_source({'url': url, 'state': 'necolectat'}), 'necolectat'
+        if origin == 'retea' and (response.get('state') == 'ok' or cached is None or cached.get('state') != 'ok'):
+            write_file_atomic(path, dump(response))
+        metadata = analyse_source(response)
+        if metadata.get('sha256'):
+            snapshot = cache.parent / metadata['snapshot']
+            if not snapshot.exists():
+                snapshot.parent.mkdir(parents=True, exist_ok=True)
+                write_file_atomic(snapshot, dump(response))
+        merged = reconcile(tracked, metadata, origin == 'retea', now)
+        if origin == 'retea':
+            outcome = 'reimprospatat' if merged is not tracked and usable(merged) and not merged.get('ultima_incercare') else 'esuat'
+        else:
+            outcome = 'cache'
+        return url, merged, outcome
+
+    with ThreadPoolExecutor(max_workers=6) as pool:
+        results = list(pool.map(obtain, urls))
+    sources = {}
+    for url, metadata, outcome in results:
+        sources[metadata['id']] = metadata
+        key = {'reimprospatat': 'reimprospatate', 'esuat': 'esuate', 'neinspectat': 'neinspectate',
+               'pastrat-fara-cache': 'pastrate'}.get(outcome)
+        if key:
+            report[key].append(url)
+        report['cache'] += outcome == 'cache'
+    for ident, old in previous['sources'].items():
+        sources.setdefault(ident, old)  # a tracked source nothing references any more is history, not garbage
+
+    profiles = []
+    for entry in entries:
+        slug = entry['slug']
+        old = previous['profiles'].get(slug)
+        refs = [d['sursa_id'] for d in active_members(registry, slug)]
+        if slug in work:
+            profiles.append(build_profile(entry, docs.get(slug, {}), sources, refs, concepts, old, report['avertismente']))
+        else:
+            profiles.append({**old, 'campuri_din_surse': sum(len(sources[r]['campuri']) for r in old['surse_structurate'] if r in sources)})
+    ordered = sorted(sources.values(), key=lambda s: s['url'])
+    errors = validate_state(profiles, ordered, registry, previous)
+    if errors:
+        raise StateError('Proposed inventory is invalid:\n  ' + '\n  '.join(errors[:20]))
+    return {'profiles': profiles, 'sources': ordered, 'registry': registry, 'report': report}
+
+
+def render_outputs(state):
+    """Serialise a state into the six generated files. Deterministic: the same state gives the same bytes."""
+    profiles, sources, registry = state['profiles'], state['sources'], state['registry']
+
+    def table(header, rows):
+        stream = io.StringIO()
+        writer = csv.writer(stream, lineterminator='\n')
+        writer.writerow(header)
+        writer.writerows(rows)
+        return stream.getvalue()
+
+    owners = {}
+    for profile in profiles:
+        for ident in profile['surse_structurate']:
+            owners.setdefault(ident, []).append(profile['slug'])
+    field_rows = []
+    for source in sources:
+        for field in source['campuri']:
+            declared = field.get('tip_declarat')
+            if isinstance(declared, list):
+                declared = json.dumps(declared)
+            operations = sorted({a['operatie'] for a in field.get('aparitii', []) if a.get('operatie')})
+            field_rows.append(['|'.join(owners.get(source['id'], [])), source['id'], source['url'], source.get('format'),
+                               field.get('rol'), field['nume'], field['cale'], declared,
+                               '|'.join(field.get('tipuri_observate', [])), field.get('tip_semantic'),
+                               field.get('unitate'), field.get('descriere'), '|'.join(operations),
+                               field.get('pointer', 'coloana-csv:' + str(field.get('coloana_csv'))), field['stare_tip']])
+    return {
+        'proiecte.json': dump({'versiune': 1, 'stare': 'propuneri', 'proiecte': profiles}),
+        'seturi-date.json': dump({'versiune': 1, 'surse': sources}),
+        REGISTRY: dump({'versiune': 1, 'stare': 'propuneri', 'descoperiri': sorted_registry(registry)}),
+        'rezumat.csv': table(['slug', 'stare', 'completitudine', 'controale_utilizator', 'surse_structurate', 'campuri_din_surse'],
+                             [[p['slug'], p['stare'], p['completitudine'], len(p['intrari_utilizator']), len(p['surse_structurate']),
+                               p['campuri_din_surse']] for p in profiles]),
+        'campuri.csv': table(['proiecte', 'sursa_id', 'url', 'format', 'rol', 'nume', 'cale', 'tip_declarat', 'tipuri_observate',
+                              'tip_semantic', 'unitate', 'descriere', 'operatii', 'pointer_dovada', 'stare_tip'], field_rows),
+        'intrari-utilizator.csv': table(['slug', 'nume', 'tip_control_html', 'descriere', 'url_dovada', 'pointer_snapshot', 'stare_tip'],
+                                        [[p['slug'], f['nume'], f['tip_control_html'], f['descriere'], f['dovada']['url'],
+                                          f['dovada']['pointer_snapshot'], f['stare_tip']] for p in profiles for f in p['intrari_utilizator']]),
+    }
 
 
 def main():
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('--data-dir', type=Path, default=PUBLIC_ROOT)
     parser.add_argument('--out', type=Path)
-    parser.add_argument('--only', default='')
-    parser.add_argument('--offline', action='store_true')
+    parser.add_argument('--only', default='', help='comma-separated slugs; other projects keep their records and evidence')
+    parser.add_argument('--offline', action='store_true', help='no requests; a missing cache keeps the tracked record')
     parser.add_argument('--check', action='store_true', help='check existing evidence and references; no requests or rewrites')
-    parser.add_argument('--force', action='store_true')
-    parser.add_argument('--max-files', type=int, default=3)
+    parser.add_argument('--strict-snapshots', action='store_true', help='with --check: fail when local evidence bodies are absent')
+    parser.add_argument('--dry-run', action='store_true', help='compute and report the next state; write nothing')
+    parser.add_argument('--force', action='store_true', help='fetch selected sources again even when a cache exists')
+    parser.add_argument('--max-files', type=int, default=3, help='admit new sources until a project has this many members')
+    parser.add_argument('--max-requests', type=int, help='stop fetching after this many direct requests in this run')
+    parser.add_argument('--lot', default='', help='name of the collection batch; enables the request log')
+    parser.add_argument('--budget', type=int, help='with --lot: total direct requests allowed for the batch across runs')
+    parser.add_argument('--retire', nargs=2, action='append', metavar=('SLUG', 'URL'), default=[], help='retire a source membership; needs --reason')
+    parser.add_argument('--reason', default='', help='reason recorded with --retire')
+    parser.add_argument('--add-source', nargs=2, action='append', metavar=('SLUG', 'URL'), default=[],
+                        help='add an explicitly identified structured source to a project')
+    parser.add_argument('--method', default='adaugat-explicit', help='with --add-source: how the source was identified')
+    parser.add_argument('--parent', help='with --add-source: the page or repository where the source was identified')
+    parser.add_argument('--note', help='with --add-source: a short note kept with the discovery')
     args = parser.parse_args()
-    if args.max_files < 1:
-        parser.error('--max-files must be positive')
+    if args.max_files < 1 or (args.max_requests is not None and args.max_requests < 0):
+        parser.error('--max-files must be positive and --max-requests cannot be negative')
+    if args.retire and not args.reason.strip():
+        parser.error('--retire needs a recorded --reason')
     if data_schema(args.data_dir) != 'v2':
         parser.error('Variable inventories require a taxonomy v2 data root.')
     obs = observation_paths(args.data_dir)['profile'].parent
     out = args.out or obs / 'inventare'
     if args.check:
-        errors = check_inventory(out, obs)
-        for error in errors:
+        report = check_report(out, obs)
+        for error in report['errors']:
             print('ERROR: ' + error)
-        print(f'{len(errors)} inventory evidence errors')
-        return int(bool(errors))
-    cache = out / 'surse'
-    cache.mkdir(parents=True, exist_ok=True)
+        for item in report['unavailable']:
+            print('UNAVAILABLE (not verified): ' + item)
+        for url in report['stale']:
+            print('STALE (last refresh failed): ' + url)
+        print(f'{len(report["errors"])} inventory evidence errors; {report["verified"]} source bodies hash-verified; '
+              f'{len(report["unavailable"])} local bodies unavailable and not verified; {len(report["stale"])} sources with a failed refresh')
+        return int(bool(report['errors']) or (args.strict_snapshots and bool(report['unavailable'])))
     entries = load_catalogue(args.data_dir)
     selected = set(filter(None, args.only.split(',')))
     if selected - {e['slug'] for e in entries}:
@@ -420,64 +702,38 @@ def main():
     pilot_path = obs / 'documentare/pilot-inventare.json'
     pilots = json.loads(pilot_path.read_text()).get('proiecte', []) if pilot_path.exists() else []
     verified = {p['slug']: [d['dovada'] for d in p.get('seturi_date_verificate', [])] for p in pilots}
-    candidates = {e['slug']: candidate_sources(e, docs.get(e['slug'], {}), args.max_files, verified.get(e['slug'], [])) for e in entries}
-    urls = {c['url'] for e in entries for c in candidates[e['slug']]}
-    fetch_urls = {c['url'] for e in entries if not selected or e['slug'] in selected for c in candidates[e['slug']]}
-    fetcher = Fetcher(timeout=12)
-    def obtain(url):
-        path = cache / (source_id(url) + '.json')
-        if path.exists() and (args.offline or url not in fetch_urls or not args.force):
-            response = json.loads(path.read_text())
-        elif not args.offline and url in fetch_urls:
-            response = fetcher(url)
-            path.write_text(json.dumps(response, ensure_ascii=False, indent=2) + '\n')
-            print(response['state'] + ' ' + url, flush=True)
-        else:
-            response = {'url': url, 'state': 'necolectat'}
-        metadata = analyse_source(response)
-        if metadata.get('sha256'):
-            (out / metadata['snapshot']).write_text(json.dumps(response, ensure_ascii=False, indent=2) + '\n')
-        return url, metadata
-    with ThreadPoolExecutor(max_workers=6) as pool:
-        sources = {r['id']: r for _, r in pool.map(obtain, sorted(urls))}
     concepts = {c: row['eticheta_ro'] for c, row in load_vocabulary(args.data_dir)['concepts'].items()}
-    profiles = build_profiles(entries, docs, sources, candidates, concepts)
-    for name, value in [('proiecte.json', {'versiune': 1, 'stare': 'propuneri', 'proiecte': profiles}),
-                        ('seturi-date.json', {'versiune': 1, 'surse': list(sources.values())})]:
-        (out / name).write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n')
-    with (out / 'rezumat.csv').open('w', newline='') as stream:
-        writer = csv.writer(stream, lineterminator='\n')
-        writer.writerow(['slug', 'stare', 'completitudine', 'controale_utilizator', 'surse_structurate', 'campuri_din_surse'])
-        for p in profiles:
-            writer.writerow([p['slug'], p['stare'], p['completitudine'], len(p['intrari_utilizator']), len(p['surse_structurate']), p['campuri_din_surse']])
-    owners = {}
-    for profile in profiles:
-        for ident in profile['surse_structurate']:
-            owners.setdefault(ident, []).append(profile['slug'])
-    with (out / 'campuri.csv').open('w', newline='') as stream:
-        writer = csv.writer(stream, lineterminator='\n')
-        writer.writerow(['proiecte', 'sursa_id', 'url', 'format', 'rol', 'nume', 'cale', 'tip_declarat',
-                         'tipuri_observate', 'tip_semantic', 'unitate', 'descriere', 'operatii', 'pointer_dovada', 'stare_tip'])
-        for source in sources.values():
-            for field in source['campuri']:
-                declared = field.get('tip_declarat')
-                if isinstance(declared, list):
-                    declared = json.dumps(declared)
-                operations = sorted({a['operatie'] for a in field.get('aparitii', []) if a.get('operatie')})
-                writer.writerow(['|'.join(owners.get(source['id'], [])), source['id'], source['url'], source.get('format'),
-                                 field.get('rol'), field['nume'], field['cale'], declared,
-                                 '|'.join(field.get('tipuri_observate', [])), field.get('tip_semantic'),
-                                 field.get('unitate'), field.get('descriere'), '|'.join(operations),
-                                 field.get('pointer', 'coloana-csv:' + str(field.get('coloana_csv'))), field['stare_tip']])
-    with (out / 'intrari-utilizator.csv').open('w', newline='') as stream:
-        writer = csv.writer(stream, lineterminator='\n')
-        writer.writerow(['slug', 'nume', 'tip_control_html', 'descriere', 'url_dovada', 'pointer_snapshot', 'stare_tip'])
-        for profile in profiles:
-            for field in profile['intrari_utilizator']:
-                writer.writerow([profile['slug'], field['nume'], field['tip_control_html'], field['descriere'],
-                                 field['dovada']['url'], field['dovada']['pointer_snapshot'], field['stare_tip']])
+    log = RequestLog(out / 'jurnal-cereri.csv', args.lot) if args.lot else None
+    limit = args.max_requests
+    if log and args.budget is not None:
+        left = args.budget - log.direct_requests()
+        limit = left if limit is None else min(limit, left)
+    fetcher = Fetcher(timeout=12, max_requests=limit, log=log, purpose='inventar')
+    try:
+        previous = load_previous(out)
+        state = update_inventory(
+            entries, docs, verified, previous, cache=out / 'surse', selected=selected, offline=args.offline, force=args.force,
+            max_files=args.max_files, fetch=fetcher, concepts=concepts,
+            retire_sources=[(slug, canonical(url), args.reason) for slug, url in args.retire],
+            add_sources=[(slug, {'url': url, 'metoda': args.method, 'parinte': args.parent, 'nota': args.note}) for slug, url in args.add_source])
+        if not args.dry_run:
+            write_atomic(out, render_outputs(state))
+    except StateError as exc:
+        print('ERROR: ' + str(exc))
+        print('No inventory file was changed.')
+        return 2
+    report = state['report']
+    for key, label in (('reimprospatate', 'refreshed'), ('esuate', 'refresh failed; last evidence kept'),
+                       ('pastrate', 'no local body; tracked record kept'), ('neinspectate', 'not inspected: request limit reached')):
+        for url in report[key]:
+            print(f'{label}: {url}')
+    for note in report['avertismente']:
+        print('WARNING: ' + note)
+    profiles, sources = state['profiles'], state['sources']
     print(f'{len(profiles)} project drafts; {sum(bool(p["campuri_din_surse"]) for p in profiles)} with structured fields; '
-          f'{sum(len(s["campuri"]) for s in sources.values())} shared field records; {fetcher.requests} requests')
+          f'{sum(len(s["campuri"]) for s in sources)} shared field records; {fetcher.requests} requests'
+          + ('; dry run, nothing written' if args.dry_run else ''))
+    return 0
 
 
 if __name__ == '__main__':

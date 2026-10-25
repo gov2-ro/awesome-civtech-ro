@@ -813,7 +813,70 @@ All files below are generated review material. Only the explicit preview build r
   `tip_semantic`, `unitate`, `descriere`, `operatii`, `pointer_dovada`, `stare_tip`.
 - `intrari-utilizator.csv`: `slug`, `nume`, `tip_control_html`, `descriere`, `url_dovada`, `pointer_snapshot`, `stare_tip`.
 - `rezumat.csv`: `slug`, `stare`, `completitudine`, `controale_utilizator`, `surse_structurate`, `campuri_din_surse`.
+- `descoperiri.json`: the discovery registry. One record per project and source URL (see below).
+- `jurnal-cereri.csv`: the request log of named collection batches (see below).
 - `surse/*.json`: local HTTP response bodies and cached failures; gitignored. Immutable versions include the body hash in their name.
+  A failed response never replaces a cached good body.
+
+**Discovery registry (`descoperiri.json`).** The registry records which structured source belongs to which project, and why.
+It is separate from the per-run file limit. A smaller limit never deletes a discovery. Keys of each record:
+
+- `proiect`, `url`, `sursa_id`: the project slug, the source URL and its ID (`sursa_id` is the first 20 hex digits of the SHA-256 of the URL).
+- `stare`: `activ` (the project uses the source; its profile lists the ID), `descoperit` (found in the documentation, not admitted
+  because the limit was reached) or `retras` (retired on purpose, with a reason).
+- `metoda`: `link-in-documentatie`, `url-in-text`, `dovada-pilot`, `adaugat-explicit`, `repo-la-revizie` or `membru-anterior`.
+  `membru-anterior` marks a membership that existed before the registry; its locator may be unknown.
+- `parinte`: the page or repository where the source was found, or `null`.
+- `dovada`: the locator of the discovery, or `null`. Keys: `url` (the parent page), `sha256` (hash of its text), `snapshot`
+  (its local snapshot, relative to `observatii/`), `pointer` (`/links/N` is the Nth link of the page; `/text` with `interval`
+  `[start, end]` is a character span of the page text) and `revizie` (for a repository path).
+- `locator_stare`: `cunoscut` or `necunoscut`. An unavailable original locator stays `necunoscut`; the script never invents one.
+  Later documentation can complete it (history event `locator-completat`).
+- `link_original`, `descoperit_la` (retrieval time of the parent page, or `null`), `prioritate` (lower first), `nota` (optional).
+- `retras`: `null`, or `motiv` (required), `la` and `stare_anterioara`. `istoric`: events `admis`, `adaugat`, `retras`, `reactivat`,
+  `locator-completat`, each with a time.
+
+Rules. A project's profile lists exactly its `activ` records. Discovery admits new sources only until a project has `--max-files`
+members (default 3); it never removes a member. A retired source stays in the registry and in `seturi-date.json`.
+Discovery never reactivates it. A temporary HTTP 401, 404 or timeout retires nothing. `--retire SLUG URL --reason TEXT` retires;
+`--add-source SLUG URL --method M --parent URL --note TEXT` adds an explicitly identified source.
+
+**Incremental runs.** `inventory.py` reads the tracked state before it reconstructs candidates. `--only` selects projects.
+A run changes only the selected projects and the sources that they use. Every other profile, source reference and field record
+stays as it is; only the derived `campuri_din_surse` follows a shared source. An entry that has no tracked profile counts as selected.
+
+| Situation | Result |
+| --- | --- |
+| Request fails, source had field evidence | The record keeps its fields, hash and snapshot. `ultima_incercare` (`la`, `stare`, `http_status`, `eroare`) records the attempt. |
+| The new body does not parse | Same as a failed request. |
+| The new body parses and differs | The new fields replace the old. `versiuni_anterioare` lists the earlier `sha256`, `fetched_at` and `snapshot`. |
+| A fresh success | `ultima_incercare` disappears. |
+| Offline or request limit, cached body absent, source tracked | The tracked record stays. The run lists it (`no local body` or `not inspected`). |
+| Offline, cached body absent, source never tracked | State `necolectat`, no fields. |
+| A documentation snapshot is absent for a selected project | Its previous HTML control candidates stay, with a warning. |
+| Tracked file unreadable, unknown slug, invalid proposed state | The run stops before it writes anything. |
+
+`ultima_incercare` is the only mark of stale evidence. The explorer shows `fetched_at` as "consultat la" (consulted on), never as "verified".
+When `ultima_incercare` exists the preview adds `refreshFailed` (`date`, `status`, `state`) to the source and `stale` to the inventory
+summary, and the interface says that the information can be old.
+
+The run builds all six generated files in memory, validates the state (unique IDs, references, registry and profile agreement,
+no field evidence lost, previous versions retained), parses each proposed file, and then replaces the files. A failure leaves every
+tracked file unchanged. A replay from identical caches gives identical bytes (`--offline` twice). `--dry-run` writes nothing.
+
+**Request log (`jurnal-cereri.csv`).** `--lot NAME` turns on the log for a batch. Columns: `lot`, `la`, `metoda`, `url`, `stare`,
+`http_status`, `octeti`, `cache` (`da` for reuse of a body already in the process, `nu` for a direct request), `scop`. It holds no headers
+or credentials. `--budget N` limits the direct requests of the lot across runs; `--max-requests N` limits one run. A request over the
+limit is not made; the source stays uninspected and appears in the run output. The fetcher does not retry. Binary bodies (`PK` zip or
+spreadsheet, PDF, gzip, bodies with NUL bytes) get the state `format-binar` and no decoded text.
+
+**Evidence check.** `inventory.py --check` makes no request and writes nothing. It prints four separate numbers: evidence errors
+(a changed body, a wrong hash, an invalid pointer, a broken reference), bodies hash-verified, bodies unavailable on this checkout
+(not verified, never counted as verified), and sources whose last refresh failed. Only errors fail the check;
+`--strict-snapshots` also fails on unavailable bodies.
+
+The documentation collector keeps the pages that an earlier run collected and a later run cannot collect again. The page stays and
+gains `ultima_incercare` (`fetched_at`, `state`, `http_status`, `error`). A page collected again replaces its earlier copy.
 
 Type evidence remains distinct:
 

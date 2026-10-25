@@ -1,0 +1,1274 @@
+{
+  "versiune": 1,
+  "stare": "propuneri",
+  "descoperiri": [
+    {
+      "proiect": "achizitii-directe-ti-2026",
+      "url": "https://achizitii-directe-ti-2026.mariuscomper.uk/flagged_cases.csv",
+      "sursa_id": "92aab0725bd7591cd85b",
+      "stare": "activ",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://achizitii-directe-ti-2026.mariuscomper.uk/",
+      "link_original": "https://achizitii-directe-ti-2026.mariuscomper.uk/flagged_cases.csv",
+      "dovada": {
+        "url": "https://achizitii-directe-ti-2026.mariuscomper.uk/",
+        "sha256": "a9eb8f89dc1e627b38a3a84aff2feba549c02201657788433569400bd4eff604",
+        "snapshot": "documentare/pagini/fef5fb38fd7f7130bcf76ce6.json",
+        "pointer": "/links/2"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:04.390867+00:00",
+      "prioritate": 1,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/en/all-comparisons.json",
+      "sursa_id": "ab25235e392ffd6aea46",
+      "stare": "descoperit",
+      "metoda": "url-in-text",
+      "parinte": "https://mariuscomper.uk/codurbanism/llms.txt",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/en/all-comparisons.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/llms.txt",
+        "sha256": "8ecd729355be2b46a33d4047721c2228fdba23d92933443d588aac1da7401a96",
+        "snapshot": "documentare/pagini/354d443a5e2bbf7dfd84abea.json",
+        "pointer": "/text",
+        "interval": [
+          4270,
+          4334
+        ]
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.534076+00:00",
+      "prioritate": 5,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/en/comparisons.csv",
+      "sursa_id": "7c3b2b629204741f477a",
+      "stare": "descoperit",
+      "metoda": "url-in-text",
+      "parinte": "https://mariuscomper.uk/codurbanism/llms.txt",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/en/comparisons.csv",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/llms.txt",
+        "sha256": "8ecd729355be2b46a33d4047721c2228fdba23d92933443d588aac1da7401a96",
+        "snapshot": "documentare/pagini/354d443a5e2bbf7dfd84abea.json",
+        "pointer": "/text",
+        "interval": [
+          4424,
+          4483
+        ]
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.534076+00:00",
+      "prioritate": 4,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/en/implementation-tracker.json",
+      "sursa_id": "67db3b3792dc188c2059",
+      "stare": "descoperit",
+      "metoda": "url-in-text",
+      "parinte": "https://mariuscomper.uk/codurbanism/llms.txt",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/en/implementation-tracker.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/llms.txt",
+        "sha256": "8ecd729355be2b46a33d4047721c2228fdba23d92933443d588aac1da7401a96",
+        "snapshot": "documentare/pagini/354d443a5e2bbf7dfd84abea.json",
+        "pointer": "/text",
+        "interval": [
+          3355,
+          3426
+        ]
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.534076+00:00",
+      "prioritate": 5,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/en/local-implementation.json",
+      "sursa_id": "e1fa03283e55d639e0fb",
+      "stare": "descoperit",
+      "metoda": "url-in-text",
+      "parinte": "https://mariuscomper.uk/codurbanism/llms.txt",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/en/local-implementation.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/llms.txt",
+        "sha256": "8ecd729355be2b46a33d4047721c2228fdba23d92933443d588aac1da7401a96",
+        "snapshot": "documentare/pagini/354d443a5e2bbf7dfd84abea.json",
+        "pointer": "/text",
+        "interval": [
+          2612,
+          2681
+        ]
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.534076+00:00",
+      "prioritate": 5,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/en/new-mechanisms.json",
+      "sursa_id": "98dc9327e250d5dd3bac",
+      "stare": "descoperit",
+      "metoda": "url-in-text",
+      "parinte": "https://mariuscomper.uk/codurbanism/llms.txt",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/en/new-mechanisms.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/llms.txt",
+        "sha256": "8ecd729355be2b46a33d4047721c2228fdba23d92933443d588aac1da7401a96",
+        "snapshot": "documentare/pagini/354d443a5e2bbf7dfd84abea.json",
+        "pointer": "/text",
+        "interval": [
+          3175,
+          3238
+        ]
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.534076+00:00",
+      "prioritate": 5,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/en/orders.json",
+      "sursa_id": "8e8be55352b2472e6c49",
+      "stare": "descoperit",
+      "metoda": "url-in-text",
+      "parinte": "https://mariuscomper.uk/codurbanism/llms.txt",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/en/orders.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/llms.txt",
+        "sha256": "8ecd729355be2b46a33d4047721c2228fdba23d92933443d588aac1da7401a96",
+        "snapshot": "documentare/pagini/354d443a5e2bbf7dfd84abea.json",
+        "pointer": "/text",
+        "interval": [
+          2461,
+          2516
+        ]
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.534076+00:00",
+      "prioritate": 5,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/en/pnrr-digital-evidence.json",
+      "sursa_id": "ccf052809a624afe1b0c",
+      "stare": "descoperit",
+      "metoda": "url-in-text",
+      "parinte": "https://mariuscomper.uk/codurbanism/llms.txt",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/en/pnrr-digital-evidence.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/llms.txt",
+        "sha256": "8ecd729355be2b46a33d4047721c2228fdba23d92933443d588aac1da7401a96",
+        "snapshot": "documentare/pagini/354d443a5e2bbf7dfd84abea.json",
+        "pointer": "/text",
+        "interval": [
+          3908,
+          3978
+        ]
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.534076+00:00",
+      "prioritate": 5,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/en/publication-diff.json",
+      "sursa_id": "171eec67b0db507a0d09",
+      "stare": "descoperit",
+      "metoda": "url-in-text",
+      "parinte": "https://mariuscomper.uk/codurbanism/llms.txt",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/en/publication-diff.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/llms.txt",
+        "sha256": "8ecd729355be2b46a33d4047721c2228fdba23d92933443d588aac1da7401a96",
+        "snapshot": "documentare/pagini/354d443a5e2bbf7dfd84abea.json",
+        "pointer": "/text",
+        "interval": [
+          3538,
+          3603
+        ]
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.534076+00:00",
+      "prioritate": 5,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/en/published-text-issues.json",
+      "sursa_id": "77ffab047193e7d82ed3",
+      "stare": "descoperit",
+      "metoda": "url-in-text",
+      "parinte": "https://mariuscomper.uk/codurbanism/llms.txt",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/en/published-text-issues.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/llms.txt",
+        "sha256": "8ecd729355be2b46a33d4047721c2228fdba23d92933443d588aac1da7401a96",
+        "snapshot": "documentare/pagini/354d443a5e2bbf7dfd84abea.json",
+        "pointer": "/text",
+        "interval": [
+          3722,
+          3792
+        ]
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.534076+00:00",
+      "prioritate": 5,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/en/recent-changes.json",
+      "sursa_id": "62956424125ca7862faa",
+      "stare": "descoperit",
+      "metoda": "url-in-text",
+      "parinte": "https://mariuscomper.uk/codurbanism/llms.txt",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/en/recent-changes.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/llms.txt",
+        "sha256": "8ecd729355be2b46a33d4047721c2228fdba23d92933443d588aac1da7401a96",
+        "snapshot": "documentare/pagini/354d443a5e2bbf7dfd84abea.json",
+        "pointer": "/text",
+        "interval": [
+          2297,
+          2360
+        ]
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.534076+00:00",
+      "prioritate": 5,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/en/search-index.json",
+      "sursa_id": "4ad6b26847cf204d7cef",
+      "stare": "descoperit",
+      "metoda": "url-in-text",
+      "parinte": "https://mariuscomper.uk/codurbanism/llms.txt",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/en/search-index.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/llms.txt",
+        "sha256": "8ecd729355be2b46a33d4047721c2228fdba23d92933443d588aac1da7401a96",
+        "snapshot": "documentare/pagini/354d443a5e2bbf7dfd84abea.json",
+        "pointer": "/text",
+        "interval": [
+          2800,
+          2861
+        ]
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.534076+00:00",
+      "prioritate": 5,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/en/special-regimes.json",
+      "sursa_id": "1b8e777edc8bd06467fc",
+      "stare": "descoperit",
+      "metoda": "url-in-text",
+      "parinte": "https://mariuscomper.uk/codurbanism/llms.txt",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/en/special-regimes.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/llms.txt",
+        "sha256": "8ecd729355be2b46a33d4047721c2228fdba23d92933443d588aac1da7401a96",
+        "snapshot": "documentare/pagini/354d443a5e2bbf7dfd84abea.json",
+        "pointer": "/text",
+        "interval": [
+          4098,
+          4162
+        ]
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.534076+00:00",
+      "prioritate": 5,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/en/transition-rules.json",
+      "sursa_id": "779187b2f676f798db5e",
+      "stare": "descoperit",
+      "metoda": "url-in-text",
+      "parinte": "https://mariuscomper.uk/codurbanism/llms.txt",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/en/transition-rules.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/llms.txt",
+        "sha256": "8ecd729355be2b46a33d4047721c2228fdba23d92933443d588aac1da7401a96",
+        "snapshot": "documentare/pagini/354d443a5e2bbf7dfd84abea.json",
+        "pointer": "/text",
+        "interval": [
+          3001,
+          3066
+        ]
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.534076+00:00",
+      "prioritate": 5,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/publication-diff-audit.json",
+      "sursa_id": "aeedc696328d76757bdc",
+      "stare": "activ",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://mariuscomper.uk/codurbanism/",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/publication-diff-audit.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/",
+        "sha256": "5e392dbc51a61355ccef4bb5fdebd7ec489a8c29fb0454fcf3d71e95f000d964",
+        "snapshot": "documentare/pagini/18e6f09ac71263fe16d51e60.json",
+        "pointer": "/links/998"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.287632+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/ro/all-comparisons.json",
+      "sursa_id": "13c431e466f1e4171d8f",
+      "stare": "activ",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://mariuscomper.uk/codurbanism/",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/ro/all-comparisons.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/",
+        "sha256": "5e392dbc51a61355ccef4bb5fdebd7ec489a8c29fb0454fcf3d71e95f000d964",
+        "snapshot": "documentare/pagini/18e6f09ac71263fe16d51e60.json",
+        "pointer": "/links/1131"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.287632+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/ro/cod-articles-promulgation.json",
+      "sursa_id": "578006871026fc475888",
+      "stare": "descoperit",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://mariuscomper.uk/codurbanism/",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/ro/cod-articles-promulgation.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/",
+        "sha256": "5e392dbc51a61355ccef4bb5fdebd7ec489a8c29fb0454fcf3d71e95f000d964",
+        "snapshot": "documentare/pagini/18e6f09ac71263fe16d51e60.json",
+        "pointer": "/links/1140"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.287632+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/ro/comparisons.csv",
+      "sursa_id": "d4f9bedb99d8a2fbcccc",
+      "stare": "activ",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://mariuscomper.uk/codurbanism/",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/ro/comparisons.csv",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/",
+        "sha256": "5e392dbc51a61355ccef4bb5fdebd7ec489a8c29fb0454fcf3d71e95f000d964",
+        "snapshot": "documentare/pagini/18e6f09ac71263fe16d51e60.json",
+        "pointer": "/links/1132"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.287632+00:00",
+      "prioritate": 1,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/ro/executive-summary.json",
+      "sursa_id": "a1fb0bdb69c821fa4d3c",
+      "stare": "descoperit",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://mariuscomper.uk/codurbanism/",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/ro/executive-summary.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/",
+        "sha256": "5e392dbc51a61355ccef4bb5fdebd7ec489a8c29fb0454fcf3d71e95f000d964",
+        "snapshot": "documentare/pagini/18e6f09ac71263fe16d51e60.json",
+        "pointer": "/links/1138"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.287632+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/ro/implementation-tracker.json",
+      "sursa_id": "99c9833ffedbe445651b",
+      "stare": "descoperit",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://mariuscomper.uk/codurbanism/",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/ro/implementation-tracker.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/",
+        "sha256": "5e392dbc51a61355ccef4bb5fdebd7ec489a8c29fb0454fcf3d71e95f000d964",
+        "snapshot": "documentare/pagini/18e6f09ac71263fe16d51e60.json",
+        "pointer": "/links/274"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.287632+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/ro/local-implementation.json",
+      "sursa_id": "b9440da43d123e73f627",
+      "stare": "descoperit",
+      "metoda": "url-in-text",
+      "parinte": "https://mariuscomper.uk/codurbanism/llms.txt",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/ro/local-implementation.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/llms.txt",
+        "sha256": "8ecd729355be2b46a33d4047721c2228fdba23d92933443d588aac1da7401a96",
+        "snapshot": "documentare/pagini/354d443a5e2bbf7dfd84abea.json",
+        "pointer": "/text",
+        "interval": [
+          2540,
+          2609
+        ]
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.534076+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/ro/new-mechanisms.json",
+      "sursa_id": "e14bf377cb608549ea1d",
+      "stare": "descoperit",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://mariuscomper.uk/codurbanism/",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/ro/new-mechanisms.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/",
+        "sha256": "5e392dbc51a61355ccef4bb5fdebd7ec489a8c29fb0454fcf3d71e95f000d964",
+        "snapshot": "documentare/pagini/18e6f09ac71263fe16d51e60.json",
+        "pointer": "/links/1133"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.287632+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/ro/orders.json",
+      "sursa_id": "0a147baf90857c9577e2",
+      "stare": "descoperit",
+      "metoda": "url-in-text",
+      "parinte": "https://mariuscomper.uk/codurbanism/llms.txt",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/ro/orders.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/llms.txt",
+        "sha256": "8ecd729355be2b46a33d4047721c2228fdba23d92933443d588aac1da7401a96",
+        "snapshot": "documentare/pagini/354d443a5e2bbf7dfd84abea.json",
+        "pointer": "/text",
+        "interval": [
+          2403,
+          2458
+        ]
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.534076+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/ro/pnrr-digital-evidence.json",
+      "sursa_id": "44a5ba2ff7e162863c3c",
+      "stare": "descoperit",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://mariuscomper.uk/codurbanism/",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/ro/pnrr-digital-evidence.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/",
+        "sha256": "5e392dbc51a61355ccef4bb5fdebd7ec489a8c29fb0454fcf3d71e95f000d964",
+        "snapshot": "documentare/pagini/18e6f09ac71263fe16d51e60.json",
+        "pointer": "/links/385"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.287632+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/ro/publication-diff.json",
+      "sursa_id": "8f4f5b5b016ac2c1350a",
+      "stare": "descoperit",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://mariuscomper.uk/codurbanism/",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/ro/publication-diff.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/",
+        "sha256": "5e392dbc51a61355ccef4bb5fdebd7ec489a8c29fb0454fcf3d71e95f000d964",
+        "snapshot": "documentare/pagini/18e6f09ac71263fe16d51e60.json",
+        "pointer": "/links/997"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.287632+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/ro/published-text-issues.json",
+      "sursa_id": "818a870b669dcf98863a",
+      "stare": "descoperit",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://mariuscomper.uk/codurbanism/",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/ro/published-text-issues.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/",
+        "sha256": "5e392dbc51a61355ccef4bb5fdebd7ec489a8c29fb0454fcf3d71e95f000d964",
+        "snapshot": "documentare/pagini/18e6f09ac71263fe16d51e60.json",
+        "pointer": "/links/1137"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.287632+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/ro/recent-changes.json",
+      "sursa_id": "d89743f5c8d360edc83c",
+      "stare": "descoperit",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://mariuscomper.uk/codurbanism/",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/ro/recent-changes.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/",
+        "sha256": "5e392dbc51a61355ccef4bb5fdebd7ec489a8c29fb0454fcf3d71e95f000d964",
+        "snapshot": "documentare/pagini/18e6f09ac71263fe16d51e60.json",
+        "pointer": "/links/78"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.287632+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/ro/search-index.json",
+      "sursa_id": "a3cd35907c38445a1c8e",
+      "stare": "descoperit",
+      "metoda": "url-in-text",
+      "parinte": "https://mariuscomper.uk/codurbanism/llms.txt",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/ro/search-index.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/llms.txt",
+        "sha256": "8ecd729355be2b46a33d4047721c2228fdba23d92933443d588aac1da7401a96",
+        "snapshot": "documentare/pagini/354d443a5e2bbf7dfd84abea.json",
+        "pointer": "/text",
+        "interval": [
+          2722,
+          2783
+        ]
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.534076+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/ro/source-manifest.json",
+      "sursa_id": "005a45e1c419da221080",
+      "stare": "descoperit",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://mariuscomper.uk/codurbanism/",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/ro/source-manifest.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/",
+        "sha256": "5e392dbc51a61355ccef4bb5fdebd7ec489a8c29fb0454fcf3d71e95f000d964",
+        "snapshot": "documentare/pagini/18e6f09ac71263fe16d51e60.json",
+        "pointer": "/links/1141"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.287632+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/ro/special-regimes.json",
+      "sursa_id": "b2fcf3a83e1f88ef82da",
+      "stare": "descoperit",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://mariuscomper.uk/codurbanism/",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/ro/special-regimes.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/",
+        "sha256": "5e392dbc51a61355ccef4bb5fdebd7ec489a8c29fb0454fcf3d71e95f000d964",
+        "snapshot": "documentare/pagini/18e6f09ac71263fe16d51e60.json",
+        "pointer": "/links/272"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.287632+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/ro/transition-rules.json",
+      "sursa_id": "02592ba0eb9dea65fe97",
+      "stare": "descoperit",
+      "metoda": "url-in-text",
+      "parinte": "https://mariuscomper.uk/codurbanism/llms.txt",
+      "link_original": "https://mariuscomper.uk/codurbanism/data/ro/transition-rules.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/codurbanism/llms.txt",
+        "sha256": "8ecd729355be2b46a33d4047721c2228fdba23d92933443d588aac1da7401a96",
+        "snapshot": "documentare/pagini/354d443a5e2bbf7dfd84abea.json",
+        "pointer": "/text",
+        "interval": [
+          2914,
+          2979
+        ]
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:03.534076+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "companii-de-stat",
+      "url": "https://companiidestat.ro/date/v1/companii_de_stat_radiate.csv",
+      "sursa_id": "dd2567cf6f0e1c5a7f7d",
+      "stare": "activ",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://companiidestat.ro/metodologie/",
+      "link_original": "https://companiidestat.ro/date/v1/companii_de_stat_radiate.csv",
+      "dovada": {
+        "url": "https://companiidestat.ro/metodologie/",
+        "sha256": "4626a28f2b0493c19c5a69ea57dd936faaf4e976368c4cba81bcdd8bd9f1cb45",
+        "snapshot": "documentare/pagini/327426629f113b589239fc8d.json",
+        "pointer": "/links/33"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:19:27.872623+00:00",
+      "prioritate": 1,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "companii-de-stat",
+      "url": "https://companiidestat.ro/date/v1/data.json",
+      "sursa_id": "bdc37992f35ead0eba4a",
+      "stare": "activ",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://companiidestat.ro/metodologie/",
+      "link_original": "https://companiidestat.ro/date/v1/data.json",
+      "dovada": {
+        "url": "https://companiidestat.ro/metodologie/",
+        "sha256": "4626a28f2b0493c19c5a69ea57dd936faaf4e976368c4cba81bcdd8bd9f1cb45",
+        "snapshot": "documentare/pagini/327426629f113b589239fc8d.json",
+        "pointer": "/links/54"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:19:27.872623+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "companii-de-stat",
+      "url": "https://companiidestat.ro/date/v1/index.json",
+      "sursa_id": "7232ebb459904a3f8682",
+      "stare": "descoperit",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://companiidestat.ro/llms.txt",
+      "link_original": "https://companiidestat.ro/date/v1/index.json",
+      "dovada": {
+        "url": "https://companiidestat.ro/llms.txt",
+        "sha256": "c52a57436d786f077a1cf5e7b637c5aeb050d10f46f8a99f4eb80d2572f92559",
+        "snapshot": "documentare/pagini/f93256c9a0672383b8048931.json",
+        "pointer": "/links/14"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:19:26.015109+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "companii-de-stat",
+      "url": "https://companiidestat.ro/date/v1/mfin_bilanturi_2024.json",
+      "sursa_id": "7e587e95ae4723aec50a",
+      "stare": "descoperit",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://companiidestat.ro/metodologie/",
+      "link_original": "https://companiidestat.ro/date/v1/mfin_bilanturi_2024.json",
+      "dovada": {
+        "url": "https://companiidestat.ro/metodologie/",
+        "sha256": "4626a28f2b0493c19c5a69ea57dd936faaf4e976368c4cba81bcdd8bd9f1cb45",
+        "snapshot": "documentare/pagini/327426629f113b589239fc8d.json",
+        "pointer": "/links/25"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:19:27.872623+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "companii-de-stat",
+      "url": "https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json",
+      "sursa_id": "cf838e4e6d0a20816d70",
+      "stare": "descoperit",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://companiidestat.ro/metodologie/",
+      "link_original": "https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json",
+      "dovada": {
+        "url": "https://companiidestat.ro/metodologie/",
+        "sha256": "4626a28f2b0493c19c5a69ea57dd936faaf4e976368c4cba81bcdd8bd9f1cb45",
+        "snapshot": "documentare/pagini/327426629f113b589239fc8d.json",
+        "pointer": "/links/27"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:19:27.872623+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "companii-de-stat",
+      "url": "https://companiidestat.ro/date/v1/openapi.json",
+      "sursa_id": "fa7f845bb1dc00a71677",
+      "stare": "activ",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://companiidestat.ro/llms.txt",
+      "link_original": "https://companiidestat.ro/date/v1/openapi.json",
+      "dovada": {
+        "url": "https://companiidestat.ro/llms.txt",
+        "sha256": "c52a57436d786f077a1cf5e7b637c5aeb050d10f46f8a99f4eb80d2572f92559",
+        "snapshot": "documentare/pagini/f93256c9a0672383b8048931.json",
+        "pointer": "/links/15"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:19:26.015109+00:00",
+      "prioritate": 0,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "complet-online",
+      "url": "https://mariuscomper.uk/complet-online/assets/cnsp-audit.csv",
+      "sursa_id": "34437fe5524b6fc22329",
+      "stare": "activ",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://mariuscomper.uk/complet-online/",
+      "link_original": "https://mariuscomper.uk/complet-online/assets/cnsp-audit.csv",
+      "dovada": {
+        "url": "https://mariuscomper.uk/complet-online/",
+        "sha256": "c52f5e3c64061047252c8c6401f2f3f11a0cc11777246b21911be473d10582f7",
+        "snapshot": "documentare/pagini/051d173812c8578256caa83a.json",
+        "pointer": "/links/5"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:04.905154+00:00",
+      "prioritate": 1,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "complet-online",
+      "url": "https://mariuscomper.uk/complet-online/assets/cnsp-audit.json",
+      "sursa_id": "0cb5a8328ff5fa625eed",
+      "stare": "activ",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://mariuscomper.uk/complet-online/",
+      "link_original": "https://mariuscomper.uk/complet-online/assets/cnsp-audit.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/complet-online/",
+        "sha256": "c52f5e3c64061047252c8c6401f2f3f11a0cc11777246b21911be473d10582f7",
+        "snapshot": "documentare/pagini/051d173812c8578256caa83a.json",
+        "pointer": "/links/6"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:04.905154+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "demoanaf",
+      "url": "https://demoanaf.ro/openapi.json",
+      "sursa_id": "ed97ecda1bdb32c9396e",
+      "stare": "activ",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://demoanaf.ro/llms.txt",
+      "link_original": "https://demoanaf.ro/openapi.json",
+      "dovada": {
+        "url": "https://demoanaf.ro/llms.txt",
+        "sha256": "61efd55d801e340c66da1ac9fad9f68f69b6a473da2fc9c55352df55a6b2db9c",
+        "snapshot": "documentare/pagini/ab8b3d30fd97968c0ff4e9dd.json",
+        "pointer": "/links/28"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:19:27.299844+00:00",
+      "prioritate": 0,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "ins-gov2",
+      "url": "https://ins.gov2.ro/api/datasets/ACC102B?lang=en",
+      "sursa_id": "a658c6e1fd331dc5bac0",
+      "stare": "activ",
+      "metoda": "dovada-pilot",
+      "parinte": null,
+      "link_original": "https://ins.gov2.ro/api/datasets/ACC102B?lang=en",
+      "dovada": {
+        "url": "https://ins.gov2.ro/api/datasets/ACC102B?lang=en",
+        "sha256": "35e5e81c9a828a6e88d9beb5a74b7447121a52b0948973ae377460032a0b4882",
+        "pointer": "/seturi_date_verificate",
+        "snapshot": "documentare/pagini/api-ins-acc102b-35e5e81c9a828a6e.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": null,
+      "prioritate": 0,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "monitor-energie",
+      "url": "https://monitorenergie.ro/api/openapi.json",
+      "sursa_id": "18a2aced844c56ee5d64",
+      "stare": "activ",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://monitorenergie.ro/llms.txt",
+      "link_original": "https://monitorenergie.ro/api/openapi.json",
+      "dovada": {
+        "url": "https://monitorenergie.ro/llms.txt",
+        "sha256": "af25129aa0fe3e07521d58c323f47d644fafc30d35c15c2ebb2bb5cb5e93ca9c",
+        "snapshot": "documentare/pagini/fa0efbfd7047b2d0a1512e0c.json",
+        "pointer": "/links/12"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:19:33.898973+00:00",
+      "prioritate": 0,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "orasul-care-se-intinde",
+      "url": "https://mariuscomper.uk/orasul-care-se-intinde/data/localitati.csv",
+      "sursa_id": "d067c474cb3b48e672ec",
+      "stare": "activ",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://mariuscomper.uk/orasul-care-se-intinde/",
+      "link_original": "https://mariuscomper.uk/orasul-care-se-intinde/data/localitati.csv",
+      "dovada": {
+        "url": "https://mariuscomper.uk/orasul-care-se-intinde/",
+        "sha256": "b1a193fa324786ee204434fbac31901c15adb0ef15cc2562f444b099186693c1",
+        "snapshot": "documentare/pagini/568dae44ada5796edff66ca7.json",
+        "pointer": "/links/16"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:05.613469+00:00",
+      "prioritate": 1,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "posturi-gov2",
+      "url": "https://posturi.gov2.ro/posturi.json",
+      "sursa_id": "7c5a621906988976fb27",
+      "stare": "activ",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://posturi.gov2.ro/",
+      "link_original": "https://posturi.gov2.ro/posturi.json",
+      "dovada": {
+        "url": "https://posturi.gov2.ro/",
+        "sha256": "7cc79dd6a06ef2300d1bde9a190da7a043a5c907e0f17687af4aa3b1b6f7d44b",
+        "snapshot": "documentare/pagini/c47fa7cd0b814fe26e6b5e4d.json",
+        "pointer": "/links/95"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:19:39.436519+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "prima-cifra",
+      "url": "https://mariuscomper.uk/prima-cifra/reproduce/manifest.json",
+      "sursa_id": "360bcec066b5c52756e4",
+      "stare": "activ",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://mariuscomper.uk/prima-cifra/",
+      "link_original": "https://mariuscomper.uk/prima-cifra/reproduce/manifest.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/prima-cifra/",
+        "sha256": "d07f2da49670257816ca5ad6d65b5c963e93016afdd77ddbc540f5bdf6a84d0f",
+        "snapshot": "documentare/pagini/6998a94c16420490c7dba772.json",
+        "pointer": "/links/21"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:05.180600+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "ro-api-hub",
+      "url": "https://raw.githubusercontent.com/Jamaalx/ro-api-hub/main/catalog.json",
+      "sursa_id": "0971b81b9b69c0a3f207",
+      "stare": "activ",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://github.com/Jamaalx/ro-api-hub",
+      "link_original": "https://github.com/Jamaalx/ro-api-hub/blob/main/catalog.json",
+      "dovada": {
+        "url": "https://github.com/Jamaalx/ro-api-hub",
+        "sha256": "1549d7b69ddeb5a0e4b94311a842270bf626b40926572d183a25405a253d1506",
+        "snapshot": "documentare/pagini/ec1a11d3673286ed9392cbd8.json",
+        "pointer": "/links/128"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:19:49.164213+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "ro-api-hub",
+      "url": "https://raw.githubusercontent.com/Jamaalx/ro-api-hub/main/public/catalog.schema.json",
+      "sursa_id": "e6cba0b1526e0368ec8c",
+      "stare": "activ",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://github.com/Jamaalx/ro-api-hub",
+      "link_original": "https://github.com/Jamaalx/ro-api-hub/blob/main/public/catalog.schema.json",
+      "dovada": {
+        "url": "https://github.com/Jamaalx/ro-api-hub",
+        "sha256": "1549d7b69ddeb5a0e4b94311a842270bf626b40926572d183a25405a253d1506",
+        "snapshot": "documentare/pagini/ec1a11d3673286ed9392cbd8.json",
+        "pointer": "/links/147"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:19:49.164213+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "romania-transparenta",
+      "url": "https://api.romaniatransparenta.eu/v1/openapi.json",
+      "sursa_id": "57c4fcaa888e4d7aa95d",
+      "stare": "activ",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://romaniatransparenta.eu/cum-lucram/",
+      "link_original": "https://api.romaniatransparenta.eu/v1/openapi.json",
+      "dovada": {
+        "url": "https://romaniatransparenta.eu/cum-lucram/",
+        "sha256": "21ee1aad5a8a57d83213bd7bd7246fcf8b29d3eaf7bc22b083987ed918329f63",
+        "snapshot": "documentare/pagini/0ade3f9c789fb33f6fc1845f.json",
+        "pointer": "/links/86"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:19:42.380393+00:00",
+      "prioritate": 0,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "romania-transparenta",
+      "url": "https://romaniatransparenta.eu/date/calitate-masurata.json",
+      "sursa_id": "af025b841728725821e2",
+      "stare": "activ",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://romaniatransparenta.eu/cum-lucram/",
+      "link_original": "https://romaniatransparenta.eu/date/calitate-masurata.json",
+      "dovada": {
+        "url": "https://romaniatransparenta.eu/cum-lucram/",
+        "sha256": "21ee1aad5a8a57d83213bd7bd7246fcf8b29d3eaf7bc22b083987ed918329f63",
+        "snapshot": "documentare/pagini/0ade3f9c789fb33f6fc1845f.json",
+        "pointer": "/links/82"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:19:42.380393+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "romania-transparenta",
+      "url": "https://romaniatransparenta.eu/date/control-saptamanal.json",
+      "sursa_id": "e4626a19feb0696b926e",
+      "stare": "descoperit",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://romaniatransparenta.eu/cum-lucram/",
+      "link_original": "https://romaniatransparenta.eu/date/control-saptamanal.json",
+      "dovada": {
+        "url": "https://romaniatransparenta.eu/cum-lucram/",
+        "sha256": "21ee1aad5a8a57d83213bd7bd7246fcf8b29d3eaf7bc22b083987ed918329f63",
+        "snapshot": "documentare/pagini/0ade3f9c789fb33f6fc1845f.json",
+        "pointer": "/links/83"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:19:42.380393+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "romania-transparenta",
+      "url": "https://romaniatransparenta.eu/date/primarii.csv",
+      "sursa_id": "dec80a1d6430c7c00938",
+      "stare": "activ",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://romaniatransparenta.eu/llms.txt",
+      "link_original": "https://romaniatransparenta.eu/date/primarii.csv",
+      "dovada": {
+        "url": "https://romaniatransparenta.eu/llms.txt",
+        "sha256": "e9abfd703e766dfaaea45dee63f17c04c58e0f9db5519c42e00d882882d4b8b2",
+        "snapshot": "documentare/pagini/a71de09fcfd72d91afe2940f.json",
+        "pointer": "/links/40"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:19:42.082859+00:00",
+      "prioritate": 1,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "romania-transparenta",
+      "url": "https://romaniatransparenta.eu/date/primarii.json",
+      "sursa_id": "6a3ba680564e50fec62e",
+      "stare": "descoperit",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://romaniatransparenta.eu/llms.txt",
+      "link_original": "https://romaniatransparenta.eu/date/primarii.json",
+      "dovada": {
+        "url": "https://romaniatransparenta.eu/llms.txt",
+        "sha256": "e9abfd703e766dfaaea45dee63f17c04c58e0f9db5519c42e00d882882d4b8b2",
+        "snapshot": "documentare/pagini/a71de09fcfd72d91afe2940f.json",
+        "pointer": "/links/41"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:19:42.082859+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "transparenta-eu",
+      "url": "https://transparenta.eu/ai/budget-explorer-parameters.json",
+      "sursa_id": "6979fe2297f4c1a88b0f",
+      "stare": "activ",
+      "metoda": "url-in-text",
+      "parinte": "https://transparenta.eu/llms.txt",
+      "link_original": "https://transparenta.eu/ai/budget-explorer-parameters.json",
+      "dovada": {
+        "url": "https://transparenta.eu/llms.txt",
+        "sha256": "1b1c3f049dc123fa382ea4ed7bb63d52e1523f7b223df4f466910dfbdcd224b4",
+        "snapshot": "documentare/pagini/2c246a24f5681a8792c0f2f2.json",
+        "pointer": "/text",
+        "interval": [
+          2060,
+          2118
+        ]
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:19:45.257440+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "transparenta-eu",
+      "url": "https://transparenta.eu/ai/entities-analytics-parameters.json",
+      "sursa_id": "c0974dcdd6db7c57ee64",
+      "stare": "activ",
+      "metoda": "url-in-text",
+      "parinte": "https://transparenta.eu/llms.txt",
+      "link_original": "https://transparenta.eu/ai/entities-analytics-parameters.json",
+      "dovada": {
+        "url": "https://transparenta.eu/llms.txt",
+        "sha256": "1b1c3f049dc123fa382ea4ed7bb63d52e1523f7b223df4f466910dfbdcd224b4",
+        "snapshot": "documentare/pagini/2c246a24f5681a8792c0f2f2.json",
+        "pointer": "/text",
+        "interval": [
+          1649,
+          1710
+        ]
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:19:45.257440+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "transparenta-eu",
+      "url": "https://transparenta.eu/ai/entities-parameters.json",
+      "sursa_id": "9a82a7fef3545e1df478",
+      "stare": "activ",
+      "metoda": "url-in-text",
+      "parinte": "https://transparenta.eu/llms.txt",
+      "link_original": "https://transparenta.eu/ai/entities-parameters.json",
+      "dovada": {
+        "url": "https://transparenta.eu/llms.txt",
+        "sha256": "1b1c3f049dc123fa382ea4ed7bb63d52e1523f7b223df4f466910dfbdcd224b4",
+        "snapshot": "documentare/pagini/2c246a24f5681a8792c0f2f2.json",
+        "pointer": "/text",
+        "interval": [
+          947,
+          998
+        ]
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:19:45.257440+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "transparenta-eu",
+      "url": "https://transparenta.eu/ai/index.json",
+      "sursa_id": "9427224c606836d5069c",
+      "stare": "descoperit",
+      "metoda": "url-in-text",
+      "parinte": "https://transparenta.eu/llms.txt",
+      "link_original": "https://transparenta.eu/ai/index.json",
+      "dovada": {
+        "url": "https://transparenta.eu/llms.txt",
+        "sha256": "1b1c3f049dc123fa382ea4ed7bb63d52e1523f7b223df4f466910dfbdcd224b4",
+        "snapshot": "documentare/pagini/2c246a24f5681a8792c0f2f2.json",
+        "pointer": "/text",
+        "interval": [
+          117,
+          154
+        ]
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:19:45.257440+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "transparenta-eu",
+      "url": "https://transparenta.eu/ai/pnrr-parameters.json",
+      "sursa_id": "fcc18e165f725561b998",
+      "stare": "descoperit",
+      "metoda": "url-in-text",
+      "parinte": "https://transparenta.eu/llms.txt",
+      "link_original": "https://transparenta.eu/ai/pnrr-parameters.json",
+      "dovada": {
+        "url": "https://transparenta.eu/llms.txt",
+        "sha256": "1b1c3f049dc123fa382ea4ed7bb63d52e1523f7b223df4f466910dfbdcd224b4",
+        "snapshot": "documentare/pagini/2c246a24f5681a8792c0f2f2.json",
+        "pointer": "/text",
+        "interval": [
+          2765,
+          2812
+        ]
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:19:45.257440+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "ultima-noapte-pib",
+      "url": "https://mariuscomper.uk/ultima-noapte-pib/assets/revisions.c811b49b803e.json",
+      "sursa_id": "9933798a7fee0b29d365",
+      "stare": "activ",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://mariuscomper.uk/ultima-noapte-pib/",
+      "link_original": "https://mariuscomper.uk/ultima-noapte-pib/assets/revisions.c811b49b803e.json",
+      "dovada": {
+        "url": "https://mariuscomper.uk/ultima-noapte-pib/",
+        "sha256": "9b0b3720ee4e85047e42bbf1acac3da630dc77241107dd69f35cd9974f1ce3f6",
+        "snapshot": "documentare/pagini/da5b3fea6d9af7f0f326ec76.json",
+        "pointer": "/links/85"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:05.400315+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    },
+    {
+      "proiect": "unde-se-termina-asfaltul",
+      "url": "https://mariuscomper.uk/unde-se-termina-asfaltul/assets/osm.json?v=17793b737f",
+      "sursa_id": "3bf0f9eaf66bc1f06dae",
+      "stare": "activ",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://mariuscomper.uk/unde-se-termina-asfaltul/",
+      "link_original": "https://mariuscomper.uk/unde-se-termina-asfaltul/assets/osm.json?v=17793b737f",
+      "dovada": {
+        "url": "https://mariuscomper.uk/unde-se-termina-asfaltul/",
+        "sha256": "040e0fd8b9f5700ca51bc17b031a473bb7407045cdcead28a0b66a496c035d29",
+        "snapshot": "documentare/pagini/d02bff5a5843d2992c9aab59.json",
+        "pointer": "/links/8"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-24T22:20:05.791343+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": []
+    }
+  ]
+}

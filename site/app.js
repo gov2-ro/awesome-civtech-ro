@@ -696,6 +696,7 @@ function inventoryHTML(it) {
     <div class="inv-heading"><h3 id="inventory-title">Date &amp; metodă</h3>${inv.count ? '<span class="inv-status">Inventar parțial</span>' : ''}</div>
     ${inv.count ? `<p class="inv-intro">${plural(inv.count, 'câmp sau parametru', 'câmpuri și parametri')} · ${plural(inv.sources, 'fișier consultat', 'fișiere consultate')}</p>
       <p class="inv-note">Extrase automat din sursele de mai jos. Proiectul poate folosi și alte date.</p>
+      ${inv.stale ? `<p class="inv-note inv-stale">${plural(inv.stale, 'sursă are', 'surse au')} ultima reîmprospătare eșuată. Datele afișate provin dintr-o consultare anterioară.</p>` : ''}
       <div class="inv-examples">${inv.examples.map(name => `<button data-act="inventory-example" data-slug="${esc(it.slug)}" data-val="${esc(name)}"><code>${esc(name)}</code></button>`).join('')}</div>
       ${docs}
       <details class="inv-details" data-inv-panel data-slug="${esc(it.slug)}" ${inventoryIntent === it.slug ? 'open' : ''}>
@@ -742,6 +743,7 @@ function renderInventoryRows(panel) {
         ${f.contexts?.length > 1 ? `<p>${plural(f.contexts.length, 'referință în schemă', 'referințe în schemă')} cu acest nume și tip.</p>` : ''}
         ${f.operations.length ? `<p class="inv-operations">${f.operations.map(op => `<code>${esc(op)}</code>`).join('')}</p>` : ''}
         ${source ? `<p>${esc(source.title)}${source.checked ? ` · consultat la ${esc(source.checked)}` : ''}</p>` : ''}
+        ${source?.refreshFailed ? `<p class="inv-stale">Ultima reîmprospătare a eșuat${source.refreshFailed.date ? ` la ${esc(source.refreshFailed.date)}` : ''}${source.refreshFailed.status ? ` (HTTP ${esc(source.refreshFailed.status)})` : ''}. Informațiile pot fi vechi.</p>` : ''}
       </details></li>`;
   }).join('');
   $('[data-inventory-more]', panel).innerHTML = visible.length < found.length
