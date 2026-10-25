@@ -1,5 +1,20 @@
 # Activity
 
+## 2026-10-25 — Count restatements once, a variable table, DemoANAF paused
+
+**Done**
+- A field that restates a record of another source (`in_contract`) counts once. Profiles, `rezumat.csv`, `acoperire.csv` and the report use
+  `inventory_state.counted_fields`; the preview folds the restatement into the contract record as `also` evidence, and the field browser shows
+  "Documentat și în …". Measured on DemoANAF: counted fields 221 → 130, fields with a description 35 → 19 (the page descriptions now sit on the contract
+  records as evidence), finder card 85 → 57, `cui` evidence 5 → 3. Other entries are unchanged.
+- `/date/lista/` is now a table: entries in rows, families in columns, normalised group names in the cells, and "Altele" with the count of ungrouped
+  field names. Sticky header and first column; the table scrolls horizontally inside its frame. Source field names move to a future project profile page.
+- DemoANAF paused with conclusions and a resume hint in the backlog. ro-api-hub correspondences and a static read API idea are in the backlog.
+
+**Decided**
+- Fold restatements at projection and count time, and keep every record in `seturi-date.json` and `campuri.csv`. The evidence stays complete; only counts change.
+  Dropping the page records would lose 22 page-only inputs and the page descriptions.
+
 ## 2026-10-25 — Variable families and a per-project list of variables
 
 **Done**

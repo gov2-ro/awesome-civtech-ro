@@ -341,7 +341,7 @@ class ApiDocsContract(unittest.TestCase):
         work, entries, docs, _ = self.run_workspace()
         source = work.sources()[self.A + 'api-docs']
         self.assertEqual((source['comparatie_contract']['operatii_comune'], source['comparatie_contract']['intrari_comune']), (3, 2))
-        self.assertEqual(work.profile('a')['campuri_din_surse'], 3 + 26, 'three contract parameters and 26 page records')
+        self.assertEqual(work.profile('a')['campuri_din_surse'], 3 + 26 - 2, 'three contract parameters and 26 page records; the two that restate the contract count once')
         before = work.files()
         work.run(entries, docs, None, offline=True)
         self.assertEqual(work.files(), before)

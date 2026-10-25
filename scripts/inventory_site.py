@@ -106,12 +106,6 @@ def publish_finder(items, root, site, projections, vocabulary=None):
     publish_overview(items, site, projections, concepts, families)
 
 
-def source_label(url):
-    """A short name for a source in `source:field` lists: the file name of the URL, or its host when the path has none."""
-    parts = urlsplit(url)
-    return unquote(Path(parts.path).name) or parts.hostname or url
-
-
 def field_groups(slug, fields, sources, concepts):
     """{field position: group id} for one project, with the same selector rules as `variable_matches`; the first group that matches wins."""
     urls = {s['id']: s['url'] for s in sources}
@@ -125,14 +119,17 @@ def field_groups(slug, fields, sources, concepts):
 
 
 def publish_overview(items, site, projections, concepts, families):
-    """Write `date/lista/`: one row per project or resource, with its `source:field` names under the families of the proposed groups.
-    Fields in no group are listed per source, inputs apart from returned fields. A static page: it needs no script."""
+    """Write `date/lista/`: a table with one row per project or resource that has extracted fields, one column per family of variables,
+    and a last column for the fields in no group. A cell lists the group labels (the normalised names), not the source field names;
+    those belong to the project's own page. Entries without fields are named once below the table. A static page: it needs no script."""
     e = html.escape
     labels = {c['id']: c['label'] for c in concepts}
     family_of = {c['id']: c.get('familie') for c in concepts}
-    order = [f['id'] for f in families] + [None]
-    family_label = {f['id']: f['label'] for f in families} | {None: 'Fără familie'}
-    rows, bare, listed = [], [], 0
+    columns = [(f['id'], f['label']) for f in families]
+    if any(not family_of.get(c['id']) or family_of[c['id']] not in dict(columns) for c in active_groups(concepts)):
+        columns.append((None, 'Fără familie'))
+    rows, bare = [], []
+    totals = {fam: 0 for fam, _ in columns}
     entries = sorted((i for i in items if i.get('kind') in ('proiect', 'resursa')), key=lambda i: i['name'].casefold())
     for item in entries:
         fields, sources = projections.get(item['slug'], ([], []))
@@ -140,47 +137,28 @@ def publish_overview(items, site, projections, concepts, families):
         if not fields:
             bare.append(link)
             continue
-        listed += 1
-        names = {s['id']: source_label(s['url']) for s in sources}
         grouped = field_groups(item['slug'], fields, sources, concepts)
-        by_family = {}
-        for n, gid in grouped.items():
-            ref = f'{names[fields[n]["source"]]}:{fields[n]["name"]}'
-            by_family.setdefault(family_of.get(gid), {}).setdefault(gid, [])
-            if ref not in by_family[family_of.get(gid)][gid]:
-                by_family[family_of.get(gid)][gid].append(ref)
-        lines = []
-        for fam in order:
-            if fam not in by_family:
-                continue
-            parts = []
-            for gid, refs in sorted(by_family[fam].items(), key=lambda kv: labels[kv[0]].casefold()):
-                more = f' <small>+{len(refs) - 6}</small>' if len(refs) > 6 else ''
-                parts.append(f'<li><strong>{e(labels[gid])}</strong> {" ".join(f"<code>{e(r)}</code>" for r in refs[:6])}{more}</li>')
-            lines.append(f'<dt>{e(family_label[fam])}</dt><dd><ul>{"".join(parts)}</ul></dd>')
-        rest = {}
-        for n, f in enumerate(fields):
-            if n in grouped:
-                continue
-            kind = 'in' if f['role'] in ('parametru-api', 'corp-cerere') else 'out'
-            bucket = rest.setdefault(f['source'], {'in': [], 'out': []})[kind]
-            if f['name'] not in bucket:
-                bucket.append(f['name'])
-        other = sum(len(b['in']) + len(b['out']) for b in rest.values())
-        if other:
-            blocks = []
-            for ident, bucket in rest.items():
-                text = ''.join(f'<p><span>{label}</span> {", ".join(f"<code>{e(x)}</code>" for x in bucket[k])}</p>'
-                               for k, label in (('in', 'intrări:'), ('out', 'câmpuri:')) if bucket[k])
-                blocks.append(f'<div><h4>{e(names[ident])}</h4>{text}</div>')
-            lines.append(f'<dt>Alte câmpuri</dt><dd><details><summary>{other} nume, în {len(rest)} surse</summary>{"".join(blocks)}</details></dd>')
-        meta = f'{"Proiect" if item["kind"] == "proiect" else "Resursă"} · {len(sources)} {"sursă" if len(sources) == 1 else "surse"}'
-        rows.append(f'<article class="ov-row" id="{e(item["slug"])}"><div class="ov-name"><h2>{link}</h2><small>{meta}</small></div>'
-                    f'<dl class="ov-vars">{"".join(lines)}</dl></article>')
-    content = (f'<p class="ov-note">{listed} proiecte și resurse cu câmpuri extrase, din {len(entries)}. Grupurile sunt propuneri pentru '
-               f'descoperire: același nume nu înseamnă că datele se pot combina. Formatul este <code>sursă:câmp</code>.</p>'
-               + ''.join(rows)
-               + f'<section class="ov-bare"><h2>Fără câmpuri extrase ({len(bare)})</h2><p>{", ".join(bare)}</p>'
+        known = dict(columns)
+        cells = {}
+        for gid in dict.fromkeys(grouped.values()):
+            fam = family_of.get(gid) if family_of.get(gid) in known else None
+            cells.setdefault(fam, []).append(labels[gid])
+        other = len({f['name'] for n, f in enumerate(fields) if n not in grouped})
+        tds = []
+        for fam, _ in columns:
+            names = sorted(cells.get(fam, []), key=str.casefold)
+            totals[fam] += bool(names)
+            tds.append(f'<td>{"<ul>" + "".join(f"<li>{e(x)}</li>" for x in names) + "</ul>" if names else ""}</td>')
+        kind = 'proiect' if item['kind'] == 'proiect' else 'resursă'
+        rows.append(f'<tr id="{e(item["slug"])}"><th scope="row">{link}<small>{kind} · {len(sources)} {"sursă" if len(sources) == 1 else "surse"}</small></th>'
+                    f'{"".join(tds)}<td class="ov-other">{other or ""}</td></tr>')
+    head = ''.join(f'<th scope="col">{e(label)}<small>{totals[fam]}</small></th>' for fam, label in columns)
+    content = (f'<p class="ov-note">{len(rows)} proiecte și resurse cu câmpuri extrase, din {len(entries)}. O celulă numește variabilele normalizate '
+               f'(grupurile propuse); numărul de sub fiecare coloană spune câte intrări au cel puțin una. „Altele” numără câmpurile care nu sunt în niciun grup. '
+               f'Același nume nu înseamnă că datele se pot combina.</p>'
+               f'<div class="ov-scroll"><table class="ov-table"><thead><tr><th scope="col">Proiect<small>{len(rows)}</small></th>{head}'
+               f'<th scope="col">Altele<small>câmpuri</small></th></tr></thead><tbody>{"".join(rows)}</tbody></table></div>'
+               f'<section class="ov-bare"><h2>Fără câmpuri extrase ({len(bare)})</h2><p>{", ".join(bare)}</p>'
                f'<p class="ov-note">Lipsa câmpurilor nu înseamnă lipsa datelor: inventarul acestor intrări nu a fost făcut.</p></section>')
     doc = (Path(__file__).parent / 'templates/inventory-list.html').read_text().replace('<!--LISTA-->', content)
     for asset in ('style.css', 'inventory.css'):
@@ -253,11 +231,32 @@ def group_api_parameters(fields):
                field['unit'], field['format'], field.get('location'))
         if key not in grouped:
             grouped[key] = {**field, 'contexts': []}
+            grouped[key].pop('also', None)
             out.append(grouped[key])
         target = grouped[key]
         target['contexts'].append({'path': field['path'], 'reference': field['reference'], 'operations': field['operations']})
         target['operations'] = list(dict.fromkeys([*target['operations'], *field['operations']]))
+        if field.get('also'):
+            target.setdefault('also', []).extend(field['also'])
     return out
+
+
+def fold_restatements(fields, sources, listed):
+    """A field that restates a record of another listed source (`restates`: an API reference page repeating its OpenAPI contract)
+    becomes evidence on that record (`also`) instead of a second field. Without the restated record in the projection, it stays a field."""
+    by_pointer = {(f['source'], f['reference']): f for f in fields if not f.get('restates')}
+    urls = {s['id']: s['url'] for s in listed}
+    titles = {s['id']: s['title'] for s in listed}
+    kept = []
+    for field in fields:
+        link = field.pop('restates', None)
+        target = link and by_pointer.get((link.get('sursa_id'), link.get('pointer')))
+        if not target:
+            kept.append(field)
+            continue
+        target.setdefault('also', []).append({'url': urls.get(field['source'], ''), 'title': titles.get(field['source'], ''), 'reference': field['reference'],
+                                              'description': field['description']})
+    return kept
 
 
 def publish_preview(items, root, site):
@@ -309,7 +308,7 @@ def publish_preview(items, root, site):
                           'declaredType': field.get('tip_declarat'), 'observedTypes': field.get('tipuri_observate', []),
                           'semanticType': field.get('tip_semantic'), 'unit': field.get('unitate'), 'format': field.get('format'),
                           'role': field.get('rol', 'camp-date'), 'basis': basis, 'source': ident, 'location': field.get('loc'),
-                          'reference': field.get('pointer', ''),
+                          'reference': field.get('pointer', ''), 'restates': field.get('in_contract'),
                           'operations': list(dict.fromkeys(a['operatie'] for a in field.get('aparitii', []) if a.get('operatie')))}
                 # Declared extras that the field browser shows when present. Empty values stay out of the payload.
                 for key, name in (('valori_enum', 'enum'), ('formula_declarata', 'formula'), ('grup', 'group'), ('perioada_declarata', 'period'),
@@ -317,6 +316,7 @@ def publish_preview(items, root, site):
                     if field.get(key) not in (None, '', []):
                         record[name] = field[key]
                 fields.append(record)
+        fields = fold_restatements(fields, sources, source_list)
         positions = len(fields)
         fields = group_api_parameters(fields)
         fields.sort(key=rank_field)

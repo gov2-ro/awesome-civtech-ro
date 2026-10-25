@@ -32,7 +32,7 @@ from inventory_concepts import EvidenceLocator, check_concepts, validate_familie
 from inventory_apidocs import operations as api_operations
 from inventory_ins import ins_dataset, ins_listing, ins_measure, is_listing
 from inventory_text import EXTENSIONS, read_text
-from inventory_state import (REGISTRY, RequestLog, StateError, active_members, admit, check_text, dump, load_previous,
+from inventory_state import (REGISTRY, counted_fields, RequestLog, StateError, active_members, admit, check_text, dump, load_previous,
                              new_discovery, now_utc, priority, protect, registry_map, retire, seed_registry, sorted_registry,
                              source_id, usable, validate_state, write_atomic, write_file_atomic)
 
@@ -458,7 +458,7 @@ def build_profile(entry, record, sources, refs, concepts, previous=None, notes=N
         controls = previous.get('intrari_utilizator', [])
         if notes is not None:
             notes.append(f'{entry["slug"]}: documentation snapshots missing; previous HTML control candidates kept')
-    fields = sum(len(sources[r]['campuri']) for r in refs if r in sources)
+    fields = sum(len(counted_fields(sources[r])) for r in refs if r in sources)
     gaps = ['Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.']
     if not fields:
         gaps.append('Nu s-a verificat un dicționar sau o schemă de date în această trecere.')
@@ -996,7 +996,7 @@ def update_inventory(entries, docs, verified, previous, *, cache, selected=(), o
         if slug in work:
             profiles.append(build_profile(entry, docs.get(slug, {}), sources, refs, concepts, old, report['avertismente']))
         else:
-            profiles.append({**old, 'campuri_din_surse': sum(len(sources[r]['campuri']) for r in old['surse_structurate'] if r in sources)})
+            profiles.append({**old, 'campuri_din_surse': sum(len(counted_fields(sources[r])) for r in old['surse_structurate'] if r in sources)})
     ordered = sorted(sources.values(), key=lambda s: s['url'])
     errors = validate_state(profiles, ordered, registry, previous)
     if errors:

@@ -72,6 +72,12 @@ def usable(source):
     return bool(source) and source.get('stare') == 'analizat' and bool(source.get('sha256'))
 
 
+def counted_fields(source):
+    """The fields that count. A field that restates a record of another source (`in_contract`: an API reference page that repeats its
+    OpenAPI contract) is more evidence for that record, not another field."""
+    return [f for f in source.get('campuri', []) if not f.get('in_contract')]
+
+
 def read_json(path):
     try:
         return json.loads(Path(path).read_text())

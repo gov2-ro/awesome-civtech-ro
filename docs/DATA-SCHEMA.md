@@ -1086,9 +1086,12 @@ The check panel runs `validate.py --publication`, `inventory.py --check` and `in
 ### Cross-project data finder preview
 
 The same flag generates `/date/` and `inventar/index.json`. It adds a navigation link in the explorer preview.
-It also generates `/date/lista/`, a static page with one row per project or resource that has extracted fields: the `source:field` names of the
-fields in a group, under the family of the group, then the other field names per source, with inputs (API parameters, request bodies) apart from
-returned fields. The source name is the file name of its URL, or its host. Entries without fields are named once at the end.
+It also generates `/date/lista/`, a static table with one row per project or resource that has extracted fields and one column per family:
+a cell names the groups (normalised names) of that family that the entry has. The last column, "Altele", counts the distinct names of fields in no group.
+Entries without fields are named once below the table.
+
+Counting rule: a field with a non-null `in_contract` restates a record of another source. It stays in `seturi-date.json` and `campuri.csv` as evidence,
+but counts, group memberships and the preview use the restated record only (`inventory_state.counted_fields`; in the preview it becomes `also` on that record).
 The index includes all 106 projects and 21 resources. Organisations remain in the ordinary explorer.
 Each entry carries its catalogue description, subjects, institutions, accepted providers, inventory summary and proposed variable matches.
 The page fetches one discovery index. Results appear in batches of 24. Full per-project fields remain separate.

@@ -18,6 +18,7 @@ from pathlib import Path
 
 from common import ROOT, PUBLIC_ROOT, load_catalogue, observation_paths
 from inventory_concepts import GROUP_STATES, SELECTOR_STATES, active_groups, group_state, selector_matches, selector_state
+from inventory_state import counted_fields
 
 COLUMNS = ['slug', 'tip_entitate', 'investigat_in_lot', 'stare_investigare', 'surse_structurate', 'campuri_din_surse', 'concepte_propuse',
            'campuri_cu_definitie', 'campuri_cu_tip_declarat', 'campuri_cu_tip_observat', 'masuri_cu_unitate', 'masuri_fara_unitate',
@@ -62,7 +63,7 @@ def membership(data):
     for slug, profile in data['profiles'].items():
         for ref in profile['surse_structurate']:
             source = sources[ref]
-            for field in source['campuri']:
+            for field in counted_fields(source):
                 view, key = field_view(field), (ref, field['cale'], field['pointer'] if 'pointer' in field else '')
                 has_unit = bool(field.get('unitate') or field.get('unitati_declarate'))
                 # A measure is a field with the role `masura`, a dictionary-table row (it declares what it measures), or a member of a measure group.
@@ -101,7 +102,7 @@ def coverage_rows(data):
         sources = [data['sources'][r] for r in profile['surse_structurate']]
         usable = [s for s in sources if s.get('stare') == 'analizat']
         failed = [s for s in sources if s.get('stare') != 'analizat']
-        fields = [f for s in usable for f in s['campuri']]
+        fields = [f for s in usable for f in counted_fields(s)]
         note = data['notes']['note'].get(slug, {})
         if entry['kind'] == 'organizatie':
             state = 'in-afara-ariei'
@@ -151,7 +152,7 @@ def metrics(data, rows):
     with_fields = [e for e in finder if profiles[e['slug']]['campuri_din_surse']]
     kinds = Counter()
     for source in sources.values():
-        for field in source['campuri']:
+        for field in counted_fields(source):
             kinds[field['stare_tip']] += 1
     parsed = [s for s in sources.values() if s.get('stare') == 'analizat']
     accepted = [(e['slug'], r['name']) for e in entries for r in e['data_sources']]

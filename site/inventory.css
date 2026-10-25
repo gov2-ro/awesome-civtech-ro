@@ -62,18 +62,17 @@
 .finder-family .finder-options { padding:2px 0 6px 14px; }
 .ov-title { font-size:18px; margin:0 0 0 auto; }
 .ov-note { font-size:13px; color:var(--muted); margin:8px 0 20px; max-width:80ch; }
-.ov-row { display:grid; grid-template-columns:220px minmax(0,1fr); gap:24px; padding:18px 0; border-top:1px solid var(--line); }
-.ov-name h2 { font-size:17px; margin-bottom:4px; }
-.ov-name small { font-size:12px; color:var(--muted); }
-.ov-vars { display:grid; grid-template-columns:150px minmax(0,1fr); gap:8px 16px; margin:0; font-size:14px; }
-.ov-vars dt { font-size:12px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); padding-top:2px; }
-.ov-vars dd { margin:0; min-width:0; }
-.ov-vars ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:4px; }
-.ov-vars li strong { font-weight:600; margin-right:6px; }
-.ov-vars code { font-size:12px; overflow-wrap:anywhere; margin-right:6px; color:var(--ink-2); }
-.ov-vars details > summary { cursor:pointer; color:var(--accent); }
-.ov-vars h4 { font-size:13px; margin:10px 0 2px; }
-.ov-vars p span { color:var(--muted); margin-right:4px; }
+.ov-scroll { overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius); max-height:calc(100vh - 140px); }
+.ov-table { border-collapse:separate; border-spacing:0; font-size:13px; min-width:1400px; width:100%; }
+.ov-table th, .ov-table td { text-align:left; vertical-align:top; padding:6px 10px; border-bottom:1px solid var(--line); border-right:1px solid var(--line); }
+.ov-table thead th { position:sticky; top:0; z-index:2; background:var(--bg); font-size:12px; font-weight:600; white-space:nowrap; }
+.ov-table th small { display:block; font-weight:400; color:var(--muted); font-size:11px; }
+.ov-table tbody th { position:sticky; left:0; z-index:1; background:var(--bg); font-weight:600; min-width:190px; max-width:220px; }
+.ov-table thead th:first-child { left:0; z-index:3; }
+.ov-table ul { list-style:none; margin:0; padding:0; }
+.ov-table li { white-space:nowrap; line-height:1.5; }
+.ov-table tbody tr:hover > * { background:var(--surface); }
+.ov-other { color:var(--muted); text-align:right; }
 .ov-bare { border-top:1px solid var(--line); padding-top:18px; }
 .ov-bare h2 { font-size:17px; margin-bottom:8px; }
 .ov-bare p { font-size:14px; line-height:1.7; }
@@ -89,7 +88,5 @@
   .finder-facet h2 { font-size:16px; }
   .finder-option { font-size:13px; }
   .finder-card { padding:16px; }
-  .ov-row, .ov-vars { grid-template-columns:minmax(0,1fr); gap:6px; }
-  .ov-vars dt { padding-top:8px; }
   .ov-title { margin-left:0; flex-basis:100%; }
 }

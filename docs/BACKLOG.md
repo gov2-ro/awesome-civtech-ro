@@ -48,7 +48,9 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
       The review tool's check panel shows that report as out of date on a copy of the data root whose decisions differ. Add a `--report` path if copies need a clean check.
 - [ ] Owner review: decide D132–D162 and the 30 groups with the interface.
 - [x] Group the variable groups into families (identifiers, geography, time, then subject areas); the finder groups its variable facet by family.
-- [x] Per-project list of variables at `/date/lista/` (`source:field`, by family, other fields per source).
+- [x] Per-project table of variables at `/date/lista/`: one row per entry with fields, one column per family, normalised names only, and a count of ungrouped fields ("Altele").
+      Desktop first; the table scrolls horizontally in its frame.
+- [ ] Project variables profile page: the source field names (`source:field`) of one project, by family and by source. The table above leaves them out on purpose.
 - [ ] Let an editor add a field that the extractors missed: a hand-edited file with slug, source URL, name, locator, role, declared type, unit,
       description and an evidence fragment; `inventory.py` merges it as an editor-added field and `--check` verifies the fragment. Entry from the review interface.
       Needs a short brief.
@@ -84,10 +86,32 @@ The 62 unconfirmed profiles cover the full 140-entry catalogue, including organi
 - [ ] Ask for the working EuropeScope API documentation (`/api/docs` returns 404) and the Registrul Firmelor API schema (a free key is needed; none was requested).
 - [x] Add the DemoANAF `api-docs` page to its inventory (v0.21.0, reader `html-api-docs`): 60 operations, 113 inputs and 6 response members, compared with `openapi.json`
       (14 operations and 22 inputs only on the page). 4 requests. See `docs/ACTIVITY.md`.
-- [ ] Ask the DemoANAF project for a response schema or an example for `company`, `financials` and `health`; every operation needs a Pro key and none was called.
-      Tell them that two cards show the untranslated keys `ep.seap-cpv-top.description` and `ep.seap-cpv-analysis.description`, and one shows `cache.6h`. This pass did not contact them.
-- [ ] Decide whether the finder counts a record with `in_contract` once. After the DemoANAF page was added, its card shows 85 fields (was 36) and the groups `cui`, `cpv`, `judet`, `localitate` count both sources.
-- [ ] Review the 22 inputs that only the DemoANAF page documents, and the 4 contract inputs that the page lacks, before any is used as evidence of a feature (`comparatie_contract` lists them).
+- [x] Count a record that restates another source (`in_contract`) once. `inventory_state.counted_fields` drives the profile and report counts;
+      the preview folds the restatement into the restated record as `also` evidence. DemoANAF: 221 → 130 counted fields; finder card 85 → 57; `cui` evidence 5 → 3.
+
+### DemoANAF — paused 2026-10-25
+
+**Conclusions.** Three sources: `openapi.json` (46 operations, 95 parameters, no response schemas), the `api-docs` page (60 operations, 14 and 22 inputs
+only on the page, response envelope only) and the INS dataset POP107D that the site cites. 130 counted fields, all request inputs except the envelope.
+DemoANAF is a strong source of request keys (CUI, CPV, county, locality, year), and an unknown source of returned fields. Every operation needs a Pro key
+(some accept x402 per-request payment), so nothing was called.
+
+**Hint for resuming.** First run `python3 scripts/inventory.py --only demoanaf` and read `comparatie_contract` in `seturi-date.json`: a contract that gains
+response schemas answers the main gap without contact. Otherwise ask the project for a response schema or an example for `company`, `financials` and `health`,
+and mention the untranslated keys `ep.seap-cpv-top.description`, `ep.seap-cpv-analysis.description` and `cache.6h`.
+
+- [ ] (paused) Response fields of DemoANAF: schema or example from the project.
+- [ ] (paused) Review the 22 inputs that only the page documents and the 4 contract inputs that the page lacks (`comparatie_contract`).
+- [ ] (paused) Group candidates: `cuis` (batch body, `string[]`) → `cui`; `year` → `perioada-de-referinta` (`dateFrom`/`dateTo` are filter bounds, keep them out);
+      `metric (cifra|profit|angajati)` is a parameter value, not evidence for turnover, profit or employees.
+
+### Related catalogues
+
+- [ ] Look for correspondences with [ro-api-hub](https://github.com/Jamaalx/ro-api-hub) (catalogue of 125 Romanian public and private APIs).
+      It is already a catalogue entry (`ro-api-hub`) whose `catalog.json` and `catalog.schema.json` are inventoried (53 fields). Next: map its services to
+      catalogue entries and accepted providers (ANAF, BNR, ONRC, INS, AEP, SEAP), and its declared request fields to the variable groups. Correspondence only; no import.
+- [ ] Idea, not decided: a static, read-only JSON API over the inventory (variables, projects, sources, evidence), generated by `build.py` and described by an OpenAPI file.
+      Preconditions: the owner review, stable group ids, and a state on every assertion so that proposals are never served as facts.
 - [x] Extend the business dictionary with evidence-backed aliases, descriptions, roles, units, periods and geographic levels (milestone D).
       Identifiers, dimensions, measures and one derived output are separate categories. Review each proposed equivalence before treating it as a join key.
 - [x] Record newly verified providers as proposals: 16 review items D147-D162 (producer, distributor and project author kept apart). No live relation changed.

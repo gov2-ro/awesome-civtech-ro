@@ -141,13 +141,15 @@ with sync_playwright() as pw:
     # The per-project list: one row per entry with extracted fields, the others named once.
     page.goto(BASE + 'date/lista/')
     with_fields = sum(bool(e['inventory'].get('count')) for e in INDEX['entries'])
-    ok('the list has one row per entry with fields', page.locator('.ov-row').count() == with_fields)
+    ok('the list has one row per entry with fields', page.locator('.ov-table tbody tr').count() == with_fields)
     ok('the list names every entry without fields', page.locator('.ov-bare a').count() == len(INDEX['entries']) - with_fields)
-    ok('the list shows source:field pairs', page.locator('.ov-row code').count() > with_fields)
-    for width in (390, 320):
-        page.set_viewport_size({'width':width,'height':900})
-        page.goto(BASE + 'date/lista/')
-        ok(f'{width}px list fits the viewport', page.evaluate('document.documentElement.scrollWidth===innerWidth'))
+    columns = page.locator('.ov-table thead th').evaluate_all('els=>els.map(e=>e.firstChild.textContent)')
+    ok('the list has one column per family, then Altele', columns[1:-1] == [f['label'] for f in INDEX.get('families', [])] and columns[-1] == 'Altele')
+    cui = next(v for v in INDEX['variables'] if v['id'] == 'cui')
+    cui_rows = {e['slug'] for e in INDEX['entries'] if any(v['id'] == 'cui' for v in e['variables'])}
+    shown_cui = set(page.locator('.ov-table tbody tr').evaluate_all('(els, label)=>els.filter(e=>[...e.querySelectorAll("li")].some(li=>li.textContent===label)).map(e=>e.id)', cui['label']))
+    ok('a normalised name appears in exactly the rows whose entries have the group', shown_cui == cui_rows)
+    ok('the table scrolls inside its frame, not the page', page.evaluate('document.documentElement.scrollWidth===innerWidth'))
     failed = browser.new_page()
     failed.route('**/inventar/index.json', lambda route: route.fulfill(status=503,body='{}'))
     failed.goto(BASE + 'date/')

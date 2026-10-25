@@ -754,6 +754,7 @@ function renderInventoryRows(panel) {
     return `<li class="inv-field">
       <div class="inv-field-heading"><code>${esc(f.name)}</code><span class="inv-type">${esc(inventoryType(f))}${f.unit ? ` · ${esc(f.unit)}` : ''}</span></div>
       ${f.description ? `<p class="inv-description">${esc(f.description)}</p>` : ''}
+      ${f.also?.length ? `<p class="inv-values">Documentat și în ${f.also.slice(0, 1).map(a => `<a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.title || 'documentația API')}${ICON.out}</a>${a.description ? `: ${esc(a.description)}` : ''}`).join('')}${f.also.length > 1 ? ` (${f.also.length} mențiuni)` : ''}</p>` : ''}
       ${f.enum?.length ? `<p class="inv-values">Alternative declarate: ${f.enum.slice(0, 12).map(v => `<code>${esc(v)}</code>`).join(' ')}${f.enum.length > 12 ? ' …' : ''}</p>` : ''}
       ${f.formula ? `<p class="inv-values">Formulă declarată: <code>${esc(f.formula)}</code></p>` : ''}
       ${f.period ? `<p class="inv-values">Perioadă declarată: ${esc(f.period)}</p>` : ''}

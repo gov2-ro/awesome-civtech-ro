@@ -8,7 +8,8 @@ from pathlib import Path
 from unittest.mock import patch
 
 from inventory_concepts import validate_families
-from inventory_site import BASIS, document_links, group_api_parameters, publish_overview, publish_preview, variable_matches, publish_finder
+from inventory_state import counted_fields
+from inventory_site import BASIS, document_links, fold_restatements, group_api_parameters, publish_overview, publish_preview, variable_matches, publish_finder
 
 
 class InventorySite(unittest.TestCase):
@@ -133,6 +134,22 @@ class InventorySite(unittest.TestCase):
             self.assertNotIn('v=BUILD', page)
             self.assertIn('<base href="../">', page)
 
+    def test_a_restated_field_is_counted_once_and_kept_as_evidence(self):
+        source = {'campuri': [{'nume': 'cui', 'in_contract': {'sursa_id': 'c', 'pointer': '/p/0'}}, {'nume': 'new', 'in_contract': None}, {'nume': 'x'}]}
+        self.assertEqual([f['nume'] for f in counted_fields(source)], ['new', 'x'])
+        def field(name, source, reference, restates=None, description=''):
+            return dict(name=name, path=name, role='parametru-api', source=source, reference=reference, restates=restates,
+                        description=description, declaredType=None, unit=None, format=None, operations=['GET /a'])
+        listed = [{'id': 'c', 'url': 'https://example.org/openapi.json', 'title': 'Schemă API'},
+                  {'id': 'p', 'url': 'https://example.org/api-docs', 'title': 'Documentația API (pagină)'}]
+        fields = [field('cui', 'c', '/p/0'), field('cui', 'p', 'char:1-3', {'sursa_id': 'c', 'pointer': '/p/0'}, '1-10 cifre'),
+                  field('orphan', 'p', 'char:5-9', {'sursa_id': 'c', 'pointer': '/missing'}), field('only', 'p', 'char:9-12')]
+        kept = fold_restatements(fields, [], listed)
+        self.assertEqual([(f['name'], f['source']) for f in kept], [('cui', 'c'), ('orphan', 'p'), ('only', 'p')])
+        self.assertEqual(kept[0]['also'], [{'url': 'https://example.org/api-docs', 'title': 'Documentația API (pagină)', 'reference': 'char:1-3', 'description': '1-10 cifre'}])
+        self.assertTrue(all('restates' not in f for f in kept))
+        self.assertEqual(len(group_api_parameters(kept)[0]['also']), 1, 'collapsing parameters keeps one copy of the evidence')
+
     def test_families_need_known_ids(self):
         document = {'familii': [{'id': 'geo', 'label': 'Geografie'}, {'id': 'geo', 'label': 'Again'}, {'id': 'x'}],
                     'concepte': [{'id': 'judet', 'familie': 'geo'}, {'id': 'cui', 'familie': 'nope'}, {'id': 'free'}]}
@@ -145,13 +162,14 @@ class InventorySite(unittest.TestCase):
         self.assertEqual(validate_families(document), [])
         self.assertTrue(all(c.get('familie') for c in document['concepte']))
 
-    def test_overview_lists_fields_by_family_then_by_source_and_role(self):
-        concepts = [{'id': 'cui', 'label': 'CUI', 'familie': 'ids', 'selectors': [{'projects': ['p'], 'names': ['cui']}]},
-                    {'id': 'gone', 'label': 'Gone', 'familie': 'ids', 'stare': 'respins', 'selectors': [{'projects': ['p'], 'names': ['q']}]}]
-        families = [{'id': 'ids', 'label': 'Identificatori'}]
+    def test_overview_is_a_table_of_normalised_names_by_family(self):
+        concepts = [{'id': 'cui', 'label': 'CUI', 'familie': 'ids', 'selectors': [{'projects': ['p'], 'names': ['cui', 'cui_firma']}]},
+                    {'id': 'gone', 'label': 'Gone', 'familie': 'ids', 'stare': 'respins', 'selectors': [{'projects': ['p'], 'names': ['q']}]},
+                    {'id': 'an', 'label': '<An>', 'familie': 'timp', 'selectors': [{'projects': ['p'], 'names': ['year']}]}]
+        families = [{'id': 'ids', 'label': 'Identificatori'}, {'id': 'timp', 'label': 'Timp'}, {'id': 'geo', 'label': 'Geografie'}]
         def field(name, role='camp-raspuns', source='s'):
             return dict(name=name, path='$.' + name, role=role, source=source)
-        fields = [field('cui'), field('cui', 'parametru-api'), field('q', 'parametru-api'), field('<b>x</b>'), field('total', source='t')]
+        fields = [field('cui'), field('cui_firma'), field('q', 'parametru-api'), field('q'), field('total', source='t'), field('year')]
         sources = [{'id': 's', 'url': 'https://example.org/api/openapi.json'}, {'id': 't', 'url': 'https://example.org/'}]
         items = [dict(slug='p', name='Proj', kind='proiect'), dict(slug='bare', name='Bare & co', kind='resursa'),
                  dict(slug='org', name='Org', kind='organizatie')]
@@ -161,14 +179,17 @@ class InventorySite(unittest.TestCase):
                 (site / name).write_text('/* fixture */')
             publish_overview(items, site, {'p': (fields, sources)}, concepts, families)
             page = (site / 'date/lista/index.html').read_text()
-        row = page[page.index('class="ov-row"'):page.index('class="ov-bare"')]
-        self.assertIn('<dt>Identificatori</dt>', row)
-        self.assertEqual(row.count('<code>openapi.json:cui</code>'), 1, 'a name repeated in one source is listed once')
-        self.assertIn('<span>intrări:</span> <code>q</code>', row, 'a rejected group leaves its fields with the others')
-        self.assertIn('<code>&lt;b&gt;x&lt;/b&gt;</code>', row)
-        self.assertIn('<h4>example.org</h4>', row, 'a source without a file name is named by its host')
+        head = page[page.index('<thead>'):page.index('</thead>')]
+        self.assertEqual([h.split('<small>')[0] for h in head.split('<th scope="col">')[1:]], ['Proiect', 'Identificatori', 'Timp', 'Geografie', 'Altele'])
+        row = page[page.index('<tr id="p">'):page.index('</tr>', page.index('<tr id="p">'))]
+        cells = row.split('<td')[1:]
+        self.assertEqual(cells[0], '><ul><li>CUI</li></ul></td>', 'two fields of one group give one normalised name')
+        self.assertIn('<li>&lt;An&gt;</li>', cells[1])
+        self.assertEqual(cells[2], '></td>')
+        self.assertIn('>2</td>', cells[3], 'a rejected group leaves its fields with the others, counted by distinct name: q and total')
+        self.assertNotIn('openapi.json', page, 'source field names belong to the project page, not to this table')
         self.assertIn('Bare &amp; co', page)
-        self.assertNotIn('Org', page.replace('Organiz', ''))
+        self.assertNotIn('>Org<', page)
         self.assertNotIn('v=BUILD', page)
         self.assertIn('<base href="../../">', page)
 
