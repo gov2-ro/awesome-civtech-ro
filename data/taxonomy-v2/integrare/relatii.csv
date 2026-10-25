@@ -130,18 +130,45 @@ L128,codurbanism,date_din,,Camera Deputaților,surse_date,https://mariuscomper.u
 L129,codurbanism,date_din,,Administrația Prezidențială,surse_date,https://mariuscomper.uk/codurbanism/,acceptat
 L130,codurbanism,date_din,,Portal Legislativ,surse_date,https://mariuscomper.uk/codurbanism/,acceptat
 L131,codurbanism,date_din,,Ministerul Dezvoltării (MDLPA),surse_date,https://mariuscomper.uk/codurbanism/,acceptat
-L132,demoanaf,date_din,,ANAF,surse-date; candidat cu dovadă,https://demoanaf.ro/surse-date,propus
-L133,demoanaf,date_din,,Banca Națională a României (BNR),surse-date; candidat cu dovadă,https://demoanaf.ro/surse-date,propus
-L134,demoanaf,date_din,,Oficiul Național al Registrului Comerțului (ONRC),surse-date; candidat cu dovadă,https://demoanaf.ro/surse-date,propus
+L132,demoanaf,date_din,,ANAF,surse_date,https://demoanaf.ro/surse-date,acceptat
+L133,demoanaf,date_din,,Banca Națională a României (BNR),surse_date,https://demoanaf.ro/surse-date,acceptat
+L134,demoanaf,date_din,,Oficiul Național al Registrului Comerțului (ONRC),surse_date,https://demoanaf.ro/surse-date,acceptat
 L135,executii-bugetare,date_din,,Ministerul Finanțelor,surse_date,https://executii-bugetare.g4d.ro/,acceptat
-L136,harta-firmelor,date_din,,Oficiul Național al Registrului Comerțului (ONRC),surse-date; candidat cu dovadă,https://harta-firmelor.ro/date,propus
-L137,harta-firmelor,date_din,,ANAF,surse-date; candidat cu dovadă,https://harta-firmelor.ro/date,propus
-L138,harta-firmelor,date_din,,SICAP / SEAP,surse-date; candidat cu dovadă,https://harta-firmelor.ro/date,propus
-L139,harta-firmelor,date_din,,Monitorul Oficial,surse-date; candidat cu dovadă,https://harta-firmelor.ro/date,propus
-L140,registrul-firmelor,date_din,,Oficiul Național al Registrului Comerțului (ONRC),descriere; candidat neverificat,https://registru.horecaos.org/,propus
-L141,registrul-firmelor,date_din,,ANAF,descriere; candidat neverificat,https://registru.horecaos.org/,propus
-L142,achizitii-directe-ti-2026,date_din,,SICAP / SEAP,descriere; candidat neverificat,https://achizitii-directe-ti-2026.mariuscomper.uk/,propus
+L136,harta-firmelor,date_din,,Oficiul Național al Registrului Comerțului (ONRC),surse_date,https://harta-firmelor.ro/date,acceptat
+L137,harta-firmelor,date_din,,ANAF,surse_date,https://harta-firmelor.ro/date,acceptat
+L138,harta-firmelor,date_din,,SICAP / SEAP,surse_date,https://harta-firmelor.ro/date,acceptat
+L139,harta-firmelor,date_din,,Monitorul Oficial,surse_date,https://harta-firmelor.ro/date,acceptat
+L140,registrul-firmelor,date_din,,Oficiul Național al Registrului Comerțului (ONRC),surse_date,https://registru.horecaos.org/,acceptat
+L141,registrul-firmelor,date_din,,ANAF,surse_date,https://registru.horecaos.org/,acceptat
+L142,achizitii-directe-ti-2026,date_din,,SICAP / SEAP,surse_date,https://achizitii-directe-ti-2026.mariuscomper.uk/,acceptat
 L143,achizitii-directe-ti-2026,date_din,,Autoritatea pentru Digitalizarea României (ADR),descriere; candidat neverificat,https://achizitii-directe-ti-2026.mariuscomper.uk/,propus
 L144,prima-cifra,date_din,,SICAP / SEAP,surse_date,https://mariuscomper.uk/prima-cifra/,acceptat
-L145,recontorizarea,date_din,,Eurostat,descriere; candidat neverificat,https://mariuscomper.uk/recontorizarea/,propus
-L146,sicap-ai,date_din,,SICAP / SEAP,descriere; candidat neverificat,https://sicap.ai/,propus
+L145,recontorizarea,date_din,,Eurostat,surse_date,https://mariuscomper.uk/recontorizarea/,acceptat
+L146,sicap-ai,date_din,,SICAP / SEAP,surse_date,https://sicap.ai/,acceptat
+L147,registrul-firmelor,date_din,,Ministerul Justiției (portalul instanțelor),surse_date,https://registru.horecaos.org/surse,acceptat
+L148,europescope,date_din,,Parlamentul European (portalul de date deschise),surse_date,https://www.europescope.eu/data,acceptat
+L149,europescope,date_din,,Consiliul Uniunii Europene (registrul public),surse_date,https://www.europescope.eu/data,acceptat
+L150,companii-de-stat,date_din,,Agenția pentru Monitorizarea și Evaluarea Performanțelor Întreprinderilor Publice (AMEPIP),surse_date,https://companiidestat.ro/date/v1/index.json,acceptat
+L151,companii-de-stat,date_din,,"Ministerul Finanțelor (situații financiare, prin data.gov.ro)",surse_date,https://companiidestat.ro/date/v1/index.json,acceptat
+L152,companii-de-stat,date_din,,"ANAF (execuție bugetară, prin transparenta.eu)",surse_date,https://companiidestat.ro/date/v1/index.json,acceptat
+L153,companii-de-stat,date_din,,Bursa de Valori București,surse_date,https://companiidestat.ro/date/v1/index.json,acceptat
+L154,registrul-firmelor,date_din,,"Ministerul Finanțelor (situații financiare, prin data.gov.ro)",surse_date,https://registru.horecaos.org/surse,acceptat
+L155,registrul-firmelor,date_din,,SICAP / SEAP (exporturile ADR),surse_date,https://registru.horecaos.org/surse,acceptat
+L156,monitorul-ai,date_din,,"Monitorul Oficial al României, Partea a II-a",surse_date,https://monitorul.ai/,acceptat
+L157,banii-nostri,date_din,,"SICAP / SEAP, distribuit de data.g4d.ro",surse_date,https://baniinostri.info/RAJASA/,acceptat
+L158,calitate-aer-radauti,date_din,,"INMH (presiunea atmosferică, stația meteo Rădăuți)",surse_date,https://calitateaer.radautiulcivic.ro/masuratori/,acceptat
+L159,ins-gov2,date_din,,Inspecția Muncii (Ministerul Muncii),surse_date,https://ins.gov2.ro/api/datasets/ACC102B?lang=en,acceptat
+L160,ins-gov2,date_din,,Direcția pentru Evidența Persoanelor și Administrarea Bazelor de Date (RNEP),surse_date,https://ins.gov2.ro/api/datasets/POP107D?lang=en,acceptat
+L161,despre-femicid,date_din,,Presă și comunicări oficiale (nespecificate),surse_date,https://desprefemicid.ro/metodologie,acceptat
+L162,demoanaf,date_din,,Ministerul Finanțelor,surse_date,https://demoanaf.ro/surse-date,acceptat
+L163,demoanaf,date_din,,Institutul Național de Statistică (INS),surse_date,https://demoanaf.ro/surse-date,acceptat
+L164,demoanaf,date_din,,Ministerul Investițiilor și Proiectelor Europene (MIPE),surse_date,https://demoanaf.ro/surse-date,acceptat
+L165,demoanaf,date_din,,Agenția pentru Finanțarea Investițiilor Rurale (AFIR),surse_date,https://demoanaf.ro/surse-date,acceptat
+L166,demoanaf,date_din,,OpenStreetMap,surse_date,https://demoanaf.ro/surse-date,acceptat
+L167,demoanaf,date_din,,Comisia Europeană (VIES),surse_date,https://demoanaf.ro/surse-date,acceptat
+L168,demoanaf,date_din,,Monitorul Oficial,surse_date,https://demoanaf.ro/surse-date,acceptat
+L169,harta-firmelor,date_din,,Ministerul Finanțelor,surse_date,https://harta-firmelor.ro/date,acceptat
+L170,harta-firmelor,date_din,,Ministerul Justiției (portalul instanțelor),surse_date,https://harta-firmelor.ro/date,acceptat
+L171,harta-firmelor,date_din,,Buletinul Procedurilor de Insolvență (BPI),surse_date,https://harta-firmelor.ro/date,acceptat
+L172,harta-firmelor,date_din,,Agenția Națională pentru Resurse Minerale (ANRM),surse_date,https://harta-firmelor.ro/date,acceptat
+L173,registrul-firmelor,date_din,,OpenStreetMap,surse_date,https://registru.horecaos.org/surse,acceptat
