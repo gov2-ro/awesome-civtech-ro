@@ -172,3 +172,4 @@ L170,harta-firmelor,date_din,,Ministerul Justiției (portalul instanțelor),surs
 L171,harta-firmelor,date_din,,Buletinul Procedurilor de Insolvență (BPI),surse_date,https://harta-firmelor.ro/date,acceptat
 L172,harta-firmelor,date_din,,Agenția Națională pentru Resurse Minerale (ANRM),surse_date,https://harta-firmelor.ro/date,acceptat
 L173,registrul-firmelor,date_din,,OpenStreetMap,surse_date,https://registru.horecaos.org/surse,acceptat
+L174,lista-firme,atribuit_in_sursa,,RTI Global Services SRL,autor,RTI Global Services SRL,rol_neconfirmat

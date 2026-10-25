@@ -2,6 +2,15 @@
 
 Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
+## New entry lista-firme.info — 2026-10-26
+
+- [x] Decide `lista-firme` (`intrari.csv`). Accepted by the owner on 2026-10-26; `validate.py --publication` passes.
+- [ ] Prune the 7 kept search results of `lista-firme` in `observatii/mentiuni.csv` (column `editor`=`0`): `apps.make.com`, `firmeo.ro`, `infoquick.ro`, `datefirme.ro`, `clientsolutions.ro`, `portal.afir.info`, `regio-adrcentru.ro`. Then run `search.py --prune-only`.
+- [x] Fix `since` for `lista-firme`: 2024-05-04 from the repo, not 2011-05-19 from a GoDaddy parking page. Done 2026-10-26 with `EARLIER_DOMAIN_USE` in `build.py`.
+- [ ] Check `harta-tv-locale` for the same pattern: Wayback captures 2014-01-25 to 2018-09-16, repo created 2024-10-19. Add it to `EARLIER_DOMAIN_USE` only if the early captures show another site.
+- [ ] Update `.claude/commands/add-new-url.md` for v2: write `intrari.csv` (facets, `clasificare_stare=propus`) and `relatii.csv` (attribution row), not the frozen `proiecte.csv` / `orgs.csv`. Add the steps `collect_docs.py --only`, `inventory.py --only` and `inventory_report.py` after the profile and search steps.
+- [ ] Review the facts of `lista-firme`: the terms claim the source code for the operator, but `tudorr89/info-firme` is MIT-licensed; the owner attests the repo belongs to the site, but the site does not state the link between the repo owner (Tudor Rusu) and the operator. The API has no documentation page.
+
 ## Filter simplification and data provenance — 2026-10-25
 
 - [x] Combine subjects and themes in one `Subiect` filter. Keep old topic URLs working.

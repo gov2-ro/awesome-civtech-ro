@@ -1,5 +1,26 @@
 # Activity
 
+## 2026-10-26 — New entry lista-firme.info
+
+**Done**
+- Added `lista-firme` to `intrari.csv` (row 142, `proiect`, state `propus` at first, then `acceptat`; confidence `medie`) and its attribution L174 to `relatii.csv` (`RTI Global Services SRL`, `rol_neconfirmat`). The site names this company as its operator. The GitHub repo `tudorr89/info-firme` is the `linkuri` cell.
+- Profiled: status `activ`, HTTP 200, screenshot image and 128 px icon. Searched with Serper: 20 results, 7 kept by the rules. All 7 are name collisions with generic „lista firme” pages (none is about the site). `editor` stays empty; the owner decides.
+- `validate.py` 0 errors. `validate.py --publication` 1 error: the entry is `propus`. The isolated build with `--allow-draft` writes 141 entries.
+- Ran the documentation and inventory steps for the one slug (`collect_docs.py --only lista-firme`: 4 requests; `inventory.py --only lista-firme`; `inventory_report.py` to refresh `acoperire.csv` and `docs/reports/inventory-expansion.md`). The draft is partial: one HTML search control, no schema, no data dictionary. `inventory.py --check` 0 errors.
+- Unit tests before the owner's commit 786fc22 / 27428c0: 4 failed (2 on the `propus` gate, 2 pinning 140 entries). After acceptance, the unpinning on `main` and the `since` test: 523 run, 0 fail, 6 skipped.
+
+**Hard**
+- `/add-new-url` still writes `proiecte.csv` / `orgs.csv`. Those files are frozen since the cutover and a row there never reaches the site. This run used `intrari.csv` and `relatii.csv` instead (see the backlog).
+- `since` showed 2011-05-19 (`arhiva`). The two Wayback captures of 2011 show a GoDaddy parked-domain page. The first certificate is from 2024-04-18 and the repo from 2024-05-04. The owner asked for 2024. `build.py` now skips the first capture of the slugs in `EARLIER_DOMAIN_USE` (one slug, `lista-firme`): `since` is 2024-05-04 (`cod`) and the score falls from 60 to 49. The other 140 entries keep their `since`. A general rule was not used: of 29 entries whose first capture is 2+ years older than the repo or certificate, most are old sites that got a certificate late.
+- `profile.py` re-sorted `observatii/profil.csv`: the 19 mariuscomper.uk rows moved from the end of the file into slug order.
+
+**Decided**
+- The entry started as `propus`: acceptance is the owner's decision. The owner accepted it in the same session, so it is now `acceptat`. `validate.py --publication` 0 errors; `build.py` writes 141 entries to `site/`; 2 tests fail (both pin 140 entries).
+- The owner attests that `tudorr89/info-firme` belongs to the site (thread r/programare 1cpozgm, not read by the agent). No author row was added for the repo owner.
+- `civictech_original` stays empty. The operator is a private company; the site states no civic purpose. 17 entries already have an empty value.
+- `institutie:anaf` is the only institution. The main source (ONRC) has no concept in the vocabulary, as for `registrul-firmelor`.
+- No `date_din` relation and no review item: provider relations need an owner decision (`revizuire.csv` was open in the review interface).
+
 ## 2026-10-26 — Review decisions recorded
 
 **Done**

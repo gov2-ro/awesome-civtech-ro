@@ -1,10 +1,10 @@
 # CivTech România
 
 > Colecție curatoriată de proiecte civic tech, organizații și resurse din România: instrumente civice, date deschise
-> și proiecte de bună guvernare. 106 proiecte, 13 organizații, 21 resurse.
+> și proiecte de bună guvernare. 107 proiecte, 13 organizații, 21 resurse.
 
 Fiecare intrare are o pagină proprie la https://civtech.gov2.ro/<tip>/<slug>/ (tip: proiect, organizatie, resursa). Starea
-(activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-10-21. Textele sunt în
+(activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-10-25. Textele sunt în
 limba română. Datele sunt reutilizabile conform EUPL v1.2.
 
 ## Date
@@ -130,6 +130,7 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 
 - [Centrul pentru Cariere](https://civtech.gov2.ro/proiect/centrul-pentru-cariere/): Site: https://centrulpentrucariere.ro/
 - [Harta Firmelor](https://civtech.gov2.ro/proiect/harta-firmelor/): Legăturile dintre firme, oameni și contracte publice. Site: https://harta-firmelor.ro
+- [lista-firme.info](https://civtech.gov2.ro/proiect/lista-firme/): Căutare de firme din România după nume sau CUI, din date ONRC și ANAF. Site: https://lista-firme.info
 - [Posturi · gov2](https://civtech.gov2.ro/proiect/posturi-gov2/): Posturi vacante în sectorul public. Site: https://posturi.gov2.ro
 - [Registrul firmelor](https://civtech.gov2.ro/proiect/registrul-firmelor/): Tot ce se știe public despre o firmă din România. Site: https://registru.horecaos.org/
 
