@@ -16,7 +16,7 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [x] Add a dedicated data finder preview: all projects/resources, shared variables, accepted sources and target institutions, with evidence and shareable selections.
 - [x] Extend the seven proposed business-variable groups in `inventar-concepte.json` with explicit project/field evidence (milestone D, v0.17.0): 30 groups now,
       selector constraints on source, path and role, evidence pins checked by `inventory.py --check`.
-- [ ] Review the 30 proposed groups (23 are new). Decide each `ambiguitati` entry and each unit fact. A group is a discovery aid, not a join key.
+- [x] Review the 30 proposed groups (23 are new). Decide each `ambiguitati` entry and each unit fact. A group is a discovery aid, not a join key. Done 2026-10-26: decided by the owner, the rest in bulk at the owner's request (see the commit "record provider and group decisions").
 - [ ] Review the inventory preview labels and business meanings before enabling it in the public build.
 - [x] Pilot project data inventories: purpose, source datasets, variables/types/units, user inputs, transformations, and outputs.
       Collected documentation for 140 entries; drafted five profiles and 19 field candidates with evidence and completeness.
@@ -31,7 +31,7 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
       same body hash). The list route and the ACC102B, POP107D, LOC101B, TRN139A and GOS104A metadata routes work.
 - [ ] Add browser rendering or document-format extraction where static HTML and llms.txt leave gaps.
       Done in v0.14.0: the fetcher detects binary bodies (`format-binar`) instead of decoding them. No spreadsheet or PDF reader yet.
-- [ ] Review D132–D146 in `data/taxonomy-v2/integrare/revizuire.csv`. Confirm the provider and evidence before accepting each relation.
+- [x] Review D132–D146 in `data/taxonomy-v2/integrare/revizuire.csv`. Confirm the provider and evidence before accepting each relation. Done 2026-10-26: decided by the owner, the rest in bulk at the owner's request (see the commit "record provider and group decisions").
 - [ ] Continue provenance and geographic-detail review. 129 entries have no accepted source; 130 have no verified data detail.
       Empty fields can also mean not applicable. Do not infer a provider from monitored institutions or authors.
       Do not infer complete county or locality coverage from national reach.
@@ -46,7 +46,7 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
       (readable, never `verificat`). A pin needs a convention or a column; `relatii.csv` has none today.
 - [ ] `inventory_report.py --check --data-dir <other root>` still compares `docs/reports/inventory-expansion.md` under the repository root.
       The review tool's check panel shows that report as out of date on a copy of the data root whose decisions differ. Add a `--report` path if copies need a clean check.
-- [ ] Owner review: decide D132–D162 and the 30 groups with the interface.
+- [x] Owner review: decide D132–D162 and the 30 groups with the interface. Done 2026-10-26: decided by the owner, the rest in bulk at the owner's request (see the commit "record provider and group decisions").
 - [x] Group the variable groups into families (identifiers, geography, time, then subject areas); the finder groups its variable facet by family.
 - [x] Per-project table of variables at `/date/lista/`: one row per entry with fields, one column per family, normalised names only, and a count of ungrouped fields ("Altele").
       Desktop first; the table scrolls horizontally in its frame.
@@ -93,9 +93,9 @@ The 62 unconfirmed profiles cover the full 140-entry catalogue, including organi
       from their browser (`/date` and `llms.txt`, 20:39 +02:00), kept with `inventory.py --import-saved` and `collect_docs.py --import-saved`: no request was made. Reader `html-carduri-csv`: 8 datasets,
       40 fields with a declared description, 1 unit, no type. D136–D139 now cite the retained text (`verificat`); D170–D173 propose the other providers the page names (Ministerul Finanțelor, the courts portal, BPI, ANRM).
       Every automated request gets HTTP 429 from a Vercel Security Checkpoint, and `llms.txt` forbids automated extraction (see Verified limits).
-- [ ] Decide D136–D139 and D170–D173 in the review interface. The page labels are `ONRC — Registrul Comerțului`, `ANAF — evidența fiscală`, `SICAP — achizițiile publice`, `Monitorul Oficial, partea a IV-a`,
+- [x] Decide D136–D139 and D170–D173 in the review interface. The page labels are `ONRC — Registrul Comerțului`, `ANAF — evidența fiscală`, `SICAP — achizițiile publice`, `Monitorul Oficial, partea a IV-a`,
       `MFP — bilanțurile`, `Justiție — dosarele`, `BPI — Buletinul Procedurilor de Insolvență` and `ANRM — licențe și permise miniere`; `Geocodare — adresele pe hartă` names no provider and has no item.
-      The page does not name the operator of the courts portal or the publisher of the BPI; D171 and D172 say so.
+      The page does not name the operator of the courts portal or the publisher of the BPI; D171 and D172 say so. Done 2026-10-26: decided by the owner, the rest in bulk at the owner's request (see the commit "record provider and group decisions").
 - [ ] Group candidates from the `harta-firmelor` columns, for the owner to review (nothing was added to `inventar-concepte.json`): the seven `year` columns look like members of `perioada-de-referinta`
       (the reference year of an aggregate row; each file dates a different event). `employees_reported` (a sum over balance sheets) and `median_turnover_lei` (a median) are not `numar-salariati` / `cifra-afaceri`:
       those groups hold the value of one company, and their notes already keep national aggregates out.
@@ -104,9 +104,14 @@ The 62 unconfirmed profiles cover the full 140-entry catalogue, including organi
 - [x] `registru.horecaos.org/surse` names nine sources. D153–D156 (ONRC, ANAF, Ministerul Finanțelor, SEAP) already cited it; done 2026-10-25 (v0.24.1): D174 proposes OpenStreetMap and
       D175 proposes the courts portal (Ministerul Justiției, marked „în lucru” on the page). The retained text of 2026-10-24 (sha256 `81cd22875d06a3b4`) holds every source, so the owner's copy of 2026-10-25 was not imported.
       D140 and D141 (candidates from the description, with rows L140 and L141) now point at D153 and D154, which carry the evidence.
-- [ ] Decide D140/D153 and D141/D154 for `registrul-firmelor`: each pair names the same provider. Accept the item with evidence and close the other one as a duplicate.
+- [x] Decide D140/D153 and D141/D154 for `registrul-firmelor`: each pair names the same provider. Accept the item with evidence and close the other one as a duplicate. Done 2026-10-26: decided by the owner, the rest in bulk at the owner's request (see the commit "record provider and group decisions").
 - [-] Propose BPI and Monitorul Oficial Partea a IV-a for `registrul-firmelor`. Reason: the page marks both „cerut oficial”, so the project does not have their data yet. Its insolvency state comes from the ONRC
       status codes (D153). Propose them when the page says that the data arrived.
+- [ ] Shorten the provider names that the bulk acceptance of 2026-10-26 made public. Some carry the route or the scope in parentheses, for example
+      „SICAP / SEAP, distribuit de data.g4d.ro”, „Ministerul Finanțelor (situații financiare, prin data.gov.ro)” and „INMH (presiunea atmosferică, stația meteo Rădăuți)”.
+      The same provider then has several public names (SICAP / SEAP appears in three forms). Edit `obiect_literal` in `relatii.csv`, or add a canonical provider list.
+- [ ] Check the four accepted providers that cite only the project's home page as evidence: D140 and D141 (ONRC and ANAF, `registrul-firmelor`), D142 (SICAP / SEAP, `achizitii-directe-ti-2026`)
+      and D146 (SICAP / SEAP, `sicap-ai`, no retained copy). D140 and D141 could cite `https://registru.horecaos.org/surse` instead (D153 and D154 hold that evidence).
 - [ ] A guard for sites that forbid automated access. Only the saved addresses are protected today (`collect_docs.py` and `inventory.py` never request them). A run of `collect_docs.py --force`, `profile.py` or
       `search.py` for the whole catalogue still requests the other addresses of `harta-firmelor.ro`. Skip the entry, with a recorded reason, in every script that requests a project's site.
 

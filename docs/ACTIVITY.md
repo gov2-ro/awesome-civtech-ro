@@ -1,5 +1,19 @@
 # Activity
 
+## 2026-10-26 — Review decisions recorded
+
+**Done**
+- The owner decided D135, D143, D144, then D132–D134, D136–D140, D145 and D175 in the review interface.
+- At the owner's request („accept them for me”), the remaining 31 provider items and the 30 groups were decided in bulk through the interface's own `Store` (same checks, same atomic writes):
+  29 items accepted with the proposed name and evidence; D153 and D154 closed as duplicates of D140 and D141; 92 members confirmed; 30 groups marked `revizuit`. Every bulk note says „în bloc la cererea proprietarului”.
+- Measured after the decisions: 44 provider items (41 accepted, 3 duplicates, 0 open); `validate.py --publication` 0 errors; 15 entries get public data sources in the build; 521 unit tests pass (6 skipped).
+
+**Hard**
+- Some accepted names keep the route or the scope in parentheses, and the public site shows them as they are. SICAP / SEAP has three public forms. The backlog has the follow-up.
+
+**Decided**
+- No version bump: these are editorial decisions, not a deliverable or a correction. Git keeps the audit trail.
+
 ## 2026-10-25 — Registrul firmelor: the other providers of its sources page (v0.24.1)
 
 **Done**
