@@ -100,6 +100,12 @@ DemoANAF is a strong source of request keys (CUI, CPV, county, locality, year), 
 response schemas answers the main gap without contact. Otherwise ask the project for a response schema or an example for `company`, `financials` and `health`,
 and mention the untranslated keys `ep.seap-cpv-top.description`, `ep.seap-cpv-analysis.description` and `cache.6h`.
 
+- [ ] Use `https://demoanaf.ro/surse-date` as provider evidence. The page is collected (kind `metodologie`, 2026-10-24, sha256 `fcef2fc7f9b21d35…`), but only its
+      POP107D line was used. It lists 12 sources with publisher, fields, refresh rate, the feature that uses each, and a "Sursă" link:
+      ANAF contributor data and balance sheets (`webservicesp.anaf.ro`), ONRC via data.gov.ro, Ministerul Finanțelor (financial statements; local budget execution),
+      INS (POP107D, FOM104D, FOM106E, RPL 2021), MIPE/AFIR, OpenStreetMap, BNR, VIES (European Commission), Monitorul Oficial Partea IV ("disponibilitate neverificată"), ANAF press releases.
+      Re-point D132–D134 (ANAF, BNR, ONRC) to this page with exact fragments, and add proposals for the others. It also declares balance-sheet fields
+      (cifră de afaceri, profit net, număr angajați): text evidence for `cifra-afaceri`, `profit-net`, `numar-salariati`. DemoANAF also offers an MCP connector (`/conector-mcp`).
 - [ ] (paused) Response fields of DemoANAF: schema or example from the project.
 - [ ] (paused) Review the 22 inputs that only the page documents and the 4 contract inputs that the page lacks (`comparatie_contract`).
 - [ ] (paused) Group candidates: `cuis` (batch body, `string[]`) → `cui`; `year` → `perioada-de-referinta` (`dateFrom`/`dateTo` are filter bounds, keep them out);
