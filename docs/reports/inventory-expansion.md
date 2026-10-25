@@ -47,13 +47,13 @@ The 127 projects and resources of the data finder:
 | Schema declarations / sampled JSON paths / CSV headers / INS dimensions | 1,312 / 904 / 82 / 4 | 1,367 / 1,131 / 138 / 4 |
 | HTML control candidates / entries with candidates | 308 / 78 | 308 / 78 |
 | Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 79 / 61 |
-| Accepted provider relations / entries with accepted providers | 26 / 11 | 26 / 11 |
-| Pending provider proposals (review items D132 and later) | 15 | 44 |
+| Accepted provider relations / entries with accepted providers | 26 / 11 | 28 / 13 |
+| Pending provider proposals (review items D132 and later) | 15 | 41 |
 | Proposed business-variable groups | 7 | 30 |
 | Unit tests discovered / skipped | 308 / 6 | 411 / 6 |
 | Explorer inventory / dedicated finder browser checks | 25 / 25 | 31 / 31 |
 
-Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 44 in all; deschis 44, acceptat 0, respins 0, amanat 0, tehnic 0. Variable groups: 30 in all; propus 30, revizuit 0, respins 0, amanat 0. Group members (selectors): 92 in all; propus 92, confirmat 0, exclus 0.
+Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 44 in all; deschis 41, acceptat 2, respins 0, amanat 0, tehnic 1. Variable groups: 30 in all; propus 30, revizuit 0, respins 0, amanat 0. Group members (selectors): 92 in all; propus 92, confirmat 0, exclus 0.
 
 Field records by evidence type now: declarat-in-schema 1,367, observat-in-esantion-json 1,131, declarat-in-cod-sursa 366, exemplu-in-documentatie 364, neprecizat-in-antet-csv 138, declarat-in-tabel-documentatie 53, antet-tabel-html 48, declarat-in-lista-documentatie 40, declarat-in-documentatie-api 30, declarat-in-metadate 24, declarat-in-text-documentatie 23, utilizat-in-cod-pagina 9.
 

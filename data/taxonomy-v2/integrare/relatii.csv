@@ -133,7 +133,7 @@ L131,codurbanism,date_din,,Ministerul Dezvoltării (MDLPA),surse_date,https://ma
 L132,demoanaf,date_din,,ANAF,surse-date; candidat cu dovadă,https://demoanaf.ro/surse-date,propus
 L133,demoanaf,date_din,,Banca Națională a României (BNR),surse-date; candidat cu dovadă,https://demoanaf.ro/surse-date,propus
 L134,demoanaf,date_din,,Oficiul Național al Registrului Comerțului (ONRC),surse-date; candidat cu dovadă,https://demoanaf.ro/surse-date,propus
-L135,executii-bugetare,date_din,,Ministerul Finanțelor,descriere; candidat neverificat,https://executii-bugetare.g4d.ro/,propus
+L135,executii-bugetare,date_din,,Ministerul Finanțelor,surse_date,https://executii-bugetare.g4d.ro/,acceptat
 L136,harta-firmelor,date_din,,Oficiul Național al Registrului Comerțului (ONRC),surse-date; candidat cu dovadă,https://harta-firmelor.ro/date,propus
 L137,harta-firmelor,date_din,,ANAF,surse-date; candidat cu dovadă,https://harta-firmelor.ro/date,propus
 L138,harta-firmelor,date_din,,SICAP / SEAP,surse-date; candidat cu dovadă,https://harta-firmelor.ro/date,propus
@@ -142,6 +142,6 @@ L140,registrul-firmelor,date_din,,Oficiul Național al Registrului Comerțului (
 L141,registrul-firmelor,date_din,,ANAF,descriere; candidat neverificat,https://registru.horecaos.org/,propus
 L142,achizitii-directe-ti-2026,date_din,,SICAP / SEAP,descriere; candidat neverificat,https://achizitii-directe-ti-2026.mariuscomper.uk/,propus
 L143,achizitii-directe-ti-2026,date_din,,Autoritatea pentru Digitalizarea României (ADR),descriere; candidat neverificat,https://achizitii-directe-ti-2026.mariuscomper.uk/,propus
-L144,prima-cifra,date_din,,SICAP / SEAP,descriere; candidat neverificat,https://mariuscomper.uk/prima-cifra/,propus
+L144,prima-cifra,date_din,,SICAP / SEAP,surse_date,https://mariuscomper.uk/prima-cifra/,acceptat
 L145,recontorizarea,date_din,,Eurostat,descriere; candidat neverificat,https://mariuscomper.uk/recontorizarea/,propus
 L146,sicap-ai,date_din,,SICAP / SEAP,descriere; candidat neverificat,https://sicap.ai/,propus
