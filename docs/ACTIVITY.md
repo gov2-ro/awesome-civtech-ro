@@ -12,6 +12,43 @@
 - Families by what the variable describes: three cross-cutting keys (identifiers, geography, time), then subject areas. The role (`categorie`) stays a separate badge.
   A role-only split would put CUI next to a party group, and a subject-only split would scatter county and year over every subject.
 - The list page is static HTML. It needs no script, so it stays readable with search in the browser (Ctrl+F).
+## 2026-10-25 — Add the DemoANAF API reference page to its inventory (v0.21.0)
+
+**Done**
+- Fetched `https://demoanaf.ro/api-docs` (lot `demoanaf-api-docs`, 4 direct requests, 315,089 bytes): the page (148,681 bytes, body SHA-256 `7391a120…beb1`, retrieved 2026-10-25T17:15:39Z),
+  the two script files of the page (`ApiDocsPage-DIsZ3AlF.js` 17,177 bytes, `api-docs-CGERF1wP.js` 969 bytes) and the English copy `/en/api-docs` (148,262 bytes). No `/api/...` address was called and no browser ran.
+- New reader `html-api-docs` (`scripts/inventory_apidocs.py`, stdlib): the page has no table, so no existing reader fits. It reads the endpoint cards into three separate kinds of record:
+  60 operations (59 GET, 1 POST; 38 with the `x402` badge), 113 request inputs (112 parameters, 1 body member) and 6 response members. `DATA-SCHEMA.md` documents every new key.
+- The source is registered with `adaugari/demoanaf-api-docs.json` (`--add-sources-file`). Its discovery locator is the link `/links/24` of the home page; the second locator is the llms.txt line `[Public API documentation](…/api-docs)`.
+- Comparison with `openapi.json` of the same project (body SHA-256 `77602f7c…34d2`): every operation and request input carries `in_contract` (`{sursa_id, pointer}` or `null`), and the source carries `comparatie_contract`.
+  Measured: 46 of 60 operations are in the contract and 14 only in the page; the contract has no operation that the page lacks.
+  Of the 113 inputs, 91 are in the contract and 22 only in the page; the contract has 4 inputs that the page lacks (`press-articles` `page`, `limit`, `topic`; `top-companies` `sliceKey`).
+- DemoANAF now has 3 structured sources (was 2) and 221 field records (was 102): 95 contract parameters, 7 INS records, 119 new page records.
+  Page inputs: 42 with location `path`, 20 `query`, 1 `body`, 50 without a stated location; 28 with a description, 42 with a hint in parentheses, 6 with declared alternatives, 1 with a declared type (`cuis`: `string[]`).
+- `inventory.py --check`: 0 errors, 87 bodies hash-verified (86 before). `inventory_report.py` regenerated `acoperire.csv` (one row changed) and the report. Other projects: the diffs of `campuri.csv`, `seturi-date.json` and `descoperiri.json` only add lines;
+  `proiecte.json` and `rezumat.csv` change the `demoanaf` lines only. A second `--only demoanaf --offline` run reproduced every file byte for byte.
+- Tests: 483 run, 6 skipped, 0 failures (465 / 6 at v0.20.0; 18 new in `test_inventory_text.py`; the suite takes about 86 s). Browser checks on port 8770: `check_data_finder.py` 33/33, `check_inventory_preview.py` 31/31, `check_preview.py` 111/111.
+  `validate.py --publication` 0 errors. The default `build.py` payload equals the earlier `site/data.json` apart from `generated`.
+
+**Hard**
+- The page documents no response field. It names the envelope `{ success, data, meta }` and shows one JSON error example (HTTP 429). The script file holds the same endpoint list as the page plus translation keys, with no schema; the English page is the same.
+  So the 6 response members are all that exist; every operation needs a Pro key and none was called.
+- Two cards (`top-suppliers`, `analysis` of `/api/seap/cpv/{cpv}`) show the untranslated keys `ep.seap-cpv-top.description` and `ep.seap-cpv-analysis.description` in place of a description, in Romanian and in English.
+  One card shows the cache label `cache.6h`. The reader keeps the key as `descriere_cheie_nerezolvata` and leaves `descriere` empty; the label stays as written.
+- The brief said "about 18" endpoint patterns missing from `openapi.json`. Measured with method and template: 14. The rest of the 18 came from loose string matching (for example `/api/sicap/tender/:notice` is `{notice}` in the contract).
+- The first version of `split_top` dropped the last part of a parameter text when a bracket did not close, without any error. A test (`q (text`) found it. An unbalanced bracket is now an error.
+- The page body is one line (minified), so `linie` has no use; locators are `char:START-END` intervals of the retained body, and a unit test cuts every locator and checks the text.
+
+**Decided**
+- Operations are a source-level list (`operatii`), not field records. Cost of the alternative: 60 endpoints would enter the field browser, its keyword search and its examples as if they were variables.
+- Set `loc` only where the page shows it (a `:segment` of the template, the example request, or `body:`). Cost: 50 of 113 inputs have no location, although 44 of them are in the contract, which says `query`. The comparison pointer gives the contract's `in`.
+  Inferring `query` from "GET and not in the path" would have been a guess that the page does not state.
+- Mark restated records instead of dropping them. The page adds descriptions and 22 inputs that the contract lacks, so dropping the 91 restated inputs would lose evidence. Cost: the preview counts both sources.
+  Measured in the preview index for `demoanaf` (before / after): fields 36 / 85; groups `cui` 2 / 5, `cpv` 2 / 4, `judet` 2 / 4, `localitate` 3 / 5. The selectors name no source, so the new fields join the groups by name.
+  Left open: whether the finder should count a record with `in_contract` once (see the backlog).
+- Reuse the evidence type `declarat-in-documentatie-api` (already shown as "Declarat în documentația API") for the page inputs; the error example uses `exemplu-in-documentatie`.
+- Add a `demoanaf` entry to the `note` block of `inventar-note.json` (limits, blocker, next step, in Romanian). The verification block of that file stays as it was: it records the v0.18.0 pass. `inventar-concepte.json` was not touched.
+- Do not register the script files or the English page as sources: they hold no field that the Romanian page lacks. Their four request lines stay in the log.
 
 ## 2026-10-25 — Build the local review interface (v0.20.0)
 

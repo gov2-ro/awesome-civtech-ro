@@ -143,6 +143,14 @@
     "monitor-energie": {
       "blocaj": "HTTP 401 la contractul OpenAPI legat din documentație.",
       "urmatorul_pas": "Reîncercați doar dacă proiectul publică documentația fără autentificare."
+    },
+    "demoanaf": {
+      "limite": [
+        "Pagina api-docs descrie operațiile și parametrii cererii; din răspuns numește doar plicul { success, data, meta } și exemplul de eroare.",
+        "Unele descrieri de parametri sunt restricții (de exemplu „1-10 cifre”), nu definiții. Tipurile parametrilor nu sunt declarate."
+      ],
+      "blocaj": "Toate operațiile cer o cheie Pro; niciun apel API nu a fost făcut, deci câmpurile răspunsului nu sunt cunoscute.",
+      "urmatorul_pas": "Cereți proiectului schema răspunsurilor sau un exemplu pentru operațiile company, financials și health."
     }
   },
   "ins": [

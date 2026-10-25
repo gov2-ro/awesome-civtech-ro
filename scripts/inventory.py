@@ -29,6 +29,7 @@ from urllib.parse import unquote, urlsplit
 from collect_docs import Fetcher, canonical, flat, restore, scope_of
 from common import PUBLIC_ROOT, data_schema, load_catalogue, load_vocabulary, observation_paths
 from inventory_concepts import EvidenceLocator, check_concepts, validate_families
+from inventory_apidocs import operations as api_operations
 from inventory_ins import ins_dataset, ins_listing, ins_measure, is_listing
 from inventory_text import EXTENSIONS, read_text
 from inventory_state import (REGISTRY, RequestLog, StateError, active_members, admit, check_text, dump, load_previous,
@@ -38,7 +39,7 @@ from inventory_state import (REGISTRY, RequestLog, StateError, active_members, a
 MAX_FIELDS, MAX_DEPTH, SAMPLE_ROWS = 2000, 7, 25
 # An object with more keys than this is a keyed collection (identifier -> record), not a record with that many members.
 KEYED_COLLECTION = 100
-TEXT_FORMATS = ('html-tabele', 'markdown', 'csharp', 'sql', 'php', 'js-acces', 'json-comentat')
+TEXT_FORMATS = ('html-tabele', 'markdown', 'csharp', 'sql', 'php', 'js-acces', 'json-comentat', 'html-api-docs')
 
 
 def pointer_part(value):
@@ -337,9 +338,94 @@ def analyse_source(response, hint=None):
             metadata['set_date'] = ins_dataset(json.loads(body))
         elif fmt == 'lista-ins':
             metadata['catalog'] = ins_listing(json.loads(body))
+        elif fmt == 'html-api-docs':
+            metadata['operatii'] = api_operations(body)
     except (ValueError, TypeError, KeyError, csv.Error) as exc:
         metadata.update(stare='eroare-parsare', error=str(exc))
     return metadata
+
+
+# --- comparison of an API documentation page with the OpenAPI contract of the same project ---------------------------
+
+HTTP_METHODS = ('get', 'post', 'put', 'patch', 'delete', 'head', 'options')
+CONTRACT_ROLES = ('parametru-api', 'corp-cerere')
+
+
+def contract_index(document):
+    """What an OpenAPI document declares: operations by name, and request inputs by (role, operation, name), each with its pointer."""
+    operations, inputs = {}, {}
+    for path, raw_item in document.get('paths', {}).items():
+        item = dereference(raw_item, document)
+        for method in item:
+            if method in HTTP_METHODS:
+                operations[method.upper() + ' ' + path] = '/paths/' + pointer_part(path) + '/' + method
+    for field in openapi_fields(document):
+        if field.get('rol') in CONTRACT_ROLES:
+            for occurrence in field.get('aparitii', []):
+                inputs.setdefault((field['rol'], occurrence['operatie'], field['nume']), field['pointer'])
+    return operations, inputs
+
+
+def strip_links(source):
+    """The source without the contract comparison, as the reader alone produces it."""
+    bare = {k: v for k, v in source.items() if k != 'comparatie_contract'}
+    bare['campuri'] = [{k: v for k, v in f.items() if k != 'in_contract'} for f in source.get('campuri', [])]
+    bare['operatii'] = [{k: v for k, v in o.items() if k != 'in_contract'} for o in source.get('operatii', [])]
+    return bare
+
+
+def link_contract(source, contract, document):
+    """A copy of an API documentation source that says, for every operation and request input, whether the contract declares it.
+    `in_contract` is {sursa_id, pointer} when it does and null when the comparison found nothing. A field with no operation (a response
+    member) is not compared. `comparatie_contract` pins the contract version and counts both sides."""
+    operations, inputs = contract_index(document)
+
+    def link(pointer):
+        return {'sursa_id': contract['id'], 'pointer': pointer} if pointer else None
+
+    linked = strip_links(source)
+    linked['operatii'] = [{**o, 'in_contract': link(operations.get(o['operatie']))} for o in linked['operatii']]
+    page_inputs = set()
+    for index, field in enumerate(linked['campuri']):
+        if field.get('operatie') and field.get('rol') in CONTRACT_ROLES:
+            key = (field['rol'], field['operatie'], field['nume'])
+            page_inputs.add(key)
+            linked['campuri'][index] = {**field, 'in_contract': link(inputs.get(key))}
+    shared = lambda items: sum(1 for i in items if i.get('in_contract'))
+    page_fields = [f for f in linked['campuri'] if 'in_contract' in f]
+    linked['comparatie_contract'] = {
+        'sursa_id': contract['id'], 'url': contract['url'], 'sha256': contract['sha256'],
+        'operatii_comune': shared(linked['operatii']), 'operatii_doar_in_pagina': len(linked['operatii']) - shared(linked['operatii']),
+        'operatii_doar_in_contract': sorted(set(operations) - {o['operatie'] for o in linked['operatii']}),
+        'intrari_comune': shared(page_fields), 'intrari_doar_in_pagina': len(page_fields) - shared(page_fields),
+        'intrari_doar_in_contract': sorted(f'{op} :: {name}' for (role, op, name) in inputs if (role, op, name) not in page_inputs)}
+    return linked
+
+
+def contract_document(root, contract):
+    """The retained OpenAPI document of a contract source, or None when this checkout does not hold a body with the recorded hash."""
+    try:
+        body = json.loads((Path(root) / contract['snapshot']).read_text())['body']
+        return json.loads(body) if hashlib.sha256(body.encode()).hexdigest() == contract.get('sha256') else None
+    except (OSError, ValueError, KeyError, TypeError):
+        return None
+
+
+def contract_of(source, sources):
+    """The contract source that an API documentation source names in its reader options (`citire.contract`), or None."""
+    hint = source.get('citire')
+    url = canonical(hint.get('contract', '')) if isinstance(hint, dict) else ''
+    contract = sources.get(source_id(url)) if url else None
+    return contract if usable(contract) else None
+
+
+def apply_contracts(sources, root):
+    """Compare each API documentation source with its contract. A contract body that is absent leaves the source as it is."""
+    for ident, source in list(sources.items()):
+        contract = contract_of(source, sources) if source.get('format') == 'html-api-docs' and usable(source) else None
+        document = contract_document(root, contract) if contract else None
+        if document is not None:
+            sources[ident] = link_contract(source, contract, document)
 
 
 def control_candidates(record):
@@ -443,6 +529,20 @@ def check_report(out, observations):
                 _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''))
                 if [f['nume'] for f in fields] != [f['nume'] for f in source['campuri']]:
                     errors.append('CSV headers differ: ' + source['url'])
+            elif source.get('format') == 'html-api-docs':
+                _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
+                fresh = {**strip_links(source), 'campuri': fields, 'operatii': api_operations(body)}
+                contract = contract_of(source, previous['sources'])
+                document = contract_document(out, contract) if contract else None
+                if document is not None:
+                    fresh = link_contract(fresh, contract, document)
+                elif source.get('comparatie_contract'):
+                    report['unavailable'].append('contract comparison: ' + source['url'])
+                    source = strip_links(source)
+                if fresh['campuri'] != source['campuri'] or fresh['operatii'] != source['operatii']:
+                    errors.append('Fields or operations differ from the retained body: ' + source['url'])
+                elif fresh.get('comparatie_contract') != source.get('comparatie_contract'):
+                    errors.append('The comparison with the contract differs from the retained bodies: ' + source['url'])
             elif source.get('format') in TEXT_FORMATS:
                 _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
                 if fields != source['campuri']:
@@ -886,6 +986,7 @@ def update_inventory(entries, docs, verified, previous, *, cache, selected=(), o
         report['cache'] += outcome == 'cache'
     for ident, old in previous['sources'].items():
         sources.setdefault(ident, old)  # a tracked source nothing references any more is history, not garbage
+    apply_contracts(sources, cache.parent)
 
     profiles = []
     for entry in entries:

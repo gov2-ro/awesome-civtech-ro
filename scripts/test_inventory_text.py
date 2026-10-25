@@ -1,13 +1,17 @@
-"""Offline checks for the text-format readers: HTML and markdown tables, SQL, C#, Laravel PHP, annotated JSON in documents and page
-scripts. Fixtures in scripts/fixtures/text are copies of public files at recorded revisions or pages read on 2026-10-25."""
+"""Offline checks for the text-format readers: HTML and markdown tables, SQL, C#, Laravel PHP, annotated JSON in documents, page
+scripts and API reference pages. Fixtures in scripts/fixtures/text are copies of public files at recorded revisions or pages read on
+2026-10-25. `demoanaf-api-docs.html` is a trimmed copy of https://demoanaf.ro/api-docs (the copy buttons and 52 of the 60 endpoint cards
+removed; the markup of the kept parts is unchanged)."""
 import json
 import tempfile
 import unittest
 from pathlib import Path
 
-from inventory import analyse_source, check_report, parse_source
+from inventory import analyse_source, check_report, contract_index, link_contract, parse_source, strip_links
+from inventory_apidocs import operations as api_operations, parameter_items, read as read_api_docs
 from inventory_state import protect
 from inventory_text import (csharp, html_tabele, js_acces, json_comentat, markdown, parse_tables, php, sample_type, sql, table_fields)
+from test_inventory_state import Net, Workspace, docs_for, entry
 
 FIXTURES = Path(__file__).parent / 'fixtures/text'
 
@@ -152,6 +156,225 @@ class CodeReaders(unittest.TestCase):
         for field in fields:
             start, end = interval(field)
             self.assertEqual(body[start:end], '"' + field['nume'] + '"')
+
+
+def api_card(method, path, params=None, description='Descriere', badges=('Pro',), cache=None):
+    """A minimal endpoint card in the markup that the reader needs: a method badge, a path template, badges, paragraphs."""
+    head = f'<div><span class="m">{method}</span><code class="p">{path}</code>' + ''.join(f'<span>{b}</span>' for b in badges) + '</div>'
+    head += f'<span class="c">Cache:<!-- --> <!-- -->{cache}</span>' if cache else ''
+    body = f'<p class="d">{description}</p>' + (f'<p class="x">Parametri:<!-- --> <!-- -->{params}</p>' if params is not None else '')
+    return f'<h2>Grup</h2>{head}{body}'
+
+
+def span_text(body, field):
+    start, end = interval(field)
+    return body[start:end]
+
+
+class ApiDocs(unittest.TestCase):
+    body = text('demoanaf-api-docs.html')
+
+    def setUp(self):
+        self.operations, self.fields = read_api_docs(self.body)
+        self.by_op = {}
+        for field in self.fields:
+            self.by_op.setdefault(field.get('operatie'), {})[field['nume']] = field
+
+    def test_operations_keep_method_template_access_cache_and_description_as_the_page_writes_them(self):
+        names = [o['operatie'] for o in self.operations]
+        self.assertEqual(names[:3], ['GET /api/company/{cui}', 'GET /api/company/{cui}/balance/{year}', 'POST /api/company/batch'])
+        first = self.operations[0]
+        self.assertEqual((first['metoda'], first['cale'], first['acces'], first['cache'], first['categorie']),
+                         ('GET', '/api/company/{cui}', ['Pro', 'x402'], '24h', 'Companie'))
+        self.assertTrue(first['descriere'].startswith('Informații complete despre o firmă'))
+        only_pro = next(o for o in self.operations if o['cale'] == '/api/sicap/procedure/{notice}/search')
+        self.assertEqual(only_pro['acces'], ['Pro'], 'an endpoint without the x402 badge does not accept per-request payment')
+        self.assertIsNone(next(o for o in self.operations if o['cale'] == '/api/rates').get('in_contract', None))
+        self.assertTrue(span_text(self.body, first).startswith('<span') and span_text(self.body, first).endswith('</code>'))
+        self.assertIn('/api/company/:cui', span_text(self.body, first))
+
+    def test_a_description_that_is_an_untranslated_key_is_not_a_description(self):
+        top = next(o for o in self.operations if o['cale'] == '/api/seap/cpv/{cpv}/top-suppliers')
+        self.assertIsNone(top['descriere'])
+        self.assertEqual(top['descriere_cheie_nerezolvata'], 'ep.seap-cpv-top.description')
+        self.assertNotIn('descriere_cheie_nerezolvata', self.operations[0])
+
+    def test_parameter_text_gives_descriptions_hints_alternatives_and_the_declared_body_type(self):
+        cui = self.by_op['GET /api/company/{cui}']['cui']
+        self.assertEqual((cui['descriere'], cui['rol'], cui['loc'], cui['baza_loc']), ('1-10 cifre', 'parametru-api', 'path', 'sablon-cale'))
+        self.assertEqual(self.by_op['GET /api/company/{cui}/balance/{year}']['year']['indicatie_pagina'], 'YYYY')
+        search = self.by_op['GET /api/search']
+        self.assertEqual((search['q']['indicatie_pagina'], search['limit']['indicatie_pagina']), ('text', '1-50, default 20'))
+        contracts = self.by_op['GET /api/seap/company/{cui}/contracts']
+        self.assertEqual(contracts['role']['valori_enum'], ['authority', 'supplier', 'both'])
+        self.assertNotIn('valori_enum', contracts['limit'], 'a range in parentheses is a hint, not a list of alternatives')
+        batch = self.by_op['POST /api/company/batch']['cuis']
+        self.assertEqual((batch['rol'], batch['loc'], batch['tip_declarat']), ('corp-cerere', 'body', 'string[]'))
+        self.assertTrue(all(f['tip_declarat'] is None for f in self.fields if f['rol'] == 'parametru-api'), 'no type is inferred')
+
+    def test_location_is_set_only_when_the_page_shows_it(self):
+        contracts = self.by_op['GET /api/seap/company/{cui}/contracts']
+        self.assertEqual((contracts['cui']['loc'], contracts['limit']['loc'], contracts['limit']['baza_loc']), ('path', 'query', 'exemplu-cerere'))
+        self.assertIsNone(contracts['dateFrom']['loc'], 'a GET parameter that is neither in the template nor in the example has no stated place')
+        self.assertNotIn('baza_loc', contracts['dateFrom'])
+
+    def test_a_path_parameter_missing_from_the_parameter_text_is_still_declared_by_the_template(self):
+        notice = self.by_op['GET /api/sicap/procedure/{notice}/search']['notice']
+        self.assertEqual((notice['loc'], span_text(self.body, notice)), ('path', ':notice'))
+        self.assertNotIn('descriere', notice)
+
+    def test_an_endpoint_without_parameters_has_no_input_records(self):
+        self.assertNotIn('GET /api/rates', self.by_op)
+
+    def test_every_locator_cuts_the_text_that_the_record_names(self):
+        for field in self.fields:
+            cut = span_text(self.body, field)
+            self.assertIn(field['nume'], cut.replace('&quot;', ''), field['pointer'])
+        self.assertEqual(span_text(self.body, self.by_op['POST /api/company/batch']['cuis']), 'cuis: string[]')
+        self.assertEqual(span_text(self.body, self.by_op['GET /api/search']['limit']), 'limit (1-50, default 20)')
+
+    def test_response_members_are_the_named_envelope_and_the_error_example_and_nothing_else(self):
+        responses = [f for f in self.fields if f['rol'] == 'camp-raspuns']
+        self.assertEqual([(f['cale'], f['stare_tip']) for f in responses],
+                         [('$.success', 'declarat-in-documentatie-api'), ('$.data', 'declarat-in-documentatie-api'),
+                          ('$.meta', 'declarat-in-documentatie-api'), ('$.error', 'exemplu-in-documentatie'),
+                          ('$.error.code', 'exemplu-in-documentatie'), ('$.error.message', 'exemplu-in-documentatie')])
+        self.assertTrue(all(f['tip_declarat'] is None and 'operatie' not in f and f['grup'] == 'plic-raspuns' for f in responses))
+        self.assertEqual([f['status_raspuns'] for f in responses if 'status_raspuns' in f], ['429'] * 3)
+        self.assertEqual(span_text(self.body, responses[0]), 'success')
+        self.assertEqual(span_text(self.body, responses[4]), '&quot;code&quot;')
+
+    def test_same_name_in_another_role_is_a_different_record(self):
+        body = api_card('GET', '/api/caen/:code', 'code (4 cifre)') + text('demoanaf-api-docs.html')
+        _, fields = read_api_docs(body)
+        self.assertEqual({(f['nume'], f['rol']) for f in fields if f['nume'] == 'code'}, {('code', 'parametru-api'), ('code', 'camp-raspuns')})
+
+    def test_unknown_shapes_are_errors_and_never_guesses(self):
+        for params in ('cui - 1 to 10', 'a b c', 'q (text', 'body: cuis'):
+            with self.assertRaises(ValueError, msg=params):
+                read_api_docs(api_card('GET', '/api/x', params))
+        with self.assertRaises(ValueError):
+            read_api_docs('<html><body><h1>Not an API page</h1></body></html>')
+        with self.assertRaises(ValueError):
+            read_api_docs(api_card('GET', '/api/x', 'q <b>text</b>'))
+        with self.assertRaises(ValueError):
+            read_api_docs(api_card('GET', '/api/x') + api_card('GET', '/api/x'))
+
+    def test_semicolons_commas_and_dashes_split_only_outside_brackets(self):
+        items = parameter_items('q — text, număr anunț, cod CPV sau CUI; cpv, from (AAAA-LL-ZZ), limit (1–50); number — contract (1/32435 → 1%2F32435)')
+        self.assertEqual([(i[0], i[1], i[2]) for i in items],
+                         [('q', 'text, număr anunț, cod CPV sau CUI', None), ('cpv', None, None), ('from', None, 'AAAA-LL-ZZ'),
+                          ('limit', None, '1–50'), ('number', 'contract (1/32435 → 1%2F32435)', None)])
+
+    def test_entities_in_the_parameter_text_keep_the_whole_text_as_the_locator(self):
+        body = api_card('GET', '/api/x', 'q (a &amp; b), limit')
+        _, fields = read_api_docs(body)
+        self.assertEqual([f['indicatie_pagina'] for f in fields if 'indicatie_pagina' in f], ['a & b'])
+        self.assertEqual({span_text(body, f) for f in fields}, {'q (a &amp; b), limit'})
+
+    def test_hint_selects_the_reader_and_the_source_keeps_operations_and_fields_apart(self):
+        response = {'url': 'https://a.example/api-docs', 'final_url': 'https://a.example/api-docs', 'state': 'ok', 'content_type': 'text/html',
+                    'body': self.body}
+        record = analyse_source(response, {'tip': 'html-api-docs', 'contract': 'https://a.example/openapi.json'})
+        self.assertEqual((record['format'], record['baza_tipului'], record['stare']), ('html-api-docs', 'cod-sau-documentatie', 'analizat'))
+        self.assertEqual((len(record['operatii']), len(record['campuri'])), (8, 26))
+        self.assertEqual(record['operatii'], api_operations(self.body))
+        with self.assertRaises(ValueError):
+            parse_source(self.body, 'https://a.example/api-docs', 'text/html')
+
+
+CONTRACT = {'openapi': '3.0.0', 'paths': {
+    '/api/company/{cui}': {'get': {'parameters': [{'name': 'cui', 'in': 'path', 'required': True, 'schema': {'type': 'string'}}]}},
+    '/api/search': {'get': {'parameters': [{'name': 'q', 'in': 'query', 'schema': {'type': 'string'}}]}},
+    '/api/rates': {'get': {}},
+    '/api/contract-only': {'get': {'parameters': [{'name': 'x', 'in': 'query', 'schema': {'type': 'string'}}]}}}}
+
+
+class ApiDocsContract(unittest.TestCase):
+    A = 'https://a.example/'
+
+    def sources(self):
+        page = {'url': self.A + 'api-docs', 'final_url': self.A + 'api-docs', 'state': 'ok', 'content_type': 'text/html', 'body': text('demoanaf-api-docs.html')}
+        contract = {'url': self.A + 'openapi.json', 'final_url': self.A + 'openapi.json', 'state': 'ok', 'content_type': 'application/json',
+                    'body': json.dumps(CONTRACT)}
+        return (analyse_source(page, {'tip': 'html-api-docs', 'contract': self.A + 'openapi.json'}), analyse_source(contract))
+
+    def test_each_operation_and_input_says_whether_the_contract_declares_it(self):
+        page, contract = self.sources()
+        linked = link_contract(page, contract, CONTRACT)
+        by_name = {o['operatie']: o['in_contract'] for o in linked['operatii']}
+        self.assertEqual(by_name['GET /api/rates'], {'sursa_id': contract['id'], 'pointer': '/paths/~1api~1rates/get'})
+        self.assertIsNone(by_name['GET /api/seap/cpv/{cpv}/top-suppliers'])
+        fields = {(f['operatie'], f['nume']): f['in_contract'] for f in linked['campuri'] if 'in_contract' in f}
+        self.assertEqual(fields[('GET /api/search', 'q')]['pointer'], '/paths/~1api~1search/get/parameters/0')
+        self.assertIsNone(fields[('GET /api/search', 'limit')], 'a parameter that only the page documents is marked null')
+        self.assertEqual(fields[('GET /api/company/{cui}', 'cui')]['pointer'], '/paths/~1api~1company~1{cui}/get/parameters/0')
+        self.assertFalse([f for f in linked['campuri'] if f['rol'] == 'camp-raspuns' and 'in_contract' in f], 'response members are not compared')
+        summary = linked['comparatie_contract']
+        self.assertEqual((summary['operatii_comune'], summary['operatii_doar_in_pagina'], summary['operatii_doar_in_contract']),
+                         (3, 5, ['GET /api/contract-only']))
+        self.assertEqual((summary['intrari_comune'], summary['intrari_doar_in_pagina'], summary['intrari_doar_in_contract']),
+                         (2, 18, ['GET /api/contract-only :: x']))
+        self.assertEqual(summary['sha256'], contract['sha256'])
+        self.assertEqual(strip_links(linked)['campuri'], page['campuri'], 'the comparison adds keys and changes no reader output')
+
+    def test_same_name_in_another_operation_is_not_a_match(self):
+        page, contract = self.sources()
+        document = json.loads(json.dumps(CONTRACT))
+        document['paths']['/api/search']['get']['parameters'][0]['name'] = 'cui'
+        linked = link_contract(page, contract, document)
+        search_q = next(f for f in linked['campuri'] if f.get('operatie') == 'GET /api/search' and f['nume'] == 'q')
+        self.assertIsNone(search_q['in_contract'])
+        self.assertIn('GET /api/search :: cui', linked['comparatie_contract']['intrari_doar_in_contract'])
+        self.assertEqual(sorted(contract_index(document)[1])[:1], [('parametru-api', 'GET /api/company/{cui}', 'cui')])
+
+    def run_workspace(self):
+        work = Workspace(self)
+        entries = [entry('a', self.A)]
+        docs = {'a': docs_for('a', self.A, [self.A + 'openapi.json'])}
+        net = Net({self.A + 'openapi.json': json.dumps(CONTRACT), self.A + 'api-docs': text('demoanaf-api-docs.html')})
+        spec = {'url': self.A + 'api-docs', 'citire': {'tip': 'html-api-docs', 'contract': self.A + 'openapi.json'}}
+        work.run(entries, docs, net, add_sources=[('a', spec)])
+        return work, entries, docs, net
+
+    def test_a_run_compares_the_page_with_the_contract_and_a_replay_gives_the_same_bytes(self):
+        work, entries, docs, _ = self.run_workspace()
+        source = work.sources()[self.A + 'api-docs']
+        self.assertEqual((source['comparatie_contract']['operatii_comune'], source['comparatie_contract']['intrari_comune']), (3, 2))
+        self.assertEqual(work.profile('a')['campuri_din_surse'], 3 + 26, 'three contract parameters and 26 page records')
+        before = work.files()
+        work.run(entries, docs, None, offline=True)
+        self.assertEqual(work.files(), before)
+
+    def test_evidence_check_recomputes_fields_operations_and_the_comparison(self):
+        work, _, _, _ = self.run_workspace()
+        obs = work.out.parent
+        report = check_report(work.out, obs)
+        self.assertEqual((report['errors'], report['verified']), ([], 2))
+        path = work.out / 'seturi-date.json'
+        state = json.loads(path.read_text())
+        page = next(s for s in state['surse'] if s['url'] == self.A + 'api-docs')
+        original = json.dumps(state)
+        page['operatii'][0]['in_contract'] = None
+        path.write_text(json.dumps(state))
+        self.assertTrue(any('differ from the retained body' in e for e in check_report(work.out, obs)['errors']))
+        page['operatii'][0]['in_contract'] = {'sursa_id': page['comparatie_contract']['sursa_id'], 'pointer': '/paths/~1api~1company~1{cui}/get'}
+        page['comparatie_contract']['intrari_comune'] += 1
+        path.write_text(json.dumps(state))
+        self.assertTrue(any('comparison with the contract differs' in e for e in check_report(work.out, obs)['errors']))
+        path.write_text(original)
+        page['campuri'][0]['pointer'] = 'char:1-2'
+        path.write_text(json.dumps(state))
+        self.assertTrue(any('differ from the retained body' in e for e in check_report(work.out, obs)['errors']))
+
+    def test_an_absent_contract_body_makes_the_comparison_unverified_not_corrupt(self):
+        work, _, _, _ = self.run_workspace()
+        contract = work.sources()[self.A + 'openapi.json']
+        (work.out / contract['snapshot']).unlink()
+        report = check_report(work.out, work.out.parent)
+        self.assertEqual(report['errors'], [])
+        self.assertIn('contract comparison: ' + self.A + 'api-docs', report['unavailable'])
+        self.assertEqual(report['verified'], 1, 'only the page body was hash-verified')
 
 
 class Integration(unittest.TestCase):

@@ -6,10 +6,10 @@ Inventory assertions are proposals. Raw field totals count source paths, not ind
 ## 1. Outcome
 
 - Milestones A (safe incremental collection), B (INS), C (12 entries), D (meanings and shared groups) and E (preview, coverage, report) are complete.
-- Structured field evidence now covers 27 of 127 projects and resources (baseline 14). The retained sources are 87 URLs (86 parsed, 1 failed) with 3,525 field records.
+- Structured field evidence now covers 27 of 127 projects and resources (baseline 14). The retained sources are 88 URLs (87 parsed, 1 failed) with 3,644 field records.
 - Each field record is a path in a source. The proposals are 30 shared groups (baseline 7), 16 provider review items and the dictionary evidence that `inventory.py --check` verifies.
 - The public build is unchanged: the default payload equals the v0.13.0 payload apart from its generation time; classifications and accepted providers are identical.
-- Collection used 90 direct requests in total (4 browser navigations); the 150-request limit of lot C was not reached.
+- Collection used 94 direct requests in total (4 browser navigations); the 150-request limit of lot C was not reached.
 
 **Ten-inventory target:** 12 of the 12 primary entries have a new structured inventory; 11 of them carry definitions, declared types, a declared unit or a proposed shared group. No reserve entry was needed. Measured: 12. The target is met.
 
@@ -41,9 +41,9 @@ The 127 projects and resources of the data finder:
 | Projects and resources in the data finder | 127 | 127 |
 | Entries with structured field evidence | 14 | 27 |
 | Projects/resources without extracted structured fields | 113 | 100 |
-| Retained structured-source URLs | 25 | 87 |
-| Parsed sources / HTTP failures | 24 / 1 | 86 / 1 |
-| Source-scoped field records (paths, not variables) | 2,302 | 3,525 |
+| Retained structured-source URLs | 25 | 88 |
+| Parsed sources / HTTP failures | 24 / 1 | 87 / 1 |
+| Source-scoped field records (paths, not variables) | 2,302 | 3,644 |
 | Schema declarations / sampled JSON paths / CSV headers / INS dimensions | 1,312 / 904 / 82 / 4 | 1,367 / 1,131 / 138 / 4 |
 | HTML control candidates / entries with candidates | 308 / 78 | 308 / 78 |
 | Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 78 / 62 |
@@ -55,21 +55,21 @@ The 127 projects and resources of the data finder:
 
 Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 31 in all; deschis 31, acceptat 0, respins 0, amanat 0, tehnic 0. Variable groups: 30 in all; propus 30, revizuit 0, respins 0, amanat 0. Group members (selectors): 92 in all; propus 92, confirmat 0, exclus 0.
 
-Field records by evidence type now: declarat-in-schema 1,367, observat-in-esantion-json 1,131, declarat-in-cod-sursa 366, exemplu-in-documentatie 361, neprecizat-in-antet-csv 138, declarat-in-tabel-documentatie 53, antet-tabel-html 48, declarat-in-metadate 24, declarat-in-text-documentatie 23, utilizat-in-cod-pagina 9, declarat-in-documentatie-api 5.
+Field records by evidence type now: declarat-in-schema 1,367, observat-in-esantion-json 1,131, declarat-in-cod-sursa 366, exemplu-in-documentatie 364, neprecizat-in-antet-csv 138, declarat-in-documentatie-api 121, declarat-in-tabel-documentatie 53, antet-tabel-html 48, declarat-in-metadate 24, declarat-in-text-documentatie 23, utilizat-in-cod-pagina 9.
 
 Coverage by measure, for the 127 projects and resources (`acoperire.csv` has the rows). A column that counts fields counts source paths:
 
 | Measure | Entries counted | Total |
 | --- | ---: | ---: |
-| Structured sources | 27 | 96 |
-| Field records from sources | 27 | 3,587 |
+| Structured sources | 27 | 97 |
+| Field records from sources | 27 | 3,706 |
 | Entries in at least one proposed group | 27 | 20 |
-| Fields with a source-declared description | 27 | 1,289 |
-| Fields with a declared type | 27 | 1,598 |
-| Fields with an observed type | 27 | 1,472 |
+| Fields with a source-declared description | 27 | 1,317 |
+| Fields with a declared type | 27 | 1,599 |
+| Fields with an observed type | 27 | 1,475 |
 | Measures with a unit | 27 | 57 |
 | Measures without a unit | 27 | 131 |
-| Sources with a verified discovery locator | 27 | 96 |
+| Sources with a verified discovery locator | 27 | 97 |
 
 Totals add the per-entry counts. A source that several entries share counts once for each of them, so the field total here is higher than the number of distinct field records above.
 Denominators are defined in `docs/DATA-SCHEMA.md` (Coverage export). Entries without a structured source have an empty (unknown) measure count, not zero.
@@ -331,11 +331,12 @@ The producer, the distributor and the project author are named apart in each ite
 | B | 6 | 0 | 1,419,237 | 0 | 0 |
 | B2 | 6 | 0 | 1,525,547 | 0 | 0 |
 | C | 78 | 5 | 2,401,342 | 4 | 6 |
+| demoanaf-api-docs | 4 | 0 | 315,089 | 0 | 0 |
 
-Total direct requests: 90. The limit for lot C was 150 including retries; no request was retried. Lot B is the INS listing and five metadata records; lot B2 is six gap sources of existing inventories. Elapsed work and workers: requests ran one at a time, so the six-worker and two-per-host limits were never reached.
+Total direct requests: 94. The limit for lot C was 150 including retries; no request was retried. Lot B is the INS listing and five metadata records; lot B2 is six gap sources of existing inventories. Elapsed work and workers: requests ran one at a time, so the six-worker and two-per-host limits were never reached.
 The request log (`observatii/inventare/jurnal-cereri.csv`) lists every request with its outcome, method, bytes and purpose. It holds no headers or credentials.
 
-Methods used: documentation collection with page-link and text discovery; CSV, JSON, JSON Schema and OpenAPI parsers; INS TEMPO metadata facts; readers for HTML tables, markdown tables, SQL, C#, Laravel PHP, annotated JSON in documents and page scripts; repository files pinned to a recorded commit and verified by git blob hash; bounded range reads for large CSV files; a headless-browser render of single pages (optional, `scripts/render_pages.py`).
+Methods used: documentation collection with page-link and text discovery; CSV, JSON, JSON Schema and OpenAPI parsers; INS TEMPO metadata facts; readers for HTML tables, markdown tables, SQL, C#, Laravel PHP, annotated JSON in documents, page scripts and API reference pages (endpoint cards); repository files pinned to a recorded commit and verified by git blob hash; bounded range reads for large CSV files; a headless-browser render of single pages (optional, `scripts/render_pages.py`).
 
 External blockers and security findings:
 
