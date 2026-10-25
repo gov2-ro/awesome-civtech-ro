@@ -16,9 +16,12 @@ import json
 import os
 import re
 import sys
+from datetime import date
 from pathlib import Path
 
-from common import PUBLIC_ROOT, MENTIUNI_COLS, ORGS_COLS, PROIECTE_COLS, data_schema, observation_paths, split_list, split_tip, to_href
+import common  # the list's path is read from the module at call time, so a test can point it at a temporary file
+from common import (FORBIDDEN_COLS, PUBLIC_ROOT, MENTIUNI_COLS, ORGS_COLS, PROIECTE_COLS, data_schema, forbidden, load_catalogue, observation_paths,
+                    split_list, split_tip, to_href)
 
 TAX = DOMENII = TIPURI = ACOPERIRE = FEL = ROLURI = ORG_SLUGS = None  # set by setup(), from the selected v1 root
 SLUG = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
@@ -124,6 +127,59 @@ def check_mentiuni(path: Path):
                 report("error", path, reader.line_num, f"{r['slug']}: editor: '{r['editor']}' (gol, 0 sau 1)")
 
 
+HOST = re.compile(r"^(?!-)[a-z0-9-]{1,63}(?<!-)(\.(?!-)[a-z0-9-]{1,63}(?<!-))+$")
+
+
+def check_forbidden(path: Path, entries: list[dict] | None):
+    """colectare-interzisa.csv lists the hosts that no script requests, so a mistake here must stop the merge: a row that
+    silently matches nothing leaves a site open to requests. `entries` (the catalogue of the checked root) lets us warn about a
+    row whose host belongs to no entry; the row may be stale. That is a warning only."""
+    if not path.exists():
+        report("error", path, 1, "lipsește fișierul cu gazdele care nu se accesează automat")
+        return
+    with open(path, encoding="utf-8-sig", newline="") as f:
+        reader = csv.DictReader(f)
+        header = reader.fieldnames or []
+        missing, extra = [c for c in FORBIDDEN_COLS if c not in header], [c for c in header if c not in FORBIDDEN_COLS]
+        if missing:
+            report("error", path, 1, f"lipsesc coloanele: {', '.join(missing)}")
+        if extra:
+            report("error", path, 1, f"coloane necunoscute: {', '.join(extra)}")
+        if missing or extra:
+            return
+        seen, rows = {}, []
+        for r in reader:
+            line = reader.line_num
+            r = {k: (v or "").strip() for k, v in r.items() if k}
+            host = r["gazda"]
+            err = lambda m: report("error", path, line, f"{host or '?'}: {m}")
+            if not HOST.match(host):
+                err("gazda trebuie să fie un nume de gazdă (litere mici, fără schemă, cale sau port)")
+                continue
+            if host.startswith("www."):
+                err("gazda se scrie fără www. (www. se ignoră, iar subdomeniile sunt incluse)")
+            if host in seen:
+                err(f"gazdă duplicată (și în linia {seen[host]})")
+            seen.setdefault(host, line)
+            if not r["motiv"]:
+                err("lipsește motivul")
+            if not r["dovada"]:
+                report("warning", path, line, f"{host}: fără dovadă (o adresă sau un citat scurt)")
+            if not re.fullmatch(r"\d{4}-\d\d-\d\d", r["data"]):
+                err(f"data invalidă: '{r['data']}' (AAAA-LL-ZZ)")
+            else:
+                try:
+                    date.fromisoformat(r["data"])
+                except ValueError:
+                    err(f"data invalidă: '{r['data']}' (AAAA-LL-ZZ)")
+            rows.append((line, r))
+    if entries is not None:
+        urls = [e["url"] for e in entries if e.get("url")]
+        for line, r in rows:
+            if not any(forbidden(u, [r]) for u in urls):
+                report("warning", path, line, f"{r['gazda']}: nicio intrare nu are acest domeniu în url (rând depășit?)")
+
+
 def org_slugs(data_dir: Path) -> set[str]:
     with open(data_dir / "orgs.csv", encoding="utf-8-sig", newline="") as f:
         return {(r.get("slug") or "").strip() for r in csv.DictReader(f)}
@@ -181,6 +237,11 @@ def main():
         check_mentiuni(observation_paths(root)["mentions"])
         for extra in args.extra:
             check(extra.resolve(), PROIECTE_COLS, seen, urls, False)
+    try:
+        catalogue = load_catalogue(root)
+    except (Exception, SystemExit):  # a broken root has its own errors above; only the stale-row warning is skipped
+        catalogue = None
+    check_forbidden(common.FORBIDDEN_PATH, catalogue)
     print(f"{errors} erori, {warnings} avertismente", file=sys.stderr)
     sys.exit(1 if errors else 0)
 

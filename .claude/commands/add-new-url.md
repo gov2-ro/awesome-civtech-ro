@@ -18,6 +18,8 @@ The owner allows direct edits to `data/proiecte.csv` and `data/orgs.csv`.
 
 ## 2. Audit the site
 
+- First check the host with `forbidden(url)` in `scripts/common.py`. If the host is in `data/taxonomy-v2/colectare-interzisa.csv`,
+  do not fetch or render it. Say so, and ask the owner for pages saved by hand.
 - Fetch the homepage, and the about/contact pages if they exist. If the page needs JavaScript,
   render it with Playwright.
 - Record what the site says. Do not guess. Leave a cell empty when the site does not say it.

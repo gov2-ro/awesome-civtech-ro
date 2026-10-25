@@ -46,6 +46,7 @@ and in the `pachet.json` of an overlay (`headers`). No Python constant repeats t
 | `data/taxonomy-v2/arii.csv` | a person | [arii.csv](#ariicsv) |
 | `data/taxonomy-v2/revizuire.csv` | a person | [revizuire.csv (v2)](#revizuirecsv-v2) |
 | `data/taxonomy-v2/mapari-externe.csv` | a person | [mapari-externe.csv](#mapari-externecsv) |
+| `data/taxonomy-v2/colectare-interzisa.csv` | a person | [colectare-interzisa.csv](#colectare-interzisacsv) |
 | `data/taxonomy-v2/setari.json`, `schema.json`, `versiuni.json`, `manifest.json`, `catalogue.json` and the history files | a person, or `validate.py --export` | [Settings, contract and history](#settings-contract-and-history) |
 | `data/taxonomy-v2/integrare/` | `integrare.py` and a person | [Integration overlay](#integration-overlay-integrare) |
 | `data/taxonomy-v2/observatii/` | `profile.py`, `search.py`, `review.py` | [Observations](#observations-observatii) |
@@ -587,6 +588,45 @@ Proposed mappings of local concepts to EuroVoc. They are separate from the entry
 `validate.py` refuses a change to a file of `source/` or `reference/`, because the hashes in `manifest.json` no longer match.
 It also refuses a second source for sections or link roles in `setari.json`.
 
+### colectare-interzisa.csv
+
+`data/taxonomy-v2/colectare-interzisa.csv` lists the sites that forbid automated access. No script requests a listed host.
+A person edits the file. It belongs to the package, not to one root: every script reads this file, whatever `--data-dir` says.
+`scripts/common.py` holds the constants (`FORBIDDEN_COLS`, `FORBIDDEN_PATH`, `FORBIDDEN_STATE`) and the one check, `forbidden(url)`.
+The encoding, separator and quoting are those of the other CSV files.
+
+| Column | Meaning |
+| --- | --- |
+| `gazda` | A host name in lower case, without scheme, path, port or `www.`. A row covers its subdomains: `harta-firmelor.ro` also covers `api.harta-firmelor.ro`. The match is by whole labels, so `notharta-firmelor.ro` does not match. A leading `www.` on the requested host is ignored. Required and unique. |
+| `motiv` | One sentence in Romanian: why the site is on the list. Required. The scripts print it. |
+| `dovada` | A URL or a short quote that shows the restriction. |
+| `data` | `YYYY-MM-DD`: when the restriction was seen. Required. |
+| `nota` | Optional. For example, which related hosts the row covers. |
+
+`validate.py` checks the file: the header, a valid host in `gazda` (not `www.`), a non-empty `motiv`, a valid `data`, and no duplicate host.
+An absent file is an error, because an absent list leaves every site open. A row without `dovada` is a warning. A row whose host is the `url` host of no entry
+is a warning too: the row may be stale. A script that cannot read the file (a header without `gazda` or `motiv`) stops. An empty or absent file lists nothing.
+
+**What a script does with a listed host.** It makes no request: no page, image, icon, feed, sitemap, screenshot or browser render, and no request for a redirect target.
+`--force` does not change this. The skipped result has the state `colectare-interzisa` and carries the `motiv` of the row. It is never an error, never a failed attempt, never `offline` or `necunoscut`.
+
+| Script | Behaviour |
+| --- | --- |
+| `profile.py` | In every mode (`--force`, `--extra`, `--opr` and the browser pass included) a listed entry is left out. One line per entry goes to the error output. The stored row of `profil.csv` stays as it is. The profile never gets a result because of the list. Link favicons skip a listed host. A redirect to a listed host stops (an httpx request hook for each hop; in the browser, a route handler and a resolver rule, see below); the entry keeps its row. |
+| `review.py` | A listed entry gets no download and no model request. Its stored answer, suggestions and labels stay. A redirect to a listed host skips the entry in the same way. |
+| `collect_docs.py` | A listed entry gets the record state `colectare-interzisa` with `motiv` and no pages, and an earlier record of it stays as it is (no `ultima_incercare`). A page whose redirect led to a listed host has the page state `colectare-interzisa` and keeps its earlier copy. The request budget does not count a listed address, and the request log gets no row for it. |
+| `inventory.py` | A source on a listed host is not requested, `--force`, `--force-url` and `--probe` included. The run prints `colectare-interzisa: not requested: URL (motiv)`; `report['interzise']` lists the addresses. A body that the inventory retained earlier stays the evidence. A copy saved by the owner stays valid and `--check` still verifies it. The request log gets no row; `--probe` writes no cache file for it. |
+| `render_pages.py` | A listed URL is dropped before the browser starts. A request to a listed host that a navigation, a script or a link starts is aborted, and a redirect to it fails inside the browser. The render record then has `stare` `colectare-interzisa`, `motiv` and `gazda_interzisa`. |
+| `search.py`, `sheets.py`, `form.py` | They request search and Google APIs only, never a project site. The list does not apply. |
+
+**Browsers.** A Playwright route handler does not see the redirect hop of a request that it let through. Measured with Chromium on loopback (2026-10-26): the local server
+received the request for the listed name. So `profile.py`, `review.py` and `render_pages.py` start Chromium with `common.browser_args()`, a `--host-resolver-rules` argument
+that maps every listed host and its subdomains to `~NOTFOUND`. The browser then cannot resolve them, and Playwright reports the hop as a failed navigation request
+(`common.note_failed_request`). The route handler stays as a second layer for the first request and for scripts. A browser behind a proxy resolves nothing itself and would ignore the rule;
+the scripts start it without a proxy.
+
+When the owner adds a row, the owner saves the pages by hand and imports them with `--import-saved` (see [Pages saved by the owner](#documentation-evidence-observatiidocumentare)).
+
 ### Integration overlay: integrare/
 
 `data/taxonomy-v2/integrare/` is an overlay. It holds the classification of the sealed run `2026-10-19-reasoned-evidence`,
@@ -802,7 +842,8 @@ The page is read like a collected page (kind from the address, scope from the ca
 
 A saved page replaces a page with the same address that failed, or an older saved page. It never replaces a page that was fetched and collected (an error).
 A later run of the collector does not request an address that holds a saved page: the page stays as it is and gets no `ultima_incercare`.
-The other addresses of the same entry follow the ordinary rules, so a run with `--force` still requests them. Do not run it for a site that forbids automated access.
+The other addresses of the same entry follow the ordinary rules, so a run with `--force` requests them, unless the host is in [colectare-interzisa.csv](#colectare-interzisacsv):
+a listed host is never requested. Add a site that forbids automated access to that list before the first run.
 `inventory.py --check` verifies a saved page: its keys are consistent, and the retained text has the recorded `sha256`. A text that is absent from the checkout is listed as unavailable and is never counted as verified.
 The owner keeps the file; the import command can run again from it, and its hash identifies the copy.
 

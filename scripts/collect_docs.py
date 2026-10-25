@@ -10,6 +10,8 @@ The collector follows methodology/about links and checks llms.txt. It saves evid
 It never changes the catalogue, profile, labels, or public site. Requests use no paid API or credentials.
 HTML is read without JavaScript. Missing pages, blocked requests and thin text remain explicit gaps.
 A page that the owner saved (`--import-saved`) keeps its own origin, `copie-salvata-de-proprietar`, and is never requested again.
+A host in data/taxonomy-v2/colectare-interzisa.csv is never requested, `--force` included, and neither is a redirect to it. The result has the state
+`colectare-interzisa`; the request log gets no row for a listed address, the request budget does not count it, and an earlier record stays as it is.
 """
 from __future__ import annotations
 
@@ -27,9 +29,9 @@ from http.client import HTTPException
 from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.parse import urldefrag, urljoin, urlsplit, urlunsplit
-from urllib.request import Request, urlopen
+from urllib.request import HTTPRedirectHandler, Request, build_opener
 
-from common import PUBLIC_ROOT, load_catalogue, observation_paths
+from common import FORBIDDEN_STATE, PUBLIC_ROOT, ForbiddenHost, forbidden, load_catalogue, observation_paths, refuse_forbidden
 
 MAX_BYTES = 2_000_000
 MAX_TEXT = 60_000
@@ -312,6 +314,30 @@ def add_saved_page(record, page):
     return {**record, 'pages': pages, 'state': documentation_state(pages)}
 
 
+class RefuseListedRedirect(HTTPRedirectHandler):
+    """Follows a redirect only when its target is not on a listed host (colectare-interzisa.csv).
+    The refusal comes before the next request, so the listed host receives nothing."""
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        try:
+            refuse_forbidden(newurl)
+        except ForbiddenHost:
+            fp.close()
+            raise
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
+def urlopen(request, timeout):
+    """The one place where this module opens a connection. A redirect to a listed host raises ForbiddenHost."""
+    return build_opener(RefuseListedRedirect).open(request, timeout=timeout)
+
+
+def forbidden_result(url, row):
+    """The answer for an address on a listed host: no request was made. The state is not an error and not a failed attempt."""
+    return {'url': url, 'final_url': url, 'http_status': None, 'fetched_at': datetime.now(timezone.utc).isoformat(),
+            'state': FORBIDDEN_STATE, 'motiv': row['motiv'], 'gazda': row['gazda']}
+
+
 class KeepSaved:
     """Wraps a fetcher. An address that the owner saved is never requested; the answer is the marker state `copie-salvata`."""
 
@@ -341,7 +367,10 @@ class Fetcher:
 
     def __call__(self, url, sample=None):
         """Fetch a URL. With `sample` (bytes) the request asks for a byte range and reads no more than that:
-        a bounded sample of a large file. A sample body ends at its last complete line and carries `partial: true`."""
+        a bounded sample of a large file. A sample body ends at its last complete line and carries `partial: true`.
+        An address on a listed host gets no request, no cache entry, no log row and no place in the budget."""
+        if (row := forbidden(url)) is not None:
+            return forbidden_result(url, row)
         key = (url, sample)
         with self.guard:
             lock = self.locks.setdefault(key, threading.Lock())
@@ -383,6 +412,8 @@ class Fetcher:
                         if result.get('partial'):
                             text = text[:text.rfind('\n') + 1] if '\n' in text else text
                         result.update(state='ok', body=text)
+            except ForbiddenHost as exc:  # the site redirected to a listed host; the first request was made and is logged
+                result.update(state=FORBIDDEN_STATE, motiv=exc.row['motiv'], gazda=exc.row['gazda'])
             except HTTPError as exc:
                 result.update(state='eroare-http', http_status=exc.code, error=str(exc))
             except (URLError, OSError, ValueError, LookupError, HTTPException) as exc:
@@ -397,6 +428,9 @@ def collect(entry, fetch, max_pages=5, follow_data_links=False):
     start = canonical(entry['url'])
     if not start:
         return {'slug': entry['slug'], 'url': entry['url'], 'state': 'fara-url-http', 'pages': []}
+    if (row := forbidden(start)) is not None:  # the site forbids automated access: no page of it is requested
+        return {'slug': entry['slug'], 'url': start, 'state': FORBIDDEN_STATE, 'motiv': row['motiv'],
+                'inventory_completeness': 'neanalizat', 'pages': []}
     parsed = urlsplit(start)
     # A path identifies a project on a shared host. Check its llms file before the host-wide one.
     directory = start if parsed.path.endswith('/') else (start + '/' if not Path(parsed.path).suffix else urljoin(start, './'))
@@ -455,13 +489,15 @@ def merge_refresh(old, new):
     attempt in `ultima_incercare`. A page collected again replaces its earlier copy. A changed project URL starts over."""
     if not old or old.get('url') != new.get('url') or new.get('state') == 'fara-url-http':
         return new
+    if new.get('state') == FORBIDDEN_STATE:
+        return old  # no request was made; the earlier record stays as it is, with no failed-attempt mark
     fresh = {p['url']: p for p in new['pages']}
     old_pages = {p['url']: p for p in old['pages']}
     pages = []
     for page in new['pages']:
         earlier = old_pages.get(page['url'])
-        if earlier and is_saved(earlier) and page['state'] == 'copie-salvata':
-            page = earlier  # no request was made; the saved copy stays as it is, with no failed-attempt mark
+        if earlier and (page['state'] == FORBIDDEN_STATE or is_saved(earlier) and page['state'] == 'copie-salvata'):
+            page = earlier  # no request was made (or a redirect was refused); the page stays as it is, with no failed-attempt mark
         elif earlier and earlier['state'] == 'colectat' and page['state'] != 'colectat':
             attempt = {k: page.get(k) for k in ('fetched_at', 'state', 'http_status', 'error') if page.get(k) is not None}
             page = {**earlier, 'ultima_incercare': attempt}
@@ -593,6 +629,9 @@ def main():
             records[record['slug']] = merge_refresh(records.get(record['slug']), record)
             save(records, out)
             found = [p['kind'] for p in record['pages'] if p['state'] == 'colectat']
+            if record['state'] == FORBIDDEN_STATE:
+                print(f"{record['slug']}: {FORBIDDEN_STATE} · {record['motiv']} · 0 requests", flush=True)
+                continue
             print(record['slug'] + ': ' + record['state'] + ' · ' + ', '.join(found), flush=True)
     print(f'{len(todo)} entries processed; {fetcher.requests} requests; index: {out / "index.json"}')
     return int(any(records[e['slug']]['state'] == 'eroare-colectare' for e in todo))

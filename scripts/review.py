@@ -29,6 +29,10 @@ finantat_de) needs a source: a supplied url and a quote that the supplied text c
 A term that no id covers goes to propuneri-vocabular.csv, never into an id. All files go to the root's observatii/ folder
 (review/raw.jsonl, review/sugestii.csv, review/propuneri-vocabular.csv, and the labels in mentiuni_etichete.csv).
 review/ is gitignored; intrari.csv and every other table of the package stay untouched.
+
+A host in data/taxonomy-v2/colectare-interzisa.csv is never requested (no homepage, no about page, no browser render, no redirect to it).
+The script skips a listed entry before any download and before the API call, prints one line for it, and leaves its stored answer, its
+suggestions and its labels as they are. A skipped entry is not an error and is never reviewed as an offline site.
 """
 from __future__ import annotations
 
@@ -51,8 +55,9 @@ try:
 except ImportError:  # the pure functions, the dry run and the tests work without them; a real run needs them
     anthropic = httpx = HTMLParser = None
 
-from common import (load_env, DATA, PUBLIC_ROOT, ETICHETE_COLS, coverage_line, data_schema, domain_of, is_kept, label_coverage, load_catalogue,
-                    load_mentions, load_profile, load_vocabulary, observation_paths, read_csv, split_list, split_tip, write_csv)
+from common import (load_env, DATA, PUBLIC_ROOT, ETICHETE_COLS, ForbiddenHost, browser_args, coverage_line, data_schema, domain_of, forbidden, is_kept,
+                    label_coverage, load_catalogue, load_mentions, load_profile, load_vocabulary, note_failed_request, observation_paths, read_csv,
+                    refuse_forbidden, refuse_route, skip_line, split_list, split_tip, write_csv)
 
 MODEL = "claude-haiku-5-5"
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36"
@@ -181,9 +186,16 @@ class Page:
         self.url, self.text, self.status_code = url, html, status
 
 
+def refuse_listed(request):
+    """httpx request hook. httpx calls it before each request, a redirect hop included; a listed host raises ForbiddenHost."""
+    refuse_forbidden(str(request.url))
+
+
 def fetch(url: str) -> Page:
-    r = httpx.get(url, headers={"User-Agent": UA, "Accept-Language": "ro,en;q=0.8"}, follow_redirects=True,
-                  timeout=25, verify=False)
+    refuse_forbidden(url)
+    with httpx.Client(headers={"User-Agent": UA, "Accept-Language": "ro,en;q=0.8"}, follow_redirects=True, timeout=25, verify=False,
+                      event_hooks={"request": [refuse_listed]}) as client:
+        r = client.get(url)
     return Page(str(r.url), r.text, r.status_code)
 
 
@@ -191,19 +203,31 @@ _browser = None
 
 
 def render(url: str) -> Page:
-    """For pages built in the browser: the DOM after scripts ran."""
+    """For pages built in the browser: the DOM after scripts ran. A request to a listed host is aborted (ForbiddenHost)."""
     global _browser
+    refuse_forbidden(url)
     if _browser is None:
         from playwright.sync_api import sync_playwright
         pw = sync_playwright().start()
+        launch_args = browser_args()  # the browser cannot resolve a listed host, so a redirect hop fails inside it
         try:
-            _browser = pw.chromium.launch(channel="chrome")
+            _browser = pw.chromium.launch(channel="chrome", args=launch_args)
         except Exception:
-            _browser = pw.chromium.launch()
+            _browser = pw.chromium.launch(args=launch_args)
     page = _browser.new_page(user_agent=UA, locale="ro-RO", ignore_https_errors=True)
+    refused: list[str] = []
+    page.route("**/*", lambda route: refuse_route(route, refused))
+    page.on("requestfailed", lambda request: note_failed_request(request, refused))
     try:
-        resp = page.goto(url, wait_until="load", timeout=30_000)
-        page.wait_for_timeout(2000)
+        try:
+            resp = page.goto(url, wait_until="load", timeout=30_000)
+            page.wait_for_timeout(2000)
+        except Exception:
+            if refused:  # the browser refused a redirect to a listed host
+                refuse_forbidden(refused[0])
+            raise
+        if refused:
+            refuse_forbidden(refused[0])
         return Page(page.url, page.content(), resp.status if resp else 0)
     finally:
         page.close()
@@ -231,8 +255,12 @@ def parse(r) -> tuple[str, dict, dict]:
 
 
 def homepage(url: str) -> dict:
+    """The homepage as the request carries it. For a listed host (or a redirect to one) it makes no request and returns
+    {"colectare_interzisa": <row of the list>}; the caller skips the entry, because the page is unknown, not offline."""
     try:
         r = fetch(url)
+    except ForbiddenHost as ex:
+        return {"colectare_interzisa": ex.row}
     except Exception as ex:
         return {"eroare": f"{type(ex).__name__}: {str(ex)[:160]}"}
     text, ext, own = parse(r)
@@ -240,6 +268,8 @@ def homepage(url: str) -> dict:
         try:
             r = render(url)
             text, ext, own = parse(r)
+        except ForbiddenHost as ex:
+            return {"colectare_interzisa": ex.row}
         except Exception:
             pass
     # The about/contact pages often name the authors and link the profiles the homepage leaves out.
@@ -747,6 +777,9 @@ def main():
     todo = [e for e in entries if (e["slug"] in only if only else args.force or reason[e["slug"]])]
     if args.limit:
         todo = todo[:args.limit]
+    for e in [e for e in todo if e["url"] and forbidden(e["url"])]:  # no download, no API call; the stored answer stays
+        print(skip_line(e["slug"], forbidden(e["url"])), file=sys.stderr)
+        todo.remove(e)
     why = Counter(reason[e["slug"]].split(":")[0] or "forced" for e in todo)
     print(f"reviewing {len(todo)} entries with {MODEL}" + (f" ({', '.join(f'{n} {k}' for k, n in why.items())})" if why else ""), file=sys.stderr)
     labels_path = obs["labels"]
@@ -769,9 +802,13 @@ def main():
     # Same bytes on every request, so the instructions + vocabulary are cached after the first call.
     system = [{"type": "text", "text": instructions + "\n\n" + vocabulary_text, "cache_control": {"type": "ephemeral"}}]
     msgs, pools = {}, {}
-    for e in todo:
+    for e in list(todo):
         print(f"  fetching {e['slug']}", file=sys.stderr)
         page = homepage(e["url"]) if e["url"] else {"eroare": "fără url"}
+        if page.get("colectare_interzisa"):  # a redirect led to a listed host: skip the entry as if it were listed
+            print(skip_line(e["slug"], page["colectare_interzisa"]), file=sys.stderr)
+            todo.remove(e)
+            continue
         msgs[e["slug"]] = message(e, profile.get(e["slug"], {}), results_of.get(e["slug"], []), page)
         pools[e["slug"]] = evidence_pool(page, results_of.get(e["slug"], []))
     check = lambda e: (lambda a: vocab.check(a, pools[e["slug"]])) if v2 else None

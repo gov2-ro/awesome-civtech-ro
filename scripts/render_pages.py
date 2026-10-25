@@ -17,6 +17,9 @@ A navigation and its requests go to the request log as browser rows (cache = `br
 The bodies of up to six JSON or CSV data responses (200 000 bytes each) are stored in the source cache, because the page itself
 received them. A server may answer the same address with an error to a plain request (a 403 for a client without the page's context).
 The helper never works around that answer; the browser copy is the evidence, and its record says `via: browser`.
+A host in data/taxonomy-v2/colectare-interzisa.csv is never opened. A listed URL is dropped before the browser starts. The browser aborts a
+request to a listed host that a navigation, a script or a link starts, and it cannot resolve a listed host at all (a redirect hop is not
+visible to a route handler). Such a page has the state `colectare-interzisa`.
 Needs Playwright's Chromium: `uv run --with playwright playwright install chromium`.
 """
 from __future__ import annotations
@@ -30,7 +33,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
-from common import PUBLIC_ROOT, observation_paths
+from common import FORBIDDEN_STATE, PUBLIC_ROOT, browser_args, forbidden, host_of, note_failed_request, observation_paths, refuse_route
 from inventory_state import RequestLog, dump, protect, source_id, write_file_atomic
 
 DATA_TYPES = ('fetch', 'xhr', 'eventsource', 'websocket')
@@ -75,7 +78,23 @@ def summarise(events, page_host, allowed=()):
     return kept
 
 
+def without_forbidden(urls, slug=''):
+    """The URLs that may be rendered. A URL on a listed host (colectare-interzisa.csv) is reported and dropped before the browser
+    starts: no navigation, no request, no row in the request log, no render record."""
+    kept = []
+    for url in urls:
+        row = forbidden(url)
+        if row is None:
+            kept.append(url)
+        else:
+            print(f"{FORBIDDEN_STATE} {slug or 'pagina'}: {row['motiv']} [{row['gazda']}] {url}: 0 requests")
+    return kept
+
+
 def render(urls, args):
+    urls = without_forbidden(urls, args.slug)
+    if not urls:
+        return []
     from playwright.sync_api import TimeoutError as PlaywrightTimeout, sync_playwright
     obs = observation_paths(args.data_dir)['profile'].parent
     out_dir = args.out_dir or obs / 'inventare' / 'randare'
@@ -83,9 +102,13 @@ def render(urls, args):
     log = RequestLog(obs / 'inventare' / 'jurnal-cereri.csv', args.lot) if args.lot else None
     written = []
     with sync_playwright() as p:
-        browser = p.chromium.launch()
+        browser = p.chromium.launch(args=browser_args())  # a listed host cannot be resolved inside the browser, redirect hops included
         for url in urls:
             context = browser.new_context(java_script_enabled=True, accept_downloads=False, ignore_https_errors=False)
+            # A redirect, a script or a link may lead to a listed host: the browser then makes no request to it.
+            refused = []
+            context.route('**/*', lambda route, refused=refused: refuse_route(route, refused))
+            context.on('requestfailed', lambda request, refused=refused: note_failed_request(request, refused))
             page = context.new_page()
             events = []
 
@@ -126,6 +149,10 @@ def render(urls, args):
             except Exception as exc:  # a navigation failure is a recorded outcome, not a crash
                 state, status = 'eroare-browser', None
                 title = f'{type(exc).__name__}: {str(exc)[:200]}'
+            motiv = ''
+            if refused:  # a navigation to a listed host was aborted: say so; it is not a browser error and not an offline site
+                state, title, status = FORBIDDEN_STATE, '', None
+                motiv = (forbidden(refused[0]) or {}).get('motiv', '')
             final_url = page.url
             host = urlsplit(final_url or url).hostname
             requests = summarise(events, host, args.allow_host)
@@ -141,7 +168,8 @@ def render(urls, args):
                     saved.append(item_url)
             context.close()
             record = {'versiune': 1, 'proiect': args.slug, 'url_cerut': url, 'url_final': final_url, 'stare': state, 'http_status': status,
-                      'titlu': title, 'randat_la': datetime.now(timezone.utc).isoformat(), 'text_randat': text,
+                      'titlu': title, **({'motiv': motiv, 'gazda_interzisa': host_of(refused[0])} if refused else {}),
+                      'randat_la': datetime.now(timezone.utc).isoformat(), 'text_randat': text,
                       'controale_vizibile': controls, 'cereri_date': requests, 'corpuri_pastrate': [redact(u) for u in saved], 'corpuri_omise': omitted,
                       'nota': 'No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only.'}
             name = f'{args.slug or "pagina"}-{hashlib.sha256(url.encode()).hexdigest()[:10]}.json'

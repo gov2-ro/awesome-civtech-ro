@@ -554,7 +554,11 @@ class ReviewV2(unittest.TestCase):
         asked.clear()
         run()  # the reviewed entry is current: everything else is asked, it is not
         self.assertNotIn(slug, asked)
-        self.assertEqual(len(asked), len(common.read_csv(c.overlay / "intrari.csv")) - 1)
+        # An entry on the list of hosts that forbid automated access (colectare-interzisa.csv) is skipped: no download, no question.
+        listed = {e["slug"] for e in common.load_catalogue(c.overlay) if e["url"] and common.forbidden(e["url"])}
+        self.assertTrue(listed, "the list names at least one entry of the catalogue")
+        self.assertTrue(listed.isdisjoint(asked))
+        self.assertEqual(len(asked), len(common.read_csv(c.overlay / "intrari.csv")) - 1 - len(listed))
 
         asked.clear()
         run()  # now every answer is current
