@@ -197,7 +197,7 @@ async function start() {
     for (const g of groups) for (const v of Object.keys(labels[g.key])) if (!entries.some(e => e._values[g.key].includes(v))) delete labels[g.key][v];
     const projects = entries.filter(e => e.kind === 'proiect').length;
     const fields = entries.filter(e => e.inventory.count).length;
-    $('#data-coverage').textContent = `${projects} proiecte · ${entries.length-projects} resurse și liste · ${fields} inventare parțiale. Lipsa câmpurilor nu înseamnă lipsa datelor.`;
+    $('#data-coverage').textContent = `${projects} proiecte · ${entries.length-projects} resurse și liste · ${fields} inventare parțiale`;
     readState(); render();
   } catch (error) {
     $('#data-coverage').textContent = 'Inventarul nu s-a putut încărca.';

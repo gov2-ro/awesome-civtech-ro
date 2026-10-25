@@ -1,17 +1,12 @@
-.finder-header { display:flex; align-items:center; justify-content:space-between; gap:16px; padding-block:24px; border-bottom:1px solid var(--line); }
-.finder-header .brand { font-family:var(--font-head); font-size:20px; font-weight:650; }
-.finder-header nav { display:flex; flex-wrap:wrap; gap:18px; font-size:14px; }
-.finder-header [aria-current] { color:var(--ink); text-decoration:underline; text-underline-offset:6px; }
-.finder-intro { max-width:850px; padding:48px 0 32px; }
-.finder-intro h1 { font-size:clamp(32px,4vw,52px); margin:12px 0 16px; }
-.finder-intro > p:not(.kicker) { color:var(--ink-2); }
-.finder-search { display:block; margin:24px 0 12px; }
-.finder-search input { width:100%; padding:15px 18px; border:1px solid var(--line-strong); border-radius:var(--radius); background:var(--surface); color:var(--ink); font:inherit; font-size:18px; }
+.finder-bar { display:flex; align-items:center; flex-wrap:wrap; gap:10px 20px; padding-block:14px; }
+.finder-back { font-size:14px; white-space:nowrap; }
+.finder-search { flex:1 1 280px; min-width:0; }
+.finder-search input { width:100%; padding:9px 14px; border:1px solid var(--line-strong); border-radius:var(--radius); background:var(--surface); color:var(--ink); font:inherit; font-size:16px; }
 .finder input:focus-visible, .finder button:focus-visible, .finder a:focus-visible, .finder summary:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
 .finder-examples { display:flex; align-items:center; flex-wrap:wrap; gap:8px; font-size:14px; color:var(--muted); }
 .finder-examples button, .finder-tag { border:0; border-radius:var(--radius); background:var(--surface); color:var(--ink-2); padding:4px 8px; font:inherit; cursor:pointer; }
 .finder-examples button:hover, .finder-tag:hover { color:var(--accent); }
-.finder-intro .finder-note { margin-top:20px; font-size:13px; color:var(--muted); }
+.finder-bar .finder-note { font-size:13px; color:var(--muted); white-space:nowrap; }
 .finder-layout { display:grid; grid-template-columns:260px minmax(0,1fr); gap:36px; border-top:1px solid var(--line); padding-top:24px; }
 .finder-facet { padding-bottom:24px; margin-bottom:20px; border-bottom:1px solid var(--line); }
 .finder-facet h2 { font-size:18px; margin-bottom:6px; }
@@ -61,8 +56,10 @@
 .finder-footer p { margin-bottom:8px; }
 @media (max-width:1000px) { #data-cards { grid-template-columns:minmax(0,1fr); } .finder-layout { gap:24px; grid-template-columns:230px minmax(0,1fr); } }
 @media (max-width:700px) {
-  .finder-header { align-items:flex-start; flex-direction:column; padding-block:16px; }
-  .finder-intro { padding-top:28px; }
+  .finder-bar { padding-block:12px; }
+  .finder-search { flex-basis:100%; order:1; }
+  .finder-examples { order:2; }
+  .finder-bar .finder-note { margin-left:auto; white-space:normal; }
   .finder-layout { grid-template-columns:minmax(0,1fr); gap:12px; }
   #data-facets { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
   .finder-facet { min-width:0; margin-bottom:0; padding-bottom:16px; }

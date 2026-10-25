@@ -15,15 +15,10 @@
 </head>
 <body class="finder">
 <a class="skip" href="#data-results">Sari la rezultate</a>
-<header class="finder-header wrap">
-  <a class="brand" href="./">CivTech România</a>
-  <nav aria-label="Navigare"><a href="./">Explorator</a><a href="date/" aria-current="page">Inventar de date</a></nav>
-</header>
 <main class="wrap">
-  <section class="finder-intro" aria-labelledby="page-title">
-    <p class="kicker">Date → proiecte</p>
-    <h1 id="page-title">De ce date ai nevoie?</h1>
-    <p>Găsește proiecte care folosesc aceleași variabile, preiau date din aceleași surse sau urmăresc aceleași instituții.</p>
+  <header class="finder-bar">
+    <a class="finder-back" href="./">← Explorator</a>
+    <h1 class="sr">Inventar de date: proiecte după variabile, surse și instituții</h1>
     <label class="finder-search"><span class="sr">Caută o variabilă, instituție sau un proiect</span>
       <input id="data-search" type="search" placeholder="CUI, achiziții, INS, primării…" autocomplete="off">
     </label>
@@ -33,7 +28,7 @@
       <button type="button" data-facet="providers" data-value="INS">INS</button>
     </div>
     <p class="finder-note" id="data-coverage">Se încarcă inventarul…</p>
-  </section>
+  </header>
   <div class="finder-layout">
     <aside id="data-facets" aria-label="Selectează datele"></aside>
     <section class="finder-results" id="data-results" aria-label="Proiecte găsite">
@@ -48,7 +43,7 @@
   </div>
 </main>
 <footer class="finder-footer wrap">
-  <p>Inventarele sunt parțiale. Asocierile dintre variabile sunt propuse pentru revizuire.</p>
+  <p>Inventarele sunt parțiale. Lipsa câmpurilor nu înseamnă lipsa datelor. Asocierile dintre variabile sunt propuse pentru revizuire.</p>
   <p>Un câmp comun nu garantează că seturile se pot combina. Verifică definiția, perioada, unitatea și nivelul geografic.</p>
   <a href="./">Înapoi în explorator →</a>
 </footer>
