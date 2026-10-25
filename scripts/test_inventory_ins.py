@@ -51,8 +51,10 @@ class InsMetadata(unittest.TestCase):
 
     def test_dimensions_are_variables_but_their_values_are_not(self):
         self.assertEqual(self.record['format'], 'metadate-ins')
-        self.assertEqual([f['nume'] for f in self.record['campuri']], ['CATEGORY', 'REF_AREA', 'TIME_PERIOD', 'UNIT_MEASURE'])
-        self.assertTrue(all(f['rol'] == 'dimensiune' and f['stare_tip'] == 'declarat-in-metadate' for f in self.record['campuri']))
+        dimensions = [f for f in self.record['campuri'] if f['rol'] == 'dimensiune']
+        self.assertEqual([f['nume'] for f in dimensions], ['CATEGORY', 'REF_AREA', 'TIME_PERIOD', 'UNIT_MEASURE'])
+        self.assertTrue(all(f['stare_tip'] == 'declarat-in-metadate' for f in dimensions))
+        self.assertEqual([f['nume'] for f in self.record['campuri'] if f['rol'] == 'masura'], ['OBS_VALUE'], 'one measure, not one per value')
         names = {f['nume'] for f in self.record['campuri']}
         self.assertFalse(names & {'Total', 'Fatal', 'Bihor', '1992'})
         category = self.facts['dimensiuni'][0]
@@ -80,7 +82,14 @@ class InsMetadata(unittest.TestCase):
         self.assertEqual(units['Numar persoane']['tip_unitate'], 'count')
         self.assertIsNone(units['Promile']['tip_unitate'])
         self.assertEqual(units['Promile']['tip_optiune'], 'indicator')
-        self.assertTrue(all(f.get('unitate') is None for f in self.record['campuri']), 'no field copies a unit it does not declare')
+        self.assertTrue(all(f.get('unitate') is None for f in self.record['campuri'] if f['rol'] == 'dimensiune'), 'a dimension carries no unit of its own')
+        measure = next(f for f in self.record['campuri'] if f['nume'] == 'OBS_VALUE')
+        self.assertIsNone(measure['unitate'], 'two declared units: neither is chosen')
+        self.assertEqual(measure['unitati_declarate'], ['Numar persoane', 'Promile'])
+        pop = next(f for f in source(POP, 'POP107D-trimmed.json')['campuri'] if f['nume'] == 'OBS_VALUE')
+        self.assertEqual((pop['unitate'], pop['stare_tip']), ('Numar persoane', 'declarat-in-documentatie-api'))
+        self.assertIn('numarul persoanelor', pop['descriere'])
+        self.assertEqual(pop['dovada_externa']['url'], 'https://ins.gov2.ro/llms.txt')
 
     def test_original_source_note_is_kept_verbatim_and_no_publisher_or_licence_is_invented(self):
         note = self.facts['observatii']
@@ -129,6 +138,24 @@ class InsMetadata(unittest.TestCase):
             record['set_date']['perioada']['an_max']['valoare'] = 2030
             (out / 'seturi-date.json').write_text(json.dumps({'surse': [record]}))
             self.assertTrue(any('Dataset facts differ' in e for e in check_report(out, out)['errors']))
+
+    def test_the_documentation_sentence_behind_the_measure_is_checked_against_the_collected_page(self):
+        record = source(ACC, 'ACC102B-trimmed.json')
+        llms = 'https://ins.gov2.ro/llms.txt'
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp)
+            (out / record['snapshot']).parent.mkdir()
+            (out / record['snapshot']).write_text(json.dumps({'url': ACC, 'final_url': ACC, 'state': 'ok', 'body': fixture('ACC102B-trimmed.json')}))
+            (out / 'proiecte.json').write_text(json.dumps({'proiecte': []}))
+            (out / 'seturi-date.json').write_text(json.dumps({'surse': [record]}))
+            self.assertTrue(any('external evidence' in u for u in check_report(out, out)['unavailable']), 'no collected page: unavailable, not verified')
+            (out / 'documentare/pagini').mkdir(parents=True)
+            index = {'entries': [{'slug': 'ins-gov2', 'pages': [{'final_url': llms, 'state': 'colectat', 'snapshot': 'pagini/llms.json'}]}]}
+            (out / 'documentare/index.json').write_text(json.dumps(index))
+            (out / 'documentare/pagini/llms.json').write_text(json.dumps({'text': '- **OBS_VALUE**: The numeric observation value column in all data responses.'}))
+            self.assertEqual(check_report(out, out)['errors'], [])
+            (out / 'documentare/pagini/llms.json').write_text(json.dumps({'text': 'The column was renamed.'}))
+            self.assertTrue(any('External evidence' in e for e in check_report(out, out)['errors']))
 
 
 if __name__ == '__main__':

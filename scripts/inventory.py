@@ -28,7 +28,8 @@ from urllib.parse import unquote, urlsplit
 
 from collect_docs import Fetcher, canonical, flat, restore, scope_of
 from common import PUBLIC_ROOT, data_schema, load_catalogue, load_vocabulary, observation_paths
-from inventory_ins import ins_dataset, ins_listing, is_listing
+from inventory_concepts import EvidenceLocator, check_concepts
+from inventory_ins import ins_dataset, ins_listing, ins_measure, is_listing
 from inventory_text import EXTENSIONS, read_text
 from inventory_state import (REGISTRY, RequestLog, StateError, active_members, admit, check_text, dump, load_previous,
                              new_discovery, now_utc, priority, protect, registry_map, retire, seed_registry, sorted_registry,
@@ -235,6 +236,7 @@ def parse_source(body, url, content_type='', hint=None):
                    'tip_semantic': d.get('dim_type'), 'rol': 'dimensiune', 'stare_tip': 'declarat-in-metadate',
                    'pointer': '/dimensions/' + str(n), 'valori_declarate': d.get('option_count')}
                   for n, d in enumerate(doc['dimensions']) if d.get('dim_column_name')]
+        fields.append(ins_measure(doc))
         return 'metadate-ins', fields, False
     if isinstance(doc, dict) and (isinstance(doc.get('properties'), dict) or ('$schema' in doc and any(k in doc for k in ('items', 'allOf', 'anyOf', 'oneOf', '$defs', 'definitions'))) or ('$schema' in doc and doc.get('type') in ('object', 'array', 'string', 'integer', 'number', 'boolean', 'null'))):
         fields = declared_fields(doc, doc)
@@ -404,7 +406,7 @@ def check_report(out, observations):
     """Check local evidence hashes, field pointers, references and the registry without requests.
     `errors` are corrupt or inconsistent records. `unavailable` lists evidence bodies absent from this checkout;
     those are not hash-verified and are never counted as verified. `stale` lists sources whose last refresh failed."""
-    report = {'errors': [], 'unavailable': [], 'verified': 0, 'stale': []}
+    report = {'errors': [], 'unavailable': [], 'verified': 0, 'stale': [], 'concept_stale': [], 'concept_verified': 0}
     errors = report['errors']
     try:
         previous = load_previous(out)
@@ -503,8 +505,51 @@ def check_report(out, observations):
                         report['unavailable'].append(f'discovery: {record["proiect"]} {evidence.get("snapshot")}')
                     elif status:
                         errors.append(status)
+    check_dictionary(report, previous, out, observations)
+    check_external_fragments(report, previous, observations)
     report['unavailable'] = sorted(set(report['unavailable']))
     return report
+
+
+def check_dictionary(report, previous, out, observations):
+    """The hand-edited dictionary of business groups: structure, selector reach and evidence pins. A changed pin is stale, not corrupt."""
+    path = observations.parent / 'inventar-concepte.json'
+    if not path.exists():
+        return
+    try:
+        concepts = json.loads(path.read_text()).get('concepte', [])
+    except (OSError, ValueError) as exc:
+        report['errors'].append(f'{path}: {exc}')
+        return
+    sources = previous['sources']
+    fields = {}
+    for slug, profile in previous['profiles'].items():
+        for ref in profile.get('surse_structurate', []):
+            source = sources.get(ref)
+            for field in (source or {}).get('campuri', []):
+                fields.setdefault(slug, []).append(({'name': field['nume'], 'path': field['cale'], 'role': field.get('rol', 'camp-date')}, source['url']))
+    result = check_concepts(concepts, fields, EvidenceLocator(out, observations, list(sources.values())), set(previous['profiles']))
+    report['errors'] += result['errors']
+    report['concept_stale'] = result['stale']
+    report['concept_verified'] = result['verified']
+    report['unavailable'] += ['dictionary evidence: ' + item for item in result['unavailable']]
+
+
+def check_external_fragments(report, previous, observations):
+    """A field may rest on a sentence of another page (`dovada_externa`). The sentence must occur in that page's collected text."""
+    pages = {}
+    for source in previous['sources'].values():
+        for field in source.get('campuri', []):
+            evidence = field.get('dovada_externa')
+            if not evidence:
+                continue
+            if evidence['url'] not in pages:
+                pages[evidence['url']] = EvidenceLocator(observations / 'inventare', observations, []).text(evidence['url'])[0]
+            text = pages[evidence['url']]
+            if text is None:
+                report['unavailable'].append('external evidence: ' + evidence['url'])
+            elif evidence['fragment'] not in text:
+                report['errors'].append(f'External evidence for {source["url"]} {field["nume"]} is not in {evidence["url"]}')
 
 
 def check_locator(record, evidence, observations):
@@ -944,8 +989,11 @@ def main():
             print('UNAVAILABLE (not verified): ' + item)
         for url in report['stale']:
             print('STALE (last refresh failed): ' + url)
+        for item in report['concept_stale']:
+            print('STALE (dictionary evidence changed): ' + item)
         print(f'{len(report["errors"])} inventory evidence errors; {report["verified"]} source bodies hash-verified; '
-              f'{len(report["unavailable"])} local bodies unavailable and not verified; {len(report["stale"])} sources with a failed refresh')
+              f'{len(report["unavailable"])} local bodies unavailable and not verified; {len(report["stale"])} sources with a failed refresh; '
+              f'{report["concept_verified"]} dictionary evidence items verified, {len(report["concept_stale"])} stale')
         return int(bool(report['errors']) or (args.strict_snapshots and bool(report['unavailable'])))
     entries = load_catalogue(args.data_dir)
     selected = set(filter(None, args.only.split(',')))

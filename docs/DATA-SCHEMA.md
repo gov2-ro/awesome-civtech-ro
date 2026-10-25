@@ -1005,11 +1005,34 @@ Each entry carries its catalogue description, subjects, institutions, accepted p
 The page fetches one discovery index. Results appear in batches of 24. Full per-project fields remain separate.
 An ordinary rebuild removes stale draft pages and payloads from a reused isolated output folder.
 
-`data/taxonomy-v2/inventar-concepte.json` is hand-edited. It is separate from generated inventory records.
-Each concept has `id`, `label`, `definition` and `selectors`. Each selector names exact project slugs and field names.
-The seven initial groups are CUI, CPV, SIRUTA, county, locality, population and turnover. All mappings remain proposals.
-Generic names such as `id` and `value` do not create matches. Group membership does not assert dataset compatibility.
-Each match keeps up to three source examples, the original field role, type evidence, path, source URL and reference.
+`data/taxonomy-v2/inventar-concepte.json` is hand-edited. It is separate from generated inventory records. Every group is a proposal for discovery:
+membership says that a field plausibly carries the variable, never that two datasets can be joined. A group has these keys:
+
+- `id`, `label` (Romanian), `definition` (Romanian), `categorie`: `identificator`, `dimensiune`, `masura`, `intrare-utilizator` or `iesire-derivata`
+  (a value that the source computes). Use a category only when the evidence supports it.
+- `baza_definitiei`: how the definition was made. All current definitions are `parafraza-editoriala` (editorial wording). The bases are
+  `declaratie-directa` (the source says it), `observatie-esantion` (seen in sample values), `deductie-din-dovezi` (two or more pieces of evidence agree) and `parafraza-editoriala`.
+- `dovezi`: evidence for the definition: `{sursa (a source, documentation or cached page URL), fragment (an exact text of the retained body), sha256 (of that text when asserted), baza}`.
+  `inventory.py --check` finds the retained text. A missing fragment is an error. A changed text hash is reported as stale: the interpretation must be read again.
+- `ambiguitati`: open questions and candidates that are kept out of the group on purpose.
+- `selectors`: alternatives; a field joins the group when any selector of its project matches.
+
+A selector has `projects` (required) and at least one of `names` or `path`. It may also have `source` (a source URL or a list), `role` (field roles), `context`
+(what the field describes in that project, for example the CUI of the authority or of the supplier), `fapte` and `nota`. Every constraint that the selector supplies
+must match; this is what lets an ambiguous name such as `REF_AREA` join the county group for POP107D and not for TRN139A. `path` is the exact field path.
+A fact in `fapte` has `cheie`, `valoare`, `baza` and, unless it is an editorial paraphrase, a `dovada` with the same shape as `dovezi`.
+Generic names such as `id`, `value`, `name` and `year` join a group only through a selector that also names a source, a path or a role.
+Each match keeps up to three examples from different sources, the original field role and representation, the type evidence, the path, the source URL and the reference.
+
+Current groups (30): identifiers `cui`, `cpv`, `siruta`; dimensions `judet`, `localitate`, `perioada-de-referinta`, `grup-politic`; measures `populatie`, `locuinte`,
+`lungime-drumuri`, `cifra-afaceri`, `profit-net`, `numar-salariati`, `valoare-achizitie-directa`, seven environmental measures (`co2`, `pm25`, `pm10`, `temperatura-aer`,
+`umiditate-relativa`, `presiune-atmosferica`, `viteza-vantului`), election counts (`alegatori-inscrisi`, `alegatori-lista-permanenta`, `alegatori-prezenti`, `voturi-valide`, `voturi-nule`),
+`voturi-pentru`, `voturi-impotriva`, `voturi-abtinere`; derived output `rata-prezenta`. Unit facts exist only where a source declares or implies one with evidence
+(for example `co2` in ppm from the project page). The seven baseline groups keep every membership that v0.13.0 supported.
+
+An INS dataset has a measure field `OBS_VALUE` (role `masura`, `stare_tip` `declarat-in-documentatie-api`). The API documentation (llms.txt) names `OBS_VALUE` as the observation column of
+every dataset; the metadata supplies the indicator definition (`descriere`) and the declared unit (`unitate`, or `unitati_declarate` when a dataset declares more than one).
+The documentation sentence is kept as `dovada_externa` and `--check` looks for it in the collected llms.txt page.
 
 Provider groups use accepted `date_din` relations. Parliament has one display label; both chambers keep their separate evidence.
 Target institutions use the existing `institutions` facet. They never become data providers through this projection.

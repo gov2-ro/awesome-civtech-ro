@@ -14,7 +14,9 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [x] Fix the 320 px overflow: the sort controls forced 347 px. The result column and select can now shrink to the viewport.
 - [x] Preview inventories in the explorer: result markers, a Date & metodă panel, lazy field search, sources and evidence.
 - [x] Add a dedicated data finder preview: all projects/resources, shared variables, accepted sources and target institutions, with evidence and shareable selections.
-- [ ] Review the seven proposed business-variable groups in `inventar-concepte.json`. Extend them with explicit project/field evidence.
+- [x] Extend the seven proposed business-variable groups in `inventar-concepte.json` with explicit project/field evidence (milestone D, v0.17.0): 30 groups now,
+      selector constraints on source, path and role, evidence pins checked by `inventory.py --check`.
+- [ ] Review the 30 proposed groups (23 are new). Decide each `ambiguitati` entry and each unit fact. A group is a discovery aid, not a join key.
 - [ ] Review the inventory preview labels and business meanings before enabling it in the public build.
 - [x] Pilot project data inventories: purpose, source datasets, variables/types/units, user inputs, transformations, and outputs.
       Collected documentation for 140 entries; drafted five profiles and 19 field candidates with evidence and completeness.
@@ -61,9 +63,10 @@ The 62 unconfirmed profiles cover the full 140-entry catalogue, including organi
 - [ ] Re-run the `aerlive.ro` render with a third navigation and keep the data response (`/wp-json/api/v1/data?city=BUC`, 12,647 bytes). It needs permission beyond the two-page limit.
 - [ ] Read the other 74 Dignitas patches (or its running database) to complete the table list; read the Scramble API documents of Rezultate Vot if they are public.
 - [ ] Ask for the working EuropeScope API documentation (`/api/docs` returns 404) and the Registrul Firmelor API schema (a free key is needed; none was requested).
-- [ ] Extend the business dictionary with evidence-backed aliases, descriptions, roles, units, periods and geographic levels.
-      Propose shared identifiers separately from measures. Review each proposed equivalence before treating it as a join key.
-- [ ] Review the 15 pending provider relations and record newly verified providers. Keep source organisations separate from target institutions.
+- [x] Extend the business dictionary with evidence-backed aliases, descriptions, roles, units, periods and geographic levels (milestone D).
+      Identifiers, dimensions, measures and one derived output are separate categories. Review each proposed equivalence before treating it as a join key.
+- [x] Record newly verified providers as proposals: 16 review items D147-D162 (producer, distributor and project author kept apart). No live relation changed.
+- [ ] Review the 15 pending provider relations D132-D146 and the 16 new items D147-D162. Keep source organisations separate from target institutions.
 - [ ] Report coverage by entry, variable definition, type, unit and provider evidence. Record blockers and sampling limits.
       Do not use raw field totals as the main progress measure.
 

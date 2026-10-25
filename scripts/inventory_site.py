@@ -6,12 +6,14 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 from common import observation_paths
+from inventory_concepts import as_list, selector_matches
 
 
 BASIS = {'declarat-in-schema': 'schema', 'declarat-in-metadate': 'metadata',
          'observat-in-esantion-json': 'sample', 'neprecizat-in-antet-csv': 'header',
          'declarat-in-cod-sursa': 'code', 'antet-tabel-html': 'table', 'declarat-in-tabel-documentatie': 'doctable',
-         'declarat-in-text-documentatie': 'doctext', 'utilizat-in-cod-pagina': 'pagecode', 'exemplu-in-documentatie': 'docexample'}
+         'declarat-in-text-documentatie': 'doctext', 'utilizat-in-cod-pagina': 'pagecode', 'exemplu-in-documentatie': 'docexample',
+         'declarat-in-documentatie-api': 'apidoc'}
 FORMATS = {'openapi': 'Schemă API', 'json-schema': 'Schemă JSON', 'metadate-ins': 'Metadate de set',
            'json': 'Fișier JSON', 'csv': 'Fișier CSV', 'lista-ins': 'Listă de seturi INS',
            'html-tabele': 'Pagină cu tabele', 'markdown': 'Document Markdown', 'csharp': 'Cod C#', 'sql': 'Cod SQL', 'php': 'Cod PHP',
@@ -25,18 +27,33 @@ SOURCE_LABELS = {
 
 
 def variable_matches(slug, fields, sources, concepts):
-    """Use explicit project/name selectors. Never equate arbitrary field names."""
+    """Match a project's fields to the proposed groups. A field joins a group through a selector of that project; every constraint that
+    the selector supplies (names, source, path, role) must match. Generic names such as `id` never create a match by themselves."""
     matches = []
     source_map = {s['id']: s for s in sources}
     for concept in concepts:
-        names = {name for rule in concept['selectors'] if slug in rule['projects'] for name in rule['names']}
-        evidence = [dict(name=f['name'], path=f['path'], role=f['role'], basis=f['basis'],
-                         declaredType=f['declaredType'], observedTypes=f['observedTypes'], unit=f['unit'],
-                         description=f['description'], url=source_map[f['source']]['url'],
-                         reference=f['reference'], location=f.get('location'))
-                    for f in fields if f['name'] in names]
+        selectors = [r for r in concept['selectors'] if slug in as_list(r['projects'])]
+        evidence = []
+        for f in fields:
+            url = source_map[f['source']]['url']
+            selector = next((r for r in selectors if selector_matches(r, slug, f, url)), None)
+            if not selector:
+                continue
+            item = dict(name=f['name'], path=f['path'], role=f['role'], basis=f['basis'],
+                        declaredType=f['declaredType'], observedTypes=f['observedTypes'], unit=f['unit'],
+                        description=f['description'], url=url, reference=f['reference'], location=f.get('location'))
+            if selector.get('context'):
+                item['context'] = selector['context']
+            if selector.get('fapte'):
+                item['facts'] = [{'key': x['cheie'], 'value': x['valoare'], 'basis': x['baza']} for x in selector['fapte']]
+            evidence.append(item)
         if evidence:
-            matches.append({'id': concept['id'], 'count': len(evidence), 'evidence': evidence[:3]})
+            # Show examples from different sources first; the count keeps every matching field.
+            seen, first, rest = set(), [], []
+            for item in evidence:
+                (rest if item['url'] in seen else first).append(item)
+                seen.add(item['url'])
+            matches.append({'id': concept['id'], 'count': len(evidence), 'evidence': (first + rest)[:3]})
     return matches
 
 
@@ -66,7 +83,10 @@ def publish_finder(items, root, site, projections, vocabulary=None):
                         'keywords': item.get('inventory', {}).get('keywords', '')})
     index = {'partial': True, 'concepts': [{'id': c['id'], 'scheme': c['scheme'], 'label': c['label']}
                                          for c in (vocabulary or {}).get('concepts', []) if c['scheme'] in ('subiect', 'institutie')],
-             'variables': [{k: c[k] for k in ('id', 'label', 'definition')} for c in concepts],
+             'variables': [{**{k: c[k] for k in ('id', 'label', 'definition')}, 'category': c.get('categorie'),
+                            'basis': c.get('baza_definitiei'), 'ambiguities': c.get('ambiguitati', []),
+                            'proofs': [{'url': e['sursa'], 'fragment': e['fragment'][:200], 'basis': e['baza']} for e in c.get('dovezi', [])]}
+                           for c in concepts],
              'entries': entries}
     (site / 'inventar/index.json').write_text(json.dumps(index, ensure_ascii=False, separators=(',', ':')))
     template = Path(__file__).parent / 'templates/inventory.html'

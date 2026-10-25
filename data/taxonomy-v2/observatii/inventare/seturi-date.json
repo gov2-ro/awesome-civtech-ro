@@ -45435,6 +45435,24 @@
           "stare_tip": "declarat-in-metadate",
           "pointer": "/dimensions/3",
           "valori_declarate": 2
+        },
+        {
+          "nume": "OBS_VALUE",
+          "cale": "OBS_VALUE",
+          "rol": "masura",
+          "stare_tip": "declarat-in-documentatie-api",
+          "tip_declarat": null,
+          "pointer": "/definitie",
+          "descriere": "Prin accident de munca se intelege vatamarea violenta a organismului, precum si intoxicatia acuta profesionala, care au loc in timpul procesului de munca sau in indeplinirea indatoririlor de serviciu si care provoaca incapacitate temporara de munca de cel putin 3 zile, invaliditate sau deces. Numarul accidentatilor in munca reprezinta numarul persoanelor care s-au accidentat la locul de munca, indiferent de natura accidentului si de urmarile produse de acesta. Din numarul accidentatilor sunt excluse cazurile de accidente de traseu.\nRata accidentelor de munca reprezinta frecventa de accidentare sau numarul accidentatilor ce revin la 1000 salariati.",
+          "unitate": null,
+          "dovada_externa": {
+            "url": "https://ins.gov2.ro/llms.txt",
+            "fragment": "**OBS_VALUE**: The numeric observation value column in all data responses."
+          },
+          "unitati_declarate": [
+            "Numar persoane",
+            "Promile"
+          ]
         }
       ],
       "completitudine": "partial",
@@ -45841,6 +45859,20 @@
           "stare_tip": "declarat-in-metadate",
           "pointer": "/dimensions/3",
           "valori_declarate": 1
+        },
+        {
+          "nume": "OBS_VALUE",
+          "cale": "OBS_VALUE",
+          "rol": "masura",
+          "stare_tip": "declarat-in-documentatie-api",
+          "tip_declarat": null,
+          "pointer": "/definitie",
+          "descriere": "Lungimea totala a strazilor din municipii si orase (km) exprima lungimea strazilor amenajate in cuprinsul localitatii care asigura circulatia intre diverse parti ale acesteia, indiferent daca au sau nu imbracaminti. Se includ si caile carosabile din ansamblurile noi de locuit, daca au denumire.",
+          "unitate": "Kilometri",
+          "dovada_externa": {
+            "url": "https://ins.gov2.ro/llms.txt",
+            "fragment": "**OBS_VALUE**: The numeric observation value column in all data responses."
+          }
         }
       ],
       "completitudine": "partial",
@@ -46192,6 +46224,20 @@
           "stare_tip": "declarat-in-metadate",
           "pointer": "/dimensions/4",
           "valori_declarate": 1
+        },
+        {
+          "nume": "OBS_VALUE",
+          "cale": "OBS_VALUE",
+          "rol": "masura",
+          "stare_tip": "declarat-in-documentatie-api",
+          "tip_declarat": null,
+          "pointer": "/definitie",
+          "descriere": "Locuinta (apartamentul) este constructia formata din una sau mai multe camere de locuit situate la acelasi nivel al cladirii sau la niveluri diferite, prevazuta in general cu dependinte (bucatarie, baie etc.) sau alte spatii de deservire, independenta din punct de vedere functional, avand intrare separata din casa scarii, curte sau strada si care a fost construita, transformata sau amenajata in scopul de a fi folosita, in principiu, de o singura gospodarie.\nSe evidentiaza numarul locuintelor existente la sfarsitul anului.",
+          "unitate": "Numar",
+          "dovada_externa": {
+            "url": "https://ins.gov2.ro/llms.txt",
+            "fragment": "**OBS_VALUE**: The numeric observation value column in all data responses."
+          }
         }
       ],
       "completitudine": "partial",
@@ -46597,6 +46643,20 @@
           "stare_tip": "declarat-in-metadate",
           "pointer": "/dimensions/5",
           "valori_declarate": 1
+        },
+        {
+          "nume": "OBS_VALUE",
+          "cale": "OBS_VALUE",
+          "rol": "masura",
+          "stare_tip": "declarat-in-documentatie-api",
+          "tip_declarat": null,
+          "pointer": "/definitie",
+          "descriere": "Populatia dupa domiciliu la data de 1 ianuarie a anului de referinta reprezinta numarul persoanelor cu cetatenie romana si domiciliu pe teritoriul Romaniei, delimitat dupa criterii administrativ-teritoriale.\nDomiciliul persoanei este adresa la care aceasta declara ca are locuinta principala, trecuta in actul de identitate (CI, BI), asa cum este luata in evidenta organelor administrative ale statului.\nIn stabilirea valorii acestui indicator nu se tine cont de resedinta obisnuita, de perioada si/sau motivul absentei de la domiciliu.",
+          "unitate": "Numar persoane",
+          "dovada_externa": {
+            "url": "https://ins.gov2.ro/llms.txt",
+            "fragment": "**OBS_VALUE**: The numeric observation value column in all data responses."
+          }
         }
       ],
       "completitudine": "partial",
@@ -47058,6 +47118,20 @@
           "stare_tip": "declarat-in-metadate",
           "pointer": "/dimensions/4",
           "valori_declarate": 1
+        },
+        {
+          "nume": "OBS_VALUE",
+          "cale": "OBS_VALUE",
+          "rol": "masura",
+          "stare_tip": "declarat-in-documentatie-api",
+          "tip_declarat": null,
+          "pointer": "/definitie",
+          "descriere": "Lungimea drumurilor publice reprezinta totalitatea drumurilor deschise circulatiei publice de pe intreg teritoriul tarii; se grupeaza din punct de vedere administrativ in retea de drumuri nationale, judetene si comunale, incluzand fiecare, categoriile de drumuri respective.\nSe inregistreaza la o anumita data (de obicei la sfarsitul anului) si sunt grupate astfel:\n- drumuri modernizate;\n- drumuri cu imbracaminti usoare rutiere;\n- drumuri pietruite;\n- drumuri de pamant.",
+          "unitate": "Kilometri",
+          "dovada_externa": {
+            "url": "https://ins.gov2.ro/llms.txt",
+            "fragment": "**OBS_VALUE**: The numeric observation value column in all data responses."
+          }
         }
       ],
       "completitudine": "partial",

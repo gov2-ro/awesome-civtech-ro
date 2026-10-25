@@ -7,7 +7,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from inventory_site import document_links, group_api_parameters, publish_preview, variable_matches, publish_finder
+from inventory_site import BASIS, document_links, group_api_parameters, publish_preview, variable_matches, publish_finder
 
 
 class InventorySite(unittest.TestCase):
@@ -132,18 +132,24 @@ class InventorySite(unittest.TestCase):
             self.assertNotIn('v=BUILD', page)
             self.assertIn('<base href="../">', page)
 
-    def test_every_seed_selector_has_current_field_evidence(self):
+    def test_every_selector_of_the_dictionary_matches_a_current_field(self):
+        from inventory_concepts import as_list, selector_matches
         root = Path(__file__).resolve().parents[1] / 'data/taxonomy-v2'
         concepts = json.loads((root / 'inventar-concepte.json').read_text())['concepte']
-        profiles = json.loads((root / 'observatii/inventare/proiecte.json').read_text())['proiecte']
-        sources = json.loads((root / 'observatii/inventare/seturi-date.json').read_text())['surse']
-        names = {s['id']: {f['nume'] for f in s.get('campuri', [])} for s in sources}
-        by_project = {p['slug']: set().union(*(names[s] for s in p['surse_structurate'])) for p in profiles}
+        profiles = {p['slug']: p for p in json.loads((root / 'observatii/inventare/proiecte.json').read_text())['proiecte']}
+        sources = {s['id']: s for s in json.loads((root / 'observatii/inventare/seturi-date.json').read_text())['surse']}
         for concept in concepts:
-            for selector in concept['selectors']:
-                for slug in selector['projects']:
-                    with self.subTest(concept=concept['id'], project=slug):
-                        self.assertTrue(set(selector['names']).issubset(by_project[slug]))
+            for number, selector in enumerate(concept['selectors'], 1):
+                with self.subTest(concept=concept['id'], selector=number):
+                    found = [(slug, f) for slug in as_list(selector['projects']) for r in profiles[slug]['surse_structurate']
+                             for f in sources[r]['campuri'] if selector_matches(selector, slug, {'name': f['nume'], 'path': f['cale'], 'role': f.get('rol', 'camp-date')}, sources[r]['url'])]
+                    self.assertTrue(found)
+                    self.assertEqual({slug for slug, _ in found} - set(as_list(selector['projects'])), set())
+
+    def test_every_evidence_type_of_the_tracked_inventories_reaches_the_preview(self):
+        root = Path(__file__).resolve().parents[1] / 'data/taxonomy-v2/observatii/inventare'
+        types = {f['stare_tip'] for s in json.loads((root / 'seturi-date.json').read_text())['surse'] for f in s['campuri']}
+        self.assertEqual(types - set(BASIS), set(), 'a field with an unmapped evidence type would silently vanish from the preview')
 
     def test_ordinary_rebuild_removes_stale_draft_pages_from_an_isolated_output(self):
         root = Path(__file__).resolve().parents[1]

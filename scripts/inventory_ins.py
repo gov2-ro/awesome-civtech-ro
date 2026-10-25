@@ -150,3 +150,25 @@ def ins_listing(doc):
     cards = doc['datasets']
     return {'total': fact(doc['total'], '/total'), 'carduri_in_esantion': len(cards), 'complet': len(cards) >= doc['total'],
             'carduri': [{key: fact(card[key], f'/datasets/{n}/{key}') for key in CARD_KEYS if key in card} for n, card in enumerate(cards[:5])]}
+
+
+OBS_VALUE_DECLARATION = '**OBS_VALUE**: The numeric observation value column in all data responses.'
+LLMS_URL = 'https://ins.gov2.ro/llms.txt'
+
+
+def ins_measure(doc):
+    """The measure column of a dataset. The API documentation (llms.txt) names it `OBS_VALUE` for every dataset; the metadata supplies
+    the indicator definition and the declared unit options. The name is a documented API fact, not a member of the metadata body,
+    so the field points to the definition and keeps the documentation sentence as external evidence."""
+    units = [u for u in unit_options(doc)]
+    labels = list(dict.fromkeys(u['cod'] for u in units if u.get('cod')))
+    name = doc.get('matrix_name_ro') or doc.get('matrix_name') or ''
+    definition = text_fact(doc, 'definitie')
+    field = {'nume': 'OBS_VALUE', 'cale': 'OBS_VALUE', 'rol': 'masura', 'stare_tip': 'declarat-in-documentatie-api',
+             'tip_declarat': None, 'pointer': '/definitie' if definition else '/matrix_name_ro',
+             'descriere': (definition['valoare'] if definition else name),
+             'unitate': labels[0] if len(labels) == 1 else None,
+             'dovada_externa': {'url': LLMS_URL, 'fragment': OBS_VALUE_DECLARATION}}
+    if len(labels) > 1:
+        field['unitati_declarate'] = labels
+    return field

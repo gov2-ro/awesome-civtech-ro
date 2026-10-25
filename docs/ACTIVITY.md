@@ -1,5 +1,35 @@
 # Activity
 
+## 2026-10-25 — Add meanings and shared variables (milestone D)
+
+**Done**
+- Rebuilt `inventar-concepte.json` from evidence: 30 groups (7 baseline, 23 new). Each group has a Romanian label and definition, a category (identifier 3, dimension 4,
+  measure 22, derived output 1), `dovezi` that point to exact retained text, and `ambiguitati` for candidates kept out of the group.
+  58 evidence items are verified by `inventory.py --check`; 0 are stale.
+- Measured memberships (unique entries): `cui` 4 to 6, `cpv` 3 to 4, `siruta` 2 (unchanged), `judet` 5 to 13, `localitate` 3 to 9, `populatie` 2 to 6, `cifra-afaceri` 1 to 2.
+  New shared groups with two or more entries: `perioada-de-referinta` 8, `locuinte` 4, `lungime-drumuri` 3, `numar-salariati` 3, `profit-net` 2, `valoare-achizitie-directa` 2,
+  `voturi-pentru`, `voturi-impotriva`, `voturi-abtinere` and `grup-politic` 2 each (European Parliament and Romanian Parliament, flagged as different institutions).
+  Single-entry groups: 7 environmental measures and 6 election measures. Every baseline membership survives (a test pins them).
+- Selectors can now carry `source`, `path` and `role` next to `names`, with a fixture for each combination. `REF_AREA` joins the county group for POP107D, LOC101B and GOS104A and not
+  for ACC102B or TRN139A, whose area list mixes macroregions, regions and counties. County_id and locality_id of Rezultate Vot are internal keys and stay out.
+- INS datasets get one measure field, `OBS_VALUE`, with the indicator definition and the declared unit. ACC102B declares two units (persons and per mille), so no single unit is chosen.
+- Units: declared for the Rădăuți centre station (ppm, µg/m³, %, °C, from the project page) and for four INS measures. Unknown and kept unknown: PM10, pressure, wind speed, turnover,
+  net profit and the other stations.
+- Added 16 provider proposals D147-D162 with the producer, the distributor and the project author named apart. `relatii.csv` is unchanged, so the accepted provider facet is unchanged.
+
+**Hard**
+- A group must not be a spelling match. `year`, `name`, `for` and `id` occur in many sources; selectors fix them by exact path or source. Names such as `afn`, `sfn`, `pd` and `fd` in the SICAP
+  REST response have no description (the linked `describedby` address returns 404). `afn` and `sfn` rest on a deduction: their values equal the authority CUI in the address and the supplier CUI in the report.
+  `pd` and `fd` stay unmapped.
+- The locality list of POP107D carries SIRUTA numbers in its labels, but the metadata states this only for two localities. It stays an ambiguity note, not a member of the SIRUTA group.
+- `Presiunea` is a string in the Rădăuți sample, while the other pressure fields are numbers of another magnitude. The group says so and makes no unit claim.
+
+**Decided**
+- Put meaning at the group level, with evidence and a basis, and keep field-level meaning to what the source declares. Cost of the alternative (a field-by-field definition file): hundreds of
+  paraphrases without a source to check them against.
+- Label every definition `parafraza-editoriala`. The evidence next to it is direct (a declaration or a sample value). The wording is ours.
+- Leave the accepted provider facet and the live relations untouched; provider findings are review items.
+
 ## 2026-10-25 — Investigate the bounded batch of 12 entries (milestone C)
 
 **Done**

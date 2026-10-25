@@ -677,10 +677,10 @@ let inventoryIntent = '';
 const INV_ROLES = { 'camp-date': 'Date', dimensiune: 'Dimensiuni', 'parametru-api': 'Intrări API',
   'corp-cerere': 'Conținut cerere API', 'camp-raspuns': 'Răspunsuri API', 'model-de-date': 'Modele de date',
   'camp-dictionar': 'Dicționar de date', 'coloana-sql': 'Coloane în baza de date', 'camp-model': 'Câmpuri de model', 'cod-enumerare': 'Coduri și valori',
-  'camp-exemplu': 'Exemple în documentație', 'camp-folosit-de-pagina': 'Folosite de pagină', 'colectie-cu-chei': 'Colecții indexate' };
+  'camp-exemplu': 'Exemple în documentație', masura: 'Măsuri', 'camp-folosit-de-pagina': 'Folosite de pagină', 'colectie-cu-chei': 'Colecții indexate' };
 const INV_BASIS = { schema: 'Descris în schemă', metadata: 'Descris în metadate', sample: 'Observat în date', header: 'Antet CSV',
   code: 'Declarat în codul sursă', table: 'Antet de tabel HTML', doctable: 'Declarat în tabel de documentație', doctext: 'Declarat în textul documentației',
-  pagecode: 'Folosit în codul paginii', docexample: 'Exemplu în documentație' };
+  pagecode: 'Folosit în codul paginii', docexample: 'Exemplu în documentație', apidoc: 'Declarat în documentația API' };
 const INV_LOCATIONS = { query: 'filtru', path: 'în URL', header: 'în antet', cookie: 'cookie' };
 const INV_TYPES = { string: 'Text', integer: 'Număr întreg', number: 'Număr', boolean: 'Da / Nu', null: 'Valoare nulă',
   object: 'Obiect', array: 'Listă', geo: 'Arie geografică', time: 'Perioadă', indicator: 'Indicator', unit: 'Unitate de măsură' };

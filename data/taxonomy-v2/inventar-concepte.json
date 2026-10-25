@@ -1,54 +1,1692 @@
 {
   "stare": "propunere",
-  "nota": "Grupuri pentru descoperire. Același grup nu garantează compatibilitatea seturilor sau o cheie de legătură validă.",
+  "nota": "Grupuri pentru descoperire. Același grup nu garantează compatibilitatea seturilor sau o cheie de legătură validă. Fiecare membru păstrează rolul și reprezentarea din sursă; `dovezi` leagă definiția de text păstrat și `--check` semnalează dovezile schimbate.",
   "concepte": [
     {
-      "id": "cui", "label": "CUI", "definition": "Identificatorul fiscal al unei firme sau instituții. Rolul poate fi diferit: contribuabil, autoritate sau furnizor.",
+      "id": "cui",
+      "label": "CUI",
+      "definition": "Identificatorul fiscal al unei firme sau instituții. Rolul poate fi diferit: contribuabil, autoritate sau furnizor.",
       "selectors": [
-        {"projects": ["companii-de-stat"], "names": ["cui"]},
-        {"projects": ["demoanaf"], "names": ["cui", "authorityCui"]},
-        {"projects": ["romania-transparenta"], "names": ["cui", "cui_autoritate", "cui_castigator"]},
-        {"projects": ["transparenta-eu"], "names": ["main_creditor_cui"]}
+        {
+          "projects": [
+            "companii-de-stat"
+          ],
+          "names": [
+            "cui"
+          ]
+        },
+        {
+          "projects": [
+            "demoanaf"
+          ],
+          "names": [
+            "cui",
+            "authorityCui"
+          ]
+        },
+        {
+          "projects": [
+            "romania-transparenta"
+          ],
+          "names": [
+            "cui",
+            "cui_autoritate",
+            "cui_castigator"
+          ]
+        },
+        {
+          "projects": [
+            "transparenta-eu"
+          ],
+          "names": [
+            "main_creditor_cui"
+          ]
+        },
+        {
+          "projects": [
+            "banii-nostri"
+          ],
+          "names": [
+            "CUI",
+            "CUI furnizor"
+          ],
+          "source": "https://baniinostri.info/RAJASA/",
+          "context": "CUI-ul furnizorului, în tabelele raportului despre RAJA S.A. Constanța"
+        },
+        {
+          "projects": [
+            "banii-nostri"
+          ],
+          "names": [
+            "afn"
+          ],
+          "source": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+          "context": "CUI-ul autorității contractante",
+          "fapte": [
+            {
+              "cheie": "rol",
+              "valoare": "autoritate contractantă",
+              "baza": "deductie-din-dovezi",
+              "dovada": {
+                "sursa": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+                "fragment": "\"afn\":\"1890420\"",
+                "sha256": "74f44b70d6d91a5ec376844708515c03f7088e96c70295aa06f6f22a98fc5674",
+                "baza": "observatie-esantion"
+              }
+            }
+          ],
+          "nota": "Numele nu este explicat de sursă. Valoarea coincide cu CUI-ul din adresa cererii (da_by_cui/1890420) și cu CUI-ul autorității din raport."
+        },
+        {
+          "projects": [
+            "banii-nostri"
+          ],
+          "names": [
+            "sfn"
+          ],
+          "source": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+          "context": "CUI-ul furnizorului",
+          "fapte": [
+            {
+              "cheie": "rol",
+              "valoare": "furnizor",
+              "baza": "deductie-din-dovezi",
+              "dovada": {
+                "sursa": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+                "fragment": "\"sfn\":\"6776672\"",
+                "sha256": "74f44b70d6d91a5ec376844708515c03f7088e96c70295aa06f6f22a98fc5674",
+                "baza": "observatie-esantion"
+              }
+            }
+          ],
+          "nota": "Valoarea 6776672 apare la furnizorul SISTEM-T.C. și în coloana CUI a raportului."
+        },
+        {
+          "projects": [
+            "registrul-firmelor"
+          ],
+          "names": [
+            "CUI"
+          ],
+          "source": "https://registru.horecaos.org/api",
+          "context": "CUI-ul firmei, în lista documentată a răspunsului API"
+        }
+      ],
+      "categorie": "identificator",
+      "baza_definitiei": "parafraza-editoriala",
+      "dovezi": [
+        {
+          "sursa": "https://api.romaniatransparenta.eu/v1/openapi.json",
+          "fragment": "codul fiscal, fără RO",
+          "sha256": "22f254d62529b955547d583428f2d827c5c25bbf9d3e74b0be1d45b3e6410b1e",
+          "baza": "declaratie-directa"
+        },
+        {
+          "sursa": "https://registru.horecaos.org/api",
+          "fragment": "denumire, CUI, nr. reg. com., EUID, formă juridică, dată înmatriculare",
+          "sha256": "54e71a2f297987a30a6b620642fbad72a8300f28accb59472e246701516e73eb",
+          "baza": "declaratie-directa"
+        },
+        {
+          "sursa": "https://baniinostri.info/RAJASA/",
+          "fragment": "RAJA S.A. Constanța (CUI 1890420)",
+          "sha256": "067c12fcec658d0b0ebc7abe0f50a2c53b8482707b03f33d496a38811406ee0c",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "Același grup acoperă CUI-ul contribuabilului, al autorității contractante, al furnizorului și al creditorului. Câmpul `context` al fiecărui membru spune care.",
+        "CUI-ul arată ca un număr, dar rămâne text: zerourile din față nu se pierd."
       ]
     },
     {
-      "id": "cpv", "label": "Cod CPV", "definition": "Codul clasificării produselor, serviciilor sau lucrărilor din achiziții. Un parametru poate accepta doar un prefix.",
+      "id": "cpv",
+      "label": "Cod CPV",
+      "definition": "Codul clasificării produselor, serviciilor sau lucrărilor din achiziții. Un parametru poate accepta doar un prefix.",
       "selectors": [
-        {"projects": ["demoanaf", "romania-transparenta"], "names": ["cpv"]},
-        {"projects": ["achizitii-directe-ti-2026"], "names": ["Cod CPV"]}
+        {
+          "projects": [
+            "demoanaf",
+            "romania-transparenta"
+          ],
+          "names": [
+            "cpv"
+          ]
+        },
+        {
+          "projects": [
+            "achizitii-directe-ti-2026"
+          ],
+          "names": [
+            "Cod CPV"
+          ]
+        },
+        {
+          "projects": [
+            "banii-nostri"
+          ],
+          "names": [
+            "CPV"
+          ],
+          "source": "https://baniinostri.info/RAJASA/",
+          "context": "cod CPV al obiectului achiziției, în tabelele raportului"
+        },
+        {
+          "projects": [
+            "banii-nostri"
+          ],
+          "names": [
+            "cpv"
+          ],
+          "source": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+          "context": "cod CPV al achiziției directe"
+        }
+      ],
+      "categorie": "identificator",
+      "baza_definitiei": "parafraza-editoriala",
+      "dovezi": [
+        {
+          "sursa": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+          "fragment": "\"cpv\":\"73111000-3\"",
+          "sha256": "74f44b70d6d91a5ec376844708515c03f7088e96c70295aa06f6f22a98fc5674",
+          "baza": "observatie-esantion"
+        },
+        {
+          "sursa": "https://achizitii-directe-ti-2026.mariuscomper.uk/flagged_cases.csv",
+          "fragment": "Cod CPV",
+          "sha256": "1710cc666f7b1c4f132b8c2d37957b5436cc7c01cd2b1aa8fc76e95d7a49142e",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "Coloana „CPV” din raport conține coduri; „Denumire CPV” (achizitii-directe-ti-2026) conține eticheta și nu este membră."
       ]
     },
     {
-      "id": "siruta", "label": "Cod SIRUTA", "definition": "Cod de identificare pentru o unitate administrativă sau localitate. Verifică nivelul și ediția nomenclatorului.",
+      "id": "siruta",
+      "label": "Cod SIRUTA",
+      "definition": "Cod de identificare pentru o unitate administrativă sau localitate. Verifică nivelul și ediția nomenclatorului.",
       "selectors": [
-        {"projects": ["romania-transparenta", "orasul-care-se-intinde"], "names": ["siruta"]}
+        {
+          "projects": [
+            "romania-transparenta",
+            "orasul-care-se-intinde"
+          ],
+          "names": [
+            "siruta"
+          ]
+        }
+      ],
+      "categorie": "identificator",
+      "baza_definitiei": "parafraza-editoriala",
+      "dovezi": [
+        {
+          "sursa": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+          "fragment": "Ripiceni (SIRUTA 38731)",
+          "sha256": "cf0f4598e26577a52548c55677e873ede17abf690219dc1d410ae71d40a9874f",
+          "baza": "declaratie-directa"
+        },
+        {
+          "sursa": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+          "fragment": "\"label\":\"38731 RIPICENI\"",
+          "sha256": "cf0f4598e26577a52548c55677e873ede17abf690219dc1d410ae71d40a9874f",
+          "baza": "observatie-esantion"
+        }
+      ],
+      "ambiguitati": [
+        "Eticheta opțiunilor dimensiunii REF_AREA_2 (INS POP107D, LOC101B) începe cu un număr. Notele POP107D declară SIRUTA 38731 pentru Ripiceni și 98916 pentru Scânteia, iar opțiunile conțin exact aceste numere; metadatele nu declară sistemul de coduri pentru celelalte localități. Dimensiunea nu este membră până la revizuire.",
+        "county_id și locality_id din migrările Rezultate Vot sunt chei interne; nu s-a găsit o declarație că sunt coduri SIRUTA."
       ]
     },
     {
-      "id": "judet", "label": "Județ", "definition": "Numele sau codul unui județ. Poate descrie sediul unei firme, locul unui post sau o unitate administrativă.",
+      "id": "judet",
+      "label": "Județ",
+      "definition": "Numele sau codul unui județ. Poate descrie sediul unei firme, locul unui post sau o unitate administrativă.",
       "selectors": [
-        {"projects": ["companii-de-stat"], "names": ["judet", "judet_cod", "judet_nume"]},
-        {"projects": ["demoanaf", "romania-transparenta", "posturi-gov2", "orasul-care-se-intinde"], "names": ["judet"]}
+        {
+          "projects": [
+            "companii-de-stat"
+          ],
+          "names": [
+            "judet",
+            "judet_cod",
+            "judet_nume"
+          ]
+        },
+        {
+          "projects": [
+            "demoanaf",
+            "romania-transparenta",
+            "posturi-gov2",
+            "orasul-care-se-intinde"
+          ],
+          "names": [
+            "judet"
+          ]
+        },
+        {
+          "projects": [
+            "ins-gov2",
+            "constru-pentru-cine",
+            "orasul-care-se-intinde",
+            "demoanaf",
+            "biografia-localitatii",
+            "unde-se-termina-asfaltul"
+          ],
+          "names": [
+            "REF_AREA"
+          ],
+          "source": [
+            "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+            "https://ins.gov2.ro/api/datasets/LOC101B?lang=en",
+            "https://ins.gov2.ro/api/datasets/GOS104A?lang=en"
+          ],
+          "context": "județ: opțiunile dimensiunii REF_AREA (Total și județe)"
+        },
+        {
+          "projects": [
+            "afacut"
+          ],
+          "names": [
+            "Județ"
+          ],
+          "source": "https://afacut.ro/drumuri-si-poduri/judete/",
+          "context": "județ în clasamentul edițiilor"
+        },
+        {
+          "projects": [
+            "votdiaspora"
+          ],
+          "names": [
+            "County"
+          ],
+          "context": "județul secției de votare sau al adresei arondate"
+        },
+        {
+          "projects": [
+            "despre-femicid"
+          ],
+          "names": [
+            "Județ"
+          ],
+          "context": "județul cazului, după textul paginii („număr de cazuri pe județe”)"
+        },
+        {
+          "projects": [
+            "registrul-firmelor"
+          ],
+          "names": [
+            "județ"
+          ],
+          "source": "https://registru.horecaos.org/api",
+          "context": "județul din adresa firmei (grupul „Contact” al API-ului)"
+        }
+      ],
+      "categorie": "dimensiune",
+      "baza_definitiei": "parafraza-editoriala",
+      "dovezi": [
+        {
+          "sursa": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+          "fragment": "\"dim_label\":\"Judete\"",
+          "sha256": "cf0f4598e26577a52548c55677e873ede17abf690219dc1d410ae71d40a9874f",
+          "baza": "declaratie-directa"
+        },
+        {
+          "sursa": "https://afacut.ro/drumuri-si-poduri/judete/",
+          "fragment": "Județ",
+          "sha256": "2b43c93695be5fd642d97725bf885309064b38100635c1b393da2f127ecf2e01",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "REF_AREA din ACC102B și TRN139A amestecă macroregiuni, regiuni de dezvoltare și județe; nu intră în grup.",
+        "Valorile pot fi nume sau coduri (judet_cod, cod_judet). county_id din Rezultate Vot este cheie internă și nu intră."
       ]
     },
     {
-      "id": "localitate", "label": "Localitate", "definition": "Numele localității sau al orașului. Un nume singur nu identifică în mod sigur o localitate.",
+      "id": "localitate",
+      "label": "Localitate",
+      "definition": "Numele localității sau al orașului. Un nume singur nu identifică în mod sigur o localitate.",
       "selectors": [
-        {"projects": ["demoanaf"], "names": ["oras", "supplierCity"]},
-        {"projects": ["romania-transparenta", "orasul-care-se-intinde"], "names": ["localitate"]}
+        {
+          "projects": [
+            "demoanaf"
+          ],
+          "names": [
+            "oras",
+            "supplierCity"
+          ]
+        },
+        {
+          "projects": [
+            "romania-transparenta",
+            "orasul-care-se-intinde"
+          ],
+          "names": [
+            "localitate"
+          ]
+        },
+        {
+          "projects": [
+            "ins-gov2",
+            "constru-pentru-cine",
+            "orasul-care-se-intinde",
+            "demoanaf",
+            "biografia-localitatii",
+            "unde-se-termina-asfaltul"
+          ],
+          "names": [
+            "REF_AREA_2"
+          ],
+          "source": [
+            "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+            "https://ins.gov2.ro/api/datasets/LOC101B?lang=en"
+          ],
+          "context": "localități: ~3.180 de opțiuni, fiecare cu un număr în față"
+        },
+        {
+          "projects": [
+            "ins-gov2",
+            "constru-pentru-cine",
+            "orasul-care-se-intinde",
+            "demoanaf",
+            "biografia-localitatii",
+            "unde-se-termina-asfaltul"
+          ],
+          "names": [
+            "REF_AREA_2"
+          ],
+          "source": "https://ins.gov2.ro/api/datasets/GOS104A?lang=en",
+          "context": "doar municipii și orașe (321 de opțiuni); nivel diferit de POP107D"
+        },
+        {
+          "projects": [
+            "votdiaspora"
+          ],
+          "names": [
+            "Locality"
+          ],
+          "context": "localitatea secției de votare sau a adresei arondate"
+        },
+        {
+          "projects": [
+            "registrul-firmelor"
+          ],
+          "names": [
+            "localitate"
+          ],
+          "source": "https://registru.horecaos.org/api",
+          "context": "localitatea din adresa firmei, nu a unei autorități contractante"
+        }
+      ],
+      "categorie": "dimensiune",
+      "baza_definitiei": "parafraza-editoriala",
+      "dovezi": [
+        {
+          "sursa": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+          "fragment": "\"dim_label\":\"Localitati \"",
+          "sha256": "cf0f4598e26577a52548c55677e873ede17abf690219dc1d410ae71d40a9874f",
+          "baza": "declaratie-directa"
+        },
+        {
+          "sursa": "https://ins.gov2.ro/api/datasets/GOS104A?lang=en",
+          "fragment": "\"dim_label\":\"Municipii si orase\"",
+          "sha256": "73cdc814442b3d398ff2322cd8e485ab36a20552f67126c0688351ae2d3a6557",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "Un nume singur nu identifică o localitate: POP107D conține două localități cu numele Scânteia (coduri 94429 și 98916).",
+        "Adresa unei firme și adresa unei autorități contractante rămân distincte; `context` le separă."
       ]
     },
     {
-      "id": "populatie", "label": "Populație", "definition": "Număr de locuitori. Perioada și definiția populației trebuie verificate înaintea unei comparații.",
+      "id": "perioada-de-referinta",
+      "label": "An sau perioadă de referință",
+      "categorie": "dimensiune",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Anul sau perioada la care se referă o valoare. Granularitatea (an, trimestru, lună) trebuie verificată în sursă; un an din nume nu spune ce an este.",
       "selectors": [
-        {"projects": ["romania-transparenta"], "names": ["populatie"]},
-        {"projects": ["orasul-care-se-intinde"], "names": ["locuitori_2000", "locuitori_2020"]}
+        {
+          "projects": [
+            "ins-gov2",
+            "constru-pentru-cine",
+            "orasul-care-se-intinde",
+            "demoanaf",
+            "biografia-localitatii",
+            "unde-se-termina-asfaltul"
+          ],
+          "names": [
+            "TIME_PERIOD"
+          ],
+          "source": [
+            "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+            "https://ins.gov2.ro/api/datasets/LOC101B?lang=en",
+            "https://ins.gov2.ro/api/datasets/GOS104A?lang=en",
+            "https://ins.gov2.ro/api/datasets/TRN139A?lang=en",
+            "https://ins.gov2.ro/api/datasets/ACC102B?lang=en"
+          ],
+          "context": "perioada seriei INS (dimensiunea TIME_PERIOD, an)"
+        },
+        {
+          "projects": [
+            "romania-transparenta"
+          ],
+          "names": [
+            "an"
+          ],
+          "role": [
+            "camp-raspuns"
+          ],
+          "context": "anul datelor din răspuns (descriere în OpenAPI: „anul”)"
+        },
+        {
+          "projects": [
+            "transparenta-eu"
+          ],
+          "names": [
+            "year"
+          ],
+          "path": [
+            "$.year"
+          ],
+          "context": "anul filtrului de execuție bugetară"
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+          "fragment": "\"dim_label\":\"Perioade\"",
+          "sha256": "cf0f4598e26577a52548c55677e873ede17abf690219dc1d410ae71d40a9874f",
+          "baza": "declaratie-directa"
+        },
+        {
+          "sursa": "https://transparenta.eu/ai/entities-parameters.json",
+          "fragment": "Year filter within [2016, 2025]",
+          "sha256": "a7e41027dd7d56312e24c4f70be68f2d3b94245af8f047e96463090e2f094789",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "Denumirile an/year apar în multe câmpuri cu sensuri diferite; grupul folosește sursă, cale sau rol, nu doar numele."
       ]
     },
     {
-      "id": "cifra-afaceri", "label": "Cifră de afaceri", "definition": "Cifra de afaceri raportată pentru o companie. Verifică anul, unitatea și sursa contabilă.",
+      "id": "populatie",
+      "label": "Populație",
+      "definition": "Număr de locuitori. Perioada și definiția populației trebuie verificate înaintea unei comparații.",
       "selectors": [
-        {"projects": ["companii-de-stat"], "names": ["cifra_afaceri", "mfin_ca"]}
+        {
+          "projects": [
+            "romania-transparenta"
+          ],
+          "names": [
+            "populatie"
+          ]
+        },
+        {
+          "projects": [
+            "orasul-care-se-intinde"
+          ],
+          "names": [
+            "locuitori_2000",
+            "locuitori_2020"
+          ]
+        },
+        {
+          "projects": [
+            "ins-gov2",
+            "constru-pentru-cine",
+            "orasul-care-se-intinde",
+            "demoanaf",
+            "biografia-localitatii"
+          ],
+          "names": [
+            "OBS_VALUE"
+          ],
+          "source": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+          "context": "populația după domiciliu la 1 ianuarie, pe grupe de vârstă, sex, județe și localități (INS POP107D)",
+          "fapte": [
+            {
+              "cheie": "unitate",
+              "valoare": "Număr persoane",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+                "fragment": "\"sdmx_value\":\"Numar persoane\"",
+                "sha256": "cf0f4598e26577a52548c55677e873ede17abf690219dc1d410ae71d40a9874f",
+                "baza": "declaratie-directa"
+              }
+            },
+            {
+              "cheie": "moment_de_referinta",
+              "valoare": "1 ianuarie al anului de referință",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+                "fragment": "la data de 1 ianuarie a anului de referinta",
+                "sha256": "cf0f4598e26577a52548c55677e873ede17abf690219dc1d410ae71d40a9874f",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        }
+      ],
+      "categorie": "masura",
+      "baza_definitiei": "parafraza-editoriala",
+      "dovezi": [
+        {
+          "sursa": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+          "fragment": "Populatia dupa domiciliu la data de 1 ianuarie a anului de referinta reprezinta numarul persoanelor",
+          "sha256": "cf0f4598e26577a52548c55677e873ede17abf690219dc1d410ae71d40a9874f",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "Populația după domiciliu nu este populația rezidentă: nota POP107D spune că pentru comparații internaționale se folosește populația rezidentă."
+      ]
+    },
+    {
+      "id": "locuinte",
+      "label": "Locuințe existente",
+      "categorie": "masura",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Numărul locuințelor existente (fondul de locuințe) la sfârșitul anului, pe localități. Nu înseamnă locuințe ocupate și nu include locuințe terminate sau autorizații.",
+      "selectors": [
+        {
+          "projects": [
+            "ins-gov2",
+            "constru-pentru-cine",
+            "orasul-care-se-intinde",
+            "biografia-localitatii"
+          ],
+          "names": [
+            "OBS_VALUE"
+          ],
+          "source": "https://ins.gov2.ro/api/datasets/LOC101B?lang=en",
+          "context": "locuințe existente la sfârșitul anului, pe forme de proprietate, județe și localități (INS LOC101B)",
+          "fapte": [
+            {
+              "cheie": "unitate",
+              "valoare": "Număr",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://ins.gov2.ro/api/datasets/LOC101B?lang=en",
+                "fragment": "\"sdmx_value\":\"Numar\"",
+                "sha256": "8efec5c21459f791579baaa1b679c2ed55232ca4b535a55aa9c56d45398337f1",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        },
+        {
+          "projects": [
+            "orasul-care-se-intinde"
+          ],
+          "names": [
+            "locuinte_2000",
+            "locuinte_2020"
+          ],
+          "source": "https://mariuscomper.uk/orasul-care-se-intinde/data/localitati.csv",
+          "context": "fondul de locuințe în anii 2000 și 2020 (coloane CSV, tip neprecizat)"
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://ins.gov2.ro/api/datasets/LOC101B?lang=en",
+          "fragment": "Locuinta (apartamentul) este constructia formata din una sau mai multe camere de locuit",
+          "sha256": "8efec5c21459f791579baaa1b679c2ed55232ca4b535a55aa9c56d45398337f1",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "Metadatele ins.gov2.ro pentru LOC101B se opresc în 2023, iar proiectul constru-pentru-cine citează 1990–2025."
+      ]
+    },
+    {
+      "id": "lungime-drumuri",
+      "label": "Lungimea drumurilor sau a străzilor",
+      "categorie": "masura",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Lungimea rețelei rutiere în kilometri: drumuri publice (pe județe și regiuni) sau străzi orășenești (pe localități). Grupul servește descoperirii; cele două serii nu se adună.",
+      "selectors": [
+        {
+          "projects": [
+            "ins-gov2",
+            "unde-se-termina-asfaltul"
+          ],
+          "names": [
+            "OBS_VALUE"
+          ],
+          "source": "https://ins.gov2.ro/api/datasets/TRN139A?lang=en",
+          "context": "lungimea drumurilor publice pe categorii și tipuri de acoperământ (INS TRN139A)",
+          "fapte": [
+            {
+              "cheie": "unitate",
+              "valoare": "Kilometri",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://ins.gov2.ro/api/datasets/TRN139A?lang=en",
+                "fragment": "\"sdmx_value\":\"Kilometri\"",
+                "sha256": "01d4eb2a762c8fb9c13ccae36109f87b0ece666cdff14826578907152089851a",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        },
+        {
+          "projects": [
+            "ins-gov2",
+            "unde-se-termina-asfaltul",
+            "biografia-localitatii"
+          ],
+          "names": [
+            "OBS_VALUE"
+          ],
+          "source": "https://ins.gov2.ro/api/datasets/GOS104A?lang=en",
+          "context": "lungimea străzilor orășenești (INS GOS104A)",
+          "fapte": [
+            {
+              "cheie": "unitate",
+              "valoare": "Kilometri",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://ins.gov2.ro/api/datasets/GOS104A?lang=en",
+                "fragment": "\"sdmx_value\":\"Kilometri\"",
+                "sha256": "73cdc814442b3d398ff2322cd8e485ab36a20552f67126c0688351ae2d3a6557",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://ins.gov2.ro/api/datasets/TRN139A?lang=en",
+          "fragment": "Lungimea drumurilor publice reprezinta totalitatea drumurilor deschise circulatiei publice",
+          "sha256": "01d4eb2a762c8fb9c13ccae36109f87b0ece666cdff14826578907152089851a",
+          "baza": "declaratie-directa"
+        },
+        {
+          "sursa": "https://ins.gov2.ro/api/datasets/GOS104A?lang=en",
+          "fragment": "Lungimea totala a strazilor din municipii si orase (km)",
+          "sha256": "73cdc814442b3d398ff2322cd8e485ab36a20552f67126c0688351ae2d3a6557",
+          "baza": "declaratie-directa"
+        }
+      ]
+    },
+    {
+      "id": "cifra-afaceri",
+      "label": "Cifră de afaceri",
+      "definition": "Cifra de afaceri raportată pentru o companie. Verifică anul, unitatea și sursa contabilă.",
+      "selectors": [
+        {
+          "projects": [
+            "companii-de-stat"
+          ],
+          "names": [
+            "cifra_afaceri",
+            "mfin_ca"
+          ]
+        },
+        {
+          "projects": [
+            "companii-de-stat"
+          ],
+          "names": [
+            "cifra_afaceri"
+          ],
+          "source": "https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json",
+          "path": [
+            "$.companii{*}.cifra_afaceri"
+          ],
+          "context": "cifra de afaceri din situațiile financiare 2025, pe CUI"
+        },
+        {
+          "projects": [
+            "registrul-firmelor"
+          ],
+          "names": [
+            "cifră de afaceri"
+          ],
+          "source": "https://registru.horecaos.org/api",
+          "context": "cifră de afaceri pe ani, din grupul „Financiar” al răspunsului API"
+        }
+      ],
+      "categorie": "masura",
+      "baza_definitiei": "parafraza-editoriala",
+      "dovezi": [
+        {
+          "sursa": "https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json",
+          "fragment": "\"cifra_afaceri\"",
+          "sha256": "09d5c7201cb6a68b346dc7926702e5707c93339a3c49e581fcd1c478d4cbb600",
+          "baza": "observatie-esantion"
+        },
+        {
+          "sursa": "https://registru.horecaos.org/api",
+          "fragment": "cifră de afaceri, profit net, salariați, pe ani",
+          "sha256": "54e71a2f297987a30a6b620642fbad72a8300f28accb59472e246701516e73eb",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "Nicio sursă nu declară moneda pentru cifra de afaceri; unitatea rămâne necunoscută.",
+        "Totalurile în miliarde (cifra_afaceri_totala_mld) sunt agregate naționale și nu intră în grup."
+      ]
+    },
+    {
+      "id": "profit-net",
+      "label": "Profit net",
+      "categorie": "masura",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Profitul net al unei firme într-un an financiar, din situațiile financiare. Unitatea și anul trebuie verificate în sursă.",
+      "selectors": [
+        {
+          "projects": [
+            "companii-de-stat"
+          ],
+          "names": [
+            "profit_net"
+          ],
+          "source": "https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json",
+          "path": [
+            "$.companii{*}.profit_net"
+          ],
+          "context": "profit net din situațiile financiare 2025, pe CUI"
+        },
+        {
+          "projects": [
+            "registrul-firmelor"
+          ],
+          "names": [
+            "profit net"
+          ],
+          "source": "https://registru.horecaos.org/api",
+          "context": "profit net pe ani, din grupul „Financiar” al API-ului"
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json",
+          "fragment": "\"profit_net\"",
+          "sha256": "09d5c7201cb6a68b346dc7926702e5707c93339a3c49e581fcd1c478d4cbb600",
+          "baza": "observatie-esantion"
+        },
+        {
+          "sursa": "https://registru.horecaos.org/api",
+          "fragment": "cifră de afaceri, profit net, salariați, pe ani",
+          "sha256": "54e71a2f297987a30a6b620642fbad72a8300f28accb59472e246701516e73eb",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "profit_brut, mfin_profit și profit_total_mld sunt alte măsuri și nu intră în grup."
+      ]
+    },
+    {
+      "id": "numar-salariati",
+      "label": "Număr de salariați",
+      "categorie": "masura",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Numărul de salariați al unei firme într-un an. Anul este în nume sau în context; metoda de numărare nu este declarată de surse.",
+      "selectors": [
+        {
+          "projects": [
+            "companii-de-stat"
+          ],
+          "names": [
+            "nr_salariati"
+          ],
+          "source": "https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json",
+          "path": [
+            "$.companii{*}.nr_salariati"
+          ],
+          "context": "salariați din situațiile financiare 2025, pe CUI"
+        },
+        {
+          "projects": [
+            "registrul-firmelor"
+          ],
+          "names": [
+            "salariați"
+          ],
+          "source": "https://registru.horecaos.org/api",
+          "context": "salariați pe ani, din grupul „Financiar” al API-ului"
+        },
+        {
+          "projects": [
+            "banii-nostri"
+          ],
+          "names": [
+            "Angajati 2024",
+            "Angajati 2025"
+          ],
+          "source": "https://baniinostri.info/rapoarte/",
+          "context": "angajați ai furnizorilor, câte o coloană pe an (antet fără rânduri)"
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json",
+          "fragment": "\"nr_salariati\"",
+          "sha256": "09d5c7201cb6a68b346dc7926702e5707c93339a3c49e581fcd1c478d4cbb600",
+          "baza": "observatie-esantion"
+        },
+        {
+          "sursa": "https://baniinostri.info/rapoarte/",
+          "fragment": "Angajati 2024",
+          "sha256": "95146f68d9b0e50eef13109ebd0a91723949c13b6566f10b9576fd5e4f92804e",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "nr_pers, mfin_salariati și total_salariati_documentat sunt alte măsuri sau agregate și nu intră în grup."
+      ]
+    },
+    {
+      "id": "valoare-achizitie-directa",
+      "label": "Valoarea unei achiziții directe",
+      "categorie": "masura",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Valoarea unui contract de achiziție directă, la nivelul unui contract. Nu include totaluri pe furnizor sau sume cumulate.",
+      "selectors": [
+        {
+          "projects": [
+            "banii-nostri"
+          ],
+          "names": [
+            "cval"
+          ],
+          "source": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+          "context": "valoarea contractului (sursa nu declară unitatea)",
+          "fapte": [
+            {
+              "cheie": "unitate",
+              "valoare": "RON",
+              "baza": "deductie-din-dovezi",
+              "dovada": {
+                "sursa": "https://baniinostri.info/RAJASA/",
+                "fragment": "270.000 RON fără TVA",
+                "sha256": "067c12fcec658d0b0ebc7abe0f50a2c53b8482707b03f33d496a38811406ee0c",
+                "baza": "declaratie-directa"
+              }
+            }
+          ],
+          "nota": "Un contract din prima pagină are cval 270000; raportul numește plafonul 270.000 RON fără TVA. Sursa nu spune dacă fiecare rând este fără TVA."
+        },
+        {
+          "projects": [
+            "achizitii-directe-ti-2026"
+          ],
+          "names": [
+            "Valoare achizitie (RON)"
+          ],
+          "source": "https://achizitii-directe-ti-2026.mariuscomper.uk/flagged_cases.csv",
+          "context": "valoarea achiziției, cu unitatea în antet",
+          "fapte": [
+            {
+              "cheie": "unitate",
+              "valoare": "RON",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://achizitii-directe-ti-2026.mariuscomper.uk/flagged_cases.csv",
+                "fragment": "Valoare achizitie (RON)",
+                "sha256": "1710cc666f7b1c4f132b8c2d37957b5436cc7c01cd2b1aa8fc76e95d7a49142e",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+          "fragment": "\"cval\":270000",
+          "sha256": "74f44b70d6d91a5ec376844708515c03f7088e96c70295aa06f6f22a98fc5674",
+          "baza": "observatie-esantion"
+        }
+      ],
+      "ambiguitati": [
+        "Câmpurile pd și fd (ORDS) ar putea corespunde coloanelor „Data publicare” și „Data finalizare”; sursa nu le explică și nu sunt mapate.",
+        "Coloanele „Valoare (RON)” din tabelele raportului sunt sume pe furnizor sau pe zi și nu intră în grup."
+      ]
+    },
+    {
+      "id": "co2",
+      "label": "Concentrația de CO2",
+      "categorie": "masura",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Concentrația de dioxid de carbon în aer, măsurată de stația din centrul orașului.",
+      "selectors": [
+        {
+          "projects": [
+            "calitate-aer-radauti"
+          ],
+          "names": [
+            "CO2_centru"
+          ],
+          "source": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "context": "stația din centrul Rădăuților (Piața Garoafelor)",
+          "fapte": [
+            {
+              "cheie": "unitate",
+              "valoare": "ppm",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://calitateaer.radautiulcivic.ro/masuratori/",
+                "fragment": "Concentrația de CO2, în ppm",
+                "sha256": "854b4af97f7eed9e254d94bc2b9f5e7851a3d053feb8a4d9a1c5fc25f47fc432",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "fragment": "\"CO2_centru\"",
+          "sha256": "31e4bc8a46fea86cc2ea380889af1430456dd4328dc8b2d862024552a2d56ccd",
+          "baza": "observatie-esantion"
+        }
+      ],
+      "ambiguitati": []
+    },
+    {
+      "id": "pm25",
+      "label": "Concentrația de PM2,5",
+      "categorie": "masura",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Concentrația de particule cu diametrul sub 2,5 micrometri în aer, pe stații.",
+      "selectors": [
+        {
+          "projects": [
+            "calitate-aer-radauti"
+          ],
+          "names": [
+            "PM25_centru"
+          ],
+          "source": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "context": "stația din centrul Rădăuților (Piața Garoafelor)",
+          "fapte": [
+            {
+              "cheie": "unitate",
+              "valoare": "µg/m³",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://calitateaer.radautiulcivic.ro/masuratori/",
+                "fragment": "Concentrația de PM2.5, în &mu;g/m3",
+                "sha256": "854b4af97f7eed9e254d94bc2b9f5e7851a3d053feb8a4d9a1c5fc25f47fc432",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        },
+        {
+          "projects": [
+            "calitate-aer-radauti"
+          ],
+          "names": [
+            "PM25Bazar_Auto",
+            "PM25Iesire_SV",
+            "PM25Iesire_Volovat",
+            "PM25_Depozit"
+          ],
+          "source": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "context": "alte stații; unitatea nu este declarată pentru ele"
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "fragment": "\"PM25_centru\"",
+          "sha256": "31e4bc8a46fea86cc2ea380889af1430456dd4328dc8b2d862024552a2d56ccd",
+          "baza": "observatie-esantion"
+        }
+      ],
+      "ambiguitati": [
+        "aerlive.ro publică PM2.5 pe pagina de pornire, dar răspunsul său de date nu a fost păstrat; nu există încă un al doilea proiect în grup."
+      ]
+    },
+    {
+      "id": "pm10",
+      "label": "Concentrația de PM10",
+      "categorie": "masura",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Concentrația de particule cu diametrul sub 10 micrometri în aer, pe stații.",
+      "selectors": [
+        {
+          "projects": [
+            "calitate-aer-radauti"
+          ],
+          "names": [
+            "PM10_Bazar_Auto"
+          ],
+          "source": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "context": "stația din centrul Rădăuților (Piața Garoafelor)"
+        },
+        {
+          "projects": [
+            "calitate-aer-radauti"
+          ],
+          "names": [
+            "PM10_Iesire_SV",
+            "PM10_Iesire_Volovat",
+            "PM10_depozit"
+          ],
+          "source": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "context": "alte stații; unitatea nu este declarată pentru ele"
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "fragment": "\"PM10_Bazar_Auto\"",
+          "sha256": "31e4bc8a46fea86cc2ea380889af1430456dd4328dc8b2d862024552a2d56ccd",
+          "baza": "observatie-esantion"
+        }
+      ],
+      "ambiguitati": [
+        "Pagina proiectului nu declară unitatea PM10 (rândul este comentat în sursa paginii); unitatea rămâne necunoscută."
+      ]
+    },
+    {
+      "id": "temperatura-aer",
+      "label": "Temperatura aerului",
+      "categorie": "masura",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Temperatura aerului măsurată de stații. Stația meteo și stațiile de calitate sunt distincte.",
+      "selectors": [
+        {
+          "projects": [
+            "calitate-aer-radauti"
+          ],
+          "names": [
+            "Temperatura_centru"
+          ],
+          "source": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "context": "stația din centrul Rădăuților (Piața Garoafelor)",
+          "fapte": [
+            {
+              "cheie": "unitate",
+              "valoare": "°C",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://calitateaer.radautiulcivic.ro/masuratori/",
+                "fragment": "Temperatura, în &#176;C",
+                "sha256": "854b4af97f7eed9e254d94bc2b9f5e7851a3d053feb8a4d9a1c5fc25f47fc432",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        },
+        {
+          "projects": [
+            "calitate-aer-radauti"
+          ],
+          "names": [
+            "Temperatura_Bazar_Auto",
+            "Temperatura_Depozit",
+            "Temperatura_Iesire_SV",
+            "Temperatura_Iesire_Volovat",
+            "Temperatura_statie_meteo"
+          ],
+          "source": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "context": "alte stații; unitatea nu este declarată pentru ele"
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "fragment": "\"Temperatura_centru\"",
+          "sha256": "31e4bc8a46fea86cc2ea380889af1430456dd4328dc8b2d862024552a2d56ccd",
+          "baza": "observatie-esantion"
+        }
+      ],
+      "ambiguitati": []
+    },
+    {
+      "id": "umiditate-relativa",
+      "label": "Umiditatea relativă",
+      "categorie": "masura",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Umiditatea relativă a aerului, pe stații.",
+      "selectors": [
+        {
+          "projects": [
+            "calitate-aer-radauti"
+          ],
+          "names": [
+            "Umiditatea_Centru"
+          ],
+          "source": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "context": "stația din centrul Rădăuților (Piața Garoafelor)",
+          "fapte": [
+            {
+              "cheie": "unitate",
+              "valoare": "%",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://calitateaer.radautiulcivic.ro/masuratori/",
+                "fragment": "Umiditatea Relativă, în %",
+                "sha256": "854b4af97f7eed9e254d94bc2b9f5e7851a3d053feb8a4d9a1c5fc25f47fc432",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        },
+        {
+          "projects": [
+            "calitate-aer-radauti"
+          ],
+          "names": [
+            "Umiditate_Depozit",
+            "Umiditate_statie_meteo",
+            "Umiditatea_Bazar_Auto",
+            "Umiditatea_Iesire_SV",
+            "Umiditatea_Iesire_Volovat"
+          ],
+          "source": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "context": "alte stații; unitatea nu este declarată pentru ele"
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "fragment": "\"Umiditatea_Centru\"",
+          "sha256": "31e4bc8a46fea86cc2ea380889af1430456dd4328dc8b2d862024552a2d56ccd",
+          "baza": "observatie-esantion"
+        }
+      ],
+      "ambiguitati": []
+    },
+    {
+      "id": "presiune-atmosferica",
+      "label": "Presiunea atmosferică",
+      "categorie": "masura",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Presiunea atmosferică pe stații. Câmpul Presiunea este text în eșantion; celelalte sunt numere întregi.",
+      "selectors": [
+        {
+          "projects": [
+            "calitate-aer-radauti"
+          ],
+          "names": [
+            "Presiunea"
+          ],
+          "source": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "context": "stația din centrul Rădăuților (Piața Garoafelor)"
+        },
+        {
+          "projects": [
+            "calitate-aer-radauti"
+          ],
+          "names": [
+            "Presiunea_Bazar_Auto",
+            "Presiunea_Depozit",
+            "Presiunea_Iesire_SV",
+            "Presiunea_Iesire_Volovat"
+          ],
+          "source": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "context": "alte stații; unitatea nu este declarată pentru ele"
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "fragment": "\"Presiunea\"",
+          "sha256": "31e4bc8a46fea86cc2ea380889af1430456dd4328dc8b2d862024552a2d56ccd",
+          "baza": "observatie-esantion"
+        }
+      ],
+      "ambiguitati": [
+        "Presiunea este text („984.5 ”), iar celelalte câmpuri au valori ca 96843: unități diferite sau necunoscute; nu se compară."
+      ]
+    },
+    {
+      "id": "viteza-vantului",
+      "label": "Viteza vântului",
+      "categorie": "masura",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Viteza vântului pe stații; unitatea nu este declarată.",
+      "selectors": [
+        {
+          "projects": [
+            "calitate-aer-radauti"
+          ],
+          "names": [
+            "Viteza_Vantului"
+          ],
+          "source": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "context": "stația din centrul Rădăuților (Piața Garoafelor)"
+        },
+        {
+          "projects": [
+            "calitate-aer-radauti"
+          ],
+          "names": [
+            "Viteza_Vantului_Bazar_Auto",
+            "Viteza_Vantului_Depozit",
+            "Viteza_Vantului_Iesire_SV",
+            "Viteza_Vantului_Iesire_Volovat"
+          ],
+          "source": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "context": "alte stații; unitatea nu este declarată pentru ele"
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "fragment": "\"Viteza_Vantului\"",
+          "sha256": "31e4bc8a46fea86cc2ea380889af1430456dd4328dc8b2d862024552a2d56ccd",
+          "baza": "observatie-esantion"
+        }
+      ],
+      "ambiguitati": []
+    },
+    {
+      "id": "alegatori-inscrisi",
+      "label": "Alegători înscriși în liste",
+      "categorie": "masura",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Numărul total de alegători care pot vota la un scrutin, pe secție sau pe nivel de agregare.",
+      "selectors": [
+        {
+          "projects": [
+            "rezultate-vot"
+          ],
+          "names": [
+            "eligible_voters_total"
+          ],
+          "source": [
+            "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Result/ResultResource.php",
+            "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/database/migrations/0001_01_10_000010_create_records_table.php"
+          ],
+          "context": "total alegători înscriși (rezultate și înregistrări)"
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/database/migrations/0001_01_10_000010_create_records_table.php",
+          "fragment": "eligible_voters_total",
+          "sha256": "9cc53cf05fbb476a9e0a923015521b1a48cdec3f1b2749e2e84c98f3669e550d",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "initial_total (TurnoutResource) este numărul de alegători înscriși în lista permanentă, nu totalul; vezi grupul separat."
+      ]
+    },
+    {
+      "id": "alegatori-lista-permanenta",
+      "label": "Alegători înscriși în lista permanentă",
+      "categorie": "masura",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Numărul de alegători înscriși în lista electorală permanentă a scrutinului.",
+      "selectors": [
+        {
+          "projects": [
+            "rezultate-vot"
+          ],
+          "names": [
+            "initial_total"
+          ],
+          "source": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Turnout/TurnoutResource.php",
+          "context": "câmp de răspuns cu descriere în cod"
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Turnout/TurnoutResource.php",
+          "fragment": "Total number of voters subscribed to the election permanent list",
+          "sha256": "28d9044f6b17d3d1c6aeaed23bd8efb846905a5740d7a54b754eb2e17aa418c1",
+          "baza": "declaratie-directa"
+        }
+      ]
+    },
+    {
+      "id": "alegatori-prezenti",
+      "label": "Alegători prezenți la vot",
+      "categorie": "masura",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Numărul de persoane care au votat la un scrutin.",
+      "selectors": [
+        {
+          "projects": [
+            "rezultate-vot"
+          ],
+          "names": [
+            "present_voters_total"
+          ],
+          "source": [
+            "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Result/ResultResource.php",
+            "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/database/migrations/0001_01_10_000010_create_records_table.php"
+          ],
+          "context": "total prezenți (rezultate și înregistrări)"
+        },
+        {
+          "projects": [
+            "rezultate-vot"
+          ],
+          "names": [
+            "total"
+          ],
+          "source": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Turnout/TurnoutResource.php",
+          "context": "câmp de răspuns „total”, descris ca persoanele care au votat"
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Turnout/TurnoutResource.php",
+          "fragment": "Total number of people who voted in the election.",
+          "sha256": "28d9044f6b17d3d1c6aeaed23bd8efb846905a5740d7a54b754eb2e17aa418c1",
+          "baza": "declaratie-directa"
+        }
+      ]
+    },
+    {
+      "id": "voturi-valide",
+      "label": "Voturi valabil exprimate",
+      "categorie": "masura",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Numărul voturilor valabile la un scrutin.",
+      "selectors": [
+        {
+          "projects": [
+            "rezultate-vot"
+          ],
+          "names": [
+            "votes_valid"
+          ],
+          "source": [
+            "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Result/ResultResource.php",
+            "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/database/migrations/0001_01_10_000010_create_records_table.php"
+          ],
+          "context": "voturi valabile"
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Result/ResultResource.php",
+          "fragment": "Number of valid votes",
+          "sha256": "26dfe80245f8c615772917d0e402ef8b43f2011eac18de1e944d03f345462b46",
+          "baza": "declaratie-directa"
+        }
+      ]
+    },
+    {
+      "id": "voturi-nule",
+      "label": "Voturi nule",
+      "categorie": "masura",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Numărul voturilor nule la un scrutin.",
+      "selectors": [
+        {
+          "projects": [
+            "rezultate-vot"
+          ],
+          "names": [
+            "votes_null"
+          ],
+          "source": [
+            "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Result/ResultResource.php",
+            "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/database/migrations/0001_01_10_000010_create_records_table.php"
+          ],
+          "context": "voturi nule"
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Result/ResultResource.php",
+          "fragment": "Number of null votes",
+          "sha256": "26dfe80245f8c615772917d0e402ef8b43f2011eac18de1e944d03f345462b46",
+          "baza": "declaratie-directa"
+        }
+      ]
+    },
+    {
+      "id": "rata-prezenta",
+      "label": "Rata de prezență la vot",
+      "categorie": "iesire-derivata",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Procentul alegătorilor prezenți din cei înscriși în lista permanentă. Este calculat în baza de date, nu introdus.",
+      "selectors": [
+        {
+          "projects": [
+            "rezultate-vot"
+          ],
+          "names": [
+            "percent"
+          ],
+          "source": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/database/migrations/0001_01_10_000000_create_turnouts_table.php",
+          "path": [
+            "turnouts.percent"
+          ],
+          "context": "coloană generată",
+          "fapte": [
+            {
+              "cheie": "formula",
+              "valoare": "IF(initial_total > 0, ROUND(total / initial_total * 100, 2), 0)",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/database/migrations/0001_01_10_000000_create_turnouts_table.php",
+                "fragment": "IF(initial_total > 0, ROUND(total  / initial_total * 100, 2), 0)",
+                "sha256": "2842bd6950c0db3e66a2e43287a9d908824536ca504e0a1612673489d2c2c65e",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/database/migrations/0001_01_10_000000_create_turnouts_table.php",
+          "fragment": "IF(initial_total > 0, ROUND(total  / initial_total * 100, 2), 0)",
+          "sha256": "2842bd6950c0db3e66a2e43287a9d908824536ca504e0a1612673489d2c2c65e",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "Este un procent, nu un total; nu se compară cu număr de alegători."
+      ]
+    },
+    {
+      "id": "voturi-pentru",
+      "label": "Voturi pentru",
+      "categorie": "masura",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Numărul de voturi „pentru” la un vot nominal sau electronic dintr-o adunare. Proiectele descriu adunări diferite; grupul servește descoperirii și nu leagă seturile.",
+      "selectors": [
+        {
+          "projects": [
+            "europescope"
+          ],
+          "names": [
+            "votes_for"
+          ],
+          "source": "https://api.europescope.eu/v1/votes.csv",
+          "context": "vot nominal al Parlamentului European (CSV, tip neprecizat)"
+        },
+        {
+          "projects": [
+            "monitorul-ai"
+          ],
+          "names": [
+            "for"
+          ],
+          "source": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/docs/extraction-schema.md",
+          "path": [
+            "body for plenary_stenogram::agenda_items[].activities[].counts.for",
+            "8. Source spans + the vote/interpellation/topic shapes::counts.for",
+            "body for committee_synthesis::committees[].meetings[].agenda[].vote_summary.for"
+          ],
+          "context": "numărătoarea voturilor în stenogramele Parlamentului României (exemplu din documentație)"
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://www.europescope.eu/data",
+          "fragment": "Roll-call votes with results, importance scores and source URLs.",
+          "sha256": "986e4963d57e8895b793a314bb2107ef93ed39832a03d67057739d73064030ef",
+          "baza": "declaratie-directa"
+        },
+        {
+          "sursa": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/docs/extraction-schema.md",
+          "fragment": "\"for\": null",
+          "sha256": "835096aafd8d6db88b16ae3378040e57a4e8a2c08519ef2636c5bac6a1ed2065",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "Parlamentul European și Parlamentul României sunt instituții diferite; numele câmpurilor nu garantează aceeași regulă de numărare."
+      ]
+    },
+    {
+      "id": "voturi-impotriva",
+      "label": "Voturi împotrivă",
+      "categorie": "masura",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Numărul de voturi „împotrivă” la un vot nominal sau electronic dintr-o adunare. Proiectele descriu adunări diferite; grupul servește descoperirii și nu leagă seturile.",
+      "selectors": [
+        {
+          "projects": [
+            "europescope"
+          ],
+          "names": [
+            "votes_against"
+          ],
+          "source": "https://api.europescope.eu/v1/votes.csv",
+          "context": "vot nominal al Parlamentului European (CSV, tip neprecizat)"
+        },
+        {
+          "projects": [
+            "monitorul-ai"
+          ],
+          "names": [
+            "against"
+          ],
+          "source": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/docs/extraction-schema.md",
+          "path": [
+            "body for plenary_stenogram::agenda_items[].activities[].counts.against",
+            "8. Source spans + the vote/interpellation/topic shapes::counts.against",
+            "body for committee_synthesis::committees[].meetings[].agenda[].vote_summary.against"
+          ],
+          "context": "numărătoarea voturilor în stenogramele Parlamentului României (exemplu din documentație)"
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://www.europescope.eu/data",
+          "fragment": "Roll-call votes with results, importance scores and source URLs.",
+          "sha256": "986e4963d57e8895b793a314bb2107ef93ed39832a03d67057739d73064030ef",
+          "baza": "declaratie-directa"
+        },
+        {
+          "sursa": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/docs/extraction-schema.md",
+          "fragment": "\"for\": null",
+          "sha256": "835096aafd8d6db88b16ae3378040e57a4e8a2c08519ef2636c5bac6a1ed2065",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "Parlamentul European și Parlamentul României sunt instituții diferite; numele câmpurilor nu garantează aceeași regulă de numărare."
+      ]
+    },
+    {
+      "id": "voturi-abtinere",
+      "label": "Abțineri",
+      "categorie": "masura",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Numărul de voturi „abținere” la un vot nominal sau electronic dintr-o adunare. Proiectele descriu adunări diferite; grupul servește descoperirii și nu leagă seturile.",
+      "selectors": [
+        {
+          "projects": [
+            "europescope"
+          ],
+          "names": [
+            "votes_abstain"
+          ],
+          "source": "https://api.europescope.eu/v1/votes.csv",
+          "context": "vot nominal al Parlamentului European (CSV, tip neprecizat)"
+        },
+        {
+          "projects": [
+            "monitorul-ai"
+          ],
+          "names": [
+            "abstain"
+          ],
+          "source": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/docs/extraction-schema.md",
+          "path": [
+            "body for plenary_stenogram::agenda_items[].activities[].counts.abstain",
+            "8. Source spans + the vote/interpellation/topic shapes::counts.abstain",
+            "body for committee_synthesis::committees[].meetings[].agenda[].vote_summary.abstain"
+          ],
+          "context": "numărătoarea voturilor în stenogramele Parlamentului României (exemplu din documentație)"
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://www.europescope.eu/data",
+          "fragment": "Roll-call votes with results, importance scores and source URLs.",
+          "sha256": "986e4963d57e8895b793a314bb2107ef93ed39832a03d67057739d73064030ef",
+          "baza": "declaratie-directa"
+        },
+        {
+          "sursa": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/docs/extraction-schema.md",
+          "fragment": "\"for\": null",
+          "sha256": "835096aafd8d6db88b16ae3378040e57a4e8a2c08519ef2636c5bac6a1ed2065",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "Parlamentul European și Parlamentul României sunt instituții diferite; numele câmpurilor nu garantează aceeași regulă de numărare."
+      ]
+    },
+    {
+      "id": "grup-politic",
+      "label": "Grup politic sau parlamentar",
+      "categorie": "dimensiune",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Grupul politic sau parlamentar al unui ales la un moment dat. Codurile și numele diferă între instituții.",
+      "selectors": [
+        {
+          "projects": [
+            "europescope"
+          ],
+          "names": [
+            "group_code"
+          ],
+          "source": [
+            "https://api.europescope.eu/v1/members.csv",
+            "https://api.europescope.eu/v1/positions.csv"
+          ],
+          "context": "grup politic în Parlamentul European (cod)"
+        },
+        {
+          "projects": [
+            "monitorul-ai"
+          ],
+          "names": [
+            "party_group"
+          ],
+          "source": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/docs/extraction-schema.md",
+          "path": [
+            "5. Speaker identity — backfillable person_id + per-occurrence party and role::party_group"
+          ],
+          "context": "grup parlamentar atribuit vorbitorului în stenogramă (exemplu din documentație)"
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/docs/extraction-schema.md",
+          "fragment": "attributed at this moment in this document",
+          "sha256": "835096aafd8d6db88b16ae3378040e57a4e8a2c08519ef2636c5bac6a1ed2065",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "Grupurile Parlamentului European (de exemplu EPP, S&D) și grupurile din Parlamentul României sunt coduri diferite pentru instituții diferite."
       ]
     }
   ]

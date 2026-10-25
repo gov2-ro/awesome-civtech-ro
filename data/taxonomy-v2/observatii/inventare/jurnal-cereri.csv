@@ -97,3 +97,5 @@ C,2026-10-25T14:23:22.205518+00:00,BROWSER-GET,https://aerlive.ro/wp-content/the
 C,2026-10-25T14:23:22.205571+00:00,BROWSER-GET,https://aerlive.ro/wp-json/api/v1/data?city=BUC,200,200,12647,browser,randare aerlive
 C,2026-10-25T14:24:27.323237+00:00,GET,https://docs.google.com/spreadsheets/d/e/2PACX-1vQoZR35YHSMlJPtEWjGUkpiBQA9GNhOFoKEcp4a44V3vDsr4MEtGqDrYBETYmglCA2Cb-lJoXfuJvlx/pubhtml,ok,200,57787,nu,published spreadsheet linked from the project's data page
 C,2026-10-25T14:25:27.367469+00:00,GET,https://baniinostri.info/RAJASA/,ok,200,62520,nu,HTML page with tables (investigation report cited by the project)
+C,2026-10-25T14:34:21.975776+00:00,GET,https://data.g4d.ro/ords/opendata/metadata-catalog/sicap/da_by_cui/1890420/,eroare-http,404,,nu,metadata catalog linked as describedby from the g4d response
+C,2026-10-25T14:34:29.664528+00:00,GET,http://data.g4d.ro/ords/opendata/metadata-catalog/sicap/da_by_cui/1890420/,eroare-http,404,,nu,metadata catalog linked as describedby from the g4d response (exact linked address)
