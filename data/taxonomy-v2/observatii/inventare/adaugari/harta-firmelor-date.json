@@ -1,0 +1,27 @@
+[
+  {
+    "proiect": "harta-firmelor",
+    "url": "https://harta-firmelor.ro/date",
+    "citire": {
+      "tip": "html-carduri-csv"
+    },
+    "parinte": "https://harta-firmelor.ro/llms.txt",
+    "locate": {
+      "pagina": "https://harta-firmelor.ro/llms.txt",
+      "link": "https://harta-firmelor.ro/date"
+    },
+    "dovezi": [
+      {
+        "pagina": "https://harta-firmelor.ro/llms.txt",
+        "text": "[Date deschise](https://harta-firmelor.ro/date): cifrele agregate ale registrului în CSV, licență CC BY 4.0",
+        "rol": "descriere-fisier"
+      },
+      {
+        "pagina": "https://harta-firmelor.ro/llms.txt",
+        "text": "Extragerea automată și în masă a datelor de pe site nu este permisă.",
+        "rol": "restrictie-colectare"
+      }
+    ],
+    "nota": "The open-data page of the project, linked from its llms.txt. It lists eight CSV files with their rows, period, measured-at date, sources and a dictionary of columns. The page is a copy that the owner saved from their browser (inventory.py --import-saved): the site answers every automated request with HTTP 429 and forbids automated extraction. No CSV file was downloaded and no request was made to harta-firmelor.ro or its API. The page declares no column type, so none is recorded."
+  }
+]

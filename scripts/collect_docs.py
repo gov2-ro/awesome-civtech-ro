@@ -3,10 +3,13 @@
     python3 scripts/collect_docs.py --only afacut,ins-gov2,ani-de-pensie
     python3 scripts/collect_docs.py             # all entries; reuse collected entry records
     python3 scripts/collect_docs.py --force     # refresh the selected entries
+    python3 scripts/collect_docs.py --import-saved SLUG URL FILE --saved-at 2026-10-25T20:39:00+02:00 [--note TEXT]
+                                                # keep a page that the owner saved from their browser; no request
 
 The collector follows methodology/about links and checks llms.txt. It saves evidence, not classifications.
 It never changes the catalogue, profile, labels, or public site. Requests use no paid API or credentials.
 HTML is read without JavaScript. Missing pages, blocked requests and thin text remain explicit gaps.
+A page that the owner saved (`--import-saved`) keeps its own origin, `copie-salvata-de-proprietar`, and is never requested again.
 """
 from __future__ import annotations
 
@@ -205,6 +208,126 @@ def is_binary(raw, content_type=''):
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel')
 
 
+# --- pages that the owner saved from their own browser ---------------------------------------------------------------------
+# A site can refuse every automated request (a security checkpoint, terms of use). The owner can still open a page and save it.
+# Such a copy is evidence with its own origin. It is never labelled as fetched, and no request is made for it.
+
+SAVED_BY_OWNER = 'copie-salvata-de-proprietar'
+SAVED_TYPES = {'.html': 'text/html', '.htm': 'text/html', '.txt': 'text/plain', '.md': 'text/markdown', '.json': 'application/json',
+               '.csv': 'text/csv', '.xml': 'application/xml'}
+
+
+def is_saved(record):
+    """True for a response, a page record or a source record of a copy that the owner saved."""
+    return isinstance(record, dict) and record.get('origine') == SAVED_BY_OWNER
+
+
+def saved_time(value, now=None, check_future=True):
+    """The time of `--saved-at`: ISO 8601 with a UTC offset (`2026-10-25T20:39:00+02:00`). A time without an offset is ambiguous and is refused."""
+    try:
+        when = datetime.fromisoformat(value.strip())
+    except (ValueError, AttributeError) as exc:
+        raise ValueError(f'The saved-at time is not ISO 8601: {value!r}') from exc
+    if when.utcoffset() is None:
+        raise ValueError(f'The saved-at time has no UTC offset: {value!r}. Write it like 2026-10-25T20:39:00+02:00.')
+    if check_future and when > (now or datetime.now(timezone.utc)):
+        raise ValueError(f'The saved-at time is in the future: {value!r}')
+    return when
+
+
+def saved_copy(url, raw, saved_at, name, note=None, now=None):
+    """The response record of a page that the owner saved. `raw` is the file as bytes; nothing is fetched.
+
+    The record has the shape of a fetched response (`body`, `fetched_at`, `content_type`, `state`), so the cache, the hash checks and the
+    readers treat it like any retained body. It differs in what it says about itself: `http_status` is null, `fetched_at` is the saved-at
+    time in UTC, `origine` names the owner's copy, and `sha256_fisier` is the hash of the file's bytes. Raises ValueError for a file
+    that cannot be kept as text."""
+    url = canonical(url)
+    if not url:
+        raise ValueError('The saved page needs an http or https address.')
+    when = saved_time(saved_at, now)
+    suffix = Path(name).suffix.lower()
+    content_type = SAVED_TYPES.get(suffix, 'text/html' if re.search(rb'<(?:!doctype\s+html|html)\b', raw[:1000], re.I) else 'text/plain')
+    if not raw.strip():
+        raise ValueError(f'{name} is empty.')
+    if len(raw) > MAX_BYTES:
+        raise ValueError(f'{name} is larger than {MAX_BYTES} bytes.')
+    if is_binary(raw, content_type):
+        raise ValueError(f'{name} is a binary file, not text.')
+    try:
+        body = raw.decode('utf-8')
+    except UnicodeDecodeError as exc:
+        raise ValueError(f'{name} is not UTF-8 text: {exc}') from exc
+    record = {'url': url, 'final_url': url, 'http_status': None, 'fetched_at': when.astimezone(timezone.utc).isoformat(),
+              'content_type': content_type, 'state': 'ok', 'body': body, 'origine': SAVED_BY_OWNER, 'salvat_la': saved_at.strip(),
+              'nume_fisier': Path(name).name, 'sha256_fisier': hashlib.sha256(raw).hexdigest()}
+    if note and note.strip():
+        record['nota_copie'] = note.strip()
+    return record
+
+
+def saved_errors(record):
+    """The problems in the keys of an owner-saved record (a source or a documentation page). A sound record gives []."""
+    problems = []
+    try:
+        when = saved_time(record.get('salvat_la'), check_future=False)
+    except ValueError as exc:
+        return [str(exc)]
+    if record.get('http_status') is not None:
+        problems.append('a saved copy has an HTTP status')
+    if record.get('fetched_at') != when.astimezone(timezone.utc).isoformat():
+        problems.append('fetched_at is not the saved-at time in UTC')
+    if not re.fullmatch(r'[0-9a-f]{64}', str(record.get('sha256_fisier', ''))):
+        problems.append('sha256_fisier is not a SHA-256 hash')
+    if not record.get('nume_fisier'):
+        problems.append('nume_fisier is missing')
+    return problems
+
+
+def saved_page(entry, response):
+    """The documentation page record of a saved copy. The address of the catalogue entry decides the scope (project or shared host)."""
+    url = response['final_url']
+    kind = kind_of(url) or 'pagina'
+    page = {k: v for k, v in response.items() if k != 'body'}
+    page.update(kind=kind, scope=scope_of(canonical(entry['url']), url))
+    page.update(parse_page(response['body'], response['content_type'], url, kind))
+    page['sha256'] = hashlib.sha256(page.get('text', '').encode()).hexdigest()
+    return page
+
+
+def add_saved_page(record, page):
+    """Put a saved page into an entry record. It replaces the page with the same address, unless that page was fetched and collected:
+    the import never replaces fetched evidence."""
+    pages, replaced = [], False
+    for old in record['pages']:
+        if old['url'] != page['url']:
+            pages.append(old)
+            continue
+        if old.get('state') == 'colectat' and not is_saved(old):
+            raise ValueError(f'{page["url"]} was fetched and collected. A saved copy never replaces fetched evidence.')
+        pages.append(page)
+        replaced = True
+    if not replaced:
+        pages.append(page)
+    return {**record, 'pages': pages, 'state': documentation_state(pages)}
+
+
+class KeepSaved:
+    """Wraps a fetcher. An address that the owner saved is never requested; the answer is the marker state `copie-salvata`."""
+
+    def __init__(self, fetch, urls):
+        self.fetch, self.urls = fetch, set(urls)
+
+    @property
+    def requests(self):
+        return self.fetch.requests
+
+    def __call__(self, url, sample=None):
+        if url in self.urls:
+            return {'url': url, 'final_url': url, 'http_status': None, 'fetched_at': datetime.now(timezone.utc).isoformat(), 'state': 'copie-salvata'}
+        return self.fetch(url, sample)
+
+
 class Fetcher:
     """GET with a timeout, a size cap, two concurrent requests per host and an optional hard request budget.
     `log` is a RequestLog; every direct request is logged with its outcome and size. Nothing is retried."""
@@ -337,7 +460,9 @@ def merge_refresh(old, new):
     pages = []
     for page in new['pages']:
         earlier = old_pages.get(page['url'])
-        if earlier and earlier['state'] == 'colectat' and page['state'] != 'colectat':
+        if earlier and is_saved(earlier) and page['state'] == 'copie-salvata':
+            page = earlier  # no request was made; the saved copy stays as it is, with no failed-attempt mark
+        elif earlier and earlier['state'] == 'colectat' and page['state'] != 'colectat':
             attempt = {k: page.get(k) for k in ('fetched_at', 'state', 'http_status', 'error') if page.get(k) is not None}
             page = {**earlier, 'ultima_incercare': attempt}
         pages.append(page)
@@ -397,6 +522,30 @@ def restore(out):
     return records
 
 
+def import_saved(args, entries, records, out, parser):
+    """`--import-saved SLUG URL FILE`: keep a page that the owner saved from their browser. Makes no request."""
+    slug, url, file = args.import_saved
+    entry = next((e for e in entries if e['slug'] == slug), None)
+    if entry is None:
+        parser.error('Unknown slug: ' + slug)
+    try:
+        response = saved_copy(url, Path(file).read_bytes(), args.saved_at, file, args.note)
+        page = saved_page(entry, response)
+        if page['state'] != 'colectat':
+            raise ValueError(f'{file} does not hold enough text to be documentation (state {page["state"]}).')
+        record = records.get(slug) or {'slug': slug, 'url': canonical(entry['url']), 'state': 'documentatie-neconfirmata',
+                                       'inventory_completeness': 'neanalizat', 'pages': []}
+        records[slug] = add_saved_page(record, page)
+    except (OSError, ValueError) as exc:
+        print('ERROR: ' + str(exc))
+        print('No documentation file was changed.')
+        return 2
+    save(records, out)
+    print(f'{slug}: saved copy kept for {page["url"]} (kind {page["kind"]}, {len(response["body"])} chars, file sha256 {response["sha256_fisier"][:16]}, '
+          f'text sha256 {page["sha256"][:16]}); entry state {records[slug]["state"]}; 0 requests')
+    return 0
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--data-dir', type=Path, default=PUBLIC_ROOT)
@@ -407,20 +556,32 @@ def main():
     parser.add_argument('--workers', type=int, default=6)
     parser.add_argument('--max-pages', type=int, default=5)
     parser.add_argument('--timeout', type=float, default=8)
+    parser.add_argument('--import-saved', nargs=3, metavar=('SLUG', 'URL', 'FILE'),
+                        help='keep a page that the owner saved from their browser, without any request; needs --saved-at')
+    parser.add_argument('--saved-at', metavar='ISO8601', help='with --import-saved: when the owner saved the file, with a UTC offset (2026-10-25T20:39:00+02:00)')
+    parser.add_argument('--note', help='with --import-saved: why the page was saved by hand; kept with the page')
     args = parser.parse_args()
     if args.workers < 1 or args.max_pages < 2 or args.timeout <= 0:
         parser.error('Use positive workers/timeout and at least two pages.')
+    if args.import_saved and not args.saved_at:
+        parser.error('--import-saved needs --saved-at')
+    if (args.saved_at or args.note) and not args.import_saved:
+        parser.error('--saved-at and --note belong to --import-saved')
     out = args.out or observation_paths(args.data_dir)['profile'].parent / 'documentare'
     entries = load_catalogue(args.data_dir)
     selected = set(filter(None, args.only.split(',')))
     if selected - {r['slug'] for r in entries}:
         parser.error('Unknown slug: ' + ', '.join(sorted(selected - {r['slug'] for r in entries})))
     records = restore(out)
+    if args.import_saved:
+        return import_saved(args, entries, records, out, parser)
     todo = [r for r in entries if (not selected or r['slug'] in selected) and
             (args.force or r['slug'] not in records or canonical(r['url']) != records[r['slug']]['url'])]
     fetcher = Fetcher(args.timeout)
+    saved = {page['url'] for record in records.values() for page in record['pages'] if is_saved(page)}
+    fetch = KeepSaved(fetcher, saved)
     with ThreadPoolExecutor(max_workers=args.workers) as pool:
-        futures = {pool.submit(collect, entry, fetcher, args.max_pages, args.follow_data_links): entry['slug'] for entry in todo}
+        futures = {pool.submit(collect, entry, fetch, args.max_pages, args.follow_data_links): entry['slug'] for entry in todo}
         for future in as_completed(futures):
             try:
                 record = future.result()

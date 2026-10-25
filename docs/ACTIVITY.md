@@ -1,5 +1,48 @@
 # Activity
 
+## 2026-10-25 — Owner-saved pages as evidence: Harta Firmelor open data and its providers (v0.24.0)
+
+**Done**
+- New way to register a page that the owner saved from their own browser, with no request: `inventory.py --import-saved SLUG URL FILE --saved-at 2026-10-25T20:39:00+02:00 [--note TEXT]` and
+  `collect_docs.py --import-saved SLUG URL FILE --saved-at …`. The record keeps the URL, the SHA-256 of the file's bytes (`sha256_fisier`), the saved-at time as `fetched_at` (UTC), `http_status` null and
+  `origine` `copie-salvata-de-proprietar`. The body goes to the ordinary ignored cache and snapshot, so `inventory.py --check` and the review interface's evidence locator verify it like a fetched body.
+  The command implies `--offline --only SLUG`, refuses `--force`, `--probe`, `--dry-run` and `--check`, and puts the old cache file back when the run fails. The log of requests got no row: 0 requests.
+- Both tools now skip an address that holds a saved copy: a later `--force` makes no request for it and leaves no failed-attempt mark. A fetched body is never replaced by a saved copy.
+- `--check` verifies saved sources (body hash, `sha256_fisier` equals `sha256` unless a credential was masked, status null, time consistent) and saved documentation pages (text hash), and prints the saved copies on a separate line.
+  Measured on this checkout: 0 errors; 88 source bodies hash-verified (87 before); the 2 saved copies (`/date` source body, `llms.txt` page text) hash-verified; 62 dictionary evidence items verified.
+- Saved the owner's two files (`tmp/harta-firmelor.ro-date.html`, 182,248 bytes, SHA-256 `926aeef9d421d1ee…`; `tmp/harta.firmelor.ro-llms.txt`, 1,251 bytes, `5f10594f5e23c1cd…`). `harta-firmelor` goes from "documentation not confirmed"
+  to `documentatie-gasita` and from 0 to 40 field records. `llms.txt` is documentation, not a field source; its link `/date` is the discovery locator (`/links/3`) of the new source, and its sentence
+  "Extragerea automată și în masă a datelor de pe site nu este permisă." is a second locator with the role `restrictie-colectare`.
+- New reader `html-carduri-csv` (`scripts/inventory_csvcards.py`, stdlib): the page has no table, so no existing reader fits. Measured on the saved page: 8 datasets (rows 37, 18, 19, 71, 23, 9, 20, 37; period, measured-at date
+  11.09.2026, licence CC BY 4.0 with its link and attribution, and the named sources, 9 of them for `registru-cifre.csv`) and 40 fields (14, 5, 3, 3, 3, 3, 6, 3): 40 with a declared description, 1 with a unit
+  (`median_turnover_lei`: "lei nominali", from the description), 0 with a type. Every locator is a `char:START-END` interval of the retained body. The 8 CSV files were not downloaded.
+- Review items: D136–D139 (ONRC, ANAF, SICAP / SEAP, Monitorul Oficial) and their proposed rows L136–L139 now cite `https://harta-firmelor.ro/date` with an exact fragment and the hash of the retained text; new items D170–D173
+  propose Ministerul Finanțelor, Ministerul Justiției (portalul instanțelor), Buletinul Procedurilor de Insolvență and ANRM. Measured with the review interface's own `Store.provider`: all 8 items show `verificat` (copy kind
+  `sursă păstrată`, text hash `926aeef9d421d1ee`, fragment found). The page names "Geocodare — adresele pe hartă" without a provider: it is in the notes, not an item. `relatii.csv` keeps L136–L139 as `propus`.
+- Checks on the committed state (a clean worktree of the commit, the ignored caches linked): `validate.py --publication` 0 errors, 0 warnings; `inventory.py --check` 0 errors; `inventory_report.py --check` 0 outputs out of date;
+  `git diff --check` clean. Replaying `inventory.py --offline` for all 140 entries reproduced `proiecte.json`, `seturi-date.json`, `descoperiri.json`, `rezumat.csv`, `campuri.csv` and `intrari-utilizator.csv` byte for byte.
+- Tests: 521 run, 6 skipped, 0 failures (487 / 6 before), also in the clean worktree: 10 reader tests (`test_inventory_text.CsvCards`, with a 14 KB trimmed fixture of the saved page) and 24 tests in `test_saved_copies.py` (import, hash, replay byte for byte,
+  `--check` verifies, altered body or record reported, absent body unavailable and never verified, no request on `--force`). A mutation check confirmed that two of them fail when the guard is off.
+  Browser checks on port 8770: `check_data_finder.py` 40/40, `check_inventory_preview.py` 31/31, `check_preview.py` 111/111; `check_review_ui.py` 75/75 (it proves that the real review files did not change).
+
+**Hard**
+- The saved page is a Next.js page. Its texts occur several times: in the visible card, in `schema.org` Dataset JSON-LD blocks (the same column names and descriptions) and in script payloads.
+  `Monitorul Oficial, partea a IV-a` first occurs in the JSON-LD name and the card title, so D139 cites `Monitorul Oficial, partea a IV-a</dd>`, which occurs once, in the `Surse` line.
+  The other seven fragments are the clean `Surse` text, each first found in its own card.
+- The page states "Anii sunt numere întregi" and "O celulă goală înseamnă „nemăsurat”, nu zero" for all files. These are reading rules, not types per column, so every `tip_declarat` stays null; the notes record the rules.
+- The public payload built from the live tree differs from HEAD in `generated` and in one provider: `executii-bugetare` gets a data source from the owner's uncommitted acceptance of L135. It is not part of this change.
+  In a clean worktree of the commit the payload equals the one at HEAD apart from `generated`; `site/data.json` and `site/feed.xml` of the live tree were restored.
+  The generated report and `acoperire.csv` were written in that worktree, so the commit holds no decision of the owner (the live report still counts the accepted D135).
+- A guard on one address protects little: `collect_docs.py --force` still requests the other addresses of the same site. A guard for the whole site needs the same rule in `profile.py` and `search.py`; it is in the backlog.
+
+**Decided**
+- A saved copy has its own origin keys on the same cache and snapshot machinery, instead of a separate store. Cost of the alternative: a second check path, and the review interface would not find the text.
+- Keep two hashes: `sha256_fisier` (the owner's file) and `sha256` (the retained body). They are equal unless a credential was masked. For a documentation page the text hash differs from the file hash, because plain text loses its outer spaces.
+- Use `Ministerul Justiției (portalul instanțelor)` for the courts and say in the item that the page does not name the operator; propose `Buletinul Procedurilor de Insolvență (BPI)` without a publisher for the same reason.
+  Cost of a guess: a proposal that names an organisation the page never mentions.
+- Do not change `inventar-concepte.json` or the review interface while the owner reviews. Group candidates are in the backlog: the seven `year` columns look like `perioada-de-referinta`; `employees_reported` and `median_turnover_lei` do not belong
+  to `numar-salariati` and `cifra-afaceri`, which hold the value of one company and already keep national aggregates out.
+
 ## 2026-10-25 — Count restatements once, a variable table, DemoANAF paused
 
 **Done**

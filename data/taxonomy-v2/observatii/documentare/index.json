@@ -4512,7 +4512,7 @@
     {
       "slug": "harta-firmelor",
       "url": "https://harta-firmelor.ro/",
-      "state": "documentatie-neconfirmata",
+      "state": "documentatie-gasita",
       "inventory_completeness": "neanalizat",
       "pages": [
         {
@@ -4528,12 +4528,23 @@
         {
           "url": "https://harta-firmelor.ro/llms.txt",
           "final_url": "https://harta-firmelor.ro/llms.txt",
-          "http_status": 429,
-          "fetched_at": "2026-10-24T22:19:31.402450+00:00",
-          "state": "eroare-http",
-          "error": "HTTP Error 429: Too Many Requests",
+          "http_status": null,
+          "fetched_at": "2026-10-25T18:39:00+00:00",
+          "content_type": "text/plain",
+          "state": "colectat",
+          "origine": "copie-salvata-de-proprietar",
+          "salvat_la": "2026-10-25T20:39:00+02:00",
+          "nume_fisier": "harta.firmelor.ro-llms.txt",
+          "sha256_fisier": "5f10594f5e23c1cd834beceef09df967a96c03df85270483ef1e2fdc55e5714b",
+          "nota_copie": "Saved by the owner from their own browser. The site answers every automated request with HTTP 429 (Vercel Security Checkpoint), and this file says that automated mass extraction is not allowed.",
           "kind": "llms",
-          "scope": "proiect"
+          "scope": "proiect",
+          "truncated": false,
+          "title": "",
+          "sections": [],
+          "sha256": "844cd7b6edf35f0e134654c92358d64e8ec064a87c98dea2ccc6a0744b89d5b7",
+          "snapshot": "pagini/ebc177173f1914375994ad1f.json",
+          "text_chars": 1214
         },
         {
           "url": "https://harta-firmelor.ro/metodologie/",

@@ -4,6 +4,8 @@
     python3 scripts/inventory.py --offline       # no requests; rebuild from local evidence
     python3 scripts/inventory.py --only demoanaf --force
     python3 scripts/inventory.py --dry-run       # compute and report; write nothing
+    python3 scripts/inventory.py --import-saved SLUG URL FILE --saved-at 2026-10-25T20:39:00+02:00
+                                                 # keep a page that the owner saved from their browser; no request
 
 Outputs stay in observatii/inventare/. No catalogue or site field is changed.
 Declared schema types, observed JSON types and HTML control types stay distinct.
@@ -13,6 +15,7 @@ Runs are incremental. The tracked state is read first. A run changes only the se
 sources they use. Other projects keep their records, references and evidence. A source that cannot be refreshed
 (failed request, missing cache, failed parse) keeps its last good evidence and records the failed attempt.
 Discoveries live in descoperiri.json, separate from the per-run limits. A run writes all files or none.
+A page that the owner saved (--import-saved) keeps its own origin, `copie-salvata-de-proprietar`; it is never labelled as fetched and never requested.
 """
 from __future__ import annotations
 
@@ -26,10 +29,11 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
-from collect_docs import Fetcher, canonical, flat, restore, scope_of
+from collect_docs import Fetcher, canonical, flat, is_saved, restore, saved_copy, saved_errors, scope_of
 from common import PUBLIC_ROOT, data_schema, load_catalogue, load_vocabulary, observation_paths
 from inventory_concepts import EvidenceLocator, check_concepts, validate_families
 from inventory_apidocs import operations as api_operations
+from inventory_csvcards import csv_datasets
 from inventory_ins import ins_dataset, ins_listing, ins_measure, is_listing
 from inventory_text import EXTENSIONS, read_text
 from inventory_state import (REGISTRY, counted_fields, RequestLog, StateError, active_members, admit, check_text, dump, load_previous,
@@ -39,7 +43,7 @@ from inventory_state import (REGISTRY, counted_fields, RequestLog, StateError, a
 MAX_FIELDS, MAX_DEPTH, SAMPLE_ROWS = 2000, 7, 25
 # An object with more keys than this is a keyed collection (identifier -> record), not a record with that many members.
 KEYED_COLLECTION = 100
-TEXT_FORMATS = ('html-tabele', 'markdown', 'csharp', 'sql', 'php', 'js-acces', 'json-comentat', 'html-api-docs')
+TEXT_FORMATS = ('html-tabele', 'markdown', 'csharp', 'sql', 'php', 'js-acces', 'json-comentat', 'html-api-docs', 'html-carduri-csv')
 
 
 def pointer_part(value):
@@ -340,6 +344,8 @@ def analyse_source(response, hint=None):
             metadata['catalog'] = ins_listing(json.loads(body))
         elif fmt == 'html-api-docs':
             metadata['operatii'] = api_operations(body)
+        elif fmt == 'html-carduri-csv':
+            metadata['seturi'] = csv_datasets(body, response['final_url'])
     except (ValueError, TypeError, KeyError, csv.Error) as exc:
         metadata.update(stare='eroare-parsare', error=str(exc))
     return metadata
@@ -492,7 +498,8 @@ def check_report(out, observations):
     """Check local evidence hashes, field pointers, references and the registry without requests.
     `errors` are corrupt or inconsistent records. `unavailable` lists evidence bodies absent from this checkout;
     those are not hash-verified and are never counted as verified. `stale` lists sources whose last refresh failed."""
-    report = {'errors': [], 'unavailable': [], 'verified': 0, 'stale': [], 'concept_stale': [], 'concept_verified': 0}
+    report = {'errors': [], 'unavailable': [], 'verified': 0, 'stale': [], 'concept_stale': [], 'concept_verified': 0,
+              'saved': {'total': 0, 'verified': 0, 'unavailable': 0}}
     errors = report['errors']
     try:
         previous = load_previous(out)
@@ -509,12 +516,17 @@ def check_report(out, observations):
             errors.append('Source ID does not match URL: ' + source['url'])
         if source.get('ultima_incercare'):
             report['stale'].append(source['url'])
+        saved = is_saved(source)
+        if saved:
+            report['saved']['total'] += 1
+            errors += [f'{source["url"]}: {problem}' for problem in saved_errors(source)]
         if not source.get('sha256'):
             continue
         try:
             response = json.loads((out / source['snapshot']).read_text())
         except FileNotFoundError:
             report['unavailable'].append(source['url'])
+            report['saved']['unavailable'] += saved
             continue
         except (OSError, ValueError) as exc:
             errors.append(source['url'] + ': ' + str(exc))
@@ -525,6 +537,10 @@ def check_report(out, observations):
                 errors.append('Source hash mismatch: ' + source['url'])
                 continue
             report['verified'] += 1
+            if saved:
+                report['saved']['verified'] += 1
+                if not source.get('redactari') and source.get('sha256_fisier') != source['sha256']:
+                    errors.append('The retained body is not the file that the owner saved: ' + source['url'])
             if source.get('format') == 'csv':
                 _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''))
                 if [f['nume'] for f in fields] != [f['nume'] for f in source['campuri']]:
@@ -543,6 +559,10 @@ def check_report(out, observations):
                     errors.append('Fields or operations differ from the retained body: ' + source['url'])
                 elif fresh.get('comparatie_contract') != source.get('comparatie_contract'):
                     errors.append('The comparison with the contract differs from the retained bodies: ' + source['url'])
+            elif source.get('format') == 'html-carduri-csv':
+                _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
+                if fields != source['campuri'] or csv_datasets(body, source['final_url']) != source.get('seturi'):
+                    errors.append('Fields or datasets differ from the retained body: ' + source['url'])
             elif source.get('format') in TEXT_FORMATS:
                 _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
                 if fields != source['campuri']:
@@ -605,10 +625,38 @@ def check_report(out, observations):
                         report['unavailable'].append(f'discovery: {record["proiect"]} {evidence.get("snapshot")}')
                     elif status:
                         errors.append(status)
+    check_saved_pages(report, observations)
     check_dictionary(report, previous, out, observations)
     check_external_fragments(report, previous, observations)
     report['unavailable'] = sorted(set(report['unavailable']))
     return report
+
+
+def check_saved_pages(report, observations):
+    """Documentation pages that the owner saved: the record keys must be consistent and the retained text must have the recorded hash.
+    A page whose text is absent from this checkout is unavailable, never verified."""
+    path = observations / 'documentare' / 'index.json'
+    try:
+        entries = json.loads(path.read_text())['entries']
+    except (OSError, ValueError, KeyError):
+        return
+    for entry in entries:
+        for page in entry.get('pages', []):
+            if not is_saved(page):
+                continue
+            label = f'{entry["slug"]} {page["url"]}'
+            report['saved']['total'] += 1
+            report['errors'] += [f'Saved page {label}: {problem}' for problem in saved_errors(page)]
+            try:
+                text = json.loads((observations / 'documentare' / page['snapshot']).read_text())['text']
+            except (OSError, ValueError, KeyError):
+                report['unavailable'].append('documentation: ' + label)
+                report['saved']['unavailable'] += 1
+                continue
+            if hashlib.sha256(text.encode()).hexdigest() != page.get('sha256'):
+                report['errors'].append(f'Saved page text hash differs: {label}')
+            else:
+                report['saved']['verified'] += 1
 
 
 def check_dictionary(report, previous, out, observations):
@@ -865,7 +913,7 @@ def reconcile(previous, metadata, fresh, when):
     result = dict(metadata)
     history = list(previous.get('versiuni_anterioare', []))
     if usable(previous) and usable(metadata) and previous['sha256'] != metadata['sha256']:
-        history.append({k: previous[k] for k in ('sha256', 'fetched_at', 'snapshot') if k in previous})
+        history.append({k: previous[k] for k in ('sha256', 'fetched_at', 'snapshot', 'origine', 'salvat_la') if k in previous})
     if history:
         result['versiuni_anterioare'] = history
     if not fresh and previous.get('ultima_incercare') and usable(metadata) and previous.get('sha256') == metadata.get('sha256'):
@@ -947,7 +995,8 @@ def update_inventory(entries, docs, verified, previous, *, cache, selected=(), o
         path = cache / (ident + '.json')
         tracked = previous['sources'].get(ident)
         cached = read_cache(path)
-        refresh = url in fetch_urls and not offline
+        # A copy that the owner saved is never requested again (the site may forbid it). The owner imports a newer copy instead.
+        refresh = url in fetch_urls and not offline and not (is_saved(cached) or is_saved(tracked))
         response, origin = None, None
         if cached is not None and not (refresh and (force or url in force_urls)):
             response, origin = cached, 'cache'
@@ -1046,6 +1095,45 @@ def render_outputs(state):
     }
 
 
+def import_saved(cache, url, raw, saved_at, name, note=None, now=None):
+    """Keep a page that the owner saved from their browser as the cached body of `url`. Nothing is fetched.
+
+    The cache record is the same kind of file as a fetched body (`surse/<id>.json`), so the reader, `--check` and the review interface
+    treat it alike; it says `origine: copie-salvata-de-proprietar` and has no HTTP status. A fetched body that is already cached is never
+    replaced: StateError. Returns (response, previous) where `previous` is the file that the import replaced, or None."""
+    try:
+        response = protect(saved_copy(url, raw, saved_at, name, note, now))
+    except ValueError as exc:
+        raise StateError(str(exc)) from exc
+    path = Path(cache) / (source_id(response['url']) + '.json')
+    old = read_cache(path)
+    if old and old.get('state') == 'ok' and old.get('body') and not is_saved(old):
+        raise StateError(f'{response["url"]} has a fetched body in the cache. A saved copy never replaces fetched evidence.')
+    previous = path.read_bytes() if path.exists() else None
+    Path(cache).mkdir(parents=True, exist_ok=True)
+    write_file_atomic(path, dump(response))
+    return response, previous
+
+
+def restore_cache(cache, url, previous):
+    """Undo `import_saved` when the run that followed it failed."""
+    path = Path(cache) / (source_id(canonical(url)) + '.json')
+    if previous is None:
+        path.unlink(missing_ok=True)
+    else:
+        path.write_bytes(previous)
+
+
+def reading_of(value):
+    """`--reading`: a reader name, or a JSON object {tip, ...options}."""
+    if value is None:
+        return None
+    try:
+        return json.loads(value) if value.lstrip().startswith('{') else value
+    except ValueError as exc:
+        raise StateError(f'--reading is not valid JSON: {exc}') from exc
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('--data-dir', type=Path, default=PUBLIC_ROOT)
@@ -1072,7 +1160,12 @@ def main():
                         help='JSON list of source specifications: proiect, url, metoda, parinte, nota, locate {pagina, text}, dovezi [{pagina, text, rol}]')
     parser.add_argument('--method', default='adaugat-explicit', help='with --add-source: how the source was identified')
     parser.add_argument('--parent', help='with --add-source: the page or repository where the source was identified')
-    parser.add_argument('--note', help='with --add-source: a short note kept with the discovery')
+    parser.add_argument('--note', help='with --add-source: a short note kept with the discovery; with --import-saved: why the owner saved the page by hand')
+    parser.add_argument('--reading', metavar='READER', help='with --add-source or --import-saved: the reader of the source, a name or a JSON object {"tip": name, ...}')
+    parser.add_argument('--import-saved', nargs=3, metavar=('SLUG', 'URL', 'FILE'),
+                        help='keep a page that the owner saved from their browser as the retained body of URL and add it to SLUG; '
+                             'no request is made (implies --offline --only SLUG); needs --saved-at')
+    parser.add_argument('--saved-at', metavar='ISO8601', help='with --import-saved: when the owner saved the file, with a UTC offset (2026-10-25T20:39:00+02:00)')
     args = parser.parse_args()
     if args.max_files < 1 or (args.max_requests is not None and args.max_requests < 0):
         parser.error('--max-files must be positive and --max-requests cannot be negative')
@@ -1080,6 +1173,16 @@ def main():
         parser.error('--retire needs a recorded --reason')
     if args.probe and not args.lot:
         parser.error('--probe needs --lot so that every request is logged')
+    if args.import_saved:
+        if not args.saved_at:
+            parser.error('--import-saved needs --saved-at')
+        if args.check or args.probe or args.dry_run or args.force or args.force_url:
+            parser.error('--import-saved cannot run with --check, --probe, --dry-run, --force or --force-url')
+        if args.only and set(filter(None, args.only.split(','))) != {args.import_saved[0]}:
+            parser.error('--import-saved runs for its own slug only')
+        args.offline, args.only = True, args.import_saved[0]
+    elif args.saved_at:
+        parser.error('--saved-at belongs to --import-saved')
     if data_schema(args.data_dir) != 'v2':
         parser.error('Variable inventories require a taxonomy v2 data root.')
     obs = observation_paths(args.data_dir)['profile'].parent
@@ -1097,6 +1200,9 @@ def main():
         print(f'{len(report["errors"])} inventory evidence errors; {report["verified"]} source bodies hash-verified; '
               f'{len(report["unavailable"])} local bodies unavailable and not verified; {len(report["stale"])} sources with a failed refresh; '
               f'{report["concept_verified"]} dictionary evidence items verified, {len(report["concept_stale"])} stale')
+        saved = report['saved']
+        if saved['total']:
+            print(f'{saved["total"]} copies saved by the owner (not fetched): {saved["verified"]} hash-verified, {saved["unavailable"]} unavailable and not verified')
         return int(bool(report['errors']) or (args.strict_snapshots and bool(report['unavailable'])))
     entries = load_catalogue(args.data_dir)
     selected = set(filter(None, args.only.split(',')))
@@ -1129,15 +1235,27 @@ def main():
                   f"{' partial' if response.get('partial') else ''}{' redacted ' + str(response['redactari']) if response.get('redactari') else ''} {url}")
         print(f'{fetcher.requests} requests in this run')
         return 0
+    imported = None
     try:
         previous = load_previous(out)
-        additions = [(slug, {'url': url, 'metoda': args.method, 'parinte': args.parent, 'nota': args.note}) for slug, url in args.add_source]
+        reading = reading_of(args.reading)
+        additions = [(slug, {'url': url, 'metoda': args.method, 'parinte': args.parent, 'nota': args.note, 'citire': reading}) for slug, url in args.add_source]
         if args.add_sources_file:
             try:
                 specs = json.loads(args.add_sources_file.read_text())
             except (OSError, ValueError) as exc:
                 raise StateError(f'Cannot read {args.add_sources_file}: {exc}') from exc
             additions += [(spec['proiect'], resolve_spec(docs, spec['proiect'], {k: v for k, v in spec.items() if k != 'proiect'}, out / 'surse')) for spec in specs]
+        if args.import_saved:
+            slug, url, file = args.import_saved
+            try:
+                raw = Path(file).read_bytes()
+            except OSError as exc:
+                raise StateError(f'Cannot read {file}: {exc}') from exc
+            response, replaced = import_saved(out / 'surse', url, raw, args.saved_at, file, args.note)
+            imported = (response['url'], replaced)
+            # The source joins the project like `--add-source`; a specification in --add-sources-file for the same address comes first and keeps its locator.
+            additions.append((slug, {'url': response['url'], 'metoda': args.method, 'parinte': args.parent, 'nota': None, 'citire': reading}))
         state = update_inventory(
             entries, docs, verified, previous, cache=out / 'surse', selected=selected, offline=args.offline, force=args.force,
             max_files=args.max_files, fetch=fetcher, concepts=concepts, force_urls=args.force_url,
@@ -1146,9 +1264,13 @@ def main():
         if not args.dry_run:
             write_atomic(out, render_outputs(state))
     except StateError as exc:
+        if imported:
+            restore_cache(out / 'surse', *imported)
         print('ERROR: ' + str(exc))
         print('No inventory file was changed.')
         return 2
+    if imported:
+        print(f'saved copy kept: {imported[0]} (file sha256 {response["sha256_fisier"][:16]}, saved at {response["salvat_la"]}); not fetched')
     report = state['report']
     for key, label in (('reimprospatate', 'refreshed'), ('esuate', 'refresh failed; last evidence kept'),
                        ('pastrate', 'no local body; tracked record kept'), ('neinspectate', 'not inspected: request limit reached')):

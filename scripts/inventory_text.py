@@ -14,6 +14,8 @@ Each reader returns field records in the shape of inventory.parse_source and nev
   It lists the keys the document shows, the alternatives it declares and its comments. Example values are not a type contract.
 - `html-api-docs` (module `inventory_apidocs`): an API reference page whose endpoints are cards. Request inputs and response members become
   fields; the operations themselves are a separate list (`inventory_apidocs.operations`).
+- `html-carduri-csv` (module `inventory_csvcards`): a page whose cards offer CSV files with a list of columns. Each column becomes a field with
+  the description that the page declares; the files themselves are a separate list of datasets (`inventory_csvcards.csv_datasets`).
 
 Locators are exact. A character interval `char:START-END` addresses the declaration in the retained body. A table cell is addressed as
 `/tabele/T/randuri/R` or `/tabele/T/antet/C`. `inventory.py --check` parses the retained body again and compares every field.
@@ -25,6 +27,7 @@ import unicodedata
 from html.parser import HTMLParser
 
 from inventory_apidocs import api_docs
+from inventory_csvcards import csv_cards
 
 SAMPLE_ROWS = 5
 NAME_COLUMNS = {'matrice', 'nume', 'denumire', 'variabila', 'camp', 'coloana', 'field', 'column', 'name', 'variable', 'indicator',
@@ -622,7 +625,8 @@ def js_acces(body, objects=('fields',)):
 
 READERS = {'html-tabele': html_tabele, 'markdown': markdown, 'csharp': lambda body, options=None: csharp(body),
            'sql': lambda body, options=None: sql(body), 'php': lambda body, options=None: php(body),
-           'json-comentat': lambda body, options=None: json_comentat(body), 'html-api-docs': lambda body, options=None: api_docs(body, options)}
+           'json-comentat': lambda body, options=None: json_comentat(body), 'html-api-docs': lambda body, options=None: api_docs(body, options),
+           'html-carduri-csv': csv_cards}
 EXTENSIONS = {'.cs': 'csharp', '.sql': 'sql', '.php': 'php', '.md': 'markdown'}
 
 

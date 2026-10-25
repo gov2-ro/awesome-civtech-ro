@@ -1,14 +1,18 @@
 """Offline checks for the text-format readers: HTML and markdown tables, SQL, C#, Laravel PHP, annotated JSON in documents, page
 scripts and API reference pages. Fixtures in scripts/fixtures/text are copies of public files at recorded revisions or pages read on
 2026-10-25. `demoanaf-api-docs.html` is a trimmed copy of https://demoanaf.ro/api-docs (the copy buttons and 52 of the 60 endpoint cards
-removed; the markup of the kept parts is unchanged)."""
+removed; the markup of the kept parts is unchanged). `harta-firmelor-date.html` is a trimmed copy of https://harta-firmelor.ro/date as the owner
+saved it from their browser on 2026-10-25 (the scripts, the header and the footer, five of the eight file cards and ten of the fourteen columns of
+the first card removed; the markup of the kept parts is unchanged)."""
 import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from inventory import analyse_source, check_report, contract_index, link_contract, parse_source, strip_links
 from inventory_apidocs import operations as api_operations, parameter_items, read as read_api_docs
+from inventory_csvcards import csv_datasets, read as read_csv_cards
 from inventory_state import protect
 from inventory_text import (csharp, html_tabele, js_acces, json_comentat, markdown, parse_tables, php, sample_type, sql, table_fields)
 from test_inventory_state import Net, Workspace, docs_for, entry
@@ -375,6 +379,109 @@ class ApiDocsContract(unittest.TestCase):
         self.assertEqual(report['errors'], [])
         self.assertIn('contract comparison: ' + self.A + 'api-docs', report['unavailable'])
         self.assertEqual(report['verified'], 1, 'only the page body was hash-verified')
+
+
+class CsvCards(unittest.TestCase):
+    """A page whose cards offer CSV files, each with a list of columns (harta-firmelor.ro/date). The reader never downloads a file."""
+    URL = 'https://harta-firmelor.ro/date'
+
+    def setUp(self):
+        self.body = text('harta-firmelor-date.html')
+        self.datasets, self.fields = read_csv_cards(self.body, self.URL)
+        self.by_file = {d['fisier']['valoare']: d for d in self.datasets}
+
+    def cut(self, pointer):
+        start, end = pointer.split(':')[1].split('-')
+        return self.body[int(start):int(end)]
+
+    def test_each_card_with_a_download_link_is_a_dataset_and_other_cards_are_not(self):
+        self.assertEqual(list(self.by_file), ['firme-pe-an-infiintare.csv', 'bilanturi-pe-an.csv', 'registru-cifre.csv'])
+        self.assertEqual([d['coloane'] for d in self.datasets][1], ['year', 'balance_sheets', 'employees_reported', 'median_turnover_lei', 'partial_year'])
+        self.assertNotIn('Când se actualizează', ' '.join(d['titlu']['valoare'] for d in self.datasets))
+
+    def test_dataset_facts_keep_the_page_text_with_an_exact_locator_and_say_what_was_changed(self):
+        sheets = self.by_file['bilanturi-pe-an.csv']
+        self.assertEqual((sheets['titlu']['valoare'], sheets['randuri']['valoare'], sheets['perioada']['valoare']), ('Bilanțuri depuse pe an', 18, '2008 → 2025'))
+        self.assertEqual(sheets['masurat_la'], {'valoare': '2026-09-11', 'pointer': sheets['masurat_la']['pointer'], 'baza': 'declarat-in-pagina',
+                                                'text': '11.09.2026', 'transformare': 'data-zz.ll.aaaa-in-iso'})
+        self.assertEqual(self.cut(sheets['masurat_la']['pointer']), '11.09.2026')
+        self.assertEqual(self.cut(sheets['perioada']['pointer']), '2008 → 2025')
+        self.assertEqual(self.cut(sheets['fisier']['pointer']), '/date/bilanturi-pe-an.csv')
+        self.assertEqual((sheets['adresa']['valoare'], sheets['adresa']['legatura']), ('https://harta-firmelor.ro/date/bilanturi-pe-an.csv', '/date/bilanturi-pe-an.csv'))
+        registry = self.by_file['registru-cifre.csv']
+        self.assertEqual(registry['perioada']['valoare'], 'situația la 11.09.2026', 'a snapshot period stays text; it is not turned into a range')
+
+    def test_the_sources_of_a_file_are_listed_apart_in_page_order_with_their_own_locators(self):
+        names = [s['valoare'] for s in self.by_file['registru-cifre.csv']['surse']]
+        self.assertEqual(len(names), 9)
+        self.assertEqual((names[0], names[1], names[-1]), ('ONRC — Registrul Comerțului', 'Geocodare — adresele pe hartă', 'ANRM — licențe și permise miniere'))
+        for source in self.by_file['registru-cifre.csv']['surse']:
+            self.assertEqual(self.cut(source['pointer']), source['valoare'])
+        self.assertEqual([s['valoare'] for s in self.by_file['bilanturi-pe-an.csv']['surse']], ['MFP — bilanțurile'])
+
+    def test_the_licence_is_the_pages_and_covers_its_files(self):
+        licence = self.datasets[0]['licenta']
+        self.assertEqual((licence['valoare'], licence['acopera']), ('CC BY 4.0', 'fisierele-paginii'))
+        self.assertEqual(licence['url']['valoare'], 'https://creativecommons.org/licenses/by/4.0/')
+        self.assertEqual(licence['atribuire']['valoare'], 'Sursa: harta-firmelor.ro')
+        self.assertEqual(self.cut(licence['atribuire']['pointer']), 'Sursa: harta-firmelor.ro')
+        self.assertTrue(all(d['licenta'] == licence for d in self.datasets))
+
+    def test_every_column_is_a_field_with_its_declared_description_and_no_type(self):
+        self.assertEqual(len(self.fields), 12)
+        self.assertEqual(len({f['cale'] for f in self.fields}), 12, 'the same column name in two files is two fields')
+        self.assertEqual([f['nume'] for f in self.fields if f['nume'] == 'year'], ['year', 'year'])
+        self.assertTrue(all(f['descriere'] and f['tip_declarat'] is None and 'tipuri_observate' not in f for f in self.fields))
+        self.assertEqual({f['stare_tip'] for f in self.fields}, {'declarat-in-lista-documentatie'})
+        self.assertEqual({f['grup'] for f in self.fields}, set(self.by_file))
+        by_cale = {f['cale']: f for f in self.fields}
+        self.assertEqual(by_cale['bilanturi-pe-an.csv::year']['descriere'], 'Anul fiscal al bilanțului.')
+        self.assertEqual(by_cale['bilanturi-pe-an.csv::year']['perioada_declarata'], '2008 → 2025')
+
+    def test_a_field_locator_holds_the_name_and_the_description_as_the_page_writes_them(self):
+        for field in self.fields:
+            piece = self.cut(field['pointer'])
+            self.assertTrue(piece.startswith('<dt') and piece.endswith('</dd>'), piece[:40])
+            self.assertIn('>' + field['nume'] + '</dt>', piece)
+        active = next(f for f in self.fields if f['nume'] == 'status_active')
+        self.assertEqual(active['descriere'], 'Câte dintre ele au azi starea „In functiune".')
+        self.assertIn('„In functiune&quot;.', self.cut(active['pointer']), 'the entity stays in the retained text; the field holds the decoded text')
+
+    def test_a_unit_is_taken_only_from_a_phrase_that_states_it(self):
+        units = {f['cale']: (f['unitate'], f['baza_unitatii']) for f in self.fields if 'unitate' in f}
+        self.assertEqual(units, {'bilanturi-pe-an.csv::median_turnover_lei': ('lei nominali', 'declarat-in-descriere')})
+        employees = next(f for f in self.fields if f['nume'] == 'employees_reported')
+        self.assertNotIn('unitate', employees, 'a count of employees states no unit')
+
+    def test_the_reader_makes_no_request_and_the_dataset_list_matches_the_field_reader(self):
+        with patch('socket.socket', side_effect=AssertionError('the reader must not open a connection')):
+            fmt, fields, truncated = parse_source(self.body, self.URL, 'text/html', {'tip': 'html-carduri-csv'})
+            datasets = csv_datasets(self.body, self.URL)
+        self.assertEqual((fmt, fields, truncated, datasets), ('html-carduri-csv', self.fields, False, self.datasets))
+        with self.assertRaises(ValueError):
+            parse_source(self.body, self.URL, 'text/html')
+
+    def test_a_page_without_a_file_card_a_repeated_file_or_a_repeated_column_is_an_error(self):
+        with self.assertRaises(ValueError):
+            read_csv_cards('<html><body><h3 data-slot="card-title">Nothing</h3></body></html>')
+        card = ('<div data-slot="card"><h3 data-slot="card-title">T</h3><a href="/date/a.csv" download="">a.csv</a>'
+                '<dl><dt>Rânduri</dt><dd>1</dd></dl><h3>Coloanele</h3><dl>%s</dl></div>')
+        entry = '<div><dt>x</dt><dd>d</dd></div>'
+        self.assertEqual(len(read_csv_cards(card % entry)[1]), 1)
+        with self.assertRaises(ValueError):
+            read_csv_cards(card % (entry * 2))
+        with self.assertRaises(ValueError):
+            read_csv_cards((card % entry) * 2)
+        with self.assertRaises(ValueError):
+            read_csv_cards(card % '<div><dt>x</dt><dd></dd></div>')
+
+    def test_a_missing_fact_stays_empty_and_an_unreadable_date_stays_text(self):
+        page = ('<div data-slot="card"><h3 data-slot="card-title">T</h3><a href="/f/a.csv" download="">a.csv</a>'
+                '<dl><dt>Măsurat la</dt><dd>31.02.2026</dd></dl></div>')
+        dataset = read_csv_cards(page)[0][0]
+        self.assertEqual((dataset['masurat_la']['valoare'], dataset['randuri'], dataset['perioada'], dataset['surse'], dataset['licenta']),
+                         ('31.02.2026', None, None, [], None))
+        self.assertNotIn('transformare', dataset['masurat_la'])
 
 
 class Integration(unittest.TestCase):

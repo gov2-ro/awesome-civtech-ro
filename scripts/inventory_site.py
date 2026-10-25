@@ -6,6 +6,7 @@ import re
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
+from collect_docs import is_saved
 from common import observation_paths
 from inventory_concepts import active_groups, as_list, group_state, selector_matches
 
@@ -14,12 +15,12 @@ BASIS = {'declarat-in-schema': 'schema', 'declarat-in-metadate': 'metadata',
          'observat-in-esantion-json': 'sample', 'neprecizat-in-antet-csv': 'header',
          'declarat-in-cod-sursa': 'code', 'antet-tabel-html': 'table', 'declarat-in-tabel-documentatie': 'doctable',
          'declarat-in-text-documentatie': 'doctext', 'utilizat-in-cod-pagina': 'pagecode', 'exemplu-in-documentatie': 'docexample',
-         'declarat-in-documentatie-api': 'apidoc'}
+         'declarat-in-documentatie-api': 'apidoc', 'declarat-in-lista-documentatie': 'doclist'}
 FORMATS = {'openapi': 'Schemă API', 'json-schema': 'Schemă JSON', 'metadate-ins': 'Metadate de set',
            'json': 'Fișier JSON', 'csv': 'Fișier CSV', 'lista-ins': 'Listă de seturi INS',
            'html-tabele': 'Pagină cu tabele', 'markdown': 'Document Markdown', 'csharp': 'Cod C#', 'sql': 'Cod SQL', 'php': 'Cod PHP',
            'json-comentat': 'Exemple JSON în document', 'js-acces': 'Script de pagină',
-           'html-api-docs': 'Documentația API (pagină)'}
+           'html-api-docs': 'Documentația API (pagină)', 'html-carduri-csv': 'Pagină cu fișiere CSV descrise'}
 SOURCE_LABELS = {
     'Institutul Național de Statistică (INS)': 'INS', 'Ministerul Dezvoltării (MDLPA)': 'MDLPA',
     'Administrația Prezidențială': 'Adm. Prez', 'Monitorul Oficial': 'MO',
@@ -290,6 +291,9 @@ def publish_preview(items, root, site):
             listed = {'id': ident, 'url': url, 'title': title, 'format': fmt, 'checked': str(source.get('fetched_at', ''))[:10]}
             if source.get('set_date'):
                 listed['dataset'] = dataset_summary(source['set_date'])
+            if is_saved(source):
+                # A copy that the owner saved is shown as such; its date is the day of the saving, not of a request.
+                listed['savedByOwner'] = True
             if source.get('partial'):
                 listed['partial'] = True
             if source.get('via') == 'browser':

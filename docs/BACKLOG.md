@@ -89,9 +89,20 @@ The 62 unconfirmed profiles cover the full 140-entry catalogue, including organi
 - [x] Count a record that restates another source (`in_contract`) once. `inventory_state.counted_fields` drives the profile and report counts;
       the preview folds the restatement into the restated record as `also` evidence. DemoANAF: 221 → 130 counted fields; finder card 85 → 57; `cui` evidence 5 → 3.
 
-- [ ] `harta-firmelor.ro/date` lists "Surse" for each dataset: provider evidence for D136–D139 (ONRC, ANAF, SICAP/SEAP, Monitorul Oficial).
-      Every automated request gets HTTP 429 from a Vercel Security Checkpoint (the 2026-10-24 collection of `/`, `/llms.txt`, `/metodologie/`, `/despre/` too;
-      checked again on 2026-10-25). Do not pass the checkpoint with a headless browser. Use a copy that the owner saves from their browser, or ask the project.
+- [x] `harta-firmelor.ro/date` lists "Surse" for each dataset: provider evidence for D136–D139 (ONRC, ANAF, SICAP/SEAP, Monitorul Oficial). Done 2026-10-25 (v0.24.0) from copies that the owner saved
+      from their browser (`/date` and `llms.txt`, 20:39 +02:00), kept with `inventory.py --import-saved` and `collect_docs.py --import-saved`: no request was made. Reader `html-carduri-csv`: 8 datasets,
+      40 fields with a declared description, 1 unit, no type. D136–D139 now cite the retained text (`verificat`); D170–D173 propose the other providers the page names (Ministerul Finanțelor, the courts portal, BPI, ANRM).
+      Every automated request gets HTTP 429 from a Vercel Security Checkpoint, and `llms.txt` forbids automated extraction (see Verified limits).
+- [ ] Decide D136–D139 and D170–D173 in the review interface. The page labels are `ONRC — Registrul Comerțului`, `ANAF — evidența fiscală`, `SICAP — achizițiile publice`, `Monitorul Oficial, partea a IV-a`,
+      `MFP — bilanțurile`, `Justiție — dosarele`, `BPI — Buletinul Procedurilor de Insolvență` and `ANRM — licențe și permise miniere`; `Geocodare — adresele pe hartă` names no provider and has no item.
+      The page does not name the operator of the courts portal or the publisher of the BPI; D171 and D172 say so.
+- [ ] Group candidates from the `harta-firmelor` columns, for the owner to review (nothing was added to `inventar-concepte.json`): the seven `year` columns look like members of `perioada-de-referinta`
+      (the reference year of an aggregate row; each file dates a different event). `employees_reported` (a sum over balance sheets) and `median_turnover_lei` (a median) are not `numar-salariati` / `cifra-afaceri`:
+      those groups hold the value of one company, and their notes already keep national aggregates out.
+- [ ] If more columns are needed than the page lists: ask `harta-firmelor.ro` for a key to the official API (`https://api.harta-firmelor.ro/docs`, keys on request) or for the CSV headers. Do not download the CSV files.
+- [ ] Show the origin of an owner-saved copy in the review interface. The evidence panel says "sursă păstrată" for it; the record has `origine` `copie-salvata-de-proprietar`.
+- [ ] A guard for sites that forbid automated access. Only the saved addresses are protected today (`collect_docs.py` and `inventory.py` never request them). A run of `collect_docs.py --force`, `profile.py` or
+      `search.py` for the whole catalogue still requests the other addresses of `harta-firmelor.ro`. Skip the entry, with a recorded reason, in every script that requests a project's site.
 
 ### DemoANAF — paused 2026-10-25
 
@@ -430,6 +441,9 @@ Existing items below also cover profile refresh data loss, Sheets merge conflict
 
 ## Verified limits
 
+- [-] Collect `harta-firmelor.ro` automatically (the site, `/date`, the eight CSV files, `api.harta-firmelor.ro`). Every automated request gets HTTP 429 from a Vercel Security Checkpoint (2026-10-24 and 2026-10-25),
+      and its `llms.txt` says that automated mass extraction is not allowed (the terms of use and `robots.txt` protect the database). Do not pass the checkpoint with a headless browser.
+      Use a copy that the owner saves from their browser (`--import-saved`), or the official API with a key that the project issues on request.
 - [-] Read the script files of `demoanaf.ro/api-docs` for response fields. `ApiDocsPage-*.js` holds the same endpoint list as the page plus translation keys and no schema;
       `/en/api-docs` repeats the page. Measured 2026-10-25 with 3 requests; nothing to gain from more.
 - [-] GDELT news counts. GDELT answered "please limit requests" at 12 s spacing, and the

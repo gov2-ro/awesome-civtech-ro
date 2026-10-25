@@ -790,6 +790,22 @@ The collector does not change editorial tables or public fields.
 HTTP errors, network errors, HTML at a `llms.txt` address and homepage copies remain separate page states.
 Shared-host documentation is retained with `scope=gazda-comuna`. It does not become project-specific evidence automatically.
 
+**Pages saved by the owner.** A site can answer every automated request with a security checkpoint and forbid automated extraction in its terms.
+The owner can still open a page in their own browser and save it. `collect_docs.py --import-saved SLUG URL FILE --saved-at 2026-10-25T20:39:00+02:00 [--note TEXT]`
+keeps such a file as a documentation page. It makes no request. The time needs a UTC offset and cannot be in the future. The file must be UTF-8 text of at most 2,000,000 bytes.
+The page is read like a collected page (kind from the address, scope from the catalogue address, text, links). It has these keys, and nothing else says who made it:
+
+- `origine`: `copie-salvata-de-proprietar`. A fetched page has no `origine`. The tools never write this value for a fetched page, and never label a saved page as fetched.
+- `salvat_la`: the time as the owner gave it. `fetched_at` is the same instant in UTC and is the retrieval time. `http_status` is null.
+- `nume_fisier` (the name of the file, without its directory), `sha256_fisier` (the SHA-256 of the file's bytes) and `nota_copie` (the optional note).
+- `sha256` is the hash of the extracted text, as for every page. A plain-text file loses its outer spaces in the text, so `sha256_fisier` and `sha256` can differ.
+
+A saved page replaces a page with the same address that failed, or an older saved page. It never replaces a page that was fetched and collected (an error).
+A later run of the collector does not request an address that holds a saved page: the page stays as it is and gets no `ultima_incercare`.
+The other addresses of the same entry follow the ordinary rules, so a run with `--force` still requests them. Do not run it for a site that forbids automated access.
+`inventory.py --check` verifies a saved page: its keys are consistent, and the retained text has the recorded `sha256`. A text that is absent from the checkout is listed as unavailable and is never counted as verified.
+The owner keeps the file; the import command can run again from it, and its hash identifies the copy.
+
 The collector strips scripts and does not run JavaScript. Input and table candidates are not verified variable definitions.
 A declared API route is not a checked working endpoint. Keep API checks and their outcomes separate.
 After a new checkout, use `--force` to retrieve the local snapshots needed to review the evidence intervals.
@@ -881,7 +897,7 @@ spreadsheet, PDF, gzip, bodies with NUL bytes) get the state `format-binar` and 
 **Evidence check.** `inventory.py --check` makes no request and writes nothing. It prints four separate numbers: evidence errors
 (a changed body, a wrong hash, an invalid pointer, a broken reference), bodies hash-verified, bodies unavailable on this checkout
 (not verified, never counted as verified), and sources whose last refresh failed. Only errors fail the check;
-`--strict-snapshots` also fails on unavailable bodies.
+`--strict-snapshots` also fails on unavailable bodies. When the registry holds copies that the owner saved, a second line counts them apart (see "Pages saved by the owner").
 
 **Dataset facts of INS TEMPO metadata (`set_date`, `catalog`).** A source of format `metadate-ins` (a response of the ins.gov2.ro
 route `/api/datasets/{matrix_code}`) keeps its dimension fields (role `dimensiune`) and adds one `set_date` record. Each fact holds
@@ -928,9 +944,11 @@ All readers return the common field keys and add the keys below; none infers a m
 | `json-comentat` | Annotated JSON examples in fenced code blocks of a document. | `cale` is `heading::path`; `valori_enum` holds the alternatives of a `"a \| b"` string; `tip_referinta` holds a bare type name (`Speaker`); `descriere` holds the comment of the key's line; `tipuri_observate` records the kind of the example value. `stare_tip` `exemplu-in-documentatie`: the document shows the key, it does not promise a type. |
 | `js-acces` | Names that inline page scripts read from a record object. `{tip: js-acces, obiecte: [fields]}`. | `stare_tip` `utilizat-in-cod-pagina`, `accesari`. It shows what the page uses; it is not a schema and it does not read the data behind the page. |
 | `html-api-docs` | An API reference page whose endpoints are cards: a method badge, a path template with `:name` segments, access badges, a `Cache:` label, a description and a `Parametri:` line. `{tip: html-api-docs, contract: URL}`; `contract` names the OpenAPI source of the same project (optional). | Module `inventory_apidocs`. See "API reference pages" below. Request inputs and response members become fields; operations are a separate list. `stare_tip` `declarat-in-documentatie-api`; locator `char:START-END`. |
+| `html-carduri-csv` | A page whose cards offer CSV files: a title, a description, a download link to a `.csv` file, a list of labelled values (`Rânduri`, `Perioada`, `Măsurat la`, `Surse`) and, under the heading `Coloanele`, a list of columns (name and description). `{tip: html-carduri-csv}`. | Module `inventory_csvcards`. See "Pages of CSV files" below. Each column is a field; each file is a dataset in the source key `seturi`. `stare_tip` `declarat-in-lista-documentatie`; locator `char:START-END`. |
 
 New `stare_tip` values: `declarat-in-cod-sursa`, `antet-tabel-html`, `declarat-in-tabel-documentatie`, `declarat-in-text-documentatie`,
-`exemplu-in-documentatie`, `utilizat-in-cod-pagina`; `html-api-docs` also uses `declarat-in-documentatie-api`. `baza_tipului` of a source in these formats is `cod-sau-documentatie`.
+`exemplu-in-documentatie`, `utilizat-in-cod-pagina`; `html-api-docs` also uses `declarat-in-documentatie-api`; `html-carduri-csv` uses `declarat-in-lista-documentatie`
+(the page lists the column with its description; the list is not a table and not a type declaration). `baza_tipului` of a source in these formats is `cod-sau-documentatie`.
 `--check` parses the retained body again and compares every field, so a changed interval, pointer or type is an error.
 
 **API reference pages (`html-api-docs`).** The reader keeps three kinds of fact apart and never calls the API.
@@ -947,6 +965,22 @@ New `stare_tip` values: `declarat-in-cod-sursa`, `antet-tabel-html`, `declarat-i
   A text with an unknown shape, brackets that do not close, markup in the `Parametri:` line, a duplicated operation or a page with no card is an error (state `eroare-parsare`); the reader never guesses.
 - Response members: fields with role `camp-raspuns` and group `plic-raspuns`. They are the names in the line `Format: { success, data, meta }` (`stare_tip` `declarat-in-documentatie-api`) and the keys of the JSON error example
   under the heading with `(429)` (`stare_tip` `exemplu-in-documentatie`, `status_raspuns` `429`, `tipuri_observate` from the example value). They have no `operatie`: the page states them for the whole API. They are generic envelope members, not business variables.
+
+**Pages of CSV files (`html-carduri-csv`).** The reader keeps what the page states about each file it offers, and never downloads a file. It makes no request.
+
+- Datasets: the source key `seturi`, one record for each card with a download link, in page order. Each fact has `valoare`, `pointer` (`char:START-END`, an interval of the retained body)
+  and `baza` `declarat-in-pagina`. Keys: `fisier` (the file name), `adresa` (the link resolved against the page address; `legatura` keeps the link as written, `transformare` `legatura-rezolvata`), `titlu`,
+  `descriere`, `randuri` (an integer when the page writes one), `perioada` (the text as written, for example `1990 → 2026` or `situația la 11.09.2026`; it is not turned into a range), `masurat_la`
+  (an ISO date; `text` keeps the page's `zz.ll.aaaa` and `transformare` says so; a date that does not parse stays text), `surse` (the sources named by the page, one fact each, in page order),
+  `licenta`, `coloane` (the column names in page order) and `pointer` (the whole card). A missing fact is `null` (`surse` is `[]`). Nothing is inferred from a file name or a title.
+- `licenta` is the licence that the page states once for its files: `valoare` (`CC BY 4.0`), `acopera` `fisierele-paginii`, `url` (the link marked `rel="license"`) and `atribuire` (the attribution line), each a fact with a locator.
+  It is `null` when the page has no licence card.
+- A source name (`surse`) is the label that the page writes (`MFP — bilanțurile`). It is not a provider: the review items name the provider and the roles of producer, distributor and project author.
+- Fields: one for each listed column. `nume` is the column name, `cale` is `<file>::<column>` and `grup` is the file name (the same column name in two files is two fields), `rol` `camp-date`, `descriere` is the text of the page with entities decoded,
+  `tip_declarat` is null (the page declares no type), and `perioada_declarata` is the period of the file. `unitate` and `baza_unitatii` (`declarat-in-descriere`) appear only when the description writes a unit after `în`
+  (`în lei nominali`); a column name such as `median_turnover_lei` is not evidence of a unit. The locator is the interval from the `<dt>` of the column to the end of its `<dd>`.
+- A page with no file card, a file offered twice, a column listed twice in one file or a column without a description is an error (state `eroare-parsare`); the reader never guesses.
+- `--check` parses the retained body again and compares the fields and the datasets.
 
 **Comparison with the contract.** When `citire.contract` names a source of the same project that is parsed and whose body this checkout holds, `inventory.py` compares the page with it after every run.
 Each operation and each request input gets `in_contract`: `{sursa_id, pointer}` of the declaration in the contract, or `null` when the contract does not declare it. A field with no `operatie` has no `in_contract` key
@@ -966,6 +1000,25 @@ It does not prove that the deployed project uses it today.
 **Other locator kinds in the registry.** `{pointer: /body, interval, fragment, sha256, snapshot}` locates text in a body kept in the source cache
 (a page that the inventory read but did not parse as a source). `{tip: randare, snapshot, pointer /cereri_date/N, valoare}` locates a data request that the browser
 helper saw. A `link` locator (`/links/N` of a collected page, with `fragment` the link) is verified like an automatic discovery.
+
+**Pages saved by the owner (`--import-saved`).** `inventory.py --import-saved SLUG URL FILE --saved-at 2026-10-25T20:39:00+02:00 [--note TEXT] [--reading NAME|JSON] [--parent URL]`
+keeps a file that the owner saved from their browser as the retained body of `URL`, and adds `URL` to project `SLUG` like `--add-source`. It implies `--offline --only SLUG`
+and refuses `--check`, `--probe`, `--dry-run`, `--force` and `--force-url`, so it cannot make a request. `--add-sources-file` can accompany it; a specification for the same address
+comes first and keeps its locators and its reader (`citire`). The body goes to the ordinary cache (`surse/<id>.json`, gitignored) and, once parsed, to the immutable snapshot. Both are
+the same kind of file as a fetched body, so the reader, `--check` and the review interface treat them alike. The source record differs from a fetched one in these keys:
+
+- `origine` `copie-salvata-de-proprietar`, `salvat_la`, `nume_fisier`, `sha256_fisier`, `nota_copie`: as for a saved documentation page (see above).
+  `fetched_at` is the saved-at time in UTC, `http_status` is null, `state` is `ok`.
+- `sha256` is the hash of the retained body. When the page had no credential masked (`redactari` absent), `sha256` equals `sha256_fisier`, and `--check` reports a difference as an error.
+  A masked credential changes the body on purpose, and then the two hashes differ.
+- The explorer preview adds `savedByOwner` to the source and writes "copie salvată de proprietar la <date>" instead of "consultat la <date>".
+
+A saved copy is never refreshed: a run with `--force` or `--force-url` makes no request for it, and a tracked saved source without its cache file keeps its record
+(`no local body; tracked record kept`). A newer copy replaces the older one through the same command; the earlier version stays in `versiuni_anterioare` with its `origine`.
+A fetched body that is already in the cache is never replaced by a saved copy (an error; a cached failure is replaced). When the run fails after the import, the previous cache file is put back.
+`--check` verifies the retained body of a saved source like any other body (hash, and for `html-carduri-csv` the fields and datasets), and checks that `http_status` is null, `fetched_at` is the saved-at time and
+`sha256_fisier` is a SHA-256. It prints a line "N copies saved by the owner (not fetched): V hash-verified, U unavailable and not verified". A body that is absent is unavailable, never verified.
+The coverage export marks an entry with such a source with the lot `S`. The file stays with the owner (it is not in git); the cache and the snapshot are gitignored, so a new checkout imports the file again.
 
 **Credentials.** A public page can embed a credential in its script. The fetcher masks values of the shape of an Airtable personal token,
 or of a quoted `api_key`, `token`, `secret`, `password` or `bearer` value of 16 characters or more, in HTML and script bodies, before the body is stored or hashed.
@@ -1011,7 +1064,7 @@ The export keeps fields, business groups, declarations, observations and unknown
 | Column | Meaning and denominator |
 | --- | --- |
 | `slug`, `tip_entitate` | The entry and its type in the catalogue (`proiect`, `resursa`, `publicatie`, `organizatie`). |
-| `investigat_in_lot` | The collection lots that touched the entry: `C` (the primary batch), `B` (INS metadata attached), `B2` (a source added for a named gap), `baza` (fields from the first pass only). Empty: not investigated. |
+| `investigat_in_lot` | The collection lots that touched the entry: `C` (the primary batch), `B` (INS metadata attached), `B2` (a source added for a named gap), `S` (a page that the owner saved by hand), `baza` (fields from the first pass only). Empty: not investigated. |
 | `stare_investigare` | `cu-surse-structurate` (at least one parsed source), `blocat` (sources only failed), `neinvestigat-in-lot`, `in-afara-ariei` (organisations: the finder lists projects and resources). |
 | `surse_structurate` | Parsed structured sources in the profile. A source that several entries share counts for each. |
 | `campuri_din_surse` | Source-scoped field records of those sources. They are paths, not independent variables. |
@@ -1039,7 +1092,7 @@ The default public build does not export these draft inventories.
   The row keeps its individual references and operations. Other field records remain distinct.
 - Declared extras enter the payload when present: `enum` (declared alternatives), `formula`, `group`, `period`, `value`, `line`, `expression`, `required`.
   A source adds `dataset` (code, name, update date, period, geographic levels, declared units, dimensions; the interface says that INS metadata comes from a mirror),
-  `partial` (read as a bounded sample), `viaBrowser` and `refreshFailed`.
+  `partial` (read as a bounded sample), `viaBrowser`, `savedByOwner` (a copy that the owner saved by hand) and `refreshFailed`.
 - HTML control candidates, raw snapshots, hashes, browser request dumps and network diagnostics do not enter the preview payload.
 - Documentation-only entries link their collected first-party pages. Entries with no inventory evidence get no marker.
 

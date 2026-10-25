@@ -134,10 +134,10 @@ L132,demoanaf,date_din,,ANAF,surse-date; candidat cu dovadă,https://demoanaf.ro
 L133,demoanaf,date_din,,Banca Națională a României (BNR),surse-date; candidat cu dovadă,https://demoanaf.ro/surse-date,propus
 L134,demoanaf,date_din,,Oficiul Național al Registrului Comerțului (ONRC),surse-date; candidat cu dovadă,https://demoanaf.ro/surse-date,propus
 L135,executii-bugetare,date_din,,Ministerul Finanțelor,descriere; candidat neverificat,https://executii-bugetare.g4d.ro/,propus
-L136,harta-firmelor,date_din,,Oficiul Național al Registrului Comerțului (ONRC),descriere; candidat neverificat,https://harta-firmelor.ro,propus
-L137,harta-firmelor,date_din,,ANAF,descriere; candidat neverificat,https://harta-firmelor.ro,propus
-L138,harta-firmelor,date_din,,SICAP / SEAP,descriere; candidat neverificat,https://harta-firmelor.ro,propus
-L139,harta-firmelor,date_din,,Monitorul Oficial,descriere; candidat neverificat,https://harta-firmelor.ro,propus
+L136,harta-firmelor,date_din,,Oficiul Național al Registrului Comerțului (ONRC),surse-date; candidat cu dovadă,https://harta-firmelor.ro/date,propus
+L137,harta-firmelor,date_din,,ANAF,surse-date; candidat cu dovadă,https://harta-firmelor.ro/date,propus
+L138,harta-firmelor,date_din,,SICAP / SEAP,surse-date; candidat cu dovadă,https://harta-firmelor.ro/date,propus
+L139,harta-firmelor,date_din,,Monitorul Oficial,surse-date; candidat cu dovadă,https://harta-firmelor.ro/date,propus
 L140,registrul-firmelor,date_din,,Oficiul Național al Registrului Comerțului (ONRC),descriere; candidat neverificat,https://registru.horecaos.org/,propus
 L141,registrul-firmelor,date_din,,ANAF,descriere; candidat neverificat,https://registru.horecaos.org/,propus
 L142,achizitii-directe-ti-2026,date_din,,SICAP / SEAP,descriere; candidat neverificat,https://achizitii-directe-ti-2026.mariuscomper.uk/,propus

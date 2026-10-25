@@ -311,6 +311,10 @@ python3 scripts/inventory.py --offline        # reconstruiește propunerile făr
 python3 scripts/inventory.py --check          # verifică dovezile locale; nu descarcă și nu rescrie
 python3 scripts/inventory_report.py           # acoperirea (acoperire.csv) și raportul docs/reports/inventory-expansion.md
 python3 scripts/collect_docs.py --only afacut --force --follow-data-links
+# pagină salvată de proprietar din browserul propriu, când site-ul refuză cererile automate; nu se face nicio cerere
+python3 scripts/collect_docs.py --import-saved harta-firmelor https://harta-firmelor.ro/llms.txt FISIER --saved-at 2026-10-25T20:39:00+02:00
+python3 scripts/inventory.py --import-saved harta-firmelor https://harta-firmelor.ro/date FISIER --saved-at 2026-10-25T20:39:00+02:00 \
+    --add-sources-file data/taxonomy-v2/observatii/inventare/adaugari/harta-firmelor-date.json
 ```
 
 Rezultatele sunt în `data/taxonomy-v2/observatii/inventare/`.
@@ -320,6 +324,8 @@ Rezultatele sunt în `data/taxonomy-v2/observatii/inventare/`.
 `seturi-date.json` păstrează definițiile comune, referințele din scheme și dovezile.
 Fișierele descărcate rămân locale în `surse/`, cu versiuni identificate prin hash.
 Toate inventarele sunt propuneri parțiale. Colectorul nu publică automat date și nu folosește servicii plătite.
+O copie salvată de proprietar (`--import-saved`) are originea `copie-salvata-de-proprietar`, nu este niciodată etichetată ca descărcată și nu este cerută din nou.
+Ora salvării are nevoie de decalaj UTC. Fișierul rămâne la proprietar; `--check` verifică amprenta textului păstrat.
 
 ### Previzualizarea inventarelor în explorator
 
@@ -341,8 +347,8 @@ Variabilele selectate se cumulează. În celelalte filtre, opțiunile sunt alter
 Asocierile inițiale sunt propuneri în `data/taxonomy-v2/inventar-concepte.json`, cu selectori expliciți pentru proiect și câmp.
 Pagina arată dovezi pentru fiecare asociere. Un nume comun nu garantează că seturile se pot combina.
 
-Acoperirea curentă: 27 din 127 de proiecte și resurse au câmpuri extrase din surse structurate.
-Cele 3.525 de înregistrări sunt câmpuri și căi din surse, nu variabile independente; 30 de grupuri de variabile sunt propuse.
+Acoperirea curentă: 28 din 127 de proiecte și resurse au câmpuri extrase din surse structurate.
+Cele 3.593 de înregistrări sunt câmpuri și căi din surse, nu variabile independente; 30 de grupuri de variabile sunt propuse.
 Raportul complet, cu limite, blocaje și rezultatele verificărilor, este în [inventory-expansion.md](docs/reports/inventory-expansion.md).
 Lucrările rămase sunt în [BACKLOG.md](docs/BACKLOG.md#inventory-expansion--implemented-2026-10-25-milestones-ae-v0140v0180).
 Specificația implementată este în [inventory-expansion.md](docs/briefs/inventory-expansion.md).

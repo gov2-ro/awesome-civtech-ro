@@ -151,6 +151,17 @@
       ],
       "blocaj": "Toate operațiile cer o cheie Pro; niciun apel API nu a fost făcut, deci câmpurile răspunsului nu sunt cunoscute.",
       "urmatorul_pas": "Cereți proiectului schema răspunsurilor sau un exemplu pentru operațiile company, financials și health."
+    },
+    "harta-firmelor": {
+      "limite": [
+        "Pagina /date și llms.txt sunt copii salvate de proprietar pe 2026-10-25, 20:39 (+02:00), nu preluate de un script. Nicio cerere nu a fost făcută către harta-firmelor.ro sau către API-ul lui.",
+        "Cele opt fișiere CSV nu au fost descărcate. Inventarul citește numai lista de coloane din pagină: 40 de câmpuri, toate cu descriere declarată, niciunul cu tip declarat.",
+        "O singură unitate este declarată de text (median_turnover_lei: „lei nominali”). Pagina spune în general că anii sunt numere întregi și că o celulă goală înseamnă „nemăsurat”; regulile nu sunt înregistrate ca tipuri pe coloane.",
+        "Cifrele sunt agregate pe an sau pe registru (sume, mediane, numărători). Nu descriu o firmă și nu sunt aceeași măsură cu valorile pe firmă din alte surse.",
+        "Sursa „Geocodare — adresele pe hartă” (registru-cifre.csv) nu numește un furnizor; nu are element de revizuire."
+      ],
+      "blocaj": "Orice cerere automată primește HTTP 429 de la Vercel Security Checkpoint, iar llms.txt spune că termenii de utilizare interzic extragerea sistematică a datelor. Colectarea automată nu este permisă.",
+      "urmatorul_pas": "Cereți proiectului o cheie pentru API-ul oficial (api.harta-firmelor.ro/docs) sau antetele celor opt fișiere CSV, dacă sunt necesare coloane în plus față de pagină. Nu colectați site-ul automat."
     }
   },
   "ins": [

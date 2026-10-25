@@ -48808,6 +48808,1092 @@
       "baza_tipului": "cod-sau-documentatie"
     },
     {
+      "url": "https://harta-firmelor.ro/date",
+      "final_url": "https://harta-firmelor.ro/date",
+      "http_status": null,
+      "fetched_at": "2026-10-25T18:39:00+00:00",
+      "content_type": "text/html",
+      "state": "ok",
+      "origine": "copie-salvata-de-proprietar",
+      "salvat_la": "2026-10-25T20:39:00+02:00",
+      "nume_fisier": "harta-firmelor.ro-date.html",
+      "sha256_fisier": "926aeef9d421d1eed21f38f60ceb6a6e44a69ce638c6fb2d94683546846408ca",
+      "nota_copie": "Saved by the owner from their own browser. The site answers every automated request with HTTP 429 (Vercel Security Checkpoint) and its llms.txt forbids automated extraction. The CSV files themselves were not downloaded.",
+      "citire": {
+        "tip": "html-carduri-csv"
+      },
+      "id": "d2453a05f2b1481a8a83",
+      "campuri": [
+        {
+          "nume": "year",
+          "cale": "firme-pe-an-infiintare.csv::year",
+          "grup": "firme-pe-an-infiintare.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Anul înființării firmei, din fila ei în registru.",
+          "pointer": "char:34954-35141",
+          "perioada_declarata": "1990 → 2026"
+        },
+        {
+          "nume": "firms_founded",
+          "cale": "firme-pe-an-infiintare.csv::firms_founded",
+          "grup": "firme-pe-an-infiintare.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Firme înființate în acel an, cu fila lor în registru azi.",
+          "pointer": "char:35229-35433",
+          "perioada_declarata": "1990 → 2026"
+        },
+        {
+          "nume": "status_active",
+          "cale": "firme-pe-an-infiintare.csv::status_active",
+          "grup": "firme-pe-an-infiintare.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Câte dintre ele au azi starea „In functiune\".",
+          "pointer": "char:35521-35718",
+          "perioada_declarata": "1990 → 2026"
+        },
+        {
+          "nume": "status_deregistered",
+          "cale": "firme-pe-an-infiintare.csv::status_deregistered",
+          "grup": "firme-pe-an-infiintare.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Câte dintre ele au azi starea „Radiata\".",
+          "pointer": "char:35806-36004",
+          "perioada_declarata": "1990 → 2026"
+        },
+        {
+          "nume": "status_dissolution",
+          "cale": "firme-pe-an-infiintare.csv::status_dissolution",
+          "grup": "firme-pe-an-infiintare.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Câte dintre ele au azi starea „In dizolvare\".",
+          "pointer": "char:36092-36294",
+          "perioada_declarata": "1990 → 2026"
+        },
+        {
+          "nume": "status_liquidation",
+          "cale": "firme-pe-an-infiintare.csv::status_liquidation",
+          "grup": "firme-pe-an-infiintare.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Câte dintre ele au azi starea „In lichidare\".",
+          "pointer": "char:36382-36584",
+          "perioada_declarata": "1990 → 2026"
+        },
+        {
+          "nume": "status_insolvency",
+          "cale": "firme-pe-an-infiintare.csv::status_insolvency",
+          "grup": "firme-pe-an-infiintare.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Câte dintre ele au azi starea „Insolventa\".",
+          "pointer": "char:36672-36871",
+          "perioada_declarata": "1990 → 2026"
+        },
+        {
+          "nume": "status_bankruptcy",
+          "cale": "firme-pe-an-infiintare.csv::status_bankruptcy",
+          "grup": "firme-pe-an-infiintare.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Câte dintre ele au azi starea „Faliment\".",
+          "pointer": "char:36959-37156",
+          "perioada_declarata": "1990 → 2026"
+        },
+        {
+          "nume": "status_reorganization",
+          "cale": "firme-pe-an-infiintare.csv::status_reorganization",
+          "grup": "firme-pe-an-infiintare.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Câte dintre ele au azi starea „In reorganizare\".",
+          "pointer": "char:37244-37452",
+          "perioada_declarata": "1990 → 2026"
+        },
+        {
+          "nume": "status_suspended",
+          "cale": "firme-pe-an-infiintare.csv::status_suspended",
+          "grup": "firme-pe-an-infiintare.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Câte dintre ele au azi starea „Suspendata\".",
+          "pointer": "char:37540-37738",
+          "perioada_declarata": "1990 → 2026"
+        },
+        {
+          "nume": "status_temporary_interruption",
+          "cale": "firme-pe-an-infiintare.csv::status_temporary_interruption",
+          "grup": "firme-pe-an-infiintare.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Câte dintre ele au azi starea „Intrerupere temporara de activitate\".",
+          "pointer": "char:37826-38062",
+          "perioada_declarata": "1990 → 2026"
+        },
+        {
+          "nume": "status_unknown",
+          "cale": "firme-pe-an-infiintare.csv::status_unknown",
+          "grup": "firme-pe-an-infiintare.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Câte dintre ele au azi starea „Status necunoscut\".",
+          "pointer": "char:38150-38353",
+          "perioada_declarata": "1990 → 2026"
+        },
+        {
+          "nume": "bucharest_ilfov",
+          "cale": "firme-pe-an-infiintare.csv::bucharest_ilfov",
+          "grup": "firme-pe-an-infiintare.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Câte dintre ele au sediul în București sau Ilfov.",
+          "pointer": "char:38441-38639",
+          "perioada_declarata": "1990 → 2026"
+        },
+        {
+          "nume": "partial_year",
+          "cale": "firme-pe-an-infiintare.csv::partial_year",
+          "grup": "firme-pe-an-infiintare.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "true pentru anul măsurătorii, care nu s-a încheiat; false pentru restul anilor.",
+          "pointer": "char:38727-38952",
+          "perioada_declarata": "1990 → 2026"
+        },
+        {
+          "nume": "year",
+          "cale": "bilanturi-pe-an.csv::year",
+          "grup": "bilanturi-pe-an.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Anul fiscal al bilanțului.",
+          "pointer": "char:41515-41679",
+          "perioada_declarata": "2008 → 2025"
+        },
+        {
+          "nume": "balance_sheets",
+          "cale": "bilanturi-pe-an.csv::balance_sheets",
+          "grup": "bilanturi-pe-an.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Bilanțuri anuale depuse pentru acel an.",
+          "pointer": "char:41767-41954",
+          "perioada_declarata": "2008 → 2025"
+        },
+        {
+          "nume": "employees_reported",
+          "cale": "bilanturi-pe-an.csv::employees_reported",
+          "grup": "bilanturi-pe-an.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Suma salariaților declarați în acele bilanțuri.",
+          "pointer": "char:42042-42241",
+          "perioada_declarata": "2008 → 2025"
+        },
+        {
+          "nume": "median_turnover_lei",
+          "cale": "bilanturi-pe-an.csv::median_turnover_lei",
+          "grup": "bilanturi-pe-an.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Mediana cifrei de afaceri, în lei nominali (neajustați cu inflația); gol unde nu se poate măsura.",
+          "pointer": "char:42329-42579",
+          "perioada_declarata": "2008 → 2025",
+          "unitate": "lei nominali",
+          "baza_unitatii": "declarat-in-descriere"
+        },
+        {
+          "nume": "partial_year",
+          "cale": "bilanturi-pe-an.csv::partial_year",
+          "grup": "bilanturi-pe-an.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "true pentru anul măsurătorii, care nu s-a încheiat; false pentru restul anilor.",
+          "pointer": "char:42667-42892",
+          "perioada_declarata": "2008 → 2025"
+        },
+        {
+          "nume": "year",
+          "cale": "monitorul-oficial-pe-an.csv::year",
+          "grup": "monitorul-oficial-pe-an.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Anul publicării în Monitorul Oficial.",
+          "pointer": "char:45519-45694",
+          "perioada_declarata": "2008 → 2026"
+        },
+        {
+          "nume": "acts",
+          "cale": "monitorul-oficial-pe-an.csv::acts",
+          "grup": "monitorul-oficial-pe-an.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Acte publicate în acel an.",
+          "pointer": "char:45782-45946",
+          "perioada_declarata": "2008 → 2026"
+        },
+        {
+          "nume": "partial_year",
+          "cale": "monitorul-oficial-pe-an.csv::partial_year",
+          "grup": "monitorul-oficial-pe-an.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "true pentru anul măsurătorii, care nu s-a încheiat; false pentru restul anilor.",
+          "pointer": "char:46034-46259",
+          "perioada_declarata": "2008 → 2026"
+        },
+        {
+          "nume": "year",
+          "cale": "dosare-pe-an.csv::year",
+          "grup": "dosare-pe-an.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Anul dosarului, așa cum îl datează portalul instanțelor.",
+          "pointer": "char:48854-49048",
+          "perioada_declarata": "1956 → 2026"
+        },
+        {
+          "nume": "court_cases",
+          "cale": "dosare-pe-an.csv::court_cases",
+          "grup": "dosare-pe-an.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Dosare cu cel puțin o firmă ca parte.",
+          "pointer": "char:49136-49318",
+          "perioada_declarata": "1956 → 2026"
+        },
+        {
+          "nume": "partial_year",
+          "cale": "dosare-pe-an.csv::partial_year",
+          "grup": "dosare-pe-an.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "true pentru anul măsurătorii, care nu s-a încheiat; false pentru restul anilor.",
+          "pointer": "char:49406-49631",
+          "perioada_declarata": "1956 → 2026"
+        },
+        {
+          "nume": "year",
+          "cale": "insolvente-pe-an.csv::year",
+          "grup": "insolvente-pe-an.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Anul actului de deschidere.",
+          "pointer": "char:52269-52434",
+          "perioada_declarata": "2004 → 2026"
+        },
+        {
+          "nume": "insolvency_openings",
+          "cale": "insolvente-pe-an.csv::insolvency_openings",
+          "grup": "insolvente-pe-an.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Acte de deschidere a procedurii de insolvență.",
+          "pointer": "char:52522-52721",
+          "perioada_declarata": "2004 → 2026"
+        },
+        {
+          "nume": "partial_year",
+          "cale": "insolvente-pe-an.csv::partial_year",
+          "grup": "insolvente-pe-an.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "true pentru anul măsurătorii, care nu s-a încheiat; false pentru restul anilor.",
+          "pointer": "char:52809-53034",
+          "perioada_declarata": "2004 → 2026"
+        },
+        {
+          "nume": "year",
+          "cale": "stari-fiscale-pe-an.csv::year",
+          "grup": "stari-fiscale-pe-an.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Anul stării fiscale.",
+          "pointer": "char:55617-55775",
+          "perioada_declarata": "2018 → 2026"
+        },
+        {
+          "nume": "fiscal_records",
+          "cale": "stari-fiscale-pe-an.csv::fiscal_records",
+          "grup": "stari-fiscale-pe-an.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Stări fiscale înregistrate de ANAF.",
+          "pointer": "char:55863-56046",
+          "perioada_declarata": "2018 → 2026"
+        },
+        {
+          "nume": "partial_year",
+          "cale": "stari-fiscale-pe-an.csv::partial_year",
+          "grup": "stari-fiscale-pe-an.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "true pentru anul măsurătorii, care nu s-a încheiat; false pentru restul anilor.",
+          "pointer": "char:56134-56359",
+          "perioada_declarata": "2018 → 2026"
+        },
+        {
+          "nume": "year",
+          "cale": "achizitii-publice-pe-an.csv::year",
+          "grup": "achizitii-publice-pe-an.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Anul publicării contractului sau al anunțului.",
+          "pointer": "char:59035-59219",
+          "perioada_declarata": "2007 → 2026"
+        },
+        {
+          "nume": "direct_contracts",
+          "cale": "achizitii-publice-pe-an.csv::direct_contracts",
+          "grup": "achizitii-publice-pe-an.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Contracte de achiziție directă publicate în SICAP.",
+          "pointer": "char:59307-59507",
+          "perioada_declarata": "2007 → 2026"
+        },
+        {
+          "nume": "offline_contracts",
+          "cale": "achizitii-publice-pe-an.csv::offline_contracts",
+          "grup": "achizitii-publice-pe-an.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Contracte atribuite offline, raportate în SICAP.",
+          "pointer": "char:59595-59794",
+          "perioada_declarata": "2007 → 2026"
+        },
+        {
+          "nume": "tender_notices",
+          "cale": "achizitii-publice-pe-an.csv::tender_notices",
+          "grup": "achizitii-publice-pe-an.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Anunțuri de atribuire din licitațiile publice.",
+          "pointer": "char:59882-60076",
+          "perioada_declarata": "2007 → 2026"
+        },
+        {
+          "nume": "tender_contracts",
+          "cale": "achizitii-publice-pe-an.csv::tender_contracts",
+          "grup": "achizitii-publice-pe-an.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Numere de anunț distincte din acele licitații (numărare aproximativă peste 40.000 pe an).",
+          "pointer": "char:60164-60403",
+          "perioada_declarata": "2007 → 2026"
+        },
+        {
+          "nume": "partial_year",
+          "cale": "achizitii-publice-pe-an.csv::partial_year",
+          "grup": "achizitii-publice-pe-an.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "true pentru anul măsurătorii, care nu s-a încheiat; false pentru restul anilor.",
+          "pointer": "char:60491-60716",
+          "perioada_declarata": "2007 → 2026"
+        },
+        {
+          "nume": "metric",
+          "cale": "registru-cifre.csv::metric",
+          "grup": "registru-cifre.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Numele cifrei (stabil între actualizări).",
+          "pointer": "char:63570-63751",
+          "perioada_declarata": "situația la 11.09.2026"
+        },
+        {
+          "nume": "value",
+          "cale": "registru-cifre.csv::value",
+          "grup": "registru-cifre.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Valoarea: un număr, un nume sau o dată ISO.",
+          "pointer": "char:63839-64021",
+          "perioada_declarata": "situația la 11.09.2026"
+        },
+        {
+          "nume": "description",
+          "cale": "registru-cifre.csv::description",
+          "grup": "registru-cifre.csv",
+          "rol": "camp-date",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-documentatie",
+          "descriere": "Ce măsoară cifra, în română.",
+          "pointer": "char:64109-64282",
+          "perioada_declarata": "situația la 11.09.2026"
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/d2453a05f2b1481a8a83-926aeef9d421d1ee.json",
+      "sha256": "926aeef9d421d1eed21f38f60ceb6a6e44a69ce638c6fb2d94683546846408ca",
+      "format": "html-carduri-csv",
+      "stare": "analizat",
+      "limita_atinsa": false,
+      "baza_tipului": "cod-sau-documentatie",
+      "seturi": [
+        {
+          "fisier": {
+            "valoare": "firme-pe-an-infiintare.csv",
+            "pointer": "char:33119-33151",
+            "baza": "declarat-in-pagina"
+          },
+          "adresa": {
+            "valoare": "https://harta-firmelor.ro/date/firme-pe-an-infiintare.csv",
+            "pointer": "char:33119-33151",
+            "baza": "declarat-in-pagina",
+            "legatura": "/date/firme-pe-an-infiintare.csv",
+            "transformare": "legatura-rezolvata"
+          },
+          "titlu": {
+            "valoare": "Firme înființate pe an, după starea lor de azi",
+            "pointer": "char:32658-32704",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Câte firme din registrul comerțului s-au înființat în fiecare an din 1990 încoace, câte sunt azi în funcțiune, radiate, în insolvență sau în altă stare, și câte au sediul în București sau Ilfov.",
+            "pointer": "char:32792-32986",
+            "baza": "declarat-in-pagina"
+          },
+          "randuri": {
+            "valoare": 37,
+            "pointer": "char:34423-34425",
+            "baza": "declarat-in-pagina"
+          },
+          "perioada": {
+            "valoare": "1990 → 2026",
+            "pointer": "char:34528-34539",
+            "baza": "declarat-in-pagina"
+          },
+          "masurat_la": {
+            "valoare": "2026-09-11",
+            "pointer": "char:34644-34654",
+            "baza": "declarat-in-pagina",
+            "text": "11.09.2026",
+            "transformare": "data-zz.ll.aaaa-in-iso"
+          },
+          "surse": [
+            {
+              "valoare": "ONRC — Registrul Comerțului",
+              "pointer": "char:34731-34758",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "licenta": {
+            "valoare": "CC BY 4.0",
+            "pointer": "char:29130-29139",
+            "baza": "declarat-in-pagina",
+            "acopera": "fisierele-paginii",
+            "url": {
+              "valoare": "https://creativecommons.org/licenses/by/4.0/",
+              "pointer": "char:29585-29629",
+              "baza": "declarat-in-pagina"
+            },
+            "atribuire": {
+              "valoare": "Sursa: harta-firmelor.ro",
+              "pointer": "char:29465-29489",
+              "baza": "declarat-in-pagina"
+            }
+          },
+          "coloane": [
+            "year",
+            "firms_founded",
+            "status_active",
+            "status_deregistered",
+            "status_dissolution",
+            "status_liquidation",
+            "status_insolvency",
+            "status_bankruptcy",
+            "status_reorganization",
+            "status_suspended",
+            "status_temporary_interruption",
+            "status_unknown",
+            "bucharest_ilfov",
+            "partial_year"
+          ],
+          "pointer": "char:32554-39207"
+        },
+        {
+          "fisier": {
+            "valoare": "bilanturi-pe-an.csv",
+            "pointer": "char:39704-39729",
+            "baza": "declarat-in-pagina"
+          },
+          "adresa": {
+            "valoare": "https://harta-firmelor.ro/date/bilanturi-pe-an.csv",
+            "pointer": "char:39704-39729",
+            "baza": "declarat-in-pagina",
+            "legatura": "/date/bilanturi-pe-an.csv",
+            "transformare": "legatura-rezolvata"
+          },
+          "titlu": {
+            "valoare": "Bilanțuri depuse pe an",
+            "pointer": "char:39311-39333",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Bilanțurile anuale depuse de firmele din România pe fiecare an fiscal: numărul lor, salariații declarați și mediana cifrei de afaceri în lei nominali.",
+            "pointer": "char:39421-39571",
+            "baza": "declarat-in-pagina"
+          },
+          "randuri": {
+            "valoare": 18,
+            "pointer": "char:40994-40996",
+            "baza": "declarat-in-pagina"
+          },
+          "perioada": {
+            "valoare": "2008 → 2025",
+            "pointer": "char:41099-41110",
+            "baza": "declarat-in-pagina"
+          },
+          "masurat_la": {
+            "valoare": "2026-09-11",
+            "pointer": "char:41215-41225",
+            "baza": "declarat-in-pagina",
+            "text": "11.09.2026",
+            "transformare": "data-zz.ll.aaaa-in-iso"
+          },
+          "surse": [
+            {
+              "valoare": "MFP — bilanțurile",
+              "pointer": "char:41302-41319",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "licenta": {
+            "valoare": "CC BY 4.0",
+            "pointer": "char:29130-29139",
+            "baza": "declarat-in-pagina",
+            "acopera": "fisierele-paginii",
+            "url": {
+              "valoare": "https://creativecommons.org/licenses/by/4.0/",
+              "pointer": "char:29585-29629",
+              "baza": "declarat-in-pagina"
+            },
+            "atribuire": {
+              "valoare": "Sursa: harta-firmelor.ro",
+              "pointer": "char:29465-29489",
+              "baza": "declarat-in-pagina"
+            }
+          },
+          "coloane": [
+            "year",
+            "balance_sheets",
+            "employees_reported",
+            "median_turnover_lei",
+            "partial_year"
+          ],
+          "pointer": "char:39207-43155"
+        },
+        {
+          "fisier": {
+            "valoare": "monitorul-oficial-pe-an.csv",
+            "pointer": "char:43677-43710",
+            "baza": "declarat-in-pagina"
+          },
+          "adresa": {
+            "valoare": "https://harta-firmelor.ro/date/monitorul-oficial-pe-an.csv",
+            "pointer": "char:43677-43710",
+            "baza": "declarat-in-pagina",
+            "legatura": "/date/monitorul-oficial-pe-an.csv",
+            "transformare": "legatura-rezolvata"
+          },
+          "titlu": {
+            "valoare": "Acte din Monitorul Oficial, partea a IV-a, pe an",
+            "pointer": "char:43259-43307",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Câte acte ale firmelor (cesiuni, majorări de capital, numiri, dizolvări) s-au publicat în fiecare an în Monitorul Oficial al României, partea a IV-a.",
+            "pointer": "char:43395-43544",
+            "baza": "declarat-in-pagina"
+          },
+          "randuri": {
+            "valoare": 19,
+            "pointer": "char:44983-44985",
+            "baza": "declarat-in-pagina"
+          },
+          "perioada": {
+            "valoare": "2008 → 2026",
+            "pointer": "char:45088-45099",
+            "baza": "declarat-in-pagina"
+          },
+          "masurat_la": {
+            "valoare": "2026-09-11",
+            "pointer": "char:45204-45214",
+            "baza": "declarat-in-pagina",
+            "text": "11.09.2026",
+            "transformare": "data-zz.ll.aaaa-in-iso"
+          },
+          "surse": [
+            {
+              "valoare": "Monitorul Oficial, partea a IV-a",
+              "pointer": "char:45291-45323",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "licenta": {
+            "valoare": "CC BY 4.0",
+            "pointer": "char:29130-29139",
+            "baza": "declarat-in-pagina",
+            "acopera": "fisierele-paginii",
+            "url": {
+              "valoare": "https://creativecommons.org/licenses/by/4.0/",
+              "pointer": "char:29585-29629",
+              "baza": "declarat-in-pagina"
+            },
+            "atribuire": {
+              "valoare": "Sursa: harta-firmelor.ro",
+              "pointer": "char:29465-29489",
+              "baza": "declarat-in-pagina"
+            }
+          },
+          "coloane": [
+            "year",
+            "acts",
+            "partial_year"
+          ],
+          "pointer": "char:43155-46511"
+        },
+        {
+          "fisier": {
+            "valoare": "dosare-pe-an.csv",
+            "pointer": "char:47050-47072",
+            "baza": "declarat-in-pagina"
+          },
+          "adresa": {
+            "valoare": "https://harta-firmelor.ro/date/dosare-pe-an.csv",
+            "pointer": "char:47050-47072",
+            "baza": "declarat-in-pagina",
+            "legatura": "/date/dosare-pe-an.csv",
+            "transformare": "legatura-rezolvata"
+          },
+          "titlu": {
+            "valoare": "Dosare în instanțe cu firme ca părți, pe an",
+            "pointer": "char:46615-46658",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Câte dosare din instanțele românești, cu cel puțin o firmă ca parte, au fost înregistrate în fiecare an. Seria urmează adâncimea arhivei publicate de portalul instanțelor.",
+            "pointer": "char:46746-46917",
+            "baza": "declarat-in-pagina"
+          },
+          "randuri": {
+            "valoare": 71,
+            "pointer": "char:48331-48333",
+            "baza": "declarat-in-pagina"
+          },
+          "perioada": {
+            "valoare": "1956 → 2026",
+            "pointer": "char:48436-48447",
+            "baza": "declarat-in-pagina"
+          },
+          "masurat_la": {
+            "valoare": "2026-09-11",
+            "pointer": "char:48552-48562",
+            "baza": "declarat-in-pagina",
+            "text": "11.09.2026",
+            "transformare": "data-zz.ll.aaaa-in-iso"
+          },
+          "surse": [
+            {
+              "valoare": "Justiție — dosarele",
+              "pointer": "char:48639-48658",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "licenta": {
+            "valoare": "CC BY 4.0",
+            "pointer": "char:29130-29139",
+            "baza": "declarat-in-pagina",
+            "acopera": "fisierele-paginii",
+            "url": {
+              "valoare": "https://creativecommons.org/licenses/by/4.0/",
+              "pointer": "char:29585-29629",
+              "baza": "declarat-in-pagina"
+            },
+            "atribuire": {
+              "valoare": "Sursa: harta-firmelor.ro",
+              "pointer": "char:29465-29489",
+              "baza": "declarat-in-pagina"
+            }
+          },
+          "coloane": [
+            "year",
+            "court_cases",
+            "partial_year"
+          ],
+          "pointer": "char:46511-49887"
+        },
+        {
+          "fisier": {
+            "valoare": "insolvente-pe-an.csv",
+            "pointer": "char:50430-50456",
+            "baza": "declarat-in-pagina"
+          },
+          "adresa": {
+            "valoare": "https://harta-firmelor.ro/date/insolvente-pe-an.csv",
+            "pointer": "char:50430-50456",
+            "baza": "declarat-in-pagina",
+            "legatura": "/date/insolvente-pe-an.csv",
+            "transformare": "legatura-rezolvata"
+          },
+          "titlu": {
+            "valoare": "Deschideri de procedură de insolvență pe an",
+            "pointer": "char:49991-50034",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Câte acte de deschidere a procedurii de insolvență s-au publicat în fiecare an în Buletinul Procedurilor de Insolvență. Se numără acte, nu firme: o firmă poate avea mai multe.",
+            "pointer": "char:50122-50297",
+            "baza": "declarat-in-pagina"
+          },
+          "randuri": {
+            "valoare": 23,
+            "pointer": "char:51723-51725",
+            "baza": "declarat-in-pagina"
+          },
+          "perioada": {
+            "valoare": "2004 → 2026",
+            "pointer": "char:51828-51839",
+            "baza": "declarat-in-pagina"
+          },
+          "masurat_la": {
+            "valoare": "2026-09-11",
+            "pointer": "char:51944-51954",
+            "baza": "declarat-in-pagina",
+            "text": "11.09.2026",
+            "transformare": "data-zz.ll.aaaa-in-iso"
+          },
+          "surse": [
+            {
+              "valoare": "BPI — Buletinul Procedurilor de Insolvență",
+              "pointer": "char:52031-52073",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "licenta": {
+            "valoare": "CC BY 4.0",
+            "pointer": "char:29130-29139",
+            "baza": "declarat-in-pagina",
+            "acopera": "fisierele-paginii",
+            "url": {
+              "valoare": "https://creativecommons.org/licenses/by/4.0/",
+              "pointer": "char:29585-29629",
+              "baza": "declarat-in-pagina"
+            },
+            "atribuire": {
+              "valoare": "Sursa: harta-firmelor.ro",
+              "pointer": "char:29465-29489",
+              "baza": "declarat-in-pagina"
+            }
+          },
+          "coloane": [
+            "year",
+            "insolvency_openings",
+            "partial_year"
+          ],
+          "pointer": "char:49887-53293"
+        },
+        {
+          "fisier": {
+            "valoare": "stari-fiscale-pe-an.csv",
+            "pointer": "char:53796-53825",
+            "baza": "declarat-in-pagina"
+          },
+          "adresa": {
+            "valoare": "https://harta-firmelor.ro/date/stari-fiscale-pe-an.csv",
+            "pointer": "char:53796-53825",
+            "baza": "declarat-in-pagina",
+            "legatura": "/date/stari-fiscale-pe-an.csv",
+            "transformare": "legatura-rezolvata"
+          },
+          "titlu": {
+            "valoare": "Stări fiscale ANAF pe an",
+            "pointer": "char:53397-53421",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Câte stări fiscale (înregistrări în scopuri de TVA, inactivitate) a înregistrat ANAF pentru firme în fiecare an, din 2018, de când există seria publicată.",
+            "pointer": "char:53509-53663",
+            "baza": "declarat-in-pagina"
+          },
+          "randuri": {
+            "valoare": 9,
+            "pointer": "char:55091-55092",
+            "baza": "declarat-in-pagina"
+          },
+          "perioada": {
+            "valoare": "2018 → 2026",
+            "pointer": "char:55195-55206",
+            "baza": "declarat-in-pagina"
+          },
+          "masurat_la": {
+            "valoare": "2026-09-11",
+            "pointer": "char:55311-55321",
+            "baza": "declarat-in-pagina",
+            "text": "11.09.2026",
+            "transformare": "data-zz.ll.aaaa-in-iso"
+          },
+          "surse": [
+            {
+              "valoare": "ANAF — evidența fiscală",
+              "pointer": "char:55398-55421",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "licenta": {
+            "valoare": "CC BY 4.0",
+            "pointer": "char:29130-29139",
+            "baza": "declarat-in-pagina",
+            "acopera": "fisierele-paginii",
+            "url": {
+              "valoare": "https://creativecommons.org/licenses/by/4.0/",
+              "pointer": "char:29585-29629",
+              "baza": "declarat-in-pagina"
+            },
+            "atribuire": {
+              "valoare": "Sursa: harta-firmelor.ro",
+              "pointer": "char:29465-29489",
+              "baza": "declarat-in-pagina"
+            }
+          },
+          "coloane": [
+            "year",
+            "fiscal_records",
+            "partial_year"
+          ],
+          "pointer": "char:53293-56622"
+        },
+        {
+          "fisier": {
+            "valoare": "achizitii-publice-pe-an.csv",
+            "pointer": "char:57198-57231",
+            "baza": "declarat-in-pagina"
+          },
+          "adresa": {
+            "valoare": "https://harta-firmelor.ro/date/achizitii-publice-pe-an.csv",
+            "pointer": "char:57198-57231",
+            "baza": "declarat-in-pagina",
+            "legatura": "/date/achizitii-publice-pe-an.csv",
+            "transformare": "legatura-rezolvata"
+          },
+          "titlu": {
+            "valoare": "Contracte de achiziție publică pe an",
+            "pointer": "char:56726-56762",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Câte contracte de achiziție directă, contracte atribuite offline și anunțuri de licitație publică au apărut în SICAP în fiecare an. Doar numărate: sumele anuale nu trec testele de plauzibilitate, deci nu se publică.",
+            "pointer": "char:56850-57065",
+            "baza": "declarat-in-pagina"
+          },
+          "randuri": {
+            "valoare": 20,
+            "pointer": "char:58504-58506",
+            "baza": "declarat-in-pagina"
+          },
+          "perioada": {
+            "valoare": "2007 → 2026",
+            "pointer": "char:58609-58620",
+            "baza": "declarat-in-pagina"
+          },
+          "masurat_la": {
+            "valoare": "2026-09-11",
+            "pointer": "char:58725-58735",
+            "baza": "declarat-in-pagina",
+            "text": "11.09.2026",
+            "transformare": "data-zz.ll.aaaa-in-iso"
+          },
+          "surse": [
+            {
+              "valoare": "SICAP — achizițiile publice",
+              "pointer": "char:58812-58839",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "licenta": {
+            "valoare": "CC BY 4.0",
+            "pointer": "char:29130-29139",
+            "baza": "declarat-in-pagina",
+            "acopera": "fisierele-paginii",
+            "url": {
+              "valoare": "https://creativecommons.org/licenses/by/4.0/",
+              "pointer": "char:29585-29629",
+              "baza": "declarat-in-pagina"
+            },
+            "atribuire": {
+              "valoare": "Sursa: harta-firmelor.ro",
+              "pointer": "char:29465-29489",
+              "baza": "declarat-in-pagina"
+            }
+          },
+          "coloane": [
+            "year",
+            "direct_contracts",
+            "offline_contracts",
+            "tender_notices",
+            "tender_contracts",
+            "partial_year"
+          ],
+          "pointer": "char:56622-60970"
+        },
+        {
+          "fisier": {
+            "valoare": "registru-cifre.csv",
+            "pointer": "char:61501-61525",
+            "baza": "declarat-in-pagina"
+          },
+          "adresa": {
+            "valoare": "https://harta-firmelor.ro/date/registru-cifre.csv",
+            "pointer": "char:61501-61525",
+            "baza": "declarat-in-pagina",
+            "legatura": "/date/registru-cifre.csv",
+            "transformare": "legatura-rezolvata"
+          },
+          "titlu": {
+            "valoare": "Cifrele registrului, la zi",
+            "pointer": "char:61074-61100",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Cifrele de pe pagina Registrul: câte înmatriculări, bilanțuri, acte, dosare, intrări BPI, contracte SICAP și licențe ANRM ține harta, plus câteva mediane și moduri ale registrului.",
+            "pointer": "char:61188-61368",
+            "baza": "declarat-in-pagina"
+          },
+          "randuri": {
+            "valoare": 37,
+            "pointer": "char:62782-62784",
+            "baza": "declarat-in-pagina"
+          },
+          "perioada": {
+            "valoare": "situația la 11.09.2026",
+            "pointer": "char:62887-62909",
+            "baza": "declarat-in-pagina"
+          },
+          "masurat_la": {
+            "valoare": "2026-09-11",
+            "pointer": "char:63014-63024",
+            "baza": "declarat-in-pagina",
+            "text": "11.09.2026",
+            "transformare": "data-zz.ll.aaaa-in-iso"
+          },
+          "surse": [
+            {
+              "valoare": "ONRC — Registrul Comerțului",
+              "pointer": "char:63101-63128",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "Geocodare — adresele pe hartă",
+              "pointer": "char:63131-63160",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "MFP — bilanțurile",
+              "pointer": "char:63163-63180",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "ANAF — evidența fiscală",
+              "pointer": "char:63183-63206",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "Monitorul Oficial, partea a IV-a",
+              "pointer": "char:63209-63241",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "Justiție — dosarele",
+              "pointer": "char:63244-63263",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "BPI — Buletinul Procedurilor de Insolvență",
+              "pointer": "char:63266-63308",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "SICAP — achizițiile publice",
+              "pointer": "char:63311-63338",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "ANRM — licențe și permise miniere",
+              "pointer": "char:63341-63374",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "licenta": {
+            "valoare": "CC BY 4.0",
+            "pointer": "char:29130-29139",
+            "baza": "declarat-in-pagina",
+            "acopera": "fisierele-paginii",
+            "url": {
+              "valoare": "https://creativecommons.org/licenses/by/4.0/",
+              "pointer": "char:29585-29629",
+              "baza": "declarat-in-pagina"
+            },
+            "atribuire": {
+              "valoare": "Sursa: harta-firmelor.ro",
+              "pointer": "char:29465-29489",
+              "baza": "declarat-in-pagina"
+            }
+          },
+          "coloane": [
+            "metric",
+            "value",
+            "description"
+          ],
+          "pointer": "char:60970-64317"
+        }
+      ]
+    },
+    {
       "url": "https://ins.gov2.ro/api/datasets/ACC102B?lang=en",
       "final_url": "https://ins.gov2.ro/api/datasets/ACC102B?lang=en",
       "http_status": 200,

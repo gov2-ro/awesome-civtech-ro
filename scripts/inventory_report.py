@@ -16,6 +16,7 @@ import sys
 from collections import Counter
 from pathlib import Path
 
+from collect_docs import is_saved
 from common import ROOT, PUBLIC_ROOT, load_catalogue, observation_paths
 from inventory_concepts import GROUP_STATES, SELECTOR_STATES, active_groups, group_state, selector_matches, selector_state
 from inventory_state import counted_fields
@@ -82,11 +83,15 @@ def membership(data):
 
 def lots(data):
     """Which collection lots touched which entries. C: the primary batch. B: entries given INS dataset records.
-    B2: existing inventories that got a source for a named gap. Entries with fields and no lot come from the baseline pass."""
+    B2: existing inventories that got a source for a named gap. S: entries with a page that the owner saved by hand (no request was possible).
+    Entries with fields and no lot come from the baseline pass."""
     touched = {}
     for lot, slugs in (('C', BATCH), ('B', INS_USERS), ('B2', EXTRA_GAPS)):
         for slug in slugs:
             touched.setdefault(slug, set()).add(lot)
+    for slug, profile in data['profiles'].items():
+        if any(is_saved(data['sources'].get(ref)) for ref in profile['surse_structurate']):
+            touched.setdefault(slug, set()).add('S')
     return touched
 
 

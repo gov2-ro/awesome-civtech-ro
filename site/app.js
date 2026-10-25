@@ -680,7 +680,7 @@ const INV_ROLES = { 'camp-date': 'Date', dimensiune: 'Dimensiuni', 'parametru-ap
   'camp-exemplu': 'Exemple în documentație', masura: 'Măsuri', 'camp-folosit-de-pagina': 'Folosite de pagină', 'colectie-cu-chei': 'Colecții indexate' };
 const INV_BASIS = { schema: 'Descris în schemă', metadata: 'Descris în metadate', sample: 'Observat în date', header: 'Antet CSV',
   code: 'Declarat în codul sursă', table: 'Antet de tabel HTML', doctable: 'Declarat în tabel de documentație', doctext: 'Declarat în textul documentației',
-  pagecode: 'Folosit în codul paginii', docexample: 'Exemplu în documentație', apidoc: 'Declarat în documentația API' };
+  pagecode: 'Folosit în codul paginii', docexample: 'Exemplu în documentație', apidoc: 'Declarat în documentația API', doclist: 'Declarat în lista de coloane din documentație' };
 const INV_LOCATIONS = { query: 'filtru', path: 'în URL', header: 'în antet', cookie: 'cookie' };
 const INV_TYPES = { string: 'Text', integer: 'Număr întreg', number: 'Număr', boolean: 'Da / Nu', null: 'Valoare nulă', text: 'Text în tabel',
   'forma-numerica': 'Arată ca număr (text)', 'forma-de-data': 'Arată ca dată (text)',
@@ -764,7 +764,7 @@ function renderInventoryRows(panel) {
         ${f.reference ? `<p class="inv-pointer">${esc(f.reference)}</p>` : ''}
         ${f.contexts?.length > 1 ? `<p>${plural(f.contexts.length, 'referință în schemă', 'referințe în schemă')} cu acest nume și tip.</p>` : ''}
         ${f.operations.length ? `<p class="inv-operations">${f.operations.map(op => `<code>${esc(op)}</code>`).join('')}</p>` : ''}
-        ${source ? `<p>${esc(source.title)}${source.checked ? ` · consultat la ${esc(source.checked)}` : ''}</p>` : ''}
+        ${source ? `<p>${esc(source.title)}${source.checked ? ` · ${source.savedByOwner ? 'copie salvată de proprietar la' : 'consultat la'} ${esc(source.checked)}` : ''}</p>` : ''}
         ${source?.refreshFailed ? `<p class="inv-stale">Ultima reîmprospătare a eșuat${source.refreshFailed.date ? ` la ${esc(source.refreshFailed.date)}` : ''}${source.refreshFailed.status ? ` (HTTP ${esc(source.refreshFailed.status)})` : ''}. Informațiile pot fi vechi.</p>` : ''}
       </details></li>`;
   }).join('');

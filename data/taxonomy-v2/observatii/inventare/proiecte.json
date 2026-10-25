@@ -1891,7 +1891,7 @@
       "slug": "harta-firmelor",
       "nume": "Harta Firmelor",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "Legăturile dintre firme, oameni și contracte publice",
       "permite": [
         "Caută și consultă",
@@ -1906,12 +1906,12 @@
         "slug": "harta-firmelor"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "d2453a05f2b1481a8a83"
+      ],
+      "campuri_din_surse": 40,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
-        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
