@@ -1,5 +1,46 @@
 # Activity
 
+## 2026-10-25 — Build the local review interface (v0.20.0)
+
+**Done**
+- `scripts/review_ui.py` (stdlib, Python 3.12): a server on 127.0.0.1 and a Romanian page (`scripts/templates/review_ui.{html,css,js}`, no external request, CSP `default-src 'none'`)
+  for the 31 provider items (`camp=surse_date`, D132–D162) and the 30 groups with their 92 members. Start: `python3 scripts/review_ui.py` (default port 8790).
+  It writes `revizuire.csv`, `relatii.csv` and `inventar-concepte.json` and never commits. Each write reads the file, applies one decision, validates it
+  (`taxonomy_v2.check` with the publication gate and `validate_concept`; only errors that the decision adds count), checks the hashes that the page loaded,
+  and replaces the files atomically (two files: all or none). A file that does not round-trip byte for byte (BOM, CRLF, quoting, indentation) is refused.
+- Review keys in `inventar-concepte.json`: group `stare`, `decizie_editor`, `data_revizie`; selector `stare`, `nota_editor`; a missing key means `propus`.
+  `selector_matches` never matches an `exclus` selector; `variable_matches` and `publish_finder` skip `respins` groups; the finder index carries `state` and the page shows a badge.
+  `inventory.py --check` does not ask an `exclus` selector to reach a field. `inventory_report.py` counts provider items and groups by state (generated report regenerated, `acoperire.csv` unchanged).
+- Measured: `python3 -m unittest discover` runs 465 tests (6 skipped; baseline 411 / 6), 54 of them new in `test_review_ui.py`; the suite takes about 82 s (baseline 49 s).
+  `check_review_ui.py` 75/75 (390 px and 1280 px, no horizontal scroll, no request outside the local server); `check_data_finder.py` 33/33 (baseline 31, +2 for the state badge);
+  `check_inventory_preview.py` 31/31; `check_preview.py` 111/111. The default `build.py` payload equals the tracked `site/data.json` of 426a37d apart from `generated`.
+- Latency on a copy of the data root: state 14–78 ms, a provider or group view 82–116 ms, a decision about 215 ms, the three check subprocesses 395 ms together.
+- Evidence against the retained copies on this checkout: of the 31 provider items 16 are `verificat` (D147–D162), 9 `fără amprentă` (D132–D134, D140–D145) and 6 `indisponibil local` (D135–D139, D146);
+  all 44 group proofs and 18 member facts are `verificat`. Five statements rest on a deduction (`cui` 4, `valoare-achizitie-directa` 1).
+- No real item or group changed state: D132–D162 stay `deschis`, the 30 groups stay `propus`, `relatii.csv` has its 146 rows, and `inventar-concepte.json` has no review key.
+
+**Hard**
+- The three evidence states of the brief need a recorded hash, and D132–D146 record none (their evidence is the project page named in the relation row). Showing them as `verificat` would break the rule;
+  hiding the retained text would lose the evidence. They get a fourth state, `fără amprentă`: the text and the highlighted provider name are shown, and the tool never calls them verified.
+- The first round-trip test passed a file with a byte order mark, because the BOM became part of the first header name. `parse_csv` now refuses it explicitly (a test covers it).
+- The first version ran four package checks for each decision (about 0.5 s). The errors of the unchanged files are now cached by file hashes and seeded after a write: one check per decision.
+- The page's Content-Security-Policy forbids `eval`, so Playwright's `wait_for_function` cannot run on it. `check_review_ui.py` polls from Python instead.
+- A condition such as `list.length && [...]` put a literal `0` in the page. The conditions are explicit now. The 390 px layout also needed `min-width: 0` on the grid children to stop long URLs from widening the page.
+- While I checked the explorer, port 8791 was held by another process; my first `check_preview.py` run got a 404 from that server. I used another port and left the servers on 8770 and 8791 running.
+
+**Decided**
+- Count a deferred item (`amanat`) as open: the default filter `Deschise` keeps it, and the header says `(N amânate)`. Cost of the alternative: progress could reach `31 / 31` with items still waiting.
+  `Grupuri: n / 30 revizuite` counts `revizuit` and `respins` groups.
+- Link an item to the row that it appended with a marker in `decizie_editor` (`Acceptat 2026-10-25 (rând L147): …`). Cost of the alternative (a column or an id in `relatii.csv`): a format change that the brief does not approve.
+  A reject, defer or duplicate removes a row that no commit holds, and sets a committed row to `respins` or `propus`, so history stays in git.
+- A duplicate keeps the earlier reason after `Motiv inițial:` and an accept, reject or defer restores it, so a re-decision loses nothing. The other item must exist, belong to the same project and not be a duplicate itself.
+- Refuse a second accepted source with the same name for one project (suggest the duplicate action); compare the exact name, and warn about the looser match (`ANAF` against `ANAF (serviciul public PlatitorTva)`) without refusing it.
+- `Revizuit` also needs one confirmed member. A member changes only while its group is `propus` or `amanat`; the tick for each deduction is part of the request and is not stored (the brief adds no key for it).
+- Check `Host` and `Origin` on every request, not only on POST. A rebinding page could otherwise read the token from `GET /`.
+- Add the optional parameter `package` to `taxonomy_v2.check` so that a change is validated in memory before it is written; add `include_excluded` to `selector_matches` for the review page.
+- `Resetează` goes back to `HEAD`, so it undoes uncommitted decisions. After a commit, a new decision changes the state.
+- Leave `inventar-note.json` (the hand-edited notes of the expansion report) as it was: its verification section records the v0.18.0 pass.
+
 ## 2026-10-25 — Specify the local review interface
 
 **Done**

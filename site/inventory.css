@@ -51,6 +51,8 @@
 .finder-proof ul { margin:8px 0; padding-left:18px; }
 .finder-proof li { margin-bottom:8px; }
 .finder-category { font:11px var(--font-mono); color:var(--muted); border:1px solid var(--line); border-radius:4px; padding:1px 5px; margin-left:4px; }
+.finder-state { font:11px var(--font-mono); color:var(--muted); border:1px solid var(--line); border-radius:4px; padding:1px 5px; margin-left:4px; }
+.finder-state[data-state="revizuit"] { color:var(--accent); border-color:var(--accent); }
 .finder-ambiguity { color:var(--warn,var(--muted)); }
 .finder-basis { margin-top:6px; }
 .finder-basis > summary { cursor:pointer; color:var(--accent); }

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="review-token" content="{{TOKEN}}">
+<meta name="robots" content="noindex">
+<title>Revizuire inventar</title>
+<link rel="stylesheet" href="/assets/review_ui.css?v=BUILD">
+<script src="/assets/review_ui.js?v=BUILD" defer></script>
+</head>
+<body>
+<a class="skip" href="#detail">Sari la conținut</a>
+<header class="top">
+  <div class="top-row">
+    <h1>Revizuire inventar</h1>
+    <p id="progress" class="progress" aria-live="polite">Se încarcă…</p>
+    <p id="validation" class="validation"></p>
+  </div>
+  <div class="top-row">
+    <nav class="tabs" aria-label="Cozi">
+      <a id="tab-providers" href="#furnizori">Furnizori</a>
+      <a id="tab-groups" href="#grupuri">Grupuri</a>
+      <a id="tab-checks" href="#verificari">Verificări</a>
+    </nav>
+    <div id="filter" class="filter" role="group" aria-label="Filtru">
+      <button type="button" data-filter="open">Deschise</button>
+      <button type="button" data-filter="all">Toate</button>
+      <button type="button" data-filter="decided">Decise</button>
+    </div>
+  </div>
+</header>
+<div id="banner" class="banner" role="alert" hidden></div>
+<main class="layout">
+  <nav id="list" class="list" aria-label="Elemente"></nav>
+  <section id="detail" class="detail" tabindex="-1" aria-live="polite"></section>
+</main>
+<noscript><p class="banner">Interfața de revizuire are nevoie de JavaScript.</p></noscript>
+</body>
+</html>

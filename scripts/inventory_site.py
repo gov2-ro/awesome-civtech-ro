@@ -6,7 +6,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 from common import observation_paths
-from inventory_concepts import as_list, selector_matches
+from inventory_concepts import active_groups, as_list, group_state, selector_matches
 
 
 BASIS = {'declarat-in-schema': 'schema', 'declarat-in-metadate': 'metadata',
@@ -28,10 +28,11 @@ SOURCE_LABELS = {
 
 def variable_matches(slug, fields, sources, concepts):
     """Match a project's fields to the proposed groups. A field joins a group through a selector of that project; every constraint that
-    the selector supplies (names, source, path, role) must match. Generic names such as `id` never create a match by themselves."""
+    the selector supplies (names, source, path, role) must match. Generic names such as `id` never create a match by themselves.
+    A rejected group (`stare` = respins) produces no match, and an excluded selector (`stare` = exclus) matches no field."""
     matches = []
     source_map = {s['id']: s for s in sources}
-    for concept in concepts:
+    for concept in active_groups(concepts):
         selectors = [r for r in concept['selectors'] if slug in as_list(r['projects'])]
         evidence = []
         for f in fields:
@@ -83,10 +84,10 @@ def publish_finder(items, root, site, projections, vocabulary=None):
                         'keywords': item.get('inventory', {}).get('keywords', '')})
     index = {'partial': True, 'concepts': [{'id': c['id'], 'scheme': c['scheme'], 'label': c['label']}
                                          for c in (vocabulary or {}).get('concepts', []) if c['scheme'] in ('subiect', 'institutie')],
-             'variables': [{**{k: c[k] for k in ('id', 'label', 'definition')}, 'category': c.get('categorie'),
+             'variables': [{**{k: c[k] for k in ('id', 'label', 'definition')}, 'category': c.get('categorie'), 'state': group_state(c),
                             'basis': c.get('baza_definitiei'), 'ambiguities': c.get('ambiguitati', []),
                             'proofs': [{'url': e['sursa'], 'fragment': e['fragment'][:200], 'basis': e['baza']} for e in c.get('dovezi', [])]}
-                           for c in concepts],
+                           for c in active_groups(concepts)],
              'entries': entries}
     (site / 'inventar/index.json').write_text(json.dumps(index, ensure_ascii=False, separators=(',', ':')))
     template = Path(__file__).parent / 'templates/inventory.html'

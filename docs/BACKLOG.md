@@ -38,8 +38,14 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
 ## Inventory review and public data finder — 2026-10-25
 
-- [ ] Local review interface for provider items and variable groups (brief: [review-ui.md](briefs/review-ui.md)).
-      Adds per-group and per-selector review states to `inventar-concepte.json`.
+- [x] Local review interface for provider items and variable groups (brief: [review-ui.md](briefs/review-ui.md); v0.20.0).
+      `python3 scripts/review_ui.py` serves it on 127.0.0.1. It adds per-group and per-selector review states to `inventar-concepte.json`
+      (the finder hides `respins` groups and `exclus` members and shows a state badge). No real item or group was decided.
+- [ ] Run `node --check scripts/templates/review_ui.js` and `scripts/check_review_ui.py` in `validate.yml`. A workflow change was outside the brief.
+- [ ] Decide whether accepting a provider should pin the hash of its evidence page. D132–D146 record no hash, so the tool shows them as `fără amprentă`
+      (readable, never `verificat`). A pin needs a convention or a column; `relatii.csv` has none today.
+- [ ] `inventory_report.py --check --data-dir <other root>` still compares `docs/reports/inventory-expansion.md` under the repository root.
+      The review tool's check panel shows that report as out of date on a copy of the data root whose decisions differ. Add a `--report` path if copies need a clean check.
 - [ ] Owner review: decide D132–D162 and the 30 groups with the interface.
 - [ ] Publish `/date/` on the public build. Needs its own brief after the review: which states appear, labelling of proposals,
       and the change to the `--with-inventory` boundary.

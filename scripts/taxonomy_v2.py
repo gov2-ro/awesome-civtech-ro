@@ -179,12 +179,13 @@ def load(root) -> Package:
     return Package(Path(root))
 
 
-def check(root, baseline: bool = False, publication: bool = False) -> tuple[list[str], dict]:
+def check(root, baseline: bool = False, publication: bool = False, package: "Package | None" = None) -> tuple[list[str], dict]:
     """Structural errors of the package at `root`, and a summary of its counts. `baseline` also proves that the copy
     preserves the source snapshots; `publication` adds the public-build gate (accepted classifications only).
     A detached overlay (pachet.json has `detached`, see integrare.py) is editorial: it stops proving the initial state,
-    so `baseline` does not apply to it."""
-    pkg = load(root)
+    so `baseline` does not apply to it. `package` is a package already loaded (and changed in memory) from `root`: the review
+    tool checks a decision before it writes the file."""
+    pkg = package if package is not None else load(root)
     baseline = baseline and not (pkg.files.overlay or {}).get("detached")
     errors = list(pkg.problems)
     fail = errors.append

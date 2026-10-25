@@ -73,6 +73,11 @@ with sync_playwright() as pw:
     page.locator('.finder-card').first.locator('.finder-evidence > summary').click()
     ok('group evidence exposes field names and source URLs', page.locator('.finder-evidence[open] code').count() > 0 and page.locator('.finder-evidence[open] a').first.get_attribute('href').startswith('https://'))
     ok('group evidence shows the category and what is still unclear', 'Identificator' in page.locator('.finder-evidence[open]').inner_text() and page.locator('.finder-evidence[open] .finder-ambiguity').count() > 0)
+    cui = next(v for v in INDEX['variables'] if v['id'] == 'cui')
+    badge = page.locator('.finder-evidence[open] .finder-proof', has_text=cui['label']).first.locator('.finder-state')
+    labels = {'propus': 'Propus', 'revizuit': 'Revizuit', 'amanat': 'Amânat'}
+    ok('group evidence shows the review state of the group as a badge', badge.get_attribute('data-state') == cui['state'] and badge.inner_text() == labels[cui['state']])
+    ok('the index lists no rejected group', all(v['state'] != 'respins' for v in INDEX['variables']))
     page.locator('.finder-examples [data-value="cpv"]').click()
     both = want(['cui', 'cpv'])
     ok('multiple variables require a common project', agrees(page, both) and {'demoanaf', 'romania-transparenta'} <= set(both) and 'companii-de-stat' not in both)
