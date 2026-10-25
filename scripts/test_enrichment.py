@@ -724,6 +724,24 @@ class Coverage(unittest.TestCase):
         self.assertTrue(all("provisional" not in i["reach"] for i in others))
 
 
+# --- since: entries whose domain had an earlier use ------------------------------------------------------------
+
+
+class SinceOfEarlierDomainUse(unittest.TestCase):
+    PROFILE = {"first_seen": "2011-05-19", "repo_created": "2024-05-04", "cert_first": "2024-04-18"}
+
+    def test_the_first_capture_still_wins_for_an_ordinary_entry(self):
+        self.assertEqual(build.since(self.PROFILE), ("2011-05-19", "arhiva"))
+
+    def test_a_listed_entry_takes_the_repository_date(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "profil.csv"
+            common.save_profile({"lista-firme": dict(self.PROFILE), "other": dict(self.PROFILE)}, path)
+            profile = build.site_profile(path)
+        self.assertEqual(build.since(profile["lista-firme"]), ("2024-05-04", "cod"))
+        self.assertEqual(build.since(profile["other"]), ("2011-05-19", "arhiva"))
+
+
 # --- Item 6: last activity ----------------------------------------------------------------------------------------------------
 
 

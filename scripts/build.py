@@ -161,6 +161,21 @@ def since(p: dict) -> tuple[str, str]:
     return seen if seen[0] else ((p["cert_first"], "certificat") if p.get("cert_first") else ("", ""))
 
 
+# Entries whose early Wayback captures show an earlier use of the domain, not the project. `since` skips those
+# captures and takes the repository date, or the first certificate. Value: what the captures show.
+EARLIER_DOMAIN_USE = {
+    "lista-firme": "the 2011 captures are a GoDaddy parking page; the certificate (2024-04-18) and the repo (2024-05-04) date the project",
+}
+
+
+def site_profile(path: Path) -> dict:
+    """load_profile, without the first-capture date of the entries in EARLIER_DOMAIN_USE."""
+    profile = load_profile(path)
+    for slug in EARLIER_DOMAIN_USE.keys() & profile.keys():
+        profile[slug] = {**profile[slug], "first_seen": ""}
+    return profile
+
+
 def reach_features(mentions: list[dict], labels: list[dict]) -> dict[str, dict]:
     """Per slug, from the kept search results: how many distinct hosts give independent attention (the page is about
     the entry, and the page is not the entry's own channel, as labelled by review.py), split by kind of source, and
@@ -467,7 +482,7 @@ def items_v1(data_dir: Path, site: Path) -> tuple[list[dict], dict]:
     tax = json.loads((data_dir / "taxonomy.json").read_text())
     roles = tax["linkuri"]["roluri"]
     obs = observation_paths(data_dir)
-    profile = load_profile(obs["profile"])
+    profile = site_profile(obs["profile"])
     features = reach_features(load_mentions(obs["mentions"]), read_csv(obs["labels"]) if obs["labels"].exists() else [])
     items = []
     entries = load_entries(data_dir)
@@ -536,7 +551,7 @@ def items_v2(root: Path, site: Path) -> tuple[list[dict], dict]:
     roles = vocab["roles"]
     legacy_tax = json.loads(pkg.files.path("source/taxonomy.json").read_text(encoding="utf-8"))
     obs = observation_paths(root)
-    profile = load_profile(obs["profile"])
+    profile = site_profile(obs["profile"])
     features = reach_features(load_mentions(obs["mentions"]), read_csv(obs["labels"]) if obs["labels"].exists() else [])
     # "Corectează în tabel" opens the entry's row in the Sheet. Until the Sheet has the v2 tab (tabs.intrari is null),
     # it opens the v1 tab, which still holds the entry's texts and links; the v1 row comes from data/, which the Sheet mirrors.
