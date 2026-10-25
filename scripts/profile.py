@@ -23,6 +23,11 @@ fields...). The merge runs on every path that replaces a row, --force included.
 A person can set an entry's image: save it as site/img/og/<slug>.webp, then run the profiler for that slug (--only).
 The profiler records it with img_source "manual" and never fetches over it. (An image that the profiler wrote
 itself names its source, and is refreshed on --force.)
+
+A host in data/taxonomy-v2/colectare-interzisa.csv is never requested: no page, image, icon, feed, sitemap, screenshot or
+browser render, in any mode (--force and --extra included). The run prints one line per entry it skips and leaves the entry's
+profile row as it is; it never writes `offline` or an error because of the list. A redirect to a listed host is not followed
+(an httpx request hook refuses it; the browser cannot resolve a listed host), and the entry then keeps its row too.
 """
 from __future__ import annotations
 
@@ -44,8 +49,9 @@ try:
 except ImportError:  # the pure helpers (and the tests) work without them; main() asks for them
     httpx = Image = ImageOps = HTMLParser = None
 
-from common import (load_env, PUBLIC_ROOT, LINKICON_DIR, NETWORK_ROLES, ROLES, SHARE, SITE, SOCIAL_HOSTS, domain_of, link_host, link_roles, load_catalogue,
-                    load_profile, merge_profile, observation_paths, parse_link, save_profile, split_list)
+from common import (load_env, FORBIDDEN_STATE, PUBLIC_ROOT, LINKICON_DIR, NETWORK_ROLES, ROLES, SHARE, SITE, SOCIAL_HOSTS, ForbiddenHost, domain_of,
+                    browser_args, forbidden, link_host, link_roles, load_catalogue, load_profile, merge_profile, note_failed_request, observation_paths,
+                    parse_link, refuse_forbidden, save_profile, skip_line, split_list)
 
 UA = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
@@ -80,6 +86,37 @@ COOKIE_CSS = """
 
 def log(*a):
     print(*a, file=sys.stderr, flush=True)
+
+
+async def refuse_listed(request):
+    """httpx request hook of every client in this script. httpx calls it before each request, a redirect hop included, so a
+    redirect to a listed host (colectare-interzisa.csv) raises ForbiddenHost instead of reaching that host."""
+    refuse_forbidden(str(request.url))
+
+
+async def refuse_route(route, refused: list):
+    """Playwright route handler (async API) of the browser pass: abort a request to a listed host, whatever started it.
+    The address of an aborted navigation goes to `refused`."""
+    request = route.request
+    if forbidden(request.url) is None:
+        await route.continue_()
+        return
+    if request.is_navigation_request():
+        refused.append(request.url)
+    await route.abort()
+
+
+def without_forbidden(entries: list[dict]) -> list[dict]:
+    """The entries that may be requested. A listed entry gets no request in any stage and keeps its profile row as it is;
+    one line says so. This is not a profile result: nothing is written for it."""
+    kept = []
+    for e in entries:
+        row = forbidden(e["url"])
+        if row is None:
+            kept.append(e)
+        else:
+            log(skip_line(e["slug"], row))
+    return kept
 
 
 def reg_domain(host: str) -> str:
@@ -145,6 +182,7 @@ def manual_image(slug: str, old: dict | None) -> dict | None:
 
 
 async def get(client: httpx.AsyncClient, url: str, limit: int):
+    refuse_forbidden(url)  # before the request; the client's request hook checks each redirect hop
     async with client.stream("GET", url) as r:
         body = bytearray()
         async for chunk in r.aiter_bytes():
@@ -164,6 +202,9 @@ async def fetch_page(client, insecure, url: str) -> dict:
                 raise
             out["ssl_error"] = True
             r, body = await get(insecure, url, MAX_HTML)
+    except ForbiddenHost as e:  # the address, or a redirect target, is on the list: no profile result, no error
+        out["colectare_interzisa"] = e.row
+        return out
     except Exception as e:
         out["error"] = f"{type(e).__name__}: {str(e)[:160]}"
         return out
@@ -524,6 +565,7 @@ async def wp_latest(client, base: str) -> str:
     out = ""
     for kind in ("posts", "pages"):
         try:
+            refuse_forbidden(base)
             r = await client.get(urljoin(base, f"/wp-json/wp/v2/{kind}"), timeout=20,
                                  params={"per_page": 1, "orderby": "modified", "_fields": "modified"})
             if r.status_code == 200 and isinstance(js := r.json(), list) and js:
@@ -552,6 +594,7 @@ async def wiki_refs(client, domain: str) -> int | None:
 
 async def header_lastmod(client, url: str) -> str:
     try:
+        refuse_forbidden(url)
         r = await client.head(url, timeout=15)
         lm = r.headers.get("last-modified")
         return datetime.strptime(lm, "%a, %d %b %Y %H:%M:%S GMT").strftime("%Y-%m-%d") if lm else ""
@@ -645,15 +688,19 @@ async def link_icon_one(sem, client, host: str, url: str) -> bool:
 async def link_icons(client, entries: list[dict], profile: dict, force: bool, roles: list[dict] = ROLES):
     """Favicons for the links that show no network logo: the hosts in `linkuri` and in the social links the
     profiler found, once per host (an existing file is kept unless `force`)."""
-    hosts = {}
+    hosts, listed = {}, set()
     for e in entries:
         links = [parse_link(t, roles) for t in split_list(e.get("linkuri", ""))]
         links += list((profile.get(e["slug"], {}).get("social") or {}).items())
         for role, url in links:
             if role not in NETWORK_ROLES and (h := link_host(url)):
+                if forbidden(url):  # the home page and the icon of a listed host are not requested
+                    listed.add(h)
+                    continue
                 hosts.setdefault(h, url)
     todo = {h: u for h, u in hosts.items() if force or not (LINKICON_DIR / f"{h}.webp").exists()}
-    log(f"link favicons: {len(hosts)} hosts, {len(hosts) - len(todo)} stored already, {len(todo)} to fetch")
+    log(f"link favicons: {len(hosts)} hosts, {len(hosts) - len(todo)} stored already, {len(todo)} to fetch"
+        + (f"; {FORBIDDEN_STATE}, not requested: {', '.join(sorted(listed))}" if listed else ""))
     sem = asyncio.Semaphore(6)
     done = await asyncio.gather(*(link_icon_one(sem, client, h, u) for h, u in todo.items()))
     log(f"link favicons: {sum(done)} fetched, {len(done) - sum(done)} failed")
@@ -679,10 +726,15 @@ def classify(p: dict) -> str:
     return "activ"
 
 
-async def profile_one(sem, client, insecure, e: dict, old: dict | None = None) -> dict:
+async def profile_one(sem, client, insecure, e: dict, old: dict | None = None) -> dict | None:
+    """The profile of one entry, or None when the address (or a redirect target) is on the list of forbidden hosts:
+    then no request reached the host, and the caller leaves the stored row as it is."""
     async with sem:
         slug, url = e["slug"], e["url"]
         p = await fetch_page(client, insecure, url)
+        if p.get("colectare_interzisa"):
+            log(skip_line(slug, p["colectare_interzisa"]))
+            return None
         c = insecure if p.get("ssl_error") else client
         p["status"] = classify(p)
         candidates = p.pop("image_candidates", [])
@@ -703,21 +755,37 @@ async def screenshots(profile: dict, slugs: list[str]):
     from playwright.async_api import async_playwright
 
     async with async_playwright() as pw:
+        # The browser cannot resolve a listed host, so a redirect hop that no route handler sees fails inside the browser.
+        launch_args = browser_args()
         try:
-            browser = await pw.chromium.launch(channel="chrome")
+            browser = await pw.chromium.launch(channel="chrome", args=launch_args)
         except Exception:
-            browser = await pw.chromium.launch()
+            browser = await pw.chromium.launch(args=launch_args)
         ctx = await browser.new_context(
             viewport={"width": 1200, "height": 630}, user_agent=UA, locale="ro-RO", ignore_https_errors=True,
             bypass_csp=True,
         )
+        refused: list[str] = []  # navigations to a listed host that failed in the browser, for the page being shot
+
+        async def guard(route):
+            await refuse_route(route, refused)
+
+        await ctx.route("**/*", guard)  # a navigation, a link or a script that leads to a listed host is aborted
+        ctx.on("requestfailed", lambda request: note_failed_request(request, refused))  # ... and so is a redirect hop (unresolvable)
         for slug in slugs:
             p = profile[slug]
+            if (row := forbidden(p["url"])) is not None:
+                log(skip_line(slug, row))
+                continue
+            refused.clear()
             page = await ctx.new_page()
             try:
                 resp = await page.goto(p["url"], wait_until="load", timeout=30_000)
                 await page.add_style_tag(content=COOKIE_CSS)
                 await page.wait_for_timeout(2500)
+                if refused:  # the page led to a listed host: no status change, no cover, no error
+                    log(skip_line(slug, forbidden(refused[0])))
+                    continue
                 status = resp.status if resp else 0
                 if p["status"] == "blocat":
                     # 401/403/429/503 in a real browser too: bot wall, still unknown.
@@ -729,6 +797,9 @@ async def screenshots(profile: dict, slugs: list[str]):
                     p["image"] = {**info, "src": f"img/og/{slug}.webp", "kind": "screenshot", "source_url": p["url"]}
                 log(f"  shot     {status} {slug}")
             except Exception as ex:
+                if refused:  # the browser refused a navigation to a listed host: that is not an error of the site
+                    log(skip_line(slug, forbidden(refused[0])))
+                    continue
                 if p["status"] == "blocat" and "Timeout" not in str(ex):
                     p["status"] = "offline"
                 log(f"  shot     ERR {slug}: {str(ex)[:100]}")
@@ -774,9 +845,11 @@ async def main():
     else:
         # A changed url counts as never profiled.
         todo = [e for e in entries if args.force or e["slug"] not in profile or profile[e["slug"]].get("url") != e["url"]]
-    opts = dict(headers=HEADERS, follow_redirects=True, timeout=httpx.Timeout(20, connect=10), max_redirects=8)
+    # The request hook refuses a redirect hop to a listed host; the entries on the list never reach a client (without_forbidden).
+    opts = dict(headers=HEADERS, follow_redirects=True, timeout=httpx.Timeout(20, connect=10), max_redirects=8,
+                event_hooks={"request": [refuse_listed]})
     if args.extra or args.opr:
-        todo = [e for e in (todo if only else entries) if e["slug"] in profile]
+        todo = without_forbidden([e for e in (todo if only else entries) if e["slug"] in profile])
         before = {e["slug"]: dict(profile[e["slug"]]) for e in todo}
         async with httpx.AsyncClient(verify=False, **opts) as client:
             if args.extra:
@@ -791,13 +864,17 @@ async def main():
         save_profile(profile, path)
         github_report()
         return
+    todo = without_forbidden(todo)
     log(f"profiling {len(todo)} of {len(entries)} entries")
 
     sem = asyncio.Semaphore(8)
     async with httpx.AsyncClient(**opts) as client, httpx.AsyncClient(verify=False, **opts) as insecure:
         results = await asyncio.gather(*(profile_one(sem, client, insecure, e, profile.get(e["slug"])) for e in todo))
-        await asyncio.gather(*(extras_one(sem, insecure, e, p) for e, p in zip(todo, results)))
-        for e, p in zip(todo, results):
+        # None: a redirect led to a listed host. That entry keeps its stored row and gets no further request.
+        done = [(e, p) for e, p in zip(todo, results) if p is not None]
+        todo = [e for e, _ in done]
+        await asyncio.gather(*(extras_one(sem, insecure, e, p) for e, p in done))
+        for e, p in done:
             profile[e["slug"]] = merge_profile(profile.get(e["slug"]), p)
         await link_icons(insecure, todo, profile, args.force, roles)
 

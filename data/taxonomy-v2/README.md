@@ -217,6 +217,14 @@ de mână sau prin fila `v2-intrari` a tabelului. `integrare.py` nu le mai regen
 `integrare/` de la commitul detașării corespunde rulării sigilate. Detașați înainte de orice modificare a vocabularului:
 o modificare a vocabularului face rularea să nu mai corespundă, iar `--detach` refuză.
 
+## Site-uri care interzic accesul automat
+
+Dacă un site respinge cererile automate (de exemplu răspunde cu HTTP 429 sau cu o pagină de verificare) sau își interzice extragerea automată în termeni sau în `llms.txt`,
+adăugați un rând în `data/taxonomy-v2/colectare-interzisa.csv`: `gazda` (numele gazdei, fără `https://` și fără `www.`; include și subdomeniile), `motiv` (o propoziție),
+`dovada` (o adresă sau un citat scurt) și `data` (AAAA-LL-ZZ). După aceea niciun script nu mai cere gazda: nici `profile.py`, `review.py`, `collect_docs.py`, `inventory.py`, nici redirecționările către ea.
+Intrarea își păstrează rândul din `profil.csv`; nu devine `offline`. Proprietarul salvează apoi paginile de mână, din browserul propriu,
+și le importă cu `--import-saved` (`collect_docs.py` sau `inventory.py`). `validate.py` verifică fișierul și avertizează când nicio intrare nu mai folosește gazda. Coloanele: `docs/DATA-SCHEMA.md`.
+
 ## Previzualizare
 
 ```sh

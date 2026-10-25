@@ -1,5 +1,34 @@
 # Activity
 
+## 2026-10-26 — A list of hosts that no script requests (v0.26.0)
+
+**Done**
+- New file `data/taxonomy-v2/colectare-interzisa.csv` (`gazda`, `motiv`, `dovada`, `data`, `nota`). First row: `harta-firmelor.ro` (HTTP 429 from a Vercel Security Checkpoint; `llms.txt` forbids automated extraction). The row also covers `api.harta-firmelor.ro`.
+- `scripts/common.py` holds the one check, `forbidden(url)`, and `refuse_forbidden`, `browser_args`, `refuse_route` and `note_failed_request` for the browser passes. The match is by whole host labels; a leading `www.` is ignored.
+- Request paths found and guarded:
+  - `profile.py`: the page, images, icons, feeds, sitemap, `--extra` signals and link favicons go through `get()` or an httpx client. Each client has a request hook that refuses a redirect hop to a listed host. A listed entry is left out in every mode and keeps its row. The browser pass skips a listed page, aborts a navigation to a listed host and starts Chromium with the resolver rule.
+  - `review.py`: `fetch()` (httpx with the same hook) and `render()` (Playwright). A listed entry is skipped before the download and before the model request; its answer, suggestions and labels stay.
+  - `collect_docs.py`: `Fetcher.__call__` checks before the cache, the log and the budget. A redirect handler refuses a listed target. `collect()` returns the state `colectare-interzisa` for a listed entry; `merge_refresh` keeps an earlier record unchanged, with no `ultima_incercare`.
+  - `inventory.py`: all requests go through the same `Fetcher`. `obtain()` does not refresh a listed source (`--force` and `--force-url` included). `--probe` makes no request and writes no cache file for it. A body retained earlier stays the evidence.
+  - `render_pages.py` (found in the search; the brief did not name it): a listed URL is dropped before the browser starts. A render that ends on a listed host has the state `colectare-interzisa`.
+  - `search.py` calls only the Serper and Brave APIs. `sheets.py` and `form.py` call only Google. `build.py` and the `check_*.py` files request nothing outside the local preview. The list does not apply to them.
+- `validate.py` checks the file (header, host, `motiv`, date, duplicate host; absent file is an error). A row whose host is the `url` host of no entry is a warning.
+- Docs: `docs/DATA-SCHEMA.md`, `data/taxonomy-v2/README.md` (one Romanian paragraph), `README.md`, `CLAUDE.md`, `AGENTS.md`, `.claude/commands/add-new-url.md`, and the backlog.
+- Tests: `scripts/test_forbidden_hosts.py`, 62 offline tests. Name resolution and connections are switched off in each test, so a request that gets past a guard fails the test.
+  Measured: the full suite runs 583 tests (521 before), 8 skipped without `httpx` (6 before, plus 2 that need the real `httpx`); with `uv run --offline --with httpx` the new file runs 62 tests and skips none.
+  `validate.py --publication`: 0 errors, 0 warnings. `inventory.py --check` (with the local caches linked read-only from the main checkout): 0 evidence errors, 88 source bodies hash-verified, 2 owner-saved copies hash-verified.
+- Mutation check (one guard off at a time, the new file only, with `httpx`): `forbidden()` always `None`, 50 of 62 tests fail (42 failures, 8 errors); `Fetcher` guard, 2; redirect handler, 1; `collect()`, 5; `inventory.obtain()`, 2; `profile.py` entry filter, 2; httpx hook, 2; `get()`, 4; `review.fetch()`, 2; `review.main()`, 1; `render_pages`, 2; resolver rule, 4; `validate.py` call, 1.
+
+**Hard**
+- A Playwright route handler does not see the redirect hop of a request that it let through. A test against a loopback server showed that the server received the request for the listed name. The handler alone cannot keep a redirect from a listed host. Chromium now also starts with `--host-resolver-rules` that map each listed host to `~NOTFOUND`. The handler stays as the second layer.
+- An httpx event hook runs for each redirect hop, so one hook per client is the smallest correct change. `urllib` has no such hook; `collect_docs.py` uses an `HTTPRedirectHandler` that raises before the next request. For both, the first request goes to an allowed host and the hop to the listed host is never sent.
+- `test_enrichment.py` counted the entries that `review.py` asks about. A listed entry is now skipped, so the test subtracts the listed entries (and checks that at least one exists).
+
+**Decided**
+- The list sits next to the vocabulary files and every script reads the same file, whatever `--data-dir` says. A site that forbids access forbids it for every root. The cost of one list per root is drift between roots.
+- A skipped result is a state (`colectare-interzisa`), not an error. A failed-attempt mark would make a later run retry, and `offline` would show a live site as down on the public build.
+- A missing list file is a validation error, and a list that cannot be read stops the script. An error that ends in "allow every request" is worse than a stopped run.
+- Not done: a test that scans the scripts for a new request path without the guard (open in the backlog). A new script must call `forbidden()` itself; `CLAUDE.md` says so.
 ## 2026-10-26 — The data finder on the public site (v0.25.0)
 
 **Done**

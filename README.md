@@ -326,6 +326,7 @@ Fișierele descărcate rămân locale în `surse/`, cu versiuni identificate pri
 Toate inventarele sunt propuneri parțiale. Colectorul nu publică automat date și nu folosește servicii plătite.
 O copie salvată de proprietar (`--import-saved`) are originea `copie-salvata-de-proprietar`, nu este niciodată etichetată ca descărcată și nu este cerută din nou.
 Ora salvării are nevoie de decalaj UTC. Fișierul rămâne la proprietar; `--check` verifică amprenta textului păstrat.
+Un site care interzice accesul automat se trece în `data/taxonomy-v2/colectare-interzisa.csv`. Niciun script nu mai cere gazda listată; starea rezultatului este `colectare-interzisa`.
 
 ### Previzualizarea inventarelor în explorator
 

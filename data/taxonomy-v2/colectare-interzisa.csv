@@ -1,0 +1,2 @@
+gazda,motiv,dovada,data,nota
+harta-firmelor.ro,"Site-ul respinge cererile automate (HTTP 429, Vercel Security Checkpoint), iar llms.txt interzice extragerea automată și în masă a datelor.",https://harta-firmelor.ro/llms.txt,2026-10-24,"Acoperă și api.harta-firmelor.ro: API-ul oficial cere o cheie pe care nu o avem. Paginile se salvează manual și se importă cu --import-saved."

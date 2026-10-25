@@ -7,6 +7,7 @@ import csv
 import json
 import os
 import re
+from functools import lru_cache
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -120,6 +121,118 @@ def write_csv(path: Path, cols: list[str], rows: list[dict]):
         w = csv.DictWriter(f, fieldnames=cols, extrasaction="ignore", lineterminator="\n")
         w.writeheader()
         w.writerows(rows)
+
+
+# --- Sites that forbid automated access ---------------------------------------------------------------------------------------
+# data/taxonomy-v2/colectare-interzisa.csv (hand-edited) lists the hosts that no script requests. A listed host also covers its
+# subdomains. Every script that opens a connection to a project's site calls forbidden() before the request, and again for each
+# redirect it follows. A skipped request has the state `colectare-interzisa` with the `motiv` of the row. It is never an error,
+# never a failed attempt, and never `offline`.
+FORBIDDEN_STATE = "colectare-interzisa"
+FORBIDDEN_COLS = ["gazda", "motiv", "dovada", "data", "nota"]
+FORBIDDEN_PATH = DATA / "taxonomy-v2" / "colectare-interzisa.csv"
+
+
+class ForbiddenHost(Exception):
+    """Raised in place of a request to a listed host. `url` is the address; `row` is the line of the list that covers it."""
+
+    def __init__(self, url: str, row: dict):
+        super().__init__(f"{FORBIDDEN_STATE}: {url} ({row.get('motiv', '')})")
+        self.url, self.row = url, row
+
+
+def listed_host(host: str) -> str:
+    """A host name as the list compares it: lower case, no trailing dot, no leading `www.`."""
+    return (host or "").strip().lower().rstrip(".").removeprefix("www.")
+
+
+def host_of(url: str) -> str:
+    """The host of a URL, as listed_host writes it. Empty when the URL has no host (or cannot be parsed)."""
+    try:
+        return listed_host(urlparse(url).hostname or "")
+    except ValueError:
+        return ""
+
+
+@lru_cache(maxsize=None)
+def _forbidden_rows(path: str) -> tuple[dict, ...]:
+    p = Path(path)
+    if not p.exists():
+        return ()
+    with open(p, encoding="utf-8-sig", newline="") as f:
+        reader = csv.DictReader(f)
+        if reader.fieldnames is None:  # an empty file lists nothing
+            return ()
+        missing = [c for c in ("gazda", "motiv") if c not in reader.fieldnames]
+        if missing:  # a list that cannot be read must stop the run, not silently allow every request
+            raise ValueError(f"{p}: lipsesc coloanele {', '.join(missing)}")
+        rows = [{k: (v or "").strip() for k, v in r.items() if k} for r in reader]
+    return tuple(r for r in rows if r.get("gazda"))
+
+
+def forbidden_rows(path: Path | None = None) -> list[dict]:
+    """The rows of the list (loaded once per file). Empty when the file is absent."""
+    return list(_forbidden_rows(str(path or FORBIDDEN_PATH)))
+
+
+def forbidden(url: str, rows: list[dict] | None = None) -> dict | None:
+    """The row of the list that covers the host of `url`, else None. A host matches itself and its subdomains, by whole
+    labels (`notharta-firmelor.ro` does not match `harta-firmelor.ro`). A leading `www.` is ignored. `rows` replaces the file."""
+    host = host_of(url)
+    if not host:
+        return None
+    for row in forbidden_rows() if rows is None else rows:
+        listed = listed_host(row.get("gazda", ""))
+        if listed and (host == listed or host.endswith("." + listed)):
+            return row
+    return None
+
+
+def refuse_forbidden(url: str, rows: list[dict] | None = None):
+    """Raise ForbiddenHost when `url` is on a listed host. Call it before every request, and for each redirect hop."""
+    row = forbidden(url, rows)
+    if row is not None:
+        raise ForbiddenHost(url, row)
+
+
+def skip_line(slug: str, row: dict) -> str:
+    """The one line that a script prints for an entry it does not request."""
+    return f"  {FORBIDDEN_STATE} {slug}: {row.get('motiv', '')} [{row.get('gazda', '')}]"
+
+
+def refuse_route(route, refused: list | None = None):
+    """Playwright route handler (sync API) for a context or a page: abort a request to a listed host that a navigation, a link
+    or a script starts, and let the rest go on. The address of an aborted navigation goes to `refused`.
+
+    A route handler does NOT see the redirect hop of a request that it let through (measured with Chromium on loopback: the
+    server received the request for the listed host). Browsers are therefore also launched with browser_args(), and
+    note_failed_request() records the hop that the browser could not resolve."""
+    request = route.request
+    if forbidden(request.url) is None:
+        route.continue_()
+        return
+    if refused is not None and request.is_navigation_request():
+        refused.append(request.url)
+    route.abort()
+
+
+def browser_args(rows: list[dict] | None = None) -> list[str]:
+    """Arguments for chromium.launch(). They make every listed host, and its subdomains, unresolvable inside the browser, so no
+    request reaches it, not even the hop of a redirect that no route handler sees. A browser behind a proxy resolves nothing itself
+    and would ignore the rule; the scripts start the browser without a proxy."""
+    rules = []
+    for row in forbidden_rows() if rows is None else rows:
+        host = listed_host(row.get("gazda", ""))
+        if host:
+            rules += [f"MAP {host} ~NOTFOUND", f"MAP *.{host} ~NOTFOUND"]
+    return [f"--host-resolver-rules={', '.join(rules)}"] if rules else []
+
+
+def note_failed_request(request, refused: list):
+    """Playwright `requestfailed` listener: the browser could not make a request to a listed host (a route aborted it, or its
+    name does not resolve after a redirect). A navigation goes to `refused`, so the caller can tell it from an offline site."""
+    if forbidden(request.url) is not None and request.is_navigation_request():
+        refused.append(request.url)
 
 
 def is_kept(row: dict) -> bool:

@@ -20,7 +20,7 @@ class DataSchemaDoc(unittest.TestCase):
         return [c for c in cols if f"`{c}`" not in TEXT]
 
     def test_v1_and_observation_columns(self):
-        for name in ("PROIECTE_COLS", "ORGS_COLS", "PROFIL_COLS", "MENTIUNI_COLS", "ETICHETE_COLS"):
+        for name in ("PROIECTE_COLS", "ORGS_COLS", "PROFIL_COLS", "MENTIUNI_COLS", "ETICHETE_COLS", "FORBIDDEN_COLS"):
             self.assertEqual(self.missing(getattr(common, name)), [], name)
 
     def test_v2_headers(self):

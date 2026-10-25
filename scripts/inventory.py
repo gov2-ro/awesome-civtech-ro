@@ -16,6 +16,8 @@ sources they use. Other projects keep their records, references and evidence. A 
 (failed request, missing cache, failed parse) keeps its last good evidence and records the failed attempt.
 Discoveries live in descoperiri.json, separate from the per-run limits. A run writes all files or none.
 A page that the owner saved (--import-saved) keeps its own origin, `copie-salvata-de-proprietar`; it is never labelled as fetched and never requested.
+A host in data/taxonomy-v2/colectare-interzisa.csv is never requested, --force and --probe included, and neither is a redirect to it.
+The run reports it as `colectare-interzisa` with the reason of the list; the request log gets no row and the request limit does not count it.
 """
 from __future__ import annotations
 
@@ -30,7 +32,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 from collect_docs import Fetcher, canonical, flat, is_saved, restore, saved_copy, saved_errors, scope_of
-from common import PUBLIC_ROOT, data_schema, load_catalogue, load_vocabulary, observation_paths
+from common import FORBIDDEN_STATE, PUBLIC_ROOT, data_schema, forbidden, load_catalogue, load_vocabulary, observation_paths
 from inventory_concepts import EvidenceLocator, check_concepts, validate_families
 from inventory_apidocs import operations as api_operations
 from inventory_csvcards import csv_datasets
@@ -942,7 +944,7 @@ def update_inventory(entries, docs, verified, previous, *, cache, selected=(), o
     force_urls = {canonical(u) for u in force_urls}
     # New entries have no tracked record to protect; they are built from whatever local evidence exists.
     work = (selected or set(slugs)) | {s for s in slugs if s not in previous['profiles']}
-    report = {'pastrate': [], 'reimprospatate': [], 'esuate': [], 'neinspectate': [], 'avertismente': [], 'cereri': 0, 'cache': 0}
+    report = {'pastrate': [], 'reimprospatate': [], 'esuate': [], 'neinspectate': [], 'interzise': [], 'avertismente': [], 'cereri': 0, 'cache': 0}
 
     candidates = {s: discover_candidates(by_slug[s], docs.get(s, {}), verified.get(s, [])) for s in slugs}
     found = {(s, c['url']): discovery_record(s, c) for s in slugs for c in candidates[s]}
@@ -996,7 +998,10 @@ def update_inventory(entries, docs, verified, previous, *, cache, selected=(), o
         tracked = previous['sources'].get(ident)
         cached = read_cache(path)
         # A copy that the owner saved is never requested again (the site may forbid it). The owner imports a newer copy instead.
-        refresh = url in fetch_urls and not offline and not (is_saved(cached) or is_saved(tracked))
+        wanted = url in fetch_urls and not offline and not (is_saved(cached) or is_saved(tracked))
+        # A host on the list of forbidden hosts is never requested, `force` included. A body already retained stays the evidence.
+        skipped = wanted and forbidden(url) is not None
+        refresh = wanted and not skipped
         response, origin = None, None
         if cached is not None and not (refresh and (force or url in force_urls)):
             response, origin = cached, 'cache'
@@ -1006,8 +1011,8 @@ def update_inventory(entries, docs, verified, previous, *, cache, selected=(), o
                 response, origin = None, 'omis'
         if response is None:
             if tracked:
-                return url, tracked, ('neinspectat' if origin == 'omis' else 'pastrat-fara-cache' if url in fetch_urls else 'neatins')
-            return url, analyse_source({'url': url, 'state': 'necolectat'}, hint_of.get(url)), 'necolectat'
+                return url, tracked, (FORBIDDEN_STATE if skipped else 'neinspectat' if origin == 'omis' else 'pastrat-fara-cache' if url in fetch_urls else 'neatins')
+            return url, analyse_source({'url': url, 'state': 'necolectat'}, hint_of.get(url)), (FORBIDDEN_STATE if skipped else 'necolectat')
         if origin == 'retea' and (response.get('state') == 'ok' or cached is None or cached.get('state') != 'ok'):
             write_file_atomic(path, dump(response))
         metadata = analyse_source(response, hint_of.get(url))
@@ -1029,7 +1034,7 @@ def update_inventory(entries, docs, verified, previous, *, cache, selected=(), o
     for url, metadata, outcome in results:
         sources[metadata['id']] = metadata
         key = {'reimprospatat': 'reimprospatate', 'esuat': 'esuate', 'neinspectat': 'neinspectate',
-               'pastrat-fara-cache': 'pastrate'}.get(outcome)
+               'pastrat-fara-cache': 'pastrate', FORBIDDEN_STATE: 'interzise'}.get(outcome)
         if key:
             report[key].append(url)
         report['cache'] += outcome == 'cache'
@@ -1228,11 +1233,12 @@ def main():
             path = cache / (source_id(url) + '.json')
             old = read_cache(path)
             if response['state'] == 'ok' or old is None or old.get('state') != 'ok':
-                if response['state'] != 'limita-cereri':
+                if response['state'] not in ('limita-cereri', FORBIDDEN_STATE):  # no request was made, so there is no evidence to keep
                     write_file_atomic(path, dump(response))
             body = response.get('body', '')
             print(f"{response['state']} {response.get('http_status')} {response.get('content_type', '')} {len(body)} chars"
-                  f"{' partial' if response.get('partial') else ''}{' redacted ' + str(response['redactari']) if response.get('redactari') else ''} {url}")
+                  f"{' partial' if response.get('partial') else ''}{' redacted ' + str(response['redactari']) if response.get('redactari') else ''} {url}"
+                  f"{' (' + response['motiv'] + ')' if response['state'] == FORBIDDEN_STATE else ''}")
         print(f'{fetcher.requests} requests in this run')
         return 0
     imported = None
@@ -1273,9 +1279,10 @@ def main():
         print(f'saved copy kept: {imported[0]} (file sha256 {response["sha256_fisier"][:16]}, saved at {response["salvat_la"]}); not fetched')
     report = state['report']
     for key, label in (('reimprospatate', 'refreshed'), ('esuate', 'refresh failed; last evidence kept'),
-                       ('pastrate', 'no local body; tracked record kept'), ('neinspectate', 'not inspected: request limit reached')):
+                       ('pastrate', 'no local body; tracked record kept'), ('neinspectate', 'not inspected: request limit reached'),
+                       ('interzise', FORBIDDEN_STATE + ': not requested')):
         for url in report[key]:
-            print(f'{label}: {url}')
+            print(f'{label}: {url}' + (f' ({forbidden(url)["motiv"]})' if key == 'interzise' else ''))
     for note in report['avertismente']:
         print('WARNING: ' + note)
     profiles, sources = state['profiles'], state['sources']
