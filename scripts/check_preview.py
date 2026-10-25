@@ -14,7 +14,9 @@ expected numbers; it changes nothing (two checks rewrite data.json in the browse
 Exits 1 when a check fails. Playwright needs its Chromium (`uv run --with playwright playwright install chromium`).
 """
 import copy
+import csv
 import json
+import re
 import sys
 import urllib.parse
 import urllib.request
@@ -248,7 +250,7 @@ with sync_playwright() as pw:
     want = [i for i in projects if source in [d["name"] for d in i.get("dataSources", [])]]
     ok("data source filter counts providers", count_text(page) == len(want))
     go("proiect/" + sourced["slug"] + "/")
-    ok("detail links source evidence", page.locator('[data-slot="drawer"] .d-class a', has_text='INS').get_attribute("href") == evidence)
+    ok("detail links source evidence", page.locator('[data-slot="drawer"] .d-class a', has_text=re.compile('^' + re.escape(source) + '$')).get_attribute("href") == evidence)
     parliament = next(i for i in DB['items'] if any(d['name'] in ('Camera Deputaților', 'Senatul României') for d in i.get('dataSources', [])))
     want = [i for i in visible(parliament['kind']) if any(d['name'] in ('Camera Deputaților', 'Senatul României') for d in i.get('dataSources', []))]
     go('?k=' + parliament['kind'] + '&source=Parlament')
@@ -275,8 +277,13 @@ with sync_playwright() as pw:
     ]:
         go('?coverage=' + coverage)
         ok('geographic coverage ' + coverage, count_text(page) == sum(predicate(i) for i in projects))
-    proposed = next((r for r in DB['items'] if r['slug'] == 'demoanaf'), None)
-    ok('unreviewed sources stay out of the public field', proposed is not None and not proposed['dataSources'])
+    # Every provider relation that is not accepted stays out of the public field, unless an accepted row names the same provider.
+    with open(Path(__file__).resolve().parent.parent / 'data' / 'taxonomy-v2' / 'integrare' / 'relatii.csv', encoding='utf-8', newline='') as f:
+        relations = [r for r in csv.DictReader(f) if r['predicat'] == 'date_din']
+    accepted = {(r['subiect'], r['obiect_literal'] or r['obiect']) for r in relations if r['stare'] == 'acceptat'}
+    shown = {(i['slug'], d['name']) for i in DB['items'] for d in i.get('dataSources', [])}
+    unreviewed = {(r['subiect'], r['obiect_literal'] or r['obiect']) for r in relations if r['stare'] != 'acceptat'} - accepted
+    ok('unreviewed sources stay out of the public field', not unreviewed & shown, f'{len(unreviewed)} not accepted')
     go("?v=list")
     hidden = page.locator('[data-slot="results"] .row-kw .vh').first.inner_text()
     ok("result badges name their facet", hidden.rstrip(": ") in ("Subiect", "Format", "Ce poți face"), hidden)
