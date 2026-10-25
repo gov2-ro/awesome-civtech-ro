@@ -34,10 +34,16 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
 ## Inventory expansion — proposed next pass, 2026-10-25
 
+Implementation handoff: [inventory-expansion.md](briefs/inventory-expansion.md).
+The brief fixes the batch, evidence rules, preservation requirements and acceptance report.
+
 Baseline: 127 projects/resources; 14 have structured field evidence. Another 113 have no extracted structured fields.
 The 2,302 field records are source paths, not independent business variables. Seven business groups are proposed.
 The 62 unconfirmed profiles cover the full 140-entry catalogue, including organisations; this is a different measure.
 
+- [x] Write the implementation specification and a copyable prompt for a fresh session.
+- [ ] Fix targeted/offline preservation before new collection. `inventory.py --only` currently rebuilds unrelated records from local caches.
+      A fresh checkout can erase their fields. A smaller file budget can also drop previous source memberships.
 - [ ] Deepen the 14 existing inventories. Follow documented dataset catalogues and endpoint schemas beyond the current three-file discovery limit.
       INS needs dataset-specific dimensions and indicator definitions, rather than one example dataset.
 - [ ] Select 10–15 data-heavy entries without structured inventories. Prioritise those with documentation, downloads or linked repositories.

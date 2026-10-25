@@ -1,5 +1,24 @@
 # Activity
 
+## 2026-10-25 — Specify the next inventory implementation pass
+
+**Done**
+- Added `docs/briefs/inventory-expansion.md`, with a copyable session prompt, baseline, file map, evidence contract and five implementation milestones.
+- Named 12 primary entries, three reserves, a bounded INS metadata expansion and a target of ten new structured inventories.
+- Defined preservation tests, collection budgets, coverage exports, browser checks and the final implementation report.
+- Linked the handoff from the README and backlog. Collection and implementation remain pending.
+
+**Hard**
+- Code inspection found that `inventory.py --only` limits fetching but rebuilds every profile from available caches.
+  Missing local bodies can erase unrelated fields. Candidate limits can also discard earlier source memberships.
+  This finding comes from the current control flow; no destructive reproduction was run against tracked inventories.
+
+**Decided**
+- Make safe incremental collection the first milestone. More fetching before that fix could reduce the existing evidence coverage.
+- Require explicit source membership and contextual variable mappings. Shared providers alone do not prove shared dataset use.
+- Use bounded investigation and report coverage shortfalls honestly. Leave editorial acceptance and public deployment outside this implementation pass.
+
+
 ## 2026-10-25 — Record the inventory milestone as v0.12.0
 
 **Done**

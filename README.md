@@ -342,3 +342,4 @@ Pagina arată dovezi pentru fiecare asociere. Un nume comun nu garantează că s
 Acoperirea curentă: 14 din 127 de proiecte și resurse au câmpuri extrase din surse structurate.
 Cele 2.302 înregistrări sunt câmpuri și căi din surse, nu variabile independente.
 Prioritățile pentru extindere sunt în [BACKLOG.md](docs/BACKLOG.md#inventory-expansion--proposed-next-pass-2026-10-25).
+Specificația pentru o nouă sesiune este în [inventory-expansion.md](docs/briefs/inventory-expansion.md).
