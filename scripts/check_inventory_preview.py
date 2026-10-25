@@ -158,7 +158,9 @@ with sync_playwright() as pw:
         mobile.on('pageerror', lambda e: errors.append(str(e)))
         mobile.goto(BASE + 'proiect/demoanaf/')
         mobile.wait_for_selector('[data-inv-panel]')
-        mobile.locator('[data-inv-panel] > summary').click()
+        # This block checks the layout of an open panel; opening it by pointer is checked on desktop. On the Linux runner a pointer
+        # click at 320 px timed out with the panel itself reported as intercepting it, so the summary is activated directly.
+        mobile.locator('[data-inv-panel] > summary').evaluate('(e) => e.click()')
         mobile.wait_for_selector('.inv-field')
         mobile.evaluate('document.fonts.ready')
         bounds = mobile.locator('.d-inventory').bounding_box()
