@@ -89,6 +89,10 @@ The 62 unconfirmed profiles cover the full 140-entry catalogue, including organi
 - [x] Count a record that restates another source (`in_contract`) once. `inventory_state.counted_fields` drives the profile and report counts;
       the preview folds the restatement into the restated record as `also` evidence. DemoANAF: 221 → 130 counted fields; finder card 85 → 57; `cui` evidence 5 → 3.
 
+- [ ] `harta-firmelor.ro/date` lists "Surse" for each dataset: provider evidence for D136–D139 (ONRC, ANAF, SICAP/SEAP, Monitorul Oficial).
+      Every automated request gets HTTP 429 from a Vercel Security Checkpoint (the 2026-10-24 collection of `/`, `/llms.txt`, `/metodologie/`, `/despre/` too;
+      checked again on 2026-10-25). Do not pass the checkpoint with a headless browser. Use a copy that the owner saves from their browser, or ask the project.
+
 ### DemoANAF — paused 2026-10-25
 
 **Conclusions.** Three sources: `openapi.json` (46 operations, 95 parameters, no response schemas), the `api-docs` page (60 operations, 14 and 22 inputs
@@ -106,9 +110,6 @@ and mention the untranslated keys `ep.seap-cpv-top.description`, `ep.seap-cpv-an
       INS (POP107D, FOM104D, FOM106E, RPL 2021), MIPE/AFIR, OpenStreetMap, BNR, VIES (European Commission), Monitorul Oficial Partea IV ("disponibilitate neverificată"), ANAF press releases.
       Re-point D132–D134 (ANAF, BNR, ONRC) to this page with exact fragments, and add proposals for the others. It also declares balance-sheet fields
       (cifră de afaceri, profit net, număr angajați): text evidence for `cifra-afaceri`, `profit-net`, `numar-salariati`. DemoANAF also offers an MCP connector (`/conector-mcp`).
-- [ ] `harta-firmelor.ro/date` lists "Surse" for each dataset: provider evidence for D136–D139 (ONRC, ANAF, SICAP/SEAP, Monitorul Oficial).
-      Every automated request gets HTTP 429 from a Vercel Security Checkpoint (the 2026-10-24 collection of `/`, `/llms.txt`, `/metodologie/`, `/despre/` too;
-      checked again on 2026-10-25). Do not pass the checkpoint with a headless browser. Use a copy that the owner saves from their browser, or ask the project.
 - [ ] (paused) Response fields of DemoANAF: schema or example from the project.
 - [ ] (paused) Review the 22 inputs that only the page documents and the 4 contract inputs that the page lacks (`comparatie_contract`).
 - [ ] (paused) Group candidates: `cuis` (batch body, `string[]`) → `cui`; `year` → `perioada-de-referinta` (`dateFrom`/`dateTo` are filter bounds, keep them out);
