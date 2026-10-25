@@ -26,7 +26,7 @@ class HtmlTables(unittest.TestCase):
         _, fields, _ = html_tabele(text('afacut-tabel.html'))
         self.assertEqual([f['nume'] for f in fields], ['Data raportării', 'Tranșa (mld lei)', 'Cumulat (mld lei)'])
         self.assertEqual([f['unitate'] for f in fields], [None, 'mld lei', 'mld lei'])
-        self.assertEqual([f['tipuri_observate'] for f in fields], [['data'], ['numar'], ['numar']])
+        self.assertEqual([f['tipuri_observate'] for f in fields], [['forma-de-data'], ['forma-numerica'], ['forma-numerica']])
         self.assertTrue(all(f['stare_tip'] == 'antet-tabel-html' and f['tip_declarat'] is None for f in fields))
         self.assertEqual(fields[1]['pointer'], '/tabele/1/antet/1')
 
@@ -56,7 +56,7 @@ class HtmlTables(unittest.TestCase):
 
     def test_sample_types_keep_identifiers_as_text_and_romanian_numbers_as_numbers(self):
         self.assertEqual([sample_type(v) for v in ('0,53', '211.562', '36,16 %', '27 mai 2025', '2026-10-22', '', 'Alba', '007')],
-                         ['numar', 'numar', 'numar', 'data', 'data', 'null', 'text', 'numar'])
+                         ['forma-numerica', 'forma-numerica', 'forma-numerica', 'forma-de-data', 'forma-de-data', 'null', 'text', 'forma-numerica'])
 
     def test_header_row_of_th_cells_and_thead_are_both_headers(self):
         tables = parse_tables('<table><thead><tr><td>a</td></tr></thead><tbody><tr><td>1</td></tr></tbody></table>'

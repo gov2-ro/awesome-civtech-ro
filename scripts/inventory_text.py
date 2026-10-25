@@ -120,13 +120,15 @@ def markdown_tables(body):
 
 
 def sample_type(value):
+    """The written form of a table cell. A cell is always text; `forma-numerica` and `forma-de-data` say how it looks, not what it is
+    (an identifier such as a CUI looks numeric and stays an identifier)."""
     value = clean(value)
     if not value:
         return 'null'
     if re.fullmatch(r'-?\d{1,3}(?:[.\s]\d{3})*(?:,\d+)?\s*%?|-?\d+(?:[.,]\d+)?\s*%?|\+?-?\d+(?:[.,]\d+)?', value):
-        return 'numar'
+        return 'forma-numerica'
     if re.fullmatch(r'\d{4}-\d{2}-\d{2}(?:[T ].*)?|\d{1,2}[./-]\d{1,2}[./-]\d{2,4}|\d{1,2} [^\W\d_]{3,12}\.? \d{4}|[^\W\d_]{3,12} \d{4}', value):
-        return 'data'
+        return 'forma-de-data'
     return 'text'
 
 

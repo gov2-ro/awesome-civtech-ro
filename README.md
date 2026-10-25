@@ -305,9 +305,11 @@ După o clonare nouă, folosiți `--force` pentru a recupera paginile necesare v
 ### Inventarele de variabile
 
 ```sh
-python3 scripts/inventory.py                  # scheme/date legate în documentație; cel mult 3 fișiere pe intrare
+python3 scripts/inventory.py                  # scheme/date legate în documentație; cel mult 3 surse noi pe intrare
+python3 scripts/inventory.py --only demoanaf --offline   # modifică doar proiectul ales; celelalte păstrează înregistrările și dovezile
 python3 scripts/inventory.py --offline        # reconstruiește propunerile fără cereri
 python3 scripts/inventory.py --check          # verifică dovezile locale; nu descarcă și nu rescrie
+python3 scripts/inventory_report.py           # acoperirea (acoperire.csv) și raportul docs/reports/inventory-expansion.md
 python3 scripts/collect_docs.py --only afacut --force --follow-data-links
 ```
 
@@ -339,7 +341,8 @@ Variabilele selectate se cumulează. În celelalte filtre, opțiunile sunt alter
 Asocierile inițiale sunt propuneri în `data/taxonomy-v2/inventar-concepte.json`, cu selectori expliciți pentru proiect și câmp.
 Pagina arată dovezi pentru fiecare asociere. Un nume comun nu garantează că seturile se pot combina.
 
-Acoperirea curentă: 14 din 127 de proiecte și resurse au câmpuri extrase din surse structurate.
-Cele 2.302 înregistrări sunt câmpuri și căi din surse, nu variabile independente.
-Prioritățile pentru extindere sunt în [BACKLOG.md](docs/BACKLOG.md#inventory-expansion--proposed-next-pass-2026-10-25).
-Specificația pentru o nouă sesiune este în [inventory-expansion.md](docs/briefs/inventory-expansion.md).
+Acoperirea curentă: 27 din 127 de proiecte și resurse au câmpuri extrase din surse structurate.
+Cele 3.525 de înregistrări sunt câmpuri și căi din surse, nu variabile independente; 30 de grupuri de variabile sunt propuse.
+Raportul complet, cu limite, blocaje și rezultatele verificărilor, este în [inventory-expansion.md](docs/reports/inventory-expansion.md).
+Lucrările rămase sunt în [BACKLOG.md](docs/BACKLOG.md#inventory-expansion--implemented-2026-10-25-milestones-ae-v0140v0180).
+Specificația implementată este în [inventory-expansion.md](docs/briefs/inventory-expansion.md).

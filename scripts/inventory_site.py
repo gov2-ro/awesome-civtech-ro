@@ -99,6 +99,19 @@ def publish_finder(items, root, site, projections, vocabulary=None):
     (page / 'index.html').write_text(doc)
 
 
+def dataset_summary(facts):
+    """The few dataset facts that the field browser shows. Values keep the label of their basis: declared, API-computed or counted."""
+    def value(key):
+        fact = facts.get(key)
+        return fact.get('valoare') if isinstance(fact, dict) else None
+    period = facts.get('perioada') or {}
+    names = facts.get('denumire') or {}
+    return {'code': value('cod'), 'name': (names.get('ro') or names.get('en') or {}).get('valoare'), 'updated': value('actualizat'),
+            'period': [(period.get('an_min') or {}).get('valoare'), (period.get('an_max') or {}).get('valoare')] if period else None,
+            'levels': value('niveluri_geografice'), 'units': [u['cod'] for u in facts.get('unitati', []) if u.get('cod')],
+            'dimensions': [d['nume'] for d in facts.get('dimensiuni', [])], 'licence': facts.get('licenta')}
+
+
 def http_url(value):
     try:
         parsed = urlsplit(value)
@@ -184,6 +197,12 @@ def publish_preview(items, root, site):
             filename = unquote(Path(urlsplit(url).path).name)
             title = FORMATS.get(fmt, 'Sursă de date') + (' · ' + filename if filename else '')
             listed = {'id': ident, 'url': url, 'title': title, 'format': fmt, 'checked': str(source.get('fetched_at', ''))[:10]}
+            if source.get('set_date'):
+                listed['dataset'] = dataset_summary(source['set_date'])
+            if source.get('partial'):
+                listed['partial'] = True
+            if source.get('via') == 'browser':
+                listed['viaBrowser'] = True
             attempt = source.get('ultima_incercare')
             if attempt:
                 # The retained evidence is older than the last attempt. Say so; never present it as freshly verified.

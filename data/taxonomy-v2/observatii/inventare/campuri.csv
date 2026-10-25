@@ -28,20 +28,20 @@ achizitii-directe-ti-2026,92aab0725bd7591cd85b,https://achizitii-directe-ti-2026
 aerlive,afb67f435b33de907c41,https://aerlive.ro/wp-json/api/v1/cities/,json,camp-date,name,$.data[].name,,string,,,,,/data/0/name,observat-in-esantion-json
 aerlive,afb67f435b33de907c41,https://aerlive.ro/wp-json/api/v1/cities/,json,camp-date,code,$.data[].code,,string,,,,,/data/0/code,observat-in-esantion-json
 aerlive,afb67f435b33de907c41,https://aerlive.ro/wp-json/api/v1/cities/,json,camp-date,gps,$.data[].gps,,string,,,,,/data/0/gps,observat-in-esantion-json
-afacut,5c85d57d48f6922090e1,https://afacut.ro/apa-si-canal/,html-tabele,camp-date,Data raportării,tabel1.Data raportării,,data,,,,,/tabele/1/antet/0,antet-tabel-html
-afacut,5c85d57d48f6922090e1,https://afacut.ro/apa-si-canal/,html-tabele,camp-date,Tranșa (mld lei),tabel1.Tranșa (mld lei),,numar,,mld lei,,,/tabele/1/antet/1,antet-tabel-html
-afacut,5c85d57d48f6922090e1,https://afacut.ro/apa-si-canal/,html-tabele,camp-date,Cumulat (mld lei),tabel1.Cumulat (mld lei),,numar,,mld lei,,,/tabele/1/antet/2,antet-tabel-html
-afacut,dbdaf760728fdd2d22db,https://afacut.ro/drumuri-si-poduri/,html-tabele,camp-date,Data raportării,tabel1.Data raportării,,data,,,,,/tabele/1/antet/0,antet-tabel-html
-afacut,dbdaf760728fdd2d22db,https://afacut.ro/drumuri-si-poduri/,html-tabele,camp-date,Tranșa (mld lei),tabel1.Tranșa (mld lei),,numar,,mld lei,,,/tabele/1/antet/1,antet-tabel-html
-afacut,dbdaf760728fdd2d22db,https://afacut.ro/drumuri-si-poduri/,html-tabele,camp-date,Cumulat (mld lei),tabel1.Cumulat (mld lei),,numar,,mld lei,,,/tabele/1/antet/2,antet-tabel-html
+afacut,5c85d57d48f6922090e1,https://afacut.ro/apa-si-canal/,html-tabele,camp-date,Data raportării,tabel1.Data raportării,,forma-de-data,,,,,/tabele/1/antet/0,antet-tabel-html
+afacut,5c85d57d48f6922090e1,https://afacut.ro/apa-si-canal/,html-tabele,camp-date,Tranșa (mld lei),tabel1.Tranșa (mld lei),,forma-numerica,,mld lei,,,/tabele/1/antet/1,antet-tabel-html
+afacut,5c85d57d48f6922090e1,https://afacut.ro/apa-si-canal/,html-tabele,camp-date,Cumulat (mld lei),tabel1.Cumulat (mld lei),,forma-numerica,,mld lei,,,/tabele/1/antet/2,antet-tabel-html
+afacut,dbdaf760728fdd2d22db,https://afacut.ro/drumuri-si-poduri/,html-tabele,camp-date,Data raportării,tabel1.Data raportării,,forma-de-data,,,,,/tabele/1/antet/0,antet-tabel-html
+afacut,dbdaf760728fdd2d22db,https://afacut.ro/drumuri-si-poduri/,html-tabele,camp-date,Tranșa (mld lei),tabel1.Tranșa (mld lei),,forma-numerica,,mld lei,,,/tabele/1/antet/1,antet-tabel-html
+afacut,dbdaf760728fdd2d22db,https://afacut.ro/drumuri-si-poduri/,html-tabele,camp-date,Cumulat (mld lei),tabel1.Cumulat (mld lei),,forma-numerica,,mld lei,,,/tabele/1/antet/2,antet-tabel-html
 afacut,643d4a99e578531b0165,https://afacut.ro/drumuri-si-poduri/judete/,html-tabele,camp-date,Județ,tabel1.Județ,,text,,,,,/tabele/1/antet/0,antet-tabel-html
-afacut,643d4a99e578531b0165,https://afacut.ro/drumuri-si-poduri/judete/,html-tabele,camp-date,Din 100 de lei,tabel1.Din 100 de lei,,numar,,,,,/tabele/1/antet/1,antet-tabel-html
-afacut,643d4a99e578531b0165,https://afacut.ro/drumuri-si-poduri/judete/,html-tabele,camp-date,Alocat (mil. lei),tabel1.Alocat (mil. lei),,numar,,mil. lei,,,/tabele/1/antet/2,antet-tabel-html
-afacut,643d4a99e578531b0165,https://afacut.ro/drumuri-si-poduri/judete/,html-tabele,camp-date,Solicitat (mil. lei),tabel1.Solicitat (mil. lei),,numar,,mil. lei,,,/tabele/1/antet/3,antet-tabel-html
+afacut,643d4a99e578531b0165,https://afacut.ro/drumuri-si-poduri/judete/,html-tabele,camp-date,Din 100 de lei,tabel1.Din 100 de lei,,forma-numerica,,,,,/tabele/1/antet/1,antet-tabel-html
+afacut,643d4a99e578531b0165,https://afacut.ro/drumuri-si-poduri/judete/,html-tabele,camp-date,Alocat (mil. lei),tabel1.Alocat (mil. lei),,forma-numerica,,mil. lei,,,/tabele/1/antet/2,antet-tabel-html
+afacut,643d4a99e578531b0165,https://afacut.ro/drumuri-si-poduri/judete/,html-tabele,camp-date,Solicitat (mil. lei),tabel1.Solicitat (mil. lei),,forma-numerica,,mil. lei,,,/tabele/1/antet/3,antet-tabel-html
 afacut,643d4a99e578531b0165,https://afacut.ro/drumuri-si-poduri/judete/,html-tabele,camp-date,Localități cu solicitări,tabel1.Localități cu solicitări,,text,,,,,/tabele/1/antet/4,antet-tabel-html
-afacut,28b7fba4fae5df74675f,https://afacut.ro/gaze-naturale/,html-tabele,camp-date,Data raportării,tabel1.Data raportării,,data,,,,,/tabele/1/antet/0,antet-tabel-html
-afacut,28b7fba4fae5df74675f,https://afacut.ro/gaze-naturale/,html-tabele,camp-date,Tranșa (mld lei),tabel1.Tranșa (mld lei),,numar,,mld lei,,,/tabele/1/antet/1,antet-tabel-html
-afacut,28b7fba4fae5df74675f,https://afacut.ro/gaze-naturale/,html-tabele,camp-date,Cumulat (mld lei),tabel1.Cumulat (mld lei),,numar,,mld lei,,,/tabele/1/antet/2,antet-tabel-html
+afacut,28b7fba4fae5df74675f,https://afacut.ro/gaze-naturale/,html-tabele,camp-date,Data raportării,tabel1.Data raportării,,forma-de-data,,,,,/tabele/1/antet/0,antet-tabel-html
+afacut,28b7fba4fae5df74675f,https://afacut.ro/gaze-naturale/,html-tabele,camp-date,Tranșa (mld lei),tabel1.Tranșa (mld lei),,forma-numerica,,mld lei,,,/tabele/1/antet/1,antet-tabel-html
+afacut,28b7fba4fae5df74675f,https://afacut.ro/gaze-naturale/,html-tabele,camp-date,Cumulat (mld lei),tabel1.Cumulat (mld lei),,forma-numerica,,mld lei,,,/tabele/1/antet/2,antet-tabel-html
 europescope,350fa388a8f17625a7f9,https://api.europescope.eu/v1/countries.csv,csv,camp-date,code,code,,,,,,,coloana-csv:0,neprecizat-in-antet-csv
 europescope,350fa388a8f17625a7f9,https://api.europescope.eu/v1/countries.csv,csv,camp-date,name_en,name_en,,,,,,,coloana-csv:1,neprecizat-in-antet-csv
 europescope,350fa388a8f17625a7f9,https://api.europescope.eu/v1/countries.csv,csv,camp-date,current_meps,current_meps,,,,,,,coloana-csv:2,neprecizat-in-antet-csv
@@ -1199,27 +1199,27 @@ romania-transparenta,57c4fcaa888e4d7aa95d,https://api.romaniatransparenta.eu/v1/
 romania-transparenta,57c4fcaa888e4d7aa95d,https://api.romaniatransparenta.eu/v1/openapi.json,openapi,camp-raspuns,ultima_data,$.date[].ultima_data,"[""string"", ""null""]",,,,ultima întâlnire,GET /v1/date/intalniri_organizatii,/paths/~1v1~1date~1intalniri_organizatii/get/responses/200/content/application~1json/schema/allOf/1/properties/date/items/properties/ultima_data,declarat-in-schema
 romania-transparenta,57c4fcaa888e4d7aa95d,https://api.romaniatransparenta.eu/v1/openapi.json,openapi,camp-raspuns,observat_la,$.date[].observat_la,"[""string"", ""null""]",,,,data observării rândului,GET /v1/date/intalniri_organizatii,/paths/~1v1~1date~1intalniri_organizatii/get/responses/200/content/application~1json/schema/allOf/1/properties/date/items/properties/observat_la,declarat-in-schema
 romania-transparenta,57c4fcaa888e4d7aa95d,https://api.romaniatransparenta.eu/v1/openapi.json,openapi,camp-raspuns,incredere,$.date[].incredere,"[""string"", ""null""]",,,,"oficial, derivat, citit_automat sau neconfirmat",GET /v1/date/intalniri_organizatii,/paths/~1v1~1date~1intalniri_organizatii/get/responses/200/content/application~1json/schema/allOf/1/properties/date/items/properties/incredere,declarat-in-schema
-banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,An,tabel1.An,,numar,,,,,/tabele/1/antet/0,antet-tabel-html
-banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Contracte la 270.000 RON,tabel1.Contracte la 270.000 RON,,numar,,,,,/tabele/1/antet/1,antet-tabel-html
-banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Valoare cumulată (RON),tabel1.Valoare cumulată (RON),,numar,,RON,,,/tabele/1/antet/2,antet-tabel-html
+banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,An,tabel1.An,,forma-numerica,,,,,/tabele/1/antet/0,antet-tabel-html
+banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Contracte la 270.000 RON,tabel1.Contracte la 270.000 RON,,forma-numerica,,,,,/tabele/1/antet/1,antet-tabel-html
+banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Valoare cumulată (RON),tabel1.Valoare cumulată (RON),,forma-numerica,,RON,,,/tabele/1/antet/2,antet-tabel-html
 banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Observații,tabel1.Observații,,text|null,,,,,/tabele/1/antet/3,antet-tabel-html
-banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,#,tabel2.#,,numar,,,,,/tabele/2/antet/0,antet-tabel-html
+banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,#,tabel2.#,,forma-numerica,,,,,/tabele/2/antet/0,antet-tabel-html
 banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Furnizor,tabel2.Furnizor,,text,,,,,/tabele/2/antet/1,antet-tabel-html
-banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,CUI,tabel2.CUI,,numar,,,,,/tabele/2/antet/2,antet-tabel-html
-banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Contracte,tabel2.Contracte,,numar,,,,,/tabele/2/antet/3,antet-tabel-html
-banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Valoare (RON),tabel2.Valoare (RON),,numar,,RON,,,/tabele/2/antet/4,antet-tabel-html
+banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,CUI,tabel2.CUI,,forma-numerica,,,,,/tabele/2/antet/2,antet-tabel-html
+banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Contracte,tabel2.Contracte,,forma-numerica,,,,,/tabele/2/antet/3,antet-tabel-html
+banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Valoare (RON),tabel2.Valoare (RON),,forma-numerica,,RON,,,/tabele/2/antet/4,antet-tabel-html
 banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Furnizor,tabel3.Furnizor,,text,,,,,/tabele/3/antet/0,antet-tabel-html
-banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Total contracte cu RAJA,tabel3.Total contracte cu RAJA,,numar,,,,,/tabele/3/antet/1,antet-tabel-html
-banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Valoare totală (RON),tabel3.Valoare totală (RON),,numar,,RON,,,/tabele/3/antet/2,antet-tabel-html
-banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,% contracte la 270.000,tabel3.% contracte la 270.000,,numar,,,,,/tabele/3/antet/3,antet-tabel-html
+banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Total contracte cu RAJA,tabel3.Total contracte cu RAJA,,forma-numerica,,,,,/tabele/3/antet/1,antet-tabel-html
+banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Valoare totală (RON),tabel3.Valoare totală (RON),,forma-numerica,,RON,,,/tabele/3/antet/2,antet-tabel-html
+banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,% contracte la 270.000,tabel3.% contracte la 270.000,,forma-numerica,,,,,/tabele/3/antet/3,antet-tabel-html
 banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Furnizor,tabel4.Furnizor,,text,,,,,/tabele/4/antet/0,antet-tabel-html
 banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,CPV,tabel4.CPV,,text,,,,,/tabele/4/antet/1,antet-tabel-html
 banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Obiectul achiziției,tabel4.Obiectul achiziției,,text,,,,,/tabele/4/antet/2,antet-tabel-html
 banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Date de atribuire (toate la 270.000 RON),tabel4.Date de atribuire (toate la 270.000 RON),,text,,,,,/tabele/4/antet/3,antet-tabel-html
-banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Data,tabel5.Data,,data,,,,,/tabele/5/antet/0,antet-tabel-html
+banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Data,tabel5.Data,,forma-de-data,,,,,/tabele/5/antet/0,antet-tabel-html
 banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Furnizor,tabel5.Furnizor,,text,,,,,/tabele/5/antet/1,antet-tabel-html
-banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Nr.,tabel5.Nr.,,text|numar,,,,,/tabele/5/antet/2,antet-tabel-html
-banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Valoare (RON),tabel5.Valoare (RON),,numar,,RON,,,/tabele/5/antet/3,antet-tabel-html
+banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Nr.,tabel5.Nr.,,text|forma-numerica,,,,,/tabele/5/antet/2,antet-tabel-html
+banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Valoare (RON),tabel5.Valoare (RON),,forma-numerica,,RON,,,/tabele/5/antet/3,antet-tabel-html
 banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Servicii contractate simultan,tabel5.Servicii contractate simultan,,text,,,,,/tabele/5/antet/4,antet-tabel-html
 banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Nr.,tabel6.Nr.,,,,,,,/tabele/6/antet/0,antet-tabel-html
 banii-nostri,c2d13d8e6d9a635f507f,https://baniinostri.info/RAJASA/,html-tabele,camp-date,Data,tabel6.Data,,,,,,,/tabele/6/antet/1,antet-tabel-html

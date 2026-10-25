@@ -1,0 +1,141 @@
+slug,tip_entitate,investigat_in_lot,stare_investigare,surse_structurate,campuri_din_surse,concepte_propuse,campuri_cu_definitie,campuri_cu_tip_declarat,campuri_cu_tip_observat,masuri_cu_unitate,masuri_fara_unitate,surse_cu_provenienta_verificata,limite,blocaj,urmatorul_pas
+465,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+7-ani-de-acasa,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+accesinfo,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+aerlive,proiect,C,cu-surse-structurate,1,3,0,0,0,3,0,0,1,Doar lista orașelor (3 câmpuri); datele de măsurare nu au fost păstrate.,Punctele de date întorc HTTP 403 pentru clienți fără contextul paginii; copia din browser a datelor nu a fost reținută.,Repetați randarea cu o a treia navigare și păstrați răspunsul data?city=BUC.
+afacut,proiect,C,cu-surse-structurate,4,14,1,0,0,14,0,0,4,Doar tabele din paginile ediției și clasamentul județelor; căutarea de localități nu încarcă date (mod demonstrație). Tipurile sunt observate din cel mult cinci rânduri.,Nu există un set de date pe localități în paginile citite: căutarea spune „Mod demonstrație”.,Căutați seturile data.gov.ro ale MDLPA citate în pagină și verificați paginile pe localități.
+ai-aflat,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+amscapat,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+antibunk,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+banii-nostri,proiect,C,cu-surse-structurate,3,51,4,0,0,39,1,2,3,Primele 200 de înregistrări dintr-un răspuns paginat. Numele coloanelor ORDS nu sunt explicate (linkul describedby întoarce 404).,,Obțineți descrierea coloanelor SICAP de la data.g4d.ro.
+bani-partide,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+bani-pierduti,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+barometrul-digital,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+bucuresti-help,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+bucuresti-verde,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+reciclare-arad,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+calitate-aer-radauti,proiect,C,cu-surse-structurate,1,41,7,0,0,41,4,28,1,Eșantion de 24 de ore; ultimul rând este din 2026-04-19. Unități declarate doar pentru stația din centru.,,Întrebați proiectul unde sunt unitățile celorlalte stații.
+ce-cumpara-primaria,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+ce-fac-politicienii,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+centrul-pentru-cariere,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+ce-zice-legea,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+scoala-pentru-democratie,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+companii-de-stat,proiect,B2,cu-surse-structurate,5,591,5,1,1,512,0,50,5,Extragerea a atins o limită de eșantionare.,,
+companii-publice-ro,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+data-expertforum,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+ins-gov2,proiect,B,cu-surse-structurate,6,46,6,29,0,17,5,0,6,,,
+declic,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+demoanaf,proiect,B,cu-surse-structurate,2,102,6,7,95,0,1,0,2,,,
+de-obste,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+despre-femicid,proiect,C,cu-surse-structurate,1,9,1,0,0,0,0,0,1,Numai numele câmpurilor pe care le citește scriptul paginii; baza de date nu a fost citită. Corpul paginii păstrat are tokenul mascat.,"Datele stau într-un serviciu terț, în spatele unui token inclus în scriptul paginii; tokenul nu a fost folosit.",Anunțați proiectul despre token și cereți un export agregat.
+didi365,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+domnule-primar,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+drepturi-civile,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+dupa-cutremur,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+econtractauto,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+e-cutremur,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+europescope,proiect,C,cu-surse-structurate,7,72,4,0,0,16,0,3,7,Fișierele CSV sunt citite ca eșantion de 24 KB (antet și primele rânduri). Linkul de documentație API întoarce 404. Unele fișiere sunt citite ca eșantion.,,Cereți documentația API funcțională.
+evermed,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+executii-bugetare,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+factual,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+guvernezi,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+harta-banilor-publici,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+harta-digitalizarii-primariilor,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+harta-firmelor,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+monitorul-ai-integritate,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+harta-politicii,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+harta-taierilor,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+harta-tv-locale,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+hoover,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+ia-statul-la-intrebari,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+igov,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+imobile-rapps,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+interoperabilitate,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+jailando,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+mari-corupti,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+monarh-ai,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+monitor-cetatenie,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+monitor-energie,proiect,,blocat,0,0,,0,0,0,,,1,,HTTP 401 la contractul OpenAPI legat din documentație.,Reîncercați doar dacă proiectul publică documentația fără autentificare.
+monitor-safe,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+monitor-social,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+monitorul-ai,proiect,C,cu-surse-structurate,7,432,4,98,52,305,0,25,7,"Documentele de proiectare dau forme de exemplu, nu un contract. Schemele JSON descriu analizele discursului, nu stenogramele.",,"Citiți schema canonică JSON, dacă este publică, și eșantioane din arhivă prin site."
+multumesc,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+muzeul-coruptiei,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+nu-astepta-supereroi,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+observatori-votcorect,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+onesti-city,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+ong-camera-deputatilor,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+onorata-instanta,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+open-budget,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+oradea-city-report,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+parlament-transparent,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+piata-de-spaga,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+political-colours,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+politicieni-corupti,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+portal-just-modern,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+posturi-gov2,proiect,baza,cu-surse-structurate,1,21,1,0,0,21,0,0,1,Extragerea a atins o limită de eșantionare.,,
+radar-digital,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+redirectioneaza,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+rezultate-vot,proiect,C,cu-surse-structurate,10,139,6,7,114,0,0,13,10,Resursele API și migrările depozitului la o revizie; nu se știe dacă API-ul public este identic. Documentele Scramble nu au fost citite.,,"Citiți documentația API publică a proiectului, dacă există."
+romania-fara-gropi,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+romania-interactiva,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+romania-transparenta,proiect,B2,cu-surse-structurate,5,1173,7,1010,1081,76,0,2,5,Extragerea a atins o limită de eșantionare.,,
+sicap-ai,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+site-uri-utile-funky,resursa,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+etherpad-situri-civice,resursa,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+sanatate-mintala,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+sondaje-romania,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+testvot,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+tipizatul,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+apti-unelte-democratie,publicatie,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+transparenta-eu,proiect,B2,cu-surse-structurate,4,35,2,32,32,3,0,0,4,,,
+unde-locuiesc-romanii,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+verifica-psiholog,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+vichub-data,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+vocea-cartierului-tau,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+votcorect,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+votdiaspora,proiect,C,cu-surse-structurate,5,50,2,0,50,0,0,0,5,"Depozitul are ultimul commit din 2021; clasele pot fi anterioare site-ului actual. Baza resources.sqlite (8,8 MB) nu a fost descărcată.",,Confirmați cu proiectul dacă API-ul din depozit rulează.
+votez-info,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+dignitas,proiect,C,cu-surse-structurate,10,177,0,1,151,0,0,0,10,"10 din 84 de patch-uri SQL citite; schema este parțială. Constantele din Statement.php sunt coduri, nu tabele.",,Citiți restul patch-urilor sau o schemă curentă a bazei de date.
+ghiduri-efor,resursa,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+jurnalism-independent,resursa,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+presspay,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+aiparte-research,resursa,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+ro-api-hub,proiect,baza,cu-surse-structurate,2,53,0,12,22,26,0,0,2,Extragerea a atins o limită de eșantionare.,,
+registrul-firmelor,proiect,C,cu-surse-structurate,1,23,6,0,0,0,0,3,1,Lista câmpurilor este din documentația API; răspunsul nu a fost citit. Tipurile nu sunt declarate.,API-ul cere o cheie gratuită; cheia nu a fost cerută.,Cereți proiectului un exemplu de răspuns sau schema OpenAPI.
+monitorizare-plan-digital-national,resursa,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+piratii-digitali-ai-kremlinului,publicatie,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+semnal-razboiul-hibrid,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+proiecte-geo-spatial,resursa,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+efor,organizatie,,in-afara-ariei,0,0,,0,0,0,,,,,,
+funky-citizens,organizatie,,in-afara-ariei,0,0,,0,0,0,,,,,,
+code4ro,organizatie,,in-afara-ariei,0,0,,0,0,0,,,,,,
+crpe,organizatie,,in-afara-ariei,0,0,,0,0,0,,,,,,
+ethical-media,organizatie,,in-afara-ariei,0,0,,0,0,0,,,,,,
+amplify,organizatie,,in-afara-ariei,0,0,,0,0,0,,,,,,
+techsoup,organizatie,,in-afara-ariei,0,0,,0,0,0,,,,,,
+cere,organizatie,,in-afara-ariei,0,0,,0,0,0,,,,,,
+ai-parte,organizatie,,in-afara-ariei,0,0,,0,0,0,,,,,,
+inovarepublica,organizatie,,in-afara-ariei,0,0,,0,0,0,,,,,,
+radautiul-civic,organizatie,,in-afara-ariei,0,0,,0,0,0,,,,,,
+civica,organizatie,,in-afara-ariei,0,0,,0,0,0,,,,,,
+tech-and-tonic,organizatie,,in-afara-ariei,0,0,,0,0,0,,,,,,
+codurbanism,proiect,B2,cu-surse-structurate,4,116,0,0,0,101,0,0,4,Extragerea a atins o limită de eșantionare.,,
+cat-de-tare,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+biografia-localitatii,proiect,B|C,cu-surse-structurate,4,55,6,55,0,0,39,1,4,"38 de serii INS în tabelul de documentație; valorile nu sunt citite. Metadatele INS vin din oglinda ins.gov2.ro, care se oprește mai devreme decât cifrele proiectului.",,Citiți metadatele celorlalte matrici din tabel și paginile pe localități.
+unde-locuiesc,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+ani-de-pensie,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+ce-face-statul-cu-1000-de-lei,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+achizitii-directe-ti-2026,proiect,baza,cu-surse-structurate,1,26,2,0,0,0,1,0,1,,,
+statul-digital,publicatie,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+complet-online,publicatie,baza,cu-surse-structurate,2,63,0,0,0,53,0,0,2,Extragerea a atins o limită de eșantionare.,,
+prima-cifra,publicatie,baza,cu-surse-structurate,1,8,0,0,0,8,0,0,1,,,
+pe-datorie,publicatie,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+ultima-noapte-pib,publicatie,baza,cu-surse-structurate,1,107,0,0,0,107,0,0,1,Extragerea a atins o limită de eșantionare.,,
+constru-pentru-cine,publicatie,B,cu-surse-structurate,2,13,5,13,0,0,2,0,2,,,
+orasul-care-se-intinde,publicatie,B,cu-surse-structurate,3,26,6,13,0,0,2,4,3,,,
+trei-din-patru,publicatie,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+unde-se-termina-asfaltul,publicatie,B,cu-surse-structurate,3,141,4,11,0,130,2,0,3,Extragerea a atins o limită de eșantionare.,,
+de-unde-vine-apa,publicatie,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+recontorizarea,publicatie,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+pensie-din-bursa,publicatie,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."

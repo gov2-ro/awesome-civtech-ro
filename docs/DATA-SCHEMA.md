@@ -920,7 +920,7 @@ All readers return the common field keys and add the keys below; none infers a m
 
 | Format (`citire`) | What it reads | Field keys and notes |
 | --- | --- | --- |
-| `html-tabele` | HTML tables. `{tip: html-tabele, tabele: [2]}` selects tables by position. | A dictionary table (a name column plus a description, unit or type column) gives one field per row: `descriere`, `unitate` (the cell), `perioada_declarata`, `actualizat_declarat`; `stare_tip` `declarat-in-tabel-documentatie`. A data table gives one field per header cell: `unitate` only when the header ends with a unit in parentheses (`Tranșa (mld lei)` gives `mld lei`), `tipuri_observate` from up to five rows of the same width as the header (`numar`, `data`, `text`, `null`), `stare_tip` `antet-tabel-html`. A headerless two-column table whose second cell lists items (`group \| a, b, c`) gives one field per item with `grup`, `stare_tip` `declarat-in-text-documentatie`. Tables with a `Cookie` column are consent notices and are skipped. Locator `/tabele/T/randuri/R`, `/tabele/T/antet/C` (1-based table). |
+| `html-tabele` | HTML tables. `{tip: html-tabele, tabele: [2]}` selects tables by position. | A dictionary table (a name column plus a description, unit or type column) gives one field per row: `descriere`, `unitate` (the cell), `perioada_declarata`, `actualizat_declarat`; `stare_tip` `declarat-in-tabel-documentatie`. A data table gives one field per header cell: `unitate` only when the header ends with a unit in parentheses (`Tranșa (mld lei)` gives `mld lei`), `tipuri_observate` from up to five rows of the same width as the header (`forma-numerica`, `forma-de-data`, `text`, `null`: how the cell is written, never a storage type; a CUI column looks numeric and stays an identifier), `stare_tip` `antet-tabel-html`. A headerless two-column table whose second cell lists items (`group \| a, b, c`) gives one field per item with `grup`, `stare_tip` `declarat-in-text-documentatie`. Tables with a `Cookie` column are consent notices and are skipped. Locator `/tabele/T/randuri/R`, `/tabele/T/antet/C` (1-based table). |
 | `markdown` | Pipe tables of a markdown document. | Only dictionary tables (name column plus description, unit or type column). Same keys as the HTML dictionary. |
 | `csharp` | Public properties and enum members of classes, records and structs. | `tip_declarat` (the C# type), `obligatoriu` (`[Required]`), `grup` (the class). A `[FromQuery]` property has role `parametru-api`, `loc` `query`, and the public name as `nume` (`nume_in_cod` keeps the property). Enum members have role `cod-enumerare` and `valoare`. `stare_tip` `declarat-in-cod-sursa`; `pointer` `char:START-END`, `linie`. |
 | `sql` | `CREATE TABLE` columns and single-column `ALTER TABLE ... ADD`. | `tip_declarat` (the SQL type with its length), `obligatoriu` (`NOT NULL`), `grup` (the table), `modificare` `alter-add` for an added column. Key clauses are not columns. |
@@ -979,6 +979,29 @@ explicit schema types, source references, control-list hashes and control attrib
 A new checkout needs `collect_docs.py --force` and `inventory.py --force` before the regenerated inventories can be checked.
 
 
+### Coverage export and report
+
+`scripts/inventory_report.py` writes `observatii/inventare/acoperire.csv` (one row for each of the 140 catalogue entries) and the readable report `docs/reports/inventory-expansion.md`.
+`--check` compares both with a fresh computation. The hand-edited input is `data/taxonomy-v2/inventar-note.json`: limits, blockers and next steps of each entry, the narrative of the report and the verification results.
+The export keeps fields, business groups, declarations, observations and unknowns apart. A raw field total is never the progress measure.
+
+| Column | Meaning and denominator |
+| --- | --- |
+| `slug`, `tip_entitate` | The entry and its type in the catalogue (`proiect`, `resursa`, `publicatie`, `organizatie`). |
+| `investigat_in_lot` | The collection lots that touched the entry: `C` (the primary batch), `B` (INS metadata attached), `B2` (a source added for a named gap), `baza` (fields from the first pass only). Empty: not investigated. |
+| `stare_investigare` | `cu-surse-structurate` (at least one parsed source), `blocat` (sources only failed), `neinvestigat-in-lot`, `in-afara-ariei` (organisations: the finder lists projects and resources). |
+| `surse_structurate` | Parsed structured sources in the profile. A source that several entries share counts for each. |
+| `campuri_din_surse` | Source-scoped field records of those sources. They are paths, not independent variables. |
+| `concepte_propuse` | Distinct proposed groups that contain at least one field of the entry. Empty when there is no source. |
+| `campuri_cu_definitie` | Fields whose own record has a description that the source declares (schema text, a docblock, a dictionary table cell, a comment). Catalogue text and group definitions are not counted. |
+| `campuri_cu_tip_declarat` | Fields with a declared type (schema, code). |
+| `campuri_cu_tip_observat` | Fields with types observed in sample values or in the written form of table cells. |
+| `masuri_cu_unitate`, `masuri_fara_unitate` | Semantic measures only: a field with the role `masura`, a dictionary-table row, or a member of a group in the category `masura` or `iesire-derivata`. A measure has a unit when the field declares one or the matching selector has a unit fact with evidence. Generic fields are not measures. Empty (unknown) when the entry has no source. |
+| `surse_cu_provenienta_verificata` | Active registry records with a known discovery locator that holds a page hash, a git blob hash or a recorded profile value. `inventory.py --check` verifies the locators when the snapshots exist. |
+| `limite`, `blocaj`, `urmatorul_pas` | Romanian notes. Limits come from the notes file and the source flags (`partial`, `limita_atinsa`, a failed refresh). A blocker is also filled from a failed source. |
+
+An empty cell means unknown. A zero means that the count was made and found nothing.
+
 ### Explorer inventory preview
 
 `build.py --with-inventory --site-dir DIR` reads inventory metadata and writes an isolated preview.
@@ -991,7 +1014,10 @@ The default public build does not export these draft inventories.
   Those payloads hold source URLs, field descriptions, declared or observed types, units, roles, references and operations.
 - Repeated API parameters with the same source, type, description and location share a display row.
   The row keeps its individual references and operations. Other field records remain distinct.
-- HTML control candidates, raw snapshots, hashes and network diagnostics do not enter the preview payload.
+- Declared extras enter the payload when present: `enum` (declared alternatives), `formula`, `group`, `period`, `value`, `line`, `expression`, `required`.
+  A source adds `dataset` (code, name, update date, period, geographic levels, declared units, dimensions; the interface says that INS metadata comes from a mirror),
+  `partial` (read as a bounded sample), `viaBrowser` and `refreshFailed`.
+- HTML control candidates, raw snapshots, hashes, browser request dumps and network diagnostics do not enter the preview payload.
 - Documentation-only entries link their collected first-party pages. Entries with no inventory evidence get no marker.
 
 `inventory_site.py` supplies this projection. `check_inventory_preview.py` checks lazy loading, field/main search,
@@ -1012,8 +1038,10 @@ membership says that a field plausibly carries the variable, never that two data
   (a value that the source computes). Use a category only when the evidence supports it.
 - `baza_definitiei`: how the definition was made. All current definitions are `parafraza-editoriala` (editorial wording). The bases are
   `declaratie-directa` (the source says it), `observatie-esantion` (seen in sample values), `deductie-din-dovezi` (two or more pieces of evidence agree) and `parafraza-editoriala`.
-- `dovezi`: evidence for the definition: `{sursa (a source, documentation or cached page URL), fragment (an exact text of the retained body), sha256 (of that text when asserted), baza}`.
-  `inventory.py --check` finds the retained text. A missing fragment is an error. A changed text hash is reported as stale: the interpretation must be read again.
+- `dovezi`: evidence for the definition: `{sursa (a source, documentation or cached page URL), text (which retained copy: sursa, documentatie or cache), fragment (an exact text of that copy), sha256 (of that copy when asserted), baza}`.
+  `inventory.py --check` finds the retained copy of that kind. A missing fragment is an error. A changed hash is reported as stale: the interpretation must be read again.
+  The same address can have a different text in each kind of copy (a page body and its collected text), so a hash is compared only with a copy of the same kind;
+  a checkout without that copy reports the evidence as unavailable, never as verified or stale.
 - `ambiguitati`: open questions and candidates that are kept out of the group on purpose.
 - `selectors`: alternatives; a field joins the group when any selector of its project matches.
 
@@ -1023,6 +1051,7 @@ must match; this is what lets an ambiguous name such as `REF_AREA` join the coun
 A fact in `fapte` has `cheie`, `valoare`, `baza` and, unless it is an editorial paraphrase, a `dovada` with the same shape as `dovezi`.
 Generic names such as `id`, `value`, `name` and `year` join a group only through a selector that also names a source, a path or a role.
 Each match keeps up to three examples from different sources, the original field role and representation, the type evidence, the path, the source URL and the reference.
+The finder index adds the category, the ambiguity notes and the evidence links of each group, and the context and unit facts of each example.
 
 Current groups (30): identifiers `cui`, `cpv`, `siruta`; dimensions `judet`, `localitate`, `perioada-de-referinta`, `grup-politic`; measures `populatie`, `locuinte`,
 `lungime-drumuri`, `cifra-afaceri`, `profit-net`, `numar-salariati`, `valoare-achizitie-directa`, seven environmental measures (`co2`, `pm25`, `pm10`, `temperatura-aer`,

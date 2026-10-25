@@ -110,6 +110,77 @@
           ],
           "source": "https://registru.horecaos.org/api",
           "context": "CUI-ul firmei, în lista documentată a răspunsului API"
+        },
+        {
+          "projects": [
+            "banii-nostri"
+          ],
+          "names": [
+            "CUI",
+            "CUI furnizor"
+          ],
+          "source": "https://baniinostri.info/RAJASA/",
+          "context": "CUI-ul furnizorului, în tabelele raportului despre RAJA S.A. Constanța"
+        },
+        {
+          "projects": [
+            "banii-nostri"
+          ],
+          "names": [
+            "afn"
+          ],
+          "source": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+          "context": "CUI-ul autorității contractante",
+          "fapte": [
+            {
+              "cheie": "rol",
+              "valoare": "autoritate contractantă",
+              "baza": "deductie-din-dovezi",
+              "dovada": {
+                "sursa": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+                "text": "sursa",
+                "fragment": "\"afn\":\"1890420\"",
+                "sha256": "74f44b70d6d91a5ec376844708515c03f7088e96c70295aa06f6f22a98fc5674",
+                "baza": "observatie-esantion"
+              }
+            }
+          ],
+          "nota": "Numele nu este explicat de sursă. Valoarea coincide cu CUI-ul din adresa cererii (da_by_cui/1890420) și cu CUI-ul autorității din raport."
+        },
+        {
+          "projects": [
+            "banii-nostri"
+          ],
+          "names": [
+            "sfn"
+          ],
+          "source": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+          "context": "CUI-ul furnizorului",
+          "fapte": [
+            {
+              "cheie": "rol",
+              "valoare": "furnizor",
+              "baza": "deductie-din-dovezi",
+              "dovada": {
+                "sursa": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+                "text": "sursa",
+                "fragment": "\"sfn\":\"6776672\"",
+                "sha256": "74f44b70d6d91a5ec376844708515c03f7088e96c70295aa06f6f22a98fc5674",
+                "baza": "observatie-esantion"
+              }
+            }
+          ],
+          "nota": "Valoarea 6776672 apare la furnizorul SISTEM-T.C. și în coloana CUI a raportului."
+        },
+        {
+          "projects": [
+            "registrul-firmelor"
+          ],
+          "names": [
+            "CUI"
+          ],
+          "source": "https://registru.horecaos.org/api",
+          "context": "CUI-ul firmei, în lista documentată a răspunsului API"
         }
       ],
       "categorie": "identificator",
@@ -117,18 +188,21 @@
       "dovezi": [
         {
           "sursa": "https://api.romaniatransparenta.eu/v1/openapi.json",
+          "text": "sursa",
           "fragment": "codul fiscal, fără RO",
           "sha256": "22f254d62529b955547d583428f2d827c5c25bbf9d3e74b0be1d45b3e6410b1e",
           "baza": "declaratie-directa"
         },
         {
           "sursa": "https://registru.horecaos.org/api",
+          "text": "sursa",
           "fragment": "denumire, CUI, nr. reg. com., EUID, formă juridică, dată înmatriculare",
           "sha256": "54e71a2f297987a30a6b620642fbad72a8300f28accb59472e246701516e73eb",
           "baza": "declaratie-directa"
         },
         {
           "sursa": "https://baniinostri.info/RAJASA/",
+          "text": "sursa",
           "fragment": "RAJA S.A. Constanța (CUI 1890420)",
           "sha256": "067c12fcec658d0b0ebc7abe0f50a2c53b8482707b03f33d496a38811406ee0c",
           "baza": "declaratie-directa"
@@ -180,6 +254,26 @@
           ],
           "source": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
           "context": "cod CPV al achiziției directe"
+        },
+        {
+          "projects": [
+            "banii-nostri"
+          ],
+          "names": [
+            "CPV"
+          ],
+          "source": "https://baniinostri.info/RAJASA/",
+          "context": "cod CPV al obiectului achiziției, în tabelele raportului"
+        },
+        {
+          "projects": [
+            "banii-nostri"
+          ],
+          "names": [
+            "cpv"
+          ],
+          "source": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+          "context": "cod CPV al achiziției directe"
         }
       ],
       "categorie": "identificator",
@@ -187,12 +281,14 @@
       "dovezi": [
         {
           "sursa": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+          "text": "sursa",
           "fragment": "\"cpv\":\"73111000-3\"",
           "sha256": "74f44b70d6d91a5ec376844708515c03f7088e96c70295aa06f6f22a98fc5674",
           "baza": "observatie-esantion"
         },
         {
           "sursa": "https://achizitii-directe-ti-2026.mariuscomper.uk/flagged_cases.csv",
+          "text": "sursa",
           "fragment": "Cod CPV",
           "sha256": "1710cc666f7b1c4f132b8c2d37957b5436cc7c01cd2b1aa8fc76e95d7a49142e",
           "baza": "declaratie-directa"
@@ -222,12 +318,14 @@
       "dovezi": [
         {
           "sursa": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+          "text": "sursa",
           "fragment": "Ripiceni (SIRUTA 38731)",
           "sha256": "cf0f4598e26577a52548c55677e873ede17abf690219dc1d410ae71d40a9874f",
           "baza": "declaratie-directa"
         },
         {
           "sursa": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+          "text": "sursa",
           "fragment": "\"label\":\"38731 RIPICENI\"",
           "sha256": "cf0f4598e26577a52548c55677e873ede17abf690219dc1d410ae71d40a9874f",
           "baza": "observatie-esantion"
@@ -320,6 +418,63 @@
           ],
           "source": "https://registru.horecaos.org/api",
           "context": "județul din adresa firmei (grupul „Contact” al API-ului)"
+        },
+        {
+          "projects": [
+            "ins-gov2",
+            "constru-pentru-cine",
+            "orasul-care-se-intinde",
+            "demoanaf",
+            "biografia-localitatii",
+            "unde-se-termina-asfaltul"
+          ],
+          "names": [
+            "REF_AREA"
+          ],
+          "source": [
+            "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+            "https://ins.gov2.ro/api/datasets/LOC101B?lang=en",
+            "https://ins.gov2.ro/api/datasets/GOS104A?lang=en"
+          ],
+          "context": "județ: opțiunile dimensiunii REF_AREA (Total și județe)"
+        },
+        {
+          "projects": [
+            "afacut"
+          ],
+          "names": [
+            "Județ"
+          ],
+          "source": "https://afacut.ro/drumuri-si-poduri/judete/",
+          "context": "județ în clasamentul edițiilor"
+        },
+        {
+          "projects": [
+            "votdiaspora"
+          ],
+          "names": [
+            "County"
+          ],
+          "context": "județul secției de votare sau al adresei arondate"
+        },
+        {
+          "projects": [
+            "despre-femicid"
+          ],
+          "names": [
+            "Județ"
+          ],
+          "context": "județul cazului, după textul paginii („număr de cazuri pe județe”)"
+        },
+        {
+          "projects": [
+            "registrul-firmelor"
+          ],
+          "names": [
+            "județ"
+          ],
+          "source": "https://registru.horecaos.org/api",
+          "context": "județul din adresa firmei (grupul „Contact” al API-ului)"
         }
       ],
       "categorie": "dimensiune",
@@ -327,12 +482,14 @@
       "dovezi": [
         {
           "sursa": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+          "text": "sursa",
           "fragment": "\"dim_label\":\"Judete\"",
           "sha256": "cf0f4598e26577a52548c55677e873ede17abf690219dc1d410ae71d40a9874f",
           "baza": "declaratie-directa"
         },
         {
           "sursa": "https://afacut.ro/drumuri-si-poduri/judete/",
+          "text": "sursa",
           "fragment": "Județ",
           "sha256": "2b43c93695be5fd642d97725bf885309064b38100635c1b393da2f127ecf2e01",
           "baza": "declaratie-directa"
@@ -417,6 +574,58 @@
           ],
           "source": "https://registru.horecaos.org/api",
           "context": "localitatea din adresa firmei, nu a unei autorități contractante"
+        },
+        {
+          "projects": [
+            "ins-gov2",
+            "constru-pentru-cine",
+            "orasul-care-se-intinde",
+            "demoanaf",
+            "biografia-localitatii",
+            "unde-se-termina-asfaltul"
+          ],
+          "names": [
+            "REF_AREA_2"
+          ],
+          "source": [
+            "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+            "https://ins.gov2.ro/api/datasets/LOC101B?lang=en"
+          ],
+          "context": "localități: ~3.180 de opțiuni, fiecare cu un număr în față"
+        },
+        {
+          "projects": [
+            "ins-gov2",
+            "constru-pentru-cine",
+            "orasul-care-se-intinde",
+            "demoanaf",
+            "biografia-localitatii",
+            "unde-se-termina-asfaltul"
+          ],
+          "names": [
+            "REF_AREA_2"
+          ],
+          "source": "https://ins.gov2.ro/api/datasets/GOS104A?lang=en",
+          "context": "doar municipii și orașe (321 de opțiuni); nivel diferit de POP107D"
+        },
+        {
+          "projects": [
+            "votdiaspora"
+          ],
+          "names": [
+            "Locality"
+          ],
+          "context": "localitatea secției de votare sau a adresei arondate"
+        },
+        {
+          "projects": [
+            "registrul-firmelor"
+          ],
+          "names": [
+            "localitate"
+          ],
+          "source": "https://registru.horecaos.org/api",
+          "context": "localitatea din adresa firmei, nu a unei autorități contractante"
         }
       ],
       "categorie": "dimensiune",
@@ -424,12 +633,14 @@
       "dovezi": [
         {
           "sursa": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+          "text": "sursa",
           "fragment": "\"dim_label\":\"Localitati \"",
           "sha256": "cf0f4598e26577a52548c55677e873ede17abf690219dc1d410ae71d40a9874f",
           "baza": "declaratie-directa"
         },
         {
           "sursa": "https://ins.gov2.ro/api/datasets/GOS104A?lang=en",
+          "text": "sursa",
           "fragment": "\"dim_label\":\"Municipii si orase\"",
           "sha256": "73cdc814442b3d398ff2322cd8e485ab36a20552f67126c0688351ae2d3a6557",
           "baza": "declaratie-directa"
@@ -496,12 +707,14 @@
       "dovezi": [
         {
           "sursa": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+          "text": "sursa",
           "fragment": "\"dim_label\":\"Perioade\"",
           "sha256": "cf0f4598e26577a52548c55677e873ede17abf690219dc1d410ae71d40a9874f",
           "baza": "declaratie-directa"
         },
         {
           "sursa": "https://transparenta.eu/ai/entities-parameters.json",
+          "text": "sursa",
           "fragment": "Year filter within [2016, 2025]",
           "sha256": "a7e41027dd7d56312e24c4f70be68f2d3b94245af8f047e96463090e2f094789",
           "baza": "declaratie-directa"
@@ -570,6 +783,46 @@
               }
             }
           ]
+        },
+        {
+          "projects": [
+            "ins-gov2",
+            "constru-pentru-cine",
+            "orasul-care-se-intinde",
+            "demoanaf",
+            "biografia-localitatii"
+          ],
+          "names": [
+            "OBS_VALUE"
+          ],
+          "source": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+          "context": "populația după domiciliu la 1 ianuarie, pe grupe de vârstă, sex, județe și localități (INS POP107D)",
+          "fapte": [
+            {
+              "cheie": "unitate",
+              "valoare": "Număr persoane",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+                "text": "sursa",
+                "fragment": "\"sdmx_value\":\"Numar persoane\"",
+                "sha256": "cf0f4598e26577a52548c55677e873ede17abf690219dc1d410ae71d40a9874f",
+                "baza": "declaratie-directa"
+              }
+            },
+            {
+              "cheie": "moment_de_referinta",
+              "valoare": "1 ianuarie al anului de referință",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+                "text": "sursa",
+                "fragment": "la data de 1 ianuarie a anului de referinta",
+                "sha256": "cf0f4598e26577a52548c55677e873ede17abf690219dc1d410ae71d40a9874f",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
         }
       ],
       "categorie": "masura",
@@ -577,6 +830,7 @@
       "dovezi": [
         {
           "sursa": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+          "text": "sursa",
           "fragment": "Populatia dupa domiciliu la data de 1 ianuarie a anului de referinta reprezinta numarul persoanelor",
           "sha256": "cf0f4598e26577a52548c55677e873ede17abf690219dc1d410ae71d40a9874f",
           "baza": "declaratie-directa"
@@ -612,6 +866,7 @@
               "baza": "declaratie-directa",
               "dovada": {
                 "sursa": "https://ins.gov2.ro/api/datasets/LOC101B?lang=en",
+                "text": "sursa",
                 "fragment": "\"sdmx_value\":\"Numar\"",
                 "sha256": "8efec5c21459f791579baaa1b679c2ed55232ca4b535a55aa9c56d45398337f1",
                 "baza": "declaratie-directa"
@@ -634,6 +889,7 @@
       "dovezi": [
         {
           "sursa": "https://ins.gov2.ro/api/datasets/LOC101B?lang=en",
+          "text": "sursa",
           "fragment": "Locuinta (apartamentul) este constructia formata din una sau mai multe camere de locuit",
           "sha256": "8efec5c21459f791579baaa1b679c2ed55232ca4b535a55aa9c56d45398337f1",
           "baza": "declaratie-directa"
@@ -667,6 +923,7 @@
               "baza": "declaratie-directa",
               "dovada": {
                 "sursa": "https://ins.gov2.ro/api/datasets/TRN139A?lang=en",
+                "text": "sursa",
                 "fragment": "\"sdmx_value\":\"Kilometri\"",
                 "sha256": "01d4eb2a762c8fb9c13ccae36109f87b0ece666cdff14826578907152089851a",
                 "baza": "declaratie-directa"
@@ -692,6 +949,7 @@
               "baza": "declaratie-directa",
               "dovada": {
                 "sursa": "https://ins.gov2.ro/api/datasets/GOS104A?lang=en",
+                "text": "sursa",
                 "fragment": "\"sdmx_value\":\"Kilometri\"",
                 "sha256": "73cdc814442b3d398ff2322cd8e485ab36a20552f67126c0688351ae2d3a6557",
                 "baza": "declaratie-directa"
@@ -703,12 +961,14 @@
       "dovezi": [
         {
           "sursa": "https://ins.gov2.ro/api/datasets/TRN139A?lang=en",
+          "text": "sursa",
           "fragment": "Lungimea drumurilor publice reprezinta totalitatea drumurilor deschise circulatiei publice",
           "sha256": "01d4eb2a762c8fb9c13ccae36109f87b0ece666cdff14826578907152089851a",
           "baza": "declaratie-directa"
         },
         {
           "sursa": "https://ins.gov2.ro/api/datasets/GOS104A?lang=en",
+          "text": "sursa",
           "fragment": "Lungimea totala a strazilor din municipii si orase (km)",
           "sha256": "73cdc814442b3d398ff2322cd8e485ab36a20552f67126c0688351ae2d3a6557",
           "baza": "declaratie-directa"
@@ -751,6 +1011,29 @@
           ],
           "source": "https://registru.horecaos.org/api",
           "context": "cifră de afaceri pe ani, din grupul „Financiar” al răspunsului API"
+        },
+        {
+          "projects": [
+            "companii-de-stat"
+          ],
+          "names": [
+            "cifra_afaceri"
+          ],
+          "source": "https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json",
+          "path": [
+            "$.companii{*}.cifra_afaceri"
+          ],
+          "context": "cifra de afaceri din situațiile financiare 2025, pe CUI"
+        },
+        {
+          "projects": [
+            "registrul-firmelor"
+          ],
+          "names": [
+            "cifră de afaceri"
+          ],
+          "source": "https://registru.horecaos.org/api",
+          "context": "cifră de afaceri pe ani, din grupul „Financiar” al răspunsului API"
         }
       ],
       "categorie": "masura",
@@ -758,12 +1041,14 @@
       "dovezi": [
         {
           "sursa": "https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json",
+          "text": "sursa",
           "fragment": "\"cifra_afaceri\"",
           "sha256": "09d5c7201cb6a68b346dc7926702e5707c93339a3c49e581fcd1c478d4cbb600",
           "baza": "observatie-esantion"
         },
         {
           "sursa": "https://registru.horecaos.org/api",
+          "text": "sursa",
           "fragment": "cifră de afaceri, profit net, salariați, pe ani",
           "sha256": "54e71a2f297987a30a6b620642fbad72a8300f28accb59472e246701516e73eb",
           "baza": "declaratie-directa"
@@ -808,12 +1093,14 @@
       "dovezi": [
         {
           "sursa": "https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json",
+          "text": "sursa",
           "fragment": "\"profit_net\"",
           "sha256": "09d5c7201cb6a68b346dc7926702e5707c93339a3c49e581fcd1c478d4cbb600",
           "baza": "observatie-esantion"
         },
         {
           "sursa": "https://registru.horecaos.org/api",
+          "text": "sursa",
           "fragment": "cifră de afaceri, profit net, salariați, pe ani",
           "sha256": "54e71a2f297987a30a6b620642fbad72a8300f28accb59472e246701516e73eb",
           "baza": "declaratie-directa"
@@ -868,12 +1155,14 @@
       "dovezi": [
         {
           "sursa": "https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json",
+          "text": "sursa",
           "fragment": "\"nr_salariati\"",
           "sha256": "09d5c7201cb6a68b346dc7926702e5707c93339a3c49e581fcd1c478d4cbb600",
           "baza": "observatie-esantion"
         },
         {
           "sursa": "https://baniinostri.info/rapoarte/",
+          "text": "sursa",
           "fragment": "Angajati 2024",
           "sha256": "95146f68d9b0e50eef13109ebd0a91723949c13b6566f10b9576fd5e4f92804e",
           "baza": "declaratie-directa"
@@ -906,6 +1195,7 @@
               "baza": "deductie-din-dovezi",
               "dovada": {
                 "sursa": "https://baniinostri.info/RAJASA/",
+                "text": "sursa",
                 "fragment": "270.000 RON fără TVA",
                 "sha256": "067c12fcec658d0b0ebc7abe0f50a2c53b8482707b03f33d496a38811406ee0c",
                 "baza": "declaratie-directa"
@@ -930,6 +1220,7 @@
               "baza": "declaratie-directa",
               "dovada": {
                 "sursa": "https://achizitii-directe-ti-2026.mariuscomper.uk/flagged_cases.csv",
+                "text": "sursa",
                 "fragment": "Valoare achizitie (RON)",
                 "sha256": "1710cc666f7b1c4f132b8c2d37957b5436cc7c01cd2b1aa8fc76e95d7a49142e",
                 "baza": "declaratie-directa"
@@ -941,6 +1232,7 @@
       "dovezi": [
         {
           "sursa": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+          "text": "sursa",
           "fragment": "\"cval\":270000",
           "sha256": "74f44b70d6d91a5ec376844708515c03f7088e96c70295aa06f6f22a98fc5674",
           "baza": "observatie-esantion"
@@ -974,6 +1266,7 @@
               "baza": "declaratie-directa",
               "dovada": {
                 "sursa": "https://calitateaer.radautiulcivic.ro/masuratori/",
+                "text": "cache",
                 "fragment": "Concentrația de CO2, în ppm",
                 "sha256": "854b4af97f7eed9e254d94bc2b9f5e7851a3d053feb8a4d9a1c5fc25f47fc432",
                 "baza": "declaratie-directa"
@@ -985,6 +1278,7 @@
       "dovezi": [
         {
           "sursa": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "text": "sursa",
           "fragment": "\"CO2_centru\"",
           "sha256": "31e4bc8a46fea86cc2ea380889af1430456dd4328dc8b2d862024552a2d56ccd",
           "baza": "observatie-esantion"
@@ -1015,6 +1309,7 @@
               "baza": "declaratie-directa",
               "dovada": {
                 "sursa": "https://calitateaer.radautiulcivic.ro/masuratori/",
+                "text": "cache",
                 "fragment": "Concentrația de PM2.5, în &mu;g/m3",
                 "sha256": "854b4af97f7eed9e254d94bc2b9f5e7851a3d053feb8a4d9a1c5fc25f47fc432",
                 "baza": "declaratie-directa"
@@ -1039,6 +1334,7 @@
       "dovezi": [
         {
           "sursa": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "text": "sursa",
           "fragment": "\"PM25_centru\"",
           "sha256": "31e4bc8a46fea86cc2ea380889af1430456dd4328dc8b2d862024552a2d56ccd",
           "baza": "observatie-esantion"
@@ -1081,6 +1377,7 @@
       "dovezi": [
         {
           "sursa": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "text": "sursa",
           "fragment": "\"PM10_Bazar_Auto\"",
           "sha256": "31e4bc8a46fea86cc2ea380889af1430456dd4328dc8b2d862024552a2d56ccd",
           "baza": "observatie-esantion"
@@ -1113,6 +1410,7 @@
               "baza": "declaratie-directa",
               "dovada": {
                 "sursa": "https://calitateaer.radautiulcivic.ro/masuratori/",
+                "text": "cache",
                 "fragment": "Temperatura, în &#176;C",
                 "sha256": "854b4af97f7eed9e254d94bc2b9f5e7851a3d053feb8a4d9a1c5fc25f47fc432",
                 "baza": "declaratie-directa"
@@ -1138,6 +1436,7 @@
       "dovezi": [
         {
           "sursa": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "text": "sursa",
           "fragment": "\"Temperatura_centru\"",
           "sha256": "31e4bc8a46fea86cc2ea380889af1430456dd4328dc8b2d862024552a2d56ccd",
           "baza": "observatie-esantion"
@@ -1168,6 +1467,7 @@
               "baza": "declaratie-directa",
               "dovada": {
                 "sursa": "https://calitateaer.radautiulcivic.ro/masuratori/",
+                "text": "cache",
                 "fragment": "Umiditatea Relativă, în %",
                 "sha256": "854b4af97f7eed9e254d94bc2b9f5e7851a3d053feb8a4d9a1c5fc25f47fc432",
                 "baza": "declaratie-directa"
@@ -1193,6 +1493,7 @@
       "dovezi": [
         {
           "sursa": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "text": "sursa",
           "fragment": "\"Umiditatea_Centru\"",
           "sha256": "31e4bc8a46fea86cc2ea380889af1430456dd4328dc8b2d862024552a2d56ccd",
           "baza": "observatie-esantion"
@@ -1234,6 +1535,7 @@
       "dovezi": [
         {
           "sursa": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "text": "sursa",
           "fragment": "\"Presiunea\"",
           "sha256": "31e4bc8a46fea86cc2ea380889af1430456dd4328dc8b2d862024552a2d56ccd",
           "baza": "observatie-esantion"
@@ -1277,6 +1579,7 @@
       "dovezi": [
         {
           "sursa": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+          "text": "sursa",
           "fragment": "\"Viteza_Vantului\"",
           "sha256": "31e4bc8a46fea86cc2ea380889af1430456dd4328dc8b2d862024552a2d56ccd",
           "baza": "observatie-esantion"
@@ -1308,6 +1611,7 @@
       "dovezi": [
         {
           "sursa": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/database/migrations/0001_01_10_000010_create_records_table.php",
+          "text": "sursa",
           "fragment": "eligible_voters_total",
           "sha256": "9cc53cf05fbb476a9e0a923015521b1a48cdec3f1b2749e2e84c98f3669e550d",
           "baza": "declaratie-directa"
@@ -1338,6 +1642,7 @@
       "dovezi": [
         {
           "sursa": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Turnout/TurnoutResource.php",
+          "text": "sursa",
           "fragment": "Total number of voters subscribed to the election permanent list",
           "sha256": "28d9044f6b17d3d1c6aeaed23bd8efb846905a5740d7a54b754eb2e17aa418c1",
           "baza": "declaratie-directa"
@@ -1378,6 +1683,7 @@
       "dovezi": [
         {
           "sursa": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Turnout/TurnoutResource.php",
+          "text": "sursa",
           "fragment": "Total number of people who voted in the election.",
           "sha256": "28d9044f6b17d3d1c6aeaed23bd8efb846905a5740d7a54b754eb2e17aa418c1",
           "baza": "declaratie-directa"
@@ -1408,6 +1714,7 @@
       "dovezi": [
         {
           "sursa": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Result/ResultResource.php",
+          "text": "sursa",
           "fragment": "Number of valid votes",
           "sha256": "26dfe80245f8c615772917d0e402ef8b43f2011eac18de1e944d03f345462b46",
           "baza": "declaratie-directa"
@@ -1438,6 +1745,7 @@
       "dovezi": [
         {
           "sursa": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Result/ResultResource.php",
+          "text": "sursa",
           "fragment": "Number of null votes",
           "sha256": "26dfe80245f8c615772917d0e402ef8b43f2011eac18de1e944d03f345462b46",
           "baza": "declaratie-directa"
@@ -1470,6 +1778,7 @@
               "baza": "declaratie-directa",
               "dovada": {
                 "sursa": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/database/migrations/0001_01_10_000000_create_turnouts_table.php",
+                "text": "sursa",
                 "fragment": "IF(initial_total > 0, ROUND(total  / initial_total * 100, 2), 0)",
                 "sha256": "2842bd6950c0db3e66a2e43287a9d908824536ca504e0a1612673489d2c2c65e",
                 "baza": "declaratie-directa"
@@ -1481,6 +1790,7 @@
       "dovezi": [
         {
           "sursa": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/database/migrations/0001_01_10_000000_create_turnouts_table.php",
+          "text": "sursa",
           "fragment": "IF(initial_total > 0, ROUND(total  / initial_total * 100, 2), 0)",
           "sha256": "2842bd6950c0db3e66a2e43287a9d908824536ca504e0a1612673489d2c2c65e",
           "baza": "declaratie-directa"
@@ -1526,12 +1836,14 @@
       "dovezi": [
         {
           "sursa": "https://www.europescope.eu/data",
+          "text": "cache",
           "fragment": "Roll-call votes with results, importance scores and source URLs.",
           "sha256": "986e4963d57e8895b793a314bb2107ef93ed39832a03d67057739d73064030ef",
           "baza": "declaratie-directa"
         },
         {
           "sursa": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/docs/extraction-schema.md",
+          "text": "sursa",
           "fragment": "\"for\": null",
           "sha256": "835096aafd8d6db88b16ae3378040e57a4e8a2c08519ef2636c5bac6a1ed2065",
           "baza": "declaratie-directa"
@@ -1577,12 +1889,14 @@
       "dovezi": [
         {
           "sursa": "https://www.europescope.eu/data",
+          "text": "cache",
           "fragment": "Roll-call votes with results, importance scores and source URLs.",
           "sha256": "986e4963d57e8895b793a314bb2107ef93ed39832a03d67057739d73064030ef",
           "baza": "declaratie-directa"
         },
         {
           "sursa": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/docs/extraction-schema.md",
+          "text": "sursa",
           "fragment": "\"for\": null",
           "sha256": "835096aafd8d6db88b16ae3378040e57a4e8a2c08519ef2636c5bac6a1ed2065",
           "baza": "declaratie-directa"
@@ -1628,12 +1942,14 @@
       "dovezi": [
         {
           "sursa": "https://www.europescope.eu/data",
+          "text": "cache",
           "fragment": "Roll-call votes with results, importance scores and source URLs.",
           "sha256": "986e4963d57e8895b793a314bb2107ef93ed39832a03d67057739d73064030ef",
           "baza": "declaratie-directa"
         },
         {
           "sursa": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/docs/extraction-schema.md",
+          "text": "sursa",
           "fragment": "\"for\": null",
           "sha256": "835096aafd8d6db88b16ae3378040e57a4e8a2c08519ef2636c5bac6a1ed2065",
           "baza": "declaratie-directa"
@@ -1680,6 +1996,7 @@
       "dovezi": [
         {
           "sursa": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/docs/extraction-schema.md",
+          "text": "sursa",
           "fragment": "attributed at this moment in this document",
           "sha256": "835096aafd8d6db88b16ae3378040e57a4e8a2c08519ef2636c5bac6a1ed2065",
           "baza": "declaratie-directa"

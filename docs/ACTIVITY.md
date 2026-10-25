@@ -1,5 +1,31 @@
 # Activity
 
+## 2026-10-25 — Show the new evidence, export coverage and report (milestone E)
+
+**Done**
+- The existing explorer panel and the `/date/` finder now show the new evidence: declared alternatives, formulas, periods and the table or class a field comes from;
+  INS dataset blocks (code, name, period, geographic levels, declared units, a note that the data is a mirror's metadata); the category, the ambiguity notes, the context and
+  the unit facts of each group, and links to the evidence of its definition. A source whose refresh failed says so. No new explorer and no new sidebar facet.
+- `scripts/inventory_report.py` writes `observatii/inventare/acoperire.csv` (140 rows, the 16 columns of the brief) and `docs/reports/inventory-expansion.md`.
+  Measured, 127 projects and resources: structured fields 14 to 27 entries (113 to 100 without), source URLs 25 to 87, field records 2,302 to 3,525, groups 7 to 30.
+  Field-level meaning is thinner than group-level meaning: source-declared descriptions exist for 4 of the 12 new inventories and declared types for 4; 11 of 12 are in a group.
+- The three browser suites derive their expected counts from the generated index and from filter rules written in the scripts. Results: `check_preview.py` 111/111,
+  `check_inventory_preview.py` 31/31 (baseline 25), `check_data_finder.py` 31/31 (baseline 25), with the 390 px and 320 px layouts.
+- 411 unit tests (6 skipped; baseline 308). `inventory.py --check`: 0 errors, 86 bodies hash-verified, 62 dictionary evidence items verified, 0 stale. The default public payload is unchanged.
+
+**Hard**
+- A false stale alarm on a checkout without the cache: a pin on a source body was compared with the collected text of the same address, which has a different hash. A pin now names the
+  kind of copy it was made on, and a missing copy is reported as unavailable. A test covers it.
+- The first version of the table reader called a numeric-looking cell `numar`. A CUI column would then look numeric. The sample types are now `forma-numerica` and `forma-de-data`:
+  how a cell is written, never a storage type.
+- Fields of the INS measure used an evidence type that the preview did not map, so 3 of the shared groups lost members in the preview index (populatie 6 to 2, locuinte 4 to 1, lungime-drumuri 3 to 0).
+  Found by comparing the index with the selector reach; a test now requires a preview basis for every evidence type of the tracked inventories.
+
+**Decided**
+- Keep the report generated from tracked files and one hand-edited notes file, so a reader can regenerate every number. Cost of the alternative (a hand-written report): numbers that drift from the data.
+- Leave `CLAUDE.md` and `AGENTS.md` unchanged. The new commands are documented in `docs/DATA-SCHEMA.md` and in each script's header.
+- Treat the target of ten new inventories as met by count (12 of 12 with sources, 11 with a definition-bearing signal) and say that the weakest, `aerlive`, has three fields and no group.
+
 ## 2026-10-25 — Add meanings and shared variables (milestone D)
 
 **Done**
@@ -41,9 +67,9 @@
 - Added readers for HTML tables, markdown tables, SQL, C#, Laravel migrations/resources/constants, annotated JSON in design documents and page-script names
   (`inventory_text.py`), exact locators for each, repository files pinned to a commit and verified by git blob hash, credential masking, bounded range reads,
   `--probe`, and the optional browser helper `render_pages.py`. 383 unit tests run (6 skipped).
-- Network (lot C): 76 direct requests (73 ok; 3 errors), 2.40 MB, made one at a time (so the six-worker and two-per-host limits were never reached), no retries.
-  Hosts: raw.githubusercontent.com 37, api.github.com 10, api.europescope.eu 7, afacut.ro 5, and 13 hosts with 1-2 each. Browser: 4 navigations (afacut 2, aerlive 2) and
-  6 data requests seen. With lots B and B2 the pass made 88 direct requests. Cache reuse: every source replay is offline.
+- Network (lot C): 78 direct requests (73 ok; 5 errors: one 404 at EuropeScope, two 403 at aerlive, two 404 at the SICAP metadata link), 2.40 MB, made one at a time (so the six-worker and two-per-host limits were never reached), no retries.
+  Hosts: raw.githubusercontent.com 37, api.github.com 10, api.europescope.eu 7, afacut.ro 5, data.g4d.ro 3, and 12 hosts with 1-2 each. Browser: 4 navigations (afacut 2, aerlive 2) and
+  6 data requests seen. With lots B and B2 the pass made 90 direct requests. Cache reuse: every source replay is offline.
 - Field records: 2,472 to 3,520 (+1,048); entries with structured fields: 15 to 27. These are source paths, not business variables.
 
 **Hard**
@@ -64,7 +90,7 @@
   Cost of the alternative (an LLM or loose heuristics): unverifiable fields.
 - Count a page-script reader as usage evidence (`utilizat-in-cod-pagina`), not as a schema. It lets the pass say which variables a page reads without touching the data behind it.
 - Keep browser copies (`via: browser`) only for responses the page itself received, up to six per page. The helper never retries a refused address with other headers.
-- Stop at 76 requests of 150. Remaining budget is better kept than spent on reserve entries when all 12 primaries produced evidence.
+- Stop at 78 requests of 150. Remaining budget is better kept than spent on reserve entries when all 12 primaries produced evidence.
 
 ## 2026-10-25 — Deepen the INS inventory and six other sources (milestone B)
 

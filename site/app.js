@@ -682,7 +682,8 @@ const INV_BASIS = { schema: 'Descris în schemă', metadata: 'Descris în metada
   code: 'Declarat în codul sursă', table: 'Antet de tabel HTML', doctable: 'Declarat în tabel de documentație', doctext: 'Declarat în textul documentației',
   pagecode: 'Folosit în codul paginii', docexample: 'Exemplu în documentație', apidoc: 'Declarat în documentația API' };
 const INV_LOCATIONS = { query: 'filtru', path: 'în URL', header: 'în antet', cookie: 'cookie' };
-const INV_TYPES = { string: 'Text', integer: 'Număr întreg', number: 'Număr', boolean: 'Da / Nu', null: 'Valoare nulă',
+const INV_TYPES = { string: 'Text', integer: 'Număr întreg', number: 'Număr', boolean: 'Da / Nu', null: 'Valoare nulă', text: 'Text în tabel',
+  'forma-numerica': 'Arată ca număr (text)', 'forma-de-data': 'Arată ca dată (text)',
   object: 'Obiect', array: 'Listă', geo: 'Arie geografică', time: 'Perioadă', indicator: 'Indicator', unit: 'Unitate de măsură' };
 function inventoryState(slug) {
   if (!INV_STATE.has(slug)) {
@@ -715,6 +716,19 @@ function inventoryType(field) {
   const values = Array.isArray(raw) ? raw : raw ? [raw] : [];
   return values.length ? values.map(t => INV_TYPES[t] || t).join(' / ') : 'Tip neprecizat';
 }
+function inventoryDatasets(sources) {
+  const sets = sources.filter(s => s.dataset);
+  if (!sets.length) return '';
+  const row = s => {
+    const d = s.dataset, range = d.period && (d.period[0] || d.period[1]) ? `${d.period[0] ?? '?'}–${d.period[1] ?? '?'}` : '';
+    return `<li><strong>${esc(d.code)}</strong> ${esc(d.name || '')}
+      <span class="inv-note">${[range && `perioadă ${range} (calculată de API)`, d.levels?.length && `niveluri: ${d.levels.map(esc).join(', ')}`, d.units?.length && `unitate declarată: ${d.units.map(esc).join(' / ')}`,
+        d.updated && `actualizat ${esc(d.updated)}`, d.licence ? '' : 'licență nedeclarată'].filter(Boolean).join(' · ')}</span>
+      <a href="${esc(s.url)}" target="_blank" rel="noopener">Metadate${ICON.out}</a></li>`;
+  };
+  return `<details class="inv-datasets"><summary>${plural(sets.length, 'set de date descris', 'seturi de date descrise')}</summary>
+    <p class="inv-note">Metadate citite de la ins.gov2.ro, o oglindă a TEMPO. Perioada poate fi mai scurtă decât în sursa originală.</p><ul>${sets.map(row).join('')}</ul></details>`;
+}
 function inventoryControls(panel, data) {
   const state = inventoryState(data.slug), body = $('[data-inventory-body]', panel);
   const roles = [...new Set(data.fields.map(f => f.role))];
@@ -723,7 +737,7 @@ function inventoryControls(panel, data) {
     <div class="inv-selects">
       <label>Informații<select data-inv="role"><option value="">Toate câmpurile</option>${roles.map(role => `<option value="${esc(role)}" ${state.role === role ? 'selected' : ''}>${esc(INV_ROLES[role] || role)}</option>`).join('')}</select></label>
       <label>Sursă<select data-inv="source"><option value="">Toate sursele</option>${data.sources.map(s => `<option value="${esc(s.id)}" ${state.source === s.id ? 'selected' : ''}>${esc(s.title)}</option>`).join('')}</select></label>
-    </div></div><p class="inv-count" data-inventory-count role="status" aria-live="polite" tabindex="-1"></p>
+    </div></div>${inventoryDatasets(data.sources)}<p class="inv-count" data-inventory-count role="status" aria-live="polite" tabindex="-1"></p>
     <ul class="inv-fields" id="inventory-fields" data-inventory-fields></ul><div data-inventory-more></div>`;
   renderInventoryRows(panel);
 }
@@ -740,7 +754,10 @@ function renderInventoryRows(panel) {
     return `<li class="inv-field">
       <div class="inv-field-heading"><code>${esc(f.name)}</code><span class="inv-type">${esc(inventoryType(f))}${f.unit ? ` · ${esc(f.unit)}` : ''}</span></div>
       ${f.description ? `<p class="inv-description">${esc(f.description)}</p>` : ''}
-      <div class="inv-field-meta"><span>${esc(INV_ROLES[f.role] || f.role)}${f.location ? ` · ${esc(INV_LOCATIONS[f.location] || f.location)}` : ''}</span><span class="inv-basis inv-basis-${esc(f.basis)}">${esc(INV_BASIS[f.basis] || f.basis)}</span>${f.operations.length > 1 ? `<span>${plural(f.operations.length, 'operație API', 'operații API')}</span>` : ''}
+      ${f.enum?.length ? `<p class="inv-values">Alternative declarate: ${f.enum.slice(0, 12).map(v => `<code>${esc(v)}</code>`).join(' ')}${f.enum.length > 12 ? ' …' : ''}</p>` : ''}
+      ${f.formula ? `<p class="inv-values">Formulă declarată: <code>${esc(f.formula)}</code></p>` : ''}
+      ${f.period ? `<p class="inv-values">Perioadă declarată: ${esc(f.period)}</p>` : ''}
+      <div class="inv-field-meta"><span>${esc(INV_ROLES[f.role] || f.role)}${f.location ? ` · ${esc(INV_LOCATIONS[f.location] || f.location)}` : ''}</span><span class="inv-basis inv-basis-${esc(f.basis)}">${esc(INV_BASIS[f.basis] || f.basis)}</span>${f.group ? `<span>${esc(clip(f.group, 40))}</span>` : ''}${f.operations.length > 1 ? `<span>${plural(f.operations.length, 'operație API', 'operații API')}</span>` : ''}
         ${source ? `<a href="${esc(source.url)}" target="_blank" rel="noopener" title="${esc(source.title)}">Vezi sursa${ICON.out}</a>` : ''}</div>
       <details class="inv-reference"><summary>Context și referință</summary><code>${esc(f.path)}</code>
         ${f.reference ? `<p class="inv-pointer">${esc(f.reference)}</p>` : ''}
@@ -767,7 +784,7 @@ async function loadInventory(panel, retry = false) {
         if (!response.ok) throw new Error('inventory HTTP ' + response.status);
         const data = await response.json();
         if (data.slug !== slug || !Array.isArray(data.fields) || !Array.isArray(data.sources)) throw new Error('invalid inventory');
-        for (const f of data.fields) f._hay = norm([f.name, f.path, f.description, inventoryType(f), f.declaredType, f.observedTypes, INV_BASIS[f.basis], f.unit].join(' '));
+        for (const f of data.fields) f._hay = norm([f.name, f.path, f.description, inventoryType(f), f.declaredType, f.observedTypes, INV_BASIS[f.basis], f.unit, f.enum, f.formula, f.group, f.period].join(' '));
         record.status = 'ready'; record.data = data;
       } catch { record.status = 'failed'; }
     })();

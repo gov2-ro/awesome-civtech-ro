@@ -294,7 +294,7 @@
           "rol": "camp-date",
           "pointer": "/tabele/1/antet/0",
           "tipuri_observate": [
-            "data"
+            "forma-de-data"
           ],
           "unitate": null
         },
@@ -306,7 +306,7 @@
           "rol": "camp-date",
           "pointer": "/tabele/1/antet/1",
           "tipuri_observate": [
-            "numar"
+            "forma-numerica"
           ],
           "unitate": "mld lei"
         },
@@ -318,7 +318,7 @@
           "rol": "camp-date",
           "pointer": "/tabele/1/antet/2",
           "tipuri_observate": [
-            "numar"
+            "forma-numerica"
           ],
           "unitate": "mld lei"
         }
@@ -349,7 +349,7 @@
           "rol": "camp-date",
           "pointer": "/tabele/1/antet/0",
           "tipuri_observate": [
-            "data"
+            "forma-de-data"
           ],
           "unitate": null
         },
@@ -361,7 +361,7 @@
           "rol": "camp-date",
           "pointer": "/tabele/1/antet/1",
           "tipuri_observate": [
-            "numar"
+            "forma-numerica"
           ],
           "unitate": "mld lei"
         },
@@ -373,7 +373,7 @@
           "rol": "camp-date",
           "pointer": "/tabele/1/antet/2",
           "tipuri_observate": [
-            "numar"
+            "forma-numerica"
           ],
           "unitate": "mld lei"
         }
@@ -416,7 +416,7 @@
           "rol": "camp-date",
           "pointer": "/tabele/1/antet/1",
           "tipuri_observate": [
-            "numar"
+            "forma-numerica"
           ],
           "unitate": null
         },
@@ -428,7 +428,7 @@
           "rol": "camp-date",
           "pointer": "/tabele/1/antet/2",
           "tipuri_observate": [
-            "numar"
+            "forma-numerica"
           ],
           "unitate": "mil. lei"
         },
@@ -440,7 +440,7 @@
           "rol": "camp-date",
           "pointer": "/tabele/1/antet/3",
           "tipuri_observate": [
-            "numar"
+            "forma-numerica"
           ],
           "unitate": "mil. lei"
         },
@@ -483,7 +483,7 @@
           "rol": "camp-date",
           "pointer": "/tabele/1/antet/0",
           "tipuri_observate": [
-            "data"
+            "forma-de-data"
           ],
           "unitate": null
         },
@@ -495,7 +495,7 @@
           "rol": "camp-date",
           "pointer": "/tabele/1/antet/1",
           "tipuri_observate": [
-            "numar"
+            "forma-numerica"
           ],
           "unitate": "mld lei"
         },
@@ -507,7 +507,7 @@
           "rol": "camp-date",
           "pointer": "/tabele/1/antet/2",
           "tipuri_observate": [
-            "numar"
+            "forma-numerica"
           ],
           "unitate": "mld lei"
         }
@@ -35528,7 +35528,7 @@
           "rol": "camp-date",
           "pointer": "/tabele/1/antet/0",
           "tipuri_observate": [
-            "numar"
+            "forma-numerica"
           ],
           "unitate": null
         },
@@ -35540,7 +35540,7 @@
           "rol": "camp-date",
           "pointer": "/tabele/1/antet/1",
           "tipuri_observate": [
-            "numar"
+            "forma-numerica"
           ],
           "unitate": null
         },
@@ -35552,7 +35552,7 @@
           "rol": "camp-date",
           "pointer": "/tabele/1/antet/2",
           "tipuri_observate": [
-            "numar"
+            "forma-numerica"
           ],
           "unitate": "RON"
         },
@@ -35577,7 +35577,7 @@
           "rol": "camp-date",
           "pointer": "/tabele/2/antet/0",
           "tipuri_observate": [
-            "numar"
+            "forma-numerica"
           ],
           "unitate": null
         },
@@ -35601,7 +35601,7 @@
           "rol": "camp-date",
           "pointer": "/tabele/2/antet/2",
           "tipuri_observate": [
-            "numar"
+            "forma-numerica"
           ],
           "unitate": null
         },
@@ -35613,7 +35613,7 @@
           "rol": "camp-date",
           "pointer": "/tabele/2/antet/3",
           "tipuri_observate": [
-            "numar"
+            "forma-numerica"
           ],
           "unitate": null
         },
@@ -35625,7 +35625,7 @@
           "rol": "camp-date",
           "pointer": "/tabele/2/antet/4",
           "tipuri_observate": [
-            "numar"
+            "forma-numerica"
           ],
           "unitate": "RON"
         },
@@ -35649,7 +35649,7 @@
           "rol": "camp-date",
           "pointer": "/tabele/3/antet/1",
           "tipuri_observate": [
-            "numar"
+            "forma-numerica"
           ],
           "unitate": null
         },
@@ -35661,7 +35661,7 @@
           "rol": "camp-date",
           "pointer": "/tabele/3/antet/2",
           "tipuri_observate": [
-            "numar"
+            "forma-numerica"
           ],
           "unitate": "RON"
         },
@@ -35673,7 +35673,7 @@
           "rol": "camp-date",
           "pointer": "/tabele/3/antet/3",
           "tipuri_observate": [
-            "numar"
+            "forma-numerica"
           ],
           "unitate": null
         },
@@ -35733,7 +35733,7 @@
           "rol": "camp-date",
           "pointer": "/tabele/5/antet/0",
           "tipuri_observate": [
-            "data"
+            "forma-de-data"
           ],
           "unitate": null
         },
@@ -35758,7 +35758,7 @@
           "pointer": "/tabele/5/antet/2",
           "tipuri_observate": [
             "text",
-            "numar"
+            "forma-numerica"
           ],
           "unitate": null
         },
@@ -35770,7 +35770,7 @@
           "rol": "camp-date",
           "pointer": "/tabele/5/antet/3",
           "tipuri_observate": [
-            "numar"
+            "forma-numerica"
           ],
           "unitate": "RON"
         },

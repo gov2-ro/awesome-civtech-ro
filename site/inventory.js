@@ -18,7 +18,10 @@ const basis = {schema:'Declarat în schemă', metadata:'Declarat în metadate', 
 const roles = {'parametru-api':'Parametru API', 'corp-cerere':'Corp de cerere', 'camp-raspuns':'Câmp din răspuns', 'camp-date':'Câmp de date', 'dimensiune':'Dimensiune',
   'camp-dictionar':'Dicționar de date', 'coloana-sql':'Coloană în baza de date', 'camp-model':'Câmp de model', 'cod-enumerare':'Cod sau valoare',
   'camp-exemplu':'Exemplu în documentație', masura:'Măsură', 'camp-folosit-de-pagina':'Folosit de pagină', 'colectie-cu-chei':'Colecție indexată'};
-let entries = [], labels = {}, definitions = {}, state, shown = 24;
+const categories = {identificator:'Identificator', dimensiune:'Dimensiune', masura:'Măsură', 'iesire-derivata':'Valoare calculată', 'intrare-utilizator':'Intrare a utilizatorului'};
+const factKeys = {unitate:'Unitate', formula:'Formulă', rol:'Rol', moment_de_referinta:'Moment de referință'};
+const factBasis = {'declaratie-directa':'declarat', 'observatie-esantion':'observat în eșantion', 'deductie-din-dovezi':'dedus din dovezi', 'parafraza-editoriala':'formulare editorială'};
+let entries = [], labels = {}, definitions = {}, meta = {}, state, shown = 24;
 
 function readState() {
   const p = new URLSearchParams(location.search);
@@ -76,14 +79,22 @@ function renderFacets() {
 }
 
 function proof(entry) {
-  let html = entry.variables.map(v => `<div class="finder-proof"><strong>${esc(labels.variables[v.id])}</strong>
-    <p>${esc(definitions.variables[v.id])}</p><ul>${v.evidence.map(e => `<li><code>${esc(e.name)}</code>
+  let html = entry.variables.map(v => {
+    const info = meta[v.id] || {};
+    return `<div class="finder-proof"><strong>${esc(labels.variables[v.id])}</strong>${info.category ? ` <small class="finder-category">${esc(categories[info.category] || info.category)}</small>` : ''}
+    <p>${esc(definitions.variables[v.id])}</p>
+    ${info.ambiguities?.length ? `<p class="finder-ambiguity">Neclar: ${info.ambiguities.map(esc).join(' ')}</p>` : ''}
+    <ul>${v.evidence.map(e => `<li><code>${esc(e.name)}</code>
       · ${esc(roles[e.role] || e.role)}${e.location ? ' · ' + esc(e.location) : ''}
-      <p>${esc(basis[e.basis])}${e.declaredType ? ' · ' + esc([e.declaredType].flat().join(', ')) : e.observedTypes.length ? ' · tipuri observate: ' + esc(e.observedTypes.join(', ')) : ''}${e.unit ? ' · ' + esc(e.unit) : ''}</p>
-      ${e.description ? `<p>${esc(e.description)}</p>` : ''}
+      ${e.context ? `<p>${esc(e.context)}</p>` : ''}
+      <p>${esc(basis[e.basis] || e.basis)}${e.declaredType ? ' · ' + esc([e.declaredType].flat().join(', ')) : e.observedTypes.length ? ' · tipuri observate: ' + esc(e.observedTypes.join(', ')) : ''}${e.unit ? ' · ' + esc(e.unit) : ''}</p>
+      ${e.facts?.length ? `<p>${e.facts.map(f => `${esc(factKeys[f.key] || f.key)}: ${esc(f.value)} (${esc(factBasis[f.basis] || f.basis)})`).join(' · ')}</p>` : ''}
+      ${e.description ? `<p>${esc(e.description.length > 240 ? e.description.slice(0, 240) + '…' : e.description)}</p>` : ''}
       <a href="${esc(e.url)}" target="_blank" rel="noopener">Sursa câmpului ↗</a>
       <p><code>${esc(e.path)}${e.reference ? ' · ' + esc(e.reference) : ''}</code></p></li>`).join('')}</ul>
-      ${v.count > v.evidence.length ? `<p>${v.count} câmpuri sau contexte asociate în inventarul proiectului.</p>` : ''}</div>`).join('');
+      ${v.count > v.evidence.length ? `<p>${v.count} câmpuri sau contexte asociate în inventarul proiectului.</p>` : ''}
+      ${info.proofs?.length ? `<details class="finder-basis"><summary>Dovezi pentru definiție (formulare editorială)</summary><ul>${info.proofs.map(p => `<li><a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.fragment.length > 90 ? p.fragment.slice(0, 90) + '…' : p.fragment)} ↗</a></li>`).join('')}</ul></details>` : ''}</div>`;
+  }).join('');
   const providers = Object.values(entry.providers).flat();
   if (providers.length) html += `<div class="finder-proof"><strong>Proveniența datelor</strong><ul>${providers.map(p => `<li><a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.name)} ↗</a></li>`).join('')}</ul></div>`;
   if (entry.inventory.docs?.length) html += `<div class="finder-proof"><strong>Documentație</strong><ul>${entry.inventory.docs.map(d => `<li><a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.label)} ↗</a></li>`).join('')}</ul></div>`;
@@ -170,7 +181,7 @@ async function start() {
     const inventory = await response.json();
     labels = {variables:{}, providers:{}, subjects:{}, institutions:{}};
     definitions = {variables:{}};
-    for (const v of inventory.variables) { labels.variables[v.id]=v.label; definitions.variables[v.id]=v.definition; }
+    for (const v of inventory.variables) { labels.variables[v.id]=v.label; definitions.variables[v.id]=v.definition; meta[v.id]={category:v.category, ambiguities:v.ambiguities || [], proofs:v.proofs || []}; }
     for (const c of inventory.concepts) {
       if (c.scheme === 'subiect') labels.subjects[c.id]=c.label;
       if (c.scheme === 'institutie') labels.institutions[c.id]=c.label;

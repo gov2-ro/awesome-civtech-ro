@@ -11,11 +11,44 @@ from playwright.sync_api import sync_playwright
 BASE = sys.argv[1] if len(sys.argv) > 1 else 'http://localhost:8770/'
 INDEX = json.load(urllib.request.urlopen(BASE + 'inventar/index.json'))
 results, errors = [], []
+PROJECTS = sum(e['kind'] == 'proiect' for e in INDEX['entries'])
+RESOURCES = sum(e['kind'] != 'proiect' for e in INDEX['entries'])
+TOTAL_LABEL = f'{PROJECTS} proiecte · {RESOURCES} resurse'
+PAGE = 24
 
 
 def ok(label, condition):
     results.append(bool(condition))
     print(('PASS ' if condition else 'FAIL ') + label)
+
+
+def want(variables=(), providers=(), subjects=(), institutions=(), resources=True):
+    """The slugs that the filter rules select, computed from the generated index and not from the page code:
+    every selected variable is required; the other facets accept any selected value; the facets intersect."""
+    found = []
+    for e in INDEX['entries']:
+        if not resources and e['kind'] != 'proiect':
+            continue
+        if not all(any(v['id'] == x for v in e['variables']) for x in variables):
+            continue
+        if providers and not any(p in e['providers'] for p in providers):
+            continue
+        if subjects and not any(x in e['subjects'] for x in subjects):
+            continue
+        if institutions and not any(x in e['institutions'] for x in institutions):
+            continue
+        found.append(e['slug'])
+    return found
+
+
+def shown(page):
+    return set(page.locator('.finder-card').evaluate_all('els=>els.map(e=>e.dataset.project)'))
+
+
+def agrees(page, expected):
+    """The page lists the first batch of the expected entries; a small selection is listed completely."""
+    got = shown(page)
+    return (got == set(expected)) if len(expected) <= PAGE else (len(got) == PAGE and got <= set(expected))
 
 
 with sync_playwright() as pw:
@@ -27,47 +60,61 @@ with sync_playwright() as pw:
     page.locator('.tabs a[href="date/"]').click()
     page.wait_for_selector('.finder-card')
     ok('explorer navigation opens the dedicated inventory page', '/date/' in page.url)
-    ok('dedicated page includes all projects and resources', page.locator('#data-count').inner_text() == '106 proiecte · 21 resurse')
+    ok('dedicated page includes all projects and resources', page.locator('#data-count').inner_text() == TOTAL_LABEL and PROJECTS + RESOURCES == len(INDEX['entries']))
     ok('results load in bounded batches', page.locator('.finder-card').count() == 24)
     page.locator('[data-more]').click()
     ok('more results append and move focus to the next batch', page.locator('.finder-card').count() == 48 and page.locator('.finder-card h2 a').nth(24).evaluate('(e)=>e===document.activeElement'))
     page.goto(BASE + 'date/?variables=cui')
     page.wait_for_selector('.finder-card')
-    expected = [e for e in INDEX['entries'] if any(v['id'] == 'cui' for v in e['variables'])]
-    ok('shared CUI group finds four entries', len(expected) == 4 and page.locator('.finder-card').count() == 4)
+    expected = want(['cui'])
+    ok('shared CUI group lists exactly the entries that the index gives it', agrees(page, expected) and len(expected) >= 4)
+    ok('supported CUI members from the first pass survive', {'companii-de-stat', 'demoanaf', 'romania-transparenta', 'transparenta-eu'} <= set(expected))
+    ok('entries without a CUI field are not listed', 'europescope' not in shown(page) and 'rezultate-vot' not in shown(page))
     page.locator('.finder-card').first.locator('.finder-evidence > summary').click()
     ok('group evidence exposes field names and source URLs', page.locator('.finder-evidence[open] code').count() > 0 and page.locator('.finder-evidence[open] a').first.get_attribute('href').startswith('https://'))
+    ok('group evidence shows the category and what is still unclear', 'Identificator' in page.locator('.finder-evidence[open]').inner_text() and page.locator('.finder-evidence[open] .finder-ambiguity').count() > 0)
     page.locator('.finder-examples [data-value="cpv"]').click()
-    ok('multiple variables require a common project', page.locator('.finder-card').count() == 2 and set(page.locator('.finder-card').evaluate_all('els=>els.map(e=>e.dataset.project)')) == {'demoanaf', 'romania-transparenta'})
+    both = want(['cui', 'cpv'])
+    ok('multiple variables require a common project', agrees(page, both) and {'demoanaf', 'romania-transparenta'} <= set(both) and 'companii-de-stat' not in both)
     saved = page.url
     page.reload(); page.wait_for_selector('.finder-card')
-    ok('shareable URL restores the selection', page.locator('.finder-card').count() == 2 and page.url == saved)
+    ok('shareable URL restores the selection', agrees(page, both) and page.url == saved)
     page.locator('#data-active [data-value="cpv"]').click()
-    page.go_back(); page.wait_for_function("document.querySelectorAll('.finder-card').length===2")
-    ok('browser back restores filters and results', page.locator('#data-active [data-value="cpv"]').count() == 1)
+    page.go_back(); page.wait_for_function(f"document.querySelectorAll('.finder-card').length==={len(both)}")
+    ok('browser back restores filters and results', page.locator('#data-active [data-value="cpv"]').count() == 1 and agrees(page, both))
+    page.goto(BASE + 'date/?variables=judet&variables=perioada-de-referinta')
+    page.wait_for_selector('.finder-card')
+    ok('county and period intersect on entries that expose both', agrees(page, want(['judet', 'perioada-de-referinta'])) and 'constru-pentru-cine' in shown(page))
+    page.goto(BASE + 'date/?variables=voturi-pentru')
+    page.wait_for_selector('.finder-card')
+    ok('a vote-count group joins two projects of different institutions without claiming a join', shown(page) == {'europescope', 'monitorul-ai'} == set(want(['voturi-pentru'])))
+    page.goto(BASE + 'date/?variables=judet')
+    page.wait_for_selector('.finder-card')
+    ok('an ambiguous name joins a group only through a constrained selector', agrees(page, want(['judet'])) and 'rezultate-vot' not in want(['judet']))
     page.goto(BASE + 'date/?providers=INS')
     page.wait_for_selector('.finder-card')
-    ok('provider matches count projects once', page.locator('.finder-card').count() == 9)
+    ok('provider matches count projects once', agrees(page, want(providers=['INS'])))
     page.locator('#data-resources').uncheck()
-    ok('project-only selection excludes resources', page.locator('.finder-card').count() == 3 and 'resurse=0' in page.url)
+    ok('project-only selection excludes resources', agrees(page, want(providers=['INS'], resources=False)) and 'resurse=0' in page.url)
     page.goto(BASE + 'date/?providers=MDLPA&providers=INS')
     page.wait_for_selector('.finder-card')
-    ok('providers are alternatives within their filter', page.locator('.finder-card').count() == 10)
+    ok('providers are alternatives within their filter', agrees(page, want(providers=['MDLPA', 'INS'])))
     page.goto(BASE + 'date/?providers=INS&variables=siruta')
     page.wait_for_selector('.finder-card')
-    ok('provider and variable filters intersect', page.locator('.finder-card').count() == 1 and page.locator('.finder-card').get_attribute('data-project') == 'orasul-care-se-intinde')
+    ok('provider and variable filters intersect', agrees(page, want(['siruta'], ['INS'])) and 'orasul-care-se-intinde' in shown(page))
     page.goto(BASE + 'date/?institutions=institutie%3Aparlament')
     page.wait_for_selector('.finder-card')
-    expected = sum('institutie:parlament' in e['institutions'] for e in INDEX['entries'])
-    ok('institutions concerned are independent of data providers', page.locator('.finder-card').count() == min(24,expected) and expected > 1)
+    expected = want(institutions=['institutie:parlament'])
+    ok('institutions concerned are independent of data providers', agrees(page, expected) and len(expected) > 1)
     page.goto(BASE + 'date/?q=REF_AREA')
     page.wait_for_selector('.finder-card')
-    ok('technical field search works without opening each project', page.locator('[data-project="ins-gov2"]').count() == 1)
+    searchable = [e['slug'] for e in INDEX['entries'] if 'ref_area' in e['keywords'].lower()]
+    ok('technical field search works without opening each project', agrees(page, searchable) and 'ins-gov2' in searchable and 'constru-pentru-cine' in searchable)
     page.locator('#data-search').fill('nothing_matches_7364')
     page.wait_for_selector('.finder-empty')
     ok('empty results preserve search focus', page.locator('#data-search').evaluate('(e)=>e===document.activeElement'))
     page.locator('[data-clear="all"]').click()
-    ok('reset restores all catalogue entries', page.locator('#data-count').inner_text() == '106 proiecte · 21 resurse')
+    ok('reset restores all catalogue entries', page.locator('#data-count').inner_text() == TOTAL_LABEL)
     ok('uninventoried projects remain reachable', any(not e['inventory'].get('count') for e in INDEX['entries']) and 'Câmpuri încă neinventariate' in page.locator('#data-cards').inner_text())
     page.screenshot(path='/tmp/civtech-data-finder-desktop.png', full_page=False)
     for width in (390,320):

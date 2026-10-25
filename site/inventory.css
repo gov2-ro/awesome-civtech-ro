@@ -50,6 +50,10 @@
 .finder-proof code { font:12px var(--font-mono); overflow-wrap:anywhere; }
 .finder-proof ul { margin:8px 0; padding-left:18px; }
 .finder-proof li { margin-bottom:8px; }
+.finder-category { font:11px var(--font-mono); color:var(--muted); border:1px solid var(--line); border-radius:4px; padding:1px 5px; margin-left:4px; }
+.finder-ambiguity { color:var(--warn,var(--muted)); }
+.finder-basis { margin-top:6px; }
+.finder-basis > summary { cursor:pointer; color:var(--accent); }
 .finder-links { display:flex; flex-wrap:wrap; gap:16px; margin-top:16px; font-size:13px; }
 .finder-empty { grid-column:1/-1; padding:32px; border:1px solid var(--line); border-radius:var(--radius); }
 .finder-empty p { margin-top:10px; color:var(--muted); }

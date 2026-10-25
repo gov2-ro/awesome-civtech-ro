@@ -113,6 +113,20 @@ class EvidencePins(unittest.TestCase):
         self.assertEqual(check_evidence({**pin, 'fragment': 'a sentence that is not there'}, self.locator), 'fragment-missing')
         self.assertEqual(check_evidence({**pin, 'sursa': 'https://elsewhere.example/'}, self.locator), 'unavailable')
 
+    def test_a_pin_is_compared_only_with_a_copy_of_the_same_kind(self):
+        """The same address has a page body in the source cache and a different collected text. Without the body the pin is unavailable, not stale."""
+        pages = self.out.parent / 'documentare'
+        (pages / 'pagini').mkdir(parents=True)
+        (pages / 'index.json').write_text(json.dumps({'entries': [{'slug': 'p', 'pages': [{'final_url': A, 'state': 'colectat', 'snapshot': 'pagini/a.json'}]}]}))
+        (pages / 'pagini/a.json').write_text(json.dumps({'text': 'Populatia dupa domiciliu reprezinta numarul persoanelor, in text'}))
+        pin = {'sursa': A, 'text': 'sursa', 'fragment': 'reprezinta numarul persoanelor', 'sha256': sha(self.body), 'baza': 'declaratie-directa'}
+        locator = EvidenceLocator(self.out, self.out.parent, [self.source])
+        self.assertEqual(check_evidence(pin, locator), '')
+        (self.out / self.source['snapshot']).unlink()
+        self.assertEqual(check_evidence(pin, EvidenceLocator(self.out, self.out.parent, [self.source])), 'unavailable')
+        self.assertEqual(check_evidence({**pin, 'text': 'documentatie'}, EvidenceLocator(self.out, self.out.parent, [self.source])), 'stale',
+                         'the collected text is a different copy; its hash differs from the body hash')
+
     def test_check_reports_stale_apart_from_errors_and_missing_selectors_are_errors(self):
         concept = {'id': 'pop', 'label': 'P', 'definition': 'D', 'selectors': [{'projects': ['p'], 'names': ['OBS_VALUE'], 'source': A},
                                                                                {'projects': ['p'], 'names': ['MISSING']}],

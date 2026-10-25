@@ -1,0 +1,225 @@
+{
+  "versiune": 1,
+  "versiune_raport": "branch `inventory-expansion`, tag v0.18.0",
+  "rezumat": [
+    "Milestones A (safe incremental collection), B (INS), C (12 entries), D (meanings and shared groups) and E (preview, coverage, report) are complete.",
+    "Structured field evidence now covers {with_fields} of {finder} projects and resources (baseline 14). The retained sources are {source_urls} URLs ({parsed} parsed, {failed} failed) with {field_records:,} field records.",
+    "Each field record is a path in a source. The proposals are {groups} shared groups (baseline 7), 16 provider review items and the dictionary evidence that `inventory.py --check` verifies.",
+    "The public build is unchanged: the default payload equals the v0.13.0 payload apart from its generation time; classifications and accepted providers are identical.",
+    "Collection used {direct_requests} direct requests in total ({browser_navigations} browser navigations); the 150-request limit of lot C was not reached."
+  ],
+  "note": {
+    "afacut": {
+      "limite": [
+        "Doar tabele din paginile ediției și clasamentul județelor; căutarea de localități nu încarcă date (mod demonstrație).",
+        "Tipurile sunt observate din cel mult cinci rânduri."
+      ],
+      "blocaj": "Nu există un set de date pe localități în paginile citite: căutarea spune „Mod demonstrație”.",
+      "urmatorul_pas": "Căutați seturile data.gov.ro ale MDLPA citate în pagină și verificați paginile pe localități.",
+      "rezultat": "Describes public money for roads, water and sewer, and gas networks: the national reporting steps (date, step and cumulative amount, in billions of lei) and a county ranking (amount per 100 lei allocated, allocated and requested amounts in millions of lei, localities with requests as \"x din y\"). Every unit comes from a table header. The search page loads no data and says that it runs in demonstration mode, so no locality-level dataset was found. The locality search is an HTML control candidate, not an accepted input.",
+      "limite_en": "Tables of the edition and county pages only; types come from at most five rows; no locality dataset.",
+      "urmator_en": "Find the MDLPA data.gov.ro datasets that the pages cite; check whether locality pages exist."
+    },
+    "biografia-localitatii": {
+      "limite": [
+        "38 de serii INS în tabelul de documentație; valorile nu sunt citite.",
+        "Metadatele INS vin din oglinda ins.gov2.ro, care se oprește mai devreme decât cifrele proiectului."
+      ],
+      "blocaj": "",
+      "urmatorul_pas": "Citiți metadatele celorlalte matrici din tabel și paginile pe localități.",
+      "rezultat": "Describes statistical biographies of 3,181 localities built from INS TEMPO series. The methodology page has a dictionary table of the series it uses (matrix, domain, what it measures, years, unit, update date). Metadata for three of those matrices (LOC101B, POP107D, GOS104A) is attached, each with the sentence of the table that names it. The projects' own values are not published as data in the pages read.",
+      "limite_en": "The dictionary table lists 37 matrices; metadata was read for three. The ins.gov2.ro mirror ends earlier than the years the project cites.",
+      "urmator_en": "Read the metadata of the other matrices; look for locality pages that expose series."
+    },
+    "registrul-firmelor": {
+      "limite": [
+        "Lista câmpurilor este din documentația API; răspunsul nu a fost citit.",
+        "Tipurile nu sunt declarate."
+      ],
+      "blocaj": "API-ul cere o cheie gratuită; cheia nu a fost cerută.",
+      "urmatorul_pas": "Cereți proiectului un exemplu de răspuns sau schema OpenAPI.",
+      "rezultat": "Public company register built from ONRC, ANAF and Ministry of Finance data. The API page lists 23 response items in five groups: identification, contact, fiscal status, activity and financial figures. The API needs a free key, which was not requested, so types and example values are unknown. The `surse` page names the producers (ONRC, ANAF, Ministry of Finance, SEAP, OpenStreetMap) and their coverage periods; it is the evidence for the provider proposals.",
+      "limite_en": "Field names come from documentation prose. No types, no example values, no key.",
+      "urmator_en": "Ask the project for the API schema or a sample response."
+    },
+    "dignitas": {
+      "limite": [
+        "10 din 84 de patch-uri SQL citite; schema este parțială.",
+        "Constantele din Statement.php sunt coduri, nu tabele."
+      ],
+      "blocaj": "",
+      "urmatorul_pas": "Citiți restul patch-urilor sau o schemă curentă a bazei de date.",
+      "rezultat": "Collaborative fact-checking platform. Ten repository files at commit c865254 (2026-03-13): nine SQL patches that create or alter tables such as entity, statement, relation, vote and tag, and the Statement class, whose constants define the statement types (claim, flop, promise) and the verdict scale. The repository link is the one that the profiler found on the project site.",
+      "limite_en": "74 of 84 patches are unread, so the table list is partial. Constants give codes, not columns.",
+      "urmator_en": "Read the remaining patches or a current schema dump; confirm the live verdict scale."
+    },
+    "monitorul-ai": {
+      "limite": [
+        "Documentele de proiectare dau forme de exemplu, nu un contract.",
+        "Schemele JSON descriu analizele discursului, nu stenogramele."
+      ],
+      "blocaj": "",
+      "urmatorul_pas": "Citiți schema canonică JSON, dacă este publică, și eșantioane din arhivă prin site.",
+      "rezultat": "Public archive of Romanian parliamentary stenograms (Monitorul Oficial, Part II). Two design documents show the record shapes: a document envelope, session metadata, agenda items, speeches, votes with counts for, against and abstaining, speaker identity (name, title, role, party group, person id) and source spans. Four JSON Schemas describe the discourse-analysis outputs. The MCP guide lists the tools that the archive exposes.",
+      "limite_en": "Annotated JSON examples in design documents are not a type contract; the JSON Schemas describe model outputs, not transcripts.",
+      "urmator_en": "Find a canonical JSON schema if one is public; sample the archive through the site."
+    },
+    "rezultate-vot": {
+      "limite": [
+        "Resursele API și migrările depozitului la o revizie; nu se știe dacă API-ul public este identic.",
+        "Documentele Scramble nu au fost citite."
+      ],
+      "blocaj": "",
+      "urmatorul_pas": "Citiți documentația API publică a proiectului, dacă există.",
+      "rezultat": "Election results and turnout. The repository's API resources define the public response fields: elections, localities, candidates with votes, results with valid and null votes, turnout with demographic bands and an urban/rural split. The migrations define the stored tables (turnouts, records, votes), including a generated turnout percent. The results page has a candidate, votes and percent table whose columns cannot be matched to its rows.",
+      "limite_en": "One repository revision; the deployed API may differ. The public API documents were not read.",
+      "urmator_en": "Read the public API documentation if it exists."
+    },
+    "votdiaspora": {
+      "limite": [
+        "Depozitul are ultimul commit din 2021; clasele pot fi anterioare site-ului actual.",
+        "Baza resources.sqlite (8,8 MB) nu a fost descărcată."
+      ],
+      "blocaj": "",
+      "urmatorul_pas": "Confirmați cu proiectul dacă API-ul din depozit rulează.",
+      "rezultat": "Polling stations for citizens abroad. C# classes define the station (id, latitude, longitude, county, locality, polling station number, institution, address) with assigned street addresses, an upload model, a grouped result with distance, and the query parameters of the station search. The repository link was found by the profiler on the project site.",
+      "limite_en": "The repository's last commit is from 2021-11-08, so the classes may predate the deployed site. The 8.8 MB sqlite file was not downloaded.",
+      "urmator_en": "Ask whether the API in the repository is the deployed one."
+    },
+    "aerlive": {
+      "limite": [
+        "Doar lista orașelor (3 câmpuri); datele de măsurare nu au fost păstrate."
+      ],
+      "blocaj": "Punctele de date întorc HTTP 403 pentru clienți fără contextul paginii; copia din browser a datelor nu a fost reținută.",
+      "urmatorul_pas": "Repetați randarea cu o a treia navigare și păstrați răspunsul data?city=BUC.",
+      "rezultat": "Air quality map for Romanian cities (Ecopolis). The home page requests a list of cities (name, code, GPS) and a data endpoint for the selected city. A plain request for either returns HTTP 403, while the page receives both. Only the 888-byte cities list was kept. The pollutants and units that the page prints (PM10, PM2.5, CO, NO2, SO2, NOX, VOC, noise) are page text, not parsed fields.",
+      "limite_en": "Three fields only. The measurement response was seen (12,647 bytes) but not retained; the two allowed navigations are used.",
+      "urmator_en": "Render again with a third navigation and keep the data response; do not bypass the 403."
+    },
+    "calitate-aer-radauti": {
+      "limite": [
+        "Eșantion de 24 de ore; ultimul rând este din 2026-04-19.",
+        "Unități declarate doar pentru stația din centru."
+      ],
+      "blocaj": "",
+      "urmatorul_pas": "Întrebați proiectul unde sunt unitățile celorlalte stații.",
+      "rezultat": "Air quality in Rădăuți. The page's own script reads a Firebase JSON feed with the last 24 hours: 41 fields across six stations (CO2, PM2.5, PM10, temperature, humidity, pressure, wind speed and direction, weather phenomena). The page declares units for the centre station only (ppm, µg/m³, %, °C). Pressure is text in the sample for the centre station and a number for the others.",
+      "limite_en": "A 24-hour sample whose newest record is dated 2026-04-19. Units are declared for four measures of one station.",
+      "urmator_en": "Ask where the units of the other stations are documented."
+    },
+    "banii-nostri": {
+      "limite": [
+        "Primele 200 de înregistrări dintr-un răspuns paginat.",
+        "Numele coloanelor ORDS nu sunt explicate (linkul describedby întoarce 404)."
+      ],
+      "blocaj": "",
+      "urmatorul_pas": "Obțineți descrierea coloanelor SICAP de la data.g4d.ro.",
+      "rezultat": "Public procurement visualisations. The RAJA S.A. Constanța report cites the SICAP REST address that was read here (200 records: contract id, value, authority, supplier, CPV, description, two dates) and has six tables with declared units (RON). The reports page declares a supplier table header (value, yield and employees per year) whose rows a script loads.",
+      "limite_en": "One page of a paged response. Column names such as afn, sfn, pd and fd are not described by the source; two rest on a deduction, two stay unmapped.",
+      "urmator_en": "Get the column descriptions of the SICAP service."
+    },
+    "europescope": {
+      "limite": [
+        "Fișierele CSV sunt citite ca eșantion de 24 KB (antet și primele rânduri).",
+        "Linkul de documentație API întoarce 404."
+      ],
+      "blocaj": "",
+      "urmatorul_pas": "Cereți documentația API funcțională.",
+      "rezultat": "European Parliament and Council voting records. Seven documented bulk files: members, votes, vote positions, countries, groups, topic-tagged votes and a methodology registry. The data page describes each file, names the licence (ODC-By 1.0) and the dataset version (2026.05). CSV headers are read from a 24 KB sample; the methodology registry has 16 fields that carry formulas, inclusions, exclusions and limitations.",
+      "limite_en": "CSV files are samples. The documented API page returns 404.",
+      "urmator_en": "Ask for the working API documentation."
+    },
+    "despre-femicid": {
+      "limite": [
+        "Numai numele câmpurilor pe care le citește scriptul paginii; baza de date nu a fost citită.",
+        "Corpul paginii păstrat are tokenul mascat."
+      ],
+      "blocaj": "Datele stau într-un serviciu terț, în spatele unui token inclus în scriptul paginii; tokenul nu a fost folosit.",
+      "urmatorul_pas": "Anunțați proiectul despre token și cereți un export agregat.",
+      "rezultat": "Monitoring of femicide cases in Romania from media reports and official communications. The data page reads nine named fields (county, date of death, victim age, aggressor age, relationship, place, previous record, outcome, reason) from a table in a third-party database service. Only these names were recorded. The methodology and dictionary pages define terms and the collection method; they are text, not a field dictionary.",
+      "limite_en": "Page-script usage only; no types or values. The database was not read.",
+      "urmator_en": "Tell the project about the exposed token; ask for an aggregate export."
+    },
+    "monitor-energie": {
+      "blocaj": "HTTP 401 la contractul OpenAPI legat din documentație.",
+      "urmatorul_pas": "Reîncercați doar dacă proiectul publică documentația fără autentificare."
+    }
+  },
+  "ins": [
+    "Listing `https://ins.gov2.ro/api/datasets?limit=1`: HTTP 200, 557 bytes, `total` 3,368 datasets, 16 card members. The llms.txt file says \"about 3,600\". Only `limit=1` was run; `offset` is documented but unverified.",
+    "Five metadata records were read: ACC102B (available again, same body hash as on 2026-10-24), POP107D, LOC101B, TRN139A and GOS104A. The codes come from the pages of the projects that name them, and every use has an exact locator in the registry: POP107D (`constru-pentru-cine`, `orasul-care-se-intinde`, `demoanaf`), LOC101B (`constru-pentru-cine`, `orasul-care-se-intinde`, `biografia-localitatii`), TRN139A and GOS104A (`unde-se-termina-asfaltul`; GOS104A also `biografia-localitatii`).",
+    "Each record separates one indicator (the definition text), four to six dimensions and the dimension values, which appear only as samples of at most five codes with their labels. A dimension value is never a variable. Each dataset has one measure field `OBS_VALUE` whose declared unit comes from the unit dimension: persons (POP107D), number (LOC101B), kilometres (TRN139A, GOS104A). ACC102B declares two units (persons and per mille), so no single unit is chosen.",
+    "Misleading example: llms.txt presents `GET /api/datasets/ACC102B?lang=en` as \"GDP\". The record is workplace accidents (`CATEGORY`, `REF_AREA`, `TIME_PERIOD`, `UNIT_MEASURE`). Its source note names the Labour Inspectorate (Ministry of Labour); INS distribution alone does not prove authorship, so the proposal D160 is limited to that dataset and does not change the INS relation.",
+    "The `POP101A` example route of llms.txt was not re-measured. The 404 in the brief stays an unverified claim here.",
+    "Coverage differs between the mirror and the projects. LOC101B time options end in 2023 against 1990–2025 in `constru-pentru-cine`; POP107D ends in 2025 against 2026; TRN139A ends in 2024 against 2025. The projects read TEMPO directly; these records are metadata from the ins.gov2.ro mirror and are labelled so.",
+    "Locality dimension labels begin with a number (for example `38731 RIPICENI`). The POP107D note declares SIRUTA 38731 for Ripiceni and 98916 for Scânteia, and the options carry exactly those numbers, while a second Scânteia has 94429. This supports but does not prove that the leading token is SIRUTA for all localities; it stays an ambiguity note in `siruta`."
+  ],
+  "lacune": [
+    {
+      "slug": "companii-de-stat",
+      "url": "https://companiidestat.ro/date/v1/index.json",
+      "lacuna": "Which datasets, providers and licence the API declares (CC BY 4.0; four original providers; 20 endpoint files)."
+    },
+    {
+      "slug": "companii-de-stat",
+      "url": "https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json",
+      "lacuna": "Company-level financial measures. A collection keyed by CUI (1,446 companies) is sampled as `{*}` records; no unit is declared."
+    },
+    {
+      "slug": "transparenta-eu",
+      "url": "https://transparenta.eu/ai/index.json",
+      "lacuna": "Which parameter documents exist (route list)."
+    },
+    {
+      "slug": "romania-transparenta",
+      "url": "https://romaniatransparenta.eu/date/primarii.json",
+      "lacuna": "Observed types for the mayoralty table that the CSV (headers only) cannot give."
+    },
+    {
+      "slug": "romania-transparenta",
+      "url": "https://romaniatransparenta.eu/date/control-saptamanal.json",
+      "lacuna": "How the weekly data checks are recorded."
+    },
+    {
+      "slug": "codurbanism",
+      "url": "https://mariuscomper.uk/codurbanism/data/ro/source-manifest.json",
+      "lacuna": "The sources of the law texts (publisher, kind, audit date)."
+    }
+  ],
+  "blocaje": [
+    "`desprefemicid.ro` (security finding): the page script contains an Airtable access token, with the base and table names. The token was not used and the database was not read. The stored copy of the page has the token masked. The project owners should be told; this pass does not contact them.",
+    "`aerlive.ro`: HTTP 403 for plain requests to `/wp-json/api/v1/cities/` and `/wp-json/api/v1/data?city=BUC`; the browser received both. The cities list was kept. The 12,647-byte data response was seen but not retained, and the two allowed navigations are used.",
+    "`europescope.eu`: the page's \"Use the API\" link (`/api/docs`) returns HTTP 404. The seven bulk files documented on `/data` work.",
+    "`registru.horecaos.org`: the API needs a free key; no key was requested and no API call was made.",
+    "`monitorenergie.ro`: the linked OpenAPI contract still returns HTTP 401 (baseline limit, unchanged).",
+    "`data.g4d.ro`: the `describedby` link of the SICAP REST response returns 404 over https and http.",
+    "`calitate-aer-radauti`: the published spreadsheet is filled by a script and has no table in the HTML; the Firebase feed's newest record is dated 2026-04-19.",
+    "`votdiaspora`: the repository's last commit is from 2021-11-08; its `resources.sqlite` (8.8 MB) was not downloaded.",
+    "`dignitas`: 74 of 84 schema patches are unread, so the table list is partial."
+  ],
+  "de_revizuit": [
+    "Review the 30 proposed groups: each `ambiguitati` entry and each unit fact in `inventar-concepte.json`. Groups are discovery aids, not join keys.",
+    "Decide the provider review items D132–D146 (15, from the earlier pass) and D147–D162 (16, new). Accept a provider only with a `date_din` relation in `relatii.csv`.",
+    "Review the 3,525 field records and the 308 HTML control candidates; map the technical paths to business meanings where a source declares them.",
+    "Tell the `desprefemicid.ro` owners about the exposed token. Ask `aerlive.ro`, EuropeScope and Registrul Firmelor for working API documentation or schema.",
+    "Re-render `aerlive.ro` with permission for a third navigation; read the other 74 Dignitas patches; fetch the 28 documented candidates only if a reviewer needs them.",
+    "Resolve the 62 unconfirmed profiles and the 100 projects and resources without extracted fields; a missing extraction does not prove missing data."
+  ],
+  "verificari": {
+    "tests": 411,
+    "tests_skipped": 6,
+    "explorer_checks": 31,
+    "finder_checks": 31,
+    "rezultate": [
+      "`python3 scripts/validate.py --publication`: 140 entries, 0 errors, 0 warnings.",
+      "`python3 scripts/build.py`: succeeds. The default public payload equals the v0.13.0 payload apart from `generated`; the classifications and the accepted providers of all 140 entries are equal; `site/index.html` differs only by the asset stamps that the build writes.",
+      "Unit tests: 411 run, 6 skipped, 0 failures (baseline 308 / 6). New files: `test_inventory_state` 39, `test_inventory_text` 19, `test_inventory_concepts` 19, `test_inventory_ins` 12, `test_inventory_report` 7; `test_inventory` 15, `test_inventory_site` 11 and `test_collect_docs` 15 grew.",
+      "`python3 scripts/inventory.py --check`: 0 evidence errors; 86 source bodies hash-verified; 62 dictionary evidence items verified, 0 stale; 0 sources with a failed refresh. On a copy without any body: 0 errors, 0 bodies verified, 136 reported unavailable (never counted as verified); `--strict-snapshots` then exits 1.",
+      "Replay: `inventory.py --offline` on a copy of the tracked folder reproduces `proiecte.json`, `seturi-date.json`, `descoperiri.json`, `rezumat.csv`, `campuri.csv` and `intrari-utilizator.csv` byte for byte.",
+      "`python3 scripts/build.py --site-dir /tmp/civtech-inventory-expanded --with-inventory`: succeeds (127 entries and 30 groups in the finder index). The flag without `--site-dir` exits 2 and leaves `site/data.json` unchanged (test). Reusing an isolated folder without the flag removes the draft pages (test).",
+      "`node --check site/app.js`, `node --check site/inventory.js` and `git diff --check`: clean.",
+      "Browser, against the served preview on port 8770: `check_preview.py` 111/111, `check_inventory_preview.py` 31/31, `check_data_finder.py` 31/31 (baseline 25/25 for each inventory script). The expected counts come from the generated index and from filter rules written in the script, not from the page code; layouts at 390 px and 320 px have no horizontal overflow.",
+      "Boundaries: nothing was pushed or deployed, no Google Sheet was touched, no paid service ran, no project owner was contacted. `relatii.csv`, the sealed `source/`, `reference/` and `runs/` folders and the frozen v1 files have no change from the baseline; `revizuire.csv` only gained D147–D162 and D132–D146 are unchanged."
+    ]
+  }
+}

@@ -110,8 +110,10 @@ class EvidenceLocator:
             pass
         return pages
 
-    def text(self, url):
-        """(text, kind) or (None, None) when no local copy exists."""
+    def text(self, url, only=None):
+        """(text, kind) or (None, None) when no local copy exists. `only` limits the search to one kind of copy:
+        `sursa` (a tracked source body), `documentatie` (the text of a collected page) or `cache` (a cached page body).
+        The same address can have different text in each kind, so a pin made on one must not be compared with another."""
         source = self.sources.get(url)
         candidates = []
         if source and source.get('snapshot'):
@@ -121,6 +123,8 @@ class EvidenceLocator:
         from inventory_state import source_id
         candidates.append((self.out / 'surse' / (source_id(url) + '.json'), 'body', 'cache'))
         for path, key, kind in candidates:
+            if only and kind != only:
+                continue
             try:
                 value = json.loads(path.read_text()).get(key)
             except (OSError, ValueError):
@@ -132,7 +136,7 @@ class EvidenceLocator:
 
 def check_evidence(evidence, locator):
     """'' when the fragment is in the retained text and the hash matches, 'stale' when the text changed, 'unavailable' without a copy."""
-    text, _ = locator.text(evidence['sursa'])
+    text, _ = locator.text(evidence['sursa'], evidence.get('text'))
     if text is None:
         return 'unavailable'
     if evidence['fragment'] not in text:
