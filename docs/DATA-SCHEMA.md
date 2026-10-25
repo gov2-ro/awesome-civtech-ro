@@ -1023,6 +1023,43 @@ The default public build does not export these draft inventories.
 `inventory_site.py` supplies this projection. `check_inventory_preview.py` checks lazy loading, field/main search,
 source/role selection, partial labels, CSV unknown types, retry recovery, inert descriptions and narrow layouts.
 
+### Local review interface
+
+`scripts/review_ui.py` is a local tool (stdlib only, never published; `build.py` copies none of it). It reviews two queues in a browser and writes the repository files.
+Git is the audit trail: the tool never commits, and its page shows `git status`, `git diff --stat` and the commands to run next.
+
+```sh
+python3 scripts/review_ui.py [--port 8790] [--data-dir data/taxonomy-v2/integrare]   # then open http://127.0.0.1:8790/
+```
+
+| Queue | Items | Files written |
+| --- | --- | --- |
+| Providers | `revizuire.csv` items with `camp=surse_date` (D132 and later) | `integrare/revizuire.csv`, `integrare/relatii.csv` |
+| Variable groups | The groups of `inventar-concepte.json` and their members (selectors) | `data/taxonomy-v2/inventar-concepte.json` |
+
+Provider decisions follow the rules of [relatii.csv](#relatiicsv) and [revizuire.csv (v2)](#revizuirecsv-v2). The note field is required; the tool writes one line.
+
+| Action | Item | Relation row (`relatii.csv`) |
+| --- | --- | --- |
+| Accept | `acceptat`; `decizie_editor` = `Acceptat <date>: <note>` | The row named in `propunere` (`L132: …`) becomes `acceptat` with `camp_sursa=surse_date`, `valoare_sursa=<evidence URL>` and the confirmed provider name. Without such a row, a `date_din` row with the next free `L` id is appended, and `decizie_editor` says `Acceptat <date> (rând L147): <note>`. |
+| Reject | `respins`; `Respins <date>: <note>` | A linked row becomes `respins`. A row that this item appended and no commit holds is removed; a committed one becomes `respins`. |
+| Defer | `amanat`; `Amânat <date>: <note>` | A linked row stays (or goes back to) `propus`. |
+| Duplicate | `tehnic`, empty `decizie_editor`, `motiv` = `Duplicat: D153. <note> Motiv inițial: <old motiv>` | The other item must exist, differ from this one, belong to the same project and not be a duplicate itself. An acceptance of this item is withdrawn. |
+| Reset | The item is put back to its value at `HEAD` | The linked row is put back to `HEAD`; a row that this item appended and `HEAD` lacks is removed. |
+
+The tool refuses a second accepted source with the same name for one project. It never edits `propunere`, and it edits `motiv` only for a duplicate.
+Group decisions: `Revizuit`, `Resping` and `Amân` need a note. `Revizuit` also needs every member `confirmat` or `exclus`, one `confirmat` member, and an explicit tick
+for each statement whose basis is `deductie-din-dovezi`. A member changes only while its group is `propus` or `amanat`; `Resetează` puts the group and its members back to `HEAD`.
+
+Every write reads the file, applies one decision, validates the result (`taxonomy_v2.check` with the publication gate; `validate_concept` for each group) and replaces the
+file atomically. New errors refuse the write. The request carries the SHA-256 of each file that the page loaded; a different hash on disk (an editor, a Sheet pull, `git checkout`)
+refuses the write. A file that does not load and save back byte for byte (BOM, line ending, quoting, indentation, final newline) is refused, never rewritten.
+Every request needs `Host` = `localhost` or `127.0.0.1` with the server port; a POST also needs the per-process token that the page carries (else HTTP 403). The server makes no network request.
+The evidence panel reads the retained copies that `inventory.py --check` reads (`surse/`, `documentare/pagini/`; both stay out of git). `verificat` needs a recorded hash that matches the retained text
+and the fragment in it; `schimbat` means the hash differs; `indisponibil local` means no copy; `fără amprentă` means the item records no hash (shown, never called verified).
+The check panel runs `validate.py --publication`, `inventory.py --check` and `inventory_report.py --check` in subprocesses, and shows the accepted providers at `HEAD` against the working tree.
+`inventory_report.py` counts provider items and groups by state.
+
 ### Cross-project data finder preview
 
 The same flag generates `/date/` and `inventar/index.json`. It adds a navigation link in the explorer preview.
@@ -1052,6 +1089,21 @@ A fact in `fapte` has `cheie`, `valoare`, `baza` and, unless it is an editorial 
 Generic names such as `id`, `value`, `name` and `year` join a group only through a selector that also names a source, a path or a role.
 Each match keeps up to three examples from different sources, the original field role and representation, the type evidence, the path, the source URL and the reference.
 The finder index adds the category, the ambiguity notes and the evidence links of each group, and the context and unit facts of each example.
+
+Review state of a group and of its members (written by [the review interface](#local-review-interface); a missing key means `propus`, so a file without them stays valid):
+
+| Level | Key | Values | Rule |
+| --- | --- | --- | --- |
+| Group | `stare` | `propus`, `revizuit`, `respins`, `amanat` | An unknown value fails validation. `revizuit` means "the editor checked the members and the wording"; it never makes a group a join key. |
+| Group | `decizie_editor` | Text | Needed for `revizuit` and `respins`. |
+| Group | `data_revizie` | ISO date | Set by each decision. |
+| Selector (member) | `stare` | `propus`, `confirmat`, `exclus` | An unknown value fails validation. A `revizuit` group cannot hold a `propus` member. |
+| Selector (member) | `nota_editor` | Text | Needed for `exclus`. |
+
+An `exclus` selector stays in the file for history and never matches a field (`inventory_concepts.selector_matches`; every caller honours this, and `inventory.py --check`
+does not ask it to match). A `respins` group produces no matches in the finder and no entry in `inventar/index.json`; a `revizuit`, `propus` or `amanat` group appears,
+and the finder shows its state as a badge (`variables[].state` in the index). The review tool writes the new keys after the existing ones, in the order of the table.
+The top-level `"stare": "propunere"` of the file keeps its meaning: groups remain discovery aids, never join keys.
 
 Current groups (30): identifiers `cui`, `cpv`, `siruta`; dimensions `judet`, `localitate`, `perioada-de-referinta`, `grup-politic`; measures `populatie`, `locuinte`,
 `lungime-drumuri`, `cifra-afaceri`, `profit-net`, `numar-salariati`, `valoare-achizitie-directa`, seven environmental measures (`co2`, `pm25`, `pm10`, `temperatura-aer`,
