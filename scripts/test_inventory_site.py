@@ -192,6 +192,15 @@ class InventorySite(unittest.TestCase):
         self.assertNotIn('>Org<', page)
         self.assertNotIn('v=BUILD', page)
         self.assertIn('<base href="../../">', page)
+        self.assertIn('(grupuri; 2 încă propuse)', page, 'the note counts the open groups; a rejected group is not one')
+        for concept in concepts:
+            concept['stare'] = 'revizuit' if concept['id'] != 'gone' else 'respins'
+        with tempfile.TemporaryDirectory() as tmp:
+            site = Path(tmp)
+            for name in ('style.css', 'inventory.css'):
+                (site / name).write_text('/* fixture */')
+            publish_overview(items, site, {'p': (fields, sources)}, concepts, families)
+            self.assertIn('(grupurile revizuite)', (site / 'date/lista/index.html').read_text())
 
     def test_every_selector_of_the_dictionary_matches_a_current_field(self):
         from inventory_concepts import as_list, selector_matches

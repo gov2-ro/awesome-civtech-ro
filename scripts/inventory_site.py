@@ -154,8 +154,10 @@ def publish_overview(items, site, projections, concepts, families):
         rows.append(f'<tr id="{e(item["slug"])}"><th scope="row">{link}<small>{kind} · {len(sources)} {"sursă" if len(sources) == 1 else "surse"}</small></th>'
                     f'{"".join(tds)}<td class="ov-other">{other or ""}</td></tr>')
     head = ''.join(f'<th scope="col">{e(label)}<small>{totals[fam]}</small></th>' for fam, label in columns)
+    proposed = sum(group_state(c) == 'propus' for c in active_groups(concepts))
+    groups = 'grupurile revizuite' if not proposed else f'grupuri; {proposed} încă propuse'
     content = (f'<p class="ov-note">{len(rows)} proiecte și resurse cu câmpuri extrase, din {len(entries)}. O celulă numește variabilele normalizate '
-               f'(grupurile propuse); numărul de sub fiecare coloană spune câte intrări au cel puțin una. „Altele” numără câmpurile care nu sunt în niciun grup. '
+               f'({groups}); numărul de sub fiecare coloană spune câte intrări au cel puțin una. „Altele” numără câmpurile care nu sunt în niciun grup. '
                f'Același nume nu înseamnă că datele se pot combina.</p>'
                f'<div class="ov-scroll"><table class="ov-table"><thead><tr><th scope="col">Proiect<small>{len(rows)}</small></th>{head}'
                f'<th scope="col">Altele<small>câmpuri</small></th></tr></thead><tbody>{"".join(rows)}</tbody></table></div>'

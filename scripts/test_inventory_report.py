@@ -24,7 +24,8 @@ class Coverage(unittest.TestCase):
     def test_columns_match_the_specification_and_every_entry_has_one_row(self):
         self.assertEqual(report.COLUMNS, BRIEF_COLUMNS)
         self.assertEqual([r[0] for r in self.rows], [e['slug'] for e in self.data['entries']])
-        self.assertEqual(len(self.rows), 140)
+        self.assertEqual(len(self.rows), len(self.data['entries']))
+        self.assertGreaterEqual(len(self.rows), report.BASELINE['entries'], 'the catalogue only grows')
         self.assertTrue(all(len(r) == len(BRIEF_COLUMNS) for r in self.rows))
 
     def test_the_tracked_files_are_current(self):
@@ -70,7 +71,8 @@ class Coverage(unittest.TestCase):
         # Editorial decisions change the accepted relations, so the measured value is checked against the data, not against the baseline.
         accepted = [r for r in self.data['relations'] if r['predicat'] == 'date_din' and r['stare'] == 'acceptat']
         self.assertEqual((measured['entries'], measured['finder'], measured['accepted_providers'], measured['accepted_entries']),
-                         (140, 127, len(accepted), len({r['subiect'] for r in accepted})))
+                         (len(self.data['entries']), sum(e['kind'] != 'organizatie' for e in self.data['entries']), len(accepted),
+                          len({r['subiect'] for r in accepted})))
         self.assertGreater(measured['with_fields'], report.BASELINE['with_fields'])
 
     def test_report_keeps_provider_proposals_apart_from_accepted_relations(self):

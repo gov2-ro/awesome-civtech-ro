@@ -123,7 +123,7 @@ function card(entry) {
       <span>${inv.count ? 'Inventar parțial' : 'Câmpuri încă neinventariate'}</span></div>
     <h2><a href="${esc(url(entry.href))}">${esc(entry.name)}</a></h2>
     <p class="finder-description">${esc(entry.description)}</p><dl>
-    ${entry.variables.length ? `<dt>Variabile · asocieri propuse</dt><dd>${entry.variables.map(v => filterButton('variables',v.id,labels.variables[v.id])).join('')}</dd>` : ''}
+    ${entry.variables.length ? `<dt>Variabile${entry.variables.some(v => (meta[v.id]?.state || 'propus') === 'propus') ? ' · asocieri propuse' : ''}</dt><dd>${entry.variables.map(v => filterButton('variables',v.id,labels.variables[v.id])).join('')}</dd>` : ''}
     <dt>Surse de date</dt><dd>${Object.keys(entry.providers).map(v => filterButton('providers',v,v)).join('') || '<span class="finder-unknown">Proveniență încă neverificată</span>'}</dd>
     ${entry.institutions.length ? `<dt>Instituții vizate</dt><dd>${entry.institutions.map(v => filterButton('institutions',v,labels.institutions[v])).join('')}</dd>` : ''}
     </dl>${evidence ? `<details class="finder-evidence"><summary>Vezi datele și sursele</summary>${proof(entry)}</details>` : ''}
