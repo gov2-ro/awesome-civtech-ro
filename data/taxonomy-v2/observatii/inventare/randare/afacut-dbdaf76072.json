@@ -1,0 +1,23 @@
+{
+  "versiune": 1,
+  "proiect": "afacut",
+  "url_cerut": "https://afacut.ro/drumuri-si-poduri/",
+  "url_final": "https://afacut.ro/drumuri-si-poduri/",
+  "stare": "ok",
+  "http_status": 200,
+  "titlu": "Drumuri și poduri | A făcut?",
+  "randat_la": "2026-10-25T14:22:07.465276+00:00",
+  "text_randat": "Sari la conținut\nA FĂCUT?\nCAUTĂ\nMETODA\nEDIȚIILE\nDOSAR CIVIC\n/ 01\n· DRUMURI ȘI PODURI\nINVESTIȚII PUBLICE, VERIFICATE\nEDIȚIA 01 · DRUMURI ȘI PODURI\n\nBUGETUL PE HÂRTIE. LUCRAREA PE TEREN.\n\nA\nFĂCUT\n?\nDE\nVERIFICAT\n\nCaută localitatea. Vezi suma alocată, suma solicitată la decontare și documentul care le raportează. Cifra întâi. Întrebarea după.\n\nLOCALITATEA PE CARE VREI S-O VERIFICI\n⌖\nVERIFICĂ →\n02\nSURSE OFICIALE\n01\nCOMPARAȚIE SIMPLĂ\n00\nACUZAȚII AUTOMATE\n\nCifra întâi.\n\nI.\n\nCRONOLOGIA BANILOR\n\nCând s-au mișcat banii.\nȘi când nu.\n\nFiecare treaptă este o raportare oficială. O pauză lungă între trepte este un fapt de verificat la sursă, nu un verdict.\n\n6,51 miliarde de lei solicitați, în 12 tranșe\n\nCumulat național, 27 mai 2025 → 27 august 2026\n\n5 LUNI\nfără raportări noi\n19 dec ’25 → 18 mai ’26\n0\n2,5\n5\n7,5\nMLD LEI\nmai ’25\nsept ’25\nian ’26\nmai ’26\naug ’26\ncea mai mare tranșă\n+1,88 mld · 21 oct ’25\n6,51 mld lei\n\nPunctele marchează cele 12 raportări MDLPA. Pentru context: totalul alocat programului este de 20,94 mld lei. Sumele din grafic sunt cele solicitate la decontare, nu plăți confirmate independent.\n\nCELE 12 TRANȘE, ÎN TABEL\nII.\n\nCLASAMENTUL JUDEȚELOR\n\nJudețul tău, pe scara\nde 100 de lei.\n\nDin fiecare 100 de lei alocați, câți au fost solicitați la decontare. Media națională e 31,1 lei. „Fără solicitări\" nu înseamnă „fără investiții\".\n\n01\nNeamț\n53/84 LOCALITĂȚI\n43,6 LEI DIN 100\n→\n02\nBistrița-Năsăud\n36/63 LOCALITĂȚI\n41,3 LEI DIN 100\n→\n03\nBacău\n56/94 LOCALITĂȚI\n40,5 LEI DIN 100\n→\n04\nHarghita\n35/68 LOCALITĂȚI\n36,9 LEI DIN 100\n→\n05\nAlba\n51/79 LOCALITĂȚI\n36,6 LEI DIN 100\n→\nVEZI TOATE JUDEȚELE, PE ACEEAȘI SCARĂ →\n?\n\nREGULA CASEI\n\nO diferență este o întrebare.\nNu o sentință.\n\nDatele pot fi vechi, incomplete sau etichetate diferit. De aceea, fiecare rezultat păstrează sursa, data și calculul. Spunem „necesită clarificare” acolo unde alții s-ar grăbi să acuze.\n\nÎNCEPE CU LOCALITATEA TA\n↗\n\nDOCUMENT DE LUCRU\n\nSURSE\nMinisterul Dezvoltării și INS\nVERIFICARE\nSursa și amprenta digitală\nREZULTAT\nCalcul care poate fi refăcut\nverifică, nu presupune\n\nDE CONSULTAT\n\ntransparenta.eu · bugete publice, pe hărți și grafice ↗\n\nA FĂCUT?\n\nUn instrument pentru întrebări publice precise.\n\nArătăm sursa, calculul și diferența. Nu stabilim vinovății.\n\nDatele provin de la Ministerul Dezvoltării și de la Institutul Național de Statistică, prin data.gov.ro, sub licența Creative Commons Atribuire 4.0. Cifrele sunt adunate și recalculate de noi.\n\nCONFIDENȚIALITATE\nCOOKIE-URI\nACCESIBILITATE\n\nAFACUT.RO · ROMÂNIA · 2026",
+  "controale_vizibile": [
+    {
+      "tag": "input",
+      "name": "q",
+      "id": "localitate",
+      "type": "search",
+      "label": "ex. Câmpina, Bârsana, Sector 3",
+      "options": null
+    }
+  ],
+  "cereri_date": [],
+  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+}

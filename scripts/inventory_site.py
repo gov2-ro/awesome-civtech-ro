@@ -9,9 +9,13 @@ from common import observation_paths
 
 
 BASIS = {'declarat-in-schema': 'schema', 'declarat-in-metadate': 'metadata',
-         'observat-in-esantion-json': 'sample', 'neprecizat-in-antet-csv': 'header'}
+         'observat-in-esantion-json': 'sample', 'neprecizat-in-antet-csv': 'header',
+         'declarat-in-cod-sursa': 'code', 'antet-tabel-html': 'table', 'declarat-in-tabel-documentatie': 'doctable',
+         'declarat-in-text-documentatie': 'doctext', 'utilizat-in-cod-pagina': 'pagecode', 'exemplu-in-documentatie': 'docexample'}
 FORMATS = {'openapi': 'Schemă API', 'json-schema': 'Schemă JSON', 'metadate-ins': 'Metadate de set',
-           'json': 'Fișier JSON', 'csv': 'Fișier CSV', 'lista-ins': 'Listă de seturi INS'}
+           'json': 'Fișier JSON', 'csv': 'Fișier CSV', 'lista-ins': 'Listă de seturi INS',
+           'html-tabele': 'Pagină cu tabele', 'markdown': 'Document Markdown', 'csharp': 'Cod C#', 'sql': 'Cod SQL', 'php': 'Cod PHP',
+           'json-comentat': 'Exemple JSON în document', 'js-acces': 'Script de pagină'}
 SOURCE_LABELS = {
     'Institutul Național de Statistică (INS)': 'INS', 'Ministerul Dezvoltării (MDLPA)': 'MDLPA',
     'Administrația Prezidențială': 'Adm. Prez', 'Monitorul Oficial': 'MO',
@@ -170,12 +174,18 @@ def publish_preview(items, root, site):
                 basis = BASIS.get(field.get('stare_tip'))
                 if not basis:
                     continue
-                fields.append({'name': field['nume'], 'path': field['cale'], 'description': field.get('descriere') or '',
-                               'declaredType': field.get('tip_declarat'), 'observedTypes': field.get('tipuri_observate', []),
-                               'semanticType': field.get('tip_semantic'), 'unit': field.get('unitate'), 'format': field.get('format'),
-                               'role': field.get('rol', 'camp-date'), 'basis': basis, 'source': ident, 'location': field.get('loc'),
-                               'reference': field.get('pointer', ''),
-                               'operations': list(dict.fromkeys(a['operatie'] for a in field.get('aparitii', []) if a.get('operatie')))})
+                record = {'name': field['nume'], 'path': field['cale'], 'description': field.get('descriere') or '',
+                          'declaredType': field.get('tip_declarat'), 'observedTypes': field.get('tipuri_observate', []),
+                          'semanticType': field.get('tip_semantic'), 'unit': field.get('unitate'), 'format': field.get('format'),
+                          'role': field.get('rol', 'camp-date'), 'basis': basis, 'source': ident, 'location': field.get('loc'),
+                          'reference': field.get('pointer', ''),
+                          'operations': list(dict.fromkeys(a['operatie'] for a in field.get('aparitii', []) if a.get('operatie')))}
+                # Declared extras that the field browser shows when present. Empty values stay out of the payload.
+                for key, name in (('valori_enum', 'enum'), ('formula_declarata', 'formula'), ('grup', 'group'), ('perioada_declarata', 'period'),
+                                  ('valoare', 'value'), ('linie', 'line'), ('expresie', 'expression'), ('obligatoriu', 'required')):
+                    if field.get(key) not in (None, '', []):
+                        record[name] = field[key]
+                fields.append(record)
         positions = len(fields)
         fields = group_api_parameters(fields)
         fields.sort(key=rank_field)

@@ -11,3 +11,89 @@ B2,2026-10-25T14:02:34.256918+00:00,GET,https://transparenta.eu/ai/index.json,ok
 B2,2026-10-25T14:02:34.295011+00:00,GET,https://romaniatransparenta.eu/date/primarii.json,ok,200,763228,nu,inventar
 B2,2026-10-25T14:02:34.408391+00:00,GET,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,ok,200,687834,nu,inventar
 B2,2026-10-25T14:02:34.561111+00:00,GET,https://companiidestat.ro/date/v1/index.json,ok,200,10260,nu,inventar
+C,2026-10-25T14:10:02.195007+00:00,GET,https://api.github.com/repos/TeamDignitas/dignitas/commits/HEAD,ok,200,5073,nu,repository commit at HEAD
+C,2026-10-25T14:10:02.700712+00:00,GET,https://api.github.com/repos/ciocan/monitorul-ii/commits/HEAD,ok,200,7916,nu,repository commit at HEAD
+C,2026-10-25T14:10:03.227178+00:00,GET,https://api.github.com/repos/ciocan/monitorul.ai/commits/HEAD,ok,200,7307,nu,repository commit at HEAD
+C,2026-10-25T14:10:03.694552+00:00,GET,https://api.github.com/repos/code4romania/rezultatevot/commits/HEAD,ok,200,9749,nu,repository commit at HEAD
+C,2026-10-25T14:10:04.332849+00:00,GET,https://api.github.com/repos/code4romania/vot-diaspora-api/commits/HEAD,ok,200,11978,nu,repository commit at HEAD
+C,2026-10-25T14:10:21.079807+00:00,GET,https://api.github.com/repos/TeamDignitas/dignitas/git/trees/c8652542fac376b67b6233b25a5ef24c5e78c9d4?recursive=1,ok,200,249544,nu,repository tree at recorded commit
+C,2026-10-25T14:10:21.809305+00:00,GET,https://api.github.com/repos/ciocan/monitorul-ii/git/trees/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50?recursive=1,ok,200,443669,nu,repository tree at recorded commit
+C,2026-10-25T14:10:22.346021+00:00,GET,https://api.github.com/repos/ciocan/monitorul.ai/git/trees/cc6b1f2e1ffe44c0bfeba05e3f8ca560288a5673?recursive=1,ok,200,56206,nu,repository tree at recorded commit
+C,2026-10-25T14:10:22.924693+00:00,GET,https://api.github.com/repos/code4romania/rezultatevot/git/trees/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc?recursive=1,ok,200,202016,nu,repository tree at recorded commit
+C,2026-10-25T14:10:23.422017+00:00,GET,https://api.github.com/repos/code4romania/vot-diaspora-api/git/trees/87b0d20acec077f958ef2e0adff312ee48eba4ca?recursive=1,ok,200,62061,nu,repository tree at recorded commit
+C,2026-10-25T14:11:09.877669+00:00,GET,https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/lib/model/Statement.php,ok,200,20921,nu,dignitas model and patch sample
+C,2026-10-25T14:11:10.205493+00:00,GET,https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00001.sql,ok,200,428,nu,dignitas model and patch sample
+C,2026-10-25T14:11:10.546167+00:00,GET,https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/README.md,ok,200,530,nu,dignitas model and patch sample
+C,2026-10-25T14:12:04.712396+00:00,GET,https://registru.horecaos.org/api,ok,200,17537,nu,documented data/API page of a batch entry
+C,2026-10-25T14:12:04.871200+00:00,GET,https://www.europescope.eu/api/docs,eroare-http,404,,nu,documented data/API page of a batch entry
+C,2026-10-25T14:12:05.248377+00:00,GET,https://www.europescope.eu/data,ok,200,54096,nu,documented data/API page of a batch entry
+C,2026-10-25T14:12:06.637020+00:00,GET,https://calitateaer.radautiulcivic.ro/tabele/,ok,200,43132,nu,documented data/API page of a batch entry
+C,2026-10-25T14:12:07.805798+00:00,GET,https://calitateaer.radautiulcivic.ro/masuratori/,ok,200,69863,nu,documented data/API page of a batch entry
+C,2026-10-25T14:12:08.757933+00:00,GET,https://desprefemicid.ro/analiza-date,ok,200,64244,nu,documented data/API page of a batch entry
+C,2026-10-25T14:12:08.924381+00:00,GET,https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/,ok,200,54277,nu,documented data/API page of a batch entry
+C,2026-10-25T14:12:09.252126+00:00,GET,https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/README.md,ok,200,4651,nu,documented data/API page of a batch entry
+C,2026-10-25T14:12:10.130409+00:00,GET,https://curat.aerlive.ro/,ok,200,102009,nu,documented data/API page of a batch entry
+C,2026-10-25T14:17:13.387446+00:00,GET,https://mariuscomper.uk/biografia-localitatii/metoda/,ok,200,32685,nu,HTML page with tables or page-script field names
+C,2026-10-25T14:17:14.222555+00:00,GET,https://afacut.ro/drumuri-si-poduri/,ok,200,14317,nu,HTML page with tables or page-script field names
+C,2026-10-25T14:17:14.927217+00:00,GET,https://afacut.ro/apa-si-canal/,ok,200,14168,nu,HTML page with tables or page-script field names
+C,2026-10-25T14:17:15.320077+00:00,GET,https://afacut.ro/gaze-naturale/,ok,200,14074,nu,HTML page with tables or page-script field names
+C,2026-10-25T14:17:15.553323+00:00,GET,https://baniinostri.info/rapoarte/,ok,200,7635,nu,HTML page with tables or page-script field names
+C,2026-10-25T14:17:16.185934+00:00,GET,https://rezultatevot.ro/alegeri/alegeri-prima-general-bucuresti-2025/rezultate,ok,200,158405,nu,HTML page with tables or page-script field names
+C,2026-10-25T14:17:17.051244+00:00,GET,https://desprefemicid.ro/analiza-date,ok,200,64244,nu,HTML page with tables or page-script field names
+C,2026-10-25T14:17:42.954343+00:00,GET,https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/README.md,ok,200,4058,nu,"repository file at recorded commit (votdiaspora, rezultatevot)"
+C,2026-10-25T14:17:43.242780+00:00,GET,https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/src/Models/PollingStationModel.cs,ok,200,922,nu,"repository file at recorded commit (votdiaspora, rezultatevot)"
+C,2026-10-25T14:17:43.569556+00:00,GET,https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/src/Stores/Entities/PollingStationEntity.cs,ok,200,1024,nu,"repository file at recorded commit (votdiaspora, rezultatevot)"
+C,2026-10-25T14:17:43.894567+00:00,GET,https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/src/Models/PollingStationUploadModel.cs,ok,200,518,nu,"repository file at recorded commit (votdiaspora, rezultatevot)"
+C,2026-10-25T14:17:44.210690+00:00,GET,https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/src/Models/PollingStationsQuery.cs,ok,200,611,nu,"repository file at recorded commit (votdiaspora, rezultatevot)"
+C,2026-10-25T14:17:44.500345+00:00,GET,https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/src/Models/PollingStationsGroupModel.cs,ok,200,293,nu,"repository file at recorded commit (votdiaspora, rezultatevot)"
+C,2026-10-25T14:17:44.801166+00:00,GET,https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Result/ResultResource.php,ok,200,1381,nu,"repository file at recorded commit (votdiaspora, rezultatevot)"
+C,2026-10-25T14:17:45.098918+00:00,GET,https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Result/CandidatesResource.php,ok,200,701,nu,"repository file at recorded commit (votdiaspora, rezultatevot)"
+C,2026-10-25T14:17:45.417209+00:00,GET,https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Turnout/TurnoutResource.php,ok,200,1111,nu,"repository file at recorded commit (votdiaspora, rezultatevot)"
+C,2026-10-25T14:17:45.722193+00:00,GET,https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Turnout/AreaResource.php,ok,200,557,nu,"repository file at recorded commit (votdiaspora, rezultatevot)"
+C,2026-10-25T14:17:46.032672+00:00,GET,https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Turnout/DemographicsResource.php,ok,200,1149,nu,"repository file at recorded commit (votdiaspora, rezultatevot)"
+C,2026-10-25T14:17:46.350719+00:00,GET,https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Nomenclature/ElectionResource.php,ok,200,694,nu,"repository file at recorded commit (votdiaspora, rezultatevot)"
+C,2026-10-25T14:17:46.661902+00:00,GET,https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Nomenclature/LocalityResource.php,ok,200,467,nu,"repository file at recorded commit (votdiaspora, rezultatevot)"
+C,2026-10-25T14:17:46.979687+00:00,GET,https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/database/migrations/0001_01_10_000000_create_turnouts_table.php,ok,200,4827,nu,"repository file at recorded commit (votdiaspora, rezultatevot)"
+C,2026-10-25T14:17:47.296441+00:00,GET,https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/database/migrations/0001_01_10_000010_create_records_table.php,ok,200,3887,nu,"repository file at recorded commit (votdiaspora, rezultatevot)"
+C,2026-10-25T14:17:47.615715+00:00,GET,https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/database/migrations/0001_01_10_000020_create_votes_table.php,ok,200,2354,nu,"repository file at recorded commit (votdiaspora, rezultatevot)"
+C,2026-10-25T14:18:22.813760+00:00,GET,https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/docs/extraction-schema.md,ok,200,130487,nu,repository file at recorded commit (monitorul)
+C,2026-10-25T14:18:23.251626+00:00,GET,https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/docs/discourse-analysis-schema.md,ok,200,100049,nu,repository file at recorded commit (monitorul)
+C,2026-10-25T14:18:23.553141+00:00,GET,https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/prompts/hawkins_populism_v1.schema.json,ok,200,4033,nu,repository file at recorded commit (monitorul)
+C,2026-10-25T14:18:23.878196+00:00,GET,https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/prompts/vparty_antipluralism_v2.schema.json,ok,200,4081,nu,repository file at recorded commit (monitorul)
+C,2026-10-25T14:18:24.200779+00:00,GET,https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/prompts/dqi_v1.schema.json,ok,200,5137,nu,repository file at recorded commit (monitorul)
+C,2026-10-25T14:18:24.499562+00:00,GET,https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/prompts/voice_classifier_v1.schema.json,ok,200,3334,nu,repository file at recorded commit (monitorul)
+C,2026-10-25T14:18:24.889925+00:00,GET,https://raw.githubusercontent.com/ciocan/monitorul.ai/cc6b1f2e1ffe44c0bfeba05e3f8ca560288a5673/docs/mcp.md,ok,200,36984,nu,repository file at recorded commit (monitorul)
+C,2026-10-25T14:18:26.243436+00:00,GET,https://api.europescope.eu/v1/members.csv,ok,200,24577,nu,"documented bulk download, header sample"
+C,2026-10-25T14:18:27.450839+00:00,GET,https://api.europescope.eu/v1/votes.csv,ok,200,24577,nu,"documented bulk download, header sample"
+C,2026-10-25T14:18:28.183730+00:00,GET,https://api.europescope.eu/v1/countries.csv,ok,200,1620,nu,"documented bulk download, header sample"
+C,2026-10-25T14:18:28.934768+00:00,GET,https://api.europescope.eu/v1/groups.csv,ok,200,622,nu,"documented bulk download, header sample"
+C,2026-10-25T14:18:30.946946+00:00,GET,https://api.europescope.eu/v1/topic-votes.csv,ok,200,24577,nu,"documented bulk download, header sample"
+C,2026-10-25T14:18:32.835086+00:00,GET,https://api.europescope.eu/v1/positions.csv,ok,200,24577,nu,"documented bulk download, header sample"
+C,2026-10-25T14:18:33.845547+00:00,GET,https://api.europescope.eu/v1/methodology.json,ok,200,10313,nu,documented bulk download (methodology registry)
+C,2026-10-25T14:21:42.188816+00:00,GET,https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00002.sql,ok,200,206,nu,repository file at recorded commit (dignitas schema patches)
+C,2026-10-25T14:21:42.521684+00:00,GET,https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00003.sql,ok,200,209,nu,repository file at recorded commit (dignitas schema patches)
+C,2026-10-25T14:21:42.816725+00:00,GET,https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00004.sql,ok,200,494,nu,repository file at recorded commit (dignitas schema patches)
+C,2026-10-25T14:21:43.130846+00:00,GET,https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00006.sql,ok,200,375,nu,repository file at recorded commit (dignitas schema patches)
+C,2026-10-25T14:21:43.476589+00:00,GET,https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00010.sql,ok,200,315,nu,repository file at recorded commit (dignitas schema patches)
+C,2026-10-25T14:21:43.821173+00:00,GET,https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00012.sql,ok,200,446,nu,repository file at recorded commit (dignitas schema patches)
+C,2026-10-25T14:21:44.138871+00:00,GET,https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00016.sql,ok,200,630,nu,repository file at recorded commit (dignitas schema patches)
+C,2026-10-25T14:21:44.463546+00:00,GET,https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00020.sql,ok,200,797,nu,repository file at recorded commit (dignitas schema patches)
+C,2026-10-25T14:21:44.798350+00:00,GET,https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00046.sql,ok,200,3321,nu,repository file at recorded commit (dignitas schema patches)
+C,2026-10-25T14:21:45.128014+00:00,GET,https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00063.sql,ok,200,5015,nu,repository file at recorded commit (dignitas schema patches)
+C,2026-10-25T14:21:45.764223+00:00,GET,https://checkup-7b62e.firebaseio.com/meteo_radauti.json,ok,200,14458,nu,data endpoint requested by the project's own page
+C,2026-10-25T14:22:07.466169+00:00,BROWSER,https://afacut.ro/drumuri-si-poduri/,ok,200,,browser,randare afacut
+C,2026-10-25T14:22:22.692799+00:00,GET,https://afacut.ro/drumuri-si-poduri/judete/,ok,200,37291,nu,edition sub-pages linked from the edition page
+C,2026-10-25T14:22:22.762675+00:00,GET,https://afacut.ro/drumuri-si-poduri/cauta/,ok,200,5221,nu,edition sub-pages linked from the edition page
+C,2026-10-25T14:22:32.634523+00:00,BROWSER,https://afacut.ro/drumuri-si-poduri/cauta/,ok,200,,browser,randare afacut
+C,2026-10-25T14:22:45.435241+00:00,BROWSER,https://aerlive.ro/,ok,200,,browser,randare aerlive
+C,2026-10-25T14:22:45.435326+00:00,BROWSER-GET,https://aerlive.ro/wp-content/themes/aerlive/css/global.less,200,200,9083,browser,randare aerlive
+C,2026-10-25T14:22:45.435393+00:00,BROWSER-GET,https://aerlive.ro/wp-json/api/v1/cities/,200,200,888,browser,randare aerlive
+C,2026-10-25T14:22:45.435449+00:00,BROWSER-GET,https://aerlive.ro/wp-json/api/v1/data?city=BUC,200,200,12647,browser,randare aerlive
+C,2026-10-25T14:22:52.492021+00:00,GET,https://aerlive.ro/wp-json/api/v1/cities/,eroare-http,403,,nu,data requests made by the project's own page on load (browser render)
+C,2026-10-25T14:22:52.647602+00:00,GET,https://aerlive.ro/wp-json/api/v1/data?city=BUC,eroare-http,403,,nu,data requests made by the project's own page on load (browser render)
+C,2026-10-25T14:23:22.205308+00:00,BROWSER,https://aerlive.ro/,ok,200,,browser,randare aerlive
+C,2026-10-25T14:23:22.205452+00:00,BROWSER-GET,https://aerlive.ro/wp-json/api/v1/cities/,200,200,888,browser,randare aerlive
+C,2026-10-25T14:23:22.205518+00:00,BROWSER-GET,https://aerlive.ro/wp-content/themes/aerlive/css/global.less,200,200,9083,browser,randare aerlive
+C,2026-10-25T14:23:22.205571+00:00,BROWSER-GET,https://aerlive.ro/wp-json/api/v1/data?city=BUC,200,200,12647,browser,randare aerlive
+C,2026-10-25T14:24:27.323237+00:00,GET,https://docs.google.com/spreadsheets/d/e/2PACX-1vQoZR35YHSMlJPtEWjGUkpiBQA9GNhOFoKEcp4a44V3vDsr4MEtGqDrYBETYmglCA2Cb-lJoXfuJvlx/pubhtml,ok,200,57787,nu,published spreadsheet linked from the project's data page
+C,2026-10-25T14:25:27.367469+00:00,GET,https://baniinostri.info/RAJASA/,ok,200,62520,nu,HTML page with tables (investigation report cited by the project)

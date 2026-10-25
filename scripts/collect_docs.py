@@ -216,39 +216,55 @@ class Fetcher:
         self.guard = threading.Lock()
         self.requests = 0
 
-    def __call__(self, url):
+    def __call__(self, url, sample=None):
+        """Fetch a URL. With `sample` (bytes) the request asks for a byte range and reads no more than that:
+        a bounded sample of a large file. A sample body ends at its last complete line and carries `partial: true`."""
+        key = (url, sample)
         with self.guard:
-            lock = self.locks.setdefault(url, threading.Lock())
+            lock = self.locks.setdefault(key, threading.Lock())
             host = self.hosts.setdefault(urlsplit(url).hostname, threading.Semaphore(2))
         with lock:
-            if url in self.cache:
+            if key in self.cache:
                 if self.log:
-                    self.log.add('GET', url, self.cache[url]['state'], self.cache[url].get('http_status'), None, True, self.purpose)
-                return self.cache[url]
+                    self.log.add('GET', url, self.cache[key]['state'], self.cache[key].get('http_status'), None, True, self.purpose)
+                return self.cache[key]
             result = {'url': url, 'final_url': url, 'http_status': None, 'fetched_at': datetime.now(timezone.utc).isoformat()}
             with self.guard:
                 if self.max_requests is not None and self.requests >= self.max_requests:
                     return {**result, 'state': 'limita-cereri', 'error': 'request budget reached'}
                 self.requests += 1
             size = None
+            headers = {'User-Agent': UA, 'Accept-Language': 'ro,en;q=0.8'}
+            if sample:
+                headers['Range'] = f'bytes=0-{sample - 1}'
             try:
-                with host, urlopen(Request(url, headers={'User-Agent': UA, 'Accept-Language': 'ro,en;q=0.8'}), timeout=self.timeout) as response:
-                    raw = response.read(MAX_BYTES + 1)
+                with host, urlopen(Request(url, headers=headers), timeout=self.timeout) as response:
+                    raw = response.read((sample or MAX_BYTES) + 1)
                     size = len(raw)
                     result.update(http_status=response.status, final_url=response.url,
                                   content_type=response.headers.get_content_type())
+                    if sample and len(raw) > sample:
+                        raw = raw[:sample]
+                        result['partial'] = True
+                    elif sample and response.status == 206:
+                        # The server honoured the range. The body is complete only when the range covers the whole file.
+                        covered = re.match(r'bytes \d+-(\d+)/(\d+)$', response.headers.get('Content-Range', ''))
+                        result['partial'] = not (covered and int(covered.group(2)) <= int(covered.group(1)) + 1)
                     if len(raw) > MAX_BYTES:
                         result.update(state='raspuns-prea-mare', body='')
                     elif is_binary(raw, result['content_type']):
                         result.update(state='format-binar', body='')
                     else:
                         charset = response.headers.get_content_charset() or 'utf-8'
-                        result.update(state='ok', body=raw.decode(charset, errors='replace'))
+                        text = raw.decode(charset, errors='replace')
+                        if result.get('partial'):
+                            text = text[:text.rfind('\n') + 1] if '\n' in text else text
+                        result.update(state='ok', body=text)
             except HTTPError as exc:
                 result.update(state='eroare-http', http_status=exc.code, error=str(exc))
             except (URLError, OSError, ValueError, LookupError, HTTPException) as exc:
                 result.update(state='eroare-retea', error=str(exc))
-            self.cache[url] = result
+            self.cache[key] = result
             if self.log:
                 self.log.add('GET', url, result['state'], result.get('http_status'), size, False, self.purpose)
             return result

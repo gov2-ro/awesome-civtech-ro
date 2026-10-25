@@ -815,6 +815,7 @@ All files below are generated review material. Only the explicit preview build r
 - `rezumat.csv`: `slug`, `stare`, `completitudine`, `controale_utilizator`, `surse_structurate`, `campuri_din_surse`.
 - `descoperiri.json`: the discovery registry. One record per project and source URL (see below).
 - `jurnal-cereri.csv`: the request log of named collection batches (see below).
+- `adaugari/*.json`: specification files for explicitly identified sources (see below). `randare/*.json`: browser renders of single pages (see below).
 - `surse/*.json`: local HTTP response bodies and cached failures; gitignored. Immutable versions include the body hash in their name.
   A failed response never replaces a cached good body.
 
@@ -911,6 +912,50 @@ Other parser rules added with the INS pass:
   and records one field with role `colectie-cu-chei` and `numar_chei`. Keys never become field names. Smaller objects stay records.
 - A JSON document with an `openapi` or `swagger` member is an API contract only when the member holds a version number.
   A member that holds a URL marks a data index; it is parsed as sampled JSON.
+
+**Text-format readers (`citire`, format names).** A source that is neither a schema nor a data file can still declare fields. The registry
+record of such a source holds `citire`: a reader name, or `{tip, ...options}`. Without `citire`, the URL extension picks `.cs`, `.sql`, `.php` or `.md`.
+HTML at a schema or data address stays an error unless `citire` names a reader. The source keeps `citire`, so a replay uses the same reader.
+All readers return the common field keys and add the keys below; none infers a meaning, a unit or a type that the text does not state.
+
+| Format (`citire`) | What it reads | Field keys and notes |
+| --- | --- | --- |
+| `html-tabele` | HTML tables. `{tip: html-tabele, tabele: [2]}` selects tables by position. | A dictionary table (a name column plus a description, unit or type column) gives one field per row: `descriere`, `unitate` (the cell), `perioada_declarata`, `actualizat_declarat`; `stare_tip` `declarat-in-tabel-documentatie`. A data table gives one field per header cell: `unitate` only when the header ends with a unit in parentheses (`Tranșa (mld lei)` gives `mld lei`), `tipuri_observate` from up to five rows of the same width as the header (`numar`, `data`, `text`, `null`), `stare_tip` `antet-tabel-html`. A headerless two-column table whose second cell lists items (`group \| a, b, c`) gives one field per item with `grup`, `stare_tip` `declarat-in-text-documentatie`. Tables with a `Cookie` column are consent notices and are skipped. Locator `/tabele/T/randuri/R`, `/tabele/T/antet/C` (1-based table). |
+| `markdown` | Pipe tables of a markdown document. | Only dictionary tables (name column plus description, unit or type column). Same keys as the HTML dictionary. |
+| `csharp` | Public properties and enum members of classes, records and structs. | `tip_declarat` (the C# type), `obligatoriu` (`[Required]`), `grup` (the class). A `[FromQuery]` property has role `parametru-api`, `loc` `query`, and the public name as `nume` (`nume_in_cod` keeps the property). Enum members have role `cod-enumerare` and `valoare`. `stare_tip` `declarat-in-cod-sursa`; `pointer` `char:START-END`, `linie`. |
+| `sql` | `CREATE TABLE` columns and single-column `ALTER TABLE ... ADD`. | `tip_declarat` (the SQL type with its length), `obligatoriu` (`NOT NULL`), `grup` (the table), `modificare` `alter-add` for an added column. Key clauses are not columns. |
+| `php` | Laravel migrations, API resources and class constants. | A migration column: `tip_declarat` is the builder method (`smallInteger`), `modificatori` the chained calls, `obligatoriu` false when `nullable`, `valori_enum` for `enum`, `descriere` for `comment`, `formula_declarata` for a stored or virtual generated column. `foreignIdFor(Model::class)` gives `<model>_id` with `baza_numelui` `conventie-laravel`. A resource key (`toArray`) has role `camp-raspuns`, `expresie` (the source expression), and `descriere` and `tip_declarat` only from the docblock directly above it. A nested array gives a dotted path. A constant gives role `cod-enumerare`, `valoare`, `grup` (the prefix), `descriere` (a trailing comment). |
+| `json-comentat` | Annotated JSON examples in fenced code blocks of a document. | `cale` is `heading::path`; `valori_enum` holds the alternatives of a `"a \| b"` string; `tip_referinta` holds a bare type name (`Speaker`); `descriere` holds the comment of the key's line; `tipuri_observate` records the kind of the example value. `stare_tip` `exemplu-in-documentatie`: the document shows the key, it does not promise a type. |
+| `js-acces` | Names that inline page scripts read from a record object. `{tip: js-acces, obiecte: [fields]}`. | `stare_tip` `utilizat-in-cod-pagina`, `accesari`. It shows what the page uses; it is not a schema and it does not read the data behind the page. |
+
+New `stare_tip` values: `declarat-in-cod-sursa`, `antet-tabel-html`, `declarat-in-tabel-documentatie`, `declarat-in-text-documentatie`,
+`exemplu-in-documentatie`, `utilizat-in-cod-pagina`. `baza_tipului` of a source in these formats is `cod-sau-documentatie`.
+`--check` parses the retained body again and compares every field, so a changed interval, pointer or type is an error.
+
+**Repository files at a recorded revision.** A file read from a repository carries `metoda` `repo-la-revizie` and a locator
+`{url (the tree listing), revizie (the commit), cale, blob_sha, pointer /tree/N, sha256 (of the listing), snapshot}`. The listing is the
+recursive tree of that commit (`api.github.com/repos/O/R/git/trees/COMMIT?recursive=1`, from `commits/HEAD`). The raw address contains the commit,
+so a later change of the branch cannot change the evidence. `--check` verifies the entry, the listing hash and that the git blob SHA-1 of the retained body is `blob_sha`.
+A repository on the same account is not project evidence. The link from the project (a page link, or the repository link that the profiler found on the project
+site, locator `{tip: profil, slug, coloana, valoare}`) is a second locator, role `legatura-proiect-repo`. A repository file shows what the code declares at that commit.
+It does not prove that the deployed project uses it today.
+
+**Other locator kinds in the registry.** `{pointer: /body, interval, fragment, sha256, snapshot}` locates text in a body kept in the source cache
+(a page that the inventory read but did not parse as a source). `{tip: randare, snapshot, pointer /cereri_date/N, valoare}` locates a data request that the browser
+helper saw. A `link` locator (`/links/N` of a collected page, with `fragment` the link) is verified like an automatic discovery.
+
+**Credentials.** A public page can embed a credential in its script. The fetcher masks values of the shape of an Airtable personal token,
+or of a quoted `api_key`, `token`, `secret`, `password` or `bearer` value of 16 characters or more, in HTML and script bodies, before the body is stored or hashed.
+`redactari` counts the masked values. The inventory never uses a credential that a page contains.
+
+**Bounded reads.** `--probe URL ...` (needs `--lot`) fetches into the source cache and changes no record. `--sample-bytes N` asks for a byte range and keeps at most N bytes;
+the body ends at its last complete line and the source carries `partial: true`, and its hash is the hash of the sample. A response over 2,000,000 bytes is `raspuns-prea-mare` and has no body.
+`scripts/render_pages.py` (optional, PEP 723, needs Playwright's Chromium) opens a page once, writes the same-site fetch and XHR requests to `inventare/randare/*.json`
+(`cereri_date`, `corpuri_pastrate`, `corpuri_omise`), and stores up to six JSON or CSV response bodies of 200,000 bytes or less as sources with `via: browser`. It never clicks, types or submits.
+The server may refuse a plain request for an address that the browser reached; the helper does not work around that refusal. Browser rows in the request log have `cache` `browser`.
+
+**Specification files (`adaugari/`).** `inventory.py --add-sources-file` reads `adaugari/*.json`: the investigation inputs. A specification names the project, URL, method, parent, a
+`locate` or `repo` request for the discovery locator, `dovezi` for further locators, `citire` and `nota`. Replaying the files from complete caches gives the same registry.
 
 The documentation collector keeps the pages that an earlier run collected and a later run cannot collect again. The page stays and
 gains `ultima_incercare` (`fetched_at`, `state`, `http_status`, `error`). A page collected again replaces its earlier copy.

@@ -54,9 +54,13 @@ The 62 unconfirmed profiles cover the full 140-entry catalogue, including organi
       law source manifest, two Romania Transparentă files). 6 requests. 28 documented candidates stay unfetched (codurbanism 26, one each elsewhere).
 - [ ] Fetch the 26 codurbanism data files only if a reviewer needs them; its `source-manifest.json` already names the sources.
 - [ ] Verify the INS `POP101A` example route again with a fresh request. The 404 in the brief is not re-measured here.
-- [ ] Select 10–15 data-heavy entries without structured inventories. Prioritise those with documentation, downloads or linked repositories.
-- [ ] Inspect rendered pages and their public data requests where static collection is incomplete.
-      Inspect linked repository data folders, schemas and notebooks. Add spreadsheet/document extraction only where the selected entries need it.
+- [x] Investigate the bounded batch of 12 entries (milestone C, v0.16.0): all 12 have structured sources now; see `docs/ACTIVITY.md` for outcomes and blockers.
+- [x] Inspect rendered pages and their public data requests where static collection is incomplete (4 navigations). Repository files at recorded commits are read
+      for 5 repositories. HTML and markdown tables are read; spreadsheets and PDF files are not (no selected entry needed them).
+- [ ] Tell the `desprefemicid.ro` owners that the page script contains an Airtable access token. This pass did not contact them.
+- [ ] Re-run the `aerlive.ro` render with a third navigation and keep the data response (`/wp-json/api/v1/data?city=BUC`, 12,647 bytes). It needs permission beyond the two-page limit.
+- [ ] Read the other 74 Dignitas patches (or its running database) to complete the table list; read the Scramble API documents of Rezultate Vot if they are public.
+- [ ] Ask for the working EuropeScope API documentation (`/api/docs` returns 404) and the Registrul Firmelor API schema (a free key is needed; none was requested).
 - [ ] Extend the business dictionary with evidence-backed aliases, descriptions, roles, units, periods and geographic levels.
       Propose shared identifiers separately from measures. Review each proposed equivalence before treating it as a join key.
 - [ ] Review the 15 pending provider relations and record newly verified providers. Keep source organisations separate from target institutions.

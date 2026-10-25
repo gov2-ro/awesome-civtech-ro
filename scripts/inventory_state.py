@@ -11,6 +11,7 @@ import hashlib
 import io
 import json
 import os
+import re
 import threading
 from datetime import datetime, timezone
 from pathlib import Path
@@ -24,6 +25,27 @@ LOG_COLUMNS = ['lot', 'la', 'metoda', 'url', 'stare', 'http_status', 'octeti', '
 
 class StateError(Exception):
     """The tracked state is unreadable or a proposed state is invalid. Raised before any file is replaced."""
+
+
+SECRET_SHAPES = (
+    re.compile(r'\bpat[A-Za-z0-9]{10,}\.[A-Fa-f0-9]{32,}\b'),
+    re.compile(r'''(?i)((?:api[_-]?key|apikey|access[_-]?token|auth[_-]?token|client[_-]?secret|secret|password|bearer)['"]?\s*[:=]\s*['"])([^'"\s]{16,})(['"])'''),
+)
+SCRIPT_TYPES = ('text/html', 'application/javascript', 'text/javascript', 'application/x-javascript')
+
+
+def protect(response):
+    """Mask credentials that a public page embeds in its scripts, before the body is stored or hashed.
+    The inventory never keeps or uses a credential. `redactari` counts the masked values."""
+    if response.get('state') != 'ok' or response.get('content_type') not in SCRIPT_TYPES:
+        return response
+    body, count = response.get('body', ''), 0
+    for shape in SECRET_SHAPES:
+        body, n = shape.subn(lambda m: (m.group(1) + '[REDACTED]' + m.group(3)) if m.lastindex == 3 else '[REDACTED]', body)
+        count += n
+    if count:
+        response = {**response, 'body': body, 'redactari': count}
+    return response
 
 
 def now_utc():
@@ -72,7 +94,7 @@ def load_previous(out):
 
 
 def new_discovery(slug, url, method, *, state='descoperit', parent=None, evidence=None, original=None,
-                  discovered_at=None, rank=None, note=None, extra=None):
+                  discovered_at=None, rank=None, note=None, extra=None, reading=None):
     """A registry record. `locator_stare` says whether the original discovery locator is known."""
     record = {'proiect': slug, 'url': url, 'sursa_id': source_id(url), 'stare': state, 'metoda': method,
               'parinte': parent, 'link_original': original or url, 'dovada': evidence,
@@ -82,6 +104,8 @@ def new_discovery(slug, url, method, *, state='descoperit', parent=None, evidenc
         record['nota'] = note
     if extra:
         record['dovezi_suplimentare'] = extra
+    if reading:
+        record['citire'] = reading
     return record
 
 
@@ -258,7 +282,14 @@ class RequestLog:
         """Direct HTTP fetches already logged for this lot, including failed attempts and retries."""
         return sum(1 for r in self.rows() if r['lot'] == self.lot and r['cache'] == 'nu')
 
+    def browser_counts(self):
+        """(navigations, data requests) of this lot recorded by render_pages.py. They never count as direct requests."""
+        rows = [r for r in self.rows() if r['lot'] == self.lot and r['cache'] == 'browser']
+        return sum(r['metoda'] == 'BROWSER' for r in rows), sum(r['metoda'] != 'BROWSER' for r in rows)
+
     def add(self, method, url, state, status=None, size=None, cache=False, purpose=''):
+        """`cache` is True (body reused in the process), False (a direct request) or the string `browser`."""
+        origin = cache if isinstance(cache, str) else 'da' if cache else 'nu'
         with self.guard:
             new = not self.path.exists()
             with self.path.open('a', newline='') as stream:
@@ -266,4 +297,4 @@ class RequestLog:
                 if new:
                     writer.writerow(LOG_COLUMNS)
                 writer.writerow([self.lot, now_utc(), method, url, state, '' if status is None else status,
-                                 '' if size is None else size, 'da' if cache else 'nu', purpose])
+                                 '' if size is None else size, origin, purpose])

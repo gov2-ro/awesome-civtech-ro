@@ -1,0 +1,152 @@
+{
+  "versiune": 1,
+  "proiect": "aerlive",
+  "url_cerut": "https://aerlive.ro/",
+  "url_final": "https://aerlive.ro/",
+  "stare": "ok",
+  "http_status": 200,
+  "titlu": "Aerlive » Platformă pentru măsurarea calității aerului din București Aerlive | Platformă pentru măsurarea calității aerului din București",
+  "randat_la": "2026-10-25T14:23:22.204496+00:00",
+  "text_randat": "{\"cookies\":{},\"detail\":{\"tabItem\":{\"privacy\":{\"title\":\"Privacy Policy\",\"text\":\"<p>This website uses cookies to improve your experience while you navigate through the website. Out of these cookies, the cookies that are categorized as necessary are stored on your browser as they as essential for the working of basic functionalities of the website. </p><p>We also use third-party cookies that help us analyze and understand how you use this website, to store user preferences and provide them with content and advertisements that are relevant to you. These cookies will only be stored on your browser with your consent to do so. You also have the option to opt-out of these cookies.But opting out of some of these cookies may have an effect on your browsing experience.</p>\"},\"necessary\":{\"title\":\"Necessary\",\"text\":\"<p>Necessary cookies are crucial for the basic functions of the website and the website will not work in its intended way without them.</p> <p>These cookies do not store any personally identifiable data.</p>\"},\"functional\":{\"title\":\"Functional\",\"text\":\"<p>Functional cookies help to perform certain functionalities like sharing the content of the website on social media platforms, collect feedbacks, and other third-party features.</p>\"},\"analytics\":{\"title\":\"Analytics\",\"text\":\"<p>Analytical cookies are used to understand how visitors interact with the website. These cookies help provide information on metrics the number of visitors, bounce rate, traffic source, etc.</p>\"},\"performance\":{\"title\":\"Performance\",\"text\":\"<p>Performance cookies are used to understand and analyze the key performance indexes of the website which helps in delivering a better user experience for the visitors.</p>\"},\"advertisement\":{\"title\":\"Advertisement\",\"text\":\"<p>Advertisement cookies are used to deliver visitors with customized advertisements based on the pages they visited before and analyze the effectiveness of the ad campaign.</p>\"}}},\"gdpr\":{\"blocker\":{\"placeHolder\":\"Please accept the cookie consent\"},\"notice\":{\"title\":\"Înainte de a continua\",\"text\":\"Noi și partenerii noștri utilizăm tehnologii, cum ar fi modulele cookie, și vă procesăm datele cu caracter personal, precum adresele IP și identificatorii cookie, pentru a personaliza anunțurile publicitare și conținutul în funcție de interesele dvs., pentru a măsura eficiența anunțurilor și a conținutului și pentru a obține informații despre publicul care a văzut anunțurile și conținutul. Faceți clic mai jos pentru a vă da consimțământul privind utilizarea acestei tehnologii și procesarea datelor dvs. cu caracter personal în aceste scopuri. Vă puteți răzgândi și puteți schimba opțiunile în orice moment, revenind la acest site.\"},\"buttons\":{\"accept\":{\"title\":\"Acceptați toate\"},\"reject\":{\"title\":\"Respinge\"},\"settings\":{\"title\":\"Preferințe\"},\"custom\":{\"title\":\"Salvați preferințele mele\"},\"toggler\":{\"title\":\"Privacy Details\"},\"readMore\":{\"title\":\"Citeste mai mult\"}},\"privacyLink\":\"https://aerlive.ro/politica-privind-fisierele-cookies/\",\"auditTable\":{\"cookie\":\"Cookie\",\"type\":\"Type\",\"duration\":\"Duration\",\"description\":\"Description\"}}}",
+  "controale_vizibile": [
+    {
+      "tag": "select",
+      "name": null,
+      "id": null,
+      "type": "select-one",
+      "label": null,
+      "options": [
+        "Alba Iulia",
+        "Alexandria",
+        "Arad",
+        "Bacau",
+        "Baia Mare",
+        "Bistrita",
+        "Botosani",
+        "Braila",
+        "Brasov",
+        "Bucuresti",
+        "Buzau",
+        "Calarasi"
+      ]
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "wt-cli-checkbox-necessary",
+      "type": "checkbox",
+      "label": null,
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "wt-cli-checkbox-functional",
+      "type": "checkbox",
+      "label": null,
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "wt-cli-checkbox-performance",
+      "type": "checkbox",
+      "label": null,
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "wt-cli-checkbox-analytics",
+      "type": "checkbox",
+      "label": null,
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "wt-cli-checkbox-advertisement",
+      "type": "checkbox",
+      "label": null,
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "wt-cli-checkbox-others",
+      "type": "checkbox",
+      "label": null,
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "cky-checkbox-category-necessary",
+      "type": "checkbox",
+      "label": null,
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "cky-checkbox-category-functional",
+      "type": "checkbox",
+      "label": null,
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "cky-checkbox-category-analytics",
+      "type": "checkbox",
+      "label": null,
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "cky-checkbox-category-performance",
+      "type": "checkbox",
+      "label": null,
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "cky-checkbox-category-advertisement",
+      "type": "checkbox",
+      "label": null,
+      "options": null
+    }
+  ],
+  "cereri_date": [
+    {
+      "metoda": "GET",
+      "url": "https://aerlive.ro/wp-json/api/v1/cities/",
+      "tip_resursa": "xhr",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": 888
+    },
+    {
+      "metoda": "GET",
+      "url": "https://aerlive.ro/wp-content/themes/aerlive/css/global.less",
+      "tip_resursa": "xhr",
+      "http_status": 200,
+      "content_type": "",
+      "octeti": 9083
+    },
+    {
+      "metoda": "GET",
+      "url": "https://aerlive.ro/wp-json/api/v1/data?city=BUC",
+      "tip_resursa": "xhr",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": 12647
+    }
+  ],
+  "corpuri_pastrate": [
+    "https://aerlive.ro/wp-json/api/v1/cities/"
+  ],
+  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+}

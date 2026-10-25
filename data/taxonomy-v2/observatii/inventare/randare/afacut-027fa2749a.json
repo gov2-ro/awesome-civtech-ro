@@ -1,0 +1,23 @@
+{
+  "versiune": 1,
+  "proiect": "afacut",
+  "url_cerut": "https://afacut.ro/drumuri-si-poduri/cauta/",
+  "url_final": "https://afacut.ro/drumuri-si-poduri/cauta/",
+  "stare": "ok",
+  "http_status": 200,
+  "titlu": "Caută o localitate | A făcut?",
+  "randat_la": "2026-10-25T14:22:32.633840+00:00",
+  "text_randat": "Sari la conținut\nA FĂCUT?\nCAUTĂ\nMETODA\nEDIȚIILE\nDOSAR CIVIC\n/ 01\n· DRUMURI ȘI PODURI\n\nREGISTRUL INVESTIȚIILOR\n\nCaută localitatea.\nUrmele sunt în cifre.\n\nScrie numele comunei, orașului sau municipiului.\n\nLOCALITATE\n⌖\nCAUTĂ →\nREZULTATE\nSETUL DE DATE SE ÎNCARCĂ\n\nIntrodu o localitate pentru a începe verificarea.\n\nDE CONSULTAT\n\ntransparenta.eu · bugete publice, pe hărți și grafice ↗\n\nA FĂCUT?\n\nUn instrument pentru întrebări publice precise.\n\nArătăm sursa, calculul și diferența. Nu stabilim vinovății.\n\nDatele provin de la Ministerul Dezvoltării și de la Institutul Național de Statistică, prin data.gov.ro, sub licența Creative Commons Atribuire 4.0. Cifrele sunt adunate și recalculate de noi.\n\nCONFIDENȚIALITATE\nCOOKIE-URI\nACCESIBILITATE\n\nAFACUT.RO · ROMÂNIA · 2026",
+  "controale_vizibile": [
+    {
+      "tag": "input",
+      "name": "q",
+      "id": "q",
+      "type": "search",
+      "label": "ex. Câmpina",
+      "options": null
+    }
+  ],
+  "cereri_date": [],
+  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+}

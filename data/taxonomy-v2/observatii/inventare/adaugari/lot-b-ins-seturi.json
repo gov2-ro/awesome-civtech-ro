@@ -1,0 +1,229 @@
+[
+ {
+  "proiect": "ins-gov2",
+  "url": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+  "metoda": "adaugat-explicit",
+  "parinte": "https://ins.gov2.ro/llms.txt",
+  "locate": {
+   "pagina": "https://ins.gov2.ro/llms.txt",
+   "text": "GET /api/datasets/{matrix_code}?lang={ro|en}"
+  },
+  "nota": "Dataset metadata route built from the documented route template; code POP107D taken from the documentation of the projects that name it.",
+  "dovezi": [
+   {
+    "proiect": "constru-pentru-cine",
+    "pagina": "https://mariuscomper.uk/constru-pentru-cine/",
+    "text": "matricea POP107D (populația după domiciliu",
+    "rol": "utilizare-in-proiect"
+   },
+   {
+    "proiect": "orasul-care-se-intinde",
+    "pagina": "https://mariuscomper.uk/orasul-care-se-intinde/",
+    "text": "INS TEMPO POP107D, populația cu domiciliul la 1 ianuarie",
+    "rol": "utilizare-in-proiect"
+   },
+   {
+    "proiect": "demoanaf",
+    "pagina": "https://demoanaf.ro/surse-date",
+    "text": "Populația după domiciliu pe localități (POP107D)",
+    "rol": "utilizare-in-proiect"
+   }
+  ]
+ },
+ {
+  "proiect": "constru-pentru-cine",
+  "url": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+  "metoda": "adaugat-explicit",
+  "parinte": "https://mariuscomper.uk/constru-pentru-cine/",
+  "locate": {
+   "pagina": "https://mariuscomper.uk/constru-pentru-cine/",
+   "text": "matricea POP107D (populația după domiciliu"
+  },
+  "nota": "The project documentation names TEMPO matrix POP107D. The metadata is read from the ins.gov2.ro API, which is not the project's own source.",
+  "dovezi": [
+   {
+    "proiect": "ins-gov2",
+    "pagina": "https://ins.gov2.ro/llms.txt",
+    "text": "GET /api/datasets/{matrix_code}?lang={ro|en}",
+    "rol": "ruta-metadate-set"
+   }
+  ]
+ },
+ {
+  "proiect": "orasul-care-se-intinde",
+  "url": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+  "metoda": "adaugat-explicit",
+  "parinte": "https://mariuscomper.uk/orasul-care-se-intinde/",
+  "locate": {
+   "pagina": "https://mariuscomper.uk/orasul-care-se-intinde/",
+   "text": "INS TEMPO POP107D, populația cu domiciliul la 1 ianuarie"
+  },
+  "nota": "The project documentation names TEMPO matrix POP107D. The metadata is read from the ins.gov2.ro API, which is not the project's own source.",
+  "dovezi": [
+   {
+    "proiect": "ins-gov2",
+    "pagina": "https://ins.gov2.ro/llms.txt",
+    "text": "GET /api/datasets/{matrix_code}?lang={ro|en}",
+    "rol": "ruta-metadate-set"
+   }
+  ]
+ },
+ {
+  "proiect": "demoanaf",
+  "url": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+  "metoda": "adaugat-explicit",
+  "parinte": "https://demoanaf.ro/surse-date",
+  "locate": {
+   "pagina": "https://demoanaf.ro/surse-date",
+   "text": "Populația după domiciliu pe localități (POP107D)"
+  },
+  "nota": "The project documentation names TEMPO matrix POP107D. The metadata is read from the ins.gov2.ro API, which is not the project's own source.",
+  "dovezi": [
+   {
+    "proiect": "ins-gov2",
+    "pagina": "https://ins.gov2.ro/llms.txt",
+    "text": "GET /api/datasets/{matrix_code}?lang={ro|en}",
+    "rol": "ruta-metadate-set"
+   }
+  ]
+ },
+ {
+  "proiect": "ins-gov2",
+  "url": "https://ins.gov2.ro/api/datasets/LOC101B?lang=en",
+  "metoda": "adaugat-explicit",
+  "parinte": "https://ins.gov2.ro/llms.txt",
+  "locate": {
+   "pagina": "https://ins.gov2.ro/llms.txt",
+   "text": "GET /api/datasets/{matrix_code}?lang={ro|en}"
+  },
+  "nota": "Dataset metadata route built from the documented route template; code LOC101B taken from the documentation of the projects that name it.",
+  "dovezi": [
+   {
+    "proiect": "constru-pentru-cine",
+    "pagina": "https://mariuscomper.uk/constru-pentru-cine/",
+    "text": "matricea LOC101B (locuințe existente",
+    "rol": "utilizare-in-proiect"
+   },
+   {
+    "proiect": "orasul-care-se-intinde",
+    "pagina": "https://mariuscomper.uk/orasul-care-se-intinde/",
+    "text": "INS TEMPO LOC101B, fondul de locuințe",
+    "rol": "utilizare-in-proiect"
+   }
+  ]
+ },
+ {
+  "proiect": "constru-pentru-cine",
+  "url": "https://ins.gov2.ro/api/datasets/LOC101B?lang=en",
+  "metoda": "adaugat-explicit",
+  "parinte": "https://mariuscomper.uk/constru-pentru-cine/",
+  "locate": {
+   "pagina": "https://mariuscomper.uk/constru-pentru-cine/",
+   "text": "matricea LOC101B (locuințe existente"
+  },
+  "nota": "The project documentation names TEMPO matrix LOC101B. The metadata is read from the ins.gov2.ro API, which is not the project's own source.",
+  "dovezi": [
+   {
+    "proiect": "ins-gov2",
+    "pagina": "https://ins.gov2.ro/llms.txt",
+    "text": "GET /api/datasets/{matrix_code}?lang={ro|en}",
+    "rol": "ruta-metadate-set"
+   }
+  ]
+ },
+ {
+  "proiect": "orasul-care-se-intinde",
+  "url": "https://ins.gov2.ro/api/datasets/LOC101B?lang=en",
+  "metoda": "adaugat-explicit",
+  "parinte": "https://mariuscomper.uk/orasul-care-se-intinde/",
+  "locate": {
+   "pagina": "https://mariuscomper.uk/orasul-care-se-intinde/",
+   "text": "INS TEMPO LOC101B, fondul de locuințe"
+  },
+  "nota": "The project documentation names TEMPO matrix LOC101B. The metadata is read from the ins.gov2.ro API, which is not the project's own source.",
+  "dovezi": [
+   {
+    "proiect": "ins-gov2",
+    "pagina": "https://ins.gov2.ro/llms.txt",
+    "text": "GET /api/datasets/{matrix_code}?lang={ro|en}",
+    "rol": "ruta-metadate-set"
+   }
+  ]
+ },
+ {
+  "proiect": "ins-gov2",
+  "url": "https://ins.gov2.ro/api/datasets/TRN139A?lang=en",
+  "metoda": "adaugat-explicit",
+  "parinte": "https://ins.gov2.ro/llms.txt",
+  "locate": {
+   "pagina": "https://ins.gov2.ro/llms.txt",
+   "text": "GET /api/datasets/{matrix_code}?lang={ro|en}"
+  },
+  "nota": "Dataset metadata route built from the documented route template; code TRN139A taken from the documentation of the projects that name it.",
+  "dovezi": [
+   {
+    "proiect": "unde-se-termina-asfaltul",
+    "pagina": "https://mariuscomper.uk/unde-se-termina-asfaltul/",
+    "text": "matricea TRN139A a Institutului Național de Statistică",
+    "rol": "utilizare-in-proiect"
+   }
+  ]
+ },
+ {
+  "proiect": "unde-se-termina-asfaltul",
+  "url": "https://ins.gov2.ro/api/datasets/TRN139A?lang=en",
+  "metoda": "adaugat-explicit",
+  "parinte": "https://mariuscomper.uk/unde-se-termina-asfaltul/",
+  "locate": {
+   "pagina": "https://mariuscomper.uk/unde-se-termina-asfaltul/",
+   "text": "matricea TRN139A a Institutului Național de Statistică"
+  },
+  "nota": "The project documentation names TEMPO matrix TRN139A. The metadata is read from the ins.gov2.ro API, which is not the project's own source.",
+  "dovezi": [
+   {
+    "proiect": "ins-gov2",
+    "pagina": "https://ins.gov2.ro/llms.txt",
+    "text": "GET /api/datasets/{matrix_code}?lang={ro|en}",
+    "rol": "ruta-metadate-set"
+   }
+  ]
+ },
+ {
+  "proiect": "ins-gov2",
+  "url": "https://ins.gov2.ro/api/datasets/GOS104A?lang=en",
+  "metoda": "adaugat-explicit",
+  "parinte": "https://ins.gov2.ro/llms.txt",
+  "locate": {
+   "pagina": "https://ins.gov2.ro/llms.txt",
+   "text": "GET /api/datasets/{matrix_code}?lang={ro|en}"
+  },
+  "nota": "Dataset metadata route built from the documented route template; code GOS104A taken from the documentation of the projects that name it.",
+  "dovezi": [
+   {
+    "proiect": "unde-se-termina-asfaltul",
+    "pagina": "https://mariuscomper.uk/unde-se-termina-asfaltul/",
+    "text": "matricele GOS104A și GOS105A",
+    "rol": "utilizare-in-proiect"
+   }
+  ]
+ },
+ {
+  "proiect": "unde-se-termina-asfaltul",
+  "url": "https://ins.gov2.ro/api/datasets/GOS104A?lang=en",
+  "metoda": "adaugat-explicit",
+  "parinte": "https://mariuscomper.uk/unde-se-termina-asfaltul/",
+  "locate": {
+   "pagina": "https://mariuscomper.uk/unde-se-termina-asfaltul/",
+   "text": "matricele GOS104A și GOS105A"
+  },
+  "nota": "The project documentation names TEMPO matrix GOS104A. The metadata is read from the ins.gov2.ro API, which is not the project's own source.",
+  "dovezi": [
+   {
+    "proiect": "ins-gov2",
+    "pagina": "https://ins.gov2.ro/llms.txt",
+    "text": "GET /api/datasets/{matrix_code}?lang={ro|en}",
+    "rol": "ruta-metadate-set"
+   }
+  ]
+ }
+]

@@ -12,8 +12,12 @@ const groups = [
   {key:'subjects', label:'Subiect', hint:'Ce domeniu te interesează?'},
   {key:'institutions', label:'Instituții vizate', hint:'Instituțiile urmărite de proiect, separat de furnizorii datelor.'}
 ];
-const basis = {schema:'Declarat în schemă', metadata:'Declarat în metadate', sample:'Observat într-un eșantion', header:'Antet CSV · tip neprecizat'};
-const roles = {'parametru-api':'Parametru API', 'corp-cerere':'Corp de cerere', 'camp-raspuns':'Câmp din răspuns', 'camp-date':'Câmp de date', 'dimensiune':'Dimensiune'};
+const basis = {schema:'Declarat în schemă', metadata:'Declarat în metadate', sample:'Observat într-un eșantion', header:'Antet CSV · tip neprecizat',
+  code:'Declarat în codul sursă', table:'Antet de tabel HTML · tip neprecizat', doctable:'Declarat în tabel de documentație', doctext:'Declarat în textul documentației',
+  pagecode:'Folosit în codul paginii', docexample:'Exemplu în documentație'};
+const roles = {'parametru-api':'Parametru API', 'corp-cerere':'Corp de cerere', 'camp-raspuns':'Câmp din răspuns', 'camp-date':'Câmp de date', 'dimensiune':'Dimensiune',
+  'camp-dictionar':'Dicționar de date', 'coloana-sql':'Coloană în baza de date', 'camp-model':'Câmp de model', 'cod-enumerare':'Cod sau valoare',
+  'camp-exemplu':'Exemplu în documentație', 'camp-folosit-de-pagina':'Folosit de pagină', 'colectie-cu-chei':'Colecție indexată'};
 let entries = [], labels = {}, definitions = {}, state, shown = 24;
 
 function readState() {

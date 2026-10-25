@@ -29,13 +29,15 @@ from urllib.parse import unquote, urlsplit
 from collect_docs import Fetcher, canonical, flat, restore, scope_of
 from common import PUBLIC_ROOT, data_schema, load_catalogue, load_vocabulary, observation_paths
 from inventory_ins import ins_dataset, ins_listing, is_listing
+from inventory_text import EXTENSIONS, read_text
 from inventory_state import (REGISTRY, RequestLog, StateError, active_members, admit, check_text, dump, load_previous,
-                             new_discovery, now_utc, priority, registry_map, retire, seed_registry, sorted_registry,
+                             new_discovery, now_utc, priority, protect, registry_map, retire, seed_registry, sorted_registry,
                              source_id, usable, validate_state, write_atomic, write_file_atomic)
 
 MAX_FIELDS, MAX_DEPTH, SAMPLE_ROWS = 2000, 7, 25
 # An object with more keys than this is a keyed collection (identifier -> record), not a record with that many members.
 KEYED_COLLECTION = 100
+TEXT_FORMATS = ('html-tabele', 'markdown', 'csharp', 'sql', 'php', 'js-acces', 'json-comentat')
 
 
 def pointer_part(value):
@@ -201,7 +203,15 @@ def sampling_limit(value, depth=0):
     return False
 
 
-def parse_source(body, url, content_type=''):
+def parse_source(body, url, content_type='', hint=None):
+    """Parse a retained body. `hint` is the registry's `citire`: a reader name, or {'tip': name, ...options}. Without a hint the
+    URL's extension picks a code reader; HTML at a schema/data URL is still an error."""
+    kind = hint.get('tip') if isinstance(hint, dict) else hint
+    if kind:
+        return read_text(body, kind, hint if isinstance(hint, dict) else None)
+    extension = re.search(r'(\.[a-z]{2,4})(?:$|\?)', url, re.I)
+    if extension and extension.group(1).lower() in EXTENSIONS:
+        return read_text(body, EXTENSIONS[extension.group(1).lower()])
     if re.search(r'<(?:!doctype\s+html|html|head|body)(?:\s|>)', body[:1000], re.I):
         raise ValueError('HTML response at a schema/data URL')
     if re.search(r'\.(csv|tsv)(?:$|\?)', url, re.I) or 'csv' in content_type:
@@ -306,8 +316,10 @@ def discovery_record(slug, candidate):
                          original=candidate['link_original'], discovered_at=candidate['descoperit_la'], rank=candidate['prioritate'])
 
 
-def analyse_source(response):
+def analyse_source(response, hint=None):
     metadata = {k: v for k, v in response.items() if k != 'body'}
+    if hint:
+        metadata['citire'] = hint
     metadata.update(id=source_id(response['url']), campuri=[], completitudine='neconfirmat', snapshot='surse/' + source_id(response['url']) + '.json')
     if response['state'] != 'ok':
         return metadata
@@ -315,9 +327,10 @@ def analyse_source(response):
     metadata['sha256'] = hashlib.sha256(body.encode()).hexdigest()
     metadata['snapshot'] = 'surse/' + source_id(response['url']) + '-' + metadata['sha256'][:16] + '.json'
     try:
-        fmt, fields, truncated = parse_source(body, response['final_url'], response.get('content_type', ''))
+        fmt, fields, truncated = parse_source(body, response['final_url'], response.get('content_type', ''), hint)
         metadata.update(format=fmt, campuri=fields, stare='analizat', completitudine='partial', limita_atinsa=truncated,
-                        baza_tipului='esantion-date' if fmt in ('json', 'lista-ins') else 'antet-fara-tipuri' if fmt == 'csv' else 'schema-declarata')
+                        baza_tipului=('esantion-date' if fmt in ('json', 'lista-ins') else 'antet-fara-tipuri' if fmt == 'csv'
+                                      else 'cod-sau-documentatie' if fmt in TEXT_FORMATS else 'schema-declarata'))
         if fmt == 'metadate-ins':
             metadata['set_date'] = ins_dataset(json.loads(body))
         elif fmt == 'lista-ins':
@@ -428,6 +441,10 @@ def check_report(out, observations):
                 _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''))
                 if [f['nume'] for f in fields] != [f['nume'] for f in source['campuri']]:
                     errors.append('CSV headers differ: ' + source['url'])
+            elif source.get('format') in TEXT_FORMATS:
+                _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
+                if fields != source['campuri']:
+                    errors.append('Fields differ from the retained body: ' + source['url'])
             elif source.get('campuri'):
                 document = json.loads(body)
                 if source.get('format') == 'metadate-ins' and ins_dataset(document) != source.get('set_date'):
@@ -474,6 +491,14 @@ def check_report(out, observations):
             for evidence in [record.get('dovada'), *(record.get('dovezi_suplimentare') or [])]:
                 if evidence and record['metoda'] != 'dovada-pilot':
                     status = check_locator(record, evidence, observations)
+                    source = previous['sources'].get(record['sursa_id'], {})
+                    if status == '' and evidence.get('blob_sha') and source.get('sha256'):
+                        try:
+                            body = json.loads((out / source['snapshot']).read_text())['body']
+                            if git_blob_sha(body) != evidence['blob_sha']:
+                                status = f'Retained body of {record["url"]} is not the file {evidence["cale"]} at {evidence["revizie"]}'
+                        except (OSError, ValueError, KeyError):
+                            pass
                     if status == 'unavailable':
                         report['unavailable'].append(f'discovery: {record["proiect"]} {evidence.get("snapshot")}')
                     elif status:
@@ -483,21 +508,50 @@ def check_report(out, observations):
 
 
 def check_locator(record, evidence, observations):
-    """Check one discovery locator against its documentation snapshot. Returns '', 'unavailable' or an error message."""
+    """Check one discovery locator against its local snapshot. Returns '', 'unavailable' or an error message."""
     label = f'Discovery locator for {record["proiect"]} {record["url"]}'
     if not evidence.get('snapshot'):
         return ''
+    if evidence.get('tip') == 'randare':
+        try:
+            record = json.loads((observations / evidence['snapshot']).read_text())
+            seen = record['cereri_date'][int(evidence['pointer'].rsplit('/', 1)[1])]['url']
+        except FileNotFoundError:
+            return 'unavailable'
+        except (OSError, ValueError, KeyError, IndexError):
+            return f'{label}: invalid render pointer'
+        return '' if seen == evidence['valoare'] and record.get('url_cerut') == evidence['url'] else f'{label}: render record differs'
+    if evidence.get('tip') == 'profil':
+        try:
+            with (observations / evidence['snapshot']).open(newline='') as stream:
+                rows = [r for r in csv.DictReader(stream) if r['slug'] == evidence['slug']]
+        except FileNotFoundError:
+            return 'unavailable'
+        return '' if rows and rows[0].get(evidence['coloana']) == evidence['valoare'] else f'{label}: profile value differs'
     try:
         page = json.loads((observations / evidence['snapshot']).read_text())
     except FileNotFoundError:
         return 'unavailable'
     except (OSError, ValueError) as exc:
         return f'{label}: {exc}'
-    text = page.get('text', '')
+    pointer = evidence.get('pointer', '')
+    if evidence.get('blob_sha'):
+        try:
+            tree_body = page['body']
+            entry = json.loads(tree_body)['tree'][int(pointer.rsplit('/', 1)[1])]
+        except (KeyError, IndexError, ValueError, TypeError):
+            return f'{label}: invalid tree pointer {pointer}'
+        if hashlib.sha256(tree_body.encode()).hexdigest() != evidence.get('sha256'):
+            return f'{label}: tree listing hash differs'
+        if entry.get('path') != evidence.get('cale') or entry.get('sha') != evidence['blob_sha']:
+            return f'{label}: tree entry differs from the recorded file'
+        return ''
+    text = page.get('body') if pointer == '/body' else page.get('text', '')
+    if text is None:
+        return f'{label}: snapshot has no text'
     if evidence.get('sha256') and hashlib.sha256(text.encode()).hexdigest() != evidence['sha256']:
         return f'{label}: page hash differs'
-    pointer = evidence.get('pointer', '')
-    if pointer == '/text':
+    if pointer in ('/text', '/body'):
         start, end = evidence.get('interval', [0, 0])
         expected = evidence.get('fragment') or record.get('link_original')
         if text[start:end] != expected:
@@ -507,7 +561,7 @@ def check_locator(record, evidence, observations):
             link = page['links'][int(pointer.rsplit('/', 1)[1])][0]
         except (KeyError, IndexError, ValueError, TypeError):
             return f'{label}: invalid link pointer {pointer}'
-        if link.rstrip('.,;') != record.get('link_original'):
+        if link.rstrip('.,;') != (evidence.get('fragment') or record.get('link_original')).rstrip('.,;'):
             return f'{label}: link pointer holds another URL'
     return ''
 
@@ -529,16 +583,108 @@ def locate_text(docs, slug, page_url, needle):
     return None
 
 
-def resolve_spec(docs, slug, spec):
-    """Turn `locate` / `dovezi` requests of an explicit source specification into exact locators. Fails when a fragment is absent."""
+def cached_body(cache, url):
+    response = read_cache(Path(cache) / (source_id(url) + '.json'))
+    return response if response and response.get('state') == 'ok' else None
+
+
+def locate_in_cache(cache, url, needle):
+    """Locate an exact fragment in a body kept in the source cache (a page the inventory read but did not parse as a source)."""
+    response = cached_body(cache, url)
+    if not response:
+        return None
+    body = response.get('body', '')
+    start = body.find(needle)
+    if start < 0:
+        return None
+    return {'url': url, 'sha256': hashlib.sha256(body.encode()).hexdigest(), 'pointer': '/body', 'interval': [start, start + len(needle)],
+            'fragment': needle, 'snapshot': 'inventare/surse/' + source_id(url) + '.json'}
+
+
+def git_blob_sha(body):
+    data = body.encode()
+    return hashlib.sha1(b'blob %d\0' % len(data) + data).hexdigest()
+
+
+def locate_repo_file(cache, tree_url, commit, path):
+    """A file of a repository at a recorded commit, found in the cached recursive tree listing of that commit."""
+    response = cached_body(cache, tree_url)
+    if not response:
+        return None
+    tree = json.loads(response['body']).get('tree', [])
+    for index, entry in enumerate(tree):
+        if entry.get('path') == path and entry.get('type') == 'blob':
+            return {'url': tree_url, 'revizie': commit, 'cale': path, 'blob_sha': entry['sha'], 'pointer': f'/tree/{index}',
+                    'sha256': hashlib.sha256(response['body'].encode()).hexdigest(), 'snapshot': 'inventare/surse/' + source_id(tree_url) + '.json'}
+    return None
+
+
+def locate_link(docs, slug, page_url, link):
+    """Locate a link in the link list of a collected documentation page."""
+    for page in docs.get(slug, {}).get('pages', []):
+        if page_url in (page.get('final_url'), page.get('url')) and page.get('state') == 'colectat':
+            for index, (target, _) in enumerate(page.get('links', [])):
+                if target.rstrip('.,;') == link or file_url(target) == link:
+                    return {'url': page['final_url'], 'sha256': page.get('sha256'), 'pointer': f'/links/{index}', 'fragment': target,
+                            'snapshot': 'documentare/' + page['snapshot'] if page.get('snapshot') else None}
+    return None
+
+
+def locate_profile(observations, slug, column):
+    """A value in the generated profile table (for example the repository link that the profiler found on the project's site)."""
+    path = Path(observations) / 'profil.csv'
+    try:
+        with path.open(newline='') as stream:
+            for row in csv.DictReader(stream):
+                if row['slug'] == slug and row.get(column):
+                    return {'tip': 'profil', 'snapshot': 'profil.csv', 'slug': slug, 'coloana': column, 'valoare': row[column],
+                            'pointer': f'/profil/{slug}/{column}'}
+    except OSError:
+        pass
+    return None
+
+
+def locate_render(observations, page_url, data_url):
+    """A data request that the browser helper saw while it rendered a page (inventare/randare/*.json)."""
+    folder = Path(observations) / 'inventare' / 'randare'
+    for path in sorted(folder.glob('*.json')) if folder.exists() else []:
+        record = json.loads(path.read_text())
+        if record.get('url_cerut') == page_url:
+            for index, request in enumerate(record.get('cereri_date', [])):
+                if request['url'] == data_url:
+                    return {'tip': 'randare', 'snapshot': f'inventare/randare/{path.name}', 'url': page_url, 'pointer': f'/cereri_date/{index}', 'valoare': data_url}
+    return None
+
+
+def resolve_spec(docs, slug, spec, cache=None):
+    """Turn `locate` / `dovezi` / `repo` requests of an explicit source specification into exact locators.
+    A request names a collected documentation page, or (with `cache: true`) a body in the source cache.
+    Fails when a fragment or a repository file is absent."""
     spec = dict(spec)
+
     def find(request):
-        evidence = locate_text(docs, request.get('proiect', slug), request['pagina'], request['text'])
+        if request.get('randare'):
+            evidence = locate_render(Path(cache).parent.parent, request['pagina'], request['randare']) if cache else None
+        elif request.get('profil'):
+            evidence = locate_profile(Path(cache).parent.parent, request.get('proiect', slug), request['profil']) if cache else None
+        elif request.get('link'):
+            evidence = locate_link(docs, request.get('proiect', slug), request['pagina'], request['link'])
+        elif request.get('cache'):
+            evidence = locate_in_cache(cache, request['pagina'], request['text']) if cache else None
+        else:
+            evidence = locate_text(docs, request.get('proiect', slug), request['pagina'], request['text'])
         if not evidence:
-            raise StateError(f'Fragment not found in {request["pagina"]}: {request["text"][:60]}')
+            raise StateError(f'Evidence not found for {slug}: {json.dumps(request, ensure_ascii=False)[:160]}')
         return evidence
+
     if spec.get('locate'):
         spec['dovada'] = find(spec.pop('locate'))
+    if spec.get('repo'):
+        repo = spec.pop('repo')
+        evidence = locate_repo_file(cache, repo['arbore'], repo['revizie'], repo['cale']) if cache else None
+        if not evidence:
+            raise StateError(f'Repository file not found at {repo["revizie"]}: {repo["cale"]}')
+        spec['dovada'] = evidence
     extra = [{**find(request), 'rol': request['rol']} for request in spec.pop('dovezi', [])]
     if extra:
         spec['dovezi_suplimentare'] = extra
@@ -621,11 +767,13 @@ def update_inventory(entries, docs, verified, previous, *, cache, selected=(), o
         elif key not in registry:
             registry[key] = new_discovery(slug, url, spec.get('metoda', 'adaugat-explicit'), state='activ', parent=spec.get('parinte'),
                                           evidence=spec.get('dovada'), discovered_at=now, note=spec.get('nota'),
-                                          extra=spec.get('dovezi_suplimentare'))
+                                          extra=spec.get('dovezi_suplimentare'), reading=spec.get('citire'))
             registry[key]['istoric'].append({'eveniment': 'adaugat', 'la': now})
         elif registry[key]['stare'] == 'descoperit':
             registry[key]['stare'] = 'activ'
             registry[key]['istoric'].append({'eveniment': 'admis', 'la': now})
+        if spec.get('citire') and not registry[key].get('citire'):
+            registry[key]['citire'] = spec['citire']
     for slug in sorted(work):
         for candidate in candidates[slug]:
             key = (slug, candidate['url'])
@@ -641,6 +789,10 @@ def update_inventory(entries, docs, verified, previous, *, cache, selected=(), o
             retire(registry, slug, url, 'entry absent from the catalogue', now)
 
     urls = sorted({d['url'] for d in registry.values() if d['stare'] in ('activ', 'retras')})
+    hint_of = {}
+    for record in sorted_registry(registry):
+        if record.get('citire'):
+            hint_of.setdefault(record['url'], record['citire'])
     fetch_urls = {d['url'] for s in (selected or slugs) for d in active_members(registry, s)}
 
     def obtain(url):
@@ -653,16 +805,16 @@ def update_inventory(entries, docs, verified, previous, *, cache, selected=(), o
         if cached is not None and not (refresh and (force or url in force_urls)):
             response, origin = cached, 'cache'
         elif refresh:
-            response, origin = fetch(url), 'retea'
+            response, origin = protect(fetch(url)), 'retea'
             if response.get('state') == 'limita-cereri':
                 response, origin = None, 'omis'
         if response is None:
             if tracked:
                 return url, tracked, ('neinspectat' if origin == 'omis' else 'pastrat-fara-cache' if url in fetch_urls else 'neatins')
-            return url, analyse_source({'url': url, 'state': 'necolectat'}), 'necolectat'
+            return url, analyse_source({'url': url, 'state': 'necolectat'}, hint_of.get(url)), 'necolectat'
         if origin == 'retea' and (response.get('state') == 'ok' or cached is None or cached.get('state') != 'ok'):
             write_file_atomic(path, dump(response))
-        metadata = analyse_source(response)
+        metadata = analyse_source(response, hint_of.get(url))
         if metadata.get('sha256'):
             snapshot = cache.parent / metadata['snapshot']
             if not snapshot.exists():
@@ -757,6 +909,9 @@ def main():
     parser.add_argument('--dry-run', action='store_true', help='compute and report the next state; write nothing')
     parser.add_argument('--force', action='store_true', help='fetch selected sources again even when a cache exists')
     parser.add_argument('--force-url', action='append', default=[], metavar='URL', help='fetch only this source again (repeatable)')
+    parser.add_argument('--probe', nargs='+', metavar='URL', help='fetch URLs into the source cache and print a summary; changes no inventory record; needs --lot')
+    parser.add_argument('--purpose', default='inventar', help='with --probe: why the request is made; kept in the request log')
+    parser.add_argument('--sample-bytes', type=int, help='with --probe: read at most this many bytes (a range request); the body is marked partial')
     parser.add_argument('--max-files', type=int, default=3, help='admit new sources until a project has this many members')
     parser.add_argument('--max-requests', type=int, help='stop fetching after this many direct requests in this run')
     parser.add_argument('--lot', default='', help='name of the collection batch; enables the request log')
@@ -775,6 +930,8 @@ def main():
         parser.error('--max-files must be positive and --max-requests cannot be negative')
     if args.retire and not args.reason.strip():
         parser.error('--retire needs a recorded --reason')
+    if args.probe and not args.lot:
+        parser.error('--probe needs --lot so that every request is logged')
     if data_schema(args.data_dir) != 'v2':
         parser.error('Variable inventories require a taxonomy v2 data root.')
     obs = observation_paths(args.data_dir)['profile'].parent
@@ -804,7 +961,23 @@ def main():
     if log and args.budget is not None:
         left = args.budget - log.direct_requests()
         limit = left if limit is None else min(limit, left)
-    fetcher = Fetcher(timeout=12, max_requests=limit, log=log, purpose='inventar')
+    fetcher = Fetcher(timeout=12, max_requests=limit, log=log, purpose=args.purpose)
+    if args.probe:
+        cache = out / 'surse'
+        cache.mkdir(parents=True, exist_ok=True)
+        for url in args.probe:
+            url = canonical(url)
+            response = protect(fetcher(url, sample=args.sample_bytes))
+            path = cache / (source_id(url) + '.json')
+            old = read_cache(path)
+            if response['state'] == 'ok' or old is None or old.get('state') != 'ok':
+                if response['state'] != 'limita-cereri':
+                    write_file_atomic(path, dump(response))
+            body = response.get('body', '')
+            print(f"{response['state']} {response.get('http_status')} {response.get('content_type', '')} {len(body)} chars"
+                  f"{' partial' if response.get('partial') else ''}{' redacted ' + str(response['redactari']) if response.get('redactari') else ''} {url}")
+        print(f'{fetcher.requests} requests in this run')
+        return 0
     try:
         previous = load_previous(out)
         additions = [(slug, {'url': url, 'metoda': args.method, 'parinte': args.parent, 'nota': args.note}) for slug, url in args.add_source]
@@ -813,7 +986,7 @@ def main():
                 specs = json.loads(args.add_sources_file.read_text())
             except (OSError, ValueError) as exc:
                 raise StateError(f'Cannot read {args.add_sources_file}: {exc}') from exc
-            additions += [(spec['proiect'], resolve_spec(docs, spec['proiect'], {k: v for k, v in spec.items() if k != 'proiect'})) for spec in specs]
+            additions += [(spec['proiect'], resolve_spec(docs, spec['proiect'], {k: v for k, v in spec.items() if k != 'proiect'}, out / 'surse')) for spec in specs]
         state = update_inventory(
             entries, docs, verified, previous, cache=out / 'surse', selected=selected, offline=args.offline, force=args.force,
             max_files=args.max_files, fetch=fetcher, concepts=concepts, force_urls=args.force_url,

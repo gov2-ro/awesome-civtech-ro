@@ -1,0 +1,967 @@
+[
+ {
+  "proiect": "registrul-firmelor",
+  "url": "https://registru.horecaos.org/api",
+  "citire": "html-tabele",
+  "parinte": "https://registru.horecaos.org/llms.txt",
+  "locate": {
+   "pagina": "https://registru.horecaos.org/llms.txt",
+   "text": "https://registru.horecaos.org/api"
+  },
+  "nota": "The API documentation page names the response fields in a two-column table. A key is required for the API itself; the key was not requested and no API call was made."
+ },
+ {
+  "proiect": "europescope",
+  "url": "https://api.europescope.eu/v1/members.csv",
+  "parinte": "https://www.europescope.eu/data",
+  "locate": {
+   "pagina": "https://www.europescope.eu/data",
+   "text": "https://api.europescope.eu/v1/members.csv",
+   "cache": true
+  },
+  "dovezi": [
+   {
+    "pagina": "https://www.europescope.eu/data",
+    "text": "Every MEP with their latest attendance, loyalty and rebel-vote statistics.",
+    "cache": true,
+    "rol": "descriere-fisier"
+   }
+  ],
+  "nota": "Documented bulk download. CSV files are read as a bounded sample (header and the first complete lines)."
+ },
+ {
+  "proiect": "europescope",
+  "url": "https://api.europescope.eu/v1/votes.csv",
+  "parinte": "https://www.europescope.eu/data",
+  "locate": {
+   "pagina": "https://www.europescope.eu/data",
+   "text": "https://api.europescope.eu/v1/votes.csv",
+   "cache": true
+  },
+  "dovezi": [
+   {
+    "pagina": "https://www.europescope.eu/data",
+    "text": "Roll-call votes with results, importance scores and source URLs.",
+    "cache": true,
+    "rol": "descriere-fisier"
+   }
+  ],
+  "nota": "Documented bulk download. CSV files are read as a bounded sample (header and the first complete lines)."
+ },
+ {
+  "proiect": "europescope",
+  "url": "https://api.europescope.eu/v1/positions.csv",
+  "parinte": "https://www.europescope.eu/data",
+  "locate": {
+   "pagina": "https://www.europescope.eu/data",
+   "text": "https://api.europescope.eu/v1/positions.csv",
+   "cache": true
+  },
+  "dovezi": [
+   {
+    "pagina": "https://www.europescope.eu/data",
+    "text": "Individual MEP positions (For/Against/Abstain/Absent). Streamed; filter by vote, MEP, country or date to bound the download.",
+    "cache": true,
+    "rol": "descriere-fisier"
+   }
+  ],
+  "nota": "Documented bulk download. CSV files are read as a bounded sample (header and the first complete lines)."
+ },
+ {
+  "proiect": "europescope",
+  "url": "https://api.europescope.eu/v1/countries.csv",
+  "parinte": "https://www.europescope.eu/data",
+  "locate": {
+   "pagina": "https://www.europescope.eu/data",
+   "text": "https://api.europescope.eu/v1/countries.csv",
+   "cache": true
+  },
+  "dovezi": [
+   {
+    "pagina": "https://www.europescope.eu/data",
+    "text": "Per-country delegation cohesion, average attendance and MEP counts.",
+    "cache": true,
+    "rol": "descriere-fisier"
+   }
+  ],
+  "nota": "Documented bulk download. CSV files are read as a bounded sample (header and the first complete lines)."
+ },
+ {
+  "proiect": "europescope",
+  "url": "https://api.europescope.eu/v1/groups.csv",
+  "parinte": "https://www.europescope.eu/data",
+  "locate": {
+   "pagina": "https://www.europescope.eu/data",
+   "text": "https://api.europescope.eu/v1/groups.csv",
+   "cache": true
+  },
+  "dovezi": [
+   {
+    "pagina": "https://www.europescope.eu/data",
+    "text": "Per-group cohesion, rebel rate and average attendance.",
+    "cache": true,
+    "rol": "descriere-fisier"
+   }
+  ],
+  "nota": "Documented bulk download. CSV files are read as a bounded sample (header and the first complete lines)."
+ },
+ {
+  "proiect": "europescope",
+  "url": "https://api.europescope.eu/v1/topic-votes.csv",
+  "parinte": "https://www.europescope.eu/data",
+  "locate": {
+   "pagina": "https://www.europescope.eu/data",
+   "text": "https://api.europescope.eu/v1/topic-votes.csv",
+   "cache": true
+  },
+  "dovezi": [
+   {
+    "pagina": "https://www.europescope.eu/data",
+    "text": "One row per vote–topic pair, with confidence and methodology version.",
+    "cache": true,
+    "rol": "descriere-fisier"
+   }
+  ],
+  "nota": "Documented bulk download. CSV files are read as a bounded sample (header and the first complete lines)."
+ },
+ {
+  "proiect": "europescope",
+  "url": "https://api.europescope.eu/v1/methodology.json",
+  "parinte": "https://www.europescope.eu/data",
+  "locate": {
+   "pagina": "https://www.europescope.eu/data",
+   "text": "https://api.europescope.eu/v1/methodology.json",
+   "cache": true
+  },
+  "dovezi": [
+   {
+    "pagina": "https://www.europescope.eu/data",
+    "text": "Full registry of calculation methodologies, formulas, and limitations.",
+    "cache": true,
+    "rol": "descriere-fisier"
+   }
+  ],
+  "nota": "Documented bulk download."
+ },
+ {
+  "proiect": "calitate-aer-radauti",
+  "url": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+  "parinte": "https://calitateaer.radautiulcivic.ro/masuratori/",
+  "locate": {
+   "pagina": "https://calitateaer.radautiulcivic.ro/masuratori/",
+   "text": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+   "cache": true
+  },
+  "dovezi": [
+   {
+    "pagina": "https://calitateaer.radautiulcivic.ro/masuratori/",
+    "text": "Concentrația de CO2, în ppm",
+    "cache": true,
+    "rol": "unitate-declarata"
+   },
+   {
+    "pagina": "https://calitateaer.radautiulcivic.ro/masuratori/",
+    "text": "Concentrația de PM2.5, în &mu;g/m3",
+    "cache": true,
+    "rol": "unitate-declarata"
+   },
+   {
+    "pagina": "https://calitateaer.radautiulcivic.ro/masuratori/",
+    "text": "Umiditatea Relativă, în %",
+    "cache": true,
+    "rol": "unitate-declarata"
+   },
+   {
+    "pagina": "https://calitateaer.radautiulcivic.ro/masuratori/",
+    "text": "Temperatura, în &#176;C",
+    "cache": true,
+    "rol": "unitate-declarata"
+   }
+  ],
+  "nota": "The page requests this address in its own inline script. The response is the last 24 hours of readings that every visitor of the page receives."
+ },
+ {
+  "proiect": "banii-nostri",
+  "url": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+  "parinte": "https://baniinostri.info/RAJASA/",
+  "locate": {
+   "pagina": "https://baniinostri.info/RAJASA/",
+   "text": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+   "cache": true
+  },
+  "nota": "Public REST address cited by the RAJA S.A. report as its data source. Only the first page (200 items) was read; the response says that more pages exist."
+ },
+ {
+  "proiect": "banii-nostri",
+  "url": "https://baniinostri.info/rapoarte/",
+  "citire": "html-tabele",
+  "parinte": "https://baniinostri.info/",
+  "locate": {
+   "pagina": "https://baniinostri.info/",
+   "link": "https://baniinostri.info/rapoarte/"
+  },
+  "nota": "Report page. The table header is in the HTML; its rows are loaded by a script, so no row sample exists."
+ },
+ {
+  "proiect": "banii-nostri",
+  "url": "https://baniinostri.info/RAJASA/",
+  "citire": "html-tabele",
+  "parinte": "https://baniinostri.info/",
+  "locate": {
+   "pagina": "https://baniinostri.info/",
+   "link": "https://baniinostri.info/RAJASA/"
+  },
+  "nota": "Investigation report with six tables (one annex table is filled by a script)."
+ },
+ {
+  "proiect": "despre-femicid",
+  "url": "https://desprefemicid.ro/analiza-date",
+  "citire": {
+   "tip": "js-acces",
+   "obiecte": [
+    "fields"
+   ]
+  },
+  "parinte": "https://desprefemicid.ro/",
+  "locate": {
+   "pagina": "https://desprefemicid.ro/",
+   "link": "https://desprefemicid.ro/analiza-date"
+  },
+  "nota": "The page script reads these names from the records of a table in a third-party database service. The page script contains an access token; the stored body has it masked and the token was not used. The database was not read."
+ },
+ {
+  "proiect": "afacut",
+  "url": "https://afacut.ro/drumuri-si-poduri/",
+  "citire": "html-tabele",
+  "parinte": "https://afacut.ro/",
+  "locate": {
+   "pagina": "https://afacut.ro/",
+   "link": "https://afacut.ro/drumuri-si-poduri/"
+  },
+  "nota": "Edition page. The table lists the national reporting steps with the amounts requested for settlement."
+ },
+ {
+  "proiect": "afacut",
+  "url": "https://afacut.ro/apa-si-canal/",
+  "citire": "html-tabele",
+  "parinte": "https://afacut.ro/",
+  "locate": {
+   "pagina": "https://afacut.ro/",
+   "link": "https://afacut.ro/apa-si-canal/"
+  },
+  "nota": "Edition page. The table lists the national reporting steps with the amounts requested for settlement."
+ },
+ {
+  "proiect": "afacut",
+  "url": "https://afacut.ro/gaze-naturale/",
+  "citire": "html-tabele",
+  "parinte": "https://afacut.ro/",
+  "locate": {
+   "pagina": "https://afacut.ro/",
+   "link": "https://afacut.ro/gaze-naturale/"
+  },
+  "nota": "Edition page. The table lists the national reporting steps with the amounts requested for settlement."
+ },
+ {
+  "proiect": "afacut",
+  "url": "https://afacut.ro/drumuri-si-poduri/judete/",
+  "citire": "html-tabele",
+  "parinte": "https://afacut.ro/drumuri-si-poduri/",
+  "locate": {
+   "pagina": "https://afacut.ro/drumuri-si-poduri/",
+   "link": "https://afacut.ro/drumuri-si-poduri/judete/"
+  },
+  "nota": "County ranking of edition 01."
+ },
+ {
+  "proiect": "biografia-localitatii",
+  "url": "https://mariuscomper.uk/biografia-localitatii/metoda/",
+  "citire": {
+   "tip": "html-tabele",
+   "tabele": [
+    2
+   ]
+  },
+  "parinte": "https://mariuscomper.uk/biografia-localitatii/",
+  "locate": {
+   "pagina": "https://mariuscomper.uk/biografia-localitatii/",
+   "link": "https://mariuscomper.uk/biografia-localitatii/metoda/"
+  },
+  "nota": "The second table of the methodology page lists the INS TEMPO matrices that the project uses, with measure, years and unit."
+ },
+ {
+  "proiect": "biografia-localitatii",
+  "url": "https://ins.gov2.ro/api/datasets/LOC101B?lang=en",
+  "parinte": "https://mariuscomper.uk/biografia-localitatii/metoda/",
+  "locate": {
+   "pagina": "https://mariuscomper.uk/biografia-localitatii/metoda/",
+   "text": "LOC101B Case Locuințe existente la sfârșitul anului"
+  },
+  "dovezi": [
+   {
+    "proiect": "ins-gov2",
+    "pagina": "https://ins.gov2.ro/llms.txt",
+    "text": "GET /api/datasets/{matrix_code}?lang={ro|en}",
+    "rol": "ruta-metadate-set"
+   }
+  ],
+  "nota": "The methodology table names TEMPO matrix LOC101B. The metadata is read from the ins.gov2.ro API, which is not the project's own source."
+ },
+ {
+  "proiect": "biografia-localitatii",
+  "url": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+  "parinte": "https://mariuscomper.uk/biografia-localitatii/metoda/",
+  "locate": {
+   "pagina": "https://mariuscomper.uk/biografia-localitatii/metoda/",
+   "text": "POP107D Oameni Populația după domiciliu la 1 ianuarie"
+  },
+  "dovezi": [
+   {
+    "proiect": "ins-gov2",
+    "pagina": "https://ins.gov2.ro/llms.txt",
+    "text": "GET /api/datasets/{matrix_code}?lang={ro|en}",
+    "rol": "ruta-metadate-set"
+   }
+  ],
+  "nota": "The methodology table names TEMPO matrix POP107D. The metadata is read from the ins.gov2.ro API, which is not the project's own source."
+ },
+ {
+  "proiect": "biografia-localitatii",
+  "url": "https://ins.gov2.ro/api/datasets/GOS104A?lang=en",
+  "parinte": "https://mariuscomper.uk/biografia-localitatii/metoda/",
+  "locate": {
+   "pagina": "https://mariuscomper.uk/biografia-localitatii/metoda/",
+   "text": "GOS104A Infrastructură Lungimea străzilor orășenești"
+  },
+  "dovezi": [
+   {
+    "proiect": "ins-gov2",
+    "pagina": "https://ins.gov2.ro/llms.txt",
+    "text": "GET /api/datasets/{matrix_code}?lang={ro|en}",
+    "rol": "ruta-metadate-set"
+   }
+  ],
+  "nota": "The methodology table names TEMPO matrix GOS104A. The metadata is read from the ins.gov2.ro API, which is not the project's own source."
+ },
+ {
+  "proiect": "aerlive",
+  "url": "https://aerlive.ro/wp-json/api/v1/cities/",
+  "parinte": "https://aerlive.ro/",
+  "locate": {
+   "pagina": "https://aerlive.ro/",
+   "randare": "https://aerlive.ro/wp-json/api/v1/cities/"
+  },
+  "nota": "Requested by the home page when it loads. A plain request to the same address returns HTTP 403 for a client without the page context; the stored body is the copy the browser received (via: browser)."
+ },
+ {
+  "proiect": "monitorul-ai",
+  "url": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/docs/extraction-schema.md",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/ciocan/monitorul-ii/tree/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50",
+  "repo": {
+   "arbore": "https://api.github.com/repos/ciocan/monitorul-ii/git/trees/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50?recursive=1",
+   "revizie": "4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50",
+   "cale": "docs/extraction-schema.md"
+  },
+  "dovezi": [
+   {
+    "pagina": "https://monitorul.ai/",
+    "link": "https://github.com/ciocan/monitorul-ii",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of ciocan/monitorul-ii at commit 4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50. The pipeline repository is linked from the project home page. The design documents describe the record shapes; the JSON Schemas describe the discourse-analysis outputs, not the source transcripts.",
+  "citire": "json-comentat"
+ },
+ {
+  "proiect": "monitorul-ai",
+  "url": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/docs/discourse-analysis-schema.md",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/ciocan/monitorul-ii/tree/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50",
+  "repo": {
+   "arbore": "https://api.github.com/repos/ciocan/monitorul-ii/git/trees/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50?recursive=1",
+   "revizie": "4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50",
+   "cale": "docs/discourse-analysis-schema.md"
+  },
+  "dovezi": [
+   {
+    "pagina": "https://monitorul.ai/",
+    "link": "https://github.com/ciocan/monitorul-ii",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of ciocan/monitorul-ii at commit 4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50. The pipeline repository is linked from the project home page. The design documents describe the record shapes; the JSON Schemas describe the discourse-analysis outputs, not the source transcripts.",
+  "citire": "json-comentat"
+ },
+ {
+  "proiect": "monitorul-ai",
+  "url": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/prompts/hawkins_populism_v1.schema.json",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/ciocan/monitorul-ii/tree/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50",
+  "repo": {
+   "arbore": "https://api.github.com/repos/ciocan/monitorul-ii/git/trees/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50?recursive=1",
+   "revizie": "4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50",
+   "cale": "prompts/hawkins_populism_v1.schema.json"
+  },
+  "dovezi": [
+   {
+    "pagina": "https://monitorul.ai/",
+    "link": "https://github.com/ciocan/monitorul-ii",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of ciocan/monitorul-ii at commit 4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50. The pipeline repository is linked from the project home page. The design documents describe the record shapes; the JSON Schemas describe the discourse-analysis outputs, not the source transcripts."
+ },
+ {
+  "proiect": "monitorul-ai",
+  "url": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/prompts/vparty_antipluralism_v2.schema.json",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/ciocan/monitorul-ii/tree/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50",
+  "repo": {
+   "arbore": "https://api.github.com/repos/ciocan/monitorul-ii/git/trees/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50?recursive=1",
+   "revizie": "4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50",
+   "cale": "prompts/vparty_antipluralism_v2.schema.json"
+  },
+  "dovezi": [
+   {
+    "pagina": "https://monitorul.ai/",
+    "link": "https://github.com/ciocan/monitorul-ii",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of ciocan/monitorul-ii at commit 4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50. The pipeline repository is linked from the project home page. The design documents describe the record shapes; the JSON Schemas describe the discourse-analysis outputs, not the source transcripts."
+ },
+ {
+  "proiect": "monitorul-ai",
+  "url": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/prompts/dqi_v1.schema.json",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/ciocan/monitorul-ii/tree/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50",
+  "repo": {
+   "arbore": "https://api.github.com/repos/ciocan/monitorul-ii/git/trees/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50?recursive=1",
+   "revizie": "4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50",
+   "cale": "prompts/dqi_v1.schema.json"
+  },
+  "dovezi": [
+   {
+    "pagina": "https://monitorul.ai/",
+    "link": "https://github.com/ciocan/monitorul-ii",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of ciocan/monitorul-ii at commit 4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50. The pipeline repository is linked from the project home page. The design documents describe the record shapes; the JSON Schemas describe the discourse-analysis outputs, not the source transcripts."
+ },
+ {
+  "proiect": "monitorul-ai",
+  "url": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/prompts/voice_classifier_v1.schema.json",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/ciocan/monitorul-ii/tree/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50",
+  "repo": {
+   "arbore": "https://api.github.com/repos/ciocan/monitorul-ii/git/trees/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50?recursive=1",
+   "revizie": "4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50",
+   "cale": "prompts/voice_classifier_v1.schema.json"
+  },
+  "dovezi": [
+   {
+    "pagina": "https://monitorul.ai/",
+    "link": "https://github.com/ciocan/monitorul-ii",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of ciocan/monitorul-ii at commit 4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50. The pipeline repository is linked from the project home page. The design documents describe the record shapes; the JSON Schemas describe the discourse-analysis outputs, not the source transcripts."
+ },
+ {
+  "proiect": "monitorul-ai",
+  "url": "https://raw.githubusercontent.com/ciocan/monitorul.ai/cc6b1f2e1ffe44c0bfeba05e3f8ca560288a5673/docs/mcp.md",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/ciocan/monitorul.ai/tree/cc6b1f2e1ffe44c0bfeba05e3f8ca560288a5673",
+  "repo": {
+   "arbore": "https://api.github.com/repos/ciocan/monitorul.ai/git/trees/cc6b1f2e1ffe44c0bfeba05e3f8ca560288a5673?recursive=1",
+   "revizie": "cc6b1f2e1ffe44c0bfeba05e3f8ca560288a5673",
+   "cale": "docs/mcp.md"
+  },
+  "dovezi": [
+   {
+    "pagina": "https://monitorul.ai/mcp",
+    "link": "https://github.com/ciocan/monitorul.ai/blob/main/docs/mcp.md",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of ciocan/monitorul.ai at commit cc6b1f2e1ffe44c0bfeba05e3f8ca560288a5673. The MCP page links this file (at the main branch); the commit pins the revision read.",
+  "citire": "markdown"
+ },
+ {
+  "proiect": "votdiaspora",
+  "url": "https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/src/Models/PollingStationModel.cs",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/code4romania/vot-diaspora-api/tree/87b0d20acec077f958ef2e0adff312ee48eba4ca",
+  "repo": {
+   "arbore": "https://api.github.com/repos/code4romania/vot-diaspora-api/git/trees/87b0d20acec077f958ef2e0adff312ee48eba4ca?recursive=1",
+   "revizie": "87b0d20acec077f958ef2e0adff312ee48eba4ca",
+   "cale": "src/Models/PollingStationModel.cs"
+  },
+  "dovezi": [
+   {
+    "proiect": "votdiaspora",
+    "profil": "repos",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of code4romania/vot-diaspora-api at commit 87b0d20acec077f958ef2e0adff312ee48eba4ca. The profiler found this repository link on the project site. The last commit is from 2021-11-08, so these files may predate the deployed site."
+ },
+ {
+  "proiect": "votdiaspora",
+  "url": "https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/src/Stores/Entities/PollingStationEntity.cs",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/code4romania/vot-diaspora-api/tree/87b0d20acec077f958ef2e0adff312ee48eba4ca",
+  "repo": {
+   "arbore": "https://api.github.com/repos/code4romania/vot-diaspora-api/git/trees/87b0d20acec077f958ef2e0adff312ee48eba4ca?recursive=1",
+   "revizie": "87b0d20acec077f958ef2e0adff312ee48eba4ca",
+   "cale": "src/Stores/Entities/PollingStationEntity.cs"
+  },
+  "dovezi": [
+   {
+    "proiect": "votdiaspora",
+    "profil": "repos",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of code4romania/vot-diaspora-api at commit 87b0d20acec077f958ef2e0adff312ee48eba4ca. The profiler found this repository link on the project site. The last commit is from 2021-11-08, so these files may predate the deployed site."
+ },
+ {
+  "proiect": "votdiaspora",
+  "url": "https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/src/Models/PollingStationUploadModel.cs",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/code4romania/vot-diaspora-api/tree/87b0d20acec077f958ef2e0adff312ee48eba4ca",
+  "repo": {
+   "arbore": "https://api.github.com/repos/code4romania/vot-diaspora-api/git/trees/87b0d20acec077f958ef2e0adff312ee48eba4ca?recursive=1",
+   "revizie": "87b0d20acec077f958ef2e0adff312ee48eba4ca",
+   "cale": "src/Models/PollingStationUploadModel.cs"
+  },
+  "dovezi": [
+   {
+    "proiect": "votdiaspora",
+    "profil": "repos",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of code4romania/vot-diaspora-api at commit 87b0d20acec077f958ef2e0adff312ee48eba4ca. The profiler found this repository link on the project site. The last commit is from 2021-11-08, so these files may predate the deployed site."
+ },
+ {
+  "proiect": "votdiaspora",
+  "url": "https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/src/Models/PollingStationsQuery.cs",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/code4romania/vot-diaspora-api/tree/87b0d20acec077f958ef2e0adff312ee48eba4ca",
+  "repo": {
+   "arbore": "https://api.github.com/repos/code4romania/vot-diaspora-api/git/trees/87b0d20acec077f958ef2e0adff312ee48eba4ca?recursive=1",
+   "revizie": "87b0d20acec077f958ef2e0adff312ee48eba4ca",
+   "cale": "src/Models/PollingStationsQuery.cs"
+  },
+  "dovezi": [
+   {
+    "proiect": "votdiaspora",
+    "profil": "repos",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of code4romania/vot-diaspora-api at commit 87b0d20acec077f958ef2e0adff312ee48eba4ca. The profiler found this repository link on the project site. The last commit is from 2021-11-08, so these files may predate the deployed site."
+ },
+ {
+  "proiect": "votdiaspora",
+  "url": "https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/src/Models/PollingStationsGroupModel.cs",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/code4romania/vot-diaspora-api/tree/87b0d20acec077f958ef2e0adff312ee48eba4ca",
+  "repo": {
+   "arbore": "https://api.github.com/repos/code4romania/vot-diaspora-api/git/trees/87b0d20acec077f958ef2e0adff312ee48eba4ca?recursive=1",
+   "revizie": "87b0d20acec077f958ef2e0adff312ee48eba4ca",
+   "cale": "src/Models/PollingStationsGroupModel.cs"
+  },
+  "dovezi": [
+   {
+    "proiect": "votdiaspora",
+    "profil": "repos",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of code4romania/vot-diaspora-api at commit 87b0d20acec077f958ef2e0adff312ee48eba4ca. The profiler found this repository link on the project site. The last commit is from 2021-11-08, so these files may predate the deployed site."
+ },
+ {
+  "proiect": "rezultate-vot",
+  "url": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Result/ResultResource.php",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/code4romania/rezultatevot/tree/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+  "repo": {
+   "arbore": "https://api.github.com/repos/code4romania/rezultatevot/git/trees/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc?recursive=1",
+   "revizie": "ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+   "cale": "app/Http/Resources/Result/ResultResource.php"
+  },
+  "dovezi": [
+   {
+    "pagina": "https://rezultatevot.ro/alegeri/alegeri-prima-general-bucuresti-2025/rezultate",
+    "link": "https://github.com/code4romania/rezultatevot",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of code4romania/rezultatevot at commit ac6ae2b512b7cd0009fb9f0af9455f72c89191cc. The repository is linked from the project pages. API resources define the public response fields; migrations define the stored tables."
+ },
+ {
+  "proiect": "rezultate-vot",
+  "url": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Result/CandidatesResource.php",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/code4romania/rezultatevot/tree/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+  "repo": {
+   "arbore": "https://api.github.com/repos/code4romania/rezultatevot/git/trees/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc?recursive=1",
+   "revizie": "ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+   "cale": "app/Http/Resources/Result/CandidatesResource.php"
+  },
+  "dovezi": [
+   {
+    "pagina": "https://rezultatevot.ro/alegeri/alegeri-prima-general-bucuresti-2025/rezultate",
+    "link": "https://github.com/code4romania/rezultatevot",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of code4romania/rezultatevot at commit ac6ae2b512b7cd0009fb9f0af9455f72c89191cc. The repository is linked from the project pages. API resources define the public response fields; migrations define the stored tables."
+ },
+ {
+  "proiect": "rezultate-vot",
+  "url": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Turnout/TurnoutResource.php",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/code4romania/rezultatevot/tree/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+  "repo": {
+   "arbore": "https://api.github.com/repos/code4romania/rezultatevot/git/trees/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc?recursive=1",
+   "revizie": "ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+   "cale": "app/Http/Resources/Turnout/TurnoutResource.php"
+  },
+  "dovezi": [
+   {
+    "pagina": "https://rezultatevot.ro/alegeri/alegeri-prima-general-bucuresti-2025/rezultate",
+    "link": "https://github.com/code4romania/rezultatevot",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of code4romania/rezultatevot at commit ac6ae2b512b7cd0009fb9f0af9455f72c89191cc. The repository is linked from the project pages. API resources define the public response fields; migrations define the stored tables."
+ },
+ {
+  "proiect": "rezultate-vot",
+  "url": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Turnout/AreaResource.php",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/code4romania/rezultatevot/tree/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+  "repo": {
+   "arbore": "https://api.github.com/repos/code4romania/rezultatevot/git/trees/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc?recursive=1",
+   "revizie": "ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+   "cale": "app/Http/Resources/Turnout/AreaResource.php"
+  },
+  "dovezi": [
+   {
+    "pagina": "https://rezultatevot.ro/alegeri/alegeri-prima-general-bucuresti-2025/rezultate",
+    "link": "https://github.com/code4romania/rezultatevot",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of code4romania/rezultatevot at commit ac6ae2b512b7cd0009fb9f0af9455f72c89191cc. The repository is linked from the project pages. API resources define the public response fields; migrations define the stored tables."
+ },
+ {
+  "proiect": "rezultate-vot",
+  "url": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Turnout/DemographicsResource.php",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/code4romania/rezultatevot/tree/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+  "repo": {
+   "arbore": "https://api.github.com/repos/code4romania/rezultatevot/git/trees/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc?recursive=1",
+   "revizie": "ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+   "cale": "app/Http/Resources/Turnout/DemographicsResource.php"
+  },
+  "dovezi": [
+   {
+    "pagina": "https://rezultatevot.ro/alegeri/alegeri-prima-general-bucuresti-2025/rezultate",
+    "link": "https://github.com/code4romania/rezultatevot",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of code4romania/rezultatevot at commit ac6ae2b512b7cd0009fb9f0af9455f72c89191cc. The repository is linked from the project pages. API resources define the public response fields; migrations define the stored tables."
+ },
+ {
+  "proiect": "rezultate-vot",
+  "url": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Nomenclature/ElectionResource.php",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/code4romania/rezultatevot/tree/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+  "repo": {
+   "arbore": "https://api.github.com/repos/code4romania/rezultatevot/git/trees/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc?recursive=1",
+   "revizie": "ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+   "cale": "app/Http/Resources/Nomenclature/ElectionResource.php"
+  },
+  "dovezi": [
+   {
+    "pagina": "https://rezultatevot.ro/alegeri/alegeri-prima-general-bucuresti-2025/rezultate",
+    "link": "https://github.com/code4romania/rezultatevot",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of code4romania/rezultatevot at commit ac6ae2b512b7cd0009fb9f0af9455f72c89191cc. The repository is linked from the project pages. API resources define the public response fields; migrations define the stored tables."
+ },
+ {
+  "proiect": "rezultate-vot",
+  "url": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Nomenclature/LocalityResource.php",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/code4romania/rezultatevot/tree/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+  "repo": {
+   "arbore": "https://api.github.com/repos/code4romania/rezultatevot/git/trees/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc?recursive=1",
+   "revizie": "ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+   "cale": "app/Http/Resources/Nomenclature/LocalityResource.php"
+  },
+  "dovezi": [
+   {
+    "pagina": "https://rezultatevot.ro/alegeri/alegeri-prima-general-bucuresti-2025/rezultate",
+    "link": "https://github.com/code4romania/rezultatevot",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of code4romania/rezultatevot at commit ac6ae2b512b7cd0009fb9f0af9455f72c89191cc. The repository is linked from the project pages. API resources define the public response fields; migrations define the stored tables."
+ },
+ {
+  "proiect": "rezultate-vot",
+  "url": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/database/migrations/0001_01_10_000000_create_turnouts_table.php",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/code4romania/rezultatevot/tree/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+  "repo": {
+   "arbore": "https://api.github.com/repos/code4romania/rezultatevot/git/trees/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc?recursive=1",
+   "revizie": "ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+   "cale": "database/migrations/0001_01_10_000000_create_turnouts_table.php"
+  },
+  "dovezi": [
+   {
+    "pagina": "https://rezultatevot.ro/alegeri/alegeri-prima-general-bucuresti-2025/rezultate",
+    "link": "https://github.com/code4romania/rezultatevot",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of code4romania/rezultatevot at commit ac6ae2b512b7cd0009fb9f0af9455f72c89191cc. The repository is linked from the project pages. API resources define the public response fields; migrations define the stored tables."
+ },
+ {
+  "proiect": "rezultate-vot",
+  "url": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/database/migrations/0001_01_10_000010_create_records_table.php",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/code4romania/rezultatevot/tree/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+  "repo": {
+   "arbore": "https://api.github.com/repos/code4romania/rezultatevot/git/trees/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc?recursive=1",
+   "revizie": "ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+   "cale": "database/migrations/0001_01_10_000010_create_records_table.php"
+  },
+  "dovezi": [
+   {
+    "pagina": "https://rezultatevot.ro/alegeri/alegeri-prima-general-bucuresti-2025/rezultate",
+    "link": "https://github.com/code4romania/rezultatevot",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of code4romania/rezultatevot at commit ac6ae2b512b7cd0009fb9f0af9455f72c89191cc. The repository is linked from the project pages. API resources define the public response fields; migrations define the stored tables."
+ },
+ {
+  "proiect": "rezultate-vot",
+  "url": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/database/migrations/0001_01_10_000020_create_votes_table.php",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/code4romania/rezultatevot/tree/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+  "repo": {
+   "arbore": "https://api.github.com/repos/code4romania/rezultatevot/git/trees/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc?recursive=1",
+   "revizie": "ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+   "cale": "database/migrations/0001_01_10_000020_create_votes_table.php"
+  },
+  "dovezi": [
+   {
+    "pagina": "https://rezultatevot.ro/alegeri/alegeri-prima-general-bucuresti-2025/rezultate",
+    "link": "https://github.com/code4romania/rezultatevot",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of code4romania/rezultatevot at commit ac6ae2b512b7cd0009fb9f0af9455f72c89191cc. The repository is linked from the project pages. API resources define the public response fields; migrations define the stored tables."
+ },
+ {
+  "proiect": "dignitas",
+  "url": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00001.sql",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/TeamDignitas/dignitas/tree/c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+  "repo": {
+   "arbore": "https://api.github.com/repos/TeamDignitas/dignitas/git/trees/c8652542fac376b67b6233b25a5ef24c5e78c9d4?recursive=1",
+   "revizie": "c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+   "cale": "patches/00001.sql"
+  },
+  "dovezi": [
+   {
+    "proiect": "dignitas",
+    "profil": "repos",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of TeamDignitas/dignitas at commit c8652542fac376b67b6233b25a5ef24c5e78c9d4. The profiler found this repository link on the project site. The schema is spread over 84 patches; this file is one of ten read, so the table list is partial."
+ },
+ {
+  "proiect": "dignitas",
+  "url": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00002.sql",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/TeamDignitas/dignitas/tree/c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+  "repo": {
+   "arbore": "https://api.github.com/repos/TeamDignitas/dignitas/git/trees/c8652542fac376b67b6233b25a5ef24c5e78c9d4?recursive=1",
+   "revizie": "c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+   "cale": "patches/00002.sql"
+  },
+  "dovezi": [
+   {
+    "proiect": "dignitas",
+    "profil": "repos",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of TeamDignitas/dignitas at commit c8652542fac376b67b6233b25a5ef24c5e78c9d4. The profiler found this repository link on the project site. The schema is spread over 84 patches; this file is one of ten read, so the table list is partial."
+ },
+ {
+  "proiect": "dignitas",
+  "url": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00004.sql",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/TeamDignitas/dignitas/tree/c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+  "repo": {
+   "arbore": "https://api.github.com/repos/TeamDignitas/dignitas/git/trees/c8652542fac376b67b6233b25a5ef24c5e78c9d4?recursive=1",
+   "revizie": "c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+   "cale": "patches/00004.sql"
+  },
+  "dovezi": [
+   {
+    "proiect": "dignitas",
+    "profil": "repos",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of TeamDignitas/dignitas at commit c8652542fac376b67b6233b25a5ef24c5e78c9d4. The profiler found this repository link on the project site. The schema is spread over 84 patches; this file is one of ten read, so the table list is partial."
+ },
+ {
+  "proiect": "dignitas",
+  "url": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00006.sql",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/TeamDignitas/dignitas/tree/c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+  "repo": {
+   "arbore": "https://api.github.com/repos/TeamDignitas/dignitas/git/trees/c8652542fac376b67b6233b25a5ef24c5e78c9d4?recursive=1",
+   "revizie": "c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+   "cale": "patches/00006.sql"
+  },
+  "dovezi": [
+   {
+    "proiect": "dignitas",
+    "profil": "repos",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of TeamDignitas/dignitas at commit c8652542fac376b67b6233b25a5ef24c5e78c9d4. The profiler found this repository link on the project site. The schema is spread over 84 patches; this file is one of ten read, so the table list is partial."
+ },
+ {
+  "proiect": "dignitas",
+  "url": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00010.sql",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/TeamDignitas/dignitas/tree/c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+  "repo": {
+   "arbore": "https://api.github.com/repos/TeamDignitas/dignitas/git/trees/c8652542fac376b67b6233b25a5ef24c5e78c9d4?recursive=1",
+   "revizie": "c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+   "cale": "patches/00010.sql"
+  },
+  "dovezi": [
+   {
+    "proiect": "dignitas",
+    "profil": "repos",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of TeamDignitas/dignitas at commit c8652542fac376b67b6233b25a5ef24c5e78c9d4. The profiler found this repository link on the project site. The schema is spread over 84 patches; this file is one of ten read, so the table list is partial."
+ },
+ {
+  "proiect": "dignitas",
+  "url": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00012.sql",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/TeamDignitas/dignitas/tree/c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+  "repo": {
+   "arbore": "https://api.github.com/repos/TeamDignitas/dignitas/git/trees/c8652542fac376b67b6233b25a5ef24c5e78c9d4?recursive=1",
+   "revizie": "c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+   "cale": "patches/00012.sql"
+  },
+  "dovezi": [
+   {
+    "proiect": "dignitas",
+    "profil": "repos",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of TeamDignitas/dignitas at commit c8652542fac376b67b6233b25a5ef24c5e78c9d4. The profiler found this repository link on the project site. The schema is spread over 84 patches; this file is one of ten read, so the table list is partial."
+ },
+ {
+  "proiect": "dignitas",
+  "url": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00020.sql",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/TeamDignitas/dignitas/tree/c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+  "repo": {
+   "arbore": "https://api.github.com/repos/TeamDignitas/dignitas/git/trees/c8652542fac376b67b6233b25a5ef24c5e78c9d4?recursive=1",
+   "revizie": "c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+   "cale": "patches/00020.sql"
+  },
+  "dovezi": [
+   {
+    "proiect": "dignitas",
+    "profil": "repos",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of TeamDignitas/dignitas at commit c8652542fac376b67b6233b25a5ef24c5e78c9d4. The profiler found this repository link on the project site. The schema is spread over 84 patches; this file is one of ten read, so the table list is partial."
+ },
+ {
+  "proiect": "dignitas",
+  "url": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00046.sql",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/TeamDignitas/dignitas/tree/c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+  "repo": {
+   "arbore": "https://api.github.com/repos/TeamDignitas/dignitas/git/trees/c8652542fac376b67b6233b25a5ef24c5e78c9d4?recursive=1",
+   "revizie": "c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+   "cale": "patches/00046.sql"
+  },
+  "dovezi": [
+   {
+    "proiect": "dignitas",
+    "profil": "repos",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of TeamDignitas/dignitas at commit c8652542fac376b67b6233b25a5ef24c5e78c9d4. The profiler found this repository link on the project site. The schema is spread over 84 patches; this file is one of ten read, so the table list is partial."
+ },
+ {
+  "proiect": "dignitas",
+  "url": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00063.sql",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/TeamDignitas/dignitas/tree/c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+  "repo": {
+   "arbore": "https://api.github.com/repos/TeamDignitas/dignitas/git/trees/c8652542fac376b67b6233b25a5ef24c5e78c9d4?recursive=1",
+   "revizie": "c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+   "cale": "patches/00063.sql"
+  },
+  "dovezi": [
+   {
+    "proiect": "dignitas",
+    "profil": "repos",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of TeamDignitas/dignitas at commit c8652542fac376b67b6233b25a5ef24c5e78c9d4. The profiler found this repository link on the project site. The schema is spread over 84 patches; this file is one of ten read, so the table list is partial."
+ },
+ {
+  "proiect": "dignitas",
+  "url": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/lib/model/Statement.php",
+  "metoda": "repo-la-revizie",
+  "parinte": "https://github.com/TeamDignitas/dignitas/tree/c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+  "repo": {
+   "arbore": "https://api.github.com/repos/TeamDignitas/dignitas/git/trees/c8652542fac376b67b6233b25a5ef24c5e78c9d4?recursive=1",
+   "revizie": "c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+   "cale": "lib/model/Statement.php"
+  },
+  "dovezi": [
+   {
+    "proiect": "dignitas",
+    "profil": "repos",
+    "rol": "legatura-proiect-repo"
+   }
+  ],
+  "nota": "File of TeamDignitas/dignitas at commit c8652542fac376b67b6233b25a5ef24c5e78c9d4. The profiler found this repository link on the project site. The schema is spread over 84 patches; this file is one of ten read, so the table list is partial."
+ }
+]

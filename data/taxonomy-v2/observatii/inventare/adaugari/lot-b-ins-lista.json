@@ -1,0 +1,4 @@
+[{"proiect": "ins-gov2", "url": "https://ins.gov2.ro/api/datasets?limit=1", "metoda": "adaugat-explicit",
+  "parinte": "https://ins.gov2.ro/llms.txt",
+  "locate": {"pagina": "https://ins.gov2.ro/llms.txt", "text": "GET /api/datasets?q={text}"},
+  "nota": "Listing route built from the documented route template and the documented base URL; limit=1 asks for one card to show the response schema."}]

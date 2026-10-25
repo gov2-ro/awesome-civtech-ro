@@ -1,5 +1,41 @@
 # Activity
 
+## 2026-10-25 — Investigate the bounded batch of 12 entries (milestone C)
+
+**Done**
+- Investigated all 12 primary entries; no reserve entry was needed. Every primary entry now has at least one structured source: 54 explicit additions
+  (specification files in `observatii/inventare/adaugari/`): 51 new sources and three new memberships of INS records already held. The limit of ten new sources per entry holds
+  (dignitas and rezultate-vot read ten each).
+  Sources per entry: afacut 4, biografia-localitatii 4 (one dictionary table, three INS records), registrul-firmelor 1, dignitas 10, monitorul-ai 7,
+  rezultate-vot 10, votdiaspora 5, aerlive 1, calitate-aer-radauti 1, banii-nostri 3, europescope 7, despre-femicid 1.
+- Added readers for HTML tables, markdown tables, SQL, C#, Laravel migrations/resources/constants, annotated JSON in design documents and page-script names
+  (`inventory_text.py`), exact locators for each, repository files pinned to a commit and verified by git blob hash, credential masking, bounded range reads,
+  `--probe`, and the optional browser helper `render_pages.py`. 383 unit tests run (6 skipped).
+- Network (lot C): 76 direct requests (73 ok; 3 errors), 2.40 MB, made one at a time (so the six-worker and two-per-host limits were never reached), no retries.
+  Hosts: raw.githubusercontent.com 37, api.github.com 10, api.europescope.eu 7, afacut.ro 5, and 13 hosts with 1-2 each. Browser: 4 navigations (afacut 2, aerlive 2) and
+  6 data requests seen. With lots B and B2 the pass made 88 direct requests. Cache reuse: every source replay is offline.
+- Field records: 2,472 to 3,520 (+1,048); entries with structured fields: 15 to 27. These are source paths, not business variables.
+
+**Hard**
+- A page leaks a token. `desprefemicid.ro/analiza-date` embeds an Airtable personal access token in its script, with the base and table names. The token was not used and the
+  database was not read. The first cached copy was deleted; the stored copy has the token masked (`redactari: 1`). The page's field names are recorded as page usage only.
+  This is a security finding for the project owners; this pass does not contact them.
+- `aerlive.ro` answers HTTP 403 to a plain request for its two JSON endpoints, while its own page receives them. The helper keeps the browser copy of the 888-byte cities list.
+  It did not keep the 12,647-byte data response, and the two allowed navigations are used. No workaround was tried. The data fields of aerlive stay unknown.
+- `europescope.eu` links "Use the API" to `/api/docs`, which returns 404. The seven bulk files documented on `/data` work. CSV files are read as a 24 KB sample.
+- `calitate-aer-radauti`: the page's own script reads a Firebase JSON address. Its newest record is dated 2026-04-19, six months before the read. The published spreadsheet is filled by a script.
+- `rezultate-vot`: the table of the results page has five cells per row under three headers, so no types are claimed for its columns. The API resources and migrations of the repository are the evidence.
+- `votdiaspora`: the repository's last commit is from 2021-11-08, and its 8.8 MB `resources.sqlite` was not downloaded. The classes may predate the deployed site.
+- `dignitas`: the schema is split over 84 patches. Ten were read (74 are not), so the table list is partial. `Statement.php` supplies the verdict scale as code constants.
+- `afacut`: the search page says "Mod demonstrație" and requests no data at load. The structured evidence is the tables of the edition and county pages.
+
+**Decided**
+- Use exact fragments of public text, not clever parsing, as the unit of evidence: every reader reports an interval or table cell, and `--check` re-reads the body.
+  Cost of the alternative (an LLM or loose heuristics): unverifiable fields.
+- Count a page-script reader as usage evidence (`utilizat-in-cod-pagina`), not as a schema. It lets the pass say which variables a page reads without touching the data behind it.
+- Keep browser copies (`via: browser`) only for responses the page itself received, up to six per page. The helper never retries a refused address with other headers.
+- Stop at 76 requests of 150. Remaining budget is better kept than spent on reserve entries when all 12 primaries produced evidence.
+
 ## 2026-10-25 — Deepen the INS inventory and six other sources (milestone B)
 
 **Done**
@@ -10,7 +46,7 @@
 - Fetched five dataset metadata records (`?lang=en`): ACC102B (again; same body hash as on 2026-10-24, so still available), POP107D, LOC101B, TRN139A, GOS104A.
   The codes come from the projects' own pages, not from guessing: POP107D is named by `constru-pentru-cine`, `orasul-care-se-intinde` and `demoanaf`;
   LOC101B by `constru-pentru-cine` and `orasul-care-se-intinde`; TRN139A and GOS104A by `unde-se-termina-asfaltul`. Each use is a locator in the registry
-  (page hash plus exact text interval). Seven project memberships were added, with `ins-gov2` as the service that exposes all five.
+  (page hash plus exact text interval). Eleven memberships were added: seven for the projects that name the datasets and four for `ins-gov2` (the service that exposes them).
 - New `set_date` and `catalog` records (inventory_ins.py, `scripts/fixtures/ins/`): name, code, update date, categories, the indicator definition,
   methodology links, the source note verbatim, dimensions with bounded code samples (code kept beside label), declared unit options, period and
   geographic levels labelled as API-computed, level counts labelled as counted, and a missing licence stated as missing.

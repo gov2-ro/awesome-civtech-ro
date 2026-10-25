@@ -23,6 +23,481 @@
       "istoric": []
     },
     {
+      "proiect": "aerlive",
+      "url": "https://aerlive.ro/wp-json/api/v1/cities/",
+      "sursa_id": "afb67f435b33de907c41",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://aerlive.ro/",
+      "link_original": "https://aerlive.ro/wp-json/api/v1/cities/",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/aerlive-dfc63a45b0.json",
+        "url": "https://aerlive.ro/",
+        "pointer": "/cereri_date/0",
+        "valoare": "https://aerlive.ro/wp-json/api/v1/cities/"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "Requested by the home page when it loads. A plain request to the same address returns HTTP 403 for a client without the page context; the stored body is the copy the browser received (via: browser)."
+    },
+    {
+      "proiect": "afacut",
+      "url": "https://afacut.ro/apa-si-canal/",
+      "sursa_id": "5c85d57d48f6922090e1",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://afacut.ro/",
+      "link_original": "https://afacut.ro/apa-si-canal/",
+      "dovada": {
+        "url": "https://afacut.ro/",
+        "sha256": "c0e7b8474b0200e1381ec5f038c88c2d7ee7fdbad7f26efc4d46606b6802fbe7",
+        "pointer": "/links/7",
+        "fragment": "https://afacut.ro/apa-si-canal/",
+        "snapshot": "documentare/pagini/fd4fc35b1707c68b94cf4ddf.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "Edition page. The table lists the national reporting steps with the amounts requested for settlement.",
+      "citire": "html-tabele"
+    },
+    {
+      "proiect": "afacut",
+      "url": "https://afacut.ro/drumuri-si-poduri/",
+      "sursa_id": "dbdaf760728fdd2d22db",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://afacut.ro/",
+      "link_original": "https://afacut.ro/drumuri-si-poduri/",
+      "dovada": {
+        "url": "https://afacut.ro/",
+        "sha256": "c0e7b8474b0200e1381ec5f038c88c2d7ee7fdbad7f26efc4d46606b6802fbe7",
+        "pointer": "/links/6",
+        "fragment": "https://afacut.ro/drumuri-si-poduri/",
+        "snapshot": "documentare/pagini/fd4fc35b1707c68b94cf4ddf.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "Edition page. The table lists the national reporting steps with the amounts requested for settlement.",
+      "citire": "html-tabele"
+    },
+    {
+      "proiect": "afacut",
+      "url": "https://afacut.ro/drumuri-si-poduri/judete/",
+      "sursa_id": "643d4a99e578531b0165",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://afacut.ro/drumuri-si-poduri/",
+      "link_original": "https://afacut.ro/drumuri-si-poduri/judete/",
+      "dovada": {
+        "url": "https://afacut.ro/drumuri-si-poduri/",
+        "sha256": "fa6cc5320e5943ec4043eaf9cb4f41df104c6c82ec25a2cb9aea53afb9d31571",
+        "pointer": "/links/6",
+        "fragment": "https://afacut.ro/drumuri-si-poduri/judete/",
+        "snapshot": "documentare/pagini/0e1cf05b69318b593293fd56.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "County ranking of edition 01.",
+      "citire": "html-tabele"
+    },
+    {
+      "proiect": "afacut",
+      "url": "https://afacut.ro/gaze-naturale/",
+      "sursa_id": "28b7fba4fae5df74675f",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://afacut.ro/",
+      "link_original": "https://afacut.ro/gaze-naturale/",
+      "dovada": {
+        "url": "https://afacut.ro/",
+        "sha256": "c0e7b8474b0200e1381ec5f038c88c2d7ee7fdbad7f26efc4d46606b6802fbe7",
+        "pointer": "/links/8",
+        "fragment": "https://afacut.ro/gaze-naturale/",
+        "snapshot": "documentare/pagini/fd4fc35b1707c68b94cf4ddf.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "Edition page. The table lists the national reporting steps with the amounts requested for settlement.",
+      "citire": "html-tabele"
+    },
+    {
+      "proiect": "banii-nostri",
+      "url": "https://baniinostri.info/RAJASA/",
+      "sursa_id": "c2d13d8e6d9a635f507f",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://baniinostri.info/",
+      "link_original": "https://baniinostri.info/RAJASA/",
+      "dovada": {
+        "url": "https://baniinostri.info/",
+        "sha256": "d97dc30c5831cc9139ee50ed902ac205ec4cc16e4eabd6d2c27b7fa5a6257f17",
+        "pointer": "/links/5",
+        "fragment": "https://baniinostri.info/RAJASA/",
+        "snapshot": "documentare/pagini/1b625cd7bf790c123aeacf46.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "Investigation report with six tables (one annex table is filled by a script).",
+      "citire": "html-tabele"
+    },
+    {
+      "proiect": "banii-nostri",
+      "url": "https://baniinostri.info/rapoarte/",
+      "sursa_id": "1ad381ca0260b6a1f189",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://baniinostri.info/",
+      "link_original": "https://baniinostri.info/rapoarte/",
+      "dovada": {
+        "url": "https://baniinostri.info/",
+        "sha256": "d97dc30c5831cc9139ee50ed902ac205ec4cc16e4eabd6d2c27b7fa5a6257f17",
+        "pointer": "/links/4",
+        "fragment": "https://baniinostri.info/rapoarte/",
+        "snapshot": "documentare/pagini/1b625cd7bf790c123aeacf46.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "Report page. The table header is in the HTML; its rows are loaded by a script, so no row sample exists.",
+      "citire": "html-tabele"
+    },
+    {
+      "proiect": "banii-nostri",
+      "url": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+      "sursa_id": "6a87d31f8778b7d99b69",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://baniinostri.info/RAJASA/",
+      "link_original": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+      "dovada": {
+        "url": "https://baniinostri.info/RAJASA/",
+        "sha256": "067c12fcec658d0b0ebc7abe0f50a2c53b8482707b03f33d496a38811406ee0c",
+        "pointer": "/body",
+        "interval": [
+          5488,
+          5546
+        ],
+        "fragment": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+        "snapshot": "inventare/surse/c2d13d8e6d9a635f507f.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "Public REST address cited by the RAJA S.A. report as its data source. Only the first page (200 items) was read; the response says that more pages exist."
+    },
+    {
+      "proiect": "biografia-localitatii",
+      "url": "https://ins.gov2.ro/api/datasets/GOS104A?lang=en",
+      "sursa_id": "325ddbb34c8ff236a62a",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://mariuscomper.uk/biografia-localitatii/metoda/",
+      "link_original": "https://ins.gov2.ro/api/datasets/GOS104A?lang=en",
+      "dovada": {
+        "url": "https://mariuscomper.uk/biografia-localitatii/metoda/",
+        "sha256": "7d606e404a10aaba0dc11038b2de826c8db79097630ab84f7c496157167f048f",
+        "pointer": "/text",
+        "interval": [
+          11275,
+          11327
+        ],
+        "fragment": "GOS104A Infrastructură Lungimea străzilor orășenești",
+        "snapshot": "documentare/pagini/b4a88785e1ea1edcfbf6fdcb.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "The methodology table names TEMPO matrix GOS104A. The metadata is read from the ins.gov2.ro API, which is not the project's own source.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://ins.gov2.ro/llms.txt",
+          "sha256": "6cd7b82abecbe5d253804ad42ade61a4c54b8c78127603a7597f4be14f722805",
+          "pointer": "/text",
+          "interval": [
+            1232,
+            1276
+          ],
+          "fragment": "GET /api/datasets/{matrix_code}?lang={ro|en}",
+          "snapshot": "documentare/pagini/02d1c0ba202f746170be686e.json",
+          "rol": "ruta-metadate-set"
+        }
+      ]
+    },
+    {
+      "proiect": "biografia-localitatii",
+      "url": "https://ins.gov2.ro/api/datasets/LOC101B?lang=en",
+      "sursa_id": "71253baf1d937d2cb741",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://mariuscomper.uk/biografia-localitatii/metoda/",
+      "link_original": "https://ins.gov2.ro/api/datasets/LOC101B?lang=en",
+      "dovada": {
+        "url": "https://mariuscomper.uk/biografia-localitatii/metoda/",
+        "sha256": "7d606e404a10aaba0dc11038b2de826c8db79097630ab84f7c496157167f048f",
+        "pointer": "/text",
+        "interval": [
+          10538,
+          10589
+        ],
+        "fragment": "LOC101B Case Locuințe existente la sfârșitul anului",
+        "snapshot": "documentare/pagini/b4a88785e1ea1edcfbf6fdcb.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "The methodology table names TEMPO matrix LOC101B. The metadata is read from the ins.gov2.ro API, which is not the project's own source.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://ins.gov2.ro/llms.txt",
+          "sha256": "6cd7b82abecbe5d253804ad42ade61a4c54b8c78127603a7597f4be14f722805",
+          "pointer": "/text",
+          "interval": [
+            1232,
+            1276
+          ],
+          "fragment": "GET /api/datasets/{matrix_code}?lang={ro|en}",
+          "snapshot": "documentare/pagini/02d1c0ba202f746170be686e.json",
+          "rol": "ruta-metadate-set"
+        }
+      ]
+    },
+    {
+      "proiect": "biografia-localitatii",
+      "url": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+      "sursa_id": "c6284bf08f131cbfe339",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://mariuscomper.uk/biografia-localitatii/metoda/",
+      "link_original": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+      "dovada": {
+        "url": "https://mariuscomper.uk/biografia-localitatii/metoda/",
+        "sha256": "7d606e404a10aaba0dc11038b2de826c8db79097630ab84f7c496157167f048f",
+        "pointer": "/text",
+        "interval": [
+          11867,
+          11920
+        ],
+        "fragment": "POP107D Oameni Populația după domiciliu la 1 ianuarie",
+        "snapshot": "documentare/pagini/b4a88785e1ea1edcfbf6fdcb.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "The methodology table names TEMPO matrix POP107D. The metadata is read from the ins.gov2.ro API, which is not the project's own source.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://ins.gov2.ro/llms.txt",
+          "sha256": "6cd7b82abecbe5d253804ad42ade61a4c54b8c78127603a7597f4be14f722805",
+          "pointer": "/text",
+          "interval": [
+            1232,
+            1276
+          ],
+          "fragment": "GET /api/datasets/{matrix_code}?lang={ro|en}",
+          "snapshot": "documentare/pagini/02d1c0ba202f746170be686e.json",
+          "rol": "ruta-metadate-set"
+        }
+      ]
+    },
+    {
+      "proiect": "biografia-localitatii",
+      "url": "https://mariuscomper.uk/biografia-localitatii/metoda/",
+      "sursa_id": "ce7723e7f33a633cbb53",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://mariuscomper.uk/biografia-localitatii/",
+      "link_original": "https://mariuscomper.uk/biografia-localitatii/metoda/",
+      "dovada": {
+        "url": "https://mariuscomper.uk/biografia-localitatii/",
+        "sha256": "3b3618a4d64c0725a2169b64e1c2f37fce0d3bc84d012f4eaf43158918851aa3",
+        "pointer": "/links/2",
+        "fragment": "https://mariuscomper.uk/biografia-localitatii/metoda/",
+        "snapshot": "documentare/pagini/3abf846ee656d8dceec1aecd.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "The second table of the methodology page lists the INS TEMPO matrices that the project uses, with measure, years and unit.",
+      "citire": {
+        "tip": "html-tabele",
+        "tabele": [
+          2
+        ]
+      }
+    },
+    {
+      "proiect": "calitate-aer-radauti",
+      "url": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+      "sursa_id": "6d053b6f309a3008209f",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://calitateaer.radautiulcivic.ro/masuratori/",
+      "link_original": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+      "dovada": {
+        "url": "https://calitateaer.radautiulcivic.ro/masuratori/",
+        "sha256": "854b4af97f7eed9e254d94bc2b9f5e7851a3d053feb8a4d9a1c5fc25f47fc432",
+        "pointer": "/body",
+        "interval": [
+          43005,
+          43060
+        ],
+        "fragment": "https://checkup-7b62e.firebaseio.com/meteo_radauti.json",
+        "snapshot": "inventare/surse/53f7132b150d1f7d8e4a.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "The page requests this address in its own inline script. The response is the last 24 hours of readings that every visitor of the page receives.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://calitateaer.radautiulcivic.ro/masuratori/",
+          "sha256": "854b4af97f7eed9e254d94bc2b9f5e7851a3d053feb8a4d9a1c5fc25f47fc432",
+          "pointer": "/body",
+          "interval": [
+            33197,
+            33224
+          ],
+          "fragment": "Concentrația de CO2, în ppm",
+          "snapshot": "inventare/surse/53f7132b150d1f7d8e4a.json",
+          "rol": "unitate-declarata"
+        },
+        {
+          "url": "https://calitateaer.radautiulcivic.ro/masuratori/",
+          "sha256": "854b4af97f7eed9e254d94bc2b9f5e7851a3d053feb8a4d9a1c5fc25f47fc432",
+          "pointer": "/body",
+          "interval": [
+            33263,
+            33297
+          ],
+          "fragment": "Concentrația de PM2.5, în &mu;g/m3",
+          "snapshot": "inventare/surse/53f7132b150d1f7d8e4a.json",
+          "rol": "unitate-declarata"
+        },
+        {
+          "url": "https://calitateaer.radautiulcivic.ro/masuratori/",
+          "sha256": "854b4af97f7eed9e254d94bc2b9f5e7851a3d053feb8a4d9a1c5fc25f47fc432",
+          "pointer": "/body",
+          "interval": [
+            33378,
+            33403
+          ],
+          "fragment": "Umiditatea Relativă, în %",
+          "snapshot": "inventare/surse/53f7132b150d1f7d8e4a.json",
+          "rol": "unitate-declarata"
+        },
+        {
+          "url": "https://calitateaer.radautiulcivic.ro/masuratori/",
+          "sha256": "854b4af97f7eed9e254d94bc2b9f5e7851a3d053feb8a4d9a1c5fc25f47fc432",
+          "pointer": "/body",
+          "interval": [
+            33424,
+            33447
+          ],
+          "fragment": "Temperatura, în &#176;C",
+          "snapshot": "inventare/surse/53f7132b150d1f7d8e4a.json",
+          "rol": "unitate-declarata"
+        }
+      ]
+    },
+    {
       "proiect": "codurbanism",
       "url": "https://mariuscomper.uk/codurbanism/data/en/all-comparisons.json",
       "sursa_id": "ab25235e392ffd6aea46",
@@ -1021,6 +1496,754 @@
       ]
     },
     {
+      "proiect": "despre-femicid",
+      "url": "https://desprefemicid.ro/analiza-date",
+      "sursa_id": "843e8168b17d1e8f72de",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://desprefemicid.ro/",
+      "link_original": "https://desprefemicid.ro/analiza-date",
+      "dovada": {
+        "url": "https://desprefemicid.ro/",
+        "sha256": "5dff3134bbae9bb29bb2dd603e6a54d4dde6df88b660d1e1de7890012b1672c2",
+        "pointer": "/links/2",
+        "fragment": "https://desprefemicid.ro/analiza-date",
+        "snapshot": "documentare/pagini/f90f589c58393d24a9e53315.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "The page script reads these names from the records of a table in a third-party database service. The page script contains an access token; the stored body has it masked and the token was not used. The database was not read.",
+      "citire": {
+        "tip": "js-acces",
+        "obiecte": [
+          "fields"
+        ]
+      }
+    },
+    {
+      "proiect": "dignitas",
+      "url": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/lib/model/Statement.php",
+      "sursa_id": "4d4ca333750fbf8632ae",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/TeamDignitas/dignitas/tree/c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+      "link_original": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/lib/model/Statement.php",
+      "dovada": {
+        "url": "https://api.github.com/repos/TeamDignitas/dignitas/git/trees/c8652542fac376b67b6233b25a5ef24c5e78c9d4?recursive=1",
+        "revizie": "c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+        "cale": "lib/model/Statement.php",
+        "blob_sha": "4466678cc67bab3836e429afac8082cd6e0f6987",
+        "pointer": "/tree/99",
+        "sha256": "a54f5017fce904859870dbc907d3df7788a5861b80b04078dab6665afd143e21",
+        "snapshot": "inventare/surse/b492c224ddfa1a49fd86.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of TeamDignitas/dignitas at commit c8652542fac376b67b6233b25a5ef24c5e78c9d4. The profiler found this repository link on the project site. The schema is spread over 84 patches; this file is one of ten read, so the table list is partial.",
+      "dovezi_suplimentare": [
+        {
+          "tip": "profil",
+          "snapshot": "profil.csv",
+          "slug": "dignitas",
+          "coloana": "repos",
+          "valoare": "https://github.com/TeamDignitas/dignitas",
+          "pointer": "/profil/dignitas/repos",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "dignitas",
+      "url": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00001.sql",
+      "sursa_id": "e33ae6fd6cd928894492",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/TeamDignitas/dignitas/tree/c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+      "link_original": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00001.sql",
+      "dovada": {
+        "url": "https://api.github.com/repos/TeamDignitas/dignitas/git/trees/c8652542fac376b67b6233b25a5ef24c5e78c9d4?recursive=1",
+        "revizie": "c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+        "cale": "patches/00001.sql",
+        "blob_sha": "0a86ea03e63b991067bd479fba7e306c723f7a61",
+        "pointer": "/tree/362",
+        "sha256": "a54f5017fce904859870dbc907d3df7788a5861b80b04078dab6665afd143e21",
+        "snapshot": "inventare/surse/b492c224ddfa1a49fd86.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of TeamDignitas/dignitas at commit c8652542fac376b67b6233b25a5ef24c5e78c9d4. The profiler found this repository link on the project site. The schema is spread over 84 patches; this file is one of ten read, so the table list is partial.",
+      "dovezi_suplimentare": [
+        {
+          "tip": "profil",
+          "snapshot": "profil.csv",
+          "slug": "dignitas",
+          "coloana": "repos",
+          "valoare": "https://github.com/TeamDignitas/dignitas",
+          "pointer": "/profil/dignitas/repos",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "dignitas",
+      "url": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00002.sql",
+      "sursa_id": "271d2065985ab8fcac01",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/TeamDignitas/dignitas/tree/c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+      "link_original": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00002.sql",
+      "dovada": {
+        "url": "https://api.github.com/repos/TeamDignitas/dignitas/git/trees/c8652542fac376b67b6233b25a5ef24c5e78c9d4?recursive=1",
+        "revizie": "c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+        "cale": "patches/00002.sql",
+        "blob_sha": "29eebec8224bab14f40dd96a62154f80d504ce7b",
+        "pointer": "/tree/363",
+        "sha256": "a54f5017fce904859870dbc907d3df7788a5861b80b04078dab6665afd143e21",
+        "snapshot": "inventare/surse/b492c224ddfa1a49fd86.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of TeamDignitas/dignitas at commit c8652542fac376b67b6233b25a5ef24c5e78c9d4. The profiler found this repository link on the project site. The schema is spread over 84 patches; this file is one of ten read, so the table list is partial.",
+      "dovezi_suplimentare": [
+        {
+          "tip": "profil",
+          "snapshot": "profil.csv",
+          "slug": "dignitas",
+          "coloana": "repos",
+          "valoare": "https://github.com/TeamDignitas/dignitas",
+          "pointer": "/profil/dignitas/repos",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "dignitas",
+      "url": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00004.sql",
+      "sursa_id": "ba2b46f3867ce082f768",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/TeamDignitas/dignitas/tree/c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+      "link_original": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00004.sql",
+      "dovada": {
+        "url": "https://api.github.com/repos/TeamDignitas/dignitas/git/trees/c8652542fac376b67b6233b25a5ef24c5e78c9d4?recursive=1",
+        "revizie": "c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+        "cale": "patches/00004.sql",
+        "blob_sha": "0c6c3f5babb6d8c15d3e1510699154abaa4c5dd1",
+        "pointer": "/tree/365",
+        "sha256": "a54f5017fce904859870dbc907d3df7788a5861b80b04078dab6665afd143e21",
+        "snapshot": "inventare/surse/b492c224ddfa1a49fd86.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of TeamDignitas/dignitas at commit c8652542fac376b67b6233b25a5ef24c5e78c9d4. The profiler found this repository link on the project site. The schema is spread over 84 patches; this file is one of ten read, so the table list is partial.",
+      "dovezi_suplimentare": [
+        {
+          "tip": "profil",
+          "snapshot": "profil.csv",
+          "slug": "dignitas",
+          "coloana": "repos",
+          "valoare": "https://github.com/TeamDignitas/dignitas",
+          "pointer": "/profil/dignitas/repos",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "dignitas",
+      "url": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00006.sql",
+      "sursa_id": "bfdee8c531c34fad3438",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/TeamDignitas/dignitas/tree/c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+      "link_original": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00006.sql",
+      "dovada": {
+        "url": "https://api.github.com/repos/TeamDignitas/dignitas/git/trees/c8652542fac376b67b6233b25a5ef24c5e78c9d4?recursive=1",
+        "revizie": "c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+        "cale": "patches/00006.sql",
+        "blob_sha": "56565065e8dcf0817da82cc72fdd00f319cb38e1",
+        "pointer": "/tree/367",
+        "sha256": "a54f5017fce904859870dbc907d3df7788a5861b80b04078dab6665afd143e21",
+        "snapshot": "inventare/surse/b492c224ddfa1a49fd86.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of TeamDignitas/dignitas at commit c8652542fac376b67b6233b25a5ef24c5e78c9d4. The profiler found this repository link on the project site. The schema is spread over 84 patches; this file is one of ten read, so the table list is partial.",
+      "dovezi_suplimentare": [
+        {
+          "tip": "profil",
+          "snapshot": "profil.csv",
+          "slug": "dignitas",
+          "coloana": "repos",
+          "valoare": "https://github.com/TeamDignitas/dignitas",
+          "pointer": "/profil/dignitas/repos",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "dignitas",
+      "url": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00010.sql",
+      "sursa_id": "1e82daf68249f68bf5c0",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/TeamDignitas/dignitas/tree/c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+      "link_original": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00010.sql",
+      "dovada": {
+        "url": "https://api.github.com/repos/TeamDignitas/dignitas/git/trees/c8652542fac376b67b6233b25a5ef24c5e78c9d4?recursive=1",
+        "revizie": "c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+        "cale": "patches/00010.sql",
+        "blob_sha": "7a2bb23f00a5ecb5fec3b02013970bbfb9a7ca18",
+        "pointer": "/tree/371",
+        "sha256": "a54f5017fce904859870dbc907d3df7788a5861b80b04078dab6665afd143e21",
+        "snapshot": "inventare/surse/b492c224ddfa1a49fd86.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of TeamDignitas/dignitas at commit c8652542fac376b67b6233b25a5ef24c5e78c9d4. The profiler found this repository link on the project site. The schema is spread over 84 patches; this file is one of ten read, so the table list is partial.",
+      "dovezi_suplimentare": [
+        {
+          "tip": "profil",
+          "snapshot": "profil.csv",
+          "slug": "dignitas",
+          "coloana": "repos",
+          "valoare": "https://github.com/TeamDignitas/dignitas",
+          "pointer": "/profil/dignitas/repos",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "dignitas",
+      "url": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00012.sql",
+      "sursa_id": "4637b33ba136ffcde774",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/TeamDignitas/dignitas/tree/c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+      "link_original": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00012.sql",
+      "dovada": {
+        "url": "https://api.github.com/repos/TeamDignitas/dignitas/git/trees/c8652542fac376b67b6233b25a5ef24c5e78c9d4?recursive=1",
+        "revizie": "c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+        "cale": "patches/00012.sql",
+        "blob_sha": "9cdff905c95b4459a21df4f19d19664e790b510a",
+        "pointer": "/tree/373",
+        "sha256": "a54f5017fce904859870dbc907d3df7788a5861b80b04078dab6665afd143e21",
+        "snapshot": "inventare/surse/b492c224ddfa1a49fd86.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of TeamDignitas/dignitas at commit c8652542fac376b67b6233b25a5ef24c5e78c9d4. The profiler found this repository link on the project site. The schema is spread over 84 patches; this file is one of ten read, so the table list is partial.",
+      "dovezi_suplimentare": [
+        {
+          "tip": "profil",
+          "snapshot": "profil.csv",
+          "slug": "dignitas",
+          "coloana": "repos",
+          "valoare": "https://github.com/TeamDignitas/dignitas",
+          "pointer": "/profil/dignitas/repos",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "dignitas",
+      "url": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00020.sql",
+      "sursa_id": "67902826a3027b7dfcf2",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/TeamDignitas/dignitas/tree/c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+      "link_original": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00020.sql",
+      "dovada": {
+        "url": "https://api.github.com/repos/TeamDignitas/dignitas/git/trees/c8652542fac376b67b6233b25a5ef24c5e78c9d4?recursive=1",
+        "revizie": "c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+        "cale": "patches/00020.sql",
+        "blob_sha": "6e0916911632a227baae74822ca50431de10b77d",
+        "pointer": "/tree/381",
+        "sha256": "a54f5017fce904859870dbc907d3df7788a5861b80b04078dab6665afd143e21",
+        "snapshot": "inventare/surse/b492c224ddfa1a49fd86.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of TeamDignitas/dignitas at commit c8652542fac376b67b6233b25a5ef24c5e78c9d4. The profiler found this repository link on the project site. The schema is spread over 84 patches; this file is one of ten read, so the table list is partial.",
+      "dovezi_suplimentare": [
+        {
+          "tip": "profil",
+          "snapshot": "profil.csv",
+          "slug": "dignitas",
+          "coloana": "repos",
+          "valoare": "https://github.com/TeamDignitas/dignitas",
+          "pointer": "/profil/dignitas/repos",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "dignitas",
+      "url": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00046.sql",
+      "sursa_id": "a61eee3f7a6d4233de41",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/TeamDignitas/dignitas/tree/c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+      "link_original": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00046.sql",
+      "dovada": {
+        "url": "https://api.github.com/repos/TeamDignitas/dignitas/git/trees/c8652542fac376b67b6233b25a5ef24c5e78c9d4?recursive=1",
+        "revizie": "c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+        "cale": "patches/00046.sql",
+        "blob_sha": "3c11194e8b2973a7a71db4de4998c5bffb87ee43",
+        "pointer": "/tree/407",
+        "sha256": "a54f5017fce904859870dbc907d3df7788a5861b80b04078dab6665afd143e21",
+        "snapshot": "inventare/surse/b492c224ddfa1a49fd86.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of TeamDignitas/dignitas at commit c8652542fac376b67b6233b25a5ef24c5e78c9d4. The profiler found this repository link on the project site. The schema is spread over 84 patches; this file is one of ten read, so the table list is partial.",
+      "dovezi_suplimentare": [
+        {
+          "tip": "profil",
+          "snapshot": "profil.csv",
+          "slug": "dignitas",
+          "coloana": "repos",
+          "valoare": "https://github.com/TeamDignitas/dignitas",
+          "pointer": "/profil/dignitas/repos",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "dignitas",
+      "url": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00063.sql",
+      "sursa_id": "4b70e0cfccccde8a1fd0",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/TeamDignitas/dignitas/tree/c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+      "link_original": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/patches/00063.sql",
+      "dovada": {
+        "url": "https://api.github.com/repos/TeamDignitas/dignitas/git/trees/c8652542fac376b67b6233b25a5ef24c5e78c9d4?recursive=1",
+        "revizie": "c8652542fac376b67b6233b25a5ef24c5e78c9d4",
+        "cale": "patches/00063.sql",
+        "blob_sha": "05f9595219e481518e31a7fbe022a7515628c4ce",
+        "pointer": "/tree/424",
+        "sha256": "a54f5017fce904859870dbc907d3df7788a5861b80b04078dab6665afd143e21",
+        "snapshot": "inventare/surse/b492c224ddfa1a49fd86.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of TeamDignitas/dignitas at commit c8652542fac376b67b6233b25a5ef24c5e78c9d4. The profiler found this repository link on the project site. The schema is spread over 84 patches; this file is one of ten read, so the table list is partial.",
+      "dovezi_suplimentare": [
+        {
+          "tip": "profil",
+          "snapshot": "profil.csv",
+          "slug": "dignitas",
+          "coloana": "repos",
+          "valoare": "https://github.com/TeamDignitas/dignitas",
+          "pointer": "/profil/dignitas/repos",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "europescope",
+      "url": "https://api.europescope.eu/v1/countries.csv",
+      "sursa_id": "350fa388a8f17625a7f9",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://www.europescope.eu/data",
+      "link_original": "https://api.europescope.eu/v1/countries.csv",
+      "dovada": {
+        "url": "https://www.europescope.eu/data",
+        "sha256": "986e4963d57e8895b793a314bb2107ef93ed39832a03d67057739d73064030ef",
+        "pointer": "/body",
+        "interval": [
+          10538,
+          10581
+        ],
+        "fragment": "https://api.europescope.eu/v1/countries.csv",
+        "snapshot": "inventare/surse/5c0cf6e7acca6c2b1de5.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 1,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "Documented bulk download. CSV files are read as a bounded sample (header and the first complete lines).",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://www.europescope.eu/data",
+          "sha256": "986e4963d57e8895b793a314bb2107ef93ed39832a03d67057739d73064030ef",
+          "pointer": "/body",
+          "interval": [
+            10452,
+            10519
+          ],
+          "fragment": "Per-country delegation cohesion, average attendance and MEP counts.",
+          "snapshot": "inventare/surse/5c0cf6e7acca6c2b1de5.json",
+          "rol": "descriere-fisier"
+        }
+      ]
+    },
+    {
+      "proiect": "europescope",
+      "url": "https://api.europescope.eu/v1/groups.csv",
+      "sursa_id": "f8a4eb99d4e80b1a68ab",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://www.europescope.eu/data",
+      "link_original": "https://api.europescope.eu/v1/groups.csv",
+      "dovada": {
+        "url": "https://www.europescope.eu/data",
+        "sha256": "986e4963d57e8895b793a314bb2107ef93ed39832a03d67057739d73064030ef",
+        "pointer": "/body",
+        "interval": [
+          11094,
+          11134
+        ],
+        "fragment": "https://api.europescope.eu/v1/groups.csv",
+        "snapshot": "inventare/surse/5c0cf6e7acca6c2b1de5.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 1,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "Documented bulk download. CSV files are read as a bounded sample (header and the first complete lines).",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://www.europescope.eu/data",
+          "sha256": "986e4963d57e8895b793a314bb2107ef93ed39832a03d67057739d73064030ef",
+          "pointer": "/body",
+          "interval": [
+            11021,
+            11075
+          ],
+          "fragment": "Per-group cohesion, rebel rate and average attendance.",
+          "snapshot": "inventare/surse/5c0cf6e7acca6c2b1de5.json",
+          "rol": "descriere-fisier"
+        }
+      ]
+    },
+    {
+      "proiect": "europescope",
+      "url": "https://api.europescope.eu/v1/members.csv",
+      "sursa_id": "7663df08639c70d5147b",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://www.europescope.eu/data",
+      "link_original": "https://api.europescope.eu/v1/members.csv",
+      "dovada": {
+        "url": "https://www.europescope.eu/data",
+        "sha256": "986e4963d57e8895b793a314bb2107ef93ed39832a03d67057739d73064030ef",
+        "pointer": "/body",
+        "interval": [
+          8706,
+          8747
+        ],
+        "fragment": "https://api.europescope.eu/v1/members.csv",
+        "snapshot": "inventare/surse/5c0cf6e7acca6c2b1de5.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 1,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "Documented bulk download. CSV files are read as a bounded sample (header and the first complete lines).",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://www.europescope.eu/data",
+          "sha256": "986e4963d57e8895b793a314bb2107ef93ed39832a03d67057739d73064030ef",
+          "pointer": "/body",
+          "interval": [
+            8613,
+            8687
+          ],
+          "fragment": "Every MEP with their latest attendance, loyalty and rebel-vote statistics.",
+          "snapshot": "inventare/surse/5c0cf6e7acca6c2b1de5.json",
+          "rol": "descriere-fisier"
+        }
+      ]
+    },
+    {
+      "proiect": "europescope",
+      "url": "https://api.europescope.eu/v1/methodology.json",
+      "sursa_id": "8ce4116df801689d525f",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://www.europescope.eu/data",
+      "link_original": "https://api.europescope.eu/v1/methodology.json",
+      "dovada": {
+        "url": "https://www.europescope.eu/data",
+        "sha256": "986e4963d57e8895b793a314bb2107ef93ed39832a03d67057739d73064030ef",
+        "pointer": "/body",
+        "interval": [
+          12240,
+          12286
+        ],
+        "fragment": "https://api.europescope.eu/v1/methodology.json",
+        "snapshot": "inventare/surse/5c0cf6e7acca6c2b1de5.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "Documented bulk download.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://www.europescope.eu/data",
+          "sha256": "986e4963d57e8895b793a314bb2107ef93ed39832a03d67057739d73064030ef",
+          "pointer": "/body",
+          "interval": [
+            12151,
+            12221
+          ],
+          "fragment": "Full registry of calculation methodologies, formulas, and limitations.",
+          "snapshot": "inventare/surse/5c0cf6e7acca6c2b1de5.json",
+          "rol": "descriere-fisier"
+        }
+      ]
+    },
+    {
+      "proiect": "europescope",
+      "url": "https://api.europescope.eu/v1/positions.csv",
+      "sursa_id": "23331c531d00addbd38f",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://www.europescope.eu/data",
+      "link_original": "https://api.europescope.eu/v1/positions.csv",
+      "dovada": {
+        "url": "https://www.europescope.eu/data",
+        "sha256": "986e4963d57e8895b793a314bb2107ef93ed39832a03d67057739d73064030ef",
+        "pointer": "/body",
+        "interval": [
+          9967,
+          10010
+        ],
+        "fragment": "https://api.europescope.eu/v1/positions.csv",
+        "snapshot": "inventare/surse/5c0cf6e7acca6c2b1de5.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 1,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "Documented bulk download. CSV files are read as a bounded sample (header and the first complete lines).",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://www.europescope.eu/data",
+          "sha256": "986e4963d57e8895b793a314bb2107ef93ed39832a03d67057739d73064030ef",
+          "pointer": "/body",
+          "interval": [
+            9824,
+            9948
+          ],
+          "fragment": "Individual MEP positions (For/Against/Abstain/Absent). Streamed; filter by vote, MEP, country or date to bound the download.",
+          "snapshot": "inventare/surse/5c0cf6e7acca6c2b1de5.json",
+          "rol": "descriere-fisier"
+        }
+      ]
+    },
+    {
+      "proiect": "europescope",
+      "url": "https://api.europescope.eu/v1/topic-votes.csv",
+      "sursa_id": "d22bea70d00ee18147cb",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://www.europescope.eu/data",
+      "link_original": "https://api.europescope.eu/v1/topic-votes.csv",
+      "dovada": {
+        "url": "https://www.europescope.eu/data",
+        "sha256": "986e4963d57e8895b793a314bb2107ef93ed39832a03d67057739d73064030ef",
+        "pointer": "/body",
+        "interval": [
+          11667,
+          11712
+        ],
+        "fragment": "https://api.europescope.eu/v1/topic-votes.csv",
+        "snapshot": "inventare/surse/5c0cf6e7acca6c2b1de5.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 1,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "Documented bulk download. CSV files are read as a bounded sample (header and the first complete lines).",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://www.europescope.eu/data",
+          "sha256": "986e4963d57e8895b793a314bb2107ef93ed39832a03d67057739d73064030ef",
+          "pointer": "/body",
+          "interval": [
+            11579,
+            11648
+          ],
+          "fragment": "One row per vote–topic pair, with confidence and methodology version.",
+          "snapshot": "inventare/surse/5c0cf6e7acca6c2b1de5.json",
+          "rol": "descriere-fisier"
+        }
+      ]
+    },
+    {
+      "proiect": "europescope",
+      "url": "https://api.europescope.eu/v1/votes.csv",
+      "sursa_id": "591982893872578f252d",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://www.europescope.eu/data",
+      "link_original": "https://api.europescope.eu/v1/votes.csv",
+      "dovada": {
+        "url": "https://www.europescope.eu/data",
+        "sha256": "986e4963d57e8895b793a314bb2107ef93ed39832a03d67057739d73064030ef",
+        "pointer": "/body",
+        "interval": [
+          9266,
+          9305
+        ],
+        "fragment": "https://api.europescope.eu/v1/votes.csv",
+        "snapshot": "inventare/surse/5c0cf6e7acca6c2b1de5.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 1,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "Documented bulk download. CSV files are read as a bounded sample (header and the first complete lines).",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://www.europescope.eu/data",
+          "sha256": "986e4963d57e8895b793a314bb2107ef93ed39832a03d67057739d73064030ef",
+          "pointer": "/body",
+          "interval": [
+            9183,
+            9247
+          ],
+          "fragment": "Roll-call votes with results, importance scores and source URLs.",
+          "snapshot": "inventare/surse/5c0cf6e7acca6c2b1de5.json",
+          "rol": "descriere-fisier"
+        }
+      ]
+    },
+    {
       "proiect": "ins-gov2",
       "url": "https://ins.gov2.ro/api/datasets/ACC102B?lang=en",
       "sursa_id": "a658c6e1fd331dc5bac0",
@@ -1308,6 +2531,282 @@
       "istoric": []
     },
     {
+      "proiect": "monitorul-ai",
+      "url": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/docs/discourse-analysis-schema.md",
+      "sursa_id": "e716773e9e8e394be992",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/ciocan/monitorul-ii/tree/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50",
+      "link_original": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/docs/discourse-analysis-schema.md",
+      "dovada": {
+        "url": "https://api.github.com/repos/ciocan/monitorul-ii/git/trees/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50?recursive=1",
+        "revizie": "4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50",
+        "cale": "docs/discourse-analysis-schema.md",
+        "blob_sha": "7f2377c1f005bbb23c8b677a4ee5150830c8cdfc",
+        "pointer": "/tree/1346",
+        "sha256": "3970104b438c3ebc954d5936a2d8eed0a213986f7bff3ba17f422b31f268de8a",
+        "snapshot": "inventare/surse/f83b3457f0a61dbd9fe5.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of ciocan/monitorul-ii at commit 4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50. The pipeline repository is linked from the project home page. The design documents describe the record shapes; the JSON Schemas describe the discourse-analysis outputs, not the source transcripts.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://monitorul.ai/",
+          "sha256": "dd9c2a8020dd8026ab5e5c233c4f29bf1d6d2ba282ef253f89986a3a44cef839",
+          "pointer": "/links/22",
+          "fragment": "https://github.com/ciocan/monitorul-ii",
+          "snapshot": "documentare/pagini/24844a656be3fc2514754de9.json",
+          "rol": "legatura-proiect-repo"
+        }
+      ],
+      "citire": "json-comentat"
+    },
+    {
+      "proiect": "monitorul-ai",
+      "url": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/docs/extraction-schema.md",
+      "sursa_id": "502cabda4e1af59cced4",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/ciocan/monitorul-ii/tree/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50",
+      "link_original": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/docs/extraction-schema.md",
+      "dovada": {
+        "url": "https://api.github.com/repos/ciocan/monitorul-ii/git/trees/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50?recursive=1",
+        "revizie": "4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50",
+        "cale": "docs/extraction-schema.md",
+        "blob_sha": "573888e7ccf73381dd1a25d1e9b63b36f4a4fdf0",
+        "pointer": "/tree/1353",
+        "sha256": "3970104b438c3ebc954d5936a2d8eed0a213986f7bff3ba17f422b31f268de8a",
+        "snapshot": "inventare/surse/f83b3457f0a61dbd9fe5.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of ciocan/monitorul-ii at commit 4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50. The pipeline repository is linked from the project home page. The design documents describe the record shapes; the JSON Schemas describe the discourse-analysis outputs, not the source transcripts.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://monitorul.ai/",
+          "sha256": "dd9c2a8020dd8026ab5e5c233c4f29bf1d6d2ba282ef253f89986a3a44cef839",
+          "pointer": "/links/22",
+          "fragment": "https://github.com/ciocan/monitorul-ii",
+          "snapshot": "documentare/pagini/24844a656be3fc2514754de9.json",
+          "rol": "legatura-proiect-repo"
+        }
+      ],
+      "citire": "json-comentat"
+    },
+    {
+      "proiect": "monitorul-ai",
+      "url": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/prompts/dqi_v1.schema.json",
+      "sursa_id": "3e6587bed11e412102ec",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/ciocan/monitorul-ii/tree/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50",
+      "link_original": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/prompts/dqi_v1.schema.json",
+      "dovada": {
+        "url": "https://api.github.com/repos/ciocan/monitorul-ii/git/trees/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50?recursive=1",
+        "revizie": "4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50",
+        "cale": "prompts/dqi_v1.schema.json",
+        "blob_sha": "db7f74390740fcc785b526a19034b0d1ba81f117",
+        "pointer": "/tree/1362",
+        "sha256": "3970104b438c3ebc954d5936a2d8eed0a213986f7bff3ba17f422b31f268de8a",
+        "snapshot": "inventare/surse/f83b3457f0a61dbd9fe5.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of ciocan/monitorul-ii at commit 4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50. The pipeline repository is linked from the project home page. The design documents describe the record shapes; the JSON Schemas describe the discourse-analysis outputs, not the source transcripts.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://monitorul.ai/",
+          "sha256": "dd9c2a8020dd8026ab5e5c233c4f29bf1d6d2ba282ef253f89986a3a44cef839",
+          "pointer": "/links/22",
+          "fragment": "https://github.com/ciocan/monitorul-ii",
+          "snapshot": "documentare/pagini/24844a656be3fc2514754de9.json",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "monitorul-ai",
+      "url": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/prompts/hawkins_populism_v1.schema.json",
+      "sursa_id": "41ac27ff63999b8aff53",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/ciocan/monitorul-ii/tree/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50",
+      "link_original": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/prompts/hawkins_populism_v1.schema.json",
+      "dovada": {
+        "url": "https://api.github.com/repos/ciocan/monitorul-ii/git/trees/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50?recursive=1",
+        "revizie": "4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50",
+        "cale": "prompts/hawkins_populism_v1.schema.json",
+        "blob_sha": "faa43656e9b4e5b556b9a8002757bd876b4d3251",
+        "pointer": "/tree/1364",
+        "sha256": "3970104b438c3ebc954d5936a2d8eed0a213986f7bff3ba17f422b31f268de8a",
+        "snapshot": "inventare/surse/f83b3457f0a61dbd9fe5.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of ciocan/monitorul-ii at commit 4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50. The pipeline repository is linked from the project home page. The design documents describe the record shapes; the JSON Schemas describe the discourse-analysis outputs, not the source transcripts.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://monitorul.ai/",
+          "sha256": "dd9c2a8020dd8026ab5e5c233c4f29bf1d6d2ba282ef253f89986a3a44cef839",
+          "pointer": "/links/22",
+          "fragment": "https://github.com/ciocan/monitorul-ii",
+          "snapshot": "documentare/pagini/24844a656be3fc2514754de9.json",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "monitorul-ai",
+      "url": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/prompts/voice_classifier_v1.schema.json",
+      "sursa_id": "e784f2c061daa291dbfd",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/ciocan/monitorul-ii/tree/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50",
+      "link_original": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/prompts/voice_classifier_v1.schema.json",
+      "dovada": {
+        "url": "https://api.github.com/repos/ciocan/monitorul-ii/git/trees/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50?recursive=1",
+        "revizie": "4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50",
+        "cale": "prompts/voice_classifier_v1.schema.json",
+        "blob_sha": "66bd28b044cdeed47ad6be117ee1a4bf6848010d",
+        "pointer": "/tree/1366",
+        "sha256": "3970104b438c3ebc954d5936a2d8eed0a213986f7bff3ba17f422b31f268de8a",
+        "snapshot": "inventare/surse/f83b3457f0a61dbd9fe5.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of ciocan/monitorul-ii at commit 4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50. The pipeline repository is linked from the project home page. The design documents describe the record shapes; the JSON Schemas describe the discourse-analysis outputs, not the source transcripts.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://monitorul.ai/",
+          "sha256": "dd9c2a8020dd8026ab5e5c233c4f29bf1d6d2ba282ef253f89986a3a44cef839",
+          "pointer": "/links/22",
+          "fragment": "https://github.com/ciocan/monitorul-ii",
+          "snapshot": "documentare/pagini/24844a656be3fc2514754de9.json",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "monitorul-ai",
+      "url": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/prompts/vparty_antipluralism_v2.schema.json",
+      "sursa_id": "8e745b681584788e8678",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/ciocan/monitorul-ii/tree/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50",
+      "link_original": "https://raw.githubusercontent.com/ciocan/monitorul-ii/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50/prompts/vparty_antipluralism_v2.schema.json",
+      "dovada": {
+        "url": "https://api.github.com/repos/ciocan/monitorul-ii/git/trees/4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50?recursive=1",
+        "revizie": "4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50",
+        "cale": "prompts/vparty_antipluralism_v2.schema.json",
+        "blob_sha": "bc32e4af020278d64651b84f9d2cb3a2455b7639",
+        "pointer": "/tree/1370",
+        "sha256": "3970104b438c3ebc954d5936a2d8eed0a213986f7bff3ba17f422b31f268de8a",
+        "snapshot": "inventare/surse/f83b3457f0a61dbd9fe5.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of ciocan/monitorul-ii at commit 4bc4423a8b8f0201a5be0ce3bf0fbc0cc7e88e50. The pipeline repository is linked from the project home page. The design documents describe the record shapes; the JSON Schemas describe the discourse-analysis outputs, not the source transcripts.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://monitorul.ai/",
+          "sha256": "dd9c2a8020dd8026ab5e5c233c4f29bf1d6d2ba282ef253f89986a3a44cef839",
+          "pointer": "/links/22",
+          "fragment": "https://github.com/ciocan/monitorul-ii",
+          "snapshot": "documentare/pagini/24844a656be3fc2514754de9.json",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "monitorul-ai",
+      "url": "https://raw.githubusercontent.com/ciocan/monitorul.ai/cc6b1f2e1ffe44c0bfeba05e3f8ca560288a5673/docs/mcp.md",
+      "sursa_id": "bfb70c5d5c820d146605",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/ciocan/monitorul.ai/tree/cc6b1f2e1ffe44c0bfeba05e3f8ca560288a5673",
+      "link_original": "https://raw.githubusercontent.com/ciocan/monitorul.ai/cc6b1f2e1ffe44c0bfeba05e3f8ca560288a5673/docs/mcp.md",
+      "dovada": {
+        "url": "https://api.github.com/repos/ciocan/monitorul.ai/git/trees/cc6b1f2e1ffe44c0bfeba05e3f8ca560288a5673?recursive=1",
+        "revizie": "cc6b1f2e1ffe44c0bfeba05e3f8ca560288a5673",
+        "cale": "docs/mcp.md",
+        "blob_sha": "91ed2fef352cd622c1ae3d4053e8055e0df05fc0",
+        "pointer": "/tree/25",
+        "sha256": "a2a604c58bc1d1013c3596347ff8f1e8045fb280e102139ea5c539f3bb610046",
+        "snapshot": "inventare/surse/500995a725bfdc367dcf.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of ciocan/monitorul.ai at commit cc6b1f2e1ffe44c0bfeba05e3f8ca560288a5673. The MCP page links this file (at the main branch); the commit pins the revision read.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://monitorul.ai/mcp",
+          "sha256": "d527cfb820af8068ed10e0717e8c0451a667b8a4e84840f3d0fc9c374c6e2496",
+          "pointer": "/links/20",
+          "fragment": "https://github.com/ciocan/monitorul.ai/blob/main/docs/mcp.md",
+          "snapshot": "documentare/pagini/691d9c3c62d80d239c8bde94.json",
+          "rol": "legatura-proiect-repo"
+        }
+      ],
+      "citire": "markdown"
+    },
+    {
       "proiect": "orasul-care-se-intinde",
       "url": "https://ins.gov2.ro/api/datasets/LOC101B?lang=en",
       "sursa_id": "71253baf1d937d2cb741",
@@ -1456,6 +2955,428 @@
       "prioritate": 2,
       "retras": null,
       "istoric": []
+    },
+    {
+      "proiect": "registrul-firmelor",
+      "url": "https://registru.horecaos.org/api",
+      "sursa_id": "d6697982fd45769dfe4c",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://registru.horecaos.org/llms.txt",
+      "link_original": "https://registru.horecaos.org/api",
+      "dovada": {
+        "url": "https://registru.horecaos.org/llms.txt",
+        "sha256": "0484b7e25ca74e3364f0aa9081133deab694a26633bd5a919c857f0d0da68d0a",
+        "pointer": "/text",
+        "interval": [
+          767,
+          800
+        ],
+        "fragment": "https://registru.horecaos.org/api",
+        "snapshot": "documentare/pagini/274e9045289003a1fc56d4fa.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "The API documentation page names the response fields in a two-column table. A key is required for the API itself; the key was not requested and no API call was made.",
+      "citire": "html-tabele"
+    },
+    {
+      "proiect": "rezultate-vot",
+      "url": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Nomenclature/ElectionResource.php",
+      "sursa_id": "71e32a6523db09d68fdd",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/code4romania/rezultatevot/tree/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+      "link_original": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Nomenclature/ElectionResource.php",
+      "dovada": {
+        "url": "https://api.github.com/repos/code4romania/rezultatevot/git/trees/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc?recursive=1",
+        "revizie": "ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+        "cale": "app/Http/Resources/Nomenclature/ElectionResource.php",
+        "blob_sha": "4f65e434cd30f6b1cb4a0574eae298aa621c1872",
+        "pointer": "/tree/183",
+        "sha256": "aad368d3ec3a4edc31c7542709dceae1445e4a858fdf1271a3dad0bc3ac6d4f2",
+        "snapshot": "inventare/surse/5f472f7cee854790deb7.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of code4romania/rezultatevot at commit ac6ae2b512b7cd0009fb9f0af9455f72c89191cc. The repository is linked from the project pages. API resources define the public response fields; migrations define the stored tables.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://rezultatevot.ro/alegeri/alegeri-prima-general-bucuresti-2025/rezultate",
+          "sha256": "134f4ab7d3e94a7040d14a40b568c07211c6950e10c4e6d0bfbaebe71fdfa19c",
+          "pointer": "/links/119",
+          "fragment": "https://github.com/code4romania/rezultatevot",
+          "snapshot": "documentare/pagini/6aab0625ee27c9e59ec44a87.json",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "rezultate-vot",
+      "url": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Nomenclature/LocalityResource.php",
+      "sursa_id": "5185ff177beffe19c49c",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/code4romania/rezultatevot/tree/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+      "link_original": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Nomenclature/LocalityResource.php",
+      "dovada": {
+        "url": "https://api.github.com/repos/code4romania/rezultatevot/git/trees/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc?recursive=1",
+        "revizie": "ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+        "cale": "app/Http/Resources/Nomenclature/LocalityResource.php",
+        "blob_sha": "da9eb97d808a46a1a222febd6ee3727a2c20c97c",
+        "pointer": "/tree/184",
+        "sha256": "aad368d3ec3a4edc31c7542709dceae1445e4a858fdf1271a3dad0bc3ac6d4f2",
+        "snapshot": "inventare/surse/5f472f7cee854790deb7.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of code4romania/rezultatevot at commit ac6ae2b512b7cd0009fb9f0af9455f72c89191cc. The repository is linked from the project pages. API resources define the public response fields; migrations define the stored tables.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://rezultatevot.ro/alegeri/alegeri-prima-general-bucuresti-2025/rezultate",
+          "sha256": "134f4ab7d3e94a7040d14a40b568c07211c6950e10c4e6d0bfbaebe71fdfa19c",
+          "pointer": "/links/119",
+          "fragment": "https://github.com/code4romania/rezultatevot",
+          "snapshot": "documentare/pagini/6aab0625ee27c9e59ec44a87.json",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "rezultate-vot",
+      "url": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Result/CandidatesResource.php",
+      "sursa_id": "272b743833144eef3a92",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/code4romania/rezultatevot/tree/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+      "link_original": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Result/CandidatesResource.php",
+      "dovada": {
+        "url": "https://api.github.com/repos/code4romania/rezultatevot/git/trees/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc?recursive=1",
+        "revizie": "ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+        "cale": "app/Http/Resources/Result/CandidatesResource.php",
+        "blob_sha": "fd8a5793a7f13268e39493af26d00bdd51061c4c",
+        "pointer": "/tree/186",
+        "sha256": "aad368d3ec3a4edc31c7542709dceae1445e4a858fdf1271a3dad0bc3ac6d4f2",
+        "snapshot": "inventare/surse/5f472f7cee854790deb7.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of code4romania/rezultatevot at commit ac6ae2b512b7cd0009fb9f0af9455f72c89191cc. The repository is linked from the project pages. API resources define the public response fields; migrations define the stored tables.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://rezultatevot.ro/alegeri/alegeri-prima-general-bucuresti-2025/rezultate",
+          "sha256": "134f4ab7d3e94a7040d14a40b568c07211c6950e10c4e6d0bfbaebe71fdfa19c",
+          "pointer": "/links/119",
+          "fragment": "https://github.com/code4romania/rezultatevot",
+          "snapshot": "documentare/pagini/6aab0625ee27c9e59ec44a87.json",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "rezultate-vot",
+      "url": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Result/ResultResource.php",
+      "sursa_id": "1ca115a66c5d42955811",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/code4romania/rezultatevot/tree/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+      "link_original": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Result/ResultResource.php",
+      "dovada": {
+        "url": "https://api.github.com/repos/code4romania/rezultatevot/git/trees/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc?recursive=1",
+        "revizie": "ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+        "cale": "app/Http/Resources/Result/ResultResource.php",
+        "blob_sha": "49b0373b828fc5942742df5a1fc266081c3272cf",
+        "pointer": "/tree/187",
+        "sha256": "aad368d3ec3a4edc31c7542709dceae1445e4a858fdf1271a3dad0bc3ac6d4f2",
+        "snapshot": "inventare/surse/5f472f7cee854790deb7.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of code4romania/rezultatevot at commit ac6ae2b512b7cd0009fb9f0af9455f72c89191cc. The repository is linked from the project pages. API resources define the public response fields; migrations define the stored tables.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://rezultatevot.ro/alegeri/alegeri-prima-general-bucuresti-2025/rezultate",
+          "sha256": "134f4ab7d3e94a7040d14a40b568c07211c6950e10c4e6d0bfbaebe71fdfa19c",
+          "pointer": "/links/119",
+          "fragment": "https://github.com/code4romania/rezultatevot",
+          "snapshot": "documentare/pagini/6aab0625ee27c9e59ec44a87.json",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "rezultate-vot",
+      "url": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Turnout/AreaResource.php",
+      "sursa_id": "ba70319fc88f06f048fa",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/code4romania/rezultatevot/tree/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+      "link_original": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Turnout/AreaResource.php",
+      "dovada": {
+        "url": "https://api.github.com/repos/code4romania/rezultatevot/git/trees/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc?recursive=1",
+        "revizie": "ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+        "cale": "app/Http/Resources/Turnout/AreaResource.php",
+        "blob_sha": "bd197bb678ce220f6034316906930ea85a254d73",
+        "pointer": "/tree/189",
+        "sha256": "aad368d3ec3a4edc31c7542709dceae1445e4a858fdf1271a3dad0bc3ac6d4f2",
+        "snapshot": "inventare/surse/5f472f7cee854790deb7.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of code4romania/rezultatevot at commit ac6ae2b512b7cd0009fb9f0af9455f72c89191cc. The repository is linked from the project pages. API resources define the public response fields; migrations define the stored tables.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://rezultatevot.ro/alegeri/alegeri-prima-general-bucuresti-2025/rezultate",
+          "sha256": "134f4ab7d3e94a7040d14a40b568c07211c6950e10c4e6d0bfbaebe71fdfa19c",
+          "pointer": "/links/119",
+          "fragment": "https://github.com/code4romania/rezultatevot",
+          "snapshot": "documentare/pagini/6aab0625ee27c9e59ec44a87.json",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "rezultate-vot",
+      "url": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Turnout/DemographicsResource.php",
+      "sursa_id": "2b01a45544b7d533dd18",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/code4romania/rezultatevot/tree/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+      "link_original": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Turnout/DemographicsResource.php",
+      "dovada": {
+        "url": "https://api.github.com/repos/code4romania/rezultatevot/git/trees/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc?recursive=1",
+        "revizie": "ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+        "cale": "app/Http/Resources/Turnout/DemographicsResource.php",
+        "blob_sha": "83fec3a0820277a69188d1a68c168bf8b19a7d7f",
+        "pointer": "/tree/190",
+        "sha256": "aad368d3ec3a4edc31c7542709dceae1445e4a858fdf1271a3dad0bc3ac6d4f2",
+        "snapshot": "inventare/surse/5f472f7cee854790deb7.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of code4romania/rezultatevot at commit ac6ae2b512b7cd0009fb9f0af9455f72c89191cc. The repository is linked from the project pages. API resources define the public response fields; migrations define the stored tables.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://rezultatevot.ro/alegeri/alegeri-prima-general-bucuresti-2025/rezultate",
+          "sha256": "134f4ab7d3e94a7040d14a40b568c07211c6950e10c4e6d0bfbaebe71fdfa19c",
+          "pointer": "/links/119",
+          "fragment": "https://github.com/code4romania/rezultatevot",
+          "snapshot": "documentare/pagini/6aab0625ee27c9e59ec44a87.json",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "rezultate-vot",
+      "url": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Turnout/TurnoutResource.php",
+      "sursa_id": "1e3392a6c16ca5fc3f52",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/code4romania/rezultatevot/tree/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+      "link_original": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/app/Http/Resources/Turnout/TurnoutResource.php",
+      "dovada": {
+        "url": "https://api.github.com/repos/code4romania/rezultatevot/git/trees/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc?recursive=1",
+        "revizie": "ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+        "cale": "app/Http/Resources/Turnout/TurnoutResource.php",
+        "blob_sha": "d0ebf01ad5e8f3743dffa269bd0c49a85f2b9970",
+        "pointer": "/tree/197",
+        "sha256": "aad368d3ec3a4edc31c7542709dceae1445e4a858fdf1271a3dad0bc3ac6d4f2",
+        "snapshot": "inventare/surse/5f472f7cee854790deb7.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of code4romania/rezultatevot at commit ac6ae2b512b7cd0009fb9f0af9455f72c89191cc. The repository is linked from the project pages. API resources define the public response fields; migrations define the stored tables.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://rezultatevot.ro/alegeri/alegeri-prima-general-bucuresti-2025/rezultate",
+          "sha256": "134f4ab7d3e94a7040d14a40b568c07211c6950e10c4e6d0bfbaebe71fdfa19c",
+          "pointer": "/links/119",
+          "fragment": "https://github.com/code4romania/rezultatevot",
+          "snapshot": "documentare/pagini/6aab0625ee27c9e59ec44a87.json",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "rezultate-vot",
+      "url": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/database/migrations/0001_01_10_000000_create_turnouts_table.php",
+      "sursa_id": "45d4337e7fd218f2fbaa",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/code4romania/rezultatevot/tree/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+      "link_original": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/database/migrations/0001_01_10_000000_create_turnouts_table.php",
+      "dovada": {
+        "url": "https://api.github.com/repos/code4romania/rezultatevot/git/trees/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc?recursive=1",
+        "revizie": "ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+        "cale": "database/migrations/0001_01_10_000000_create_turnouts_table.php",
+        "blob_sha": "418f83fa817a854ca4872a8dc9a449efc3502887",
+        "pointer": "/tree/454",
+        "sha256": "aad368d3ec3a4edc31c7542709dceae1445e4a858fdf1271a3dad0bc3ac6d4f2",
+        "snapshot": "inventare/surse/5f472f7cee854790deb7.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of code4romania/rezultatevot at commit ac6ae2b512b7cd0009fb9f0af9455f72c89191cc. The repository is linked from the project pages. API resources define the public response fields; migrations define the stored tables.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://rezultatevot.ro/alegeri/alegeri-prima-general-bucuresti-2025/rezultate",
+          "sha256": "134f4ab7d3e94a7040d14a40b568c07211c6950e10c4e6d0bfbaebe71fdfa19c",
+          "pointer": "/links/119",
+          "fragment": "https://github.com/code4romania/rezultatevot",
+          "snapshot": "documentare/pagini/6aab0625ee27c9e59ec44a87.json",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "rezultate-vot",
+      "url": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/database/migrations/0001_01_10_000010_create_records_table.php",
+      "sursa_id": "d7e40c2000820e02d6e8",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/code4romania/rezultatevot/tree/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+      "link_original": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/database/migrations/0001_01_10_000010_create_records_table.php",
+      "dovada": {
+        "url": "https://api.github.com/repos/code4romania/rezultatevot/git/trees/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc?recursive=1",
+        "revizie": "ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+        "cale": "database/migrations/0001_01_10_000010_create_records_table.php",
+        "blob_sha": "42600dbaa17a2e3b8ecad6952ee76057067a346c",
+        "pointer": "/tree/455",
+        "sha256": "aad368d3ec3a4edc31c7542709dceae1445e4a858fdf1271a3dad0bc3ac6d4f2",
+        "snapshot": "inventare/surse/5f472f7cee854790deb7.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of code4romania/rezultatevot at commit ac6ae2b512b7cd0009fb9f0af9455f72c89191cc. The repository is linked from the project pages. API resources define the public response fields; migrations define the stored tables.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://rezultatevot.ro/alegeri/alegeri-prima-general-bucuresti-2025/rezultate",
+          "sha256": "134f4ab7d3e94a7040d14a40b568c07211c6950e10c4e6d0bfbaebe71fdfa19c",
+          "pointer": "/links/119",
+          "fragment": "https://github.com/code4romania/rezultatevot",
+          "snapshot": "documentare/pagini/6aab0625ee27c9e59ec44a87.json",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "rezultate-vot",
+      "url": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/database/migrations/0001_01_10_000020_create_votes_table.php",
+      "sursa_id": "03356e8e792c1fc9bf99",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/code4romania/rezultatevot/tree/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+      "link_original": "https://raw.githubusercontent.com/code4romania/rezultatevot/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc/database/migrations/0001_01_10_000020_create_votes_table.php",
+      "dovada": {
+        "url": "https://api.github.com/repos/code4romania/rezultatevot/git/trees/ac6ae2b512b7cd0009fb9f0af9455f72c89191cc?recursive=1",
+        "revizie": "ac6ae2b512b7cd0009fb9f0af9455f72c89191cc",
+        "cale": "database/migrations/0001_01_10_000020_create_votes_table.php",
+        "blob_sha": "3052085fca968b0eb26d38a7b73734b75f9c0454",
+        "pointer": "/tree/456",
+        "sha256": "aad368d3ec3a4edc31c7542709dceae1445e4a858fdf1271a3dad0bc3ac6d4f2",
+        "snapshot": "inventare/surse/5f472f7cee854790deb7.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of code4romania/rezultatevot at commit ac6ae2b512b7cd0009fb9f0af9455f72c89191cc. The repository is linked from the project pages. API resources define the public response fields; migrations define the stored tables.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://rezultatevot.ro/alegeri/alegeri-prima-general-bucuresti-2025/rezultate",
+          "sha256": "134f4ab7d3e94a7040d14a40b568c07211c6950e10c4e6d0bfbaebe71fdfa19c",
+          "pointer": "/links/119",
+          "fragment": "https://github.com/code4romania/rezultatevot",
+          "snapshot": "documentare/pagini/6aab0625ee27c9e59ec44a87.json",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
     },
     {
       "proiect": "ro-api-hub",
@@ -1861,6 +3782,206 @@
       "prioritate": 2,
       "retras": null,
       "istoric": []
+    },
+    {
+      "proiect": "votdiaspora",
+      "url": "https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/src/Models/PollingStationModel.cs",
+      "sursa_id": "d594bd1b4998e1f79fec",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/code4romania/vot-diaspora-api/tree/87b0d20acec077f958ef2e0adff312ee48eba4ca",
+      "link_original": "https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/src/Models/PollingStationModel.cs",
+      "dovada": {
+        "url": "https://api.github.com/repos/code4romania/vot-diaspora-api/git/trees/87b0d20acec077f958ef2e0adff312ee48eba4ca?recursive=1",
+        "revizie": "87b0d20acec077f958ef2e0adff312ee48eba4ca",
+        "cale": "src/Models/PollingStationModel.cs",
+        "blob_sha": "f4927eded18d0f4a56941f609f2f961a6ceb04cd",
+        "pointer": "/tree/187",
+        "sha256": "725b3d5f403f2cdec60510a1832e34c2753466592a12417a84c30b107294e9cc",
+        "snapshot": "inventare/surse/52cff9b84e399f051bef.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of code4romania/vot-diaspora-api at commit 87b0d20acec077f958ef2e0adff312ee48eba4ca. The profiler found this repository link on the project site. The last commit is from 2021-11-08, so these files may predate the deployed site.",
+      "dovezi_suplimentare": [
+        {
+          "tip": "profil",
+          "snapshot": "profil.csv",
+          "slug": "votdiaspora",
+          "coloana": "repos",
+          "valoare": "https://github.com/code4romania/vot-diaspora-api",
+          "pointer": "/profil/votdiaspora/repos",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "votdiaspora",
+      "url": "https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/src/Models/PollingStationUploadModel.cs",
+      "sursa_id": "7318f1efece84e09dd63",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/code4romania/vot-diaspora-api/tree/87b0d20acec077f958ef2e0adff312ee48eba4ca",
+      "link_original": "https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/src/Models/PollingStationUploadModel.cs",
+      "dovada": {
+        "url": "https://api.github.com/repos/code4romania/vot-diaspora-api/git/trees/87b0d20acec077f958ef2e0adff312ee48eba4ca?recursive=1",
+        "revizie": "87b0d20acec077f958ef2e0adff312ee48eba4ca",
+        "cale": "src/Models/PollingStationUploadModel.cs",
+        "blob_sha": "8f6d75cf5e219b9646511578cbd97e9d8ed018dc",
+        "pointer": "/tree/188",
+        "sha256": "725b3d5f403f2cdec60510a1832e34c2753466592a12417a84c30b107294e9cc",
+        "snapshot": "inventare/surse/52cff9b84e399f051bef.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of code4romania/vot-diaspora-api at commit 87b0d20acec077f958ef2e0adff312ee48eba4ca. The profiler found this repository link on the project site. The last commit is from 2021-11-08, so these files may predate the deployed site.",
+      "dovezi_suplimentare": [
+        {
+          "tip": "profil",
+          "snapshot": "profil.csv",
+          "slug": "votdiaspora",
+          "coloana": "repos",
+          "valoare": "https://github.com/code4romania/vot-diaspora-api",
+          "pointer": "/profil/votdiaspora/repos",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "votdiaspora",
+      "url": "https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/src/Models/PollingStationsGroupModel.cs",
+      "sursa_id": "ea14e6b901360091bd24",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/code4romania/vot-diaspora-api/tree/87b0d20acec077f958ef2e0adff312ee48eba4ca",
+      "link_original": "https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/src/Models/PollingStationsGroupModel.cs",
+      "dovada": {
+        "url": "https://api.github.com/repos/code4romania/vot-diaspora-api/git/trees/87b0d20acec077f958ef2e0adff312ee48eba4ca?recursive=1",
+        "revizie": "87b0d20acec077f958ef2e0adff312ee48eba4ca",
+        "cale": "src/Models/PollingStationsGroupModel.cs",
+        "blob_sha": "dda10b2eb8de251a824c93e5d200ced63900ce98",
+        "pointer": "/tree/189",
+        "sha256": "725b3d5f403f2cdec60510a1832e34c2753466592a12417a84c30b107294e9cc",
+        "snapshot": "inventare/surse/52cff9b84e399f051bef.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of code4romania/vot-diaspora-api at commit 87b0d20acec077f958ef2e0adff312ee48eba4ca. The profiler found this repository link on the project site. The last commit is from 2021-11-08, so these files may predate the deployed site.",
+      "dovezi_suplimentare": [
+        {
+          "tip": "profil",
+          "snapshot": "profil.csv",
+          "slug": "votdiaspora",
+          "coloana": "repos",
+          "valoare": "https://github.com/code4romania/vot-diaspora-api",
+          "pointer": "/profil/votdiaspora/repos",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "votdiaspora",
+      "url": "https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/src/Models/PollingStationsQuery.cs",
+      "sursa_id": "92de28d8bb03fd8c476a",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/code4romania/vot-diaspora-api/tree/87b0d20acec077f958ef2e0adff312ee48eba4ca",
+      "link_original": "https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/src/Models/PollingStationsQuery.cs",
+      "dovada": {
+        "url": "https://api.github.com/repos/code4romania/vot-diaspora-api/git/trees/87b0d20acec077f958ef2e0adff312ee48eba4ca?recursive=1",
+        "revizie": "87b0d20acec077f958ef2e0adff312ee48eba4ca",
+        "cale": "src/Models/PollingStationsQuery.cs",
+        "blob_sha": "fbea379e045e5a05ef0d957eb7cc8fad6bf17fa6",
+        "pointer": "/tree/190",
+        "sha256": "725b3d5f403f2cdec60510a1832e34c2753466592a12417a84c30b107294e9cc",
+        "snapshot": "inventare/surse/52cff9b84e399f051bef.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of code4romania/vot-diaspora-api at commit 87b0d20acec077f958ef2e0adff312ee48eba4ca. The profiler found this repository link on the project site. The last commit is from 2021-11-08, so these files may predate the deployed site.",
+      "dovezi_suplimentare": [
+        {
+          "tip": "profil",
+          "snapshot": "profil.csv",
+          "slug": "votdiaspora",
+          "coloana": "repos",
+          "valoare": "https://github.com/code4romania/vot-diaspora-api",
+          "pointer": "/profil/votdiaspora/repos",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "votdiaspora",
+      "url": "https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/src/Stores/Entities/PollingStationEntity.cs",
+      "sursa_id": "c07c5d4dee94580745c6",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/code4romania/vot-diaspora-api/tree/87b0d20acec077f958ef2e0adff312ee48eba4ca",
+      "link_original": "https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/src/Stores/Entities/PollingStationEntity.cs",
+      "dovada": {
+        "url": "https://api.github.com/repos/code4romania/vot-diaspora-api/git/trees/87b0d20acec077f958ef2e0adff312ee48eba4ca?recursive=1",
+        "revizie": "87b0d20acec077f958ef2e0adff312ee48eba4ca",
+        "cale": "src/Stores/Entities/PollingStationEntity.cs",
+        "blob_sha": "6160ed706b98432a1fb33f2a9f832d9016b8df81",
+        "pointer": "/tree/227",
+        "sha256": "725b3d5f403f2cdec60510a1832e34c2753466592a12417a84c30b107294e9cc",
+        "snapshot": "inventare/surse/52cff9b84e399f051bef.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T14:28:24.801694+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T14:28:24.801694+00:00"
+        }
+      ],
+      "nota": "File of code4romania/vot-diaspora-api at commit 87b0d20acec077f958ef2e0adff312ee48eba4ca. The profiler found this repository link on the project site. The last commit is from 2021-11-08, so these files may predate the deployed site.",
+      "dovezi_suplimentare": [
+        {
+          "tip": "profil",
+          "snapshot": "profil.csv",
+          "slug": "votdiaspora",
+          "coloana": "repos",
+          "valoare": "https://github.com/code4romania/vot-diaspora-api",
+          "pointer": "/profil/votdiaspora/repos",
+          "rol": "legatura-proiect-repo"
+        }
+      ]
     }
   ]
 }

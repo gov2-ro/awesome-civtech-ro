@@ -178,11 +178,12 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "afb67f435b33de907c41"
+      ],
+      "campuri_din_surse": 3,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
@@ -217,11 +218,15 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "5c85d57d48f6922090e1",
+        "dbdaf760728fdd2d22db",
+        "643d4a99e578531b0165",
+        "28b7fba4fae5df74675f"
+      ],
+      "campuri_din_surse": 14,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
@@ -370,11 +375,14 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "c2d13d8e6d9a635f507f",
+        "1ad381ca0260b6a1f189",
+        "6a87d31f8778b7d99b69"
+      ],
+      "campuri_din_surse": 51,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
@@ -783,11 +791,12 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "6d053b6f309a3008209f"
+      ],
+      "campuri_din_surse": 41,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
@@ -1333,11 +1342,12 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "843e8168b17d1e8f72de"
+      ],
+      "campuri_din_surse": 9,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
@@ -1577,11 +1587,18 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "350fa388a8f17625a7f9",
+        "f8a4eb99d4e80b1a68ab",
+        "7663df08639c70d5147b",
+        "23331c531d00addbd38f",
+        "d22bea70d00ee18147cb",
+        "591982893872578f252d",
+        "8ce4116df801689d525f"
+      ],
+      "campuri_din_surse": 72,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
@@ -3086,11 +3103,18 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "e716773e9e8e394be992",
+        "502cabda4e1af59cced4",
+        "3e6587bed11e412102ec",
+        "41ac27ff63999b8aff53",
+        "e784f2c061daa291dbfd",
+        "8e745b681584788e8678",
+        "bfb70c5d5c820d146605"
+      ],
+      "campuri_din_surse": 432,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
@@ -3794,11 +3818,21 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "71e32a6523db09d68fdd",
+        "5185ff177beffe19c49c",
+        "272b743833144eef3a92",
+        "1ca115a66c5d42955811",
+        "ba70319fc88f06f048fa",
+        "2b01a45544b7d533dd18",
+        "1e3392a6c16ca5fc3f52",
+        "45d4337e7fd218f2fbaa",
+        "d7e40c2000820e02d6e8",
+        "03356e8e792c1fc9bf99"
+      ],
+      "campuri_din_surse": 139,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
@@ -4773,11 +4807,16 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "d594bd1b4998e1f79fec",
+        "7318f1efece84e09dd63",
+        "ea14e6b901360091bd24",
+        "92de28d8bb03fd8c476a",
+        "c07c5d4dee94580745c6"
+      ],
+      "campuri_din_surse": 50,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
@@ -4934,11 +4973,21 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "4d4ca333750fbf8632ae",
+        "e33ae6fd6cd928894492",
+        "271d2065985ab8fcac01",
+        "ba2b46f3867ce082f768",
+        "bfdee8c531c34fad3438",
+        "1e82daf68249f68bf5c0",
+        "4637b33ba136ffcde774",
+        "67902826a3027b7dfcf2",
+        "a61eee3f7a6d4233de41",
+        "4b70e0cfccccde8a1fd0"
+      ],
+      "campuri_din_surse": 177,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
@@ -5158,11 +5207,12 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "d6697982fd45769dfe4c"
+      ],
+      "campuri_din_surse": 23,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
@@ -6786,11 +6836,15 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "325ddbb34c8ff236a62a",
+        "71253baf1d937d2cb741",
+        "c6284bf08f131cbfe339",
+        "ce7723e7f33a633cbb53"
+      ],
+      "campuri_din_surse": 52,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {

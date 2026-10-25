@@ -488,6 +488,34 @@ class LocatorCheck(unittest.TestCase):
         self.assertTrue(any(u.startswith('discovery:') for u in report['unavailable']))
 
 
+class BrowserHelper(unittest.TestCase):
+    def test_only_same_site_data_requests_survive_and_credentials_are_redacted(self):
+        from render_pages import keep_request, redact, summarise
+        events = [
+            {'url': 'https://app.example.org/api/data.json?year=2024&api_key=abc123', 'method': 'GET', 'resource_type': 'fetch', 'status': 200,
+             'content_type': 'application/json', 'size': 120},
+            {'url': 'https://app.example.org/api/data.json?year=2024&api_key=zzz', 'method': 'GET', 'resource_type': 'fetch', 'status': 200},
+            {'url': 'https://www.google-analytics.com/collect', 'method': 'POST', 'resource_type': 'xhr', 'status': 204},
+            {'url': 'https://example.org/static/app.js', 'method': 'GET', 'resource_type': 'script', 'status': 200},
+            {'url': 'https://api.example.org/v1/stations', 'method': 'GET', 'resource_type': 'xhr', 'status': 200, 'content_type': 'application/json'},
+        ]
+        kept = summarise(events, 'app.example.org')
+        self.assertEqual([k['url'] for k in kept], ['https://app.example.org/api/data.json?year=2024&api_key=REDACTED'])
+        self.assertEqual(len(summarise(events, 'example.org')), 2)
+        self.assertEqual(len(summarise(events, 'app.example.org', ['api.example.org'])), 2)
+        self.assertFalse(keep_request(events[2], 'app.example.org'))
+        self.assertEqual(redact('https://a.example/x?token=1&page=2#frag'), 'https://a.example/x?token=REDACTED&page=2')
+
+    def test_browser_rows_never_count_against_the_direct_request_budget(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            log = RequestLog(Path(tmp) / 'c.csv', 'C')
+            log.add('GET', 'https://a.example/x.json', 'ok', 200, 10)
+            log.add('BROWSER', 'https://a.example/', 'ok', 200, None, 'browser', 'randare a')
+            log.add('BROWSER-GET', 'https://a.example/api', '200', 200, 5, 'browser', 'randare a')
+            self.assertEqual(log.direct_requests(), 1)
+            self.assertEqual(log.browser_counts(), (1, 1))
+
+
 class FakeResponse:
     def __init__(self, raw, content_type='text/csv'):
         self.raw, self.status, self.url = raw, 200, 'https://a.example/x'
