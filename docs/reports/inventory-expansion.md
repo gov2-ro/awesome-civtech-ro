@@ -53,6 +53,8 @@ The 127 projects and resources of the data finder:
 | Unit tests discovered / skipped | 308 / 6 | 411 / 6 |
 | Explorer inventory / dedicated finder browser checks | 25 / 25 | 31 / 31 |
 
+Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 31 in all; deschis 31, acceptat 0, respins 0, amanat 0, tehnic 0. Variable groups: 30 in all; propus 30, revizuit 0, respins 0, amanat 0. Group members (selectors): 92 in all; propus 92, confirmat 0, exclus 0.
+
 Field records by evidence type now: declarat-in-schema 1,367, observat-in-esantion-json 1,131, declarat-in-cod-sursa 366, exemplu-in-documentatie 361, neprecizat-in-antet-csv 138, declarat-in-tabel-documentatie 53, antet-tabel-html 48, declarat-in-metadate 24, declarat-in-text-documentatie 23, utilizat-in-cod-pagina 9, declarat-in-documentatie-api 5.
 
 Coverage by measure, for the 127 projects and resources (`acoperire.csv` has the rows). A column that counts fields counts source paths:

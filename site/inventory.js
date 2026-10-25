@@ -19,6 +19,7 @@ const roles = {'parametru-api':'Parametru API', 'corp-cerere':'Corp de cerere', 
   'camp-dictionar':'Dicționar de date', 'coloana-sql':'Coloană în baza de date', 'camp-model':'Câmp de model', 'cod-enumerare':'Cod sau valoare',
   'camp-exemplu':'Exemplu în documentație', masura:'Măsură', 'camp-folosit-de-pagina':'Folosit de pagină', 'colectie-cu-chei':'Colecție indexată'};
 const categories = {identificator:'Identificator', dimensiune:'Dimensiune', masura:'Măsură', 'iesire-derivata':'Valoare calculată', 'intrare-utilizator':'Intrare a utilizatorului'};
+const stateLabels = {propus:'Propus', revizuit:'Revizuit', amanat:'Amânat'};
 const factKeys = {unitate:'Unitate', formula:'Formulă', rol:'Rol', moment_de_referinta:'Moment de referință'};
 const factBasis = {'declaratie-directa':'declarat', 'observatie-esantion':'observat în eșantion', 'deductie-din-dovezi':'dedus din dovezi', 'parafraza-editoriala':'formulare editorială'};
 let entries = [], labels = {}, definitions = {}, meta = {}, state, shown = 24;
@@ -82,6 +83,7 @@ function proof(entry) {
   let html = entry.variables.map(v => {
     const info = meta[v.id] || {};
     return `<div class="finder-proof"><strong>${esc(labels.variables[v.id])}</strong>${info.category ? ` <small class="finder-category">${esc(categories[info.category] || info.category)}</small>` : ''}
+    <small class="finder-state" data-state="${esc(info.state)}">${esc(stateLabels[info.state] || info.state)}</small>
     <p>${esc(definitions.variables[v.id])}</p>
     ${info.ambiguities?.length ? `<p class="finder-ambiguity">Neclar: ${info.ambiguities.map(esc).join(' ')}</p>` : ''}
     <ul>${v.evidence.map(e => `<li><code>${esc(e.name)}</code>
@@ -181,7 +183,7 @@ async function start() {
     const inventory = await response.json();
     labels = {variables:{}, providers:{}, subjects:{}, institutions:{}};
     definitions = {variables:{}};
-    for (const v of inventory.variables) { labels.variables[v.id]=v.label; definitions.variables[v.id]=v.definition; meta[v.id]={category:v.category, ambiguities:v.ambiguities || [], proofs:v.proofs || []}; }
+    for (const v of inventory.variables) { labels.variables[v.id]=v.label; definitions.variables[v.id]=v.definition; meta[v.id]={category:v.category, state:v.state || 'propus', ambiguities:v.ambiguities || [], proofs:v.proofs || []}; }
     for (const c of inventory.concepts) {
       if (c.scheme === 'subiect') labels.subjects[c.id]=c.label;
       if (c.scheme === 'institutie') labels.institutions[c.id]=c.label;

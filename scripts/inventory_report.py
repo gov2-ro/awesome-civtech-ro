@@ -17,7 +17,7 @@ from collections import Counter
 from pathlib import Path
 
 from common import ROOT, PUBLIC_ROOT, load_catalogue, observation_paths
-from inventory_concepts import as_list, selector_matches
+from inventory_concepts import GROUP_STATES, SELECTOR_STATES, active_groups, group_state, selector_matches, selector_state
 
 COLUMNS = ['slug', 'tip_entitate', 'investigat_in_lot', 'stare_investigare', 'surse_structurate', 'campuri_din_surse', 'concepte_propuse',
            'campuri_cu_definitie', 'campuri_cu_tip_declarat', 'campuri_cu_tip_observat', 'masuri_cu_unitate', 'masuri_fara_unitate',
@@ -33,6 +33,7 @@ BATCH = ['afacut', 'biografia-localitatii', 'registrul-firmelor', 'dignitas', 'm
 EXTRA_GAPS = ['companii-de-stat', 'transparenta-eu', 'romania-transparenta', 'codurbanism']
 INS_USERS = ['ins-gov2', 'constru-pentru-cine', 'orasul-care-se-intinde', 'demoanaf', 'unde-se-termina-asfaltul', 'biografia-localitatii']
 MEASURE_CATEGORIES = ('masura', 'iesire-derivata')
+REVIEW_STATES = ('deschis', 'acceptat', 'respins', 'amanat', 'tehnic')  # revizuire_stare, in the order the report lists them
 
 
 def load(root):
@@ -56,7 +57,7 @@ def field_view(field):
 
 def membership(data):
     """Per project: concept ids, and the (source, path) keys of fields that are measures or have a unit fact."""
-    sources, concepts = data['sources'], data['concepts']
+    sources, concepts = data['sources'], active_groups(data['concepts'])  # a rejected group (`respins`) has no members
     result = {slug: {'concepts': set(), 'measures': {}} for slug in data['profiles']}
     for slug, profile in data['profiles'].items():
         for ref in profile['surse_structurate']:
@@ -166,9 +167,22 @@ def metrics(data, rows):
             'unconfirmed_profiles': sum(p['completitudine'] == 'neconfirmat' for p in profiles.values()),
             'accepted_providers': len(accepted), 'accepted_entries': len({s for s, _ in accepted}),
             'pending_proposals': sum(1 for r in data['review'] if r['id'].startswith('D') and int(r['id'][1:]) >= 132 and r['stare'] == 'deschis'),
-            'groups': len(data['concepts']), 'kinds': dict(kinds), 'direct_requests': len(log_direct),
+            'groups': len(data['concepts']), 'kinds': dict(kinds), **review_state(data), 'direct_requests': len(log_direct),
             'browser_navigations': sum(1 for r in data['log'] if r['metoda'] == 'BROWSER'),
             'browser_requests': sum(1 for r in data['log'] if r['cache'] == 'browser' and r['metoda'] != 'BROWSER')}
+
+
+def review_state(data):
+    """Decided provider items and groups by state, counted from the tracked review files."""
+    providers = [r for r in data['review'] if r['camp'] == 'surse_date']
+    selectors = [s for c in data['concepts'] for s in c['selectors']]
+    return {'provider_items': len(providers), 'provider_states': Counter(r['stare'] for r in providers),
+            'group_states': Counter(group_state(c) for c in data['concepts']),
+            'member_states': Counter(selector_state(s) for s in selectors)}
+
+
+def count_line(counter, states):
+    return ', '.join(f'{state} {counter[state]}' for state in states)
 
 
 def pct(n, d):
@@ -238,6 +252,10 @@ def render_report(data, rows):
     if verification:
         w(f'| Unit tests discovered / skipped | {BASELINE["tests"]} / {BASELINE["tests_skipped"]} | {verification["tests"]} / {verification["tests_skipped"]} |')
         w(f'| Explorer inventory / dedicated finder browser checks | {BASELINE["explorer_checks"]} / {BASELINE["finder_checks"]} | {verification["explorer_checks"]} / {verification["finder_checks"]} |')
+    w('')
+    w(f'Review state, counted from the tracked files. Provider items (`camp` `surse_date`): {m["provider_items"]} in all; {count_line(m["provider_states"], REVIEW_STATES)}. '
+      f'Variable groups: {len(data["concepts"])} in all; {count_line(m["group_states"], GROUP_STATES)}. '
+      f'Group members (selectors): {sum(m["member_states"].values())} in all; {count_line(m["member_states"], SELECTOR_STATES)}.')
     w('')
     kinds = m['kinds']
     w('Field records by evidence type now: ' + ', '.join(f'{k} {v:,}' for k, v in sorted(kinds.items(), key=lambda kv: -kv[1])) + '.')

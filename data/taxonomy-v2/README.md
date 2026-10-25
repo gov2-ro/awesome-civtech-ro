@@ -228,3 +228,26 @@ python3 scripts/test_taxonomy_v2.py
 
 Construirea fără `--allow-draft` refuză clasificările neacceptate. `--site-dir` trebuie să fie în afara depozitului.
 Previzualizarea nu modifică `site/`. Pagina afișează că clasificările sunt propuneri.
+
+## Revizuirea în interfață
+
+Pentru furnizorii de date (punctele D132 și următoarele din `integrare/revizuire.csv`) și pentru grupurile de variabile
+(`inventar-concepte.json`) există o interfață locală. Ea scrie fișierele din depozit. Nu face commit și nu trimite nimic în rețea.
+
+```sh
+python3 scripts/review_ui.py          # apoi deschideți http://127.0.0.1:8790/
+```
+
+1. Antetul arată progresul (`Furnizori: 12 / 31 decise`, `Grupuri: 4 / 30 revizuite`) și starea validării. Filtrul implicit este `Deschise`.
+2. Alegeți un element din listă. Selecția rămâne în adresă. Tastele `j` și `k` trec la elementul următor și la cel precedent.
+3. Pentru un furnizor, citiți propunerea, dovada și elementele înrudite. Alegeți acțiunea (`Accept`, `Resping`, `Amân`, `Duplicat…`, `Resetează`) și citiți consecința.
+   Scrieți nota (obligatorie) și salvați. `Accept` cere numele canonic al furnizorului și adresa dovezii; ambele sunt completate din propunere.
+4. Starea dovezii: `verificat` înseamnă că amprenta textului păstrat și fragmentul se potrivesc. `schimbat` înseamnă că textul s-a schimbat de la fixarea dovezii.
+   `indisponibil local` înseamnă că nu există o copie locală. `fără amprentă` înseamnă că elementul nu a înregistrat o amprentă; textul se citește, dar nu se poate verifica.
+5. Pentru un grup, confirmați sau excludeți fiecare membru (excluderea cere notă). `Revizuit` rămâne dezactivat cât timp un membru este `propus`
+   sau o deducție din dovezi nu este bifată. Pagina spune de ce. `Resping` și `Amân` cer o notă.
+6. Fila `Verificări` rulează `validate.py --publication`, `inventory.py --check` și `inventory_report.py --check`.
+   Ea arată furnizorii acceptați față de `HEAD`, fișierele modificate și comenzile următoare: `python3 scripts/inventory_report.py`, apoi `git add` și `git commit`.
+
+O modificare a fișierelor pe disc după încărcarea paginii (editor, `sheets.py pull`, `git checkout`) oprește scrierea. Reîncărcați datele și repetați decizia.
+Decizia rămâne în `git diff` până la commit. `Resetează` readuce elementul la valorile din `HEAD`.
