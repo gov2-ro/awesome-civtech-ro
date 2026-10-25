@@ -109,7 +109,8 @@ The 62 unconfirmed profiles cover the full 140-entry catalogue, including organi
       status codes (D153). Propose them when the page says that the data arrived.
 - [ ] Shorten the provider names that the bulk acceptance of 2026-10-26 made public. Some carry the route or the scope in parentheses, for example
       „SICAP / SEAP, distribuit de data.g4d.ro”, „Ministerul Finanțelor (situații financiare, prin data.gov.ro)” and „INMH (presiunea atmosferică, stația meteo Rădăuți)”.
-      The same provider then has several public names (SICAP / SEAP appears in three forms). Edit `obiect_literal` in `relatii.csv`, or add a canonical provider list.
+      The same provider then has several public names. Edit `obiect_literal` in `relatii.csv`, or add a canonical provider list.
+      Done for SEAP on 2026-10-26 (owner decision): the six accepted rows that said „SICAP / SEAP” in three forms now say „SEAP”.
 - [ ] Check the four accepted providers that cite only the project's home page as evidence: D140 and D141 (ONRC and ANAF, `registrul-firmelor`), D142 (SICAP / SEAP, `achizitii-directe-ti-2026`)
       and D146 (SICAP / SEAP, `sicap-ai`, no retained copy). D140 and D141 could cite `https://registru.horecaos.org/surse` instead (D153 and D154 hold that evidence).
 - [ ] A guard for sites that forbid automated access. Only the saved addresses are protected today (`collect_docs.py` and `inventory.py` never request them). A run of `collect_docs.py --force`, `profile.py` or

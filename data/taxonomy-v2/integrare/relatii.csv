@@ -136,15 +136,15 @@ L134,demoanaf,date_din,,Oficiul Național al Registrului Comerțului (ONRC),surs
 L135,executii-bugetare,date_din,,Ministerul Finanțelor,surse_date,https://executii-bugetare.g4d.ro/,acceptat
 L136,harta-firmelor,date_din,,Oficiul Național al Registrului Comerțului (ONRC),surse_date,https://harta-firmelor.ro/date,acceptat
 L137,harta-firmelor,date_din,,ANAF,surse_date,https://harta-firmelor.ro/date,acceptat
-L138,harta-firmelor,date_din,,SICAP / SEAP,surse_date,https://harta-firmelor.ro/date,acceptat
+L138,harta-firmelor,date_din,,SEAP,surse_date,https://harta-firmelor.ro/date,acceptat
 L139,harta-firmelor,date_din,,Monitorul Oficial,surse_date,https://harta-firmelor.ro/date,acceptat
 L140,registrul-firmelor,date_din,,Oficiul Național al Registrului Comerțului (ONRC),surse_date,https://registru.horecaos.org/,acceptat
 L141,registrul-firmelor,date_din,,ANAF,surse_date,https://registru.horecaos.org/,acceptat
-L142,achizitii-directe-ti-2026,date_din,,SICAP / SEAP,surse_date,https://achizitii-directe-ti-2026.mariuscomper.uk/,acceptat
+L142,achizitii-directe-ti-2026,date_din,,SEAP,surse_date,https://achizitii-directe-ti-2026.mariuscomper.uk/,acceptat
 L143,achizitii-directe-ti-2026,date_din,,Autoritatea pentru Digitalizarea României (ADR),descriere; candidat neverificat,https://achizitii-directe-ti-2026.mariuscomper.uk/,propus
-L144,prima-cifra,date_din,,SICAP / SEAP,surse_date,https://mariuscomper.uk/prima-cifra/,acceptat
+L144,prima-cifra,date_din,,SEAP,surse_date,https://mariuscomper.uk/prima-cifra/,acceptat
 L145,recontorizarea,date_din,,Eurostat,surse_date,https://mariuscomper.uk/recontorizarea/,acceptat
-L146,sicap-ai,date_din,,SICAP / SEAP,surse_date,https://sicap.ai/,acceptat
+L146,sicap-ai,date_din,,SEAP,surse_date,https://sicap.ai/,acceptat
 L147,registrul-firmelor,date_din,,Ministerul Justiției (portalul instanțelor),surse_date,https://registru.horecaos.org/surse,acceptat
 L148,europescope,date_din,,Parlamentul European (portalul de date deschise),surse_date,https://www.europescope.eu/data,acceptat
 L149,europescope,date_din,,Consiliul Uniunii Europene (registrul public),surse_date,https://www.europescope.eu/data,acceptat
@@ -153,9 +153,9 @@ L151,companii-de-stat,date_din,,"Ministerul Finanțelor (situații financiare, p
 L152,companii-de-stat,date_din,,"ANAF (execuție bugetară, prin transparenta.eu)",surse_date,https://companiidestat.ro/date/v1/index.json,acceptat
 L153,companii-de-stat,date_din,,Bursa de Valori București,surse_date,https://companiidestat.ro/date/v1/index.json,acceptat
 L154,registrul-firmelor,date_din,,"Ministerul Finanțelor (situații financiare, prin data.gov.ro)",surse_date,https://registru.horecaos.org/surse,acceptat
-L155,registrul-firmelor,date_din,,SICAP / SEAP (exporturile ADR),surse_date,https://registru.horecaos.org/surse,acceptat
+L155,registrul-firmelor,date_din,,SEAP,surse_date,https://registru.horecaos.org/surse,acceptat
 L156,monitorul-ai,date_din,,"Monitorul Oficial al României, Partea a II-a",surse_date,https://monitorul.ai/,acceptat
-L157,banii-nostri,date_din,,"SICAP / SEAP, distribuit de data.g4d.ro",surse_date,https://baniinostri.info/RAJASA/,acceptat
+L157,banii-nostri,date_din,,SEAP,surse_date,https://baniinostri.info/RAJASA/,acceptat
 L158,calitate-aer-radauti,date_din,,"INMH (presiunea atmosferică, stația meteo Rădăuți)",surse_date,https://calitateaer.radautiulcivic.ro/masuratori/,acceptat
 L159,ins-gov2,date_din,,Inspecția Muncii (Ministerul Muncii),surse_date,https://ins.gov2.ro/api/datasets/ACC102B?lang=en,acceptat
 L160,ins-gov2,date_din,,Direcția pentru Evidența Persoanelor și Administrarea Bazelor de Date (RNEP),surse_date,https://ins.gov2.ro/api/datasets/POP107D?lang=en,acceptat
