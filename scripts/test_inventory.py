@@ -55,6 +55,29 @@ class Inventory(unittest.TestCase):
         with self.assertRaises(ValueError):
             parse_source('id,id\n1,2\n', 'https://example.org/data.csv')
 
+    def test_keyed_collection_is_sampled_and_identifiers_do_not_become_field_names(self):
+        doc = {'meta': {'year': 2025}, 'companii': {f'{n:08d}': {'cui': f'{n:08d}', 'cifra_afaceri': n} for n in range(150)}}
+        fmt, fields, limited = parse_source(json.dumps(doc), 'https://example.org/bilant.json')
+        paths = [f['cale'] for f in fields]
+        self.assertEqual(fmt, 'json')
+        self.assertIn('$.companii{*}.cui', paths)
+        self.assertFalse([p for p in paths if '00000001' in p], 'a key must not become part of a field path')
+        collection = next(f for f in fields if f['cale'] == '$.companii{*}')
+        self.assertEqual((collection['numar_chei'], collection['rol']), (150, 'colectie-cu-chei'))
+        self.assertTrue(limited)
+        self.assertEqual(next(f for f in fields if f['cale'] == '$.companii{*}.cui')['tipuri_observate'], ['string'])
+        # A small keyed object (an enumeration of counties) stays a plain record.
+        _, small, _ = parse_source(json.dumps({'counties': {f'C{n}': {'km': n} for n in range(40)}}), 'https://example.org/c.json')
+        self.assertIn('$.counties.C7.km', [f['cale'] for f in small])
+
+    def test_openapi_member_that_holds_a_url_is_a_data_index_not_a_contract(self):
+        index = {'name': 'API', 'license': 'CC BY 4.0', 'openapi': 'https://example.org/openapi.json', 'endpoints': [{'path': 'a.json'}]}
+        fmt, fields, _ = parse_source(json.dumps(index), 'https://example.org/index.json')
+        self.assertEqual(fmt, 'json')
+        self.assertIn('$.license', [f['cale'] for f in fields])
+        self.assertEqual(parse_source(json.dumps({'openapi': '3.1.0', 'paths': {}}), 'https://example.org/o.json')[0], 'openapi')
+        self.assertEqual(parse_source(json.dumps({'swagger': '2.0', 'paths': {}}), 'https://example.org/o.json')[0], 'openapi')
+
     def test_schema_annotation_does_not_turn_data_into_a_schema(self):
         fmt, fields, _ = parse_source(json.dumps({'$schema': 'catalog.schema.json', 'services': [{'name': 'API'}]}), 'https://example.org/catalog.json')
         self.assertEqual(fmt, 'json')

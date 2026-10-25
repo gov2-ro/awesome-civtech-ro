@@ -833,6 +833,10 @@ It is separate from the per-run file limit. A smaller limit never deletes a disc
 - `locator_stare`: `cunoscut` or `necunoscut`. An unavailable original locator stays `necunoscut`; the script never invents one.
   Later documentation can complete it (history event `locator-completat`).
 - `link_original`, `descoperit_la` (retrieval time of the parent page, or `null`), `prioritate` (lower first), `nota` (optional).
+- `dovezi_suplimentare`: optional list of further locators, each with `rol`. For a dataset-metadata source, `ruta-metadate-set` locates the
+  documented route and `utilizare-in-proiect` locates the sentence in a project's own page that names the dataset code.
+  A locator made by `--add-sources-file` also holds `fragment`, the exact text at `interval`. `inventory.py --check` verifies the page hash,
+  the interval or link index, and the fragment whenever the documentation snapshot is present.
 - `retras`: `null`, or `motiv` (required), `la` and `stare_anterioara`. `istoric`: events `admis`, `adaugat`, `retras`, `reactivat`,
   `locator-completat`, each with a time.
 
@@ -840,6 +844,9 @@ Rules. A project's profile lists exactly its `activ` records. Discovery admits n
 members (default 3); it never removes a member. A retired source stays in the registry and in `seturi-date.json`.
 Discovery never reactivates it. A temporary HTTP 401, 404 or timeout retires nothing. `--retire SLUG URL --reason TEXT` retires;
 `--add-source SLUG URL --method M --parent URL --note TEXT` adds an explicitly identified source.
+`--add-sources-file FILE` adds many: a JSON list of `{proiect, url, metoda, parinte, nota, locate: {pagina, text}, dovezi: [{pagina, text, rol, proiect?}]}`.
+Each `text` must occur in the collected page; otherwise the run stops before it writes anything. A project named by an addition or
+a retirement counts as selected. `--force-url URL` fetches one source again without refreshing the others.
 
 **Incremental runs.** `inventory.py` reads the tracked state before it reconstructs candidates. `--only` selects projects.
 A run changes only the selected projects and the sources that they use. Every other profile, source reference and field record
@@ -874,6 +881,36 @@ spreadsheet, PDF, gzip, bodies with NUL bytes) get the state `format-binar` and 
 (a changed body, a wrong hash, an invalid pointer, a broken reference), bodies hash-verified, bodies unavailable on this checkout
 (not verified, never counted as verified), and sources whose last refresh failed. Only errors fail the check;
 `--strict-snapshots` also fails on unavailable bodies.
+
+**Dataset facts of INS TEMPO metadata (`set_date`, `catalog`).** A source of format `metadate-ins` (a response of the ins.gov2.ro
+route `/api/datasets/{matrix_code}`) keeps its dimension fields (role `dimensiune`) and adds one `set_date` record. Each fact holds
+`valoare`, `pointer` (into the retained body) and `baza`:
+
+- `declarat-in-metadate`: present in the response. `cod`, `denumire` (`ro`, `en`), `actualizat`, `categorie`, `definitie_indicator`,
+  `metodologie`, `observatii` (the source note, verbatim), `randuri`, and the unit options of the unit dimension.
+  Markup in a free text is removed (`transformare: marcaj-eliminat`); its links stay in `legaturi`.
+- `calculat-de-api`: derived by the API's own profiler, not declared by INS. `perioada` (`an_min`, `an_max`, `granularitate`),
+  `niveluri_geografice`, `arhetip`.
+- `observat-in-optiuni`: counted from the dimension options in the body. `niveluri_in_optiuni`, `ani_in_optiuni`.
+
+An indicator, a dimension and a dimension value are different things. The dataset has one indicator, described by `definitie_indicator`.
+`dimensiuni` lists the dimensions (`nume`, `eticheta`, `tip`, `cod_dimensiune`, declared and returned option counts, `pointer`).
+Dimension values appear only as `exemple_coduri` (at most five per dimension): `cod` is the source code (`sdmx_value`), `eticheta` the display
+label, `id_sursa` the source identifier, `pointer` the option. `trunchiat` says that more options exist. A value is never a variable.
+`unitati` lists the declared unit options. A unit option that the API did not type has `tip_unitate: null`. The dataset has no field `unitate`
+unless the response declares one. `licenta` is `null` with `licenta_motiv` when the response has no licence member. The record names no
+publisher and no original producer; the note in `observatii` may name the producer, and a reviewer reads it. The API host is the source URL.
+`diviziuni` lists the split variants of the dataset. `inventory.py --check` recomputes `set_date` from the retained body and compares.
+
+A source of format `lista-ins` (a dataset listing response with an integer `total` and cards that hold `matrix_code`) keeps its observed
+fields and a `catalog` record: `total`, `carduri_in_esantion`, `complet` (always `false` when cards are fewer than `total`) and up to five cards.
+A sample of the listing says nothing about datasets that it does not contain, and a one-card sample does not verify pagination.
+
+Other parser rules added with the INS pass:
+- A JSON object with more than 100 keys is a keyed collection. The parser samples its first 25 values under the path component `{*}`
+  and records one field with role `colectie-cu-chei` and `numar_chei`. Keys never become field names. Smaller objects stay records.
+- A JSON document with an `openapi` or `swagger` member is an API contract only when the member holds a version number.
+  A member that holds a URL marks a data index; it is parsed as sampled JSON.
 
 The documentation collector keeps the pages that an earlier run collected and a later run cannot collect again. The page stays and
 gains `ultima_incercare` (`fetched_at`, `state`, `http_status`, `error`). A page collected again replaces its earlier copy.

@@ -1,0 +1,262 @@
+{
+ "matrix_code": "ACC102B",
+ "matrix_name": "Injuried persons at work by type of accidents at work, by macroregions, development regions and counties",
+ "matrix_name_ro": "Accidentati in munca pe categorii de accidente, macroregiuni, regiuni de dezvoltare si judete",
+ "context_code": "1520",
+ "context_path": [
+  {
+   "code": "1",
+   "name": "A. SOCIAL STATISTICS"
+  },
+  {
+   "code": "15",
+   "name": "A.4 LABOUR FORCE ;"
+  },
+  {
+   "code": "1520",
+   "name": "10. WORKING CONDITIONS"
+  }
+ ],
+ "definitie": "Prin accident de munca se intelege vatamarea violenta a organismului, precum si intoxicatia acuta profesionala, care au loc in timpul procesului de munca sau in indeplinirea indatoririlor de serviciu si care provoaca incapacitate temporara de munca de cel putin 3 zile, invaliditate sau deces. Numarul  accidentatilor in  munca reprezinta numarul persoanelor care s-au accidentat la locul de munca, indiferent de natura accidentului si de urmarile produse de acesta. Din numarul accidentatilor sunt excluse cazurile de accidente de traseu.\nRata accidentelor de munca reprezinta frecventa de accidentare sau numarul accidentatilor ce revin la 1000 salariati.",
+ "metodologie": "Datele cuprind accidentatii in munca inregistrati conform definitiei accidentelor de munca din Legea 319/2006 a securitatii si sanatatii in munca, cu modificarile si completarile ulterioare, cu exceptia accidentelor de traseu.\r\n\r\n<a href=\"https://insse.ro/cms/files/Rapoarte%20de%20calitate/sanatate/Statistica-accidentelor-de-munca-din-surse-administrative.pdf\" target=\"_blank\"> Raport de metadate si calitate </a>\r\n",
+ "ultima_actualizare": "2024-10-08",
+ "observatii": "Sursa datelor este Inspectia muncii - Ministerul Muncii si Protectiei Sociale, care a furnizat date incepand cu anul 1992.\n",
+ "row_count": 5980,
+ "dim_count": 4,
+ "is_split": false,
+ "parent_matrix_code": null,
+ "splits": [
+  {
+   "matrix_code": "ACC102B_judete_numar_persoane",
+   "label": "judete × numar_persoane",
+   "row_count": 3506,
+   "split_dimensions": {
+    "REF_AREA": "judete",
+    "UNIT_MEASURE": "numar_persoane"
+   }
+  },
+  {
+   "matrix_code": "ACC102B_judete_promile",
+   "label": "judete × promile",
+   "row_count": 924,
+   "split_dimensions": {
+    "REF_AREA": "judete",
+    "UNIT_MEASURE": "promile"
+   }
+  }
+ ],
+ "parent": null,
+ "profile": {
+  "matrix_code": "ACC102B",
+  "has_time": true,
+  "time_granularity": "annual",
+  "time_year_min": 1992,
+  "time_year_max": 2023,
+  "has_geo": true,
+  "geo_levels": "[\"county\", \"macroregion\", \"national\", \"region\"]",
+  "has_gender": false,
+  "has_age": false,
+  "has_residence": false,
+  "unit_types": "[]",
+  "primary_unit_type": null,
+  "dim_count": 4,
+  "archetype": "geo_time",
+  "parse_coverage": 1.0
+ },
+ "dimensions": [
+  {
+   "dim_code": 1,
+   "dim_label": "Categorii de accidente de munca",
+   "dim_column_name": "CATEGORY",
+   "dim_type": "indicator",
+   "option_count": 6,
+   "options": [
+    {
+     "nom_item_id": 5733,
+     "label": "Total",
+     "offset": 1,
+     "parent_id": null,
+     "dim_type": "indicator",
+     "parsed": {},
+     "sdmx_value": "Total"
+    },
+    {
+     "nom_item_id": 5734,
+     "label": "Temporary incapacity of work",
+     "offset": 2,
+     "parent_id": null,
+     "dim_type": "indicator",
+     "parsed": {},
+     "sdmx_value": "Incapacitate temporara de munca"
+    },
+    {
+     "nom_item_id": 5735,
+     "label": "Fatal",
+     "offset": 3,
+     "parent_id": null,
+     "dim_type": "indicator",
+     "parsed": {},
+     "sdmx_value": "Mortale"
+    },
+    {
+     "nom_item_id": 24075,
+     "label": "In collective accidents at work",
+     "offset": 4,
+     "parent_id": null,
+     "dim_type": "indicator",
+     "parsed": {},
+     "sdmx_value": "In accidente colective de munca"
+    }
+   ]
+  },
+  {
+   "dim_code": 2,
+   "dim_label": "Macroregiuni, regiuni de dezvoltare si judete",
+   "dim_column_name": "REF_AREA",
+   "dim_type": "geo",
+   "option_count": 56,
+   "options": [
+    {
+     "nom_item_id": 112,
+     "label": "Total",
+     "offset": 1,
+     "parent_id": null,
+     "dim_type": "geo",
+     "parsed": {
+      "geo_level": "national",
+      "geo_name_clean": "Total"
+     },
+     "sdmx_value": "TOTAL"
+    },
+    {
+     "nom_item_id": 21295,
+     "label": "Macroregion 1",
+     "offset": 2,
+     "parent_id": null,
+     "dim_type": "geo",
+     "parsed": {
+      "geo_level": "macroregion",
+      "geo_name_clean": "MACROREGIUNEA UNU"
+     },
+     "sdmx_value": "MACROREGIUNEA UNU"
+    },
+    {
+     "nom_item_id": 5726,
+     "label": "North-West",
+     "offset": 3,
+     "parent_id": null,
+     "dim_type": "geo",
+     "parsed": {
+      "geo_level": "region",
+      "geo_name_clean": "Regiunea NORD-VEST"
+     },
+     "sdmx_value": "Regiunea NORD-VEST"
+    },
+    {
+     "nom_item_id": 3068,
+     "label": "Bihor",
+     "offset": 4,
+     "parent_id": null,
+     "dim_type": "geo",
+     "parsed": {
+      "geo_level": "county",
+      "geo_name_clean": "Bihor"
+     },
+     "sdmx_value": "Bihor"
+    }
+   ]
+  },
+  {
+   "dim_code": 3,
+   "dim_label": "Perioade",
+   "dim_column_name": "TIME_PERIOD",
+   "dim_type": "time",
+   "option_count": 32,
+   "options": [
+    {
+     "nom_item_id": 4285,
+     "label": "Year 1992",
+     "offset": 1,
+     "parent_id": null,
+     "dim_type": "time",
+     "parsed": {
+      "year": 1992,
+      "quarter": null,
+      "month": null
+     },
+     "sdmx_value": "1992"
+    },
+    {
+     "nom_item_id": 4304,
+     "label": "Year 1993",
+     "offset": 2,
+     "parent_id": null,
+     "dim_type": "time",
+     "parsed": {
+      "year": 1993,
+      "quarter": null,
+      "month": null
+     },
+     "sdmx_value": "1993"
+    },
+    {
+     "nom_item_id": 4323,
+     "label": "Year 1994",
+     "offset": 3,
+     "parent_id": null,
+     "dim_type": "time",
+     "parsed": {
+      "year": 1994,
+      "quarter": null,
+      "month": null
+     },
+     "sdmx_value": "1994"
+    },
+    {
+     "nom_item_id": 4342,
+     "label": "Year 1995",
+     "offset": 4,
+     "parent_id": null,
+     "dim_type": "time",
+     "parsed": {
+      "year": 1995,
+      "quarter": null,
+      "month": null
+     },
+     "sdmx_value": "1995"
+    }
+   ]
+  },
+  {
+   "dim_code": 4,
+   "dim_label": "Unitati de masura",
+   "dim_column_name": "UNIT_MEASURE",
+   "dim_type": "unit",
+   "option_count": 2,
+   "options": [
+    {
+     "nom_item_id": 9685,
+     "label": "Number of persons",
+     "offset": 1,
+     "parent_id": null,
+     "dim_type": "unit",
+     "parsed": {
+      "unit_type": "count",
+      "unit_scale": 1
+     },
+     "sdmx_value": "Numar persoane"
+    },
+    {
+     "nom_item_id": 24078,
+     "label": "Promile",
+     "offset": 2,
+     "parent_id": null,
+     "dim_type": "indicator",
+     "parsed": {},
+     "sdmx_value": "Promile"
+    }
+   ]
+  }
+ ],
+ "_fixture": "Trimmed copy of the live response of 2026-10-25: chart_config removed, splits and options shortened. option_count keeps the live value."
+}

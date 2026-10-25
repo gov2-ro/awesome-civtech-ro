@@ -11,7 +11,7 @@ from common import observation_paths
 BASIS = {'declarat-in-schema': 'schema', 'declarat-in-metadate': 'metadata',
          'observat-in-esantion-json': 'sample', 'neprecizat-in-antet-csv': 'header'}
 FORMATS = {'openapi': 'Schemă API', 'json-schema': 'Schemă JSON', 'metadate-ins': 'Metadate de set',
-           'json': 'Fișier JSON', 'csv': 'Fișier CSV'}
+           'json': 'Fișier JSON', 'csv': 'Fișier CSV', 'lista-ins': 'Listă de seturi INS'}
 SOURCE_LABELS = {
     'Institutul Național de Statistică (INS)': 'INS', 'Ministerul Dezvoltării (MDLPA)': 'MDLPA',
     'Administrația Prezidențială': 'Adm. Prez', 'Monitorul Oficial': 'MO',

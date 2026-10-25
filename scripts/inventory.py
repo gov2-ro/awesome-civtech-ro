@@ -28,11 +28,14 @@ from urllib.parse import unquote, urlsplit
 
 from collect_docs import Fetcher, canonical, flat, restore, scope_of
 from common import PUBLIC_ROOT, data_schema, load_catalogue, load_vocabulary, observation_paths
+from inventory_ins import ins_dataset, ins_listing, is_listing
 from inventory_state import (REGISTRY, RequestLog, StateError, active_members, admit, check_text, dump, load_previous,
                              new_discovery, now_utc, priority, registry_map, retire, seed_registry, sorted_registry,
                              source_id, usable, validate_state, write_atomic, write_file_atomic)
 
 MAX_FIELDS, MAX_DEPTH, SAMPLE_ROWS = 2000, 7, 25
+# An object with more keys than this is a keyed collection (identifier -> record), not a record with that many members.
+KEYED_COLLECTION = 100
 
 
 def pointer_part(value):
@@ -163,7 +166,15 @@ def observed_fields(doc):
     def walk(value, path='$', pointer='', depth=0):
         if depth > MAX_DEPTH or len(found) >= MAX_FIELDS:
             return
-        if isinstance(value, dict):
+        if isinstance(value, dict) and len(value) > KEYED_COLLECTION:
+            # Sample the first values like array elements. One path per key would turn identifiers into field names.
+            here = path + '{*}'
+            found.setdefault(here, {'nume': path.rsplit('.', 1)[-1] + '{*}', 'cale': here, 'tipuri_observate': ['object'],
+                                    'stare_tip': 'observat-in-esantion-json', 'rol': 'colectie-cu-chei', 'pointer': pointer,
+                                    'numar_chei': len(value)})
+            for key, child in list(value.items())[:SAMPLE_ROWS]:
+                walk(child, here, pointer + '/' + pointer_part(key), depth + 1)
+        elif isinstance(value, dict):
             for key, child in list(value.items())[:MAX_FIELDS]:
                 walk(child, path + '.' + key, pointer + '/' + pointer_part(key), depth + 1)
         elif isinstance(value, list):
@@ -186,7 +197,7 @@ def sampling_limit(value, depth=0):
     if isinstance(value, list):
         return len(value) > SAMPLE_ROWS or any(sampling_limit(v, depth + 1) for v in value[:SAMPLE_ROWS])
     if isinstance(value, dict):
-        return len(value) > MAX_FIELDS or any(sampling_limit(v, depth + 1) for v in list(value.values())[:MAX_FIELDS])
+        return len(value) > KEYED_COLLECTION or any(sampling_limit(v, depth + 1) for v in list(value.values())[:MAX_FIELDS])
     return False
 
 
@@ -206,7 +217,7 @@ def parse_source(body, url, content_type=''):
         return 'csv', [{'nume': name, 'cale': name, 'tip_declarat': None, 'stare_tip': 'neprecizat-in-antet-csv',
                         'rol': 'camp-date', 'coloana_csv': n} for n, name in enumerate(header)], False
     doc = json.loads(body)
-    if isinstance(doc, dict) and ('openapi' in doc or 'swagger' in doc):
+    if isinstance(doc, dict) and re.match(r'^\d+(\.\d+)*', str(doc.get('openapi') or doc.get('swagger') or '')):
         fields = openapi_fields(doc)
         return 'openapi', fields, len(fields) >= MAX_FIELDS
     if isinstance(doc, dict) and 'matrix_code' in doc and isinstance(doc.get('dimensions'), list):
@@ -219,6 +230,8 @@ def parse_source(body, url, content_type=''):
         fields = declared_fields(doc, doc)
         return 'json-schema', fields, len(fields) >= MAX_FIELDS
     fields = observed_fields(doc)
+    if is_listing(doc):
+        return 'lista-ins', fields, len(fields) >= MAX_FIELDS or sampling_limit(doc)
     return 'json', fields, len(fields) >= MAX_FIELDS or sampling_limit(doc)
 
 
@@ -304,7 +317,11 @@ def analyse_source(response):
     try:
         fmt, fields, truncated = parse_source(body, response['final_url'], response.get('content_type', ''))
         metadata.update(format=fmt, campuri=fields, stare='analizat', completitudine='partial', limita_atinsa=truncated,
-                        baza_tipului='esantion-date' if fmt == 'json' else 'antet-fara-tipuri' if fmt == 'csv' else 'schema-declarata')
+                        baza_tipului='esantion-date' if fmt in ('json', 'lista-ins') else 'antet-fara-tipuri' if fmt == 'csv' else 'schema-declarata')
+        if fmt == 'metadate-ins':
+            metadata['set_date'] = ins_dataset(json.loads(body))
+        elif fmt == 'lista-ins':
+            metadata['catalog'] = ins_listing(json.loads(body))
     except (ValueError, TypeError, KeyError, csv.Error) as exc:
         metadata.update(stare='eroare-parsare', error=str(exc))
     return metadata
@@ -413,6 +430,10 @@ def check_report(out, observations):
                     errors.append('CSV headers differ: ' + source['url'])
             elif source.get('campuri'):
                 document = json.loads(body)
+                if source.get('format') == 'metadate-ins' and ins_dataset(document) != source.get('set_date'):
+                    errors.append('Dataset facts differ from the retained body: ' + source['url'])
+                if source.get('format') == 'lista-ins' and ins_listing(document) != source.get('catalog'):
+                    errors.append('Listing facts differ from the retained body: ' + source['url'])
                 for field in source['campuri']:
                     try:
                         declaration = pointer_value(document, field['pointer'])
@@ -449,12 +470,79 @@ def check_report(out, observations):
     if previous['registry']:
         registry = registry_map(previous['discoveries'])
         errors += validate_state(profiles, sources, registry)
+        for record in previous['discoveries']:
+            for evidence in [record.get('dovada'), *(record.get('dovezi_suplimentare') or [])]:
+                if evidence and record['metoda'] != 'dovada-pilot':
+                    status = check_locator(record, evidence, observations)
+                    if status == 'unavailable':
+                        report['unavailable'].append(f'discovery: {record["proiect"]} {evidence.get("snapshot")}')
+                    elif status:
+                        errors.append(status)
+    report['unavailable'] = sorted(set(report['unavailable']))
     return report
+
+
+def check_locator(record, evidence, observations):
+    """Check one discovery locator against its documentation snapshot. Returns '', 'unavailable' or an error message."""
+    label = f'Discovery locator for {record["proiect"]} {record["url"]}'
+    if not evidence.get('snapshot'):
+        return ''
+    try:
+        page = json.loads((observations / evidence['snapshot']).read_text())
+    except FileNotFoundError:
+        return 'unavailable'
+    except (OSError, ValueError) as exc:
+        return f'{label}: {exc}'
+    text = page.get('text', '')
+    if evidence.get('sha256') and hashlib.sha256(text.encode()).hexdigest() != evidence['sha256']:
+        return f'{label}: page hash differs'
+    pointer = evidence.get('pointer', '')
+    if pointer == '/text':
+        start, end = evidence.get('interval', [0, 0])
+        expected = evidence.get('fragment') or record.get('link_original')
+        if text[start:end] != expected:
+            return f'{label}: text interval does not hold the fragment'
+    elif pointer.startswith('/links/'):
+        try:
+            link = page['links'][int(pointer.rsplit('/', 1)[1])][0]
+        except (KeyError, IndexError, ValueError, TypeError):
+            return f'{label}: invalid link pointer {pointer}'
+        if link.rstrip('.,;') != record.get('link_original'):
+            return f'{label}: link pointer holds another URL'
+    return ''
 
 
 def check_inventory(out, observations):
     """The evidence errors only. Missing local bodies are reported by check_report, not counted as errors."""
     return check_report(out, observations)['errors']
+
+
+def locate_text(docs, slug, page_url, needle):
+    """Locate an exact fragment in a collected documentation page. Returns the discovery locator, or None."""
+    for page in docs.get(slug, {}).get('pages', []):
+        if page_url in (page.get('final_url'), page.get('url')) and page.get('state') == 'colectat':
+            text = page.get('text', '')
+            start = text.find(needle)
+            if start >= 0:
+                return {'url': page['final_url'], 'sha256': page.get('sha256'), 'pointer': '/text', 'interval': [start, start + len(needle)],
+                        'fragment': needle, 'snapshot': 'documentare/' + page['snapshot'] if page.get('snapshot') else None}
+    return None
+
+
+def resolve_spec(docs, slug, spec):
+    """Turn `locate` / `dovezi` requests of an explicit source specification into exact locators. Fails when a fragment is absent."""
+    spec = dict(spec)
+    def find(request):
+        evidence = locate_text(docs, request.get('proiect', slug), request['pagina'], request['text'])
+        if not evidence:
+            raise StateError(f'Fragment not found in {request["pagina"]}: {request["text"][:60]}')
+        return evidence
+    if spec.get('locate'):
+        spec['dovada'] = find(spec.pop('locate'))
+    extra = [{**find(request), 'rol': request['rol']} for request in spec.pop('dovezi', [])]
+    if extra:
+        spec['dovezi_suplimentare'] = extra
+    return spec
 
 
 # --- incremental update ------------------------------------------------------------------------------------------
@@ -493,7 +581,7 @@ def reconcile(previous, metadata, fresh, when):
 
 
 def update_inventory(entries, docs, verified, previous, *, cache, selected=(), offline=False, force=False, max_files=3,
-                     fetch=None, now=None, concepts=None, retire_sources=(), add_sources=()):
+                     fetch=None, now=None, concepts=None, retire_sources=(), add_sources=(), force_urls=()):
     """Compute the next inventory state from the tracked state, local documentation and caches.
 
     Only the selected projects change. `fetch` is called only for sources that selected projects use.
@@ -507,6 +595,10 @@ def update_inventory(entries, docs, verified, previous, *, cache, selected=(), o
     selected = set(selected)
     if selected - set(slugs):
         raise StateError('Unknown slug: ' + ', '.join(sorted(selected - set(slugs))))
+    # A project named by an explicit addition or retirement changes, so it counts as selected.
+    if selected:
+        selected |= {slug for slug, _ in add_sources} | {slug for slug, _, _ in retire_sources}
+    force_urls = {canonical(u) for u in force_urls}
     # New entries have no tracked record to protect; they are built from whatever local evidence exists.
     work = (selected or set(slugs)) | {s for s in slugs if s not in previous['profiles']}
     report = {'pastrate': [], 'reimprospatate': [], 'esuate': [], 'neinspectate': [], 'avertismente': [], 'cereri': 0, 'cache': 0}
@@ -528,7 +620,8 @@ def update_inventory(entries, docs, verified, previous, *, cache, selected=(), o
             registry[key]['istoric'].append({'eveniment': 'reactivat', 'la': now})
         elif key not in registry:
             registry[key] = new_discovery(slug, url, spec.get('metoda', 'adaugat-explicit'), state='activ', parent=spec.get('parinte'),
-                                          evidence=spec.get('dovada'), discovered_at=now, note=spec.get('nota'))
+                                          evidence=spec.get('dovada'), discovered_at=now, note=spec.get('nota'),
+                                          extra=spec.get('dovezi_suplimentare'))
             registry[key]['istoric'].append({'eveniment': 'adaugat', 'la': now})
         elif registry[key]['stare'] == 'descoperit':
             registry[key]['stare'] = 'activ'
@@ -557,7 +650,7 @@ def update_inventory(entries, docs, verified, previous, *, cache, selected=(), o
         cached = read_cache(path)
         refresh = url in fetch_urls and not offline
         response, origin = None, None
-        if cached is not None and not (refresh and force):
+        if cached is not None and not (refresh and (force or url in force_urls)):
             response, origin = cached, 'cache'
         elif refresh:
             response, origin = fetch(url), 'retea'
@@ -663,6 +756,7 @@ def main():
     parser.add_argument('--strict-snapshots', action='store_true', help='with --check: fail when local evidence bodies are absent')
     parser.add_argument('--dry-run', action='store_true', help='compute and report the next state; write nothing')
     parser.add_argument('--force', action='store_true', help='fetch selected sources again even when a cache exists')
+    parser.add_argument('--force-url', action='append', default=[], metavar='URL', help='fetch only this source again (repeatable)')
     parser.add_argument('--max-files', type=int, default=3, help='admit new sources until a project has this many members')
     parser.add_argument('--max-requests', type=int, help='stop fetching after this many direct requests in this run')
     parser.add_argument('--lot', default='', help='name of the collection batch; enables the request log')
@@ -671,6 +765,8 @@ def main():
     parser.add_argument('--reason', default='', help='reason recorded with --retire')
     parser.add_argument('--add-source', nargs=2, action='append', metavar=('SLUG', 'URL'), default=[],
                         help='add an explicitly identified structured source to a project')
+    parser.add_argument('--add-sources-file', type=Path, metavar='FILE',
+                        help='JSON list of source specifications: proiect, url, metoda, parinte, nota, locate {pagina, text}, dovezi [{pagina, text, rol}]')
     parser.add_argument('--method', default='adaugat-explicit', help='with --add-source: how the source was identified')
     parser.add_argument('--parent', help='with --add-source: the page or repository where the source was identified')
     parser.add_argument('--note', help='with --add-source: a short note kept with the discovery')
@@ -711,11 +807,18 @@ def main():
     fetcher = Fetcher(timeout=12, max_requests=limit, log=log, purpose='inventar')
     try:
         previous = load_previous(out)
+        additions = [(slug, {'url': url, 'metoda': args.method, 'parinte': args.parent, 'nota': args.note}) for slug, url in args.add_source]
+        if args.add_sources_file:
+            try:
+                specs = json.loads(args.add_sources_file.read_text())
+            except (OSError, ValueError) as exc:
+                raise StateError(f'Cannot read {args.add_sources_file}: {exc}') from exc
+            additions += [(spec['proiect'], resolve_spec(docs, spec['proiect'], {k: v for k, v in spec.items() if k != 'proiect'})) for spec in specs]
         state = update_inventory(
             entries, docs, verified, previous, cache=out / 'surse', selected=selected, offline=args.offline, force=args.force,
-            max_files=args.max_files, fetch=fetcher, concepts=concepts,
+            max_files=args.max_files, fetch=fetcher, concepts=concepts, force_urls=args.force_url,
             retire_sources=[(slug, canonical(url), args.reason) for slug, url in args.retire],
-            add_sources=[(slug, {'url': url, 'metoda': args.method, 'parinte': args.parent, 'nota': args.note}) for slug, url in args.add_source])
+            add_sources=additions)
         if not args.dry_run:
             write_atomic(out, render_outputs(state))
     except StateError as exc:

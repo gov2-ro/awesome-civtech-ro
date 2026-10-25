@@ -1,0 +1,13 @@
+lot,la,metoda,url,stare,http_status,octeti,cache,scop
+B,2026-10-25T13:58:06.866442+00:00,GET,https://ins.gov2.ro/api/datasets?limit=1,ok,200,557,nu,inventar
+B,2026-10-25T13:59:24.180970+00:00,GET,https://ins.gov2.ro/api/datasets/GOS104A?lang=en,ok,200,87876,nu,inventar
+B,2026-10-25T13:59:24.572661+00:00,GET,https://ins.gov2.ro/api/datasets/LOC101B?lang=en,ok,200,628250,nu,inventar
+B,2026-10-25T13:59:24.913936+00:00,GET,https://ins.gov2.ro/api/datasets/TRN139A?lang=en,ok,200,26867,nu,inventar
+B,2026-10-25T13:59:25.330296+00:00,GET,https://ins.gov2.ro/api/datasets/ACC102B?lang=en,ok,200,26732,nu,inventar
+B,2026-10-25T13:59:28.210918+00:00,GET,https://ins.gov2.ro/api/datasets/POP107D?lang=en,ok,200,648955,nu,inventar
+B2,2026-10-25T14:02:34.194467+00:00,GET,https://mariuscomper.uk/codurbanism/data/ro/source-manifest.json,ok,200,56355,nu,inventar
+B2,2026-10-25T14:02:34.253430+00:00,GET,https://romaniatransparenta.eu/date/control-saptamanal.json,ok,200,6999,nu,inventar
+B2,2026-10-25T14:02:34.256918+00:00,GET,https://transparenta.eu/ai/index.json,ok,200,871,nu,inventar
+B2,2026-10-25T14:02:34.295011+00:00,GET,https://romaniatransparenta.eu/date/primarii.json,ok,200,763228,nu,inventar
+B2,2026-10-25T14:02:34.408391+00:00,GET,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,ok,200,687834,nu,inventar
+B2,2026-10-25T14:02:34.561111+00:00,GET,https://companiidestat.ro/date/v1/index.json,ok,200,10260,nu,inventar

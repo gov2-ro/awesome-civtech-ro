@@ -1,5 +1,44 @@
 # Activity
 
+## 2026-10-25 — Deepen the INS inventory and six other sources (milestone B)
+
+**Done**
+- Fetched the documented listing `https://ins.gov2.ro/api/datasets?limit=1`. Measured: HTTP 200, 557 bytes, `total` 3,368 datasets, 16 card members
+  (`matrix_code`, `matrix_name`, `context_code`, `ultima_actualizare`, `row_count`, `dim_count`, `archetype`, `has_time`, `has_geo`, `time_range`,
+  `primary_unit_type`, `time_granularity`, `is_split`, `parent_matrix_code`, `split_count`, `option_count`). llms.txt says "about 3,600"; the listing says 3,368.
+  `limit` and `offset` are documented; only `limit=1` was run, so pagination is not verified.
+- Fetched five dataset metadata records (`?lang=en`): ACC102B (again; same body hash as on 2026-10-24, so still available), POP107D, LOC101B, TRN139A, GOS104A.
+  The codes come from the projects' own pages, not from guessing: POP107D is named by `constru-pentru-cine`, `orasul-care-se-intinde` and `demoanaf`;
+  LOC101B by `constru-pentru-cine` and `orasul-care-se-intinde`; TRN139A and GOS104A by `unde-se-termina-asfaltul`. Each use is a locator in the registry
+  (page hash plus exact text interval). Seven project memberships were added, with `ins-gov2` as the service that exposes all five.
+- New `set_date` and `catalog` records (inventory_ins.py, `scripts/fixtures/ins/`): name, code, update date, categories, the indicator definition,
+  methodology links, the source note verbatim, dimensions with bounded code samples (code kept beside label), declared unit options, period and
+  geographic levels labelled as API-computed, level counts labelled as counted, and a missing licence stated as missing.
+- Fetched six more sources where a named gap existed: `companiidestat.ro` data index (declares licence CC BY 4.0 and four original providers), its
+  2025 financial statements (a collection keyed by 1,446 CUIs), `transparenta.eu/ai/index.json` (route list), `romaniatransparenta.eu` `primarii.json` and
+  `control-saptamanal.json`, and the codurbanism `source-manifest.json`. 
+- Network: lot B 6 requests (1 listing, 5 metadata; 1.4 MB), lot B2 6 requests (1.5 MB). All HTTP 200. No retries. 12 direct requests in total; no browser.
+- Field records: 2,302 to 2,472. New: 24 `declarat-in-metadate` dimensions, 150 more sampled JSON paths. 15 entries now have structured fields
+  (14 baseline plus `constru-pentru-cine`, which has only INS metadata). 362 unit tests run (6 skipped); the evidence check passes: 35 bodies hash-verified, 0 errors.
+
+**Hard**
+- The mirror's period is shorter than the projects cite. LOC101B's time options end in 2023 (`ultima_actualizare` 2026-07-21), while `constru-pentru-cine`
+  documents 1990-2025. POP107D ends in 2025 against 2026 in the project; TRN139A ends in 2024 against 2025. The projects read TEMPO directly. Memberships therefore
+  say "metadata read from the ins.gov2.ro API", and the note on each discovery says so. The mirror's `profile` is API-computed, not an INS declaration.
+- `companiidestat.ro/date/v1/index.json` has an `openapi` member that holds a URL. The old test treated it as an API contract and read zero fields.
+  The test now needs a version number. Existing sources are unchanged by this.
+- The 2025 financials object was keyed by CUI: 2,000 fields (the limit) of the form `$.companii.<cui>.<member>`. A key map with more than 100 keys is now sampled
+  under `{*}` (39 fields). No baseline source has such a map (largest: 42 keys), so no tracked record changed; the baseline sources compared equal field by field.
+- A locality option label starts with a number (`38731 RIPICENI`). The POP107D note declares "Ripiceni (SIRUTA 38731)" and "Scanteia (SIRUTA 98916)", and the
+  options carry exactly those two numbers (a second `94429 SCANTEIA` shows that names collide). This supports, but does not prove, that the leading token is SIRUTA for
+  all localities. It stays an open question for the meaning pass.
+
+**Decided**
+- Attach each INS metadata source to the projects whose own pages name the dataset, with the page evidence, rather than only to `ins-gov2`. Cost of the alternative:
+  an INS dimension could not be tied to a project that uses the dataset, and the finder could not show the use evidence. Risk accepted: the source is a mirror, labelled as such.
+- Count the six extra fetches in their own lot (B2) so that the INS limit (the listing plus five records) stays exact.
+- Do not re-test the `POP101A` example. The brief records a 404 and asks for fresh evidence before reuse; this pass does not reuse it.
+
 ## 2026-10-25 — Make inventory collection incremental and safe (milestone A)
 
 **Done**

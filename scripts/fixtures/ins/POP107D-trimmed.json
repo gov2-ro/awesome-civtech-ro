@@ -1,0 +1,364 @@
+{
+ "matrix_code": "POP107D",
+ "matrix_name": "LEGALLY RESIDENT POPULATION, by age group and ages, sex, counties and localities at January 1st.",
+ "matrix_name_ro": "POPULATIA DUPA DOMICILIU la 1 ianuarie pe grupe de varsta si varste, sexe, judete si localitati",
+ "context_code": "1012",
+ "context_path": [
+  {
+   "code": "1",
+   "name": "A. SOCIAL STATISTICS"
+  },
+  {
+   "code": "10",
+   "name": "A.1 POPULATION AND ITS DEMOGRAPHIC STRUCTURE"
+  },
+  {
+   "code": "1012",
+   "name": "2. LEGALLY RESIDENT POPULATION"
+  }
+ ],
+ "definitie": "Populatia dupa domiciliu la data de 1 ianuarie a anului de referinta reprezinta numarul persoanelor cu cetatenie romana si domiciliu pe teritoriul Romaniei, delimitat dupa criterii administrativ-teritoriale.\r\nDomiciliul persoanei este adresa la care aceasta declara ca are locuinta principala, trecuta in actul de identitate (CI, BI), asa cum este luata in evidenta organelor administrative ale statului.\r\nIn stabilirea valorii acestui indicator nu se tine cont de resedinta obisnuita, de perioada si/sau motivul absentei de la domiciliu.",
+ "metodologie": "Metoda utilizata pentru calculul indicatorului ''populatia dupa domiciliu'' este metoda componentelor:\r\na) la nivel de total tara, in functie de soldul sporului natural si soldul migratiei internationale definitive:\r\nP(t+1) = P(t) + N(t,t+1) - D(t,t+1) + dM(t,t+1) + Cv\r\nunde:\r\nP(t+1) - populatia cu domiciliul in tara la momentul t+1;\r\nP(t) - populatia cu domiciliul in tara la momentul t;\r\nN(t,t+1) - numarul de nascuti-vii in perioada (t, t+1), ai caror mame au avut domiciliul in Romania la data nasterii;\r\nD(t,t+1) - numarul de persoane care au decedat in perioada (t, t+1), care aveau domiciliul in Romania la data decesului;\r\ndM(t,t+1) - soldul migratiei internationale definitive (imigranti - emigranti), in perioada (t, t+1);\r\nCv - coeficient de ajustare a varstelor.\r\n\r\nb) in profil teritorial, la diferite niveluri administrativ-teritoriale pentru care se calculeaza, in functie de soldul sporului natural, soldul migratiei internationale definitive si soldul migratiei interne cu schimbarea domiciliului:\r\nP(t+1) = P(t) + N(t,t+1) - D(t,t+1) + dM(t,t+1) + dm(t,t+1) + Cv\r\nunde:\r\nP(t+1) - populatia cu domiciliul in tara la momentul t+1;\r\nP(t) - populatia cu domiciliul in tara la momentul t;\r\nN(t,t+1) - numarul de nascuti-vii in perioada (t, t+1), ai caror mame au avut domiciliul in Romania la data nasterii;\r\nD(t,t+1) - numarul de persoane care au decedat in perioada (t, t+1), care aveau domiciliul in Romania la data decesului;\r\ndM(t,t+1) - soldul migratiei internationale definitive (imigranti - emigranti), in perioada (t, t+1);\r\ndm(t,t+1) - soldul migratiei interne cu schimbarea domiciliului (sositi - plecati), in perioada (t, t+1);\r\nCv - coeficient de ajustare a varstelor.\r\n \r\nVarsta este exprimata in ani impliniti (de exemplu, o persoana avand varsta de 24 ani si 11 luni este considerata ca avand varsta de 24 ani).\r\n\r\n<a href=\"https://insse.ro/cms/files/Rapoarte%20de%20calitate/populatie/Populatia-dupa-domiciliu-la-1ianuarie.pdf\" target=\"_blank\"> Raport de metadate si calitate </a>\r\n",
+ "ultima_actualizare": "2025-10-01",
+ "observatii": "Datele utilizate pentru determinarea populatiei dupa domiciliu provin din doua tipuri de surse de date:\r\n1. surse administrative\r\nDirectia pentru Evidenta Persoanelor si Administrarea Bazelor de Date - Registrul National de Evidenta a Persoanelor:\r\n- date referitoare la migratia interna, date semestriale;\r\n- date referitoare la migratia internationala definitiva cu stabilirea domiciliului in Romania - imigranti, date semestriale;\r\n- primiri si renuntari la cetatenia romana, date semestriale.\r\nDirectia Generala de Pasapoarte:\r\n- date referitoare la migratia internationala definitiva cu schimbarea domiciliului in alta tara - emigranti, date semestriale.\r\n2. surse statistice - rezultatele cercetarilor statistice exhaustive privind natalitatea si mortalitatea, pentru numarul nascutilor-vii si al deceselor survenite in intervalul de timp studiat (bazate, la randul lor, pe surse administrative).\r\nIn scopul realizarii de comparatii internationale, se va utiliza numai populatia rezidenta care se calculeaza conform regulamentelor europene (Regulamentul nr. 1260/2013 al Parlamentului European si al Consiliului privind statisticile europene pe demografie si Regulamentul nr. 205/2014 al Comisiei de implementare a Regulamentului nr. 1260/2013 privind statisticile europene pe demografie  referitor la defalcare date, termene, revizuiri de date).\r\nIn scopuri nationale, se poate utiliza populatia dupa domiciliu, aceasta fiind necesara in special pentru cerintele impuse de legislatia nationala (Legea nr. 273/ 2006, OUG nr. 63/2010, Hotararea nr. 410/1991).\r\nDenumirile localitatilor Romaniei sunt in concordanta cu impartirea administrativ - teritoriala actuala.\r\nPentru localitatile Ripiceni (SIRUTA 38731) si Scanteia (SIRUTA 98916) cresterea numarului de locuitori este datorata imigratiei persoanelor nascute in Republica Moldova.\r\nDatele statistice sunt revizuite in mod constant, conform politicii de revizuire a datelor.",
+ "row_count": 21589699,
+ "dim_count": 6,
+ "is_split": false,
+ "parent_matrix_code": null,
+ "splits": [
+  {
+   "matrix_code": "POP107D_grupe_judet",
+   "label": "grupe × judet",
+   "row_count": 2971749,
+   "split_dimensions": {
+    "AGE": "grupe",
+    "REF_AREA_2": "judet"
+   }
+  },
+  {
+   "matrix_code": "POP107D_grupe_localitate",
+   "label": "grupe × localitate",
+   "row_count": 3782599,
+   "split_dimensions": {
+    "AGE": "grupe",
+    "REF_AREA_2": "localitate"
+   }
+  }
+ ],
+ "parent": null,
+ "profile": {
+  "matrix_code": "POP107D",
+  "has_time": true,
+  "time_granularity": "annual",
+  "time_year_min": 1992,
+  "time_year_max": 2025,
+  "has_geo": true,
+  "geo_levels": "[\"county\", \"locality\", \"national\"]",
+  "has_gender": true,
+  "has_age": true,
+  "has_residence": false,
+  "unit_types": "[\"count\"]",
+  "primary_unit_type": "count",
+  "dim_count": 6,
+  "archetype": "geo_time",
+  "parse_coverage": 1.0
+ },
+ "dimensions": [
+  {
+   "dim_code": 1,
+   "dim_label": "Varste si grupe de varsta",
+   "dim_column_name": "AGE",
+   "dim_type": "age",
+   "option_count": 104,
+   "options": [
+    {
+     "nom_item_id": 1,
+     "label": "Total",
+     "offset": 1,
+     "parent_id": null,
+     "dim_type": "age",
+     "parsed": {
+      "age_min": 0,
+      "age_max": 999
+     },
+     "sdmx_value": "Total"
+    },
+    {
+     "nom_item_id": 2,
+     "label": "0- 4 years",
+     "offset": 2,
+     "parent_id": null,
+     "dim_type": "age",
+     "parsed": {
+      "age_min": 0,
+      "age_max": 4
+     },
+     "sdmx_value": "0- 4 ani"
+    },
+    {
+     "nom_item_id": 3,
+     "label": "0 years",
+     "offset": 3,
+     "parent_id": null,
+     "dim_type": "age",
+     "parsed": {
+      "age_min": 0,
+      "age_max": 0
+     },
+     "sdmx_value": "0 ani"
+    },
+    {
+     "nom_item_id": 4,
+     "label": "1 year",
+     "offset": 4,
+     "parent_id": null,
+     "dim_type": "age",
+     "parsed": {
+      "age_min": 1,
+      "age_max": 1
+     },
+     "sdmx_value": "1 ani"
+    }
+   ]
+  },
+  {
+   "dim_code": 2,
+   "dim_label": "Sexe",
+   "dim_column_name": "SEX",
+   "dim_type": "gender",
+   "option_count": 3,
+   "options": [
+    {
+     "nom_item_id": 105,
+     "label": "Total",
+     "offset": 1,
+     "parent_id": null,
+     "dim_type": "gender",
+     "parsed": {
+      "gender": "total"
+     },
+     "sdmx_value": "Total"
+    },
+    {
+     "nom_item_id": 106,
+     "label": "Male",
+     "offset": 2,
+     "parent_id": null,
+     "dim_type": "gender",
+     "parsed": {
+      "gender": "male"
+     },
+     "sdmx_value": "Masculin"
+    },
+    {
+     "nom_item_id": 107,
+     "label": "Female",
+     "offset": 3,
+     "parent_id": null,
+     "dim_type": "gender",
+     "parsed": {
+      "gender": "female"
+     },
+     "sdmx_value": "Feminin"
+    }
+   ]
+  },
+  {
+   "dim_code": 3,
+   "dim_label": "Judete",
+   "dim_column_name": "REF_AREA",
+   "dim_type": "geo",
+   "option_count": 43,
+   "options": [
+    {
+     "nom_item_id": 112,
+     "label": "Total",
+     "offset": 1,
+     "parent_id": null,
+     "dim_type": "geo",
+     "parsed": {
+      "geo_level": "national",
+      "geo_name_clean": "Total"
+     },
+     "sdmx_value": "TOTAL"
+    },
+    {
+     "nom_item_id": 3064,
+     "label": "Alba",
+     "offset": 2,
+     "parent_id": null,
+     "dim_type": "geo",
+     "parsed": {
+      "geo_level": "county",
+      "geo_name_clean": "Alba"
+     },
+     "sdmx_value": "Alba"
+    },
+    {
+     "nom_item_id": 3065,
+     "label": "Arad",
+     "offset": 3,
+     "parent_id": null,
+     "dim_type": "geo",
+     "parsed": {
+      "geo_level": "county",
+      "geo_name_clean": "Arad"
+     },
+     "sdmx_value": "Arad"
+    },
+    {
+     "nom_item_id": 3066,
+     "label": "Arges",
+     "offset": 4,
+     "parent_id": null,
+     "dim_type": "geo",
+     "parsed": {
+      "geo_level": "county",
+      "geo_name_clean": "Arges"
+     },
+     "sdmx_value": "Arges"
+    }
+   ]
+  },
+  {
+   "dim_code": 4,
+   "dim_label": "Localitati ",
+   "dim_column_name": "REF_AREA_2",
+   "dim_type": "geo",
+   "option_count": 3182,
+   "options": [
+    {
+     "nom_item_id": 112,
+     "label": "Total",
+     "offset": 0,
+     "parent_id": 112,
+     "dim_type": "geo",
+     "parsed": {
+      "geo_level": "national",
+      "geo_name_clean": "Total"
+     },
+     "sdmx_value": "TOTAL"
+    },
+    {
+     "nom_item_id": 113,
+     "label": "1017 ALBA IULIA MUNICIPALITY",
+     "offset": 2,
+     "parent_id": 3064,
+     "dim_type": "geo",
+     "parsed": {
+      "geo_level": "locality",
+      "geo_name_clean": "MUNICIPIUL ALBA IULIA"
+     },
+     "sdmx_value": "1017 MUNICIPIUL ALBA IULIA"
+    },
+    {
+     "nom_item_id": 116,
+     "label": "1213 AIUD MUNICIPALITY",
+     "offset": 8,
+     "parent_id": 3064,
+     "dim_type": "geo",
+     "parsed": {
+      "geo_level": "locality",
+      "geo_name_clean": "MUNICIPIUL AIUD"
+     },
+     "sdmx_value": "1213 MUNICIPIUL AIUD"
+    },
+    {
+     "nom_item_id": 117,
+     "label": "1348 BLAJ MUNICIPALITY",
+     "offset": 20,
+     "parent_id": 3064,
+     "dim_type": "geo",
+     "parsed": {
+      "geo_level": "locality",
+      "geo_name_clean": "MUNICIPIUL BLAJ"
+     },
+     "sdmx_value": "1348 MUNICIPIUL BLAJ"
+    }
+   ]
+  },
+  {
+   "dim_code": 5,
+   "dim_label": "Perioade",
+   "dim_column_name": "TIME_PERIOD",
+   "dim_type": "time",
+   "option_count": 34,
+   "options": [
+    {
+     "nom_item_id": 4285,
+     "label": "Year 1992",
+     "offset": 1,
+     "parent_id": null,
+     "dim_type": "time",
+     "parsed": {
+      "year": 1992,
+      "quarter": null,
+      "month": null
+     },
+     "sdmx_value": "1992"
+    },
+    {
+     "nom_item_id": 4304,
+     "label": "Year 1993",
+     "offset": 2,
+     "parent_id": null,
+     "dim_type": "time",
+     "parsed": {
+      "year": 1993,
+      "quarter": null,
+      "month": null
+     },
+     "sdmx_value": "1993"
+    },
+    {
+     "nom_item_id": 4323,
+     "label": "Year 1994",
+     "offset": 3,
+     "parent_id": null,
+     "dim_type": "time",
+     "parsed": {
+      "year": 1994,
+      "quarter": null,
+      "month": null
+     },
+     "sdmx_value": "1994"
+    },
+    {
+     "nom_item_id": 4342,
+     "label": "Year 1995",
+     "offset": 4,
+     "parent_id": null,
+     "dim_type": "time",
+     "parsed": {
+      "year": 1995,
+      "quarter": null,
+      "month": null
+     },
+     "sdmx_value": "1995"
+    }
+   ]
+  },
+  {
+   "dim_code": 6,
+   "dim_label": "UM: Numar persoane",
+   "dim_column_name": "UNIT_MEASURE",
+   "dim_type": "unit",
+   "option_count": 1,
+   "options": [
+    {
+     "nom_item_id": 9685,
+     "label": "Number of persons",
+     "offset": 1,
+     "parent_id": null,
+     "dim_type": "unit",
+     "parsed": {
+      "unit_type": "count",
+      "unit_scale": 1
+     },
+     "sdmx_value": "Numar persoane"
+    }
+   ]
+  }
+ ],
+ "_fixture": "Trimmed copy of the live response of 2026-10-25: chart_config removed, splits and options shortened. option_count keeps the live value."
+}

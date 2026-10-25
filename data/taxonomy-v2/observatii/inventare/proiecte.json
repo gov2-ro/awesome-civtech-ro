@@ -1010,9 +1010,11 @@
       "surse_structurate": [
         "fa7f845bb1dc00a71677",
         "dd2567cf6f0e1c5a7f7d",
-        "bdc37992f35ead0eba4a"
+        "bdc37992f35ead0eba4a",
+        "7232ebb459904a3f8682",
+        "cf838e4e6d0a20816d70"
       ],
-      "campuri_din_surse": 533,
+      "campuri_din_surse": 591,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
@@ -1158,9 +1160,14 @@
         }
       ],
       "surse_structurate": [
-        "a658c6e1fd331dc5bac0"
+        "a658c6e1fd331dc5bac0",
+        "325ddbb34c8ff236a62a",
+        "71253baf1d937d2cb741",
+        "c6284bf08f131cbfe339",
+        "a9578363f3efe25ccaee",
+        "b4d26d8095956bd4ab5c"
       ],
-      "campuri_din_surse": 4,
+      "campuri_din_surse": 41,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
@@ -1235,9 +1242,10 @@
         }
       ],
       "surse_structurate": [
-        "ed97ecda1bdb32c9396e"
+        "ed97ecda1bdb32c9396e",
+        "c6284bf08f131cbfe339"
       ],
-      "campuri_din_surse": 95,
+      "campuri_din_surse": 101,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
@@ -4143,9 +4151,11 @@
       "surse_structurate": [
         "57c4fcaa888e4d7aa95d",
         "dec80a1d6430c7c00938",
-        "af025b841728725821e2"
+        "af025b841728725821e2",
+        "e4626a19feb0696b926e",
+        "6a3ba680564e50fec62e"
       ],
-      "campuri_din_surse": 1114,
+      "campuri_din_surse": 1173,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
@@ -4526,9 +4536,10 @@
       "surse_structurate": [
         "6979fe2297f4c1a88b0f",
         "c0974dcdd6db7c57ee64",
-        "9a82a7fef3545e1df478"
+        "9a82a7fef3545e1df478",
+        "9427224c606836d5069c"
       ],
-      "campuri_din_surse": 32,
+      "campuri_din_surse": 35,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
@@ -6681,9 +6692,10 @@
       "surse_structurate": [
         "d4f9bedb99d8a2fbcccc",
         "aeedc696328d76757bdc",
-        "13c431e466f1e4171d8f"
+        "13c431e466f1e4171d8f",
+        "005a45e1c419da221080"
       ],
-      "campuri_din_surse": 103,
+      "campuri_din_surse": 116,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
@@ -7279,11 +7291,13 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "71253baf1d937d2cb741",
+        "c6284bf08f131cbfe339"
+      ],
+      "campuri_din_surse": 11,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
     },
@@ -7351,9 +7365,11 @@
         }
       ],
       "surse_structurate": [
-        "d067c474cb3b48e672ec"
+        "d067c474cb3b48e672ec",
+        "71253baf1d937d2cb741",
+        "c6284bf08f131cbfe339"
       ],
-      "campuri_din_surse": 13,
+      "campuri_din_surse": 24,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
@@ -7490,9 +7506,11 @@
         }
       ],
       "surse_structurate": [
+        "325ddbb34c8ff236a62a",
+        "a9578363f3efe25ccaee",
         "3bf0f9eaf66bc1f06dae"
       ],
-      "campuri_din_surse": 130,
+      "campuri_din_surse": 139,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."

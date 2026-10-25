@@ -153,6 +153,39 @@ class Preservation(unittest.TestCase):
         self.assertEqual(len(work.profile('b')['surse_structurate']), 1)
 
 
+class ExplicitChanges(unittest.TestCase):
+    def test_a_project_named_by_an_addition_is_updated_in_a_targeted_run(self):
+        work = Workspace(self)
+        entries = [entry('a', 'https://a.example/'), entry('b', 'https://b.example/')]
+        url = RAW + 'abc/schema.json'
+        net = Net({url: '{"id": 1}'})
+        work.run(entries, {}, net, selected={'a'}, add_sources=[('b', {'url': url, 'metoda': 'repo-la-revizie'})])
+        self.assertEqual(net.calls, [url])
+        self.assertEqual(work.profile('b')['surse_structurate'], [source_id(url)])
+        self.assertEqual(work.profile('a')['surse_structurate'], [])
+
+    def test_force_url_refreshes_one_source_and_leaves_the_others_cached(self):
+        work = Workspace(self)
+        entries = [entry('a', 'https://a.example/')]
+        docs = {'a': docs_for('a', 'https://a.example/', ['https://a.example/one.csv', 'https://a.example/two.csv'])}
+        bodies = {'https://a.example/one.csv': 'x\n1\n', 'https://a.example/two.csv': 'y\n1\n'}
+        work.run(entries, docs, Net(bodies))
+        net = Net(bodies)
+        work.run(entries, docs, net, selected={'a'}, force_urls=['https://a.example/two.csv'])
+        self.assertEqual(net.calls, ['https://a.example/two.csv'])
+
+    def test_explicit_locator_must_exist_in_the_collected_page(self):
+        from inventory import resolve_spec
+        docs = {'a': docs_for('a', 'https://a.example/', [], 'GET /api/datasets?q={text}')}
+        spec = resolve_spec(docs, 'a', {'url': 'https://a.example/api', 'locate': {'pagina': 'https://a.example/', 'text': 'GET /api/datasets'},
+                                        'dovezi': [{'pagina': 'https://a.example/', 'text': 'q={text}', 'rol': 'parametru'}]})
+        start, end = spec['dovada']['interval']
+        self.assertEqual('GET /api/datasets?q={text}'[start:end], 'GET /api/datasets')
+        self.assertEqual(spec['dovezi_suplimentare'][0]['rol'], 'parametru')
+        with self.assertRaises(StateError):
+            resolve_spec(docs, 'a', {'url': 'https://a.example/api', 'locate': {'pagina': 'https://a.example/', 'text': 'absent'}})
+
+
 class SharedSources(unittest.TestCase):
     def setUp(self):
         self.url = RAW + 'shared.csv'
@@ -407,6 +440,52 @@ class EvidenceCheck(unittest.TestCase):
         docs = {'a': docs_for('a', 'https://a.example/', ['https://a.example/d.csv'])}
         self.work.run(entries, docs, net, force=True)
         self.assertEqual(check_report(self.work.out, self.obs)['stale'], ['https://a.example/d.csv'])
+
+
+class LocatorCheck(unittest.TestCase):
+    URL = 'https://a.example/data/rows.json'
+
+    def setUp(self):
+        import hashlib
+        self.work = Workspace(self)
+        self.obs = self.work.out.parent
+        self.text = 'Download the rows at ' + self.URL + '. More.'
+        page = docs_for('a', 'https://a.example/', [self.URL], self.text)['pages'][0]
+        page['sha256'] = hashlib.sha256(self.text.encode()).hexdigest()
+        self.snapshot = self.obs / 'documentare' / 'pagini' / 'a.json'
+        self.snapshot.parent.mkdir(parents=True)
+        self.snapshot.write_text(json.dumps({'text': self.text, 'links': page['links'], 'input_candidates': page['input_candidates']}))
+        self.docs = {'a': {'slug': 'a', 'state': 'documentatie-gasita', 'pages': [page]}}
+        self.entries = [entry('a', 'https://a.example/')]
+        self.work.run(self.entries, self.docs, Net({self.URL: '{"id": "007"}'}))
+
+    def errors(self):
+        return check_report(self.work.out, self.obs)['errors']
+
+    def test_untouched_locators_verify(self):
+        self.assertEqual(self.errors(), [])
+        self.assertEqual(check_report(self.work.out, self.obs)['unavailable'], [])
+
+    def test_changed_page_text_is_a_hash_error(self):
+        self.snapshot.write_text(json.dumps({'text': self.text + ' edited', 'links': [], 'input_candidates': [{'name': 'q', 'type': 'search'}]}))
+        self.assertTrue(any('page hash differs' in e for e in self.errors()))
+
+    def test_wrong_interval_and_wrong_link_pointer_are_errors(self):
+        registry = json.loads((self.work.out / 'descoperiri.json').read_text())
+        record = registry['descoperiri'][0]
+        self.assertEqual(record['dovada']['pointer'], '/links/0')
+        record['dovada']['pointer'] = '/links/5'
+        (self.work.out / 'descoperiri.json').write_text(json.dumps(registry))
+        self.assertTrue(any('invalid link pointer' in e for e in self.errors()))
+        record['dovada'].update(pointer='/text', interval=[0, 8])
+        (self.work.out / 'descoperiri.json').write_text(json.dumps(registry))
+        self.assertTrue(any('interval does not hold' in e for e in self.errors()))
+
+    def test_absent_documentation_snapshot_is_unavailable_not_an_error(self):
+        self.snapshot.unlink()
+        report = check_report(self.work.out, self.obs)
+        self.assertEqual(report['errors'], [])
+        self.assertTrue(any(u.startswith('discovery:') for u in report['unavailable']))
 
 
 class FakeResponse:

@@ -1570,6 +1570,64 @@ companii-de-stat,bdc37992f35ead0eba4a,https://companiidestat.ro/date/v1/data.jso
 companii-de-stat,bdc37992f35ead0eba4a,https://companiidestat.ro/date/v1/data.json,json,camp-date,tag,$.pay_scale_rows[].tag,,string,,,,,/pay_scale_rows/3/tag,observat-in-esantion-json
 companii-de-stat,bdc37992f35ead0eba4a,https://companiidestat.ro/date/v1/data.json,json,camp-date,unitMobile,$.pay_scale_rows[].unitMobile,,string,,,,,/pay_scale_rows/9/unitMobile,observat-in-esantion-json
 companii-de-stat,bdc37992f35ead0eba4a,https://companiidestat.ro/date/v1/data.json,json,camp-date,fixPortion,$.pay_scale_rows[].fixPortion,,integer,,,,,/pay_scale_rows/9/fixPortion,observat-in-esantion-json
+companii-de-stat,7232ebb459904a3f8682,https://companiidestat.ro/date/v1/index.json,json,camp-date,name,$.name,,string,,,,,/name,observat-in-esantion-json
+companii-de-stat,7232ebb459904a3f8682,https://companiidestat.ro/date/v1/index.json,json,camp-date,version,$.version,,string,,,,,/version,observat-in-esantion-json
+companii-de-stat,7232ebb459904a3f8682,https://companiidestat.ro/date/v1/index.json,json,camp-date,description,$.description,,string,,,,,/description,observat-in-esantion-json
+companii-de-stat,7232ebb459904a3f8682,https://companiidestat.ro/date/v1/index.json,json,camp-date,base_url,$.base_url,,string,,,,,/base_url,observat-in-esantion-json
+companii-de-stat,7232ebb459904a3f8682,https://companiidestat.ro/date/v1/index.json,json,camp-date,documentation,$.documentation,,string,,,,,/documentation,observat-in-esantion-json
+companii-de-stat,7232ebb459904a3f8682,https://companiidestat.ro/date/v1/index.json,json,camp-date,updated,$.updated,,string,,,,,/updated,observat-in-esantion-json
+companii-de-stat,7232ebb459904a3f8682,https://companiidestat.ro/date/v1/index.json,json,camp-date,license,$.license,,string,,,,,/license,observat-in-esantion-json
+companii-de-stat,7232ebb459904a3f8682,https://companiidestat.ro/date/v1/index.json,json,camp-date,attribution,$.attribution,,string,,,,,/attribution,observat-in-esantion-json
+companii-de-stat,7232ebb459904a3f8682,https://companiidestat.ro/date/v1/index.json,json,camp-date,cors,$.cors,,string,,,,,/cors,observat-in-esantion-json
+companii-de-stat,7232ebb459904a3f8682,https://companiidestat.ro/date/v1/index.json,json,camp-date,sources[],$.sources[],,string,,,,,/sources/0,observat-in-esantion-json
+companii-de-stat,7232ebb459904a3f8682,https://companiidestat.ro/date/v1/index.json,json,camp-date,versioning,$.versioning,,string,,,,,/versioning,observat-in-esantion-json
+companii-de-stat,7232ebb459904a3f8682,https://companiidestat.ro/date/v1/index.json,json,camp-date,path,$.endpoints[].path,,string,,,,,/endpoints/0/path,observat-in-esantion-json
+companii-de-stat,7232ebb459904a3f8682,https://companiidestat.ro/date/v1/index.json,json,camp-date,url,$.endpoints[].url,,string,,,,,/endpoints/0/url,observat-in-esantion-json
+companii-de-stat,7232ebb459904a3f8682,https://companiidestat.ro/date/v1/index.json,json,camp-date,description,$.endpoints[].description,,string,,,,,/endpoints/0/description,observat-in-esantion-json
+companii-de-stat,7232ebb459904a3f8682,https://companiidestat.ro/date/v1/index.json,json,camp-date,keys[],$.endpoints[].keys[],,string,,,,,/endpoints/0/keys/0,observat-in-esantion-json
+companii-de-stat,7232ebb459904a3f8682,https://companiidestat.ro/date/v1/index.json,json,camp-date,example,$.endpoints[].example,,string,,,,,/endpoints/2/example,observat-in-esantion-json
+companii-de-stat,7232ebb459904a3f8682,https://companiidestat.ro/date/v1/index.json,json,camp-date,openapi,$.openapi,,string,,,,,/openapi,observat-in-esantion-json
+companii-de-stat,7232ebb459904a3f8682,https://companiidestat.ro/date/v1/index.json,json,camp-date,url,$.legacy_base_url.url,,string,,,,,/legacy_base_url/url,observat-in-esantion-json
+companii-de-stat,7232ebb459904a3f8682,https://companiidestat.ro/date/v1/index.json,json,camp-date,note,$.legacy_base_url.note,,string,,,,,/legacy_base_url/note,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,year,$.meta.year,,integer,,,,,/meta/year,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,source,$.meta.source,,string,,,,,/meta/source,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,source_url,$.meta.source_url,,string,,,,,/meta/source_url,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,downloaded_at,$.meta.downloaded_at,,string,,,,,/meta/downloaded_at,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,records,$.meta.records,,integer,,,,,/meta/records,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,soe_universe,$.meta.soe_universe,,integer,,,,,/meta/soe_universe,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,coverage_pct,$.meta.coverage_pct,,number,,,,,/meta/coverage_pct,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,BL_BS_SL,$.meta.files_used.BL_BS_SL,,integer,,,,,/meta/files_used/BL_BS_SL,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,IR,$.meta.files_used.IR,,integer,,,,,/meta/files_used/IR,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,UU_AN,$.meta.files_used.UU_AN,,integer,,,,,/meta/files_used/UU_AN,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,CREDIT,$.meta.files_used.CREDIT,,integer,,,,,/meta/files_used/CREDIT,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,IFN,$.meta.files_used.IFN,,integer,,,,,/meta/files_used/IFN,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,ANAF-bilant,$.meta.files_used.ANAF-bilant,,integer,,,,,/meta/files_used/ANAF-bilant,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,fields[],$.meta.fields[],,string,,,,,/meta/fields/0,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,completat_anaf_la,$.meta.completat_anaf_la,,string,,,,,/meta/completat_anaf_la,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,nota_anaf,$.meta.nota_anaf,,string,,,,,/meta/nota_anaf,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,colectie-cu-chei,companii{*},$.companii{*},,object,,,,,/companii,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,caen,$.companii{*}.caen,,string,,,,,/companii/21731216/caen,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,source_file,$.companii{*}.source_file,,string,,,,,/companii/21731216/source_file,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,active_imobilizate,$.companii{*}.active_imobilizate,,integer,,,,,/companii/21731216/active_imobilizate,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,active_circulante,$.companii{*}.active_circulante,,integer,,,,,/companii/21731216/active_circulante,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,stocuri,$.companii{*}.stocuri,,integer,,,,,/companii/21731216/stocuri,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,creante,$.companii{*}.creante,,integer,,,,,/companii/21731216/creante,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,casa_banci,$.companii{*}.casa_banci,,integer,,,,,/companii/21731216/casa_banci,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,cheltuieli_avans,$.companii{*}.cheltuieli_avans,,integer,,,,,/companii/21731216/cheltuieli_avans,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,datorii,$.companii{*}.datorii,,integer,,,,,/companii/21731216/datorii,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,venituri_avans,$.companii{*}.venituri_avans,,integer,,,,,/companii/21731216/venituri_avans,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,provizioane,$.companii{*}.provizioane,,integer,,,,,/companii/21731216/provizioane,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,capitaluri,$.companii{*}.capitaluri,,integer,,,,,/companii/21731216/capitaluri,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,capital_subscris,$.companii{*}.capital_subscris,,integer,,,,,/companii/21731216/capital_subscris,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,patrimoniu_regie,$.companii{*}.patrimoniu_regie,,integer,,,,,/companii/21731216/patrimoniu_regie,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,cifra_afaceri,$.companii{*}.cifra_afaceri,,integer,,,,,/companii/21731216/cifra_afaceri,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,venituri_totale,$.companii{*}.venituri_totale,,integer,,,,,/companii/21731216/venituri_totale,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,cheltuieli_totale,$.companii{*}.cheltuieli_totale,,integer,,,,,/companii/21731216/cheltuieli_totale,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,profit_brut,$.companii{*}.profit_brut,,integer,,,,,/companii/21731216/profit_brut,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,pierdere_bruta,$.companii{*}.pierdere_bruta,,integer,,,,,/companii/21731216/pierdere_bruta,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,profit_net,$.companii{*}.profit_net,,integer,,,,,/companii/21731216/profit_net,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,pierdere_neta,$.companii{*}.pierdere_neta,,integer,,,,,/companii/21731216/pierdere_neta,observat-in-esantion-json
+companii-de-stat,cf838e4e6d0a20816d70,https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json,json,camp-date,nr_salariati,$.companii{*}.nr_salariati,,integer,,,,,/companii/21731216/nr_salariati,observat-in-esantion-json
 companii-de-stat,fa7f845bb1dc00a71677,https://companiidestat.ro/date/v1/openapi.json,openapi,camp-raspuns,meta,$.meta,,,,,,GET /data.json,/paths/~1data.json/get/responses/200/content/application~1json/schema/properties/meta,declarat-in-schema
 companii-de-stat,fa7f845bb1dc00a71677,https://companiidestat.ro/date/v1/openapi.json,openapi,camp-raspuns,trend,$.trend,,,,,,GET /data.json,/paths/~1data.json/get/responses/200/content/application~1json/schema/properties/trend,declarat-in-schema
 companii-de-stat,fa7f845bb1dc00a71677,https://companiidestat.ro/date/v1/openapi.json,openapi,camp-raspuns,buckets_2024,$.buckets_2024,,,,,,GET /data.json,/paths/~1data.json/get/responses/200/content/application~1json/schema/properties/buckets_2024,declarat-in-schema
@@ -1742,6 +1800,43 @@ ins-gov2,a658c6e1fd331dc5bac0,https://ins.gov2.ro/api/datasets/ACC102B?lang=en,m
 ins-gov2,a658c6e1fd331dc5bac0,https://ins.gov2.ro/api/datasets/ACC102B?lang=en,metadate-ins,dimensiune,REF_AREA,REF_AREA,,,geo,,"Macroregiuni, regiuni de dezvoltare si judete",,/dimensions/1,declarat-in-metadate
 ins-gov2,a658c6e1fd331dc5bac0,https://ins.gov2.ro/api/datasets/ACC102B?lang=en,metadate-ins,dimensiune,TIME_PERIOD,TIME_PERIOD,,,time,,Perioade,,/dimensions/2,declarat-in-metadate
 ins-gov2,a658c6e1fd331dc5bac0,https://ins.gov2.ro/api/datasets/ACC102B?lang=en,metadate-ins,dimensiune,UNIT_MEASURE,UNIT_MEASURE,,,unit,,Unitati de masura,,/dimensions/3,declarat-in-metadate
+ins-gov2|unde-se-termina-asfaltul,325ddbb34c8ff236a62a,https://ins.gov2.ro/api/datasets/GOS104A?lang=en,metadate-ins,dimensiune,REF_AREA,REF_AREA,,,geo,,Judete,,/dimensions/0,declarat-in-metadate
+ins-gov2|unde-se-termina-asfaltul,325ddbb34c8ff236a62a,https://ins.gov2.ro/api/datasets/GOS104A?lang=en,metadate-ins,dimensiune,REF_AREA_2,REF_AREA_2,,,geo,,Municipii si orase,,/dimensions/1,declarat-in-metadate
+ins-gov2|unde-se-termina-asfaltul,325ddbb34c8ff236a62a,https://ins.gov2.ro/api/datasets/GOS104A?lang=en,metadate-ins,dimensiune,TIME_PERIOD,TIME_PERIOD,,,time,,Perioade,,/dimensions/2,declarat-in-metadate
+ins-gov2|unde-se-termina-asfaltul,325ddbb34c8ff236a62a,https://ins.gov2.ro/api/datasets/GOS104A?lang=en,metadate-ins,dimensiune,UNIT_MEASURE,UNIT_MEASURE,,,unit,,UM: Km,,/dimensions/3,declarat-in-metadate
+ins-gov2|constru-pentru-cine|orasul-care-se-intinde,71253baf1d937d2cb741,https://ins.gov2.ro/api/datasets/LOC101B?lang=en,metadate-ins,dimensiune,FORME_DE_PROPRIETATE,FORME_DE_PROPRIETATE,,,indicator,,Forme de proprietate,,/dimensions/0,declarat-in-metadate
+ins-gov2|constru-pentru-cine|orasul-care-se-intinde,71253baf1d937d2cb741,https://ins.gov2.ro/api/datasets/LOC101B?lang=en,metadate-ins,dimensiune,REF_AREA,REF_AREA,,,geo,,Judete,,/dimensions/1,declarat-in-metadate
+ins-gov2|constru-pentru-cine|orasul-care-se-intinde,71253baf1d937d2cb741,https://ins.gov2.ro/api/datasets/LOC101B?lang=en,metadate-ins,dimensiune,REF_AREA_2,REF_AREA_2,,,geo,,Localitati ,,/dimensions/2,declarat-in-metadate
+ins-gov2|constru-pentru-cine|orasul-care-se-intinde,71253baf1d937d2cb741,https://ins.gov2.ro/api/datasets/LOC101B?lang=en,metadate-ins,dimensiune,TIME_PERIOD,TIME_PERIOD,,,time,,Perioade,,/dimensions/3,declarat-in-metadate
+ins-gov2|constru-pentru-cine|orasul-care-se-intinde,71253baf1d937d2cb741,https://ins.gov2.ro/api/datasets/LOC101B?lang=en,metadate-ins,dimensiune,UNIT_MEASURE,UNIT_MEASURE,,,unit,,UM: Numar,,/dimensions/4,declarat-in-metadate
+ins-gov2|demoanaf|constru-pentru-cine|orasul-care-se-intinde,c6284bf08f131cbfe339,https://ins.gov2.ro/api/datasets/POP107D?lang=en,metadate-ins,dimensiune,AGE,AGE,,,age,,Varste si grupe de varsta,,/dimensions/0,declarat-in-metadate
+ins-gov2|demoanaf|constru-pentru-cine|orasul-care-se-intinde,c6284bf08f131cbfe339,https://ins.gov2.ro/api/datasets/POP107D?lang=en,metadate-ins,dimensiune,SEX,SEX,,,gender,,Sexe,,/dimensions/1,declarat-in-metadate
+ins-gov2|demoanaf|constru-pentru-cine|orasul-care-se-intinde,c6284bf08f131cbfe339,https://ins.gov2.ro/api/datasets/POP107D?lang=en,metadate-ins,dimensiune,REF_AREA,REF_AREA,,,geo,,Judete,,/dimensions/2,declarat-in-metadate
+ins-gov2|demoanaf|constru-pentru-cine|orasul-care-se-intinde,c6284bf08f131cbfe339,https://ins.gov2.ro/api/datasets/POP107D?lang=en,metadate-ins,dimensiune,REF_AREA_2,REF_AREA_2,,,geo,,Localitati ,,/dimensions/3,declarat-in-metadate
+ins-gov2|demoanaf|constru-pentru-cine|orasul-care-se-intinde,c6284bf08f131cbfe339,https://ins.gov2.ro/api/datasets/POP107D?lang=en,metadate-ins,dimensiune,TIME_PERIOD,TIME_PERIOD,,,time,,Perioade,,/dimensions/4,declarat-in-metadate
+ins-gov2|demoanaf|constru-pentru-cine|orasul-care-se-intinde,c6284bf08f131cbfe339,https://ins.gov2.ro/api/datasets/POP107D?lang=en,metadate-ins,dimensiune,UNIT_MEASURE,UNIT_MEASURE,,,unit,,UM: Numar persoane,,/dimensions/5,declarat-in-metadate
+ins-gov2|unde-se-termina-asfaltul,a9578363f3efe25ccaee,https://ins.gov2.ro/api/datasets/TRN139A?lang=en,metadate-ins,dimensiune,CATEGORY,CATEGORY,,,indicator,,Categorii de drumuri publice,,/dimensions/0,declarat-in-metadate
+ins-gov2|unde-se-termina-asfaltul,a9578363f3efe25ccaee,https://ins.gov2.ro/api/datasets/TRN139A?lang=en,metadate-ins,dimensiune,TYPE,TYPE,,,indicator,,Tipuri de acoperamant,,/dimensions/1,declarat-in-metadate
+ins-gov2|unde-se-termina-asfaltul,a9578363f3efe25ccaee,https://ins.gov2.ro/api/datasets/TRN139A?lang=en,metadate-ins,dimensiune,REF_AREA,REF_AREA,,,geo,,"Macroregiuni, regiuni de dezvoltare si judete",,/dimensions/2,declarat-in-metadate
+ins-gov2|unde-se-termina-asfaltul,a9578363f3efe25ccaee,https://ins.gov2.ro/api/datasets/TRN139A?lang=en,metadate-ins,dimensiune,TIME_PERIOD,TIME_PERIOD,,,time,,Perioade,,/dimensions/3,declarat-in-metadate
+ins-gov2|unde-se-termina-asfaltul,a9578363f3efe25ccaee,https://ins.gov2.ro/api/datasets/TRN139A?lang=en,metadate-ins,dimensiune,UNIT_MEASURE,UNIT_MEASURE,,,unit,,UM: Km,,/dimensions/4,declarat-in-metadate
+ins-gov2,b4d26d8095956bd4ab5c,https://ins.gov2.ro/api/datasets?limit=1,lista-ins,camp-date,total,$.total,,integer,,,,,/total,observat-in-esantion-json
+ins-gov2,b4d26d8095956bd4ab5c,https://ins.gov2.ro/api/datasets?limit=1,lista-ins,camp-date,matrix_code,$.datasets[].matrix_code,,string,,,,,/datasets/0/matrix_code,observat-in-esantion-json
+ins-gov2,b4d26d8095956bd4ab5c,https://ins.gov2.ro/api/datasets?limit=1,lista-ins,camp-date,matrix_name,$.datasets[].matrix_name,,string,,,,,/datasets/0/matrix_name,observat-in-esantion-json
+ins-gov2,b4d26d8095956bd4ab5c,https://ins.gov2.ro/api/datasets?limit=1,lista-ins,camp-date,context_code,$.datasets[].context_code,,string,,,,,/datasets/0/context_code,observat-in-esantion-json
+ins-gov2,b4d26d8095956bd4ab5c,https://ins.gov2.ro/api/datasets?limit=1,lista-ins,camp-date,ultima_actualizare,$.datasets[].ultima_actualizare,,string,,,,,/datasets/0/ultima_actualizare,observat-in-esantion-json
+ins-gov2,b4d26d8095956bd4ab5c,https://ins.gov2.ro/api/datasets?limit=1,lista-ins,camp-date,row_count,$.datasets[].row_count,,integer,,,,,/datasets/0/row_count,observat-in-esantion-json
+ins-gov2,b4d26d8095956bd4ab5c,https://ins.gov2.ro/api/datasets?limit=1,lista-ins,camp-date,dim_count,$.datasets[].dim_count,,integer,,,,,/datasets/0/dim_count,observat-in-esantion-json
+ins-gov2,b4d26d8095956bd4ab5c,https://ins.gov2.ro/api/datasets?limit=1,lista-ins,camp-date,archetype,$.datasets[].archetype,,string,,,,,/datasets/0/archetype,observat-in-esantion-json
+ins-gov2,b4d26d8095956bd4ab5c,https://ins.gov2.ro/api/datasets?limit=1,lista-ins,camp-date,has_time,$.datasets[].has_time,,boolean,,,,,/datasets/0/has_time,observat-in-esantion-json
+ins-gov2,b4d26d8095956bd4ab5c,https://ins.gov2.ro/api/datasets?limit=1,lista-ins,camp-date,has_geo,$.datasets[].has_geo,,boolean,,,,,/datasets/0/has_geo,observat-in-esantion-json
+ins-gov2,b4d26d8095956bd4ab5c,https://ins.gov2.ro/api/datasets?limit=1,lista-ins,camp-date,time_range,$.datasets[].time_range,,string,,,,,/datasets/0/time_range,observat-in-esantion-json
+ins-gov2,b4d26d8095956bd4ab5c,https://ins.gov2.ro/api/datasets?limit=1,lista-ins,camp-date,primary_unit_type,$.datasets[].primary_unit_type,,string,,,,,/datasets/0/primary_unit_type,observat-in-esantion-json
+ins-gov2,b4d26d8095956bd4ab5c,https://ins.gov2.ro/api/datasets?limit=1,lista-ins,camp-date,time_granularity,$.datasets[].time_granularity,,string,,,,,/datasets/0/time_granularity,observat-in-esantion-json
+ins-gov2,b4d26d8095956bd4ab5c,https://ins.gov2.ro/api/datasets?limit=1,lista-ins,camp-date,is_split,$.datasets[].is_split,,boolean,,,,,/datasets/0/is_split,observat-in-esantion-json
+ins-gov2,b4d26d8095956bd4ab5c,https://ins.gov2.ro/api/datasets?limit=1,lista-ins,camp-date,parent_matrix_code,$.datasets[].parent_matrix_code,,null,,,,,/datasets/0/parent_matrix_code,observat-in-esantion-json
+ins-gov2,b4d26d8095956bd4ab5c,https://ins.gov2.ro/api/datasets?limit=1,lista-ins,camp-date,split_count,$.datasets[].split_count,,integer,,,,,/datasets/0/split_count,observat-in-esantion-json
+ins-gov2,b4d26d8095956bd4ab5c,https://ins.gov2.ro/api/datasets?limit=1,lista-ins,camp-date,option_count,$.datasets[].option_count,,integer,,,,,/datasets/0/option_count,observat-in-esantion-json
 codurbanism,aeedc696328d76757bdc,https://mariuscomper.uk/codurbanism/data/publication-diff-audit.json,json,camp-date,schema_version,$.schema_version,,integer,,,,,/schema_version,observat-in-esantion-json
 codurbanism,aeedc696328d76757bdc,https://mariuscomper.uk/codurbanism/data/publication-diff-audit.json,json,camp-date,generated,$.generated,,string,,,,,/generated,observat-in-esantion-json
 codurbanism,aeedc696328d76757bdc,https://mariuscomper.uk/codurbanism/data/publication-diff-audit.json,json,camp-date,scope,$.scope,,string,,,,,/scope,observat-in-esantion-json
@@ -1845,6 +1940,19 @@ codurbanism,d4f9bedb99d8a2fbcccc,https://mariuscomper.uk/codurbanism/data/ro/com
 codurbanism,d4f9bedb99d8a2fbcccc,https://mariuscomper.uk/codurbanism/data/ro/comparisons.csv,csv,camp-date,old_source_url,old_source_url,,,,,,,coloana-csv:12,neprecizat-in-antet-csv
 codurbanism,d4f9bedb99d8a2fbcccc,https://mariuscomper.uk/codurbanism/data/ro/comparisons.csv,csv,camp-date,code_source_url,code_source_url,,,,,,,coloana-csv:13,neprecizat-in-antet-csv
 codurbanism,d4f9bedb99d8a2fbcccc,https://mariuscomper.uk/codurbanism/data/ro/comparisons.csv,csv,camp-date,code_pdf_pages,code_pdf_pages,,,,,,,coloana-csv:14,neprecizat-in-antet-csv
+codurbanism,005a45e1c419da221080,https://mariuscomper.uk/codurbanism/data/ro/source-manifest.json,json,camp-date,generated,$.generated,,string,,,,,/generated,observat-in-esantion-json
+codurbanism,005a45e1c419da221080,https://mariuscomper.uk/codurbanism/data/ro/source-manifest.json,json,camp-date,id,$.sources[].id,,string,,,,,/sources/0/id,observat-in-esantion-json
+codurbanism,005a45e1c419da221080,https://mariuscomper.uk/codurbanism/data/ro/source-manifest.json,json,camp-date,title,$.sources[].title,,string,,,,,/sources/0/title,observat-in-esantion-json
+codurbanism,005a45e1c419da221080,https://mariuscomper.uk/codurbanism/data/ro/source-manifest.json,json,camp-date,publisher,$.sources[].publisher,,string,,,,,/sources/0/publisher,observat-in-esantion-json
+codurbanism,005a45e1c419da221080,https://mariuscomper.uk/codurbanism/data/ro/source-manifest.json,json,camp-date,url,$.sources[].url,,string,,,,,/sources/0/url,observat-in-esantion-json
+codurbanism,005a45e1c419da221080,https://mariuscomper.uk/codurbanism/data/ro/source-manifest.json,json,camp-date,note,$.sources[].note,,string,,,,,/sources/0/note,observat-in-esantion-json
+codurbanism,005a45e1c419da221080,https://mariuscomper.uk/codurbanism/data/ro/source-manifest.json,json,camp-date,kind,$.sources[].kind,,string,,,,,/sources/0/kind,observat-in-esantion-json
+codurbanism,005a45e1c419da221080,https://mariuscomper.uk/codurbanism/data/ro/source-manifest.json,json,camp-date,accessed_at,$.sources[].accessed_at,,string,,,,,/sources/0/accessed_at,observat-in-esantion-json
+codurbanism,005a45e1c419da221080,https://mariuscomper.uk/codurbanism/data/ro/source-manifest.json,json,camp-date,consolidated_as_of,$.sources[].consolidated_as_of,,null,,,,,/sources/0/consolidated_as_of,observat-in-esantion-json
+codurbanism,005a45e1c419da221080,https://mariuscomper.uk/codurbanism/data/ro/source-manifest.json,json,camp-date,source_status,$.sources[].source_status,,string,,,,,/sources/0/source_status,observat-in-esantion-json
+codurbanism,005a45e1c419da221080,https://mariuscomper.uk/codurbanism/data/ro/source-manifest.json,json,camp-date,snapshot_sha256,$.sources[].snapshot_sha256,,string|null,,,,,/sources/0/snapshot_sha256,observat-in-esantion-json
+codurbanism,005a45e1c419da221080,https://mariuscomper.uk/codurbanism/data/ro/source-manifest.json,json,camp-date,publication_audit_date,$.sources[].publication_audit_date,,string,,,,,/sources/1/publication_audit_date,observat-in-esantion-json
+codurbanism,005a45e1c419da221080,https://mariuscomper.uk/codurbanism/data/ro/source-manifest.json,json,camp-date,publication_audit_articles,$.sources[].publication_audit_articles,,integer,,,,,/sources/1/publication_audit_articles,observat-in-esantion-json
 complet-online,34437fe5524b6fc22329,https://mariuscomper.uk/complet-online/assets/cnsp-audit.csv,csv,camp-date,catalogue_order,catalogue_order,,,,,,,coloana-csv:0,neprecizat-in-antet-csv
 complet-online,34437fe5524b6fc22329,https://mariuscomper.uk/complet-online/assets/cnsp-audit.csv,csv,camp-date,service,service,,,,,,,coloana-csv:1,neprecizat-in-antet-csv
 complet-online,34437fe5524b6fc22329,https://mariuscomper.uk/complet-online/assets/cnsp-audit.csv,csv,camp-date,institution,institution,,,,,,,coloana-csv:2,neprecizat-in-antet-csv
@@ -2257,6 +2365,25 @@ romania-transparenta,af025b841728725821e2,https://romaniatransparenta.eu/date/ca
 romania-transparenta,af025b841728725821e2,https://romaniatransparenta.eu/date/calitate-masurata.json,json,camp-date,esantion_samanta,$.masuratori[].esantion_samanta,,string,,,,,/masuratori/0/esantion_samanta,observat-in-esantion-json
 romania-transparenta,af025b841728725821e2,https://romaniatransparenta.eu/date/calitate-masurata.json,json,camp-date,verificat_la,$.masuratori[].verificat_la,,string,,,,,/masuratori/0/verificat_la,observat-in-esantion-json
 romania-transparenta,af025b841728725821e2,https://romaniatransparenta.eu/date/calitate-masurata.json,json,camp-date,fisier_dovada,$.masuratori[].fisier_dovada,,string,,,,,/masuratori/0/fisier_dovada,observat-in-esantion-json
+romania-transparenta,e4626a19feb0696b926e,https://romaniatransparenta.eu/date/control-saptamanal.json,json,camp-date,format,$.format,,string,,,,,/format,observat-in-esantion-json
+romania-transparenta,e4626a19feb0696b926e,https://romaniatransparenta.eu/date/control-saptamanal.json,json,camp-date,actualizat_la,$.actualizat_la,,string,,,,,/actualizat_la,observat-in-esantion-json
+romania-transparenta,e4626a19feb0696b926e,https://romaniatransparenta.eu/date/control-saptamanal.json,json,camp-date,metoda,$.metoda,,string,,,,,/metoda,observat-in-esantion-json
+romania-transparenta,e4626a19feb0696b926e,https://romaniatransparenta.eu/date/control-saptamanal.json,json,camp-date,saptamana,$.saptamani[].saptamana,,string,,,,,/saptamani/0/saptamana,observat-in-esantion-json
+romania-transparenta,e4626a19feb0696b926e,https://romaniatransparenta.eu/date/control-saptamanal.json,json,camp-date,de_la,$.saptamani[].de_la,,string,,,,,/saptamani/0/de_la,observat-in-esantion-json
+romania-transparenta,e4626a19feb0696b926e,https://romaniatransparenta.eu/date/control-saptamanal.json,json,camp-date,pana_la,$.saptamani[].pana_la,,string,,,,,/saptamani/0/pana_la,observat-in-esantion-json
+romania-transparenta,e4626a19feb0696b926e,https://romaniatransparenta.eu/date/control-saptamanal.json,json,camp-date,samanta,$.saptamani[].samanta,,string,,,,,/saptamani/0/samanta,observat-in-esantion-json
+romania-transparenta,e4626a19feb0696b926e,https://romaniatransparenta.eu/date/control-saptamanal.json,json,camp-date,registru,$.saptamani[].registre[].registru,,string,,,,,/saptamani/0/registre/0/registru,observat-in-esantion-json
+romania-transparenta,e4626a19feb0696b926e,https://romaniatransparenta.eu/date/control-saptamanal.json,json,camp-date,titlu,$.saptamani[].registre[].titlu,,string,,,,,/saptamani/0/registre/0/titlu,observat-in-esantion-json
+romania-transparenta,e4626a19feb0696b926e,https://romaniatransparenta.eu/date/control-saptamanal.json,json,camp-date,ce,$.saptamani[].registre[].ce,,string,,,,,/saptamani/0/registre/0/ce,observat-in-esantion-json
+romania-transparenta,e4626a19feb0696b926e,https://romaniatransparenta.eu/date/control-saptamanal.json,json,camp-date,n_verificat,$.saptamani[].registre[].n_verificat,,integer,,,,,/saptamani/0/registre/0/n_verificat,observat-in-esantion-json
+romania-transparenta,e4626a19feb0696b926e,https://romaniatransparenta.eu/date/control-saptamanal.json,json,camp-date,n_corect,$.saptamani[].registre[].n_corect,,integer,,,,,/saptamani/0/registre/0/n_corect,observat-in-esantion-json
+romania-transparenta,e4626a19feb0696b926e,https://romaniatransparenta.eu/date/control-saptamanal.json,json,camp-date,n_gresit,$.saptamani[].registre[].n_gresit,,integer,,,,,/saptamani/0/registre/0/n_gresit,observat-in-esantion-json
+romania-transparenta,e4626a19feb0696b926e,https://romaniatransparenta.eu/date/control-saptamanal.json,json,camp-date,n_neverificabil,$.saptamani[].registre[].n_neverificabil,,integer,,,,,/saptamani/0/registre/0/n_neverificabil,observat-in-esantion-json
+romania-transparenta,e4626a19feb0696b926e,https://romaniatransparenta.eu/date/control-saptamanal.json,json,camp-date,n_deschise,$.saptamani[].registre[].n_deschise,,integer,,,,,/saptamani/0/registre/0/n_deschise,observat-in-esantion-json
+romania-transparenta,e4626a19feb0696b926e,https://romaniatransparenta.eu/date/control-saptamanal.json,json,camp-date,rata_eroare,$.saptamani[].registre[].rata_eroare,,integer,,,,,/saptamani/0/registre/0/rata_eroare,observat-in-esantion-json
+romania-transparenta,e4626a19feb0696b926e,https://romaniatransparenta.eu/date/control-saptamanal.json,json,camp-date,wilson_sup,$.saptamani[].registre[].wilson_sup,,number,,,,,/saptamani/0/registre/0/wilson_sup,observat-in-esantion-json
+romania-transparenta,e4626a19feb0696b926e,https://romaniatransparenta.eu/date/control-saptamanal.json,json,camp-date,prag,$.saptamani[].registre[].prag,,number,,,,,/saptamani/0/registre/0/prag,observat-in-esantion-json
+romania-transparenta,e4626a19feb0696b926e,https://romaniatransparenta.eu/date/control-saptamanal.json,json,camp-date,peste_prag,$.saptamani[].registre[].peste_prag,,boolean,,,,,/saptamani/0/registre/0/peste_prag,observat-in-esantion-json
 romania-transparenta,dec80a1d6430c7c00938,https://romaniatransparenta.eu/date/primarii.csv,csv,camp-date,siruta,siruta,,,,,,,coloana-csv:0,neprecizat-in-antet-csv
 romania-transparenta,dec80a1d6430c7c00938,https://romaniatransparenta.eu/date/primarii.csv,csv,camp-date,judet,judet,,,,,,,coloana-csv:1,neprecizat-in-antet-csv
 romania-transparenta,dec80a1d6430c7c00938,https://romaniatransparenta.eu/date/primarii.csv,csv,camp-date,primarie,primarie,,,,,,,coloana-csv:2,neprecizat-in-antet-csv
@@ -2269,6 +2396,46 @@ romania-transparenta,dec80a1d6430c7c00938,https://romaniatransparenta.eu/date/pr
 romania-transparenta,dec80a1d6430c7c00938,https://romaniatransparenta.eu/date/primarii.csv,csv,camp-date,site,site,,,,,,,coloana-csv:9,neprecizat-in-antet-csv
 romania-transparenta,dec80a1d6430c7c00938,https://romaniatransparenta.eu/date/primarii.csv,csv,camp-date,nota,nota,,,,,,,coloana-csv:10,neprecizat-in-antet-csv
 romania-transparenta,dec80a1d6430c7c00938,https://romaniatransparenta.eu/date/primarii.csv,csv,camp-date,incredere,incredere,,,,,,,coloana-csv:11,neprecizat-in-antet-csv
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,descriere,$.descriere,,string,,,,,/descriere,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,surse,$.surse,,string,,,,,/surse,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,ADU,$.partide.ADU,,string,,,,,/partide/ADU,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,AMT,$.partide.AMT,,string,,,,,/partide/AMT,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,APȘ,$.partide.APȘ,,string,,,,,/partide/APȘ,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,ATU,$.partide.ATU,,string,,,,,/partide/ATU,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,AUR,$.partide.AUR,,string,,,,,/partide/AUR,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,AÎB,$.partide.AÎB,,string,,,,,/partide/AÎB,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,BSR,$.partide.BSR,,string,,,,,/partide/BSR,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,CNR,$.partide.CNR,,string,,,,,/partide/CNR,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,FCM,$.partide.FCM,,string,,,,,/partide/FCM,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,FD,$.partide.FD,,string,,,,,/partide/FD,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,FDGR,$.partide.FDGR,,string,,,,,/partide/FDGR,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,IND,$.partide.IND,,string,,,,,/partide/IND,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,PER,$.partide.PER,,string,,,,,/partide/PER,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,PNL,$.partide.PNL,,string,,,,,/partide/PNL,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,PPPR,$.partide.PPPR,,string,,,,,/partide/PPPR,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,PRA,$.partide.PRA,,string,,,,,/partide/PRA,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,PRPE,$.partide.PRPE,,string,,,,,/partide/PRPE,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,PSD,$.partide.PSD,,string,,,,,/partide/PSD,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,PSD-PRO,$.partide.PSD-PRO,,string,,,,,/partide/PSD-PRO,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,PSD-PUSL,$.partide.PSD-PUSL,,string,,,,,/partide/PSD-PUSL,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,PUSL,$.partide.PUSL,,string,,,,,/partide/PUSL,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,REPER,$.partide.REPER,,string,,,,,/partide/REPER,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,UDMR,$.partide.UDMR,,string,,,,,/partide/UDMR,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,UDSCR,$.partide.UDSCR,,string,,,,,/partide/UDSCR,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,UIPS-FD,$.partide.UIPS-FD,,string,,,,,/partide/UIPS-FD,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,USR,$.partide.USR,,string,,,,,/partide/USR,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,USR-PMP,$.partide.USR-PMP,,string,,,,,/partide/USR-PMP,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,UUR,$.partide.UUR,,string,,,,,/partide/UUR,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,siruta,$.primarii[].siruta,,string,,,,,/primarii/0/siruta,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,judet,$.primarii[].judet,,string,,,,,/primarii/0/judet,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,nume,$.primarii[].nume,,string,,,,,/primarii/0/nume,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,tip,$.primarii[].tip,,string,,,,,/primarii/0/tip,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,primar,$.primarii[].primar,,string,,,,,/primarii/0/primar,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,partid,$.primarii[].partid,,string,,,,,/primarii/0/partid,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,mandate,$.primarii[].mandate,,integer,,,,,/primarii/0/mandate,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,populatie,$.primarii[].populatie,,integer,,,,,/primarii/0/populatie,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,prezenta2024,$.primarii[].prezenta2024,,integer,,,,,/primarii/0/prezenta2024,observat-in-esantion-json
+romania-transparenta,6a3ba680564e50fec62e,https://romaniatransparenta.eu/date/primarii.json,json,camp-date,site,$.primarii[].site,,string,,,,,/primarii/0/site,observat-in-esantion-json
 transparenta-eu,6979fe2297f4c1a88b0f,https://transparenta.eu/ai/budget-explorer-parameters.json,json-schema,,view,$.view,string,,,,View type.,,/properties/view,declarat-in-schema
 transparenta-eu,6979fe2297f4c1a88b0f,https://transparenta.eu/ai/budget-explorer-parameters.json,json-schema,,primary,$.primary,string,,,,Primary grouping: functional or economic.,,/properties/primary,declarat-in-schema
 transparenta-eu,6979fe2297f4c1a88b0f,https://transparenta.eu/ai/budget-explorer-parameters.json,json-schema,,depth,$.depth,string,,,,Level of detail.,,/properties/depth,declarat-in-schema
@@ -2301,3 +2468,6 @@ transparenta-eu,9a82a7fef3545e1df478,https://transparenta.eu/ai/entities-paramet
 transparenta-eu,9a82a7fef3545e1df478,https://transparenta.eu/ai/entities-parameters.json,json-schema,,treemapPrimary,$.treemapPrimary,string,,,,Treemap primary classification: fn (functional) or ec (economic).,,/properties/treemapPrimary,declarat-in-schema
 transparenta-eu,9a82a7fef3545e1df478,https://transparenta.eu/ai/entities-parameters.json,json-schema,,accountCategory,$.accountCategory,string,,,,Account category: 'ch' (cheltuieli/spending) or 'vn' (venituri/revenue).,,/properties/accountCategory,declarat-in-schema
 transparenta-eu,9a82a7fef3545e1df478,https://transparenta.eu/ai/entities-parameters.json,json-schema,,notificationModal,$.notificationModal,string,,,,UI state for the notification modal.,,/properties/notificationModal,declarat-in-schema
+transparenta-eu,9427224c606836d5069c,https://transparenta.eu/ai/index.json,json,camp-date,path,$.routes[].path,,string,,,,,/routes/0/path,observat-in-esantion-json
+transparenta-eu,9427224c606836d5069c,https://transparenta.eu/ai/index.json,json,camp-date,purpose,$.routes[].purpose,,string,,,,,/routes/0/purpose,observat-in-esantion-json
+transparenta-eu,9427224c606836d5069c,https://transparenta.eu/ai/index.json,json,camp-date,parameters,$.routes[].parameters,,string,,,,,/routes/0/parameters,observat-in-esantion-json

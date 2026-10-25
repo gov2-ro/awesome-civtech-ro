@@ -25,7 +25,8 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [ ] Inspect the protected Monitor Energie contract only if public documentation becomes available; the linked URL returned 401.
 - [x] First structured-source pass beyond the pilot: 25 retained source URLs, 14 projects with field records.
       A Făcut?’s three edition pages now contribute an actual search control; their raw data schema remains unconfirmed.
-- [ ] Correct or report INS llms examples: POP101A is absent; ACC102B is workplace accidents, not GDP. The list and ACC102B API routes work.
+- [ ] Correct or report INS llms examples: POP101A is absent (earlier measurement); ACC102B is workplace accidents, not GDP (measured again 2026-10-25,
+      same body hash). The list route and the ACC102B, POP107D, LOC101B, TRN139A and GOS104A metadata routes work.
 - [ ] Add browser rendering or document-format extraction where static HTML and llms.txt leave gaps.
       Done in v0.14.0: the fetcher detects binary bodies (`format-binar`) instead of decoding them. No spreadsheet or PDF reader yet.
 - [ ] Review D132–D146 in `data/taxonomy-v2/integrare/revizuire.csv`. Confirm the provider and evidence before accepting each relation.
@@ -46,8 +47,13 @@ The 62 unconfirmed profiles cover the full 140-entry catalogue, including organi
 - [x] Fix targeted/offline preservation before new collection (milestone A, v0.14.0). `inventory.py` now reads the tracked state first.
       `--only` changes only the selected projects. A smaller file limit keeps earlier members. A failed refresh keeps the last evidence.
       `descoperiri.json` holds 59 discoveries (25 active, 34 found but not admitted). 34 new offline tests cover the failure modes.
-- [ ] Deepen the 14 existing inventories. Follow documented dataset catalogues and endpoint schemas beyond the current three-file discovery limit.
-      INS needs dataset-specific dimensions and indicator definitions, rather than one example dataset.
+- [x] Deepen INS (milestone B, v0.15.0): the dataset listing (3,368 datasets; llms.txt says about 3,600) and five verified metadata records
+      (ACC102B, POP107D, LOC101B, TRN139A, GOS104A) with dimensions, unit options, period, geographic levels and the declared source note.
+      Each dataset has the project-use evidence that named its code. 6 requests. The mirror's period ends earlier than the projects cite (see ACTIVITY).
+- [x] Deepen the other existing inventories where a named gap exists: six more sources (data index, 2025 company financials, parameter index,
+      law source manifest, two Romania Transparentă files). 6 requests. 28 documented candidates stay unfetched (codurbanism 26, one each elsewhere).
+- [ ] Fetch the 26 codurbanism data files only if a reviewer needs them; its `source-manifest.json` already names the sources.
+- [ ] Verify the INS `POP101A` example route again with a fresh request. The 404 in the brief is not re-measured here.
 - [ ] Select 10–15 data-heavy entries without structured inventories. Prioritise those with documentation, downloads or linked repositories.
 - [ ] Inspect rendered pages and their public data requests where static collection is incomplete.
       Inspect linked repository data folders, schemas and notebooks. Add spreadsheet/document extraction only where the selected entries need it.

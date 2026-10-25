@@ -72,7 +72,7 @@ def load_previous(out):
 
 
 def new_discovery(slug, url, method, *, state='descoperit', parent=None, evidence=None, original=None,
-                  discovered_at=None, rank=None, note=None):
+                  discovered_at=None, rank=None, note=None, extra=None):
     """A registry record. `locator_stare` says whether the original discovery locator is known."""
     record = {'proiect': slug, 'url': url, 'sursa_id': source_id(url), 'stare': state, 'metoda': method,
               'parinte': parent, 'link_original': original or url, 'dovada': evidence,
@@ -80,6 +80,8 @@ def new_discovery(slug, url, method, *, state='descoperit', parent=None, evidenc
               'prioritate': priority(url) if rank is None else rank, 'retras': None, 'istoric': []}
     if note:
         record['nota'] = note
+    if extra:
+        record['dovezi_suplimentare'] = extra
     return record
 
 
