@@ -5367,6 +5367,60 @@
       ]
     },
     {
+      "slug": "lista-firme",
+      "url": "https://lista-firme.info/",
+      "state": "documentatie-neconfirmata",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://lista-firme.info/",
+          "final_url": "https://lista-firme.info/",
+          "http_status": 200,
+          "fetched_at": "2026-10-25T22:12:41.157606+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Căutare Companii Românești | lista-firme.info",
+          "sections": [],
+          "sha256": "d616c1b812a1f5c669b31373c2020d1d9e3ddcc80fe8b2046e635b071401a5db",
+          "snapshot": "pagini/a569324103beb9a59a0e5540.json",
+          "text_chars": 771
+        },
+        {
+          "url": "https://lista-firme.info/llms.txt",
+          "final_url": "https://lista-firme.info/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-10-25T22:12:41.386508+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://lista-firme.info/metodologie/",
+          "final_url": "https://lista-firme.info/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-10-25T22:12:41.579868+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://lista-firme.info/despre/",
+          "final_url": "https://lista-firme.info/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-10-25T22:12:41.731588+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
       "slug": "mari-corupti",
       "url": "https://www.maricorupti.ro/",
       "state": "documentatie-neconfirmata",

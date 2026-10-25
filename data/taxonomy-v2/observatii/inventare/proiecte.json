@@ -7880,6 +7880,47 @@
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
         "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
       ]
+    },
+    {
+      "slug": "lista-firme",
+      "nume": "lista-firme.info",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Căutare de firme din România după nume sau CUI, din date ONRC și ANAF",
+      "permite": [
+        "Caută și consultă"
+      ],
+      "formate_catalogate": [
+        "Registru sau bază de date",
+        "API oferit"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "lista-firme"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "Caută după CUI sau nume de companie...",
+          "rol": "control-utilizator",
+          "tip_control_html": "text",
+          "descriere": "Caută după CUI sau nume de companie...",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://lista-firme.info/",
+            "sha256": "d616c1b812a1f5c669b31373c2020d1d9e3ddcc80fe8b2046e635b071401a5db",
+            "sha256_lista_controale": "c21302a6d61fce68faff41a4f3594f8e006f3f7092e681cb51511af0521e45ca",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/a569324103beb9a59a0e5540.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
+        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+      ]
     }
   ]
 }
