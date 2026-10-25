@@ -381,7 +381,7 @@ def render_report(data, rows):
     w('The request log (`observatii/inventare/jurnal-cereri.csv`) lists every request with its outcome, method, bytes and purpose. It holds no headers or credentials.')
     w('')
     w('Methods used: documentation collection with page-link and text discovery; CSV, JSON, JSON Schema and OpenAPI parsers; INS TEMPO metadata facts; readers for HTML tables, markdown tables,'
-      ' SQL, C#, Laravel PHP, annotated JSON in documents and page scripts; repository files pinned to a recorded commit and verified by git blob hash;'
+      ' SQL, C#, Laravel PHP, annotated JSON in documents, page scripts and API reference pages (endpoint cards); repository files pinned to a recorded commit and verified by git blob hash;'
       ' bounded range reads for large CSV files; a headless-browser render of single pages (optional, `scripts/render_pages.py`).')
     w('')
     w('External blockers and security findings:')

@@ -17,7 +17,8 @@ BASIS = {'declarat-in-schema': 'schema', 'declarat-in-metadate': 'metadata',
 FORMATS = {'openapi': 'Schemă API', 'json-schema': 'Schemă JSON', 'metadate-ins': 'Metadate de set',
            'json': 'Fișier JSON', 'csv': 'Fișier CSV', 'lista-ins': 'Listă de seturi INS',
            'html-tabele': 'Pagină cu tabele', 'markdown': 'Document Markdown', 'csharp': 'Cod C#', 'sql': 'Cod SQL', 'php': 'Cod PHP',
-           'json-comentat': 'Exemple JSON în document', 'js-acces': 'Script de pagină'}
+           'json-comentat': 'Exemple JSON în document', 'js-acces': 'Script de pagină',
+           'html-api-docs': 'Documentația API (pagină)'}
 SOURCE_LABELS = {
     'Institutul Național de Statistică (INS)': 'INS', 'Ministerul Dezvoltării (MDLPA)': 'MDLPA',
     'Administrația Prezidențială': 'Adm. Prez', 'Monitorul Oficial': 'MO',

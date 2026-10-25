@@ -1882,6 +1882,125 @@ banii-nostri,6a87d31f8778b7d99b69,https://data.g4d.ro/ords/opendata/sicap/da_by_
 banii-nostri,6a87d31f8778b7d99b69,https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/,json,camp-date,count,$.count,,integer,,,,,/count,observat-in-esantion-json
 banii-nostri,6a87d31f8778b7d99b69,https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/,json,camp-date,rel,$.links[].rel,,string,,,,,/links/0/rel,observat-in-esantion-json
 banii-nostri,6a87d31f8778b7d99b69,https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/,json,camp-date,href,$.links[].href,,string,,,,,/links/0/href,observat-in-esantion-json
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cui,cui,,,,,1-10 cifre,GET /api/company/{cui},char:31882-31898,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cui,cui,,,,,1-10 cifre,GET /api/company/{cui}/financials,char:33570-33586,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cui,cui,,,,,,GET /api/company/{cui}/balance/{year},char:35258-35261,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,year,year,,,,,,GET /api/company/{cui}/balance/{year},char:35263-35274,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cui,cui,,,,,1-10 cifre,GET /api/company/{cui}/related,char:36968-36984,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cui,cui,,,,,1-10 cifre,GET /api/company/{cui}/seap,char:38697-38713,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cui,cui,,,,,1-10 cifre,GET /api/company/{cui}/decisions,char:40300-40316,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cui,cui,,,,,1-10 cifre,GET /api/company/{cui}/timeline,char:41929-41945,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cui,cui,,,,,1-10 cifre,GET /api/company/{cui}/leaderboard,char:43563-43579,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cui,cui,,,,,1-10 cifre,GET /api/company/{cui}/health,char:45059-45075,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cui,cui,,,,,1-10 cifre,GET /api/company/{cui}/network,char:46568-46584,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,corp-cerere,cuis,cuis,string[],,,,,POST /api/company/batch,char:48157-48171,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,q,q,,,,,,GET /api/search,char:49145-49153,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,limit,limit,,,,,,GET /api/search,char:49155-49179,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,q,q,,,,,,GET /api/search/all,char:50751-50759,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,limit,limit,,,,,,GET /api/search/all,char:50761-50785,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,q,q,,,,,,GET /api/search/people,char:52250-52258,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,limit,limit,,,,,,GET /api/search/people,char:52260-52284,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,id,id,,,,,identificatorul persoanei,GET /api/person/{id},char:53877-53907,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,id,id,,,,,identificatorul persoanei,GET /api/person/{id}/companies,char:55515-55545,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,q,q,,,,,"text, număr anunț, cod CPV sau CUI",GET /api/sicap/tenders/search,char:57268-57306,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cpv,cpv,,,,,,GET /api/sicap/tenders/search,char:57308-57311,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,authorityCui,authorityCui,,,,,,GET /api/sicap/tenders/search,char:57313-57325,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,from,from,,,,,,GET /api/sicap/tenders/search,char:57327-57344,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,limit,limit,,,,,,GET /api/sicap/tenders/search,char:57346-57358,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,offset,offset,,,,,,GET /api/sicap/tenders/search,char:57360-57366,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,notice,notice,,,,,numărul anunțului (ex. CN1084791),GET /api/sicap/tender/{notice},char:58973-59015,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cui,cui,,,,,1-10 cifre,GET /api/sicap/company/{cui}/procedures,char:62124-62140,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,notice,notice,,,,,numărul anunțului (ex. CN1084791),GET /api/sicap/procedure/{notice}/documents,char:63787-63829,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,notice,notice,,,,,numărul anunțului (ex. CN1084791),GET /api/sicap/procedure/{notice}/signers,char:65496-65538,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,q,q,,,,,termeni de căutare,GET /api/sicap/procedure/{notice}/search,char:67014-67036,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,notice,notice,,,,,,GET /api/sicap/procedure/{notice}/search,char:66697-66704,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,notice,notice,,,,,numărul anunțului (ex. CN1084791),GET /api/sicap/procedure/{notice}/changes,char:68519-68561,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,notice,notice,,,,,numărul anunțului (ex. CN1084791),GET /api/sicap/procedure/{notice}/bundle,char:69306-69348,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,id,id,,,,,identificatorul documentului,GET /api/sicap/document/{id}/text,char:70063-70096,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,id,id,,,,,identificatorul documentului,GET /api/sicap/document/{id}/download,char:70822-70855,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cui,cui,,,,,,GET /api/seap/company/{cui}/contracts,char:71753-71756,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,role,role,,,,,,GET /api/seap/company/{cui}/contracts,char:71758-71788,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,dateFrom,dateFrom,,,,,,GET /api/seap/company/{cui}/contracts,char:71790-71798,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,dateTo,dateTo,,,,,,GET /api/seap/company/{cui}/contracts,char:71800-71819,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cpv,cpv,,,,,,GET /api/seap/company/{cui}/contracts,char:71821-71824,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,limit,limit,,,,,,GET /api/seap/company/{cui}/contracts,char:71826-71839,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,offset,offset,,,,,,GET /api/seap/company/{cui}/contracts,char:71841-71847,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cui,cui,,,,,1-10 cifre,GET /api/seap/company/{cui}/contracts/check,char:73404-73420,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cui,cui,,,,,,GET /api/seap/company/{cui}/direct-purchases,char:74935-74938,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,role,role,,,,,,GET /api/seap/company/{cui}/direct-purchases,char:74940-74970,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,dateFrom,dateFrom,,,,,,GET /api/seap/company/{cui}/direct-purchases,char:74972-74980,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,dateTo,dateTo,,,,,,GET /api/seap/company/{cui}/direct-purchases,char:74982-75001,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cpv,cpv,,,,,,GET /api/seap/company/{cui}/direct-purchases,char:75003-75006,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,limit,limit,,,,,,GET /api/seap/company/{cui}/direct-purchases,char:75008-75021,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,offset,offset,,,,,,GET /api/seap/company/{cui}/direct-purchases,char:75023-75029,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cui,cui,,,,,,GET /api/seap/company/{cui}/direct-purchase-awards,char:76544-76547,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,role,role,,,,,,GET /api/seap/company/{cui}/direct-purchase-awards,char:76549-76579,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,dateFrom,dateFrom,,,,,,GET /api/seap/company/{cui}/direct-purchase-awards,char:76581-76589,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,dateTo,dateTo,,,,,,GET /api/seap/company/{cui}/direct-purchase-awards,char:76591-76610,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cpv,cpv,,,,,,GET /api/seap/company/{cui}/direct-purchase-awards,char:76612-76615,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,limit,limit,,,,,,GET /api/seap/company/{cui}/direct-purchase-awards,char:76617-76630,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,offset,offset,,,,,,GET /api/seap/company/{cui}/direct-purchase-awards,char:76632-76638,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cui,cui,,,,,,GET /api/seap/company/{cui}/tenders,char:78151-78154,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,limit,limit,,,,,,GET /api/seap/company/{cui}/tenders,char:78156-78169,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,offset,offset,,,,,,GET /api/seap/company/{cui}/tenders,char:78171-78177,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cui,cui,,,,,,GET /api/seap/company/{cui}/supplier-issues,char:79683-79686,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,onlyDamages,onlyDamages,,,,,,GET /api/seap/company/{cui}/supplier-issues,char:79688-79712,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,limit,limit,,,,,,GET /api/seap/company/{cui}/supplier-issues,char:79714-79727,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,offset,offset,,,,,,GET /api/seap/company/{cui}/supplier-issues,char:79729-79735,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,ackDocId,ackDocId,,,,,identificatorul documentului din supplier-issues,GET /api/seap/supplier-issues/{ackDocId},char:81224-81283,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,number,number,,,,,numărul contractului codificat URL (1/32435 → 1%2F32435),GET /api/seap/contracts/{number},char:82050-82115,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cpv,cpv,,,,,,GET /api/seap/cpv/{cpv}/contracts,char:83586-83612,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,supplierCity,supplierCity,,,,,,GET /api/seap/cpv/{cpv}/contracts,char:83614-83643,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,dateFrom,dateFrom,,,,,,GET /api/seap/cpv/{cpv}/contracts,char:83645-83653,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,dateTo,dateTo,,,,,,GET /api/seap/cpv/{cpv}/contracts,char:83655-83661,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,limit,limit,,,,,,GET /api/seap/cpv/{cpv}/contracts,char:83663-83676,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,offset,offset,,,,,,GET /api/seap/cpv/{cpv}/contracts,char:83678-83684,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cpv,cpv,,,,,,GET /api/seap/cpv/{cpv}/direct-purchases,char:85182-85208,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,supplierCity,supplierCity,,,,,,GET /api/seap/cpv/{cpv}/direct-purchases,char:85210-85239,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,dateFrom,dateFrom,,,,,,GET /api/seap/cpv/{cpv}/direct-purchases,char:85241-85249,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,dateTo,dateTo,,,,,,GET /api/seap/cpv/{cpv}/direct-purchases,char:85251-85257,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,limit,limit,,,,,,GET /api/seap/cpv/{cpv}/direct-purchases,char:85259-85272,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,offset,offset,,,,,,GET /api/seap/cpv/{cpv}/direct-purchases,char:85274-85280,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cpv,cpv,,,,,,GET /api/seap/cpv/{cpv}/direct-purchase-awards,char:86800-86826,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,supplierCity,supplierCity,,,,,,GET /api/seap/cpv/{cpv}/direct-purchase-awards,char:86828-86857,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,dateFrom,dateFrom,,,,,,GET /api/seap/cpv/{cpv}/direct-purchase-awards,char:86859-86867,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,dateTo,dateTo,,,,,,GET /api/seap/cpv/{cpv}/direct-purchase-awards,char:86869-86875,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,limit,limit,,,,,,GET /api/seap/cpv/{cpv}/direct-purchase-awards,char:86877-86890,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,offset,offset,,,,,,GET /api/seap/cpv/{cpv}/direct-purchase-awards,char:86892-86898,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cpv,cpv,,,,,,GET /api/seap/cpv/{cpv}/top-suppliers,char:88360-88363,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,supplierCity,supplierCity,,,,,,GET /api/seap/cpv/{cpv}/top-suppliers,char:88365-88377,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,dateFrom,dateFrom,,,,,,GET /api/seap/cpv/{cpv}/top-suppliers,char:88379-88387,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,dateTo,dateTo,,,,,,GET /api/seap/cpv/{cpv}/top-suppliers,char:88389-88395,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,limit,limit,,,,,,GET /api/seap/cpv/{cpv}/top-suppliers,char:88397-88410,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cpv,cpv,,,,,,GET /api/seap/cpv/{cpv}/analysis,char:89872-89875,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,dateFrom,dateFrom,,,,,,GET /api/seap/cpv/{cpv}/analysis,char:89877-89885,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,dateTo,dateTo,,,,,,GET /api/seap/cpv/{cpv}/analysis,char:89887-89893,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,year,year,,,,,,GET /api/statistica/top-companies,char:93185-93189,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,metric,metric,,,,,,GET /api/statistica/top-companies,char:93191-93221,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,slice,slice,,,,,,GET /api/statistica/top-companies,char:93223-93250,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,limit,limit,,,,,,GET /api/statistica/top-companies,char:93252-93257,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,year,year,,,,,anul,GET /api/statistica/advanced-rankings,char:96278-96289,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,judet,judet,,,,,numele județului (ex. cluj),GET /api/firme/{judet},char:98048-98083,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,judet,judet,,,,,,GET /api/firme/{judet}/{oras},char:99710-99715,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,oras,oras,,,,,,GET /api/firme/{judet}/{oras},char:99717-99744,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,id,id,,,,,identificatorul deciziei,GET /api/decisions/{id},char:101323-101352,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,from,from,,,,,,GET /api/rates/convert,char:107797-107801,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,to,to,,,,,,GET /api/rates/convert,char:107803-107816,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,amount,amount,,,,,,GET /api/rates/convert,char:107818-107824,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,q,q,,,,,,GET /api/caen,char:109603-109611,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,section,section,,,,,,GET /api/caen,char:109613-109626,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,code,code,,,,,,GET /api/caen/{code},char:111271-111285,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,code,code,,,,,,GET /api/caen/{code}/hub,char:112951-112965,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,q,q,,,,,,GET /api/iban,char:114726-114734,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,treasury,treasury,,,,,,GET /api/iban,char:114736-114761,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,url,url,,,,,,GET /api/press/pdf,char:118082-118116,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,slug,slug,,,,,identificatorul articolului,GET /api/press-articles/{slug},char:120604-120638,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,camp-raspuns,success,$.success,,,,,,,char:24907-24914,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,camp-raspuns,data,$.data,,,,,,,char:24916-24920,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,camp-raspuns,meta,$.meta,,,,,,,char:24922-24926,declarat-in-documentatie-api
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,camp-raspuns,error,$.error,,object,,,,,char:30253-30270,exemplu-in-documentatie
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,camp-raspuns,code,$.error.code,,string,,,,,char:30274-30290,exemplu-in-documentatie
+demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,camp-raspuns,message,$.error.message,,string,,,,,char:30318-30337,exemplu-in-documentatie
 demoanaf,ed97ecda1bdb32c9396e,https://demoanaf.ro/openapi.json,openapi,parametru-api,q,q,string,,,,,GET /api/search,/paths/~1api~1search/get/parameters/0,declarat-in-schema
 demoanaf,ed97ecda1bdb32c9396e,https://demoanaf.ro/openapi.json,openapi,parametru-api,limit,limit,integer,,,,,GET /api/search,/paths/~1api~1search/get/parameters/1,declarat-in-schema
 demoanaf,ed97ecda1bdb32c9396e,https://demoanaf.ro/openapi.json,openapi,parametru-api,cui,cui,string,,,,,GET /api/company/{cui},/paths/~1api~1company~1{cui}/get/parameters/0,declarat-in-schema

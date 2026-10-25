@@ -1432,6 +1432,51 @@
     },
     {
       "proiect": "demoanaf",
+      "url": "https://demoanaf.ro/api-docs",
+      "sursa_id": "78a0961ee1abf88a8009",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://demoanaf.ro/",
+      "link_original": "https://demoanaf.ro/api-docs",
+      "dovada": {
+        "url": "https://demoanaf.ro/",
+        "sha256": "e91a13a1e45428bb2c74f591c5f9c3dcf47bf3c35b2e3407c41be04537c9b88e",
+        "pointer": "/links/24",
+        "fragment": "https://demoanaf.ro/api-docs",
+        "snapshot": "documentare/pagini/c29512c4b2e79567a84533db.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-25T17:25:59.689364+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-25T17:25:59.689364+00:00"
+        }
+      ],
+      "nota": "The project's own API reference page, linked from its home page and from llms.txt. Every endpoint is a card with its parameters. The page states no response fields except the envelope and an error example. No API call was made. The reader compares the page with openapi.json of the same project.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://demoanaf.ro/llms.txt",
+          "sha256": "61efd55d801e340c66da1ac9fad9f68f69b6a473da2fc9c55352df55a6b2db9c",
+          "pointer": "/text",
+          "interval": [
+            2677,
+            2733
+          ],
+          "fragment": "[Public API documentation](https://demoanaf.ro/api-docs)",
+          "snapshot": "documentare/pagini/ab8b3d30fd97968c0ff4e9dd.json",
+          "rol": "descriere-fisier"
+        }
+      ],
+      "citire": {
+        "tip": "html-api-docs",
+        "contract": "https://demoanaf.ro/openapi.json"
+      }
+    },
+    {
+      "proiect": "demoanaf",
       "url": "https://demoanaf.ro/openapi.json",
       "sursa_id": "ed97ecda1bdb32c9396e",
       "stare": "activ",

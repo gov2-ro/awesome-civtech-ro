@@ -1,0 +1,23 @@
+[
+  {
+    "proiect": "demoanaf",
+    "url": "https://demoanaf.ro/api-docs",
+    "citire": {
+      "tip": "html-api-docs",
+      "contract": "https://demoanaf.ro/openapi.json"
+    },
+    "parinte": "https://demoanaf.ro/",
+    "locate": {
+      "pagina": "https://demoanaf.ro/",
+      "link": "https://demoanaf.ro/api-docs"
+    },
+    "dovezi": [
+      {
+        "pagina": "https://demoanaf.ro/llms.txt",
+        "text": "[Public API documentation](https://demoanaf.ro/api-docs)",
+        "rol": "descriere-fisier"
+      }
+    ],
+    "nota": "The project's own API reference page, linked from its home page and from llms.txt. Every endpoint is a card with its parameters. The page states no response fields except the envelope and an error example. No API call was made. The reader compares the page with openapi.json of the same project."
+  }
+]

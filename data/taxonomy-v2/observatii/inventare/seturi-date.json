@@ -43450,6 +43450,3426 @@
       "baza_tipului": "esantion-date"
     },
     {
+      "url": "https://demoanaf.ro/api-docs",
+      "final_url": "https://demoanaf.ro/api-docs",
+      "http_status": 200,
+      "fetched_at": "2026-10-25T17:15:39.928686+00:00",
+      "content_type": "text/html",
+      "state": "ok",
+      "citire": {
+        "tip": "html-api-docs",
+        "contract": "https://demoanaf.ro/openapi.json"
+      },
+      "id": "78a0961ee1abf88a8009",
+      "campuri": [
+        {
+          "nume": "cui",
+          "cale": "cui",
+          "rol": "parametru-api",
+          "operatie": "GET /api/company/{cui}",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:31882-31898",
+          "aparitii": [
+            {
+              "operatie": "GET /api/company/{cui}",
+              "cale": "cui"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "descriere": "1-10 cifre",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1company~1{cui}/get/parameters/0"
+          }
+        },
+        {
+          "nume": "cui",
+          "cale": "cui",
+          "rol": "parametru-api",
+          "operatie": "GET /api/company/{cui}/financials",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:33570-33586",
+          "aparitii": [
+            {
+              "operatie": "GET /api/company/{cui}/financials",
+              "cale": "cui"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "descriere": "1-10 cifre",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1company~1{cui}~1financials/get/parameters/0"
+          }
+        },
+        {
+          "nume": "cui",
+          "cale": "cui",
+          "rol": "parametru-api",
+          "operatie": "GET /api/company/{cui}/balance/{year}",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:35258-35261",
+          "aparitii": [
+            {
+              "operatie": "GET /api/company/{cui}/balance/{year}",
+              "cale": "cui"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1company~1{cui}~1balance~1{year}/get/parameters/0"
+          }
+        },
+        {
+          "nume": "year",
+          "cale": "year",
+          "rol": "parametru-api",
+          "operatie": "GET /api/company/{cui}/balance/{year}",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:35263-35274",
+          "aparitii": [
+            {
+              "operatie": "GET /api/company/{cui}/balance/{year}",
+              "cale": "year"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "indicatie_pagina": "YYYY",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1company~1{cui}~1balance~1{year}/get/parameters/1"
+          }
+        },
+        {
+          "nume": "cui",
+          "cale": "cui",
+          "rol": "parametru-api",
+          "operatie": "GET /api/company/{cui}/related",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:36968-36984",
+          "aparitii": [
+            {
+              "operatie": "GET /api/company/{cui}/related",
+              "cale": "cui"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "descriere": "1-10 cifre",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1company~1{cui}~1related/get/parameters/0"
+          }
+        },
+        {
+          "nume": "cui",
+          "cale": "cui",
+          "rol": "parametru-api",
+          "operatie": "GET /api/company/{cui}/seap",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:38697-38713",
+          "aparitii": [
+            {
+              "operatie": "GET /api/company/{cui}/seap",
+              "cale": "cui"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "descriere": "1-10 cifre",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1company~1{cui}~1seap/get/parameters/0"
+          }
+        },
+        {
+          "nume": "cui",
+          "cale": "cui",
+          "rol": "parametru-api",
+          "operatie": "GET /api/company/{cui}/decisions",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:40300-40316",
+          "aparitii": [
+            {
+              "operatie": "GET /api/company/{cui}/decisions",
+              "cale": "cui"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "descriere": "1-10 cifre",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1company~1{cui}~1decisions/get/parameters/0"
+          }
+        },
+        {
+          "nume": "cui",
+          "cale": "cui",
+          "rol": "parametru-api",
+          "operatie": "GET /api/company/{cui}/timeline",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:41929-41945",
+          "aparitii": [
+            {
+              "operatie": "GET /api/company/{cui}/timeline",
+              "cale": "cui"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "descriere": "1-10 cifre",
+          "in_contract": null
+        },
+        {
+          "nume": "cui",
+          "cale": "cui",
+          "rol": "parametru-api",
+          "operatie": "GET /api/company/{cui}/leaderboard",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:43563-43579",
+          "aparitii": [
+            {
+              "operatie": "GET /api/company/{cui}/leaderboard",
+              "cale": "cui"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "descriere": "1-10 cifre",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1company~1{cui}~1leaderboard/get/parameters/0"
+          }
+        },
+        {
+          "nume": "cui",
+          "cale": "cui",
+          "rol": "parametru-api",
+          "operatie": "GET /api/company/{cui}/health",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:45059-45075",
+          "aparitii": [
+            {
+              "operatie": "GET /api/company/{cui}/health",
+              "cale": "cui"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "descriere": "1-10 cifre",
+          "in_contract": null
+        },
+        {
+          "nume": "cui",
+          "cale": "cui",
+          "rol": "parametru-api",
+          "operatie": "GET /api/company/{cui}/network",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:46568-46584",
+          "aparitii": [
+            {
+              "operatie": "GET /api/company/{cui}/network",
+              "cale": "cui"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "descriere": "1-10 cifre",
+          "in_contract": null
+        },
+        {
+          "nume": "cuis",
+          "cale": "cuis",
+          "rol": "corp-cerere",
+          "operatie": "POST /api/company/batch",
+          "loc": "body",
+          "tip_declarat": "string[]",
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:48157-48171",
+          "aparitii": [
+            {
+              "operatie": "POST /api/company/batch",
+              "cale": "cuis"
+            }
+          ],
+          "baza_loc": "corp-declarat",
+          "in_contract": null
+        },
+        {
+          "nume": "q",
+          "cale": "q",
+          "rol": "parametru-api",
+          "operatie": "GET /api/search",
+          "loc": "query",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:49145-49153",
+          "aparitii": [
+            {
+              "operatie": "GET /api/search",
+              "cale": "q"
+            }
+          ],
+          "baza_loc": "exemplu-cerere",
+          "indicatie_pagina": "text",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1search/get/parameters/0"
+          }
+        },
+        {
+          "nume": "limit",
+          "cale": "limit",
+          "rol": "parametru-api",
+          "operatie": "GET /api/search",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:49155-49179",
+          "aparitii": [
+            {
+              "operatie": "GET /api/search",
+              "cale": "limit"
+            }
+          ],
+          "indicatie_pagina": "1-50, default 20",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1search/get/parameters/1"
+          }
+        },
+        {
+          "nume": "q",
+          "cale": "q",
+          "rol": "parametru-api",
+          "operatie": "GET /api/search/all",
+          "loc": "query",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:50751-50759",
+          "aparitii": [
+            {
+              "operatie": "GET /api/search/all",
+              "cale": "q"
+            }
+          ],
+          "baza_loc": "exemplu-cerere",
+          "indicatie_pagina": "text",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1search~1all/get/parameters/0"
+          }
+        },
+        {
+          "nume": "limit",
+          "cale": "limit",
+          "rol": "parametru-api",
+          "operatie": "GET /api/search/all",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:50761-50785",
+          "aparitii": [
+            {
+              "operatie": "GET /api/search/all",
+              "cale": "limit"
+            }
+          ],
+          "indicatie_pagina": "1-50, default 20",
+          "in_contract": null
+        },
+        {
+          "nume": "q",
+          "cale": "q",
+          "rol": "parametru-api",
+          "operatie": "GET /api/search/people",
+          "loc": "query",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:52250-52258",
+          "aparitii": [
+            {
+              "operatie": "GET /api/search/people",
+              "cale": "q"
+            }
+          ],
+          "baza_loc": "exemplu-cerere",
+          "indicatie_pagina": "text",
+          "in_contract": null
+        },
+        {
+          "nume": "limit",
+          "cale": "limit",
+          "rol": "parametru-api",
+          "operatie": "GET /api/search/people",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:52260-52284",
+          "aparitii": [
+            {
+              "operatie": "GET /api/search/people",
+              "cale": "limit"
+            }
+          ],
+          "indicatie_pagina": "1-50, default 20",
+          "in_contract": null
+        },
+        {
+          "nume": "id",
+          "cale": "id",
+          "rol": "parametru-api",
+          "operatie": "GET /api/person/{id}",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:53877-53907",
+          "aparitii": [
+            {
+              "operatie": "GET /api/person/{id}",
+              "cale": "id"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "descriere": "identificatorul persoanei",
+          "in_contract": null
+        },
+        {
+          "nume": "id",
+          "cale": "id",
+          "rol": "parametru-api",
+          "operatie": "GET /api/person/{id}/companies",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:55515-55545",
+          "aparitii": [
+            {
+              "operatie": "GET /api/person/{id}/companies",
+              "cale": "id"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "descriere": "identificatorul persoanei",
+          "in_contract": null
+        },
+        {
+          "nume": "q",
+          "cale": "q",
+          "rol": "parametru-api",
+          "operatie": "GET /api/sicap/tenders/search",
+          "loc": "query",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:57268-57306",
+          "aparitii": [
+            {
+              "operatie": "GET /api/sicap/tenders/search",
+              "cale": "q"
+            }
+          ],
+          "baza_loc": "exemplu-cerere",
+          "descriere": "text, număr anunț, cod CPV sau CUI",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1sicap~1tenders~1search/get/parameters/0"
+          }
+        },
+        {
+          "nume": "cpv",
+          "cale": "cpv",
+          "rol": "parametru-api",
+          "operatie": "GET /api/sicap/tenders/search",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:57308-57311",
+          "aparitii": [
+            {
+              "operatie": "GET /api/sicap/tenders/search",
+              "cale": "cpv"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1sicap~1tenders~1search/get/parameters/1"
+          }
+        },
+        {
+          "nume": "authorityCui",
+          "cale": "authorityCui",
+          "rol": "parametru-api",
+          "operatie": "GET /api/sicap/tenders/search",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:57313-57325",
+          "aparitii": [
+            {
+              "operatie": "GET /api/sicap/tenders/search",
+              "cale": "authorityCui"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1sicap~1tenders~1search/get/parameters/2"
+          }
+        },
+        {
+          "nume": "from",
+          "cale": "from",
+          "rol": "parametru-api",
+          "operatie": "GET /api/sicap/tenders/search",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:57327-57344",
+          "aparitii": [
+            {
+              "operatie": "GET /api/sicap/tenders/search",
+              "cale": "from"
+            }
+          ],
+          "indicatie_pagina": "AAAA-LL-ZZ",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1sicap~1tenders~1search/get/parameters/3"
+          }
+        },
+        {
+          "nume": "limit",
+          "cale": "limit",
+          "rol": "parametru-api",
+          "operatie": "GET /api/sicap/tenders/search",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:57346-57358",
+          "aparitii": [
+            {
+              "operatie": "GET /api/sicap/tenders/search",
+              "cale": "limit"
+            }
+          ],
+          "indicatie_pagina": "1–50",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1sicap~1tenders~1search/get/parameters/4"
+          }
+        },
+        {
+          "nume": "offset",
+          "cale": "offset",
+          "rol": "parametru-api",
+          "operatie": "GET /api/sicap/tenders/search",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:57360-57366",
+          "aparitii": [
+            {
+              "operatie": "GET /api/sicap/tenders/search",
+              "cale": "offset"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1sicap~1tenders~1search/get/parameters/5"
+          }
+        },
+        {
+          "nume": "notice",
+          "cale": "notice",
+          "rol": "parametru-api",
+          "operatie": "GET /api/sicap/tender/{notice}",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:58973-59015",
+          "aparitii": [
+            {
+              "operatie": "GET /api/sicap/tender/{notice}",
+              "cale": "notice"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "descriere": "numărul anunțului (ex. CN1084791)",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1sicap~1tender~1{notice}/get/parameters/0"
+          }
+        },
+        {
+          "nume": "cui",
+          "cale": "cui",
+          "rol": "parametru-api",
+          "operatie": "GET /api/sicap/company/{cui}/procedures",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:62124-62140",
+          "aparitii": [
+            {
+              "operatie": "GET /api/sicap/company/{cui}/procedures",
+              "cale": "cui"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "descriere": "1-10 cifre",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1sicap~1company~1{cui}~1procedures/get/parameters/0"
+          }
+        },
+        {
+          "nume": "notice",
+          "cale": "notice",
+          "rol": "parametru-api",
+          "operatie": "GET /api/sicap/procedure/{notice}/documents",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:63787-63829",
+          "aparitii": [
+            {
+              "operatie": "GET /api/sicap/procedure/{notice}/documents",
+              "cale": "notice"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "descriere": "numărul anunțului (ex. CN1084791)",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1sicap~1procedure~1{notice}~1documents/get/parameters/0"
+          }
+        },
+        {
+          "nume": "notice",
+          "cale": "notice",
+          "rol": "parametru-api",
+          "operatie": "GET /api/sicap/procedure/{notice}/signers",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:65496-65538",
+          "aparitii": [
+            {
+              "operatie": "GET /api/sicap/procedure/{notice}/signers",
+              "cale": "notice"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "descriere": "numărul anunțului (ex. CN1084791)",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1sicap~1procedure~1{notice}~1signers/get/parameters/0"
+          }
+        },
+        {
+          "nume": "q",
+          "cale": "q",
+          "rol": "parametru-api",
+          "operatie": "GET /api/sicap/procedure/{notice}/search",
+          "loc": "query",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:67014-67036",
+          "aparitii": [
+            {
+              "operatie": "GET /api/sicap/procedure/{notice}/search",
+              "cale": "q"
+            }
+          ],
+          "baza_loc": "exemplu-cerere",
+          "descriere": "termeni de căutare",
+          "in_contract": null
+        },
+        {
+          "nume": "notice",
+          "cale": "notice",
+          "rol": "parametru-api",
+          "operatie": "GET /api/sicap/procedure/{notice}/search",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:66697-66704",
+          "aparitii": [
+            {
+              "operatie": "GET /api/sicap/procedure/{notice}/search",
+              "cale": "notice"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "in_contract": null
+        },
+        {
+          "nume": "notice",
+          "cale": "notice",
+          "rol": "parametru-api",
+          "operatie": "GET /api/sicap/procedure/{notice}/changes",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:68519-68561",
+          "aparitii": [
+            {
+              "operatie": "GET /api/sicap/procedure/{notice}/changes",
+              "cale": "notice"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "descriere": "numărul anunțului (ex. CN1084791)",
+          "in_contract": null
+        },
+        {
+          "nume": "notice",
+          "cale": "notice",
+          "rol": "parametru-api",
+          "operatie": "GET /api/sicap/procedure/{notice}/bundle",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:69306-69348",
+          "aparitii": [
+            {
+              "operatie": "GET /api/sicap/procedure/{notice}/bundle",
+              "cale": "notice"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "descriere": "numărul anunțului (ex. CN1084791)",
+          "in_contract": null
+        },
+        {
+          "nume": "id",
+          "cale": "id",
+          "rol": "parametru-api",
+          "operatie": "GET /api/sicap/document/{id}/text",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:70063-70096",
+          "aparitii": [
+            {
+              "operatie": "GET /api/sicap/document/{id}/text",
+              "cale": "id"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "descriere": "identificatorul documentului",
+          "in_contract": null
+        },
+        {
+          "nume": "id",
+          "cale": "id",
+          "rol": "parametru-api",
+          "operatie": "GET /api/sicap/document/{id}/download",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:70822-70855",
+          "aparitii": [
+            {
+              "operatie": "GET /api/sicap/document/{id}/download",
+              "cale": "id"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "descriere": "identificatorul documentului",
+          "in_contract": null
+        },
+        {
+          "nume": "cui",
+          "cale": "cui",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/contracts",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:71753-71756",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/contracts",
+              "cale": "cui"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1contracts/get/parameters/0"
+          }
+        },
+        {
+          "nume": "role",
+          "cale": "role",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/contracts",
+          "loc": "query",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:71758-71788",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/contracts",
+              "cale": "role"
+            }
+          ],
+          "baza_loc": "exemplu-cerere",
+          "indicatie_pagina": "authority|supplier|both",
+          "valori_enum": [
+            "authority",
+            "supplier",
+            "both"
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1contracts/get/parameters/1"
+          }
+        },
+        {
+          "nume": "dateFrom",
+          "cale": "dateFrom",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/contracts",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:71790-71798",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/contracts",
+              "cale": "dateFrom"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1contracts/get/parameters/2"
+          }
+        },
+        {
+          "nume": "dateTo",
+          "cale": "dateTo",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/contracts",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:71800-71819",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/contracts",
+              "cale": "dateTo"
+            }
+          ],
+          "indicatie_pagina": "AAAA-LL-ZZ",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1contracts/get/parameters/3"
+          }
+        },
+        {
+          "nume": "cpv",
+          "cale": "cpv",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/contracts",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:71821-71824",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/contracts",
+              "cale": "cpv"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1contracts/get/parameters/4"
+          }
+        },
+        {
+          "nume": "limit",
+          "cale": "limit",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/contracts",
+          "loc": "query",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:71826-71839",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/contracts",
+              "cale": "limit"
+            }
+          ],
+          "baza_loc": "exemplu-cerere",
+          "indicatie_pagina": "1–200",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1contracts/get/parameters/5"
+          }
+        },
+        {
+          "nume": "offset",
+          "cale": "offset",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/contracts",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:71841-71847",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/contracts",
+              "cale": "offset"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1contracts/get/parameters/6"
+          }
+        },
+        {
+          "nume": "cui",
+          "cale": "cui",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/contracts/check",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:73404-73420",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/contracts/check",
+              "cale": "cui"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "descriere": "1-10 cifre",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1contracts~1check/get/parameters/0"
+          }
+        },
+        {
+          "nume": "cui",
+          "cale": "cui",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/direct-purchases",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:74935-74938",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/direct-purchases",
+              "cale": "cui"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1direct-purchases/get/parameters/0"
+          }
+        },
+        {
+          "nume": "role",
+          "cale": "role",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/direct-purchases",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:74940-74970",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/direct-purchases",
+              "cale": "role"
+            }
+          ],
+          "indicatie_pagina": "authority|supplier|both",
+          "valori_enum": [
+            "authority",
+            "supplier",
+            "both"
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1direct-purchases/get/parameters/1"
+          }
+        },
+        {
+          "nume": "dateFrom",
+          "cale": "dateFrom",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/direct-purchases",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:74972-74980",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/direct-purchases",
+              "cale": "dateFrom"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1direct-purchases/get/parameters/2"
+          }
+        },
+        {
+          "nume": "dateTo",
+          "cale": "dateTo",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/direct-purchases",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:74982-75001",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/direct-purchases",
+              "cale": "dateTo"
+            }
+          ],
+          "indicatie_pagina": "AAAA-LL-ZZ",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1direct-purchases/get/parameters/3"
+          }
+        },
+        {
+          "nume": "cpv",
+          "cale": "cpv",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/direct-purchases",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:75003-75006",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/direct-purchases",
+              "cale": "cpv"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1direct-purchases/get/parameters/4"
+          }
+        },
+        {
+          "nume": "limit",
+          "cale": "limit",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/direct-purchases",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:75008-75021",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/direct-purchases",
+              "cale": "limit"
+            }
+          ],
+          "indicatie_pagina": "1–200",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1direct-purchases/get/parameters/5"
+          }
+        },
+        {
+          "nume": "offset",
+          "cale": "offset",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/direct-purchases",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:75023-75029",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/direct-purchases",
+              "cale": "offset"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1direct-purchases/get/parameters/6"
+          }
+        },
+        {
+          "nume": "cui",
+          "cale": "cui",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/direct-purchase-awards",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:76544-76547",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/direct-purchase-awards",
+              "cale": "cui"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1direct-purchase-awards/get/parameters/0"
+          }
+        },
+        {
+          "nume": "role",
+          "cale": "role",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/direct-purchase-awards",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:76549-76579",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/direct-purchase-awards",
+              "cale": "role"
+            }
+          ],
+          "indicatie_pagina": "authority|supplier|both",
+          "valori_enum": [
+            "authority",
+            "supplier",
+            "both"
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1direct-purchase-awards/get/parameters/1"
+          }
+        },
+        {
+          "nume": "dateFrom",
+          "cale": "dateFrom",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/direct-purchase-awards",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:76581-76589",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/direct-purchase-awards",
+              "cale": "dateFrom"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1direct-purchase-awards/get/parameters/2"
+          }
+        },
+        {
+          "nume": "dateTo",
+          "cale": "dateTo",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/direct-purchase-awards",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:76591-76610",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/direct-purchase-awards",
+              "cale": "dateTo"
+            }
+          ],
+          "indicatie_pagina": "AAAA-LL-ZZ",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1direct-purchase-awards/get/parameters/3"
+          }
+        },
+        {
+          "nume": "cpv",
+          "cale": "cpv",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/direct-purchase-awards",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:76612-76615",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/direct-purchase-awards",
+              "cale": "cpv"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1direct-purchase-awards/get/parameters/4"
+          }
+        },
+        {
+          "nume": "limit",
+          "cale": "limit",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/direct-purchase-awards",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:76617-76630",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/direct-purchase-awards",
+              "cale": "limit"
+            }
+          ],
+          "indicatie_pagina": "1–200",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1direct-purchase-awards/get/parameters/5"
+          }
+        },
+        {
+          "nume": "offset",
+          "cale": "offset",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/direct-purchase-awards",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:76632-76638",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/direct-purchase-awards",
+              "cale": "offset"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1direct-purchase-awards/get/parameters/6"
+          }
+        },
+        {
+          "nume": "cui",
+          "cale": "cui",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/tenders",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:78151-78154",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/tenders",
+              "cale": "cui"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1tenders/get/parameters/0"
+          }
+        },
+        {
+          "nume": "limit",
+          "cale": "limit",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/tenders",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:78156-78169",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/tenders",
+              "cale": "limit"
+            }
+          ],
+          "indicatie_pagina": "1–200",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1tenders/get/parameters/1"
+          }
+        },
+        {
+          "nume": "offset",
+          "cale": "offset",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/tenders",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:78171-78177",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/tenders",
+              "cale": "offset"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1tenders/get/parameters/2"
+          }
+        },
+        {
+          "nume": "cui",
+          "cale": "cui",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/supplier-issues",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:79683-79686",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/supplier-issues",
+              "cale": "cui"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1supplier-issues/get/parameters/0"
+          }
+        },
+        {
+          "nume": "onlyDamages",
+          "cale": "onlyDamages",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/supplier-issues",
+          "loc": "query",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:79688-79712",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/supplier-issues",
+              "cale": "onlyDamages"
+            }
+          ],
+          "baza_loc": "exemplu-cerere",
+          "indicatie_pagina": "true|false",
+          "valori_enum": [
+            "true",
+            "false"
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1supplier-issues/get/parameters/1"
+          }
+        },
+        {
+          "nume": "limit",
+          "cale": "limit",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/supplier-issues",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:79714-79727",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/supplier-issues",
+              "cale": "limit"
+            }
+          ],
+          "indicatie_pagina": "1–200",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1supplier-issues/get/parameters/2"
+          }
+        },
+        {
+          "nume": "offset",
+          "cale": "offset",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/company/{cui}/supplier-issues",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:79729-79735",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/company/{cui}/supplier-issues",
+              "cale": "offset"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1supplier-issues/get/parameters/3"
+          }
+        },
+        {
+          "nume": "ackDocId",
+          "cale": "ackDocId",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/supplier-issues/{ackDocId}",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:81224-81283",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/supplier-issues/{ackDocId}",
+              "cale": "ackDocId"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "descriere": "identificatorul documentului din supplier-issues",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1supplier-issues~1{ackDocId}/get/parameters/0"
+          }
+        },
+        {
+          "nume": "number",
+          "cale": "number",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/contracts/{number}",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:82050-82115",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/contracts/{number}",
+              "cale": "number"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "descriere": "numărul contractului codificat URL (1/32435 → 1%2F32435)",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1contracts~1{number}/get/parameters/0"
+          }
+        },
+        {
+          "nume": "cpv",
+          "cale": "cpv",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/cpv/{cpv}/contracts",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:83586-83612",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/cpv/{cpv}/contracts",
+              "cale": "cpv"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "indicatie_pagina": "prefix de 1–12 cifre",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1contracts/get/parameters/0"
+          }
+        },
+        {
+          "nume": "supplierCity",
+          "cale": "supplierCity",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/cpv/{cpv}/contracts",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:83614-83643",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/cpv/{cpv}/contracts",
+              "cale": "supplierCity"
+            }
+          ],
+          "indicatie_pagina": "doar contracte",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1contracts/get/parameters/1"
+          }
+        },
+        {
+          "nume": "dateFrom",
+          "cale": "dateFrom",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/cpv/{cpv}/contracts",
+          "loc": "query",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:83645-83653",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/cpv/{cpv}/contracts",
+              "cale": "dateFrom"
+            }
+          ],
+          "baza_loc": "exemplu-cerere",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1contracts/get/parameters/2"
+          }
+        },
+        {
+          "nume": "dateTo",
+          "cale": "dateTo",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/cpv/{cpv}/contracts",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:83655-83661",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/cpv/{cpv}/contracts",
+              "cale": "dateTo"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1contracts/get/parameters/3"
+          }
+        },
+        {
+          "nume": "limit",
+          "cale": "limit",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/cpv/{cpv}/contracts",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:83663-83676",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/cpv/{cpv}/contracts",
+              "cale": "limit"
+            }
+          ],
+          "indicatie_pagina": "1–200",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1contracts/get/parameters/4"
+          }
+        },
+        {
+          "nume": "offset",
+          "cale": "offset",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/cpv/{cpv}/contracts",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:83678-83684",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/cpv/{cpv}/contracts",
+              "cale": "offset"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1contracts/get/parameters/5"
+          }
+        },
+        {
+          "nume": "cpv",
+          "cale": "cpv",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/cpv/{cpv}/direct-purchases",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:85182-85208",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/cpv/{cpv}/direct-purchases",
+              "cale": "cpv"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "indicatie_pagina": "prefix de 1–12 cifre",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1direct-purchases/get/parameters/0"
+          }
+        },
+        {
+          "nume": "supplierCity",
+          "cale": "supplierCity",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/cpv/{cpv}/direct-purchases",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:85210-85239",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/cpv/{cpv}/direct-purchases",
+              "cale": "supplierCity"
+            }
+          ],
+          "indicatie_pagina": "doar contracte",
+          "in_contract": null
+        },
+        {
+          "nume": "dateFrom",
+          "cale": "dateFrom",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/cpv/{cpv}/direct-purchases",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:85241-85249",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/cpv/{cpv}/direct-purchases",
+              "cale": "dateFrom"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1direct-purchases/get/parameters/1"
+          }
+        },
+        {
+          "nume": "dateTo",
+          "cale": "dateTo",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/cpv/{cpv}/direct-purchases",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:85251-85257",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/cpv/{cpv}/direct-purchases",
+              "cale": "dateTo"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1direct-purchases/get/parameters/2"
+          }
+        },
+        {
+          "nume": "limit",
+          "cale": "limit",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/cpv/{cpv}/direct-purchases",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:85259-85272",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/cpv/{cpv}/direct-purchases",
+              "cale": "limit"
+            }
+          ],
+          "indicatie_pagina": "1–200",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1direct-purchases/get/parameters/3"
+          }
+        },
+        {
+          "nume": "offset",
+          "cale": "offset",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/cpv/{cpv}/direct-purchases",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:85274-85280",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/cpv/{cpv}/direct-purchases",
+              "cale": "offset"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1direct-purchases/get/parameters/4"
+          }
+        },
+        {
+          "nume": "cpv",
+          "cale": "cpv",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/cpv/{cpv}/direct-purchase-awards",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:86800-86826",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/cpv/{cpv}/direct-purchase-awards",
+              "cale": "cpv"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "indicatie_pagina": "prefix de 1–12 cifre",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1direct-purchase-awards/get/parameters/0"
+          }
+        },
+        {
+          "nume": "supplierCity",
+          "cale": "supplierCity",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/cpv/{cpv}/direct-purchase-awards",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:86828-86857",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/cpv/{cpv}/direct-purchase-awards",
+              "cale": "supplierCity"
+            }
+          ],
+          "indicatie_pagina": "doar contracte",
+          "in_contract": null
+        },
+        {
+          "nume": "dateFrom",
+          "cale": "dateFrom",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/cpv/{cpv}/direct-purchase-awards",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:86859-86867",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/cpv/{cpv}/direct-purchase-awards",
+              "cale": "dateFrom"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1direct-purchase-awards/get/parameters/1"
+          }
+        },
+        {
+          "nume": "dateTo",
+          "cale": "dateTo",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/cpv/{cpv}/direct-purchase-awards",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:86869-86875",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/cpv/{cpv}/direct-purchase-awards",
+              "cale": "dateTo"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1direct-purchase-awards/get/parameters/2"
+          }
+        },
+        {
+          "nume": "limit",
+          "cale": "limit",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/cpv/{cpv}/direct-purchase-awards",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:86877-86890",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/cpv/{cpv}/direct-purchase-awards",
+              "cale": "limit"
+            }
+          ],
+          "indicatie_pagina": "1–200",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1direct-purchase-awards/get/parameters/3"
+          }
+        },
+        {
+          "nume": "offset",
+          "cale": "offset",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/cpv/{cpv}/direct-purchase-awards",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:86892-86898",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/cpv/{cpv}/direct-purchase-awards",
+              "cale": "offset"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1direct-purchase-awards/get/parameters/4"
+          }
+        },
+        {
+          "nume": "cpv",
+          "cale": "cpv",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/cpv/{cpv}/top-suppliers",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:88360-88363",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/cpv/{cpv}/top-suppliers",
+              "cale": "cpv"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1top-suppliers/get/parameters/0"
+          }
+        },
+        {
+          "nume": "supplierCity",
+          "cale": "supplierCity",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/cpv/{cpv}/top-suppliers",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:88365-88377",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/cpv/{cpv}/top-suppliers",
+              "cale": "supplierCity"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1top-suppliers/get/parameters/1"
+          }
+        },
+        {
+          "nume": "dateFrom",
+          "cale": "dateFrom",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/cpv/{cpv}/top-suppliers",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:88379-88387",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/cpv/{cpv}/top-suppliers",
+              "cale": "dateFrom"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1top-suppliers/get/parameters/2"
+          }
+        },
+        {
+          "nume": "dateTo",
+          "cale": "dateTo",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/cpv/{cpv}/top-suppliers",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:88389-88395",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/cpv/{cpv}/top-suppliers",
+              "cale": "dateTo"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1top-suppliers/get/parameters/3"
+          }
+        },
+        {
+          "nume": "limit",
+          "cale": "limit",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/cpv/{cpv}/top-suppliers",
+          "loc": "query",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:88397-88410",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/cpv/{cpv}/top-suppliers",
+              "cale": "limit"
+            }
+          ],
+          "baza_loc": "exemplu-cerere",
+          "indicatie_pagina": "1–100",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1top-suppliers/get/parameters/4"
+          }
+        },
+        {
+          "nume": "cpv",
+          "cale": "cpv",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/cpv/{cpv}/analysis",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:89872-89875",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/cpv/{cpv}/analysis",
+              "cale": "cpv"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1analysis/get/parameters/0"
+          }
+        },
+        {
+          "nume": "dateFrom",
+          "cale": "dateFrom",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/cpv/{cpv}/analysis",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:89877-89885",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/cpv/{cpv}/analysis",
+              "cale": "dateFrom"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1analysis/get/parameters/1"
+          }
+        },
+        {
+          "nume": "dateTo",
+          "cale": "dateTo",
+          "rol": "parametru-api",
+          "operatie": "GET /api/seap/cpv/{cpv}/analysis",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:89887-89893",
+          "aparitii": [
+            {
+              "operatie": "GET /api/seap/cpv/{cpv}/analysis",
+              "cale": "dateTo"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1analysis/get/parameters/2"
+          }
+        },
+        {
+          "nume": "year",
+          "cale": "year",
+          "rol": "parametru-api",
+          "operatie": "GET /api/statistica/top-companies",
+          "loc": "query",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:93185-93189",
+          "aparitii": [
+            {
+              "operatie": "GET /api/statistica/top-companies",
+              "cale": "year"
+            }
+          ],
+          "baza_loc": "exemplu-cerere",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1statistica~1top-companies/get/parameters/2"
+          }
+        },
+        {
+          "nume": "metric",
+          "cale": "metric",
+          "rol": "parametru-api",
+          "operatie": "GET /api/statistica/top-companies",
+          "loc": "query",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:93191-93221",
+          "aparitii": [
+            {
+              "operatie": "GET /api/statistica/top-companies",
+              "cale": "metric"
+            }
+          ],
+          "baza_loc": "exemplu-cerere",
+          "indicatie_pagina": "cifra|profit|angajati",
+          "valori_enum": [
+            "cifra",
+            "profit",
+            "angajati"
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1statistica~1top-companies/get/parameters/3"
+          }
+        },
+        {
+          "nume": "slice",
+          "cale": "slice",
+          "rol": "parametru-api",
+          "operatie": "GET /api/statistica/top-companies",
+          "loc": "query",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:93223-93250",
+          "aparitii": [
+            {
+              "operatie": "GET /api/statistica/top-companies",
+              "cale": "slice"
+            }
+          ],
+          "baza_loc": "exemplu-cerere",
+          "indicatie_pagina": "national|judet|caen",
+          "valori_enum": [
+            "national",
+            "judet",
+            "caen"
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1statistica~1top-companies/get/parameters/0"
+          }
+        },
+        {
+          "nume": "limit",
+          "cale": "limit",
+          "rol": "parametru-api",
+          "operatie": "GET /api/statistica/top-companies",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:93252-93257",
+          "aparitii": [
+            {
+              "operatie": "GET /api/statistica/top-companies",
+              "cale": "limit"
+            }
+          ],
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1statistica~1top-companies/get/parameters/4"
+          }
+        },
+        {
+          "nume": "year",
+          "cale": "year",
+          "rol": "parametru-api",
+          "operatie": "GET /api/statistica/advanced-rankings",
+          "loc": "query",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:96278-96289",
+          "aparitii": [
+            {
+              "operatie": "GET /api/statistica/advanced-rankings",
+              "cale": "year"
+            }
+          ],
+          "baza_loc": "exemplu-cerere",
+          "descriere": "anul",
+          "in_contract": null
+        },
+        {
+          "nume": "judet",
+          "cale": "judet",
+          "rol": "parametru-api",
+          "operatie": "GET /api/firme/{judet}",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:98048-98083",
+          "aparitii": [
+            {
+              "operatie": "GET /api/firme/{judet}",
+              "cale": "judet"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "descriere": "numele județului (ex. cluj)",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1firme~1{judet}/get/parameters/0"
+          }
+        },
+        {
+          "nume": "judet",
+          "cale": "judet",
+          "rol": "parametru-api",
+          "operatie": "GET /api/firme/{judet}/{oras}",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:99710-99715",
+          "aparitii": [
+            {
+              "operatie": "GET /api/firme/{judet}/{oras}",
+              "cale": "judet"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1firme~1{judet}~1{oras}/get/parameters/0"
+          }
+        },
+        {
+          "nume": "oras",
+          "cale": "oras",
+          "rol": "parametru-api",
+          "operatie": "GET /api/firme/{judet}/{oras}",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:99717-99744",
+          "aparitii": [
+            {
+              "operatie": "GET /api/firme/{judet}/{oras}",
+              "cale": "oras"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "indicatie_pagina": "ex. cluj/cluj-napoca",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1firme~1{judet}~1{oras}/get/parameters/1"
+          }
+        },
+        {
+          "nume": "id",
+          "cale": "id",
+          "rol": "parametru-api",
+          "operatie": "GET /api/decisions/{id}",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:101323-101352",
+          "aparitii": [
+            {
+              "operatie": "GET /api/decisions/{id}",
+              "cale": "id"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "descriere": "identificatorul deciziei",
+          "in_contract": null
+        },
+        {
+          "nume": "from",
+          "cale": "from",
+          "rol": "parametru-api",
+          "operatie": "GET /api/rates/convert",
+          "loc": "query",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:107797-107801",
+          "aparitii": [
+            {
+              "operatie": "GET /api/rates/convert",
+              "cale": "from"
+            }
+          ],
+          "baza_loc": "exemplu-cerere",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1rates~1convert/get/parameters/0"
+          }
+        },
+        {
+          "nume": "to",
+          "cale": "to",
+          "rol": "parametru-api",
+          "operatie": "GET /api/rates/convert",
+          "loc": "query",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:107803-107816",
+          "aparitii": [
+            {
+              "operatie": "GET /api/rates/convert",
+              "cale": "to"
+            }
+          ],
+          "baza_loc": "exemplu-cerere",
+          "indicatie_pagina": "3 litere",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1rates~1convert/get/parameters/1"
+          }
+        },
+        {
+          "nume": "amount",
+          "cale": "amount",
+          "rol": "parametru-api",
+          "operatie": "GET /api/rates/convert",
+          "loc": "query",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:107818-107824",
+          "aparitii": [
+            {
+              "operatie": "GET /api/rates/convert",
+              "cale": "amount"
+            }
+          ],
+          "baza_loc": "exemplu-cerere",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1rates~1convert/get/parameters/2"
+          }
+        },
+        {
+          "nume": "q",
+          "cale": "q",
+          "rol": "parametru-api",
+          "operatie": "GET /api/caen",
+          "loc": "query",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:109603-109611",
+          "aparitii": [
+            {
+              "operatie": "GET /api/caen",
+              "cale": "q"
+            }
+          ],
+          "baza_loc": "exemplu-cerere",
+          "indicatie_pagina": "text",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1caen/get/parameters/0"
+          }
+        },
+        {
+          "nume": "section",
+          "cale": "section",
+          "rol": "parametru-api",
+          "operatie": "GET /api/caen",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:109613-109626",
+          "aparitii": [
+            {
+              "operatie": "GET /api/caen",
+              "cale": "section"
+            }
+          ],
+          "indicatie_pagina": "A-U",
+          "in_contract": null
+        },
+        {
+          "nume": "code",
+          "cale": "code",
+          "rol": "parametru-api",
+          "operatie": "GET /api/caen/{code}",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:111271-111285",
+          "aparitii": [
+            {
+              "operatie": "GET /api/caen/{code}",
+              "cale": "code"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "indicatie_pagina": "4 cifre",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1caen~1{code}/get/parameters/0"
+          }
+        },
+        {
+          "nume": "code",
+          "cale": "code",
+          "rol": "parametru-api",
+          "operatie": "GET /api/caen/{code}/hub",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:112951-112965",
+          "aparitii": [
+            {
+              "operatie": "GET /api/caen/{code}/hub",
+              "cale": "code"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "indicatie_pagina": "4 cifre",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1caen~1{code}~1hub/get/parameters/0"
+          }
+        },
+        {
+          "nume": "q",
+          "cale": "q",
+          "rol": "parametru-api",
+          "operatie": "GET /api/iban",
+          "loc": "query",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:114726-114734",
+          "aparitii": [
+            {
+              "operatie": "GET /api/iban",
+              "cale": "q"
+            }
+          ],
+          "baza_loc": "exemplu-cerere",
+          "indicatie_pagina": "text",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1iban/get/parameters/0"
+          }
+        },
+        {
+          "nume": "treasury",
+          "cale": "treasury",
+          "rol": "parametru-api",
+          "operatie": "GET /api/iban",
+          "loc": "query",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:114736-114761",
+          "aparitii": [
+            {
+              "operatie": "GET /api/iban",
+              "cale": "treasury"
+            }
+          ],
+          "baza_loc": "exemplu-cerere",
+          "indicatie_pagina": "cod trezorerie",
+          "in_contract": null
+        },
+        {
+          "nume": "url",
+          "cale": "url",
+          "rol": "parametru-api",
+          "operatie": "GET /api/press/pdf",
+          "loc": null,
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:118082-118116",
+          "aparitii": [
+            {
+              "operatie": "GET /api/press/pdf",
+              "cale": "url"
+            }
+          ],
+          "indicatie_pagina": "URL PDF de pe static.anaf.ro",
+          "in_contract": null
+        },
+        {
+          "nume": "slug",
+          "cale": "slug",
+          "rol": "parametru-api",
+          "operatie": "GET /api/press-articles/{slug}",
+          "loc": "path",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:120604-120638",
+          "aparitii": [
+            {
+              "operatie": "GET /api/press-articles/{slug}",
+              "cale": "slug"
+            }
+          ],
+          "baza_loc": "sablon-cale",
+          "descriere": "identificatorul articolului",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1press-articles~1{slug}/get/parameters/0"
+          }
+        },
+        {
+          "nume": "success",
+          "cale": "$.success",
+          "rol": "camp-raspuns",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:24907-24914",
+          "grup": "plic-raspuns"
+        },
+        {
+          "nume": "data",
+          "cale": "$.data",
+          "rol": "camp-raspuns",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:24916-24920",
+          "grup": "plic-raspuns"
+        },
+        {
+          "nume": "meta",
+          "cale": "$.meta",
+          "rol": "camp-raspuns",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "pointer": "char:24922-24926",
+          "grup": "plic-raspuns"
+        },
+        {
+          "nume": "error",
+          "cale": "$.error",
+          "rol": "camp-raspuns",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "object"
+          ],
+          "stare_tip": "exemplu-in-documentatie",
+          "status_raspuns": "429",
+          "pointer": "char:30253-30270",
+          "grup": "plic-raspuns"
+        },
+        {
+          "nume": "code",
+          "cale": "$.error.code",
+          "rol": "camp-raspuns",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "exemplu-in-documentatie",
+          "status_raspuns": "429",
+          "pointer": "char:30274-30290",
+          "grup": "plic-raspuns"
+        },
+        {
+          "nume": "message",
+          "cale": "$.error.message",
+          "rol": "camp-raspuns",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "exemplu-in-documentatie",
+          "status_raspuns": "429",
+          "pointer": "char:30318-30337",
+          "grup": "plic-raspuns"
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/78a0961ee1abf88a8009-7391a1209903da3b.json",
+      "sha256": "7391a1209903da3bc7f65fd062031dd104474a7d225589e4c3c3a9af7f07beb1",
+      "format": "html-api-docs",
+      "stare": "analizat",
+      "limita_atinsa": false,
+      "baza_tipului": "cod-sau-documentatie",
+      "operatii": [
+        {
+          "operatie": "GET /api/company/{cui}",
+          "metoda": "GET",
+          "cale": "/api/company/{cui}",
+          "categorie": "Companie",
+          "descriere": "Informații complete despre o firmă (date ANAF + administratori, CAEN autorizat, status ONRC)",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": "24h",
+          "pointer": "char:31122-31329",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1company~1{cui}/get"
+          }
+        },
+        {
+          "operatie": "GET /api/company/{cui}/financials",
+          "metoda": "GET",
+          "cale": "/api/company/{cui}/financials",
+          "categorie": "Companie",
+          "descriere": "Date financiare pe ultimii 8 ani (un singur request)",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": "7 zile",
+          "pointer": "char:32836-33054",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1company~1{cui}~1financials/get"
+          }
+        },
+        {
+          "operatie": "GET /api/company/{cui}/balance/{year}",
+          "metoda": "GET",
+          "cale": "/api/company/{cui}/balance/{year}",
+          "categorie": "Companie",
+          "descriere": "Bilanț financiar pentru un an specific",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": "7 zile",
+          "pointer": "char:34535-34756",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1company~1{cui}~1balance~1{year}/get"
+          }
+        },
+        {
+          "operatie": "GET /api/company/{cui}/related",
+          "metoda": "GET",
+          "cale": "/api/company/{cui}/related",
+          "categorie": "Companie",
+          "descriere": "Firme înrudite (aceiași administratori/asociați sau aceeași adresă)",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": "24h",
+          "pointer": "char:36225-36440",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1company~1{cui}~1related/get"
+          }
+        },
+        {
+          "operatie": "GET /api/company/{cui}/seap",
+          "metoda": "GET",
+          "cale": "/api/company/{cui}/seap",
+          "categorie": "Companie",
+          "descriere": "Previzualizare SICAP pentru o firmă: ultimele contracte și achiziții directe, cu totaluri",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": "cache.6h",
+          "pointer": "char:37930-38142",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1company~1{cui}~1seap/get"
+          }
+        },
+        {
+          "operatie": "GET /api/company/{cui}/decisions",
+          "metoda": "GET",
+          "cale": "/api/company/{cui}/decisions",
+          "categorie": "Companie",
+          "descriere": "Deciziile din Monitorul Oficial asociate firmei",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": null,
+          "pointer": "char:39656-39873",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1company~1{cui}~1decisions/get"
+          }
+        },
+        {
+          "operatie": "GET /api/company/{cui}/timeline",
+          "metoda": "GET",
+          "cale": "/api/company/{cui}/timeline",
+          "categorie": "Companie",
+          "descriere": "Cronologia evenimentelor firmei (înființare, modificări, mențiuni MO)",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": null,
+          "pointer": "char:41264-41480",
+          "in_contract": null
+        },
+        {
+          "operatie": "GET /api/company/{cui}/leaderboard",
+          "metoda": "GET",
+          "cale": "/api/company/{cui}/leaderboard",
+          "categorie": "Companie",
+          "descriere": "Pozițiile firmei în clasamentele pe cifră de afaceri, profit și angajați",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": null,
+          "pointer": "char:42892-43111",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1company~1{cui}~1leaderboard/get"
+          }
+        },
+        {
+          "operatie": "GET /api/company/{cui}/health",
+          "metoda": "GET",
+          "cale": "/api/company/{cui}/health",
+          "categorie": "Companie",
+          "descriere": "Indicatori financiari, scor Altman Z′ și verdict de solvabilitate",
+          "acces": [
+            "Pro"
+          ],
+          "cache": null,
+          "pointer": "char:44529-44743",
+          "in_contract": null
+        },
+        {
+          "operatie": "GET /api/company/{cui}/network",
+          "metoda": "GET",
+          "cale": "/api/company/{cui}/network",
+          "categorie": "Companie",
+          "descriere": "Rețeaua de administratori: persoanele care conduc firma și celelalte firme ale lor",
+          "acces": [
+            "Pro"
+          ],
+          "cache": null,
+          "pointer": "char:46020-46235",
+          "in_contract": null
+        },
+        {
+          "operatie": "POST /api/company/batch",
+          "metoda": "POST",
+          "cale": "/api/company/batch",
+          "categorie": "Companie",
+          "descriere": "Verificare lot (max 100 CUI-uri)",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": null,
+          "pointer": "char:47530-47737",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1company~1batch/post"
+          }
+        },
+        {
+          "operatie": "GET /api/search",
+          "metoda": "GET",
+          "cale": "/api/search",
+          "categorie": "Căutare & persoane",
+          "descriere": "Căutare firmă după nume în peste 4 milioane de firme ONRC",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": null,
+          "pointer": "char:48507-48708",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1search/get"
+          }
+        },
+        {
+          "operatie": "GET /api/search/all",
+          "metoda": "GET",
+          "cale": "/api/search/all",
+          "categorie": "Căutare & persoane",
+          "descriere": "Căutare unificată în firme, persoane și înregistrări",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": null,
+          "pointer": "char:50114-50319",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1search~1all/get"
+          }
+        },
+        {
+          "operatie": "GET /api/search/people",
+          "metoda": "GET",
+          "cale": "/api/search/people",
+          "categorie": "Căutare & persoane",
+          "descriere": "Căutare persoane (administratori/asociați) după nume — necesită Pro",
+          "acces": [
+            "Pro"
+          ],
+          "cache": null,
+          "pointer": "char:51724-51932",
+          "in_contract": null
+        },
+        {
+          "operatie": "GET /api/person/{id}",
+          "metoda": "GET",
+          "cale": "/api/person/{id}",
+          "categorie": "Căutare & persoane",
+          "descriere": "Profilul unei persoane: calitățile deținute și firmele asociate",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": null,
+          "pointer": "char:53229-53434",
+          "in_contract": null
+        },
+        {
+          "operatie": "GET /api/person/{id}/companies",
+          "metoda": "GET",
+          "cale": "/api/person/{id}/companies",
+          "categorie": "Căutare & persoane",
+          "descriere": "Firmele în care persoana deține o calitate (administrator, asociat, reprezentant)",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": null,
+          "pointer": "char:54839-55054",
+          "in_contract": null
+        },
+        {
+          "operatie": "GET /api/sicap/tenders/search",
+          "metoda": "GET",
+          "cale": "/api/sicap/tenders/search",
+          "categorie": "Achiziții publice (SICAP)",
+          "descriere": "Căutare în anunțurile de achiziții publice SICAP (99k+ anunțuri)",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": null,
+          "pointer": "char:56609-56824",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1sicap~1tenders~1search/get"
+          }
+        },
+        {
+          "operatie": "GET /api/sicap/tender/{notice}",
+          "metoda": "GET",
+          "cale": "/api/sicap/tender/{notice}",
+          "categorie": "Achiziții publice (SICAP)",
+          "descriere": "Detalii despre un anunț de achiziție, cu starea documentației",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": null,
+          "pointer": "char:58317-58532",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1sicap~1tender~1{notice}/get"
+          }
+        },
+        {
+          "operatie": "GET /api/sicap/procedures",
+          "metoda": "GET",
+          "cale": "/api/sicap/procedures",
+          "categorie": "Achiziții publice (SICAP)",
+          "descriere": "Cele mai recente proceduri cu documentație disponibilă",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": null,
+          "pointer": "char:59959-60170",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1sicap~1procedures/get"
+          }
+        },
+        {
+          "operatie": "GET /api/sicap/company/{cui}/procedures",
+          "metoda": "GET",
+          "cale": "/api/sicap/company/{cui}/procedures",
+          "categorie": "Achiziții publice (SICAP)",
+          "descriere": "Procedurile de achiziție ale unei autorități/firme",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": null,
+          "pointer": "char:61470-61694",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1sicap~1company~1{cui}~1procedures/get"
+          }
+        },
+        {
+          "operatie": "GET /api/sicap/procedure/{notice}/documents",
+          "metoda": "GET",
+          "cale": "/api/sicap/procedure/{notice}/documents",
+          "categorie": "Achiziții publice (SICAP)",
+          "descriere": "Lista documentelor unei proceduri (metadatele documentelor; conținutul necesită Pro)",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": null,
+          "pointer": "char:63095-63323",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1sicap~1procedure~1{notice}~1documents/get"
+          }
+        },
+        {
+          "operatie": "GET /api/sicap/procedure/{notice}/signers",
+          "metoda": "GET",
+          "cale": "/api/sicap/procedure/{notice}/signers",
+          "categorie": "Achiziții publice (SICAP)",
+          "descriere": "Semnatarii documentelor și verificarea criptografică a semnăturii; identitatea semnatarului necesită Pro",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": null,
+          "pointer": "char:64786-65012",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1sicap~1procedure~1{notice}~1signers/get"
+          }
+        },
+        {
+          "operatie": "GET /api/sicap/procedure/{notice}/search",
+          "metoda": "GET",
+          "cale": "/api/sicap/procedure/{notice}/search",
+          "categorie": "Achiziții publice (SICAP)",
+          "descriere": "Căutare în textul documentelor unei proceduri",
+          "acces": [
+            "Pro"
+          ],
+          "cache": null,
+          "pointer": "char:66493-66718",
+          "in_contract": null
+        },
+        {
+          "operatie": "GET /api/sicap/procedure/{notice}/changes",
+          "metoda": "GET",
+          "cale": "/api/sicap/procedure/{notice}/changes",
+          "categorie": "Achiziții publice (SICAP)",
+          "descriere": "Modificările între versiunile documentației",
+          "acces": [
+            "Pro"
+          ],
+          "cache": null,
+          "pointer": "char:67999-68225",
+          "in_contract": null
+        },
+        {
+          "operatie": "GET /api/sicap/procedure/{notice}/bundle",
+          "metoda": "GET",
+          "cale": "/api/sicap/procedure/{notice}/bundle",
+          "categorie": "Achiziții publice (SICAP)",
+          "descriere": "Descarcă toate documentele unei proceduri, dezsigilate",
+          "acces": [
+            "Pro"
+          ],
+          "cache": null,
+          "pointer": "char:68776-69001",
+          "in_contract": null
+        },
+        {
+          "operatie": "GET /api/sicap/document/{id}/text",
+          "metoda": "GET",
+          "cale": "/api/sicap/document/{id}/text",
+          "categorie": "Achiziții publice (SICAP)",
+          "descriere": "Textul extras dintr-un document",
+          "acces": [
+            "Pro"
+          ],
+          "cache": null,
+          "pointer": "char:69563-69781",
+          "in_contract": null
+        },
+        {
+          "operatie": "GET /api/sicap/document/{id}/download",
+          "metoda": "GET",
+          "cale": "/api/sicap/document/{id}/download",
+          "categorie": "Achiziții publice (SICAP)",
+          "descriere": "Descarcă un singur document dezsigilat",
+          "acces": [
+            "Pro"
+          ],
+          "cache": null,
+          "pointer": "char:70311-70533",
+          "in_contract": null
+        },
+        {
+          "operatie": "GET /api/seap/company/{cui}/contracts",
+          "metoda": "GET",
+          "cale": "/api/seap/company/{cui}/contracts",
+          "categorie": "Date achiziții publice (SICAP) — Pro",
+          "descriere": "Contractele SICAP ale unei firme, cele mai noi primele, până la 200 pe pagină",
+          "acces": [
+            "Pro"
+          ],
+          "cache": null,
+          "pointer": "char:71203-71425",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1contracts/get"
+          }
+        },
+        {
+          "operatie": "GET /api/seap/company/{cui}/contracts/check",
+          "metoda": "GET",
+          "cale": "/api/seap/company/{cui}/contracts/check",
+          "categorie": "Date achiziții publice (SICAP) — Pro",
+          "descriere": "Dacă o firmă apare în contracte SICAP: număr ca autoritate și ca furnizor, data ultimului contract",
+          "acces": [
+            "Pro"
+          ],
+          "cache": null,
+          "pointer": "char:72827-73055",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1contracts~1check/get"
+          }
+        },
+        {
+          "operatie": "GET /api/seap/company/{cui}/direct-purchases",
+          "metoda": "GET",
+          "cale": "/api/seap/company/{cui}/direct-purchases",
+          "categorie": "Date achiziții publice (SICAP) — Pro",
+          "descriere": "Achizițiile directe SICAP ale unei firme, cu sursă și metadate de prospețime",
+          "acces": [
+            "Pro"
+          ],
+          "cache": null,
+          "pointer": "char:74379-74608",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1direct-purchases/get"
+          }
+        },
+        {
+          "operatie": "GET /api/seap/company/{cui}/direct-purchase-awards",
+          "metoda": "GET",
+          "cale": "/api/seap/company/{cui}/direct-purchase-awards",
+          "categorie": "Date achiziții publice (SICAP) — Pro",
+          "descriere": "Anunțurile de atribuire pentru achiziții directe SICAP ale unei firme",
+          "acces": [
+            "Pro"
+          ],
+          "cache": null,
+          "pointer": "char:75989-76224",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1direct-purchase-awards/get"
+          }
+        },
+        {
+          "operatie": "GET /api/seap/company/{cui}/tenders",
+          "metoda": "GET",
+          "cale": "/api/seap/company/{cui}/tenders",
+          "categorie": "Date achiziții publice (SICAP) — Pro",
+          "descriere": "Anunțurile de inițiere a procedurilor publicate de o autoritate contractantă",
+          "acces": [
+            "Pro"
+          ],
+          "cache": null,
+          "pointer": "char:77604-77824",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1tenders/get"
+          }
+        },
+        {
+          "operatie": "GET /api/seap/company/{cui}/supplier-issues",
+          "metoda": "GET",
+          "cale": "/api/seap/company/{cui}/supplier-issues",
+          "categorie": "Date achiziții publice (SICAP) — Pro",
+          "descriere": "Documentele constatatoare SICAP (performanța furnizorului) pentru un furnizor",
+          "acces": [
+            "Pro"
+          ],
+          "cache": null,
+          "pointer": "char:79127-79355",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1company~1{cui}~1supplier-issues/get"
+          }
+        },
+        {
+          "operatie": "GET /api/seap/supplier-issues/{ackDocId}",
+          "metoda": "GET",
+          "cale": "/api/seap/supplier-issues/{ackDocId}",
+          "categorie": "Date achiziții publice (SICAP) — Pro",
+          "descriere": "Un document constatator, în întregime",
+          "acces": [
+            "Pro"
+          ],
+          "cache": null,
+          "pointer": "char:80711-80936",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1supplier-issues~1{ackDocId}/get"
+          }
+        },
+        {
+          "operatie": "GET /api/seap/contracts/{number}",
+          "metoda": "GET",
+          "cale": "/api/seap/contracts/{number}",
+          "categorie": "Date achiziții publice (SICAP) — Pro",
+          "descriere": "Un contract SICAP după numărul contractului (părți, valoare, CPV, procedură, loturi)",
+          "acces": [
+            "Pro"
+          ],
+          "cache": null,
+          "pointer": "char:81498-81715",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1contracts~1{number}/get"
+          }
+        },
+        {
+          "operatie": "GET /api/seap/cpv/{cpv}/contracts",
+          "metoda": "GET",
+          "cale": "/api/seap/cpv/{cpv}/contracts",
+          "categorie": "Date achiziții publice (SICAP) — Pro",
+          "descriere": "Rândurile de contracte SICAP pentru un prefix de cod CPV",
+          "acces": [
+            "Pro"
+          ],
+          "cache": null,
+          "pointer": "char:83061-83279",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1contracts/get"
+          }
+        },
+        {
+          "operatie": "GET /api/seap/cpv/{cpv}/direct-purchases",
+          "metoda": "GET",
+          "cale": "/api/seap/cpv/{cpv}/direct-purchases",
+          "categorie": "Date achiziții publice (SICAP) — Pro",
+          "descriere": "Achizițiile directe SICAP pentru un prefix de cod CPV",
+          "acces": [
+            "Pro"
+          ],
+          "cache": null,
+          "pointer": "char:84653-84878",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1direct-purchases/get"
+          }
+        },
+        {
+          "operatie": "GET /api/seap/cpv/{cpv}/direct-purchase-awards",
+          "metoda": "GET",
+          "cale": "/api/seap/cpv/{cpv}/direct-purchase-awards",
+          "categorie": "Date achiziții publice (SICAP) — Pro",
+          "descriere": "Anunțurile de atribuire pentru achiziții directe SICAP pentru un prefix de cod CPV",
+          "acces": [
+            "Pro"
+          ],
+          "cache": null,
+          "pointer": "char:86236-86467",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1direct-purchase-awards/get"
+          }
+        },
+        {
+          "operatie": "GET /api/seap/cpv/{cpv}/top-suppliers",
+          "metoda": "GET",
+          "cale": "/api/seap/cpv/{cpv}/top-suppliers",
+          "categorie": "Date achiziții publice (SICAP) — Pro",
+          "descriere": null,
+          "acces": [
+            "Pro"
+          ],
+          "cache": null,
+          "pointer": "char:87860-88082",
+          "descriere_cheie_nerezolvata": "ep.seap-cpv-top.description",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1top-suppliers/get"
+          }
+        },
+        {
+          "operatie": "GET /api/seap/cpv/{cpv}/analysis",
+          "metoda": "GET",
+          "cale": "/api/seap/cpv/{cpv}/analysis",
+          "categorie": "Date achiziții publice (SICAP) — Pro",
+          "descriere": null,
+          "acces": [
+            "Pro"
+          ],
+          "cache": null,
+          "pointer": "char:89372-89589",
+          "descriere_cheie_nerezolvata": "ep.seap-cpv-analysis.description",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1analysis/get"
+          }
+        },
+        {
+          "operatie": "GET /api/statistica",
+          "metoda": "GET",
+          "cale": "/api/statistica",
+          "categorie": "Statistici & clasamente",
+          "descriere": "Agregate și indicatori la nivel de piață",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": "24h",
+          "pointer": "char:90965-91170",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1statistica/get"
+          }
+        },
+        {
+          "operatie": "GET /api/statistica/top-companies",
+          "metoda": "GET",
+          "cale": "/api/statistica/top-companies",
+          "categorie": "Statistici & clasamente",
+          "descriere": "Top firme pe an, metrică și felie (național/județ/CAEN)",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": null,
+          "pointer": "char:92531-92750",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1statistica~1top-companies/get"
+          }
+        },
+        {
+          "operatie": "GET /api/statistica/leaderboard-years",
+          "metoda": "GET",
+          "cale": "/api/statistica/leaderboard-years",
+          "categorie": "Statistici & clasamente",
+          "descriere": "Anii disponibili în clasamente",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": null,
+          "pointer": "char:94249-94472",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1statistica~1leaderboard-years/get"
+          }
+        },
+        {
+          "operatie": "GET /api/statistica/advanced-rankings",
+          "metoda": "GET",
+          "cale": "/api/statistica/advanced-rankings",
+          "categorie": "Statistici & clasamente",
+          "descriere": "Clasamente avansate cu indicatori financiari",
+          "acces": [
+            "Pro"
+          ],
+          "cache": null,
+          "pointer": "char:95760-95983",
+          "in_contract": null
+        },
+        {
+          "operatie": "GET /api/firme/{judet}",
+          "metoda": "GET",
+          "cale": "/api/firme/{judet}",
+          "categorie": "Date publice",
+          "descriere": "Firmele dintr-un județ",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": "24h",
+          "pointer": "char:97358-97565",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1firme~1{judet}/get"
+          }
+        },
+        {
+          "operatie": "GET /api/firme/{judet}/{oras}",
+          "metoda": "GET",
+          "cale": "/api/firme/{judet}/{oras}",
+          "categorie": "Date publice",
+          "descriere": "Firmele dintr-un oraș",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": "24h",
+          "pointer": "char:99015-99228",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1firme~1{judet}~1{oras}/get"
+          }
+        },
+        {
+          "operatie": "GET /api/decisions/{id}",
+          "metoda": "GET",
+          "cale": "/api/decisions/{id}",
+          "categorie": "Date publice",
+          "descriere": "O înregistrare de decizie din Monitorul Oficial",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": null,
+          "pointer": "char:100688-100896",
+          "in_contract": null
+        },
+        {
+          "operatie": "GET /api/benchmarks/live",
+          "metoda": "GET",
+          "cale": "/api/benchmarks/live",
+          "categorie": "Date publice",
+          "descriere": "Repere sectoriale live (mediane pe CAEN)",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": "24h",
+          "pointer": "char:102287-102497",
+          "in_contract": null
+        },
+        {
+          "operatie": "GET /api/rates",
+          "metoda": "GET",
+          "cale": "/api/rates",
+          "categorie": "Curs valutar BNR",
+          "descriere": "Cursul valutar BNR de azi (~34 valute)",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": "12h",
+          "pointer": "char:103976-104176",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1rates/get"
+          }
+        },
+        {
+          "operatie": "GET /api/rates/history",
+          "metoda": "GET",
+          "cale": "/api/rates/history",
+          "categorie": "Curs valutar BNR",
+          "descriere": "Cursurile BNR din ultimele 10 zile",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": "12h",
+          "pointer": "char:105530-105738",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1rates~1history/get"
+          }
+        },
+        {
+          "operatie": "GET /api/rates/convert",
+          "metoda": "GET",
+          "cale": "/api/rates/convert",
+          "categorie": "Curs valutar BNR",
+          "descriere": "Conversie valutară la cursul BNR",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": "12h",
+          "pointer": "char:107096-107304",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1rates~1convert/get"
+          }
+        },
+        {
+          "operatie": "GET /api/caen",
+          "metoda": "GET",
+          "cale": "/api/caen",
+          "categorie": "Coduri CAEN",
+          "descriere": "Căutare coduri CAEN Rev.3 (651 coduri)",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": "static",
+          "pointer": "char:108902-109101",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1caen/get"
+          }
+        },
+        {
+          "operatie": "GET /api/caen/{code}",
+          "metoda": "GET",
+          "cale": "/api/caen/{code}",
+          "categorie": "Coduri CAEN",
+          "descriere": "Detalii cod CAEN (descriere activitate)",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": "static",
+          "pointer": "char:110563-110768",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1caen~1{code}/get"
+          }
+        },
+        {
+          "operatie": "GET /api/caen/{code}/hub",
+          "metoda": "GET",
+          "cale": "/api/caen/{code}/hub",
+          "categorie": "Coduri CAEN",
+          "descriere": "Pagina-hub a unui cod CAEN: firme reprezentative și statistici",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": "static",
+          "pointer": "char:112216-112425",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1caen~1{code}~1hub/get"
+          }
+        },
+        {
+          "operatie": "GET /api/iban",
+          "metoda": "GET",
+          "cale": "/api/iban",
+          "categorie": "IBAN trezorerie",
+          "descriere": "Căutare IBAN-uri de trezorerie pentru plata taxelor",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": "static",
+          "pointer": "char:114012-114211",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1iban/get"
+          }
+        },
+        {
+          "operatie": "GET /api/press",
+          "metoda": "GET",
+          "cale": "/api/press",
+          "categorie": "Comunicate ANAF",
+          "descriere": "Ultimele comunicate de presă ANAF",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": "30 min",
+          "pointer": "char:115822-116022",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1press/get"
+          }
+        },
+        {
+          "operatie": "GET /api/press/pdf",
+          "metoda": "GET",
+          "cale": "/api/press/pdf",
+          "categorie": "Comunicate ANAF",
+          "descriere": "Extrage text din PDF-ul unui comunicat ANAF",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": "24h",
+          "pointer": "char:117374-117578",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1press~1pdf/get"
+          }
+        },
+        {
+          "operatie": "GET /api/press-articles",
+          "metoda": "GET",
+          "cale": "/api/press-articles",
+          "categorie": "Comunicate ANAF",
+          "descriere": "Articolele de presă indexate",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": "30 min",
+          "pointer": "char:118331-118540",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1press-articles/get"
+          }
+        },
+        {
+          "operatie": "GET /api/press-articles/{slug}",
+          "metoda": "GET",
+          "cale": "/api/press-articles/{slug}",
+          "categorie": "Comunicate ANAF",
+          "descriere": "Un articol de presă după slug",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": "30 min",
+          "pointer": "char:119896-120111",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1press-articles~1{slug}/get"
+          }
+        },
+        {
+          "operatie": "GET /api/health",
+          "metoda": "GET",
+          "cale": "/api/health",
+          "categorie": "Sistem",
+          "descriere": "Stare servicii (ANAF, BNR)",
+          "acces": [
+            "Pro",
+            "x402"
+          ],
+          "cache": null,
+          "pointer": "char:121690-121891",
+          "in_contract": {
+            "sursa_id": "ed97ecda1bdb32c9396e",
+            "pointer": "/paths/~1api~1health/get"
+          }
+        }
+      ],
+      "comparatie_contract": {
+        "sursa_id": "ed97ecda1bdb32c9396e",
+        "url": "https://demoanaf.ro/openapi.json",
+        "sha256": "77602f7c5dcf77042c8441c06deda260c74e5a8e58e537264f38e858d29934d2",
+        "operatii_comune": 46,
+        "operatii_doar_in_pagina": 14,
+        "operatii_doar_in_contract": [],
+        "intrari_comune": 91,
+        "intrari_doar_in_pagina": 22,
+        "intrari_doar_in_contract": [
+          "GET /api/press-articles :: limit",
+          "GET /api/press-articles :: page",
+          "GET /api/press-articles :: topic",
+          "GET /api/statistica/top-companies :: sliceKey"
+        ]
+      }
+    },
+    {
       "url": "https://demoanaf.ro/openapi.json",
       "final_url": "https://demoanaf.ro/openapi.json",
       "http_status": 200,

@@ -77,6 +77,12 @@ The 62 unconfirmed profiles cover the full 140-entry catalogue, including organi
 - [ ] Re-run the `aerlive.ro` render with a third navigation and keep the data response (`/wp-json/api/v1/data?city=BUC`, 12,647 bytes). It needs permission beyond the two-page limit.
 - [ ] Read the other 74 Dignitas patches (or its running database) to complete the table list; read the Scramble API documents of Rezultate Vot if they are public.
 - [ ] Ask for the working EuropeScope API documentation (`/api/docs` returns 404) and the Registrul Firmelor API schema (a free key is needed; none was requested).
+- [x] Add the DemoANAF `api-docs` page to its inventory (v0.21.0, reader `html-api-docs`): 60 operations, 113 inputs and 6 response members, compared with `openapi.json`
+      (14 operations and 22 inputs only on the page). 4 requests. See `docs/ACTIVITY.md`.
+- [ ] Ask the DemoANAF project for a response schema or an example for `company`, `financials` and `health`; every operation needs a Pro key and none was called.
+      Tell them that two cards show the untranslated keys `ep.seap-cpv-top.description` and `ep.seap-cpv-analysis.description`, and one shows `cache.6h`. This pass did not contact them.
+- [ ] Decide whether the finder counts a record with `in_contract` once. After the DemoANAF page was added, its card shows 85 fields (was 36) and the groups `cui`, `cpv`, `judet`, `localitate` count both sources.
+- [ ] Review the 22 inputs that only the DemoANAF page documents, and the 4 contract inputs that the page lacks, before any is used as evidence of a feature (`comparatie_contract` lists them).
 - [x] Extend the business dictionary with evidence-backed aliases, descriptions, roles, units, periods and geographic levels (milestone D).
       Identifiers, dimensions, measures and one derived output are separate categories. Review each proposed equivalence before treating it as a join key.
 - [x] Record newly verified providers as proposals: 16 review items D147-D162 (producer, distributor and project author kept apart). No live relation changed.
@@ -380,6 +386,8 @@ Existing items below also cover profile refresh data loss, Sheets merge conflict
 
 ## Verified limits
 
+- [-] Read the script files of `demoanaf.ro/api-docs` for response fields. `ApiDocsPage-*.js` holds the same endpoint list as the page plus translation keys and no schema;
+      `/en/api-docs` repeats the page. Measured 2026-10-25 with 3 requests; nothing to gain from more.
 - [-] GDELT news counts. GDELT answered "please limit requests" at 12 s spacing, and the
       queries that passed returned 0, also for factual.ro. Dropped (spec D2).
 - [-] ROTLD WHOIS for domain age. Their terms forbid automated queries.

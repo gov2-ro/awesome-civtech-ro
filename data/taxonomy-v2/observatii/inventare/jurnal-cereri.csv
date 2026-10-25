@@ -99,3 +99,7 @@ C,2026-10-25T14:24:27.323237+00:00,GET,https://docs.google.com/spreadsheets/d/e/
 C,2026-10-25T14:25:27.367469+00:00,GET,https://baniinostri.info/RAJASA/,ok,200,62520,nu,HTML page with tables (investigation report cited by the project)
 C,2026-10-25T14:34:21.975776+00:00,GET,https://data.g4d.ro/ords/opendata/metadata-catalog/sicap/da_by_cui/1890420/,eroare-http,404,,nu,metadata catalog linked as describedby from the g4d response
 C,2026-10-25T14:34:29.664528+00:00,GET,http://data.g4d.ro/ords/opendata/metadata-catalog/sicap/da_by_cui/1890420/,eroare-http,404,,nu,metadata catalog linked as describedby from the g4d response (exact linked address)
+demoanaf-api-docs,2026-10-25T17:15:40.102750+00:00,GET,https://demoanaf.ro/api-docs,ok,200,148681,nu,page named in the project's llms.txt and home page; measure body for field-level API documentation
+demoanaf-api-docs,2026-10-25T17:16:28.283527+00:00,GET,https://demoanaf.ro/assets/ApiDocsPage-DIsZ3AlF.js,ok,200,17177,nu,script bundles of the api-docs page; check whether response-field or endpoint metadata exists that the rendered page omits
+demoanaf-api-docs,2026-10-25T17:16:28.454632+00:00,GET,https://demoanaf.ro/assets/api-docs-CGERF1wP.js,ok,200,969,nu,script bundles of the api-docs page; check whether response-field or endpoint metadata exists that the rendered page omits
+demoanaf-api-docs,2026-10-25T17:20:33.154716+00:00,GET,https://demoanaf.ro/en/api-docs,ok,200,148262,nu,English copy of the page; check only the two endpoint descriptions that the Romanian page shows as unresolved translation keys

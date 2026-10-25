@@ -927,10 +927,33 @@ All readers return the common field keys and add the keys below; none infers a m
 | `php` | Laravel migrations, API resources and class constants. | A migration column: `tip_declarat` is the builder method (`smallInteger`), `modificatori` the chained calls, `obligatoriu` false when `nullable`, `valori_enum` for `enum`, `descriere` for `comment`, `formula_declarata` for a stored or virtual generated column. `foreignIdFor(Model::class)` gives `<model>_id` with `baza_numelui` `conventie-laravel`. A resource key (`toArray`) has role `camp-raspuns`, `expresie` (the source expression), and `descriere` and `tip_declarat` only from the docblock directly above it. A nested array gives a dotted path. A constant gives role `cod-enumerare`, `valoare`, `grup` (the prefix), `descriere` (a trailing comment). |
 | `json-comentat` | Annotated JSON examples in fenced code blocks of a document. | `cale` is `heading::path`; `valori_enum` holds the alternatives of a `"a \| b"` string; `tip_referinta` holds a bare type name (`Speaker`); `descriere` holds the comment of the key's line; `tipuri_observate` records the kind of the example value. `stare_tip` `exemplu-in-documentatie`: the document shows the key, it does not promise a type. |
 | `js-acces` | Names that inline page scripts read from a record object. `{tip: js-acces, obiecte: [fields]}`. | `stare_tip` `utilizat-in-cod-pagina`, `accesari`. It shows what the page uses; it is not a schema and it does not read the data behind the page. |
+| `html-api-docs` | An API reference page whose endpoints are cards: a method badge, a path template with `:name` segments, access badges, a `Cache:` label, a description and a `Parametri:` line. `{tip: html-api-docs, contract: URL}`; `contract` names the OpenAPI source of the same project (optional). | Module `inventory_apidocs`. See "API reference pages" below. Request inputs and response members become fields; operations are a separate list. `stare_tip` `declarat-in-documentatie-api`; locator `char:START-END`. |
 
 New `stare_tip` values: `declarat-in-cod-sursa`, `antet-tabel-html`, `declarat-in-tabel-documentatie`, `declarat-in-text-documentatie`,
-`exemplu-in-documentatie`, `utilizat-in-cod-pagina`. `baza_tipului` of a source in these formats is `cod-sau-documentatie`.
+`exemplu-in-documentatie`, `utilizat-in-cod-pagina`; `html-api-docs` also uses `declarat-in-documentatie-api`. `baza_tipului` of a source in these formats is `cod-sau-documentatie`.
 `--check` parses the retained body again and compares every field, so a changed interval, pointer or type is an error.
+
+**API reference pages (`html-api-docs`).** The reader keeps three kinds of fact apart and never calls the API.
+
+- Operations: the source key `operatii`, one record for each card. Keys: `operatie` (`GET /api/company/{cui}`: the method and the template, with `:name` written as `{name}`),
+  `metoda`, `cale`, `categorie` (the heading above the card), `descriere`, `acces` (the badges as written, for example `Pro`, `x402`), `cache` (the label as written, which can be an untranslated key such as `cache.6h`),
+  `pointer` (`char:START-END`: the method badge and the path template). `descriere` is `null` and `descriere_cheie_nerezolvata` holds the text when the page shows an untranslated key (`ep.x.description`) instead of a description.
+  `cache` is `null` when the card has no label. An operation is not a variable, and the field counts do not include it.
+- Request inputs: fields with role `parametru-api` (a path or query parameter) or `corp-cerere` (a member of `body: { cuis: string[] }`). Each field has `operatie` and `aparitii` like the OpenAPI fields.
+  `descriere` is the text after a dash (`cui — 1-10 cifre`); `indicatie_pagina` is the text in parentheses (`limit (1-50, default 20)`); `valori_enum` holds the alternatives of a hint such as `(authority|supplier|both)`.
+  `tip_declarat` is set only when the page writes a type; the page text is never turned into a type. `loc` is `path` when the name is a `:segment` of the template (`baza_loc` `sablon-cale`),
+  `query` when the card's example request writes the name in its query string (`exemplu-cerere`), `body` for a body member (`corp-declarat`), and `null` otherwise: the page does not say where such a parameter goes.
+  `obligatoriu` is absent. The locator of a parameter is its item in the `Parametri:` line, or the `:segment` of the template when the line does not list it.
+  A text with an unknown shape, brackets that do not close, markup in the `Parametri:` line, a duplicated operation or a page with no card is an error (state `eroare-parsare`); the reader never guesses.
+- Response members: fields with role `camp-raspuns` and group `plic-raspuns`. They are the names in the line `Format: { success, data, meta }` (`stare_tip` `declarat-in-documentatie-api`) and the keys of the JSON error example
+  under the heading with `(429)` (`stare_tip` `exemplu-in-documentatie`, `status_raspuns` `429`, `tipuri_observate` from the example value). They have no `operatie`: the page states them for the whole API. They are generic envelope members, not business variables.
+
+**Comparison with the contract.** When `citire.contract` names a source of the same project that is parsed and whose body this checkout holds, `inventory.py` compares the page with it after every run.
+Each operation and each request input gets `in_contract`: `{sursa_id, pointer}` of the declaration in the contract, or `null` when the contract does not declare it. A field with no `operatie` has no `in_contract` key
+(it was not compared); a source with no `comparatie_contract` was not compared. An input matches on role, operation and name, not on `loc`. The source also gets `comparatie_contract`:
+`sursa_id`, `url`, `sha256` (the contract version used), `operatii_comune`, `operatii_doar_in_pagina`, `operatii_doar_in_contract` (names), `intrari_comune`, `intrari_doar_in_pagina` and `intrari_doar_in_contract` (`operation :: name`).
+Count a record with `in_contract` set as already known from the contract; count the records with `in_contract` null as documented only by the page. A page record and a contract record that match describe one operation, not two.
+`--check` recomputes `operatii`, the fields and the comparison. A contract body that is absent from the checkout makes the comparison "unavailable" (not verified, not an error); the fields and operations are still checked.
 
 **Repository files at a recorded revision.** A file read from a repository carries `metoda` `repo-la-revizie` and a locator
 `{url (the tree listing), revizie (the commit), cale, blob_sha, pointer /tree/N, sha256 (of the listing), snapshot}`. The listing is the
