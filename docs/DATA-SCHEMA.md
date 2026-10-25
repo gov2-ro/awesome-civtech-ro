@@ -540,7 +540,7 @@ describe the draft.1 manual proposal. The overlay has its own file; see [Integra
 
 | Column | Meaning | Rule |
 | --- | --- | --- |
-| `id` | The item. `R` is the base queue, `C` an uncertainty or conflict of the classification run, `S` a semantic concern of the evaluation, `V` a vocabulary proposal. | Unique. |
+| `id` | The item. `R` is the base queue, `C` an uncertainty or conflict of the classification run, `S` a semantic concern of the evaluation, `V` a vocabulary proposal, `D` a proposed data provider (`camp=surse_date`). D132–D146 share their number with the `propus` rows L132–L146 of `relatii.csv`; D147 and later have no relation row until an editor accepts them. | Unique. |
 | `slug` | The entry. | A `slug` of `intrari.csv`. |
 | `camp` | What the question is about. | A column of `intrari.csv`, or `clasificare` (the whole classification), or `vocabular`. |
 | `valoare_originala` | The current value. | Text. |
