@@ -48,12 +48,12 @@ The 127 projects and resources of the data finder:
 | HTML control candidates / entries with candidates | 308 / 78 | 308 / 78 |
 | Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 79 / 61 |
 | Accepted provider relations / entries with accepted providers | 26 / 11 | 26 / 11 |
-| Pending provider proposals (review items D132 and later) | 15 | 42 |
+| Pending provider proposals (review items D132 and later) | 15 | 44 |
 | Proposed business-variable groups | 7 | 30 |
 | Unit tests discovered / skipped | 308 / 6 | 411 / 6 |
 | Explorer inventory / dedicated finder browser checks | 25 / 25 | 31 / 31 |
 
-Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 42 in all; deschis 42, acceptat 0, respins 0, amanat 0, tehnic 0. Variable groups: 30 in all; propus 30, revizuit 0, respins 0, amanat 0. Group members (selectors): 92 in all; propus 92, confirmat 0, exclus 0.
+Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 44 in all; deschis 44, acceptat 0, respins 0, amanat 0, tehnic 0. Variable groups: 30 in all; propus 30, revizuit 0, respins 0, amanat 0. Group members (selectors): 92 in all; propus 92, confirmat 0, exclus 0.
 
 Field records by evidence type now: declarat-in-schema 1,367, observat-in-esantion-json 1,131, declarat-in-cod-sursa 366, exemplu-in-documentatie 364, neprecizat-in-antet-csv 138, declarat-in-tabel-documentatie 53, antet-tabel-html 48, declarat-in-lista-documentatie 40, declarat-in-documentatie-api 30, declarat-in-metadate 24, declarat-in-text-documentatie 23, utilizat-in-cod-pagina 9.
 
@@ -334,6 +334,8 @@ The producer, the distributor and the project author are named apart in each ite
 | D171 | `harta-firmelor` | Ministerul Justiției (portalul instanțelor) | medie |
 | D172 | `harta-firmelor` | Buletinul Procedurilor de Insolvență (BPI) | medie |
 | D173 | `harta-firmelor` | Agenția Națională pentru Resurse Minerale (ANRM) | mica |
+| D174 | `registrul-firmelor` | OpenStreetMap | medie |
+| D175 | `registrul-firmelor` | Ministerul Justiției (portalul instanțelor) | mica |
 
 ## 7. Network, methods and blockers
 

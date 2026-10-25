@@ -1,5 +1,23 @@
 # Activity
 
+## 2026-10-25 — Registrul firmelor: the other providers of its sources page (v0.24.1)
+
+**Done**
+- `registru.horecaos.org/surse` names nine sources: ONRC, the ONRC history (archived snapshots on data.gov.ro), ANAF, Ministerul Finanțelor, SEAP, OpenStreetMap, the courts portal, BPI and Monitorul Oficial Partea a IV-a.
+  D153–D156 already cited the page for ONRC, ANAF, Ministerul Finanțelor and SEAP.
+- New items: D174 OpenStreetMap (prioritate `medie`) and D175 Ministerul Justiției, portalul instanțelor (prioritate `mica`: the page marks the source „în lucru”, with the period „în pregătire”).
+  The fragments are the provider lines of the page, found in the retained text (sha256 `81cd22875d06a3b4`). `relatii.csv` did not change.
+- D140 and D141 (candidates from the description, linked to L140 and L141) got one sentence each that points at D153 and D154. Their state did not change.
+
+**Hard**
+- The owner saved the page on 2026-10-25 (`tmp/registru.horecaos.org-surse.html`). The copy fetched on 2026-10-24 already holds every source line; only the counts differ. The site does not block requests, so the saved copy was not imported.
+- The owner's uncommitted acceptance of D135 / L135 stays out of the commit: the commit was made from the HEAD versions of the review files, and the owner's change was applied again afterwards.
+
+**Decided**
+- No item for BPI and Monitorul Oficial. The page marks both „cerut oficial”: the project asked for the data and does not have it yet. Its insolvency state comes from the ONRC status codes, which D153 covers.
+  Cost of the alternative: two items that the owner would reject, or a `date_din` relation for data that the project does not use.
+- Keep the duplicate pairs D140/D153 and D141/D154 open for the owner. The review interface has a duplicate action; deciding it here would decide a review item for the owner.
+
 ## 2026-10-25 — Owner-saved pages as evidence: Harta Firmelor open data and its providers (v0.24.0)
 
 **Done**

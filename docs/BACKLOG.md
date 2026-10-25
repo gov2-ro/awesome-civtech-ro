@@ -101,6 +101,12 @@ The 62 unconfirmed profiles cover the full 140-entry catalogue, including organi
       those groups hold the value of one company, and their notes already keep national aggregates out.
 - [ ] If more columns are needed than the page lists: ask `harta-firmelor.ro` for a key to the official API (`https://api.harta-firmelor.ro/docs`, keys on request) or for the CSV headers. Do not download the CSV files.
 - [ ] Show the origin of an owner-saved copy in the review interface. The evidence panel says "sursă păstrată" for it; the record has `origine` `copie-salvata-de-proprietar`.
+- [x] `registru.horecaos.org/surse` names nine sources. D153–D156 (ONRC, ANAF, Ministerul Finanțelor, SEAP) already cited it; done 2026-10-25 (v0.24.1): D174 proposes OpenStreetMap and
+      D175 proposes the courts portal (Ministerul Justiției, marked „în lucru” on the page). The retained text of 2026-10-24 (sha256 `81cd22875d06a3b4`) holds every source, so the owner's copy of 2026-10-25 was not imported.
+      D140 and D141 (candidates from the description, with rows L140 and L141) now point at D153 and D154, which carry the evidence.
+- [ ] Decide D140/D153 and D141/D154 for `registrul-firmelor`: each pair names the same provider. Accept the item with evidence and close the other one as a duplicate.
+- [-] Propose BPI and Monitorul Oficial Partea a IV-a for `registrul-firmelor`. Reason: the page marks both „cerut oficial”, so the project does not have their data yet. Its insolvency state comes from the ONRC
+      status codes (D153). Propose them when the page says that the data arrived.
 - [ ] A guard for sites that forbid automated access. Only the saved addresses are protected today (`collect_docs.py` and `inventory.py` never request them). A run of `collect_docs.py --force`, `profile.py` or
       `search.py` for the whole catalogue still requests the other addresses of `harta-firmelor.ro`. Skip the entry, with a recorded reason, in every script that requests a project's site.
 
