@@ -68,7 +68,7 @@ scripts/build.py → site/data.json  →  site/app.js (vanilla JS, fetches data.
 
 ## Deployment
 
-`.github/workflows/pages.yml` runs `validate.py --publication` + `build.py` on push to `main` and publishes `site/` to GitHub Pages. `sheets-pull.yml` (every 6 h) opens or updates a PR from branch `sheets-sync` with the Sheet's edits. If `validate.py` or `build.py` fails, it still opens the PR, sets the commit status `validate / sheets-pull` to failure, and then fails. `sheets-push.yml` rewrites the tab `v2-intrari` after a push to `main` that touches `intrari.csv`; `sheets.py push` compares the Sheet with the commit in its `_sync` tab (the last successful push) and writes that marker last. `validate.yml` runs on PRs and pushes to `main` that touch `data/`, `scripts/`, `site/` or `.github/workflows/`; `validate.py` emits GitHub annotations when `GITHUB_ACTIONS=true`.
+`.github/workflows/pages.yml` runs `validate.py --publication` + `build.py --with-inventory` (the data finder `/date/` is public since 2026-10-26) on push to `main` and publishes `site/` to GitHub Pages. `sheets-pull.yml` (every 6 h) opens or updates a PR from branch `sheets-sync` with the Sheet's edits. If `validate.py` or `build.py` fails, it still opens the PR, sets the commit status `validate / sheets-pull` to failure, and then fails. `sheets-push.yml` rewrites the tab `v2-intrari` after a push to `main` that touches `intrari.csv`; `sheets.py push` compares the Sheet with the commit in its `_sync` tab (the last successful push) and writes that marker last. `validate.yml` runs on PRs and pushes to `main` that touch `data/`, `scripts/`, `site/` or `.github/workflows/`; `validate.py` emits GitHub annotations when `GITHUB_ACTIONS=true`.
 
 ## Notes
 

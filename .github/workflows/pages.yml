@@ -30,7 +30,7 @@ jobs:
       - name: Validate and build site data
         run: |
           python3 scripts/validate.py --data-dir data/taxonomy-v2/integrare --publication
-          python3 scripts/build.py --data-dir data/taxonomy-v2/integrare
+          python3 scripts/build.py --data-dir data/taxonomy-v2/integrare --with-inventory
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

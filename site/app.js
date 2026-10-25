@@ -729,6 +729,11 @@ function inventoryDatasets(sources) {
   return `<details class="inv-datasets"><summary>${plural(sets.length, 'set de date descris', 'seturi de date descrise')}</summary>
     <p class="inv-note">Metadate citite de la ins.gov2.ro, o oglindă a TEMPO. Perioada poate fi mai scurtă decât în sursa originală.</p><ul>${sets.map(row).join('')}</ul></details>`;
 }
+// A source that declares a licence for its files gets the credit it asks for, next to the descriptions copied from it.
+function inventoryCredits(sources) {
+  const credited = sources.filter(s => s.licence);
+  return credited.map(s => `<p class="inv-note">Descrieri preluate din <a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(new URL(s.url).hostname)}${ICON.out}</a>, licență ${s.licence.url ? `<a href="${esc(s.licence.url)}" target="_blank" rel="noopener">${esc(s.licence.name)}${ICON.out}</a>` : esc(s.licence.name)}${s.licence.attribution ? ` · ${esc(s.licence.attribution)}` : ''}.</p>`).join('');
+}
 function inventoryControls(panel, data) {
   const state = inventoryState(data.slug), body = $('[data-inventory-body]', panel);
   const roles = [...new Set(data.fields.map(f => f.role))];
@@ -737,7 +742,7 @@ function inventoryControls(panel, data) {
     <div class="inv-selects">
       <label>Informații<select data-inv="role"><option value="">Toate câmpurile</option>${roles.map(role => `<option value="${esc(role)}" ${state.role === role ? 'selected' : ''}>${esc(INV_ROLES[role] || role)}</option>`).join('')}</select></label>
       <label>Sursă<select data-inv="source"><option value="">Toate sursele</option>${data.sources.map(s => `<option value="${esc(s.id)}" ${state.source === s.id ? 'selected' : ''}>${esc(s.title)}</option>`).join('')}</select></label>
-    </div></div>${inventoryDatasets(data.sources)}<p class="inv-count" data-inventory-count role="status" aria-live="polite" tabindex="-1"></p>
+    </div></div>${inventoryDatasets(data.sources)}${inventoryCredits(data.sources)}<p class="inv-count" data-inventory-count role="status" aria-live="polite" tabindex="-1"></p>
     <ul class="inv-fields" id="inventory-fields" data-inventory-fields></ul><div data-inventory-more></div>`;
   renderInventoryRows(panel);
 }

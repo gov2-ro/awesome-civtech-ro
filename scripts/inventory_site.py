@@ -185,6 +185,21 @@ def dataset_summary(facts):
             'dimensions': [d['nume'] for d in facts.get('dimensiuni', [])], 'licence': facts.get('licenta')}
 
 
+def source_licence(source):
+    """The licence that every data set of a described-files page declares, with its link and the attribution it asks for.
+    None when the sets declare none or disagree: the field browser then names no licence for the page."""
+    found = set()
+    for item in source.get('seturi', []):
+        fact = item.get('licenta')
+        if not isinstance(fact, dict) or not fact.get('valoare'):
+            return None
+        found.add((fact['valoare'], http_url((fact.get('url') or {}).get('valoare', '')), (fact.get('atribuire') or {}).get('valoare') or ''))
+    if len(found) != 1:
+        return None
+    name, url, attribution = found.pop()
+    return {'name': name, 'url': url, 'attribution': attribution}
+
+
 def http_url(value):
     try:
         parsed = urlsplit(value)
@@ -293,6 +308,9 @@ def publish_preview(items, root, site):
             listed = {'id': ident, 'url': url, 'title': title, 'format': fmt, 'checked': str(source.get('fetched_at', ''))[:10]}
             if source.get('set_date'):
                 listed['dataset'] = dataset_summary(source['set_date'])
+            licence = source_licence(source)
+            if licence:
+                listed['licence'] = licence
             if is_saved(source):
                 # A copy that the owner saved is shown as such; its date is the day of the saving, not of a request.
                 listed['savedByOwner'] = True

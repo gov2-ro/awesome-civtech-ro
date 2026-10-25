@@ -13,14 +13,25 @@ from inventory_site import BASIS, document_links, fold_restatements, group_api_p
 
 
 class InventorySite(unittest.TestCase):
-    def test_draft_inventory_flag_cannot_write_the_public_site(self):
+    def test_inventory_flag_needs_a_v2_root(self):
         root = Path(__file__).resolve().parents[1]
         before = (root / 'site/data.json').read_bytes()
-        result = subprocess.run([sys.executable, str(root / 'scripts/build.py'), '--with-inventory'],
-                                capture_output=True, text=True, cwd=root)
+        with tempfile.TemporaryDirectory() as tmp:
+            result = subprocess.run([sys.executable, str(root / 'scripts/build.py'), '--data-dir', 'data', '--site-dir', tmp, '--with-inventory'],
+                                    capture_output=True, text=True, cwd=root)
         self.assertEqual(result.returncode, 2)
-        self.assertIn('separate --site-dir', result.stderr)
+        self.assertIn('needs a v2 root', result.stderr)
         self.assertEqual((root / 'site/data.json').read_bytes(), before)
+
+    def test_a_source_names_a_licence_only_when_all_its_sets_declare_the_same_one(self):
+        from inventory_site import source_licence
+        def fact(name, attribution='Sursa: exemplu.ro'):
+            return {'valoare': name, 'url': {'valoare': 'https://creativecommons.org/licenses/by/4.0/'}, 'atribuire': {'valoare': attribution}}
+        same = {'seturi': [{'licenta': fact('CC BY 4.0')}, {'licenta': fact('CC BY 4.0')}]}
+        self.assertEqual(source_licence(same), {'name': 'CC BY 4.0', 'url': 'https://creativecommons.org/licenses/by/4.0/', 'attribution': 'Sursa: exemplu.ro'})
+        self.assertIsNone(source_licence({'seturi': [{'licenta': fact('CC BY 4.0')}, {'licenta': fact('CC0')}]}))
+        self.assertIsNone(source_licence({'seturi': [{'licenta': fact('CC BY 4.0')}, {}]}), 'a set without a licence leaves the page without one')
+        self.assertIsNone(source_licence({}))
 
     def test_document_links_exclude_shared_host_and_failed_pages(self):
         records = {'pages': [
@@ -221,7 +232,7 @@ class InventorySite(unittest.TestCase):
         types = {f['stare_tip'] for s in json.loads((root / 'seturi-date.json').read_text())['surse'] for f in s['campuri']}
         self.assertEqual(types - set(BASIS), set(), 'a field with an unmapped evidence type would silently vanish from the preview')
 
-    def test_ordinary_rebuild_removes_stale_draft_pages_from_an_isolated_output(self):
+    def test_ordinary_rebuild_removes_stale_inventory_pages(self):
         root = Path(__file__).resolve().parents[1]
         with tempfile.TemporaryDirectory() as tmp:
             site = Path(tmp)

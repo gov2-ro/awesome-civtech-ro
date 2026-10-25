@@ -1,5 +1,20 @@
 # Activity
 
+## 2026-10-26 — The data finder on the public site (v0.25.0)
+
+**Done**
+- `build.py --with-inventory` may now write `site/`; it still needs a v2 root. `pages.yml` builds with it, and `validate.yml` adds `--with-inventory` to its preview and runs `check_inventory_preview.py` and `check_data_finder.py`.
+- A build without the flag now removes `date/` and `inventar/` from any site directory, `site/` included.
+- `inventar/<slug>.json` gives a source `licence` when all its data sets declare the same one. The field browser then says „Descrieri preluate din harta-firmelor.ro, licență CC BY 4.0 · Sursa: harta-firmelor.ro.”
+- Measured in a clean worktree of 6c470cc with this change: `validate.py --publication` 0 errors; the public build writes `site/date/` (24 KB) and `site/inventar/` (29 files, 1.7 MB); the CI preview passes `check_preview.py` 111/111, `check_inventory_preview.py` 31/31 and `check_data_finder.py` 40/40; unit tests pass (6 skipped).
+
+**Hard**
+- The main checkout held another session's uncommitted entry (`fiipregatit`, state `propus`), so a publication build there fails. All checks ran in a clean worktree, and only this change was staged.
+
+**Decided**
+- No brief: the owner asked for it, and the open questions had answers. The review was complete, the labels already follow the review state, and the inventory output needs no ignored cache (a clean checkout builds the same `date/` and `inventar/` as the local one).
+- Credit a licence only when every data set of the source declares the same one. Cost of the alternative: a credit per field, or a credit that names the wrong licence for a mixed page.
+
 ## 2026-10-26 — New entry lista-firme.info
 
 **Done**

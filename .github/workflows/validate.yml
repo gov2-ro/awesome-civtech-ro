@@ -56,13 +56,15 @@ jobs:
           node --check site/app.js
       - name: Build and serve the v2 preview
         run: |
-          python3 scripts/build.py --data-dir data/taxonomy-v2/integrare --site-dir "$RUNNER_TEMP/site-v2" --allow-draft
+          python3 scripts/build.py --data-dir data/taxonomy-v2/integrare --site-dir "$RUNNER_TEMP/site-v2" --allow-draft --with-inventory
           python3 -m http.server -d "$RUNNER_TEMP/site-v2" 8765 > /dev/null 2>&1 &
           for _ in $(seq 1 20); do curl -fs http://localhost:8765/data.json > /dev/null && break; sleep 0.5; done
       - name: Browser checks (desktop and mobile)
         run: |
           uv run --with playwright playwright install --with-deps chromium
           uv run scripts/check_preview.py http://localhost:8765/
+          uv run scripts/check_inventory_preview.py http://localhost:8765/
+          uv run scripts/check_data_finder.py http://localhost:8765/
 
   workflows:
     runs-on: ubuntu-latest

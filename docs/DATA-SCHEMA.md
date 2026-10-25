@@ -1080,9 +1080,10 @@ An empty cell means unknown. A zero means that the count was made and found noth
 
 ### Explorer inventory preview
 
-`build.py --with-inventory --site-dir DIR` reads inventory metadata and writes an isolated preview.
-The flag requires taxonomy v2 and a site directory other than `site/`. It does not change editorial acceptance.
-The default public build does not export these draft inventories.
+`build.py --with-inventory` reads inventory metadata and writes `/date/`, `/date/lista/` and `inventar/*.json`.
+The flag requires taxonomy v2. It does not change editorial acceptance. The Pages workflow uses it since 2026-10-26, so the public site
+shows the inventories; a build without the flag removes `date/` and `inventar/` from its site directory.
+A source whose data sets all declare the same licence carries `licence` (`name`, `url`, `attribution`), and the field browser credits it.
 
 - Each relevant item gets `inventory`: field/parameter count, source count, field examples, search keywords,
   documentation links, the original declaration count (`positions`), and `partial=true`.

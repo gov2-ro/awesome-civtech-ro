@@ -64,8 +64,8 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [ ] Let an editor add a field that the extractors missed: a hand-edited file with slug, source URL, name, locator, role, declared type, unit,
       description and an evidence fragment; `inventory.py` merges it as an editor-added field and `--check` verifies the fragment. Entry from the review interface.
       Needs a short brief.
-- [ ] Publish `/date/` on the public build. Needs its own brief after the review: which states appear, labelling of proposals,
-      and the change to the `--with-inventory` boundary.
+- [x] Publish `/date/` on the public build. Done 2026-10-26 (v0.25.0) at the owner's request, without a brief: the review was complete,
+      so the labels follow the review state; the Pages workflow builds with `--with-inventory`, and CI runs the inventory browser checks.
 
 ## Inventory expansion — implemented 2026-10-25 (milestones A–E, v0.14.0–v0.18.0)
 

@@ -339,7 +339,7 @@ uv run scripts/check_data_finder.py http://localhost:8770/
 Previzualizarea adaugă marcajul „Inventar de date” în rezultate și secțiunea „Date & metodă” în panoul proiectului.
 Câmpurile se caută în panou și prin căutarea principală. Panoul arată tipurile, sursele și referințele.
 Parametrii API repetați sunt grupați; operațiile rămân disponibile în context.
-Inventarele sunt parțiale. `--with-inventory` cere un director separat; construirea publică obișnuită nu include propunerile.
+Inventarele sunt parțiale. Din 2026-10-26 site-ul public include `/date/` și `/date/lista/`: fluxul Pages rulează `build.py --with-inventory`.
 
 Pagina `/date/` pornește de la date către proiecte. Include toate cele 106 proiecte și, opțional, cele 21 de resurse.
 Filtrează după variabile comune, surse de date, subiect și instituții vizate. Selecția se păstrează în URL.
