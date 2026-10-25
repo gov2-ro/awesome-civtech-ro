@@ -48,12 +48,12 @@ The 127 projects and resources of the data finder:
 | HTML control candidates / entries with candidates | 308 / 78 | 308 / 78 |
 | Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 78 / 62 |
 | Accepted provider relations / entries with accepted providers | 26 / 11 | 26 / 11 |
-| Pending provider proposals (review items D132 and later) | 15 | 31 |
+| Pending provider proposals (review items D132 and later) | 15 | 38 |
 | Proposed business-variable groups | 7 | 30 |
 | Unit tests discovered / skipped | 308 / 6 | 411 / 6 |
 | Explorer inventory / dedicated finder browser checks | 25 / 25 | 31 / 31 |
 
-Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 31 in all; deschis 31, acceptat 0, respins 0, amanat 0, tehnic 0. Variable groups: 30 in all; propus 30, revizuit 0, respins 0, amanat 0. Group members (selectors): 92 in all; propus 92, confirmat 0, exclus 0.
+Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 38 in all; deschis 38, acceptat 0, respins 0, amanat 0, tehnic 0. Variable groups: 30 in all; propus 30, revizuit 0, respins 0, amanat 0. Group members (selectors): 92 in all; propus 92, confirmat 0, exclus 0.
 
 Field records by evidence type now: declarat-in-schema 1,367, observat-in-esantion-json 1,131, declarat-in-cod-sursa 366, exemplu-in-documentatie 364, neprecizat-in-antet-csv 138, declarat-in-tabel-documentatie 53, antet-tabel-html 48, declarat-in-documentatie-api 30, declarat-in-metadate 24, declarat-in-text-documentatie 23, utilizat-in-cod-pagina 9.
 
@@ -323,6 +323,13 @@ The producer, the distributor and the project author are named apart in each ite
 | D160 | `ins-gov2` | Inspecția Muncii (Ministerul Muncii), numai pentru setul ACC102B | mica |
 | D161 | `ins-gov2` | Direcția pentru Evidența Persoanelor și Administrarea Bazelor de Date (RNEP), numai pentru setul POP107D | mica |
 | D162 | `despre-femicid` | Presă și comunicări oficiale (nespecificate) | mica |
+| D163 | `demoanaf` | Ministerul Finanțelor | medie |
+| D164 | `demoanaf` | Institutul Național de Statistică (INS) | medie |
+| D165 | `demoanaf` | Ministerul Investițiilor și Proiectelor Europene (MIPE) | medie |
+| D166 | `demoanaf` | Agenția pentru Finanțarea Investițiilor Rurale (AFIR) | mica |
+| D167 | `demoanaf` | OpenStreetMap | medie |
+| D168 | `demoanaf` | Comisia Europeană (VIES) | mica |
+| D169 | `demoanaf` | Monitorul Oficial | mica |
 
 ## 7. Network, methods and blockers
 

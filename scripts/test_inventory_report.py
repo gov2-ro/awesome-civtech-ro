@@ -66,14 +66,19 @@ class Coverage(unittest.TestCase):
     def test_baseline_figures_are_the_ones_of_the_brief(self):
         self.assertEqual((report.BASELINE['with_fields'], report.BASELINE['field_records'], report.BASELINE['groups']), (14, 2302, 7))
         measured = report.metrics(self.data, self.rows)
-        self.assertEqual((measured['entries'], measured['finder'], measured['accepted_providers'], measured['accepted_entries']), (140, 127, 26, 11))
+        self.assertEqual((report.BASELINE['accepted_providers'], report.BASELINE['accepted_entries']), (26, 11))
+        # Editorial decisions change the accepted relations, so the measured value is checked against the data, not against the baseline.
+        accepted = [r for r in self.data['relations'] if r['predicat'] == 'date_din' and r['stare'] == 'acceptat']
+        self.assertEqual((measured['entries'], measured['finder'], measured['accepted_providers'], measured['accepted_entries']),
+                         (140, 127, len(accepted), len({r['subiect'] for r in accepted})))
         self.assertGreater(measured['with_fields'], report.BASELINE['with_fields'])
 
     def test_report_keeps_provider_proposals_apart_from_accepted_relations(self):
         text = report.render_report(self.data, self.rows)
         self.assertIn('None changes `relatii.csv`', text)
         self.assertIn('D147', text)
-        self.assertEqual(sum(1 for r in self.data['relations'] if r['predicat'] == 'date_din' and r['stare'] == 'acceptat'), 26)
+        accepted = sum(1 for r in self.data['relations'] if r['predicat'] == 'date_din' and r['stare'] == 'acceptat')
+        self.assertIn(f'| 26 / 11 | {accepted} / ', text, 'the report states the measured accepted relations next to the baseline')
 
 
 if __name__ == '__main__':

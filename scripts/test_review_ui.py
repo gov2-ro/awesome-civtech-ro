@@ -24,6 +24,9 @@ from review_ui import ReviewError, Store
 
 REAL = common.PUBLIC_ROOT.parent
 REAL_FILES = [common.PUBLIC_ROOT / 'revizuire.csv', common.PUBLIC_ROOT / 'relatii.csv', REAL / 'inventar-concepte.json']
+# The review files of the fixture come from a commit where no item and no group was decided (31 provider items, 30 groups).
+# The real files change with every editorial decision; the tests must not depend on that progress.
+PINNED = 'v0.23.0'
 TODAY = '2026-10-25'
 GIT_ENV = {**os.environ, 'GIT_CONFIG_GLOBAL': '/dev/null', 'GIT_CONFIG_SYSTEM': '/dev/null'}
 TEMPLATE = None
@@ -44,6 +47,13 @@ def setUpModule():
     TEMPLATE = Path(tempfile.mkdtemp(prefix='review-ui-template-'))
     atexit.register(shutil.rmtree, TEMPLATE, True)
     shutil.copytree(REAL, TEMPLATE / 'taxonomy-v2', ignore=shutil.ignore_patterns('runs', '__pycache__', 'catalogue.json', 'surse', 'pagini'))
+    repo = Path(common.ROOT)
+    for real in REAL_FILES:
+        rel = real.relative_to(repo).as_posix()
+        pinned = subprocess.run(['git', 'show', f'{PINNED}:{rel}'], cwd=repo, capture_output=True, env=GIT_ENV)
+        if pinned.returncode:
+            raise unittest.SkipTest(f'{PINNED}:{rel} is not available (a shallow clone?): {pinned.stderr.decode().strip()}')
+        (TEMPLATE / 'taxonomy-v2' / real.relative_to(REAL)).write_bytes(pinned.stdout)
     git(TEMPLATE, 'init', '-q')
     git(TEMPLATE, 'add', '-A')
     git(TEMPLATE, 'commit', '-qm', 'baseline')

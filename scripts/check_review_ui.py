@@ -27,6 +27,7 @@ from playwright.sync_api import sync_playwright
 ROOT = Path(__file__).resolve().parent.parent
 REAL = ROOT / 'data/taxonomy-v2'
 REAL_FILES = [REAL / 'integrare/revizuire.csv', REAL / 'integrare/relatii.csv', REAL / 'inventar-concepte.json']
+PINNED = 'v0.23.0'  # 31 open provider items and 30 proposed groups
 GIT_ENV = {**os.environ, 'GIT_CONFIG_GLOBAL': '/dev/null', 'GIT_CONFIG_SYSTEM': '/dev/null'}
 results, errors, external = [], [], []
 
@@ -75,6 +76,10 @@ def main():
     repo = tmp / 'repo'
     repo.mkdir()
     shutil.copytree(REAL, repo / 'taxonomy-v2', ignore=shutil.ignore_patterns('runs', '__pycache__', 'catalogue.json'))
+    # The review files come from a commit where nothing was decided, so editorial progress never changes the expected counts.
+    for real in REAL_FILES:
+        pinned = subprocess.run(['git', 'show', f'{PINNED}:{real.relative_to(ROOT).as_posix()}'], cwd=ROOT, capture_output=True, env=GIT_ENV, check=True)
+        (repo / 'taxonomy-v2' / real.relative_to(REAL)).write_bytes(pinned.stdout)
     git(repo, 'init', '-q')
     git(repo, 'add', '-A')
     git(repo, 'commit', '-qm', 'baseline')
