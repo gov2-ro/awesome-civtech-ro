@@ -301,3 +301,44 @@ Nu modifică datele editoriale și nu publică automat informații. Nu foloseșt
 Paginile brute rămân locale; `index.json` și `rezumat.csv` păstrează rezultatele colectării.
 După o clonare nouă, folosiți `--force` pentru a recupera paginile necesare verificării.
 `pilot-inventare.json` conține primele cinci propuneri de inventar, cu dovezi și lacune explicite.
+
+### Inventarele de variabile
+
+```sh
+python3 scripts/inventory.py                  # scheme/date legate în documentație; cel mult 3 fișiere pe intrare
+python3 scripts/inventory.py --offline        # reconstruiește propunerile fără cereri
+python3 scripts/inventory.py --check          # verifică dovezile locale; nu descarcă și nu rescrie
+python3 scripts/collect_docs.py --only afacut --force --follow-data-links
+```
+
+Rezultatele sunt în `data/taxonomy-v2/observatii/inventare/`.
+`campuri.csv` listează câmpurile cu tipuri declarate, observate sau neprecizate.
+`intrari-utilizator.csv` listează controalele HTML candidate; ele pot include căutarea și alte elemente generale ale site-ului.
+`proiecte.json` leagă fiecare intrare de surse și păstrează descrierea și funcțiile deja catalogate.
+`seturi-date.json` păstrează definițiile comune, referințele din scheme și dovezile.
+Fișierele descărcate rămân locale în `surse/`, cu versiuni identificate prin hash.
+Toate inventarele sunt propuneri parțiale. Colectorul nu publică automat date și nu folosește servicii plătite.
+
+### Previzualizarea inventarelor în explorator
+
+```sh
+python3 scripts/build.py --site-dir /tmp/civtech-inventory-preview --with-inventory
+python3 -m http.server -d /tmp/civtech-inventory-preview 8770
+uv run scripts/check_inventory_preview.py http://localhost:8770/
+uv run scripts/check_data_finder.py http://localhost:8770/
+```
+
+Previzualizarea adaugă marcajul „Inventar de date” în rezultate și secțiunea „Date & metodă” în panoul proiectului.
+Câmpurile se caută în panou și prin căutarea principală. Panoul arată tipurile, sursele și referințele.
+Parametrii API repetați sunt grupați; operațiile rămân disponibile în context.
+Inventarele sunt parțiale. `--with-inventory` cere un director separat; construirea publică obișnuită nu include propunerile.
+
+Pagina `/date/` pornește de la date către proiecte. Include toate cele 106 proiecte și, opțional, cele 21 de resurse.
+Filtrează după variabile comune, surse de date, subiect și instituții vizate. Selecția se păstrează în URL.
+Variabilele selectate se cumulează. În celelalte filtre, opțiunile sunt alternative; filtrele se intersectează.
+Asocierile inițiale sunt propuneri în `data/taxonomy-v2/inventar-concepte.json`, cu selectori expliciți pentru proiect și câmp.
+Pagina arată dovezi pentru fiecare asociere. Un nume comun nu garantează că seturile se pot combina.
+
+Acoperirea curentă: 14 din 127 de proiecte și resurse au câmpuri extrase din surse structurate.
+Cele 2.302 înregistrări sunt câmpuri și căi din surse, nu variabile independente.
+Prioritățile pentru extindere sunt în [BACKLOG.md](docs/BACKLOG.md#inventory-expansion--proposed-next-pass-2026-10-25).

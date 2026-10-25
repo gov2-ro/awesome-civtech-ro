@@ -362,6 +362,34 @@ python3 scripts/validate.py --data-dir data/taxonomy-v2/integrare --publication 
   27 open high-priority items. The gate passes only after the owner accepts the classifications.
 - CI builds the preview and reports the gate in the job summary. It does not fail on the gate.
 
+### Data inventory preview — added 2026-10-25
+
+This path supplements the public taxonomy after the cutover. It does not publish draft inventory assertions.
+
+```text
+cached documentation → inventory.py → observatii/inventare/{proiecte,seturi-date}.json + review CSVs
+                                             │
+accepted catalogue + inventar-concepte.json ──┤
+                                             ▼
+build.py --with-inventory --site-dir DIR → inventory_site.py
+                                             ├─ data.json: discovery metadata
+                                             ├─ inventar/<slug>.json: lazy field payloads
+                                             └─ date/index.html + inventar/index.json: cross-project discovery
+```
+
+The collector reads explicitly linked schemas and data samples. It preserves declared, observed and unknown types separately.
+Downloaded bodies stay local. Tracked metadata records source hashes, references and extraction limits.
+The preview builds from tracked metadata without downloaded bodies. Local evidence checks require those bodies.
+HTML controls remain candidates and never become accepted business inputs through the preview adapter.
+
+The hand-edited business dictionary uses exact project/field selectors. Shared groups preserve the original role, type and source evidence.
+Accepted providers come from `date_din` relations. Target institutions remain a separate catalogue facet.
+The finder includes projects and resources with incomplete inventories; it does not infer that missing evidence means missing data.
+The default public build excludes draft inventories. Rebuilding an isolated output without the flag removes its generated inventory pages.
+
+See [DATA-SCHEMA.md](DATA-SCHEMA.md#variable-inventory-drafts-observatiiinventare) for the files and evidence contract.
+See [BACKLOG.md](BACKLOG.md#inventory-expansion--proposed-next-pass-2026-10-25) for the proposed expansion sequence.
+
 ### The review queue
 
 `integrare/revizuire.csv` holds the editor's questions. The prefix tells the origin: `R` the base queue, reconciled with

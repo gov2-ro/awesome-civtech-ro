@@ -40,7 +40,7 @@ FEED_SIZE = 40
 REPO_URL = "https://github.com/gov2-ro/awesome-civtech-ro"
 PAGE_KINDS = ("proiect", "organizatie", "resursa")  # the folders under site/ that entry_pages() owns
 DEFAULT_SHARE = {"src": "img/share.png", "w": 1106, "h": 558}
-GENERATED = ("data.json", "feed.xml", "llms.txt", *PAGE_KINDS)  # what a build writes; never copied from site/
+GENERATED = ("data.json", "feed.xml", "llms.txt", "inventar", "date", *PAGE_KINDS)  # what a build writes; never copied from site/
 
 
 def pick_desc(desc: str, prof: dict) -> tuple[str, str]:
@@ -709,10 +709,13 @@ def main():
     parser.add_argument("--data-dir", type=Path, default=PUBLIC_ROOT, help="data root (default: the public root, PUBLIC_ROOT in common.py)")
     parser.add_argument("--site-dir", type=Path, default=SITE, help="output folder (default: site/, for the public root only)")
     parser.add_argument("--allow-draft", action="store_true", help="v2 preview: allow proposed classifications (never for site/)")
+    parser.add_argument("--with-inventory", action="store_true", help="include draft data inventories in a separate local preview")
     args = parser.parse_args()
     data_dir, site = args.data_dir.resolve(), args.site_dir.resolve()
     schema, public = data_schema(data_dir), PUBLIC_ROOT.resolve()
     v2 = schema == "v2"
+    if args.with_inventory and (not v2 or site == SITE):
+        parser.error("--with-inventory needs a v2 root and a separate --site-dir for the draft inventory preview")
     if site == SITE and data_dir != public and "v2" in (schema, data_schema(public)):
         # site/ belongs to the public root's schema: another v2 root, or a v1 root once the public root is v2, never writes it.
         raise SystemExit(f"{data_dir} is not the public root ({public}): a build from it writes to a separate --site-dir, and site/ stays the public site")
@@ -730,6 +733,14 @@ def main():
     if site != SITE:
         prepare_site(site)
     items, head = (items_v2 if v2 else items_v1)(data_dir, site)
+    if args.with_inventory:
+        from inventory_site import publish_preview, publish_finder
+        projections = publish_preview(items, data_dir, site)
+        publish_finder(items, data_dir, site, projections, head.get('vocabulary'))
+        head["inventoryPreview"] = True
+    elif site != SITE:
+        for name in ("date", "inventar"):
+            shutil.rmtree(site / name, ignore_errors=True)
     checked = sorted({i["checked"] for i in items if i["checked"]})
     now = datetime.now(timezone.utc)
     out = {"generated": now.isoformat(timespec="seconds"), "checked": checked[-1] if checked else ""}

@@ -11,18 +11,43 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [x] Add evidence-backed data sources, separate from authors and monitored institutions: 26 accepted relations for 11 entries.
 - [x] Add 15 source proposals for review. Proposed sources stay out of the public filter.
 - [x] Compact the sidebar: inline tags, 260 px width, shorter source labels, grouped Parliament, sources before format.
-- [ ] Audit horizontal page overflow at 320 px (347 px measured); filter tags wrap, but the document remains wider.
+- [x] Fix the 320 px overflow: the sort controls forced 347 px. The result column and select can now shrink to the viewport.
+- [x] Preview inventories in the explorer: result markers, a Date & metodă panel, lazy field search, sources and evidence.
+- [x] Add a dedicated data finder preview: all projects/resources, shared variables, accepted sources and target institutions, with evidence and shareable selections.
+- [ ] Review the seven proposed business-variable groups in `inventar-concepte.json`. Extend them with explicit project/field evidence.
+- [ ] Review the inventory preview labels and business meanings before enabling it in the public build.
 - [x] Pilot project data inventories: purpose, source datasets, variables/types/units, user inputs, transformations, and outputs.
       Collected documentation for 140 entries; drafted five profiles and 19 field candidates with evidence and completeness.
 - [ ] Review the five `observatii/documentare/pilot-inventare.json` profiles. Confirm types and units from data dictionaries or schemas.
-- [ ] Extend the draft inventory beyond the pilot. Reuse shared dataset definitions across projects.
-- [ ] Follow documented data/API links and check actual schemas beyond the pilot. INS+ ACC102B metadata was verified; its four dimensions are recorded.
+- [x] Extend inventory drafts to all 140 entries. Reuse source records and shared schema models; keep evidence kinds distinct.
+- [ ] Review the 2,302 structured field records and 308 control candidates. Map technical paths to business variables, meanings and units.
+- [ ] Resolve unconfirmed inventories for 62 entries; a missing static schema does not prove that the project has no data.
+- [ ] Inspect the protected Monitor Energie contract only if public documentation becomes available; the linked URL returned 401.
+- [x] First structured-source pass beyond the pilot: 25 retained source URLs, 14 projects with field records.
+      A Făcut?’s three edition pages now contribute an actual search control; their raw data schema remains unconfirmed.
 - [ ] Correct or report INS llms examples: POP101A is absent; ACC102B is workplace accidents, not GDP. The list and ACC102B API routes work.
 - [ ] Add browser rendering or document-format extraction where static HTML and llms.txt leave gaps.
 - [ ] Review D132–D146 in `data/taxonomy-v2/integrare/revizuire.csv`. Confirm the provider and evidence before accepting each relation.
 - [ ] Continue provenance and geographic-detail review. 129 entries have no accepted source; 130 have no verified data detail.
       Empty fields can also mean not applicable. Do not infer a provider from monitored institutions or authors.
       Do not infer complete county or locality coverage from national reach.
+
+## Inventory expansion — proposed next pass, 2026-10-25
+
+Baseline: 127 projects/resources; 14 have structured field evidence. Another 113 have no extracted structured fields.
+The 2,302 field records are source paths, not independent business variables. Seven business groups are proposed.
+The 62 unconfirmed profiles cover the full 140-entry catalogue, including organisations; this is a different measure.
+
+- [ ] Deepen the 14 existing inventories. Follow documented dataset catalogues and endpoint schemas beyond the current three-file discovery limit.
+      INS needs dataset-specific dimensions and indicator definitions, rather than one example dataset.
+- [ ] Select 10–15 data-heavy entries without structured inventories. Prioritise those with documentation, downloads or linked repositories.
+- [ ] Inspect rendered pages and their public data requests where static collection is incomplete.
+      Inspect linked repository data folders, schemas and notebooks. Add spreadsheet/document extraction only where the selected entries need it.
+- [ ] Extend the business dictionary with evidence-backed aliases, descriptions, roles, units, periods and geographic levels.
+      Propose shared identifiers separately from measures. Review each proposed equivalence before treating it as a join key.
+- [ ] Review the 15 pending provider relations and record newly verified providers. Keep source organisations separate from target institutions.
+- [ ] Report coverage by entry, variable definition, type, unit and provider evidence. Record blockers and sampling limits.
+      Do not use raw field totals as the main progress measure.
 
 ## v2 migration completion — execution checklist (brief: `docs/briefs/v2-migration-completion.md`)
 

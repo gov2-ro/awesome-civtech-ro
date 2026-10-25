@@ -309,7 +309,7 @@ function card(it, withDomain) {
       <div class="meta">${metaLine(it, withDomain, true)}</div>
       <h3>${nameLink(it)}</h3>
       ${blurb(it) ? `<p class="tagline">${esc(blurb(it))}</p>` : ''}
-      <div class="foot">${statusDot(it)}${extLink(it, `<span class="dom">${esc(it.domain)}</span>`)}${newTag(it)}${codeTag(it)}</div>
+      <div class="foot">${statusDot(it)}${extLink(it, `<span class="dom">${esc(it.domain)}</span>`)}${newTag(it)}${codeTag(it)}${inventoryTag(it)}</div>
     </div>
   </div>`;
 }
@@ -335,7 +335,7 @@ function row(it, withDomain) {
       <div class="row-title">${logo(it)}${nameLink(it)} ${statusDot(it)} ${newTag(it)} ${codeTag(it)} ${extLink(it, '', 'ext-m')}</div>
       ${blurb(it) ? `<div class="row-tag">${esc(blurb(it))}</div>` : ''}
       ${desc ? `<div class="row-desc">${esc(clip(desc, 160))}</div>` : ''}
-      ${badgeIds(it).length ? `<div class="row-kw">${badgesHTML(it)}</div>` : ''}
+      ${badgeIds(it).length || it.inventory?.count ? `<div class="row-kw">${badgesHTML(it)}${inventoryTag(it)}</div>` : ''}
       <div class="meta meta-m">${[metaLine(it, withDomain), dates && esc(dates)].filter(Boolean).join(' · ')}</div>
     </div>
     <div class="row-side row-links">${rowLinks(it)}</div>
@@ -353,7 +353,7 @@ function renderTabs() {
   for (const it of DB.items) if (!isInactive(it)) c[it.kind] = (c[it.kind] || 0) + 1;
   slot('tabs').innerHTML = DB.vocabulary.kinds.map(k =>
     `<button class="tab" data-act="kind" data-val="${k.key}" ${state.k === k.key ? 'aria-current="page"' : ''}>${esc(k.label)}<span class="n">${c[k.key] || 0}</span></button>`
-  ).join('');
+  ).join('') + (DB.inventoryPreview ? '<a class="tab" href="date/">Inventar de date ↗</a>' : '');
 }
 
 // The options of a facet on this tab: values some entry here has, plus the selected ones. Hidden when unused.
@@ -671,6 +671,147 @@ function flagHTML(it) {
   </details>`;
 }
 
+/* ---------- data inventory preview ---------- */
+const INV_CACHE = new Map(), INV_STATE = new Map();
+let inventoryIntent = '';
+const INV_ROLES = { 'camp-date': 'Date', dimensiune: 'Dimensiuni', 'parametru-api': 'Intrări API',
+  'corp-cerere': 'Conținut cerere API', 'camp-raspuns': 'Răspunsuri API', 'model-de-date': 'Modele de date' };
+const INV_BASIS = { schema: 'Descris în schemă', metadata: 'Descris în metadate', sample: 'Observat în date', header: 'Antet CSV' };
+const INV_LOCATIONS = { query: 'filtru', path: 'în URL', header: 'în antet', cookie: 'cookie' };
+const INV_TYPES = { string: 'Text', integer: 'Număr întreg', number: 'Număr', boolean: 'Da / Nu', null: 'Valoare nulă',
+  object: 'Obiect', array: 'Listă', geo: 'Arie geografică', time: 'Perioadă', indicator: 'Indicator', unit: 'Unitate de măsură' };
+function inventoryState(slug) {
+  if (!INV_STATE.has(slug)) {
+    const q = query(), keywords = norm(BY_SLUG.get(slug)?.inventory?.keywords);
+    INV_STATE.set(slug, { q: q && norm(q).split(/\s+/).every(t => keywords.includes(t)) ? q : '', role: '', source: '', limit: 8 });
+  }
+  return INV_STATE.get(slug);
+}
+const inventoryTag = it => it.inventory?.count ? `<button class="inventory-tag" data-act="inventory" data-val="${esc(it.slug)}" title="Inventar parțial de date" aria-label="Deschide inventarul de date pentru ${esc(it.name)}">Inventar de date</button>` : '';
+function inventoryHTML(it) {
+  const inv = it.inventory;
+  if (!inv) return '';
+  const docs = inv.docs.length ? `<nav class="inv-docs" aria-label="Documentația proiectului">${inv.docs.map(d => `<a href="${esc(d.url)}" target="_blank" rel="noopener" title="${esc(d.title)}">${esc(clip(d.label, 48))}${ICON.out}</a>`).join('')}</nav>` : '';
+  return `<section class="d-inventory" data-inventory-root="${esc(it.slug)}" aria-labelledby="inventory-title">
+    <div class="inv-heading"><h3 id="inventory-title">Date &amp; metodă</h3>${inv.count ? '<span class="inv-status">Inventar parțial</span>' : ''}</div>
+    ${inv.count ? `<p class="inv-intro">${plural(inv.count, 'câmp sau parametru', 'câmpuri și parametri')} · ${plural(inv.sources, 'fișier consultat', 'fișiere consultate')}</p>
+      <p class="inv-note">Extrase automat din sursele de mai jos. Proiectul poate folosi și alte date.</p>
+      <div class="inv-examples">${inv.examples.map(name => `<button data-act="inventory-example" data-slug="${esc(it.slug)}" data-val="${esc(name)}"><code>${esc(name)}</code></button>`).join('')}</div>
+      ${docs}
+      <details class="inv-details" data-inv-panel data-slug="${esc(it.slug)}" ${inventoryIntent === it.slug ? 'open' : ''}>
+        <summary>Explorează câmpurile <span aria-hidden="true">↗</span></summary>
+        <div class="inv-body" data-inventory-body></div>
+      </details>` : '<p class="inv-note">Documentația este disponibilă. Câmpurile de date nu sunt încă inventariate aici.</p>'}
+    ${!inv.count ? docs : ''}
+  </section>`;
+}
+function inventoryType(field) {
+  const raw = field.declaredType || (field.observedTypes.length ? field.observedTypes : field.semanticType);
+  const values = Array.isArray(raw) ? raw : raw ? [raw] : [];
+  return values.length ? values.map(t => INV_TYPES[t] || t).join(' / ') : 'Tip neprecizat';
+}
+function inventoryControls(panel, data) {
+  const state = inventoryState(data.slug), body = $('[data-inventory-body]', panel);
+  const roles = [...new Set(data.fields.map(f => f.role))];
+  body.innerHTML = `<div class="inv-controls">
+    <label class="inv-search-label">Caută în câmpuri<input type="search" data-inv="q" value="${esc(state.q)}" placeholder="Nume, semnificație sau tip…" aria-controls="inventory-fields" autocomplete="off"></label>
+    <div class="inv-selects">
+      <label>Informații<select data-inv="role"><option value="">Toate câmpurile</option>${roles.map(role => `<option value="${esc(role)}" ${state.role === role ? 'selected' : ''}>${esc(INV_ROLES[role] || role)}</option>`).join('')}</select></label>
+      <label>Sursă<select data-inv="source"><option value="">Toate sursele</option>${data.sources.map(s => `<option value="${esc(s.id)}" ${state.source === s.id ? 'selected' : ''}>${esc(s.title)}</option>`).join('')}</select></label>
+    </div></div><p class="inv-count" data-inventory-count role="status" aria-live="polite" tabindex="-1"></p>
+    <ul class="inv-fields" id="inventory-fields" data-inventory-fields></ul><div data-inventory-more></div>`;
+  renderInventoryRows(panel);
+}
+function renderInventoryRows(panel) {
+  const data = INV_CACHE.get(panel.dataset.slug)?.data;
+  if (!data) return;
+  const state = inventoryState(data.slug), sources = Object.fromEntries(data.sources.map(s => [s.id, s]));
+  const terms = norm(state.q).trim().split(/\s+/).filter(Boolean);
+  const found = data.fields.filter(f => (!state.role || f.role === state.role) && (!state.source || f.source === state.source) && terms.every(t => f._hay.includes(t)));
+  const visible = found.slice(0, state.limit);
+  $('[data-inventory-count]', panel).textContent = found.length ? `${visible.length} din ${plural(found.length, 'câmp', 'câmpuri')}` : 'Niciun câmp nu corespunde căutării.';
+  $('[data-inventory-fields]', panel).innerHTML = visible.map(f => {
+    const source = sources[f.source];
+    return `<li class="inv-field">
+      <div class="inv-field-heading"><code>${esc(f.name)}</code><span class="inv-type">${esc(inventoryType(f))}${f.unit ? ` · ${esc(f.unit)}` : ''}</span></div>
+      ${f.description ? `<p class="inv-description">${esc(f.description)}</p>` : ''}
+      <div class="inv-field-meta"><span>${esc(INV_ROLES[f.role] || f.role)}${f.location ? ` · ${esc(INV_LOCATIONS[f.location] || f.location)}` : ''}</span><span class="inv-basis inv-basis-${esc(f.basis)}">${esc(INV_BASIS[f.basis] || f.basis)}</span>${f.operations.length > 1 ? `<span>${plural(f.operations.length, 'operație API', 'operații API')}</span>` : ''}
+        ${source ? `<a href="${esc(source.url)}" target="_blank" rel="noopener" title="${esc(source.title)}">Vezi sursa${ICON.out}</a>` : ''}</div>
+      <details class="inv-reference"><summary>Context și referință</summary><code>${esc(f.path)}</code>
+        ${f.reference ? `<p class="inv-pointer">${esc(f.reference)}</p>` : ''}
+        ${f.contexts?.length > 1 ? `<p>${plural(f.contexts.length, 'referință în schemă', 'referințe în schemă')} cu acest nume și tip.</p>` : ''}
+        ${f.operations.length ? `<p class="inv-operations">${f.operations.map(op => `<code>${esc(op)}</code>`).join('')}</p>` : ''}
+        ${source ? `<p>${esc(source.title)}${source.checked ? ` · consultat la ${esc(source.checked)}` : ''}</p>` : ''}
+      </details></li>`;
+  }).join('');
+  $('[data-inventory-more]', panel).innerHTML = visible.length < found.length
+    ? `<button class="btn btn-outline inv-more" data-act="inventory-more" data-slug="${esc(data.slug)}">Mai multe câmpuri (${found.length - visible.length})</button>`
+    : !found.length ? `<button class="linkbtn" data-act="inventory-clear" data-slug="${esc(data.slug)}">Șterge căutarea și filtrele</button>` : '';
+}
+async function loadInventory(panel, retry = false) {
+  const slug = panel.dataset.slug, it = BY_SLUG.get(slug), body = $('[data-inventory-body]', panel);
+  if (!it?.inventory?.url) return;
+  if (retry) INV_CACHE.delete(slug);
+  let record = INV_CACHE.get(slug);
+  if (!record) {
+    record = { status: 'loading' };
+    record.promise = (async () => {
+      try {
+        const response = await fetch(ROOT + it.inventory.url);
+        if (!response.ok) throw new Error('inventory HTTP ' + response.status);
+        const data = await response.json();
+        if (data.slug !== slug || !Array.isArray(data.fields) || !Array.isArray(data.sources)) throw new Error('invalid inventory');
+        for (const f of data.fields) f._hay = norm([f.name, f.path, f.description, inventoryType(f), f.declaredType, f.observedTypes, INV_BASIS[f.basis], f.unit].join(' '));
+        record.status = 'ready'; record.data = data;
+      } catch { record.status = 'failed'; }
+    })();
+    INV_CACHE.set(slug, record);
+  }
+  if (record.status === 'loading') body.innerHTML = '<p class="inv-note" role="status">Se încarcă inventarul…</p>';
+  await record.promise;
+  if (!panel.isConnected) return;
+  if (record.status === 'ready') {
+    inventoryControls(panel, record.data);
+    if (retry) $('[data-inv="q"]', panel)?.focus();
+  } else {
+    body.innerHTML = `<div class="inv-error" role="status"><p>Inventarul nu a putut fi încărcat.</p><button class="btn btn-outline" data-act="inventory-retry" data-slug="${esc(slug)}">Încearcă din nou</button></div>`;
+    if (retry) $('[data-act="inventory-retry"]', panel)?.focus();
+  }
+}
+function openInventory(slug, example) {
+  if (example != null) {
+    const state = inventoryState(slug);
+    Object.assign(state, { q: example, role: '', source: '', limit: 8 });
+  }
+  inventoryIntent = slug;
+  if (state.p !== slug || slot('drawer').hidden) {
+    state.p = slug; writeURL(true); renderDetail();
+  }
+  const section = $('[data-inventory-root]', slot('drawer'));
+  if (!section) return;
+  const panel = $('[data-inv-panel]', section);
+  if (!panel) return;
+  panel.open = true;
+  loadInventory(panel);
+  section.scrollIntoView({ block: 'start', behavior: 'auto' });
+  inventoryIntent = '';
+}
+document.addEventListener('toggle', e => {
+  if (e.target.matches?.('[data-inv-panel]') && e.target.open) loadInventory(e.target);
+}, true);
+document.addEventListener('input', e => {
+  if (e.target.dataset.inv !== 'q') return;
+  const panel = e.target.closest('[data-inv-panel]');
+  Object.assign(inventoryState(panel.dataset.slug), { q: e.target.value, limit: 8 });
+  renderInventoryRows(panel);
+});
+document.addEventListener('change', e => {
+  if (!['role', 'source'].includes(e.target.dataset.inv)) return;
+  const panel = e.target.closest('[data-inv-panel]');
+  Object.assign(inventoryState(panel.dataset.slug), { [e.target.dataset.inv]: e.target.value, limit: 8 });
+  renderInventoryRows(panel);
+});
+
 // The full classification, in four groups. Every concept is a button that filters the list by it.
 function classHTML(it) {
   const tag = (key, id) => `<button class="tag" data-act="multi" data-key="${key}" data-val="${esc(id)}" aria-pressed="${listOf(key).includes(id)}"${CONCEPT.get(id)?.def ? ` title="${esc(CONCEPT.get(id).def)}"` : ''}>${esc(label(id))}</button>`;
@@ -743,6 +884,7 @@ function renderDetail() {
         ${it.code ? `<span>${ICON.code}cod public</span>` : ''}
       </div>
       ${it.desc ? `<p class="d-desc">${esc(it.desc)}</p>${it.descSrc === 'site' ? '<p class="d-src">Descriere preluată de pe site-ul proiectului.</p>' : ''}` : ''}
+      ${inventoryHTML(it)}
       ${classHTML(it)}
       ${it.attributions.filter(a => a.org && BY_SLUG.has(a.org)).map(a => orgCard(BY_SLUG.get(a.org))).join('')}
       <dl class="dl">${dl.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>
@@ -940,6 +1082,24 @@ document.addEventListener('click', e => {
   if (opt) { pickAC(+opt.dataset.ac); return; }
   if (!e.target.closest('[data-slot="search"]')) closeAC();
   if (e.target.closest('a.ext')) return;  // the project's own site: a plain link
+  const inv = e.target.closest('[data-act^="inventory"]');
+  if (inv) {
+    e.preventDefault();
+    const action = inv.dataset.act, slug = inv.dataset.slug || inv.dataset.val;
+    if (action === 'inventory' || action === 'inventory-example') openInventory(slug, action === 'inventory-example' ? inv.dataset.val : null);
+    else {
+      const panel = inv.closest('[data-inv-panel]');
+      if (action === 'inventory-retry') loadInventory(panel, true);
+      else if (action === 'inventory-more') {
+        inventoryState(slug).limit += 20; renderInventoryRows(panel);
+        ($('[data-act="inventory-more"]', panel) || $('[data-inventory-count]', panel))?.focus();
+      } else if (action === 'inventory-clear') {
+        Object.assign(inventoryState(slug), { q: '', role: '', source: '', limit: 8 });
+        inventoryControls(panel, INV_CACHE.get(slug).data); $('[data-inv="q"]', panel)?.focus();
+      }
+    }
+    return;
+  }
   const open = e.target.closest('[data-open]');
   if (open && !e.metaKey && !e.ctrlKey && !e.shiftKey && e.button === 0) {
     e.preventDefault();
@@ -1123,6 +1283,7 @@ async function boot(byUser = false) {
 
 function start(db) {
   DB = db;
+  if (db.inventoryPreview) slot('q').placeholder = 'Caută proiect, subiect sau câmp…';
   const map = arr => Object.fromEntries(arr.map(x => [x.key, x]));
   const v = db.vocabulary;
   for (const c of v.concepts) CONCEPT.set(c.id, c);
@@ -1153,7 +1314,7 @@ function start(db) {
     // What ties entries together by attribution: the slug of an organisation, else the written name.
     it._akeys = it.attributions.map(a => a.org || norm(a.name));
     const concepts = [...new Set([...it._f.subj, ...it._f.topic, ...['cap', 'fmt', 'purpose', 'tech', 'inst', 'orgt'].flatMap(k => [...it._f[k]])])];
-    it._hay = norm([it.name, it.tagline, it.desc, ...it.dataSources.map(s => s.name), ...it._orgs, it.domain, TAX.ent[it.entityType]?.label, ...it.areas.flatMap(names),
+    it._hay = norm([it.name, it.tagline, it.desc, it.inventory?.keywords, ...it.dataSources.map(s => s.name), ...it._orgs, it.domain, TAX.ent[it.entityType]?.label, ...it.areas.flatMap(names),
       ...concepts.flatMap(names), ...legacyWords(it)].join(' '));
   }
   SUGGEST = buildSuggestions();

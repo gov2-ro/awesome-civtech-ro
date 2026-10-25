@@ -102,6 +102,21 @@ class DocumentationCollection(unittest.TestCase):
             self.assertEqual(restored['a']['pages'][0]['kind'], 'pagina')
             self.assertEqual(restored['b']['pages'][0]['scope'], 'gazda-comuna')
 
+    def test_data_page_discovery_is_explicit_and_keeps_the_page_limit(self):
+        seen = []
+        def fetch(url):
+            seen.append(url)
+            if url == 'https://example.org/':
+                return response(url, html('<a href="/edition-one/">Ediția 01</a><p>' + 'Evidence ' * 30 + '</p>'))
+            return response(url, html('Edition data ' * 30))
+        entry = dict(slug='a', url='https://example.org/')
+        collect(entry, fetch, 4)
+        self.assertNotIn('https://example.org/edition-one/', seen)
+        seen.clear()
+        record = collect(entry, fetch, 4, follow_data_links=True)
+        self.assertIn('https://example.org/edition-one/', seen)
+        self.assertLessEqual(len(record['pages']), 4)
+
     def test_non_http_urls_and_english_names(self):
         self.assertEqual(canonical('mailto:a@example.org'), '')
         self.assertEqual(kind_of('https://example.org/how-it-works/'), 'despre')

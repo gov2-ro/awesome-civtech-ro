@@ -98,3 +98,10 @@ docs/reference/init-prototype/*
 
 # Downloaded documentation bodies stay local; collection metadata is tracked.
 /data/taxonomy-v2/observatii/documentare/pagini/
+
+# Downloaded data/schema bodies stay local; generated inventory drafts are tracked.
+/data/taxonomy-v2/observatii/inventare/surse/
+
+# Per-entry inventory payloads are generated for isolated explorer previews.
+/site/inventar/
+/site/date/

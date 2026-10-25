@@ -810,3 +810,22 @@ These decisions refine the specification where it left a choice open.
   or a fix resolved it. It needs a reason and no editor decision. Open items keep a concrete recommendation for the owner.
 - **Cards and archives.** The card's grey line names the first format, as the v1 card named its type.
   Each archive subject group has a hint: its four most frequent topics.
+
+
+### Draft inventory discovery preview — 2026-10-25
+
+Use a small `Inventar de date` marker on entries with structured field evidence. It opens the project panel's `Date & metodă` section.
+Show a partial-inventory label, example field names, and links to the project's documentation.
+The expandable field browser has local search, role selection, source selection, type evidence, units, and source references.
+Load each project's field payload on demand. Repeated API parameters keep their distinct operation contexts.
+Include inventoried field names in ordinary project search. Keep the sidebar unchanged.
+Do not expose generic HTML control candidates as accepted data inputs. Unknown types remain unknown.
+This is an isolated preview behind `--with-inventory`; the public build keeps its existing acceptance boundary.
+
+The dedicated `/date/` page serves the reverse route: a known data need leads to relevant projects.
+Include all projects and offer resource inclusion, enabled by default. Keep organisations in the general explorer.
+Provide variable, accepted-provider, subject and target-institution selection. Keep providers separate from target institutions.
+Require all selected variables; other facets use alternatives within each facet. Intersect the facets.
+Show unique entry counts, shareable URLs, source evidence and explicit incomplete-inventory labels.
+Use exact project/field selectors from `inventar-concepte.json` for proposed business groups. Do not infer equivalence from arbitrary names.
+Keep types, roles and source references available. Shared groups help discovery; they do not certify compatible join keys.

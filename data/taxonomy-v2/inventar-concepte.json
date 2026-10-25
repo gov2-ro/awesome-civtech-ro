@@ -1,0 +1,55 @@
+{
+  "stare": "propunere",
+  "nota": "Grupuri pentru descoperire. Același grup nu garantează compatibilitatea seturilor sau o cheie de legătură validă.",
+  "concepte": [
+    {
+      "id": "cui", "label": "CUI", "definition": "Identificatorul fiscal al unei firme sau instituții. Rolul poate fi diferit: contribuabil, autoritate sau furnizor.",
+      "selectors": [
+        {"projects": ["companii-de-stat"], "names": ["cui"]},
+        {"projects": ["demoanaf"], "names": ["cui", "authorityCui"]},
+        {"projects": ["romania-transparenta"], "names": ["cui", "cui_autoritate", "cui_castigator"]},
+        {"projects": ["transparenta-eu"], "names": ["main_creditor_cui"]}
+      ]
+    },
+    {
+      "id": "cpv", "label": "Cod CPV", "definition": "Codul clasificării produselor, serviciilor sau lucrărilor din achiziții. Un parametru poate accepta doar un prefix.",
+      "selectors": [
+        {"projects": ["demoanaf", "romania-transparenta"], "names": ["cpv"]},
+        {"projects": ["achizitii-directe-ti-2026"], "names": ["Cod CPV"]}
+      ]
+    },
+    {
+      "id": "siruta", "label": "Cod SIRUTA", "definition": "Cod de identificare pentru o unitate administrativă sau localitate. Verifică nivelul și ediția nomenclatorului.",
+      "selectors": [
+        {"projects": ["romania-transparenta", "orasul-care-se-intinde"], "names": ["siruta"]}
+      ]
+    },
+    {
+      "id": "judet", "label": "Județ", "definition": "Numele sau codul unui județ. Poate descrie sediul unei firme, locul unui post sau o unitate administrativă.",
+      "selectors": [
+        {"projects": ["companii-de-stat"], "names": ["judet", "judet_cod", "judet_nume"]},
+        {"projects": ["demoanaf", "romania-transparenta", "posturi-gov2", "orasul-care-se-intinde"], "names": ["judet"]}
+      ]
+    },
+    {
+      "id": "localitate", "label": "Localitate", "definition": "Numele localității sau al orașului. Un nume singur nu identifică în mod sigur o localitate.",
+      "selectors": [
+        {"projects": ["demoanaf"], "names": ["oras", "supplierCity"]},
+        {"projects": ["romania-transparenta", "orasul-care-se-intinde"], "names": ["localitate"]}
+      ]
+    },
+    {
+      "id": "populatie", "label": "Populație", "definition": "Număr de locuitori. Perioada și definiția populației trebuie verificate înaintea unei comparații.",
+      "selectors": [
+        {"projects": ["romania-transparenta"], "names": ["populatie"]},
+        {"projects": ["orasul-care-se-intinde"], "names": ["locuitori_2000", "locuitori_2020"]}
+      ]
+    },
+    {
+      "id": "cifra-afaceri", "label": "Cifră de afaceri", "definition": "Cifra de afaceri raportată pentru o companie. Verifică anul, unitatea și sursa contabilă.",
+      "selectors": [
+        {"projects": ["companii-de-stat"], "names": ["cifra_afaceri", "mfin_ca"]}
+      ]
+    }
+  ]
+}

@@ -1,5 +1,114 @@
 # Activity
 
+## 2026-10-25 — Record the inventory milestone as v0.12.0
+
+**Done**
+- Updated the README, architecture, data schema, specification, release notes and backlog for the inventory milestone.
+- Recorded the proposed expansion sequence: deepen existing inventories, inspect selected missing entries, then review meanings and source relations.
+- Version v0.12.0 records the collector, generated inventory metadata, explorer integration and dedicated data finder preview.
+  This repository has no Cargo workspace; versions use `docs/RELEASES.md` and Git tags.
+
+**Hard**
+- Most entries have no extracted structured fields: 113 of 127 projects and resources. Collection gaps do not prove missing variables.
+- Source paths repeat concepts across files and endpoints. Raw record counts overstate independent variable coverage.
+
+**Decided**
+- Keep the proposed expansion work pending. The owner requested recommendations without starting another collection pass.
+- Measure project coverage and evidence quality before raw field totals. Prefer documented schemas and source definitions over guessed types.
+- Record this milestone locally. The inventory feature retains its isolated-preview boundary.
+
+
+## 2026-10-25 — Discover projects through shared data
+
+**Done**
+- Added the dedicated `/date/` page to the isolated inventory preview, with a navigation link from the explorer.
+- Included all 106 projects and 21 resources. Resource inclusion defaults to on; organisations stay in the general explorer.
+- Added variable, accepted-provider, subject and target-institution filters, with counts, removable selections and shareable URLs.
+- Added seven proposed business-variable groups with explicit project/field selectors. Six groups occur in multiple entries.
+  CUI matches four entries, CPV three, SIRUTA two, county five, locality three, population two, and turnover one.
+- CUI plus CPV matches two projects. INS matches nine entries, or three with resources excluded.
+- Each match exposes source examples, field roles, type evidence and references. Target institutions never become provider assertions.
+- The discovery index is 148,475 bytes for 127 entries. The page fetches one index and renders 24 results per batch.
+  Missing inventories remain discoverable through catalogue descriptions and classifications; 14 entries have structured fields.
+- Publication validation, ordinary build and isolated preview build pass. The full suite runs 308 tests, with 6 skipped.
+  Fifty browser checks pass: 25 for the explorer inventory and 25 for the dedicated finder, including 320/390 px layouts.
+
+**Hard**
+- Provider coverage is sparse: only 11 entries have accepted source relations. Existing inventory extraction cannot approve the remaining sources.
+- Shared fields have different roles and representations. CUI can identify a taxpayer, contracting authority, supplier or budget creditor.
+  Kept each source's role and type evidence instead of presenting a shared group as a certified join key.
+
+**Decided**
+- Use a dedicated page for the reverse route from data needs to projects. Keep the ordinary explorer's sidebar unchanged.
+- Require all selected variables. Other facets use alternatives within each group; groups intersect.
+- Keep business mappings in the hand-edited `inventar-concepte.json`. Generic `id` or `value` names never establish equivalence.
+- Keep this page local while business mappings remain proposals. No new commit, push or deployment was made for this prototype.
+
+
+## 2026-10-25 — Showcase inventories in an isolated explorer preview
+
+**Done**
+- Added `build.py --with-inventory --site-dir DIR` and `inventory_site.py`. The flag exports draft inventory metadata to a separate preview.
+- Results with structured evidence have an `Inventar de date` marker. The project panel adds `Date & metodă`, partial status,
+  example field buttons, documentation links, field search, source/role filters, types, units and source references.
+- Main project search also reads inventoried field names. No new sidebar facet was added.
+- The field payload loads only when opened, then stays cached. Failed requests offer a retry without losing the project panel.
+  Search/filter changes keep focus and do not change the main query or URL.
+- The preview has 14 markers and 77 entries with inventory or documentation sections. Generic HTML controls remain out of the UI.
+- Repeated API parameters share a display row when their source, name, type, description and location agree.
+  DemoANAF shows 29 rows from 95 declarations, with all operation contexts retained.
+- Fixed the known 320 px page overflow. The result column and sort select now shrink correctly; the viewport stays 320 px, not 347 px.
+- Validation and both builds pass. 304 unit tests pass, with 6 skipped; 111 existing browser checks and 25 inventory checks pass.
+  Inventory evidence has 0 errors. The default public data payload is unchanged apart from its generation time.
+
+**Hard**
+- The first preview repeated CPV parameters across endpoints. Grouped those declarations and labelled their query/path locations.
+- At 320 px the existing sort/select controls widened the layout viewport, which also widened the fixed drawer.
+  A drawer-only grid change did not solve it. Fixed the result-column minimum and the select's flex minimum instead.
+- Initial screenshots caught the drawer's opening animation. Visual captures now wait for it to settle.
+
+**Decided**
+- Put the inventory in results and project details. More sidebar controls would work against the owner's simplification request.
+- Keep the full fields out of data.json. The main payload carries compact discovery metadata; individual files load on demand.
+- Show declared types, sample observations, metadata dimensions and unknown CSV types distinctly. Source links remain available for inspection.
+- Use an isolated preview while the inventories remain proposals. `--with-inventory` cannot write `site/`; the default public build stays unchanged.
+
+
+## 2026-10-25 — Continue variable inventories after the push
+
+**Done**
+- Pushed 0fa981b (v0.11.0) and repair 1a75a90 (v0.11.2). GitHub validate and Pages passed for 1a75a90.
+  Sheets push passed for the first commit. No GitHub release was published.
+- Added stdlib `scripts/inventory.py`. It reads cached documentation and up to three explicitly linked schema/data files per entry.
+  It reuses checked pilot metadata links without per-project URLs in code. Generated inventory drafts cover all 140 entries.
+- Made 26 read-only requests; retained 25 source URLs after excluding a configuration file. Twenty-four sources parsed; one returned 401.
+  The sources include three OpenAPI files, four JSON Schemas, six CSV files, ten JSON samples and one INS metadata response.
+- Recorded 2,302 source-scoped field records for 14 projects: 1,312 schema declarations, 904 sampled JSON paths,
+  82 CSV headers without declared types and four INS dimensions. These are not 2,302 independent business variables.
+- Recorded 308 HTML control candidates across 78 entries. A Făcut?'s three linked edition pages yielded a real locality-search control.
+  The optional `collect_docs.py --follow-data-links` keeps the existing page limit and defaults to off.
+- Exported review CSVs for fields and controls, JSON source/profile records, and a per-entry summary. All are proposals.
+  Seventy-eight profiles are partial; 62 remain unconfirmed. Existing catalogue descriptions and capabilities remain their semantic starting point.
+- Added `inventory.py --check` for source hashes, valid field pointers, declared types and control references.
+  The current evidence check reports 0 errors. Downloaded source bodies stay gitignored and have immutable hash-named versions.
+- Publication validation and build pass. The full suite runs 299 tests, with 6 skipped.
+  Offline replay is byte-identical and makes 0 requests. The public payload is unchanged apart from its generation time.
+
+**Hard**
+- Monitor Energie's linked OpenAPI URL returned 401. No credentials were requested or used; the source remains an explicit gap.
+- A JSON data catalogue can contain a `$schema` annotation without being a JSON Schema. The parser now distinguishes those cases.
+- Common OpenAPI models appear under many operations. The registry keeps one field declaration with all its operation bindings.
+- The România Transparentă contract has 1,085 distinct field records across 67 paths. Raised the field limit from 1,000 to 2,000.
+  JSON samples are bounded to 25 elements per array and seven nested levels. Sample types remain observations.
+- HTML input names alone can identify generic site controls. They are candidates, not accepted project-data inputs.
+
+**Decided**
+- Preserve explicit, observed and unknown types separately. Cost of inferring types from CSV strings: identifiers can lose leading zeros.
+- Keep source IDs tied to URLs and body hashes tied to versions. Do not assert that two differently formatted files are the same dataset.
+- Keep inventory drafts out of the public build until business meanings, units and completeness are reviewed.
+  This continuation remains local work after the requested milestone push.
+
+
 ## 2026-10-25 — Repair the base package check after the v0.11.0 push
 
 **Done**

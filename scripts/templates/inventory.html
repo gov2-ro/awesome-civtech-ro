@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="../">
+<title>Inventar de date · CivTech România</title>
+<meta name="description" content="Găsește proiecte civice după variabile, surse de date și instituții.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="img/logo.png">
+<link rel="stylesheet" href="fonts/fonts.css">
+<script>try{var r=document.documentElement,f=JSON.parse(localStorage.getItem('ct.fs')),t=JSON.parse(localStorage.getItem('ct.theme'));if(/^(s|l|xl)$/.test(f))r.dataset.fs=f;if(/^(light|dark)$/.test(t))r.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="style.css?v=BUILD">
+<link rel="stylesheet" href="inventory.css?v=BUILD">
+</head>
+<body class="finder">
+<a class="skip" href="#data-results">Sari la rezultate</a>
+<header class="finder-header wrap">
+  <a class="brand" href="./">CivTech România</a>
+  <nav aria-label="Navigare"><a href="./">Explorator</a><a href="date/" aria-current="page">Inventar de date</a></nav>
+</header>
+<main class="wrap">
+  <section class="finder-intro" aria-labelledby="page-title">
+    <p class="kicker">Date → proiecte</p>
+    <h1 id="page-title">De ce date ai nevoie?</h1>
+    <p>Găsește proiecte care folosesc aceleași variabile, preiau date din aceleași surse sau urmăresc aceleași instituții.</p>
+    <label class="finder-search"><span class="sr">Caută o variabilă, instituție sau un proiect</span>
+      <input id="data-search" type="search" placeholder="CUI, achiziții, INS, primării…" autocomplete="off">
+    </label>
+    <div class="finder-examples" aria-label="Exemple">Încearcă:
+      <button type="button" data-facet="variables" data-value="cui">CUI</button>
+      <button type="button" data-facet="variables" data-value="cpv">Cod CPV</button>
+      <button type="button" data-facet="providers" data-value="INS">INS</button>
+    </div>
+    <p class="finder-note" id="data-coverage">Se încarcă inventarul…</p>
+  </section>
+  <div class="finder-layout">
+    <aside id="data-facets" aria-label="Selectează datele"></aside>
+    <section class="finder-results" id="data-results" aria-label="Proiecte găsite">
+      <div class="finder-toolbar">
+        <p id="data-count" role="status" aria-live="polite"></p>
+        <label><input id="data-resources" type="checkbox"> Include resurse și liste</label>
+      </div>
+      <div id="data-active" aria-label="Filtre active"></div>
+      <div id="data-cards"></div>
+      <noscript><p>Activează JavaScript pentru căutare. Poți consulta <a href="proiect/">lista proiectelor</a>.</p></noscript>
+    </section>
+  </div>
+</main>
+<footer class="finder-footer wrap">
+  <p>Inventarele sunt parțiale. Asocierile dintre variabile sunt propuse pentru revizuire.</p>
+  <p>Un câmp comun nu garantează că seturile se pot combina. Verifică definiția, perioada, unitatea și nivelul geografic.</p>
+  <a href="./">Înapoi în explorator →</a>
+</footer>
+<script src="inventory.js?v=BUILD"></script>
+</body>
+</html>

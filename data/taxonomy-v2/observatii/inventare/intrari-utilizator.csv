@@ -1,0 +1,309 @@
+slug,nume,tip_control_html,descriere,url_dovada,pointer_snapshot,stare_tip
+aerlive,wt-cli-checkbox-necessary,checkbox,,https://aerlive.ro/,/input_candidates/1,control-html-candidat
+aerlive,wt-cli-checkbox-functional,checkbox,,https://aerlive.ro/,/input_candidates/2,control-html-candidat
+aerlive,wt-cli-checkbox-performance,checkbox,,https://aerlive.ro/,/input_candidates/3,control-html-candidat
+aerlive,wt-cli-checkbox-analytics,checkbox,,https://aerlive.ro/,/input_candidates/4,control-html-candidat
+aerlive,wt-cli-checkbox-advertisement,checkbox,,https://aerlive.ro/,/input_candidates/5,control-html-candidat
+aerlive,wt-cli-checkbox-others,checkbox,,https://aerlive.ro/,/input_candidates/6,control-html-candidat
+afacut,q,search,"ex. Câmpina, Bârsana, Sector 3",https://afacut.ro/drumuri-si-poduri/,/input_candidates/0,control-html-candidat
+banii-nostri,table-search,text,Cauta furnizori...,https://baniinostri.info/rapoarte/,/input_candidates/0,control-html-candidat
+banii-nostri,annex-search,search,"furnizor, CPV, descriere, CUI, data...",https://baniinostri.info/RAJASA/,/input_candidates/0,control-html-candidat
+banii-nostri,annex-supplier,,,https://baniinostri.info/RAJASA/,/input_candidates/1,control-html-candidat
+banii-nostri,annex-year,,,https://baniinostri.info/RAJASA/,/input_candidates/2,control-html-candidat
+barometrul-digital,email,email,adresa@exemplu.ro,https://barometrul-digital.ro/,/input_candidates/0,control-html-candidat
+bucuresti-help,Ion Popescu,text,Ion Popescu,https://bucuresti.help/despre,/input_candidates/0,control-html-candidat
+bucuresti-help,ion@example.com,email,ion@example.com,https://bucuresti.help/despre,/input_candidates/1,control-html-candidat
+bucuresti-help,Cum te putem ajuta?,,Cum te putem ajuta?,https://bucuresti.help/despre,/input_candidates/2,control-html-candidat
+reciclare-arad,neighborhood-select,,,https://baditaflorin.github.io/calendar-ridicare-gunoi-arad/,/input_candidates/0,control-html-candidat
+reciclare-arad,q,,"Strada Nicolae Densuseanu, Arad",https://baditaflorin.github.io/calendar-ridicare-gunoi-arad/,/input_candidates/1,control-html-candidat
+reciclare-arad,name,text,Ex: Popescu Ion,https://baditaflorin.github.io/calendar-ridicare-gunoi-arad/,/input_candidates/2,control-html-candidat
+reciclare-arad,email,email,ion@exemplu.ro,https://baditaflorin.github.io/calendar-ridicare-gunoi-arad/,/input_candidates/3,control-html-candidat
+reciclare-arad,phone,tel,07xx xxx xxx,https://baditaflorin.github.io/calendar-ridicare-gunoi-arad/,/input_candidates/4,control-html-candidat
+reciclare-arad,street,text,Numele străzii tale,https://baditaflorin.github.io/calendar-ridicare-gunoi-arad/,/input_candidates/5,control-html-candidat
+reciclare-arad,quantity,number,,https://baditaflorin.github.io/calendar-ridicare-gunoi-arad/,/input_candidates/6,control-html-candidat
+reciclare-arad,delivery_method,radio,,https://baditaflorin.github.io/calendar-ridicare-gunoi-arad/,/input_candidates/7,control-html-candidat
+reciclare-arad,delivery_address,text,"Strada, Număr, Bloc, Scara, Apartament",https://baditaflorin.github.io/calendar-ridicare-gunoi-arad/,/input_candidates/9,control-html-candidat
+reciclare-arad,payment_method,radio,,https://baditaflorin.github.io/calendar-ridicare-gunoi-arad/,/input_candidates/10,control-html-candidat
+reciclare-arad,gdpr_consent,checkbox,,https://baditaflorin.github.io/calendar-ridicare-gunoi-arad/,/input_candidates/12,control-html-candidat
+calitate-aer-radauti,s,search,Search,https://calitateaer.radautiulcivic.ro/,/input_candidates/0,control-html-candidat
+calitate-aer-radauti,mhww-range,range,Alege ora din ultimele 24 de ore,https://calitateaer.radautiulcivic.ro/,/input_candidates/1,control-html-candidat
+ce-cumpara-primaria,q,,"Scrie numele localității — ex. Brașov, Sacalaz, Ilfov",https://cecumparaprimaria.vercel.app/,/input_candidates/0,control-html-candidat
+ce-fac-politicienii,Filtrează după nume…,search,Filtrează după nume…,https://cefacpoliticienii.ro/,/input_candidates/0,control-html-candidat
+centrul-pentru-cariere,query,search,Caută,https://centrulpentrucariere.ro/ro,/input_candidates/0,control-html-candidat
+ce-zice-legea,query,search,Caută,https://cezicelegea.ro/ro,/input_candidates/0,control-html-candidat
+companii-de-stat,landingQ,search,Caută o companie de stat,https://companiidestat.ro/,/input_candidates/0,control-html-candidat
+companii-publice-ro,map-metric,,Colorează harta după,https://cosettechichirau.github.io/companiipublice/,/input_candidates/0,control-html-candidat
+companii-publice-ro,tree-search,text,"Caută o companie, CUI sau instituție…",https://cosettechichirau.github.io/companiipublice/,/input_candidates/1,control-html-candidat
+companii-publice-ro,global-search,text,"Nume companie, CUI sau autoritate…",https://cosettechichirau.github.io/companiipublice/,/input_candidates/2,control-html-candidat
+ins-gov2,search-input,text,"Search datasets, indicators, codes...",https://ins.gov2.ro/,/input_candidates/0,control-html-candidat
+ins-gov2,sidebar-search-input,text,Filter datasets...,https://ins.gov2.ro/,/input_candidates/1,control-html-candidat
+demoanaf,Search,text,Search,https://demoanaf.ro/,/input_candidates/0,control-html-candidat
+demoanaf,tender-q,,"ex. spital, contoare, CN1084791, 1084791, 45310000",https://demoanaf.ro/achizitii,/input_candidates/0,control-html-candidat
+despre-femicid,searchInput,text,🔍 Caută...,https://desprefemicid.ro/,/input_candidates/0,control-html-candidat
+despre-femicid,yearFilter,,,https://desprefemicid.ro/,/input_candidates/1,control-html-candidat
+despre-femicid,judFilter,,,https://desprefemicid.ro/,/input_candidates/2,control-html-candidat
+dupa-cutremur,Caută pe acest site,search,Caută pe acest site,https://sites.google.com/rerise.org/dupacutremur,/input_candidates/0,control-html-candidat
+e-cutremur,s,text,Caută în site,https://e-cutremur.ro/,/input_candidates/0,control-html-candidat
+europescope,Global search,text,Global search,https://www.europescope.eu/,/input_candidates/0,control-html-candidat
+europescope,Email address,email,Email address,https://www.europescope.eu/,/input_candidates/1,control-html-candidat
+europescope,website,text,website,https://www.europescope.eu/,/input_candidates/2,control-html-candidat
+factual,Caută...,text,Caută...,https://www.factual.ro/,/input_candidates/0,control-html-candidat
+factual,noptin_fields[email],email,Email Address,https://www.factual.ro/,/input_candidates/1,control-html-candidat
+factual,GDPR_consent,checkbox,,https://www.factual.ro/,/input_candidates/2,control-html-candidat
+factual,wt-cli-checkbox-necessary,checkbox,,https://www.factual.ro/,/input_candidates/3,control-html-candidat
+guvernezi,raport-titlu-camp,,"Pe scurt, ce s-a întâmplat",https://www.guvernezi.ro/,/input_candidates/0,control-html-candidat
+guvernezi,raport-descriere,,"Ce făceai, ce te așteptai să se întâmple și ce s-a întâmplat de fapt",https://www.guvernezi.ro/,/input_candidates/1,control-html-candidat
+guvernezi,Scrie numele partidului,,Scrie numele partidului,https://www.guvernezi.ro/,/input_candidates/3,control-html-candidat
+guvernezi,Scrie sloganul,,Scrie sloganul,https://www.guvernezi.ro/,/input_candidates/4,control-html-candidat
+guvernezi,culoare-partid,radio,,https://www.guvernezi.ro/,/input_candidates/5,control-html-candidat
+guvernezi,sigla-partid,radio,,https://www.guvernezi.ro/,/input_candidates/11,control-html-candidat
+monitorul-ai-integritate,_R_ginqnb_-company,text,,https://monitorul.ai/integritate,/input_candidates/0,control-html-candidat
+monitorul-ai-integritate,_R_ginqnb_-name,,,https://monitorul.ai/integritate,/input_candidates/1,control-html-candidat
+monitorul-ai-integritate,_R_ginqnb_-email,email,,https://monitorul.ai/integritate,/input_candidates/2,control-html-candidat
+monitorul-ai-integritate,_R_ginqnb_-org,,,https://monitorul.ai/integritate,/input_candidates/4,control-html-candidat
+monitorul-ai-integritate,_R_ginqnb_-link,url,"Articol, profil sau pagină instituțională",https://monitorul.ai/integritate,/input_candidates/5,control-html-candidat
+monitorul-ai-integritate,_R_ginqnb_-useCase,,ex.: o investigație despre achizițiile publice dintr-un anumit județ,https://monitorul.ai/integritate,/input_candidates/6,control-html-candidat
+monitorul-ai-integritate,_R_ginqnb_-consent,checkbox,,https://monitorul.ai/integritate,/input_candidates/7,control-html-candidat
+ia-statul-la-intrebari,s,text,caută in site,https://www.romaniacurata.ro/,/input_candidates/0,control-html-candidat
+ia-statul-la-intrebari,wt-cli-checkbox-necessary,checkbox,,https://www.romaniacurata.ro/,/input_candidates/1,control-html-candidat
+ia-statul-la-intrebari,wt-cli-checkbox-non-necessary,checkbox,,https://www.romaniacurata.ro/,/input_candidates/2,control-html-candidat
+ia-statul-la-intrebari,d10c2a4b97,,,https://www.romaniacurata.ro/interviu-alina-mungiu-pippidi-coalitie-guvernare/,/input_candidates/0,control-html-candidat
+ia-statul-la-intrebari,comment,,hp-comment,https://www.romaniacurata.ro/interviu-alina-mungiu-pippidi-coalitie-guvernare/,/input_candidates/1,control-html-candidat
+ia-statul-la-intrebari,author,text,,https://www.romaniacurata.ro/interviu-alina-mungiu-pippidi-coalitie-guvernare/,/input_candidates/2,control-html-candidat
+ia-statul-la-intrebari,email,text,,https://www.romaniacurata.ro/interviu-alina-mungiu-pippidi-coalitie-guvernare/,/input_candidates/3,control-html-candidat
+ia-statul-la-intrebari,url,text,,https://www.romaniacurata.ro/interviu-alina-mungiu-pippidi-coalitie-guvernare/,/input_candidates/4,control-html-candidat
+ia-statul-la-intrebari,wp-comment-cookies-consent,checkbox,,https://www.romaniacurata.ro/interviu-alina-mungiu-pippidi-coalitie-guvernare/,/input_candidates/5,control-html-candidat
+igov,q,search,"Ex.: Craiova, școli, transport",https://igov.ro/,/input_candidates/0,control-html-candidat
+igov,rf-name,text,,https://igov.ro/,/input_candidates/1,control-html-candidat
+igov,rf-email,email,,https://igov.ro/,/input_candidates/2,control-html-candidat
+igov,rf-cat,,,https://igov.ro/,/input_candidates/3,control-html-candidat
+igov,rf-msg,,,https://igov.ro/,/input_candidates/4,control-html-candidat
+igov,website,text,,https://igov.ro/,/input_candidates/5,control-html-candidat
+igov,title,,Ex.: Cât costă renovarea școlilor din oraș?,https://igov.ro/propune-flux.html,/input_candidates/0,control-html-candidat
+igov,problem,,"Ex.: Lucrările au început, dar nu găsesc costul și termenul de finalizare.",https://igov.ro/propune-flux.html,/input_candidates/1,control-html-candidat
+igov,institution,,Ex.: Primăria Iași sau școlile din județul Iași,https://igov.ro/propune-flux.html,/input_candidates/2,control-html-candidat
+igov,period,,Ex.: anul 2026,https://igov.ro/propune-flux.html,/input_candidates/3,control-html-candidat
+igov,cadence,,,https://igov.ro/propune-flux.html,/input_candidates/4,control-html-candidat
+igov,source_urls,,https://…,https://igov.ro/propune-flux.html,/input_candidates/5,control-html-candidat
+igov,data_requested,,"Ex.: buget, cheltuieli și stadiul lucrărilor",https://igov.ro/propune-flux.html,/input_candidates/6,control-html-candidat
+igov,public_value,,Ex.: dacă lucrările se încadrează în buget și termen,https://igov.ro/propune-flux.html,/input_candidates/7,control-html-candidat
+igov,beneficiaries,,"Ex.: locuitori, părinți, jurnaliști",https://igov.ro/propune-flux.html,/input_candidates/8,control-html-candidat
+igov,output,,,https://igov.ro/propune-flux.html,/input_candidates/9,control-html-candidat
+igov,email,email,nume@exemplu.ro,https://igov.ro/propune-flux.html,/input_candidates/10,control-html-candidat
+igov,name,,,https://igov.ro/propune-flux.html,/input_candidates/11,control-html-candidat
+igov,consent,checkbox,,https://igov.ro/propune-flux.html,/input_candidates/12,control-html-candidat
+igov,website,,,https://igov.ro/propune-flux.html,/input_candidates/13,control-html-candidat
+imobile-rapps,q,search,"ex. Tennis, Dorobanti, SRL…",https://rapps.mirceaserdin.ro/,/input_candidates/0,control-html-candidat
+imobile-rapps,f-occ,,,https://rapps.mirceaserdin.ro/,/input_candidates/1,control-html-candidat
+imobile-rapps,f-benef,,,https://rapps.mirceaserdin.ro/,/input_candidates/2,control-html-candidat
+imobile-rapps,f-pstatus,,,https://rapps.mirceaserdin.ro/,/input_candidates/3,control-html-candidat
+imobile-rapps,f-branch,,,https://rapps.mirceaserdin.ro/,/input_candidates/4,control-html-candidat
+imobile-rapps,f-type,,,https://rapps.mirceaserdin.ro/,/input_candidates/5,control-html-candidat
+imobile-rapps,f-alloc,,,https://rapps.mirceaserdin.ro/,/input_candidates/6,control-html-candidat
+imobile-rapps,f-county,,,https://rapps.mirceaserdin.ro/,/input_candidates/7,control-html-candidat
+imobile-rapps,f-endtype,,,https://rapps.mirceaserdin.ro/,/input_candidates/8,control-html-candidat
+imobile-rapps,f-status,,,https://rapps.mirceaserdin.ro/,/input_candidates/9,control-html-candidat
+imobile-rapps,f-litigiu,checkbox,,https://rapps.mirceaserdin.ro/,/input_candidates/10,control-html-candidat
+imobile-rapps,f-titlu,checkbox,,https://rapps.mirceaserdin.ro/,/input_candidates/11,control-html-candidat
+monarh-ai,fc-url,url,Linkul materialului,https://monarhdef.ro/,/input_candidates/0,control-html-candidat
+monarh-ai,cookieadmin-functional,checkbox,,https://monarhdef.ro/,/input_candidates/1,control-html-candidat
+monarh-ai,cookieadmin-analytics,checkbox,,https://monarhdef.ro/,/input_candidates/2,control-html-candidat
+monarh-ai,cookieadmin-marketing,checkbox,,https://monarhdef.ro/,/input_candidates/3,control-html-candidat
+monitor-energie,embed-tema,,,https://monitorenergie.ro/,/input_candidates/0,control-html-candidat
+monitor-energie,embed-cod,,,https://monitorenergie.ro/,/input_candidates/1,control-html-candidat
+monitor-social,s,search,Căutare…,https://monitorsocial.ro/,/input_candidates/0,control-html-candidat
+monitorul-ai,q,search,"Caută discursuri, politicieni, voturi…",https://monitorul.ai/,/input_candidates/0,control-html-candidat
+observatori-votcorect,s,search,,https://observatori.votcorect.ro/,/input_candidates/0,control-html-candidat
+observatori-votcorect,phrase,search,Search input,https://observatori.votcorect.ro/docs/despre-observatorii-votcorect/,/input_candidates/0,control-html-candidat
+observatori-votcorect,phrase,text,Search autocomplete,https://observatori.votcorect.ro/docs/despre-observatorii-votcorect/,/input_candidates/1,control-html-candidat
+observatori-votcorect,asl_gen[],checkbox,Exact matches only,https://observatori.votcorect.ro/docs/despre-observatorii-votcorect/,/input_candidates/2,control-html-candidat
+observatori-votcorect,customset[],checkbox,"Hidden option, ignore please",https://observatori.votcorect.ro/docs/despre-observatorii-votcorect/,/input_candidates/6,control-html-candidat
+onesti-city,home-radio-volume,range,Volum,https://www.onesti.city/,/input_candidates/0,control-html-candidat
+onesti-city,name,,Cum te numești?,https://www.onesti.city/,/input_candidates/1,control-html-candidat
+onesti-city,message,,"O idee, un gând sau o dedicație…",https://www.onesti.city/,/input_candidates/2,control-html-candidat
+posturi-gov2,q,search,Caută posturi…,https://posturi.gov2.ro/,/input_candidates/0,control-html-candidat
+posturi-gov2,judet[],checkbox,,https://posturi.gov2.ro/,/input_candidates/1,control-html-candidat
+posturi-gov2,inst[],checkbox,,https://posturi.gov2.ro/,/input_candidates/43,control-html-candidat
+posturi-gov2,inst_not[],checkbox,,https://posturi.gov2.ro/,/input_candidates/44,control-html-candidat
+posturi-gov2,sector[],checkbox,,https://posturi.gov2.ro/,/input_candidates/75,control-html-candidat
+posturi-gov2,sector_not[],checkbox,,https://posturi.gov2.ro/,/input_candidates/76,control-html-candidat
+posturi-gov2,skin-picker,,,https://posturi.gov2.ro/despre/,/input_candidates/0,control-html-candidat
+redirectioneaza,Caută un ONG după nume sau CUI/CIF,text,Caută un ONG după nume sau CUI/CIF,https://redirectioneaza.ro/,/input_candidates/0,control-html-candidat
+rezultate-vot,level,,,https://rezultatevot.ro/alegeri/alegeri-prima-general-bucuresti-2025/rezultate,/input_candidates/0,control-html-candidat
+rezultate-vot,county,,,https://rezultatevot.ro/alegeri/alegeri-prima-general-bucuresti-2025/rezultate,/input_candidates/1,control-html-candidat
+rezultate-vot,locality,,,https://rezultatevot.ro/alegeri/alegeri-prima-general-bucuresti-2025/rezultate,/input_candidates/2,control-html-candidat
+romania-fara-gropi,s,search,Search …,https://romaniafaragropi.ro/,/input_candidates/0,control-html-candidat
+romania-fara-gropi,wt-cli-checkbox-necessary,checkbox,,https://romaniafaragropi.ro/,/input_candidates/1,control-html-candidat
+romania-fara-gropi,wt-cli-checkbox-non-necessary,checkbox,,https://romaniafaragropi.ro/,/input_candidates/2,control-html-candidat
+romania-fara-gropi,submit,image,,https://romaniafaragropi.ro/despre-rfgraspunsuri-de-la-politia-rutiera/,/input_candidates/1,control-html-candidat
+romania-fara-gropi,suma,text,,https://romaniafaragropi.ro/despre-rfg/,/input_candidates/2,control-html-candidat
+romania-fara-gropi,curr,radio,,https://romaniafaragropi.ro/despre-rfg/,/input_candidates/3,control-html-candidat
+romania-fara-gropi,nume,text,,https://romaniafaragropi.ro/despre-rfg/,/input_candidates/6,control-html-candidat
+romania-fara-gropi,prenume,text,,https://romaniafaragropi.ro/despre-rfg/,/input_candidates/7,control-html-candidat
+romania-fara-gropi,email,text,,https://romaniafaragropi.ro/despre-rfg/,/input_candidates/8,control-html-candidat
+romania-fara-gropi,telefon,text,,https://romaniafaragropi.ro/despre-rfg/,/input_candidates/9,control-html-candidat
+romania-fara-gropi,adresa,text,,https://romaniafaragropi.ro/despre-rfg/,/input_candidates/10,control-html-candidat
+romania-fara-gropi,tip,checkbox,,https://romaniafaragropi.ro/despre-rfg/,/input_candidates/11,control-html-candidat
+romania-interactiva,q,search,Caută un instrument,https://romaniainteractiva.ro/,/input_candidates/0,control-html-candidat
+romania-interactiva,catre,radio,,https://romaniainteractiva.ro/,/input_candidates/1,control-html-candidat
+romania-interactiva,nume,,,https://romaniainteractiva.ro/,/input_candidates/5,control-html-candidat
+romania-interactiva,email,email,,https://romaniainteractiva.ro/,/input_candidates/6,control-html-candidat
+romania-interactiva,subiect,,,https://romaniainteractiva.ro/,/input_candidates/7,control-html-candidat
+romania-interactiva,mesaj,,,https://romaniainteractiva.ro/,/input_candidates/8,control-html-candidat
+romania-interactiva,_honey,text,,https://romaniainteractiva.ro/,/input_candidates/9,control-html-candidat
+romania-transparenta,q,search,Caută în registre,https://romaniatransparenta.eu/,/input_candidates/0,control-html-candidat
+site-uri-utile-funky,s,text,Caută,https://www.funkycitizens.org/site-uri-utile-pentru-cetateni/,/input_candidates/0,control-html-candidat
+site-uri-utile-funky,s,search,Caută,https://www.funkycitizens.org/site-uri-utile-pentru-cetateni/,/input_candidates/1,control-html-candidat
+site-uri-utile-funky,comment,,Mesaj *,https://www.funkycitizens.org/site-uri-utile-pentru-cetateni/,/input_candidates/4,control-html-candidat
+site-uri-utile-funky,author,text,Nume *,https://www.funkycitizens.org/site-uri-utile-pentru-cetateni/,/input_candidates/5,control-html-candidat
+site-uri-utile-funky,email,text,Email *,https://www.funkycitizens.org/site-uri-utile-pentru-cetateni/,/input_candidates/6,control-html-candidat
+site-uri-utile-funky,url,text,Site,https://www.funkycitizens.org/site-uri-utile-pentru-cetateni/,/input_candidates/7,control-html-candidat
+site-uri-utile-funky,archive-dropdown,,,https://www.funkycitizens.org/site-uri-utile-pentru-cetateni/,/input_candidates/8,control-html-candidat
+site-uri-utile-funky,wt-cli-checkbox-necessary,checkbox,,https://www.funkycitizens.org/site-uri-utile-pentru-cetateni/,/input_candidates/9,control-html-candidat
+site-uri-utile-funky,wt-cli-checkbox-non-necessary,checkbox,,https://www.funkycitizens.org/site-uri-utile-pentru-cetateni/,/input_candidates/10,control-html-candidat
+sanatate-mintala,query,search,Caută,https://sanatateamintala.ro/ro,/input_candidates/0,control-html-candidat
+transparenta-eu,Introduceți denumirea entității sau CUI...,text,Introduceți denumirea entității sau CUI...,https://transparenta.eu/,/input_candidates/0,control-html-candidat
+verifica-psiholog,searchInput,text,Caută psiholog după nume,https://www.verificapsiholog.ro/,/input_candidates/0,control-html-candidat
+vocea-cartierului-tau,vct-news-email,email,Adresa ta de email,https://vocea-cartierului-tau.ro/,/input_candidates/0,control-html-candidat
+vocea-cartierului-tau,vct-news-consent,checkbox,,https://vocea-cartierului-tau.ro/,/input_candidates/1,control-html-candidat
+vocea-cartierului-tau,vct-program-search,search,"Cartier, adresa, ID sau problema",https://vocea-cartierului-tau.ro/program-monitorizare-parcari-rezidentiale,/input_candidates/0,control-html-candidat
+vocea-cartierului-tau,vct-program-status,,,https://vocea-cartierului-tau.ro/program-monitorizare-parcari-rezidentiale,/input_candidates/1,control-html-candidat
+votdiaspora,Caută adresa ta pentru a afla la ce secție ești arondat,search,Caută adresa ta pentru a afla la ce secție ești arondat,https://votdiaspora.ro/,/input_candidates/0,control-html-candidat
+dignitas,term,text,text,https://dignitas.ro/,/input_candidates/0,control-html-candidat
+dignitas,de la data,text,de la data,https://dignitas.ro/,/input_candidates/1,control-html-candidat
+dignitas,pînă la data,text,pînă la data,https://dignitas.ro/,/input_candidates/2,control-html-candidat
+dignitas,regionId,,,https://dignitas.ro/,/input_candidates/3,control-html-candidat
+dignitas,order,,,https://dignitas.ro/,/input_candidates/4,control-html-candidat
+dignitas,entityId,,,https://dignitas.ro/,/input_candidates/5,control-html-candidat
+dignitas,type,,,https://dignitas.ro/,/input_candidates/6,control-html-candidat
+dignitas,verdicts[],,,https://dignitas.ro/,/input_candidates/7,control-html-candidat
+presspay,form.email,email,,https://presspay.ro/,/input_candidates/0,control-html-candidat
+presspay,form.password,,,https://presspay.ro/,/input_candidates/1,control-html-candidat
+presspay,form.remember,checkbox,,https://presspay.ro/,/input_candidates/2,control-html-candidat
+ro-api-hub,Go to file,text,Go to file,https://github.com/Jamaalx/ro-api-hub,/input_candidates/0,control-html-candidat
+registrul-firmelor,q,,"denumire sau CUI — ex. 14399840, plăcintă",https://registru.horecaos.org/,/input_candidates/0,control-html-candidat
+monitorizare-plan-digital-national,s,search,Search for...,https://www.crpe.ro/ro/295766-2/,/input_candidates/0,control-html-candidat
+piratii-digitali-ai-kremlinului,s,search,Caută,https://snoop.ro/piratii-digitali-ai-kremlinului-cum-fura-pixelii-rusesti-datele-romanilor-si-finanteaza-conspiratiile-si-extremismul/,/input_candidates/0,control-html-candidat
+piratii-digitali-ai-kremlinului,cmplz-functional-optin,checkbox,,https://snoop.ro/piratii-digitali-ai-kremlinului-cum-fura-pixelii-rusesti-datele-romanilor-si-finanteaza-conspiratiile-si-extremismul/,/input_candidates/1,control-html-candidat
+piratii-digitali-ai-kremlinului,cmplz-preferences-optin,checkbox,,https://snoop.ro/piratii-digitali-ai-kremlinului-cum-fura-pixelii-rusesti-datele-romanilor-si-finanteaza-conspiratiile-si-extremismul/,/input_candidates/2,control-html-candidat
+piratii-digitali-ai-kremlinului,cmplz-statistics-optin,checkbox,,https://snoop.ro/piratii-digitali-ai-kremlinului-cum-fura-pixelii-rusesti-datele-romanilor-si-finanteaza-conspiratiile-si-extremismul/,/input_candidates/3,control-html-candidat
+piratii-digitali-ai-kremlinului,cmplz-marketing-optin,checkbox,,https://snoop.ro/piratii-digitali-ai-kremlinului-cum-fura-pixelii-rusesti-datele-romanilor-si-finanteaza-conspiratiile-si-extremismul/,/input_candidates/4,control-html-candidat
+semnal-razboiul-hibrid,Caută sau pune o întrebare...,text,Caută sau pune o întrebare...,https://semnal.eu/ro/razboi-hibrid/,/input_candidates/0,control-html-candidat
+semnal-razboiul-hibrid,Derulează cronologia,range,Derulează cronologia,https://semnal.eu/ro/razboi-hibrid/,/input_candidates/3,control-html-candidat
+funky-citizens,s,text,Caută,https://funky.ong/,/input_candidates/0,control-html-candidat
+funky-citizens,s,search,Caută,https://funky.ong/,/input_candidates/1,control-html-candidat
+funky-citizens,wt-cli-checkbox-necessary,checkbox,,https://funky.ong/,/input_candidates/4,control-html-candidat
+funky-citizens,wt-cli-checkbox-non-necessary,checkbox,,https://funky.ong/,/input_candidates/5,control-html-candidat
+code4ro,query,search,Caută,https://code4.ro/ro,/input_candidates/0,control-html-candidat
+ethical-media,email,email,Email,https://www.ethicalmedia.eu/,/input_candidates/0,control-html-candidat
+cere,s,text,Caută în site,https://cere.ong/,/input_candidates/0,control-html-candidat
+cere,EMAIL,email,,https://cere.ong/,/input_candidates/1,control-html-candidat
+ai-parte,desktop-search-input,text,Caută o școală...,https://aiparte.ro/,/input_candidates/0,control-html-candidat
+ai-parte,mobile-search-input,text,Caută...,https://aiparte.ro/,/input_candidates/1,control-html-candidat
+ai-parte,search-overlay-input,text,Caută...,https://aiparte.ro/,/input_candidates/2,control-html-candidat
+ai-parte,school-lightbox-input,text,Caută o școală după nume sau localitate...,https://aiparte.ro/,/input_candidates/3,control-html-candidat
+ai-parte,sf-post-text,,Ce te interesează astăzi?,https://aiparte.ro/,/input_candidates/4,control-html-candidat
+ai-parte,Scrie un comentariu...,text,Scrie un comentariu...,https://aiparte.ro/,/input_candidates/5,control-html-candidat
+ai-parte,name,text,,https://aiparte.ro/,/input_candidates/25,control-html-candidat
+ai-parte,email,email,,https://aiparte.ro/,/input_candidates/26,control-html-candidat
+ai-parte,phone,tel,,https://aiparte.ro/,/input_candidates/27,control-html-candidat
+ai-parte,city,text,,https://aiparte.ro/,/input_candidates/28,control-html-candidat
+ai-parte,courses,checkbox,,https://aiparte.ro/,/input_candidates/29,control-html-candidat
+ai-parte,work_domain,,,https://aiparte.ro/,/input_candidates/33,control-html-candidat
+ai-parte,sursa,,,https://aiparte.ro/,/input_candidates/34,control-html-candidat
+ai-parte,programming_level,radio,,https://aiparte.ro/,/input_candidates/35,control-html-candidat
+ai-parte,newsletter,radio,,https://aiparte.ro/,/input_candidates/40,control-html-candidat
+ai-parte,llm_used,checkbox,,https://aiparte.ro/,/input_candidates/42,control-html-candidat
+ai-parte,ai_purposes,checkbox,,https://aiparte.ro/,/input_candidates/52,control-html-candidat
+ai-parte,acord_gdpr,checkbox,,https://aiparte.ro/,/input_candidates/61,control-html-candidat
+ai-parte,sf-lb-edit-textarea,,,https://aiparte.ro/,/input_candidates/62,control-html-candidat
+ai-parte,sf-lb-edit-file-input,file,,https://aiparte.ro/,/input_candidates/63,control-html-candidat
+ai-parte,sf-lb-comment-input,,Scrie un comentariu...,https://aiparte.ro/,/input_candidates/64,control-html-candidat
+ai-parte,sf-new-comment-input,text,Scrie un comentariu...,https://aiparte.ro/,/input_candidates/65,control-html-candidat
+ai-parte,edit-post-text,,,https://aiparte.ro/,/input_candidates/66,control-html-candidat
+ai-parte,reshare-text,,"Ce părere ai despre această postare, Prieten?",https://aiparte.ro/,/input_candidates/67,control-html-candidat
+ai-parte,popup-chat-input,text,Scrie...,https://aiparte.ro/,/input_candidates/68,control-html-candidat
+ai-parte,aida-mobile-input,text,Întreabă orice despre școală...,https://aiparte.ro/,/input_candidates/69,control-html-candidat
+ai-parte,edu-cookie-analytics,checkbox,,https://aiparte.ro/,/input_candidates/71,control-html-candidat
+ai-parte,edu-cookie-marketing,checkbox,,https://aiparte.ro/,/input_candidates/72,control-html-candidat
+inovarepublica,cmplz-functional-optin,checkbox,,https://inovarepublica.ro/,/input_candidates/0,control-html-candidat
+inovarepublica,cmplz-preferences-optin,checkbox,,https://inovarepublica.ro/,/input_candidates/1,control-html-candidat
+inovarepublica,cmplz-statistics-optin,checkbox,,https://inovarepublica.ro/,/input_candidates/2,control-html-candidat
+inovarepublica,cmplz-marketing-optin,checkbox,,https://inovarepublica.ro/,/input_candidates/3,control-html-candidat
+radautiul-civic,s,search,,https://www.radautiulcivic.ro/,/input_candidates/0,control-html-candidat
+radautiul-civic,mhww-range,range,Alege ora din ultimele 24 de ore,https://www.radautiulcivic.ro/,/input_candidates/1,control-html-candidat
+radautiul-civic,cmplz-functional-optin,checkbox,,https://www.radautiulcivic.ro/,/input_candidates/2,control-html-candidat
+radautiul-civic,cmplz-preferences-optin,checkbox,,https://www.radautiulcivic.ro/,/input_candidates/3,control-html-candidat
+radautiul-civic,cmplz-statistics-optin,checkbox,,https://www.radautiulcivic.ro/,/input_candidates/4,control-html-candidat
+radautiul-civic,cmplz-marketing-optin,checkbox,,https://www.radautiulcivic.ro/,/input_candidates/5,control-html-candidat
+civica,form_fields[email],email,ex. civica@gmail.com,https://asociatiacivica.ro/,/input_candidates/0,control-html-candidat
+civica,form_fields[field_7560261],checkbox,,https://asociatiacivica.ro/,/input_candidates/1,control-html-candidat
+civica,s,text,Caută,https://asociatiacivica.ro/,/input_candidates/2,control-html-candidat
+civica,comment,,,https://asociatiacivica.ro/noutati/oaza-urbana-1-despre-inceputul-unei-schimbari-in-cartierele-iasului/,/input_candidates/0,control-html-candidat
+civica,author,text,,https://asociatiacivica.ro/noutati/oaza-urbana-1-despre-inceputul-unei-schimbari-in-cartierele-iasului/,/input_candidates/1,control-html-candidat
+civica,email,email,,https://asociatiacivica.ro/noutati/oaza-urbana-1-despre-inceputul-unei-schimbari-in-cartierele-iasului/,/input_candidates/2,control-html-candidat
+civica,url,url,,https://asociatiacivica.ro/noutati/oaza-urbana-1-despre-inceputul-unei-schimbari-in-cartierele-iasului/,/input_candidates/3,control-html-candidat
+civica,wp-comment-cookies-consent,checkbox,,https://asociatiacivica.ro/noutati/oaza-urbana-1-despre-inceputul-unei-schimbari-in-cartierele-iasului/,/input_candidates/4,control-html-candidat
+tech-and-tonic,s,search,Search...,https://techandtonic.ro/,/input_candidates/0,control-html-candidat
+tech-and-tonic,f_name,text,Prenume,https://techandtonic.ro/,/input_candidates/1,control-html-candidat
+tech-and-tonic,l_name,text,Nume,https://techandtonic.ro/,/input_candidates/2,control-html-candidat
+tech-and-tonic,your_email,email,Email,https://techandtonic.ro/,/input_candidates/3,control-html-candidat
+tech-and-tonic,your_subject,text,Subiect,https://techandtonic.ro/,/input_candidates/4,control-html-candidat
+tech-and-tonic,your_message,,Mesaj,https://techandtonic.ro/,/input_candidates/5,control-html-candidat
+tech-and-tonic,terms_condition,checkbox,,https://techandtonic.ro/,/input_candidates/6,control-html-candidat
+tech-and-tonic,_wpcf7_ak_hp_textarea,,,https://techandtonic.ro/,/input_candidates/7,control-html-candidat
+tech-and-tonic,author,text,Your Name *,https://techandtonic.ro/ce-stie-chatgpt-despre-tine-si-de-ce-ar-trebui-sa-te-ingrijoreze-pressone/,/input_candidates/1,control-html-candidat
+tech-and-tonic,email,email,Your Email *,https://techandtonic.ro/ce-stie-chatgpt-despre-tine-si-de-ce-ar-trebui-sa-te-ingrijoreze-pressone/,/input_candidates/2,control-html-candidat
+tech-and-tonic,url,url,Your Website,https://techandtonic.ro/ce-stie-chatgpt-despre-tine-si-de-ce-ar-trebui-sa-te-ingrijoreze-pressone/,/input_candidates/3,control-html-candidat
+tech-and-tonic,comment,,Your Comment,https://techandtonic.ro/ce-stie-chatgpt-despre-tine-si-de-ce-ar-trebui-sa-te-ingrijoreze-pressone/,/input_candidates/4,control-html-candidat
+tech-and-tonic,ak_hp_textarea,,,https://techandtonic.ro/ce-stie-chatgpt-despre-tine-si-de-ce-ar-trebui-sa-te-ingrijoreze-pressone/,/input_candidates/5,control-html-candidat
+codurbanism,q,search,"Ex.: am depus dosarul, dar nu am autorizația",https://mariuscomper.uk/codurbanism/,/input_candidates/0,control-html-candidat
+codurbanism,scenario,,,https://mariuscomper.uk/codurbanism/,/input_candidates/1,control-html-candidat
+codurbanism,diff-search,search,"Ex.: notificare, cumpărător, PUZ, recepție…",https://mariuscomper.uk/codurbanism/,/input_candidates/2,control-html-candidat
+cat-de-tare,q,search,"de exemplu Focșani, Cluj-Napoca, Slobozia",https://mariuscomper.uk/cat-de-tare/,/input_candidates/0,control-html-candidat
+cat-de-tare,q-b,search,"de exemplu Focșani, Cluj-Napoca, Slobozia",https://mariuscomper.uk/cat-de-tare/,/input_candidates/1,control-html-candidat
+biografia-localitatii,q,search,"Câmpulung, Botoșani, Săcele…",https://mariuscomper.uk/biografia-localitatii/,/input_candidates/0,control-html-candidat
+unde-locuiesc,city-search,search,"Caută București, Sibiu...",https://mariuscomper.uk/unde-locuiesc/,/input_candidates/0,control-html-candidat
+ani-de-pensie,month,,,https://mariuscomper.uk/ani-de-pensie/,/input_candidates/0,control-html-candidat
+ani-de-pensie,year,,,https://mariuscomper.uk/ani-de-pensie/,/input_candidates/1,control-html-candidat
+ani-de-pensie,sex,radio,,https://mariuscomper.uk/ani-de-pensie/,/input_candidates/2,control-html-candidat
+ani-de-pensie,lever,radio,,https://mariuscomper.uk/ani-de-pensie/,/input_candidates/4,control-html-candidat
+ce-face-statul-cu-1000-de-lei,year-slider,range,Anul selectat,https://mariuscomper.uk/ce-face-statul-cu-1000-de-lei/,/input_candidates/0,control-html-candidat
+achizitii-directe-ti-2026,search,search,"DA, autoritate, ofertant, CPV, descriere",https://achizitii-directe-ti-2026.mariuscomper.uk/,/input_candidates/0,control-html-candidat
+achizitii-directe-ti-2026,typeFilter,,,https://achizitii-directe-ti-2026.mariuscomper.uk/,/input_candidates/1,control-html-candidat
+achizitii-directe-ti-2026,flagFilter,,,https://achizitii-directe-ti-2026.mariuscomper.uk/,/input_candidates/2,control-html-candidat
+achizitii-directe-ti-2026,scoreFilter,,,https://achizitii-directe-ti-2026.mariuscomper.uk/,/input_candidates/3,control-html-candidat
+statul-digital,db-search,text,"Caută după acronim, denumire sau tip de date (ex: RNEP, CNP, conturi, amprente)...",https://mariuscomper.uk/statul-digital/,/input_candidates/0,control-html-candidat
+complet-online,"de exemplu: educație, pensii, Cantacuzino",search,"de exemplu: educație, pensii, Cantacuzino",https://mariuscomper.uk/complet-online/,/input_candidates/0,control-html-candidat
+prima-cifra,det-k,range,Câte achiziții își schimbă prima cifră din 1 în 9,https://mariuscomper.uk/prima-cifra/,/input_candidates/0,control-html-candidat
+prima-cifra,own,,128450  39200  5710000  812  94300 …,https://mariuscomper.uk/prima-cifra/,/input_candidates/1,control-html-candidat
+pe-datorie,yr,range,,https://mariuscomper.uk/pe-datorie/,/input_candidates/0,control-html-candidat
+ultima-noapte-pib,metric,radio,,https://mariuscomper.uk/ultima-noapte-pib/,/input_candidates/0,control-html-candidat
+ultima-noapte-pib,stage,range,"Momentul, de la prima estimare la seria actuală",https://mariuscomper.uk/ultima-noapte-pib/,/input_candidates/3,control-html-candidat
+constru-pentru-cine,search,search,Caută o localitate (de exemplu Florești),https://mariuscomper.uk/constru-pentru-cine/,/input_candidates/0,control-html-candidat
+orasul-care-se-intinde,find,text,"De exemplu Pitești, Florești, Sulina…",https://mariuscomper.uk/orasul-care-se-intinde/,/input_candidates/0,control-html-candidat
+orasul-care-se-intinde,t-q,search,,https://mariuscomper.uk/orasul-care-se-intinde/,/input_candidates/6,control-html-candidat
+orasul-care-se-intinde,t-cty,,,https://mariuscomper.uk/orasul-care-se-intinde/,/input_candidates/7,control-html-candidat
+trei-din-patru,q,search,Numele satului,https://mariuscomper.uk/trei-din-patru/,/input_candidates/0,control-html-candidat
+trei-din-patru,yr,range,,https://mariuscomper.uk/trei-din-patru/,/input_candidates/1,control-html-candidat
+unde-se-termina-asfaltul,year,range,,https://mariuscomper.uk/unde-se-termina-asfaltul/,/input_candidates/0,control-html-candidat
+unde-se-termina-asfaltul,county-pick,,,https://mariuscomper.uk/unde-se-termina-asfaltul/,/input_candidates/1,control-html-candidat
+unde-se-termina-asfaltul,commune-q,search,Scrie numele comunei…,https://mariuscomper.uk/unde-se-termina-asfaltul/,/input_candidates/2,control-html-candidat
+unde-se-termina-asfaltul,town-q,search,Caută un oraș sau un județ…,https://mariuscomper.uk/unde-se-termina-asfaltul/,/input_candidates/3,control-html-candidat
+de-unde-vine-apa,compare-select-a,,Selectează primul oraș,https://mariuscomper.uk/de-unde-vine-apa/,/input_candidates/0,control-html-candidat
+de-unde-vine-apa,compare-select-b,,Selectează al doilea oraș,https://mariuscomper.uk/de-unde-vine-apa/,/input_candidates/1,control-html-candidat
+de-unde-vine-apa,conv-dh,number,,https://mariuscomper.uk/de-unde-vine-apa/,/input_candidates/2,control-html-candidat
+de-unde-vine-apa,conv-mg,number,,https://mariuscomper.uk/de-unde-vine-apa/,/input_candidates/3,control-html-candidat
+de-unde-vine-apa,calc-people,range,Număr membri familie,https://mariuscomper.uk/de-unde-vine-apa/,/input_candidates/4,control-html-candidat
+de-unde-vine-apa,calc-liters,range,Litri pe zi de persoană,https://mariuscomper.uk/de-unde-vine-apa/,/input_candidates/5,control-html-candidat
+recontorizarea,year-range,range,,https://mariuscomper.uk/recontorizarea/,/input_candidates/0,control-html-candidat
+pensie-din-bursa,in-monthly,range,,https://mariuscomper.uk/pensie-din-bursa/,/input_candidates/0,control-html-candidat
+pensie-din-bursa,in-start,range,,https://mariuscomper.uk/pensie-din-bursa/,/input_candidates/1,control-html-candidat
+pensie-din-bursa,in-retire,range,,https://mariuscomper.uk/pensie-din-bursa/,/input_candidates/2,control-html-candidat
+pensie-din-bursa,in-rate,range,,https://mariuscomper.uk/pensie-din-bursa/,/input_candidates/3,control-html-candidat
+pensie-din-bursa,in-infl,range,,https://mariuscomper.uk/pensie-din-bursa/,/input_candidates/4,control-html-candidat
+pensie-din-bursa,in-gains,range,,https://mariuscomper.uk/pensie-din-bursa/,/input_candidates/5,control-html-candidat
+pensie-din-bursa,in-years,range,,https://mariuscomper.uk/pensie-din-bursa/,/input_candidates/6,control-html-candidat
+pensie-din-bursa,lei-mode,radio,,https://mariuscomper.uk/pensie-din-bursa/,/input_candidates/7,control-html-candidat
+pensie-din-bursa,tax-today,range,,https://mariuscomper.uk/pensie-din-bursa/,/input_candidates/9,control-html-candidat
+pensie-din-bursa,tax-ret,range,,https://mariuscomper.uk/pensie-din-bursa/,/input_candidates/10,control-html-candidat

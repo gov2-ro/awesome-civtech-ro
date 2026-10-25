@@ -793,3 +793,82 @@ Shared-host documentation is retained with `scope=gazda-comuna`. It does not bec
 The collector strips scripts and does not run JavaScript. Input and table candidates are not verified variable definitions.
 A declared API route is not a checked working endpoint. Keep API checks and their outcomes separate.
 After a new checkout, use `--force` to retrieve the local snapshots needed to review the evidence intervals.
+
+
+### Variable inventory drafts (`observatii/inventare/`)
+
+`scripts/inventory.py` reads the cached first-party documentation. It follows up to three explicit schema/data links per entry.
+It accepts OpenAPI, JSON Schema, CSV and JSON. It excludes configuration files and unrelated hosts.
+An explicitly linked GitHub blob can resolve to its raw file. Verified metadata links from the editorial pilot remain reusable seeds.
+The collector's optional `--follow-data-links` also discovers edition and data pages. Its page limit still applies.
+
+All files below are generated review material. Only the explicit preview build reads them. No editorial table changes automatically.
+
+- `proiecte.json`: one draft per catalogue entry. `scop`, `permite` and `formate_catalogate` reuse the existing catalogue.
+  `intrari_utilizator` holds HTML control candidates. `surse_structurate` references source IDs, and `lacune` records gaps.
+  Profiles remain `propunere`; completeness is only `partial` or `neconfirmat`.
+- `seturi-date.json`: structured source records, keyed by a URL-derived ID. Each records HTTP status, retrieval time, body hash,
+  immutable snapshot path, parser format and field records. Shared schema fields keep all their operation bindings.
+- `campuri.csv`: `proiecte`, `sursa_id`, `url`, `format`, `rol`, `nume`, `cale`, `tip_declarat`, `tipuri_observate`,
+  `tip_semantic`, `unitate`, `descriere`, `operatii`, `pointer_dovada`, `stare_tip`.
+- `intrari-utilizator.csv`: `slug`, `nume`, `tip_control_html`, `descriere`, `url_dovada`, `pointer_snapshot`, `stare_tip`.
+- `rezumat.csv`: `slug`, `stare`, `completitudine`, `controale_utilizator`, `surse_structurate`, `campuri_din_surse`.
+- `surse/*.json`: local HTTP response bodies and cached failures; gitignored. Immutable versions include the body hash in their name.
+
+Type evidence remains distinct:
+
+- `declarat-in-schema`: a property or parameter in a published schema. A missing declared type stays empty.
+- `declarat-in-metadate`: a dataset dimension declared in live metadata. Semantic types do not assert its storage type.
+- `observat-in-esantion-json`: a type observed in sampled values, including nulls. It is not a type contract.
+- `neprecizat-in-antet-csv`: a CSV header; its storage/logical type remains unknown. Identifier values are not coerced to numbers.
+- `control-html-candidat`: a visible HTML control, which may be a generic search or newsletter field.
+
+Field records are paths scoped to a source. They are not a count of independent business variables.
+Two representations of the same dataset can expose overlapping fields; this pass does not assert their equivalence.
+Extraction bounds are 2,000 fields per source, seven nested levels and 25 sample elements per JSON array.
+`limita_atinsa` marks a field or sample limit. All results remain partial even when no limit was reached.
+Endpoint contracts describe permitted requests and responses; reading a contract does not execute or verify every operation.
+
+`--check` makes no requests and rewrites nothing. It checks source hashes, source IDs, JSON pointers, CSV headers,
+explicit schema types, source references, control-list hashes and control attributes. Local snapshots are required.
+A new checkout needs `collect_docs.py --force` and `inventory.py --force` before the regenerated inventories can be checked.
+
+
+### Explorer inventory preview
+
+`build.py --with-inventory --site-dir DIR` reads inventory metadata and writes an isolated preview.
+The flag requires taxonomy v2 and a site directory other than `site/`. It does not change editorial acceptance.
+The default public build does not export these draft inventories.
+
+- Each relevant item gets `inventory`: field/parameter count, source count, field examples, search keywords,
+  documentation links, the original declaration count (`positions`), and `partial=true`.
+- Structured fields are written to `inventar/<slug>.json`, loaded only when the visitor opens the field browser.
+  Those payloads hold source URLs, field descriptions, declared or observed types, units, roles, references and operations.
+- Repeated API parameters with the same source, type, description and location share a display row.
+  The row keeps its individual references and operations. Other field records remain distinct.
+- HTML control candidates, raw snapshots, hashes and network diagnostics do not enter the preview payload.
+- Documentation-only entries link their collected first-party pages. Entries with no inventory evidence get no marker.
+
+`inventory_site.py` supplies this projection. `check_inventory_preview.py` checks lazy loading, field/main search,
+source/role selection, partial labels, CSV unknown types, retry recovery, inert descriptions and narrow layouts.
+
+### Cross-project data finder preview
+
+The same flag generates `/date/` and `inventar/index.json`. It adds a navigation link in the explorer preview.
+The index includes all 106 projects and 21 resources. Organisations remain in the ordinary explorer.
+Each entry carries its catalogue description, subjects, institutions, accepted providers, inventory summary and proposed variable matches.
+The page fetches one discovery index. Results appear in batches of 24. Full per-project fields remain separate.
+An ordinary rebuild removes stale draft pages and payloads from a reused isolated output folder.
+
+`data/taxonomy-v2/inventar-concepte.json` is hand-edited. It is separate from generated inventory records.
+Each concept has `id`, `label`, `definition` and `selectors`. Each selector names exact project slugs and field names.
+The seven initial groups are CUI, CPV, SIRUTA, county, locality, population and turnover. All mappings remain proposals.
+Generic names such as `id` and `value` do not create matches. Group membership does not assert dataset compatibility.
+Each match keeps up to three source examples, the original field role, type evidence, path, source URL and reference.
+
+Provider groups use accepted `date_din` relations. Parliament has one display label; both chambers keep their separate evidence.
+Target institutions use the existing `institutions` facet. They never become data providers through this projection.
+All selected variables must occur in a matching entry. Other facets use OR within the facet and AND between facets.
+Counts measure distinct entries. Values with at most three matches stay under `Mai multe`; selected values remain visible.
+The URL stores search, resource inclusion and repeated facet parameters. Browser navigation restores those selections.
+Entries with missing inventories remain searchable through their catalogue fields. Missing evidence does not assert missing data.

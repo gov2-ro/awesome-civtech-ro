@@ -230,7 +230,7 @@ class Fetcher:
             return result
 
 
-def collect(entry, fetch, max_pages=5):
+def collect(entry, fetch, max_pages=5, follow_data_links=False):
     start = canonical(entry['url'])
     if not start:
         return {'slug': entry['slug'], 'url': entry['url'], 'state': 'fara-url-http', 'pages': []}
@@ -264,6 +264,9 @@ def collect(entry, fetch, max_pages=5):
             if page['state'] == 'colectat' and page['scope'] == 'proiect':
                 for target, label in page['links']:
                     candidate = kind_of(target, label) if target else ''
+                    if not candidate and follow_data_links and target and not re.search(r'\.(json|csv|xlsx|pdf)(?:$|\?)', target, re.I):
+                        if re.search(r'\b(editia|edition|datasets|descarca|download|datele tabelare)\b', flat(label)):
+                            candidate = 'pagina-date'
                     if candidate and scope_of(start, target) == 'proiect' and target not in seen:
                         queue.append((target, candidate))
         pages.append(page)
@@ -333,6 +336,7 @@ def main():
     parser.add_argument('--out', type=Path)
     parser.add_argument('--only', default='')
     parser.add_argument('--force', action='store_true')
+    parser.add_argument('--follow-data-links', action='store_true', help='also follow explicit edition/download/data-page links')
     parser.add_argument('--workers', type=int, default=6)
     parser.add_argument('--max-pages', type=int, default=5)
     parser.add_argument('--timeout', type=float, default=8)
@@ -349,7 +353,7 @@ def main():
             (args.force or r['slug'] not in records or canonical(r['url']) != records[r['slug']]['url'])]
     fetcher = Fetcher(args.timeout)
     with ThreadPoolExecutor(max_workers=args.workers) as pool:
-        futures = {pool.submit(collect, entry, fetcher, args.max_pages): entry['slug'] for entry in todo}
+        futures = {pool.submit(collect, entry, fetcher, args.max_pages, args.follow_data_links): entry['slug'] for entry in todo}
         for future in as_completed(futures):
             try:
                 record = future.result()
