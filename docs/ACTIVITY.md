@@ -108,7 +108,7 @@
   geographic levels labelled as API-computed, level counts labelled as counted, and a missing licence stated as missing.
 - Fetched six more sources where a named gap existed: `companiidestat.ro` data index (declares licence CC BY 4.0 and four original providers), its
   2025 financial statements (a collection keyed by 1,446 CUIs), `transparenta.eu/ai/index.json` (route list), `romaniatransparenta.eu` `primarii.json` and
-  `control-saptamanal.json`, and the codurbanism `source-manifest.json`. 
+  `control-saptamanal.json`, and the codurbanism `source-manifest.json`.
 - Network: lot B 6 requests (1 listing, 5 metadata; 1.4 MB), lot B2 6 requests (1.5 MB). All HTTP 200. No retries. 12 direct requests in total; no browser.
 - Field records: 2,302 to 2,472. New: 24 `declarat-in-metadate` dimensions, 150 more sampled JSON paths. 15 entries now have structured fields
   (14 baseline plus `constru-pentru-cine`, which has only INS metadata). 362 unit tests run (6 skipped); the evidence check passes: 35 bodies hash-verified, 0 errors.

@@ -217,7 +217,7 @@ Monitoring of femicide cases in Romania from media reports and official communic
 - Limitations: Page-script usage only; no types or values. The database was not read.
 - Remaining work: Tell the project about the exposed token; ask for an aggregate export.
 
-Reserve entries (`ce-fac-politicienii`, `onorata-instanta`, `guvernezi`) were not used: all 12 primary entries produced evidence. 
+Reserve entries (`ce-fac-politicienii`, `onorata-instanta`, `guvernezi`) were not used: all 12 primary entries produced evidence.
 
 ## 4. Existing inventories and INS
 
@@ -367,4 +367,3 @@ External blockers and security findings:
 - Tell the `desprefemicid.ro` owners about the exposed token. Ask `aerlive.ro`, EuropeScope and Registrul Firmelor for working API documentation or schema.
 - Re-render `aerlive.ro` with permission for a third navigation; read the other 74 Dignitas patches; fetch the 28 documented candidates only if a reviewer needs them.
 - Resolve the 62 unconfirmed profiles and the 100 projects and resources without extracted fields; a missing extraction does not prove missing data.
-

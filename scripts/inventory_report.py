@@ -292,7 +292,7 @@ def render_report(data, rows):
         w(f'- Limitations: {note.get("limite_en", "")}')
         w(f'- Remaining work: {note.get("urmator_en", "")}')
         w('')
-    w('Reserve entries (`ce-fac-politicienii`, `onorata-instanta`, `guvernezi`) were not used: all 12 primary entries produced evidence. ')
+    w('Reserve entries (`ce-fac-politicienii`, `onorata-instanta`, `guvernezi`) were not used: all 12 primary entries produced evidence.')
     w('')
     w('## 4. Existing inventories and INS')
     w('')
@@ -381,7 +381,7 @@ def render_report(data, rows):
     for item in notes['de_revizuit']:
         w('- ' + item)
     w('')
-    return '\n'.join(out)
+    return '\n'.join(out).rstrip('\n')
 
 
 def main():
