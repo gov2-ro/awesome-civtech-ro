@@ -113,8 +113,11 @@ The 62 unconfirmed profiles cover the full 140-entry catalogue, including organi
       Done for SEAP on 2026-10-26 (owner decision): the six accepted rows that said „SICAP / SEAP” in three forms now say „SEAP”.
 - [ ] Check the four accepted providers that cite only the project's home page as evidence: D140 and D141 (ONRC and ANAF, `registrul-firmelor`), D142 (SICAP / SEAP, `achizitii-directe-ti-2026`)
       and D146 (SICAP / SEAP, `sicap-ai`, no retained copy). D140 and D141 could cite `https://registru.horecaos.org/surse` instead (D153 and D154 hold that evidence).
-- [ ] A guard for sites that forbid automated access. Only the saved addresses are protected today (`collect_docs.py` and `inventory.py` never request them). A run of `collect_docs.py --force`, `profile.py` or
-      `search.py` for the whole catalogue still requests the other addresses of `harta-firmelor.ro`. Skip the entry, with a recorded reason, in every script that requests a project's site.
+- [x] A guard for sites that forbid automated access (brief: `docs/briefs/do-not-fetch.md`). Done 2026-10-26 (v0.26.0). `data/taxonomy-v2/colectare-interzisa.csv` lists the hosts; `common.forbidden(url)` is the one check.
+      `profile.py`, `review.py`, `collect_docs.py`, `inventory.py` (also `--probe`) and `render_pages.py` call it before every request and for each redirect hop. A listed host gets no request; the state is
+      `colectare-interzisa` with the `motiv`, never an error, a failed attempt or `offline`. `validate.py` checks the file. First row: `harta-firmelor.ro`. `search.py`, `sheets.py` and `form.py` request only APIs (checked).
+- [ ] A test that finds a new request path without the guard. Today a person must remember to call `forbidden()` in a new script (the rule is in `CLAUDE.md`). A stdlib test could scan `scripts/*.py` for
+      `urlopen`, `httpx`, `.goto(` and `chromium.launch`, and require the import of the guard or an entry in a short allow-list (`search.py`, `sheets.py`, `form.py`, `check_*.py`, `cutover_v2.py`).
 
 ### DemoANAF — paused 2026-10-25
 
@@ -456,6 +459,9 @@ Existing items below also cover profile refresh data loss, Sheets merge conflict
 - [-] Collect `harta-firmelor.ro` automatically (the site, `/date`, the eight CSV files, `api.harta-firmelor.ro`). Every automated request gets HTTP 429 from a Vercel Security Checkpoint (2026-10-24 and 2026-10-25),
       and its `llms.txt` says that automated mass extraction is not allowed (the terms of use and `robots.txt` protect the database). Do not pass the checkpoint with a headless browser.
       Use a copy that the owner saves from their browser (`--import-saved`), or the official API with a key that the project issues on request.
+- [-] Stop a redirect to a listed host with a Playwright route handler alone. A route handler sees the first request of a navigation, not the redirect hop of a request that it let through
+      (measured 2026-10-26 with Chromium against a loopback server: the server received the request for the listed name). The browser passes therefore also start Chromium with
+      `--host-resolver-rules` (`common.browser_args()`), which makes a listed host unresolvable inside the browser. A browser behind a proxy would ignore that rule; the scripts start it without a proxy.
 - [-] Read the script files of `demoanaf.ro/api-docs` for response fields. `ApiDocsPage-*.js` holds the same endpoint list as the page plus translation keys and no schema;
       `/en/api-docs` repeats the page. Measured 2026-10-25 with 3 requests; nothing to gain from more.
 - [-] GDELT news counts. GDELT answered "please limit requests" at 12 s spacing, and the
