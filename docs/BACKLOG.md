@@ -36,6 +36,14 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
       Empty fields can also mean not applicable. Do not infer a provider from monitored institutions or authors.
       Do not infer complete county or locality coverage from national reach.
 
+## Inventory review and public data finder — 2026-10-25
+
+- [ ] Local review interface for provider items and variable groups (brief: [review-ui.md](briefs/review-ui.md)).
+      Adds per-group and per-selector review states to `inventar-concepte.json`.
+- [ ] Owner review: decide D132–D162 and the 30 groups with the interface.
+- [ ] Publish `/date/` on the public build. Needs its own brief after the review: which states appear, labelling of proposals,
+      and the change to the `--with-inventory` boundary.
+
 ## Inventory expansion — implemented 2026-10-25 (milestones A–E, v0.14.0–v0.18.0)
 
 Implementation handoff: [inventory-expansion.md](briefs/inventory-expansion.md).

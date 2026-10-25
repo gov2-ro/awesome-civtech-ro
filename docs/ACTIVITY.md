@@ -1,5 +1,15 @@
 # Activity
 
+## 2026-10-25 — Specify the local review interface
+
+**Done**
+- Added `docs/briefs/review-ui.md`: a local stdlib server (`scripts/review_ui.py`) for the 31 provider items and the 30 variable groups.
+
+**Decided**
+- A local tool, not a published page. It writes repository files, and git is the audit trail. A hosted page would need a second store and a sync back to the CSVs.
+- Add review states to groups and selectors (additive keys; missing means `propus`). Without them the owner cannot record a group review. An `exclus` selector stays in the file for history.
+- Make the public `/date/` a separate brief after the review. The owner wants it public, but the states to show depend on the review outcome.
+
 ## 2026-10-25 — Show the new evidence, export coverage and report (milestone E)
 
 **Done**
