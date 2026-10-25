@@ -5,7 +5,8 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 ## New entry lista-firme.info — 2026-10-26
 
 - [x] Decide `lista-firme` (`intrari.csv`). Accepted by the owner on 2026-10-26; `validate.py --publication` passes.
-- [ ] Prune the 7 kept search results of `lista-firme` in `observatii/mentiuni.csv` (column `editor`=`0`): `apps.make.com`, `firmeo.ro`, `infoquick.ro`, `datefirme.ro`, `clientsolutions.ro`, `portal.afir.info`, `regio-adrcentru.ro`. Then run `search.py --prune-only`.
+- [x] Prune the 7 kept search results of `lista-firme` (`editor`=`0`; `search.py --prune-only` recomputed `mentions` to 0). Done 2026-10-26.
+- [ ] `search.py --prune-only` also flips `regula` on 6 rows of `gov2`, `incentru`, `ethicalmedia` and `accesinfo` (stored rules differ from the current rules). Not applied; review before the next full prune.
 - [x] Fix `since` for `lista-firme`: 2024-05-04 from the repo, not 2011-05-19 from a GoDaddy parking page. Done 2026-10-26 with `EARLIER_DOMAIN_USE` in `build.py`.
 - [ ] Check `harta-tv-locale` for the same pattern: Wayback captures 2014-01-25 to 2018-09-16, repo created 2024-10-19. Add it to `EARLIER_DOMAIN_USE` only if the early captures show another site.
 - [ ] Update `.claude/commands/add-new-url.md` for v2: write `intrari.csv` (facets, `clasificare_stare=propus`) and `relatii.csv` (attribution row), not the frozen `proiecte.csv` / `orgs.csv`. Add the steps `collect_docs.py --only`, `inventory.py --only` and `inventory_report.py` after the profile and search steps.
