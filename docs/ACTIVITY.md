@@ -1,5 +1,27 @@
 # Activity
 
+## 2026-10-26 — The relation to data: the column `relatie_date` and its proposals (steps A and B)
+
+**Done**
+- Step A of `docs/briefs/data-relation.md`. `valori.csv` has the list `relatie_date` (`date-publice`, `date-proprii`, `calcul`, `fara-date`). `schema.json` has the rule and the header, after `dovada_detaliere`. Both `intrari.csv` files (the package and `integrare/`) have the empty column. `taxonomy_v2.py` refuses an unknown code, a value on an organisation, and `fara-date` together with `detaliere_date`; `NO_DATA` names the code. `common.py` loads `data_relation`, and `build.py` writes `dataRelation` on each item and `vocabulary.dataRelations`. `validate.py` warns, and never fails, when a `fara-date` entry has `campuri_din_surse` above zero in `rezumat.csv`. `sheets.py` and the Form needed no change.
+- Docs: `DATA-SCHEMA.md`, `specs/taxonomy-v2.md` and one Romanian paragraph in `data/taxonomy-v2/README.md`.
+- 13 new tests: 9 in `test_taxonomy_v2.py` (class `RelationToData`) and 4 in `test_sheets_form.py` (round trip in both directions, the strict drop-down from the code list, no Form question, an imported row leaves the column empty). All 13 fail on the previous commit. With only the data files (no script change), the 4 tests that need code still fail (organisation, `fara-date` with a breakdown, the `validate.py` warning, the build); the 4 Sheet and Form tests pass, because `sheets.py` reads its header and drop-downs from `schema.json` and `valori.csv`.
+- Test count: 590 before, 603 after (6 skipped, as before). `validate.py --publication`: 0 errors, 0 warnings; the package root and `inventory.py --check` / `inventory_report.py --check` are unchanged.
+- A build into a separate folder differs from a build of `main` only by `dataRelation` (empty, 141 items) and `vocabulary.dataRelations` (4 codes). The committed `site/data.json` also changes its `generated` time; it is a separate commit.
+- Step B. `observatii/inventare/relatie-date-propuneri.csv`: 129 rows (128 public projects and resources, and the hidden `fiipregatit`). Evidence: the entry row, the cached page text, `profil.csv`, the accepted sources and the inventory; no request. Proposals: `date-publice` 63, `date-proprii` 20, `fara-date` 19, `calcul` 3, empty 24. By confidence: `mare` 53, `medie` 49, `mica` 27 (24 of them are the empty rows). Of the 100 entries that `acoperire.csv` calls `neinvestigat-in-lot`: 19 `fara-date`, 38 `date-publice`, 16 `date-proprii`, 3 `calcul`, 24 empty.
+- Measured again before the work: 128 projects and resources in `data.json` (108 `activ`, 10 `arhivat`, 9 `offline`, 1 `necunoscut`); `acoperire.csv` has 100 `neinvestigat-in-lot`, 28 `cu-surse-structurate`, 13 `in-afara-ariei`, 1 `blocat`; no inactive entry has extracted fields. These equal the numbers of the brief.
+
+**Hard**
+- The tests derive their package from the detach commit, so that package has no column. `RelationToData` copies the real package (without the local caches), and the code reads the column with `.get`, so an older package still passes.
+- The base `data/taxonomy-v2/intrari.csv` is checked against the same `schema.json` header, so it needed the empty column too, as for `detaliere_date`.
+- The brief's rule for mixed cases (the first code in the table) decides several rows. A hybrid of own sensors and one public source, a calculator that reads Eurostat life tables, and a curated database built from official sources all go to `date-publice`. The proposal says so in `baza`; the owner may prefer `date-proprii` or `calcul` for these.
+- The cached page text is often poor: login pages, error pages, JavaScript shells. For 24 entries (16 of them inactive) the evidence does not settle the code, so `propunere` is empty and `incredere` is `mica`. An empty value stays in `/date/`.
+
+**Decided**
+- The warning reads `rezumat.csv`, which `inventory.py` writes with the field counts, and not `acoperire.csv`, which `inventory_report.py` writes later. The cost: none for the checks; `rezumat.csv` is always as new as the fields.
+- The proposal file includes the hidden `fiipregatit` (empty): the column lives in `intrari.csv`, and the entry may return. The cost: one row that the public site never shows.
+- No release bump and no tag in this work: the owner's Opus session merges this branch with `inventory-batch-c2` and tags both.
+
 ## 2026-10-26 — Briefs: the relation to data, and inventory batch C2
 
 **Done**

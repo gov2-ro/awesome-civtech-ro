@@ -4,8 +4,13 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
 ## Relation to data and inventory batch C2 — 2026-10-26
 
-- [ ] Column `relatie_date` (`date-publice`, `date-proprii`, `calcul`, `fara-date`, empty), the scope of `/date/` (active, not `fara-date`) and the explorer facets `dat` and `st`. Brief: [data-relation.md](briefs/data-relation.md).
-- [ ] Owner: review `observatii/inventare/relatie-date-propuneri.csv` (step B of the brief).
+- [~] Column `relatie_date` (`date-publice`, `date-proprii`, `calcul`, `fara-date`, empty), the scope of `/date/` (active, not `fara-date`) and the explorer facets `dat` and `st`. Brief: [data-relation.md](briefs/data-relation.md). Steps A and B are done; C, D and E wait for the owner's answer on the proposals.
+- [x] Step A of the brief: the column, the code list, the checks, `dataRelation` in `data.json`, the `validate.py` warning and the docs. Done 2026-10-26; the column is empty in every row.
+- [x] Step B of the brief: `observatii/inventare/relatie-date-propuneri.csv`, 129 rows (128 public entries and the hidden `fiipregatit`). Done 2026-10-26.
+- [ ] Owner: review `observatii/inventare/relatie-date-propuneri.csv`. 105 rows have a proposal and 24 are empty (the evidence does not settle them). Accept, change or reject each row.
+- [ ] Step C of the brief: write the accepted values into `intrari.csv`, then run `validate.py --publication`.
+- [ ] Step D of the brief: the scope of the public inventory (`inventory_site.py`, `/date/lista/`, `inventory_report.py`, `collect_docs.py`, `inventory.py`).
+- [ ] Step E of the brief: the explorer facets `dat` and `st` in `site/app.js`.
 - [ ] Variable inventory for `data-expertforum`, `bani-partide`, `romania-interactiva`. Brief: [inventory-batch-c2.md](briefs/inventory-batch-c2.md).
 - [-] Inventory `harta-banilor-publici`, `parlament-transparent`, `bani-pierduti`. Reason: inactive (`offline`) in the build; the owner removed inactive entries from the variable inventory on 2026-10-26.
 
