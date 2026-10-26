@@ -542,6 +542,41 @@ class RoundTripV2(EnvCase):
         rows = self.env.rows("v2-intrari")
         self.assertTrue(any(r["tehnologii"] == "" for r in rows))
 
+    def test_relatie_date_round_trips_in_both_directions_and_stays_empty_when_empty(self):
+        """The column `relatie_date` (the relation to data) is in the tab, after `dovada_detaliere`. A value goes to the Sheet and comes back byte for byte,
+        and a value that an editor types in the Sheet comes into the CSV on `pull`."""
+        cols = self.env.tab("v2-intrari").cols
+        self.assertEqual(cols[cols.index("dovada_detaliere") + 1], "relatie_date")
+        rows = self.env.rows("v2-intrari")
+        first, second = [r for r in rows if r["tip_entitate"] != "organizatie"][:2]
+        first["relatie_date"] = "calcul"
+        self.env.write_rows("v2-intrari", rows)
+        before = self.env.bytes("v2-intrari")
+        self.env.commit()
+        self.assertEqual(self.push()[0], 0)
+        table = {r["slug"]: r for r in self.sh.table("v2-intrari")}
+        self.assertEqual((table[first["slug"]]["relatie_date"], table[second["slug"]]["relatie_date"]), ("calcul", ""))
+        self.assertEqual(self.pull()[0], 0)
+        self.assertEqual(self.env.bytes("v2-intrari"), before)
+        self.sh.edit("v2-intrari", second["slug"], "relatie_date", "fara-date")
+        self.assertEqual(self.pull()[0], 0)
+        pulled = {r["slug"]: r["relatie_date"] for r in self.env.rows("v2-intrari")}
+        self.assertEqual((pulled[first["slug"]], pulled[second["slug"]]), ("calcul", "fara-date"))
+        self.assertEqual(sum(bool(v) for v in pulled.values()), 2)  # no other row changed
+
+    def test_the_drop_down_of_relatie_date_comes_from_its_code_list(self):
+        """Like `clasificare_stare`: a strict list of the codes in valori.csv, in the order of the list. Empty stays allowed."""
+        self.env.commit()
+        self.push()
+        cols = self.env.tab("v2-intrari").cols
+        rules = {cols[q["setDataValidation"]["range"]["startColumnIndex"]]: q["setDataValidation"]["rule"]
+                 for body in self.sh.requests for q in body["requests"] if "setDataValidation" in q}
+        self.assertIn("relatie_date", rules)
+        self.assertTrue(rules["relatie_date"]["strict"])
+        allowed = [v["userEnteredValue"] for v in rules["relatie_date"]["condition"]["values"]]
+        self.assertEqual(allowed, list(taxonomy_v2.load(self.env.root).codes["relatie_date"]))
+        self.assertEqual(allowed, ["date-publice", "date-proprii", "calcul", "fara-date"])
+
     def test_drop_downs_only_suggest_in_cells_that_take_a_list(self):
         self.env.commit()
         self.push()
@@ -1193,6 +1228,14 @@ class FormV2Plan(unittest.TestCase):
         self.assertEqual([i for _, i in choices["Acoperire"]], ["national", "local", "international", "necunoscut"])
         self.assertIn("Drept, justiție și drepturi", [label for label, _ in choices["Subiecte"]])  # a label with a comma
 
+    def test_the_form_has_no_question_for_relatie_date(self):
+        """The relation to data is for editors. The Form plan, its choices and the answer map never name the column or its list."""
+        self.assertIn("relatie_date", self.pkg.schema["headers"]["intrari.csv"])  # the column exists, so its absence from the Form is a choice
+        self.assertNotIn("relatie_date", form.TITLES_V2)
+        self.assertEqual(len(form.build_questions_v2(self.pkg)), 13)
+        self.assertNotIn("relatie_date", json.dumps(form.vocabulary_choices(self.pkg)))
+        self.assertNotIn("relatie_date", json.dumps(form.planned_map(self.pkg)))
+
     def test_the_committed_answer_map_covers_the_plan(self):
         stored = form.load_answer_map(form.ANSWER_MAP)
         self.assertIsNotNone(stored, "data/form-v2.json is missing; run form.py --data-dir ... --write-map")
@@ -1356,6 +1399,12 @@ class FormV2Import(unittest.TestCase):
                          ("Harta Școlilor Ținute", "Școlile pe hartă", "Ana Pop", "Formular: vezi și alt site"))
         self.assertEqual((row["sursa_fisier"], row["sursa_rand"], row["teme"], row["scopuri"]), ("", "", "", ""))
         self.assertIn("rândul 2 (19/10/2026 12:00:00)", row["nota_clasificare"])
+        self.assertEqual(list(row), self.pkg.schema["headers"]["intrari.csv"])
+
+    def test_an_imported_row_leaves_relatie_date_empty(self):
+        """A visitor never states the relation to data: the editor sets it after the review."""
+        row = self.good(Ce_propui="Proiect", Nume="Calculator de chirie", Subiecte="Educație și cultură").row
+        self.assertEqual(row["relatie_date"], "")
         self.assertEqual(list(row), self.pkg.schema["headers"]["intrari.csv"])
 
     def test_a_label_with_a_comma_is_one_subject_not_two(self):

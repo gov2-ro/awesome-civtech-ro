@@ -283,6 +283,7 @@ Empty means unknown or not applicable. Unknown is not a negative assertion.
 | `maturitate` | Zero or one evidenced stage: experiment, prototype, pilot, or operational. Independent from availability and reliability. |
 | `nivel_acoperire` | `national`, `local`, `international`, or `necunoscut`. Do not silently default unknown to national. |
 | `arii_acoperite` | Area IDs. A national project with local records can still cover `tara:RO`. |
+| `relatie_date` | Zero or one code of the list `relatie_date`: how a project or a resource relates to data. Empty means not assessed. An organisation has none. See "Relation to data". |
 | `localitate_originala` | Original city text. Preserved without interpreting an organisation's address as its service area. |
 | `autor_original`, `contact` | Preserved attribution text and contact. Relations hold the structured attribution. |
 | `civictech_original` | Original `0`, `1`, or blank, retained as legacy editorial data. Not a new certification. |
@@ -632,6 +633,24 @@ A recorded detail needs `dovada_detaliere`, the evidence page URL. An empty deta
 The secondary `Acoperire` filter distinguishes national totals, nationwide data with local detail, and explicitly local projects.
 National entries without a verified detail have their own option. Do not classify them as national totals by default.
 This filter does not assert that every county or locality has a record. An explicit area filter uses recorded areas only.
+
+**Relation to data.** `relatie_date` says how a project or a resource relates to data. It is independent of `formate` and of the data detail.
+An editor sets it; the Form does not ask for it. The code list is `relatie_date` in `valori.csv`:
+
+| Code | Label (RO) | Meaning |
+| --- | --- | --- |
+| `date-publice` | Date publice | The entry uses or republishes data from public-sector sources. |
+| `date-proprii` | Date proprii | The entry collects or curates its own data: reports from users, quiz positions, an editorial database. |
+| `calcul` | Calculator sau formular | The entry takes user inputs and applies rules or parameters, with no data set behind it. |
+| `fara-date` | Fără date | A guide, course, campaign, article or list of links. There is nothing to extract. |
+| (empty) | Neevaluat | Not assessed yet. |
+
+When two codes apply, use the first one in the table. One code settles the mixed cases, because the data finder needs one answer.
+`formate` does not replace the column: a quiz (`testvot`) holds a data set, and a publication can be data journalism.
+The checks refuse an unknown code, a value on an organisation, and `fara-date` together with `detaliere_date`.
+`validate.py` warns when an entry with `fara-date` has extracted fields in its inventory.
+The build writes the code as `dataRelation` on each item and the code list as `vocabulary.dataRelations`. An empty column changes nothing else.
+The scope of the variable inventory and the explorer facets that use the column are defined in `docs/briefs/data-relation.md`.
 
 For location filtering, distinguish where an entry applies from whether it contains records for a particular place.
 Choosing Bucharest matches explicitly recorded Bucharest coverage. A Romania-only assignment does not match.

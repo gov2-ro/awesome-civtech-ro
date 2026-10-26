@@ -594,6 +594,7 @@ def items_v2(root: Path, site: Path) -> tuple[list[dict], dict]:
             "coverageLevel": e["coverage_level"],
             "dataDetail": e["data_detail"],
             "dataDetailEvidence": e["data_detail_evidence"],
+            "dataRelation": e["data_relation"],
             "areas": e["areas"],
             "dataSources": [{"name": a["name"], "evidence": a["evidence"]} for a in e["data_sources"]],
             # Unresolved roles stay neutral: `role` is the predicate, `accepted` says whether an editor confirmed it.
@@ -656,6 +657,7 @@ def items_v2(root: Path, site: Path) -> tuple[list[dict], dict]:
             "entityTypes": code_list("tip_entitate"),
             "coverage": code_list("nivel_acoperire"),
             "predicates": code_list("relatie_predicat"),
+            "dataRelations": code_list("relatie_date"),
         },
         "legacyTaxonomy": {k: legacy_tax[k] for k in ("domenii", "tipuri", "fel", "acoperire")},
         "site": site_cfg,

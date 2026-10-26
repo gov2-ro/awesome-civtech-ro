@@ -71,3 +71,7 @@ detaliere_date,agregat-national,Totaluri naționale,National aggregates,Date agr
 detaliere_date,judete,Pe județe,By county,Date cu o detaliere pe județe.,propus,1
 detaliere_date,localitati,Pe localități,By locality,Date cu o detaliere pe localități.,propus,2
 detaliere_date,judete-localitati,Pe județe și localități,By county and locality,Date cu o detaliere pe județe și pe localități.,propus,3
+relatie_date,date-publice,Date publice,Public data,Intrarea folosește sau republică date din surse ale sectorului public.,propus,0
+relatie_date,date-proprii,Date proprii,Own data,"Intrarea colectează sau curează propriile date: sesizări de la utilizatori, poziții din chestionare, o bază de date editorială.",propus,1
+relatie_date,calcul,Calculator sau formular,Calculator or form,"Intrarea primește date de la utilizator și aplică reguli sau parametri, fără un set de date în spate.",propus,2
+relatie_date,fara-date,Fără date,No data,"Un ghid, un curs, o campanie, un articol sau o listă de linkuri. Nu există nimic de extras.",propus,3

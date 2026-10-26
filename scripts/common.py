@@ -338,6 +338,7 @@ def load_catalogue(data_dir: Path = PUBLIC_ROOT) -> list[dict]:
             "technologies": values(r["tehnologii"]), "institutions": values(r["institutii_vizate"]), "autor": r["autor_original"],
             "organisation_types": values(r["tip_organizatie"]), "maturity": r["maturitate"] or None,
             "data_detail": r.get("detaliere_date", ""), "data_detail_evidence": r.get("dovada_detaliere", ""),
+            "data_relation": r.get("relatie_date", ""),  # the code of valori.csv list `relatie_date`; empty means not assessed
             "coverage_level": r["nivel_acoperire"], "areas": values(r["arii_acoperite"]), "locality": r["localitate_originala"],
             "civictech": r["civictech_original"], "classification_state": r["clasificare_stare"],
             "attributions": [a for a in relations.get(slug, []) if a["predicate"] != "date_din"],

@@ -67,10 +67,10 @@ def digest(path: Path) -> str:
 class Copy:
     """A temporary copy of the package (without the 16 MB classification run), with small editing helpers."""
 
-    def __init__(self):
+    def __init__(self, source: Path = None):
         self.tmp = tempfile.TemporaryDirectory()
         self.root = Path(self.tmp.name) / "taxonomy-v2"
-        shutil.copytree(PACKAGE, self.root, ignore=shutil.ignore_patterns("runs", "__pycache__", "catalogue.json"))
+        shutil.copytree(source or PACKAGE, self.root, ignore=shutil.ignore_patterns("runs", "__pycache__", "catalogue.json", "pagini", "surse"))
         self.overlay = self.root / "integrare"
 
     def rows(self, name: str, root: Path = None) -> tuple[list[str], list[dict]]:
@@ -105,6 +105,12 @@ def with_hidden_code(rows: list[dict]):
     if not any(r["lista"] == "clasificare_stare" and r["cod"] == taxonomy_v2.HIDDEN for r in rows):
         rows.append({"lista": "clasificare_stare", "cod": taxonomy_v2.HIDDEN, "eticheta_ro": "Ascuns", "eticheta_en": "Hidden",
                      "definitie_ro": "Intrarea rămâne în date, dar nu apare în site-ul public.", "statut": "propus", "ordine": "3"})
+
+
+def without_relation(rows: list[dict]):
+    """Clear `relatie_date` in every row: a clean start for a test, whatever values the editors have written since."""
+    for r in rows:
+        r["relatie_date"] = ""
 
 
 class PackageChecks(unittest.TestCase):
@@ -374,6 +380,121 @@ class RootSelection(unittest.TestCase):
                                            if r["lista"] == "clasificare_stare" and r["cod"] == taxonomy_v2.HIDDEN])
         c.edit("intrari.csv", lambda rows: rows[0].update(clasificare_stare=taxonomy_v2.HIDDEN))
         self.assertTrue(any("clasificare_stare" in e for e in c.errors()))
+
+
+class RelationToData(unittest.TestCase):
+    """The column `relatie_date`: how an entry relates to data. These tests use a copy of the real package (the current
+    state), not the derived one that the other classes use: the derived package is the state at the detach commit and has no column."""
+
+    def setUp(self):
+        self.c = Copy(REAL_PACKAGE)
+        self.addCleanup(self.c.close)
+        self.c.edit("intrari.csv", without_relation, self.c.overlay)
+
+    def entry(self, test) -> str:
+        return next(r["slug"] for r in self.c.rows("intrari.csv", self.c.overlay)[1] if test(r))
+
+    def set_relation(self, slug: str, code: str, **more):
+        def edit(rows):
+            row = next(r for r in rows if r["slug"] == slug)
+            row["relatie_date"] = code
+            row.update(more)
+        self.c.edit("intrari.csv", edit, self.c.overlay)
+
+    def errors(self, **kw) -> list[str]:
+        return self.c.errors(self.c.overlay, **kw)
+
+    def test_the_column_follows_dovada_detaliere_and_the_list_has_four_codes_in_order(self):
+        header = self.c.rows("intrari.csv", self.c.overlay)[0]
+        self.assertEqual(header[header.index("dovada_detaliere") + 1], "relatie_date")
+        self.assertEqual(self.c.rows("intrari.csv")[0], header)  # the base package has the same header
+        pkg = taxonomy_v2.load(self.c.overlay)
+        self.assertEqual(list(pkg.codes["relatie_date"]), ["date-publice", "date-proprii", "calcul", "fara-date"])
+        self.assertEqual(pkg.label("relatie_date", "fara-date"), "Fără date")
+        rule = pkg.rules("intrari.csv")["relatie_date"]
+        self.assertEqual((rule["kind"], rule["list"], rule.get("required", False)), ("code", "relatie_date", False))
+        self.assertEqual(self.errors(), [])
+
+    def test_an_empty_value_passes_the_checks_and_the_publication_gate(self):
+        self.assertIn("relatie_date", self.c.rows("intrari.csv", self.c.overlay)[0])
+        self.assertTrue(all(r["relatie_date"] == "" for r in self.c.rows("intrari.csv", self.c.overlay)[1]))
+        self.assertEqual(self.errors(), [])
+        self.assertEqual(self.errors(publication=True), [])
+
+    def test_each_code_passes_on_a_project_and_on_a_resource(self):
+        for kind in ("proiect", "resursa"):
+            slug = self.entry(lambda r: r["tip_entitate"] == kind and not r["detaliere_date"])
+            for code in ("date-publice", "date-proprii", "calcul", "fara-date"):
+                with self.subTest(kind=kind, code=code):
+                    self.set_relation(slug, code)
+                    self.assertEqual(self.errors(publication=True), [])
+
+    def test_an_unknown_code_is_refused(self):
+        slug = self.entry(lambda r: r["tip_entitate"] == "proiect")
+        self.set_relation(slug, "altceva")
+        errors = self.errors()
+        self.assertTrue(any(f"intrari.csv {slug}: unknown relatie_date code 'altceva'" in e for e in errors), errors)
+
+    def test_a_list_of_two_codes_is_refused(self):
+        slug = self.entry(lambda r: r["tip_entitate"] == "proiect")
+        self.set_relation(slug, "date-publice|calcul")
+        self.assertTrue(any(f"intrari.csv {slug}: unknown relatie_date code" in e for e in self.errors()))
+
+    def test_fara_date_with_a_data_breakdown_is_refused(self):
+        slug = self.entry(lambda r: r["tip_entitate"] != "organizatie" and r["detaliere_date"])
+        self.set_relation(slug, "date-publice")
+        self.assertEqual(self.errors(), [])  # another code goes with a breakdown
+        self.set_relation(slug, "fara-date")
+        errors = self.errors()
+        self.assertEqual([e for e in errors if slug in e], [f"intrari.csv {slug}: relatie_date fara-date excludes detaliere_date"])
+
+    def test_a_code_on_an_organisation_is_refused(self):
+        slug = self.entry(lambda r: r["tip_entitate"] == "organizatie")
+        for code in ("date-publice", "fara-date"):
+            with self.subTest(code=code):
+                self.set_relation(slug, code)
+                errors = self.errors()
+                self.assertTrue(any(f"intrari.csv {slug}: relatie_date on an organisation" in e for e in errors), errors)
+        self.set_relation(slug, "")
+        self.assertEqual(self.errors(), [])  # an organisation stays empty
+
+    def run_validate(self):
+        return run("scripts/validate.py", "--data-dir", self.c.overlay)
+
+    def test_validate_warns_when_a_fara_date_entry_has_extracted_fields_and_does_not_fail(self):
+        fields = {r["slug"]: int(r["campuri_din_surse"] or 0) for r in taxonomy_v2.read_table(self.c.root / "observatii/inventare/rezumat.csv")[1]}
+        with_fields = self.entry(lambda r: r["tip_entitate"] != "organizatie" and not r["detaliere_date"] and fields.get(r["slug"], 0) > 0)
+        without = self.entry(lambda r: r["tip_entitate"] != "organizatie" and not r["detaliere_date"] and fields.get(r["slug"], 0) == 0)
+        clean = self.run_validate()
+        self.assertEqual((clean.returncode, "fara-date" in clean.stdout), (0, False), clean.stdout + clean.stderr)
+        self.set_relation(without, "fara-date")
+        self.set_relation(with_fields, "date-publice")
+        quiet = self.run_validate()  # no field contradicts these two
+        self.assertEqual((quiet.returncode, "fara-date" in quiet.stdout), (0, False), quiet.stdout + quiet.stderr)
+        self.set_relation(with_fields, "fara-date")
+        loud = self.run_validate()
+        self.assertEqual(loud.returncode, 0, loud.stdout + loud.stderr)  # a warning, not an error
+        lines = [l for l in loud.stdout.splitlines() if "fara-date" in l]
+        self.assertEqual(len(lines), 1, loud.stdout)
+        self.assertIn("warning", lines[0])
+        self.assertIn(f"{with_fields}: relatie_date is fara-date, but the inventory has {fields[with_fields]} extracted fields", lines[0])
+        self.assertNotIn(without, " ".join(lines))
+        self.assertIn("1 avertismente", loud.stderr)
+
+    def test_the_build_writes_data_relation_on_each_item_and_the_code_list_and_nothing_else_changes(self):
+        sys.path.insert(0, str(HERE))
+        import build
+        slug = self.entry(lambda r: r["tip_entitate"] == "proiect" and r["clasificare_stare"] == "acceptat")
+        site = Path(self.c.tmp.name) / "site"
+        before, head = build.items_v2(self.c.overlay, site)
+        self.assertTrue(before and all(i["dataRelation"] == "" for i in before))  # the empty column changes nothing
+        self.assertEqual([c["key"] for c in head["vocabulary"]["dataRelations"]], ["date-publice", "date-proprii", "calcul", "fara-date"])
+        self.assertEqual({c["key"]: c["label"] for c in head["vocabulary"]["dataRelations"]}["calcul"], "Calculator sau formular")
+        self.set_relation(slug, "calcul")
+        after, _ = build.items_v2(self.c.overlay, site)
+        self.assertEqual({i["slug"]: i["dataRelation"] for i in after if i["dataRelation"]}, {slug: "calcul"})
+        strip = lambda items: [{k: v for k, v in i.items() if k != "dataRelation"} for i in items]
+        self.assertEqual(strip(before), strip(after))
 
 
 # What a recommendation must not be: the empty or placeholder proposals of the generated queue.

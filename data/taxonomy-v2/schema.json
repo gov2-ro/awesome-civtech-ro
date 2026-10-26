@@ -238,6 +238,11 @@
       "dovada_detaliere": {
         "kind": "text",
         "required": false
+      },
+      "relatie_date": {
+        "kind": "code",
+        "list": "relatie_date",
+        "required": false
       }
     },
     "concepte.csv": {
@@ -399,6 +404,7 @@
       "arii_acoperite",
       "detaliere_date",
       "dovada_detaliere",
+      "relatie_date",
       "localitate_originala",
       "autor_original",
       "contact",
