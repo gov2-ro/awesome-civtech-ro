@@ -435,8 +435,7 @@ function facetsHTML() {
     if (!useful(key, options)) continue;
     out.push(facet(key, facetTitle(key), tagsHTML(key, options, facetCounts(key, options)), !!state[key]));
   }
-  // An organisation has no relation to data (`dat`), and a project or a resource has no organisation type (`orgt`).
-  const more = MORE.filter(k => k === 'orgt' ? state.k === 'organizatie' : k !== 'dat' || state.k !== 'organizatie').map(key => {
+  const more = MORE.filter(k => k !== 'orgt' || state.k === 'organizatie').map(key => {
     const options = optionsOf(key);
     return useful(key, options) ? `<div class="subfacet"><p class="kicker">${esc(facetTitle(key))}</p>${tagsHTML(key, options, facetCounts(key, options))}</div>` : '';
   }).join('');
