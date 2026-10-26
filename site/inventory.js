@@ -189,6 +189,21 @@ $('#data-search').addEventListener('input', () => {
 document.addEventListener('toggle', e => { if (e.target.matches?.('.finder-family')) familyOpen.set(e.target.dataset.family, e.target.open); }, true);
 window.addEventListener('popstate', () => { if (state) { clearTimeout(searchTimer); readState(); shown=24; render(); } });
 
+// The entries that the inventory leaves out, by reason, each with a link to the explorer that shows them (the explorer's facets `dat` and `st`).
+function showLeftOut(counts) {
+  const reasons = [['fara-date', 'fără date', 'dat=fara-date'], ['neevaluat', 'neevaluate', 'dat=neevaluat'], ['inactiv', 'inactive', 'st=inactiv']];
+  const kinds = [['proiect', 'proiecte', ''], ['resursa', 'resurse', 'k=resursa&']];
+  const parts = reasons.map(([key, text, query]) => {
+    const links = kinds.filter(([kind]) => Number(counts[key]?.[kind]) > 0)
+      .map(([kind, label, prefix]) => `<a href="./?${prefix}${query}">${Number(counts[key][kind])} ${label}</a>`);
+    return links.length ? `${text}: ${links.join(', ')}` : '';
+  }).filter(Boolean);
+  if (!parts.length) return;
+  const note = $('#data-left-out');
+  note.innerHTML = `Lăsate pe dinafară (vezi în explorator): ${parts.join(' · ')}.`;
+  note.hidden = false;
+}
+
 async function start() {
   try {
     const response = await fetch(url('inventar/index.json'));
@@ -214,6 +229,7 @@ async function start() {
     const projects = entries.filter(e => e.kind === 'proiect').length;
     const fields = entries.filter(e => e.inventory.count).length;
     $('#data-coverage').textContent = `${projects} proiecte · ${entries.length-projects} resurse și liste · ${fields} inventare parțiale`;
+    showLeftOut(inventory.leftOut || {});
     readState(); render();
   } catch (error) {
     $('#data-coverage').textContent = 'Inventarul nu s-a putut încărca.';

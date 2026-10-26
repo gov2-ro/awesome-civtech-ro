@@ -7,6 +7,7 @@ import csv
 import json
 import os
 import re
+from datetime import date
 from functools import lru_cache
 from pathlib import Path
 from urllib.parse import urlparse
@@ -353,6 +354,55 @@ def public_catalogue(data_dir: Path = PUBLIC_ROOT) -> list[dict]:
     `row` keeps the entry's record in the edited table, so the Sheet links of the other entries do not move."""
     from taxonomy_v2 import HIDDEN
     return [e for e in load_catalogue(data_dir) if e.get("classification_state") != HIDDEN]
+
+
+def years_since(d: str) -> float | None:
+    return (date.today() - date.fromisoformat(d)).days / 365.25 if d else None
+
+
+def status_of(stare: str, prof: dict) -> str:
+    """The status that the site shows for an entry: the editor's `stare`, else what the profiler saw."""
+    if stare:
+        return stare
+    s = prof.get("status")
+    if not s:
+        return "neverificat"
+    # Gone, and the Wayback Machine has not seen it for a year: the project has ended, not just a glitch.
+    if s == "offline" and (years_since(prof.get("last_capture", "")) or 0) > 1:
+        return "arhivat"
+    return {"mutat": "activ", "blocat": "necunoscut", "parcat": "offline"}.get(s, s)
+
+
+# The scope of the variable inventory (docs/briefs/data-relation.md, section 3). One rule serves `/date/`, `/date/lista/`,
+# `inventar/<slug>.json`, the inventory markers of the explorer, the coverage export and the default selection of
+# collect_docs.py and inventory.py.
+INACTIVE_STATUSES = ("offline", "arhivat")  # the group `inactiv` of STATUS in site/app.js
+IN_SCOPE_RELATIONS = ("date-publice", "date-proprii", "calcul")  # the codes of `relatie_date` that keep an entry in scope
+UNASSESSED = "neevaluat"  # the name of an empty `relatie_date`; the column never holds it
+OUT_OF_SCOPE = ("in-afara-ariei", "inactiv", "fara-date", UNASSESSED)  # the reasons; the first that applies is the one reported
+
+
+def inventory_exclusion(kind: str, status: str, relation: str) -> str:
+    """Why an entry is out of the variable inventory, or an empty string when it is in scope. An entry is in scope when it
+    is a project or a resource, its built status is not inactive, and its `relatie_date` is `date-publice`, `date-proprii`
+    or `calcul`. An empty value and `fara-date` both leave it out. A code that valori.csv does not list counts as empty."""
+    if kind not in ("proiect", "resursa"):
+        return OUT_OF_SCOPE[0]
+    if status in INACTIVE_STATUSES:
+        return OUT_OF_SCOPE[1]
+    if relation in IN_SCOPE_RELATIONS:
+        return ""
+    return OUT_OF_SCOPE[2] if relation == OUT_OF_SCOPE[2] else UNASSESSED
+
+
+def inventory_scope(entries: list[dict], data_dir: Path = PUBLIC_ROOT) -> dict[str, str]:
+    """slug -> reason (see `inventory_exclusion`; empty when in scope) for catalogue entries of a v2 root, with the status that
+    build.py gives each one. A v1 root has no `relatie_date`, so every entry of it counts as in scope."""
+    if data_schema(data_dir) != "v2":
+        return {e["slug"]: "" for e in entries}
+    profile = load_profile(observation_paths(data_dir)["profile"])
+    return {e["slug"]: inventory_exclusion(e["kind"], status_of(e["stare"], profile.get(e["slug"], {})), e.get("data_relation", ""))
+            for e in entries}
 
 
 def load_profile(path: Path = PROFILE) -> dict:

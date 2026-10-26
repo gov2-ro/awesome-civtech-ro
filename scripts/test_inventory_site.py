@@ -1,5 +1,7 @@
 """Checks for compact, explicitly partial explorer inventory previews."""
+import csv
 import json
+import re
 import subprocess
 import sys
 import tempfile
@@ -10,8 +12,14 @@ from unittest.mock import patch
 from inventory import analyse_source
 from inventory_concepts import validate_families
 from inventory_state import counted_fields
-from inventory_site import (BASIS, document_links, fold_restatements, group_api_parameters, publish_overview, publish_preview, sheet_titles, variable_matches,
-                            publish_finder)
+from common import inventory_exclusion
+from inventory_site import (BASIS, document_links, fold_restatements, group_api_parameters, left_out, publish_overview, publish_preview, scope_reason,
+                            sheet_titles, variable_matches, publish_finder)
+
+
+def built(slug, **fields):
+    """A built item that is in the scope of the variable inventory (a project, active, with a relation to data); a test overrides what it needs."""
+    return {'slug': slug, 'name': slug, 'kind': 'proiect', 'status': 'activ', 'dataRelation': 'date-publice', **fields}
 
 
 class InventorySite(unittest.TestCase):
@@ -54,7 +62,7 @@ class InventorySite(unittest.TestCase):
             root = Path(tmp); obs = root / 'observatii'; inv = obs / 'inventare'; inv.mkdir(parents=True)
             (inv / 'proiecte.json').write_text(json.dumps({'proiecte': [{'slug': 'x', 'surse_structurate': ['s']}]}))
             (inv / 'seturi-date.json').write_text(json.dumps({'surse': [source]}))
-            site = root / 'site'; site.mkdir(); items = [{'slug': 'x'}]
+            site = root / 'site'; site.mkdir(); items = [built('x')]
             with patch('inventory_site.observation_paths', return_value={'profile': obs / 'profil.csv'}):
                 publish_preview(items, root, site)
             data = json.loads((site / 'inventar/x.json').read_text())
@@ -125,7 +133,7 @@ class InventorySite(unittest.TestCase):
                  'sha256': 'private-hash', 'campuri': [{'nume': 'cui', 'cale': '$.cui', 'rol': 'camp-raspuns',
                       'tip_declarat': 'string', 'stare_tip': 'declarat-in-schema', 'pointer': '/properties/cui'}]},
             ]}))
-            site = root / 'site'; site.mkdir(); items = [{'slug': 'x'}, {'slug': 'empty'}]
+            site = root / 'site'; site.mkdir(); items = [built('x'), built('empty')]
             with patch('inventory_site.observation_paths', return_value={'profile': obs / 'profil.csv'}):
                 publish_preview(items, root, site)
             self.assertEqual(items[0]['inventory']['count'], 1)
@@ -154,7 +162,7 @@ class InventorySite(unittest.TestCase):
                 {'id': 's', 'url': 'https://example.org/a.json', 'format': 'openapi', 'fetched_at': '2026-10-24T10:00:00+00:00', 'campuri': [field],
                  'ultima_incercare': {'la': '2026-10-25T09:00:00+00:00', 'stare': 'eroare-http', 'http_status': 503}},
                 {'id': 't', 'url': 'https://example.org/b.json', 'format': 'openapi', 'fetched_at': '2026-10-24T10:00:00+00:00', 'campuri': [field]}]}))
-            site = root / 'site'; site.mkdir(); items = [{'slug': 'x'}]
+            site = root / 'site'; site.mkdir(); items = [built('x')]
             with patch('inventory_site.observation_paths', return_value={'profile': obs / 'profil.csv'}):
                 publish_preview(items, root, site)
             sources = json.loads((site / 'inventar/x.json').read_text())['sources']
@@ -197,11 +205,11 @@ class InventorySite(unittest.TestCase):
             root = Path(tmp); site = root / 'site'; (site / 'inventar').mkdir(parents=True)
             for name in ('style.css', 'inventory.css', 'inventory.js'):
                 (site / name).write_text('/* fixture */')
-            items = [dict(slug='no-fields', name='No fields', kind='proiect', institutions=['institutie:parlament'],
+            items = [built('no-fields', name='No fields', institutions=['institutie:parlament'],
                           dataSources=[{'name': 'Camera Deputaților', 'evidence': 'https://example.org/method'},
                                        {'name': 'Senatul României', 'evidence': 'https://example.org/other'}]),
-                     dict(slug='resource', name='A resource', kind='resursa'),
-                     dict(slug='org', name='An organisation', kind='organizatie')]
+                     built('resource', name='A resource', kind='resursa'),
+                     built('org', name='An organisation', kind='organizatie')]
             publish_finder(items, root / 'integrare', site, {})
             index = json.loads((site / 'inventar/index.json').read_text())
             self.assertEqual([e['slug'] for e in index['entries']], ['no-fields', 'resource'])
@@ -251,8 +259,7 @@ class InventorySite(unittest.TestCase):
             return dict(name=name, path='$.' + name, role=role, source=source)
         fields = [field('cui'), field('cui_firma'), field('q', 'parametru-api'), field('q'), field('total', source='t'), field('year')]
         sources = [{'id': 's', 'url': 'https://example.org/api/openapi.json'}, {'id': 't', 'url': 'https://example.org/'}]
-        items = [dict(slug='p', name='Proj', kind='proiect'), dict(slug='bare', name='Bare & co', kind='resursa'),
-                 dict(slug='org', name='Org', kind='organizatie')]
+        items = [built('p', name='Proj'), built('bare', name='Bare & co', kind='resursa'), built('org', name='Org', kind='organizatie')]
         with tempfile.TemporaryDirectory() as tmp:
             site = Path(tmp)
             for name in ('style.css', 'inventory.css'):
@@ -315,6 +322,144 @@ class InventorySite(unittest.TestCase):
             self.assertFalse((site / 'date').exists())
             self.assertFalse((site / 'inventar').exists())
             self.assertNotIn('inventoryPreview', json.loads((site / 'data.json').read_text()))
+
+
+class Scope(unittest.TestCase):
+    """The scope of the variable inventory: a project or a resource, not inactive, with a relation to data other than `fara-date` (docs/briefs/data-relation.md, section 3).
+    The fixtures build their own items: no test here pins the value of `relatie_date` that an editor sets for a real entry."""
+
+    ROOT = Path(__file__).resolve().parents[1]
+
+    def fixture(self, tmp):
+        """A data root with fields for every slug (also for the out-of-scope ones), so that only the scope can keep an entry out."""
+        root = Path(tmp) / 'integrare'
+        obs = root.parent / 'observatii'
+        inv = obs / 'inventare'
+        inv.mkdir(parents=True)
+        (obs / 'documentare').mkdir()
+        slugs = ['in-date', 'in-calcul', 'in-resource', 'no-data', 'unassessed', 'gone-offline', 'gone-archived', 'gone-nodata', 'an-org']
+        (obs / 'documentare/index.json').write_text(json.dumps({'entries': [
+            {'slug': 'an-org', 'pages': [{'state': 'colectat', 'scope': 'proiect', 'kind': 'metodologie', 'final_url': 'https://org.example/method'}]}]}))
+        (inv / 'proiecte.json').write_text(json.dumps({'proiecte': [{'slug': slug, 'surse_structurate': ['s-' + slug]} for slug in slugs]}))
+        (inv / 'seturi-date.json').write_text(json.dumps({'surse': [
+            {'id': 's-' + slug, 'url': f'https://example.org/{slug}.csv', 'format': 'csv',
+             'campuri': [{'nume': 'col_' + slug, 'cale': 'col_' + slug, 'rol': 'camp-date', 'stare_tip': 'neprecizat-in-antet-csv', 'pointer': '/0'}]} for slug in slugs]}))
+        site = Path(tmp) / 'site'
+        (site / 'inventar').mkdir(parents=True)
+        for name in ('style.css', 'inventory.css', 'inventory.js'):
+            (site / name).write_text('/* fixture */')
+        items = [built('in-date'), built('in-calcul', dataRelation='calcul', name='Calculator'), built('in-resource', kind='resursa', dataRelation='date-proprii'),
+                 built('no-data', dataRelation='fara-date'), built('no-data-resource', kind='resursa', dataRelation='fara-date'),
+                 built('unassessed', dataRelation=''), built('gone-offline', status='offline'), built('gone-archived', status='arhivat', dataRelation=''),
+                 built('gone-nodata', kind='resursa', status='arhivat', dataRelation='fara-date'), built('an-org', kind='organizatie', dataRelation='')]
+        return root, site, items
+
+    def publish(self, tmp):
+        root, site, items = self.fixture(tmp)
+        with patch('inventory_site.observation_paths', return_value={'profile': root.parent / 'observatii/profil.csv'}):
+            projections = publish_preview(items, root, site)
+        publish_finder(items, root, site, projections)
+        return site, items
+
+    def test_one_rule_decides_from_kind_status_and_relation_to_data(self):
+        cases = [(('proiect', 'activ', 'date-publice'), ''), (('resursa', 'activ', 'date-proprii'), ''), (('proiect', 'necunoscut', 'calcul'), ''),
+                 (('proiect', 'neverificat', 'calcul'), ''), (('proiect', 'offline', 'date-publice'), 'inactiv'), (('resursa', 'arhivat', 'calcul'), 'inactiv'),
+                 (('proiect', 'arhivat', 'fara-date'), 'inactiv'), (('proiect', 'offline', ''), 'inactiv'),
+                 (('proiect', 'activ', 'fara-date'), 'fara-date'), (('resursa', 'necunoscut', 'fara-date'), 'fara-date'),
+                 (('proiect', 'activ', ''), 'neevaluat'), (('resursa', 'activ', 'cod-necunoscut'), 'neevaluat'),
+                 (('organizatie', 'activ', 'date-publice'), 'in-afara-ariei'), (('organizatie', 'offline', ''), 'in-afara-ariei')]
+        for (kind, status, relation), reason in cases:
+            with self.subTest(kind=kind, status=status, relation=relation):
+                self.assertEqual(inventory_exclusion(kind, status, relation), reason)
+                self.assertEqual(scope_reason({'kind': kind, 'status': status, 'dataRelation': relation}), reason)
+        self.assertEqual(scope_reason({'kind': 'proiect', 'status': 'activ'}), 'neevaluat', 'an item without the key is not assessed')
+
+    def test_the_rule_follows_the_code_list_and_the_inactive_group_of_the_explorer(self):
+        from common import IN_SCOPE_RELATIONS, INACTIVE_STATUSES
+        listed = []
+        with (self.ROOT / 'data/taxonomy-v2/valori.csv').open(newline='') as handle:
+            listed = [row['cod'] for row in csv.DictReader(handle) if row['lista'] == 'relatie_date']
+        self.assertEqual(sorted(listed), sorted([*IN_SCOPE_RELATIONS, 'fara-date']), 'a new code needs a decision about its scope')
+        app = (self.ROOT / 'site/app.js').read_text()
+        inactive = re.findall(r"^\s+(\w+): \{ label: '[^']*', cls: '\w+', group: 'inactiv' \}", app, re.M)
+        self.assertEqual(sorted(inactive), sorted(INACTIVE_STATUSES), 'isInactive in site/app.js and the Python rule name the same statuses')
+
+    def test_the_preview_the_finder_and_the_list_leave_out_the_same_entries_and_count_them_by_reason(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            site, items = self.publish(tmp)
+            by = {i['slug']: i for i in items}
+            in_scope = ['in-calcul', 'in-date', 'in-resource']
+            index = json.loads((site / 'inventar/index.json').read_text())
+            self.assertEqual(sorted(e['slug'] for e in index['entries']), in_scope)
+            self.assertEqual(sorted(p.stem for p in (site / 'inventar').glob('*.json') if p.stem != 'index'), in_scope)
+            self.assertEqual([slug for slug, item in by.items() if 'inventory' in item], sorted(in_scope, key=list(by).index))
+            page = (site / 'date/lista/index.html').read_text()
+            body = page[page.index('<tbody>'):page.index('</tbody>')]
+            self.assertEqual(sorted(re.findall(r'<tr id="([^"]+)">', body)), in_scope)
+            for slug in set(by) - set(in_scope):
+                self.assertNotIn(f'/{slug}/"', page.split('<section class="ov-left">')[0], slug + ' is named in the table or in the list of entries without fields')
+            self.assertEqual(index['leftOut'], {'fara-date': {'proiect': 1, 'resursa': 1}, 'neevaluat': {'proiect': 1, 'resursa': 0},
+                                                 'inactiv': {'proiect': 2, 'resursa': 1}})
+            self.assertEqual(left_out(items), index['leftOut'])
+
+    def test_the_list_says_how_many_entries_it_leaves_out_by_reason_and_links_the_explorer(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            site, _ = self.publish(tmp)
+            page = (site / 'date/lista/index.html').read_text()
+        section = page[page.index('<section class="ov-left">'):page.index('</section>', page.index('<section class="ov-left">'))]
+        self.assertIn('<h2>Lăsate pe dinafară (6)</h2>', section, '2 without data, 1 not assessed, 3 inactive')
+        reasons = dict(re.findall(r'<li data-reason="([a-z-]+)">(.*?)</li>', section))
+        self.assertEqual(list(reasons), ['fara-date', 'neevaluat', 'inactiv'])
+        self.assertIn('(2)', reasons['fara-date'])
+        self.assertIn('(1)', reasons['neevaluat'])
+        self.assertIn('(3)', reasons['inactiv'])
+        self.assertIn('<a href="./?dat=fara-date">1 proiect</a>', reasons['fara-date'])
+        self.assertIn('<a href="./?k=resursa&amp;dat=fara-date">1 resursă</a>', reasons['fara-date'])
+        self.assertIn('<a href="./?dat=neevaluat">1 proiect</a>', reasons['neevaluat'])
+        self.assertNotIn('k=resursa', reasons['neevaluat'], 'no link for a kind without entries')
+        self.assertIn('<a href="./?st=inactiv">2 proiecte</a>', reasons['inactiv'])
+        self.assertIn('<a href="./?k=resursa&amp;st=inactiv">1 resursă</a>', reasons['inactiv'])
+        bare = page[page.index('<section class="ov-bare">'):page.index('</section>', page.index('<section class="ov-bare">'))]
+        self.assertIn('Lipsa câmpurilor nu înseamnă lipsa datelor', bare, 'the note stays with the entries that are in scope and have no fields')
+        self.assertNotIn('Lipsa câmpurilor', section)
+
+    def test_the_note_is_absent_when_the_inventory_leaves_nothing_out(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root, site, _ = self.fixture(tmp)
+            items = [built('in-date')]
+            with patch('inventory_site.observation_paths', return_value={'profile': root.parent / 'observatii/profil.csv'}):
+                projections = publish_preview(items, root, site)
+            publish_finder(items, root, site, projections)
+            self.assertNotIn('ov-left', (site / 'date/lista/index.html').read_text())
+            self.assertEqual(json.loads((site / 'inventar/index.json').read_text())['leftOut']['inactiv'], {'proiect': 0, 'resursa': 0})
+
+    def test_an_entry_that_leaves_the_scope_loses_its_inventory_file_and_marker_at_the_next_build(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root, site, items = self.fixture(tmp)
+            with patch('inventory_site.observation_paths', return_value={'profile': root.parent / 'observatii/profil.csv'}):
+                publish_preview(items, root, site)
+                self.assertTrue((site / 'inventar/in-date.json').exists() and 'inventory' in items[0])
+                fresh = [built('in-date', dataRelation='fara-date')]
+                publish_preview(fresh, root, site)
+            self.assertFalse((site / 'inventar/in-date.json').exists())
+            self.assertNotIn('inventory', fresh[0])
+
+    def test_an_organisation_keeps_no_inventory_key_even_with_documentation_links(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root, site, items = self.fixture(tmp)
+            with patch('inventory_site.observation_paths', return_value={'profile': root.parent / 'observatii/profil.csv'}):
+                publish_preview(items, root, site)
+            self.assertNotIn('inventory', next(i for i in items if i['slug'] == 'an-org'), 'the fixture gives the organisation a methodology page')
+
+    def test_the_site_and_the_scripts_give_every_public_entry_the_same_reason(self):
+        import build
+        from common import PUBLIC_ROOT, inventory_scope, public_catalogue
+        with tempfile.TemporaryDirectory() as tmp:
+            items, _ = build.items_v2(PUBLIC_ROOT, Path(tmp))
+        reasons = inventory_scope(public_catalogue(PUBLIC_ROOT), PUBLIC_ROOT)
+        self.assertEqual({i['slug'] for i in items}, set(reasons))
+        self.assertEqual({i['slug']: scope_reason(i) for i in items}, reasons,
+                         'collect_docs.py, inventory.py and the coverage export read the catalogue; the site reads the built items: both must agree')
 
 
 if __name__ == '__main__':
