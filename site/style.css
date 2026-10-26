@@ -495,6 +495,7 @@ svg.gh { width: 20px; height: 20px; fill: currentColor; stroke: none; }
 
 /* ---------- footer ---------- */
 .footer { display: grid; gap: 20px; padding-top: 28px; padding-bottom: max(40px, env(safe-area-inset-bottom)); border-top: 1px solid var(--line); color: var(--ink-2); font-size: calc(15px * var(--fs)); }
+.footer > * { min-width: 0; }  /* a long control row must wrap inside the column, not widen the page */
 .footer .kicker { margin-bottom: 6px; }
 .footer p { max-width: 62ch; }
 .footer .keys { max-width: none; }
@@ -504,7 +505,7 @@ svg.gh { width: 20px; height: 20px; fill: currentColor; stroke: none; }
 /* ---------- display preferences (footer) ---------- */
 .prefs { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; }
 .prefs .kicker { margin: 0; flex-basis: 100%; max-width: none; }
-.pref { display: flex; align-items: center; gap: 10px; }
+.pref { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; min-width: 0; }
 .seg-txt button { width: auto; min-width: 34px; padding: 0 9px; font: 500 calc(13px * var(--fs)) / 1 var(--font-mono); }
 @media (min-width: 720px) { .prefs { grid-column: 1 / -1; } }
 
