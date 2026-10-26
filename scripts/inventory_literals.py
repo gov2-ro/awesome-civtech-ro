@@ -6,9 +6,12 @@ the page holds, and it never guesses a meaning.
 
 What it reads:
 
-- A top-level declaration (`const`, `let` or `var` at the start of a line) whose value is a literal: an object or an array that holds
-  only strings, numbers, `true`, `false`, `null`, arrays and objects. Keys may be quoted or bare, strings may use either quote,
-  and comments and trailing commas are allowed. This is JSON, plus the habits of hand-written script.
+- A top-level declaration (`const`, `let` or `var` at the start of a line, or an assignment `window.NAME = ...`) whose value is a literal: an object
+  or an array that holds only strings, numbers, `true`, `false`, `null`, arrays and objects. Keys may be quoted or bare, strings may use either quote,
+  and comments and trailing commas are allowed. This is JSON, plus the habits of hand-written script. The literal may be the one argument of
+  `Object.freeze(...)`: the call only seals the object, and the data is the literal. A literal in any other call stays unread.
+- A script file. A body that has no `<script>` element and does not look like an HTML page is one script: the file `data.js` that a page loads
+  with `<script src>`. Its character offsets are those of the file.
 - A data island: a script of type `application/json`, named by its `id`.
 
 JSON-LD (`application/ld+json`) is not read as data, but a schema.org `Dataset` in it is the page's own declaration about a data set. The
@@ -42,7 +45,8 @@ EXAMPLE_KEYS = 3
 EXAMPLE_LENGTH = 40
 
 SCRIPT = re.compile(r'<script\b([^>]*)>(.*?)</script\s*>', re.S | re.I)
-DECLARATION = re.compile(r'^(?:const|let|var)[ \t]+([A-Za-z_$][\w$]*)[ \t]*=[ \t]*(?=[\[{])', re.M)
+DECLARATION = re.compile(r'^(?:(?:const|let|var)[ \t]+|window\.)([A-Za-z_$][\w$]*)[ \t]*=[ \t]*(Object\.freeze\([ \t]*)?(?=[\[{])', re.M)
+HTML_PAGE = re.compile(r'<(?:!doctype\s+html|html|head|body)(?:\s|>)', re.I)
 STRING = {'"': re.compile(r'"[^"\\\n]*(?:\\.[^"\\\n]*)*"', re.S), "'": re.compile(r"'[^'\\\n]*(?:\\.[^'\\\n]*)*'", re.S)}
 NUMBER = re.compile(r'[-+]?(?:\d+\.?\d*|\.\d+)(?:[eE][-+]?\d+)?')
 IDENTIFIER = re.compile(r'[A-Za-z_$][\w$]*')
@@ -224,8 +228,10 @@ def script_literals(body):
         names[name] = names.get(name, 0) + 1
         return name if names[name] == 1 else f'{name}#{names[name]}'
 
-    for script in SCRIPT.finditer(body):
-        attributes, text, base = script.group(1), script.group(2), script.start(2)
+    scripts = [(m.group(1), m.group(2), m.start(2)) for m in SCRIPT.finditer(body)]
+    if not scripts and not HTML_PAGE.search(body[:2000]):
+        scripts = [('', body, 0)]  # a script file, not a page
+    for attributes, text, base in scripts:
         if re.search(r'\bsrc\s*=', attributes, re.I):
             continue
         kind = re.search(r'\btype\s*=\s*["\']?([^"\'\s>]+)', attributes, re.I)
@@ -257,6 +263,11 @@ def script_literals(body):
             record = {'variabila': unique(match.group(1)), 'forma-sursa': 'literal-script', 'start': base + match.end()}
             try:
                 node = parser.value()
+                if match.group(2):  # Object.freeze(<literal>)
+                    parser.space()
+                    if parser.i >= len(text) or text[parser.i] != ')':
+                        raise NotLiteral('expresie-dupa-literal', base + parser.i)
+                    parser.i += 1
                 parser.statement_end()
                 found.append({**record, 'node': node, 'reason': None, 'at': node.end})
                 covered = node.end

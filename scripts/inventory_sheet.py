@@ -5,6 +5,7 @@ the header and refuses a header with an empty or repeated cell. The registry can
 
     {"tip": "csv", "rand_antet": 2}                    the header is the second row; the row above it is a title
     {"tip": "csv", "coloane_fara_nume": "omise"}       header cells that are empty are left out; they are listed, never named
+    {"tip": "csv", "delimitator": "tab"}               the file is a TSV (tab-separated); the default is the comma
 
 The options can be combined. Without `citire`, or with `{"tip": "csv"}` alone, the plain rules apply. An unknown option is an error.
 
@@ -18,7 +19,8 @@ from __future__ import annotations
 import csv
 import io
 
-OPTIONS = {'tip', 'rand_antet', 'coloane_fara_nume'}
+OPTIONS = {'tip', 'rand_antet', 'coloane_fara_nume', 'delimitator'}
+DELIMITERS = {'tab': '\t'}
 MAX_CELL = 300
 
 
@@ -48,12 +50,19 @@ def settings(options):
     omit = options.get('coloane_fara_nume')
     if omit not in (None, 'omise'):
         raise ValueError('coloane_fara_nume accepts only the value "omise"')
+    if options.get('delimitator') not in (None, *DELIMITERS):
+        raise ValueError('delimitator accepts only the value "tab"')
     return row, omit == 'omise'
 
 
-def read_rows(body, row):
+def delimiter(options):
+    """The field separator of the file: a comma, or a tab when the options say `delimitator` `tab`."""
+    return DELIMITERS.get((options if isinstance(options, dict) else {}).get('delimitator'), ',')
+
+
+def read_rows(body, row, separator=','):
     """(rows above the header, the header row) of a CSV body. Raises ValueError when the body has too few rows."""
-    rows = csv.reader(io.StringIO(body.lstrip('﻿')), csv.excel)
+    rows = csv.reader(io.StringIO(body.lstrip('﻿')), csv.excel, delimiter=separator)
     above = []
     for number in range(1, row):
         record = next(rows, None)
@@ -69,7 +78,7 @@ def read_rows(body, row):
 def read(body, options):
     """The field records of the header row. Raises ValueError for an empty cell (unless left out), a repeated name or a header with no name."""
     row, omit = settings(options)
-    _, header = read_rows(body, row)
+    _, header = read_rows(body, row, delimiter(options))
     names = [name for name in header if name.strip()]
     if len(names) != len(header) and not omit:
         raise ValueError('CSV header is empty or contains duplicate/unnamed columns')
@@ -84,5 +93,5 @@ def read(body, options):
 def header_facts(body, options):
     """The source key `antet`: the header row, the rows above it and the empty header cells that the options left out."""
     row, _ = settings(options)
-    above, header = read_rows(body, row)
+    above, header = read_rows(body, row, delimiter(options))
     return {'rand_antet': row, 'randuri_deasupra': above, 'celule_antet_goale': [cell(i, row) for i, name in enumerate(header) if not name.strip()]}

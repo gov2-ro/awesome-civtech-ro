@@ -39,6 +39,7 @@ from inventory_apidocs import operations as api_operations
 from inventory_csvcards import csv_datasets
 from inventory_datasette import FORMAT as DATASETTE, database as datasette_database, is_listing as is_datasette, read as datasette_fields
 from inventory_ins import ins_dataset, ins_listing, ins_measure, is_listing
+from inventory_jsonsample import FORMAT as JSON_SAMPLE, list_sizes, recover as recover_json
 from inventory_literals import datasets as literal_datasets, declarations as literal_declarations
 from inventory_setlist import list_datasets
 from inventory_sheet import header_facts, read as read_sheet
@@ -207,6 +208,12 @@ def observed_fields(doc):
     return list(found.values())
 
 
+def sample_facts(body):
+    """The source key `esantion` of a cut JSON body: whether it is whole, and how many complete elements each list holds."""
+    document, complete = recover_json(body)
+    return {'complet': complete, 'elemente_citite': list_sizes(document)}
+
+
 def sampling_limit(value, depth=0):
     if depth > MAX_DEPTH:
         return isinstance(value, (dict, list)) and bool(value)
@@ -226,6 +233,12 @@ def parse_source(body, url, content_type='', hint=None):
     """Parse a retained body. `hint` is the registry's `citire`: a reader name, or {'tip': name, ...options}. Without a hint the
     URL's extension picks a code reader; HTML at a schema/data URL is still an error."""
     kind = hint.get('tip') if isinstance(hint, dict) else hint
+    if kind == JSON_SAMPLE:
+        document, complete = recover_json(body)
+        fields = observed_fields(document)
+        if not fields:
+            raise ValueError('The sample holds no complete record with a field')
+        return JSON_SAMPLE, fields, not complete or len(fields) >= MAX_FIELDS or sampling_limit(document)
     if kind and kind != 'csv':
         return read_text(body, kind, hint if isinstance(hint, dict) else None)
     if has_csv_options(hint):
@@ -368,7 +381,7 @@ def analyse_source(response, hint=None):
     try:
         fmt, fields, truncated = parse_source(body, response['final_url'], response.get('content_type', ''), hint)
         metadata.update(format=fmt, campuri=fields, stare='analizat', completitudine='partial', limita_atinsa=truncated,
-                        baza_tipului=('esantion-date' if fmt in ('json', 'lista-ins', 'js-literale') else 'antet-fara-tipuri' if fmt == 'csv'
+                        baza_tipului=('esantion-date' if fmt in ('json', 'lista-ins', 'js-literale', JSON_SAMPLE) else 'antet-fara-tipuri' if fmt == 'csv'
                                       else 'lista-fara-tipuri' if fmt == DATASETTE
                                       else 'cod-sau-documentatie' if fmt in TEXT_FORMATS else 'schema-declarata'))
         if has_csv_options(hint):
@@ -379,6 +392,8 @@ def analyse_source(response, hint=None):
             metadata['catalog'] = ins_listing(json.loads(body))
         elif fmt == DATASETTE:
             metadata['baza'] = datasette_database(json.loads(body))
+        elif fmt == JSON_SAMPLE:
+            metadata['esantion'] = sample_facts(body)
         elif fmt == 'html-api-docs':
             metadata['operatii'] = api_operations(body)
         elif fmt == 'html-carduri-csv':
@@ -611,6 +626,10 @@ def check_report(out, observations):
                 _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
                 if fields != source['campuri'] or list_datasets(body) != source.get('seturi'):
                     errors.append('Datasets differ from the retained body: ' + source['url'])
+            elif source.get('format') == JSON_SAMPLE:
+                _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
+                if fields != source['campuri'] or sample_facts(body) != source.get('esantion'):
+                    errors.append('Fields or sample facts differ from the retained body: ' + source['url'])
             elif source.get('format') == DATASETTE:
                 _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
                 if fields != source['campuri'] or datasette_database(json.loads(body)) != source.get('baza'):
@@ -670,7 +689,8 @@ def check_report(out, observations):
                     if status == '' and evidence.get('blob_sha') and source.get('sha256'):
                         try:
                             body = json.loads((out / source['snapshot']).read_text())['body']
-                            if git_blob_sha(body) != evidence['blob_sha']:
+                            # A range read is cut on purpose: it cannot be the whole blob, so the blob hash is not compared (the tree entry still locates the file).
+                            if not source.get('partial') and git_blob_sha(body) != evidence['blob_sha']:
                                 status = f'Retained body of {record["url"]} is not the file {evidence["cale"]} at {evidence["revizie"]}'
                         except (OSError, ValueError, KeyError):
                             pass

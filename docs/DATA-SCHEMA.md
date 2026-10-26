@@ -845,6 +845,8 @@ Without `--only`, it collects the entries that are in scope of the variable inve
 `documentatie-gasita` means that the collector found a candidate first-party page or section. It does not prove completeness.
 `documentatie-neconfirmata` means that this bounded pass found no usable project-specific documentation.
 HTTP errors, network errors, HTML at a `llms.txt` address and homepage copies remain separate page states.
+A link with letters outside ASCII (`/descarcă-datele`) goes on the wire percent-encoded as UTF-8 and its host through IDNA (`collect_docs.wire_url`, used by the collector and by `inventory.py`).
+The page record, the cache key and the request log keep the address as the page wrote it. Before this rule (until 2026-10-27) such a link was an `eroare-retea` ("'ascii' codec can't encode character").
 Shared-host documentation is retained with `scope=gazda-comuna`. It does not become project-specific evidence automatically.
 
 **Pages saved by the owner.** A site can answer every automated request with a security checkpoint and forbid automated extraction in its terms.
@@ -1007,6 +1009,7 @@ All readers return the common field keys and add the keys below; none infers a m
 | `html-api-docs` | An API reference page whose endpoints are cards: a method badge, a path template with `:name` segments, access badges, a `Cache:` label, a description and a `Parametri:` line. `{tip: html-api-docs, contract: URL}`; `contract` names the OpenAPI source of the same project (optional). | Module `inventory_apidocs`. See "API reference pages" below. Request inputs and response members become fields; operations are a separate list. `stare_tip` `declarat-in-documentatie-api`; locator `char:START-END`. |
 | `html-carduri-csv` | A page whose cards offer CSV files: a title, a description, a download link to a `.csv` file, a list of labelled values (`Rânduri`, `Perioada`, `Măsurat la`, `Surse`) and, under the heading `Coloanele`, a list of columns (name and description). `{tip: html-carduri-csv}`. | Module `inventory_csvcards`. See "Pages of CSV files" below. Each column is a field; each file is a dataset in the source key `seturi`. `stare_tip` `declarat-in-lista-documentatie`; locator `char:START-END`. |
 | `js-literale` | The data that a page script holds as literals, and the schema.org `Dataset` of its JSON-LD. `{tip: js-literale, tabele: true}`; `tabele` (`true`, or a list of positions) adds the table readers of the same page, and their fields come first. | Module `inventory_literals`. See "Data literals in page scripts" below. `stare_tip` `observat-in-esantion-json` (a path in a literal) or `declarat-in-metadate` (a `variableMeasured` entry); locator `char:START-END`. |
+| `json-esantion` | A JSON or GeoJSON file that a range read cut. `citire` `json-esantion`. | Module `inventory_jsonsample`. See "Cut JSON documents" below. `stare_tip` `observat-in-esantion-json`; source key `esantion`. |
 | `html-lista-seturi` | A page whose tables list data sets: a heading above each table, and one row for each set with a subcategory, a title, a description, related reports and links to external files. `{tip: html-lista-seturi}`. | Module `inventory_setlist`. See "Pages that list data sets" below. It returns no field: the page declares no column. The data sets are in the source key `seturi`. Locator `char:START-END`. |
 
 New `stare_tip` values (`js-literale` adds none: it reuses `observat-in-esantion-json` and `declarat-in-metadate`): `declarat-in-cod-sursa`, `antet-tabel-html`, `declarat-in-tabel-documentatie`, `declarat-in-text-documentatie`,
@@ -1089,15 +1092,34 @@ A tab that people keep by hand may have a title above its header, or empty heade
 - `rand_antet` (a whole number from 1): the header is this row. The rows above it are kept in the source key `antet.randuri_deasupra` as `{rand, celule: [{celula, valoare}]}`:
   the non-empty cells with their spreadsheet address (`A1`), cut at 300 characters. The editor who sets `rand_antet` has seen that these rows are a title.
 - `coloane_fara_nume`: only the value `omise`. Empty header cells are left out of the fields and listed in `antet.celule_antet_goale` (`["A1", "F1"]`). A repeated name stays an error.
+- `delimitator`: only the value `tab`. The file is tab-separated (a TSV). Without the option the separator is the comma. The plain reader (no options) sniffs the separator of a `.tsv` file, but a file with a header option needs
+  the option too, because the options reader does not sniff. A table with a row of column labels under its row of machine names is read with `rand_antet` 2: the labels are the names,
+  and the machine names stay in `antet.randuri_deasupra`.
 - An unknown option, or a wrong value, is an error (state `eroare-parsare`). `{"tip": "csv"}` alone, or no `citire`, keeps the plain rules.
 - The field keeps `nume` and `cale` exactly as the cell is written (line breaks and trailing spaces included), `coloana_csv` (the 0-based position in the sheet, also when an empty cell before it was left out)
   and `pointer` `celula:B2` (the header cell, row counted from 1). `tip_declarat` is null and `stare_tip` is `neprecizat-in-antet-csv`, as for the plain reader.
 - The source key `antet` exists only when options are set: `rand_antet`, `randuri_deasupra`, `celule_antet_goale`. `--check` parses the retained body again and compares the fields and `antet`.
 
+**Cut JSON documents (`json-esantion`).** A range read (`inventory.py --probe --sample-bytes N`) of a large JSON or GeoJSON file ends inside a record, and the plain reader refuses a cut document.
+The registry names the reader with `citire` `json-esantion` (module `inventory_jsonsample`). A document that parses whole is read whole.
+
+- The reader keeps the complete members of every object and the complete elements of every array. The element or member that the cut ended is dropped, also when most of it was read, because a field list
+  built from half a record would show a missing field as absent. A string or a number at the very end of the body is dropped too: the cut may have shortened it. The reader never repairs a bracket.
+- Fields come from the walk of the plain JSON reader on the recovered document (bounds: 25 elements, seven levels, 2,000 fields). `stare_tip` is `observat-in-esantion-json`, `tipuri_observate` is the set of observed types,
+  and the field keeps no value. The `pointer` addresses the recovered document, not the retained body, so `--check` parses the body again and compares the fields. `limita_atinsa` is true when the document was cut.
+- The source key `esantion` is `{complet, elemente_citite}`. `complet` is true for a body that parses whole. `elemente_citite` maps the path of each list (`$.features`, `$.metadata.sources`) to its number of complete
+  elements; lists nested in elements are not listed. The size of the file and the number of records that it holds are unknown, because the read stopped. `baza_tipului` is `esantion-date`.
+- A body with no complete object or array, with no complete field, with text that is not JSON, or nested deeper than 60 levels is an error (state `eroare-parsare`).
+- A repository file that was read as a range cannot be the whole blob. `--check` still verifies the tree entry and the listing hash; it compares the git blob SHA-1 only for a source that is not partial (`partial` absent).
+
 **Data literals in page scripts (`js-literale`).** A single-page tool often keeps its data inside the page. No schema describes that data. The page still shows what it holds.
 The reader makes no request and runs no script.
 
-- A candidate declaration is a `const`, `let` or `var` at the start of a line, with an object or an array as its value. The reader keeps it when the value is a literal.
+- A candidate declaration is a `const`, `let` or `var` at the start of a line, or an assignment `window.NAME = ...` at the start of a line, with an object or an array as its value. The reader keeps it when the value is a literal.
+  The literal may be the one argument of `Object.freeze(...)`; the call only seals the object, and the locator covers the literal only. A literal in any other call stays unread (`expresie-dupa-literal` or `valoare-nelitera`).
+  `window.NAME = OTHER;` (an identifier) is not a declaration. The variable name is the name after `window.`.
+- A script file. A body that has no `<script>` element and does not look like an HTML page (no `<!doctype html>`, `<html>`, `<head>` or `<body>` in its first 2,000 characters) is read as one script, with offsets in the file.
+  This is the file that a page loads with `<script src>`. A page is still read by its `<script>` elements, and a script with `src` in a page is not read.
   A literal holds only strings, numbers, `true`, `false`, `null`, arrays and objects. Bare keys, single quotes, comments and trailing commas are allowed.
 - A data island is a script of type `application/json`. The reader names it by its `id`. A script with `src` is not read. A repeated name gets a suffix (`DATA#2`).
 - Each path in a literal is a field. Keys: `nume` (the last part of the path), `cale` (the variable and the path, for example `DATA.c{*}.m[]`), `tipuri_observate`, `variabila`, `rol` `camp-date`,

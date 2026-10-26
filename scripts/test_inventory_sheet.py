@@ -104,6 +104,49 @@ class HeaderRow(unittest.TestCase):
         self.assertEqual(len(above[0]['celule'][1]['valoare']), 300)
 
 
+TSV = 'nume\tcod\tpopulatie\t\tdurata\nDenumirea instantei\tCodul informatic\tPopulatia\tOperativitate (procent)\tDurata in zile\nA\tJA\t10\t75%\t49\n'
+TSV_QUOTED = 'a\tb\n"line one\nline two"\t2\n'
+
+
+class TabSeparated(unittest.TestCase):
+    """The option `delimitator` `tab` for a TSV file whose second row holds the column labels (the tables of onoratainstanta.ro)."""
+    OPTIONS = {'tip': 'csv', 'delimitator': 'tab', 'rand_antet': 2}
+
+    def test_the_second_row_of_a_tab_separated_file_is_the_header_and_the_machine_names_above_it_are_kept_as_a_fact(self):
+        fields = read(TSV, self.OPTIONS)
+        self.assertEqual([f['nume'] for f in fields], ['Denumirea instantei', 'Codul informatic', 'Populatia', 'Operativitate (procent)', 'Durata in zile'])
+        self.assertEqual([f['pointer'] for f in fields], ['celula:A2', 'celula:B2', 'celula:C2', 'celula:D2', 'celula:E2'])
+        facts = header_facts(TSV, self.OPTIONS)
+        self.assertEqual([c['valoare'] for c in facts['randuri_deasupra'][0]['celule']], ['nume', 'cod', 'populatie', 'durata'])
+        self.assertEqual([c['celula'] for c in facts['randuri_deasupra'][0]['celule']], ['A1', 'B1', 'C1', 'E1'], 'the empty cell D1 is not a name')
+
+    def test_without_the_option_the_comma_rule_reads_a_tab_file_as_one_column(self):
+        fields = read(TSV, {'tip': 'csv', 'rand_antet': 2})
+        self.assertEqual(len(fields), 1)
+
+    def test_the_first_row_can_be_the_header_of_a_tab_file_and_empty_cells_can_be_left_out(self):
+        fields = read(TSV, {'tip': 'csv', 'delimitator': 'tab', 'coloane_fara_nume': 'omise'})
+        self.assertEqual([f['nume'] for f in fields], ['nume', 'cod', 'populatie', 'durata'])
+        self.assertEqual([f['coloana_csv'] for f in fields], [0, 1, 2, 4])
+
+    def test_a_quoted_cell_with_a_line_break_stays_one_cell(self):
+        fields = read(TSV_QUOTED, {'tip': 'csv', 'delimitator': 'tab'})
+        self.assertEqual([f['nume'] for f in fields], ['a', 'b'])
+        _, header = read_rows(TSV_QUOTED, 2, '\t')
+        self.assertEqual(header, ['line one\nline two', '2'])
+
+    def test_another_delimiter_is_an_error(self):
+        for bad in ('tab ', ';', 'semicolon', 1, True):
+            with self.assertRaises(ValueError, msg=repr(bad)):
+                settings({'tip': 'csv', 'delimitator': bad})
+
+    def test_a_source_with_the_option_keeps_the_reader_and_a_replay_checks_clean(self):
+        source = analyse_source(response(TSV, 'https://raw.example/t.tsv', 'text/plain'), self.OPTIONS)
+        self.assertEqual((source['stare'], source['format'], source['citire']), ('analizat', 'csv', self.OPTIONS))
+        self.assertEqual(source['antet']['rand_antet'], 2)
+        self.assertEqual(len(source['campuri']), 5)
+
+
 class Source(unittest.TestCase):
     def setUp(self):
         self.hint = {'tip': 'csv', 'rand_antet': 2}

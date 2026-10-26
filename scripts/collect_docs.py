@@ -28,7 +28,7 @@ from html.parser import HTMLParser
 from http.client import HTTPException
 from pathlib import Path
 from urllib.error import HTTPError, URLError
-from urllib.parse import urldefrag, urljoin, urlsplit, urlunsplit
+from urllib.parse import quote, urldefrag, urljoin, urlsplit, urlunsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 from common import (FORBIDDEN_STATE, OUT_OF_SCOPE, PUBLIC_ROOT, ForbiddenHost, forbidden, inventory_scope, load_catalogue, observation_paths,
@@ -59,6 +59,21 @@ def canonical(url):
     if parsed.scheme not in ('https', 'http') or not parsed.hostname:
         return ''
     return urlunsplit((parsed.scheme, parsed.netloc, parsed.path or '/', parsed.query, ''))
+
+
+def wire_url(url):
+    """The address as it goes on the wire. A page may write a link with letters outside ASCII (`/descarcă-datele`), and `http.client` cannot send
+    those. The non-ASCII characters of the path, the query and the fragment become percent-encoded UTF-8; the host goes through IDNA; an existing
+    `%XX` stays. The record keeps the address as the page wrote it, and the cache key is that address."""
+    parts = urlsplit(url)
+    try:
+        host = (parts.hostname or '').encode('idna').decode('ascii')
+    except UnicodeError:
+        host = parts.hostname or ''
+    userinfo = parts.netloc.rpartition('@')[0]
+    netloc = (userinfo + '@' if userinfo else '') + (f'[{host}]' if ':' in host else host) + (f':{parts.port}' if parts.port else '')
+    return urlunsplit((parts.scheme, netloc, quote(parts.path, safe="/%:@!$&'()*+,;=~-._"), quote(parts.query, safe="/%:@!$&'()*+,;=?~-._"),
+                       quote(parts.fragment, safe="/%:@!$&'()*+,;=?~-._")))
 
 
 def kind_of(url, text=''):
@@ -391,7 +406,7 @@ class Fetcher:
             if sample:
                 headers['Range'] = f'bytes=0-{sample - 1}'
             try:
-                with host, urlopen(Request(url, headers=headers), timeout=self.timeout) as response:
+                with host, urlopen(Request(wire_url(url), headers=headers), timeout=self.timeout) as response:
                     raw = response.read((sample or MAX_BYTES) + 1)
                     size = len(raw)
                     result.update(http_status=response.status, final_url=response.url,
