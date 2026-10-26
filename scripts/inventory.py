@@ -36,6 +36,7 @@ from common import FORBIDDEN_STATE, PUBLIC_ROOT, data_schema, forbidden, load_ca
 from inventory_concepts import EvidenceLocator, check_concepts, validate_families
 from inventory_apidocs import operations as api_operations
 from inventory_csvcards import csv_datasets
+from inventory_datasette import FORMAT as DATASETTE, database as datasette_database, is_listing as is_datasette, read as datasette_fields
 from inventory_ins import ins_dataset, ins_listing, ins_measure, is_listing
 from inventory_literals import datasets as literal_datasets, declarations as literal_declarations
 from inventory_setlist import list_datasets
@@ -259,6 +260,9 @@ def parse_source(body, url, content_type='', hint=None):
     if isinstance(doc, dict) and (isinstance(doc.get('properties'), dict) or ('$schema' in doc and any(k in doc for k in ('items', 'allOf', 'anyOf', 'oneOf', '$defs', 'definitions'))) or ('$schema' in doc and doc.get('type') in ('object', 'array', 'string', 'integer', 'number', 'boolean', 'null'))):
         fields = declared_fields(doc, doc)
         return 'json-schema', fields, len(fields) >= MAX_FIELDS
+    if is_datasette(doc):
+        fields, truncated = datasette_fields(doc)
+        return DATASETTE, fields, truncated
     fields = observed_fields(doc)
     if is_listing(doc):
         return 'lista-ins', fields, len(fields) >= MAX_FIELDS or sampling_limit(doc)
@@ -364,6 +368,7 @@ def analyse_source(response, hint=None):
         fmt, fields, truncated = parse_source(body, response['final_url'], response.get('content_type', ''), hint)
         metadata.update(format=fmt, campuri=fields, stare='analizat', completitudine='partial', limita_atinsa=truncated,
                         baza_tipului=('esantion-date' if fmt in ('json', 'lista-ins', 'js-literale') else 'antet-fara-tipuri' if fmt == 'csv'
+                                      else 'lista-fara-tipuri' if fmt == DATASETTE
                                       else 'cod-sau-documentatie' if fmt in TEXT_FORMATS else 'schema-declarata'))
         if has_csv_options(hint):
             metadata['antet'] = header_facts(body, hint)
@@ -371,6 +376,8 @@ def analyse_source(response, hint=None):
             metadata['set_date'] = ins_dataset(json.loads(body))
         elif fmt == 'lista-ins':
             metadata['catalog'] = ins_listing(json.loads(body))
+        elif fmt == DATASETTE:
+            metadata['baza'] = datasette_database(json.loads(body))
         elif fmt == 'html-api-docs':
             metadata['operatii'] = api_operations(body)
         elif fmt == 'html-carduri-csv':
@@ -603,6 +610,10 @@ def check_report(out, observations):
                 _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
                 if fields != source['campuri'] or list_datasets(body) != source.get('seturi'):
                     errors.append('Datasets differ from the retained body: ' + source['url'])
+            elif source.get('format') == DATASETTE:
+                _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
+                if fields != source['campuri'] or datasette_database(json.loads(body)) != source.get('baza'):
+                    errors.append('Fields or database facts differ from the retained body: ' + source['url'])
             elif source.get('format') in TEXT_FORMATS:
                 _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
                 if fields != source['campuri'] or (source['format'] == 'js-literale' and (literal_declarations(body) != source.get('declaratii')
