@@ -3183,6 +3183,33 @@
               }
             }
           ]
+        },
+        {
+          "projects": [
+            "reciclare-arad"
+          ],
+          "names": [
+            "uat"
+          ],
+          "source": [
+            "https://raw.githubusercontent.com/baditaflorin/calendar-ridicare-gunoi-arad/00ee173de1da726135a62e2c1fd2730816819d13/docs/data/catalog.json",
+            "https://raw.githubusercontent.com/baditaflorin/calendar-ridicare-gunoi-arad/00ee173de1da726135a62e2c1fd2730816819d13/docs/data/places/1.json"
+          ],
+          "context": "UAT-ul străzii din calendarul de colectare; în eșantion valoarea este `ARAD`, cu majuscule",
+          "fapte": [
+            {
+              "cheie": "forma_valorii",
+              "valoare": "numele UAT-ului cu majuscule, fără prefix de tip",
+              "baza": "observatie-esantion",
+              "dovada": {
+                "sursa": "https://raw.githubusercontent.com/baditaflorin/calendar-ridicare-gunoi-arad/00ee173de1da726135a62e2c1fd2730816819d13/docs/data/catalog.json",
+                "text": "sursa",
+                "fragment": "\"uat\":\"ARAD\"",
+                "sha256": "9beebb59bb96415963f6a77290c586987827d4db719ae816347fff620a2096dc",
+                "baza": "observatie-esantion"
+              }
+            }
+          ]
         }
       ],
       "dovezi": [
@@ -3307,6 +3334,87 @@
               }
             }
           ]
+        },
+        {
+          "projects": [
+            "sondaje-romania"
+          ],
+          "names": [
+            "party"
+          ],
+          "path": [
+            "$.parties[].party"
+          ],
+          "source": "https://sondajeromania.ro/average-voting-intentions.json",
+          "context": "sigla partidului ale cărui intenții de vot se mediază pe ultimele 90 de zile (AUR, PSD, PNL …); este partidul însuși, ca în `bani-partide`",
+          "fapte": [
+            {
+              "cheie": "forma_valorii",
+              "valoare": "sigla partidului, text scurt cu majuscule",
+              "baza": "observatie-esantion",
+              "dovada": {
+                "sursa": "https://sondajeromania.ro/average-voting-intentions.json",
+                "text": "sursa",
+                "fragment": "\"party\": \"AUR\"",
+                "sha256": "118d3ac3dd7d39f38e866179f8c20de3f9f65b389b8ad1c6403d623276f86c01",
+                "baza": "observatie-esantion"
+              }
+            }
+          ]
+        },
+        {
+          "projects": [
+            "sondaje-romania"
+          ],
+          "names": [
+            "name"
+          ],
+          "path": [
+            "$.parties[].name"
+          ],
+          "source": "https://sondajeromania.ro/average-voting-intentions.json",
+          "context": "denumirea completă a partidului, în același obiect ca sigla (`name` este un nume generic: selectorul cere calea)",
+          "fapte": [
+            {
+              "cheie": "forma_valorii",
+              "valoare": "denumirea completă a partidului",
+              "baza": "observatie-esantion",
+              "dovada": {
+                "sursa": "https://sondajeromania.ro/average-voting-intentions.json",
+                "text": "sursa",
+                "fragment": "\"name\": \"Alian\\u021ba pentru Unirea Rom\\u00e2nilor\"",
+                "sha256": "118d3ac3dd7d39f38e866179f8c20de3f9f65b389b8ad1c6403d623276f86c01",
+                "baza": "observatie-esantion"
+              }
+            }
+          ]
+        },
+        {
+          "projects": [
+            "politicieni-corupti"
+          ],
+          "names": [
+            "party"
+          ],
+          "path": [
+            "$.politicians[].party"
+          ],
+          "source": "https://raw.githubusercontent.com/robert-adnas/posibil-penali/581cd3a4c45b4b008dd86d531c02cfafa1d0909b/data/politicians.json",
+          "context": "partidul politicianului din dosar; depozitul spune că folosește partidul la momentul relevant",
+          "fapte": [
+            {
+              "cheie": "rol",
+              "valoare": "partidul persoanei la momentul relevant al dosarului, nu partidul actual",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://raw.githubusercontent.com/robert-adnas/posibil-penali/581cd3a4c45b4b008dd86d531c02cfafa1d0909b/REVERIFICATION.md",
+                "text": "cache",
+                "fragment": "partidul la momentul relevant",
+                "sha256": "09cebebcb2fa44f7d25882fba66f13fa991f40d9dfb459300f602c48c308cd1a",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
         }
       ],
       "dovezi": [
@@ -3330,6 +3438,13 @@
           "fragment": "{\"name\": \"Subven\\u021bii\", \"columns\": [\"Partid\", \"Suma\", \"An\", \"Luna\", \"Luna-nr\"]",
           "sha256": "252c26c05f04f3c8777940bd1486494f60b0aac954e886d426ce1b2c6f133d5d",
           "baza": "declaratie-directa"
+        },
+        {
+          "sursa": "https://raw.githubusercontent.com/robert-adnas/posibil-penali/581cd3a4c45b4b008dd86d531c02cfafa1d0909b/REVERIFICATION.md",
+          "text": "cache",
+          "fragment": "partidul la momentul relevant",
+          "sha256": "09cebebcb2fa44f7d25882fba66f13fa991f40d9dfb459300f602c48c308cd1a",
+          "baza": "declaratie-directa"
         }
       ],
       "ambiguitati": [
@@ -3339,7 +3454,9 @@
         "Foaia candidaților din 2020 are `Competitor-partid` și `Denumirea formațiunii politice/Candidat independent`. Ele nu sunt membre: formațiunea cu care candidează o persoană este alt rol, iar foaia conține date despre persoane.",
         "`partid_la_vot` (romania-transparenta: „partidul național la data votului”) este partidul unui parlamentar la un vot, nu partidul unei autorități; nu este membru.",
         "În banipartide, `Partid` este partidul însuși: cel care primește subvenții și donații, raportează venituri și cheltuieli sau are voturi. Rolul diferă de partidul unei persoane sau al unui beneficiar. Lista tabelelor nu are valori; nu se știe dacă numele sunt denumiri sau sigle. Proprietarul poate muta selectorul într-un grup separat pentru partidul ca entitate care raportează.",
-        "`Alianțe.partide` (partidele unei alianțe, probabil mai multe într-o celulă) și `Legenda partide.Denumire` și `Legenda partide.Cheie` nu sunt membre: lista nu spune ce conțin și `partide` poate numi mai multe partide."
+        "`Alianțe.partide` (partidele unei alianțe, probabil mai multe într-o celulă) și `Legenda partide.Denumire` și `Legenda partide.Cheie` nu sunt membre: lista nu spune ce conțin și `partide` poate numi mai multe partide.",
+        "În `sondaje-romania`, `party` este partidul ale cărui intenții de vot se mediază: partidul însuși, ca în `bani-partide`. În `politicieni-corupti`, `party` este partidul unei persoane, la momentul relevant al dosarului, cum scrie depozitul. Rolurile diferă.",
+        "În `politicieni-corupti`, valorile pot fi sigle, denumiri sau „Independent”; validatorul depozitului ține o listă de sigle cunoscute, dar eșantionul citit nu arată câte valori diferite există."
       ],
       "stare": "propus"
     },
@@ -3541,6 +3658,221 @@
         "În `Donatori rapoarte de venituri și cheltuieli` există și `Tip venit` și `Mod încasare`. Lista nu spune dacă toate veniturile din tabel sunt donații.",
         "Nu sunt membre: `Donații` din `Contributii campanie` și din `Venituri și cheltuieli campanie` (totaluri pe candidat sau pe campanie, nu o donație) și `Venituri` din `Venituri anuale partide de la MF`.",
         "Donatorii persoane fizice sunt persoane private. Lista conține doar numele coloanelor, nu rânduri; grupul nu copiază nicio valoare."
+      ],
+      "stare": "propus"
+    },
+    {
+      "id": "deficit-bugetar",
+      "label": "Deficit bugetar",
+      "categorie": "masura",
+      "familie": "achizitii",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Diferența dintre cheltuielile și veniturile statului într-un an, ca sumă în milioane de lei sau ca procent din PIB. Cele două pagini nu folosesc aceeași bază: una citește execuția bugetului general consolidat de la Ministerul Finanțelor, cealaltă citează tabelul Eurostat despre deficit și datorie. Aceeași denumire nu garantează aceeași măsură.",
+      "selectors": [
+        {
+          "projects": [
+            "ce-face-statul-cu-1000-de-lei"
+          ],
+          "names": [
+            "deficit_mil_lei",
+            "deficit_pct_pib"
+          ],
+          "source": "https://mariuscomper.uk/ce-face-statul-cu-1000-de-lei/data/budget-romania.json",
+          "context": "deficitul anului în milioane de lei (`deficit_mil_lei`) și ca procent din PIB (`deficit_pct_pib`), pentru fiecare an 2015–2025",
+          "fapte": [
+            {
+              "cheie": "unitate",
+              "valoare": "`deficit_mil_lei`: milioane de lei; `deficit_pct_pib`: procent din PIB (unitatea vine din sufixul numelui)",
+              "baza": "deductie-din-dovezi",
+              "dovada": {
+                "sursa": "https://mariuscomper.uk/ce-face-statul-cu-1000-de-lei/data/budget-romania.json",
+                "text": "sursa",
+                "fragment": "\"deficit_mil_lei\": 9630.75,\n   \"deficit_pct_pib\": 1.354,",
+                "sha256": "6b798effe97fe2ee193c12988c911360f70156f16c87f1411cd54be724681de8",
+                "baza": "observatie-esantion"
+              }
+            }
+          ]
+        },
+        {
+          "projects": [
+            "pe-datorie"
+          ],
+          "names": [
+            "Deficit, % din PIB"
+          ],
+          "path": [
+            "tabel2.Deficit, % din PIB"
+          ],
+          "source": "https://mariuscomper.uk/pe-datorie/",
+          "context": "coloana „Deficit, % din PIB” din tabelul României, pe ani",
+          "fapte": [
+            {
+              "cheie": "unitate",
+              "valoare": "procent din PIB (scris în antet)",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://mariuscomper.uk/pe-datorie/",
+                "text": "sursa",
+                "fragment": "<th scope=\"col\">Deficit, % din PIB</th>",
+                "sha256": "fb1b9d1d9e5740cad4811a95893533168881de1476ea6d4e36afe2bbcb529ae2",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://mariuscomper.uk/ce-face-statul-cu-1000-de-lei/data/budget-romania.json",
+          "text": "sursa",
+          "fragment": "\"generated_from\": \"Ministerul Finanțelor — Anexa nr.2 (Sinteza execuției bugetului general consolidat)",
+          "sha256": "6b798effe97fe2ee193c12988c911360f70156f16c87f1411cd54be724681de8",
+          "baza": "declaratie-directa"
+        },
+        {
+          "sursa": "https://mariuscomper.uk/pe-datorie/",
+          "text": "sursa",
+          "fragment": "Eurostat, gov_10dd_edpt1 — deficit și datorie",
+          "sha256": "fb1b9d1d9e5740cad4811a95893533168881de1476ea6d4e36afe2bbcb529ae2",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "Execuția bugetului general consolidat (Ministerul Finanțelor, încasări și plăți) și deficitul din tabelul Eurostat gov_10dd_edpt1 nu sunt aceeași măsură: baza contabilă și sfera sectorului public diferă. Nu se presupune că valorile coincid.",
+        "Nu este membru: `deficit_units_per_1000_revenue` (deficitul în unități la 1.000 de lei de venituri; altă unitate). Nu sunt membre `revenue_total_mil_lei` și `expenditure_total_mil_lei` (sunt venituri și cheltuieli, nu diferența lor).",
+        "Familia `achizitii` se potrivește doar în parte: grupul descrie bani publici. O familie nouă pentru finanțele publice este o decizie a proprietarului, ca pentru `beneficiar-fonduri-publice`."
+      ],
+      "stare": "propus"
+    },
+    {
+      "id": "coordonate-geografice",
+      "label": "Coordonate geografice (latitudine, longitudine)",
+      "categorie": "dimensiune",
+      "familie": "geografie",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Latitudinea și longitudinea unui punct: o clădire, un adăpost, o secție de votare, un oraș. Câmpul poate fi un număr sau un text. Sistemul de coordonate și ordinea (latitudine, longitudine) trebuie verificate în sursă. Un fișier GeoJSON păstrează coordonatele și în geometrie, ca [longitudine, latitudine]; inventarul nu citește geometria ca variabilă.",
+      "selectors": [
+        {
+          "projects": [
+            "dupa-cutremur"
+          ],
+          "names": [
+            "latitude",
+            "longitude"
+          ],
+          "source": "https://storage.googleapis.com/dupacutremur/puncte_complete_03032024.geojson?v=1",
+          "context": "coordonatele clădirii, în proprietățile fiecărui punct (număr zecimal)",
+          "fapte": [
+            {
+              "cheie": "tip_observat",
+              "valoare": "număr zecimal",
+              "baza": "observatie-esantion",
+              "dovada": {
+                "sursa": "https://storage.googleapis.com/dupacutremur/puncte_complete_03032024.geojson?v=1",
+                "text": "sursa",
+                "fragment": "\"latitude\": 44.434137529614802, \"longitude\": 26.099463474992099",
+                "sha256": "401b77881b36b158b54b3be6b4e95e06f8d131f8c886b92f65a7f0174968cb7e",
+                "baza": "observatie-esantion"
+              }
+            }
+          ]
+        },
+        {
+          "projects": [
+            "dupa-cutremur"
+          ],
+          "names": [
+            "Latitude",
+            "Longitude"
+          ],
+          "source": "https://storage.googleapis.com/dupacutremur/adaposturi.geojson",
+          "context": "coordonatele adăpostului; valorile sunt text (`\"44.494091\"`), nu număr",
+          "fapte": [
+            {
+              "cheie": "tip_observat",
+              "valoare": "text",
+              "baza": "observatie-esantion",
+              "dovada": {
+                "sursa": "https://storage.googleapis.com/dupacutremur/adaposturi.geojson",
+                "text": "sursa",
+                "fragment": "\"Latitude\":\"44.494091\",\"Longitude\":\"26.080743\"",
+                "sha256": "0867cb729a7ec076e9c061a698c7f34bc1f395379fe5dddf8fd810ab1a7fc726",
+                "baza": "observatie-esantion"
+              }
+            }
+          ]
+        },
+        {
+          "projects": [
+            "votdiaspora"
+          ],
+          "names": [
+            "Latitude",
+            "Longitude"
+          ],
+          "role": [
+            "camp-model"
+          ],
+          "context": "coordonatele unei secții de votare din diaspora, în modelele și în entitatea API-ului (tip C# `double`)",
+          "fapte": [
+            {
+              "cheie": "tip_declarat",
+              "valoare": "double (C#)",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/src/Models/PollingStationModel.cs",
+                "text": "sursa",
+                "fragment": "public double Latitude { get; set; }",
+                "sha256": "a150db20663bf941f6de761cb1ed3ebff1cc6da19dfaff1bbd8bd77d152f4453",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        },
+        {
+          "projects": [
+            "romania-interactiva"
+          ],
+          "names": [
+            "lat",
+            "lng"
+          ],
+          "path": [
+            "dataScript.cities[].lat",
+            "dataScript.cities[].lng"
+          ],
+          "source": "https://orase-digitale.ro/",
+          "context": "coordonatele orașului în datele paginii Orașe digitale (număr zecimal)",
+          "fapte": [
+            {
+              "cheie": "tip_observat",
+              "valoare": "număr zecimal",
+              "baza": "observatie-esantion",
+              "dovada": {
+                "sursa": "https://orase-digitale.ro/",
+                "text": "sursa",
+                "fragment": "\"lat\":46.2749,\"lng\":23.0538",
+                "sha256": "a8ac1f3c54c2caaa1d6a31e0699c929e96129b125439c789a9ad39bb7839cd85",
+                "baza": "observatie-esantion"
+              }
+            }
+          ]
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://storage.googleapis.com/dupacutremur/cladiri_complete_03032024.geojson?v=1",
+          "text": "sursa",
+          "fragment": "\"crs\": { \"type\": \"name\", \"properties\": { \"name\": \"urn:ogc:def:crs:OGC:1.3:CRS84\" } }",
+          "sha256": "b0f767a6bf1b5b89952eebbf99c3dfc898a2dbcb6a9769d2060b2d7485e84c55",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "Tipurile diferă: număr în `dupa-cutremur` (puncte), text în `dupa-cutremur` (adăposturi), `double` în `votdiaspora` și număr în Orașe digitale. Grupul nu normalizează valorile.",
+        "Sistemul de coordonate este declarat (CRS84) doar în fișierele de clădiri și de arii de colaps ale DupăCutremur; celelalte surse nu îl declară.",
+        "Nu sunt membre `latMax`, `latMin`, `lngMax` și `lngMin` din Orașe digitale: sunt limitele unei zone, nu un punct."
       ],
       "stare": "propus"
     }
