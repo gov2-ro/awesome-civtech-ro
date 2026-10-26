@@ -287,7 +287,7 @@ Empty means unknown or not applicable. Unknown is not a negative assertion.
 | `autor_original`, `contact` | Preserved attribution text and contact. Relations hold the structured attribution. |
 | `civictech_original` | Original `0`, `1`, or blank, retained as legacy editorial data. Not a new certification. |
 | `stare`, `nota` | Original manual availability override and internal note. `nota` must remain private in the public build. |
-| `clasificare_stare` | `propus`, `acceptat`, or `de-revizuit`. This controls editorial readiness, not HTTP status. |
+| `clasificare_stare` | `propus`, `acceptat`, `de-revizuit`, or `ascuns`. This controls editorial readiness, not HTTP status. `ascuns` (added 2026-10-26) keeps the entry in the data and leaves it out of the public build; the publication gate accepts it. |
 | `incredere` | `mica`, `medie`, or `mare`. Initial values reflect source completeness, not a calibrated probability. |
 | `sursa_fisier`, `sursa_rand` | Source snapshot and CSV record number, with the header as record 1. This is not a physical line number for multiline records. |
 | `nota_clasificare` | Internal classification note; keep it out of the public JSON. |

@@ -20,6 +20,8 @@ SLUG = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 ROLE_ID = re.compile(r"^[a-z]+$")  # the role part of a "rol:URL" token in `linkuri`
 HOST = re.compile(r"^[a-z0-9-]+(\.[a-z0-9-]+)+$")
 OBSERVATIONS = ("profil.csv", "mentiuni.csv", "mentiuni_etichete.csv")
+# `clasificare_stare` of an entry that stays in the data and out of the public build. The publication gate accepts it.
+HIDDEN = "ascuns"
 # Keys that draft.1 kept in JSON and draft.2 moved to CSV. Their presence is a second editorial source.
 MOVED_SETTINGS = {"sectiuni": "valori.csv (lista sectiune_url)", "roluri_linkuri": "roluri-linkuri.csv și gazde-linkuri.csv"}
 MOVED_SCHEMA = {"enums": "valori.csv", "relation_predicates": "valori.csv (lista relatie_predicat)",
@@ -379,12 +381,14 @@ def check(root, baseline: bool = False, publication: bool = False, package: "Pac
     if baseline:
         _check_baseline(pkg, sources, fail)
     if publication:
+        hidden = {slug for slug, row in pkg.entries.items() if row["clasificare_stare"] == HIDDEN}
         for slug, row in pkg.entries.items():
-            if row["clasificare_stare"] != "acceptat":
-                fail(f"publication: {slug} has the classification state {row['clasificare_stare']!r}, not acceptat")
+            if row["clasificare_stare"] not in ("acceptat", HIDDEN):
+                fail(f"publication: {slug} has the classification state {row['clasificare_stare']!r}, not acceptat or {HIDDEN}")
         for row in pkg.tables.get("revizuire.csv", []):
             # Only `deschis` blocks the gate. A technical closure (`tehnic`) never counts, whatever its priority.
-            if row["stare"] == "deschis" and row["prioritate"] == "mare":
+            # An item of a hidden entry never counts: that entry does not reach the public site.
+            if row["stare"] == "deschis" and row["prioritate"] == "mare" and row["slug"] not in hidden:
                 fail(f"publication: {row['slug']} has the open high-priority review item {row['id']}")
 
     entries = pkg.entries.values()

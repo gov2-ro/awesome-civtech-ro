@@ -33,6 +33,7 @@ Evaluați datele rezultate înainte de integrarea în build și în interfață.
 2. Modificați clasificarea în `intrari.csv`. Consultați etichetele și definițiile din `concepte.csv`.
 3. Completați `decizie_editor` în `revizuire.csv`. Setați punctul la `acceptat`, `respins` sau `amanat`.
 4. Setați `clasificare_stare=acceptat` în `intrari.csv` numai după verificarea întregii intrări.
+   Setați `clasificare_stare=ascuns` pentru o intrare care rămâne în date, dar nu trebuie să apară în site-ul public.
 5. Rulați verificarea de mai jos. Exportul actualizează numai `catalogue.json` din această copie.
 
 ```sh

@@ -100,6 +100,13 @@ class Copy:
         self.tmp.cleanup()
 
 
+def with_hidden_code(rows: list[dict]):
+    """Add the code `ascuns` to the list `clasificare_stare` of valori.csv. The derived package of these tests may predate it."""
+    if not any(r["lista"] == "clasificare_stare" and r["cod"] == taxonomy_v2.HIDDEN for r in rows):
+        rows.append({"lista": "clasificare_stare", "cod": taxonomy_v2.HIDDEN, "eticheta_ro": "Ascuns", "eticheta_en": "Hidden",
+                     "definitie_ro": "Intrarea rămâne în date, dar nu apare în site-ul public.", "statut": "propus", "ordine": "3"})
+
+
 class PackageChecks(unittest.TestCase):
     """Slice 1: the draft.2 package, its code lists and its negative checks."""
 
@@ -320,6 +327,54 @@ class RootSelection(unittest.TestCase):
         c.edit("revizuire.csv", close)
         self.assertEqual(c.errors(publication=True), [])
 
+    def test_publication_gate_accepts_a_hidden_entry_and_ignores_its_review_items(self):
+        c = Copy()
+        self.addCleanup(c.close)
+        c.edit("valori.csv", with_hidden_code)
+        entries = {r["slug"]: r for r in c.rows("intrari.csv")[1]}
+        queue = c.rows("revizuire.csv")[1]
+        # An entry that has a subject and an open high-priority review item: hiding it must clear that item for the gate.
+        slug = next(r["slug"] for r in queue if r["stare"] == "deschis" and r["prioritate"] == "mare"
+                    and entries.get(r["slug"], {}).get("subiect_principal"))
+
+        def settle(rows):
+            for r in rows:
+                r["clasificare_stare"] = taxonomy_v2.HIDDEN if r["slug"] == slug else "acceptat"
+
+        def close_the_others(rows):
+            for r in rows:
+                if r["prioritate"] == "mare" and r["slug"] != slug:
+                    r["stare"], r["decizie_editor"] = "amanat", "test"
+        c.edit("intrari.csv", settle)
+        self.assertNotEqual(c.errors(publication=True), [])  # the other open high-priority items still block
+        c.edit("revizuire.csv", close_the_others)
+        self.assertEqual(c.errors(publication=True), [])
+        self.assertEqual(c.errors(), [])  # the plain checks accept the code too
+
+    def test_publication_gate_still_refuses_a_proposal_next_to_a_hidden_entry(self):
+        c = Copy()
+        self.addCleanup(c.close)
+        c.edit("valori.csv", with_hidden_code)
+
+        def settle(rows):
+            for n, r in enumerate(rows):
+                r["clasificare_stare"] = "ascuns" if n == 0 else "propus" if n == 1 else "acceptat"
+        c.edit("intrari.csv", settle)
+        _, rows = c.rows("intrari.csv")
+        errors = [e for e in c.errors(publication=True) if "classification state" in e]
+        self.assertEqual(len(errors), 1)
+        self.assertIn(f"publication: {rows[1]['slug']}", errors[0])
+        self.assertIn("not acceptat or ascuns", errors[0])
+
+    def test_an_unknown_classification_state_is_refused_without_the_hidden_code(self):
+        """The code list decides: `ascuns` is valid only where valori.csv lists it."""
+        c = Copy()
+        self.addCleanup(c.close)
+        c.edit("valori.csv", lambda rows: [rows.remove(r) for r in list(rows)
+                                           if r["lista"] == "clasificare_stare" and r["cod"] == taxonomy_v2.HIDDEN])
+        c.edit("intrari.csv", lambda rows: rows[0].update(clasificare_stare=taxonomy_v2.HIDDEN))
+        self.assertTrue(any("clasificare_stare" in e for e in c.errors()))
+
 
 # What a recommendation must not be: the empty or placeholder proposals of the generated queue.
 GENERIC_PROPOSALS = {"", "verificare manuală", "verificare cu dovezi primare", "dovadă primară pentru format"}
@@ -534,6 +589,41 @@ class Build(unittest.TestCase):
         result = run("scripts/build.py", "--data-dir", c.overlay, "--site-dir", Path(self.tmp.name) / "refused")
         self.assertNotEqual(result.returncode, 0)
         self.assertFalse((Path(self.tmp.name) / "refused").exists())
+
+    def test_build_leaves_out_a_hidden_entry(self):
+        """A hidden entry stays in the data. No public file shows it: data.json, the entry page, the feed, llms.txt."""
+        c = Copy()
+        self.addCleanup(c.close)
+        c.edit("valori.csv", with_hidden_code)
+        slug = "465"
+        row = next(r for r in c.rows("intrari.csv", c.overlay)[1] if r["slug"] == slug)
+
+        def settle(rows):
+            for r in rows:
+                r["clasificare_stare"] = taxonomy_v2.HIDDEN if r["slug"] == slug else "acceptat"
+                if not r["subiect_principal"]:  # the abstention has no subject, and `acceptat` needs one
+                    r["subiect_principal"] = r["subiecte"] = "subiect:guvernare-democratie"
+
+        def close(rows):
+            for r in rows:
+                if r["prioritate"] == "mare":
+                    r["stare"], r["decizie_editor"] = "amanat", "test"
+        c.edit("intrari.csv", settle, c.overlay)
+        c.edit("revizuire.csv", close, c.overlay)
+        out = Path(self.tmp.name) / "hidden"
+        result = run("scripts/build.py", "--data-dir", c.overlay, "--site-dir", out)  # no --allow-draft: the gate passes
+        self.assertEqual(result.returncode, 0, result.stderr)
+        data = json.loads((out / "data.json").read_text())
+        slugs = [i["slug"] for i in data["items"]]
+        self.assertEqual(len(slugs), len(c.rows("intrari.csv", c.overlay)[1]) - 1)
+        self.assertNotIn(slug, slugs)
+        self.assertEqual(sorted(i["id"] for i in data["items"]), list(range(1, len(slugs) + 1)))  # no gap where the entry was
+        self.assertFalse(data["draft"])
+        page = f"{row['sectiune_url']}/{slug}/"
+        self.assertFalse((out / row["sectiune_url"] / slug).exists())
+        for name in ("feed.xml", "llms.txt", "data.json"):
+            self.assertNotIn(page, (out / name).read_text(), name)
+        self.assertNotIn(row["nume"], (out / row["sectiune_url"] / "index.html").read_text())
 
     def test_build_refuses_a_folder_inside_the_repository(self):
         result = run("scripts/build.py", "--site-dir", ROOT / "docs" / "preview")

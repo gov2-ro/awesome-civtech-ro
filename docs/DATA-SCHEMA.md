@@ -423,7 +423,7 @@ One row for each entry (project, organisation or resource). Today it holds the 1
 | `civictech_original` | The v1 `civictech`, kept as legacy data. It is not a new certification. | Code list `civictech_original`: `0`, `1` or empty. |
 | `stare` | The v1 manual state. | Code list `stare_manual`: `arhivat`, `offline` or empty. It does not describe maturity or review. |
 | `nota` | Internal note. | Text. Private. |
-| `clasificare_stare` | Is the classification ready? | Code list `clasificare_stare`: `propus`, `acceptat`, `de-revizuit`. Required. It is not an HTTP status. |
+| `clasificare_stare` | Is the classification ready? Does the entry go on the public site? | Code list `clasificare_stare`: `propus`, `acceptat`, `de-revizuit`, `ascuns`. Required. It is not an HTTP status. `ascuns` (hidden) keeps the entry, its classification and its observations in the data. The public build leaves the entry out (see the publication gate). A hidden entry still needs a full classification. |
 | `incredere` | How well the sources support the classification. In the overlay it is the lowest confidence among the entry's claims. | Code list `incredere`: `mica`, `medie`, `mare`. Required. It is not a calibrated probability. |
 | `sursa_fisier`, `sursa_rand` | The source of the v1 row: `proiecte.csv` or `orgs.csv`, and the CSV record number (the header is record 1). | Private. `sursa_rand` is an integer. |
 | `nota_clasificare` | Internal note on the classification. | Text. Private. |
@@ -469,7 +469,7 @@ Every list is used by a column of `schema.json`, and every list that `schema.jso
 | `sectiune_url` | `intrari.csv` `sectiune_url` | `proiect`, `organizatie`, `resursa` |
 | `detaliere_date` | `intrari.csv` `detaliere_date` | `agregat-national`, `judete`, `localitati`, `judete-localitati` |
 | `nivel_acoperire` | `intrari.csv` | `national`, `local`, `international`, `necunoscut` |
-| `clasificare_stare` | `intrari.csv` | `propus`, `acceptat`, `de-revizuit` |
+| `clasificare_stare` | `intrari.csv` | `propus`, `acceptat`, `de-revizuit`, `ascuns` |
 | `incredere` | `intrari.csv` | `mica`, `medie`, `mare` |
 | `stare_manual` | `intrari.csv` `stare` | `arhivat`, `offline` |
 | `civictech_original` | `intrari.csv` | `0`, `1` |
@@ -783,9 +783,16 @@ Notes, source rows, confidence, review items and model evidence never reach `dat
 A build without `--allow-draft` applies the publication gate first (see below), so it refuses today's data.
 
 **The publication gate.** `validate.py --data-dir <v2 root> --publication` adds two rules to the package checks. Every entry
-must have `clasificare_stare` `acceptat`. No review item may be `deschis` with priority `mare`. Items in the states `tehnic`
-and `amanat` do not count. `build.py` without `--allow-draft` applies the same rule. `validate.py` applies it only with `--publication`. The gate passes
+must have `clasificare_stare` `acceptat` or `ascuns`. No review item may be `deschis` with priority `mare`. Items in the states `tehnic`
+and `amanat` do not count, and neither do the items of a hidden entry. `build.py` without `--allow-draft` applies the same rule. `validate.py` applies it only with `--publication`. The gate passes
 only after the owner accepts the classifications.
+
+**Hidden entries.** An entry with `clasificare_stare` `ascuns` stays in `intrari.csv`, `relatii.csv`, the Sheet and `observatii/`.
+`common.public_catalogue()` leaves it out, and `build.py` reads only that list. So the entry is absent from `data.json`, the entry
+pages, the archives, `feed.xml`, `llms.txt`, the vocabulary counts and the inventory pages (`--with-inventory`), and the ids of the other
+entries stay contiguous. The Sheet links of the other entries do not move: `row` keeps the entry's record in the table. A relation from
+another entry to a hidden entry shows its name but no link. A hidden entry is not a draft: `draft` ignores it. The profiler writes
+its images to `site/img/`, which the public site would serve, so remove the images of a hidden entry (`profile.py --force --only <slug>` makes them again).
 
 ## Keeping this file complete
 

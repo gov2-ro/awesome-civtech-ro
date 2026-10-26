@@ -7921,6 +7921,47 @@
         "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
+    },
+    {
+      "slug": "fiipregatit",
+      "nume": "fiipregatit.ro",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Platforma DSU de pregătire pentru urgențe: ghiduri, hartă și campanii",
+      "permite": [
+        "Caută și consultă",
+        "Învață sau exersează"
+      ],
+      "formate_catalogate": [
+        "Ghid",
+        "Hartă"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "fiipregatit"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "Întreabă-l pe FiiPregătit",
+          "rol": "control-utilizator",
+          "tip_control_html": "text",
+          "descriere": "Întreabă-l pe FiiPregătit",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://fiipregatit.ro/",
+            "sha256": "3e06353cd03d33c9d1dc641d5a28688fec59df47820cd8c54531e03f96a191d6",
+            "sha256_lista_controale": "9395c1b7c5b2c430fed5972535696572a95706b3ef181e6fce05c48fcf5cb38e",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/473fdbe436bc85907b3e0447.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
     }
   ]
 }

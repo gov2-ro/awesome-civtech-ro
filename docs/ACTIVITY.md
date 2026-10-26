@@ -1,5 +1,25 @@
 # Activity
 
+## 2026-10-26 — Hidden entries: the code `ascuns`; fiipregatit.ro hidden
+
+**Done**
+- The owner decided that `fiipregatit.ro` does not belong in the catalogue (an official state platform), but the inferred data stays. The data model had no way to hold an entry back: `stare` `arhivat` / `offline` still shows it, and `propus` / `de-revizuit` block the whole build through the publication gate.
+- Added the code `ascuns` to the list `clasificare_stare` (`valori.csv`, order 3). `taxonomy_v2.HIDDEN` names it. The gate accepts it, and an open high-priority review item of a hidden entry does not count. `common.public_catalogue()` leaves hidden entries out, and `items_v2` in `build.py` reads only that list. `draft` ignores them, and a relation from another entry shows the name of a hidden entry but no link.
+- Set `fiipregatit` to `ascuns`; the note records that it was accepted, then hidden. Removed its two images from `site/img/` (the profiler makes them again with `--force --only fiipregatit`; `profil.csv` keeps the paths).
+- Docs: `DATA-SCHEMA.md` (column, code list, gate, a section on hidden entries), `specs/taxonomy-v2.md`, `data/taxonomy-v2/README.md`, `CLAUDE.md` and `AGENTS.md`. Backlog: the entry-specific items are dropped with the reason.
+- Four new tests in `test_taxonomy_v2.py`: the gate accepts a hidden entry and ignores its review items; it still refuses a proposal next to one; `ascuns` is refused where `valori.csv` does not list it; a build leaves the entry out of `data.json`, the entry page, the feed and `llms.txt`, with contiguous ids. They fail without the code change.
+- Measured after the change: `validate.py --publication` 0 errors (141 `acceptat`, 1 `ascuns`); `build.py` writes 141 entries to `site/`; a build with `--with-inventory` into a separate folder also has no trace of the slug.
+
+**Hard**
+- The tests run on a package derived from the detach commit, so their `valori.csv` has no `ascuns`. The tests add the code to their copy.
+- A hidden entry still needs a full classification: the rule `empty_allowed_when` names only `de-revizuit`. Not changed; a looser rule would be a second decision.
+- The Sheet dropdown of the column is strict and comes from the code list. `ascuns` reaches it at the next `sheets-push` (it runs when `intrari.csv` changes on `main`).
+
+**Decided**
+- The code is `ascuns`, the owner's word „hidden”, in the Romanian style of the list. The alternative `exclus` says „excluded” and would hint at a rejection; the owner chose hiding, not rejecting.
+- The two images are removed, not kept: `site/img/` is public, and an unlinked image of a hidden entry would still be served. The cost: after unhiding, the images must be made again.
+- `cutover_v2.py` still counts `ascuns` as „not acceptat”. The cutover is applied, so the script is not changed.
+
 ## 2026-10-26 — A list of hosts that no script requests (v0.26.0)
 
 **Done**
@@ -43,6 +63,27 @@
 **Decided**
 - No brief: the owner asked for it, and the open questions had answers. The review was complete, the labels already follow the review state, and the inventory output needs no ignored cache (a clean checkout builds the same `date/` and `inventar/` as the local one).
 - Credit a licence only when every data set of the source declares the same one. Cost of the alternative: a credit per field, or a credit that names the wrong licence for a mixed page.
+
+## 2026-10-26 — New entry fiipregatit.ro (issue #3)
+
+**Done**
+- Added `fiipregatit` to `intrari.csv` (row 143, `proiect`, `clasificare_stare` `propus`, confidence `medie`) and its attribution L175 to `relatii.csv` (`Departamentul pentru Situații de Urgență`, `rol_neconfirmat`). Sources: the home, guides, map, campaigns, podcast, about, contact and terms pages (rendered with Playwright), and the repository `civicnet/fiipregatit.ro`.
+- Profiled: status `activ`, HTTP 200, screenshot image and 128 px icon. Searched with Serper: 20 results, 15 kept, 5 dropped by the `social` rule. The kept results are pages about the site (government and public bodies, UNICEF, a 2023 tender specification). `editor` is empty.
+- Ran `collect_docs.py --only fiipregatit` (4 requests; found the page and the about page), `inventory.py --only fiipregatit` (0 requests) and `inventory_report.py`.
+- `validate.py` 0 errors. `validate.py --publication` 1 error: the entry is `propus`. The isolated build with `--allow-draft` writes 142 entries. Unit tests: 523 run, 2 fail (the `propus` gate in `test_inventory_site` and `test_review_ui`), 6 skipped. Before the inventory steps, `test_inventory_report` failed with `KeyError: 'fiipregatit'`.
+
+**Hard**
+- `/add-new-url` still names `proiecte.csv` / `orgs.csv` (see the backlog). This run used `intrari.csv` and `relatii.csv`.
+- `since` shows 2008-12-08 (`arhiva`). Two Wayback captures (2008, 2009) predate the project: the first certificate is from 2018-02-06 and continuous captures start on 2018-03-02. The About page gives 2018 as the launch year. `EARLIER_DOMAIN_USE` would give 2020-03-14 (the repo), which is also wrong. Not changed: it needs a decision on `since`.
+- `stale` shows 2022 for a live site. The only dated activity is the last push of the old repository (2022-12-05, `updated_src` `cod`). The site lists a campaign dated 2026-07-15 and the last Wayback capture is 2026-10-13. Not changed.
+- The terms describe a virtual assistant „bazat pe ChatGPT”. The first version of this entry said the rendered pages do not show it, and left out `tehnologie:ai`. That was wrong. The assistant is the text field „Întreabă-l pe FiiPregătit” on the home page. The check read `inner_text`, which skips the placeholder of an input; the profiler screenshot showed the field. Corrected the same day: `tehnologie:ai` added, and one sentence about the assistant added to `descriere` (the vocabulary rule: the description must state the use of AI). The menu buttons ChatAI and Alerte are in the HTML but not in the render, so `functie:alerte` stays out.
+
+**Decided**
+- The entry started as `propus`: acceptance is the owner's decision. The owner accepted it in the same session, so it is now `acceptat`. The note in `nota_clasificare` says so.
+- `civictech_original` is `0`: the operator is a government department. The same value is on `oradea-city-report` and `ong-camera-deputatilor`.
+- `linkuri` holds the old repository and the four social profiles from the footer. The profiles belong to the DSU, not to the site alone. The repository belongs to the previous version (2018–2023), built by CivicNet.
+- No row for CivicNet: `civicnet.ro` answers with a `surge.sh` certificate, so the audit could not rely on it.
+- `institutii_vizate` is empty. The vocabulary has no type for DSU, IGSU or the ministry.
 
 ## 2026-10-26 — New entry lista-firme.info
 

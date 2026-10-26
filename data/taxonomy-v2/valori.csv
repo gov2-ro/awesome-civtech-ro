@@ -15,6 +15,7 @@ nivel_acoperire,necunoscut,Necunoscut,Unknown,Sursa nu stabilește acoperirea. N
 clasificare_stare,propus,Propus,Proposed,"Clasificare propusă, neacceptată de editor.",propus,0
 clasificare_stare,acceptat,Acceptat,Accepted,Editorul a verificat toate fațetele intrării.,propus,1
 clasificare_stare,de-revizuit,De revizuit,Needs review,Clasificarea lipsește sau este incompletă și necesită verificare.,propus,2
+clasificare_stare,ascuns,Ascuns,Hidden,"Intrarea rămâne în date, dar nu apare în site-ul public.",propus,3
 incredere,mica,Mică,Low,Dovezi puține sau indirecte.,propus,0
 incredere,medie,Medie,Medium,"Dovezi directe, dar incomplete.",propus,1
 incredere,mare,Mare,High,Dovezi directe și suficiente.,propus,2

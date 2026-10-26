@@ -2,6 +2,18 @@
 
 Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
+## New entry fiipregatit.ro — 2026-10-26
+
+- [x] Decide `fiipregatit` (`intrari.csv`). Accepted by the owner on 2026-10-26, then hidden the same day (`clasificare_stare` `ascuns`): it is an official state platform and does not belong in the catalogue. The data stays; the public site does not show it. To show it again: set `acceptat`, then run `uv run scripts/profile.py --force --only fiipregatit` to make the two images again.
+- [x] Add the code `ascuns` (hidden) to the list `clasificare_stare`: a hidden entry stays in the data and out of the public build. Done 2026-10-26 (gate, `common.public_catalogue`, `build.py`, 4 tests, docs). A hidden entry needs a full classification; no rule lets it stay incomplete.
+- [-] Fix `since` and `stale` for `fiipregatit` (`since` 2008-12-08 from pre-project Wayback captures; `stale` 2022 from the old repository). Dropped 2026-10-26: no public page shows the entry. Reopen if it is shown again.
+- [-] Prune the 15 kept search results of `fiipregatit`. Dropped 2026-10-26 for the same reason.
+- [x] Add `tehnologie:ai` to `fiipregatit`: the assistant „Întreabă-l pe FiiPregătit” is on the home page and the terms say it is based on ChatGPT. Done 2026-10-26.
+- [-] Check the alerts of `fiipregatit` (the menu has a button Alerte that the rendered pages do not show). Dropped 2026-10-26 for the same reason.
+- [-] Retake the og screenshot of `fiipregatit` (it shows the site's cookie dialog). Dropped 2026-10-26: the two images are removed from `site/img/`.
+- [ ] Decide on a `CivicNet` entry (`organizatie`): it built the previous version of the site (2018–2023). `civicnet.ro` serves a `surge.sh` certificate; check the site first.
+- [ ] Vocabulary: no `institutie` concept fits the DSU, the IGSU or the Ministry of Internal Affairs. Add a proposal to `propuneri-vocabular.csv` if more entries need it.
+
 ## New entry lista-firme.info — 2026-10-26
 
 - [x] Decide `lista-firme` (`intrari.csv`). Accepted by the owner on 2026-10-26; `validate.py --publication` passes.
