@@ -93,7 +93,10 @@ class Coverage(unittest.TestCase):
         row = self.by['bani-partide']
         self.assertEqual(row['stare_investigare'], 'cu-surse-structurate')
         self.assertEqual(sorted(row['investigat_in_lot'].split('|')), ['C2', 'S'], 'lot C2, and S for an entry with a copy that the owner saved')
-        self.assertEqual((row['surse_structurate'], row['campuri_din_surse']), ('1', '172'))
+        # The count follows the reader (a discarded personal identifier leaves the fields), so it is compared with the tracked source.
+        listing = self.data['sources'][self.data['profiles']['bani-partide']['surse_structurate'][0]]
+        self.assertEqual((row['surse_structurate'], row['campuri_din_surse']), ('1', str(len(listing['campuri']))))
+        self.assertGreater(len(listing['campuri']), 0)
         self.assertEqual((row['campuri_cu_definitie'], row['campuri_cu_tip_declarat'], row['campuri_cu_tip_observat']), ('0', '0', '0'), 'the listing declares names only')
         self.assertIn('nu declară tipuri', row['limite'])
         self.assertEqual(row['blocaj'], '', 'the listing was read: nothing blocks the entry')
