@@ -993,8 +993,9 @@ All readers return the common field keys and add the keys below; none infers a m
 | `js-acces` | Names that inline page scripts read from a record object. `{tip: js-acces, obiecte: [fields]}`. | `stare_tip` `utilizat-in-cod-pagina`, `accesari`. It shows what the page uses; it is not a schema and it does not read the data behind the page. |
 | `html-api-docs` | An API reference page whose endpoints are cards: a method badge, a path template with `:name` segments, access badges, a `Cache:` label, a description and a `Parametri:` line. `{tip: html-api-docs, contract: URL}`; `contract` names the OpenAPI source of the same project (optional). | Module `inventory_apidocs`. See "API reference pages" below. Request inputs and response members become fields; operations are a separate list. `stare_tip` `declarat-in-documentatie-api`; locator `char:START-END`. |
 | `html-carduri-csv` | A page whose cards offer CSV files: a title, a description, a download link to a `.csv` file, a list of labelled values (`Rânduri`, `Perioada`, `Măsurat la`, `Surse`) and, under the heading `Coloanele`, a list of columns (name and description). `{tip: html-carduri-csv}`. | Module `inventory_csvcards`. See "Pages of CSV files" below. Each column is a field; each file is a dataset in the source key `seturi`. `stare_tip` `declarat-in-lista-documentatie`; locator `char:START-END`. |
+| `js-literale` | The data that a page script holds as literals, and the schema.org `Dataset` of its JSON-LD. `{tip: js-literale, tabele: true}`; `tabele` (`true`, or a list of positions) adds the table readers of the same page, and their fields come first. | Module `inventory_literals`. See "Data literals in page scripts" below. `stare_tip` `observat-in-esantion-json` (a path in a literal) or `declarat-in-metadate` (a `variableMeasured` entry); locator `char:START-END`. |
 
-New `stare_tip` values: `declarat-in-cod-sursa`, `antet-tabel-html`, `declarat-in-tabel-documentatie`, `declarat-in-text-documentatie`,
+New `stare_tip` values (`js-literale` adds none: it reuses `observat-in-esantion-json` and `declarat-in-metadate`): `declarat-in-cod-sursa`, `antet-tabel-html`, `declarat-in-tabel-documentatie`, `declarat-in-text-documentatie`,
 `exemplu-in-documentatie`, `utilizat-in-cod-pagina`; `html-api-docs` also uses `declarat-in-documentatie-api`; `html-carduri-csv` uses `declarat-in-lista-documentatie`
 (the page lists the column with its description; the list is not a table and not a type declaration). `baza_tipului` of a source in these formats is `cod-sau-documentatie`.
 `--check` parses the retained body again and compares every field, so a changed interval, pointer or type is an error.
@@ -1029,6 +1030,38 @@ New `stare_tip` values: `declarat-in-cod-sursa`, `antet-tabel-html`, `declarat-i
   (`în lei nominali`); a column name such as `median_turnover_lei` is not evidence of a unit. The locator is the interval from the `<dt>` of the column to the end of its `<dd>`.
 - A page with no file card, a file offered twice, a column listed twice in one file or a column without a description is an error (state `eroare-parsare`); the reader never guesses.
 - `--check` parses the retained body again and compares the fields and the datasets.
+
+**Data literals in page scripts (`js-literale`).** A single-page tool often keeps its data inside the page. No schema describes that data. The page still shows what it holds.
+The reader makes no request and runs no script.
+
+- A candidate declaration is a `const`, `let` or `var` at the start of a line, with an object or an array as its value. The reader keeps it when the value is a literal.
+  A literal holds only strings, numbers, `true`, `false`, `null`, arrays and objects. Bare keys, single quotes, comments and trailing commas are allowed.
+- A data island is a script of type `application/json`. The reader names it by its `id`. A script with `src` is not read. A repeated name gets a suffix (`DATA#2`).
+- Each path in a literal is a field. Keys: `nume` (the last part of the path), `cale` (the variable and the path, for example `DATA.c{*}.m[]`), `tipuri_observate`, `variabila`, `rol` `camp-date`,
+  `stare_tip` `observat-in-esantion-json`, `pointer` and `linie`. The `pointer` is `char:START-END`: the first node at that path in the retained body.
+  The field has no declared type, no unit and no description, because the page declares none.
+- The bounds are 25 elements of an array, 25 members of a collection, seven levels and 2,000 fields. `limita_atinsa` says that a bound was reached.
+- An object is a keyed collection when it has 100 members or more, or when it has 12 members or more and all its values are of one kind (objects, arrays, strings or numbers).
+  A collection has `rol` `colectie-cu-chei`, `numar_chei` and `chei_exemplu` (at most three keys of 40 characters). Its keys are values, such as county names. They never become field names.
+  A record with 12 members or more and values of several kinds is still a record.
+- An array of rows of one width (2 to 12 cells, all scalars) gives one field for each position, for example `ROWS[][0]` and `ROWS[][1]`.
+  The position is a fact. What a position means is an interpretation: a group selector records it with its own evidence.
+- `declaratii` (a source key) lists every candidate declaration in page order. Keys: `variabila`, `forma-sursa` (`literal-script` or `json-izolat`), `linie`, `citit`, `pointer`.
+  A literal that was read also has `forma` (`obiect` or `tablou`) and `elemente` (the number of members or elements).
+  A declaration that was not read has `motiv`: `valoare-nelitera` (code, an identifier, a function, a template string or a spread), `expresie-dupa-literal` (`[...].map(...)` or a comma),
+  `cheie-nelitera`, `cheie-fara-valoare`, `sintaxa`, `sir-neinchis`, `comentariu-neinchis`, `literal-neterminat` or `literal-prea-adanc`.
+- The comment directly above a declaration is kept as `comentariu`: `valoare`, `pointer` and `trunchiat` (when the text is cut at 600 characters). It is the page's own wording about the variable.
+- A declaration in the middle of a line, or inside a function, is not listed. A line inside a literal that was read is data, never a declaration.
+- `seturi_ld` (a source key) lists each schema.org `Dataset` in the JSON-LD of the page (`application/ld+json`, also inside `@graph`). The reader does not read the rest of the JSON-LD as data.
+  Each fact has `valoare`, `pointer` and `baza` `declarat-in-pagina`.
+  Keys: `nume`, `descriere`, `adresa` (`url`), `perioada` (`temporalCoverage`, as written), `acoperire` (the name of `spatialCoverage`), `licenta`, `limba`, `gratuit` (`isAccessibleForFree`),
+  the lists `bazat_pe` (`isBasedOn`: addresses or free text), `creator`, `editor` (`publisher`), `cuvinte_cheie` and `variabile_masurate`, and `pointer` (the whole node).
+  An object without `name` keeps its `@id` as the value. A missing fact is `null`; a missing list is `[]`.
+  `isBasedOn` is a statement of the page. It is not a provider: the review items name the provider and its role.
+- Each `variableMeasured` entry is also a field: `rol` `masura`, `stare_tip` `declarat-in-metadate`, `grup` (the name of the data set) and `cale` `Dataset1.variableMeasured.NAME`.
+  `descriere` and `unitate` are set only when the page writes `description` and `unitText`.
+- `baza_tipului` of such a source is `esantion-date`. `--check` parses the retained body again and compares the fields, `declaratii` and `seturi_ld`.
+- A response over 2,000,000 bytes has no retained body (`raspuns-prea-mare`). A bounded range read (`--sample-bytes`) stops at the last complete line. It can end before the script of the page.
 
 **Comparison with the contract.** When `citire.contract` names a source of the same project that is parsed and whose body this checkout holds, `inventory.py` compares the page with it after every run.
 Each operation and each request input gets `in_contract`: `{sursa_id, pointer}` of the declaration in the contract, or `null` when the contract does not declare it. A field with no `operatie` has no `in_contract` key
