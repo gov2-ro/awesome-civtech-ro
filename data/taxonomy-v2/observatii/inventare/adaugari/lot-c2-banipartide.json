@@ -1,0 +1,33 @@
+[
+  {
+    "proiect": "bani-partide",
+    "url": "https://db.banipartide.ro/banipartide.json",
+    "metoda": "adaugat-explicit",
+    "locate": {
+      "cache": true,
+      "pagina": "https://db.banipartide.ro/banipartide.json",
+      "text": "\"source\": \"Expert Forum\""
+    },
+    "dovezi": [
+      {
+        "cache": true,
+        "pagina": "https://db.banipartide.ro/banipartide.json",
+        "text": "\"source_url\": \"https://expertforum.ro/tag/finantare-politica/\"",
+        "rol": "adresa-sursa-declarata"
+      },
+      {
+        "cache": true,
+        "pagina": "https://db.banipartide.ro/banipartide.json",
+        "text": "\"license\": \"CC Attribution 4.0 License\"",
+        "rol": "licenta-declarata"
+      },
+      {
+        "cache": true,
+        "pagina": "https://db.banipartide.ro/banipartide.json",
+        "text": "\"license_url\": \"http://creativecommons.org/licenses/by/4.0/\"",
+        "rol": "adresa-licenta-declarata"
+      }
+    ],
+    "nota": "The listing of the Datasette database of banipartide.ro, published at db.banipartide.ro. The owner named the address and saved the listing from their browser on 2026-10-26 at 20:30 (+02:00), because banipartide.ro and its subdomains are in colectare-interzisa.csv and no script requests them (inventory.py --import-saved). The listing is the database page in JSON: 18 visible tables with their columns and row counts, 20 hidden full-text tables and 4 views (names only). It declares the source „Expert Forum”, the source address https://expertforum.ro/tag/finantare-politica/ and the licence CC Attribution 4.0. It holds column names and counts, no row. The donor tables name private persons, and no row was read. The copy names no provider of the data. The discovery locator is the copy itself, because the home page of the project answered HTTP 403 and links no data address."
+  }
+]

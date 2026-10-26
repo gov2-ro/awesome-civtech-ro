@@ -1056,6 +1056,26 @@ New `stare_tip` values (`js-literale` adds none: it reuses `observat-in-esantion
 - A page with no table of this shape, a row that is not five cells wide, a data set with no title, a `google.com/url` link without `q`, and the same title with the same links twice are errors (state `eroare-parsare`).
 - `--check` parses the retained body again and compares the data sets.
 
+**Datasette database listings (`baza-datasette`).** The reader keeps what the listing of a Datasette database states (`/<database>.json`: `database`, `tables`, `hidden_count`, `views`, and the
+metadata members `source`, `source_url`, `license`, `license_url`). It is not a text format: the registry needs no `citire`, because the format comes from the shape of the JSON
+(a `database` name, a `tables` list and a `views` member). It requests no table, no view and no query, so it reads no row. Module `inventory_datasette`.
+
+- Fields: one for each column of each visible table (`hidden` false), in table order. `nume` is the column name as written (a trailing space stays), `cale` is `<table>.<column>`, `grup` is the table,
+  `rol` is `coloana-sql`, `tip_declarat` is null (the listing declares no type), `stare_tip` is `declarat-in-lista-baza`, and `pointer` is the JSON pointer of the column (`/tables/N/columns/M`).
+  `randuri_tabel` is the row count of the table as the server counted it when it answered; the key is absent when the listing gives no integer count. A column name that two tables share gives two fields.
+  The field browser shows the table as the group of the field, with its row count.
+- Database facts: the source key `baza`. `nume`, `marime_octeti` (the size in bytes), `sursa` and `adresa_sursa` (the declared source), `licenta`, `tabele` (one record for each visible table: `nume`, `randuri`, `coloane`, `pointer`),
+  `tabele_ascunse` (the declared count of hidden tables), `ascunse_in_lista` (the hidden tables that the list holds) and `vederi` (the views: `nume` and `pointer`, nothing else). Each fact has `valoare`, `pointer` and `baza`:
+  `declarat-in-metadate` (the metadata of the server: source and licence), `declarat-in-lista` (names and the hidden count) or `calculat-de-server` (the size and the row counts: the server computed them when it answered).
+  A fact that the listing lacks is `null`.
+- `licenta` is the licence that the metadata declares: `valoare` (as written, for example `CC Attribution 4.0 License`), `acopera` `tabelele-bazei`, `url` (the member `license_url`, as written) and `atribuire` (the member `source`, word for word).
+  It is `null` when the listing has no `license` member: a licence address alone is not a licence. The field browser credits it like the licence of a page of CSV files (`Sursa: <source>`).
+- A hidden table (the full-text index tables `*_fts*`) gets no field. A view has no column in the listing, so it is named and nothing more. Primary keys, foreign keys, saved queries and the other members of the listing are not read.
+  The `source` of the listing names who published the database. It is the project author or the distributor, not a provider of the data; the review items name the provider.
+- A table or a view with no name, a table named twice, a table with no column list or no boolean `hidden`, a column with no name, a column twice in one table and a `source` that is not text are errors (state `eroare-parsare`); the reader never guesses.
+  A hidden table is not checked for columns.
+- `baza_tipului` of such a source is `lista-fara-tipuri`: names without types. `--check` parses the retained body again and compares the fields and `baza`.
+
 **CSV header options (`citire` `{"tip": "csv", ...}`).** The plain CSV reader takes the first row as the header. It refuses a header with an empty or repeated cell.
 A tab that people keep by hand may have a title above its header, or empty header cells. The registry names an exception for one source (module `inventory_sheet`):
 
@@ -1121,7 +1141,8 @@ helper saw. A `link` locator (`/links/N` of a collected page, with `fragment` th
 **Pages saved by the owner (`--import-saved`).** `inventory.py --import-saved SLUG URL FILE --saved-at 2026-10-25T20:39:00+02:00 [--note TEXT] [--reading NAME|JSON] [--parent URL]`
 keeps a file that the owner saved from their browser as the retained body of `URL`, and adds `URL` to project `SLUG` like `--add-source`. It implies `--offline --only SLUG`
 and refuses `--check`, `--probe`, `--dry-run`, `--force` and `--force-url`, so it cannot make a request. `--add-sources-file` can accompany it; a specification for the same address
-comes first and keeps its locators and its reader (`citire`). The body goes to the ordinary cache (`surse/<id>.json`, gitignored) and, once parsed, to the immutable snapshot. Both are
+comes first and keeps its locators and its reader (`citire`). The copy is in the cache before the specifications are resolved, so a specification can locate a fragment in it
+(`locate` with `cache: true`, and `dovezi` the same way). The body goes to the ordinary cache (`surse/<id>.json`, gitignored) and, once parsed, to the immutable snapshot. Both are
 the same kind of file as a fetched body, so the reader, `--check` and the review interface treat them alike. The source record differs from a fetched one in these keys:
 
 - `origine` `copie-salvata-de-proprietar`, `salvat_la`, `nume_fisier`, `sha256_fisier`, `nota_copie`: as for a saved documentation page (see above).
@@ -1214,7 +1235,7 @@ An empty cell means unknown. A zero means that the count was made and found noth
 `build.py --with-inventory` reads inventory metadata and writes `/date/`, `/date/lista/` and `inventar/*.json`.
 The flag requires taxonomy v2. It does not change editorial acceptance. The Pages workflow uses it since 2026-10-26, so the public site
 shows the inventories; a build without the flag removes `date/` and `inventar/` from its site directory.
-A source whose data sets all declare the same licence carries `licence` (`name`, `url`, `attribution`), and the field browser credits it.
+A source whose data sets all declare the same licence carries `licence` (`name`, `url`, `attribution`), and the field browser credits it. So does a Datasette listing that declares a licence (`baza.licenta`; the attribution is `Sursa: ` and the declared source).
 
 - Each relevant item gets `inventory`: field/parameter count, source count, field examples, search keywords,
   documentation links, the original declaration count (`positions`), and `partial=true`.
@@ -1222,7 +1243,7 @@ A source whose data sets all declare the same licence carries `licence` (`name`,
   Those payloads hold source URLs, field descriptions, declared or observed types, units, roles, references and operations.
 - Repeated API parameters with the same source, type, description and location share a display row.
   The row keeps its individual references and operations. Other field records remain distinct.
-- Declared extras enter the payload when present: `enum` (declared alternatives), `formula`, `group`, `period`, `value`, `line`, `expression`, `required`.
+- Declared extras enter the payload when present: `enum` (declared alternatives), `formula`, `group`, `period`, `rows` (the row count of the table of a field in a Datasette listing), `value`, `line`, `expression`, `required`.
   A source adds `dataset` (code, name, update date, period, geographic levels, declared units, dimensions; the interface says that INS metadata comes from a mirror),
   `partial` (read as a bounded sample), `viaBrowser`, `savedByOwner` (a copy that the owner saved by hand) and `refreshFailed`.
 - The URL of a Google Sheet tab ends in `export`, so the title of such a source comes from the page of the same project that lists it (format `html-lista-seturi`):

@@ -76,9 +76,7 @@ class Coverage(unittest.TestCase):
         for slug in ('harta-banilor-publici', 'parlament-transparent', 'bani-pierduti'):
             self.assertNotIn('C2', self.by[slug]['investigat_in_lot'], 'inactive entries are not in the batch: ' + slug)
         self.assertEqual(self.by['romania-interactiva']['stare_investigare'], 'cu-surse-structurate')
-        row = self.by['bani-partide']
-        self.assertEqual((row['stare_investigare'], row['surse_structurate'], row['campuri_din_surse'], row['concepte_propuse']), ('blocat', '0', '0', ''))
-        self.assertIn('403', row['blocaj'])
+        self.assertEqual(self.by['bani-partide']['stare_investigare'], 'cu-surse-structurate')
 
     def test_data_expertforum_is_read_from_the_page_that_the_owner_saved_and_says_what_it_could_not_read(self):
         row = self.by['data-expertforum']
@@ -91,11 +89,25 @@ class Coverage(unittest.TestCase):
         self.assertTrue(failed and all(s['state'] == 'raspuns-prea-mare' for s in failed), 'a response over the size limit is recorded, not parsed')
         self.assertTrue(all(not s['campuri'] for s in failed))
 
+    def test_bani_partide_is_read_from_the_listing_that_the_owner_saved_and_says_what_it_did_not_read(self):
+        row = self.by['bani-partide']
+        self.assertEqual(row['stare_investigare'], 'cu-surse-structurate')
+        self.assertEqual(sorted(row['investigat_in_lot'].split('|')), ['C2', 'S'], 'lot C2, and S for an entry with a copy that the owner saved')
+        self.assertEqual((row['surse_structurate'], row['campuri_din_surse']), ('1', '172'))
+        self.assertEqual((row['campuri_cu_definitie'], row['campuri_cu_tip_declarat'], row['campuri_cu_tip_observat']), ('0', '0', '0'), 'the listing declares names only')
+        self.assertIn('nu declară tipuri', row['limite'])
+        self.assertEqual(row['blocaj'], '', 'the listing was read: nothing blocks the entry')
+        source = self.data['sources'][self.data['profiles']['bani-partide']['surse_structurate'][0]]
+        self.assertEqual((source['url'], source['format'], source['origine']), ('https://db.banipartide.ro/banipartide.json', 'baza-datasette', 'copie-salvata-de-proprietar'))
+
     def test_a_blocker_in_the_notes_decides_the_state_of_an_entry_without_sources_and_nothing_else_does(self):
-        slug = 'bani-partide'
-        without = {**self.data, 'notes': {**self.data['notes'], 'note': {k: v for k, v in self.data['notes']['note'].items() if k != slug}}}
-        row = {r[0]: dict(zip(report.COLUMNS, r)) for r in report.coverage_rows(without)}[slug]
-        self.assertEqual((row['stare_investigare'], row['blocaj']), ('neinvestigat-in-lot', ''), 'without the note the entry has no state of its own')
+        slug = next(e['slug'] for e in self.data['entries'] if e['kind'] != 'organizatie' and not self.data['profiles'][e['slug']]['surse_structurate']
+                    and e['slug'] not in self.data['notes']['note'])
+        notes = self.data['notes']
+        blocked = {**self.data, 'notes': {**notes, 'note': {**notes['note'], slug: {'blocaj': 'HTTP 403 la cererea automată'}}}}
+        row = {r[0]: dict(zip(report.COLUMNS, r)) for r in report.coverage_rows(blocked)}[slug]
+        self.assertEqual((row['stare_investigare'], row['blocaj']), ('blocat', 'HTTP 403 la cererea automată'))
+        self.assertEqual(self.by[slug]['stare_investigare'], 'neinvestigat-in-lot', 'without the note the entry has no state of its own')
         self.assertEqual(self.by['465']['stare_investigare'], 'neinvestigat-in-lot', 'an entry with no note stays uninvestigated')
 
     def test_provider_items_of_batch_c2_cite_evidence_that_the_retained_copy_holds(self):
@@ -131,6 +143,23 @@ class Coverage(unittest.TestCase):
         if text is not None:  # the retained bodies are not in git: a fresh checkout cannot compare
             self.assertTrue(hashlib.sha256(text.encode()).hexdigest().startswith(cited.group(2)))
             self.assertIn(item['valoare_originala'], text)
+
+    def test_the_provider_item_of_batch_c2_part_3_cites_the_saved_listing_and_the_text_it_names(self):
+        # The review state belongs to the owner, so the test does not pin it.
+        items = [r for r in self.data['review'] if r['camp'] == 'surse_date' and r['slug'] == 'bani-partide']
+        self.assertEqual([r['id'] for r in items], ['D187'])
+        item = items[0]
+        self.assertEqual(item['propunere'], 'Furnizor propus: Ministerul Finanțelor')
+        self.assertEqual(item['valoare_originala'], 'Venituri anuale partide de la MF', 'the evidence is a table name of the listing')
+        if item['stare'] == 'deschis':
+            self.assertIn(item['prioritate'], ('medie', 'mica'), 'a high-priority open item would block the publication gate')
+        cited = re.search(r'Dovadă: (\S+) \(text păstrat, sha256 ([0-9a-f]{16})\)', item['motiv'])
+        self.assertEqual(cited.group(1), 'https://db.banipartide.ro/banipartide.json')
+        locator = EvidenceLocator(ROOT / 'data/taxonomy-v2/observatii/inventare', ROOT / 'data/taxonomy-v2/observatii', list(self.data['sources'].values()))
+        text, _ = locator.text(cited.group(1), 'sursa')
+        if text is not None:  # the retained bodies are not in git: a fresh checkout cannot compare
+            self.assertTrue(hashlib.sha256(text.encode()).hexdigest().startswith(cited.group(2)))
+            self.assertIn('"name": "' + item['valoare_originala'] + '"', text)
 
     def test_baseline_figures_are_the_ones_of_the_brief(self):
         self.assertEqual((report.BASELINE['with_fields'], report.BASELINE['field_records'], report.BASELINE['groups']), (14, 2302, 7))

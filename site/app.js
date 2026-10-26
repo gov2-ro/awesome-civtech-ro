@@ -680,7 +680,7 @@ const INV_ROLES = { 'camp-date': 'Date', dimensiune: 'Dimensiuni', 'parametru-ap
   'camp-exemplu': 'Exemple în documentație', masura: 'Măsuri', 'camp-folosit-de-pagina': 'Folosite de pagină', 'colectie-cu-chei': 'Colecții indexate' };
 const INV_BASIS = { schema: 'Descris în schemă', metadata: 'Descris în metadate', sample: 'Observat în date', header: 'Antet CSV',
   code: 'Declarat în codul sursă', table: 'Antet de tabel HTML', doctable: 'Declarat în tabel de documentație', doctext: 'Declarat în textul documentației',
-  pagecode: 'Folosit în codul paginii', docexample: 'Exemplu în documentație', apidoc: 'Declarat în documentația API', doclist: 'Declarat în lista de coloane din documentație' };
+  pagecode: 'Folosit în codul paginii', docexample: 'Exemplu în documentație', apidoc: 'Declarat în documentația API', doclist: 'Declarat în lista de coloane din documentație', dblist: 'Declarat în lista bazei de date' };
 const INV_LOCATIONS = { query: 'filtru', path: 'în URL', header: 'în antet', cookie: 'cookie' };
 const INV_TYPES = { string: 'Text', integer: 'Număr întreg', number: 'Număr', boolean: 'Da / Nu', null: 'Valoare nulă', text: 'Text în tabel',
   'forma-numerica': 'Arată ca număr (text)', 'forma-de-data': 'Arată ca dată (text)',
@@ -729,10 +729,10 @@ function inventoryDatasets(sources) {
   return `<details class="inv-datasets"><summary>${plural(sets.length, 'set de date descris', 'seturi de date descrise')}</summary>
     <p class="inv-note">Metadate citite de la ins.gov2.ro, o oglindă a TEMPO. Perioada poate fi mai scurtă decât în sursa originală.</p><ul>${sets.map(row).join('')}</ul></details>`;
 }
-// A source that declares a licence for its files gets the credit it asks for, next to the descriptions copied from it.
+// A source that declares a licence for its files gets the credit it asks for, next to the names and descriptions copied from it.
 function inventoryCredits(sources) {
   const credited = sources.filter(s => s.licence);
-  return credited.map(s => `<p class="inv-note">Descrieri preluate din <a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(new URL(s.url).hostname)}${ICON.out}</a>, licență ${s.licence.url ? `<a href="${esc(s.licence.url)}" target="_blank" rel="noopener">${esc(s.licence.name)}${ICON.out}</a>` : esc(s.licence.name)}${s.licence.attribution ? ` · ${esc(s.licence.attribution)}` : ''}.</p>`).join('');
+  return credited.map(s => `<p class="inv-note">Nume de câmpuri și descrieri preluate din <a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(new URL(s.url).hostname)}${ICON.out}</a>, licență ${s.licence.url ? `<a href="${esc(s.licence.url)}" target="_blank" rel="noopener">${esc(s.licence.name)}${ICON.out}</a>` : esc(s.licence.name)}${s.licence.attribution ? ` · ${esc(s.licence.attribution)}` : ''}.</p>`).join('');
 }
 function inventoryControls(panel, data) {
   const state = inventoryState(data.slug), body = $('[data-inventory-body]', panel);
@@ -763,7 +763,7 @@ function renderInventoryRows(panel) {
       ${f.enum?.length ? `<p class="inv-values">Alternative declarate: ${f.enum.slice(0, 12).map(v => `<code>${esc(v)}</code>`).join(' ')}${f.enum.length > 12 ? ' …' : ''}</p>` : ''}
       ${f.formula ? `<p class="inv-values">Formulă declarată: <code>${esc(f.formula)}</code></p>` : ''}
       ${f.period ? `<p class="inv-values">Perioadă declarată: ${esc(f.period)}</p>` : ''}
-      <div class="inv-field-meta"><span>${esc(INV_ROLES[f.role] || f.role)}${f.location ? ` · ${esc(INV_LOCATIONS[f.location] || f.location)}` : ''}</span><span class="inv-basis inv-basis-${esc(f.basis)}">${esc(INV_BASIS[f.basis] || f.basis)}</span>${f.group ? `<span>${esc(clip(f.group, 40))}</span>` : ''}${f.operations.length > 1 ? `<span>${plural(f.operations.length, 'operație API', 'operații API')}</span>` : ''}
+      <div class="inv-field-meta"><span>${esc(INV_ROLES[f.role] || f.role)}${f.location ? ` · ${esc(INV_LOCATIONS[f.location] || f.location)}` : ''}</span><span class="inv-basis inv-basis-${esc(f.basis)}">${esc(INV_BASIS[f.basis] || f.basis)}</span>${f.group ? `<span>${esc(clip(f.group, 40))}${Number.isInteger(f.rows) ? ` · ${plural(f.rows, 'rând', 'rânduri')}` : ''}</span>` : ''}${f.operations.length > 1 ? `<span>${plural(f.operations.length, 'operație API', 'operații API')}</span>` : ''}
         ${source ? `<a href="${esc(source.url)}" target="_blank" rel="noopener" title="${esc(source.title)}">Vezi sursa${ICON.out}</a>` : ''}</div>
       <details class="inv-reference"><summary>Context și referință</summary><code>${esc(f.path)}</code>
         ${f.reference ? `<p class="inv-pointer">${esc(f.reference)}</p>` : ''}

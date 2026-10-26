@@ -2779,6 +2779,33 @@
               }
             }
           ]
+        },
+        {
+          "projects": [
+            "bani-partide"
+          ],
+          "names": [
+            "UAT"
+          ],
+          "path": [
+            "Legenda partide.UAT"
+          ],
+          "source": "https://db.banipartide.ro/banipartide.json",
+          "context": "UAT-ul din legenda partidelor, lângă `Adresa`, `Judet` și `Sediul social `; lista nu spune ce UAT este",
+          "fapte": [
+            {
+              "cheie": "rol",
+              "valoare": "UAT-ul sediului sau al adresei partidului (presupus după coloanele vecine)",
+              "baza": "deductie-din-dovezi",
+              "dovada": {
+                "sursa": "https://db.banipartide.ro/banipartide.json",
+                "text": "sursa",
+                "fragment": "{\"name\": \"Legenda partide\", \"columns\": [\"ID\", \"Denumire\", \"Ordine\", \"Logo\", \"Venituri\", \"Venituri campanii\", \"Cheie\", \"CUI\", \"Adresa\", \"Judet\", \"UAT\", \"Sediul social \", \"Pre\\u0219edinte\", \"Trezorier\"]",
+                "sha256": "252c26c05f04f3c8777940bd1486494f60b0aac954e886d426ce1b2c6f133d5d",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
         }
       ],
       "dovezi": [
@@ -2800,7 +2827,8 @@
       "ambiguitati": [
         "Foaia „Migrație alegători locale 2016” are coloana `Localitate`, dar valorile sunt UAT-uri cu prefix de tip (`Com.Albac`). Coloana nu este membră a grupului `localitate`; ea este candidată acolo (vezi raportul).",
         "API-ul romania-transparenta descrie unele câmpuri `uat` doar prin „localitatea”; altele prin „primăria (UAT-ul)”. Grupul le ia pe amândouă, fiindcă numele și rolul sunt aceleași.",
-        "Un județ nu este un UAT în aceste foi: coloanele de județ sunt în grupul `judet`. `Cj Alba` (consiliul județean) apare în coloana `beneficiar` a foii HG 1088/2021, nu într-o coloană `UAT`."
+        "Un județ nu este un UAT în aceste foi: coloanele de județ sunt în grupul `judet`. `Cj Alba` (consiliul județean) apare în coloana `beneficiar` a foii HG 1088/2021, nu într-o coloană `UAT`.",
+        "În banipartide, `Legenda partide.UAT` stă lângă `Adresa`, `Judet` și `Sediul social `. Lista tabelelor nu spune ce UAT descrie coloana (sediul, adresa de corespondență sau altul). Selectorul este o deducție din antet."
       ],
       "stare": "propus"
     },
@@ -2878,6 +2906,30 @@
           ],
           "source": "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/export?format=csv&gid=768211337",
           "context": "partidul din foaia solicitărilor Anghel Saligny; pagina spune doar „cu calcul per capita si partid”, fără să spună al cui este partidul"
+        },
+        {
+          "projects": [
+            "bani-partide"
+          ],
+          "names": [
+            "Partid"
+          ],
+          "source": "https://db.banipartide.ro/banipartide.json",
+          "context": "partidul pe care îl descrie tabelul: partidul care primește subvenții și donații, raportează venituri și cheltuieli sau are voturi; în tabelele de campanie (`Cheltuieli campanie`, `Contributii campanie`, `Venituri și cheltuieli campanie`), partidul candidatului sau al competitorului. 12 tabele au o coloană `Partid`",
+          "fapte": [
+            {
+              "cheie": "rol",
+              "valoare": "partidul însuși, ca entitate care primește sau raportează bani; nu partidul unei persoane sau al unui act",
+              "baza": "deductie-din-dovezi",
+              "dovada": {
+                "sursa": "https://db.banipartide.ro/banipartide.json",
+                "text": "sursa",
+                "fragment": "{\"name\": \"Subven\\u021bii\", \"columns\": [\"Partid\", \"Suma\", \"An\", \"Luna\", \"Luna-nr\"]",
+                "sha256": "252c26c05f04f3c8777940bd1486494f60b0aac954e886d426ce1b2c6f133d5d",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
         }
       ],
       "dovezi": [
@@ -2894,6 +2946,13 @@
           "fragment": "Cuprinde și partidul beneficiarului",
           "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
           "baza": "declaratie-directa"
+        },
+        {
+          "sursa": "https://db.banipartide.ro/banipartide.json",
+          "text": "sursa",
+          "fragment": "{\"name\": \"Subven\\u021bii\", \"columns\": [\"Partid\", \"Suma\", \"An\", \"Luna\", \"Luna-nr\"]",
+          "sha256": "252c26c05f04f3c8777940bd1486494f60b0aac954e886d426ce1b2c6f133d5d",
+          "baza": "declaratie-directa"
         }
       ],
       "ambiguitati": [
@@ -2901,7 +2960,9 @@
         "Pagina nu spune al cui este partidul din foaia Saligny. Selectorul respectiv stă în grup pe baza antetului, nu a unei declarații.",
         "Foaia HG 1088/2021 scrie `independent` și `Independent` în aceeași coloană. Grupul nu normalizează valorile; nu s-a verificat o listă comună de denumiri.",
         "Foaia candidaților din 2020 are `Competitor-partid` și `Denumirea formațiunii politice/Candidat independent`. Ele nu sunt membre: formațiunea cu care candidează o persoană este alt rol, iar foaia conține date despre persoane.",
-        "`partid_la_vot` (romania-transparenta: „partidul național la data votului”) este partidul unui parlamentar la un vot, nu partidul unei autorități; nu este membru."
+        "`partid_la_vot` (romania-transparenta: „partidul național la data votului”) este partidul unui parlamentar la un vot, nu partidul unei autorități; nu este membru.",
+        "În banipartide, `Partid` este partidul însuși: cel care primește subvenții și donații, raportează venituri și cheltuieli sau are voturi. Rolul diferă de partidul unei persoane sau al unui beneficiar. Lista tabelelor nu are valori; nu se știe dacă numele sunt denumiri sau sigle. Proprietarul poate muta selectorul într-un grup separat pentru partidul ca entitate care raportează.",
+        "`Alianțe.partide` (partidele unei alianțe, probabil mai multe într-o celulă) și `Legenda partide.Denumire` și `Legenda partide.Cheie` nu sunt membre: lista nu spune ce conțin și `partide` poate numi mai multe partide."
       ],
       "stare": "propus"
     },
@@ -2996,6 +3057,113 @@
         "Câmpul `furnizor` nu este în grup. În romania-transparenta el înseamnă uneori „instituția care a acordat ajutorul”, alteori furnizorul dintr-o achiziție; în foaia Plăți, `Furnizor` este firma plătită.",
         "Foaia HG 1264/2021 nu are o coloană de beneficiar; UAT-ul ei (`UAT`) este în grupul `uat`.",
         "Familia `achizitii` (Contracte și achiziții ale autorităților) se potrivește doar în parte: grupul descrie alocări, plăți și ajutoare, nu achiziții. Nicio familie existentă nu descrie banii publici dați unui beneficiar; o familie nouă (de exemplu „Bani publici”) este o decizie a proprietarului."
+      ],
+      "stare": "propus"
+    },
+    {
+      "id": "subventie-partid",
+      "label": "Subvenție primită de un partid",
+      "categorie": "masura",
+      "familie": "alegeri",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Suma unei subvenții primite de un partid politic într-o perioadă. Tabelul `Subvenții` dă o sumă pentru fiecare partid, an și lună. Lista tabelelor nu spune de la cine vine subvenția, în ce monedă este suma și dacă o linie acoperă o lună sau un an. Subvenția acordată unei companii de stat (`companii-de-stat`) este alt lucru.",
+      "selectors": [
+        {
+          "projects": [
+            "bani-partide"
+          ],
+          "names": [
+            "Suma"
+          ],
+          "path": [
+            "Subvenții.Suma"
+          ],
+          "source": "https://db.banipartide.ro/banipartide.json",
+          "context": "suma din tabelul `Subvenții`, lângă `Partid`, `An`, `Luna` și `Luna-nr`",
+          "fapte": [
+            {
+              "cheie": "sensul-sumei",
+              "valoare": "subvenția primită de partid (numele tabelului este „Subvenții”)",
+              "baza": "deductie-din-dovezi",
+              "dovada": {
+                "sursa": "https://db.banipartide.ro/banipartide.json",
+                "text": "sursa",
+                "fragment": "{\"name\": \"Subven\\u021bii\", \"columns\": [\"Partid\", \"Suma\", \"An\", \"Luna\", \"Luna-nr\"]",
+                "sha256": "252c26c05f04f3c8777940bd1486494f60b0aac954e886d426ce1b2c6f133d5d",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://db.banipartide.ro/banipartide.json",
+          "text": "sursa",
+          "fragment": "{\"name\": \"Subven\\u021bii\", \"columns\": [\"Partid\", \"Suma\", \"An\", \"Luna\", \"Luna-nr\"]",
+          "sha256": "252c26c05f04f3c8777940bd1486494f60b0aac954e886d426ce1b2c6f133d5d",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "Lista tabelelor nu declară moneda sau unitatea. Unitatea nu se presupune.",
+        "Nu sunt membre: `Subvenții pe an.Suma` și `Subvenții pe an.Sume alocate` (două sume pe an, fără partid; lista nu spune ce diferență este între ele), `Cheltuieli subventii.Suma` (cheltuieli din subvenții, pe categorie și cod) și `Contracte subventii.Suma` (plăți către furnizori, cu coloana `Moneda`). Sunt alte mărimi.",
+        "Familia `alegeri` se potrivește doar în parte: grupul descrie bani publici dați partidelor. O familie nouă pentru finanțarea politică este o decizie a proprietarului, ca pentru `beneficiar-fonduri-publice`."
+      ],
+      "stare": "propus"
+    },
+    {
+      "id": "donatie-partid",
+      "label": "Donație primită de un partid",
+      "categorie": "masura",
+      "familie": "alegeri",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Suma unei donații primite de un partid politic de la o persoană fizică sau juridică. Trei tabele au o coloană `Suma` lângă numele donatorului și lângă `Partid` și `An`. Lista tabelelor nu spune moneda și nu spune dacă o linie este o singură donație sau un total pe donator. Grupul numește mărimea; el nu conține nume de donatori.",
+      "selectors": [
+        {
+          "projects": [
+            "bani-partide"
+          ],
+          "names": [
+            "Suma"
+          ],
+          "path": [
+            "Donatori persoane fizice.Suma",
+            "Donatori persoane juridice.Suma",
+            "Donatori rapoarte de venituri și cheltuieli.Suma"
+          ],
+          "source": "https://db.banipartide.ro/banipartide.json",
+          "context": "suma din tabelele donatorilor (`Donatori persoane fizice`, `Donatori persoane juridice`, `Donatori rapoarte de venituri și cheltuieli`), lângă `Nume donator` sau `Nume`, `Partid` și `An`",
+          "fapte": [
+            {
+              "cheie": "sensul-sumei",
+              "valoare": "donația primită de partid (numele tabelelor începe cu „Donatori”)",
+              "baza": "deductie-din-dovezi",
+              "dovada": {
+                "sursa": "https://db.banipartide.ro/banipartide.json",
+                "text": "sursa",
+                "fragment": "{\"name\": \"Donatori persoane fizice\", \"columns\": [\"Nume donator\", \"Suma\", \"An\", \"Partid\"",
+                "sha256": "252c26c05f04f3c8777940bd1486494f60b0aac954e886d426ce1b2c6f133d5d",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://db.banipartide.ro/banipartide.json",
+          "text": "sursa",
+          "fragment": "{\"name\": \"Donatori persoane fizice\", \"columns\": [\"Nume donator\", \"Suma\", \"An\", \"Partid\"",
+          "sha256": "252c26c05f04f3c8777940bd1486494f60b0aac954e886d426ce1b2c6f133d5d",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "Lista tabelelor nu declară moneda sau unitatea. Unitatea nu se presupune.",
+        "În `Donatori rapoarte de venituri și cheltuieli` există și `Tip venit` și `Mod încasare`. Lista nu spune dacă toate veniturile din tabel sunt donații.",
+        "Nu sunt membre: `Donații` din `Contributii campanie` și din `Venituri și cheltuieli campanie` (totaluri pe candidat sau pe campanie, nu o donație) și `Venituri` din `Venituri anuale partide de la MF`.",
+        "Donatorii persoane fizice sunt persoane private. Lista conține doar numele coloanelor, nu rânduri; grupul nu copiază nicio valoare."
       ],
       "stare": "propus"
     }

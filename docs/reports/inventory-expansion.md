@@ -6,11 +6,11 @@ Inventory assertions are proposals. Raw field totals count source paths, not ind
 ## 1. Outcome
 
 - Milestones A (safe incremental collection), B (INS), C (12 entries), D (meanings and shared groups) and E (preview, coverage, report) are complete.
-- Structured field evidence now covers 30 of 129 projects and resources (baseline 14). The retained sources are 114 URLs (109 parsed, 5 failed) with 3,962 field records.
-- Each field record is a path in a source. The proposals are 36 shared groups (baseline 7), 16 provider review items and the dictionary evidence that `inventory.py --check` verifies.
+- Structured field evidence now covers 31 of 129 projects and resources (baseline 14). The retained sources are 115 URLs (110 parsed, 5 failed) with 4,134 field records.
+- Each field record is a path in a source. The proposals are 38 shared groups (baseline 7), 16 provider review items and the dictionary evidence that `inventory.py --check` verifies.
 - The public build is unchanged: the default payload equals the v0.13.0 payload apart from its generation time; classifications and accepted providers are identical.
 - Collection used 126 direct requests in total (6 browser navigations); the 150-request limit of lot C was not reached.
-- Batch C2 (three active projects): 1 inventory with 10 sources, 2 entries blocked by HTTP 403, 3 proposed groups and provider items D176–D185; see the subsection of section 3.
+- Batch C2 (three active projects): three inventories (`romania-interactiva` 10 sources, `data-expertforum` 15 sources from the owner's saved page and 14 Google Sheet tabs, `bani-partide` 1 source from the owner's saved listing), 8 proposed groups and provider items D176–D187; see the subsection of section 3.
 
 **Ten-inventory target:** 12 of the 12 primary entries have a new structured inventory; 11 of them carry definitions, declared types, a declared unit or a proposed shared group. No reserve entry was needed. Measured: 12. The target is met.
 
@@ -40,37 +40,37 @@ The 127 projects and resources of the data finder:
 | Catalogue entries | 140 | 142 |
 | Projects / resources / organisations | 106 / 21 / 13 | 108 / 21 / 13 |
 | Projects and resources in the data finder | 127 | 129 |
-| Entries with structured field evidence | 14 | 30 |
-| Projects/resources without extracted structured fields | 113 | 99 |
-| Retained structured-source URLs | 25 | 114 |
-| Parsed sources / HTTP failures | 24 / 1 | 109 / 5 |
-| Source-scoped field records (paths, not variables) | 2,302 | 3,962 |
+| Entries with structured field evidence | 14 | 31 |
+| Projects/resources without extracted structured fields | 113 | 98 |
+| Retained structured-source URLs | 25 | 115 |
+| Parsed sources / HTTP failures | 24 / 1 | 110 / 5 |
+| Source-scoped field records (paths, not variables) | 2,302 | 4,134 |
 | Schema declarations / sampled JSON paths / CSV headers / INS dimensions | 1,312 / 904 / 82 / 4 | 1,367 / 1,341 / 238 / 4 |
 | HTML control candidates / entries with candidates | 308 / 78 | 310 / 80 |
-| Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 82 / 60 |
+| Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 83 / 59 |
 | Accepted provider relations / entries with accepted providers | 26 / 11 | 74 / 25 |
-| Pending provider proposals (review items D132 and later) | 15 | 1 |
-| Proposed business-variable groups | 7 | 36 |
-| Unit tests discovered / skipped | 308 / 6 | 669 / 6 |
+| Pending provider proposals (review items D132 and later) | 15 | 2 |
+| Proposed business-variable groups | 7 | 38 |
+| Unit tests discovered / skipped | 308 / 6 | 701 / 6 |
 | Explorer inventory / dedicated finder browser checks | 25 / 25 | 31 / 40 |
 
-Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 55 in all; deschis 1, acceptat 48, respins 2, amanat 1, tehnic 3. Variable groups: 36 in all; propus 3, revizuit 33, respins 0, amanat 0. Group members (selectors): 112 in all; propus 10, confirmat 102, exclus 0.
+Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 56 in all; deschis 2, acceptat 48, respins 2, amanat 1, tehnic 3. Variable groups: 38 in all; propus 5, revizuit 33, respins 0, amanat 0. Group members (selectors): 116 in all; propus 14, confirmat 102, exclus 0.
 
-Field records by evidence type now: declarat-in-schema 1,367, observat-in-esantion-json 1,341, declarat-in-cod-sursa 366, exemplu-in-documentatie 364, neprecizat-in-antet-csv 238, antet-tabel-html 85, declarat-in-tabel-documentatie 53, declarat-in-metadate 43, declarat-in-lista-documentatie 40, declarat-in-documentatie-api 33, declarat-in-text-documentatie 23, utilizat-in-cod-pagina 9.
+Field records by evidence type now: declarat-in-schema 1,367, observat-in-esantion-json 1,341, declarat-in-cod-sursa 366, exemplu-in-documentatie 364, neprecizat-in-antet-csv 238, declarat-in-lista-baza 172, antet-tabel-html 85, declarat-in-tabel-documentatie 53, declarat-in-metadate 43, declarat-in-lista-documentatie 40, declarat-in-documentatie-api 33, declarat-in-text-documentatie 23, utilizat-in-cod-pagina 9.
 
 Coverage by measure, for the 127 projects and resources (`acoperire.csv` has the rows). A column that counts fields counts source paths:
 
 | Measure | Entries counted | Total |
 | --- | ---: | ---: |
-| Structured sources | 30 | 119 |
-| Field records from sources | 30 | 4,024 |
-| Entries in at least one proposed group | 30 | 22 |
-| Fields with a source-declared description | 30 | 1,358 |
-| Fields with a declared type | 30 | 1,599 |
-| Fields with an observed type | 30 | 1,694 |
-| Measures with a unit | 30 | 62 |
-| Measures without a unit | 30 | 142 |
-| Sources with a verified discovery locator | 30 | 123 |
+| Structured sources | 31 | 120 |
+| Field records from sources | 31 | 4,196 |
+| Entries in at least one proposed group | 31 | 23 |
+| Fields with a source-declared description | 31 | 1,358 |
+| Fields with a declared type | 31 | 1,599 |
+| Fields with an observed type | 31 | 1,694 |
+| Measures with a unit | 31 | 62 |
+| Measures without a unit | 31 | 146 |
+| Sources with a verified discovery locator | 31 | 124 |
 
 Totals add the per-entry counts. A source that several entries share counts once for each of them, so the field total here is higher than the number of distinct field records above.
 Denominators are defined in `docs/DATA-SCHEMA.md` (Coverage export). Entries without a structured source have an empty (unknown) measure count, not zero.
@@ -79,8 +79,8 @@ All 140 catalogue entries:
 
 | State | Entries |
 | --- | ---: |
-| blocat | 2 |
-| cu-surse-structurate | 30 |
+| blocat | 1 |
+| cu-surse-structurate | 31 |
 | in-afara-ariei | 13 |
 | neinvestigat-in-lot | 97 |
 
@@ -226,11 +226,13 @@ Reserve entries (`ce-fac-politicienii`, `onorata-instanta`, `guvernezi`) were no
 
 Batch C2 (brief `docs/briefs/inventory-batch-c2.md`) covers three active projects that publish public-sector data. The owner removed inactive entries from the variable inventory, so `harta-banilor-publici`, `parlament-transparent` and `bani-pierduti` are not in it. The lot code is `C2`.
 
-Result: two entries have a structured inventory. `romania-interactiva` has 10 sources (7 tool pages and 3 INS metadata records). `data-expertforum` has 15 sources from the page that the owner saved (part 2 of the brief): the page itself (15 data sets) and 14 Google Sheet tabs, of which 10 are parsed and 4 are over 2,000,000 bytes. `bani-partide` has none: every automated request to `banipartide.ro`, `data.expertforum.ro` and `expertforum.ro` answered HTTP 403, so the collector stopped on each host; the owner then put the hosts on the list of hosts that no script requests and chose to save pages by hand. It keeps the state `blocat` until the owner saves its pages.
+Result: all three entries have a structured inventory. `romania-interactiva` has 10 sources (7 tool pages and 3 INS metadata records). `data-expertforum` has 15 sources from the page that the owner saved (part 2 of the brief): the page itself (15 data sets) and 14 Google Sheet tabs, of which 10 are parsed and 4 are over 2,000,000 bytes. `bani-partide` has 1 source from the listing of its database that the owner saved (part 3, brief section 8.1): 172 field records. Every automated request to `banipartide.ro`, `data.expertforum.ro` and `expertforum.ro` answered HTTP 403, so the collector stopped on each host; the owner then put the hosts on the list of hosts that no script requests and chose to save pages by hand.
 
 Three groups are proposed (`casatorii`, `divorturi`, `studenti`, state `propus`) and ten provider items (D176–D185, state `deschis`). The 30 reviewed groups got no new member: a reviewed group cannot hold a member that the owner has not confirmed, so the matches below stay candidates until the owner decides. Candidate members for reviewed groups: `judet` (county names in `RAW[][0]`, in the keys of `URB`, `DATA.c` and `NICE`, and the table header `Județul`), `perioada-de-referinta` (`Y[]` and `DATA.years[]`, census and calendar years; the university table has an academic year), `populatie` (census population in `RAW[][1..8]` and the table column `Locuitori`; population by domicile in `DATA.c{*}.p[]`) and `localitate` (university centre `D[].n`, city `dataScript.cities[].name`). Each candidate keeps the ambiguity of its group: a census count is not the population by domicile of POP107D.
 
 Part 2 (brief section 7, `data-expertforum`): three groups are proposed (`uat`, `partid-politic`, `beneficiar-fonduri-publice`, state `propus`) and one provider item (D186: the Government decisions that the tab `HG 1088/2021` names, state `deschis`). The reviewed groups got no new member; the eight candidate selectors are in section 5. A tab about persons (the candidates of the 2020 parliamentary elections) keeps its header only.
+
+Part 3 (brief section 8.1, `bani-partide`): the owner saved `https://db.banipartide.ro/banipartide.json`. A new reader (`baza-datasette`) gives one field for each column of the 18 visible tables (172), the row count of each table, the 4 views by name and the declared source and licence (CC Attribution 4.0, source „Expert Forum”). Two groups are proposed (`subventie-partid`, `donatie-partid`, state `propus`), selectors are added to the proposed groups `partid-politic` (the column `Partid` of 12 tables) and `uat` (`Legenda partide.UAT`), and six candidate selectors for the reviewed groups `cui`, `judet` and `perioada-de-referinta` are in section 5. One provider item: D187 (Ministerul Finanțelor, from the table title `Venituri anuale partide de la MF`; priority mica). The copy holds no row; the donor tables name private persons.
 
 #### `data-expertforum` — Data Expert Forum
 
@@ -247,16 +249,16 @@ Portal of data sets that Expert Forum (EFOR) compiled for its projects. The page
 
 #### `bani-partide` — Bani Partide
 
-Platform on political party finance in Romania since 2006 (donations, campaign finance, public subsidies, income and expenses of parties; catalogue text). Every automated request to banipartide.ro answers HTTP 403 (four pages on 2026-10-24, the home page again on 2026-10-26), and so do the two pages of expertforum.ro that the stored search results name as descriptions of the platform. No page was read, so there is no source, no field, no group and no provider proposal: no first-party text that names a provider could be retained. The question "which provider supplies each record" stays open. The page of `data-expertforum` (saved by the owner on 2026-10-26) lists the data set „Finanțarea politică (partide și campanii electorale) 2006-2021” and links https://www.banipartide.ro/ as its related report. It is a relation between the two entries, not a source of this entry.
+Platform on political party finance in Romania since 2006 (donations, campaign finance, public subsidies, income and expenses of parties; catalogue text). Every automated request to banipartide.ro answers HTTP 403, and the host is on the list of hosts that no script requests. The owner saved the listing of its Datasette database (`https://db.banipartide.ro/banipartide.json`) from a browser on 2026-10-26 at 20:30 (+02:00), and the inventory reads that copy (part 3, brief section 8.1). The listing names the database `banipartide` (46,718,976 bytes) with 18 visible tables, 20 hidden full-text tables and 4 views (names only). The 18 tables have 172 columns, one field record for each, and 457,900 rows in all. The largest are `Donatori rapoarte de venituri și cheltuieli` (353,473 rows), `Contributii campanie` (49,697), `Donatori persoane fizice` (30,791), `Cheltuieli subventii` (8,950) and `Venituri anuale din rapoarte de venituri și cheltuieli` (3,923). The listing declares the source „Expert Forum”, the source address https://expertforum.ro/tag/finantare-politica/ and the licence CC Attribution 4.0, and the field browser credits them. It declares no type, description, unit, period or provider, so each field has a name and nothing more. The tables of donors and `Contributii campanie` hold data about persons (`Nume donator`, `CNP`, `Nume`): the inventory keeps the column names only and no row was read. Mapping: the column `Partid` of 12 tables is proposed for the group `partid-politic` and `Legenda partide.UAT` for `uat` (both groups still proposed); two groups are new (`subventie-partid`, `donatie-partid`, state `propus`); six selectors are candidates for the reviewed groups `cui`, `judet` and `perioada-de-referinta`. Providers: one proposal (D187). The table `Venituri anuale partide de la MF` names the Ministry of Finance by its initials; no other text of the copy names a provider. The source „Expert Forum” is the project author and distributor, not a provider. Relation to another entry: the political finance data set of `data-expertforum` links https://www.banipartide.ro/ as its related report; the two entries share no data source (the Drive file of that data set was not read), so nothing is counted twice.
 
-- State: blocat. Sources 0, field records 0, groups 0.
-- Source URLs: none
-- Proposed groups: none
+- State: cu-surse-structurate. Sources 1, field records 172, groups 4.
+- Source URLs: `https://db.banipartide.ro/banipartide.json`
+- Proposed groups: `donatie-partid`, `partid-politic`, `subventie-partid`, `uat`
 - Documented inputs: none documented in the sources read. HTML controls stay candidates.
-- Provider proposals: none.
-- Blocker: HTTP 403 for every automated request to banipartide.ro and to expertforum.ro. The collector stopped on both hosts. No browser pass was made, because a browser would work around the refusal.
-- Limitations: Nothing was read: both EFOR hosts refuse automated requests (HTTP 403).
-- Remaining work: The owner decides: add banipartide.ro and expertforum.ro to the list of hosts that no script requests, or save the pages by hand and import them. Then look for AEP and Monitorul Oficial in the retained text and propose providers.
+- Provider proposals: D187.
+- Blocker: none
+- Limitations: The listing declares column names and row counts only: no type, description, unit, period or provider. The four views have no columns, and the 20 hidden tables get no field. Tables of donors hold data about persons, so only the column names are kept and no row was read. The home page and the documentation pages of the project were not read (HTTP 403; host on the list).
+- Remaining work: Decide D187, the two proposed groups, the new members of the proposed groups `partid-politic` and `uat`, and the six candidate selectors for the reviewed groups `cui`, `judet` and `perioada-de-referinta`. The owner can save the JSON pages of the views (assumed to list their columns; not verified) and the documentation pages of the project (to look for AEP and Monitorul Oficial in their text).
 
 #### `romania-interactiva` — România Interactivă
 
@@ -317,11 +319,11 @@ Groups with at least two project memberships (unique entries). A group is a disc
 | `voturi-impotriva` Voturi împotrivă | masura | 2 | europescope, monitorul-ai |
 | `voturi-abtinere` Abțineri | masura | 2 | europescope, monitorul-ai |
 | `grup-politic` Grup politic sau parlamentar | dimensiune | 2 | europescope, monitorul-ai |
-| `uat` UAT (unitate administrativ-teritorială) | dimensiune | 2 | data-expertforum, romania-transparenta |
-| `partid-politic` Partid politic | dimensiune | 2 | data-expertforum, romania-transparenta |
+| `uat` UAT (unitate administrativ-teritorială) | dimensiune | 3 | bani-partide, data-expertforum, romania-transparenta |
+| `partid-politic` Partid politic | dimensiune | 3 | bani-partide, data-expertforum, romania-transparenta |
 | `beneficiar-fonduri-publice` Beneficiar de fonduri publice | dimensiune | 2 | data-expertforum, romania-transparenta |
 
-Groups with one entry so far (no second project exposes the variable in the sources read): `co2`, `pm25`, `pm10`, `temperatura-aer`, `umiditate-relativa`, `presiune-atmosferica`, `viteza-vantului`, `alegatori-inscrisi`, `alegatori-lista-permanenta`, `alegatori-prezenti`, `voturi-valide`, `voturi-nule`, `rata-prezenta`, `casatorii`, `divorturi`, `studenti`.
+Groups with one entry so far (no second project exposes the variable in the sources read): `co2`, `pm25`, `pm10`, `temperatura-aer`, `umiditate-relativa`, `presiune-atmosferica`, `viteza-vantului`, `alegatori-inscrisi`, `alegatori-lista-permanenta`, `alegatori-prezenti`, `voturi-valide`, `voturi-nule`, `rata-prezenta`, `casatorii`, `divorturi`, `studenti`, `subventie-partid`, `donatie-partid`.
 
 Ambiguous candidates, kept out of the groups:
 
@@ -365,15 +367,25 @@ Ambiguous candidates, kept out of the groups:
 - `uat`: Foaia „Migrație alegători locale 2016” are coloana `Localitate`, dar valorile sunt UAT-uri cu prefix de tip (`Com.Albac`). Coloana nu este membră a grupului `localitate`; ea este candidată acolo (vezi raportul).
 - `uat`: API-ul romania-transparenta descrie unele câmpuri `uat` doar prin „localitatea”; altele prin „primăria (UAT-ul)”. Grupul le ia pe amândouă, fiindcă numele și rolul sunt aceleași.
 - `uat`: Un județ nu este un UAT în aceste foi: coloanele de județ sunt în grupul `judet`. `Cj Alba` (consiliul județean) apare în coloana `beneficiar` a foii HG 1088/2021, nu într-o coloană `UAT`.
+- `uat`: În banipartide, `Legenda partide.UAT` stă lângă `Adresa`, `Judet` și `Sediul social `. Lista tabelelor nu spune ce UAT descrie coloana (sediul, adresa de corespondență sau altul). Selectorul este o deducție din antet.
 - `partid-politic`: Rolul diferă: partidul primarului (`Partid primar`), partidul beneficiarului (`partid` din HG 1088/2021), partidul „din act” (romania-transparenta). Un partid din altă sursă poate fi al unui candidat sau al unui parlamentar.
 - `partid-politic`: Pagina nu spune al cui este partidul din foaia Saligny. Selectorul respectiv stă în grup pe baza antetului, nu a unei declarații.
 - `partid-politic`: Foaia HG 1088/2021 scrie `independent` și `Independent` în aceeași coloană. Grupul nu normalizează valorile; nu s-a verificat o listă comună de denumiri.
 - `partid-politic`: Foaia candidaților din 2020 are `Competitor-partid` și `Denumirea formațiunii politice/Candidat independent`. Ele nu sunt membre: formațiunea cu care candidează o persoană este alt rol, iar foaia conține date despre persoane.
 - `partid-politic`: `partid_la_vot` (romania-transparenta: „partidul național la data votului”) este partidul unui parlamentar la un vot, nu partidul unei autorități; nu este membru.
+- `partid-politic`: În banipartide, `Partid` este partidul însuși: cel care primește subvenții și donații, raportează venituri și cheltuieli sau are voturi. Rolul diferă de partidul unei persoane sau al unui beneficiar. Lista tabelelor nu are valori; nu se știe dacă numele sunt denumiri sau sigle. Proprietarul poate muta selectorul într-un grup separat pentru partidul ca entitate care raportează.
+- `partid-politic`: `Alianțe.partide` (partidele unei alianțe, probabil mai multe într-o celulă) și `Legenda partide.Denumire` și `Legenda partide.Cheie` nu sunt membre: lista nu spune ce conțin și `partide` poate numi mai multe partide.
 - `beneficiar-fonduri-publice`: Natura banilor diferă: alocare din Fondul de rezervă prin HG (UAT), plată din programul de promovare COVID (firme de presă), ajutor din registrul RegAS (romania-transparenta). Un total pe beneficiar nu se adună între aceste surse.
 - `beneficiar-fonduri-publice`: Câmpul `furnizor` nu este în grup. În romania-transparenta el înseamnă uneori „instituția care a acordat ajutorul”, alteori furnizorul dintr-o achiziție; în foaia Plăți, `Furnizor` este firma plătită.
 - `beneficiar-fonduri-publice`: Foaia HG 1264/2021 nu are o coloană de beneficiar; UAT-ul ei (`UAT`) este în grupul `uat`.
 - `beneficiar-fonduri-publice`: Familia `achizitii` (Contracte și achiziții ale autorităților) se potrivește doar în parte: grupul descrie alocări, plăți și ajutoare, nu achiziții. Nicio familie existentă nu descrie banii publici dați unui beneficiar; o familie nouă (de exemplu „Bani publici”) este o decizie a proprietarului.
+- `subventie-partid`: Lista tabelelor nu declară moneda sau unitatea. Unitatea nu se presupune.
+- `subventie-partid`: Nu sunt membre: `Subvenții pe an.Suma` și `Subvenții pe an.Sume alocate` (două sume pe an, fără partid; lista nu spune ce diferență este între ele), `Cheltuieli subventii.Suma` (cheltuieli din subvenții, pe categorie și cod) și `Contracte subventii.Suma` (plăți către furnizori, cu coloana `Moneda`). Sunt alte mărimi.
+- `subventie-partid`: Familia `alegeri` se potrivește doar în parte: grupul descrie bani publici dați partidelor. O familie nouă pentru finanțarea politică este o decizie a proprietarului, ca pentru `beneficiar-fonduri-publice`.
+- `donatie-partid`: Lista tabelelor nu declară moneda sau unitatea. Unitatea nu se presupune.
+- `donatie-partid`: În `Donatori rapoarte de venituri și cheltuieli` există și `Tip venit` și `Mod încasare`. Lista nu spune dacă toate veniturile din tabel sunt donații.
+- `donatie-partid`: Nu sunt membre: `Donații` din `Contributii campanie` și din `Venituri și cheltuieli campanie` (totaluri pe candidat sau pe campanie, nu o donație) și `Venituri` din `Venituri anuale partide de la MF`.
+- `donatie-partid`: Donatorii persoane fizice sunt persoane private. Lista conține doar numele coloanelor, nu rânduri; grupul nu copiază nicio valoare.
 
 Candidate members of reviewed groups (batch C2). They are not in `inventar-concepte.json`: a reviewed group cannot hold a member that the owner has not confirmed. Each line is a selector that the owner can add after the decision:
 
@@ -395,6 +407,12 @@ Candidate members of reviewed groups (batch C2). They are not in `inventar-conce
 - `localitate`: `{"projects": ["data-expertforum"], "names": ["Localitate"], "source": "https://docs.google.com/spreadsheets/d/1fX1Nv2HonSSfFfTqBNpWfmTeGREMQAQ-/export?format=csv&gid=1641909541", "context": "antetul spune „Localitate”, dar valorile sunt nume de UAT cu prefix de tip (`Com.Albac`); grupul nou `uat` o conține deja ca propunere"}`
 - `voturi-valide`: `{"projects": ["data-expertforum"], "names": ["Numărul total de voturi valabil exprimate (CU)", "Numărul total de voturi valabil exprimate (Prop)"], "source": "https://docs.google.com/spreadsheets/d/1hWsdExKe_wzEdy2ZQQVdguINpEzI1Ikx/export?format=csv&gid=438062803", "context": "voturile valabil exprimate la alegerile parlamentare din 2019 din Republica Moldova, pe comună sau oraș, la vot uninominal (CU) și proporțional (Prop)"}`
 - `voturi-valide`: `{"projects": ["data-expertforum"], "names": ["NR TOTAL DE VOTURI VALABIL EXPRIMATE (UNINOMINAL)", "NR TOTAL DE VOTURI VALABIL EXPRIMATE (PROPORȚIONAL)"], "source": "https://docs.google.com/spreadsheets/d/1PHHdzvmc3IXv530isAHQe7-YEjE0__LV/export?format=csv&gid=1356846398", "context": "aceleași voturi, agregate pe circumscripție"}`
+- `cui`: `{"projects": ["bani-partide"], "names": ["CUI"], "path": ["Contracte subventii.CUI"], "source": "https://db.banipartide.ro/banipartide.json", "context": "CUI-ul furnizorului plătit din subvenții, lângă `Furnizor`, `Tipul cheltuielii` și `Suma` (rolul se deduce din antet)"}`
+- `cui`: `{"projects": ["bani-partide"], "names": ["CUI"], "path": ["Donatori persoane juridice.CUI"], "source": "https://db.banipartide.ro/banipartide.json", "context": "CUI-ul donatorului persoană juridică, lângă `Nume`, `Reprezentant societate` și `Sediu` (rolul se deduce din antet)"}`
+- `cui`: `{"projects": ["bani-partide"], "names": ["CUI"], "path": ["Legenda partide.CUI", "Venituri anuale partide de la MF.CUI"], "source": "https://db.banipartide.ro/banipartide.json", "context": "CUI-ul partidului: în legenda partidelor și în tabelul veniturilor anuale de la MF, lângă `Partid` (rolul se deduce din antet)"}`
+- `judet`: `{"projects": ["bani-partide"], "names": ["Judet"], "path": ["Legenda partide.Judet", "Donatori rapoarte de venituri și cheltuieli.Judet"], "source": "https://db.banipartide.ro/banipartide.json", "context": "județul din legenda partidelor (lângă `Adresa` și `UAT`) și din tabelul donatorilor din rapoarte (lângă `Cod județ`); lista nu spune al cui este județul (sediul partidului sau organizația care a raportat)"}`
+- `judet`: `{"projects": ["bani-partide"], "names": ["Cod județ"], "path": ["Donatori rapoarte de venituri și cheltuieli.Cod județ"], "source": "https://db.banipartide.ro/banipartide.json", "context": "codul județului, lângă coloana `Judet`; lista nu spune ce sistem de coduri folosește"}`
+- `perioada-de-referinta`: `{"projects": ["bani-partide"], "names": ["An"], "path": ["Cheltuieli subventii.An", "Contracte subventii.An", "Donatori persoane fizice.An", "Donatori persoane juridice.An", "Donatori rapoarte de venituri și cheltuieli.An", "Rezultate alegeri.An", "Runde alegeri.An", "Subvenții.An", "Subvenții pe an.An", "Venituri anuale din rapoarte de venituri și cheltuieli.An", "Venituri anuale partide de la MF.An", "Venituri cheltuieli subventii.An"], "source": "https://db.banipartide.ro/banipartide.json", "context": "anul la care se referă o linie: subvenții, contracte, donații, venituri anuale, rezultate și runde de alegeri (12 tabele); granularitatea este anul; `Luna`, `Luna-nr`, `Data` și `Data donației` nu sunt incluse"}`
 
 ## 6. Provider proposals
 
@@ -443,6 +461,7 @@ The producer, the distributor and the project author are named apart in each ite
 | D184 | `romania-interactiva` | ANOSR | mica |
 | D185 | `romania-interactiva` | Cushman & Wakefield Echinox | mica |
 | D186 | `data-expertforum` | Guvernul României | medie |
+| D187 | `bani-partide` | Ministerul Finanțelor | mica |
 
 ## 7. Network, methods and blockers
 
@@ -459,6 +478,7 @@ Lot C2 (brief limit: 60 direct requests and two browser pages for each entry): 1
 Hosts of lot C2: romaniainteractiva.ro 10 (the log) plus 2 (collector), ins.gov2.ro 3, expertforum.ro 2, banipartide.ro 1, data.expertforum.ro 1, orase-digitale.ro 1. All sources except the two sample reads were read once and replayed from the local cache. The three hosts that answered 403 were not requested again after the first answer. The collector did not run for the two blocked entries: a request for each page of an entry that already answered 403 would not have followed the stop rule.
 Proposed rows for `colectare-interzisa.csv` (not added by the session; on 2026-10-26 the owner added `banipartide.ro` and `expertforum.ro`, and the second row covers `data.expertforum.ro`): `banipartide.ro`, `data.expertforum.ro` and `expertforum.ro`, motive "answers HTTP 403 to automated requests", evidence the request log rows of 2026-10-26 and `documentare/index.json` (2026-10-24). A 403 may come from a filter on the client and not from a prohibition; the file lists hosts whose terms or answers forbid automated access, so the owner decides the wording.
 Part 2 (data-expertforum, brief section 7: at most 30 requests, all to docs.google.com and its redirect host): 14 direct requests, one for each Google Sheet tab, all GET to docs.google.com. Each answered HTTP 200 after a redirect to a doc-NN-c0-sheets.googleusercontent.com host (seven hosts). Four responses were over 2,000,000 bytes and the fetcher refused them after 2,000,001 bytes each (8,000,004 bytes); the other ten gave 3,395,558 bytes. No retry. No request went to expertforum.ro, data.expertforum.ro, banipartide.ro or www.google.com: the links of the saved page are wrapped as google.com/url?q=TARGET and the reader takes the target without a request. The Drive file and the Drive folder were not requested. Browser: none.
+Part 3 (bani-partide, brief section 8.1): 0 requests and no browser navigation. The copy that the owner saved (11,493 bytes, SHA-256 `252c26c05f04f3c8…`) was imported with `inventory.py --import-saved`. `banipartide.ro` and its subdomains are on the list of hosts that no script requests, and the owner's local checkout of the project was not read.
 The request log (`observatii/inventare/jurnal-cereri.csv`) lists every request with its outcome, method, bytes and purpose. It holds no headers or credentials.
 
 Methods used: documentation collection with page-link and text discovery; CSV, JSON, JSON Schema and OpenAPI parsers; INS TEMPO metadata facts; readers for HTML tables, markdown tables, SQL, C#, Laravel PHP, annotated JSON in documents, page scripts and API reference pages (endpoint cards); repository files pinned to a recorded commit and verified by git blob hash; bounded range reads for large CSV files; a headless-browser render of single pages (optional, `scripts/render_pages.py`).
@@ -474,7 +494,7 @@ External blockers and security findings:
 - `calitate-aer-radauti`: the published spreadsheet is filled by a script and has no table in the HTML; the Firebase feed's newest record is dated 2026-04-19.
 - `votdiaspora`: the repository's last commit is from 2021-11-08; its `resources.sqlite` (8.8 MB) was not downloaded.
 - `dignitas`: 74 of 84 schema patches are unread, so the table list is partial.
-- `banipartide.ro`, `data.expertforum.ro`, `expertforum.ro` (lot C2): HTTP 403 for every automated request (checked 2026-10-24 and 2026-10-26). The collector stopped on each host. On 2026-10-26 the owner put `banipartide.ro` and `expertforum.ro` on `colectare-interzisa.csv`; `data-expertforum` is read from a page that the owner saved (part 2), and `bani-partide` waits for the owner's pages.
+- `banipartide.ro`, `data.expertforum.ro`, `expertforum.ro` (lot C2): HTTP 403 for every automated request (checked 2026-10-24 and 2026-10-26). The collector stopped on each host. On 2026-10-26 the owner put `banipartide.ro` and `expertforum.ro` on `colectare-interzisa.csv`; `data-expertforum` is read from a page that the owner saved (part 2), and `bani-partide` is read from the listing of its database that the owner saved (part 3); its home page and documentation pages are not read.
 - `romaniainteractiva.ro/locale/` and `/harta-notelor/` (lot C2): responses of more than 2,000,000 bytes. A range read of 600,000 bytes ends before the data script; the data was not read.
 - `orase-digitale.ro` (lot C2): the page names no source for the population (`pop`) of a city and no licence for the index.
 - `docs.google.com` tabs of `data-expertforum` (lot C2, part 2): four exports are over 2,000,000 bytes (gid 0, 2098148876, 1630617809 and 1272308734) and are not parsed. Google ignores a byte range on the export, so a bounded read still starts the same request.
@@ -492,6 +512,7 @@ External blockers and security findings:
 - Boundaries: nothing was pushed or deployed, no Google Sheet was touched, no paid service ran, no project owner was contacted. `relatii.csv`, the sealed `source/`, `reference/` and `runs/` folders and the frozen v1 files have no change from the baseline; `revizuire.csv` only gained D147–D162 and D132–D146 are unchanged.
 - Batch C2 (branch `inventory-batch-c2`, 2026-10-26): `python3 scripts/validate.py --publication`: 142 entries, 0 errors, 0 warnings. `python3 scripts/inventory.py --check`: 0 evidence errors; 98 source bodies hash-verified (88 before the batch); 84 dictionary evidence items verified (62 before), 0 stale. Unit tests: 614 run, 6 skipped (590 and 6 before the batch); new: `test_inventory_literals` 21 and 3 in `test_inventory_report`. `python3 scripts/build.py --site-dir <scratch folder> --with-inventory`: succeeds; the finder index holds 128 entries and 33 groups, `site/` has no change. Browser, against the served scratch build on port 8771: `check_preview.py` 111/111, `check_inventory_preview.py` 31/31, `check_data_finder.py` 40/40.
 - Batch C2 part 2 (branch `inventory-c2-efor`, 2026-10-26): `python3 scripts/validate.py --publication`: 142 entries, 0 errors, 0 warnings. `python3 scripts/inventory.py --check`: 0 evidence errors; 109 source bodies hash-verified (99 before); 4 copies saved by the owner hash-verified; 95 dictionary evidence items verified (84 before), 0 stale. Unit tests: 669 run, 6 skipped (627 and 6 before part 2); new: `test_inventory_setlist` 26, `test_inventory_sheet` 12, 2 in `test_inventory_site` and 2 in `test_inventory_report`. `python3 scripts/build.py --site-dir <scratch folder> --with-inventory`: succeeds; the finder index holds 128 entries and 36 groups, `site/` has no change. Browser, against the served scratch build on port 8771: `check_preview.py` 111/111, `check_inventory_preview.py` 31/31, `check_data_finder.py` 40/40. Replay: `inventory.py --offline` on a copy of the tracked folder gives the six generated files byte for byte.
+- Batch C2 part 3 (branch `inventory-c2-banipartide`, 2026-10-26): `python3 scripts/validate.py --publication`: 142 entries, 0 errors, 0 warnings. `python3 scripts/inventory.py --check`: 0 evidence errors; 110 source bodies hash-verified (109 before); 5 copies saved by the owner hash-verified (4 before); 102 dictionary evidence items verified (95 before), 0 stale. Unit tests: 701 run, 6 skipped (671 and 6 before part 3); new: `test_inventory_datasette` 24, 2 in `test_saved_copies`, 2 in `test_inventory_site` and 2 in `test_inventory_report` (the blocker test no longer depends on `bani-partide`). `python3 scripts/build.py --site-dir <scratch folder> --with-inventory`: succeeds; the finder index holds 128 entries and 38 groups, `site/` has no change. Browser, against the served scratch build: `check_preview.py` 111/111, `check_inventory_preview.py` 31/31, `check_data_finder.py` 40/40; a one-off check of the field browser of `bani-partide` (10 checks: the tables with their row counts, the licence credit and its link, the title of the source). Replay: `inventory.py --offline` on a copy of the tracked folder gives the six generated files byte for byte. 0 requests in this part.
 
 ## 9. Remaining review work
 
@@ -501,4 +522,4 @@ External blockers and security findings:
 - Tell the `desprefemicid.ro` owners about the exposed token. Ask `aerlive.ro`, EuropeScope and Registrul Firmelor for working API documentation or schema.
 - Re-render `aerlive.ro` with permission for a third navigation; read the other 74 Dignitas patches; fetch the 28 documented candidates only if a reviewer needs them.
 - Resolve the 62 unconfirmed profiles and the 100 projects and resources without extracted fields; a missing extraction does not prove missing data.
-- Batch C2: decide the 3 proposed groups of part 1 (`casatorii`, `divorturi`, `studenti`; done 2026-10-26) and the 3 of part 2 (`uat`, `partid-politic`, `beneficiar-fonduri-publice`), the candidate members for the reviewed groups (`judet`, `perioada-de-referinta`, `populatie`, `localitate` from part 1; `siruta`, `cui`, `judet`, `localitate`, `voturi-valide` from part 2), and the provider items D176–D185 (decided 2026-10-26) and D186. Decide whether a tab over 2,000,000 bytes may be read for its header, and save the pages of `banipartide.ro` for `bani-partide`.
+- Batch C2: decide the 3 proposed groups of part 1 (`casatorii`, `divorturi`, `studenti`; done 2026-10-26) and the 3 of part 2 (`uat`, `partid-politic`, `beneficiar-fonduri-publice`), the candidate members for the reviewed groups (`judet`, `perioada-de-referinta`, `populatie`, `localitate` from part 1; `siruta`, `cui`, `judet`, `localitate`, `voturi-valide` from part 2), and the provider items D176–D185 (decided 2026-10-26) and D186. Decide whether a tab over 2,000,000 bytes may be read for its header. Part 3 (`bani-partide`): decide D187, the two proposed groups (`subventie-partid`, `donatie-partid`), the new members of the proposed groups `partid-politic` and `uat`, and the six candidate selectors for `cui`, `judet` and `perioada-de-referinta`; save the documentation pages of `banipartide.ro` if you want providers looked for in their text.

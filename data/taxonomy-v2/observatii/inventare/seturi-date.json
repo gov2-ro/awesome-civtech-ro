@@ -44373,6 +44373,2271 @@
       "baza_tipului": "esantion-date"
     },
     {
+      "url": "https://db.banipartide.ro/banipartide.json",
+      "final_url": "https://db.banipartide.ro/banipartide.json",
+      "http_status": null,
+      "fetched_at": "2026-10-26T18:30:00+00:00",
+      "content_type": "application/json",
+      "state": "ok",
+      "origine": "copie-salvata-de-proprietar",
+      "salvat_la": "2026-10-26T20:30:00+02:00",
+      "nume_fisier": "banipartide.json",
+      "sha256_fisier": "252c26c05f04f3c8777940bd1486494f60b0aac954e886d426ce1b2c6f133d5d",
+      "nota_copie": "The owner saved the listing from a browser on 2026-10-26: banipartide.ro and its subdomains are in colectare-interzisa.csv, so no script requests them.",
+      "id": "8f8229240b7f63743cd4",
+      "campuri": [
+        {
+          "nume": "cod",
+          "cale": "Alianțe.cod",
+          "grup": "Alianțe",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/0/columns/0",
+          "randuri_tabel": 5
+        },
+        {
+          "nume": "nume",
+          "cale": "Alianțe.nume",
+          "grup": "Alianțe",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/0/columns/1",
+          "randuri_tabel": 5
+        },
+        {
+          "nume": "partide",
+          "cale": "Alianțe.partide",
+          "grup": "Alianțe",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/0/columns/2",
+          "randuri_tabel": 5
+        },
+        {
+          "nume": "perioada",
+          "cale": "Alianțe.perioada",
+          "grup": "Alianțe",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/0/columns/3",
+          "randuri_tabel": 5
+        },
+        {
+          "nume": "descriere",
+          "cale": "Alianțe.descriere",
+          "grup": "Alianțe",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/0/columns/4",
+          "randuri_tabel": 5
+        },
+        {
+          "nume": "Alegeri",
+          "cale": "Cheltuieli campanie.Alegeri",
+          "grup": "Cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/1/columns/0",
+          "randuri_tabel": 940
+        },
+        {
+          "nume": "Tip alegeri",
+          "cale": "Cheltuieli campanie.Tip alegeri",
+          "grup": "Cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/1/columns/1",
+          "randuri_tabel": 940
+        },
+        {
+          "nume": "Candidat",
+          "cale": "Cheltuieli campanie.Candidat",
+          "grup": "Cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/1/columns/2",
+          "randuri_tabel": 940
+        },
+        {
+          "nume": "Tip competitor",
+          "cale": "Cheltuieli campanie.Tip competitor",
+          "grup": "Cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/1/columns/3",
+          "randuri_tabel": 940
+        },
+        {
+          "nume": "Partid",
+          "cale": "Cheltuieli campanie.Partid",
+          "grup": "Cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/1/columns/4",
+          "randuri_tabel": 940
+        },
+        {
+          "nume": "Venituri",
+          "cale": "Cheltuieli campanie.Venituri",
+          "grup": "Cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/1/columns/5",
+          "randuri_tabel": 940
+        },
+        {
+          "nume": "Transferuri partid",
+          "cale": "Cheltuieli campanie.Transferuri partid",
+          "grup": "Cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/1/columns/6",
+          "randuri_tabel": 940
+        },
+        {
+          "nume": "Pentru campanie",
+          "cale": "Cheltuieli campanie.Pentru campanie",
+          "grup": "Cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/1/columns/7",
+          "randuri_tabel": 940
+        },
+        {
+          "nume": "Cheltuieli",
+          "cale": "Cheltuieli campanie.Cheltuieli",
+          "grup": "Cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/1/columns/8",
+          "randuri_tabel": 940
+        },
+        {
+          "nume": "Administrative",
+          "cale": "Cheltuieli campanie.Administrative",
+          "grup": "Cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/1/columns/9",
+          "randuri_tabel": 940
+        },
+        {
+          "nume": "Tipărituri promoționale",
+          "cale": "Cheltuieli campanie.Tipărituri promoționale",
+          "grup": "Cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/1/columns/10",
+          "randuri_tabel": 940
+        },
+        {
+          "nume": "Media",
+          "cale": "Cheltuieli campanie.Media",
+          "grup": "Cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/1/columns/11",
+          "randuri_tabel": 940
+        },
+        {
+          "nume": "Publicitate outdoor",
+          "cale": "Cheltuieli campanie.Publicitate outdoor",
+          "grup": "Cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/1/columns/12",
+          "randuri_tabel": 940
+        },
+        {
+          "nume": "Servicii",
+          "cale": "Cheltuieli campanie.Servicii",
+          "grup": "Cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/1/columns/13",
+          "randuri_tabel": 940
+        },
+        {
+          "nume": "Sondare consultanță",
+          "cale": "Cheltuieli campanie.Sondare consultanță",
+          "grup": "Cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/1/columns/14",
+          "randuri_tabel": 940
+        },
+        {
+          "nume": "Altele",
+          "cale": "Cheltuieli campanie.Altele",
+          "grup": "Cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/1/columns/15",
+          "randuri_tabel": 940
+        },
+        {
+          "nume": "Rezultat financiar",
+          "cale": "Cheltuieli campanie.Rezultat financiar",
+          "grup": "Cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/1/columns/16",
+          "randuri_tabel": 940
+        },
+        {
+          "nume": "Cheltuieli restante",
+          "cale": "Cheltuieli campanie.Cheltuieli restante",
+          "grup": "Cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/1/columns/17",
+          "randuri_tabel": 940
+        },
+        {
+          "nume": "Luna",
+          "cale": "Cheltuieli subventii.Luna",
+          "grup": "Cheltuieli subventii",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/2/columns/0",
+          "randuri_tabel": 8950
+        },
+        {
+          "nume": "An",
+          "cale": "Cheltuieli subventii.An",
+          "grup": "Cheltuieli subventii",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/2/columns/1",
+          "randuri_tabel": 8950
+        },
+        {
+          "nume": "Categorie cheltuială",
+          "cale": "Cheltuieli subventii.Categorie cheltuială",
+          "grup": "Cheltuieli subventii",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/2/columns/2",
+          "randuri_tabel": 8950
+        },
+        {
+          "nume": "Cod",
+          "cale": "Cheltuieli subventii.Cod",
+          "grup": "Cheltuieli subventii",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/2/columns/3",
+          "randuri_tabel": 8950
+        },
+        {
+          "nume": "Suma",
+          "cale": "Cheltuieli subventii.Suma",
+          "grup": "Cheltuieli subventii",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/2/columns/4",
+          "randuri_tabel": 8950
+        },
+        {
+          "nume": "Partid",
+          "cale": "Cheltuieli subventii.Partid",
+          "grup": "Cheltuieli subventii",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/2/columns/5",
+          "randuri_tabel": 8950
+        },
+        {
+          "nume": "Data_completa",
+          "cale": "Cheltuieli subventii.Data_completa",
+          "grup": "Cheltuieli subventii",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/2/columns/6",
+          "randuri_tabel": 8950
+        },
+        {
+          "nume": "nicemonth",
+          "cale": "Cheltuieli subventii.nicemonth",
+          "grup": "Cheltuieli subventii",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/2/columns/7",
+          "randuri_tabel": 8950
+        },
+        {
+          "nume": "An",
+          "cale": "Contracte subventii.An",
+          "grup": "Contracte subventii",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/3/columns/0",
+          "randuri_tabel": 2389
+        },
+        {
+          "nume": "Luna",
+          "cale": "Contracte subventii.Luna",
+          "grup": "Contracte subventii",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/3/columns/1",
+          "randuri_tabel": 2389
+        },
+        {
+          "nume": "Filiala",
+          "cale": "Contracte subventii.Filiala",
+          "grup": "Contracte subventii",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/3/columns/2",
+          "randuri_tabel": 2389
+        },
+        {
+          "nume": "Partid",
+          "cale": "Contracte subventii.Partid",
+          "grup": "Contracte subventii",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/3/columns/3",
+          "randuri_tabel": 2389
+        },
+        {
+          "nume": "Tipul cheltuielii",
+          "cale": "Contracte subventii.Tipul cheltuielii",
+          "grup": "Contracte subventii",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/3/columns/4",
+          "randuri_tabel": 2389
+        },
+        {
+          "nume": "Furnizor",
+          "cale": "Contracte subventii.Furnizor",
+          "grup": "Contracte subventii",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/3/columns/5",
+          "randuri_tabel": 2389
+        },
+        {
+          "nume": "CUI",
+          "cale": "Contracte subventii.CUI",
+          "grup": "Contracte subventii",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/3/columns/6",
+          "randuri_tabel": 2389
+        },
+        {
+          "nume": "Suma",
+          "cale": "Contracte subventii.Suma",
+          "grup": "Contracte subventii",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/3/columns/7",
+          "randuri_tabel": 2389
+        },
+        {
+          "nume": "Moneda",
+          "cale": "Contracte subventii.Moneda",
+          "grup": "Contracte subventii",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/3/columns/8",
+          "randuri_tabel": 2389
+        },
+        {
+          "nume": "Modalitate plată",
+          "cale": "Contracte subventii.Modalitate plată",
+          "grup": "Contracte subventii",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/3/columns/9",
+          "randuri_tabel": 2389
+        },
+        {
+          "nume": "Data",
+          "cale": "Contracte subventii.Data",
+          "grup": "Contracte subventii",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/3/columns/10",
+          "randuri_tabel": 2389
+        },
+        {
+          "nume": "Observații",
+          "cale": "Contracte subventii.Observații",
+          "grup": "Contracte subventii",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/3/columns/11",
+          "randuri_tabel": 2389
+        },
+        {
+          "nume": "Cod",
+          "cale": "Contributii campanie.Cod",
+          "grup": "Contributii campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/4/columns/0",
+          "randuri_tabel": 49697
+        },
+        {
+          "nume": "Partid",
+          "cale": "Contributii campanie.Partid",
+          "grup": "Contributii campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/4/columns/1",
+          "randuri_tabel": 49697
+        },
+        {
+          "nume": "Circumscripție",
+          "cale": "Contributii campanie.Circumscripție",
+          "grup": "Contributii campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/4/columns/2",
+          "randuri_tabel": 49697
+        },
+        {
+          "nume": "Nume",
+          "cale": "Contributii campanie.Nume",
+          "grup": "Contributii campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/4/columns/3",
+          "randuri_tabel": 49697
+        },
+        {
+          "nume": "Circumscripție candidatură",
+          "cale": "Contributii campanie.Circumscripție candidatură",
+          "grup": "Contributii campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/4/columns/4",
+          "randuri_tabel": 49697
+        },
+        {
+          "nume": "Funcție",
+          "cale": "Contributii campanie.Funcție",
+          "grup": "Contributii campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/4/columns/5",
+          "randuri_tabel": 49697
+        },
+        {
+          "nume": "Proveniența",
+          "cale": "Contributii campanie.Proveniența",
+          "grup": "Contributii campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/4/columns/6",
+          "randuri_tabel": 49697
+        },
+        {
+          "nume": "Venituri proprii",
+          "cale": "Contributii campanie.Venituri proprii",
+          "grup": "Contributii campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/4/columns/7",
+          "randuri_tabel": 49697
+        },
+        {
+          "nume": "Donații",
+          "cale": "Contributii campanie.Donații",
+          "grup": "Contributii campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/4/columns/8",
+          "randuri_tabel": 49697
+        },
+        {
+          "nume": "Împrumuturi",
+          "cale": "Contributii campanie.Împrumuturi",
+          "grup": "Contributii campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/4/columns/9",
+          "randuri_tabel": 49697
+        },
+        {
+          "nume": "Total",
+          "cale": "Contributii campanie.Total",
+          "grup": "Contributii campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/4/columns/10",
+          "randuri_tabel": 49697
+        },
+        {
+          "nume": "Nume donator",
+          "cale": "Donatori persoane fizice.Nume donator",
+          "grup": "Donatori persoane fizice",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/5/columns/0",
+          "randuri_tabel": 30791
+        },
+        {
+          "nume": "Suma",
+          "cale": "Donatori persoane fizice.Suma",
+          "grup": "Donatori persoane fizice",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/5/columns/1",
+          "randuri_tabel": 30791
+        },
+        {
+          "nume": "An",
+          "cale": "Donatori persoane fizice.An",
+          "grup": "Donatori persoane fizice",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/5/columns/2",
+          "randuri_tabel": 30791
+        },
+        {
+          "nume": "Partid",
+          "cale": "Donatori persoane fizice.Partid",
+          "grup": "Donatori persoane fizice",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/5/columns/3",
+          "randuri_tabel": 30791
+        },
+        {
+          "nume": "Tip donație",
+          "cale": "Donatori persoane fizice.Tip donație",
+          "grup": "Donatori persoane fizice",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/5/columns/4",
+          "randuri_tabel": 30791
+        },
+        {
+          "nume": "CNP",
+          "cale": "Donatori persoane fizice.CNP",
+          "grup": "Donatori persoane fizice",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/5/columns/5",
+          "randuri_tabel": 30791
+        },
+        {
+          "nume": "Ce s-a donat",
+          "cale": "Donatori persoane fizice.Ce s-a donat",
+          "grup": "Donatori persoane fizice",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/5/columns/6",
+          "randuri_tabel": 30791
+        },
+        {
+          "nume": "Data donației",
+          "cale": "Donatori persoane fizice.Data donației",
+          "grup": "Donatori persoane fizice",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/5/columns/7",
+          "randuri_tabel": 30791
+        },
+        {
+          "nume": "Organizația",
+          "cale": "Donatori persoane fizice.Organizația",
+          "grup": "Donatori persoane fizice",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/5/columns/8",
+          "randuri_tabel": 30791
+        },
+        {
+          "nume": "Nume",
+          "cale": "Donatori persoane juridice.Nume",
+          "grup": "Donatori persoane juridice",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/6/columns/0",
+          "randuri_tabel": 3611
+        },
+        {
+          "nume": "Suma",
+          "cale": "Donatori persoane juridice.Suma",
+          "grup": "Donatori persoane juridice",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/6/columns/1",
+          "randuri_tabel": 3611
+        },
+        {
+          "nume": "An",
+          "cale": "Donatori persoane juridice.An",
+          "grup": "Donatori persoane juridice",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/6/columns/2",
+          "randuri_tabel": 3611
+        },
+        {
+          "nume": "Partid",
+          "cale": "Donatori persoane juridice.Partid",
+          "grup": "Donatori persoane juridice",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/6/columns/3",
+          "randuri_tabel": 3611
+        },
+        {
+          "nume": "Tip donație",
+          "cale": "Donatori persoane juridice.Tip donație",
+          "grup": "Donatori persoane juridice",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/6/columns/4",
+          "randuri_tabel": 3611
+        },
+        {
+          "nume": "CUI",
+          "cale": "Donatori persoane juridice.CUI",
+          "grup": "Donatori persoane juridice",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/6/columns/5",
+          "randuri_tabel": 3611
+        },
+        {
+          "nume": "Reprezentant societate",
+          "cale": "Donatori persoane juridice.Reprezentant societate",
+          "grup": "Donatori persoane juridice",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/6/columns/6",
+          "randuri_tabel": 3611
+        },
+        {
+          "nume": "Sediu",
+          "cale": "Donatori persoane juridice.Sediu",
+          "grup": "Donatori persoane juridice",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/6/columns/7",
+          "randuri_tabel": 3611
+        },
+        {
+          "nume": "Naționalitatea donatorului",
+          "cale": "Donatori persoane juridice.Naționalitatea donatorului",
+          "grup": "Donatori persoane juridice",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/6/columns/8",
+          "randuri_tabel": 3611
+        },
+        {
+          "nume": "Data donației",
+          "cale": "Donatori persoane juridice.Data donației",
+          "grup": "Donatori persoane juridice",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/6/columns/9",
+          "randuri_tabel": 3611
+        },
+        {
+          "nume": "Felul donației",
+          "cale": "Donatori persoane juridice.Felul donației",
+          "grup": "Donatori persoane juridice",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/6/columns/10",
+          "randuri_tabel": 3611
+        },
+        {
+          "nume": "Filiala partidului",
+          "cale": "Donatori persoane juridice.Filiala partidului",
+          "grup": "Donatori persoane juridice",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/6/columns/11",
+          "randuri_tabel": 3611
+        },
+        {
+          "nume": "Judet",
+          "cale": "Donatori rapoarte de venituri și cheltuieli.Judet",
+          "grup": "Donatori rapoarte de venituri și cheltuieli",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/7/columns/0",
+          "randuri_tabel": 353473
+        },
+        {
+          "nume": "Cod județ",
+          "cale": "Donatori rapoarte de venituri și cheltuieli.Cod județ",
+          "grup": "Donatori rapoarte de venituri și cheltuieli",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/7/columns/1",
+          "randuri_tabel": 353473
+        },
+        {
+          "nume": "Tip venit",
+          "cale": "Donatori rapoarte de venituri și cheltuieli.Tip venit",
+          "grup": "Donatori rapoarte de venituri și cheltuieli",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/7/columns/2",
+          "randuri_tabel": 353473
+        },
+        {
+          "nume": "Nume donator",
+          "cale": "Donatori rapoarte de venituri și cheltuieli.Nume donator",
+          "grup": "Donatori rapoarte de venituri și cheltuieli",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/7/columns/3",
+          "randuri_tabel": 353473
+        },
+        {
+          "nume": "Suma",
+          "cale": "Donatori rapoarte de venituri și cheltuieli.Suma",
+          "grup": "Donatori rapoarte de venituri și cheltuieli",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/7/columns/4",
+          "randuri_tabel": 353473
+        },
+        {
+          "nume": "Mod încasare",
+          "cale": "Donatori rapoarte de venituri și cheltuieli.Mod încasare",
+          "grup": "Donatori rapoarte de venituri și cheltuieli",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/7/columns/5",
+          "randuri_tabel": 353473
+        },
+        {
+          "nume": "Data donației",
+          "cale": "Donatori rapoarte de venituri și cheltuieli.Data donației",
+          "grup": "Donatori rapoarte de venituri și cheltuieli",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/7/columns/6",
+          "randuri_tabel": 353473
+        },
+        {
+          "nume": "Partid",
+          "cale": "Donatori rapoarte de venituri și cheltuieli.Partid",
+          "grup": "Donatori rapoarte de venituri și cheltuieli",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/7/columns/7",
+          "randuri_tabel": 353473
+        },
+        {
+          "nume": "An",
+          "cale": "Donatori rapoarte de venituri și cheltuieli.An",
+          "grup": "Donatori rapoarte de venituri și cheltuieli",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/7/columns/8",
+          "randuri_tabel": 353473
+        },
+        {
+          "nume": "ID",
+          "cale": "Legenda partide.ID",
+          "grup": "Legenda partide",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/8/columns/0",
+          "randuri_tabel": 320
+        },
+        {
+          "nume": "Denumire",
+          "cale": "Legenda partide.Denumire",
+          "grup": "Legenda partide",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/8/columns/1",
+          "randuri_tabel": 320
+        },
+        {
+          "nume": "Ordine",
+          "cale": "Legenda partide.Ordine",
+          "grup": "Legenda partide",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/8/columns/2",
+          "randuri_tabel": 320
+        },
+        {
+          "nume": "Logo",
+          "cale": "Legenda partide.Logo",
+          "grup": "Legenda partide",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/8/columns/3",
+          "randuri_tabel": 320
+        },
+        {
+          "nume": "Venituri",
+          "cale": "Legenda partide.Venituri",
+          "grup": "Legenda partide",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/8/columns/4",
+          "randuri_tabel": 320
+        },
+        {
+          "nume": "Venituri campanii",
+          "cale": "Legenda partide.Venituri campanii",
+          "grup": "Legenda partide",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/8/columns/5",
+          "randuri_tabel": 320
+        },
+        {
+          "nume": "Cheie",
+          "cale": "Legenda partide.Cheie",
+          "grup": "Legenda partide",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/8/columns/6",
+          "randuri_tabel": 320
+        },
+        {
+          "nume": "CUI",
+          "cale": "Legenda partide.CUI",
+          "grup": "Legenda partide",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/8/columns/7",
+          "randuri_tabel": 320
+        },
+        {
+          "nume": "Adresa",
+          "cale": "Legenda partide.Adresa",
+          "grup": "Legenda partide",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/8/columns/8",
+          "randuri_tabel": 320
+        },
+        {
+          "nume": "Judet",
+          "cale": "Legenda partide.Judet",
+          "grup": "Legenda partide",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/8/columns/9",
+          "randuri_tabel": 320
+        },
+        {
+          "nume": "UAT",
+          "cale": "Legenda partide.UAT",
+          "grup": "Legenda partide",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/8/columns/10",
+          "randuri_tabel": 320
+        },
+        {
+          "nume": "Sediul social ",
+          "cale": "Legenda partide.Sediul social ",
+          "grup": "Legenda partide",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/8/columns/11",
+          "randuri_tabel": 320
+        },
+        {
+          "nume": "Președinte",
+          "cale": "Legenda partide.Președinte",
+          "grup": "Legenda partide",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/8/columns/12",
+          "randuri_tabel": 320
+        },
+        {
+          "nume": "Trezorier",
+          "cale": "Legenda partide.Trezorier",
+          "grup": "Legenda partide",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/8/columns/13",
+          "randuri_tabel": 320
+        },
+        {
+          "nume": "Alegeri",
+          "cale": "Rezultate alegeri.Alegeri",
+          "grup": "Rezultate alegeri",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/9/columns/0",
+          "randuri_tabel": 1132
+        },
+        {
+          "nume": "An",
+          "cale": "Rezultate alegeri.An",
+          "grup": "Rezultate alegeri",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/9/columns/1",
+          "randuri_tabel": 1132
+        },
+        {
+          "nume": "Tip",
+          "cale": "Rezultate alegeri.Tip",
+          "grup": "Rezultate alegeri",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/9/columns/2",
+          "randuri_tabel": 1132
+        },
+        {
+          "nume": "Partid",
+          "cale": "Rezultate alegeri.Partid",
+          "grup": "Rezultate alegeri",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/9/columns/3",
+          "randuri_tabel": 1132
+        },
+        {
+          "nume": "Voturi",
+          "cale": "Rezultate alegeri.Voturi",
+          "grup": "Rezultate alegeri",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/9/columns/4",
+          "randuri_tabel": 1132
+        },
+        {
+          "nume": "Mandate",
+          "cale": "Rezultate alegeri.Mandate",
+          "grup": "Rezultate alegeri",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/9/columns/5",
+          "randuri_tabel": 1132
+        },
+        {
+          "nume": "Cod",
+          "cale": "Runde alegeri.Cod",
+          "grup": "Runde alegeri",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/10/columns/0",
+          "randuri_tabel": 26
+        },
+        {
+          "nume": "Tip",
+          "cale": "Runde alegeri.Tip",
+          "grup": "Runde alegeri",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/10/columns/1",
+          "randuri_tabel": 26
+        },
+        {
+          "nume": "Descriptiv",
+          "cale": "Runde alegeri.Descriptiv",
+          "grup": "Runde alegeri",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/10/columns/2",
+          "randuri_tabel": 26
+        },
+        {
+          "nume": "An",
+          "cale": "Runde alegeri.An",
+          "grup": "Runde alegeri",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/10/columns/3",
+          "randuri_tabel": 26
+        },
+        {
+          "nume": "Data descriptiv",
+          "cale": "Runde alegeri.Data descriptiv",
+          "grup": "Runde alegeri",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/10/columns/4",
+          "randuri_tabel": 26
+        },
+        {
+          "nume": "Data",
+          "cale": "Runde alegeri.Data",
+          "grup": "Runde alegeri",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/10/columns/5",
+          "randuri_tabel": 26
+        },
+        {
+          "nume": "Numar candidați",
+          "cale": "Runde alegeri.Numar candidați",
+          "grup": "Runde alegeri",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/10/columns/6",
+          "randuri_tabel": 26
+        },
+        {
+          "nume": "Competitori",
+          "cale": "Runde alegeri.Competitori",
+          "grup": "Runde alegeri",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/10/columns/7",
+          "randuri_tabel": 26
+        },
+        {
+          "nume": "Independenți",
+          "cale": "Runde alegeri.Independenți",
+          "grup": "Runde alegeri",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/10/columns/8",
+          "randuri_tabel": 26
+        },
+        {
+          "nume": "Partid",
+          "cale": "Subvenții.Partid",
+          "grup": "Subvenții",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/11/columns/0",
+          "randuri_tabel": 1200
+        },
+        {
+          "nume": "Suma",
+          "cale": "Subvenții.Suma",
+          "grup": "Subvenții",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/11/columns/1",
+          "randuri_tabel": 1200
+        },
+        {
+          "nume": "An",
+          "cale": "Subvenții.An",
+          "grup": "Subvenții",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/11/columns/2",
+          "randuri_tabel": 1200
+        },
+        {
+          "nume": "Luna",
+          "cale": "Subvenții.Luna",
+          "grup": "Subvenții",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/11/columns/3",
+          "randuri_tabel": 1200
+        },
+        {
+          "nume": "Luna-nr",
+          "cale": "Subvenții.Luna-nr",
+          "grup": "Subvenții",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/11/columns/4",
+          "randuri_tabel": 1200
+        },
+        {
+          "nume": "An",
+          "cale": "Subvenții pe an.An",
+          "grup": "Subvenții pe an",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/12/columns/0",
+          "randuri_tabel": 19
+        },
+        {
+          "nume": "Suma",
+          "cale": "Subvenții pe an.Suma",
+          "grup": "Subvenții pe an",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/12/columns/1",
+          "randuri_tabel": 19
+        },
+        {
+          "nume": "Sume alocate",
+          "cale": "Subvenții pe an.Sume alocate",
+          "grup": "Subvenții pe an",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/12/columns/2",
+          "randuri_tabel": 19
+        },
+        {
+          "nume": "Tip venit",
+          "cale": "Venituri anuale din rapoarte de venituri și cheltuieli.Tip venit",
+          "grup": "Venituri anuale din rapoarte de venituri și cheltuieli",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/13/columns/0",
+          "randuri_tabel": 3923
+        },
+        {
+          "nume": "An",
+          "cale": "Venituri anuale din rapoarte de venituri și cheltuieli.An",
+          "grup": "Venituri anuale din rapoarte de venituri și cheltuieli",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/13/columns/1",
+          "randuri_tabel": 3923
+        },
+        {
+          "nume": "Suma",
+          "cale": "Venituri anuale din rapoarte de venituri și cheltuieli.Suma",
+          "grup": "Venituri anuale din rapoarte de venituri și cheltuieli",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/13/columns/2",
+          "randuri_tabel": 3923
+        },
+        {
+          "nume": "Detalii",
+          "cale": "Venituri anuale din rapoarte de venituri și cheltuieli.Detalii",
+          "grup": "Venituri anuale din rapoarte de venituri și cheltuieli",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/13/columns/3",
+          "randuri_tabel": 3923
+        },
+        {
+          "nume": "Partid",
+          "cale": "Venituri anuale din rapoarte de venituri și cheltuieli.Partid",
+          "grup": "Venituri anuale din rapoarte de venituri și cheltuieli",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/13/columns/4",
+          "randuri_tabel": 3923
+        },
+        {
+          "nume": "An",
+          "cale": "Venituri anuale partide de la MF.An",
+          "grup": "Venituri anuale partide de la MF",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/14/columns/0",
+          "randuri_tabel": 968
+        },
+        {
+          "nume": "Partid",
+          "cale": "Venituri anuale partide de la MF.Partid",
+          "grup": "Venituri anuale partide de la MF",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/14/columns/1",
+          "randuri_tabel": 968
+        },
+        {
+          "nume": "CUI",
+          "cale": "Venituri anuale partide de la MF.CUI",
+          "grup": "Venituri anuale partide de la MF",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/14/columns/2",
+          "randuri_tabel": 968
+        },
+        {
+          "nume": "Active imobilizate",
+          "cale": "Venituri anuale partide de la MF.Active imobilizate",
+          "grup": "Venituri anuale partide de la MF",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/14/columns/3",
+          "randuri_tabel": 968
+        },
+        {
+          "nume": "Active circulante",
+          "cale": "Venituri anuale partide de la MF.Active circulante",
+          "grup": "Venituri anuale partide de la MF",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/14/columns/4",
+          "randuri_tabel": 968
+        },
+        {
+          "nume": "Cheltuieli în avans",
+          "cale": "Venituri anuale partide de la MF.Cheltuieli în avans",
+          "grup": "Venituri anuale partide de la MF",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/14/columns/5",
+          "randuri_tabel": 968
+        },
+        {
+          "nume": "Datorii sub 1 an",
+          "cale": "Venituri anuale partide de la MF.Datorii sub 1 an",
+          "grup": "Venituri anuale partide de la MF",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/14/columns/6",
+          "randuri_tabel": 968
+        },
+        {
+          "nume": "Datorii peste 1 an",
+          "cale": "Venituri anuale partide de la MF.Datorii peste 1 an",
+          "grup": "Venituri anuale partide de la MF",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/14/columns/7",
+          "randuri_tabel": 968
+        },
+        {
+          "nume": "Capitaluri proprii",
+          "cale": "Venituri anuale partide de la MF.Capitaluri proprii",
+          "grup": "Venituri anuale partide de la MF",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/14/columns/8",
+          "randuri_tabel": 968
+        },
+        {
+          "nume": "Capitaluri",
+          "cale": "Venituri anuale partide de la MF.Capitaluri",
+          "grup": "Venituri anuale partide de la MF",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/14/columns/9",
+          "randuri_tabel": 968
+        },
+        {
+          "nume": "Venituri fără scop patrimonial",
+          "cale": "Venituri anuale partide de la MF.Venituri fără scop patrimonial",
+          "grup": "Venituri anuale partide de la MF",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/14/columns/10",
+          "randuri_tabel": 968
+        },
+        {
+          "nume": "Cheltuieli fără scop patrimonial",
+          "cale": "Venituri anuale partide de la MF.Cheltuieli fără scop patrimonial",
+          "grup": "Venituri anuale partide de la MF",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/14/columns/11",
+          "randuri_tabel": 968
+        },
+        {
+          "nume": "Venituri",
+          "cale": "Venituri anuale partide de la MF.Venituri",
+          "grup": "Venituri anuale partide de la MF",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/14/columns/12",
+          "randuri_tabel": 968
+        },
+        {
+          "nume": "Cheltuieli",
+          "cale": "Venituri anuale partide de la MF.Cheltuieli",
+          "grup": "Venituri anuale partide de la MF",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/14/columns/13",
+          "randuri_tabel": 968
+        },
+        {
+          "nume": "Angajați fără scop patrimonial",
+          "cale": "Venituri anuale partide de la MF.Angajați fără scop patrimonial",
+          "grup": "Venituri anuale partide de la MF",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/14/columns/14",
+          "randuri_tabel": 968
+        },
+        {
+          "nume": "Angajați active economice-financiare",
+          "cale": "Venituri anuale partide de la MF.Angajați active economice-financiare",
+          "grup": "Venituri anuale partide de la MF",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/14/columns/15",
+          "randuri_tabel": 968
+        },
+        {
+          "nume": "An",
+          "cale": "Venituri cheltuieli subventii.An",
+          "grup": "Venituri cheltuieli subventii",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/15/columns/0",
+          "randuri_tabel": 18
+        },
+        {
+          "nume": "Subvenții",
+          "cale": "Venituri cheltuieli subventii.Subvenții",
+          "grup": "Venituri cheltuieli subventii",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/15/columns/1",
+          "randuri_tabel": 18
+        },
+        {
+          "nume": "Chletuieli subnvetii",
+          "cale": "Venituri cheltuieli subventii.Chletuieli subnvetii",
+          "grup": "Venituri cheltuieli subventii",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/15/columns/2",
+          "randuri_tabel": 18
+        },
+        {
+          "nume": "Alegeri",
+          "cale": "Venituri și cheltuieli campanie.Alegeri",
+          "grup": "Venituri și cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/16/columns/0",
+          "randuri_tabel": 436
+        },
+        {
+          "nume": "Tip",
+          "cale": "Venituri și cheltuieli campanie.Tip",
+          "grup": "Venituri și cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/16/columns/1",
+          "randuri_tabel": 436
+        },
+        {
+          "nume": "Candidat",
+          "cale": "Venituri și cheltuieli campanie.Candidat",
+          "grup": "Venituri și cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/16/columns/2",
+          "randuri_tabel": 436
+        },
+        {
+          "nume": "Tip competitor",
+          "cale": "Venituri și cheltuieli campanie.Tip competitor",
+          "grup": "Venituri și cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/16/columns/3",
+          "randuri_tabel": 436
+        },
+        {
+          "nume": "Partid",
+          "cale": "Venituri și cheltuieli campanie.Partid",
+          "grup": "Venituri și cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/16/columns/4",
+          "randuri_tabel": 436
+        },
+        {
+          "nume": "Venituri",
+          "cale": "Venituri și cheltuieli campanie.Venituri",
+          "grup": "Venituri și cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/16/columns/5",
+          "randuri_tabel": 436
+        },
+        {
+          "nume": "Venituri proprii",
+          "cale": "Venituri și cheltuieli campanie.Venituri proprii",
+          "grup": "Venituri și cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/16/columns/6",
+          "randuri_tabel": 436
+        },
+        {
+          "nume": "Donații",
+          "cale": "Venituri și cheltuieli campanie.Donații",
+          "grup": "Venituri și cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/16/columns/7",
+          "randuri_tabel": 436
+        },
+        {
+          "nume": "Împrumuturi",
+          "cale": "Venituri și cheltuieli campanie.Împrumuturi",
+          "grup": "Venituri și cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/16/columns/8",
+          "randuri_tabel": 436
+        },
+        {
+          "nume": "Subvenții",
+          "cale": "Venituri și cheltuieli campanie.Subvenții",
+          "grup": "Venituri și cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/16/columns/9",
+          "randuri_tabel": 436
+        },
+        {
+          "nume": "Din afara campaniei",
+          "cale": "Venituri și cheltuieli campanie.Din afara campaniei",
+          "grup": "Venituri și cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/16/columns/10",
+          "randuri_tabel": 436
+        },
+        {
+          "nume": "Campanie circumscripție",
+          "cale": "Venituri și cheltuieli campanie.Campanie circumscripție",
+          "grup": "Venituri și cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/16/columns/11",
+          "randuri_tabel": 436
+        },
+        {
+          "nume": "Cheltuieli",
+          "cale": "Venituri și cheltuieli campanie.Cheltuieli",
+          "grup": "Venituri și cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/16/columns/12",
+          "randuri_tabel": 436
+        },
+        {
+          "nume": "Media",
+          "cale": "Venituri și cheltuieli campanie.Media",
+          "grup": "Venituri și cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/16/columns/13",
+          "randuri_tabel": 436
+        },
+        {
+          "nume": "Promo online",
+          "cale": "Venituri și cheltuieli campanie.Promo online",
+          "grup": "Venituri și cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/16/columns/14",
+          "randuri_tabel": 436
+        },
+        {
+          "nume": "Cercetări",
+          "cale": "Venituri și cheltuieli campanie.Cercetări",
+          "grup": "Venituri și cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/16/columns/15",
+          "randuri_tabel": 436
+        },
+        {
+          "nume": "Afișe",
+          "cale": "Venituri și cheltuieli campanie.Afișe",
+          "grup": "Venituri și cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/16/columns/16",
+          "randuri_tabel": 436
+        },
+        {
+          "nume": "Tipărituri",
+          "cale": "Venituri și cheltuieli campanie.Tipărituri",
+          "grup": "Venituri și cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/16/columns/17",
+          "randuri_tabel": 436
+        },
+        {
+          "nume": "Administrative",
+          "cale": "Venituri și cheltuieli campanie.Administrative",
+          "grup": "Venituri și cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/16/columns/18",
+          "randuri_tabel": 436
+        },
+        {
+          "nume": "Comisioane bancare",
+          "cale": "Venituri și cheltuieli campanie.Comisioane bancare",
+          "grup": "Venituri și cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/16/columns/19",
+          "randuri_tabel": 436
+        },
+        {
+          "nume": "Suma solicitată",
+          "cale": "Venituri și cheltuieli campanie.Suma solicitată",
+          "grup": "Venituri și cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/16/columns/20",
+          "randuri_tabel": 436
+        },
+        {
+          "nume": "Suma rambursată",
+          "cale": "Venituri și cheltuieli campanie.Suma rambursată",
+          "grup": "Venituri și cheltuieli campanie",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/16/columns/21",
+          "randuri_tabel": 436
+        },
+        {
+          "nume": "date",
+          "cale": "news.date",
+          "grup": "news",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/17/columns/0",
+          "randuri_tabel": 2
+        },
+        {
+          "nume": "url",
+          "cale": "news.url",
+          "grup": "news",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/17/columns/1",
+          "randuri_tabel": 2
+        },
+        {
+          "nume": "title",
+          "cale": "news.title",
+          "grup": "news",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/17/columns/2",
+          "randuri_tabel": 2
+        },
+        {
+          "nume": "excerpt",
+          "cale": "news.excerpt",
+          "grup": "news",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/17/columns/3",
+          "randuri_tabel": 2
+        },
+        {
+          "nume": "thumbnail",
+          "cale": "news.thumbnail",
+          "grup": "news",
+          "rol": "coloana-sql",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-lista-baza",
+          "pointer": "/tables/17/columns/4",
+          "randuri_tabel": 2
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/8f8229240b7f63743cd4-252c26c05f04f3c8.json",
+      "sha256": "252c26c05f04f3c8777940bd1486494f60b0aac954e886d426ce1b2c6f133d5d",
+      "format": "baza-datasette",
+      "stare": "analizat",
+      "limita_atinsa": false,
+      "baza_tipului": "lista-fara-tipuri",
+      "baza": {
+        "nume": {
+          "valoare": "banipartide",
+          "pointer": "/database",
+          "baza": "declarat-in-lista"
+        },
+        "marime_octeti": {
+          "valoare": 46718976,
+          "pointer": "/size",
+          "baza": "calculat-de-server"
+        },
+        "sursa": {
+          "valoare": "Expert Forum",
+          "pointer": "/source",
+          "baza": "declarat-in-metadate"
+        },
+        "adresa_sursa": {
+          "valoare": "https://expertforum.ro/tag/finantare-politica/",
+          "pointer": "/source_url",
+          "baza": "declarat-in-metadate"
+        },
+        "licenta": {
+          "valoare": "CC Attribution 4.0 License",
+          "pointer": "/license",
+          "baza": "declarat-in-metadate",
+          "acopera": "tabelele-bazei",
+          "url": {
+            "valoare": "http://creativecommons.org/licenses/by/4.0/",
+            "pointer": "/license_url",
+            "baza": "declarat-in-metadate"
+          },
+          "atribuire": {
+            "valoare": "Expert Forum",
+            "pointer": "/source",
+            "baza": "declarat-in-metadate"
+          }
+        },
+        "tabele": [
+          {
+            "nume": {
+              "valoare": "Alianțe",
+              "pointer": "/tables/0/name",
+              "baza": "declarat-in-lista"
+            },
+            "randuri": {
+              "valoare": 5,
+              "pointer": "/tables/0/count",
+              "baza": "calculat-de-server"
+            },
+            "coloane": [
+              "cod",
+              "nume",
+              "partide",
+              "perioada",
+              "descriere"
+            ],
+            "pointer": "/tables/0"
+          },
+          {
+            "nume": {
+              "valoare": "Cheltuieli campanie",
+              "pointer": "/tables/1/name",
+              "baza": "declarat-in-lista"
+            },
+            "randuri": {
+              "valoare": 940,
+              "pointer": "/tables/1/count",
+              "baza": "calculat-de-server"
+            },
+            "coloane": [
+              "Alegeri",
+              "Tip alegeri",
+              "Candidat",
+              "Tip competitor",
+              "Partid",
+              "Venituri",
+              "Transferuri partid",
+              "Pentru campanie",
+              "Cheltuieli",
+              "Administrative",
+              "Tipărituri promoționale",
+              "Media",
+              "Publicitate outdoor",
+              "Servicii",
+              "Sondare consultanță",
+              "Altele",
+              "Rezultat financiar",
+              "Cheltuieli restante"
+            ],
+            "pointer": "/tables/1"
+          },
+          {
+            "nume": {
+              "valoare": "Cheltuieli subventii",
+              "pointer": "/tables/2/name",
+              "baza": "declarat-in-lista"
+            },
+            "randuri": {
+              "valoare": 8950,
+              "pointer": "/tables/2/count",
+              "baza": "calculat-de-server"
+            },
+            "coloane": [
+              "Luna",
+              "An",
+              "Categorie cheltuială",
+              "Cod",
+              "Suma",
+              "Partid",
+              "Data_completa",
+              "nicemonth"
+            ],
+            "pointer": "/tables/2"
+          },
+          {
+            "nume": {
+              "valoare": "Contracte subventii",
+              "pointer": "/tables/3/name",
+              "baza": "declarat-in-lista"
+            },
+            "randuri": {
+              "valoare": 2389,
+              "pointer": "/tables/3/count",
+              "baza": "calculat-de-server"
+            },
+            "coloane": [
+              "An",
+              "Luna",
+              "Filiala",
+              "Partid",
+              "Tipul cheltuielii",
+              "Furnizor",
+              "CUI",
+              "Suma",
+              "Moneda",
+              "Modalitate plată",
+              "Data",
+              "Observații"
+            ],
+            "pointer": "/tables/3"
+          },
+          {
+            "nume": {
+              "valoare": "Contributii campanie",
+              "pointer": "/tables/4/name",
+              "baza": "declarat-in-lista"
+            },
+            "randuri": {
+              "valoare": 49697,
+              "pointer": "/tables/4/count",
+              "baza": "calculat-de-server"
+            },
+            "coloane": [
+              "Cod",
+              "Partid",
+              "Circumscripție",
+              "Nume",
+              "Circumscripție candidatură",
+              "Funcție",
+              "Proveniența",
+              "Venituri proprii",
+              "Donații",
+              "Împrumuturi",
+              "Total"
+            ],
+            "pointer": "/tables/4"
+          },
+          {
+            "nume": {
+              "valoare": "Donatori persoane fizice",
+              "pointer": "/tables/5/name",
+              "baza": "declarat-in-lista"
+            },
+            "randuri": {
+              "valoare": 30791,
+              "pointer": "/tables/5/count",
+              "baza": "calculat-de-server"
+            },
+            "coloane": [
+              "Nume donator",
+              "Suma",
+              "An",
+              "Partid",
+              "Tip donație",
+              "CNP",
+              "Ce s-a donat",
+              "Data donației",
+              "Organizația"
+            ],
+            "pointer": "/tables/5"
+          },
+          {
+            "nume": {
+              "valoare": "Donatori persoane juridice",
+              "pointer": "/tables/6/name",
+              "baza": "declarat-in-lista"
+            },
+            "randuri": {
+              "valoare": 3611,
+              "pointer": "/tables/6/count",
+              "baza": "calculat-de-server"
+            },
+            "coloane": [
+              "Nume",
+              "Suma",
+              "An",
+              "Partid",
+              "Tip donație",
+              "CUI",
+              "Reprezentant societate",
+              "Sediu",
+              "Naționalitatea donatorului",
+              "Data donației",
+              "Felul donației",
+              "Filiala partidului"
+            ],
+            "pointer": "/tables/6"
+          },
+          {
+            "nume": {
+              "valoare": "Donatori rapoarte de venituri și cheltuieli",
+              "pointer": "/tables/7/name",
+              "baza": "declarat-in-lista"
+            },
+            "randuri": {
+              "valoare": 353473,
+              "pointer": "/tables/7/count",
+              "baza": "calculat-de-server"
+            },
+            "coloane": [
+              "Judet",
+              "Cod județ",
+              "Tip venit",
+              "Nume donator",
+              "Suma",
+              "Mod încasare",
+              "Data donației",
+              "Partid",
+              "An"
+            ],
+            "pointer": "/tables/7"
+          },
+          {
+            "nume": {
+              "valoare": "Legenda partide",
+              "pointer": "/tables/8/name",
+              "baza": "declarat-in-lista"
+            },
+            "randuri": {
+              "valoare": 320,
+              "pointer": "/tables/8/count",
+              "baza": "calculat-de-server"
+            },
+            "coloane": [
+              "ID",
+              "Denumire",
+              "Ordine",
+              "Logo",
+              "Venituri",
+              "Venituri campanii",
+              "Cheie",
+              "CUI",
+              "Adresa",
+              "Judet",
+              "UAT",
+              "Sediul social ",
+              "Președinte",
+              "Trezorier"
+            ],
+            "pointer": "/tables/8"
+          },
+          {
+            "nume": {
+              "valoare": "Rezultate alegeri",
+              "pointer": "/tables/9/name",
+              "baza": "declarat-in-lista"
+            },
+            "randuri": {
+              "valoare": 1132,
+              "pointer": "/tables/9/count",
+              "baza": "calculat-de-server"
+            },
+            "coloane": [
+              "Alegeri",
+              "An",
+              "Tip",
+              "Partid",
+              "Voturi",
+              "Mandate"
+            ],
+            "pointer": "/tables/9"
+          },
+          {
+            "nume": {
+              "valoare": "Runde alegeri",
+              "pointer": "/tables/10/name",
+              "baza": "declarat-in-lista"
+            },
+            "randuri": {
+              "valoare": 26,
+              "pointer": "/tables/10/count",
+              "baza": "calculat-de-server"
+            },
+            "coloane": [
+              "Cod",
+              "Tip",
+              "Descriptiv",
+              "An",
+              "Data descriptiv",
+              "Data",
+              "Numar candidați",
+              "Competitori",
+              "Independenți"
+            ],
+            "pointer": "/tables/10"
+          },
+          {
+            "nume": {
+              "valoare": "Subvenții",
+              "pointer": "/tables/11/name",
+              "baza": "declarat-in-lista"
+            },
+            "randuri": {
+              "valoare": 1200,
+              "pointer": "/tables/11/count",
+              "baza": "calculat-de-server"
+            },
+            "coloane": [
+              "Partid",
+              "Suma",
+              "An",
+              "Luna",
+              "Luna-nr"
+            ],
+            "pointer": "/tables/11"
+          },
+          {
+            "nume": {
+              "valoare": "Subvenții pe an",
+              "pointer": "/tables/12/name",
+              "baza": "declarat-in-lista"
+            },
+            "randuri": {
+              "valoare": 19,
+              "pointer": "/tables/12/count",
+              "baza": "calculat-de-server"
+            },
+            "coloane": [
+              "An",
+              "Suma",
+              "Sume alocate"
+            ],
+            "pointer": "/tables/12"
+          },
+          {
+            "nume": {
+              "valoare": "Venituri anuale din rapoarte de venituri și cheltuieli",
+              "pointer": "/tables/13/name",
+              "baza": "declarat-in-lista"
+            },
+            "randuri": {
+              "valoare": 3923,
+              "pointer": "/tables/13/count",
+              "baza": "calculat-de-server"
+            },
+            "coloane": [
+              "Tip venit",
+              "An",
+              "Suma",
+              "Detalii",
+              "Partid"
+            ],
+            "pointer": "/tables/13"
+          },
+          {
+            "nume": {
+              "valoare": "Venituri anuale partide de la MF",
+              "pointer": "/tables/14/name",
+              "baza": "declarat-in-lista"
+            },
+            "randuri": {
+              "valoare": 968,
+              "pointer": "/tables/14/count",
+              "baza": "calculat-de-server"
+            },
+            "coloane": [
+              "An",
+              "Partid",
+              "CUI",
+              "Active imobilizate",
+              "Active circulante",
+              "Cheltuieli în avans",
+              "Datorii sub 1 an",
+              "Datorii peste 1 an",
+              "Capitaluri proprii",
+              "Capitaluri",
+              "Venituri fără scop patrimonial",
+              "Cheltuieli fără scop patrimonial",
+              "Venituri",
+              "Cheltuieli",
+              "Angajați fără scop patrimonial",
+              "Angajați active economice-financiare"
+            ],
+            "pointer": "/tables/14"
+          },
+          {
+            "nume": {
+              "valoare": "Venituri cheltuieli subventii",
+              "pointer": "/tables/15/name",
+              "baza": "declarat-in-lista"
+            },
+            "randuri": {
+              "valoare": 18,
+              "pointer": "/tables/15/count",
+              "baza": "calculat-de-server"
+            },
+            "coloane": [
+              "An",
+              "Subvenții",
+              "Chletuieli subnvetii"
+            ],
+            "pointer": "/tables/15"
+          },
+          {
+            "nume": {
+              "valoare": "Venituri și cheltuieli campanie",
+              "pointer": "/tables/16/name",
+              "baza": "declarat-in-lista"
+            },
+            "randuri": {
+              "valoare": 436,
+              "pointer": "/tables/16/count",
+              "baza": "calculat-de-server"
+            },
+            "coloane": [
+              "Alegeri",
+              "Tip",
+              "Candidat",
+              "Tip competitor",
+              "Partid",
+              "Venituri",
+              "Venituri proprii",
+              "Donații",
+              "Împrumuturi",
+              "Subvenții",
+              "Din afara campaniei",
+              "Campanie circumscripție",
+              "Cheltuieli",
+              "Media",
+              "Promo online",
+              "Cercetări",
+              "Afișe",
+              "Tipărituri",
+              "Administrative",
+              "Comisioane bancare",
+              "Suma solicitată",
+              "Suma rambursată"
+            ],
+            "pointer": "/tables/16"
+          },
+          {
+            "nume": {
+              "valoare": "news",
+              "pointer": "/tables/17/name",
+              "baza": "declarat-in-lista"
+            },
+            "randuri": {
+              "valoare": 2,
+              "pointer": "/tables/17/count",
+              "baza": "calculat-de-server"
+            },
+            "coloane": [
+              "date",
+              "url",
+              "title",
+              "excerpt",
+              "thumbnail"
+            ],
+            "pointer": "/tables/17"
+          }
+        ],
+        "tabele_ascunse": {
+          "valoare": 20,
+          "pointer": "/hidden_count",
+          "baza": "declarat-in-lista"
+        },
+        "ascunse_in_lista": 20,
+        "vederi": [
+          {
+            "nume": {
+              "valoare": "Alegeri extra",
+              "pointer": "/views/0/name",
+              "baza": "declarat-in-lista"
+            },
+            "pointer": "/views/0"
+          },
+          {
+            "nume": {
+              "valoare": "Subvenții anuale",
+              "pointer": "/views/1/name",
+              "baza": "declarat-in-lista"
+            },
+            "pointer": "/views/1"
+          },
+          {
+            "nume": {
+              "valoare": "Venituri cheltuieli alegeri",
+              "pointer": "/views/2/name",
+              "baza": "declarat-in-lista"
+            },
+            "pointer": "/views/2"
+          },
+          {
+            "nume": {
+              "valoare": "Venituri cheltuieli alegeri - total",
+              "pointer": "/views/3/name",
+              "baza": "declarat-in-lista"
+            },
+            "pointer": "/views/3"
+          }
+        ]
+      }
+    },
+    {
       "url": "https://demoanaf.ro/api-docs",
       "final_url": "https://demoanaf.ro/api-docs",
       "http_status": 200,

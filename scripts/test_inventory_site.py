@@ -7,6 +7,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
+from inventory import analyse_source
 from inventory_concepts import validate_families
 from inventory_state import counted_fields
 from inventory_site import (BASIS, document_links, fold_restatements, group_api_parameters, publish_overview, publish_preview, sheet_titles, variable_matches,
@@ -33,6 +34,41 @@ class InventorySite(unittest.TestCase):
         self.assertIsNone(source_licence({'seturi': [{'licenta': fact('CC BY 4.0')}, {'licenta': fact('CC0')}]}))
         self.assertIsNone(source_licence({'seturi': [{'licenta': fact('CC BY 4.0')}, {}]}), 'a set without a licence leaves the page without one')
         self.assertIsNone(source_licence({}))
+
+    def test_a_datasette_listing_is_credited_with_its_declared_licence_and_source(self):
+        from inventory_site import source_licence
+        licence = {'valoare': 'CC Attribution 4.0 License', 'url': {'valoare': 'http://creativecommons.org/licenses/by/4.0/'}, 'atribuire': {'valoare': 'Expert Forum'}}
+        self.assertEqual(source_licence({'baza': {'licenta': licence}}),
+                         {'name': 'CC Attribution 4.0 License', 'url': 'http://creativecommons.org/licenses/by/4.0/', 'attribution': 'Sursa: Expert Forum'})
+        self.assertEqual(source_licence({'baza': {'licenta': {'valoare': 'CC0'}}}), {'name': 'CC0', 'url': '', 'attribution': ''})
+        self.assertIsNone(source_licence({'baza': {'licenta': None}}), 'a listing with no licence member is not credited')
+        self.assertIsNone(source_licence({'baza': {}}))
+        self.assertEqual(source_licence({'baza': {'licenta': {'valoare': 'CC0', 'url': {'valoare': 'javascript:alert(1)'}}}})['url'], '', 'an address that is not http(s) is dropped')
+
+    def test_the_field_browser_shows_the_tables_of_a_datasette_listing_with_their_row_counts_and_credits_the_licence(self):
+        body = (Path(__file__).parent / 'fixtures/datasette/banipartide-lista.json').read_text()
+        source = {**analyse_source({'url': 'https://db.example/base.json', 'final_url': 'https://db.example/base.json', 'state': 'ok', 'http_status': None,
+                                    'content_type': 'application/json', 'body': body, 'fetched_at': '2026-10-26T18:30:00+00:00'}),
+                  'id': 's', 'origine': 'copie-salvata-de-proprietar'}
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); obs = root / 'observatii'; inv = obs / 'inventare'; inv.mkdir(parents=True)
+            (inv / 'proiecte.json').write_text(json.dumps({'proiecte': [{'slug': 'x', 'surse_structurate': ['s']}]}))
+            (inv / 'seturi-date.json').write_text(json.dumps({'surse': [source]}))
+            site = root / 'site'; site.mkdir(); items = [{'slug': 'x'}]
+            with patch('inventory_site.observation_paths', return_value={'profile': obs / 'profil.csv'}):
+                publish_preview(items, root, site)
+            data = json.loads((site / 'inventar/x.json').read_text())
+        listed = data['sources'][0]
+        self.assertEqual((listed['title'], listed['format'], listed['savedByOwner']), ('Bază de date Datasette · base.json', 'baza-datasette', True))
+        self.assertEqual(listed['licence'], {'name': 'CC Attribution 4.0 License', 'url': 'http://creativecommons.org/licenses/by/4.0/', 'attribution': 'Sursa: Expert Forum'})
+        self.assertEqual(len(data['fields']), 35)
+        amount = next(f for f in data['fields'] if f['path'] == 'Subvenții.Suma')
+        self.assertEqual((amount['group'], amount['rows'], amount['basis'], amount['role']), ('Subvenții', 1200, 'dblist', 'coloana-sql'))
+        self.assertEqual({f['group'] for f in data['fields']}, {'Contributii campanie', 'Legenda partide', 'Subvenții', 'news'}, 'a hidden table is not shown')
+        self.assertTrue(all(f['declaredType'] is None and not f['description'] for f in data['fields']))
+        self.assertEqual(BASIS['declarat-in-lista-baza'], 'dblist')
+        for script in ('app.js', 'inventory.js'):
+            self.assertIn('dblist', (Path(__file__).resolve().parents[1] / 'site' / script).read_text(), 'the label of the new basis is in ' + script)
 
     def test_a_google_sheet_tab_takes_the_title_of_its_data_set_from_the_page_that_lists_it(self):
         def link(ident, gid, label, after=None):

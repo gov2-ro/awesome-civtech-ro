@@ -389,7 +389,7 @@
       "slug": "bani-partide",
       "nume": "Bani Partide",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "Finanțarea partidelor și a campaniilor electorale",
       "permite": [
         "Monitorizează",
@@ -404,11 +404,12 @@
         "slug": "bani-partide"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "8f8229240b7f63743cd4"
+      ],
+      "campuri_din_surse": 172,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
     },
