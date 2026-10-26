@@ -38,6 +38,7 @@ from inventory_apidocs import operations as api_operations
 from inventory_csvcards import csv_datasets
 from inventory_ins import ins_dataset, ins_listing, ins_measure, is_listing
 from inventory_literals import datasets as literal_datasets, declarations as literal_declarations
+from inventory_setlist import list_datasets
 from inventory_text import EXTENSIONS, read_text
 from inventory_state import (REGISTRY, counted_fields, RequestLog, StateError, active_members, admit, check_text, dump, load_previous,
                              new_discovery, now_utc, priority, protect, registry_map, retire, seed_registry, sorted_registry,
@@ -46,7 +47,8 @@ from inventory_state import (REGISTRY, counted_fields, RequestLog, StateError, a
 MAX_FIELDS, MAX_DEPTH, SAMPLE_ROWS = 2000, 7, 25
 # An object with more keys than this is a keyed collection (identifier -> record), not a record with that many members.
 KEYED_COLLECTION = 100
-TEXT_FORMATS = ('html-tabele', 'markdown', 'csharp', 'sql', 'php', 'js-acces', 'json-comentat', 'html-api-docs', 'html-carduri-csv', 'js-literale')
+TEXT_FORMATS = ('html-tabele', 'markdown', 'csharp', 'sql', 'php', 'js-acces', 'json-comentat', 'html-api-docs', 'html-carduri-csv', 'js-literale',
+                'html-lista-seturi')
 
 
 def pointer_part(value):
@@ -349,6 +351,8 @@ def analyse_source(response, hint=None):
             metadata['operatii'] = api_operations(body)
         elif fmt == 'html-carduri-csv':
             metadata['seturi'] = csv_datasets(body, response['final_url'])
+        elif fmt == 'html-lista-seturi':
+            metadata['seturi'] = list_datasets(body)
         elif fmt == 'js-literale':
             metadata['declaratii'] = literal_declarations(body)
             metadata['seturi_ld'] = literal_datasets(body)
@@ -569,6 +573,10 @@ def check_report(out, observations):
                 _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
                 if fields != source['campuri'] or csv_datasets(body, source['final_url']) != source.get('seturi'):
                     errors.append('Fields or datasets differ from the retained body: ' + source['url'])
+            elif source.get('format') == 'html-lista-seturi':
+                _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
+                if fields != source['campuri'] or list_datasets(body) != source.get('seturi'):
+                    errors.append('Datasets differ from the retained body: ' + source['url'])
             elif source.get('format') in TEXT_FORMATS:
                 _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
                 if fields != source['campuri'] or (source['format'] == 'js-literale' and (literal_declarations(body) != source.get('declaratii')

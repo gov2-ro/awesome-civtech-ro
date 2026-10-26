@@ -19,6 +19,8 @@ Each reader returns field records in the shape of inventory.parse_source and nev
   (`true`, or a list of positions) adds the table readers of the same page.
 - `html-carduri-csv` (module `inventory_csvcards`): a page whose cards offer CSV files with a list of columns. Each column becomes a field with
   the description that the page declares; the files themselves are a separate list of datasets (`inventory_csvcards.csv_datasets`).
+- `html-lista-seturi` (module `inventory_setlist`): a page whose tables list data sets (category, name, description, related reports, links to external files).
+  It returns no field: the page declares no column. The data sets are a separate list (`inventory_setlist.list_datasets`).
 
 Locators are exact. A character interval `char:START-END` addresses the declaration in the retained body. A table cell is addressed as
 `/tabele/T/randuri/R` or `/tabele/T/antet/C`. `inventory.py --check` parses the retained body again and compares every field.
@@ -32,6 +34,7 @@ from html.parser import HTMLParser
 from inventory_apidocs import api_docs
 from inventory_csvcards import csv_cards
 from inventory_literals import read as read_literals
+from inventory_setlist import set_list
 
 SAMPLE_ROWS = 5
 NAME_COLUMNS = {'matrice', 'nume', 'denumire', 'variabila', 'camp', 'coloana', 'field', 'column', 'name', 'variable', 'indicator',
@@ -639,7 +642,7 @@ def js_acces(body, objects=('fields',)):
 READERS = {'html-tabele': html_tabele, 'markdown': markdown, 'csharp': lambda body, options=None: csharp(body),
            'sql': lambda body, options=None: sql(body), 'php': lambda body, options=None: php(body),
            'json-comentat': lambda body, options=None: json_comentat(body), 'html-api-docs': lambda body, options=None: api_docs(body, options),
-           'html-carduri-csv': csv_cards, 'js-literale': js_literale}
+           'html-carduri-csv': csv_cards, 'js-literale': js_literale, 'html-lista-seturi': set_list}
 EXTENSIONS = {'.cs': 'csharp', '.sql': 'sql', '.php': 'php', '.md': 'markdown'}
 
 
