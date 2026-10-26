@@ -381,8 +381,25 @@ class Scope(unittest.TestCase):
             listed = [row['cod'] for row in csv.DictReader(handle) if row['lista'] == 'relatie_date']
         self.assertEqual(sorted(listed), sorted([*IN_SCOPE_RELATIONS, 'fara-date']), 'a new code needs a decision about its scope')
         app = (self.ROOT / 'site/app.js').read_text()
+        for code in (*listed, 'neevaluat'):
+            self.assertNotIn(f"'{code}'", app, f'site/app.js keeps no list of the codes: it reads vocabulary.dataGroups ({code})')
         inactive = re.findall(r"^\s+(\w+): \{ label: '[^']*', cls: '\w+', group: 'inactiv' \}", app, re.M)
         self.assertEqual(sorted(inactive), sorted(INACTIVE_STATUSES), 'isInactive in site/app.js and the Python rule name the same statuses')
+
+    def test_the_two_public_groups_cover_every_code_and_agree_with_the_scope_rule(self):
+        from common import DATA_GROUPS, data_group, public_reason
+        with (self.ROOT / 'data/taxonomy-v2/valori.csv').open(newline='') as handle:
+            listed = [row['cod'] for row in csv.DictReader(handle) if row['lista'] == 'relatie_date']
+        self.assertEqual([g['key'] for g in DATA_GROUPS], ['cu-date', 'fara-date'])
+        for code in (*listed, ''):
+            with self.subTest(code=code or '(empty)'):
+                homes = [g['key'] for g in DATA_GROUPS if code in g['codes']]
+                self.assertEqual(homes, [data_group(code)], 'one group for each code, and an empty value too')
+                in_scope = inventory_exclusion('proiect', 'activ', code) == ''
+                self.assertEqual(data_group(code) == 'cu-date', in_scope, 'the group cu-date is the scope of /date/')
+                self.assertEqual(public_reason(inventory_exclusion('proiect', 'activ', code)) == 'fara-date', data_group(code) == 'fara-date')
+        self.assertEqual(data_group('cod-necunoscut'), 'fara-date', 'a code that valori.csv does not list is without data')
+        self.assertEqual([public_reason(r) for r in ('fara-date', 'neevaluat', 'inactiv', 'in-afara-ariei')], ['fara-date', 'fara-date', 'inactiv', 'in-afara-ariei'])
 
     def test_the_preview_the_finder_and_the_list_leave_out_the_same_entries_and_count_them_by_reason(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -398,8 +415,8 @@ class Scope(unittest.TestCase):
             self.assertEqual(sorted(re.findall(r'<tr id="([^"]+)">', body)), in_scope)
             for slug in set(by) - set(in_scope):
                 self.assertNotIn(f'/{slug}/"', page.split('<section class="ov-left">')[0], slug + ' is named in the table or in the list of entries without fields')
-            self.assertEqual(index['leftOut'], {'fara-date': {'proiect': 1, 'resursa': 1}, 'neevaluat': {'proiect': 1, 'resursa': 0},
-                                                 'inactiv': {'proiect': 2, 'resursa': 1}})
+            self.assertEqual(index['leftOut'], {'fara-date': {'proiect': 2, 'resursa': 1}, 'inactiv': {'proiect': 2, 'resursa': 1}},
+                             'without data: the code fara-date and an empty value together; inactive: whatever the code')
             self.assertEqual(left_out(items), index['leftOut'])
 
     def test_the_list_says_how_many_entries_it_leaves_out_by_reason_and_links_the_explorer(self):
@@ -407,16 +424,15 @@ class Scope(unittest.TestCase):
             site, _ = self.publish(tmp)
             page = (site / 'date/lista/index.html').read_text()
         section = page[page.index('<section class="ov-left">'):page.index('</section>', page.index('<section class="ov-left">'))]
-        self.assertIn('<h2>Lăsate pe dinafară (6)</h2>', section, '2 without data, 1 not assessed, 3 inactive')
+        self.assertIn('<h2>Lăsate pe dinafară (6)</h2>', section, '3 without data (2 with the code, 1 with an empty value), 3 inactive')
         reasons = dict(re.findall(r'<li data-reason="([a-z-]+)">(.*?)</li>', section))
-        self.assertEqual(list(reasons), ['fara-date', 'neevaluat', 'inactiv'])
-        self.assertIn('(2)', reasons['fara-date'])
-        self.assertIn('(1)', reasons['neevaluat'])
+        self.assertEqual(list(reasons), ['fara-date', 'inactiv'], 'two reasons; an empty value is without data')
+        self.assertIn('(3)', reasons['fara-date'])
         self.assertIn('(3)', reasons['inactiv'])
-        self.assertIn('<a href="./?dat=fara-date">1 proiect</a>', reasons['fara-date'])
+        self.assertIn('<a href="./?dat=fara-date">2 proiecte</a>', reasons['fara-date'])
         self.assertIn('<a href="./?k=resursa&amp;dat=fara-date">1 resursă</a>', reasons['fara-date'])
-        self.assertIn('<a href="./?dat=neevaluat">1 proiect</a>', reasons['neevaluat'])
-        self.assertNotIn('k=resursa', reasons['neevaluat'], 'no link for a kind without entries')
+        self.assertNotIn('neevaluat', section.lower())
+        self.assertNotIn('Neevaluat', section)
         self.assertIn('<a href="./?st=inactiv">2 proiecte</a>', reasons['inactiv'])
         self.assertIn('<a href="./?k=resursa&amp;st=inactiv">1 resursă</a>', reasons['inactiv'])
         bare = page[page.index('<section class="ov-bare">'):page.index('</section>', page.index('<section class="ov-bare">'))]
@@ -431,7 +447,8 @@ class Scope(unittest.TestCase):
                 projections = publish_preview(items, root, site)
             publish_finder(items, root, site, projections)
             self.assertNotIn('ov-left', (site / 'date/lista/index.html').read_text())
-            self.assertEqual(json.loads((site / 'inventar/index.json').read_text())['leftOut']['inactiv'], {'proiect': 0, 'resursa': 0})
+            self.assertEqual(json.loads((site / 'inventar/index.json').read_text())['leftOut'],
+                             {'fara-date': {'proiect': 0, 'resursa': 0}, 'inactiv': {'proiect': 0, 'resursa': 0}})
 
     def test_an_entry_that_leaves_the_scope_loses_its_inventory_file_and_marker_at_the_next_build(self):
         with tempfile.TemporaryDirectory() as tmp:

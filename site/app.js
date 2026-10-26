@@ -66,7 +66,7 @@ const DATE_HELP = {
 const SORT_HELP = { nou: DATE_HELP.since, recent: DATE_HELP.updated };
 const MIN_Q = 3;
 // ina=1 shows inactive projects (hidden by default; st=inactiv shows them too); a and s are kept for URLs but have no UI for now.
-// dat (the relation to data: the codes of valori.csv `relatie_date`, and `neevaluat` for an empty value) and st (the status group) are facets
+// dat (the relation to data, in the two groups of vocabulary.dataGroups: `cu-date` and `fara-date`) and st (the status group) are facets
 // in the pattern of ent: comma-separated values, OR within the facet, under "Mai multe filtre".
 // The facets hold comma-separated concept or area IDs: OR within a facet, AND between facets.
 // d, t, kw and c are v1 bookmarks (domain, types, keywords, city): they keep their v1 meaning through each entry's
@@ -96,6 +96,12 @@ const closed = new Set(store.get('ct2.closed', ['cap', 'fmt', 'source', 'area', 
 let lastFocus = null;
 const expandedOptions = new Set();
 
+// The group of an entry's relation to data. data.json holds the groups (common.DATA_GROUPS in scripts/common.py): the code lists of each group, the empty
+// value in `fara-date`. The browser keeps no list of its own, so the facet and the scope of /date/ cannot drift apart. dataRelation keeps the four codes.
+const dataGroup = code => {
+  const groups = DB.vocabulary.dataGroups || [];
+  return (groups.find(g => g.codes.includes(code || '')) || groups.find(g => g.codes.includes('')))?.key;
+};
 const isInactive = it => STATUS[it.status].group === 'inactiv';
 const listOf = key => state[key] ? state[key].split(',') : [];
 // Inactive entries show when the visitor asks for them: ina=1, or a status facet that selects `inactiv` (st=inactiv).
@@ -1326,7 +1332,7 @@ function start(db) {
   const v = db.vocabulary;
   for (const c of v.concepts) CONCEPT.set(c.id, c);
   for (const a of v.areas) AREA.set(a.id, a);
-  TAX = { kind: map(v.kinds), ent: map(v.entityTypes), dat: map([...(v.dataRelations || []), { key: 'neevaluat', label: 'Neevaluat' }]), cov: map(v.coverage), pred: map(v.predicates), scheme: map(v.schemes),
+  TAX = { kind: map(v.kinds), ent: map(v.entityTypes), dat: map(v.dataGroups || []), cov: map(v.coverage), pred: map(v.predicates), scheme: map(v.schemes),
     dom: map(db.legacyTaxonomy.domenii), tip: map(db.legacyTaxonomy.tipuri) };
   // Paths in the data are relative to the site root; the address bar changes with pushState, so make them absolute.
   const abs = p => p ? ROOT + p : p;
@@ -1348,7 +1354,7 @@ function start(db) {
     it._f.source = new Set(it.dataSources.map(s => sourceLabel(s.name)));
     it._f.coverage = new Set([coverageKey(it)]);
     it._f.ent = new Set([it.entityType]);
-    it._f.dat = new Set([it.dataRelation || 'neevaluat']);
+    it._f.dat = new Set([dataGroup(it.dataRelation)].filter(Boolean));
     it._f.st = new Set([STATUS[it.status].group]);
     it._orgs = it.attributions.map(a => a.name);
     // What ties entries together by attribution: the slug of an organisation, else the written name.

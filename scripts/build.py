@@ -30,7 +30,7 @@ from datetime import date, datetime, timezone
 
 from pathlib import Path
 
-from common import (BOILERPLATE, DATA, NETWORK_ROLES, PUBLIC_ROOT, ROOT, SITE, coverage_line, data_schema, domain_of, kept_by_slug, label_coverage,
+from common import (BOILERPLATE, DATA, DATA_GROUPS, NETWORK_ROLES, PUBLIC_ROOT, ROOT, SITE, coverage_line, data_schema, domain_of, kept_by_slug, label_coverage,
                     link_host, load_catalogue, load_entries, load_mentions, load_profile, load_vocabulary, observation_paths,
                     parse_link, public_catalogue, read_csv, split_list, split_tip, status_of, years_since)
 
@@ -642,6 +642,7 @@ def items_v2(root: Path, site: Path) -> tuple[list[dict], dict]:
             "coverage": code_list("nivel_acoperire"),
             "predicates": code_list("relatie_predicat"),
             "dataRelations": code_list("relatie_date"),
+            "dataGroups": [{"key": g["key"], "label": g["label"], "codes": list(g["codes"])} for g in DATA_GROUPS],
         },
         "legacyTaxonomy": {k: legacy_tax[k] for k in ("domenii", "tipuri", "fel", "acoperire")},
         "site": site_cfg,
