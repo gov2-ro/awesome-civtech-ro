@@ -283,7 +283,7 @@ Empty means unknown or not applicable. Unknown is not a negative assertion.
 | `maturitate` | Zero or one evidenced stage: experiment, prototype, pilot, or operational. Independent from availability and reliability. |
 | `nivel_acoperire` | `national`, `local`, `international`, or `necunoscut`. Do not silently default unknown to national. |
 | `arii_acoperite` | Area IDs. A national project with local records can still cover `tara:RO`. |
-| `relatie_date` | Zero or one code of the list `relatie_date`: how a project or a resource relates to data. Empty means not assessed. An organisation has none. See "Relation to data". |
+| `relatie_date` | Zero or one code of the list `relatie_date`: how a project or a resource relates to data. Empty means not assessed, and the entry stays out of the variable inventory. An organisation has none. See "Relation to data". |
 | `localitate_originala` | Original city text. Preserved without interpreting an organisation's address as its service area. |
 | `autor_original`, `contact` | Preserved attribution text and contact. Relations hold the structured attribution. |
 | `civictech_original` | Original `0`, `1`, or blank, retained as legacy editorial data. Not a new certification. |
@@ -643,14 +643,17 @@ An editor sets it; the Form does not ask for it. The code list is `relatie_date`
 | `date-proprii` | Date proprii | The entry collects or curates its own data: reports from users, quiz positions, an editorial database. |
 | `calcul` | Calculator sau formular | The entry takes user inputs and applies rules or parameters, with no data set behind it. |
 | `fara-date` | Fără date | A guide, course, campaign, article or list of links. There is nothing to extract. |
-| (empty) | Neevaluat | Not assessed yet. |
+| (empty) | Neevaluat | Not assessed yet. The entry stays out of `/date/` until an editor sets a code (owner, 2026-10-26). |
 
 When two codes apply, use the first one in the table. One code settles the mixed cases, because the data finder needs one answer.
 `formate` does not replace the column: a quiz (`testvot`) holds a data set, and a publication can be data journalism.
 The checks refuse an unknown code, a value on an organisation, and `fara-date` together with `detaliere_date`.
 `validate.py` warns when an entry with `fara-date` has extracted fields in its inventory.
-The build writes the code as `dataRelation` on each item and the code list as `vocabulary.dataRelations`. An empty column changes nothing else.
-The scope of the variable inventory and the explorer facets that use the column are defined in `docs/briefs/data-relation.md`.
+The build writes the code as `dataRelation` on each item and the code list as `vocabulary.dataRelations`.
+An entry is in scope of the variable inventory (`/date/`, `/date/lista/`, `inventar/<slug>.json`, the explorer markers and the default selection of `collect_docs.py` and `inventory.py`) when it is a project or a resource,
+its built status is not inactive (`offline`, `arhivat`), and its code is `date-publice`, `date-proprii` or `calcul`. An empty value and `fara-date` both leave the entry out.
+The explorer filters by the relation to data (`dat`, with `neevaluat` for an empty value) and by status group (`st`: `activ`, `inactiv`, `neconfirmat`), under "Mai multe filtre".
+`DATA-SCHEMA.md` ("Scope of the variable inventory") has the rule and the places that use it; `docs/briefs/data-relation.md` has the decisions.
 
 For location filtering, distinguish where an entry applies from whether it contains records for a particular place.
 Choosing Bucharest matches explicitly recorded Bucharest coverage. A Romania-only assignment does not match.
