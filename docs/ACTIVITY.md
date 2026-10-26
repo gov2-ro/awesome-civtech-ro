@@ -1,5 +1,25 @@
 # Activity
 
+## 2026-10-26 — Hidden entries: the code `ascuns`; fiipregatit.ro hidden
+
+**Done**
+- The owner decided that `fiipregatit.ro` does not belong in the catalogue (an official state platform), but the inferred data stays. The data model had no way to hold an entry back: `stare` `arhivat` / `offline` still shows it, and `propus` / `de-revizuit` block the whole build through the publication gate.
+- Added the code `ascuns` to the list `clasificare_stare` (`valori.csv`, order 3). `taxonomy_v2.HIDDEN` names it. The gate accepts it, and an open high-priority review item of a hidden entry does not count. `common.public_catalogue()` leaves hidden entries out, and `items_v2` in `build.py` reads only that list. `draft` ignores them, and a relation from another entry shows the name of a hidden entry but no link.
+- Set `fiipregatit` to `ascuns`; the note records that it was accepted, then hidden. Removed its two images from `site/img/` (the profiler makes them again with `--force --only fiipregatit`; `profil.csv` keeps the paths).
+- Docs: `DATA-SCHEMA.md` (column, code list, gate, a section on hidden entries), `specs/taxonomy-v2.md`, `data/taxonomy-v2/README.md`, `CLAUDE.md` and `AGENTS.md`. Backlog: the entry-specific items are dropped with the reason.
+- Four new tests in `test_taxonomy_v2.py`: the gate accepts a hidden entry and ignores its review items; it still refuses a proposal next to one; `ascuns` is refused where `valori.csv` does not list it; a build leaves the entry out of `data.json`, the entry page, the feed and `llms.txt`, with contiguous ids. They fail without the code change.
+- Measured after the change: `validate.py --publication` 0 errors (141 `acceptat`, 1 `ascuns`); `build.py` writes 141 entries to `site/`; a build with `--with-inventory` into a separate folder also has no trace of the slug.
+
+**Hard**
+- The tests run on a package derived from the detach commit, so their `valori.csv` has no `ascuns`. The tests add the code to their copy.
+- A hidden entry still needs a full classification: the rule `empty_allowed_when` names only `de-revizuit`. Not changed; a looser rule would be a second decision.
+- The Sheet dropdown of the column is strict and comes from the code list. `ascuns` reaches it at the next `sheets-push` (it runs when `intrari.csv` changes on `main`).
+
+**Decided**
+- The code is `ascuns`, the owner's word „hidden”, in the Romanian style of the list. The alternative `exclus` says „excluded” and would hint at a rejection; the owner chose hiding, not rejecting.
+- The two images are removed, not kept: `site/img/` is public, and an unlinked image of a hidden entry would still be served. The cost: after unhiding, the images must be made again.
+- `cutover_v2.py` still counts `ascuns` as „not acceptat”. The cutover is applied, so the script is not changed.
+
 ## 2026-10-26 — A list of hosts that no script requests (v0.26.0)
 
 **Done**

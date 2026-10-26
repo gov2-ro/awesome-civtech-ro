@@ -32,7 +32,7 @@ from pathlib import Path
 
 from common import (BOILERPLATE, DATA, NETWORK_ROLES, PUBLIC_ROOT, ROOT, SITE, coverage_line, data_schema, domain_of, kept_by_slug, label_coverage,
                     link_host, load_catalogue, load_entries, load_mentions, load_profile, load_vocabulary, observation_paths,
-                    parse_link, read_csv, split_list, split_tip)
+                    parse_link, public_catalogue, read_csv, split_list, split_tip)
 
 CODE_ROLES = ("github", "gitlab", "cod")
 SITE_URL = "https://civtech.gov2.ro/"
@@ -546,6 +546,7 @@ def subject_groups(pkg) -> list[dict]:
 def items_v2(root: Path, site: Path) -> tuple[list[dict], dict]:
     """The v2 items and the rest of data.json, from a taxonomy v2 root. Facets are concept and area IDs; the
     vocabulary block gives their labels. Private columns (notes, source rows, confidence, review) stay out."""
+    from taxonomy_v2 import HIDDEN
     vocab = load_vocabulary(root)
     pkg = vocab["package"]
     roles = vocab["roles"]
@@ -561,7 +562,9 @@ def items_v2(root: Path, site: Path) -> tuple[list[dict], dict]:
         site_cfg["tabs"] = {**json.loads((DATA / "site.json").read_text(encoding="utf-8")).get("tabs", {}), **site_cfg.get("tabs", {})}
         v1_rows = {e["slug"]: {"tab": "orgs" if e["kind"] == "organizatie" else "proiecte", "row": e["row"]} for e in load_catalogue(DATA)}
     items = []
-    for n, e in enumerate(load_catalogue(root)):
+    catalogue = public_catalogue(root)  # a hidden entry (`clasificare_stare` `ascuns`) stays in the data and never reaches the site
+    shown = {e["slug"] for e in catalogue}
+    for n, e in enumerate(catalogue):
         p = profile.get(e["slug"], {})
         o = observed(e, p, roles, site)
         reach = features.get(e["slug"], NO_REACH)
@@ -594,7 +597,7 @@ def items_v2(root: Path, site: Path) -> tuple[list[dict], dict]:
             "areas": e["areas"],
             "dataSources": [{"name": a["name"], "evidence": a["evidence"]} for a in e["data_sources"]],
             # Unresolved roles stay neutral: `role` is the predicate, `accepted` says whether an editor confirmed it.
-            "attributions": [{"name": a["name"], "org": a["slug"] if a["slug"] in pkg.entries else "", "role": a["predicate"],
+            "attributions": [{"name": a["name"], "org": a["slug"] if a["slug"] in shown else "", "role": a["predicate"],
                               "accepted": a["state"] == "acceptat"} for a in e["attributions"]],
             "links": o["links"],
             "url": o["url"],
@@ -640,7 +643,7 @@ def items_v2(root: Path, site: Path) -> tuple[list[dict], dict]:
     head = {
         "schemaVersion": pkg.version,
         # Proposed classifications reach the page only in an --allow-draft preview, which says so.
-        "draft": any(e["clasificare_stare"] != "acceptat" for e in pkg.entries.values()),
+        "draft": any(e["clasificare_stare"] not in ("acceptat", HIDDEN) for e in pkg.entries.values()),
         "vocabulary": {
             "schemes": code_list("concept_schema"),
             "concepts": [{"id": c["id"], "scheme": c["schema"], "label": c["eticheta_ro"], "labelEn": c["eticheta_en"],

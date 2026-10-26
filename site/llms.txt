@@ -1,7 +1,7 @@
 # CivTech România
 
 > Colecție curatoriată de proiecte civic tech, organizații și resurse din România: instrumente civice, date deschise
-> și proiecte de bună guvernare. 108 proiecte, 13 organizații, 21 resurse.
+> și proiecte de bună guvernare. 107 proiecte, 13 organizații, 21 resurse.
 
 Fiecare intrare are o pagină proprie la https://civtech.gov2.ro/<tip>/<slug>/ (tip: proiect, organizatie, resursa). Starea
 (activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-10-25. Textele sunt în
@@ -158,7 +158,6 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 
 - [După cutremur](https://civtech.gov2.ro/proiect/dupa-cutremur/): Clădiri vulnerabile și străzi care pot fi blocate după un cutremur. Site: https://sites.google.com/rerise.org/dupacutremur
 - [e-cutremur](https://civtech.gov2.ro/proiect/e-cutremur/): Site: https://e-cutremur.ro/
-- [fiipregatit.ro](https://civtech.gov2.ro/proiect/fiipregatit/): Platforma DSU de pregătire pentru urgențe: ghiduri, hartă și campanii. Site: https://fiipregatit.ro/
 - [Hazard seismic 2026 pe localități](https://civtech.gov2.ro/proiect/cat-de-tare/): Valorile oficiale de hazard seismic pentru 3.181 de localități. Site: https://mariuscomper.uk/cat-de-tare/
 - [Războiul hibrid al Rusiei](https://civtech.gov2.ro/proiect/semnal-razboiul-hibrid/): Harta incidentelor. Site: https://semnal.eu/ro/razboi-hibrid/
 

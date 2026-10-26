@@ -347,6 +347,13 @@ def load_catalogue(data_dir: Path = PUBLIC_ROOT) -> list[dict]:
     return out
 
 
+def public_catalogue(data_dir: Path = PUBLIC_ROOT) -> list[dict]:
+    """load_catalogue without the hidden entries (v2 `clasificare_stare` `ascuns`): what the public build shows.
+    `row` keeps the entry's record in the edited table, so the Sheet links of the other entries do not move."""
+    from taxonomy_v2 import HIDDEN
+    return [e for e in load_catalogue(data_dir) if e.get("classification_state") != HIDDEN]
+
+
 def load_profile(path: Path = PROFILE) -> dict:
     """slug -> profile dict, in the shape scripts/profile.py produces."""
     if not path.exists():
