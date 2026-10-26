@@ -112,9 +112,19 @@ Exemplu existent: `ce-cumpara-primaria` are `subiect:finante-publice` ca subiect
 | `maturitate` | În ce etapă este, după dovezi? Cel mult o valoare. | `maturitate:operational` |
 | `nivel_acoperire` | Care este întinderea geografică? | `local` |
 | `arii_acoperite` | Ce zone acoperă? | `localitate:bucuresti` |
+| `relatie_date` | Cum se leagă de date? Cel mult o valoare; numai proiecte și resurse. | `date-publice` |
 
 Un proiect despre AI nu folosește obligatoriu AI. Un catalog de API-uri nu oferă obligatoriu un API propriu.
 Un ghid despre corupție nu este o condamnare. Un oraș din adresa organizației nu limitează acoperirea sa.
+
+`relatie_date` arată cum se leagă un proiect sau o resursă de date. O organizație rămâne goală.
+Valorile sunt: `date-publice` (folosește sau republică date din surse publice), `date-proprii` (colectează sau curează date proprii:
+sesizări de la utilizatori, poziții din chestionare, o bază de date editorială), `calcul` (calculator sau formular, fără un set de date în spate)
+și `fara-date` (ghid, curs, campanie, articol sau listă de linkuri; nu există nimic de extras).
+Dacă se potrivesc două valori, alegeți-o pe prima din această listă. O celulă goală înseamnă neevaluat.
+`fara-date` nu merge împreună cu `detaliere_date`. Formatul din `formate` nu înlocuiește coloana:
+un chestionar (`testvot`) conține un set de date, iar o publicație poate fi jurnalism de date.
+Coloana este numai pentru editori și nu este în Formular. `validate.py` avertizează când o intrare `fara-date` are câmpuri extrase în inventar.
 
 `stare` păstrează intervenția manuală asupra stării site-ului. Nu descrie maturitatea sau verificarea clasificării.
 `civictech_original` păstrează vechea valoare. Nu reprezintă o certificare nouă.

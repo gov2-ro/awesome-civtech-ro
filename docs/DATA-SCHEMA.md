@@ -376,6 +376,8 @@ Three kinds of root hold v2 data. A script that gets `--data-dir` finds out whic
 
 `validate.py --data-dir <root>` runs the package checks of `scripts/taxonomy_v2.py`. `data/taxonomy-v2/validate.py` runs
 the same checks (add `--baseline`, `--export` or `--publication`).
+`validate.py` also warns, and never fails, when an entry with `relatie_date` `fara-date` has extracted fields:
+it reads `campuri_din_surse` in `observatii/inventare/rezumat.csv`. One of the two records is wrong, and the editor decides which.
 
 ### Conventions of the v2 files
 
@@ -417,6 +419,7 @@ One row for each entry (project, organisation or resource). Today it holds the 1
 | `arii_acoperite` | The areas it covers. | IDs of `arii.csv`. |
 | `detaliere_date` | The geographic detail of the data, independent of project reach. | Optional code: `agregat-national`, `judete`, `localitati`, `judete-localitati`. Empty means unverified or not applicable. |
 | `dovada_detaliere` | The evidence page for the recorded data detail. | An HTTP(S) URL is required when `detaliere_date` is set. |
+| `relatie_date` | How the entry relates to data. | Optional code: `date-publice`, `date-proprii`, `calcul`, `fara-date`. Empty means not assessed. Only a project or a resource has one: a value on an organisation is an error. `fara-date` and `detaliere_date` exclude each other. When two codes apply, use the first one in the list order. The Form has no question for it. |
 | `localitate_originala` | The v1 `oras`, unchanged. | Text. It does not limit the coverage. |
 | `autor_original` | The v1 `autor`, unchanged. | Text. `relatii.csv` holds the structured form. |
 | `contact` | The v1 `contact`. | Text. |
@@ -468,6 +471,7 @@ Every list is used by a column of `schema.json`, and every list that `schema.jso
 | `tip_entitate` | `intrari.csv` `tip_entitate` | `proiect`, `organizatie`, `resursa`, `publicatie`, `set-date`, `campanie` |
 | `sectiune_url` | `intrari.csv` `sectiune_url` | `proiect`, `organizatie`, `resursa` |
 | `detaliere_date` | `intrari.csv` `detaliere_date` | `agregat-national`, `judete`, `localitati`, `judete-localitati` |
+| `relatie_date` | `intrari.csv` `relatie_date` | `date-publice`, `date-proprii`, `calcul`, `fara-date` |
 | `nivel_acoperire` | `intrari.csv` | `national`, `local`, `international`, `necunoscut` |
 | `clasificare_stare` | `intrari.csv` | `propus`, `acceptat`, `de-revizuit`, `ascuns` |
 | `incredere` | `intrari.csv` | `mica`, `medie`, `mare` |
@@ -770,6 +774,8 @@ and replaces the v1 classification:
   `institutions`, `organisationTypes`: concept IDs. `maturity` is one ID or null, never an array.
 - `coverageLevel` and `areas`: the coverage code and area IDs.
 - `dataDetail`, `dataDetailEvidence`: geographic data detail and its evidence URL.
+- `dataRelation`: the code of `relatie_date`, or an empty string when the entry is not assessed. `vocabulary.dataRelations` lists the codes
+  with their labels, in list order: `[{key, label, labelEn}]`.
 - `dataSources`: `{name, evidence}` for each accepted data provider or publication.
 - `attributions`: `{name, org, role, accepted}`. `role` is the relation predicate; an unconfirmed role shows neutrally.
 - `legacy`: the original `domeniu`, `tips`, `keywords`, `fel`, `acoperire` and `oras`, only for old bookmarks.
