@@ -95,3 +95,17 @@ The row `banipartide.ro` in `colectare-interzisa.csv` covers `db.banipartide.ro`
 - The owner saves `https://db.banipartide.ro/banipartide.json` (tables, columns and row counts) from a browser, and the session imports it with `--import-saved`. No change to the list.
 - The owner allows `db.banipartide.ro`. The list has no exception for a subdomain today, so this needs a small change to `common.forbidden()`, `validate.py`, the docs and the tests.
 The local checkout is not public evidence. Use it only to check a reading, and copy no rows: the donor tables name private persons.
+
+### 8.1 Decision (2026-10-26): the owner's saved copy
+
+The owner chose option 1 and saved `https://db.banipartide.ro/banipartide.json` at 2026-10-26T20:30:00+02:00 (`tmp/banipartide.json`, 11,493 bytes). The list does not change.
+Measured: Datasette database `banipartide`, 18 visible tables with their columns and row counts, 20 hidden full-text tables (`*_fts*`), 4 views (names only, no columns).
+The page declares `source` „Expert Forum”, `source_url` `https://expertforum.ro/tag/finantare-politica/` and the licence CC BY 4.0.
+
+Work:
+1. Import the copy with `inventory.py --import-saved bani-partide https://db.banipartide.ro/banipartide.json FILE --saved-at 2026-10-26T20:30:00+02:00`. Make no request.
+2. Read it with a reader for a Datasette database listing: one field for each column of a visible table (path `<table>.<column>`), the table's row count as a fact, the views by name only. Leave out the hidden tables. If no existing reader fits, write one and test it offline with a fixture.
+3. Record the declared licence and source, as for Harta Firmelor (`licence` in the field browser).
+4. Map the columns to groups as in Part 1 and Part 2: candidate members for reviewed groups are listed, not added; a new group is `propus`.
+   A provider needs a name in the copy. The table titles do not name one; the documentation of the project says Monitorul Oficial, the AEP and the Ministry of Finance (`Venituri anuale partide de la MF`), but that is not in the copy. Propose a provider only from text in the copy.
+5. The donor tables name private persons. The copy holds only column names, so nothing more is needed; do not request rows.

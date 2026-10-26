@@ -1203,6 +1203,8 @@ An empty cell means unknown. A zero means that the count was made and found noth
 | Column | Meaning |
 | --- | --- |
 | `slug` | The entry. |
+| `nume`, `url` | Copies of the entry's name and address from `intrari.csv`, to help the owner open the site. |
+| `pagina` | The entry's page on the public site; empty for a hidden entry. |
 | `propunere` | A code of the list `relatie_date`, or empty when the evidence does not settle it. An empty value means: not assessed. |
 | `baza` | One sentence that names the evidence. |
 | `incredere` | `mare` (direct evidence: an accepted source, extracted fields or page text that says it), `medie` (the description or the page implies it) or `mica` (thin evidence; always `mica` when `propunere` is empty). |
