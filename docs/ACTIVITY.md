@@ -1,5 +1,15 @@
 # Activity
 
+## 2026-10-27 — The 24 candidate members confirmed in bulk
+
+**Done**
+- At the owner's request („I'm happy with your proposals for the 24 candidate members … I'll untangle if I spot mistakes later”), the 24 candidate selectors of batch C2 (parts 1–3) went into their reviewed groups with `stare` `confirmat` and the note „Confirmat în bloc la cererea proprietarului (2026-10-27)”: `judet` 7, `cui` 4, `localitate` 4, `perioada-de-referinta` 4, `populatie` 2, `voturi-valide` 2, `siruta` 1.
+  Written with the review interface's own validation (`Store.errors_of`: 0 errors before and after) and its byte-stable JSON writer. The key `selectori_candidati` left `inventar-note.json`, so the report no longer lists them.
+- One test read the candidates from the notes; it now reads the members of the groups. 727 unit tests pass; the browser checks pass on a `--with-inventory` build (141, 40 and 63).
+
+**Decided**
+- The groups keep their state `revizuit` and their review date: the owner reviewed the group definitions, and the new members carry their own note. The cost: the group record does not show that members were added after its review; the member notes and git do.
+
 ## 2026-10-27 — Two groups for the relation to data, in the explorer and on /date/ (brief section 9)
 
 **Done**

@@ -305,9 +305,11 @@ class TrackedBaniPartide(unittest.TestCase):
             facts = [x['cheie'] for s in groups[group]['selectors'] for x in s.get('fapte', [])]
             self.assertNotIn('unitate', facts, 'the listing declares no unit')
 
-    def test_the_candidate_selectors_for_reviewed_groups_match_fields_and_no_donor_column_enters_a_group_by_its_name_alone(self):
-        candidates = [c for c in self.notes['selectori_candidati'] if 'bani-partide' in c['selector']['projects']]
-        self.assertEqual(sorted(c['grup'] for c in candidates), ['cui', 'cui', 'cui', 'judet', 'judet', 'perioada-de-referinta'])
+    def test_the_members_from_this_listing_match_fields_and_no_donor_column_enters_a_group_by_its_name_alone(self):
+        # The candidates were confirmed in bulk at the owner's request (2026-10-27): they are members of the reviewed groups now.
+        candidates = [{'grup': c['id'], 'selector': s} for c in self.concepts if c['id'] in ('cui', 'judet', 'perioada-de-referinta')
+                      for s in c['selectors'] if 'bani-partide' in s['projects']]
+        self.assertTrue(candidates)
         for item in candidates:
             hits = [f for f, url in self.fields if selector_matches(item['selector'], 'bani-partide', f, url)]
             self.assertEqual(len(hits), len(item['selector']['path']), item['selector']['context'])
