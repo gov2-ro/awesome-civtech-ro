@@ -6,7 +6,7 @@ Every network call is a fake.
 import json
 import unittest
 
-from inventory import analyse_source, check_report, has_csv_options, parse_source
+from inventory import analyse_source, check_report, has_csv_options, parse_source, public_url
 from inventory_sheet import cell, column_letters, header_facts, read, read_rows, settings
 from test_inventory_state import Workspace, docs_for, entry
 
@@ -28,6 +28,20 @@ class Net:
     def __call__(self, url, sample=None):
         self.calls.append(url)
         return response(self.bodies[url], url)
+
+
+class SignedExport(unittest.TestCase):
+    SIGNED = 'https://doc-08-c0-sheets.googleusercontent.com/export/tok1/tok2/1793039190000/112284565122911157493/*/FILE?format=csv'
+
+    def test_the_tracked_record_drops_the_token_and_account_of_a_signed_export_address(self):
+        self.assertEqual(public_url(self.SIGNED), 'https://doc-08-c0-sheets.googleusercontent.com/export/…/FILE?format=csv')
+        record = analyse_source({**response(PLAIN), 'final_url': self.SIGNED})
+        self.assertNotIn('112284565122911157493', json.dumps(record))
+        self.assertEqual([f['nume'] for f in record['campuri']], ['SIRUTA', 'UAT', 'judet'])
+
+    def test_other_addresses_stay_as_they_are(self):
+        for url in (URL, 'https://example.org/export/a/b.csv', 'https://data.gov.ro/x.csv?y=1', None):
+            self.assertEqual(public_url(url), url)
 
 
 class Columns(unittest.TestCase):

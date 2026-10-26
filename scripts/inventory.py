@@ -336,8 +336,22 @@ def discovery_record(slug, candidate):
                          original=candidate['link_original'], discovered_at=candidate['descoperit_la'], rank=candidate['prioritate'])
 
 
+# A Google Sheets export redirects to a signed address whose path holds an access token and the number of a Google account:
+# https://doc-NN-c0-sheets.googleusercontent.com/export/<token>/<token>/<time>/<account>/*/<file id>?format=csv
+SIGNED_EXPORT = re.compile(r'^(https://[a-z0-9-]+\.googleusercontent\.com/export/)[^?#]*/([^/?#]+)((?:[?#].*)?)$')
+
+
+def public_url(url):
+    """The address as the tracked files keep it: a signed Google export address loses its token and account segments.
+    The host, the file ID and the query stay, so the format test of `parse_source` gives the same answer."""
+    match = SIGNED_EXPORT.match(url or '')
+    return f'{match.group(1)}…/{match.group(2)}{match.group(3)}' if match else url
+
+
 def analyse_source(response, hint=None):
     metadata = {k: v for k, v in response.items() if k != 'body'}
+    if 'final_url' in metadata:
+        metadata['final_url'] = public_url(metadata['final_url'])
     if hint:
         metadata['citire'] = hint
     metadata.update(id=source_id(response['url']), campuri=[], completitudine='neconfirmat', snapshot='surse/' + source_id(response['url']) + '.json')

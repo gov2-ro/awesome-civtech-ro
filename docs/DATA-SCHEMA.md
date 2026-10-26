@@ -879,6 +879,8 @@ All files below are generated review material. Only the explicit preview build r
   Profiles remain `propunere`; completeness is only `partial` or `neconfirmat`.
 - `seturi-date.json`: structured source records, keyed by a URL-derived ID. Each records HTTP status, retrieval time, body hash,
   immutable snapshot path, parser format and field records. Shared schema fields keep all their operation bindings.
+  `final_url` is the address after redirects. A signed Google export address (`*.googleusercontent.com/export/…`) keeps its host, file ID and query;
+  `inventory.public_url` replaces its token and Google account segments with `…`. The local cache keeps the full address.
 - `campuri.csv`: `proiecte`, `sursa_id`, `url`, `format`, `rol`, `nume`, `cale`, `tip_declarat`, `tipuri_observate`,
   `tip_semantic`, `unitate`, `descriere`, `operatii`, `pointer_dovada`, `stare_tip`.
 - `intrari-utilizator.csv`: `slug`, `nume`, `tip_control_html`, `descriere`, `url_dovada`, `pointer_snapshot`, `stare_tip`.
