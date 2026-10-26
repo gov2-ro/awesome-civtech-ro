@@ -137,6 +137,39 @@ class CodeReaders(unittest.TestCase):
         county = next(f for f in fields if f['cale'] == 'votes.county_id')
         self.assertEqual((county['tip_declarat'], county['obligatoriu']), ('smallInteger', False))
 
+    def test_laravel_alter_migration_adds_its_columns_from_up_and_nothing_from_down(self):
+        body = """<?php
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::table('companies', function (Blueprint $table) {
+            $table->string('type')->after('euid')->nullable();
+            $table->datetime('registration_date')->after('euid')->nullable();
+            $table->string('mark', 40)->nullable()->change();
+            $table->dropColumn('legacy');
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::table('companies', function (Blueprint $table) {
+            $table->string('legacy')->nullable();
+            $table->dropColumn(['type', 'registration_date']);
+        });
+    }
+};
+"""
+        _, fields, _ = php(body)
+        self.assertEqual([(f['cale'], f['tip_declarat'], f['modificare']) for f in fields],
+                         [('companies.type', 'string', 'alter-add'), ('companies.registration_date', 'datetime', 'alter-add'), ('companies.mark', 'string', 'alter-change')])
+        self.assertTrue(all(f['obligatoriu'] is False and f['rol'] == 'coloana-sql' for f in fields))
+        self.assertNotIn('companies.legacy', [f['cale'] for f in fields], 'a column that down() restores is not added by the migration')
+
+    def test_laravel_create_migration_has_no_alter_mark(self):
+        _, fields, _ = php(text('create_votes_table.php'))
+        self.assertTrue(all('modificare' not in f for f in fields))
+
     def test_page_script_names_are_usage_not_a_schema(self):
         body = ("<script>const CONFIG = {token: 'x'};</script><script>r.fields['Județ']; r.fields[\"Județ\"]; r.fields.Vârsta; other.fields['no'];"
                 " rec.records['Y']</script>")
