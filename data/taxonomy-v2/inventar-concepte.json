@@ -2307,7 +2307,9 @@
                 "baza": "declaratie-directa"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Revizuit în bloc la cererea proprietarului (2026-10-26)."
         },
         {
           "projects": [
@@ -2343,7 +2345,9 @@
                 "baza": "declaratie-directa"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Revizuit în bloc la cererea proprietarului (2026-10-26)."
         },
         {
           "projects": [
@@ -2370,7 +2374,9 @@
                 "baza": "declaratie-directa"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Revizuit în bloc la cererea proprietarului (2026-10-26)."
         }
       ],
       "categorie": "masura",
@@ -2397,7 +2403,9 @@
         "Ratele la 1.000 de locuitori (cheia `mr`, seria `LONG.mr` din Eurostat) nu intră în grup: totalurile și ratele rămân măsuri distincte.",
         "Pentru 2025 pagina are doar totalul național; datele pe județe pentru 2025 nu sunt încă în TEMPO (declarația paginii)."
       ],
-      "stare": "propus"
+      "stare": "revizuit",
+      "decizie_editor": "Revizuit în bloc la cererea proprietarului (2026-10-26).",
+      "data_revizie": "2026-10-26"
     },
     {
       "id": "divorturi",
@@ -2441,7 +2449,9 @@
                 "baza": "declaratie-directa"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Revizuit în bloc la cererea proprietarului (2026-10-26)."
         },
         {
           "projects": [
@@ -2477,7 +2487,9 @@
                 "baza": "declaratie-directa"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Revizuit în bloc la cererea proprietarului (2026-10-26)."
         },
         {
           "projects": [
@@ -2504,7 +2516,9 @@
                 "baza": "declaratie-directa"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Revizuit în bloc la cererea proprietarului (2026-10-26)."
         }
       ],
       "categorie": "masura",
@@ -2531,7 +2545,9 @@
         "Ratele (cheile `dr` și `ratio`, seria `LONG.dr` din Eurostat) nu intră în grup: totalurile și ratele rămân măsuri distincte.",
         "Pentru 1967 seria Eurostat nu are date despre divorțuri (declarația paginii); valoarea lipsă este `null` în `LONG.dr`."
       ],
-      "stare": "propus"
+      "stare": "revizuit",
+      "decizie_editor": "Revizuit în bloc la cererea proprietarului (2026-10-26).",
+      "data_revizie": "2026-10-26"
     },
     {
       "id": "studenti",
@@ -2575,7 +2591,9 @@
                 "baza": "deductie-din-dovezi"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Revizuit în bloc la cererea proprietarului (2026-10-26)."
         },
         {
           "projects": [
@@ -2614,7 +2632,9 @@
                 "baza": "deductie-din-dovezi"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Revizuit în bloc la cererea proprietarului (2026-10-26)."
         },
         {
           "projects": [
@@ -2638,7 +2658,9 @@
                 "baza": "declaratie-directa"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Revizuit în bloc la cererea proprietarului (2026-10-26)."
         },
         {
           "projects": [
@@ -2665,7 +2687,9 @@
                 "baza": "observatie-esantion"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Revizuit în bloc la cererea proprietarului (2026-10-26)."
         }
       ],
       "categorie": "masura",
@@ -2693,7 +2717,9 @@
         "Matricea SCL103D acoperă toate nivelurile de educație (dimensiunea NIVELURI_DE_EDUCATIE), de la grădiniță la doctorat; doar nivelurile superioare sunt studenți.",
         "Seria pe centre (licență din 1992, total din 2014) și datele CNFIS pe universități (de stat, 2024/25) au surse și acoperiri diferite; nu se adună."
       ],
-      "stare": "propus"
+      "stare": "revizuit",
+      "decizie_editor": "Revizuit în bloc la cererea proprietarului (2026-10-26).",
+      "data_revizie": "2026-10-26"
     }
   ]
 }
