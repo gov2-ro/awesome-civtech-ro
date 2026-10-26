@@ -1,5 +1,22 @@
 # Activity
 
+## 2026-10-26 — Briefs: the relation to data, and inventory batch C2
+
+**Done**
+- Wrote `docs/briefs/data-relation.md`: the column `relatie_date`, the scope of `/date/` and the explorer facets `dat` and `st`.
+- Wrote `docs/briefs/inventory-batch-c2.md`: the variable inventory of `data-expertforum`, `bani-partide` and `romania-interactiva`.
+- Measured: of 128 projects and resources, 19 are inactive (10 `arhivat`, 9 `offline`); none of them has extracted fields. `acoperire.csv` has 100 entries `neinvestigat-in-lot`. A guess from `formate` over these 100: 49 with a data format, 22 with only formats without data, 21 with no format, 8 publications.
+
+**Hard**
+- The format does not tell whether an entry has data: `testvot` is a quiz with a data set (party positions), `ani-de-pensie` is a calculator, and some publications are data journalism. The column is a separate decision for each entry, and the format only feeds the proposal.
+
+**Decided**
+- The owner decided that `/date/` lists only projects and resources with data, and that inactive entries leave the variable inventory. Three of the six named entries are inactive, so batch C2 has three entries.
+- One code for each entry, not a yes/no flag: `calcul` and `date-proprii` have variables but no public provider. The cost of a flag: the finder could not tell a quiz from a guide.
+- The column lives in `intrari.csv`, not in a separate list under `observatii/`: it describes the entry, and editors see it in the Sheet. The cost: one more column in the schema, the Sheet and the checks.
+- An empty value stays in `/date/`: only the entries that are clearly without data leave it.
+- Values are proposed from the repository's own evidence (no requests), and the owner accepts them before they reach `intrari.csv`.
+
 ## 2026-10-26 — Hidden entries: the code `ascuns`; fiipregatit.ro hidden
 
 **Done**

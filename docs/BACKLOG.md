@@ -2,6 +2,13 @@
 
 Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
+## Relation to data and inventory batch C2 — 2026-10-26
+
+- [ ] Column `relatie_date` (`date-publice`, `date-proprii`, `calcul`, `fara-date`, empty), the scope of `/date/` (active, not `fara-date`) and the explorer facets `dat` and `st`. Brief: [data-relation.md](briefs/data-relation.md).
+- [ ] Owner: review `observatii/inventare/relatie-date-propuneri.csv` (step B of the brief).
+- [ ] Variable inventory for `data-expertforum`, `bani-partide`, `romania-interactiva`. Brief: [inventory-batch-c2.md](briefs/inventory-batch-c2.md).
+- [-] Inventory `harta-banilor-publici`, `parlament-transparent`, `bani-pierduti`. Reason: inactive (`offline`) in the build; the owner removed inactive entries from the variable inventory on 2026-10-26.
+
 ## New entry fiipregatit.ro — 2026-10-26
 
 - [x] Decide `fiipregatit` (`intrari.csv`). Accepted by the owner on 2026-10-26, then hidden the same day (`clasificare_stare` `ascuns`): it is an official state platform and does not belong in the catalogue. The data stays; the public site does not show it. To show it again: set `acceptat`, then run `uv run scripts/profile.py --force --only fiipregatit` to make the two images again.
