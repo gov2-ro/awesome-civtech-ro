@@ -1,0 +1,32 @@
+[
+  {
+    "proiect": "data-expertforum",
+    "url": "https://data.expertforum.ro/",
+    "metoda": "adaugat-explicit",
+    "citire": {
+      "tip": "html-lista-seturi"
+    },
+    "locate": {
+      "pagina": "https://data.expertforum.ro/",
+      "text": "Secțiunea cu baze de date conține seturi compilate de EFOR în proiecte legate de diverse teme"
+    },
+    "dovezi": [
+      {
+        "pagina": "https://data.expertforum.ro/",
+        "text": "Datele sunt prelucrate de EFOR, pornind de la informații existente în spațiul public sau obținute pe baza legii accesului la informații de interes public.",
+        "rol": "declaratie-origine-date"
+      },
+      {
+        "pagina": "https://data.expertforum.ro/",
+        "text": "Dacă folosiți aceste date, vă rugăm să citați sursa corespunzător.",
+        "rol": "cerere-citare"
+      },
+      {
+        "pagina": "https://data.expertforum.ro/",
+        "text": "Puteți deschide fișierele cu GoogleApps pentru a descărca în formatul dorit",
+        "rol": "instructiune-descarcare"
+      }
+    ],
+    "nota": "The open-data section of Expert Forum (EFOR), the entry's own address. The page is a copy that the owner saved from their browser on 2026-10-26 (inventory.py --import-saved): expertforum.ro and data.expertforum.ro are in colectare-interzisa.csv, so no script requests them. It lists 15 data sets in five categories (Electoral 4, Finanțare politică 1, Infrastructură 6, Media 1, Sănătate 3). Each data set links to a Google Sheet tab, a Drive file or a Drive folder; the links are wrapped as https://www.google.com/url?q=TARGET and the reader takes the target without a request. The page declares no column, no period, no licence and no named provider; it asks the user to cite the source. It lists no field, so the page adds no field record."
+  }
+]

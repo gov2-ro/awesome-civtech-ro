@@ -1,5 +1,39 @@
 # Activity
 
+## 2026-10-26 — Inventory batch C2, part 2: data-expertforum from the owner's saved page and 14 Google Sheet tabs
+
+**Done**
+- Imported the page that the owner saved (`tmp/data.expertforum.ro.html`, 14,032 bytes, SHA-256 `d6f05a562b778e55…`, saved 2026-10-26T20:23:00+02:00) with `collect_docs.py --import-saved` and `inventory.py --import-saved`. The documentation record of the page was the HTTP 403 of 2026-10-24; the saved copy replaces it. 0 requests.
+- New reader `html-lista-seturi` (`scripts/inventory_setlist.py`, 20 tests; fixture: the saved page without the tag-manager script and the contact sentence). The page lists 15 data sets: Electoral 4, Finanțare politică 1, Infrastructură 6, Media 1, Sănătate 3. Each has a category, a subcategory, a title, a description, related reports and links, every fact with a `char:START-END` interval of the retained body.
+  The links are wrapped as `https://www.google.com/url?q=TARGET`. The reader takes TARGET from `q` and makes no request to `www.google.com`. Link kinds: 14 Google Sheet tabs (in 11 data sets), 1 Drive file (political finance) and 3 links to one Drive folder (the three health data sets).
+- 14 tabs requested once each as CSV exports (`docs.google.com/spreadsheets/d/ID/export?format=csv&gid=N`, `inventory.py --probe --lot C2`, then `--add-sources-file adaugari/lot-c2-efor-foi.json --offline`). Measured: 14 requests (limit 30), 14 answers HTTP 200 after a redirect to seven `doc-NN-c0-sheets.googleusercontent.com` hosts, 11,395,562 bytes read.
+  10 tabs parsed: 100 field records, one for each header cell. 4 tabs answered with more than 2,000,000 bytes (4 × 2,000,001 bytes read, refused): recorded with the state `raspuns-prea-mare`, not parsed.
+- CSV header options (`scripts/inventory_sheet.py`, 12 tests): `rand_antet` and `coloane_fara_nume`. Three tabs need them: the migration tab of 2016 has a title row above its header, and the two media tabs have empty header cells. The plain rules stay the default.
+- 15 discovery records (the page and 14 tabs). Each tab has the link in the saved page as its exact locator, and further locators with a role: category, title, description, related report, label of the link, and for two tabs the title row (`titlu-in-foaie`) or the source named in the sheet (`furnizor-numit-in-foaie`).
+- The field browser titles a tab by the data set of the page (`Foaie Google · <title> · <label>`): before, ten tabs of one entry had the title `Fișier CSV · export`. 2 tests.
+- Three proposed groups (`uat`, `partid-politic`, `beneficiar-fonduri-publice`; 36 groups in all; every definition and role fact has a fragment with a hash that `--check` verifies: 95 dictionary evidence items, 11 more than before). Eight candidate selectors for five reviewed groups (`siruta`, `cui`, `judet` ×3, `localitate`, `voturi-valide` ×2) are in `inventar-note.json` and section 5 of the report. No reviewed group got a member.
+- One provider item, D186: Guvernul României, from `HG 1088/2021` and `HG 1264/2021` (state `deschis`, priority `medie`). `relatii.csv` did not change.
+- Relation to `bani-partide` in the notes: the political finance data set names `https://www.banipartide.ro/` as its related report. It is not a source.
+- Tests: 669 run, 6 skipped (627 and 6 before): `test_inventory_setlist` 26 (20 reader and run tests, 6 on the tracked state), `test_inventory_sheet` 12, `test_inventory_site` +2, `test_inventory_report` +2. No new test pins a review state.
+  `validate.py --publication`: 0 errors, 0 warnings. `inventory.py --check`: 0 errors, 109 bodies hash-verified (99 before). `inventory_report.py --check`: current. A build with `--with-inventory` into a scratch folder: 128 finder entries, 36 groups; `site/` has no change.
+  Browser checks on that build: `check_preview.py` 111/111, `check_inventory_preview.py` 31/31, `check_data_finder.py` 40/40. An offline replay on a copy of the tracked folder gives the six generated files byte for byte.
+
+**Hard**
+- A tab of more than 2,000,000 bytes has no header, so the biggest data sets are the least known: the three PNDL tables and the candidate list of the local elections 2020. The brief says not to parse such a response. A second request with `--sample-bytes` would break "one request for each tab", and Google ignores a byte range, so a bounded read still starts the same response. The decision is the owner's (backlog).
+- The header texts are not clean. One header has line breaks and trailing spaces, and two header cells of one tab differ only by that whitespace (`Partidul Politic „Șor”`). The inventory keeps each name as the cell is written, so the two stay distinct.
+- Only one tab names a provider: the tab of HG 1088/2021 has a column `sursa` with the same value in all 2,797 rows. The other tab of the pair has no such column; the page labels its link „HG 1264/2021 (Ciucă)”. „Monitorul Oficial” also appears in a media tab, as the name of a payee, not as a provider. I did not propose it.
+- The candidate tab of the 2020 parliamentary elections holds names of persons. The repository keeps its header only (the parser reads nothing else), but the retained body in the ignored cache `surse/` holds the whole tab, as for every tab. The cache is local and not in git. The owner can delete the cache file of that tab; a later `--check` then reports the body as unavailable, not verified.
+- The final URL of a redirect holds a Google account number and a signed path. The evidence contract asks for the final URL, so `seturi-date.json` keeps it. The signed path stops working with time; the evidence is the retained body and its hash.
+- The title facts have `&icirc;` entities in the page. The registry locators use the raw text of the page, not the decoded text, so each locator fragment is an exact slice of the retained body.
+
+**Decided**
+- The limits of section 7 are the limits of part 2 (30 requests, one request for each tab). The limit of ten new sources for each entry (section 4) came from part 1, and section 7 names each of the 14 sheets. The cost: 15 sources for one entry.
+- The Drive file and the Drive folder were not requested. The page does not say that the file is a spreadsheet, the brief limits requests to `docs.google.com`, a folder cannot be listed without the API, and the finance data set holds donor data about persons.
+- A new reader for the page and not only specification files. The page has 15 data sets, and the specification files can hold facts only for the 14 tabs. The page source keeps all 15, with the Drive items. The cost: a new format name and a new check branch.
+- The title of a tab comes from a join in the site builder (the page source and the tab by document and tab number). The alternative, a new key in each tab record, would copy the facts of the page into 14 records.
+- No group for `furnizor` and none for the amount columns. `furnizor` means the grantor in one API and the supplier in another; the amount columns mix allocation, request, commitment and payment, and lei with MDL. Group `beneficiar-fonduri-publice` has the family `achizitii` only because the test needs a family (no existing family fits).
+- No `Competitor-partid` or `Denumirea formațiunii politice/Candidat independent` in `partid-politic`: the party under which a person runs is another role, and the tab holds data about persons.
+
 ## 2026-10-26 — Batch C2 decisions: providers, three groups, the EFOR hosts listed (v0.30.1)
 
 **Done**

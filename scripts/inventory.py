@@ -38,6 +38,8 @@ from inventory_apidocs import operations as api_operations
 from inventory_csvcards import csv_datasets
 from inventory_ins import ins_dataset, ins_listing, ins_measure, is_listing
 from inventory_literals import datasets as literal_datasets, declarations as literal_declarations
+from inventory_setlist import list_datasets
+from inventory_sheet import header_facts, read as read_sheet
 from inventory_text import EXTENSIONS, read_text
 from inventory_state import (REGISTRY, counted_fields, RequestLog, StateError, active_members, admit, check_text, dump, load_previous,
                              new_discovery, now_utc, priority, protect, registry_map, retire, seed_registry, sorted_registry,
@@ -46,7 +48,8 @@ from inventory_state import (REGISTRY, counted_fields, RequestLog, StateError, a
 MAX_FIELDS, MAX_DEPTH, SAMPLE_ROWS = 2000, 7, 25
 # An object with more keys than this is a keyed collection (identifier -> record), not a record with that many members.
 KEYED_COLLECTION = 100
-TEXT_FORMATS = ('html-tabele', 'markdown', 'csharp', 'sql', 'php', 'js-acces', 'json-comentat', 'html-api-docs', 'html-carduri-csv', 'js-literale')
+TEXT_FORMATS = ('html-tabele', 'markdown', 'csharp', 'sql', 'php', 'js-acces', 'json-comentat', 'html-api-docs', 'html-carduri-csv', 'js-literale',
+                'html-lista-seturi')
 
 
 def pointer_part(value):
@@ -212,18 +215,25 @@ def sampling_limit(value, depth=0):
     return False
 
 
+def has_csv_options(hint):
+    """True when the reader of a source is {"tip": "csv", ...} with at least one option (see inventory_sheet)."""
+    return isinstance(hint, dict) and hint.get('tip') == 'csv' and len(hint) > 1
+
+
 def parse_source(body, url, content_type='', hint=None):
     """Parse a retained body. `hint` is the registry's `citire`: a reader name, or {'tip': name, ...options}. Without a hint the
     URL's extension picks a code reader; HTML at a schema/data URL is still an error."""
     kind = hint.get('tip') if isinstance(hint, dict) else hint
-    if kind:
+    if kind and kind != 'csv':
         return read_text(body, kind, hint if isinstance(hint, dict) else None)
+    if has_csv_options(hint):
+        return 'csv', read_sheet(body, hint), False
     extension = re.search(r'(\.[a-z]{2,4})(?:$|\?)', url, re.I)
     if extension and extension.group(1).lower() in EXTENSIONS:
         return read_text(body, EXTENSIONS[extension.group(1).lower()])
     if re.search(r'<(?:!doctype\s+html|html|head|body)(?:\s|>)', body[:1000], re.I):
         raise ValueError('HTML response at a schema/data URL')
-    if re.search(r'\.(csv|tsv)(?:$|\?)', url, re.I) or 'csv' in content_type:
+    if kind == 'csv' or re.search(r'\.(csv|tsv)(?:$|\?)', url, re.I) or 'csv' in content_type:
         sample = body.lstrip('\ufeff')
         try:
             dialect = csv.Sniffer().sniff(sample[:20000], delimiters=',;\t')
@@ -326,8 +336,22 @@ def discovery_record(slug, candidate):
                          original=candidate['link_original'], discovered_at=candidate['descoperit_la'], rank=candidate['prioritate'])
 
 
+# A Google Sheets export redirects to a signed address whose path holds an access token and the number of a Google account:
+# https://doc-NN-c0-sheets.googleusercontent.com/export/<token>/<token>/<time>/<account>/*/<file id>?format=csv
+SIGNED_EXPORT = re.compile(r'^(https://[a-z0-9-]+\.googleusercontent\.com/export/)[^?#]*/([^/?#]+)((?:[?#].*)?)$')
+
+
+def public_url(url):
+    """The address as the tracked files keep it: a signed Google export address loses its token and account segments.
+    The host, the file ID and the query stay, so the format test of `parse_source` gives the same answer."""
+    match = SIGNED_EXPORT.match(url or '')
+    return f'{match.group(1)}…/{match.group(2)}{match.group(3)}' if match else url
+
+
 def analyse_source(response, hint=None):
     metadata = {k: v for k, v in response.items() if k != 'body'}
+    if 'final_url' in metadata:
+        metadata['final_url'] = public_url(metadata['final_url'])
     if hint:
         metadata['citire'] = hint
     metadata.update(id=source_id(response['url']), campuri=[], completitudine='neconfirmat', snapshot='surse/' + source_id(response['url']) + '.json')
@@ -341,6 +365,8 @@ def analyse_source(response, hint=None):
         metadata.update(format=fmt, campuri=fields, stare='analizat', completitudine='partial', limita_atinsa=truncated,
                         baza_tipului=('esantion-date' if fmt in ('json', 'lista-ins', 'js-literale') else 'antet-fara-tipuri' if fmt == 'csv'
                                       else 'cod-sau-documentatie' if fmt in TEXT_FORMATS else 'schema-declarata'))
+        if has_csv_options(hint):
+            metadata['antet'] = header_facts(body, hint)
         if fmt == 'metadate-ins':
             metadata['set_date'] = ins_dataset(json.loads(body))
         elif fmt == 'lista-ins':
@@ -349,6 +375,8 @@ def analyse_source(response, hint=None):
             metadata['operatii'] = api_operations(body)
         elif fmt == 'html-carduri-csv':
             metadata['seturi'] = csv_datasets(body, response['final_url'])
+        elif fmt == 'html-lista-seturi':
+            metadata['seturi'] = list_datasets(body)
         elif fmt == 'js-literale':
             metadata['declaratii'] = literal_declarations(body)
             metadata['seturi_ld'] = literal_datasets(body)
@@ -548,9 +576,11 @@ def check_report(out, observations):
                 if not source.get('redactari') and source.get('sha256_fisier') != source['sha256']:
                     errors.append('The retained body is not the file that the owner saved: ' + source['url'])
             if source.get('format') == 'csv':
-                _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''))
+                _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
                 if [f['nume'] for f in fields] != [f['nume'] for f in source['campuri']]:
                     errors.append('CSV headers differ: ' + source['url'])
+                elif has_csv_options(source.get('citire')) and (fields != source['campuri'] or header_facts(body, source['citire']) != source.get('antet')):
+                    errors.append('CSV header facts differ from the retained body: ' + source['url'])
             elif source.get('format') == 'html-api-docs':
                 _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
                 fresh = {**strip_links(source), 'campuri': fields, 'operatii': api_operations(body)}
@@ -569,6 +599,10 @@ def check_report(out, observations):
                 _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
                 if fields != source['campuri'] or csv_datasets(body, source['final_url']) != source.get('seturi'):
                     errors.append('Fields or datasets differ from the retained body: ' + source['url'])
+            elif source.get('format') == 'html-lista-seturi':
+                _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
+                if fields != source['campuri'] or list_datasets(body) != source.get('seturi'):
+                    errors.append('Datasets differ from the retained body: ' + source['url'])
             elif source.get('format') in TEXT_FORMATS:
                 _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
                 if fields != source['campuri'] or (source['format'] == 'js-literale' and (literal_declarations(body) != source.get('declaratii')

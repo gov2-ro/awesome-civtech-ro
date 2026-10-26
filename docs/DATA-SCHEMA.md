@@ -879,6 +879,8 @@ All files below are generated review material. Only the explicit preview build r
   Profiles remain `propunere`; completeness is only `partial` or `neconfirmat`.
 - `seturi-date.json`: structured source records, keyed by a URL-derived ID. Each records HTTP status, retrieval time, body hash,
   immutable snapshot path, parser format and field records. Shared schema fields keep all their operation bindings.
+  `final_url` is the address after redirects. A signed Google export address (`*.googleusercontent.com/export/…`) keeps its host, file ID and query;
+  `inventory.public_url` replaces its token and Google account segments with `…`. The local cache keeps the full address.
 - `campuri.csv`: `proiecte`, `sursa_id`, `url`, `format`, `rol`, `nume`, `cale`, `tip_declarat`, `tipuri_observate`,
   `tip_semantic`, `unitate`, `descriere`, `operatii`, `pointer_dovada`, `stare_tip`.
 - `intrari-utilizator.csv`: `slug`, `nume`, `tip_control_html`, `descriere`, `url_dovada`, `pointer_snapshot`, `stare_tip`.
@@ -1000,6 +1002,7 @@ All readers return the common field keys and add the keys below; none infers a m
 | `html-api-docs` | An API reference page whose endpoints are cards: a method badge, a path template with `:name` segments, access badges, a `Cache:` label, a description and a `Parametri:` line. `{tip: html-api-docs, contract: URL}`; `contract` names the OpenAPI source of the same project (optional). | Module `inventory_apidocs`. See "API reference pages" below. Request inputs and response members become fields; operations are a separate list. `stare_tip` `declarat-in-documentatie-api`; locator `char:START-END`. |
 | `html-carduri-csv` | A page whose cards offer CSV files: a title, a description, a download link to a `.csv` file, a list of labelled values (`Rânduri`, `Perioada`, `Măsurat la`, `Surse`) and, under the heading `Coloanele`, a list of columns (name and description). `{tip: html-carduri-csv}`. | Module `inventory_csvcards`. See "Pages of CSV files" below. Each column is a field; each file is a dataset in the source key `seturi`. `stare_tip` `declarat-in-lista-documentatie`; locator `char:START-END`. |
 | `js-literale` | The data that a page script holds as literals, and the schema.org `Dataset` of its JSON-LD. `{tip: js-literale, tabele: true}`; `tabele` (`true`, or a list of positions) adds the table readers of the same page, and their fields come first. | Module `inventory_literals`. See "Data literals in page scripts" below. `stare_tip` `observat-in-esantion-json` (a path in a literal) or `declarat-in-metadate` (a `variableMeasured` entry); locator `char:START-END`. |
+| `html-lista-seturi` | A page whose tables list data sets: a heading above each table, and one row for each set with a subcategory, a title, a description, related reports and links to external files. `{tip: html-lista-seturi}`. | Module `inventory_setlist`. See "Pages that list data sets" below. It returns no field: the page declares no column. The data sets are in the source key `seturi`. Locator `char:START-END`. |
 
 New `stare_tip` values (`js-literale` adds none: it reuses `observat-in-esantion-json` and `declarat-in-metadate`): `declarat-in-cod-sursa`, `antet-tabel-html`, `declarat-in-tabel-documentatie`, `declarat-in-text-documentatie`,
 `exemplu-in-documentatie`, `utilizat-in-cod-pagina`; `html-api-docs` also uses `declarat-in-documentatie-api`; `html-carduri-csv` uses `declarat-in-lista-documentatie`
@@ -1036,6 +1039,33 @@ New `stare_tip` values (`js-literale` adds none: it reuses `observat-in-esantion
   (`în lei nominali`); a column name such as `median_turnover_lei` is not evidence of a unit. The locator is the interval from the `<dt>` of the column to the end of its `<dd>`.
 - A page with no file card, a file offered twice, a column listed twice in one file or a column without a description is an error (state `eroare-parsare`); the reader never guesses.
 - `--check` parses the retained body again and compares the fields and the datasets.
+
+**Pages that list data sets (`html-lista-seturi`).** The reader keeps what the page states about each data set. It never opens a link and makes no request, not even to `www.google.com`.
+
+- The page has one `<h3>` heading for each category. Below each heading is a table with the header cells `Categoria secundară`, `Baza de date`, `Descrierea setului`, `Rapoarte relevante` and `Link` (accents and case do not matter). One body row is one data set.
+- Datasets: the source key `seturi`, one record for each row, in page order. Each fact has `valoare`, `pointer` (`char:START-END`, an interval of the retained body) and `baza` `declarat-in-pagina`.
+  `valoare` is the text of the interval with the tags removed, the entities decoded and the spaces collapsed. A no-break space counts as a space.
+  Keys: `categorie` (the heading), `subcategorie`, `titlu`, `descriere`, `rapoarte` (one `{text, adresa}` for each link of the fourth cell; `[]` when the cell has no link), `legaturi` and `pointer` (the whole row).
+- `legaturi`: one record for each link of the fifth cell, in page order. Keys: `eticheta` (the link text), `text_dupa` (the text after the link up to the next tag, or null; a lone `/` is a separator and gives null),
+  `adresa` (the target), `tip`, `id_document` and `gid`. `tip` is `foaie-google` (`docs.google.com/spreadsheets/d/ID`), `fisier-drive` (`drive.google.com/file/d/ID`), `dosar-drive`
+  (`drive.google.com/drive/.../folders/ID`) or `alta-legatura`. `id_document` is the identifier in the address. `gid` is the number of `#gid=N` as text (`"0"` is a sheet number), or null.
+  `tip` classifies the address only. A Drive file can be any kind of file, so `fisier-drive` does not say that the file is a spreadsheet.
+- A link that the page wraps as `https://www.google.com/url?q=TARGET&...` keeps the page's own address in `adresa.legatura` and gets the TARGET (the `q` parameter, percent-decoded) in `adresa.valoare`,
+  with `transformare` `legatura-google-desfacuta`. The pointer addresses the `href` as the page writes it.
+- A data set is not a file. Several rows can link to one folder (three rows of the Expert Forum page share one Drive folder), and a row can link to several sheets. The reader keeps one record for each row.
+- A page with no table of this shape, a row that is not five cells wide, a data set with no title, a `google.com/url` link without `q`, and the same title with the same links twice are errors (state `eroare-parsare`).
+- `--check` parses the retained body again and compares the data sets.
+
+**CSV header options (`citire` `{"tip": "csv", ...}`).** The plain CSV reader takes the first row as the header. It refuses a header with an empty or repeated cell.
+A tab that people keep by hand may have a title above its header, or empty header cells. The registry names an exception for one source (module `inventory_sheet`):
+
+- `rand_antet` (a whole number from 1): the header is this row. The rows above it are kept in the source key `antet.randuri_deasupra` as `{rand, celule: [{celula, valoare}]}`:
+  the non-empty cells with their spreadsheet address (`A1`), cut at 300 characters. The editor who sets `rand_antet` has seen that these rows are a title.
+- `coloane_fara_nume`: only the value `omise`. Empty header cells are left out of the fields and listed in `antet.celule_antet_goale` (`["A1", "F1"]`). A repeated name stays an error.
+- An unknown option, or a wrong value, is an error (state `eroare-parsare`). `{"tip": "csv"}` alone, or no `citire`, keeps the plain rules.
+- The field keeps `nume` and `cale` exactly as the cell is written (line breaks and trailing spaces included), `coloana_csv` (the 0-based position in the sheet, also when an empty cell before it was left out)
+  and `pointer` `celula:B2` (the header cell, row counted from 1). `tip_declarat` is null and `stare_tip` is `neprecizat-in-antet-csv`, as for the plain reader.
+- The source key `antet` exists only when options are set: `rand_antet`, `randuri_deasupra`, `celule_antet_goale`. `--check` parses the retained body again and compares the fields and `antet`.
 
 **Data literals in page scripts (`js-literale`).** A single-page tool often keeps its data inside the page. No schema describes that data. The page still shows what it holds.
 The reader makes no request and runs no script.
@@ -1193,6 +1223,8 @@ A source whose data sets all declare the same licence carries `licence` (`name`,
 - Declared extras enter the payload when present: `enum` (declared alternatives), `formula`, `group`, `period`, `value`, `line`, `expression`, `required`.
   A source adds `dataset` (code, name, update date, period, geographic levels, declared units, dimensions; the interface says that INS metadata comes from a mirror),
   `partial` (read as a bounded sample), `viaBrowser`, `savedByOwner` (a copy that the owner saved by hand) and `refreshFailed`.
+- The URL of a Google Sheet tab ends in `export`, so the title of such a source comes from the page of the same project that lists it (format `html-lista-seturi`):
+  `Foaie Google · <title of the data set>`, and, when the data set links several tabs, `· <label of the link>` (the text after the link, or its text). A tab with no such page keeps the title of its format.
 - HTML control candidates, raw snapshots, hashes, browser request dumps and network diagnostics do not enter the preview payload.
 - Documentation-only entries link their collected first-party pages. Entries with no inventory evidence get no marker.
 

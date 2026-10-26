@@ -1104,7 +1104,7 @@
       "slug": "data-expertforum",
       "nume": "Data Expert Forum",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "",
       "permite": [
         "Caută și consultă"
@@ -1118,11 +1118,26 @@
         "slug": "data-expertforum"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "dfb618198f8feeea1af4",
+        "a21e5dcfcdfdd5943859",
+        "99c9848d3926da04dc78",
+        "9d63be18c456356e7120",
+        "22bc28db697416742442",
+        "aeca1b7744433f58290e",
+        "9e2b0b9a6a6d1bdb0717",
+        "b80e93a06ea26658eabc",
+        "cd35243c591ff1d3fb45",
+        "63c156f64706dc3759be",
+        "f9fc6e2962cd9605944c",
+        "610159c58434ca2ef251",
+        "5d473ed55e3ad3081eca",
+        "8f8982cf195a49418eb1",
+        "5ebaf7cbf8048994ea9a"
+      ],
+      "campuri_din_surse": 100,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
     },

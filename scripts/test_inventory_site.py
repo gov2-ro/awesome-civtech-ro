@@ -9,7 +9,8 @@ from unittest.mock import patch
 
 from inventory_concepts import validate_families
 from inventory_state import counted_fields
-from inventory_site import BASIS, document_links, fold_restatements, group_api_parameters, publish_overview, publish_preview, variable_matches, publish_finder
+from inventory_site import (BASIS, document_links, fold_restatements, group_api_parameters, publish_overview, publish_preview, sheet_titles, variable_matches,
+                            publish_finder)
 
 
 class InventorySite(unittest.TestCase):
@@ -32,6 +33,38 @@ class InventorySite(unittest.TestCase):
         self.assertIsNone(source_licence({'seturi': [{'licenta': fact('CC BY 4.0')}, {'licenta': fact('CC0')}]}))
         self.assertIsNone(source_licence({'seturi': [{'licenta': fact('CC BY 4.0')}, {}]}), 'a set without a licence leaves the page without one')
         self.assertIsNone(source_licence({}))
+
+    def test_a_google_sheet_tab_takes_the_title_of_its_data_set_from_the_page_that_lists_it(self):
+        def link(ident, gid, label, after=None):
+            return {'tip': 'foaie-google', 'id_document': ident, 'gid': gid, 'eticheta': {'valoare': label},
+                    'text_dupa': {'valoare': after} if after else None}
+        export = 'https://docs.google.com/spreadsheets/d/{}/export?format=csv&gid={}'
+        sources = {'page': {'format': 'html-lista-seturi', 'seturi': [
+            {'titlu': {'valoare': 'Genul candidaților'}, 'legaturi': [link('AAA', '1', 'Deschide')]},
+            {'titlu': {'valoare': 'Alocări'}, 'legaturi': [link('BBB', '0', 'Deschide', 'HG 1/2021 (X)'), link('CCC', '2', 'Deschide', 'HG 2/2021 (Y)')]},
+            {'titlu': {'valoare': 'Plăți'}, 'legaturi': [link('DDD', '3', 'Deconturi'), link('EEE', '4', 'Plăți')]},
+            {'titlu': {'valoare': 'Dosar'}, 'legaturi': [{'tip': 'dosar-drive', 'id_document': 'FFF', 'gid': None, 'eticheta': {'valoare': 'Deschide'}, 'text_dupa': None}]}]},
+            'a': {'format': 'csv', 'url': export.format('AAA', '1')}, 'b': {'format': 'csv', 'url': export.format('BBB', '0')},
+            'c': {'format': 'csv', 'url': export.format('CCC', '2')}, 'd': {'format': 'csv', 'url': export.format('DDD', '3')},
+            'e': {'format': 'csv', 'url': export.format('EEE', '4')}, 'other': {'format': 'csv', 'url': export.format('ZZZ', '9')},
+            'plain': {'format': 'csv', 'url': 'https://example.org/data.csv'}}
+        profile = {'surse_structurate': list(sources)}
+        titles = sheet_titles(profile, sources)
+        self.assertEqual(titles, {'a': 'Foaie Google · Genul candidaților', 'b': 'Foaie Google · Alocări · HG 1/2021 (X)', 'c': 'Foaie Google · Alocări · HG 2/2021 (Y)',
+                                  'd': 'Foaie Google · Plăți · Deconturi', 'e': 'Foaie Google · Plăți · Plăți'})
+        self.assertEqual(sheet_titles({'surse_structurate': ['a']}, sources), {}, 'the page must belong to the same project')
+        self.assertEqual(sheet_titles({'surse_structurate': ['a', 'page']}, {**sources, 'a': {'format': 'csv', 'url': export.format('AAA', '0')}}), {},
+                         'the same document with another tab is another data set')
+
+    def test_the_sheet_tabs_of_a_tracked_inventory_have_distinct_titles(self):
+        root = Path(__file__).resolve().parents[1] / 'data/taxonomy-v2/observatii/inventare'
+        profiles = {p['slug']: p for p in json.loads((root / 'proiecte.json').read_text())['proiecte']}
+        sources = {s['id']: s for s in json.loads((root / 'seturi-date.json').read_text())['surse']}
+        profile = profiles['data-expertforum']
+        titles = sheet_titles(profile, sources)
+        tabs = [i for i in profile['surse_structurate'] if 'docs.google.com' in sources[i]['url']]
+        self.assertEqual(set(titles), set(tabs), 'every tab that the page links has a title')
+        self.assertEqual(len(set(titles.values())), len(tabs), 'the titles tell the tabs apart')
 
     def test_document_links_exclude_shared_host_and_failed_pages(self):
         records = {'pages': [

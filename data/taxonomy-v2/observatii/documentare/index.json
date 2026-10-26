@@ -2802,12 +2802,23 @@
         {
           "url": "https://data.expertforum.ro/",
           "final_url": "https://data.expertforum.ro/",
-          "http_status": 403,
-          "fetched_at": "2026-10-24T22:19:26.314806+00:00",
-          "state": "eroare-http",
-          "error": "HTTP Error 403: Forbidden",
+          "http_status": null,
+          "fetched_at": "2026-10-26T18:23:00+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "origine": "copie-salvata-de-proprietar",
+          "salvat_la": "2026-10-26T20:23:00+02:00",
+          "nume_fisier": "data.expertforum.ro.html",
+          "sha256_fisier": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "nota_copie": "The owner saved the page from a browser on 2026-10-26: expertforum.ro and data.expertforum.ro are in colectare-interzisa.csv, so no script requests them.",
           "kind": "pagina",
-          "scope": "proiect"
+          "scope": "proiect",
+          "truncated": false,
+          "title": "EFOR open data",
+          "sections": [],
+          "sha256": "2eff7a37ccd162792366718fd8f536b93afb3397fc7d4ca4bbbc77468d60d2ef",
+          "snapshot": "pagini/c8e72f5238289b1d9c70338d.json",
+          "text_chars": 4834
         },
         {
           "url": "https://data.expertforum.ro/llms.txt",
