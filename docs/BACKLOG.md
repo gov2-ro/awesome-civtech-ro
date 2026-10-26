@@ -7,7 +7,9 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [x] Decide `fiipregatit` (`intrari.csv`). Accepted by the owner on 2026-10-26; `validate.py --publication` passes.
 - [ ] Fix `since` and `stale` for `fiipregatit`. `since` is 2008-12-08 (pre-project Wayback captures); the site launched in 2018 (certificate 2018-02-06, captures from 2018-03-02). `stale` is 2022 because the only dated activity is the old repository. Needs a rule for a manual launch date or for the first certificate; `EARLIER_DOMAIN_USE` alone gives 2020 (the repository).
 - [ ] Prune the 15 kept search results of `fiipregatit` (column `editor`). Run `search.py --prune-only` afterwards.
-- [ ] Check the assistant and the alerts: the terms describe a virtual assistant based on ChatGPT, and the menu has ChatAI and Alerte, but the rendered pages do not show them. Add `tehnologie:ai` and `functie:alerte` only when the owner sees them live.
+- [x] Add `tehnologie:ai` to `fiipregatit`: the assistant „Întreabă-l pe FiiPregătit” is on the home page and the terms say it is based on ChatGPT. Done 2026-10-26.
+- [ ] Check the alerts of `fiipregatit`: the menu has a button Alerte, but the rendered pages do not show it. Add `functie:alerte` only when someone sees it work live.
+- [ ] The og screenshot of `fiipregatit` shows the site's cookie dialog. Dismiss the consent banner before the screenshot, then retake it.
 - [ ] Decide on a `CivicNet` entry (`organizatie`): it built the previous version of the site (2018–2023). `civicnet.ro` serves a `surge.sh` certificate; check the site first.
 - [ ] Vocabulary: no `institutie` concept fits the DSU, the IGSU or the Ministry of Internal Affairs. Add a proposal to `propuneri-vocabular.csv` if more entries need it.
 
