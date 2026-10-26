@@ -1882,6 +1882,178 @@ banii-nostri,6a87d31f8778b7d99b69,https://data.g4d.ro/ords/opendata/sicap/da_by_
 banii-nostri,6a87d31f8778b7d99b69,https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/,json,camp-date,count,$.count,,integer,,,,,/count,observat-in-esantion-json
 banii-nostri,6a87d31f8778b7d99b69,https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/,json,camp-date,rel,$.links[].rel,,string,,,,,/links/0/rel,observat-in-esantion-json
 banii-nostri,6a87d31f8778b7d99b69,https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/,json,camp-date,href,$.links[].href,,string,,,,,/links/0/href,observat-in-esantion-json
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,cod,Alianțe.cod,,,,,,,/tables/0/columns/0,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,nume,Alianțe.nume,,,,,,,/tables/0/columns/1,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,partide,Alianțe.partide,,,,,,,/tables/0/columns/2,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,perioada,Alianțe.perioada,,,,,,,/tables/0/columns/3,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,descriere,Alianțe.descriere,,,,,,,/tables/0/columns/4,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Alegeri,Cheltuieli campanie.Alegeri,,,,,,,/tables/1/columns/0,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Tip alegeri,Cheltuieli campanie.Tip alegeri,,,,,,,/tables/1/columns/1,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Candidat,Cheltuieli campanie.Candidat,,,,,,,/tables/1/columns/2,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Tip competitor,Cheltuieli campanie.Tip competitor,,,,,,,/tables/1/columns/3,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Partid,Cheltuieli campanie.Partid,,,,,,,/tables/1/columns/4,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Venituri,Cheltuieli campanie.Venituri,,,,,,,/tables/1/columns/5,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Transferuri partid,Cheltuieli campanie.Transferuri partid,,,,,,,/tables/1/columns/6,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Pentru campanie,Cheltuieli campanie.Pentru campanie,,,,,,,/tables/1/columns/7,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Cheltuieli,Cheltuieli campanie.Cheltuieli,,,,,,,/tables/1/columns/8,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Administrative,Cheltuieli campanie.Administrative,,,,,,,/tables/1/columns/9,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Tipărituri promoționale,Cheltuieli campanie.Tipărituri promoționale,,,,,,,/tables/1/columns/10,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Media,Cheltuieli campanie.Media,,,,,,,/tables/1/columns/11,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Publicitate outdoor,Cheltuieli campanie.Publicitate outdoor,,,,,,,/tables/1/columns/12,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Servicii,Cheltuieli campanie.Servicii,,,,,,,/tables/1/columns/13,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Sondare consultanță,Cheltuieli campanie.Sondare consultanță,,,,,,,/tables/1/columns/14,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Altele,Cheltuieli campanie.Altele,,,,,,,/tables/1/columns/15,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Rezultat financiar,Cheltuieli campanie.Rezultat financiar,,,,,,,/tables/1/columns/16,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Cheltuieli restante,Cheltuieli campanie.Cheltuieli restante,,,,,,,/tables/1/columns/17,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Luna,Cheltuieli subventii.Luna,,,,,,,/tables/2/columns/0,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,An,Cheltuieli subventii.An,,,,,,,/tables/2/columns/1,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Categorie cheltuială,Cheltuieli subventii.Categorie cheltuială,,,,,,,/tables/2/columns/2,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Cod,Cheltuieli subventii.Cod,,,,,,,/tables/2/columns/3,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Suma,Cheltuieli subventii.Suma,,,,,,,/tables/2/columns/4,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Partid,Cheltuieli subventii.Partid,,,,,,,/tables/2/columns/5,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Data_completa,Cheltuieli subventii.Data_completa,,,,,,,/tables/2/columns/6,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,nicemonth,Cheltuieli subventii.nicemonth,,,,,,,/tables/2/columns/7,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,An,Contracte subventii.An,,,,,,,/tables/3/columns/0,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Luna,Contracte subventii.Luna,,,,,,,/tables/3/columns/1,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Filiala,Contracte subventii.Filiala,,,,,,,/tables/3/columns/2,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Partid,Contracte subventii.Partid,,,,,,,/tables/3/columns/3,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Tipul cheltuielii,Contracte subventii.Tipul cheltuielii,,,,,,,/tables/3/columns/4,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Furnizor,Contracte subventii.Furnizor,,,,,,,/tables/3/columns/5,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,CUI,Contracte subventii.CUI,,,,,,,/tables/3/columns/6,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Suma,Contracte subventii.Suma,,,,,,,/tables/3/columns/7,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Moneda,Contracte subventii.Moneda,,,,,,,/tables/3/columns/8,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Modalitate plată,Contracte subventii.Modalitate plată,,,,,,,/tables/3/columns/9,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Data,Contracte subventii.Data,,,,,,,/tables/3/columns/10,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Observații,Contracte subventii.Observații,,,,,,,/tables/3/columns/11,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Cod,Contributii campanie.Cod,,,,,,,/tables/4/columns/0,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Partid,Contributii campanie.Partid,,,,,,,/tables/4/columns/1,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Circumscripție,Contributii campanie.Circumscripție,,,,,,,/tables/4/columns/2,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Nume,Contributii campanie.Nume,,,,,,,/tables/4/columns/3,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Circumscripție candidatură,Contributii campanie.Circumscripție candidatură,,,,,,,/tables/4/columns/4,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Funcție,Contributii campanie.Funcție,,,,,,,/tables/4/columns/5,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Proveniența,Contributii campanie.Proveniența,,,,,,,/tables/4/columns/6,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Venituri proprii,Contributii campanie.Venituri proprii,,,,,,,/tables/4/columns/7,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Donații,Contributii campanie.Donații,,,,,,,/tables/4/columns/8,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Împrumuturi,Contributii campanie.Împrumuturi,,,,,,,/tables/4/columns/9,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Total,Contributii campanie.Total,,,,,,,/tables/4/columns/10,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Nume donator,Donatori persoane fizice.Nume donator,,,,,,,/tables/5/columns/0,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Suma,Donatori persoane fizice.Suma,,,,,,,/tables/5/columns/1,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,An,Donatori persoane fizice.An,,,,,,,/tables/5/columns/2,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Partid,Donatori persoane fizice.Partid,,,,,,,/tables/5/columns/3,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Tip donație,Donatori persoane fizice.Tip donație,,,,,,,/tables/5/columns/4,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,CNP,Donatori persoane fizice.CNP,,,,,,,/tables/5/columns/5,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Ce s-a donat,Donatori persoane fizice.Ce s-a donat,,,,,,,/tables/5/columns/6,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Data donației,Donatori persoane fizice.Data donației,,,,,,,/tables/5/columns/7,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Organizația,Donatori persoane fizice.Organizația,,,,,,,/tables/5/columns/8,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Nume,Donatori persoane juridice.Nume,,,,,,,/tables/6/columns/0,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Suma,Donatori persoane juridice.Suma,,,,,,,/tables/6/columns/1,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,An,Donatori persoane juridice.An,,,,,,,/tables/6/columns/2,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Partid,Donatori persoane juridice.Partid,,,,,,,/tables/6/columns/3,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Tip donație,Donatori persoane juridice.Tip donație,,,,,,,/tables/6/columns/4,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,CUI,Donatori persoane juridice.CUI,,,,,,,/tables/6/columns/5,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Reprezentant societate,Donatori persoane juridice.Reprezentant societate,,,,,,,/tables/6/columns/6,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Sediu,Donatori persoane juridice.Sediu,,,,,,,/tables/6/columns/7,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Naționalitatea donatorului,Donatori persoane juridice.Naționalitatea donatorului,,,,,,,/tables/6/columns/8,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Data donației,Donatori persoane juridice.Data donației,,,,,,,/tables/6/columns/9,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Felul donației,Donatori persoane juridice.Felul donației,,,,,,,/tables/6/columns/10,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Filiala partidului,Donatori persoane juridice.Filiala partidului,,,,,,,/tables/6/columns/11,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Judet,Donatori rapoarte de venituri și cheltuieli.Judet,,,,,,,/tables/7/columns/0,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Cod județ,Donatori rapoarte de venituri și cheltuieli.Cod județ,,,,,,,/tables/7/columns/1,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Tip venit,Donatori rapoarte de venituri și cheltuieli.Tip venit,,,,,,,/tables/7/columns/2,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Nume donator,Donatori rapoarte de venituri și cheltuieli.Nume donator,,,,,,,/tables/7/columns/3,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Suma,Donatori rapoarte de venituri și cheltuieli.Suma,,,,,,,/tables/7/columns/4,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Mod încasare,Donatori rapoarte de venituri și cheltuieli.Mod încasare,,,,,,,/tables/7/columns/5,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Data donației,Donatori rapoarte de venituri și cheltuieli.Data donației,,,,,,,/tables/7/columns/6,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Partid,Donatori rapoarte de venituri și cheltuieli.Partid,,,,,,,/tables/7/columns/7,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,An,Donatori rapoarte de venituri și cheltuieli.An,,,,,,,/tables/7/columns/8,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,ID,Legenda partide.ID,,,,,,,/tables/8/columns/0,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Denumire,Legenda partide.Denumire,,,,,,,/tables/8/columns/1,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Ordine,Legenda partide.Ordine,,,,,,,/tables/8/columns/2,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Logo,Legenda partide.Logo,,,,,,,/tables/8/columns/3,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Venituri,Legenda partide.Venituri,,,,,,,/tables/8/columns/4,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Venituri campanii,Legenda partide.Venituri campanii,,,,,,,/tables/8/columns/5,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Cheie,Legenda partide.Cheie,,,,,,,/tables/8/columns/6,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,CUI,Legenda partide.CUI,,,,,,,/tables/8/columns/7,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Adresa,Legenda partide.Adresa,,,,,,,/tables/8/columns/8,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Judet,Legenda partide.Judet,,,,,,,/tables/8/columns/9,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,UAT,Legenda partide.UAT,,,,,,,/tables/8/columns/10,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Sediul social ,Legenda partide.Sediul social ,,,,,,,/tables/8/columns/11,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Președinte,Legenda partide.Președinte,,,,,,,/tables/8/columns/12,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Trezorier,Legenda partide.Trezorier,,,,,,,/tables/8/columns/13,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Alegeri,Rezultate alegeri.Alegeri,,,,,,,/tables/9/columns/0,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,An,Rezultate alegeri.An,,,,,,,/tables/9/columns/1,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Tip,Rezultate alegeri.Tip,,,,,,,/tables/9/columns/2,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Partid,Rezultate alegeri.Partid,,,,,,,/tables/9/columns/3,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Voturi,Rezultate alegeri.Voturi,,,,,,,/tables/9/columns/4,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Mandate,Rezultate alegeri.Mandate,,,,,,,/tables/9/columns/5,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Cod,Runde alegeri.Cod,,,,,,,/tables/10/columns/0,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Tip,Runde alegeri.Tip,,,,,,,/tables/10/columns/1,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Descriptiv,Runde alegeri.Descriptiv,,,,,,,/tables/10/columns/2,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,An,Runde alegeri.An,,,,,,,/tables/10/columns/3,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Data descriptiv,Runde alegeri.Data descriptiv,,,,,,,/tables/10/columns/4,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Data,Runde alegeri.Data,,,,,,,/tables/10/columns/5,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Numar candidați,Runde alegeri.Numar candidați,,,,,,,/tables/10/columns/6,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Competitori,Runde alegeri.Competitori,,,,,,,/tables/10/columns/7,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Independenți,Runde alegeri.Independenți,,,,,,,/tables/10/columns/8,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Partid,Subvenții.Partid,,,,,,,/tables/11/columns/0,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Suma,Subvenții.Suma,,,,,,,/tables/11/columns/1,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,An,Subvenții.An,,,,,,,/tables/11/columns/2,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Luna,Subvenții.Luna,,,,,,,/tables/11/columns/3,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Luna-nr,Subvenții.Luna-nr,,,,,,,/tables/11/columns/4,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,An,Subvenții pe an.An,,,,,,,/tables/12/columns/0,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Suma,Subvenții pe an.Suma,,,,,,,/tables/12/columns/1,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Sume alocate,Subvenții pe an.Sume alocate,,,,,,,/tables/12/columns/2,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Tip venit,Venituri anuale din rapoarte de venituri și cheltuieli.Tip venit,,,,,,,/tables/13/columns/0,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,An,Venituri anuale din rapoarte de venituri și cheltuieli.An,,,,,,,/tables/13/columns/1,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Suma,Venituri anuale din rapoarte de venituri și cheltuieli.Suma,,,,,,,/tables/13/columns/2,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Detalii,Venituri anuale din rapoarte de venituri și cheltuieli.Detalii,,,,,,,/tables/13/columns/3,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Partid,Venituri anuale din rapoarte de venituri și cheltuieli.Partid,,,,,,,/tables/13/columns/4,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,An,Venituri anuale partide de la MF.An,,,,,,,/tables/14/columns/0,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Partid,Venituri anuale partide de la MF.Partid,,,,,,,/tables/14/columns/1,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,CUI,Venituri anuale partide de la MF.CUI,,,,,,,/tables/14/columns/2,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Active imobilizate,Venituri anuale partide de la MF.Active imobilizate,,,,,,,/tables/14/columns/3,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Active circulante,Venituri anuale partide de la MF.Active circulante,,,,,,,/tables/14/columns/4,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Cheltuieli în avans,Venituri anuale partide de la MF.Cheltuieli în avans,,,,,,,/tables/14/columns/5,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Datorii sub 1 an,Venituri anuale partide de la MF.Datorii sub 1 an,,,,,,,/tables/14/columns/6,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Datorii peste 1 an,Venituri anuale partide de la MF.Datorii peste 1 an,,,,,,,/tables/14/columns/7,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Capitaluri proprii,Venituri anuale partide de la MF.Capitaluri proprii,,,,,,,/tables/14/columns/8,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Capitaluri,Venituri anuale partide de la MF.Capitaluri,,,,,,,/tables/14/columns/9,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Venituri fără scop patrimonial,Venituri anuale partide de la MF.Venituri fără scop patrimonial,,,,,,,/tables/14/columns/10,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Cheltuieli fără scop patrimonial,Venituri anuale partide de la MF.Cheltuieli fără scop patrimonial,,,,,,,/tables/14/columns/11,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Venituri,Venituri anuale partide de la MF.Venituri,,,,,,,/tables/14/columns/12,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Cheltuieli,Venituri anuale partide de la MF.Cheltuieli,,,,,,,/tables/14/columns/13,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Angajați fără scop patrimonial,Venituri anuale partide de la MF.Angajați fără scop patrimonial,,,,,,,/tables/14/columns/14,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Angajați active economice-financiare,Venituri anuale partide de la MF.Angajați active economice-financiare,,,,,,,/tables/14/columns/15,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,An,Venituri cheltuieli subventii.An,,,,,,,/tables/15/columns/0,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Subvenții,Venituri cheltuieli subventii.Subvenții,,,,,,,/tables/15/columns/1,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Chletuieli subnvetii,Venituri cheltuieli subventii.Chletuieli subnvetii,,,,,,,/tables/15/columns/2,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Alegeri,Venituri și cheltuieli campanie.Alegeri,,,,,,,/tables/16/columns/0,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Tip,Venituri și cheltuieli campanie.Tip,,,,,,,/tables/16/columns/1,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Candidat,Venituri și cheltuieli campanie.Candidat,,,,,,,/tables/16/columns/2,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Tip competitor,Venituri și cheltuieli campanie.Tip competitor,,,,,,,/tables/16/columns/3,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Partid,Venituri și cheltuieli campanie.Partid,,,,,,,/tables/16/columns/4,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Venituri,Venituri și cheltuieli campanie.Venituri,,,,,,,/tables/16/columns/5,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Venituri proprii,Venituri și cheltuieli campanie.Venituri proprii,,,,,,,/tables/16/columns/6,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Donații,Venituri și cheltuieli campanie.Donații,,,,,,,/tables/16/columns/7,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Împrumuturi,Venituri și cheltuieli campanie.Împrumuturi,,,,,,,/tables/16/columns/8,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Subvenții,Venituri și cheltuieli campanie.Subvenții,,,,,,,/tables/16/columns/9,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Din afara campaniei,Venituri și cheltuieli campanie.Din afara campaniei,,,,,,,/tables/16/columns/10,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Campanie circumscripție,Venituri și cheltuieli campanie.Campanie circumscripție,,,,,,,/tables/16/columns/11,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Cheltuieli,Venituri și cheltuieli campanie.Cheltuieli,,,,,,,/tables/16/columns/12,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Media,Venituri și cheltuieli campanie.Media,,,,,,,/tables/16/columns/13,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Promo online,Venituri și cheltuieli campanie.Promo online,,,,,,,/tables/16/columns/14,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Cercetări,Venituri și cheltuieli campanie.Cercetări,,,,,,,/tables/16/columns/15,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Afișe,Venituri și cheltuieli campanie.Afișe,,,,,,,/tables/16/columns/16,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Tipărituri,Venituri și cheltuieli campanie.Tipărituri,,,,,,,/tables/16/columns/17,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Administrative,Venituri și cheltuieli campanie.Administrative,,,,,,,/tables/16/columns/18,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Comisioane bancare,Venituri și cheltuieli campanie.Comisioane bancare,,,,,,,/tables/16/columns/19,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Suma solicitată,Venituri și cheltuieli campanie.Suma solicitată,,,,,,,/tables/16/columns/20,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Suma rambursată,Venituri și cheltuieli campanie.Suma rambursată,,,,,,,/tables/16/columns/21,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,date,news.date,,,,,,,/tables/17/columns/0,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,url,news.url,,,,,,,/tables/17/columns/1,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,title,news.title,,,,,,,/tables/17/columns/2,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,excerpt,news.excerpt,,,,,,,/tables/17/columns/3,declarat-in-lista-baza
+bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,thumbnail,news.thumbnail,,,,,,,/tables/17/columns/4,declarat-in-lista-baza
 demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cui,cui,,,,,1-10 cifre,GET /api/company/{cui},char:31882-31898,declarat-in-documentatie-api
 demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cui,cui,,,,,1-10 cifre,GET /api/company/{cui}/financials,char:33570-33586,declarat-in-documentatie-api
 demoanaf,78a0961ee1abf88a8009,https://demoanaf.ro/api-docs,html-api-docs,parametru-api,cui,cui,,,,,,GET /api/company/{cui}/balance/{year},char:35258-35261,declarat-in-documentatie-api

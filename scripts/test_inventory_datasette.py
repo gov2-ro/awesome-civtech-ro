@@ -5,6 +5,7 @@ on 2026-10-26: six of the 38 tables (four visible, two hidden full-text tables),
 `\\u` escapes, as the server wrote it. It holds column names and row counts only, and no row.
 Every network call here is a fake or is absent. The reader never requests a table, and a test proves it.
 """
+import csv
 import hashlib
 import json
 import shutil
@@ -17,7 +18,9 @@ from unittest.mock import patch
 
 from common import forbidden
 from inventory import analyse_source, check_report, import_saved, parse_source, pointer_value
+from inventory_concepts import selector_matches
 from inventory_datasette import database, is_listing, read
+from inventory_site import source_licence
 from inventory_state import source_id
 from test_inventory_state import Workspace, docs_for, entry
 
@@ -227,6 +230,80 @@ class Run(unittest.TestCase):
                 change(next(s for s in state['surse'] if s['url'] == URL))
                 (out / 'seturi-date.json').write_text(json.dumps(state))
                 self.assertTrue(any('differ from the retained body' in e for e in check_report(out, Path(tmp))['errors']))
+
+
+class TrackedBaniPartide(unittest.TestCase):
+    """The tracked inventory of bani-partide (lot C2, part 3). It reads the tracked files only, never the retained bodies, and pins no review state."""
+    ROOT = Path(__file__).resolve().parents[1] / 'data/taxonomy-v2'
+    URL = 'https://db.banipartide.ro/banipartide.json'
+
+    @classmethod
+    def setUpClass(cls):
+        inv = cls.ROOT / 'observatii/inventare'
+        cls.source = next(s for s in json.loads((inv / 'seturi-date.json').read_text())['surse'] if s['url'] == cls.URL)
+        cls.registry = [r for r in json.loads((inv / 'descoperiri.json').read_text())['descoperiri'] if r['proiect'] == 'bani-partide']
+        cls.log = list(csv.DictReader((inv / 'jurnal-cereri.csv').open(newline='')))
+        cls.concepts = json.loads((cls.ROOT / 'inventar-concepte.json').read_text())['concepte']
+        cls.notes = json.loads((cls.ROOT / 'inventar-note.json').read_text())
+        cls.fields = [({'name': f['nume'], 'path': f['cale'], 'role': f['rol']}, cls.URL) for f in cls.source['campuri']]
+
+    def test_the_source_is_the_owners_copy_with_one_field_for_each_column_of_the_18_visible_tables(self):
+        source = self.source
+        self.assertEqual((source['origine'], source['http_status'], source['format'], source['stare']), ('copie-salvata-de-proprietar', None, 'baza-datasette', 'analizat'))
+        self.assertEqual(source['salvat_la'], '2026-10-26T20:30:00+02:00')
+        base = source['baza']
+        self.assertEqual((len(base['tabele']), len(source['campuri']), len(base['vederi'])), (18, 172, 4))
+        self.assertEqual((base['tabele_ascunse']['valoare'], base['ascunse_in_lista']), (20, 20), 'the hidden full-text tables get no field')
+        self.assertEqual(sum(len(t['coloane']) for t in base['tabele']), len(source['campuri']))
+        self.assertFalse([f for f in source['campuri'] if '_fts' in f['grup']])
+        self.assertEqual({r['url'] for r in self.registry if r['stare'] == 'activ'}, {self.URL})
+
+    def test_the_declared_licence_and_source_are_kept_for_the_field_browser(self):
+        base = self.source['baza']
+        self.assertEqual((base['licenta']['valoare'], base['licenta']['url']['valoare']), ('CC Attribution 4.0 License', 'http://creativecommons.org/licenses/by/4.0/'))
+        self.assertEqual((base['sursa']['valoare'], base['adresa_sursa']['valoare']), ('Expert Forum', 'https://expertforum.ro/tag/finantare-politica/'))
+        credit = source_licence(self.source)
+        self.assertEqual((credit['name'], credit['attribution']), ('CC Attribution 4.0 License', 'Sursa: Expert Forum'))
+
+    def test_no_request_was_made_to_a_listed_host_and_the_inventory_keeps_no_value_of_a_row(self):
+        self.assertFalse([r for r in self.log if 'db.banipartide.ro' in r['url']], 'the database host was never requested')
+        listed = [r for r in self.log if forbidden(r['url'])]
+        self.assertTrue(listed and all(r['http_status'] == '403' for r in listed), 'the only requests to listed hosts are the refusals that came before the list')
+        self.assertIsNotNone(forbidden(self.URL))
+        self.assertIsNotNone(forbidden('https://banipartide.ro/'))
+        allowed = {'nume', 'cale', 'grup', 'rol', 'tip_declarat', 'stare_tip', 'pointer', 'randuri_tabel'}
+        self.assertTrue(all(set(f) <= allowed and f['tip_declarat'] is None for f in self.source['campuri']))
+        for table in self.source['baza']['tabele']:
+            self.assertEqual(set(table), {'nume', 'randuri', 'coloane', 'pointer'})
+
+    def test_the_discovery_locator_is_a_fragment_of_the_copy(self):
+        record = next(r for r in self.registry if r['url'] == self.URL)
+        self.assertEqual((record['locator_stare'], record['dovada']['pointer'], record['dovada']['sha256']), ('cunoscut', '/body', self.source['sha256']))
+        self.assertEqual({e['rol'] for e in record['dovezi_suplimentare']}, {'adresa-sursa-declarata', 'licenta-declarata', 'adresa-licenta-declarata'})
+
+    def test_each_selector_of_this_part_matches_the_fields_that_its_context_names(self):
+        groups = {c['id']: c for c in self.concepts}
+        def matched(group):
+            return [f for f, url in self.fields if any(selector_matches(s, 'bani-partide', f, url) for s in groups[group]['selectors'])]
+        self.assertEqual(sorted(f['path'] for f in matched('subventie-partid')), ['Subvenții.Suma'])
+        self.assertEqual(len(matched('donatie-partid')), 3)
+        self.assertEqual(len([f for f in matched('partid-politic') if f['name'] == 'Partid']), 12)
+        self.assertEqual([f['path'] for f in matched('uat')], ['Legenda partide.UAT'])
+        for group in ('subventie-partid', 'donatie-partid'):
+            self.assertEqual((groups[group]['categorie'], groups[group]['familie']), ('masura', 'alegeri'))
+            facts = [x['cheie'] for s in groups[group]['selectors'] for x in s.get('fapte', [])]
+            self.assertNotIn('unitate', facts, 'the listing declares no unit')
+
+    def test_the_candidate_selectors_for_reviewed_groups_match_fields_and_no_donor_column_enters_a_group_by_its_name_alone(self):
+        candidates = [c for c in self.notes['selectori_candidati'] if 'bani-partide' in c['selector']['projects']]
+        self.assertEqual(sorted(c['grup'] for c in candidates), ['cui', 'cui', 'cui', 'judet', 'judet', 'perioada-de-referinta'])
+        for item in candidates:
+            hits = [f for f, url in self.fields if selector_matches(item['selector'], 'bani-partide', f, url)]
+            self.assertEqual(len(hits), len(item['selector']['path']), item['selector']['context'])
+        groups = {c['id']: c for c in self.concepts}
+        for gid in ('donatie-partid', 'subventie-partid', 'partid-politic', 'uat'):
+            for selector in groups[gid]['selectors']:
+                self.assertFalse({'CNP', 'Nume donator'} & set(selector.get('names') or []), 'a column that names a person is in no group')
 
 
 if __name__ == '__main__':
