@@ -174,3 +174,10 @@ L172,harta-firmelor,date_din,,Agenția Națională pentru Resurse Minerale (ANRM
 L173,registrul-firmelor,date_din,,OpenStreetMap,surse_date,https://registru.horecaos.org/surse,acceptat
 L174,lista-firme,atribuit_in_sursa,,RTI Global Services SRL,autor,RTI Global Services SRL,rol_neconfirmat
 L175,fiipregatit,atribuit_in_sursa,,Departamentul pentru Situații de Urgență,autor,Departamentul pentru Situații de Urgență,rol_neconfirmat
+L176,romania-interactiva,date_din,,Monitorul Oficial,surse_date,https://romaniainteractiva.ro/guverne/,acceptat
+L177,romania-interactiva,date_din,,Institutul Național de Statistică (INS),surse_date,https://romaniainteractiva.ro/cupluri/,acceptat
+L178,romania-interactiva,date_din,,Eurostat,surse_date,https://romaniainteractiva.ro/cupluri/,acceptat
+L179,romania-interactiva,date_din,,Consiliul Național pentru Finanțarea Învățământului Superior (CNFIS),surse_date,https://romaniainteractiva.ro/universitati/,acceptat
+L180,romania-interactiva,date_din,,Autoritatea Electorală Permanentă (AEP),surse_date,https://romaniainteractiva.ro/locale/,acceptat
+L181,romania-interactiva,date_din,,Ministerul Educației,surse_date,https://romaniainteractiva.ro/harta-notelor/,acceptat
+L182,romania-interactiva,date_din,,ANOSR,surse_date,https://romaniainteractiva.ro/universitati/,acceptat
