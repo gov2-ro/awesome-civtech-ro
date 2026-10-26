@@ -548,7 +548,8 @@ class RoundTripV2(EnvCase):
         cols = self.env.tab("v2-intrari").cols
         self.assertEqual(cols[cols.index("dovada_detaliere") + 1], "relatie_date")
         rows = self.env.rows("v2-intrari")
-        first, second = [r for r in rows if r["tip_entitate"] != "organizatie"][:2]
+        first, second = [r for r in rows if r["tip_entitate"] != "organizatie" and not r["relatie_date"]][:2]
+        original = {r["slug"]: r["relatie_date"] for r in rows}
         first["relatie_date"] = "calcul"
         self.env.write_rows("v2-intrari", rows)
         before = self.env.bytes("v2-intrari")
@@ -562,7 +563,7 @@ class RoundTripV2(EnvCase):
         self.assertEqual(self.pull()[0], 0)
         pulled = {r["slug"]: r["relatie_date"] for r in self.env.rows("v2-intrari")}
         self.assertEqual((pulled[first["slug"]], pulled[second["slug"]]), ("calcul", "fara-date"))
-        self.assertEqual(sum(bool(v) for v in pulled.values()), 2)  # no other row changed
+        self.assertEqual(pulled, {**original, first["slug"]: "calcul", second["slug"]: "fara-date"})  # no other row changed
 
     def test_the_drop_down_of_relatie_date_comes_from_its_code_list(self):
         """Like `clasificare_stare`: a strict list of the codes in valori.csv, in the order of the list. Empty stays allowed."""

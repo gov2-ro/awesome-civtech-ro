@@ -130,19 +130,20 @@ class Coverage(unittest.TestCase):
 
     def test_the_provider_item_of_batch_c2_part_2_cites_the_saved_page_and_the_text_it_names(self):
         # The review state belongs to the owner, so the test does not pin it.
+        # A later item for the same entry (D188, from the owner's note on D186) cites the same page, so each item is checked.
         items = [r for r in self.data['review'] if r['camp'] == 'surse_date' and r['slug'] == 'data-expertforum']
-        self.assertEqual([r['id'] for r in items], ['D186'])
-        item = items[0]
-        self.assertTrue(item['propunere'].startswith('Furnizor propus: '))
-        if item['stare'] == 'deschis':
-            self.assertIn(item['prioritate'], ('medie', 'mica'), 'a high-priority open item would block the publication gate')
-        cited = re.search(r'Dovadă: (\S+) \(text păstrat, sha256 ([0-9a-f]{16})\)', item['motiv'])
-        self.assertEqual(cited.group(1), 'https://data.expertforum.ro/')
+        self.assertIn('D186', [r['id'] for r in items])
         locator = EvidenceLocator(ROOT / 'data/taxonomy-v2/observatii/inventare', ROOT / 'data/taxonomy-v2/observatii', list(self.data['sources'].values()))
-        text, _ = locator.text(cited.group(1), 'sursa')
-        if text is not None:  # the retained bodies are not in git: a fresh checkout cannot compare
-            self.assertTrue(hashlib.sha256(text.encode()).hexdigest().startswith(cited.group(2)))
-            self.assertIn(item['valoare_originala'], text)
+        for item in items:
+            self.assertTrue(item['propunere'].startswith('Furnizor propus: '), item['id'])
+            if item['stare'] == 'deschis':
+                self.assertIn(item['prioritate'], ('medie', 'mica'), 'a high-priority open item would block the publication gate')
+            cited = re.search(r'Dovadă: (\S+) \(text păstrat, sha256 ([0-9a-f]{16})\)', item['motiv'])
+            self.assertEqual(cited.group(1), 'https://data.expertforum.ro/', item['id'])
+            text, _ = locator.text(cited.group(1), 'sursa')
+            if text is not None:  # the retained bodies are not in git: a fresh checkout cannot compare
+                self.assertTrue(hashlib.sha256(text.encode()).hexdigest().startswith(cited.group(2)), item['id'])
+                self.assertIn(item['valoare_originala'], text, item['id'])
 
     def test_the_provider_item_of_batch_c2_part_3_cites_the_saved_listing_and_the_text_it_names(self):
         # The review state belongs to the owner, so the test does not pin it.

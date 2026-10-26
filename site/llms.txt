@@ -1,7 +1,7 @@
 # CivTech România
 
 > Colecție curatoriată de proiecte civic tech, organizații și resurse din România: instrumente civice, date deschise
-> și proiecte de bună guvernare. 107 proiecte, 13 organizații, 21 resurse.
+> și proiecte de bună guvernare. 105 proiecte, 13 organizații, 21 resurse.
 
 Fiecare intrare are o pagină proprie la https://civtech.gov2.ro/<tip>/<slug>/ (tip: proiect, organizatie, resursa). Starea
 (activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-10-25. Textele sunt în
@@ -85,10 +85,8 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 ## Proiecte: Media și informare
 
 - [Antibunk](https://civtech.gov2.ro/proiect/antibunk/): Identificarea și combaterea dezinformării online. Site: https://antibunk.ro/
-- [Didi365](https://civtech.gov2.ro/proiect/didi365/): Semnalarea afirmațiilor care trebuie verificate. Site: https://didi365.eu
 - [Dignitas](https://civtech.gov2.ro/proiect/dignitas/): Fact-checking colaborativ pentru afirmații politice românești. Site: https://dignitas.ro/
 - [Factual](https://civtech.gov2.ro/proiect/factual/): Fact-checking pentru declarațiile politicienilor. Site: https://www.factual.ro
-- [Harta TV Locale](https://civtech.gov2.ro/proiect/harta-tv-locale/) (arhivat): Televiziunile locale, pe hartă. Site: http://geo-spatial.org/hartatv/
 - [Monarh AI](https://civtech.gov2.ro/proiect/monarh-ai/): Monitorizarea manipulării de pe TikTok. Site: https://monarhdef.ro/
 - [PressPay](https://civtech.gov2.ro/proiect/presspay/): Abonament lunar împărțit între publicațiile independente pe care le apreciezi. Site: https://presspay.ro/
 - [Radar Digital](https://civtech.gov2.ro/proiect/radar-digital/): Semnalarea conținutului problematic de pe rețelele sociale. Site: https://radardigital.ro/

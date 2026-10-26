@@ -48,13 +48,13 @@ The 127 projects and resources of the data finder:
 | Schema declarations / sampled JSON paths / CSV headers / INS dimensions | 1,312 / 904 / 82 / 4 | 1,367 / 1,341 / 238 / 4 |
 | HTML control candidates / entries with candidates | 308 / 78 | 310 / 80 |
 | Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 83 / 59 |
-| Accepted provider relations / entries with accepted providers | 26 / 11 | 74 / 25 |
-| Pending provider proposals (review items D132 and later) | 15 | 2 |
+| Accepted provider relations / entries with accepted providers | 26 / 11 | 75 / 26 |
+| Pending provider proposals (review items D132 and later) | 15 | 1 |
 | Proposed business-variable groups | 7 | 38 |
 | Unit tests discovered / skipped | 308 / 6 | 701 / 6 |
 | Explorer inventory / dedicated finder browser checks | 25 / 25 | 31 / 40 |
 
-Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 56 in all; deschis 2, acceptat 48, respins 2, amanat 1, tehnic 3. Variable groups: 38 in all; propus 5, revizuit 33, respins 0, amanat 0. Group members (selectors): 116 in all; propus 14, confirmat 102, exclus 0.
+Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 57 in all; deschis 1, acceptat 49, respins 4, amanat 0, tehnic 3. Variable groups: 38 in all; propus 5, revizuit 33, respins 0, amanat 0. Group members (selectors): 116 in all; propus 14, confirmat 102, exclus 0.
 
 Field records by evidence type now: declarat-in-schema 1,367, observat-in-esantion-json 1,341, declarat-in-cod-sursa 366, exemplu-in-documentatie 364, neprecizat-in-antet-csv 238, declarat-in-lista-baza 172, antet-tabel-html 85, declarat-in-tabel-documentatie 53, declarat-in-metadate 43, declarat-in-lista-documentatie 40, declarat-in-documentatie-api 33, declarat-in-text-documentatie 23, utilizat-in-cod-pagina 9.
 
@@ -242,7 +242,7 @@ Portal of data sets that Expert Forum (EFOR) compiled for its projects. The page
 - Source URLs: `https://data.expertforum.ro/`; `https://docs.google.com/spreadsheets/d/1-_vKtEX8860ansiyo2Aq7eqyuo7ShYgA/export?format=csv&gid=1630617809`; `https://docs.google.com/spreadsheets/d/1-avhF8M66A1oyVwUnXdAoNP1sDxTlS4V/export?format=csv&gid=2098148876`; `https://docs.google.com/spreadsheets/d/1-fGcjCn45XU-c5fwc7DDAx_-w8eei5Dt/export?format=csv&gid=1050709184`; `https://docs.google.com/spreadsheets/d/1-facW31PDjxlZhYP6niKcJjHZEe6QueP/export?format=csv&gid=1805797305`; `https://docs.google.com/spreadsheets/d/1-gauuhQ731-q3ZD6fhCM_sNSXQ8QD6e5/export?format=csv&gid=1272308734`; `https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/export?format=csv&gid=768211337`; `https://docs.google.com/spreadsheets/d/1C6o0sGgdq__D62XBnz5qfqrQAS6TIZf1/export?format=csv&gid=55873501`; `https://docs.google.com/spreadsheets/d/1LFqrx69uwDqMlibUB_bDQHe3WsuxmeLR-hmZc-I59B8/export?format=csv&gid=1605213175`; `https://docs.google.com/spreadsheets/d/1PHHdzvmc3IXv530isAHQe7-YEjE0__LV/export?format=csv&gid=1356846398`; `https://docs.google.com/spreadsheets/d/1XBImOARfWbaUX6OGN8wf_crmSu__-0hs/export?format=csv&gid=1251769352`; `https://docs.google.com/spreadsheets/d/1ZdnysGyGRAlRQM651SIqsCeUGlO1Ivd8/export?format=csv&gid=1547605917`; `https://docs.google.com/spreadsheets/d/1fX1Nv2HonSSfFfTqBNpWfmTeGREMQAQ-/export?format=csv&gid=1641909541`; `https://docs.google.com/spreadsheets/d/1hWsdExKe_wzEdy2ZQQVdguINpEzI1Ikx/export?format=csv&gid=438062803`; `https://docs.google.com/spreadsheets/d/1uHjx7STb9E97Da4vnUA3Z3oqDurRo220ZpwUCyM2Mm8/export?format=csv&gid=0`
 - Proposed groups: `beneficiar-fonduri-publice`, `partid-politic`, `uat`
 - Documented inputs: none documented in the sources read. HTML controls stay candidates.
-- Provider proposals: D186.
+- Provider proposals: D186, D188.
 - Blocker: Four tabs answered with more than 2,000,000 bytes (the fetcher refuses them) and have no header. The Drive file (political finance) and the Drive folder (health) were not requested: the page does not say that the file is a spreadsheet, a folder cannot be listed without the API, and the finance data set has donor data about persons.
 - Limitations: Four tabs are over 2,000,000 bytes and were not parsed. A Drive file and a Drive folder (three health data sets) were not requested. Tabs about persons keep the header only. The tabs declare no type, unit or description; the header is the only evidence.
 - Remaining work: Decide whether a tab over 2,000,000 bytes may be read with a bounded request for its header (--sample-bytes; Google ignores the byte range, so the start of the response is read). Decide the eight candidate selectors, the three proposed groups and D186. The owner can save the Drive file and the folder from a browser if the headers are wanted.
@@ -462,6 +462,7 @@ The producer, the distributor and the project author are named apart in each ite
 | D185 | `romania-interactiva` | Cushman & Wakefield Echinox | mica |
 | D186 | `data-expertforum` | Guvernul României | medie |
 | D187 | `bani-partide` | Ministerul Finanțelor | mica |
+| D188 | `data-expertforum` | Monitorul Oficial | medie |
 
 ## 7. Network, methods and blockers
 

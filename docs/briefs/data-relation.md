@@ -41,7 +41,7 @@ After this work:
 | `date-proprii` | Date proprii | The entry collects or curates its own data: reports from users, quiz positions, an editorial database. | yes |
 | `calcul` | Calculator sau formular | The entry takes user inputs and applies rules or parameters, with no data set behind it. | yes |
 | `fara-date` | Fără date | A guide, course, campaign, article or list of links. There is nothing to extract. | no |
-| (empty) | Neevaluat | Not assessed yet. | yes |
+| (empty) | Neevaluat | Not assessed yet. | no (owner, 2026-10-26) |
 
 When two codes apply, use the first one in the table. Organisations may stay empty: the finder does not list them.
 A single code was chosen over a list cell: the finder needs one answer, and the order above settles the mixed cases.
@@ -51,7 +51,7 @@ The format facet (`formate`) does not replace the column: a quiz (`testvot`) hol
 
 1. `kind` is `proiect` or `resursa`.
 2. Its built status is not in the group `inactiv` (`offline`, `arhivat`), the same rule as `isInactive` in `site/app.js`.
-3. `relatie_date` is not `fara-date`.
+3. `relatie_date` is `date-publice`, `date-proprii` or `calcul`. An empty value and `fara-date` both leave the entry out (owner, 2026-10-26; the first version of this brief kept empty values in).
 
 The same rule applies to `/date/`, `/date/lista/`, `inventar/<slug>.json`, the inventory markers in the explorer, and the default selection of `collect_docs.py` and `inventory.py`.
 An explicit `--only` still runs on an out-of-scope entry (the owner may want an archived source), and the script prints that the entry is out of scope.
@@ -121,3 +121,11 @@ Old URLs keep their meaning. Commit `site/index.html` after the JS change (`buil
 
 Numbers before and after: entries in `/date/`, entries in `/date/lista/` with and without fields, states in `acoperire.csv`, test counts.
 The proposal counts by code and by `incredere`, and the entries left empty. What was measured and what was assumed.
+
+## 8. Status on 2026-10-26 (after the owner's review)
+
+- Steps A and B are done (v0.29.0). Step C is done: the owner edited the proposals; 106 values are in `integrare/intrari.csv` (`testvot` became `calcul`).
+- The owner hid `didi365` (not specific to Romania) and `harta-tv-locale` (`clasificare_stare` `ascuns`).
+- Changed decision: an empty value leaves the entry out of `/date/`, like `fara-date`. Section 3 says so now. In `/date/lista/`, the note counts the entries left out by reason: without data, not assessed, inactive.
+  The explorer link for „not assessed” uses `dat=neevaluat`.
+- Steps D and E are open.
