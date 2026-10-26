@@ -2,6 +2,11 @@
 
 Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
+## Inventory batch D — 2026-10-27
+
+- [~] Variable inventory for twelve entries of „De analizat”: `lista-firme`, `dupa-cutremur`, `reciclare-arad`, `onorata-instanta`, `sondaje-romania`, `guvernezi`, `politicieni-corupti`, `unde-locuiesc`, `trei-din-patru`, `statul-digital`, `pe-datorie`, `ce-face-statul-cu-1000-de-lei`. Brief: [inventory-batch-d.md](briefs/inventory-batch-d.md).
+- [x] Rename the heading „Fără câmpuri extrase” of `/date/lista/` to „De analizat”. Done 2026-10-27 at the owner's request.
+
 ## Relation to data and inventory batch C2 — 2026-10-26
 
 - [x] Column `relatie_date` (`date-publice`, `date-proprii`, `calcul`, `fara-date`, empty), the scope of `/date/` (active, with a value other than `fara-date`; an empty value leaves it out) and the explorer facets `dat` and `st`. Brief: [data-relation.md](briefs/data-relation.md). Steps A to E are done (2026-10-26).
