@@ -41,7 +41,7 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [ ] Decide whether a response of more than 2,000,000 bytes may be read whole (`locale/` and `harta-notelor/` hold their data in a script of that size). The range read of 600,000 bytes ends before the script. A third option is the browser render of the page with a listing of its literals; the helper keeps only data responses today.
 - [ ] Show `seturi_ld` (name, period, licence, `isBasedOn` of a page's schema.org `Dataset`) in the field browser. The facts are in `seturi-date.json`; the preview does not read them.
 - [ ] Ask the project for the source of the population of a city in Orașe digitale (`pop`, no named source) and for the licence of the index.
-- [ ] Run the three browser checks of the preview (`check_preview.py`, `check_inventory_preview.py`, `check_data_finder.py`) against a build of this branch; this pass did not run them.
+- [x] Run the three browser checks of the preview against a build of this branch: `check_preview.py` 111/111, `check_inventory_preview.py` 31/31, `check_data_finder.py` 40/40. Done 2026-10-26.
 - [x] Reader for the data that a page script holds as literals, and for the schema.org `Dataset` of JSON-LD (`inventory_literals.py`, format `js-literale`, 21 tests). Done 2026-10-26.
 - [x] Make the coverage export and the report know lot `C2` and the state `blocat` for an entry with a recorded blocker and no source. Done 2026-10-26.
 

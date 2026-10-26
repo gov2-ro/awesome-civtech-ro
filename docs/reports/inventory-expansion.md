@@ -52,7 +52,7 @@ The 127 projects and resources of the data finder:
 | Pending provider proposals (review items D132 and later) | 15 | 10 |
 | Proposed business-variable groups | 7 | 33 |
 | Unit tests discovered / skipped | 308 / 6 | 614 / 6 |
-| Explorer inventory / dedicated finder browser checks | 25 / 25 | 31 / 31 |
+| Explorer inventory / dedicated finder browser checks | 25 / 25 | 31 / 40 |
 
 Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 54 in all; deschis 10, acceptat 41, respins 0, amanat 0, tehnic 3. Variable groups: 33 in all; propus 3, revizuit 30, respins 0, amanat 0. Group members (selectors): 102 in all; propus 10, confirmat 92, exclus 0.
 
@@ -462,7 +462,7 @@ External blockers and security findings:
 - `node --check site/app.js`, `node --check site/inventory.js` and `git diff --check`: clean.
 - Browser, against the served preview on port 8770: `check_preview.py` 111/111, `check_inventory_preview.py` 31/31, `check_data_finder.py` 31/31 (baseline 25/25 for each inventory script). The expected counts come from the generated index and from filter rules written in the script, not from the page code; layouts at 390 px and 320 px have no horizontal overflow.
 - Boundaries: nothing was pushed or deployed, no Google Sheet was touched, no paid service ran, no project owner was contacted. `relatii.csv`, the sealed `source/`, `reference/` and `runs/` folders and the frozen v1 files have no change from the baseline; `revizuire.csv` only gained D147–D162 and D132–D146 are unchanged.
-- Batch C2 (branch `inventory-batch-c2`, 2026-10-26): `python3 scripts/validate.py --publication`: 142 entries, 0 errors, 0 warnings. `python3 scripts/inventory.py --check`: 0 evidence errors; 98 source bodies hash-verified (88 before the batch); 84 dictionary evidence items verified (62 before), 0 stale. Unit tests: 614 run, 6 skipped (590 and 6 before the batch); new: `test_inventory_literals` 21 and 3 in `test_inventory_report`. `python3 scripts/build.py --site-dir <scratch folder> --with-inventory`: succeeds; the finder index holds 128 entries and 33 groups, `site/` has no change. The three browser checks of the preview were not run in this pass.
+- Batch C2 (branch `inventory-batch-c2`, 2026-10-26): `python3 scripts/validate.py --publication`: 142 entries, 0 errors, 0 warnings. `python3 scripts/inventory.py --check`: 0 evidence errors; 98 source bodies hash-verified (88 before the batch); 84 dictionary evidence items verified (62 before), 0 stale. Unit tests: 614 run, 6 skipped (590 and 6 before the batch); new: `test_inventory_literals` 21 and 3 in `test_inventory_report`. `python3 scripts/build.py --site-dir <scratch folder> --with-inventory`: succeeds; the finder index holds 128 entries and 33 groups, `site/` has no change. Browser, against the served scratch build on port 8771: `check_preview.py` 111/111, `check_inventory_preview.py` 31/31, `check_data_finder.py` 40/40.
 
 ## 9. Remaining review work
 

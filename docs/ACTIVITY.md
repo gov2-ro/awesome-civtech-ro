@@ -14,7 +14,8 @@
 - `inventory_report.py` knows lot `C2`, and a note that records a blocker gives the state `blocat` to an entry that has no source record. The report has a subsection for the batch and a network summary. 3 new tests.
 - Network (lot C2): 18 direct requests in the log (limit 60) plus 2 of `collect_docs.py` (it does not write the log): 20. Bytes read: 7,484,573, of which 4,000,002 came from two responses that the fetcher refused. No retry.
   Hosts: romaniainteractiva.ro 12, ins.gov2.ro 3, expertforum.ro 2, banipartide.ro 1, data.expertforum.ro 1, orase-digitale.ro 1. Browser: 2 navigations (`harta-notelor/`, `locale/`), 0 data requests.
-- Tests: 614 run, 6 skipped (590 and 6 before). `validate.py --publication`: 0 errors. `inventory.py --check`: 0 errors, 98 bodies hash-verified (88 before). A build with `--with-inventory` into a scratch folder: 128 finder entries, 33 groups; `site/` has no change.
+- Tests: 614 run, 6 skipped (590 and 6 before). `validate.py --publication`: 0 errors. `inventory.py --check`: 0 errors, 98 bodies hash-verified (88 before). A build with `--with-inventory` into a scratch folder: 128 finder entries, 33 groups; `site/` has no change. Browser checks against that build: `check_preview.py` 111/111, `check_inventory_preview.py` 31/31, `check_data_finder.py` 40/40.
+- A fresh clone of the branch (no local caches): 614 tests pass, `validate.py --publication` 0 errors, `inventory.py --check` 0 errors with 305 bodies reported unavailable (never counted as verified). An offline replay from the caches gives the six generated files byte for byte.
 
 **Hard**
 - `banipartide.ro`, `data.expertforum.ro` and `expertforum.ro` answer HTTP 403 to every automated request (the documentation collector got 403 on four pages of each of the first two on 2026-10-24; the home pages again on 2026-10-26, and two pages of `expertforum.ro`).
