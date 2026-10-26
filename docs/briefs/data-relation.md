@@ -129,3 +129,18 @@ The proposal counts by code and by `incredere`, and the entries left empty. What
 - Changed decision: an empty value leaves the entry out of `/date/`, like `fara-date`. Section 3 says so now. In `/date/lista/`, the note counts the entries left out by reason: without data, not assessed, inactive.
   The explorer link for „not assessed” uses `dat=neevaluat`.
 - Steps D and E are done on the branch `data-relation-de` (2026-10-26); the numbers and decisions are in `docs/ACTIVITY.md`. The Opus session merges the branch and tags it.
+
+## 9. Change (owner, 2026-10-26): two groups in the explorer and on `/date/`
+
+The owner: an entry without a value is not data-related, like `fara-date`. The public pages show two groups, not five:
+
+| Group (URL value) | Label | Codes |
+| --- | --- | --- |
+| `cu-date` | Lucrează cu date | `date-publice`, `date-proprii`, `calcul` |
+| `fara-date` | Fără date | `fara-date` and an empty value |
+
+- The explorer facet `dat` offers these two values only. The group `cu-date` is the same set as the scope of `/date/` (with `calcul`), so a link from `/date/` and the facet give the same entries.
+  The values `date-publice`, `date-proprii`, `calcul` and `neevaluat` were never published (the work was not pushed), so no old URL needs them.
+- `/date/` and `/date/lista/` count the entries left out by two reasons: without data (`fara-date` and empty together) and inactive. The links are `dat=fara-date` and `st=inactiv`.
+- The coverage export (`acoperire.csv`) keeps the state `neevaluat` for editors: it is internal and does not change.
+- The detail of the four codes stays in `intrari.csv` and in `data.json` (`dataRelation`).
