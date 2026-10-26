@@ -1,0 +1,130 @@
+slug,propunere,baza,incredere
+465,date-publice,"Descrierea spune că site-ul arată parlamentarii din legislatura 2024–2028 și datele lor de contact de pe site-urile oficiale, dar pagina nu are text extras.",medie
+7-ani-de-acasa,,"Intrarea arhivată nu are descriere, format și nici text de pagină în depozit; numele singur nu stabilește relația cu datele.",mica
+accesinfo,date-proprii,"Descrierea menționează o bază de date cu peste 3.000 de instituții, fără sursă numită, pe lângă formularul de cereri; pagina colectată este un ecran de autentificare Google.",medie
+aerlive,date-proprii,"Descrierea spune că proiectul distribuie senzori proprii de particule către cetățeni; inventarul are 3 câmpuri (lista orașelor), iar punctul de date al paginii cu PM10 și PM2.5 întoarce HTTP 403.",mare
+afacut,date-publice,"Cele două surse acceptate sunt INS și MDLPA, iar inventarul are 14 câmpuri extrase din tabele cu sume raportate.",mare
+ai-aflat,date-publice,"Pagina principală spune că indexează peste 220.000 de acte din legislație și citează articolul de lege; datele sunt texte juridice, nu tabele.",medie
+amscapat,date-proprii,"llms.txt spune că rezumă presa românească (DNA, DIICOT, instanțe) în înregistrări structurate (nume, prejudiciu, ani de pedeapsă) cu linkuri la articolele-sursă, deci este o bază editorială proprie făcută din presă, nu din surse publice directe.",medie
+antibunk,date-proprii,"llms.txt spune că pagina Date arată monitorizare și grafice despre dezinformare, deci proiectul își produce propriile măsurători pe Facebook, alături de ghiduri și articole.",medie
+banii-nostri,date-publice,"Sursa acceptată este SEAP, iar inventarul are 51 de câmpuri extrase (contract, valoare, autoritate, furnizor, CPV) din SICAP.",mare
+bani-partide,date-publice,"Descrierea spune că publică din 2006 donatori, venituri și cheltuieli ale partidelor din subvenții publice, dar furnizorul nu este numit în depozit.",medie
+bani-pierduti,,"Intrarea este offline și nu are descriere; pagina colectată este o pagină de domeniu, iar formatul Vizualizare de date nu stabilește sursa datelor.",mica
+barometrul-digital,date-proprii,"Pagina principală spune că a verificat 2.490 de instituții și le-a dat note de la 1 la 10 după o metodologie proprie, deci măsurătorile sunt produse de proiect.",mare
+bucuresti-help,date-proprii,"Pagina spune că cetățenii raportează probleme urbane cu fotografie, că sesizările apar pe hartă și pot fi susținute de alții, deci proiectul adună rapoarte ale utilizatorilor.",mare
+bucuresti-verde,date-proprii,"Descrierea spune că cetățenii documentează tăieri de arbori cu fotografii și GPS, iar cazurile sunt centralizate pe o hartă interactivă.",mare
+reciclare-arad,date-publice,"Pagina spune că datele sunt importate din sursele publice RETIM (străzile și programul de colectare), dar RETIM este operator de salubritate, nu o instituție publică.",medie
+calitate-aer-radauti,date-publice,"Cazul este mixt: rețeaua de senzori este proprie, dar o sursă acceptată este INMH (presiunea atmosferică), iar regula alege primul cod; inventarul are 41 de câmpuri dintr-un feed Firebase.",medie
+ce-cumpara-primaria,date-publice,"Descrierea și profilul spun că platforma arată achizițiile anunțate de 3.184 de primării în 2025, dar nu numesc sistemul sursă și inventarul nu are surse structurate.",medie
+ce-fac-politicienii,date-proprii,"Pagina Despre spune că un model extrage afirmații din presă într-o bază structurată (declarații, voturi, poziții schimbate) cu API și RSS; originea voturilor afișate nu este numită.",medie
+centrul-pentru-cariere,fara-date,"Pagina Despre spune că site-ul oferă fișe de job și ghiduri de orientare în carieră; nu există un set de date, dar fișele ar putea avea câmpuri structurate nevăzute.",medie
+ce-zice-legea,fara-date,"Formatul este Ghid, iar pagina organizează explicații pe evenimente de viață (naștere, căsătorie, locuire); nu apare un set de date în text.",medie
+scoala-pentru-democratie,fara-date,"Formatul este Curs sau atelier, iar funcția Învață sau exersează; depozitul nu are text de pagină, deci baza este tipul de conținut.",medie
+companii-de-stat,date-publice,"Patru surse acceptate (AMEPIP, Ministerul Finanțelor, ANAF, BVB) și 591 de câmpuri extrase în inventar.",mare
+companii-publice-ro,date-publice,"Pagina arată pe județe numărul de companii publice, angajații, cifra de afaceri, rezultatul net și datoriile, cu eticheta Min. Finanțelor, dar nu numește o sursă și inventarul nu are surse structurate.",medie
+data-expertforum,,"Formatele Catalog și Set de date oferit arată că are date, dar toate paginile colectate au dat eroare, deci nu se știe dacă datele sunt publice sau proprii; rămâne în /date/ (lotul C2).",mica
+ins-gov2,date-publice,"Trei surse acceptate (INS, Inspecția Muncii, RNEP) și 46 de câmpuri extrase; llms.txt descrie un API cu peste 3.600 de seturi TEMPO.",mare
+declic,fara-date,"Descrierea scurtă și pagina vorbesc despre campanii și petiții cu 1,2 milioane de membri; nu apare un set de date publicat.",medie
+demoanaf,date-publice,"Zece surse acceptate (ANAF, BNR, ONRC, Ministerul Finanțelor, INS etc.) și 130 de câmpuri extrase; descrierea spune date oficiale ONRC, ANAF, BNR.",mare
+de-obste,fara-date,"Pagina spune că este un prototip demonstrativ cu date exclusiv sintetice, deci nu are date reale de extras; nu este un ghid, deci potrivirea cu definiția este slabă.",mica
+despre-femicid,date-proprii,"Descrierea spune că centralizează cazuri din presă și din monitorizarea organizațiilor civice și oferă descărcarea datelor; sursa acceptată este Presă și comunicări oficiale (nespecificate), deci nu e sigur un furnizor public.",medie
+didi365,,"Descrierea vorbește de scoruri de credibilitate și alerte, dar pagina colectată nu are text; nu se știe dacă există o bază proprie (date-proprii) sau doar o evaluare la cerere (calcul).",mica
+domnule-primar,,"Intrarea arhivată are doar descrierea scurtă Sesizări către primărie, fără format și fără text de pagină.",mica
+drepturi-civile,fara-date,"Descrierea scurtă este Ghid despre drepturile tale în relația cu autoritățile, formatul este Ghid, iar domeniul redirecționează către apador.org; intrarea este arhivată.",medie
+dupa-cutremur,date-publice,Pagina spune că harta se bazează pe lista oficială a imobilelor expertizate seismic publicată de AMCCRS (09.03.2021).,mare
+econtractauto,calcul,"Descrierea spune că generează contractul auto în trei pași din documentele încărcate de utilizator, deci este un formular care produce un document, fără set de date.",mare
+e-cutremur,fara-date,"Formatul este Ghid, iar paginile colectate sunt ghiduri de pregătire (rucsacul de urgență, Pregătește-te) fără tabele sau seturi de date.",mare
+europescope,date-publice,"Două surse acceptate (Parlamentul European, Consiliul UE) și 72 de câmpuri extrase din șapte fișiere de date deschise cu licența ODC-By.",mare
+evermed,date-publice,"Descrierea spune că listează clinici private cu contract CNAS, dar depozitul nu numește sursa listei și inventarul nu are surse structurate.",medie
+executii-bugetare,date-publice,"Descrierea spune că folosește date oficiale de la Ministerul Finanțelor, iar relația acceptată date_din confirmă sursa.",mare
+factual,fara-date,Pagina principală și paginile colectate sunt articole de fact-checking cu verdicte (de exemplu Trunchiat); nu apare un set de date publicat.,medie
+guvernezi,date-proprii,"llms.txt și pagina metoda spun că jocul compară deciziile jucătorului cu pozițiile a 28 de politicieni pe 9 teme, iar aceste poziții sunt un set editorial propriu.",mare
+harta-banilor-publici,date-publice,"Descrierea scurtă este Achizițiile publice, pe hartă, iar achizițiile publice sunt date ale sectorului public; intrarea este offline și nu are text de pagină.",medie
+harta-digitalizarii-primariilor,date-proprii,"Descrierea spune că proiectul a trimis 325 de solicitări și a construit harta din răspunsuri, deci datele sunt colectate de proiect, deși provin din primării.",medie
+harta-firmelor,date-publice,"Opt surse acceptate (ONRC, ANAF, SEAP, Monitorul Oficial etc.) și 40 de câmpuri extrase; llms.txt spune că datele vin din evidențe publice.",mare
+monitorul-ai-integritate,date-publice,"Descrierea spune că analizează declarațiile de avere, iar pagina discută secțiunile declarațiilor și rolul ANI, dar nu numește furnizorul datelor și inventarul nu are surse structurate.",medie
+harta-politicii,,"Intrarea este offline, fără descriere, format sau text de pagină.",mica
+harta-taierilor,,Intrarea arhivată are doar formatul Hartă și numele; nu există descriere sau text de pagină care să arate sursa datelor.,mica
+harta-tv-locale,,"Intrarea arhivată are doar descrierea Televiziunile locale, pe hartă și formatul Hartă; sursa listei nu apare, iar pagina colectată este o eroare.",mica
+hoover,,"Intrarea arhivată este un motor de căutare în colecții de documente, fără text de pagină; depozitul nu arată ce date conține sau produce.",mica
+ia-statul-la-intrebari,,"Intrarea arhivată are doar descrierea Cereri de informații publice (Legea 544), iar adresa duce la prima pagină romaniacurata.ro, care nu o descrie.",mica
+igov,date-publice,"Descrierea spune că urmărește surse publice și transformă date și documente instituționale în rapoarte verificabile, iar pagina arată rezultate pe instituții.",mare
+imobile-rapps,date-publice,"Pagina spune că centralizează imobilele statului administrate de RA-APPS (ocupate, libere, în litigiu), dar nu numește sursa listei.",medie
+interoperabilitate,fara-date,"Formatul este Articol, iar pagina și Despre descriu un observator cu dosare și investigații cu surse; nu apare un set de date publicat.",medie
+jailando,,"Intrarea arhivată are doar descrierea Politicieni condamnați la închisoare, fără format și fără text de pagină.",mica
+mari-corupti,,"Intrarea este offline; formatele Registru sau bază de date și Vizualizare de date arată că ar fi avut date, dar pagina colectată este o pagină de domeniu.",mica
+monarh-ai,date-proprii,"Descrierea spune că serviciul monitorizează TikTok-ul românesc și pregătește analize; pagina MONARH AI are tabele, dar nu numește o sursă publică.",medie
+monitor-cetatenie,date-publice,"Pagina spune că cifrele provin din informațiile publice ale ANC (cetatenie.just.ro), extrase din documentele PDF.",mare
+monitor-energie,date-publice,"llms.txt spune că sursa primară este feed-ul operativ Transelectrica, republicat la circa 10 secunde; inventarul are o sursă structurată blocată (HTTP 401).",mare
+monitor-safe,date-publice,"Descrierea spune că centralizează proiectele, contractele, valorile și furnizorii programului SAFE, iar llms.txt vorbește de surse oficiale; nu sunt surse acceptate sau câmpuri extrase.",medie
+monitor-social,date-publice,"Pagina spune că indicatorii-cheie se bazează pe un set de date statistice extrase din diverse surse (venituri, ocupare, speranța de viață), fără a numi furnizorul.",medie
+monitorul-ai,date-publice,"Sursa acceptată este Monitorul Oficial, Partea a II-a, iar inventarul are 432 de câmpuri extrase din schemele și ghidurile arhivei.",mare
+multumesc,,"Intrarea este offline; pagina colectată este o pagină implicită de găzduire, deci nu există text despre date.",mica
+muzeul-coruptiei,,"Intrarea este offline, fără descriere sau text de pagină; formatele Joc sau test și Catalog sau colecție nu stabilesc dacă există un set de date.",mica
+nu-astepta-supereroi,,"Intrarea este offline; descrierea (datele de contact ale consilierilor locali) arată un registru, dar sursa nu apare și pagina colectată este o pagină de domeniu.",mica
+observatori-votcorect,,"Formatul este Ghid (manual și training), dar meniul are dashboard-uri fără conținut extras, deci nu se poate exclude o bază de rapoarte ale observatorilor.",mica
+onesti-city,date-publice,"Descrierea spune că rezumă cu AI anunțurile Primăriei și are o hartă de sesizări; cazul este mixt, iar regula alege primul cod.",medie
+ong-camera-deputatilor,date-publice,"Adresa intrării este registrul oficial al ONG-urilor de pe cdep.ro (Registru sau bază de date); intrarea trimite la sursa publică, nu are o pagină proprie colectată.",medie
+onorata-instanta,date-publice,"Pagina Despre spune că indicele de performanță are indicatori cantitativi și calitativi despre instanțe și parchete, cu culegere de date de către echipă, dar nu numește sursa datelor.",mica
+open-budget,date-publice,"Titlul paginii este Monitorizează bugetul statului, formatul este Vizualizare de date, iar bugetul statului este o sursă publică; nu există text de pagină extras.",medie
+oradea-city-report,,Intrarea arhivată trimite la site-ul oficial al Primăriei Oradea; nu există text despre datele aplicației de sesizări.,mica
+parlament-transparent,,"Intrarea este offline, fără descriere, format sau text de pagină.",mica
+piata-de-spaga,,"Intrarea este offline (403 Forbidden); funcția Trimite sau urmărește o sesizare sugerează rapoarte de la utilizatori, dar nu există text de pagină.",mica
+political-colours,date-publice,"Intrarea arhivată are descrierea Culoarea politică a primarilor, pe hartă; apartenența primarilor vine din rezultate electorale (date publice), dar sursa nu este numită.",mica
+politicieni-corupti,date-publice,"Profilul spune bază de date cu surse oficiale despre politicieni cercetați sau condamnați, iar pagina Metodologie descrie sursele și actualizarea; este o bază editorială din surse oficiale, deci mixt, iar regula alege primul cod.",medie
+portal-just-modern,date-publice,"Descrierea spune explicit că folosește date publice de pe portalul instanțelor de judecată, iar llms.txt listează dosare, ședințe și Monitorul Oficial.",mare
+posturi-gov2,date-publice,"Pagina spune că anunțurile sunt preluate de pe posturi.gov.ro, iar inventarul are 21 de câmpuri extrase dintr-o sursă structurată.",mare
+radar-digital,date-proprii,"Descrierea spune că o comunitate semnalează și centralizează postări problematice de pe rețelele sociale, deci colectează semnalări ale utilizatorilor; nu apare un set publicat în text.",medie
+redirectioneaza,date-proprii,"Pagina arată că ONG-urile se înregistrează pe platformă (Înregistrează ONG) și că utilizatorii caută un ONG după nume sau CUI; baza de ONG-uri este proprie, dar sursa profilurilor nu este numită.",medie
+rezultate-vot,date-publice,"Inventarul are 139 de câmpuri extrase (alegeri, candidați, voturi, prezență) din 10 surse; textul paginii nu numește furnizorul (BEC sau AEP), dar rezultatele electorale sunt date oficiale.",medie
+romania-fara-gropi,,"Pagina arată un formular de sesizare a gropilor și activitatea asociației (drumuri reparate), dar nu un set publicat; poate fi campanie (fara-date) sau colectare de sesizări (date-proprii).",mica
+romania-interactiva,date-publice,"Descrierea spune că transformă datele publice din surse oficiale în clasamente, calculatoare și vizualizări.",mare
+romania-transparenta,date-publice,"llms.txt numește sursele (AEP, BEC, MDLPA, INS, ANAF, SEAP, ANI, Camera Deputaților, Ministerul Sănătății), iar inventarul are 1.173 de câmpuri extrase.",mare
+sicap-ai,date-publice,"Sursa acceptată este SEAP, iar descrierea spune că este un motor de căutare în licitațiile publice din România.",mare
+site-uri-utile-funky,fara-date,"Intrarea este o resursă cu descrierea Lista Funky Citizens și formatul Catalog sau colecție: o pagină de articol cu o listă de site-uri, fără set de date.",mare
+etherpad-situri-civice,fara-date,Intrarea este o resursă cu descrierea Listă colaborativă de site-uri civice (un Etherpad): o listă de linkuri.,mare
+sanatate-mintala,fara-date,"Formatul este Ghid, iar meniul paginii are ghiduri rapide, dicționar de afecțiuni, legislație și definiții; conținut editorial, fără set de date vizibil.",medie
+sondaje-romania,date-publice,"Pagina listează ca surse de date BEC și institutele de sondare (INSCOP, CURS, IRES); cazul este mixt (sondaje private agregate), iar regula alege primul cod.",medie
+testvot,date-proprii,"Formatul este Joc sau test (test de afinitate politică), iar brieful dă testvot ca exemplu de chestionar cu un set de date (pozițiile candidaților); pagina colectată nu are text.",medie
+tipizatul,calcul,"Descrierea spune că utilizatorul completează formulare tipizate în browser și descarcă PDF-ul; catalogul de formulare este un set de șabloane, dar nu apare un set de date, iar cazul poate fi și date-publice.",medie
+apti-unelte-democratie,fara-date,"Intrarea este o publicație (articol) cu formatele Articol și Catalog sau colecție: un top de zece unelte, fără set de date.",mare
+transparenta-eu,date-publice,"Patru surse structurate și 35 de câmpuri extrase; descrierea spune că analizează date publice (bugete, legislație, justiție).",mare
+unde-locuiesc-romanii,date-publice,"Descrierea spune că folosește date publice despre populație și geografie, într-un atlas pe grilă de 1 km.",mare
+verifica-psiholog,date-publice,"Pagina spune că datele vin de la CPR (35.570 de psihologi, 63.748 de certificate), sincronizate zilnic; depozitul nu arată dacă CPR este o instituție publică, deci sursa publică este probabilă, nu sigură.",medie
+vichub-data,date-publice,"Descrierea spune că transformă seturi de date publice (populație, buget, sănătate, parc auto, alegeri) în grafice, pe baza seturilor oficiale românești.",mare
+vocea-cartierului-tau,date-proprii,"Descrierea spune că platforma documentează problemele semnalate de cetățeni, le localizează pe o hartă și le organizează în dosare cu răspunsurile instituțiilor.",mare
+votcorect,,"Pagina spune că oferă informații despre alegeri și ajută la sesizarea neregulilor, dar nu arată un set publicat; poate fi ghid (fara-date) sau colectare de sesizări (date-proprii).",mica
+votdiaspora,date-publice,"Inventarul are 50 de câmpuri extrase (secții de votare: coordonate, județ, localitate, număr, instituție, adresă) și 5 surse; listele de secții sunt oficiale, dar furnizorul nu este numit în depozit.",medie
+votez-info,,"Descrierea scurtă este Profiluri și comparator de candidați, formatul este Registru sau bază de date, dar pagina colectată nu are text; nu se știe dacă profilurile sunt proprii sau din surse publice.",mica
+dignitas,date-proprii,"Inventarul are 177 de câmpuri din tabelele entitate, afirmație, relație, vot și etichetă ale platformei, iar pagina spune că fact-checking-ul este colaborativ.",mare
+ghiduri-efor,fara-date,"Formatele sunt Ghid și Catalog, iar descrierea vorbește despre ghiduri (cum se formează bugetele, utilizarea bazelor de date); ghidurile nu sunt ele însele baze de date.",medie
+jurnalism-independent,fara-date,"Intrarea este o listă filtrabilă de publicații cu descriere, tip și link de donații, adică o listă de linkuri; are totuși atribute structurate, deci ar putea fi și date-proprii.",medie
+presspay,,"Este un serviciu de abonament și plată împărțită după aprecieri, cu rapoarte lunare doar pentru cititor; nu se potrivește clar cu niciun cod și nu apare un set publicat.",mica
+aiparte-research,fara-date,Descrierea spune că este o colecție de rapoarte și analize (Raport sau cercetare) și o listă de proiecte asociate; pagina nu publică ea însăși un set de date.,medie
+ro-api-hub,date-proprii,"Descrierea spune că este un catalog propriu de 125 de API-uri, cu fișier pe serviciu și index catalog.json; inventarul are 53 de câmpuri extrase.",medie
+registrul-firmelor,date-publice,"Șase surse acceptate (ONRC, ANAF, Ministerul Justiției, Ministerul Finanțelor, SEAP, OpenStreetMap) și 23 de câmpuri; llms.txt spune că datele vin din surse oficiale.",mare
+monitorizare-plan-digital-national,fara-date,"Profilul spune că publică analiza independentă a Planului Național privind Deceniul Digital, adică un raport; pagina nu arată un set de date.",medie
+piratii-digitali-ai-kremlinului,fara-date,"Intrarea este un articol de investigație; descrierea spune că a urmărit peste 100.000 de reclame, dar pagina publică doar textul, nu setul de date, deci ar putea fi și jurnalism de date.",medie
+semnal-razboiul-hibrid,date-proprii,"Profilul spune Baza de date Semnal: 177 de incidente din 2014, fiecare cu sursa, deci este o bază editorială proprie, cu hartă și cronologie.",mare
+proiecte-geo-spatial,fara-date,"Intrarea este o resursă cu formatul Catalog sau colecție: lista de inițiative și proiecte ale comunității geo-spatial.org, adică o listă de pagini.",mare
+codurbanism,date-publice,"Șase surse acceptate (Monitorul Oficial, Senat, Camera Deputaților, Portal Legislativ etc.) și 116 câmpuri extrase; formatul Ghid nu o face fără date.",mare
+cat-de-tare,date-publice,Descrierea spune că afișează valorile oficiale din tabelul RTC 18-2026 pentru 3.181 de localități.,mare
+biografia-localitatii,date-publice,"Sursa acceptată este INS (serii TEMPO), iar inventarul are 55 de câmpuri extrase; descrierea spune 37 de matrici și 21.197 de momente.",mare
+unde-locuiesc,date-publice,"Descrierea spune că folosește datele Recensământului 2021 și mersul trenurilor; instrumentul este și un chestionar, dar regula alege primul cod.",mare
+ani-de-pensie,date-publice,"Este un calculator, dar pagina spune că se bazează pe tabelele de viață ale României pe 2024 și citează Eurostat pentru speranța de viață, deci are un set de date în spate; regula alege date-publice înaintea lui calcul.",medie
+ce-face-statul-cu-1000-de-lei,date-publice,"Descrierea spune că datele vin din execuția oficială a bugetului general consolidat, iar intrarea are detaliere agregat-național.",mare
+achizitii-directe-ti-2026,date-publice,"Descrierea spune că datele sunt din SEAP, publicate de ADR pe data.gov.ro; sursa SEAP este acceptată și inventarul are 26 de câmpuri.",mare
+statul-digital,date-publice,"Pagina este o analiză de date (PNRR C7 și SICAP) cu 22 de tabele, o listă a celor 136 de baze de date și 20 de contracte; este publicație, dar jurnalismul de date folosește surse publice.",medie
+complet-online,date-publice,Descrierea spune că auditează 613 fișe din Catalogul Național al Serviciilor Publice și oferă setul în CSV și JSON; inventarul are 63 de câmpuri extrase.,mare
+prima-cifra,date-publice,"Sursa acceptată este SEAP (exporturile 2022–2024 de pe data.gov.ro, descrise în README-ul de reproducere); inventarul are 8 câmpuri.",mare
+pe-datorie,date-publice,"Cinci surse acceptate (Eurostat, Guvernul României, Consiliul UE, S&P, Moody's); descrierea numește tabelele Eurostat gov_10a_main, gov_10a_exp și gov_10dd_edpt1.",mare
+ultima-noapte-pib,date-publice,"Sursa acceptată este INS, iar inventarul are 107 câmpuri extrase; descrierea spune că setul se descarcă în JSON.",mare
+constru-pentru-cine,date-publice,"Sursa acceptată este INS (locuințe și populație pe localități), iar inventarul are 13 câmpuri extrase.",mare
+orasul-care-se-intinde,date-publice,"Trei surse acceptate (INS, MDLPA, Copernicus) și 26 de câmpuri extrase; tabelul se descarcă în CSV.",mare
+trei-din-patru,date-publice,"Două surse acceptate (INS, Ministerul Educației); descrierea numește matricele INS SCL101B, SCL105A și SCL103I și lista oficială a școlilor.",mare
+unde-se-termina-asfaltul,date-publice,"Trei surse acceptate (INS, OpenStreetMap, ANCPI) și 141 de câmpuri extrase.",mare
+de-unde-vine-apa,date-proprii,"Pagina este jurnalism de date cu o compilație proprie pentru 10 orașe (surse de captare, distanțe, duritate, unele marcate neverificat); nu numește un furnizor public de date.",medie
+recontorizarea,date-publice,"Două surse acceptate (INS, Eurostat HICP); descrierea spune că datele sunt de la INS și Eurostat.",mare
+pensie-din-bursa,calcul,"Formatele sunt Articol și Formular, iar pagina are un calculator cu zece parametri (contribuție lunară, vârstă, randament, inflație); nu apare un set de date în spate.",mare
+lista-firme,date-publice,Descrierea spune că datele vin din ONRC (data.gov.ro) și API-urile ANAF; pagina repetă că informațiile provin din surse publice oficiale.,mare
+fiipregatit,,"Intrarea este ascunsă; platforma DSU are ghiduri și campanii (fara-date), dar și o hartă a punctelor de interes (spitale, adăposturi, defibrilatoare), deci dovezile nu hotărăsc.",mica

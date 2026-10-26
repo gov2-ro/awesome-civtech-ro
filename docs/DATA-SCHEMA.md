@@ -1132,6 +1132,17 @@ The export keeps fields, business groups, declarations, observations and unknown
 
 An empty cell means unknown. A zero means that the count was made and found nothing.
 
+### Proposals for the relation to data
+
+`observatii/inventare/relatie-date-propuneri.csv` holds a proposal of `relatie_date` for each project and resource (hidden entries included). A person writes it once from the repository's own evidence: `formate`, `functionalitati`, `descriere`, the cached page text, `profil.csv` and the inventory. No request is made. No script reads it. The owner decides, and only then does a value reach `intrari.csv`.
+
+| Column | Meaning |
+| --- | --- |
+| `slug` | The entry. |
+| `propunere` | A code of the list `relatie_date`, or empty when the evidence does not settle it. An empty value means: not assessed. |
+| `baza` | One sentence that names the evidence. |
+| `incredere` | `mare` (direct evidence: an accepted source, extracted fields or page text that says it), `medie` (the description or the page implies it) or `mica` (thin evidence; always `mica` when `propunere` is empty). |
+
 ### Explorer inventory preview
 
 `build.py --with-inventory` reads inventory metadata and writes `/date/`, `/date/lista/` and `inventar/*.json`.
