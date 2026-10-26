@@ -44,6 +44,27 @@
 - No brief: the owner asked for it, and the open questions had answers. The review was complete, the labels already follow the review state, and the inventory output needs no ignored cache (a clean checkout builds the same `date/` and `inventar/` as the local one).
 - Credit a licence only when every data set of the source declares the same one. Cost of the alternative: a credit per field, or a credit that names the wrong licence for a mixed page.
 
+## 2026-10-26 — New entry fiipregatit.ro (issue #3)
+
+**Done**
+- Added `fiipregatit` to `intrari.csv` (row 143, `proiect`, `clasificare_stare` `propus`, confidence `medie`) and its attribution L175 to `relatii.csv` (`Departamentul pentru Situații de Urgență`, `rol_neconfirmat`). Sources: the home, guides, map, campaigns, podcast, about, contact and terms pages (rendered with Playwright), and the repository `civicnet/fiipregatit.ro`.
+- Profiled: status `activ`, HTTP 200, screenshot image and 128 px icon. Searched with Serper: 20 results, 15 kept, 5 dropped by the `social` rule. The kept results are pages about the site (government and public bodies, UNICEF, a 2023 tender specification). `editor` is empty.
+- Ran `collect_docs.py --only fiipregatit` (4 requests; found the page and the about page), `inventory.py --only fiipregatit` (0 requests) and `inventory_report.py`.
+- `validate.py` 0 errors. `validate.py --publication` 1 error: the entry is `propus`. The isolated build with `--allow-draft` writes 142 entries. Unit tests: 523 run, 2 fail (the `propus` gate in `test_inventory_site` and `test_review_ui`), 6 skipped. Before the inventory steps, `test_inventory_report` failed with `KeyError: 'fiipregatit'`.
+
+**Hard**
+- `/add-new-url` still names `proiecte.csv` / `orgs.csv` (see the backlog). This run used `intrari.csv` and `relatii.csv`.
+- `since` shows 2008-12-08 (`arhiva`). Two Wayback captures (2008, 2009) predate the project: the first certificate is from 2018-02-06 and continuous captures start on 2018-03-02. The About page gives 2018 as the launch year. `EARLIER_DOMAIN_USE` would give 2020-03-14 (the repo), which is also wrong. Not changed: it needs a decision on `since`.
+- `stale` shows 2022 for a live site. The only dated activity is the last push of the old repository (2022-12-05, `updated_src` `cod`). The site lists a campaign dated 2026-07-15 and the last Wayback capture is 2026-10-13. Not changed.
+- The terms describe a virtual assistant „bazat pe ChatGPT”, and the menu has the buttons ChatAI and Alerte. The rendered pages, on a desktop and a phone viewport, do not show them. The row has no `tehnologie:ai` and no `functie:alerte`.
+
+**Decided**
+- The entry started as `propus`: acceptance is the owner's decision. The owner accepted it in the same session, so it is now `acceptat`. The note in `nota_clasificare` says so.
+- `civictech_original` is `0`: the operator is a government department. The same value is on `oradea-city-report` and `ong-camera-deputatilor`.
+- `linkuri` holds the old repository and the four social profiles from the footer. The profiles belong to the DSU, not to the site alone. The repository belongs to the previous version (2018–2023), built by CivicNet.
+- No row for CivicNet: `civicnet.ro` answers with a `surge.sh` certificate, so the audit could not rely on it.
+- `institutii_vizate` is empty. The vocabulary has no type for DSU, IGSU or the ministry.
+
 ## 2026-10-26 — New entry lista-firme.info
 
 **Done**

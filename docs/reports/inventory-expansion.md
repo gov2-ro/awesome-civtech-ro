@@ -6,7 +6,7 @@ Inventory assertions are proposals. Raw field totals count source paths, not ind
 ## 1. Outcome
 
 - Milestones A (safe incremental collection), B (INS), C (12 entries), D (meanings and shared groups) and E (preview, coverage, report) are complete.
-- Structured field evidence now covers 28 of 128 projects and resources (baseline 14). The retained sources are 89 URLs (88 parsed, 1 failed) with 3,593 field records.
+- Structured field evidence now covers 28 of 129 projects and resources (baseline 14). The retained sources are 89 URLs (88 parsed, 1 failed) with 3,593 field records.
 - Each field record is a path in a source. The proposals are 30 shared groups (baseline 7), 16 provider review items and the dictionary evidence that `inventory.py --check` verifies.
 - The public build is unchanged: the default payload equals the v0.13.0 payload apart from its generation time; classifications and accepted providers are identical.
 - Collection used 94 direct requests in total (4 browser navigations); the 150-request limit of lot C was not reached.
@@ -36,17 +36,17 @@ The 127 projects and resources of the data finder:
 
 | Measure | Baseline | Now |
 | --- | ---: | ---: |
-| Catalogue entries | 140 | 141 |
-| Projects / resources / organisations | 106 / 21 / 13 | 107 / 21 / 13 |
-| Projects and resources in the data finder | 127 | 128 |
+| Catalogue entries | 140 | 142 |
+| Projects / resources / organisations | 106 / 21 / 13 | 108 / 21 / 13 |
+| Projects and resources in the data finder | 127 | 129 |
 | Entries with structured field evidence | 14 | 28 |
-| Projects/resources without extracted structured fields | 113 | 100 |
+| Projects/resources without extracted structured fields | 113 | 101 |
 | Retained structured-source URLs | 25 | 89 |
 | Parsed sources / HTTP failures | 24 / 1 | 88 / 1 |
 | Source-scoped field records (paths, not variables) | 2,302 | 3,593 |
 | Schema declarations / sampled JSON paths / CSV headers / INS dimensions | 1,312 / 904 / 82 / 4 | 1,367 / 1,131 / 138 / 4 |
-| HTML control candidates / entries with candidates | 308 / 78 | 309 / 79 |
-| Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 80 / 61 |
+| HTML control candidates / entries with candidates | 308 / 78 | 310 / 80 |
+| Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 81 / 61 |
 | Accepted provider relations / entries with accepted providers | 26 / 11 | 67 / 24 |
 | Pending provider proposals (review items D132 and later) | 15 | 0 |
 | Proposed business-variable groups | 7 | 30 |
@@ -81,7 +81,7 @@ All 140 catalogue entries:
 | blocat | 1 |
 | cu-surse-structurate | 28 |
 | in-afara-ariei | 13 |
-| neinvestigat-in-lot | 99 |
+| neinvestigat-in-lot | 100 |
 
 `in-afara-ariei` entries are organisations: the finder lists projects and resources. An organisation need not expose a dataset. Missing extraction never proves missing data.
 

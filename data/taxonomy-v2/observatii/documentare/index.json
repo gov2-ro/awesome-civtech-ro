@@ -4156,6 +4156,66 @@
       ]
     },
     {
+      "slug": "fiipregatit",
+      "url": "https://fiipregatit.ro/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://fiipregatit.ro/",
+          "final_url": "https://fiipregatit.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-10-25T23:38:48.280876+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Fii Pregatit",
+          "sections": [],
+          "sha256": "3e06353cd03d33c9d1dc641d5a28688fec59df47820cd8c54531e03f96a191d6",
+          "snapshot": "pagini/473fdbe436bc85907b3e0447.json",
+          "text_chars": 1886
+        },
+        {
+          "url": "https://fiipregatit.ro/llms.txt",
+          "final_url": "https://fiipregatit.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-10-25T23:38:48.374830+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://fiipregatit.ro/despre",
+          "final_url": "https://fiipregatit.ro/despre",
+          "http_status": 200,
+          "fetched_at": "2026-10-25T23:38:48.428993+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "despre",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Despre | Fii Pregatit",
+          "sections": [],
+          "sha256": "38520c4ae0aa963e68bc934b53b3c649dad6eb78fd503456c7598da485b08dad",
+          "snapshot": "pagini/7f0d33119cada03f76edddd1.json",
+          "text_chars": 5630
+        },
+        {
+          "url": "https://fiipregatit.ro/metodologie/",
+          "final_url": "https://fiipregatit.ro/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-10-25T23:38:48.523479+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
       "slug": "funky-citizens",
       "url": "https://funky.ong/",
       "state": "documentatie-gasita",
