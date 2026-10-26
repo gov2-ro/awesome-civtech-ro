@@ -173,6 +173,31 @@ def publish_overview(items, site, projections, concepts, families):
     (page / 'index.html').write_text(doc)
 
 
+GOOGLE_EXPORT = re.compile(r'^https://docs\.google\.com/spreadsheets/d/([\w-]+)/export\?(?:[^#]*&)?gid=(\d+)(?:&|$)')
+
+
+def sheet_titles(profile, sources):
+    """Titles for the Google Sheet tabs that a page of the same project lists as data sets (format `html-lista-seturi`).
+    The URL of a tab ends in `export`, so it tells a visitor nothing. The page's own title of the data set does. A data set with several links
+    adds the label that the page writes for the link (`HG 1088/2021 (Citu)`, `Deconturi`). The result maps a source ID to its title."""
+    listed = {}
+    for ident in profile.get('surse_structurate', []):
+        for dataset in sources.get(ident, {}).get('seturi', []) if sources.get(ident, {}).get('format') == 'html-lista-seturi' else []:
+            for link in dataset.get('legaturi', []):
+                if link.get('tip') == 'foaie-google' and link.get('id_document') and link.get('gid') is not None:
+                    title = dataset['titlu']['valoare']
+                    if len(dataset['legaturi']) > 1:
+                        label = link['text_dupa'] or link['eticheta']
+                        title += ' · ' + label['valoare']
+                    listed[(link['id_document'], link['gid'])] = 'Foaie Google · ' + title
+    titles = {}
+    for ident in profile.get('surse_structurate', []):
+        match = GOOGLE_EXPORT.match(sources.get(ident, {}).get('url', ''))
+        if match and (match.group(1), match.group(2)) in listed:
+            titles[ident] = listed[(match.group(1), match.group(2))]
+    return titles
+
+
 def dataset_summary(facts):
     """The few dataset facts that the field browser shows. Values keep the label of their basis: declared, API-computed or counted."""
     def value(key):
@@ -298,6 +323,7 @@ def publish_preview(items, root, site):
         profile = profiles.get(slug, {})
         links = document_links(docs.get(slug, {}))
         fields, source_list = [], []
+        sheets = sheet_titles(profile, sources)
         for ident in profile.get('surse_structurate', []):
             source = sources.get(ident, {})
             url = http_url(source.get('url', ''))
@@ -305,7 +331,7 @@ def publish_preview(items, root, site):
                 continue
             fmt = source.get('format', '')
             filename = unquote(Path(urlsplit(url).path).name)
-            title = FORMATS.get(fmt, 'Sursă de date') + (' · ' + filename if filename else '')
+            title = sheets.get(ident) or FORMATS.get(fmt, 'Sursă de date') + (' · ' + filename if filename else '')
             listed = {'id': ident, 'url': url, 'title': title, 'format': fmt, 'checked': str(source.get('fetched_at', ''))[:10]}
             if source.get('set_date'):
                 listed['dataset'] = dataset_summary(source['set_date'])

@@ -1221,6 +1221,8 @@ A source whose data sets all declare the same licence carries `licence` (`name`,
 - Declared extras enter the payload when present: `enum` (declared alternatives), `formula`, `group`, `period`, `value`, `line`, `expression`, `required`.
   A source adds `dataset` (code, name, update date, period, geographic levels, declared units, dimensions; the interface says that INS metadata comes from a mirror),
   `partial` (read as a bounded sample), `viaBrowser`, `savedByOwner` (a copy that the owner saved by hand) and `refreshFailed`.
+- The URL of a Google Sheet tab ends in `export`, so the title of such a source comes from the page of the same project that lists it (format `html-lista-seturi`):
+  `Foaie Google · <title of the data set>`, and, when the data set links several tabs, `· <label of the link>` (the text after the link, or its text). A tab with no such page keeps the title of its format.
 - HTML control candidates, raw snapshots, hashes, browser request dumps and network diagnostics do not enter the preview payload.
 - Documentation-only entries link their collected first-party pages. Entries with no inventory evidence get no marker.
 
