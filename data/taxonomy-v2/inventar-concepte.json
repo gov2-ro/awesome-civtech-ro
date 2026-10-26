@@ -2720,6 +2720,284 @@
       "stare": "revizuit",
       "decizie_editor": "Revizuit în bloc la cererea proprietarului (2026-10-26).",
       "data_revizie": "2026-10-26"
+    },
+    {
+      "id": "uat",
+      "label": "UAT (unitate administrativ-teritorială)",
+      "categorie": "dimensiune",
+      "familie": "geografie",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Numele unei unități administrativ-teritoriale: comună, oraș, municipiu sau consiliu județean. Un nume singur nu identifică UAT-ul în mod sigur. Sursele pot adăuga un prefix de tip (`Com.`, `Mun.`) sau pot scrie numele cu majuscule. Codul SIRUTA este în grupul `siruta`.",
+      "selectors": [
+        {
+          "projects": [
+            "romania-transparenta"
+          ],
+          "names": [
+            "uat"
+          ],
+          "role": [
+            "camp-raspuns"
+          ],
+          "source": "https://api.romaniatransparenta.eu/v1/openapi.json",
+          "context": "primăria (UAT-ul) din răspunsurile API-ului; descrierea OpenAPI a câmpului este „primăria (UAT-ul)” sau „localitatea”"
+        },
+        {
+          "projects": [
+            "data-expertforum"
+          ],
+          "names": [
+            "UAT"
+          ],
+          "source": [
+            "https://docs.google.com/spreadsheets/d/1XBImOARfWbaUX6OGN8wf_crmSu__-0hs/export?format=csv&gid=1251769352",
+            "https://docs.google.com/spreadsheets/d/1LFqrx69uwDqMlibUB_bDQHe3WsuxmeLR-hmZc-I59B8/export?format=csv&gid=1605213175",
+            "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/export?format=csv&gid=768211337"
+          ],
+          "context": "numele UAT-ului: în foaia de migrație cu prefix de tip (`Mun.Alba Iulia`), în foile de alocări și solicitări fără prefix"
+        },
+        {
+          "projects": [
+            "data-expertforum"
+          ],
+          "names": [
+            "Localitate"
+          ],
+          "source": "https://docs.google.com/spreadsheets/d/1fX1Nv2HonSSfFfTqBNpWfmTeGREMQAQ-/export?format=csv&gid=1641909541",
+          "context": "antetul spune „Localitate”, dar valorile sunt nume de UAT cu prefix de tip (`Com.Albac`)",
+          "fapte": [
+            {
+              "cheie": "forma_valorii",
+              "valoare": "nume de UAT cu prefix de tip (`Com.`)",
+              "baza": "observatie-esantion",
+              "dovada": {
+                "sursa": "https://docs.google.com/spreadsheets/d/1fX1Nv2HonSSfFfTqBNpWfmTeGREMQAQ-/export?format=csv&gid=1641909541",
+                "text": "sursa",
+                "fragment": "Alba,Com.Albac,Alba,15",
+                "sha256": "525c6f9ba4f32e5e59c6b9f39298bba0064f95935397d2698ba1726bf3234f49",
+                "baza": "observatie-esantion"
+              }
+            }
+          ]
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://api.romaniatransparenta.eu/v1/openapi.json",
+          "text": "sursa",
+          "fragment": "primăria (UAT-ul)",
+          "sha256": "22f254d62529b955547d583428f2d827c5c25bbf9d3e74b0be1d45b3e6410b1e",
+          "baza": "declaratie-directa"
+        },
+        {
+          "sursa": "https://docs.google.com/spreadsheets/d/1LFqrx69uwDqMlibUB_bDQHe3WsuxmeLR-hmZc-I59B8/export?format=csv&gid=1605213175",
+          "text": "sursa",
+          "fragment": "Nr crt,JudeT,SIRUTA,CIF,TIP UAT,UAT,Alocare,Per capita,Partid primar",
+          "sha256": "3fdb2b5e5f14fd4846ad39fd4cc8d378f3ea8f33dd144e4b2b96dccbfbd264a1",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "Foaia „Migrație alegători locale 2016” are coloana `Localitate`, dar valorile sunt UAT-uri cu prefix de tip (`Com.Albac`). Coloana nu este membră a grupului `localitate`; ea este candidată acolo (vezi raportul).",
+        "API-ul romania-transparenta descrie unele câmpuri `uat` doar prin „localitatea”; altele prin „primăria (UAT-ul)”. Grupul le ia pe amândouă, fiindcă numele și rolul sunt aceleași.",
+        "Un județ nu este un UAT în aceste foi: coloanele de județ sunt în grupul `judet`. `Cj Alba` (consiliul județean) apare în coloana `beneficiar` a foii HG 1088/2021, nu într-o coloană `UAT`."
+      ],
+      "stare": "propus"
+    },
+    {
+      "id": "partid-politic",
+      "label": "Partid politic",
+      "categorie": "dimensiune",
+      "familie": "alegeri",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Denumirea sau sigla unui partid politic atașat unei persoane, unei autorități sau unui beneficiar de fonduri. Rolul diferă între surse: partidul primarului, al beneficiarului sau „cum e în act”. Citiți rolul în sursă înainte de a compara. Grupul parlamentar este în grupul `grup-politic`.",
+      "selectors": [
+        {
+          "projects": [
+            "romania-transparenta"
+          ],
+          "names": [
+            "partid"
+          ],
+          "context": "denumirea partidului din act (API, descrierea OpenAPI „denumirea partidului, cum e în act”) și partidul din lista primarilor (fișierele `primarii`); `partid_la_vot` nu este membru"
+        },
+        {
+          "projects": [
+            "data-expertforum"
+          ],
+          "names": [
+            "partid"
+          ],
+          "source": "https://docs.google.com/spreadsheets/d/1C6o0sGgdq__D62XBnz5qfqrQAS6TIZf1/export?format=csv&gid=55873501",
+          "context": "partidul din foaia HG 1088/2021 (valori ca `PSD`, `PNL`, `UDMR`, `independent`)",
+          "fapte": [
+            {
+              "cheie": "rol",
+              "valoare": "partidul beneficiarului",
+              "baza": "deductie-din-dovezi",
+              "dovada": {
+                "sursa": "https://data.expertforum.ro/",
+                "text": "sursa",
+                "fragment": "Cuprinde și partidul beneficiarului",
+                "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        },
+        {
+          "projects": [
+            "data-expertforum"
+          ],
+          "names": [
+            "Partid primar"
+          ],
+          "source": "https://docs.google.com/spreadsheets/d/1LFqrx69uwDqMlibUB_bDQHe3WsuxmeLR-hmZc-I59B8/export?format=csv&gid=1605213175",
+          "context": "partidul primarului, după antetul coloanei „Partid primar”",
+          "fapte": [
+            {
+              "cheie": "rol",
+              "valoare": "partidul primarului",
+              "baza": "deductie-din-dovezi",
+              "dovada": {
+                "sursa": "https://docs.google.com/spreadsheets/d/1LFqrx69uwDqMlibUB_bDQHe3WsuxmeLR-hmZc-I59B8/export?format=csv&gid=1605213175",
+                "text": "sursa",
+                "fragment": "Nr crt,JudeT,SIRUTA,CIF,TIP UAT,UAT,Alocare,Per capita,Partid primar",
+                "sha256": "3fdb2b5e5f14fd4846ad39fd4cc8d378f3ea8f33dd144e4b2b96dccbfbd264a1",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        },
+        {
+          "projects": [
+            "data-expertforum"
+          ],
+          "names": [
+            "Partid"
+          ],
+          "source": "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/export?format=csv&gid=768211337",
+          "context": "partidul din foaia solicitărilor Anghel Saligny; pagina spune doar „cu calcul per capita si partid”, fără să spună al cui este partidul"
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://api.romaniatransparenta.eu/v1/openapi.json",
+          "text": "sursa",
+          "fragment": "denumirea partidului, cum e în act",
+          "sha256": "22f254d62529b955547d583428f2d827c5c25bbf9d3e74b0be1d45b3e6410b1e",
+          "baza": "declaratie-directa"
+        },
+        {
+          "sursa": "https://data.expertforum.ro/",
+          "text": "sursa",
+          "fragment": "Cuprinde și partidul beneficiarului",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "Rolul diferă: partidul primarului (`Partid primar`), partidul beneficiarului (`partid` din HG 1088/2021), partidul „din act” (romania-transparenta). Un partid din altă sursă poate fi al unui candidat sau al unui parlamentar.",
+        "Pagina nu spune al cui este partidul din foaia Saligny. Selectorul respectiv stă în grup pe baza antetului, nu a unei declarații.",
+        "Foaia HG 1088/2021 scrie `independent` și `Independent` în aceeași coloană. Grupul nu normalizează valorile; nu s-a verificat o listă comună de denumiri.",
+        "Foaia candidaților din 2020 are `Competitor-partid` și `Denumirea formațiunii politice/Candidat independent`. Ele nu sunt membre: formațiunea cu care candidează o persoană este alt rol, iar foaia conține date despre persoane.",
+        "`partid_la_vot` (romania-transparenta: „partidul național la data votului”) este partidul unui parlamentar la un vot, nu partidul unei autorități; nu este membru."
+      ],
+      "stare": "propus"
+    },
+    {
+      "id": "beneficiar-fonduri-publice",
+      "label": "Beneficiar de fonduri publice",
+      "categorie": "dimensiune",
+      "familie": "achizitii",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Numele celui care primește o alocare, o plată sau un ajutor public: o autoritate locală, o firmă sau o persoană. Tipul beneficiarului și natura banilor diferă între surse. Grupul servește descoperirii; furnizorul sau autoritatea care plătește nu este în acest grup.",
+      "selectors": [
+        {
+          "projects": [
+            "romania-transparenta"
+          ],
+          "names": [
+            "beneficiar"
+          ],
+          "role": [
+            "camp-raspuns"
+          ],
+          "source": "https://api.romaniatransparenta.eu/v1/openapi.json",
+          "context": "beneficiarul din răspunsurile API-ului (descrierea OpenAPI: „denumirea beneficiarului, din RegAS”)"
+        },
+        {
+          "projects": [
+            "data-expertforum"
+          ],
+          "names": [
+            "beneficiar"
+          ],
+          "source": "https://docs.google.com/spreadsheets/d/1C6o0sGgdq__D62XBnz5qfqrQAS6TIZf1/export?format=csv&gid=55873501",
+          "context": "beneficiarul alocării din Fondul de rezervă: UAT sau consiliu județean (după descrierea paginii „către unități administrativ teritoriale”)",
+          "fapte": [
+            {
+              "cheie": "tip_beneficiar",
+              "valoare": "UAT sau consiliu județean",
+              "baza": "deductie-din-dovezi",
+              "dovada": {
+                "sursa": "https://data.expertforum.ro/",
+                "text": "sursa",
+                "fragment": "Alocări prin HG pentru Fondul de Rezervă, către unități administrativ teritoriale pentru anul 2021",
+                "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        },
+        {
+          "projects": [
+            "data-expertforum"
+          ],
+          "names": [
+            "Beneficiar"
+          ],
+          "source": "https://docs.google.com/spreadsheets/d/1-facW31PDjxlZhYP6niKcJjHZEe6QueP/export?format=csv&gid=1805797305",
+          "context": "beneficiarul plății din programul de promovare COVID pentru mass-media (foaia Deconturi)",
+          "fapte": [
+            {
+              "cheie": "tip_beneficiar",
+              "valoare": "firmă (primele rânduri sunt denumiri de societăți cu SRL)",
+              "baza": "observatie-esantion",
+              "dovada": {
+                "sursa": "https://docs.google.com/spreadsheets/d/1-facW31PDjxlZhYP6niKcJjHZEe6QueP/export?format=csv&gid=1805797305",
+                "text": "sursa",
+                "fragment": "ACUM TV SRL",
+                "sha256": "dbf0c9a0f107d6d98d9d2344b53cc8adad0fb24cea133643e2ca2342569e8c9f",
+                "baza": "observatie-esantion"
+              }
+            }
+          ]
+        }
+      ],
+      "dovezi": [
+        {
+          "sursa": "https://api.romaniatransparenta.eu/v1/openapi.json",
+          "text": "sursa",
+          "fragment": "denumirea beneficiarului, din RegAS",
+          "sha256": "22f254d62529b955547d583428f2d827c5c25bbf9d3e74b0be1d45b3e6410b1e",
+          "baza": "declaratie-directa"
+        },
+        {
+          "sursa": "https://data.expertforum.ro/",
+          "text": "sursa",
+          "fragment": "Alocările și plățile pentru mass media realizate",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "Natura banilor diferă: alocare din Fondul de rezervă prin HG (UAT), plată din programul de promovare COVID (firme de presă), ajutor din registrul RegAS (romania-transparenta). Un total pe beneficiar nu se adună între aceste surse.",
+        "Câmpul `furnizor` nu este în grup. În romania-transparenta el înseamnă uneori „instituția care a acordat ajutorul”, alteori furnizorul dintr-o achiziție; în foaia Plăți, `Furnizor` este firma plătită.",
+        "Foaia HG 1264/2021 nu are o coloană de beneficiar; UAT-ul ei (`UAT`) este în grupul `uat`.",
+        "Familia `achizitii` (Contracte și achiziții ale autorităților) se potrivește doar în parte: grupul descrie alocări, plăți și ajutoare, nu achiziții. Nicio familie existentă nu descrie banii publici dați unui beneficiar; o familie nouă (de exemplu „Bani publici”) este o decizie a proprietarului."
+      ],
+      "stare": "propus"
     }
   ]
 }

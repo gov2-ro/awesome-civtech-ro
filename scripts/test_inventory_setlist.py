@@ -4,14 +4,17 @@ The fixture `fixtures/text/expertforum-date.html` is the page https://data.exper
 2026-10-26, with the tag-manager script and the contact sentence (a person's e-mail address) removed. The markup of the rest is unchanged.
 Every network call is a fake. The reader never requests a link, and a test proves it.
 """
+import csv
 import hashlib
 import json
+import re
 import socket
 import unittest
 from datetime import datetime, timezone
 from pathlib import Path
 from unittest.mock import patch
 
+from common import forbidden
 from inventory import analyse_source, check_report, import_saved, parse_source
 from inventory_state import source_id
 from inventory_setlist import kind_of, list_datasets, read, text_of, unwrap
@@ -248,6 +251,67 @@ class SetListRun(unittest.TestCase):
         self.assertEqual(sources[self.first]['campuri'], [])
         self.assertEqual([f['nume'] for f in sources[self.second]['campuri']], ['SIRUTA', 'UAT', 'judet', 'partid'])
         self.assertEqual(net.calls.count(self.first), 1, 'no retry')
+
+
+class TrackedExpertForum(unittest.TestCase):
+    """The tracked inventory of data-expertforum (lot C2, part 2). It reads the tracked files only, never the retained bodies."""
+    ROOT = Path(__file__).resolve().parents[1] / 'data/taxonomy-v2/observatii/inventare'
+    PAGE = 'https://data.expertforum.ro/'
+    TAB = re.compile(r'^https://docs\.google\.com/spreadsheets/d/([\w-]+)/export\?format=csv&gid=(\d+)$')
+
+    @classmethod
+    def setUpClass(cls):
+        cls.sources = {s['url']: s for s in json.loads((cls.ROOT / 'seturi-date.json').read_text())['surse']}
+        cls.registry = [r for r in json.loads((cls.ROOT / 'descoperiri.json').read_text())['descoperiri'] if r['proiect'] == 'data-expertforum']
+        cls.log = list(csv.DictReader((cls.ROOT / 'jurnal-cereri.csv').open(newline='')))
+        cls.datasets = cls.sources[cls.PAGE]['seturi']
+        cls.links = [link for d in cls.datasets for link in d['legaturi']]
+
+    def test_the_page_is_the_owners_copy_and_never_a_fetched_page(self):
+        page = self.sources[self.PAGE]
+        self.assertEqual((page['origine'], page['http_status'], page['format'], len(self.datasets)), ('copie-salvata-de-proprietar', None, 'html-lista-seturi', 15))
+        self.assertTrue(all(r['stare'] == 'activ' for r in self.registry))
+
+    def test_each_tab_source_is_the_export_of_a_sheet_link_of_the_page_and_each_sheet_link_has_a_source(self):
+        tabs = {r['url'] for r in self.registry if r['url'] != self.PAGE}
+        wanted = {f"https://docs.google.com/spreadsheets/d/{l['id_document']}/export?format=csv&gid={l['gid']}" for l in self.links if l['tip'] == 'foaie-google'}
+        self.assertEqual(tabs, wanted)
+        self.assertEqual(len(tabs), 14)
+        self.assertTrue(all(self.TAB.match(url) for url in tabs))
+
+    def test_a_drive_file_and_a_drive_folder_are_listed_by_the_page_and_never_a_source_or_a_request(self):
+        self.assertEqual(sorted({l['tip'] for l in self.links}), ['dosar-drive', 'fisier-drive', 'foaie-google'])
+        for record in self.registry:
+            self.assertNotIn('drive.google.com', record['url'])
+        self.assertFalse([r for r in self.log if 'drive.google.com' in r['url'] or 'www.google.com' in r['url']])
+
+    def test_every_tab_was_requested_once_at_docs_google_com_and_no_forbidden_host_was_asked_for_it(self):
+        rows = [r for r in self.log if self.TAB.match(r['url'])]
+        self.assertEqual(sorted(r['url'] for r in rows), sorted(r['url'] for r in self.registry if r['url'] != self.PAGE), 'one request for each tab, none twice')
+        self.assertLessEqual(len(rows), 30)
+        self.assertTrue(all(r['metoda'] == 'GET' and r['cache'] == 'nu' and r['lot'] == 'C2' for r in rows))
+        self.assertTrue(all(forbidden(r['url']) is None for r in rows))
+
+    def test_the_inventory_keeps_header_names_and_never_a_value_of_a_row(self):
+        allowed = {'nume', 'cale', 'tip_declarat', 'stare_tip', 'rol', 'coloana_csv', 'pointer'}
+        parsed = [s for s in (self.sources[r['url']] for r in self.registry if r['url'] != self.PAGE) if s.get('stare') == 'analizat']
+        self.assertEqual(len(parsed), 10)
+        for source in parsed:
+            self.assertEqual(source['format'], 'csv')
+            for field in source['campuri']:
+                self.assertLessEqual(set(field), allowed, field)
+                self.assertIsNone(field['tip_declarat'])
+        titled = [s for s in parsed if s.get('antet', {}).get('randuri_deasupra')]
+        self.assertEqual(len(titled), 1, 'one tab has a title row above its header; it is the only row text kept')
+        self.assertEqual(titled[0]['antet']['randuri_deasupra'][0]['celule'][0]['celula'], 'A1')
+
+    def test_a_response_over_the_size_limit_is_recorded_and_not_parsed(self):
+        refused = [self.sources[r['url']] for r in self.registry if self.sources[r['url']].get('state') == 'raspuns-prea-mare']
+        self.assertGreaterEqual(len(refused), 1)
+        for source in refused:
+            self.assertEqual((source['campuri'], source.get('sha256')), ([], None))
+        rows = {r['url']: r for r in self.log if r['stare'] == 'raspuns-prea-mare'}
+        self.assertTrue(all(source['url'] in rows and rows[source['url']]['octeti'] == '2000001' for source in refused))
 
 
 if __name__ == '__main__':

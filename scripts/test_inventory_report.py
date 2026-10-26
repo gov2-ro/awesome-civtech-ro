@@ -76,10 +76,20 @@ class Coverage(unittest.TestCase):
         for slug in ('harta-banilor-publici', 'parlament-transparent', 'bani-pierduti'):
             self.assertNotIn('C2', self.by[slug]['investigat_in_lot'], 'inactive entries are not in the batch: ' + slug)
         self.assertEqual(self.by['romania-interactiva']['stare_investigare'], 'cu-surse-structurate')
-        for slug in ('data-expertforum', 'bani-partide'):
-            row = self.by[slug]
-            self.assertEqual((row['stare_investigare'], row['surse_structurate'], row['campuri_din_surse'], row['concepte_propuse']), ('blocat', '0', '0', ''), slug)
-            self.assertIn('403', row['blocaj'])
+        row = self.by['bani-partide']
+        self.assertEqual((row['stare_investigare'], row['surse_structurate'], row['campuri_din_surse'], row['concepte_propuse']), ('blocat', '0', '0', ''))
+        self.assertIn('403', row['blocaj'])
+
+    def test_data_expertforum_is_read_from_the_page_that_the_owner_saved_and_says_what_it_could_not_read(self):
+        row = self.by['data-expertforum']
+        self.assertEqual(row['stare_investigare'], 'cu-surse-structurate')
+        self.assertEqual(sorted(row['investigat_in_lot'].split('|')), ['C2', 'S'], 'lot C2, and S for an entry with a page that the owner saved')
+        self.assertGreater(int(row['campuri_din_surse']), 0)
+        self.assertIn('2.000.000', row['blocaj'], 'the tabs that were too large are named as the blocker')
+        profile = self.data['profiles']['data-expertforum']
+        failed = [self.data['sources'][r] for r in profile['surse_structurate'] if self.data['sources'][r].get('stare') != 'analizat']
+        self.assertTrue(failed and all(s['state'] == 'raspuns-prea-mare' for s in failed), 'a response over the size limit is recorded, not parsed')
+        self.assertTrue(all(not s['campuri'] for s in failed))
 
     def test_a_blocker_in_the_notes_decides_the_state_of_an_entry_without_sources_and_nothing_else_does(self):
         slug = 'bani-partide'
@@ -105,6 +115,22 @@ class Coverage(unittest.TestCase):
             if text is not None:  # the retained bodies are not in git: a fresh checkout cannot compare
                 self.assertTrue(hashlib.sha256(text.encode()).hexdigest().startswith(cited.group(2)), item['id'])
                 self.assertIn(item['valoare_originala'], text, item['id'])
+
+    def test_the_provider_item_of_batch_c2_part_2_cites_the_saved_page_and_the_text_it_names(self):
+        # The review state belongs to the owner, so the test does not pin it.
+        items = [r for r in self.data['review'] if r['camp'] == 'surse_date' and r['slug'] == 'data-expertforum']
+        self.assertEqual([r['id'] for r in items], ['D186'])
+        item = items[0]
+        self.assertTrue(item['propunere'].startswith('Furnizor propus: '))
+        if item['stare'] == 'deschis':
+            self.assertIn(item['prioritate'], ('medie', 'mica'), 'a high-priority open item would block the publication gate')
+        cited = re.search(r'Dovadă: (\S+) \(text păstrat, sha256 ([0-9a-f]{16})\)', item['motiv'])
+        self.assertEqual(cited.group(1), 'https://data.expertforum.ro/')
+        locator = EvidenceLocator(ROOT / 'data/taxonomy-v2/observatii/inventare', ROOT / 'data/taxonomy-v2/observatii', list(self.data['sources'].values()))
+        text, _ = locator.text(cited.group(1), 'sursa')
+        if text is not None:  # the retained bodies are not in git: a fresh checkout cannot compare
+            self.assertTrue(hashlib.sha256(text.encode()).hexdigest().startswith(cited.group(2)))
+            self.assertIn(item['valoare_originala'], text)
 
     def test_baseline_figures_are_the_ones_of_the_brief(self):
         self.assertEqual((report.BASELINE['with_fields'], report.BASELINE['field_records'], report.BASELINE['groups']), (14, 2302, 7))

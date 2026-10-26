@@ -1431,6 +1431,1344 @@
       ]
     },
     {
+      "proiect": "data-expertforum",
+      "url": "https://data.expertforum.ro/",
+      "sursa_id": "dfb618198f8feeea1af4",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": null,
+      "link_original": "https://data.expertforum.ro/",
+      "dovada": {
+        "url": "https://data.expertforum.ro/",
+        "sha256": "2eff7a37ccd162792366718fd8f536b93afb3397fc7d4ca4bbbc77468d60d2ef",
+        "pointer": "/text",
+        "interval": [
+          40,
+          133
+        ],
+        "fragment": "Secțiunea cu baze de date conține seturi compilate de EFOR în proiecte legate de diverse teme",
+        "snapshot": "documentare/pagini/c8e72f5238289b1d9c70338d.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-26T18:38:20.357309+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-26T18:38:20.357309+00:00"
+        }
+      ],
+      "nota": "The open-data section of Expert Forum (EFOR), the entry's own address. The page is a copy that the owner saved from their browser on 2026-10-26 (inventory.py --import-saved): expertforum.ro and data.expertforum.ro are in colectare-interzisa.csv, so no script requests them. It lists 15 data sets in five categories (Electoral 4, Finanțare politică 1, Infrastructură 6, Media 1, Sănătate 3). Each data set links to a Google Sheet tab, a Drive file or a Drive folder; the links are wrapped as https://www.google.com/url?q=TARGET and the reader takes the target without a request. The page declares no column, no period, no licence and no named provider; it asks the user to cite the source. It lists no field, so the page adds no field record.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "2eff7a37ccd162792366718fd8f536b93afb3397fc7d4ca4bbbc77468d60d2ef",
+          "pointer": "/text",
+          "interval": [
+            234,
+            388
+          ],
+          "fragment": "Datele sunt prelucrate de EFOR, pornind de la informații existente în spațiul public sau obținute pe baza legii accesului la informații de interes public.",
+          "snapshot": "documentare/pagini/c8e72f5238289b1d9c70338d.json",
+          "rol": "declaratie-origine-date"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "2eff7a37ccd162792366718fd8f536b93afb3397fc7d4ca4bbbc77468d60d2ef",
+          "pointer": "/text",
+          "interval": [
+            497,
+            563
+          ],
+          "fragment": "Dacă folosiți aceste date, vă rugăm să citați sursa corespunzător.",
+          "snapshot": "documentare/pagini/c8e72f5238289b1d9c70338d.json",
+          "rol": "cerere-citare"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "2eff7a37ccd162792366718fd8f536b93afb3397fc7d4ca4bbbc77468d60d2ef",
+          "pointer": "/text",
+          "interval": [
+            389,
+            464
+          ],
+          "fragment": "Puteți deschide fișierele cu GoogleApps pentru a descărca în formatul dorit",
+          "snapshot": "documentare/pagini/c8e72f5238289b1d9c70338d.json",
+          "rol": "instructiune-descarcare"
+        }
+      ],
+      "citire": {
+        "tip": "html-lista-seturi"
+      }
+    },
+    {
+      "proiect": "data-expertforum",
+      "url": "https://docs.google.com/spreadsheets/d/1-_vKtEX8860ansiyo2Aq7eqyuo7ShYgA/export?format=csv&gid=1630617809",
+      "sursa_id": "a21e5dcfcdfdd5943859",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://data.expertforum.ro/",
+      "link_original": "https://docs.google.com/spreadsheets/d/1-_vKtEX8860ansiyo2Aq7eqyuo7ShYgA/export?format=csv&gid=1630617809",
+      "dovada": {
+        "url": "https://data.expertforum.ro/",
+        "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+        "pointer": "/body",
+        "interval": [
+          9289,
+          9385
+        ],
+        "fragment": "https://docs.google.com/spreadsheets/d/1-_vKtEX8860ansiyo2Aq7eqyuo7ShYgA/edit%23gid%3D1630617809",
+        "snapshot": "inventare/surse/dfb618198f8feeea1af4.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-26T18:44:01.395863+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-26T18:44:01.395863+00:00"
+        }
+      ],
+      "nota": "Tab (gid 1630617809) of a Google Sheet that the saved page data.expertforum.ro links as \"Stadiul implementării proiectelor din PNDL 1 și 2, aprilie 2021\" (category Infrastructură). The address is the CSV export of that tab, built from the link on the page: the link is wrapped as google.com/url?q=TARGET, the target gives the document and the tab, and no request went to www.google.com. The response is over 2,000,000 bytes: the fetcher refused it and the tab is not parsed, so its header is unknown.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            5696,
+            5744
+          ],
+          "fragment": "<h3 class=\"text-danger mt-5\">Infrastructură</h3>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "categorie-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            8809,
+            8881
+          ],
+          "fragment": "<td>Stadiul implementării proiectelor din PNDL 1 și 2, aprilie 2021</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "nume-set-declarat-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            8885,
+            8973
+          ],
+          "fragment": "<td>Stadiul decontării pe proiectele din PNDL 1 și 2, la nivelul lunii aprilie 2021</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "descriere-set-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            8981,
+            9201
+          ],
+          "fragment": "<a href=\"https://www.google.com/url?q=https://expertforum.ro/raport-cum-reparam-pndl/&amp;sa=D&amp;source=editors&amp;ust=1643638624253962&amp;usg=AOvVaw0KTj3tVQNTGX-npdBAeCTC\">expertforum.ro/raport-cum-reparam-pndl/</a>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "raport-relevant-declarat-de-pagina"
+        }
+      ]
+    },
+    {
+      "proiect": "data-expertforum",
+      "url": "https://docs.google.com/spreadsheets/d/1-avhF8M66A1oyVwUnXdAoNP1sDxTlS4V/export?format=csv&gid=2098148876",
+      "sursa_id": "99c9848d3926da04dc78",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://data.expertforum.ro/",
+      "link_original": "https://docs.google.com/spreadsheets/d/1-avhF8M66A1oyVwUnXdAoNP1sDxTlS4V/export?format=csv&gid=2098148876",
+      "dovada": {
+        "url": "https://data.expertforum.ro/",
+        "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+        "pointer": "/body",
+        "interval": [
+          6880,
+          6976
+        ],
+        "fragment": "https://docs.google.com/spreadsheets/d/1-avhF8M66A1oyVwUnXdAoNP1sDxTlS4V/edit%23gid%3D2098148876",
+        "snapshot": "inventare/surse/dfb618198f8feeea1af4.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-26T18:44:01.395863+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-26T18:44:01.395863+00:00"
+        }
+      ],
+      "nota": "Tab (gid 2098148876) of a Google Sheet that the saved page data.expertforum.ro links as \"Achiziții PNDL 2015-2021\" (category Infrastructură). The address is the CSV export of that tab, built from the link on the page: the link is wrapped as google.com/url?q=TARGET, the target gives the document and the tab, and no request went to www.google.com. The response is over 2,000,000 bytes: the fetcher refused it and the tab is not parsed, so its header is unknown.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            5696,
+            5744
+          ],
+          "fragment": "<h3 class=\"text-danger mt-5\">Infrastructură</h3>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "categorie-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            6401,
+            6434
+          ],
+          "fragment": "<td>Achiziții PNDL 2015-2021</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "nume-set-declarat-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            6438,
+            6564
+          ],
+          "fragment": "<td>Aproximativ 6000 de achiziții din 2016 de proiecte realizate din PNDL 1 și 2 &icirc;ntre 2015 și 2021. Calculele EFOR</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "descriere-set-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            6572,
+            6792
+          ],
+          "fragment": "<a href=\"https://www.google.com/url?q=https://expertforum.ro/raport-cum-reparam-pndl/&amp;sa=D&amp;source=editors&amp;ust=1643638624246851&amp;usg=AOvVaw39znRHXLz1YE9CmiT9dETY\">expertforum.ro/raport-cum-reparam-pndl/</a>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "raport-relevant-declarat-de-pagina"
+        }
+      ]
+    },
+    {
+      "proiect": "data-expertforum",
+      "url": "https://docs.google.com/spreadsheets/d/1-fGcjCn45XU-c5fwc7DDAx_-w8eei5Dt/export?format=csv&gid=1050709184",
+      "sursa_id": "9d63be18c456356e7120",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://data.expertforum.ro/",
+      "link_original": "https://docs.google.com/spreadsheets/d/1-fGcjCn45XU-c5fwc7DDAx_-w8eei5Dt/export?format=csv&gid=1050709184",
+      "dovada": {
+        "url": "https://data.expertforum.ro/",
+        "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+        "pointer": "/body",
+        "interval": [
+          11507,
+          11603
+        ],
+        "fragment": "https://docs.google.com/spreadsheets/d/1-fGcjCn45XU-c5fwc7DDAx_-w8eei5Dt/edit%23gid%3D1050709184",
+        "snapshot": "inventare/surse/dfb618198f8feeea1af4.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-26T18:44:01.395863+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-26T18:44:01.395863+00:00"
+        }
+      ],
+      "nota": "Tab (gid 1050709184) of a Google Sheet that the saved page data.expertforum.ro links as \"Alocări și plăți pentru mass media în 2020, pentru programul de promovare COVID\" (category Media). The address is the CSV export of that tab, built from the link on the page: the link is wrapped as google.com/url?q=TARGET, the target gives the document and the tab, and no request went to www.google.com. The first header cell is empty: the reader option coloane_fara_nume leaves it out and lists it. This tab is the second link of the pair, labelled Plăți.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            10554,
+            10593
+          ],
+          "fragment": "<h3 class=\"text-danger mt-5\">Media</h3>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "categorie-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            10886,
+            10980
+          ],
+          "fragment": "<td>Alocări și plăți pentru mass media &icirc;n 2020, pentru programul de promovare COVID</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "nume-set-declarat-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            10984,
+            11106
+          ],
+          "fragment": "<td>Alocările și plățile pentru mass media realizate &icirc;n 2020, pentru programul de promovare COVID (OUG 63/2020)</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "descriere-set-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            11114,
+            11216
+          ],
+          "fragment": "<a href=\"https://expertforum.ro/publicitate-pandemie/\">expertforum.ro/publicitate-pandemie/ &nbsp;</a>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "raport-relevant-declarat-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            11694,
+            11704
+          ],
+          "fragment": ">Plăți</a>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "eticheta-legaturii-in-pagina"
+        }
+      ],
+      "citire": {
+        "tip": "csv",
+        "coloane_fara_nume": "omise"
+      }
+    },
+    {
+      "proiect": "data-expertforum",
+      "url": "https://docs.google.com/spreadsheets/d/1-facW31PDjxlZhYP6niKcJjHZEe6QueP/export?format=csv&gid=1805797305",
+      "sursa_id": "22bc28db697416742442",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://data.expertforum.ro/",
+      "link_original": "https://docs.google.com/spreadsheets/d/1-facW31PDjxlZhYP6niKcJjHZEe6QueP/export?format=csv&gid=1805797305",
+      "dovada": {
+        "url": "https://data.expertforum.ro/",
+        "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+        "pointer": "/body",
+        "interval": [
+          11267,
+          11363
+        ],
+        "fragment": "https://docs.google.com/spreadsheets/d/1-facW31PDjxlZhYP6niKcJjHZEe6QueP/edit%23gid%3D1805797305",
+        "snapshot": "inventare/surse/dfb618198f8feeea1af4.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-26T18:44:01.395863+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-26T18:44:01.395863+00:00"
+        }
+      ],
+      "nota": "Tab (gid 1805797305) of a Google Sheet that the saved page data.expertforum.ro links as \"Alocări și plăți pentru mass media în 2020, pentru programul de promovare COVID\" (category Media). The address is the CSV export of that tab, built from the link on the page: the link is wrapped as google.com/url?q=TARGET, the target gives the document and the tab, and no request went to www.google.com. The first header cell and the last four are empty: the reader option coloane_fara_nume leaves them out and lists them. This tab is the first link of the pair, labelled Deconturi.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            10554,
+            10593
+          ],
+          "fragment": "<h3 class=\"text-danger mt-5\">Media</h3>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "categorie-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            10886,
+            10980
+          ],
+          "fragment": "<td>Alocări și plăți pentru mass media &icirc;n 2020, pentru programul de promovare COVID</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "nume-set-declarat-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            10984,
+            11106
+          ],
+          "fragment": "<td>Alocările și plățile pentru mass media realizate &icirc;n 2020, pentru programul de promovare COVID (OUG 63/2020)</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "descriere-set-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            11114,
+            11216
+          ],
+          "fragment": "<a href=\"https://expertforum.ro/publicitate-pandemie/\">expertforum.ro/publicitate-pandemie/ &nbsp;</a>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "raport-relevant-declarat-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            11454,
+            11468
+          ],
+          "fragment": ">Deconturi</a>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "eticheta-legaturii-in-pagina"
+        }
+      ],
+      "citire": {
+        "tip": "csv",
+        "coloane_fara_nume": "omise"
+      }
+    },
+    {
+      "proiect": "data-expertforum",
+      "url": "https://docs.google.com/spreadsheets/d/1-gauuhQ731-q3ZD6fhCM_sNSXQ8QD6e5/export?format=csv&gid=1272308734",
+      "sursa_id": "aeca1b7744433f58290e",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://data.expertforum.ro/",
+      "link_original": "https://docs.google.com/spreadsheets/d/1-gauuhQ731-q3ZD6fhCM_sNSXQ8QD6e5/export?format=csv&gid=1272308734",
+      "dovada": {
+        "url": "https://data.expertforum.ro/",
+        "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+        "pointer": "/body",
+        "interval": [
+          2706,
+          2802
+        ],
+        "fragment": "https://docs.google.com/spreadsheets/d/1-gauuhQ731-q3ZD6fhCM_sNSXQ8QD6e5/edit%23gid%3D1272308734",
+        "snapshot": "inventare/surse/dfb618198f8feeea1af4.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-26T18:44:01.395863+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-26T18:44:01.395863+00:00"
+        }
+      ],
+      "nota": "Tab (gid 1272308734) of a Google Sheet that the saved page data.expertforum.ro links as \"Genul candidaților la alegerile locale 2020\" (category Electoral). The address is the CSV export of that tab, built from the link on the page: the link is wrapped as google.com/url?q=TARGET, the target gives the document and the tab, and no request went to www.google.com. The response is over 2,000,000 bytes: the fetcher refused it and the tab is not parsed, so its header is unknown. The title suggests a list of candidates; that was not checked.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            1178,
+            1221
+          ],
+          "fragment": "<h3 class=\"text-danger mt-5\">Electoral</h3>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "categorie-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            2246,
+            2298
+          ],
+          "fragment": "<td>Genul candidaților la alegerile locale 2020</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "nume-set-declarat-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            2302,
+            2374
+          ],
+          "fragment": "<td>Genul candidaților la alegerile locale din 2020, calculele EFOR</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "descriere-set-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            2382,
+            2618
+          ],
+          "fragment": "<a href=\"https://www.google.com/url?q=https://expertforum.ro/raport-participare-femei-locale/&amp;sa=D&amp;source=editors&amp;ust=1643638624229836&amp;usg=AOvVaw2dllrjl-qUeQHkRqtfRi7U\">expertforum.ro/raport-participare-femei-locale/</a>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "raport-relevant-declarat-de-pagina"
+        }
+      ]
+    },
+    {
+      "proiect": "data-expertforum",
+      "url": "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/export?format=csv&gid=768211337",
+      "sursa_id": "9e2b0b9a6a6d1bdb0717",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://data.expertforum.ro/",
+      "link_original": "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/export?format=csv&gid=768211337",
+      "dovada": {
+        "url": "https://data.expertforum.ro/",
+        "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+        "pointer": "/body",
+        "interval": [
+          8561,
+          8656
+        ],
+        "fragment": "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/edit%23gid%3D768211337",
+        "snapshot": "inventare/surse/dfb618198f8feeea1af4.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-26T18:44:01.395863+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-26T18:44:01.395863+00:00"
+        }
+      ],
+      "nota": "Tab (gid 768211337) of a Google Sheet that the saved page data.expertforum.ro links as \"Solicitările făcute de UAT-uri pentru programul Anghel Saligny, pentru infrastructură\" (category Infrastructură). The address is the CSV export of that tab, built from the link on the page: the link is wrapped as google.com/url?q=TARGET, the target gives the document and the tab, and no request went to www.google.com. The header has eight columns, among them the SIRUTA code of the UAT and the party.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            5696,
+            5744
+          ],
+          "fragment": "<h3 class=\"text-danger mt-5\">Infrastructură</h3>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "categorie-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            8057,
+            8151
+          ],
+          "fragment": "<td>Solicitările făcute de UAT-uri pentru programul Anghel Saligny, pentru infrastructură</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "nume-set-declarat-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            8155,
+            8243
+          ],
+          "fragment": "<td>Proiecte depuse la programul Saligny, cu calcul per capita si partid, anul 2021</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "descriere-set-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            8251,
+            8473
+          ],
+          "fragment": "<a href=\"https://www.google.com/url?q=https://expertforum.ro/mostenitorii-lui-saligny/&amp;sa=D&amp;source=editors&amp;ust=1643638624251538&amp;usg=AOvVaw3HlR8fixQB7K19VsivRanz\">expertforum.ro/mostenitorii-lui-saligny/</a>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "raport-relevant-declarat-de-pagina"
+        }
+      ]
+    },
+    {
+      "proiect": "data-expertforum",
+      "url": "https://docs.google.com/spreadsheets/d/1C6o0sGgdq__D62XBnz5qfqrQAS6TIZf1/export?format=csv&gid=55873501",
+      "sursa_id": "b80e93a06ea26658eabc",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://data.expertforum.ro/",
+      "link_original": "https://docs.google.com/spreadsheets/d/1C6o0sGgdq__D62XBnz5qfqrQAS6TIZf1/export?format=csv&gid=55873501",
+      "dovada": {
+        "url": "https://data.expertforum.ro/",
+        "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+        "pointer": "/body",
+        "interval": [
+          7660,
+          7750
+        ],
+        "fragment": "https://docs.google.com/spreadsheets/d/1C6o0sGgdq__D62XBnz5qfqrQAS6TIZf1/edit#gid=55873501",
+        "snapshot": "inventare/surse/dfb618198f8feeea1af4.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-26T18:44:01.395863+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-26T18:44:01.395863+00:00"
+        }
+      ],
+      "nota": "Tab (gid 55873501) of a Google Sheet that the saved page data.expertforum.ro links as \"Alocări Fondul de rezervă\" (category Infrastructură). The address is the CSV export of that tab, built from the link on the page: the link is wrapped as google.com/url?q=TARGET, the target gives the document and the tab, and no request went to www.google.com. The tab has a column named sursa; every data row holds the same value, HG 1088/2021 (the locator points at the first one). It is the only tab with a source column.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            5696,
+            5744
+          ],
+          "fragment": "<h3 class=\"text-danger mt-5\">Infrastructură</h3>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "categorie-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            7124,
+            7158
+          ],
+          "fragment": "<td>Alocări Fondul de rezervă</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "nume-set-declarat-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            7162,
+            7365
+          ],
+          "fragment": "<td>Alocări prin HG pentru Fondul de Rezervă, către unități administrativ teritoriale pentru anul 2021. Cuprinde și partidul beneficiarului. Nu include alocările către instituții de la nivel central</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "descriere-set-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            7373,
+            7476
+          ],
+          "fragment": "<a href=\"https://expertforum.ro/clientelism-fara-rezerve/\">expertforum.ro/clientelism-fara-rezerve/</a>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "raport-relevant-declarat-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            7477,
+            7600
+          ],
+          "fragment": "<a href=\"https://expertforum.ro/bani-fondul-rezerva-decembrie-2021/\">expertforum.ro/bani-fondul-rezerva-decembrie-2021/</a>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "raport-relevant-declarat-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            7770,
+            7789
+          ],
+          "fragment": "HG 1088/2021 (Citu)",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "eticheta-legaturii-in-pagina"
+        },
+        {
+          "url": "https://docs.google.com/spreadsheets/d/1C6o0sGgdq__D62XBnz5qfqrQAS6TIZf1/export?format=csv&gid=55873501",
+          "sha256": "9b69f0f96206f269b2ff1c61de19ebcda8ff94c4573bb2dc6e8c76f6036bb8a1",
+          "pointer": "/body",
+          "interval": [
+            101,
+            113
+          ],
+          "fragment": "HG 1088/2021",
+          "snapshot": "inventare/surse/b80e93a06ea26658eabc.json",
+          "rol": "furnizor-numit-in-foaie"
+        }
+      ]
+    },
+    {
+      "proiect": "data-expertforum",
+      "url": "https://docs.google.com/spreadsheets/d/1LFqrx69uwDqMlibUB_bDQHe3WsuxmeLR-hmZc-I59B8/export?format=csv&gid=1605213175",
+      "sursa_id": "cd35243c591ff1d3fb45",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://data.expertforum.ro/",
+      "link_original": "https://docs.google.com/spreadsheets/d/1LFqrx69uwDqMlibUB_bDQHe3WsuxmeLR-hmZc-I59B8/export?format=csv&gid=1605213175",
+      "dovada": {
+        "url": "https://data.expertforum.ro/",
+        "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+        "pointer": "/body",
+        "interval": [
+          7841,
+          7944
+        ],
+        "fragment": "https://docs.google.com/spreadsheets/d/1LFqrx69uwDqMlibUB_bDQHe3WsuxmeLR-hmZc-I59B8/edit#gid=1605213175",
+        "snapshot": "inventare/surse/dfb618198f8feeea1af4.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-26T18:44:01.395863+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-26T18:44:01.395863+00:00"
+        }
+      ],
+      "nota": "Tab (gid 1605213175) of a Google Sheet that the saved page data.expertforum.ro links as \"Alocări Fondul de rezervă\" (category Infrastructură). The address is the CSV export of that tab, built from the link on the page: the link is wrapped as google.com/url?q=TARGET, the target gives the document and the tab, and no request went to www.google.com. The tab has no source column. The page labels this link HG 1264/2021 (Ciucă) and the locator points at that label.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            5696,
+            5744
+          ],
+          "fragment": "<h3 class=\"text-danger mt-5\">Infrastructură</h3>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "categorie-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            7124,
+            7158
+          ],
+          "fragment": "<td>Alocări Fondul de rezervă</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "nume-set-declarat-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            7162,
+            7365
+          ],
+          "fragment": "<td>Alocări prin HG pentru Fondul de Rezervă, către unități administrativ teritoriale pentru anul 2021. Cuprinde și partidul beneficiarului. Nu include alocările către instituții de la nivel central</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "descriere-set-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            7373,
+            7476
+          ],
+          "fragment": "<a href=\"https://expertforum.ro/clientelism-fara-rezerve/\">expertforum.ro/clientelism-fara-rezerve/</a>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "raport-relevant-declarat-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            7477,
+            7600
+          ],
+          "fragment": "<a href=\"https://expertforum.ro/bani-fondul-rezerva-decembrie-2021/\">expertforum.ro/bani-fondul-rezerva-decembrie-2021/</a>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "raport-relevant-declarat-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            7964,
+            7984
+          ],
+          "fragment": "HG 1264/2021 (Ciucă)",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "eticheta-legaturii-in-pagina"
+        }
+      ]
+    },
+    {
+      "proiect": "data-expertforum",
+      "url": "https://docs.google.com/spreadsheets/d/1PHHdzvmc3IXv530isAHQe7-YEjE0__LV/export?format=csv&gid=1356846398",
+      "sursa_id": "63c156f64706dc3759be",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://data.expertforum.ro/",
+      "link_original": "https://docs.google.com/spreadsheets/d/1PHHdzvmc3IXv530isAHQe7-YEjE0__LV/export?format=csv&gid=1356846398",
+      "dovada": {
+        "url": "https://data.expertforum.ro/",
+        "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+        "pointer": "/body",
+        "interval": [
+          10318,
+          10414
+        ],
+        "fragment": "https://docs.google.com/spreadsheets/d/1PHHdzvmc3IXv530isAHQe7-YEjE0__LV/edit%23gid%3D1356846398",
+        "snapshot": "inventare/surse/dfb618198f8feeea1af4.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-26T18:44:01.395863+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-26T18:44:01.395863+00:00"
+        }
+      ],
+      "nota": "Tab (gid 1356846398) of a Google Sheet that the saved page data.expertforum.ro links as \"Alocări fonduri pentru programul Drumuri Bune, în Republica Moldova.\" (category Infrastructură). The address is the CSV export of that tab, built from the link on the page: the link is wrapped as google.com/url?q=TARGET, the target gives the document and the tab, and no request went to www.google.com. The tab has a column that names the winning candidates of single-member districts of the 2019 elections in the Republic of Moldova (public officials); the repository keeps the header only.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            5696,
+            5744
+          ],
+          "fragment": "<h3 class=\"text-danger mt-5\">Infrastructură</h3>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "categorie-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            9533,
+            9616
+          ],
+          "fragment": "<td>Alocări fonduri pentru programul Drumuri Bune, &icirc;n Republica Moldova.</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "nume-set-declarat-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            9620,
+            9726
+          ],
+          "fragment": "<td>Alocările pentru programul Drumuri bune, corelate cu rezultatele alegerilor parlamentare din 2019</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "descriere-set-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            9734,
+            9952
+          ],
+          "fragment": "<a href=\"https://www.google.com/url?q=https://expertforum.ro/drumuri-bune-moldova-2/&amp;sa=D&amp;source=editors&amp;ust=1643638624256001&amp;usg=AOvVaw3FswkG3hirmxausZ8aTmLH\">expertforum.ro/drumuri-bune-moldova-2/</a>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "raport-relevant-declarat-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            10505,
+            10520
+          ],
+          "fragment": ">Deschide 2</a>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "eticheta-legaturii-in-pagina"
+        }
+      ]
+    },
+    {
+      "proiect": "data-expertforum",
+      "url": "https://docs.google.com/spreadsheets/d/1XBImOARfWbaUX6OGN8wf_crmSu__-0hs/export?format=csv&gid=1251769352",
+      "sursa_id": "f9fc6e2962cd9605944c",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://data.expertforum.ro/",
+      "link_original": "https://docs.google.com/spreadsheets/d/1XBImOARfWbaUX6OGN8wf_crmSu__-0hs/export?format=csv&gid=1251769352",
+      "dovada": {
+        "url": "https://data.expertforum.ro/",
+        "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+        "pointer": "/body",
+        "interval": [
+          3495,
+          3591
+        ],
+        "fragment": "https://docs.google.com/spreadsheets/d/1XBImOARfWbaUX6OGN8wf_crmSu__-0hs/edit%23gid%3D1251769352",
+        "snapshot": "inventare/surse/dfb618198f8feeea1af4.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-26T18:44:01.395863+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-26T18:44:01.395863+00:00"
+        }
+      ],
+      "nota": "Tab (gid 1251769352) of a Google Sheet that the saved page data.expertforum.ro links as \"Migratie alegători locale 2020\" (category Electoral). The address is the CSV export of that tab, built from the link on the page: the link is wrapped as google.com/url?q=TARGET, the target gives the document and the tab, and no request went to www.google.com. The header has three columns and the tab has no title row.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            1178,
+            1221
+          ],
+          "fragment": "<h3 class=\"text-danger mt-5\">Electoral</h3>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "categorie-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            2962,
+            3001
+          ],
+          "fragment": "<td>Migratie alegători locale 2020</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "nume-set-declarat-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            3005,
+            3163
+          ],
+          "fragment": "<td>&icirc;nregistrarea migrației alegătorilor pe localități &icirc;naintea alegerilor din 2020, comparativ cu anii 2016 și 2015 (domiciliu și reședință)</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "descriere-set-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            3171,
+            3407
+          ],
+          "fragment": "<a href=\"https://www.google.com/url?q=https://expertforum.ro/raport-monitorizare-locale-2020/&amp;sa=D&amp;source=editors&amp;ust=1643638624232472&amp;usg=AOvVaw2Qp5rcGjBLs9aFE_jhSiaz\">expertforum.ro/raport-monitorizare-locale-2020/</a>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "raport-relevant-declarat-de-pagina"
+        }
+      ]
+    },
+    {
+      "proiect": "data-expertforum",
+      "url": "https://docs.google.com/spreadsheets/d/1ZdnysGyGRAlRQM651SIqsCeUGlO1Ivd8/export?format=csv&gid=1547605917",
+      "sursa_id": "610159c58434ca2ef251",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://data.expertforum.ro/",
+      "link_original": "https://docs.google.com/spreadsheets/d/1ZdnysGyGRAlRQM651SIqsCeUGlO1Ivd8/export?format=csv&gid=1547605917",
+      "dovada": {
+        "url": "https://data.expertforum.ro/",
+        "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+        "pointer": "/body",
+        "interval": [
+          1989,
+          2085
+        ],
+        "fragment": "https://docs.google.com/spreadsheets/d/1ZdnysGyGRAlRQM651SIqsCeUGlO1Ivd8/edit%23gid%3D1547605917",
+        "snapshot": "inventare/surse/dfb618198f8feeea1af4.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-26T18:44:01.395863+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-26T18:44:01.395863+00:00"
+        }
+      ],
+      "nota": "Tab (gid 1547605917) of a Google Sheet that the saved page data.expertforum.ro links as \"Genul candidaților la alegerile parlamentare 2020\" (category Electoral). The address is the CSV export of that tab, built from the link on the page: the link is wrapped as google.com/url?q=TARGET, the target gives the document and the tab, and no request went to www.google.com. The tab lists candidates (name columns, list position, sex, office sought). That is data about persons, so the repository keeps the header only.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            1178,
+            1221
+          ],
+          "fragment": "<h3 class=\"text-danger mt-5\">Electoral</h3>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "categorie-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            1511,
+            1569
+          ],
+          "fragment": "<td>Genul candidaților la alegerile parlamentare 2020</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "nume-set-declarat-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            1573,
+            1651
+          ],
+          "fragment": "<td>Genul candidaților la alegerile parlamentare din 2020, calculele EFOR</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "descriere-set-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            1659,
+            1901
+          ],
+          "fragment": "<a href=\"https://www.google.com/url?q=https://expertforum.ro/participarea-femeilor-parlamentare/&amp;sa=D&amp;source=editors&amp;ust=1643638624227021&amp;usg=AOvVaw3Sj3BSZ_59dxV25NZQfYpw\">expertforum.ro/participarea-femeilor-parlamentare/</a>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "raport-relevant-declarat-de-pagina"
+        }
+      ]
+    },
+    {
+      "proiect": "data-expertforum",
+      "url": "https://docs.google.com/spreadsheets/d/1fX1Nv2HonSSfFfTqBNpWfmTeGREMQAQ-/export?format=csv&gid=1641909541",
+      "sursa_id": "5d473ed55e3ad3081eca",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://data.expertforum.ro/",
+      "link_original": "https://docs.google.com/spreadsheets/d/1fX1Nv2HonSSfFfTqBNpWfmTeGREMQAQ-/export?format=csv&gid=1641909541",
+      "dovada": {
+        "url": "https://data.expertforum.ro/",
+        "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+        "pointer": "/body",
+        "interval": [
+          4305,
+          4401
+        ],
+        "fragment": "https://docs.google.com/spreadsheets/d/1fX1Nv2HonSSfFfTqBNpWfmTeGREMQAQ-/edit%23gid%3D1641909541",
+        "snapshot": "inventare/surse/dfb618198f8feeea1af4.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-26T18:44:01.395863+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-26T18:44:01.395863+00:00"
+        }
+      ],
+      "nota": "Tab (gid 1641909541) of a Google Sheet that the saved page data.expertforum.ro links as \"Migratie alegători locale 2016\" (category Electoral). The address is the CSV export of that tab, built from the link on the page: the link is wrapped as google.com/url?q=TARGET, the target gives the document and the tab, and no request went to www.google.com. The first row is a title (it declares the period of the figures) and the header is the second row: the reader option rand_antet 2 reads it, and the title is kept as a locator.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            1178,
+            1221
+          ],
+          "fragment": "<h3 class=\"text-danger mt-5\">Electoral</h3>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "categorie-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            3751,
+            3790
+          ],
+          "fragment": "<td>Migratie alegători locale 2016</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "nume-set-declarat-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            3794,
+            3937
+          ],
+          "fragment": "<td>&icirc;nregistrarea migrației alegătorilor pe localități &icirc;naintea alegerilor din 2016, comparativ cu anul 2015 (vize de flotant)</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "descriere-set-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            3945,
+            4217
+          ],
+          "fragment": "<a href=\"https://www.google.com/url?q=https://expertforum.ro/alegerile-locale-2016-intre-schimbare-si-stagnare/&amp;sa=D&amp;source=editors&amp;ust=1643638624235311&amp;usg=AOvVaw1JLQmZ5A7Mu-ijjPujWDnG\">expertforum.ro/alegerile-locale-2016-intre-schimbare-si-stagnare/</a>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "raport-relevant-declarat-de-pagina"
+        },
+        {
+          "url": "https://docs.google.com/spreadsheets/d/1fX1Nv2HonSSfFfTqBNpWfmTeGREMQAQ-/export?format=csv&gid=1641909541",
+          "sha256": "525c6f9ba4f32e5e59c6b9f39298bba0064f95935397d2698ba1726bf3234f49",
+          "pointer": "/body",
+          "interval": [
+            0,
+            53
+          ],
+          "fragment": "Stabilire de domiciliu în perioada 01.04 - 11.06.2016",
+          "snapshot": "inventare/surse/5d473ed55e3ad3081eca.json",
+          "rol": "titlu-in-foaie"
+        }
+      ],
+      "citire": {
+        "tip": "csv",
+        "rand_antet": 2
+      }
+    },
+    {
+      "proiect": "data-expertforum",
+      "url": "https://docs.google.com/spreadsheets/d/1hWsdExKe_wzEdy2ZQQVdguINpEzI1Ikx/export?format=csv&gid=438062803",
+      "sursa_id": "8f8982cf195a49418eb1",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://data.expertforum.ro/",
+      "link_original": "https://docs.google.com/spreadsheets/d/1hWsdExKe_wzEdy2ZQQVdguINpEzI1Ikx/export?format=csv&gid=438062803",
+      "dovada": {
+        "url": "https://data.expertforum.ro/",
+        "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+        "pointer": "/body",
+        "interval": [
+          10040,
+          10135
+        ],
+        "fragment": "https://docs.google.com/spreadsheets/d/1hWsdExKe_wzEdy2ZQQVdguINpEzI1Ikx/edit%23gid%3D438062803",
+        "snapshot": "inventare/surse/dfb618198f8feeea1af4.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-26T18:44:01.395863+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-26T18:44:01.395863+00:00"
+        }
+      ],
+      "nota": "Tab (gid 438062803) of a Google Sheet that the saved page data.expertforum.ro links as \"Alocări fonduri pentru programul Drumuri Bune, în Republica Moldova.\" (category Infrastructură). The address is the CSV export of that tab, built from the link on the page: the link is wrapped as google.com/url?q=TARGET, the target gives the document and the tab, and no request went to www.google.com. The header has 31 columns; two header cells differ only by a trailing line break, and the inventory keeps each name as written.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            5696,
+            5744
+          ],
+          "fragment": "<h3 class=\"text-danger mt-5\">Infrastructură</h3>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "categorie-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            9533,
+            9616
+          ],
+          "fragment": "<td>Alocări fonduri pentru programul Drumuri Bune, &icirc;n Republica Moldova.</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "nume-set-declarat-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            9620,
+            9726
+          ],
+          "fragment": "<td>Alocările pentru programul Drumuri bune, corelate cu rezultatele alegerilor parlamentare din 2019</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "descriere-set-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            9734,
+            9952
+          ],
+          "fragment": "<a href=\"https://www.google.com/url?q=https://expertforum.ro/drumuri-bune-moldova-2/&amp;sa=D&amp;source=editors&amp;ust=1643638624256001&amp;usg=AOvVaw3FswkG3hirmxausZ8aTmLH\">expertforum.ro/drumuri-bune-moldova-2/</a>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "raport-relevant-declarat-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            10226,
+            10241
+          ],
+          "fragment": ">Deschide 1</a>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "eticheta-legaturii-in-pagina"
+        }
+      ]
+    },
+    {
+      "proiect": "data-expertforum",
+      "url": "https://docs.google.com/spreadsheets/d/1uHjx7STb9E97Da4vnUA3Z3oqDurRo220ZpwUCyM2Mm8/export?format=csv&gid=0",
+      "sursa_id": "5ebaf7cbf8048994ea9a",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://data.expertforum.ro/",
+      "link_original": "https://docs.google.com/spreadsheets/d/1uHjx7STb9E97Da4vnUA3Z3oqDurRo220ZpwUCyM2Mm8/export?format=csv&gid=0",
+      "dovada": {
+        "url": "https://data.expertforum.ro/",
+        "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+        "pointer": "/body",
+        "interval": [
+          6247,
+          6341
+        ],
+        "fragment": "https://docs.google.com/spreadsheets/d/1uHjx7STb9E97Da4vnUA3Z3oqDurRo220ZpwUCyM2Mm8/edit#gid=0",
+        "snapshot": "inventare/surse/dfb618198f8feeea1af4.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-26T18:44:01.395863+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-26T18:44:01.395863+00:00"
+        }
+      ],
+      "nota": "Tab (gid 0) of a Google Sheet that the saved page data.expertforum.ro links as \"Implementare PNDL 2015-2023\" (category Infrastructură). The address is the CSV export of that tab, built from the link on the page: the link is wrapped as google.com/url?q=TARGET, the target gives the document and the tab, and no request went to www.google.com. The response is over 2,000,000 bytes: the fetcher refused it and the tab is not parsed, so its header is unknown.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            5696,
+            5744
+          ],
+          "fragment": "<h3 class=\"text-danger mt-5\">Infrastructură</h3>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "categorie-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            6012,
+            6048
+          ],
+          "fragment": "<td>Implementare PNDL 2015-2023</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "nume-set-declarat-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            6052,
+            6096
+          ],
+          "fragment": "<td>Statusul implementarii PNDL in 2022</td>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "descriere-set-declarata-de-pagina"
+        },
+        {
+          "url": "https://data.expertforum.ro/",
+          "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+          "pointer": "/body",
+          "interval": [
+            6104,
+            6188
+          ],
+          "fragment": "<a href=\"https://expertforum.ro/pndl-in-2022/\">www.expertforum.ro/pndl-in-2022//</a>",
+          "snapshot": "inventare/surse/dfb618198f8feeea1af4.json",
+          "rol": "raport-relevant-declarat-de-pagina"
+        }
+      ]
+    },
+    {
       "proiect": "demoanaf",
       "url": "https://demoanaf.ro/api-docs",
       "sursa_id": "78a0961ee1abf88a8009",

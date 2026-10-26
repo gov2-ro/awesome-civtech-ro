@@ -43261,6 +43261,929 @@
       "baza_tipului": "schema-declarata"
     },
     {
+      "url": "https://data.expertforum.ro/",
+      "final_url": "https://data.expertforum.ro/",
+      "http_status": null,
+      "fetched_at": "2026-10-26T18:23:00+00:00",
+      "content_type": "text/html",
+      "state": "ok",
+      "origine": "copie-salvata-de-proprietar",
+      "salvat_la": "2026-10-26T20:23:00+02:00",
+      "nume_fisier": "data.expertforum.ro.html",
+      "sha256_fisier": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+      "nota_copie": "The owner saved the page from a browser on 2026-10-26: expertforum.ro and data.expertforum.ro are in colectare-interzisa.csv, so no script requests them.",
+      "citire": {
+        "tip": "html-lista-seturi"
+      },
+      "id": "dfb618198f8feeea1af4",
+      "campuri": [],
+      "completitudine": "partial",
+      "snapshot": "surse/dfb618198f8feeea1af4-d6f05a562b778e55.json",
+      "sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+      "format": "html-lista-seturi",
+      "stare": "analizat",
+      "limita_atinsa": false,
+      "baza_tipului": "cod-sau-documentatie",
+      "seturi": [
+        {
+          "categorie": {
+            "valoare": "Electoral",
+            "pointer": "char:1207-1216",
+            "baza": "declarat-in-pagina"
+          },
+          "subcategorie": {
+            "valoare": "Gen în alegeri",
+            "pointer": "char:1482-1502",
+            "baza": "declarat-in-pagina"
+          },
+          "titlu": {
+            "valoare": "Genul candidaților la alegerile parlamentare 2020",
+            "pointer": "char:1515-1564",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Genul candidaților la alegerile parlamentare din 2020, calculele EFOR",
+            "pointer": "char:1577-1646",
+            "baza": "declarat-in-pagina"
+          },
+          "rapoarte": [
+            {
+              "text": {
+                "valoare": "expertforum.ro/participarea-femeilor-parlamentare/",
+                "pointer": "char:1847-1897",
+                "baza": "declarat-in-pagina"
+              },
+              "adresa": {
+                "valoare": "https://expertforum.ro/participarea-femeilor-parlamentare/",
+                "pointer": "char:1668-1845",
+                "baza": "declarat-in-pagina",
+                "legatura": "https://www.google.com/url?q=https://expertforum.ro/participarea-femeilor-parlamentare/&sa=D&source=editors&ust=1643638624227021&usg=AOvVaw3Sj3BSZ_59dxV25NZQfYpw",
+                "transformare": "legatura-google-desfacuta"
+              }
+            }
+          ],
+          "legaturi": [
+            {
+              "eticheta": {
+                "valoare": "Deschide",
+                "pointer": "char:2177-2185",
+                "baza": "declarat-in-pagina"
+              },
+              "text_dupa": null,
+              "adresa": {
+                "valoare": "https://docs.google.com/spreadsheets/d/1ZdnysGyGRAlRQM651SIqsCeUGlO1Ivd8/edit#gid=1547605917",
+                "pointer": "char:1960-2175",
+                "baza": "declarat-in-pagina",
+                "legatura": "https://www.google.com/url?q=https://docs.google.com/spreadsheets/d/1ZdnysGyGRAlRQM651SIqsCeUGlO1Ivd8/edit%23gid%3D1547605917&sa=D&source=editors&ust=1643638624227868&usg=AOvVaw1eHTj0_iHmVHMWtz7oJqhO",
+                "transformare": "legatura-google-desfacuta"
+              },
+              "tip": "foaie-google",
+              "id_document": "1ZdnysGyGRAlRQM651SIqsCeUGlO1Ivd8",
+              "gid": "1547605917"
+            }
+          ],
+          "pointer": "char:1470-2202"
+        },
+        {
+          "categorie": {
+            "valoare": "Electoral",
+            "pointer": "char:1207-1216",
+            "baza": "declarat-in-pagina"
+          },
+          "subcategorie": {
+            "valoare": "Gen în alegeri",
+            "pointer": "char:2217-2237",
+            "baza": "declarat-in-pagina"
+          },
+          "titlu": {
+            "valoare": "Genul candidaților la alegerile locale 2020",
+            "pointer": "char:2250-2293",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Genul candidaților la alegerile locale din 2020, calculele EFOR",
+            "pointer": "char:2306-2369",
+            "baza": "declarat-in-pagina"
+          },
+          "rapoarte": [
+            {
+              "text": {
+                "valoare": "expertforum.ro/raport-participare-femei-locale/",
+                "pointer": "char:2567-2614",
+                "baza": "declarat-in-pagina"
+              },
+              "adresa": {
+                "valoare": "https://expertforum.ro/raport-participare-femei-locale/",
+                "pointer": "char:2391-2565",
+                "baza": "declarat-in-pagina",
+                "legatura": "https://www.google.com/url?q=https://expertforum.ro/raport-participare-femei-locale/&sa=D&source=editors&ust=1643638624229836&usg=AOvVaw2dllrjl-qUeQHkRqtfRi7U",
+                "transformare": "legatura-google-desfacuta"
+              }
+            }
+          ],
+          "legaturi": [
+            {
+              "eticheta": {
+                "valoare": "Deschide",
+                "pointer": "char:2894-2902",
+                "baza": "declarat-in-pagina"
+              },
+              "text_dupa": null,
+              "adresa": {
+                "valoare": "https://docs.google.com/spreadsheets/d/1-gauuhQ731-q3ZD6fhCM_sNSXQ8QD6e5/edit#gid=1272308734",
+                "pointer": "char:2677-2892",
+                "baza": "declarat-in-pagina",
+                "legatura": "https://www.google.com/url?q=https://docs.google.com/spreadsheets/d/1-gauuhQ731-q3ZD6fhCM_sNSXQ8QD6e5/edit%23gid%3D1272308734&sa=D&source=editors&ust=1643638624230536&usg=AOvVaw1nz5tC_lP9LSFBw1-S9poC",
+                "transformare": "legatura-google-desfacuta"
+              },
+              "tip": "foaie-google",
+              "id_document": "1-gauuhQ731-q3ZD6fhCM_sNSXQ8QD6e5",
+              "gid": "1272308734"
+            }
+          ],
+          "pointer": "char:2205-2919"
+        },
+        {
+          "categorie": {
+            "valoare": "Electoral",
+            "pointer": "char:1207-1216",
+            "baza": "declarat-in-pagina"
+          },
+          "subcategorie": {
+            "valoare": "Migrație electorală",
+            "pointer": "char:2934-2953",
+            "baza": "declarat-in-pagina"
+          },
+          "titlu": {
+            "valoare": "Migratie alegători locale 2020",
+            "pointer": "char:2966-2996",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "înregistrarea migrației alegătorilor pe localități înaintea alegerilor din 2020, comparativ cu anii 2016 și 2015 (domiciliu și reședință)",
+            "pointer": "char:3009-3158",
+            "baza": "declarat-in-pagina"
+          },
+          "rapoarte": [
+            {
+              "text": {
+                "valoare": "expertforum.ro/raport-monitorizare-locale-2020/",
+                "pointer": "char:3356-3403",
+                "baza": "declarat-in-pagina"
+              },
+              "adresa": {
+                "valoare": "https://expertforum.ro/raport-monitorizare-locale-2020/",
+                "pointer": "char:3180-3354",
+                "baza": "declarat-in-pagina",
+                "legatura": "https://www.google.com/url?q=https://expertforum.ro/raport-monitorizare-locale-2020/&sa=D&source=editors&ust=1643638624232472&usg=AOvVaw2Qp5rcGjBLs9aFE_jhSiaz",
+                "transformare": "legatura-google-desfacuta"
+              }
+            }
+          ],
+          "legaturi": [
+            {
+              "eticheta": {
+                "valoare": "Deschide",
+                "pointer": "char:3683-3691",
+                "baza": "declarat-in-pagina"
+              },
+              "text_dupa": null,
+              "adresa": {
+                "valoare": "https://docs.google.com/spreadsheets/d/1XBImOARfWbaUX6OGN8wf_crmSu__-0hs/edit#gid=1251769352",
+                "pointer": "char:3466-3681",
+                "baza": "declarat-in-pagina",
+                "legatura": "https://www.google.com/url?q=https://docs.google.com/spreadsheets/d/1XBImOARfWbaUX6OGN8wf_crmSu__-0hs/edit%23gid%3D1251769352&sa=D&source=editors&ust=1643638624233138&usg=AOvVaw1MJ73p_FWUAqs4zc16qwR5",
+                "transformare": "legatura-google-desfacuta"
+              },
+              "tip": "foaie-google",
+              "id_document": "1XBImOARfWbaUX6OGN8wf_crmSu__-0hs",
+              "gid": "1251769352"
+            }
+          ],
+          "pointer": "char:2922-3708"
+        },
+        {
+          "categorie": {
+            "valoare": "Electoral",
+            "pointer": "char:1207-1216",
+            "baza": "declarat-in-pagina"
+          },
+          "subcategorie": {
+            "valoare": "Migrație electorală",
+            "pointer": "char:3723-3742",
+            "baza": "declarat-in-pagina"
+          },
+          "titlu": {
+            "valoare": "Migratie alegători locale 2016",
+            "pointer": "char:3755-3785",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "înregistrarea migrației alegătorilor pe localități înaintea alegerilor din 2016, comparativ cu anul 2015 (vize de flotant)",
+            "pointer": "char:3798-3932",
+            "baza": "declarat-in-pagina"
+          },
+          "rapoarte": [
+            {
+              "text": {
+                "valoare": "expertforum.ro/alegerile-locale-2016-intre-schimbare-si-stagnare/",
+                "pointer": "char:4148-4213",
+                "baza": "declarat-in-pagina"
+              },
+              "adresa": {
+                "valoare": "https://expertforum.ro/alegerile-locale-2016-intre-schimbare-si-stagnare/",
+                "pointer": "char:3954-4146",
+                "baza": "declarat-in-pagina",
+                "legatura": "https://www.google.com/url?q=https://expertforum.ro/alegerile-locale-2016-intre-schimbare-si-stagnare/&sa=D&source=editors&ust=1643638624235311&usg=AOvVaw1JLQmZ5A7Mu-ijjPujWDnG",
+                "transformare": "legatura-google-desfacuta"
+              }
+            }
+          ],
+          "legaturi": [
+            {
+              "eticheta": {
+                "valoare": "Deschide",
+                "pointer": "char:4493-4501",
+                "baza": "declarat-in-pagina"
+              },
+              "text_dupa": null,
+              "adresa": {
+                "valoare": "https://docs.google.com/spreadsheets/d/1fX1Nv2HonSSfFfTqBNpWfmTeGREMQAQ-/edit#gid=1641909541",
+                "pointer": "char:4276-4491",
+                "baza": "declarat-in-pagina",
+                "legatura": "https://www.google.com/url?q=https://docs.google.com/spreadsheets/d/1fX1Nv2HonSSfFfTqBNpWfmTeGREMQAQ-/edit%23gid%3D1641909541&sa=D&source=editors&ust=1643638624236001&usg=AOvVaw2szPIoUafGDor0a65gO6tp",
+                "transformare": "legatura-google-desfacuta"
+              },
+              "tip": "foaie-google",
+              "id_document": "1fX1Nv2HonSSfFfTqBNpWfmTeGREMQAQ-",
+              "gid": "1641909541"
+            }
+          ],
+          "pointer": "char:3711-4518"
+        },
+        {
+          "categorie": {
+            "valoare": "Finanțare politică",
+            "pointer": "char:4568-4586",
+            "baza": "declarat-in-pagina"
+          },
+          "subcategorie": {
+            "valoare": "Finantare politica",
+            "pointer": "char:4852-4870",
+            "baza": "declarat-in-pagina"
+          },
+          "titlu": {
+            "valoare": "Finanțarea politică (partide și campanii eletorale) 2006-2021",
+            "pointer": "char:4883-4944",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Finanțarea partidelor politice și campaniilor electorale, între 2006 și 2021. Include date despre donatori și contributori, subvențiile, venituri și cheltuieli generale ale partidelor politice și pentru campania electorală",
+            "pointer": "char:4957-5185",
+            "baza": "declarat-in-pagina"
+          },
+          "rapoarte": [
+            {
+              "text": {
+                "valoare": "https://www.banipartide.ro/",
+                "pointer": "char:5355-5382",
+                "baza": "declarat-in-pagina"
+              },
+              "adresa": {
+                "valoare": "https://www.banipartide.ro/",
+                "pointer": "char:5207-5353",
+                "baza": "declarat-in-pagina",
+                "legatura": "https://www.google.com/url?q=https://www.banipartide.ro/&sa=D&source=editors&ust=1643638624242232&usg=AOvVaw3LguLjxM9AXODdSQHwadjX",
+                "transformare": "legatura-google-desfacuta"
+              }
+            }
+          ],
+          "legaturi": [
+            {
+              "eticheta": {
+                "valoare": "Deschide",
+                "pointer": "char:5650-5658",
+                "baza": "declarat-in-pagina"
+              },
+              "text_dupa": null,
+              "adresa": {
+                "valoare": "https://drive.google.com/file/d/1-YWEDLrSBv_W40b1bpFx9eIfLlc1U3r1/view?usp=sharing",
+                "pointer": "char:5445-5648",
+                "baza": "declarat-in-pagina",
+                "legatura": "https://www.google.com/url?q=https://drive.google.com/file/d/1-YWEDLrSBv_W40b1bpFx9eIfLlc1U3r1/view?usp%3Dsharing&sa=D&source=editors&ust=1643638624243328&usg=AOvVaw11fdMW-5lfcP72PvVp6nyA",
+                "transformare": "legatura-google-desfacuta"
+              },
+              "tip": "fisier-drive",
+              "id_document": "1-YWEDLrSBv_W40b1bpFx9eIfLlc1U3r1",
+              "gid": null
+            }
+          ],
+          "pointer": "char:4840-5675"
+        },
+        {
+          "categorie": {
+            "valoare": "Infrastructură",
+            "pointer": "char:5725-5739",
+            "baza": "declarat-in-pagina"
+          },
+          "subcategorie": {
+            "valoare": "Achiziții",
+            "pointer": "char:5994-6003",
+            "baza": "declarat-in-pagina"
+          },
+          "titlu": {
+            "valoare": "Implementare PNDL 2015-2023",
+            "pointer": "char:6016-6043",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Statusul implementarii PNDL in 2022",
+            "pointer": "char:6056-6091",
+            "baza": "declarat-in-pagina"
+          },
+          "rapoarte": [
+            {
+              "text": {
+                "valoare": "www.expertforum.ro/pndl-in-2022//",
+                "pointer": "char:6151-6184",
+                "baza": "declarat-in-pagina"
+              },
+              "adresa": {
+                "valoare": "https://expertforum.ro/pndl-in-2022/",
+                "pointer": "char:6113-6149",
+                "baza": "declarat-in-pagina"
+              }
+            }
+          ],
+          "legaturi": [
+            {
+              "eticheta": {
+                "valoare": "Deschide",
+                "pointer": "char:6343-6351",
+                "baza": "declarat-in-pagina"
+              },
+              "text_dupa": null,
+              "adresa": {
+                "valoare": "https://docs.google.com/spreadsheets/d/1uHjx7STb9E97Da4vnUA3Z3oqDurRo220ZpwUCyM2Mm8/edit#gid=0",
+                "pointer": "char:6247-6341",
+                "baza": "declarat-in-pagina"
+              },
+              "tip": "foaie-google",
+              "id_document": "1uHjx7STb9E97Da4vnUA3Z3oqDurRo220ZpwUCyM2Mm8",
+              "gid": "0"
+            }
+          ],
+          "pointer": "char:5982-6368"
+        },
+        {
+          "categorie": {
+            "valoare": "Infrastructură",
+            "pointer": "char:5725-5739",
+            "baza": "declarat-in-pagina"
+          },
+          "subcategorie": {
+            "valoare": "Achiziții",
+            "pointer": "char:6383-6392",
+            "baza": "declarat-in-pagina"
+          },
+          "titlu": {
+            "valoare": "Achiziții PNDL 2015-2021",
+            "pointer": "char:6405-6429",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Aproximativ 6000 de achiziții din 2016 de proiecte realizate din PNDL 1 și 2 între 2015 și 2021. Calculele EFOR",
+            "pointer": "char:6442-6559",
+            "baza": "declarat-in-pagina"
+          },
+          "rapoarte": [
+            {
+              "text": {
+                "valoare": "expertforum.ro/raport-cum-reparam-pndl/",
+                "pointer": "char:6749-6788",
+                "baza": "declarat-in-pagina"
+              },
+              "adresa": {
+                "valoare": "https://expertforum.ro/raport-cum-reparam-pndl/",
+                "pointer": "char:6581-6747",
+                "baza": "declarat-in-pagina",
+                "legatura": "https://www.google.com/url?q=https://expertforum.ro/raport-cum-reparam-pndl/&sa=D&source=editors&ust=1643638624246851&usg=AOvVaw39znRHXLz1YE9CmiT9dETY",
+                "transformare": "legatura-google-desfacuta"
+              }
+            }
+          ],
+          "legaturi": [
+            {
+              "eticheta": {
+                "valoare": "Deschide",
+                "pointer": "char:7068-7076",
+                "baza": "declarat-in-pagina"
+              },
+              "text_dupa": null,
+              "adresa": {
+                "valoare": "https://docs.google.com/spreadsheets/d/1-avhF8M66A1oyVwUnXdAoNP1sDxTlS4V/edit#gid=2098148876",
+                "pointer": "char:6851-7066",
+                "baza": "declarat-in-pagina",
+                "legatura": "https://www.google.com/url?q=https://docs.google.com/spreadsheets/d/1-avhF8M66A1oyVwUnXdAoNP1sDxTlS4V/edit%23gid%3D2098148876&sa=D&source=editors&ust=1643638624247572&usg=AOvVaw03FhDBuQA13hSYfPC8hyWY",
+                "transformare": "legatura-google-desfacuta"
+              },
+              "tip": "foaie-google",
+              "id_document": "1-avhF8M66A1oyVwUnXdAoNP1sDxTlS4V",
+              "gid": "2098148876"
+            }
+          ],
+          "pointer": "char:6371-7093"
+        },
+        {
+          "categorie": {
+            "valoare": "Infrastructură",
+            "pointer": "char:5725-5739",
+            "baza": "declarat-in-pagina"
+          },
+          "subcategorie": {
+            "valoare": "Alocări",
+            "pointer": "char:7108-7115",
+            "baza": "declarat-in-pagina"
+          },
+          "titlu": {
+            "valoare": "Alocări Fondul de rezervă",
+            "pointer": "char:7128-7153",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Alocări prin HG pentru Fondul de Rezervă, către unități administrativ teritoriale pentru anul 2021. Cuprinde și partidul beneficiarului. Nu include alocările către instituții de la nivel central",
+            "pointer": "char:7166-7360",
+            "baza": "declarat-in-pagina"
+          },
+          "rapoarte": [
+            {
+              "text": {
+                "valoare": "expertforum.ro/clientelism-fara-rezerve/",
+                "pointer": "char:7432-7472",
+                "baza": "declarat-in-pagina"
+              },
+              "adresa": {
+                "valoare": "https://expertforum.ro/clientelism-fara-rezerve/",
+                "pointer": "char:7382-7430",
+                "baza": "declarat-in-pagina"
+              }
+            },
+            {
+              "text": {
+                "valoare": "expertforum.ro/bani-fondul-rezerva-decembrie-2021/",
+                "pointer": "char:7546-7596",
+                "baza": "declarat-in-pagina"
+              },
+              "adresa": {
+                "valoare": "https://expertforum.ro/bani-fondul-rezerva-decembrie-2021/",
+                "pointer": "char:7486-7544",
+                "baza": "declarat-in-pagina"
+              }
+            }
+          ],
+          "legaturi": [
+            {
+              "eticheta": {
+                "valoare": "Deschide",
+                "pointer": "char:7752-7760",
+                "baza": "declarat-in-pagina"
+              },
+              "text_dupa": {
+                "valoare": "HG 1088/2021 (Citu)",
+                "pointer": "char:7764-7789",
+                "baza": "declarat-in-pagina"
+              },
+              "adresa": {
+                "valoare": "https://docs.google.com/spreadsheets/d/1C6o0sGgdq__D62XBnz5qfqrQAS6TIZf1/edit#gid=55873501",
+                "pointer": "char:7660-7750",
+                "baza": "declarat-in-pagina"
+              },
+              "tip": "foaie-google",
+              "id_document": "1C6o0sGgdq__D62XBnz5qfqrQAS6TIZf1",
+              "gid": "55873501"
+            },
+            {
+              "eticheta": {
+                "valoare": "Deschide",
+                "pointer": "char:7946-7954",
+                "baza": "declarat-in-pagina"
+              },
+              "text_dupa": {
+                "valoare": "HG 1264/2021 (Ciucă)",
+                "pointer": "char:7958-7984",
+                "baza": "declarat-in-pagina"
+              },
+              "adresa": {
+                "valoare": "https://docs.google.com/spreadsheets/d/1LFqrx69uwDqMlibUB_bDQHe3WsuxmeLR-hmZc-I59B8/edit#gid=1605213175",
+                "pointer": "char:7841-7944",
+                "baza": "declarat-in-pagina"
+              },
+              "tip": "foaie-google",
+              "id_document": "1LFqrx69uwDqMlibUB_bDQHe3WsuxmeLR-hmZc-I59B8",
+              "gid": "1605213175"
+            }
+          ],
+          "pointer": "char:7096-8023"
+        },
+        {
+          "categorie": {
+            "valoare": "Infrastructură",
+            "pointer": "char:5725-5739",
+            "baza": "declarat-in-pagina"
+          },
+          "subcategorie": {
+            "valoare": "Solicitări",
+            "pointer": "char:8038-8048",
+            "baza": "declarat-in-pagina"
+          },
+          "titlu": {
+            "valoare": "Solicitările făcute de UAT-uri pentru programul Anghel Saligny, pentru infrastructură",
+            "pointer": "char:8061-8146",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Proiecte depuse la programul Saligny, cu calcul per capita si partid, anul 2021",
+            "pointer": "char:8159-8238",
+            "baza": "declarat-in-pagina"
+          },
+          "rapoarte": [
+            {
+              "text": {
+                "valoare": "expertforum.ro/mostenitorii-lui-saligny/",
+                "pointer": "char:8429-8469",
+                "baza": "declarat-in-pagina"
+              },
+              "adresa": {
+                "valoare": "https://expertforum.ro/mostenitorii-lui-saligny/",
+                "pointer": "char:8260-8427",
+                "baza": "declarat-in-pagina",
+                "legatura": "https://www.google.com/url?q=https://expertforum.ro/mostenitorii-lui-saligny/&sa=D&source=editors&ust=1643638624251538&usg=AOvVaw3HlR8fixQB7K19VsivRanz",
+                "transformare": "legatura-google-desfacuta"
+              }
+            }
+          ],
+          "legaturi": [
+            {
+              "eticheta": {
+                "valoare": "Deschide",
+                "pointer": "char:8748-8756",
+                "baza": "declarat-in-pagina"
+              },
+              "text_dupa": null,
+              "adresa": {
+                "valoare": "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/edit#gid=768211337",
+                "pointer": "char:8532-8746",
+                "baza": "declarat-in-pagina",
+                "legatura": "https://www.google.com/url?q=https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/edit%23gid%3D768211337&sa=D&source=editors&ust=1643638624252236&usg=AOvVaw0hQX52xEOr_eW4vV5ejNEt",
+                "transformare": "legatura-google-desfacuta"
+              },
+              "tip": "foaie-google",
+              "id_document": "1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy",
+              "gid": "768211337"
+            }
+          ],
+          "pointer": "char:8026-8773"
+        },
+        {
+          "categorie": {
+            "valoare": "Infrastructură",
+            "pointer": "char:5725-5739",
+            "baza": "declarat-in-pagina"
+          },
+          "subcategorie": {
+            "valoare": "Implementare",
+            "pointer": "char:8788-8800",
+            "baza": "declarat-in-pagina"
+          },
+          "titlu": {
+            "valoare": "Stadiul implementării proiectelor din PNDL 1 și 2, aprilie 2021",
+            "pointer": "char:8813-8876",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Stadiul decontării pe proiectele din PNDL 1 și 2, la nivelul lunii aprilie 2021",
+            "pointer": "char:8889-8968",
+            "baza": "declarat-in-pagina"
+          },
+          "rapoarte": [
+            {
+              "text": {
+                "valoare": "expertforum.ro/raport-cum-reparam-pndl/",
+                "pointer": "char:9158-9197",
+                "baza": "declarat-in-pagina"
+              },
+              "adresa": {
+                "valoare": "https://expertforum.ro/raport-cum-reparam-pndl/",
+                "pointer": "char:8990-9156",
+                "baza": "declarat-in-pagina",
+                "legatura": "https://www.google.com/url?q=https://expertforum.ro/raport-cum-reparam-pndl/&sa=D&source=editors&ust=1643638624253962&usg=AOvVaw0KTj3tVQNTGX-npdBAeCTC",
+                "transformare": "legatura-google-desfacuta"
+              }
+            }
+          ],
+          "legaturi": [
+            {
+              "eticheta": {
+                "valoare": "Deschide",
+                "pointer": "char:9477-9485",
+                "baza": "declarat-in-pagina"
+              },
+              "text_dupa": null,
+              "adresa": {
+                "valoare": "https://docs.google.com/spreadsheets/d/1-_vKtEX8860ansiyo2Aq7eqyuo7ShYgA/edit#gid=1630617809",
+                "pointer": "char:9260-9475",
+                "baza": "declarat-in-pagina",
+                "legatura": "https://www.google.com/url?q=https://docs.google.com/spreadsheets/d/1-_vKtEX8860ansiyo2Aq7eqyuo7ShYgA/edit%23gid%3D1630617809&sa=D&source=editors&ust=1643638624254562&usg=AOvVaw3-hQlmBokIrLCdSeLMvTZN",
+                "transformare": "legatura-google-desfacuta"
+              },
+              "tip": "foaie-google",
+              "id_document": "1-_vKtEX8860ansiyo2Aq7eqyuo7ShYgA",
+              "gid": "1630617809"
+            }
+          ],
+          "pointer": "char:8776-9502"
+        },
+        {
+          "categorie": {
+            "valoare": "Infrastructură",
+            "pointer": "char:5725-5739",
+            "baza": "declarat-in-pagina"
+          },
+          "subcategorie": {
+            "valoare": "Alocări",
+            "pointer": "char:9517-9524",
+            "baza": "declarat-in-pagina"
+          },
+          "titlu": {
+            "valoare": "Alocări fonduri pentru programul Drumuri Bune, în Republica Moldova.",
+            "pointer": "char:9537-9611",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Alocările pentru programul Drumuri bune, corelate cu rezultatele alegerilor parlamentare din 2019",
+            "pointer": "char:9624-9721",
+            "baza": "declarat-in-pagina"
+          },
+          "rapoarte": [
+            {
+              "text": {
+                "valoare": "expertforum.ro/drumuri-bune-moldova-2/",
+                "pointer": "char:9910-9948",
+                "baza": "declarat-in-pagina"
+              },
+              "adresa": {
+                "valoare": "https://expertforum.ro/drumuri-bune-moldova-2/",
+                "pointer": "char:9743-9908",
+                "baza": "declarat-in-pagina",
+                "legatura": "https://www.google.com/url?q=https://expertforum.ro/drumuri-bune-moldova-2/&sa=D&source=editors&ust=1643638624256001&usg=AOvVaw3FswkG3hirmxausZ8aTmLH",
+                "transformare": "legatura-google-desfacuta"
+              }
+            }
+          ],
+          "legaturi": [
+            {
+              "eticheta": {
+                "valoare": "Deschide 1",
+                "pointer": "char:10227-10237",
+                "baza": "declarat-in-pagina"
+              },
+              "text_dupa": null,
+              "adresa": {
+                "valoare": "https://docs.google.com/spreadsheets/d/1hWsdExKe_wzEdy2ZQQVdguINpEzI1Ikx/edit#gid=438062803",
+                "pointer": "char:10011-10225",
+                "baza": "declarat-in-pagina",
+                "legatura": "https://www.google.com/url?q=https://docs.google.com/spreadsheets/d/1hWsdExKe_wzEdy2ZQQVdguINpEzI1Ikx/edit%23gid%3D438062803&sa=D&source=editors&ust=1643638624256778&usg=AOvVaw2FwKs_qlKklxarbtELmvzP",
+                "transformare": "legatura-google-desfacuta"
+              },
+              "tip": "foaie-google",
+              "id_document": "1hWsdExKe_wzEdy2ZQQVdguINpEzI1Ikx",
+              "gid": "438062803"
+            },
+            {
+              "eticheta": {
+                "valoare": "Deschide 2",
+                "pointer": "char:10506-10516",
+                "baza": "declarat-in-pagina"
+              },
+              "text_dupa": null,
+              "adresa": {
+                "valoare": "https://docs.google.com/spreadsheets/d/1PHHdzvmc3IXv530isAHQe7-YEjE0__LV/edit#gid=1356846398",
+                "pointer": "char:10289-10504",
+                "baza": "declarat-in-pagina",
+                "legatura": "https://www.google.com/url?q=https://docs.google.com/spreadsheets/d/1PHHdzvmc3IXv530isAHQe7-YEjE0__LV/edit%23gid%3D1356846398&sa=D&source=editors&ust=1643638624257028&usg=AOvVaw1vabG5WSuTKF5ZMOJrY9ul",
+                "transformare": "legatura-google-desfacuta"
+              },
+              "tip": "foaie-google",
+              "id_document": "1PHHdzvmc3IXv530isAHQe7-YEjE0__LV",
+              "gid": "1356846398"
+            }
+          ],
+          "pointer": "char:9505-10533"
+        },
+        {
+          "categorie": {
+            "valoare": "Media",
+            "pointer": "char:10583-10588",
+            "baza": "declarat-in-pagina"
+          },
+          "subcategorie": {
+            "valoare": "Solicitari fonduri Deconturi fonduri",
+            "pointer": "char:10841-10877",
+            "baza": "declarat-in-pagina"
+          },
+          "titlu": {
+            "valoare": "Alocări și plăți pentru mass media în 2020, pentru programul de promovare COVID",
+            "pointer": "char:10890-10975",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Alocările și plățile pentru mass media realizate în 2020, pentru programul de promovare COVID (OUG 63/2020)",
+            "pointer": "char:10988-11101",
+            "baza": "declarat-in-pagina"
+          },
+          "rapoarte": [
+            {
+              "text": {
+                "valoare": "expertforum.ro/publicitate-pandemie/",
+                "pointer": "char:11169-11212",
+                "baza": "declarat-in-pagina"
+              },
+              "adresa": {
+                "valoare": "https://expertforum.ro/publicitate-pandemie/",
+                "pointer": "char:11123-11167",
+                "baza": "declarat-in-pagina"
+              }
+            }
+          ],
+          "legaturi": [
+            {
+              "eticheta": {
+                "valoare": "Deconturi",
+                "pointer": "char:11455-11464",
+                "baza": "declarat-in-pagina"
+              },
+              "text_dupa": null,
+              "adresa": {
+                "valoare": "https://docs.google.com/spreadsheets/d/1-facW31PDjxlZhYP6niKcJjHZEe6QueP/edit#gid=1805797305",
+                "pointer": "char:11238-11453",
+                "baza": "declarat-in-pagina",
+                "legatura": "https://www.google.com/url?q=https://docs.google.com/spreadsheets/d/1-facW31PDjxlZhYP6niKcJjHZEe6QueP/edit%23gid%3D1805797305&sa=D&source=editors&ust=1643638624261211&usg=AOvVaw0Eq9bXnn7bFbOlC_VCK43B",
+                "transformare": "legatura-google-desfacuta"
+              },
+              "tip": "foaie-google",
+              "id_document": "1-facW31PDjxlZhYP6niKcJjHZEe6QueP",
+              "gid": "1805797305"
+            },
+            {
+              "eticheta": {
+                "valoare": "Plăți",
+                "pointer": "char:11695-11700",
+                "baza": "declarat-in-pagina"
+              },
+              "text_dupa": null,
+              "adresa": {
+                "valoare": "https://docs.google.com/spreadsheets/d/1-fGcjCn45XU-c5fwc7DDAx_-w8eei5Dt/edit#gid=1050709184",
+                "pointer": "char:11478-11693",
+                "baza": "declarat-in-pagina",
+                "legatura": "https://www.google.com/url?q=https://docs.google.com/spreadsheets/d/1-fGcjCn45XU-c5fwc7DDAx_-w8eei5Dt/edit%23gid%3D1050709184&sa=D&source=editors&ust=1643638624261775&usg=AOvVaw0HiYtoom1SUAiCwQbuJ477",
+                "transformare": "legatura-google-desfacuta"
+              },
+              "tip": "foaie-google",
+              "id_document": "1-fGcjCn45XU-c5fwc7DDAx_-w8eei5Dt",
+              "gid": "1050709184"
+            }
+          ],
+          "pointer": "char:10829-11717"
+        },
+        {
+          "categorie": {
+            "valoare": "Sănătate",
+            "pointer": "char:11767-11775",
+            "baza": "declarat-in-pagina"
+          },
+          "subcategorie": {
+            "valoare": "Achiziții",
+            "pointer": "char:12028-12037",
+            "baza": "declarat-in-pagina"
+          },
+          "titlu": {
+            "valoare": "Achiziții construcții realizate de spitale între 2007 și 2021",
+            "pointer": "char:12050-12117",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Achiziții (proceduri competitive și cumpărări directe) construcții realizate de spitale între 2007 și 2021 – selecție CPVuri – vezi secțiunea din metodologie din raport și anexele pentru mai multe detalii",
+            "pointer": "char:12130-12357",
+            "baza": "declarat-in-pagina"
+          },
+          "rapoarte": [],
+          "legaturi": [
+            {
+              "eticheta": {
+                "valoare": "Deschide",
+                "pointer": "char:12507-12515",
+                "baza": "declarat-in-pagina"
+              },
+              "text_dupa": null,
+              "adresa": {
+                "valoare": "https://drive.google.com/drive/u/0/folders/1aeDYrKQBwm_L0Wg0qaCprylFUehmOEEu",
+                "pointer": "char:12429-12505",
+                "baza": "declarat-in-pagina"
+              },
+              "tip": "dosar-drive",
+              "id_document": "1aeDYrKQBwm_L0Wg0qaCprylFUehmOEEu",
+              "gid": null
+            }
+          ],
+          "pointer": "char:12016-12532"
+        },
+        {
+          "categorie": {
+            "valoare": "Sănătate",
+            "pointer": "char:11767-11775",
+            "baza": "declarat-in-pagina"
+          },
+          "subcategorie": {
+            "valoare": "Achiziții",
+            "pointer": "char:12547-12556",
+            "baza": "declarat-in-pagina"
+          },
+          "titlu": {
+            "valoare": "Achiziții spălătorie realizate de spitale între 2007 și 2021",
+            "pointer": "char:12569-12635",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Achiziții (proceduri competitive și cumpărări directe) servicii spălătorie realizate de spitale între 2007 și 2021 – selecție CPVuri – vezi secțiunea din metodologie din raport și anexele pentru mai multe detalii",
+            "pointer": "char:12648-12883",
+            "baza": "declarat-in-pagina"
+          },
+          "rapoarte": [],
+          "legaturi": [
+            {
+              "eticheta": {
+                "valoare": "Deschide",
+                "pointer": "char:13033-13041",
+                "baza": "declarat-in-pagina"
+              },
+              "text_dupa": null,
+              "adresa": {
+                "valoare": "https://drive.google.com/drive/u/0/folders/1aeDYrKQBwm_L0Wg0qaCprylFUehmOEEu",
+                "pointer": "char:12955-13031",
+                "baza": "declarat-in-pagina"
+              },
+              "tip": "dosar-drive",
+              "id_document": "1aeDYrKQBwm_L0Wg0qaCprylFUehmOEEu",
+              "gid": null
+            }
+          ],
+          "pointer": "char:12535-13058"
+        },
+        {
+          "categorie": {
+            "valoare": "Sănătate",
+            "pointer": "char:11767-11775",
+            "baza": "declarat-in-pagina"
+          },
+          "subcategorie": {
+            "valoare": "Achiziții",
+            "pointer": "char:13073-13082",
+            "baza": "declarat-in-pagina"
+          },
+          "titlu": {
+            "valoare": "Achiziții catering realizate de spitale între 2007 și 2021",
+            "pointer": "char:13095-13159",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Achiziții (proceduri competitive și cumpărări directe) servicii catering realizate de spitale între 2007 și 2021 – selecție CPVuri – vezi secțiunea din metodologie din raport și anexele pentru mai multe detalii",
+            "pointer": "char:13172-13405",
+            "baza": "declarat-in-pagina"
+          },
+          "rapoarte": [],
+          "legaturi": [
+            {
+              "eticheta": {
+                "valoare": "Deschide",
+                "pointer": "char:13555-13563",
+                "baza": "declarat-in-pagina"
+              },
+              "text_dupa": null,
+              "adresa": {
+                "valoare": "https://drive.google.com/drive/u/0/folders/1aeDYrKQBwm_L0Wg0qaCprylFUehmOEEu",
+                "pointer": "char:13477-13553",
+                "baza": "declarat-in-pagina"
+              },
+              "tip": "dosar-drive",
+              "id_document": "1aeDYrKQBwm_L0Wg0qaCprylFUehmOEEu",
+              "gid": null
+            }
+          ],
+          "pointer": "char:13061-13580"
+        }
+      ]
+    },
+    {
       "url": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
       "final_url": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
       "http_status": 200,
@@ -48806,6 +49729,1093 @@
       "stare": "analizat",
       "limita_atinsa": false,
       "baza_tipului": "cod-sau-documentatie"
+    },
+    {
+      "url": "https://docs.google.com/spreadsheets/d/1-_vKtEX8860ansiyo2Aq7eqyuo7ShYgA/export?format=csv&gid=1630617809",
+      "final_url": "https://doc-0o-c0-sheets.googleusercontent.com/export/f3kk9gtum31ktuqh54kn7i1e14/ielhnmvhuisevpk8rcjqmlhnig/1793039965000/112284565122911157493/*/1-_vKtEX8860ansiyo2Aq7eqyuo7ShYgA?format=csv&gid=1630617809",
+      "http_status": 200,
+      "fetched_at": "2026-10-26T18:39:27.704220+00:00",
+      "content_type": "text/csv",
+      "state": "raspuns-prea-mare",
+      "id": "a21e5dcfcdfdd5943859",
+      "campuri": [],
+      "completitudine": "neconfirmat",
+      "snapshot": "surse/a21e5dcfcdfdd5943859.json"
+    },
+    {
+      "url": "https://docs.google.com/spreadsheets/d/1-avhF8M66A1oyVwUnXdAoNP1sDxTlS4V/export?format=csv&gid=2098148876",
+      "final_url": "https://doc-0o-c0-sheets.googleusercontent.com/export/f3kk9gtum31ktuqh54kn7i1e14/4p6aig7812pteegrkgbk0hns5s/1793039955000/112284565122911157493/*/1-avhF8M66A1oyVwUnXdAoNP1sDxTlS4V?format=csv&gid=2098148876",
+      "http_status": 200,
+      "fetched_at": "2026-10-26T18:39:19.421125+00:00",
+      "content_type": "text/csv",
+      "state": "raspuns-prea-mare",
+      "id": "99c9848d3926da04dc78",
+      "campuri": [],
+      "completitudine": "neconfirmat",
+      "snapshot": "surse/99c9848d3926da04dc78.json"
+    },
+    {
+      "url": "https://docs.google.com/spreadsheets/d/1-fGcjCn45XU-c5fwc7DDAx_-w8eei5Dt/export?format=csv&gid=1050709184",
+      "final_url": "https://doc-00-c0-sheets.googleusercontent.com/export/f3kk9gtum31ktuqh54kn7i1e14/kf89s6sae5tflulifrl14ivrmc/1793039970000/112284565122911157493/*/1-fGcjCn45XU-c5fwc7DDAx_-w8eei5Dt?format=csv&gid=1050709184",
+      "http_status": 200,
+      "fetched_at": "2026-10-26T18:39:34.245028+00:00",
+      "content_type": "text/csv",
+      "state": "ok",
+      "citire": {
+        "tip": "csv",
+        "coloane_fara_nume": "omise"
+      },
+      "id": "9d63be18c456356e7120",
+      "campuri": [
+        {
+          "nume": "Furnizor",
+          "cale": "Furnizor",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 1,
+          "pointer": "celula:B1"
+        },
+        {
+          "nume": "Angajament (suma alocată, 31.12.2020)",
+          "cale": "Angajament (suma alocată, 31.12.2020)",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 2,
+          "pointer": "celula:C1"
+        },
+        {
+          "nume": "Plati 31.12.2020",
+          "cale": "Plati 31.12.2020",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 3,
+          "pointer": "celula:D1"
+        },
+        {
+          "nume": "Procent decont 31.12.2020",
+          "cale": "Procent decont 31.12.2020",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 4,
+          "pointer": "celula:E1"
+        },
+        {
+          "nume": "Plati iulie 2021",
+          "cale": "Plati iulie 2021",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 5,
+          "pointer": "celula:F1"
+        },
+        {
+          "nume": "Procent decont iulie 2021",
+          "cale": "Procent decont iulie 2021",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 6,
+          "pointer": "celula:G1"
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/9d63be18c456356e7120-ff7e8568daf50e88.json",
+      "sha256": "ff7e8568daf50e88d44f33b23943585d50c55074b61de69e86d8acf396ada8d1",
+      "format": "csv",
+      "stare": "analizat",
+      "limita_atinsa": false,
+      "baza_tipului": "antet-fara-tipuri",
+      "antet": {
+        "rand_antet": 1,
+        "randuri_deasupra": [],
+        "celule_antet_goale": [
+          "A1"
+        ]
+      }
+    },
+    {
+      "url": "https://docs.google.com/spreadsheets/d/1-facW31PDjxlZhYP6niKcJjHZEe6QueP/export?format=csv&gid=1805797305",
+      "final_url": "https://doc-0o-c0-sheets.googleusercontent.com/export/f3kk9gtum31ktuqh54kn7i1e14/dpracll8ga67mgl94e0h763d6o/1793039970000/112284565122911157493/*/1-facW31PDjxlZhYP6niKcJjHZEe6QueP?format=csv&gid=1805797305",
+      "http_status": 200,
+      "fetched_at": "2026-10-26T18:39:32.663867+00:00",
+      "content_type": "text/csv",
+      "state": "ok",
+      "citire": {
+        "tip": "csv",
+        "coloane_fara_nume": "omise"
+      },
+      "id": "22bc28db697416742442",
+      "campuri": [
+        {
+          "nume": "Document",
+          "cale": "Document",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 1,
+          "pointer": "celula:B1"
+        },
+        {
+          "nume": "Data Document",
+          "cale": "Data Document",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 2,
+          "pointer": "celula:C1"
+        },
+        {
+          "nume": "Beneficiar",
+          "cale": "Beneficiar",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 3,
+          "pointer": "celula:D1"
+        },
+        {
+          "nume": "Plati",
+          "cale": "Plati",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 4,
+          "pointer": "celula:E1"
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/22bc28db697416742442-dbf0c9a0f107d6d9.json",
+      "sha256": "dbf0c9a0f107d6d98d9d2344b53cc8adad0fb24cea133643e2ca2342569e8c9f",
+      "format": "csv",
+      "stare": "analizat",
+      "limita_atinsa": false,
+      "baza_tipului": "antet-fara-tipuri",
+      "antet": {
+        "rand_antet": 1,
+        "randuri_deasupra": [],
+        "celule_antet_goale": [
+          "A1",
+          "F1",
+          "G1",
+          "H1",
+          "I1"
+        ]
+      }
+    },
+    {
+      "url": "https://docs.google.com/spreadsheets/d/1-gauuhQ731-q3ZD6fhCM_sNSXQ8QD6e5/export?format=csv&gid=1272308734",
+      "final_url": "https://doc-0o-c0-sheets.googleusercontent.com/export/f3kk9gtum31ktuqh54kn7i1e14/l1luu372if0p6bdoprfdvblrlk/1793039945000/112284565122911157493/*/1-gauuhQ731-q3ZD6fhCM_sNSXQ8QD6e5?format=csv&gid=1272308734",
+      "http_status": 200,
+      "fetched_at": "2026-10-26T18:39:05.492744+00:00",
+      "content_type": "text/csv",
+      "state": "raspuns-prea-mare",
+      "id": "aeca1b7744433f58290e",
+      "campuri": [],
+      "completitudine": "neconfirmat",
+      "snapshot": "surse/aeca1b7744433f58290e.json"
+    },
+    {
+      "url": "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/export?format=csv&gid=768211337",
+      "final_url": "https://doc-0g-c0-sheets.googleusercontent.com/export/f3kk9gtum31ktuqh54kn7i1e14/e0pa6ceu46655blpfu0l2do47s/1793039965000/112284565122911157493/*/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy?format=csv&gid=768211337",
+      "http_status": 200,
+      "fetched_at": "2026-10-26T18:39:25.584747+00:00",
+      "content_type": "text/csv",
+      "state": "ok",
+      "id": "9e2b0b9a6a6d1bdb0717",
+      "campuri": [
+        {
+          "nume": "UAT",
+          "cale": "UAT",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 0
+        },
+        {
+          "nume": "Judet",
+          "cale": "Judet",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 1
+        },
+        {
+          "nume": "siruta",
+          "cale": "siruta",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 2
+        },
+        {
+          "nume": "Denumirea obiectivului de investiții",
+          "cale": "Denumirea obiectivului de investiții",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 3
+        },
+        {
+          "nume": "Domeniu",
+          "cale": "Domeniu",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 4
+        },
+        {
+          "nume": "valoare solicitata",
+          "cale": "valoare solicitata",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 5
+        },
+        {
+          "nume": "Tip UAT",
+          "cale": "Tip UAT",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 6
+        },
+        {
+          "nume": "Partid",
+          "cale": "Partid",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 7
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/9e2b0b9a6a6d1bdb0717-c46e02d7800625ae.json",
+      "sha256": "c46e02d7800625aecb25f98655025bac50a0a2ec265679b5be84e67c1f4725b2",
+      "format": "csv",
+      "stare": "analizat",
+      "limita_atinsa": false,
+      "baza_tipului": "antet-fara-tipuri"
+    },
+    {
+      "url": "https://docs.google.com/spreadsheets/d/1C6o0sGgdq__D62XBnz5qfqrQAS6TIZf1/export?format=csv&gid=55873501",
+      "final_url": "https://doc-08-c0-sheets.googleusercontent.com/export/f3kk9gtum31ktuqh54kn7i1e14/kcpr1ggerd80mh9fiqp7ecm8mg/1793039960000/112284565122911157493/*/1C6o0sGgdq__D62XBnz5qfqrQAS6TIZf1?format=csv&gid=55873501",
+      "http_status": 200,
+      "fetched_at": "2026-10-26T18:39:21.991014+00:00",
+      "content_type": "text/csv",
+      "state": "ok",
+      "id": "b80e93a06ea26658eabc",
+      "campuri": [
+        {
+          "nume": "beneficiar",
+          "cale": "beneficiar",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 0
+        },
+        {
+          "nume": "Nume nice",
+          "cale": "Nume nice",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 1
+        },
+        {
+          "nume": "suma",
+          "cale": "suma",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 2
+        },
+        {
+          "nume": "siruta",
+          "cale": "siruta",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 3
+        },
+        {
+          "nume": "sursa",
+          "cale": "sursa",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 4
+        },
+        {
+          "nume": "tip sursa",
+          "cale": "tip sursa",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 5
+        },
+        {
+          "nume": "data",
+          "cale": "data",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 6
+        },
+        {
+          "nume": "partid",
+          "cale": "partid",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 7
+        },
+        {
+          "nume": "judet",
+          "cale": "judet",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 8
+        },
+        {
+          "nume": "c/m/o",
+          "cale": "c/m/o",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 9
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/b80e93a06ea26658eabc-9b69f0f96206f269.json",
+      "sha256": "9b69f0f96206f269b2ff1c61de19ebcda8ff94c4573bb2dc6e8c76f6036bb8a1",
+      "format": "csv",
+      "stare": "analizat",
+      "limita_atinsa": false,
+      "baza_tipului": "antet-fara-tipuri"
+    },
+    {
+      "url": "https://docs.google.com/spreadsheets/d/1LFqrx69uwDqMlibUB_bDQHe3WsuxmeLR-hmZc-I59B8/export?format=csv&gid=1605213175",
+      "final_url": "https://doc-08-c0-sheets.googleusercontent.com/export/f3kk9gtum31ktuqh54kn7i1e14/7298i4d0nmucqamcjv8sqm3k1k/1793039960000/112284565122911157493/*/1LFqrx69uwDqMlibUB_bDQHe3WsuxmeLR-hmZc-I59B8?format=csv&gid=1605213175",
+      "http_status": 200,
+      "fetched_at": "2026-10-26T18:39:24.117837+00:00",
+      "content_type": "text/csv",
+      "state": "ok",
+      "id": "cd35243c591ff1d3fb45",
+      "campuri": [
+        {
+          "nume": "Nr crt",
+          "cale": "Nr crt",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 0
+        },
+        {
+          "nume": "JudeT",
+          "cale": "JudeT",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 1
+        },
+        {
+          "nume": "SIRUTA",
+          "cale": "SIRUTA",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 2
+        },
+        {
+          "nume": "CIF",
+          "cale": "CIF",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 3
+        },
+        {
+          "nume": "TIP UAT",
+          "cale": "TIP UAT",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 4
+        },
+        {
+          "nume": "UAT",
+          "cale": "UAT",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 5
+        },
+        {
+          "nume": "Alocare",
+          "cale": "Alocare",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 6
+        },
+        {
+          "nume": "Per capita",
+          "cale": "Per capita",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 7
+        },
+        {
+          "nume": "Partid primar",
+          "cale": "Partid primar",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 8
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/cd35243c591ff1d3fb45-3fdb2b5e5f14fd48.json",
+      "sha256": "3fdb2b5e5f14fd4846ad39fd4cc8d378f3ea8f33dd144e4b2b96dccbfbd264a1",
+      "format": "csv",
+      "stare": "analizat",
+      "limita_atinsa": false,
+      "baza_tipului": "antet-fara-tipuri"
+    },
+    {
+      "url": "https://docs.google.com/spreadsheets/d/1PHHdzvmc3IXv530isAHQe7-YEjE0__LV/export?format=csv&gid=1356846398",
+      "final_url": "https://doc-10-c0-sheets.googleusercontent.com/export/f3kk9gtum31ktuqh54kn7i1e14/400r00cuisv2tbf99jv7r4gd9o/1793039970000/112284565122911157493/*/1PHHdzvmc3IXv530isAHQe7-YEjE0__LV?format=csv&gid=1356846398",
+      "http_status": 200,
+      "fetched_at": "2026-10-26T18:39:31.326277+00:00",
+      "content_type": "text/csv",
+      "state": "ok",
+      "id": "63c156f64706dc3759be",
+      "campuri": [
+        {
+          "nume": "NR CU",
+          "cale": "NR CU",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 0
+        },
+        {
+          "nume": "DENUMIRE CIRCUMSCRIPȚIE",
+          "cale": "DENUMIRE CIRCUMSCRIPȚIE",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 1
+        },
+        {
+          "nume": "NR TOTAL DE VOTURI VALABIL EXPRIMATE (UNINOMINAL)",
+          "cale": "NR TOTAL DE VOTURI VALABIL EXPRIMATE (UNINOMINAL)",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 2
+        },
+        {
+          "nume": "NR TOTAL DE VOTURI VALABIL EXPRIMATE (PROPORȚIONAL)",
+          "cale": "NR TOTAL DE VOTURI VALABIL EXPRIMATE (PROPORȚIONAL)",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 3
+        },
+        {
+          "nume": "VOLUMUL TOTAL DE BANI ALOCAȚI ÎN 2018 (DRUMURI BUNE)",
+          "cale": "VOLUMUL TOTAL DE BANI ALOCAȚI ÎN 2018 (DRUMURI BUNE)",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 4
+        },
+        {
+          "nume": "Volumul alocațiilor pentru executare în anul 2019 -2 lucrări contractate în anul 2018 ",
+          "cale": "Volumul alocațiilor pentru executare în anul 2019 -2 lucrări contractate în anul 2018 ",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 5
+        },
+        {
+          "nume": "Volumul total al alocațiilor în 2018 (inclusiv lucrări finanțate în 2019)",
+          "cale": "Volumul total al alocațiilor în 2018 (inclusiv lucrări finanțate în 2019)",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 6
+        },
+        {
+          "nume": "NR TOTAL DE VOTURI ACUMULATE (UNINOMINAL- PDM)",
+          "cale": "NR TOTAL DE VOTURI ACUMULATE (UNINOMINAL- PDM)",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 7
+        },
+        {
+          "nume": "NR TOTAL DE VOTURI ACUMULATE (PROPORȚIONAL- PDM)",
+          "cale": "NR TOTAL DE VOTURI ACUMULATE (PROPORȚIONAL- PDM)",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 8
+        },
+        {
+          "nume": "Media de alocații în 2018 pe un alegător (proporțional)",
+          "cale": "Media de alocații în 2018 pe un alegător (proporțional)",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 9
+        },
+        {
+          "nume": "% PDM proporțional",
+          "cale": "% PDM proporțional",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 10
+        },
+        {
+          "nume": "% PDM uninominal",
+          "cale": "% PDM uninominal",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 11
+        },
+        {
+          "nume": "CÂȘTIGĂTORII ( CANDIDAȚII CĂRORA LI S-AU ATRUBUIT MANDATE ÎN CIRCUMSCRIPȚIILE UNINOMINALE",
+          "cale": "CÂȘTIGĂTORII ( CANDIDAȚII CĂRORA LI S-AU ATRUBUIT MANDATE ÎN CIRCUMSCRIPȚIILE UNINOMINALE",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 12
+        },
+        {
+          "nume": "APARTENENȚA POLITICĂ A CANDIDAȚILOR CĂRORA LI S-AU ATRUBUIT MANDATE ÎN CIRCUMSCRIPȚIILE UNINOMINALE ",
+          "cale": "APARTENENȚA POLITICĂ A CANDIDAȚILOR CĂRORA LI S-AU ATRUBUIT MANDATE ÎN CIRCUMSCRIPȚIILE UNINOMINALE ",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 13
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/63c156f64706dc3759be-b8f7f890e7c00f97.json",
+      "sha256": "b8f7f890e7c00f975d98462272b30fa4238767802550c79ddcd3c1eb7e2ef8c2",
+      "format": "csv",
+      "stare": "analizat",
+      "limita_atinsa": false,
+      "baza_tipului": "antet-fara-tipuri"
+    },
+    {
+      "url": "https://docs.google.com/spreadsheets/d/1XBImOARfWbaUX6OGN8wf_crmSu__-0hs/export?format=csv&gid=1251769352",
+      "final_url": "https://doc-14-c0-sheets.googleusercontent.com/export/f3kk9gtum31ktuqh54kn7i1e14/3lf5cukiaubq5h4oes668mbkq0/1793039955000/112284565122911157493/*/1XBImOARfWbaUX6OGN8wf_crmSu__-0hs?format=csv&gid=1251769352",
+      "http_status": 200,
+      "fetched_at": "2026-10-26T18:39:15.516836+00:00",
+      "content_type": "text/csv",
+      "state": "ok",
+      "id": "f9fc6e2962cd9605944c",
+      "campuri": [
+        {
+          "nume": "ABREVIERE JUDET",
+          "cale": "ABREVIERE JUDET",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 0
+        },
+        {
+          "nume": "UAT",
+          "cale": "UAT",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 1
+        },
+        {
+          "nume": "NR. PERSOANE",
+          "cale": "NR. PERSOANE",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 2
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/f9fc6e2962cd9605944c-41ca841e67734571.json",
+      "sha256": "41ca841e677345715bfa1d0f92e6f94d7508ed15cf18fa755498e6a56653a50d",
+      "format": "csv",
+      "stare": "analizat",
+      "limita_atinsa": false,
+      "baza_tipului": "antet-fara-tipuri"
+    },
+    {
+      "url": "https://docs.google.com/spreadsheets/d/1ZdnysGyGRAlRQM651SIqsCeUGlO1Ivd8/export?format=csv&gid=1547605917",
+      "final_url": "https://doc-0c-c0-sheets.googleusercontent.com/export/f3kk9gtum31ktuqh54kn7i1e14/6s53e90hv5ajktgb9nr51ue8dg/1793039940000/112284565122911157493/*/1ZdnysGyGRAlRQM651SIqsCeUGlO1Ivd8?format=csv&gid=1547605917",
+      "http_status": 200,
+      "fetched_at": "2026-10-26T18:39:03.553008+00:00",
+      "content_type": "text/csv",
+      "state": "ok",
+      "id": "610159c58434ca2ef251",
+      "campuri": [
+        {
+          "nume": "Numărul circumscripției electorale județene și a municipiului București",
+          "cale": "Numărul circumscripției electorale județene și a municipiului București",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 0
+        },
+        {
+          "nume": "Denumirea circumscripției electorale",
+          "cale": "Denumirea circumscripției electorale",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 1
+        },
+        {
+          "nume": "Denumirea formațiunii politice/Candidat independent",
+          "cale": "Denumirea formațiunii politice/Candidat independent",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 2
+        },
+        {
+          "nume": "Denumirea membrului din cadrul alianței care a propus candidatul",
+          "cale": "Denumirea membrului din cadrul alianței care a propus candidatul",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 3
+        },
+        {
+          "nume": "Competitor-partid",
+          "cale": "Competitor-partid",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 4
+        },
+        {
+          "nume": "Numele candidatului",
+          "cale": "Numele candidatului",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 5
+        },
+        {
+          "nume": "Prenumele candidatului",
+          "cale": "Prenumele candidatului",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 6
+        },
+        {
+          "nume": "Nume intreg",
+          "cale": "Nume intreg",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 7
+        },
+        {
+          "nume": "Pozitie lista",
+          "cale": "Pozitie lista",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 8
+        },
+        {
+          "nume": "Sex",
+          "cale": "Sex",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 9
+        },
+        {
+          "nume": "Funcția pentru care candidează",
+          "cale": "Funcția pentru care candidează",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 10
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/610159c58434ca2ef251-7b6269aa42511669.json",
+      "sha256": "7b6269aa425116698c758658fdb3bc6801d419c8c91dae89e5d74bcb5c741343",
+      "format": "csv",
+      "stare": "analizat",
+      "limita_atinsa": false,
+      "baza_tipului": "antet-fara-tipuri"
+    },
+    {
+      "url": "https://docs.google.com/spreadsheets/d/1fX1Nv2HonSSfFfTqBNpWfmTeGREMQAQ-/export?format=csv&gid=1641909541",
+      "final_url": "https://doc-0c-c0-sheets.googleusercontent.com/export/f3kk9gtum31ktuqh54kn7i1e14/kfvnprrq5h58siq2mdebi6b5js/1793039955000/112284565122911157493/*/1fX1Nv2HonSSfFfTqBNpWfmTeGREMQAQ-?format=csv&gid=1641909541",
+      "http_status": 200,
+      "fetched_at": "2026-10-26T18:39:17.154450+00:00",
+      "content_type": "text/csv",
+      "state": "ok",
+      "citire": {
+        "tip": "csv",
+        "rand_antet": 2
+      },
+      "id": "5d473ed55e3ad3081eca",
+      "campuri": [
+        {
+          "nume": "Judeţ",
+          "cale": "Judeţ",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 0,
+          "pointer": "celula:A2"
+        },
+        {
+          "nume": "Localitate",
+          "cale": "Localitate",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 1,
+          "pointer": "celula:B2"
+        },
+        {
+          "nume": "Judeţ de provenienţă (domiciliu anterior)",
+          "cale": "Judeţ de provenienţă (domiciliu anterior)",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 2,
+          "pointer": "celula:C2"
+        },
+        {
+          "nume": "Nr. persoane",
+          "cale": "Nr. persoane",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 3,
+          "pointer": "celula:D2"
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/5d473ed55e3ad3081eca-525c6f9ba4f32e5e.json",
+      "sha256": "525c6f9ba4f32e5e59c6b9f39298bba0064f95935397d2698ba1726bf3234f49",
+      "format": "csv",
+      "stare": "analizat",
+      "limita_atinsa": false,
+      "baza_tipului": "antet-fara-tipuri",
+      "antet": {
+        "rand_antet": 2,
+        "randuri_deasupra": [
+          {
+            "rand": 1,
+            "celule": [
+              {
+                "celula": "A1",
+                "valoare": "Stabilire de domiciliu în perioada 01.04 - 11.06.2016"
+              }
+            ]
+          }
+        ],
+        "celule_antet_goale": []
+      }
+    },
+    {
+      "url": "https://docs.google.com/spreadsheets/d/1hWsdExKe_wzEdy2ZQQVdguINpEzI1Ikx/export?format=csv&gid=438062803",
+      "final_url": "https://doc-10-c0-sheets.googleusercontent.com/export/f3kk9gtum31ktuqh54kn7i1e14/70g41h0hi74dggvojvm7c2p718/1793039970000/112284565122911157493/*/1hWsdExKe_wzEdy2ZQQVdguINpEzI1Ikx?format=csv&gid=438062803",
+      "http_status": 200,
+      "fetched_at": "2026-10-26T18:39:29.774800+00:00",
+      "content_type": "text/csv",
+      "state": "ok",
+      "id": "8f8982cf195a49418eb1",
+      "campuri": [
+        {
+          "nume": "Raion",
+          "cale": "Raion",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 0
+        },
+        {
+          "nume": "Comună (sat)/oraș",
+          "cale": "Comună (sat)/oraș",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 1
+        },
+        {
+          "nume": "CU Nr.",
+          "cale": "CU Nr.",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 2
+        },
+        {
+          "nume": "Valoarea obiectivului (lei)",
+          "cale": "Valoarea obiectivului (lei)",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 3
+        },
+        {
+          "nume": "Volumul alocațiilor pentru executare în anul 2019 - 2)  lucrări contractate în anul 2018 ",
+          "cale": "Volumul alocațiilor pentru executare în anul 2019 - 2)  lucrări contractate în anul 2018 ",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 4
+        },
+        {
+          "nume": "Volumul total al alocațiilor pe 2018 (inclusiv achitate în 2019)",
+          "cale": "Volumul total al alocațiilor pe 2018 (inclusiv achitate în 2019)",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 5
+        },
+        {
+          "nume": "Media de alocații pe cap de alegător în 2018 (proporțional)",
+          "cale": "Media de alocații pe cap de alegător în 2018 (proporțional)",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 6
+        },
+        {
+          "nume": "Clasa alocărilor pe cap de alegător 2018",
+          "cale": "Clasa alocărilor pe cap de alegător 2018",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 7
+        },
+        {
+          "nume": "Partidul Democrat din Moldova (CU)\n",
+          "cale": "Partidul Democrat din Moldova (CU)\n",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 8
+        },
+        {
+          "nume": "Partidul Politic „Partidul Socialiştilor din Republica Moldova",
+          "cale": "Partidul Politic „Partidul Socialiştilor din Republica Moldova",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 9
+        },
+        {
+          "nume": "Blocul electoral~„ACUM Platforma DA și PAS” \n",
+          "cale": "Blocul electoral~„ACUM Platforma DA și PAS” \n",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 10
+        },
+        {
+          "nume": "Partidul Politic „Șor”\n",
+          "cale": "Partidul Politic „Șor”\n",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 11
+        },
+        {
+          "nume": "Numărul total de voturi valabil exprimate (CU)",
+          "cale": "Numărul total de voturi valabil exprimate (CU)",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 12
+        },
+        {
+          "nume": "Numărul total de voturi valabil exprimate (Prop)",
+          "cale": "Numărul total de voturi valabil exprimate (Prop)",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 13
+        },
+        {
+          "nume": "Partidul Democrat din Moldova (Prop)",
+          "cale": "Partidul Democrat din Moldova (Prop)",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 14
+        },
+        {
+          "nume": "Blocul electoral „ACUM Platforma DA și PAS”",
+          "cale": "Blocul electoral „ACUM Platforma DA și PAS”",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 15
+        },
+        {
+          "nume": "Partidul Comuniştilor din Republica Moldova",
+          "cale": "Partidul Comuniştilor din Republica Moldova",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 16
+        },
+        {
+          "nume": "Partidul Politic „Partidul Socialiştilor din Republica Moldova”",
+          "cale": "Partidul Politic „Partidul Socialiştilor din Republica Moldova”",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 17
+        },
+        {
+          "nume": "Partidul Politic „Șor”",
+          "cale": "Partidul Politic „Șor”",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 18
+        },
+        {
+          "nume": "Partidul Politic Mişcarea Populară Antimafie",
+          "cale": "Partidul Politic Mişcarea Populară Antimafie",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 19
+        },
+        {
+          "nume": "Partidul politic~„Partidul Nostru”",
+          "cale": "Partidul politic~„Partidul Nostru”",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 20
+        },
+        {
+          "nume": "Partidul Naţional Liberal",
+          "cale": "Partidul Naţional Liberal",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 21
+        },
+        {
+          "nume": "Partidul Politic „VOINȚA POPORULUI”",
+          "cale": "Partidul Politic „VOINȚA POPORULUI”",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 22
+        },
+        {
+          "nume": "Partidul Regiunilor din Moldova",
+          "cale": "Partidul Regiunilor din Moldova",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 23
+        },
+        {
+          "nume": "Partidul Politic „Democraţia Acasă”",
+          "cale": "Partidul Politic „Democraţia Acasă”",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 24
+        },
+        {
+          "nume": "Mişcarea Profesioniştilor „Speranţa-Надежда”",
+          "cale": "Mişcarea Profesioniştilor „Speranţa-Надежда”",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 25
+        },
+        {
+          "nume": "Partidul Politic „PATRIA”",
+          "cale": "Partidul Politic „PATRIA”",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 26
+        },
+        {
+          "nume": "Partidul Politic Partidul Verde Ecologist",
+          "cale": "Partidul Politic Partidul Verde Ecologist",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 27
+        },
+        {
+          "nume": "Partidul Liberal",
+          "cale": "Partidul Liberal",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 28
+        },
+        {
+          "nume": "% PDM proporțional",
+          "cale": "% PDM proporțional",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 29
+        },
+        {
+          "nume": "% PDM uninominal",
+          "cale": "% PDM uninominal",
+          "tip_declarat": null,
+          "stare_tip": "neprecizat-in-antet-csv",
+          "rol": "camp-date",
+          "coloana_csv": 30
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/8f8982cf195a49418eb1-88eccc2ee3911494.json",
+      "sha256": "88eccc2ee39114940ec7352db89ced785d1fd935117a38043eff2ee701f1b5bc",
+      "format": "csv",
+      "stare": "analizat",
+      "limita_atinsa": false,
+      "baza_tipului": "antet-fara-tipuri"
+    },
+    {
+      "url": "https://docs.google.com/spreadsheets/d/1uHjx7STb9E97Da4vnUA3Z3oqDurRo220ZpwUCyM2Mm8/export?format=csv&gid=0",
+      "final_url": "https://doc-14-c0-sheets.googleusercontent.com/export/f3kk9gtum31ktuqh54kn7i1e14/8uo39pocn76833feffkei72rvk/1793039920000/112284565122911157493/*/1uHjx7STb9E97Da4vnUA3Z3oqDurRo220ZpwUCyM2Mm8?format=csv&gid=0",
+      "http_status": 200,
+      "fetched_at": "2026-10-26T18:38:41.774062+00:00",
+      "content_type": "text/csv",
+      "state": "raspuns-prea-mare",
+      "id": "5ebaf7cbf8048994ea9a",
+      "campuri": [],
+      "completitudine": "neconfirmat",
+      "snapshot": "surse/5ebaf7cbf8048994ea9a.json"
     },
     {
       "url": "https://harta-firmelor.ro/date",
