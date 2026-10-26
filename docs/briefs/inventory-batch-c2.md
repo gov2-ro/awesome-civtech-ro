@@ -60,3 +60,38 @@ Lot code: `C2` (column `investigat_in_lot` of `acoperire.csv`).
 
 For each entry: sources found, sources parsed, field records, fields in existing groups, proposed groups, proposed providers, blockers.
 Also: requests made (from `jurnal-cereri.csv`), browser navigations, test counts before and after, and what was assumed and not measured.
+
+## 7. Part 2 — `data-expertforum` from the owner's copy and the Google Sheets (added 2026-10-26)
+
+Status: ready. `bani-partide` waits for the owner (section 8).
+
+`expertforum.ro` is in `colectare-interzisa.csv` (the row covers `data.expertforum.ro`). Do not request these hosts.
+The owner saved the page `https://data.expertforum.ro/` from a browser: `tmp/data.expertforum.ro.html` (saved 2026-10-26T20:23:00+02:00).
+
+Measured by the Opus session on 2026-10-26:
+- The page is a table of data sets (category, name, description, related EFOR reports, link). The links go to about 16 Google Sheets and Drive files, some through `https://www.google.com/url?q=…` wrappers, and one Drive folder.
+- Two requests to `https://docs.google.com/spreadsheets/d/<id>/export?format=csv` (one native Sheet, one Office file opened in Sheets) answered HTTP 200 with `text/csv`, after a redirect to `doc-…-sheets.googleusercontent.com`. The endpoint ignores a byte range: each response was the whole tab (188,840 and 246,624 bytes).
+  The headers include `SIRUTA`, `CIF`, `UAT`, `judet` and `partid`. These are candidates for the groups `siruta`, `cui`, `localitate` and `judet`.
+
+Work:
+1. Import the owner's copy: `collect_docs.py --import-saved` and `inventory.py --import-saved data-expertforum https://data.expertforum.ro/ tmp/data.expertforum.ro.html --saved-at 2026-10-26T20:23:00+02:00`. The copy is the discovery locator of every sheet.
+2. Unwrap the `google.com/url?q=` links offline (read the `q` parameter). Make no request to `www.google.com`.
+3. For each sheet, request the CSV export of the tab that the link names (`gid`), once. Add the sources with `inventory.py --add-source` and the existing CSV reader.
+   A Drive folder cannot be listed without the API: record it and do not request it. A Drive file that is not a spreadsheet: record it and do not request it.
+4. Each data set gets the facts that the page declares: category, name, description, the related report. The page says „Datele sunt prelucrate de EFOR, pornind de la informații existente în spațiul public sau obținute pe baza legii accesului la informații de interes public”.
+   A provider item needs a named provider in the page or in the sheet (for example, a column `sursa` with „HG 1088/2021”). Do not infer a provider from the topic.
+5. Map the columns to the existing groups only where the meaning is clear. A reviewed group needs the owner's confirmation for a new member: list the candidates, as in Part 1.
+6. The finance data set on this page links to `https://www.banipartide.ro/`. Record that as a relation between the two entries in the notes; it is not a source.
+
+Limits: at most 30 requests, all to `docs.google.com` and the redirect host. One request for each sheet tab; no retry on 4xx. A response over 2,000,000 bytes is not parsed; record it.
+The sheets hold aggregate data about public bodies. If a sheet holds data about private persons, keep the header only.
+
+Lot code: `C2` (the same lot). Report as in section 6, for this entry only.
+
+## 8. `bani-partide` — waiting for the owner
+
+The owner develops `banipartide.ro` (local checkout `/opt/homebrew/var/www/banipartide`, outside this repository). Its data is a SQLite database with 21 tables and views, published with Datasette at `https://db.banipartide.ro/` (DNS: Google front-end addresses, not the host that answers 403).
+The row `banipartide.ro` in `colectare-interzisa.csv` covers `db.banipartide.ro` too. Two options, for the owner:
+- The owner saves `https://db.banipartide.ro/banipartide.json` (tables, columns and row counts) from a browser, and the session imports it with `--import-saved`. No change to the list.
+- The owner allows `db.banipartide.ro`. The list has no exception for a subdomain today, so this needs a small change to `common.forbidden()`, `validate.py`, the docs and the tests.
+The local checkout is not public evidence. Use it only to check a reading, and copy no rows: the donor tables name private persons.
