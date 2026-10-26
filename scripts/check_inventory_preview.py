@@ -176,30 +176,32 @@ with sync_playwright() as pw:
         mobile.wait_for_timeout(300)
         mobile.screenshot(path=f'/tmp/civtech-inventory-mobile-{width}.png')
         mobile.close()
-    # An entry out of the scope of the inventory (inactive, without data or with an empty relation to data, or an organisation) has no marker and no "Date & metodă" panel,
-    # in the list and on its own page. The sets come from data.json and the rule of the brief, not from the build.
+    # The explorer is not limited by the scope of /date/ (owner, 2026-10-27): an entry out of scope (inactive, without data, or an organisation)
+    # keeps its markers and its "Date & metodă" panel. The sets come from data.json and the rule of the brief, not from the build.
     in_scope = lambda i: i['kind'] in ('proiect', 'resursa') and i['status'] not in ('offline', 'arhivat') and i.get('dataRelation') in ('date-publice', 'date-proprii', 'calcul')
-    outside = [i for i in DB['items'] if not in_scope(i)]
-    ok('the data gives the inventory to entries in scope only', outside and all('inventory' not in i for i in outside))
     for kind in ('proiect', 'resursa'):
         page.goto(BASE + f'?k={kind}&ina=1&o=az')
         page.wait_for_selector('[data-slot="toolbar"] .count')
         marker_rows = '[data-slot="results"] .row:has(.inventory-tag), [data-slot="results"] .card:has(.inventory-tag)'
         marked = set(page.locator(marker_rows).evaluate_all('els=>els.map(e=>e.dataset.open)'))
-        expected = {i['slug'] for i in DB['items'] if i['kind'] == kind and in_scope(i) and i.get('inventory', {}).get('count')}
-        ok(f'markers on the {kind} tab belong to entries in scope, inactive ones shown too', marked == expected)
-        # Every entry with a marker works with data: the explorer group "Lucrează cu date" keeps all the markers, and "Fără date" has none.
-        page.goto(BASE + f'?k={kind}&ina=1&o=az&dat=cu-date')
-        page.wait_for_selector('[data-slot="toolbar"] .count')
-        ok(f'the group cu-date keeps every marker on the {kind} tab',
-           set(page.locator(marker_rows).evaluate_all('els=>els.map(e=>e.dataset.open)')) == expected and len(expected) > 0)
-        page.goto(BASE + f'?k={kind}&ina=1&o=az&dat=fara-date')
-        page.wait_for_selector('[data-slot="toolbar"] .count')
-        ok(f'the group fara-date has no marker on the {kind} tab', page.locator(marker_rows).count() == 0)
-    for item in [next(i for i in outside if i['kind'] == 'proiect' and i['status'] in ('offline', 'arhivat')), next(i for i in outside if i['kind'] == 'organizatie')]:
+        expected = {i['slug'] for i in DB['items'] if i['kind'] == kind and i.get('inventory', {}).get('count')}
+        ok(f'markers on the {kind} tab belong to the entries with fields, inactive ones shown too', marked == expected)
+        inside = {i['slug'] for i in DB['items'] if i['slug'] in expected and in_scope(i)}
+        for group, want in (('cu-date', inside), ('fara-date', {s for s in expected - inside if next(i for i in DB['items'] if i['slug'] == s)['status'] not in ('offline', 'arhivat')})):
+            page.goto(BASE + f'?k={kind}&o=az&dat={group}')
+            page.wait_for_selector('[data-slot="toolbar"] .count')
+            ok(f'the group {group} shows the markers of its own entries on the {kind} tab',
+               set(page.locator(marker_rows).evaluate_all('els=>els.map(e=>e.dataset.open)')) == want and (group != 'cu-date' or len(want) > 0))
+    outside_docs = [i for i in DB['items'] if not in_scope(i) and i.get('inventory', {}).get('docs')]
+    ok('entries out of scope keep their documentation links in the data', len(outside_docs) > 0)
+    for item in [next((i for i in outside_docs if i['kind'] == 'organizatie'), None), next((i for i in outside_docs if i['kind'] != 'organizatie'), None)]:
+        if item is None:
+            continue
         page.goto(BASE + f"{item['kind']}/{item['slug']}/")
         page.wait_for_selector('#d-title')
-        ok('no inventory panel on the page of ' + item['slug'], page.locator('.d-inventory').count() == 0)
+        page.wait_for_selector('.d-inventory', timeout=8000)
+        ok('the page of ' + item['slug'] + ' (out of scope) shows its "Date & metodă" panel with its documentation links',
+           page.locator('.d-inventory').count() == 1 and all(page.locator(f'.d-inventory a[href="{d["url"]}"]').count() > 0 for d in item['inventory']['docs']))
     ok('no uncaught page errors', not errors)
     browser.close()
 print(f'{sum(results)}/{len(results)} inventory preview checks passed')

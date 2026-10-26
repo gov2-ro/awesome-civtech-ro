@@ -408,8 +408,10 @@ class Scope(unittest.TestCase):
             in_scope = ['in-calcul', 'in-date', 'in-resource']
             index = json.loads((site / 'inventar/index.json').read_text())
             self.assertEqual(sorted(e['slug'] for e in index['entries']), in_scope)
-            self.assertEqual(sorted(p.stem for p in (site / 'inventar').glob('*.json') if p.stem != 'index'), in_scope)
-            self.assertEqual([slug for slug, item in by.items() if 'inventory' in item], sorted(in_scope, key=list(by).index))
+            # The explorer panel is not limited by the scope: every entry with fields keeps its file and its `inventory` key.
+            with_fields = [slug for slug in by if slug != 'no-data-resource']
+            self.assertEqual(sorted(p.stem for p in (site / 'inventar').glob('*.json') if p.stem != 'index'), sorted(with_fields))
+            self.assertEqual([slug for slug, item in by.items() if 'inventory' in item], with_fields)
             page = (site / 'date/lista/index.html').read_text()
             body = page[page.index('<tbody>'):page.index('</tbody>')]
             self.assertEqual(sorted(re.findall(r'<tr id="([^"]+)">', body)), in_scope)
@@ -450,23 +452,26 @@ class Scope(unittest.TestCase):
             self.assertEqual(json.loads((site / 'inventar/index.json').read_text())['leftOut'],
                              {'fara-date': {'proiect': 0, 'resursa': 0}, 'inactiv': {'proiect': 0, 'resursa': 0}})
 
-    def test_an_entry_that_leaves_the_scope_loses_its_inventory_file_and_marker_at_the_next_build(self):
+    def test_an_entry_that_leaves_the_scope_keeps_its_explorer_panel_and_leaves_the_finder(self):
         with tempfile.TemporaryDirectory() as tmp:
             root, site, items = self.fixture(tmp)
             with patch('inventory_site.observation_paths', return_value={'profile': root.parent / 'observatii/profil.csv'}):
                 publish_preview(items, root, site)
                 self.assertTrue((site / 'inventar/in-date.json').exists() and 'inventory' in items[0])
                 fresh = [built('in-date', dataRelation='fara-date')]
-                publish_preview(fresh, root, site)
-            self.assertFalse((site / 'inventar/in-date.json').exists())
-            self.assertNotIn('inventory', fresh[0])
+                projections = publish_preview(fresh, root, site)
+            publish_finder(fresh, root, site, projections)
+            self.assertTrue((site / 'inventar/in-date.json').exists())
+            self.assertEqual(fresh[0]['inventory']['count'], 1)
+            self.assertEqual(json.loads((site / 'inventar/index.json').read_text())['entries'], [])
 
-    def test_an_organisation_keeps_no_inventory_key_even_with_documentation_links(self):
+    def test_an_organisation_keeps_its_documentation_links_in_the_explorer(self):
         with tempfile.TemporaryDirectory() as tmp:
             root, site, items = self.fixture(tmp)
             with patch('inventory_site.observation_paths', return_value={'profile': root.parent / 'observatii/profil.csv'}):
                 publish_preview(items, root, site)
-            self.assertNotIn('inventory', next(i for i in items if i['slug'] == 'an-org'), 'the fixture gives the organisation a methodology page')
+            org = next(i for i in items if i['slug'] == 'an-org')
+            self.assertEqual([d['url'] for d in org['inventory']['docs']], ['https://org.example/method'], 'the fixture gives the organisation a methodology page')
 
     def test_the_site_and_the_scripts_give_every_public_entry_the_same_reason(self):
         import build

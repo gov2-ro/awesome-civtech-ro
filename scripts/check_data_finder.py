@@ -167,18 +167,11 @@ with sync_playwright() as pw:
     shown_cui = set(page.locator('.ov-table tbody tr').evaluate_all('(els, label)=>els.filter(e=>[...e.querySelectorAll("li")].some(li=>li.textContent===label)).map(e=>e.id)', cui['label']))
     ok('a normalised name appears in exactly the rows whose entries have the group', shown_cui == cui_rows)
     ok('the table scrolls inside its frame, not the page', page.evaluate('document.documentElement.scrollWidth===innerWidth'))
-    # The scope: the entries that the inventory leaves out are absent from the index, the list, the finder and the explorer markers, and counted by reason.
+    # The scope: the entries that the inventory leaves out are absent from the index, the list and the finder, and counted by reason.
     ok('the index lists exactly the projects and resources that are in scope', {e['slug'] for e in INDEX['entries']} == EXPECTED and len(OUT) > 0)
     ok('the index counts what it leaves out, by the two reasons and kind', INDEX.get('leftOut') == COUNTS and list(COUNTS) == ['fara-date', 'inactiv'])
-    ok('an entry out of scope has no inventory marker, and an organisation has none', all('inventory' not in i for i in DB['items'] if i['slug'] not in EXPECTED)
-       and all('url' not in i.get('inventory', {}) or i['slug'] in EXPECTED for i in DB['items']))
-    def status_of(url):
-        try:
-            return urllib.request.urlopen(url).status
-        except urllib.error.HTTPError as error:
-            return error.code
-    ok('no inventory file is served for an entry out of scope', all(status_of(BASE + f'inventar/{slug}.json') == 404 for slug in OUT))
-    ok('the explorer marks no entry out of scope', all(not i.get('inventory', {}).get('count') for i in DB['items'] if i['slug'] in OUT))
+    # The explorer is not limited by the scope (owner, 2026-10-27): an entry out of scope keeps its documentation links.
+    ok('an entry out of scope keeps its documentation links in the explorer data', any(i.get('inventory', {}).get('docs') for i in DB['items'] if i['slug'] in OUT))
     page.goto(BASE + 'date/')
     page.wait_for_selector('.finder-card')
     note = page.locator('#data-left-out')

@@ -1,5 +1,17 @@
 # Activity
 
+## 2026-10-27 — Out-of-scope entries keep their „Date & metodă” panel (v0.34.1)
+
+**Done**
+- The owner decided that an entry out of the variable inventory keeps the „Date & metodă” panel in the explorer: „if it holds a url value, other types of projects might still have method, and data they used”. `publish_preview` no longer applies the scope rule. `/date/`, `/date/lista/` and the default selection of the collectors still do.
+- Measured on a `--with-inventory` build: 81 items have the key `inventory` (61 before, 81 before steps D–E). The 20 items that get it back hold documentation links only; no out-of-scope entry has fields today.
+- Tests: two unit tests now say the opposite of the old ones (an entry that leaves the scope keeps its file and panel; an organisation keeps its links). The browser checks open the page of an out-of-scope organisation and project and find their links; three checks of the old rule left `check_data_finder.py`. Without the change, 3 unit tests and 1 check in each browser script fail.
+  Counts: 727 unit tests; `check_preview.py` 141/141, `check_inventory_preview.py` 40/40, `check_data_finder.py` 61/61.
+- The CNP of `db.banipartide.ro` is the owner's work in that project; the backlog item is dropped. The cleaned copy of its database in the scratchpad was deleted.
+
+**Decided**
+- The explorer markers follow the panel: an out-of-scope entry with fields would show its marker. None has fields today. The cost of the alternative (panel without marker): a second rule for one case that does not exist.
+
 ## 2026-10-27 — The 24 candidate members confirmed in bulk
 
 **Done**

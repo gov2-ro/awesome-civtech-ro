@@ -53,7 +53,7 @@ The format facet (`formate`) does not replace the column: a quiz (`testvot`) hol
 2. Its built status is not in the group `inactiv` (`offline`, `arhivat`), the same rule as `isInactive` in `site/app.js`.
 3. `relatie_date` is `date-publice`, `date-proprii` or `calcul`. An empty value and `fara-date` both leave the entry out (owner, 2026-10-26; the first version of this brief kept empty values in).
 
-The same rule applies to `/date/`, `/date/lista/`, `inventar/<slug>.json`, the inventory markers in the explorer, and the default selection of `collect_docs.py` and `inventory.py`.
+The same rule applies to `/date/`, `/date/lista/` and the default selection of `collect_docs.py` and `inventory.py`. (Changed 2026-10-27, owner: `inventar/<slug>.json` and the explorer's markers and "Date & metodă" panel are not limited by the scope.)
 An explicit `--only` still runs on an out-of-scope entry (the owner may want an archived source), and the script prints that the entry is out of scope.
 Retained evidence of an out-of-scope entry stays in `observatii/`; only the public output leaves it out. Measured on 2026-10-26: no inactive entry has extracted fields.
 

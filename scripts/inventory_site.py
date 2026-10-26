@@ -38,8 +38,9 @@ LEFT_OUT = ('fara-date', 'inactiv')
 
 def scope_reason(item):
     """Why a built item is out of the public inventory, or an empty string when it is in scope (`common.inventory_exclusion`).
-    `publish_preview`, `publish_finder` and `publish_overview` all use this one function, so the finder, the list, `inventar/<slug>.json`
-    and the inventory markers of the explorer always name the same entries."""
+    `publish_finder` and `publish_overview` use this one function, so the finder and the list always name the same entries.
+    The explorer is not limited by the scope: `publish_preview` gives every entry its „Date & metodă” panel (documentation links,
+    sources and fields) when it has one, organisations and entries without data included (owner, 2026-10-27)."""
     return inventory_exclusion(item.get('kind', ''), item.get('status', ''), item.get('dataRelation', ''))
 
 
@@ -381,8 +382,6 @@ def publish_preview(items, root, site):
         slug = item['slug']
         if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', slug):
             raise ValueError('Invalid inventory slug: ' + slug)
-        if scope_reason(item):
-            continue  # out of scope: no projection and no `inventory` key; the retained evidence stays in observatii/
         profile = profiles.get(slug, {})
         links = document_links(docs.get(slug, {}))
         fields, source_list = [], []

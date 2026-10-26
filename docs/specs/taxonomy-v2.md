@@ -650,8 +650,9 @@ When two codes apply, use the first one in the table. One code settles the mixed
 The checks refuse an unknown code, a value on an organisation, and `fara-date` together with `detaliere_date`.
 `validate.py` warns when an entry with `fara-date` has extracted fields in its inventory.
 The build writes the code as `dataRelation` on each item and the code list as `vocabulary.dataRelations`.
-An entry is in scope of the variable inventory (`/date/`, `/date/lista/`, `inventar/<slug>.json`, the explorer markers and the default selection of `collect_docs.py` and `inventory.py`) when it is a project or a resource,
+An entry is in scope of the variable inventory (`/date/`, `/date/lista/` and the default selection of `collect_docs.py` and `inventory.py`) when it is a project or a resource,
 its built status is not inactive (`offline`, `arhivat`), and its code is `date-publice`, `date-proprii` or `calcul`. An empty value and `fara-date` both leave the entry out.
+The explorer is not limited by the scope: an entry out of scope keeps its "Date & metodă" panel (documentation links, sources and fields) and its markers (owner, 2026-10-27).
 The explorer filters by the relation to data (`dat`: the group `cu-date`, "Lucrează cu date", with `date-publice`, `date-proprii` and `calcul`, or the group `fara-date`, "Fără date", with `fara-date` and an empty value)
 and by status group (`st`: `activ`, `inactiv`, `neconfirmat`), under "Mai multe filtre". `common.DATA_GROUPS` defines the two groups; the build writes them as `vocabulary.dataGroups`.
 `/date/` and `/date/lista/` count the entries they leave out by two reasons: without data and inactive.
