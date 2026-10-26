@@ -1054,6 +1054,17 @@ New `stare_tip` values (`js-literale` adds none: it reuses `observat-in-esantion
 - A page with no table of this shape, a row that is not five cells wide, a data set with no title, a `google.com/url` link without `q`, and the same title with the same links twice are errors (state `eroare-parsare`).
 - `--check` parses the retained body again and compares the data sets.
 
+**CSV header options (`citire` `{"tip": "csv", ...}`).** The plain CSV reader takes the first row as the header. It refuses a header with an empty or repeated cell.
+A tab that people keep by hand may have a title above its header, or empty header cells. The registry names an exception for one source (module `inventory_sheet`):
+
+- `rand_antet` (a whole number from 1): the header is this row. The rows above it are kept in the source key `antet.randuri_deasupra` as `{rand, celule: [{celula, valoare}]}`:
+  the non-empty cells with their spreadsheet address (`A1`), cut at 300 characters. The editor who sets `rand_antet` has seen that these rows are a title.
+- `coloane_fara_nume`: only the value `omise`. Empty header cells are left out of the fields and listed in `antet.celule_antet_goale` (`["A1", "F1"]`). A repeated name stays an error.
+- An unknown option, or a wrong value, is an error (state `eroare-parsare`). `{"tip": "csv"}` alone, or no `citire`, keeps the plain rules.
+- The field keeps `nume` and `cale` exactly as the cell is written (line breaks and trailing spaces included), `coloana_csv` (the 0-based position in the sheet, also when an empty cell before it was left out)
+  and `pointer` `celula:B2` (the header cell, row counted from 1). `tip_declarat` is null and `stare_tip` is `neprecizat-in-antet-csv`, as for the plain reader.
+- The source key `antet` exists only when options are set: `rand_antet`, `randuri_deasupra`, `celule_antet_goale`. `--check` parses the retained body again and compares the fields and `antet`.
+
 **Data literals in page scripts (`js-literale`).** A single-page tool often keeps its data inside the page. No schema describes that data. The page still shows what it holds.
 The reader makes no request and runs no script.
 
