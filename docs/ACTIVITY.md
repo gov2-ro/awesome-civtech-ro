@@ -23,7 +23,8 @@
 - The header texts are not clean. One header has line breaks and trailing spaces, and two header cells of one tab differ only by that whitespace (`Partidul Politic „Șor”`). The inventory keeps each name as the cell is written, so the two stay distinct.
 - Only one tab names a provider: the tab of HG 1088/2021 has a column `sursa` with the same value in all 2,797 rows. The other tab of the pair has no such column; the page labels its link „HG 1264/2021 (Ciucă)”. „Monitorul Oficial” also appears in a media tab, as the name of a payee, not as a provider. I did not propose it.
 - The candidate tab of the 2020 parliamentary elections holds names of persons. The repository keeps its header only (the parser reads nothing else), but the retained body in the ignored cache `surse/` holds the whole tab, as for every tab. The cache is local and not in git. The owner can delete the cache file of that tab; a later `--check` then reports the body as unavailable, not verified.
-- The final URL of a redirect holds a Google account number and a signed path. The evidence contract asks for the final URL, so `seturi-date.json` keeps it. The signed path stops working with time; the evidence is the retained body and its hash.
+- The final URL of a redirect holds a Google account number and a signed path. The evidence contract asks for the final URL, so `seturi-date.json` kept it at first.
+  Changed before the merge (Opus review): `inventory.public_url` keeps the host, the file ID and the query, and replaces the token and account segments with `…`. A public repository should not hold a third party's account number. The local cache keeps the full address; the evidence is the retained body and its hash. One new test.
 - The title facts have `&icirc;` entities in the page. The registry locators use the raw text of the page, not the decoded text, so each locator fragment is an exact slice of the retained body.
 
 **Decided**
