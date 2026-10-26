@@ -176,6 +176,21 @@ with sync_playwright() as pw:
         mobile.wait_for_timeout(300)
         mobile.screenshot(path=f'/tmp/civtech-inventory-mobile-{width}.png')
         mobile.close()
+    # An entry out of the scope of the inventory (inactive, without data, not assessed, or an organisation) has no marker and no "Date & metodă" panel,
+    # in the list and on its own page. The sets come from data.json and the rule of the brief, not from the build.
+    in_scope = lambda i: i['kind'] in ('proiect', 'resursa') and i['status'] not in ('offline', 'arhivat') and i.get('dataRelation') in ('date-publice', 'date-proprii', 'calcul')
+    outside = [i for i in DB['items'] if not in_scope(i)]
+    ok('the data gives the inventory to entries in scope only', outside and all('inventory' not in i for i in outside))
+    for kind in ('proiect', 'resursa'):
+        page.goto(BASE + f'?k={kind}&ina=1&o=az')
+        page.wait_for_selector('[data-slot="toolbar"] .count')
+        marked = set(page.locator('[data-slot="results"] .row:has(.inventory-tag), [data-slot="results"] .card:has(.inventory-tag)').evaluate_all('els=>els.map(e=>e.dataset.open)'))
+        ok(f'markers on the {kind} tab belong to entries in scope, inactive ones shown too',
+           marked == {i['slug'] for i in DB['items'] if i['kind'] == kind and in_scope(i) and i.get('inventory', {}).get('count')})
+    for item in [next(i for i in outside if i['kind'] == 'proiect' and i['status'] in ('offline', 'arhivat')), next(i for i in outside if i['kind'] == 'organizatie')]:
+        page.goto(BASE + f"{item['kind']}/{item['slug']}/")
+        page.wait_for_selector('#d-title')
+        ok('no inventory panel on the page of ' + item['slug'], page.locator('.d-inventory').count() == 0)
     ok('no uncaught page errors', not errors)
     browser.close()
 print(f'{sum(results)}/{len(results)} inventory preview checks passed')

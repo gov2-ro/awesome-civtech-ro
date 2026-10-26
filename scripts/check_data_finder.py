@@ -4,12 +4,29 @@
 # ///
 """Check cross-project inventory discovery in an isolated preview."""
 import json
+import re
 import sys
+import urllib.error
+import urllib.parse
 import urllib.request
 from playwright.sync_api import sync_playwright
 
 BASE = sys.argv[1] if len(sys.argv) > 1 else 'http://localhost:8770/'
 INDEX = json.load(urllib.request.urlopen(BASE + 'inventar/index.json'))
+DB = json.load(urllib.request.urlopen(BASE + 'data.json'))
+# The scope of the variable inventory, written here from the brief (docs/briefs/data-relation.md, section 3) and not read from the build:
+# a project or a resource, not offline or arhivat, with a relation to data of date-publice, date-proprii or calcul. An inactive entry is counted as inactive first.
+ITEMS = [i for i in DB['items'] if i['kind'] in ('proiect', 'resursa')]
+def left_out_reason(item):
+    if item['status'] in ('offline', 'arhivat'):
+        return 'inactiv'
+    if item.get('dataRelation') == 'fara-date':
+        return 'fara-date'
+    return '' if item.get('dataRelation') in ('date-publice', 'date-proprii', 'calcul') else 'neevaluat'
+OUT = {i['slug']: left_out_reason(i) for i in ITEMS if left_out_reason(i)}
+EXPECTED = {i['slug'] for i in ITEMS} - set(OUT)
+COUNTS = {reason: {kind: sum(OUT.get(i['slug']) == reason and i['kind'] == kind for i in ITEMS) for kind in ('proiect', 'resursa')}
+          for reason in ('fara-date', 'neevaluat', 'inactiv')}
 results, errors = [], []
 PROJECTS = sum(e['kind'] == 'proiect' for e in INDEX['entries'])
 RESOURCES = sum(e['kind'] != 'proiect' for e in INDEX['entries'])
@@ -150,6 +167,56 @@ with sync_playwright() as pw:
     shown_cui = set(page.locator('.ov-table tbody tr').evaluate_all('(els, label)=>els.filter(e=>[...e.querySelectorAll("li")].some(li=>li.textContent===label)).map(e=>e.id)', cui['label']))
     ok('a normalised name appears in exactly the rows whose entries have the group', shown_cui == cui_rows)
     ok('the table scrolls inside its frame, not the page', page.evaluate('document.documentElement.scrollWidth===innerWidth'))
+    # The scope: the entries that the inventory leaves out are absent from the index, the list, the finder and the explorer markers, and counted by reason.
+    ok('the index lists exactly the projects and resources that are in scope', {e['slug'] for e in INDEX['entries']} == EXPECTED and len(OUT) > 0)
+    ok('the index counts what it leaves out, by reason and kind', INDEX.get('leftOut') == COUNTS)
+    ok('an entry out of scope has no inventory marker, and an organisation has none', all('inventory' not in i for i in DB['items'] if i['slug'] not in EXPECTED)
+       and all('url' not in i.get('inventory', {}) or i['slug'] in EXPECTED for i in DB['items']))
+    def status_of(url):
+        try:
+            return urllib.request.urlopen(url).status
+        except urllib.error.HTTPError as error:
+            return error.code
+    ok('no inventory file is served for an entry out of scope', all(status_of(BASE + f'inventar/{slug}.json') == 404 for slug in OUT))
+    ok('the explorer marks no entry out of scope', all(not i.get('inventory', {}).get('count') for i in DB['items'] if i['slug'] in OUT))
+    page.goto(BASE + 'date/')
+    page.wait_for_selector('.finder-card')
+    note = page.locator('#data-left-out')
+    ok('the finder says what it leaves out, with a link for each reason', note.is_visible() and all(
+        (note.locator(f'a[href*="{query}"]').count() > 0) == bool(sum(COUNTS[reason].values()))
+        for reason, query in (('fara-date', 'dat=fara-date'), ('neevaluat', 'dat=neevaluat'), ('inactiv', 'st=inactiv'))))
+    ok('the links of the finder carry the counts of the index', sorted(int(re.match(r'\d+', t).group()) for t in note.locator('a').all_inner_texts())
+       == sorted(n for reason in COUNTS.values() for n in reason.values() if n))
+    for name in [next(i['name'] for i in ITEMS if OUT.get(i['slug']) == reason) for reason in ('inactiv', 'fara-date', 'neevaluat') if reason in OUT.values()]:
+        page.goto(BASE + 'date/?q=' + urllib.parse.quote(name) + '&resurse=1')
+        page.wait_for_selector('#data-count')
+        ok('the finder does not find an entry out of scope: ' + name, not ({i['slug'] for i in ITEMS if i['name'] == name} & shown(page)))
+    def follow(link, expected):
+        """Click a link to the explorer: it opens with the selection of the link and lists as many entries as the link says."""
+        text = link.inner_text()
+        href = link.get_attribute('href')
+        link.click()
+        page.wait_for_selector('[data-slot="toolbar"] .count')
+        listed = int(page.locator('[data-slot="toolbar"] .count b').inner_text())
+        return listed == expected == int(re.match(r'\d+', text).group()) and urllib.parse.urlsplit(page.url).query == urllib.parse.urlsplit(href).query
+    for path, label in (('date/', 'finder'), ('date/lista/', 'list')):
+        for reason, query in (('fara-date', 'dat=fara-date'), ('neevaluat', 'dat=neevaluat'), ('inactiv', 'st=inactiv')):
+            for kind, extra in (('proiect', ''), ('resursa', 'k=resursa&')):
+                if not COUNTS[reason][kind]:
+                    continue
+                page.goto(BASE + path)
+                page.wait_for_selector('#data-left-out:not([hidden]), .ov-left')
+                link = page.locator(f'a[href="./?{extra}{query}"]')
+                ok(f'the {label} link for {reason} ({kind}) opens the explorer with the same count', link.count() == 1 and follow(link, COUNTS[reason][kind]))
+    page.goto(BASE + 'date/lista/')
+    ok('the list counts the entries it leaves out', page.locator('.ov-left h2').inner_text() == f'Lăsate pe dinafară ({len(OUT)})')
+    reasons = page.locator('.ov-left li[data-reason]').evaluate_all('els=>els.map(e=>e.dataset.reason)')
+    ok('the list gives one line for each reason that has entries, in the order of the note', reasons == [r for r in ('fara-date', 'neevaluat', 'inactiv') if sum(COUNTS[r].values())])
+    named = set(page.locator('.ov-table tbody tr').evaluate_all('els=>els.map(e=>e.id)')) | {
+        h.rstrip('/').split('/')[-1] for h in page.locator('.ov-bare a').evaluate_all('els=>els.map(e=>e.getAttribute("href"))')}
+    ok('the list names no entry out of scope', named == EXPECTED)
+    ok('the note about missing fields stays with the entries that are in scope', 'Lipsa câmpurilor nu înseamnă lipsa datelor' in page.locator('.ov-bare').inner_text()
+       and 'Lipsa câmpurilor' not in page.locator('.ov-left').inner_text())
     failed = browser.new_page()
     failed.route('**/inventar/index.json', lambda route: route.fulfill(status=503,body='{}'))
     failed.goto(BASE + 'date/')

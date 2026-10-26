@@ -122,6 +122,7 @@ Valorile sunt: `date-publice` (folosește sau republică date din surse publice)
 sesizări de la utilizatori, poziții din chestionare, o bază de date editorială), `calcul` (calculator sau formular, fără un set de date în spate)
 și `fara-date` (ghid, curs, campanie, articol sau listă de linkuri; nu există nimic de extras).
 Dacă se potrivesc două valori, alegeți-o pe prima din această listă. O celulă goală înseamnă neevaluat.
+O intrare neevaluată sau `fara-date` nu apare în `/date/`, la fel ca o intrare arhivată sau offline. Până când stabiliți o valoare, intrarea lipsește din inventarul de variabile.
 `fara-date` nu merge împreună cu `detaliere_date`. Formatul din `formate` nu înlocuiește coloana:
 un chestionar (`testvot`) conține un set de date, iar o publicație poate fi jurnalism de date.
 Coloana este numai pentru editori și nu este în Formular. `validate.py` avertizează când o intrare `fara-date` are câmpuri extrase în inventar.

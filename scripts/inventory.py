@@ -27,12 +27,13 @@ import hashlib
 import io
 import json
 import re
+from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 from collect_docs import Fetcher, canonical, flat, is_saved, restore, saved_copy, saved_errors, scope_of
-from common import FORBIDDEN_STATE, PUBLIC_ROOT, data_schema, forbidden, load_catalogue, load_vocabulary, observation_paths
+from common import FORBIDDEN_STATE, OUT_OF_SCOPE, PUBLIC_ROOT, data_schema, forbidden, inventory_scope, load_catalogue, load_vocabulary, observation_paths
 from inventory_concepts import EvidenceLocator, check_concepts, validate_families
 from inventory_apidocs import operations as api_operations
 from inventory_csvcards import csv_datasets
@@ -974,10 +975,13 @@ def reconcile(previous, metadata, fresh, when):
 
 
 def update_inventory(entries, docs, verified, previous, *, cache, selected=(), offline=False, force=False, max_files=3,
-                     fetch=None, now=None, concepts=None, retire_sources=(), add_sources=(), force_urls=()):
+                     fetch=None, now=None, concepts=None, retire_sources=(), add_sources=(), force_urls=(), skip=()):
     """Compute the next inventory state from the tracked state, local documentation and caches.
 
     Only the selected projects change. `fetch` is called only for sources that selected projects use.
+    Without a selection every project changes, except the slugs in `skip` (the entries that are out of the inventory's scope, see
+    `common.inventory_scope`): they keep their tracked record and evidence. A project named by an explicit addition or retirement, and a
+    project with no tracked record yet, always change.
     Raises StateError before returning when the proposed state is invalid."""
     now = now or now_utc()
     cache = Path(cache)
@@ -989,11 +993,13 @@ def update_inventory(entries, docs, verified, previous, *, cache, selected=(), o
     if selected - set(slugs):
         raise StateError('Unknown slug: ' + ', '.join(sorted(selected - set(slugs))))
     # A project named by an explicit addition or retirement changes, so it counts as selected.
+    named = {slug for slug, _ in add_sources} | {slug for slug, _, _ in retire_sources}
     if selected:
-        selected |= {slug for slug, _ in add_sources} | {slug for slug, _, _ in retire_sources}
+        selected |= named
     force_urls = {canonical(u) for u in force_urls}
+    chosen = selected or ({s for s in slugs if s not in set(skip)} | (named & set(slugs)))
     # New entries have no tracked record to protect; they are built from whatever local evidence exists.
-    work = (selected or set(slugs)) | {s for s in slugs if s not in previous['profiles']}
+    work = chosen | {s for s in slugs if s not in previous['profiles']}
     report = {'pastrate': [], 'reimprospatate': [], 'esuate': [], 'neinspectate': [], 'interzise': [], 'avertismente': [], 'cereri': 0, 'cache': 0}
 
     candidates = {s: discover_candidates(by_slug[s], docs.get(s, {}), verified.get(s, [])) for s in slugs}
@@ -1040,7 +1046,7 @@ def update_inventory(entries, docs, verified, previous, *, cache, selected=(), o
     for record in sorted_registry(registry):
         if record.get('citire'):
             hint_of.setdefault(record['url'], record['citire'])
-    fetch_urls = {d['url'] for s in (selected or slugs) for d in active_members(registry, s)}
+    fetch_urls = {d['url'] for s in chosen for d in active_members(registry, s)}
 
     def obtain(url):
         ident = source_id(url)
@@ -1263,6 +1269,12 @@ def main():
     selected = set(filter(None, args.only.split(',')))
     if selected - {e['slug'] for e in entries}:
         parser.error('Unknown slug: ' + ', '.join(sorted(selected - {e['slug'] for e in entries})))
+    # The scope of the variable inventory. A default run skips the entries that are out of it; `--only` runs them, with a note.
+    scope = inventory_scope(entries, args.data_dir)
+    for slug in sorted(selected):
+        if scope[slug]:
+            print(f'NOTE: {slug} is out of the variable inventory ({scope[slug]}); --only runs it anyway.')
+    skip = set() if selected else {slug for slug, reason in scope.items() if reason}
     docs = restore(obs / 'documentare')
     pilot_path = obs / 'documentare/pilot-inventare.json'
     pilots = json.loads(pilot_path.read_text()).get('proiecte', []) if pilot_path.exists() else []
@@ -1318,7 +1330,7 @@ def main():
             entries, docs, verified, previous, cache=out / 'surse', selected=selected, offline=args.offline, force=args.force,
             max_files=args.max_files, fetch=fetcher, concepts=concepts, force_urls=args.force_url,
             retire_sources=[(slug, canonical(url), args.reason) for slug, url in args.retire],
-            add_sources=additions)
+            add_sources=additions, skip=skip)
         if not args.dry_run:
             write_atomic(out, render_outputs(state))
     except StateError as exc:
@@ -1337,6 +1349,10 @@ def main():
             print(f'{label}: {url}' + (f' ({forbidden(url)["motiv"]})' if key == 'interzise' else ''))
     for note in report['avertismente']:
         print('WARNING: ' + note)
+    if skip:
+        by_reason = Counter(scope[slug] for slug in skip)
+        print(f'{len(skip)} entries out of the variable inventory were not refreshed ({", ".join(f"{r} {by_reason[r]}" for r in OUT_OF_SCOPE if by_reason[r])}); '
+              'their records and evidence are unchanged. Name one with --only to run it.')
     profiles, sources = state['profiles'], state['sources']
     print(f'{len(profiles)} project drafts; {sum(bool(p["campuri_din_surse"]) for p in profiles)} with structured fields; '
           f'{sum(len(s["campuri"]) for s in sources)} shared field records; {fetcher.requests} requests'

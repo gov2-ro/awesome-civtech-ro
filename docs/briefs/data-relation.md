@@ -128,4 +128,4 @@ The proposal counts by code and by `incredere`, and the entries left empty. What
 - The owner hid `didi365` (not specific to Romania) and `harta-tv-locale` (`clasificare_stare` `ascuns`).
 - Changed decision: an empty value leaves the entry out of `/date/`, like `fara-date`. Section 3 says so now. In `/date/lista/`, the note counts the entries left out by reason: without data, not assessed, inactive.
   The explorer link for „not assessed” uses `dat=neevaluat`.
-- Steps D and E are open.
+- Steps D and E are done on the branch `data-relation-de` (2026-10-26); the numbers and decisions are in `docs/ACTIVITY.md`. The Opus session merges the branch and tags it.

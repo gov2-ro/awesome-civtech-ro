@@ -503,7 +503,7 @@ class GroupDecisions(Fixture):
             (root / 'site' / name).write_text('/* fixture */')
         (root / 'inventar-concepte.json').write_text(json.dumps({'concepte': groups}))
         (root / 'integrare').mkdir()
-        publish_finder([dict(slug='p', name='P', kind='proiect')], root / 'integrare', root / 'site', {'p': (fields, sources)})
+        publish_finder([dict(slug='p', name='P', kind='proiect', status='activ', dataRelation='date-publice')], root / 'integrare', root / 'site', {'p': (fields, sources)})
         index = json.loads((root / 'site/inventar/index.json').read_text())
         self.assertEqual([(v['id'], v['state']) for v in index['variables']], [('b', 'revizuit'), ('c', 'propus')])
         self.assertEqual([m['id'] for m in index['entries'][0]['variables']], ['b', 'c'])

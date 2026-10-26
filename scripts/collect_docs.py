@@ -31,7 +31,8 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urldefrag, urljoin, urlsplit, urlunsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
-from common import FORBIDDEN_STATE, PUBLIC_ROOT, ForbiddenHost, forbidden, load_catalogue, observation_paths, refuse_forbidden
+from common import (FORBIDDEN_STATE, OUT_OF_SCOPE, PUBLIC_ROOT, ForbiddenHost, forbidden, inventory_scope, load_catalogue, observation_paths,
+                    refuse_forbidden)
 
 MAX_BYTES = 2_000_000
 MAX_TEXT = 60_000
@@ -611,8 +612,18 @@ def main():
     records = restore(out)
     if args.import_saved:
         return import_saved(args, entries, records, out, parser)
-    todo = [r for r in entries if (not selected or r['slug'] in selected) and
-            (args.force or r['slug'] not in records or canonical(r['url']) != records[r['slug']]['url'])]
+    # The scope of the variable inventory. A default run skips the entries that are out of it; `--only` collects them, with a note.
+    scope = inventory_scope(entries, args.data_dir)
+    for slug in sorted(selected):
+        if scope[slug]:
+            print(f'NOTE: {slug} is out of the variable inventory ({scope[slug]}); --only collects it anyway.')
+    wanted = [r for r in entries if (not selected or r['slug'] in selected) and
+              (args.force or r['slug'] not in records or canonical(r['url']) != records[r['slug']]['url'])]
+    todo = [r for r in wanted if selected or not scope[r['slug']]]
+    if len(todo) < len(wanted):
+        skipped = [scope[r['slug']] for r in wanted if r not in todo]
+        print(f'{len(skipped)} entries out of the variable inventory were skipped ({", ".join(f"{k} {skipped.count(k)}" for k in OUT_OF_SCOPE if k in skipped)}). '
+              'Name one with --only to collect it.')
     fetcher = Fetcher(args.timeout)
     saved = {page['url'] for record in records.values() for page in record['pages'] if is_saved(page)}
     fetch = KeepSaved(fetcher, saved)

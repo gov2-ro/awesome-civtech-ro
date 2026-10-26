@@ -419,7 +419,7 @@ One row for each entry (project, organisation or resource). Today it holds the 1
 | `arii_acoperite` | The areas it covers. | IDs of `arii.csv`. |
 | `detaliere_date` | The geographic detail of the data, independent of project reach. | Optional code: `agregat-national`, `judete`, `localitati`, `judete-localitati`. Empty means unverified or not applicable. |
 | `dovada_detaliere` | The evidence page for the recorded data detail. | An HTTP(S) URL is required when `detaliere_date` is set. |
-| `relatie_date` | How the entry relates to data. | Optional code: `date-publice`, `date-proprii`, `calcul`, `fara-date`. Empty means not assessed. Only a project or a resource has one: a value on an organisation is an error. `fara-date` and `detaliere_date` exclude each other. When two codes apply, use the first one in the list order. The Form has no question for it. |
+| `relatie_date` | How the entry relates to data. | Optional code: `date-publice`, `date-proprii`, `calcul`, `fara-date`. Empty means not assessed, and an empty value leaves the entry out of the variable inventory (`/date/`), like `fara-date` (see "Scope of the variable inventory"). Only a project or a resource has one: a value on an organisation is an error. `fara-date` and `detaliere_date` exclude each other. When two codes apply, use the first one in the list order. The Form has no question for it. |
 | `localitate_originala` | The v1 `oras`, unchanged. | Text. It does not limit the coverage. |
 | `autor_original` | The v1 `autor`, unchanged. | Text. `relatii.csv` holds the structured form. |
 | `contact` | The v1 `contact`. | Text. |
@@ -775,7 +775,7 @@ and replaces the v1 classification:
 - `coverageLevel` and `areas`: the coverage code and area IDs.
 - `dataDetail`, `dataDetailEvidence`: geographic data detail and its evidence URL.
 - `dataRelation`: the code of `relatie_date`, or an empty string when the entry is not assessed. `vocabulary.dataRelations` lists the codes
-  with their labels, in list order: `[{key, label, labelEn}]`.
+  with their labels, in list order: `[{key, label, labelEn}]`. The explorer reads an empty string as `neevaluat` (its facet `dat`).
 - `dataSources`: `{name, evidence}` for each accepted data provider or publication.
 - `attributions`: `{name, org, role, accepted}`. `role` is the relation predicate; an unconfirmed role shows neutrally.
 - `legacy`: the original `domeniu`, `tips`, `keywords`, `fel`, `acoperire` and `oras`, only for old bookmarks.
@@ -826,6 +826,7 @@ EOF
 
 `scripts/collect_docs.py` collects methodology, about and `llms.txt` pages without a paid service.
 The collector does not change editorial tables or public fields.
+Without `--only`, it collects the entries that are in scope of the variable inventory and skips the others (see "Scope of the variable inventory"); `--only` collects any entry and prints a note for one that is out of scope.
 
 - `index.json`: generated collection records, keyed by entry slug. Each page keeps its requested URL, final URL, HTTP status,
   fetch time, document kind, project/shared-host scope, collection state, text hash and snapshot path.
@@ -924,6 +925,7 @@ a retirement counts as selected. `--force-url URL` fetches one source again with
 **Incremental runs.** `inventory.py` reads the tracked state before it reconstructs candidates. `--only` selects projects.
 A run changes only the selected projects and the sources that they use. Every other profile, source reference and field record
 stays as it is; only the derived `campuri_din_surse` follows a shared source. An entry that has no tracked profile counts as selected.
+Without `--only`, a run covers the entries that are in scope of the variable inventory and leaves the others as they are (see "Scope of the variable inventory").
 
 | Situation | Result |
 | --- | --- |
@@ -1195,7 +1197,7 @@ A new checkout needs `collect_docs.py --force` and `inventory.py --force` before
 
 ### Coverage export and report
 
-`scripts/inventory_report.py` writes `observatii/inventare/acoperire.csv` (one row for each of the 140 catalogue entries) and the readable report `docs/reports/inventory-expansion.md`.
+`scripts/inventory_report.py` writes `observatii/inventare/acoperire.csv` (one row for each catalogue entry, hidden entries included) and the readable report `docs/reports/inventory-expansion.md`.
 `--check` compares both with a fresh computation. The hand-edited input is `data/taxonomy-v2/inventar-note.json`: limits, blockers and next steps of each entry, the narrative of the report and the verification results.
 The keys `lot_c2` and `retea_c2` hold the narrative and the network summary of batch C2; the notes of its entries also carry `blocaj_en` (the blocker, in English, for the report).
 The export keeps fields, business groups, declarations, observations and unknowns apart. A raw field total is never the progress measure.
@@ -1204,7 +1206,7 @@ The export keeps fields, business groups, declarations, observations and unknown
 | --- | --- |
 | `slug`, `tip_entitate` | The entry and its type in the catalogue (`proiect`, `resursa`, `publicatie`, `organizatie`). |
 | `investigat_in_lot` | The collection lots that touched the entry: `C` (the primary batch), `B` (INS metadata attached), `B2` (a source added for a named gap), `C2` (the three active projects of public-sector data), `S` (a page that the owner saved by hand), `baza` (fields from the first pass only). Empty: not investigated. |
-| `stare_investigare` | `cu-surse-structurate` (at least one parsed source), `blocat` (sources only failed, or the notes file records a blocker for an entry that has no source record: a host that refused every request), `neinvestigat-in-lot`, `in-afara-ariei` (organisations: the finder lists projects and resources). |
+| `stare_investigare` | `cu-surse-structurate` (at least one parsed source), `blocat` (sources only failed, or the notes file records a blocker for an entry that has no source record: a host that refused every request), `in-afara-ariei` (organisations: the finder lists projects and resources). Another entry has no source record. If it is in scope, its state is `neinvestigat-in-lot`. If it is out of the scope of the variable inventory (see "Scope of the variable inventory"), its state is the reason: `inactiv` (status `offline` or `arhivat`), `fara-date` (`relatie_date` `fara-date`) or `neevaluat` (an empty `relatie_date`). An entry with a parsed or a failed source keeps `cu-surse-structurate` or `blocat`, whatever its scope: the evidence stays. |
 | `surse_structurate` | Parsed structured sources in the profile. A source that several entries share counts for each. |
 | `campuri_din_surse` | Source-scoped field records of those sources. They are paths, not independent variables. |
 | `concepte_propuse` | Distinct proposed groups that contain at least one field of the entry. Empty when there is no source. |
@@ -1213,7 +1215,7 @@ The export keeps fields, business groups, declarations, observations and unknown
 | `campuri_cu_tip_observat` | Fields with types observed in sample values or in the written form of table cells. |
 | `masuri_cu_unitate`, `masuri_fara_unitate` | Semantic measures only: a field with the role `masura`, a dictionary-table row, or a member of a group in the category `masura` or `iesire-derivata`. A measure has a unit when the field declares one or the matching selector has a unit fact with evidence. Generic fields are not measures. Empty (unknown) when the entry has no source. |
 | `surse_cu_provenienta_verificata` | Active registry records with a known discovery locator that holds a page hash, a git blob hash or a recorded profile value. `inventory.py --check` verifies the locators when the snapshots exist. |
-| `limite`, `blocaj`, `urmatorul_pas` | Romanian notes. Limits come from the notes file and the source flags (`partial`, `limita_atinsa`, a failed refresh). A blocker is also filled from a failed source. |
+| `limite`, `blocaj`, `urmatorul_pas` | Romanian notes. Limits come from the notes file and the source flags (`partial`, `limita_atinsa`, a failed refresh). A blocker is also filled from a failed source. `urmatorul_pas` is empty for `fara-date`, `inactiv`, `in-afara-ariei` and for a hidden entry. For `neevaluat` it asks the editor to set `relatie_date`, because the entry stays out of `/date/` until there is a value. The notes file may set it for one entry. |
 
 An empty cell means unknown. A zero means that the count was made and found nothing.
 
@@ -1291,16 +1293,50 @@ and the fragment in it; `schimbat` means the hash differs; `indisponibil local` 
 The check panel runs `validate.py --publication`, `inventory.py --check` and `inventory_report.py --check` in subprocesses, and shows the accepted providers at `HEAD` against the working tree.
 `inventory_report.py` counts provider items and groups by state.
 
+### Scope of the variable inventory
+
+An entry is in scope of the variable inventory when all three conditions are true:
+
+1. Its `kind` is `proiect` or `resursa`.
+2. Its built status is not inactive (`offline` or `arhivat`). This is the group `inactiv` of `STATUS` in `site/app.js` (`isInactive`).
+   The built status is the status that `build.py` writes: the editor's `stare`, else what the profiler saw (`common.status_of`).
+3. Its `relatie_date` is `date-publice`, `date-proprii` or `calcul`. An empty value and `fara-date` both leave the entry out (owner's decision of 2026-10-26).
+
+One rule serves all places: `common.inventory_exclusion(kind, status, relation)` returns the reason, or an empty string when the entry is in scope.
+The reasons, in the order in which the first one that applies wins: `in-afara-ariei` (an organisation), `inactiv`, `fara-date`, `neevaluat` (an empty or unknown value).
+So an inactive entry is counted as inactive, whatever its `relatie_date`. `inventory_site.scope_reason(item)` applies the rule to a built item.
+`common.inventory_scope(entries, root)` applies it to catalogue entries with the status of `profil.csv`; a v1 root has no `relatie_date`, so every entry counts as in scope there.
+
+| Place | What the rule does |
+| --- | --- |
+| `build.py --with-inventory` | `publish_preview`, `publish_finder` and `publish_overview` list only entries in scope: `inventar/<slug>.json`, `inventar/index.json`, `/date/`, `/date/lista/` and the key `inventory` of an item in `data.json` (the markers and the "Date & metodă" panel of the explorer). An entry out of scope has no `inventory` key, documentation links included. |
+| `inventar/index.json` | `leftOut`: `{fara-date, neevaluat, inactiv}`, each `{proiect, resursa}`, the number of projects and resources that the finder leaves out. `inactiv` counts every inactive project or resource; the other two count active ones. An organisation is never counted. |
+| `/date/` | A line in the footer says how many entries the finder leaves out, by reason, with links to the explorer. |
+| `/date/lista/` | The section "Lăsate pe dinafară (N)" gives a count for each reason and a link to the explorer for each kind: `?dat=fara-date`, `?dat=neevaluat`, `?st=inactiv` (and `?k=resursa&…` for resources). The note "Lipsa câmpurilor nu înseamnă lipsa datelor" stays with the entries that are in scope and have no fields. |
+| `inventory_report.py` | The states `inactiv`, `fara-date` and `neevaluat` of `stare_investigare` (see the coverage export). |
+| `collect_docs.py`, `inventory.py` | Without `--only`, a run skips the entries that are out of scope and prints how many it skipped, by reason. Their records and evidence stay as they are. `--only SLUG` runs the entry and prints `NOTE: SLUG is out of the variable inventory (reason)`. An explicit `--add-source` or `--retire` always runs its entry. An entry with no tracked record still gets one. |
+
+The retained evidence of an entry out of scope stays in `observatii/`: only the public output leaves the entry out.
+When an editor sets `relatie_date`, the entry returns at the next build, and the next default run of the collectors includes it.
+
+The explorer has two facets under "Mai multe filtre", in the pattern of `ent` (comma-separated values, OR within a facet):
+
+- `dat` ("Date"): the codes of `relatie_date`, and `neevaluat` for an empty value. `?dat=fara-date` shows the entries without data. The facet is not offered on the organisation tab.
+- `st` ("Stare"): the status groups `activ`, `inactiv` and `neconfirmat`. Inactive entries stay hidden by default (`ina`). When `st` selects `inactiv`, they show without `ina=1`,
+  and the option "Ascunde proiecte inactive" is off and disabled. The counts of the `st` options ignore the hiding of inactive entries, so `inactiv` shows its number.
+
+Old URLs keep their meaning: `ina=1` still adds inactive entries, and the older parameter `s` (a status group, kept for URLs) still filters as before.
+
 ### Cross-project data finder preview
 
 The same flag generates `/date/` and `inventar/index.json`. It adds a navigation link in the explorer preview.
 It also generates `/date/lista/`, a static table with one row per project or resource that has extracted fields and one column per family:
 a cell names the groups (normalised names) of that family that the entry has. The last column, "Altele", counts the distinct names of fields in no group.
-Entries without fields are named once below the table.
+Entries without fields are named once below the table. Only entries in scope are listed (see "Scope of the variable inventory").
 
 Counting rule: a field with a non-null `in_contract` restates a record of another source. It stays in `seturi-date.json` and `campuri.csv` as evidence,
 but counts, group memberships and the preview use the restated record only (`inventory_state.counted_fields`; in the preview it becomes `also` on that record).
-The index includes all 106 projects and 21 resources. Organisations remain in the ordinary explorer.
+The index includes the projects and resources that are in scope of the variable inventory. Organisations and the entries that the inventory leaves out remain in the ordinary explorer.
 Each entry carries its catalogue description, subjects, institutions, accepted providers, inventory summary and proposed variable matches.
 The page fetches one discovery index. Results appear in batches of 24. Full per-project fields remain separate.
 An ordinary rebuild removes stale draft pages and payloads from a reused isolated output folder.

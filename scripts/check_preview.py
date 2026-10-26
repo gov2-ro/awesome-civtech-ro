@@ -277,6 +277,69 @@ with sync_playwright() as pw:
     ]:
         go('?coverage=' + coverage)
         ok('geographic coverage ' + coverage, count_text(page) == sum(predicate(i) for i in projects))
+    # The facets `dat` (the relation to data; an empty value is `neevaluat`) and `st` (the status group), under "Mai multe filtre".
+    # The expected sets come from data.json and the rules below, not from the page code. `st=inactiv` shows inactive entries without `ina=1`.
+    DATA_CODES = {"date-publice", "date-proprii", "calcul", "fara-date"}
+    relation = lambda i: i.get("dataRelation") or "neevaluat"
+    everyone = [i for i in DB["items"] if i["kind"] == "proiect"]
+    gone = [i for i in everyone if i["status"] in INACTIVE]
+    slugs_shown = lambda: set(page.locator('[data-slot="results"] [data-open]').evaluate_all("els => els.map(e => e.dataset.open)"))
+    pill_texts = lambda: page.locator('[data-slot="toolbar"] .pill').all_inner_texts()
+    ok("the data carries the relation to data and its code list", all(relation(i) in DATA_CODES | {"neevaluat"} for i in DB["items"])
+       and {c["key"] for c in DB["vocabulary"]["dataRelations"]} == DATA_CODES)
+    for code in sorted({relation(i) for i in projects}):
+        want = [i for i in projects if relation(i) == code]
+        go("?dat=" + code)
+        ok(f"dat={code} shows the visible projects with that relation", count_text(page) == len(want) and slugs_shown() == {i["slug"] for i in want}, f"{count_text(page)} vs {len(want)}")
+    go("?dat=fara-date")
+    ok("dat pill names the facet and the value", any(t.startswith("Date: ") for t in pill_texts()), " | ".join(pill_texts()))
+    ok("dat sits under Mai multe filtre, which is open while a value is selected",
+       page.locator('[data-facet="more"][open] .subfacet .kicker', has_text="Date").count() == 1)
+    ok("dat keeps inactive entries hidden", not ({i["slug"] for i in gone} & slugs_shown()))
+    go("?dat=date-publice,calcul")
+    ok("two dat values are alternatives", count_text(page) == sum(relation(i) in ("date-publice", "calcul") for i in projects))
+    go("")
+    more = page.locator('[data-facet="more"]')
+    if not more.evaluate("e => e.open"):
+        more.locator("summary").click()
+    dat_counts = {o.get_attribute("data-val"): int(o.locator(".n").text_content()) for o in page.locator('.tag[data-key="dat"]').all()}
+    expected_dat = {c: sum(relation(i) == c for i in projects) for c in {relation(i) for i in projects}}
+    ok("dat options show the count of visible projects; options with three entries or fewer sit behind Mai multe", all(expected_dat[v] == n for v, n in dat_counts.items())
+       and all(expected_dat[c] <= 3 for c in expected_dat if c not in dat_counts), f"{dat_counts} vs {expected_dat}")
+    go("?dat=neevaluat")
+    ok("a selected option stays visible although its count is small", page.locator('.tag[data-key="dat"][data-val="neevaluat"][aria-pressed="true"]').count() == 1)
+    page.locator('[data-slot="toolbar"] .pill', has_text="Date: ").click()
+    ok("removing the dat pill clears the filter and the URL", "dat=" not in page.url and count_text(page) == len(projects))
+    go("?k=organizatie")
+    ok("organisations have no dat facet", page.locator('[data-facet="more"] .subfacet .kicker', has_text="Date").count() == 0)
+
+    for name, query, want in [("st=inactiv", "?st=inactiv", gone),
+                              ("st=activ", "?st=activ", [i for i in projects if i["status"] == "activ"]),
+                              ("st=neconfirmat", "?st=neconfirmat", [i for i in projects if i["status"] in ("necunoscut", "neverificat")]),
+                              ("st=activ,inactiv", "?st=activ,inactiv", [i for i in everyone if i["status"] in ("activ", *INACTIVE)])]:
+        go(query)
+        ok(f"{name} shows exactly that status group", count_text(page) == len(want) and slugs_shown() == {i["slug"] for i in want}, f"{count_text(page)} vs {len(want)}")
+    go("?st=inactiv")
+    ok("st=inactiv shows inactive entries without ina=1", "ina=" not in page.url and count_text(page) == len(gone) > 0 and "Stare: Inactiv" in pill_texts())
+    toggle = page.locator('[data-act="toggle"][data-key="ina"]')
+    ok("with st=inactiv the toggle that hides inactive entries is off and disabled", toggle.count() == 1 and not toggle.is_checked() and toggle.is_disabled())
+    go("?st=inactiv&dat=fara-date")
+    ok("st and dat intersect", count_text(page) == sum(i["status"] in INACTIVE and relation(i) == "fara-date" for i in everyone))
+    go("?ina=1")
+    ok("old ?ina=1 still shows inactive and active projects", count_text(page) == len(everyone))
+    go("?ina=1&s=inactiv")
+    ok("old ?s= keeps its meaning next to ina=1", count_text(page) == len(gone))
+    go("")
+    ok("inactive entries stay hidden by default", count_text(page) == len(projects) and not ({i["slug"] for i in gone} & slugs_shown()))
+    if not page.locator('[data-facet="more"]').evaluate("e => e.open"):
+        page.locator('[data-facet="more"] summary').click()
+    st_counts = {o.get_attribute("data-val"): int(o.locator(".n").text_content()) for o in page.locator('.tag[data-key="st"]').all()}
+    ok("st counts the inactive entries although they are hidden", st_counts.get("inactiv") == len(gone) and st_counts.get("activ") == sum(i["status"] == "activ" for i in projects), str(st_counts))
+    page.locator('.tag[data-key="st"][data-val="inactiv"]').click()
+    ok("choosing Inactiv in the facet lists them and writes st to the URL", "st=inactiv" in page.url and "ina=" not in page.url and count_text(page) == len(gone))
+    page.locator('.tag[data-key="st"][data-val="inactiv"]').click()
+    ok("choosing it again returns to the default view", "st=" not in page.url and count_text(page) == len(projects))
+
     # Every provider relation that is not accepted stays out of the public field, unless an accepted row names the same provider.
     with open(Path(__file__).resolve().parent.parent / 'data' / 'taxonomy-v2' / 'integrare' / 'relatii.csv', encoding='utf-8', newline='') as f:
         relations = [r for r in csv.DictReader(f) if r['predicat'] == 'date_din']

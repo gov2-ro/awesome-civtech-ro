@@ -32,7 +32,7 @@ from pathlib import Path
 
 from common import (BOILERPLATE, DATA, NETWORK_ROLES, PUBLIC_ROOT, ROOT, SITE, coverage_line, data_schema, domain_of, kept_by_slug, label_coverage,
                     link_host, load_catalogue, load_entries, load_mentions, load_profile, load_vocabulary, observation_paths,
-                    parse_link, public_catalogue, read_csv, split_list, split_tip)
+                    parse_link, public_catalogue, read_csv, split_list, split_tip, status_of, years_since)
 
 CODE_ROLES = ("github", "gitlab", "cod")
 SITE_URL = "https://civtech.gov2.ro/"
@@ -120,27 +120,11 @@ def repo_stats(p: dict) -> dict:
     return out
 
 
-def status_of(stare: str, prof: dict) -> str:
-    if stare:
-        return stare
-    s = prof.get("status")
-    if not s:
-        return "neverificat"
-    # Gone, and the Wayback Machine has not seen it for a year: the project has ended, not just a glitch.
-    if s == "offline" and (years_since(prof.get("last_capture", "")) or 0) > 1:
-        return "arhivat"
-    return {"mutat": "activ", "blocat": "necunoscut", "parcat": "offline"}.get(s, s)
-
-
 def num(v) -> int:
     try:
         return int(v)
     except (TypeError, ValueError):
         return 0
-
-
-def years_since(d: str) -> float | None:
-    return (date.today() - date.fromisoformat(d)).days / 365.25 if d else None
 
 
 def last_activity(p: dict, today: date | None = None) -> str:

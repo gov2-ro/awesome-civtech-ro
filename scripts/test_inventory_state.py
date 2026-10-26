@@ -22,7 +22,7 @@ RAW = 'https://raw.githubusercontent.com/org/repo/main/'
 
 def entry(slug, url):
     return {'slug': slug, 'nume': slug, 'url': url, 'descriere_scurta': 'Purpose ' + slug, 'descriere': '',
-            'capabilities': [], 'formats': []}
+            'capabilities': [], 'formats': [], 'kind': 'proiect', 'stare': ''}
 
 
 def docs_for(slug, url, links, text=''):
@@ -184,6 +184,98 @@ class ExplicitChanges(unittest.TestCase):
         self.assertEqual(spec['dovezi_suplimentare'][0]['rol'], 'parametru')
         with self.assertRaises(StateError):
             resolve_spec(docs, 'a', {'url': 'https://a.example/api', 'locate': {'pagina': 'https://a.example/', 'text': 'absent'}})
+
+
+class ScopeOfTheSelection(unittest.TestCase):
+    """A default run leaves out the entries that are out of the variable inventory (`skip`); a named project always runs. The records of a skipped entry stay as they are."""
+    A, B = 'https://a.example/', 'https://b.example/'
+
+    def setUp(self):
+        self.entries = [entry('a', self.A), entry('b', self.B)]
+        self.url_a, self.url_b = self.A + 'data.csv', self.B + 'data.csv'
+        self.docs = {'a': docs_for('a', self.A, [self.url_a]), 'b': docs_for('b', self.B, [self.url_b])}
+        self.bodies = {self.url_a: 'cui,value\n001,1\n', self.url_b: 'county,total,year\nAB,1,2020\n'}
+
+    def first_run(self):
+        work = Workspace(self)
+        work.run(self.entries, {'a': self.docs['a']}, Net(self.bodies))  # b has no documentation yet: no source, no field
+        self.assertEqual(work.profile('b')['campuri_din_surse'], 0)
+        return work
+
+    def test_a_default_run_does_not_refresh_or_rediscover_a_skipped_project(self):
+        work = self.first_run()
+        before = work.profile('b'), [d for d in work.registry() if d['proiect'] == 'b']
+        net = Net(self.bodies)
+        work.run(self.entries, self.docs, net, skip={'b'})
+        self.assertEqual(net.calls, [], 'a is cached and unchanged, and b is skipped: no request')
+        self.assertEqual((work.profile('b'), [d for d in work.registry() if d['proiect'] == 'b']), before)
+        work.run(self.entries, self.docs, net, skip={'b'}, force=True)
+        self.assertEqual(net.calls, [self.url_a], 'a default run with force refreshes the in-scope project only')
+        self.assertEqual(work.profile('b'), before[0])
+
+    def test_a_named_project_runs_although_it_is_in_skip(self):
+        work = self.first_run()
+        work.run(self.entries, self.docs, Net(self.bodies), selected={'b'}, skip={'b'})
+        self.assertEqual(len(work.profile('b')['surse_structurate']), 1)
+
+    def test_an_explicit_addition_changes_a_skipped_project_in_a_default_run(self):
+        work = self.first_run()
+        net = Net(self.bodies)
+        work.run(self.entries, self.docs, net, skip={'b'}, add_sources=[('b', {'url': self.url_b, 'metoda': 'adaugat-explicit'})])
+        self.assertEqual(work.profile('b')['surse_structurate'], [source_id(self.url_b)])
+        self.assertEqual(net.calls, [self.url_b])
+
+    def test_a_new_entry_gets_its_record_although_it_is_in_skip(self):
+        work = Workspace(self)
+        work.run(self.entries[:1], {'a': self.docs['a']}, Net(self.bodies))
+        work.run(self.entries, self.docs, Net(self.bodies), skip={'b'})
+        self.assertEqual(work.profile('b')['slug'], 'b', 'every catalogue entry has a record, the skipped ones included')
+
+    def test_an_empty_selection_of_skipped_entries_does_not_widen_to_every_project(self):
+        work = self.first_run()
+        before = work.profile('b')
+        work.run(self.entries, self.docs, Net(self.bodies), skip={'a', 'b'})
+        self.assertEqual(work.profile('b'), before, 'when every entry is skipped, the run changes nothing; it does not fall back to all')
+
+
+class ScopeInTheCommand(unittest.TestCase):
+    """`inventory.py` without `--only` passes the entries that are out of scope as `skip`; with `--only` it passes none and prints a note."""
+
+    ENTRIES = [{'slug': slug, 'nume': slug, 'url': f'https://{slug}.example/', 'kind': 'proiect'} for slug in ('in-scope', 'no-data', 'archived')]
+    SCOPE = {'in-scope': '', 'no-data': 'fara-date', 'archived': 'inactiv'}
+
+    def run_main(self, *argv):
+        import io
+        import sys
+        import contextlib
+        import inventory
+        calls = []
+
+        def fake_update(entries, docs, verified, previous, **options):
+            calls.append(options)
+            return {'profiles': [], 'sources': [], 'registry': {}, 'report': {k: [] for k in ('reimprospatate', 'esuate', 'pastrate', 'neinspectate', 'interzise', 'avertismente')}}
+
+        with tempfile.TemporaryDirectory() as tmp, contextlib.redirect_stdout(io.StringIO()) as output, \
+                patch.object(sys, 'argv', ['inventory.py', '--offline', '--dry-run', '--out', str(Path(tmp) / 'inventare'), *argv]), \
+                patch.object(inventory, 'data_schema', return_value='v2'), patch.object(inventory, 'observation_paths', return_value={'profile': Path(tmp) / 'profil.csv'}), \
+                patch.object(inventory, 'load_catalogue', return_value=self.ENTRIES), patch.object(inventory, 'inventory_scope', return_value=self.SCOPE), \
+                patch.object(inventory, 'restore', return_value={}), patch.object(inventory, 'load_vocabulary', return_value={'concepts': {}}), \
+                patch.object(inventory, 'update_inventory', fake_update):
+            code = inventory.main()
+        return code, calls, output.getvalue()
+
+    def test_a_default_run_skips_the_entries_out_of_scope_and_says_how_many(self):
+        code, calls, output = self.run_main()
+        self.assertEqual((code, len(calls)), (0, 1))
+        self.assertEqual((calls[0]['selected'], calls[0]['skip']), (set(), {'no-data', 'archived'}))
+        self.assertIn('2 entries out of the variable inventory were not refreshed (inactiv 1, fara-date 1)', output)
+
+    def test_only_runs_an_out_of_scope_entry_and_prints_a_note(self):
+        code, calls, output = self.run_main('--only', 'archived,in-scope')
+        self.assertEqual((calls[0]['selected'], calls[0]['skip']), ({'archived', 'in-scope'}, set()))
+        self.assertIn('NOTE: archived is out of the variable inventory (inactiv); --only runs it anyway.', output)
+        self.assertNotIn('NOTE: in-scope', output)
+        self.assertNotIn('were not refreshed', output)
 
 
 class SharedSources(unittest.TestCase):

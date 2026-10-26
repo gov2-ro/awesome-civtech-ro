@@ -33,13 +33,13 @@ Field-level meaning is thinner than group-level meaning. Source-declared field d
 
 ## 2. Coverage before and after
 
-The 127 projects and resources of the data finder:
+The 129 projects and resources of the catalogue (the finder lists the 85 that are in scope):
 
 | Measure | Baseline | Now |
 | --- | ---: | ---: |
 | Catalogue entries | 140 | 142 |
 | Projects / resources / organisations | 106 / 21 / 13 | 108 / 21 / 13 |
-| Projects and resources in the data finder | 127 | 129 |
+| Projects and resources (catalogue, hidden entries included) | 127 | 129 |
 | Entries with structured field evidence | 14 | 31 |
 | Projects/resources without extracted structured fields | 113 | 98 |
 | Retained structured-source URLs | 25 | 115 |
@@ -51,14 +51,16 @@ The 127 projects and resources of the data finder:
 | Accepted provider relations / entries with accepted providers | 26 / 11 | 75 / 26 |
 | Pending provider proposals (review items D132 and later) | 15 | 1 |
 | Proposed business-variable groups | 7 | 38 |
-| Unit tests discovered / skipped | 308 / 6 | 701 / 6 |
-| Explorer inventory / dedicated finder browser checks | 25 / 25 | 31 / 40 |
+| Unit tests discovered / skipped | 308 / 6 | 724 / 6 |
+| Explorer inventory / dedicated finder browser checks | 25 / 25 | 36 / 62 |
 
 Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 57 in all; deschis 1, acceptat 49, respins 4, amanat 0, tehnic 3. Variable groups: 38 in all; propus 5, revizuit 33, respins 0, amanat 0. Group members (selectors): 116 in all; propus 14, confirmat 102, exclus 0.
 
+Scope of the data finder (`/date/`): 85 of the 126 public projects and resources are in scope. An entry is in scope when it is not inactive (`offline`, `arhivat`) and its `relatie_date` is `date-publice`, `date-proprii` or `calcul`. The finder leaves out 41: 18 without data (`fara-date`), 5 not assessed (empty value), 18 inactive (counted first: an inactive entry is never counted as another reason). 3 hidden entries (`ascuns`) are in no count of this paragraph.
+
 Field records by evidence type now: declarat-in-schema 1,367, observat-in-esantion-json 1,341, declarat-in-cod-sursa 366, exemplu-in-documentatie 364, neprecizat-in-antet-csv 238, declarat-in-lista-baza 172, antet-tabel-html 85, declarat-in-tabel-documentatie 53, declarat-in-metadate 43, declarat-in-lista-documentatie 40, declarat-in-documentatie-api 33, declarat-in-text-documentatie 23, utilizat-in-cod-pagina 9.
 
-Coverage by measure, for the 127 projects and resources (`acoperire.csv` has the rows). A column that counts fields counts source paths:
+Coverage by measure, for the 129 projects and resources (`acoperire.csv` has the rows). A column that counts fields counts source paths:
 
 | Measure | Entries counted | Total |
 | --- | ---: | ---: |
@@ -75,16 +77,20 @@ Coverage by measure, for the 127 projects and resources (`acoperire.csv` has the
 Totals add the per-entry counts. A source that several entries share counts once for each of them, so the field total here is higher than the number of distinct field records above.
 Denominators are defined in `docs/DATA-SCHEMA.md` (Coverage export). Entries without a structured source have an empty (unknown) measure count, not zero.
 
-All 140 catalogue entries:
+All 142 catalogue entries (hidden entries included):
 
 | State | Entries |
 | --- | ---: |
 | blocat | 1 |
 | cu-surse-structurate | 31 |
+| fara-date | 18 |
 | in-afara-ariei | 13 |
-| neinvestigat-in-lot | 97 |
+| inactiv | 19 |
+| neevaluat | 7 |
+| neinvestigat-in-lot | 53 |
 
 `in-afara-ariei` entries are organisations: the finder lists projects and resources. An organisation need not expose a dataset. Missing extraction never proves missing data.
+`fara-date`, `inactiv` and `neevaluat` are projects and resources that the finder leaves out and that have no source record. An entry with a usable source keeps `cu-surse-structurate`, and an entry whose sources failed keeps `blocat`, whatever its scope: the evidence stays in `observatii/`, and only the public output leaves the entry out.
 
 ## 3. Outcome per selected project
 
@@ -514,6 +520,7 @@ External blockers and security findings:
 - Batch C2 (branch `inventory-batch-c2`, 2026-10-26): `python3 scripts/validate.py --publication`: 142 entries, 0 errors, 0 warnings. `python3 scripts/inventory.py --check`: 0 evidence errors; 98 source bodies hash-verified (88 before the batch); 84 dictionary evidence items verified (62 before), 0 stale. Unit tests: 614 run, 6 skipped (590 and 6 before the batch); new: `test_inventory_literals` 21 and 3 in `test_inventory_report`. `python3 scripts/build.py --site-dir <scratch folder> --with-inventory`: succeeds; the finder index holds 128 entries and 33 groups, `site/` has no change. Browser, against the served scratch build on port 8771: `check_preview.py` 111/111, `check_inventory_preview.py` 31/31, `check_data_finder.py` 40/40.
 - Batch C2 part 2 (branch `inventory-c2-efor`, 2026-10-26): `python3 scripts/validate.py --publication`: 142 entries, 0 errors, 0 warnings. `python3 scripts/inventory.py --check`: 0 evidence errors; 109 source bodies hash-verified (99 before); 4 copies saved by the owner hash-verified; 95 dictionary evidence items verified (84 before), 0 stale. Unit tests: 669 run, 6 skipped (627 and 6 before part 2); new: `test_inventory_setlist` 26, `test_inventory_sheet` 12, 2 in `test_inventory_site` and 2 in `test_inventory_report`. `python3 scripts/build.py --site-dir <scratch folder> --with-inventory`: succeeds; the finder index holds 128 entries and 36 groups, `site/` has no change. Browser, against the served scratch build on port 8771: `check_preview.py` 111/111, `check_inventory_preview.py` 31/31, `check_data_finder.py` 40/40. Replay: `inventory.py --offline` on a copy of the tracked folder gives the six generated files byte for byte.
 - Batch C2 part 3 (branch `inventory-c2-banipartide`, 2026-10-26): `python3 scripts/validate.py --publication`: 142 entries, 0 errors, 0 warnings. `python3 scripts/inventory.py --check`: 0 evidence errors; 110 source bodies hash-verified (109 before); 5 copies saved by the owner hash-verified (4 before); 102 dictionary evidence items verified (95 before), 0 stale. Unit tests: 701 run, 6 skipped (671 and 6 before part 3); new: `test_inventory_datasette` 24, 2 in `test_saved_copies`, 2 in `test_inventory_site` and 2 in `test_inventory_report` (the blocker test no longer depends on `bani-partide`). `python3 scripts/build.py --site-dir <scratch folder> --with-inventory`: succeeds; the finder index holds 128 entries and 38 groups, `site/` has no change. Browser, against the served scratch build: `check_preview.py` 111/111, `check_inventory_preview.py` 31/31, `check_data_finder.py` 40/40; a one-off check of the field browser of `bani-partide` (10 checks: the tables with their row counts, the licence credit and its link, the title of the source). Replay: `inventory.py --offline` on a copy of the tracked folder gives the six generated files byte for byte. 0 requests in this part.
+- The relation to data, steps D and E (branch `data-relation-de`, 2026-10-26): `python3 scripts/validate.py --publication`: 142 entries, 0 errors, 0 warnings. `python3 scripts/inventory.py --check`: 0 evidence errors; 110 source bodies hash-verified; 5 copies saved by the owner hash-verified; 102 dictionary evidence items verified, 0 stale. Unit tests: 724 run, 6 skipped (701 and 6 before); new: 8 in `test_inventory_site` (class `Scope`), 5 in `test_inventory_report` (`Scope`), 3 in `test_collect_docs`, 7 in `test_inventory_state` (`ScopeOfTheSelection`, `ScopeInTheCommand`). `python3 scripts/build.py --site-dir <scratch folder> --with-inventory`: succeeds; the finder index holds 85 entries (126 before the scope rule): 73 projects and 12 resources; it leaves out 41 (18 without data, 5 not assessed, 18 inactive); `/date/lista/` has 31 rows and 54 entries without fields. Browser, against the served scratch build: `check_preview.py` 138/138 (111 before), `check_inventory_preview.py` 36/36 (31), `check_data_finder.py` 62/62 (40). Replay: `inventory.py --offline` on a copy of the tracked folder gives the six generated files byte for byte. 0 requests in this work.
 
 ## 9. Remaining review work
 
