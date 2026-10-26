@@ -1,9 +1,14 @@
 """Offline checks for documentation collection, scope and evidence preservation."""
+import contextlib
+import io
 import json
+import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
+import collect_docs
 from collect_docs import canonical, collect, kind_of, merge_refresh, parse_page, restore, save, scope_of
 
 
@@ -161,6 +166,44 @@ class DocumentationCollection(unittest.TestCase):
         self.assertEqual(kind_of('https://example.org/how-it-works/'), 'despre')
         self.assertEqual(kind_of('https://example.org/llms-full.txt'), 'llms')
         self.assertEqual(canonical('https://example.org/a/#method'), 'https://example.org/a/')
+
+
+class ScopeOfTheSelection(unittest.TestCase):
+    """The default selection of collect_docs.py leaves out the entries that are out of the variable inventory; `--only` collects them and says so.
+    The test replaces the catalogue, the scope and the collection: it makes no request and reads no tracked file."""
+
+    ENTRIES = [{'slug': slug, 'url': f'https://{slug}.example/'} for slug in ('in-scope', 'no-data', 'archived', 'an-org')]
+    SCOPE = {'in-scope': '', 'no-data': 'fara-date', 'archived': 'inactiv', 'an-org': 'in-afara-ariei'}
+
+    def run_main(self, *argv):
+        collected = []
+
+        def fake_collect(entry, fetch, max_pages, follow):
+            collected.append(entry['slug'])
+            return {'slug': entry['slug'], 'url': entry['url'], 'state': 'documentatie-gasita', 'inventory_completeness': 'neanalizat', 'pages': []}
+
+        with tempfile.TemporaryDirectory() as tmp, contextlib.redirect_stdout(io.StringIO()) as output, \
+                patch.object(sys, 'argv', ['collect_docs.py', '--out', str(Path(tmp) / 'documentare'), *argv]), \
+                patch.object(collect_docs, 'load_catalogue', return_value=self.ENTRIES), \
+                patch.object(collect_docs, 'inventory_scope', return_value=self.SCOPE), patch.object(collect_docs, 'collect', fake_collect):
+            code = collect_docs.main()
+        return code, sorted(collected), output.getvalue()
+
+    def test_the_default_selection_skips_the_entries_that_are_out_of_scope_and_counts_them_by_reason(self):
+        code, collected, output = self.run_main()
+        self.assertEqual((code, collected), (0, ['in-scope']))
+        self.assertIn('3 entries out of the variable inventory were skipped (in-afara-ariei 1, inactiv 1, fara-date 1)', output)
+        self.assertNotIn('NOTE', output)
+
+    def test_force_without_only_still_skips_them(self):
+        self.assertEqual(self.run_main('--force')[1], ['in-scope'])
+
+    def test_only_collects_an_out_of_scope_entry_and_prints_a_note(self):
+        code, collected, output = self.run_main('--only', 'no-data,in-scope')
+        self.assertEqual((code, collected), (0, ['in-scope', 'no-data']))
+        self.assertIn('NOTE: no-data is out of the variable inventory (fara-date); --only collects it anyway.', output)
+        self.assertNotIn('NOTE: in-scope', output)
+        self.assertNotIn('were skipped', output)
 
 
 if __name__ == '__main__':
