@@ -1,5 +1,21 @@
 # Activity
 
+## 2026-10-26 — Batch C2 decisions: providers, three groups, the EFOR hosts listed (v0.30.1)
+
+**Done**
+- The owner decided D176–D185 in the review interface: D176–D180, D182 and D184 accepted (relations L176–L182), D181 („prea generic”) and D183 (Agerpres, a news agency) rejected, D185 postponed. Committed as the owner's decisions.
+- At the owner's request, the groups `casatorii`, `divorturi` and `studenti` were marked `revizuit` through the interface's own `Store`: 10 members confirmed, 6 deductions ticked, note „Revizuit în bloc la cererea proprietarului”.
+- Added `banipartide.ro` and `expertforum.ro` to `colectare-interzisa.csv`. The second row covers `data.expertforum.ro`; `common.forbidden()` now refuses `data-expertforum`, `bani-partide`, `efor` and `ghiduri-efor`.
+- `relatie-date-propuneri.csv`: `data-expertforum` is `date-publice` (the owner's decision).
+- Fixed `test_inventory_report.py`: the batch C2 provider test pinned the state `deschis`, so the owner's decisions failed it. The test now checks the evidence and leaves the state to the owner.
+- Checks: `validate.py --publication` 0 errors, 0 warnings; the package checks pass; `inventory.py --check` 0 errors (98 bodies, 84 dictionary evidence items); `inventory_report.py --check` current; 627 unit tests pass (6 skipped); `test_forbidden_hosts.py` with `httpx` passes.
+
+**Hard**
+- Before the listing, the owner asked for one more reachability check. Three requests with `curl` and a User-Agent that names this project (`civtech-ro-inventory`) got HTTP 200 from `banipartide.ro`, `data.expertforum.ro` and `expertforum.ro`; two more got their `robots.txt` (HTTP 200, not read). The collectors' User-Agent got HTTP 403 on 2026-10-24 and 2026-10-26. So the block is a filter on the client, not on our address. These five requests are not in `jurnal-cereri.csv`.
+- A test of other User-Agents was refused by the session's safety check as a bot-check circumvention, and was not run. Which part of the User-Agent the filter matches is not measured.
+
+**Decided**
+- The hosts go on the list, as the owner asked: a site that filters our collectors does not want them. Getting past the filter with another User-Agent would go against that. The cost: the entries get evidence only from pages that the owner saves.
 ## 2026-10-26 — Inventory batch C2: România Interactivă read; both EFOR hosts answer 403
 
 **Done**

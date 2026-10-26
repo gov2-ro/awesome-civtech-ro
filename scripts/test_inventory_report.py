@@ -88,14 +88,16 @@ class Coverage(unittest.TestCase):
         self.assertEqual((row['stare_investigare'], row['blocaj']), ('neinvestigat-in-lot', ''), 'without the note the entry has no state of its own')
         self.assertEqual(self.by['465']['stare_investigare'], 'neinvestigat-in-lot', 'an entry with no note stays uninvestigated')
 
-    def test_provider_items_of_batch_c2_are_open_proposals_with_evidence_that_the_retained_copy_holds(self):
+    def test_provider_items_of_batch_c2_cite_evidence_that_the_retained_copy_holds(self):
+        # The review state belongs to the owner, so the test does not pin it; an item still open must not block the gate.
         items = [r for r in self.data['review'] if r['camp'] == 'surse_date' and r['id'].startswith('D') and 176 <= int(r['id'][1:]) <= 185]
         self.assertEqual([r['id'] for r in items], [f'D{n}' for n in range(176, 186)])
         locator = EvidenceLocator(ROOT / 'data/taxonomy-v2/observatii/inventare', ROOT / 'data/taxonomy-v2/observatii',
                                   list(self.data['sources'].values()))
         for item in items:
-            self.assertEqual((item['slug'], item['stare'], item['decizie_editor']), ('romania-interactiva', 'deschis', ''), item['id'])
-            self.assertIn(item['prioritate'], ('medie', 'mica'), 'a high-priority open item would block the publication gate')
+            self.assertEqual(item['slug'], 'romania-interactiva', item['id'])
+            if item['stare'] == 'deschis':
+                self.assertIn(item['prioritate'], ('medie', 'mica'), 'a high-priority open item would block the publication gate')
             self.assertTrue(item['propunere'].startswith('Furnizor propus: '))
             cited = re.search(r'Dovadă: (\S+) \(text păstrat, sha256 ([0-9a-f]{16})\)', item['motiv'])
             self.assertTrue(cited, item['id'])

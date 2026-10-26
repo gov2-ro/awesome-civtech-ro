@@ -22,7 +22,7 @@ ce-zice-legea,fara-date,"Formatul este Ghid, iar pagina organizează explicații
 scoala-pentru-democratie,fara-date,"Formatul este Curs sau atelier, iar funcția Învață sau exersează; depozitul nu are text de pagină, deci baza este tipul de conținut.",medie
 companii-de-stat,date-publice,"Patru surse acceptate (AMEPIP, Ministerul Finanțelor, ANAF, BVB) și 591 de câmpuri extrase în inventar.",mare
 companii-publice-ro,date-publice,"Pagina arată pe județe numărul de companii publice, angajații, cifra de afaceri, rezultatul net și datoriile, cu eticheta Min. Finanțelor, dar nu numește o sursă și inventarul nu are surse structurate.",medie
-data-expertforum,,"Formatele Catalog și Set de date oferit arată că are date, dar toate paginile colectate au dat eroare, deci nu se știe dacă datele sunt publice sau proprii; rămâne în /date/ (lotul C2).",mica
+data-expertforum,date-publice,"Decizia proprietarului (2026-10-26): portal de date publice; site-ul respinge cererile automate, deci nu are dovadă în depozit.",mare
 ins-gov2,date-publice,"Trei surse acceptate (INS, Inspecția Muncii, RNEP) și 46 de câmpuri extrase; llms.txt descrie un API cu peste 3.600 de seturi TEMPO.",mare
 declic,fara-date,"Descrierea scurtă și pagina vorbesc despre campanii și petiții cu 1,2 milioane de membri; nu apare un set de date publicat.",medie
 demoanaf,date-publice,"Zece surse acceptate (ANAF, BNR, ONRC, Ministerul Finanțelor, INS etc.) și 130 de câmpuri extrase; descrierea spune date oficiale ONRC, ANAF, BNR.",mare
