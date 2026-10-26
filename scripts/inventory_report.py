@@ -33,6 +33,7 @@ BASELINE = {'entries': 140, 'projects': 106, 'resources': 21, 'organisations': 1
 BATCH = ['afacut', 'biografia-localitatii', 'registrul-firmelor', 'dignitas', 'monitorul-ai', 'rezultate-vot', 'votdiaspora', 'aerlive',
          'calitate-aer-radauti', 'banii-nostri', 'europescope', 'despre-femicid']
 EXTRA_GAPS = ['companii-de-stat', 'transparenta-eu', 'romania-transparenta', 'codurbanism']
+BATCH_C2 = ['data-expertforum', 'bani-partide', 'romania-interactiva']  # lot C2: the three active projects of public-sector data
 INS_USERS = ['ins-gov2', 'constru-pentru-cine', 'orasul-care-se-intinde', 'demoanaf', 'unde-se-termina-asfaltul', 'biografia-localitatii']
 MEASURE_CATEGORIES = ('masura', 'iesire-derivata')
 REVIEW_STATES = ('deschis', 'acceptat', 'respins', 'amanat', 'tehnic')  # revizuire_stare, in the order the report lists them
@@ -83,10 +84,11 @@ def membership(data):
 
 def lots(data):
     """Which collection lots touched which entries. C: the primary batch. B: entries given INS dataset records.
-    B2: existing inventories that got a source for a named gap. S: entries with a page that the owner saved by hand (no request was possible).
+    B2: existing inventories that got a source for a named gap. C2: the three active projects of public-sector data (an entry whose host answered 403
+    is in the lot, with the state `blocat`). S: entries with a page that the owner saved by hand (no request was possible).
     Entries with fields and no lot come from the baseline pass."""
     touched = {}
-    for lot, slugs in (('C', BATCH), ('B', INS_USERS), ('B2', EXTRA_GAPS)):
+    for lot, slugs in (('C', BATCH), ('B', INS_USERS), ('B2', EXTRA_GAPS), ('C2', BATCH_C2)):
         for slug in slugs:
             touched.setdefault(slug, set()).add(lot)
     for slug, profile in data['profiles'].items():
@@ -113,7 +115,7 @@ def coverage_rows(data):
             state = 'in-afara-ariei'
         elif usable:
             state = 'cu-surse-structurate'
-        elif failed:
+        elif failed or (note.get('blocaj') and not sources):  # a host that refused every request leaves no source record; the notes say why
             state = 'blocat'
         else:
             state = 'neinvestigat-in-lot'
@@ -299,10 +301,10 @@ def render_report(data, rows):
     w('')
     w('## 3. Outcome per selected project')
     w('')
-    for slug in BATCH:
+    def outcome(slug, heading='###', proposals=False):
         r = by_slug[slug]
         note = notes['note'].get(slug, {})
-        w(f'### `{slug}` — {entries[slug]["nume"]}')
+        w(f'{heading} `{slug}` — {entries[slug]["nume"]}')
         w('')
         w(note.get('rezultat', ''))
         w('')
@@ -313,11 +315,26 @@ def render_report(data, rows):
         w('- Proposed groups: ' + (', '.join(f'`{g}`' for g in groups) if groups else 'none'))
         inputs = sorted({f['nume'] for ref in profile['surse_structurate'] for f in data['sources'][ref]['campuri'] if f.get('rol') == 'parametru-api'})
         w('- Documented inputs: ' + (', '.join(f'`{n}`' for n in inputs[:10]) if inputs else 'none documented in the sources read. HTML controls stay candidates.'))
+        if proposals:
+            items = [x['id'] for x in data['review'] if x['slug'] == slug and x['camp'] == 'surse_date' and x['id'].startswith('D') and int(x['id'][1:]) >= 176]
+            w('- Provider proposals: ' + (', '.join(items) if items else 'none') + '.')
+            w(f'- Blocker: {note.get("blocaj_en", "none")}')
         w(f'- Limitations: {note.get("limite_en", "")}')
         w(f'- Remaining work: {note.get("urmator_en", "")}')
         w('')
+
+    for slug in BATCH:
+        outcome(slug)
     w('Reserve entries (`ce-fac-politicienii`, `onorata-instanta`, `guvernezi`) were not used: all 12 primary entries produced evidence.')
     w('')
+    if notes.get('lot_c2'):
+        w('### Batch C2: three active projects that publish public-sector data')
+        w('')
+        for line in notes['lot_c2']:
+            w(line)
+            w('')
+        for slug in BATCH_C2:
+            outcome(slug, '####', proposals=True)
     w('## 4. Existing inventories and INS')
     w('')
     for line in notes['ins']:
@@ -354,6 +371,13 @@ def render_report(data, rows):
         for text in concept.get('ambiguitati', []):
             w(f'- `{concept["id"]}`: {text}')
     w('')
+    if notes.get('selectori_candidati'):
+        w('Candidate members of reviewed groups (batch C2). They are not in `inventar-concepte.json`: a reviewed group cannot hold a member that the owner has not confirmed. '
+          'Each line is a selector that the owner can add after the decision:')
+        w('')
+        for item in notes['selectori_candidati']:
+            w(f'- `{item["grup"]}`: `{json.dumps(item["selector"], ensure_ascii=False)}`')
+        w('')
     w('## 6. Provider proposals')
     w('')
     w('Review items D147 and later hold provider findings from this pass. None changes `relatii.csv`, none closes D132–D146, and the accepted provider facet is unchanged.')
@@ -384,6 +408,8 @@ def render_report(data, rows):
     w('')
     w(f'Total direct requests: {m["direct_requests"]}. The limit for lot C was 150 including retries; no request was retried. Lot B is the INS listing and five metadata records;'
       ' lot B2 is six gap sources of existing inventories. Elapsed work and workers: requests ran one at a time, so the six-worker and two-per-host limits were never reached.')
+    for line in notes.get('retea_c2', []):
+        w(line)
     w('The request log (`observatii/inventare/jurnal-cereri.csv`) lists every request with its outcome, method, bytes and purpose. It holds no headers or credentials.')
     w('')
     w('Methods used: documentation collection with page-link and text discovery; CSV, JSON, JSON Schema and OpenAPI parsers; INS TEMPO metadata facts; readers for HTML tables, markdown tables,'

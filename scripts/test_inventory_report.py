@@ -1,11 +1,14 @@
 """Checks for the coverage export and the readable report. They read the tracked files and fixtures only."""
 import csv
+import hashlib
 import io
+import re
 import unittest
 from pathlib import Path
 
 import inventory_report as report
 from common import PUBLIC_ROOT
+from inventory_concepts import EvidenceLocator
 
 ROOT = Path(__file__).resolve().parents[1]
 BRIEF_COLUMNS = ['slug', 'tip_entitate', 'investigat_in_lot', 'stare_investigare', 'surse_structurate', 'campuri_din_surse', 'concepte_propuse',
@@ -63,6 +66,43 @@ class Coverage(unittest.TestCase):
             self.assertIn('C', self.by[slug]['investigat_in_lot'].split('|'))
             self.assertTrue(self.data['notes']['note'][slug]['rezultat'], slug)
             self.assertTrue(self.data['notes']['note'][slug]['limite'], slug)
+
+    def test_batch_c2_has_its_lot_a_state_and_a_note_for_each_entry(self):
+        self.assertEqual(report.BATCH_C2, ['data-expertforum', 'bani-partide', 'romania-interactiva'])
+        for slug in report.BATCH_C2:
+            self.assertEqual(self.by[slug]['investigat_in_lot'].split('|').count('C2'), 1, slug)
+            note = self.data['notes']['note'][slug]
+            self.assertTrue(note['rezultat'] and note['limite'] and note['urmator_en'] and note['limite_en'], slug)
+        for slug in ('harta-banilor-publici', 'parlament-transparent', 'bani-pierduti'):
+            self.assertNotIn('C2', self.by[slug]['investigat_in_lot'], 'inactive entries are not in the batch: ' + slug)
+        self.assertEqual(self.by['romania-interactiva']['stare_investigare'], 'cu-surse-structurate')
+        for slug in ('data-expertforum', 'bani-partide'):
+            row = self.by[slug]
+            self.assertEqual((row['stare_investigare'], row['surse_structurate'], row['campuri_din_surse'], row['concepte_propuse']), ('blocat', '0', '0', ''), slug)
+            self.assertIn('403', row['blocaj'])
+
+    def test_a_blocker_in_the_notes_decides_the_state_of_an_entry_without_sources_and_nothing_else_does(self):
+        slug = 'bani-partide'
+        without = {**self.data, 'notes': {**self.data['notes'], 'note': {k: v for k, v in self.data['notes']['note'].items() if k != slug}}}
+        row = {r[0]: dict(zip(report.COLUMNS, r)) for r in report.coverage_rows(without)}[slug]
+        self.assertEqual((row['stare_investigare'], row['blocaj']), ('neinvestigat-in-lot', ''), 'without the note the entry has no state of its own')
+        self.assertEqual(self.by['465']['stare_investigare'], 'neinvestigat-in-lot', 'an entry with no note stays uninvestigated')
+
+    def test_provider_items_of_batch_c2_are_open_proposals_with_evidence_that_the_retained_copy_holds(self):
+        items = [r for r in self.data['review'] if r['camp'] == 'surse_date' and r['id'].startswith('D') and 176 <= int(r['id'][1:]) <= 185]
+        self.assertEqual([r['id'] for r in items], [f'D{n}' for n in range(176, 186)])
+        locator = EvidenceLocator(ROOT / 'data/taxonomy-v2/observatii/inventare', ROOT / 'data/taxonomy-v2/observatii',
+                                  list(self.data['sources'].values()))
+        for item in items:
+            self.assertEqual((item['slug'], item['stare'], item['decizie_editor']), ('romania-interactiva', 'deschis', ''), item['id'])
+            self.assertIn(item['prioritate'], ('medie', 'mica'), 'a high-priority open item would block the publication gate')
+            self.assertTrue(item['propunere'].startswith('Furnizor propus: '))
+            cited = re.search(r'Dovadă: (\S+) \(text păstrat, sha256 ([0-9a-f]{16})\)', item['motiv'])
+            self.assertTrue(cited, item['id'])
+            text, _ = locator.text(cited.group(1), 'sursa')
+            if text is not None:  # the retained bodies are not in git: a fresh checkout cannot compare
+                self.assertTrue(hashlib.sha256(text.encode()).hexdigest().startswith(cited.group(2)), item['id'])
+                self.assertIn(item['valoare_originala'], text, item['id'])
 
     def test_baseline_figures_are_the_ones_of_the_brief(self):
         self.assertEqual((report.BASELINE['with_fields'], report.BASELINE['field_records'], report.BASELINE['groups']), (14, 2302, 7))

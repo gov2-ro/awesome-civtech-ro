@@ -1140,13 +1140,14 @@ A new checkout needs `collect_docs.py --force` and `inventory.py --force` before
 
 `scripts/inventory_report.py` writes `observatii/inventare/acoperire.csv` (one row for each of the 140 catalogue entries) and the readable report `docs/reports/inventory-expansion.md`.
 `--check` compares both with a fresh computation. The hand-edited input is `data/taxonomy-v2/inventar-note.json`: limits, blockers and next steps of each entry, the narrative of the report and the verification results.
+The keys `lot_c2` and `retea_c2` hold the narrative and the network summary of batch C2; the notes of its entries also carry `blocaj_en` (the blocker, in English, for the report).
 The export keeps fields, business groups, declarations, observations and unknowns apart. A raw field total is never the progress measure.
 
 | Column | Meaning and denominator |
 | --- | --- |
 | `slug`, `tip_entitate` | The entry and its type in the catalogue (`proiect`, `resursa`, `publicatie`, `organizatie`). |
-| `investigat_in_lot` | The collection lots that touched the entry: `C` (the primary batch), `B` (INS metadata attached), `B2` (a source added for a named gap), `S` (a page that the owner saved by hand), `baza` (fields from the first pass only). Empty: not investigated. |
-| `stare_investigare` | `cu-surse-structurate` (at least one parsed source), `blocat` (sources only failed), `neinvestigat-in-lot`, `in-afara-ariei` (organisations: the finder lists projects and resources). |
+| `investigat_in_lot` | The collection lots that touched the entry: `C` (the primary batch), `B` (INS metadata attached), `B2` (a source added for a named gap), `C2` (the three active projects of public-sector data), `S` (a page that the owner saved by hand), `baza` (fields from the first pass only). Empty: not investigated. |
+| `stare_investigare` | `cu-surse-structurate` (at least one parsed source), `blocat` (sources only failed, or the notes file records a blocker for an entry that has no source record: a host that refused every request), `neinvestigat-in-lot`, `in-afara-ariei` (organisations: the finder lists projects and resources). |
 | `surse_structurate` | Parsed structured sources in the profile. A source that several entries share counts for each. |
 | `campuri_din_surse` | Source-scoped field records of those sources. They are paths, not independent variables. |
 | `concepte_propuse` | Distinct proposed groups that contain at least one field of the entry. Empty when there is no source. |
@@ -1276,10 +1277,10 @@ does not ask it to match). A `respins` group produces no matches in the finder a
 and the finder shows its state as a badge (`variables[].state` in the index). The review tool writes the new keys after the existing ones, in the order of the table.
 The top-level `"stare": "propunere"` of the file keeps its meaning: groups remain discovery aids, never join keys.
 
-Current groups (30): identifiers `cui`, `cpv`, `siruta`; dimensions `judet`, `localitate`, `perioada-de-referinta`, `grup-politic`; measures `populatie`, `locuinte`,
+Current groups (33; the last three are proposals of batch C2, state `propus`): identifiers `cui`, `cpv`, `siruta`; dimensions `judet`, `localitate`, `perioada-de-referinta`, `grup-politic`; measures `populatie`, `locuinte`,
 `lungime-drumuri`, `cifra-afaceri`, `profit-net`, `numar-salariati`, `valoare-achizitie-directa`, seven environmental measures (`co2`, `pm25`, `pm10`, `temperatura-aer`,
 `umiditate-relativa`, `presiune-atmosferica`, `viteza-vantului`), election counts (`alegatori-inscrisi`, `alegatori-lista-permanenta`, `alegatori-prezenti`, `voturi-valide`, `voturi-nule`),
-`voturi-pentru`, `voturi-impotriva`, `voturi-abtinere`; derived output `rata-prezenta`. Unit facts exist only where a source declares or implies one with evidence
+`voturi-pentru`, `voturi-impotriva`, `voturi-abtinere`; derived output `rata-prezenta`; measures `casatorii`, `divorturi` and `studenti` (family `populatie-teritoriu`). Unit facts exist only where a source declares or implies one with evidence
 (for example `co2` in ppm from the project page). The seven baseline groups keep every membership that v0.13.0 supported.
 
 An INS dataset has a measure field `OBS_VALUE` (role `masura`, `stare_tip` `declarat-in-documentatie-api`). The API documentation (llms.txt) names `OBS_VALUE` as the observation column of
