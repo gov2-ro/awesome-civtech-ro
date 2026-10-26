@@ -211,9 +211,29 @@ def check_v2(root: Path, publication: bool):
         name = m.group(1) if m else ("revizuire.csv" if "review item" in msg else "intrari.csv" if msg.startswith("publication") else "")
         report("error", files.path(name) if name else files.root, int(m.group(2)) if m and m.group(2) else 1, msg)
     check_mentiuni(observation_paths(root)["mentions"])
+    check_relation_fields(root)
     if summary:
         states = ", ".join(f"{k}: {v}" for k, v in sorted(summary["classification_states"].items()))
         print(f"{summary['schema_version']}: {summary['entries']} intrări ({states}), {summary['concepts']} concepte", file=sys.stderr)
+
+
+def check_relation_fields(root: Path):
+    """An entry with `relatie_date` `fara-date` has nothing to extract. Fields in its inventory say the opposite.
+    The inventory counts come from `observatii/inventare/rezumat.csv` (written by inventory.py). This is a warning only:
+    the editor decides which of the two is wrong. A root without an inventory has nothing to compare."""
+    import taxonomy_v2
+    summary = observation_paths(root)["profile"].parent / "inventare" / "rezumat.csv"
+    path = taxonomy_v2.Files(root).path("intrari.csv")
+    if not summary.exists() or not path.exists():
+        return
+    with open(summary, encoding="utf-8-sig", newline="") as f:
+        fields = {r["slug"]: int(r["campuri_din_surse"] or 0) for r in csv.DictReader(f)}
+    with open(path, encoding="utf-8-sig", newline="") as f:
+        reader = csv.DictReader(f)
+        for r in reader:
+            if r.get("relatie_date") == taxonomy_v2.NO_DATA and fields.get(r["slug"], 0):
+                report("warning", path, reader.line_num,
+                       f"{r['slug']}: relatie_date is {taxonomy_v2.NO_DATA}, but the inventory has {fields[r['slug']]} extracted fields")
 
 
 def main():

@@ -22,6 +22,8 @@ HOST = re.compile(r"^[a-z0-9-]+(\.[a-z0-9-]+)+$")
 OBSERVATIONS = ("profil.csv", "mentiuni.csv", "mentiuni_etichete.csv")
 # `clasificare_stare` of an entry that stays in the data and out of the public build. The publication gate accepts it.
 HIDDEN = "ascuns"
+# `relatie_date` of an entry with nothing to extract (a guide, a course, a campaign, an article, a list of links).
+NO_DATA = "fara-date"
 # Keys that draft.1 kept in JSON and draft.2 moved to CSV. Their presence is a second editorial source.
 MOVED_SETTINGS = {"sectiuni": "valori.csv (lista sectiune_url)", "roluri_linkuri": "roluri-linkuri.csv și gazde-linkuri.csv"}
 MOVED_SCHEMA = {"enums": "valori.csv", "relation_predicates": "valori.csv (lista relatie_predicat)",
@@ -335,6 +337,12 @@ def check(root, baseline: bool = False, publication: bool = False, package: "Pac
                 fail(f"intrari.csv {slug}: a data breakdown needs an HTTP evidence URL")
         if row["tip_organizatie"] and row["tip_entitate"] != "organizatie":
             fail(f"intrari.csv {slug}: organisation type on a non-organisation")
+        # The relation to data describes a project or a resource. A package without the column (an older run) has none.
+        relation = row.get("relatie_date", "")
+        if relation and row["tip_entitate"] == "organizatie":
+            fail(f"intrari.csv {slug}: relatie_date on an organisation (only a project or a resource has one)")
+        if relation == NO_DATA and row.get("detaliere_date"):
+            fail(f"intrari.csv {slug}: relatie_date {NO_DATA} excludes detaliere_date")
 
     for row in pkg.tables.get("relatii.csv", []):
         if row["subiect"] not in pkg.entries or (row["obiect"] and row["obiect"] not in pkg.entries):
