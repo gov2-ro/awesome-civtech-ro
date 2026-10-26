@@ -15,13 +15,13 @@ BASIS = {'declarat-in-schema': 'schema', 'declarat-in-metadate': 'metadata',
          'observat-in-esantion-json': 'sample', 'neprecizat-in-antet-csv': 'header',
          'declarat-in-cod-sursa': 'code', 'antet-tabel-html': 'table', 'declarat-in-tabel-documentatie': 'doctable',
          'declarat-in-text-documentatie': 'doctext', 'utilizat-in-cod-pagina': 'pagecode', 'exemplu-in-documentatie': 'docexample',
-         'declarat-in-documentatie-api': 'apidoc', 'declarat-in-lista-documentatie': 'doclist'}
+         'declarat-in-documentatie-api': 'apidoc', 'declarat-in-lista-documentatie': 'doclist', 'declarat-in-lista-baza': 'dblist'}
 FORMATS = {'openapi': 'Schemă API', 'json-schema': 'Schemă JSON', 'metadate-ins': 'Metadate de set',
            'json': 'Fișier JSON', 'csv': 'Fișier CSV', 'lista-ins': 'Listă de seturi INS',
            'html-tabele': 'Pagină cu tabele', 'markdown': 'Document Markdown', 'csharp': 'Cod C#', 'sql': 'Cod SQL', 'php': 'Cod PHP',
            'json-comentat': 'Exemple JSON în document', 'js-acces': 'Script de pagină',
            'html-api-docs': 'Documentația API (pagină)', 'html-carduri-csv': 'Pagină cu fișiere CSV descrise',
-           'js-literale': 'Date din scriptul paginii', 'html-lista-seturi': 'Pagină cu lista seturilor de date'}
+           'js-literale': 'Date din scriptul paginii', 'html-lista-seturi': 'Pagină cu lista seturilor de date', 'baza-datasette': 'Bază de date Datasette'}
 SOURCE_LABELS = {
     'Institutul Național de Statistică (INS)': 'INS', 'Ministerul Dezvoltării (MDLPA)': 'MDLPA',
     'Administrația Prezidențială': 'Adm. Prez', 'Monitorul Oficial': 'MO',
@@ -213,13 +213,17 @@ def dataset_summary(facts):
 
 def source_licence(source):
     """The licence that every data set of a described-files page declares, with its link and the attribution it asks for.
+    A Datasette listing declares one licence for all its tables (`baza.licenta`); its attribution is the declared source, introduced by `Sursa: `.
     None when the sets declare none or disagree: the field browser then names no licence for the page."""
+    facts = [(item.get('licenta'), '') for item in source.get('seturi', [])]
+    if isinstance(source.get('baza'), dict):
+        facts.append((source['baza'].get('licenta'), 'Sursa: '))
     found = set()
-    for item in source.get('seturi', []):
-        fact = item.get('licenta')
+    for fact, prefix in facts:
         if not isinstance(fact, dict) or not fact.get('valoare'):
             return None
-        found.add((fact['valoare'], http_url((fact.get('url') or {}).get('valoare', '')), (fact.get('atribuire') or {}).get('valoare') or ''))
+        credit = (fact.get('atribuire') or {}).get('valoare') or ''
+        found.add((fact['valoare'], http_url((fact.get('url') or {}).get('valoare', '')), prefix + credit if credit else ''))
     if len(found) != 1:
         return None
     name, url, attribution = found.pop()
@@ -363,7 +367,7 @@ def publish_preview(items, root, site):
                           'operations': list(dict.fromkeys(a['operatie'] for a in field.get('aparitii', []) if a.get('operatie')))}
                 # Declared extras that the field browser shows when present. Empty values stay out of the payload.
                 for key, name in (('valori_enum', 'enum'), ('formula_declarata', 'formula'), ('grup', 'group'), ('perioada_declarata', 'period'),
-                                  ('valoare', 'value'), ('linie', 'line'), ('expresie', 'expression'), ('obligatoriu', 'required')):
+                                  ('randuri_tabel', 'rows'), ('valoare', 'value'), ('linie', 'line'), ('expresie', 'expression'), ('obligatoriu', 'required')):
                     if field.get(key) not in (None, '', []):
                         record[name] = field[key]
                 fields.append(record)
