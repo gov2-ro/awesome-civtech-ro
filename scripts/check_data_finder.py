@@ -14,19 +14,19 @@ from playwright.sync_api import sync_playwright
 BASE = sys.argv[1] if len(sys.argv) > 1 else 'http://localhost:8770/'
 INDEX = json.load(urllib.request.urlopen(BASE + 'inventar/index.json'))
 DB = json.load(urllib.request.urlopen(BASE + 'data.json'))
-# The scope of the variable inventory, written here from the brief (docs/briefs/data-relation.md, section 3) and not read from the build:
-# a project or a resource, not offline or arhivat, with a relation to data of date-publice, date-proprii or calcul. An inactive entry is counted as inactive first.
+# The scope of the variable inventory, written here from the brief (docs/briefs/data-relation.md, sections 3 and 9) and not read from the build:
+# a project or a resource, not offline or arhivat, with a relation to data of date-publice, date-proprii or calcul (the group `cu-date`).
+# The two reasons to leave an entry out: inactive (counted first), and without data (the code fara-date, or an empty value).
 ITEMS = [i for i in DB['items'] if i['kind'] in ('proiect', 'resursa')]
 def left_out_reason(item):
     if item['status'] in ('offline', 'arhivat'):
         return 'inactiv'
-    if item.get('dataRelation') == 'fara-date':
-        return 'fara-date'
-    return '' if item.get('dataRelation') in ('date-publice', 'date-proprii', 'calcul') else 'neevaluat'
+    return '' if item.get('dataRelation') in ('date-publice', 'date-proprii', 'calcul') else 'fara-date'
 OUT = {i['slug']: left_out_reason(i) for i in ITEMS if left_out_reason(i)}
 EXPECTED = {i['slug'] for i in ITEMS} - set(OUT)
+REASONS = (('fara-date', 'dat=fara-date'), ('inactiv', 'st=inactiv'))  # in the order of the note
 COUNTS = {reason: {kind: sum(OUT.get(i['slug']) == reason and i['kind'] == kind for i in ITEMS) for kind in ('proiect', 'resursa')}
-          for reason in ('fara-date', 'neevaluat', 'inactiv')}
+          for reason, _ in REASONS}
 results, errors = [], []
 PROJECTS = sum(e['kind'] == 'proiect' for e in INDEX['entries'])
 RESOURCES = sum(e['kind'] != 'proiect' for e in INDEX['entries'])
@@ -169,7 +169,7 @@ with sync_playwright() as pw:
     ok('the table scrolls inside its frame, not the page', page.evaluate('document.documentElement.scrollWidth===innerWidth'))
     # The scope: the entries that the inventory leaves out are absent from the index, the list, the finder and the explorer markers, and counted by reason.
     ok('the index lists exactly the projects and resources that are in scope', {e['slug'] for e in INDEX['entries']} == EXPECTED and len(OUT) > 0)
-    ok('the index counts what it leaves out, by reason and kind', INDEX.get('leftOut') == COUNTS)
+    ok('the index counts what it leaves out, by the two reasons and kind', INDEX.get('leftOut') == COUNTS and list(COUNTS) == ['fara-date', 'inactiv'])
     ok('an entry out of scope has no inventory marker, and an organisation has none', all('inventory' not in i for i in DB['items'] if i['slug'] not in EXPECTED)
        and all('url' not in i.get('inventory', {}) or i['slug'] in EXPECTED for i in DB['items']))
     def status_of(url):
@@ -184,13 +184,20 @@ with sync_playwright() as pw:
     note = page.locator('#data-left-out')
     ok('the finder says what it leaves out, with a link for each reason', note.is_visible() and all(
         (note.locator(f'a[href*="{query}"]').count() > 0) == bool(sum(COUNTS[reason].values()))
-        for reason, query in (('fara-date', 'dat=fara-date'), ('neevaluat', 'dat=neevaluat'), ('inactiv', 'st=inactiv'))))
+        for reason, query in REASONS))
+    ok('the finder names no third reason: an empty value is without data', 'neevaluat' not in note.inner_html().lower() and note.locator('a[href*="neevaluat"]').count() == 0)
     ok('the links of the finder carry the counts of the index', sorted(int(re.match(r'\d+', t).group()) for t in note.locator('a').all_inner_texts())
        == sorted(n for reason in COUNTS.values() for n in reason.values() if n))
-    for name in [next(i['name'] for i in ITEMS if OUT.get(i['slug']) == reason) for reason in ('inactiv', 'fara-date', 'neevaluat') if reason in OUT.values()]:
+    for name in [next(i['name'] for i in ITEMS if OUT.get(i['slug']) == reason) for reason in ('inactiv', 'fara-date') if reason in OUT.values()]:
         page.goto(BASE + 'date/?q=' + urllib.parse.quote(name) + '&resurse=1')
         page.wait_for_selector('#data-count')
         ok('the finder does not find an entry out of scope: ' + name, not ({i['slug'] for i in ITEMS if i['name'] == name} & shown(page)))
+    # The facet `cu-date` of the explorer is the scope of the finder: the same entries on each tab (the explorer hides inactive entries by default, as the finder does).
+    for kind, prefix in (('proiect', ''), ('resursa', 'k=resursa&')):
+        page.goto(BASE + f'?{prefix}dat=cu-date')
+        page.wait_for_selector('[data-slot="toolbar"] .count')
+        listed = set(page.locator('[data-slot="results"] [data-open]').evaluate_all('els => els.map(e => e.dataset.open)'))
+        ok(f'the explorer group cu-date lists the {kind} entries of the finder, no more and no fewer', listed == {e['slug'] for e in INDEX['entries'] if e['kind'] == kind} and len(listed) > 0)
     def follow(link, expected):
         """Click a link to the explorer: it opens with the selection of the link and lists as many entries as the link says."""
         text = link.inner_text()
@@ -200,7 +207,7 @@ with sync_playwright() as pw:
         listed = int(page.locator('[data-slot="toolbar"] .count b').inner_text())
         return listed == expected == int(re.match(r'\d+', text).group()) and urllib.parse.urlsplit(page.url).query == urllib.parse.urlsplit(href).query
     for path, label in (('date/', 'finder'), ('date/lista/', 'list')):
-        for reason, query in (('fara-date', 'dat=fara-date'), ('neevaluat', 'dat=neevaluat'), ('inactiv', 'st=inactiv')):
+        for reason, query in REASONS:
             for kind, extra in (('proiect', ''), ('resursa', 'k=resursa&')):
                 if not COUNTS[reason][kind]:
                     continue
@@ -211,7 +218,8 @@ with sync_playwright() as pw:
     page.goto(BASE + 'date/lista/')
     ok('the list counts the entries it leaves out', page.locator('.ov-left h2').inner_text() == f'Lăsate pe dinafară ({len(OUT)})')
     reasons = page.locator('.ov-left li[data-reason]').evaluate_all('els=>els.map(e=>e.dataset.reason)')
-    ok('the list gives one line for each reason that has entries, in the order of the note', reasons == [r for r in ('fara-date', 'neevaluat', 'inactiv') if sum(COUNTS[r].values())])
+    ok('the list gives one line for each reason that has entries, in the order of the note', reasons == [r for r, _ in REASONS if sum(COUNTS[r].values())])
+    ok('the list names no third reason: an empty value is without data', 'neevaluat' not in page.content().lower() and 'neevaluate' not in page.content().lower())
     named = set(page.locator('.ov-table tbody tr').evaluate_all('els=>els.map(e=>e.id)')) | {
         h.rstrip('/').split('/')[-1] for h in page.locator('.ov-bare a').evaluate_all('els=>els.map(e=>e.getAttribute("href"))')}
     ok('the list names no entry out of scope', named == EXPECTED)
