@@ -1,0 +1,813 @@
+[
+  {
+    "proiect": "lista-firme",
+    "url": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_184655_create_companies_table.php",
+    "metoda": "repo-la-revizie",
+    "parinte": "https://github.com/tudorr89/info-firme/tree/1dcb375547439c3ee66882c8f779f9f402e854c3",
+    "repo": {
+      "arbore": "https://api.github.com/repos/tudorr89/info-firme/git/trees/1dcb375547439c3ee66882c8f779f9f402e854c3?recursive=1",
+      "revizie": "1dcb375547439c3ee66882c8f779f9f402e854c3",
+      "cale": "database/migrations/2024_02_18_184655_create_companies_table.php"
+    },
+    "dovezi": [
+      {
+        "pagina": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/README.md",
+        "text": "curl -L https://lista-firme.info/api/v1/info?cui=XXXXXXX",
+        "cache": true,
+        "rol": "legatura-proiect-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/app/Http/Controllers/API/CompanyController.php",
+        "text": "'legalRepresentatives',",
+        "cache": true,
+        "rol": "relatie-in-raspunsul-api"
+      }
+    ],
+    "nota": "File of tudorr89/info-firme at commit 1dcb375547439c3ee66882c8f779f9f402e854c3. The catalogue links the repository; its README names the deployed API (https://lista-firme.info/api/v1/info?cui=...). The API controller returns Company::toArray() with the relations address, info, status, caen, legalRepresentatives, naturalPersonRepresentatives and euBranches, and the model hides id, created_at and updated_at. Creation migration of the table companies (name, cui, euid, reg_com). The live API was not requested."
+  },
+  {
+    "proiect": "lista-firme",
+    "url": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2025_07_12_061535_add_fields_to_companies.php",
+    "metoda": "repo-la-revizie",
+    "parinte": "https://github.com/tudorr89/info-firme/tree/1dcb375547439c3ee66882c8f779f9f402e854c3",
+    "repo": {
+      "arbore": "https://api.github.com/repos/tudorr89/info-firme/git/trees/1dcb375547439c3ee66882c8f779f9f402e854c3?recursive=1",
+      "revizie": "1dcb375547439c3ee66882c8f779f9f402e854c3",
+      "cale": "database/migrations/2025_07_12_061535_add_fields_to_companies.php"
+    },
+    "dovezi": [
+      {
+        "pagina": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/README.md",
+        "text": "curl -L https://lista-firme.info/api/v1/info?cui=XXXXXXX",
+        "cache": true,
+        "rol": "legatura-proiect-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/app/Http/Controllers/API/CompanyController.php",
+        "text": "'legalRepresentatives',",
+        "cache": true,
+        "rol": "relatie-in-raspunsul-api"
+      }
+    ],
+    "nota": "File of tudorr89/info-firme at commit 1dcb375547439c3ee66882c8f779f9f402e854c3. The catalogue links the repository; its README names the deployed API (https://lista-firme.info/api/v1/info?cui=...). The API controller returns Company::toArray() with the relations address, info, status, caen, legalRepresentatives, naturalPersonRepresentatives and euBranches, and the model hides id, created_at and updated_at. Later migration: adds type and registration_date to companies. The live API was not requested."
+  },
+  {
+    "proiect": "lista-firme",
+    "url": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2026_01_02_201516_add_website_and_parent_country_to_companies_table.php",
+    "metoda": "repo-la-revizie",
+    "parinte": "https://github.com/tudorr89/info-firme/tree/1dcb375547439c3ee66882c8f779f9f402e854c3",
+    "repo": {
+      "arbore": "https://api.github.com/repos/tudorr89/info-firme/git/trees/1dcb375547439c3ee66882c8f779f9f402e854c3?recursive=1",
+      "revizie": "1dcb375547439c3ee66882c8f779f9f402e854c3",
+      "cale": "database/migrations/2026_01_02_201516_add_website_and_parent_country_to_companies_table.php"
+    },
+    "dovezi": [
+      {
+        "pagina": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/README.md",
+        "text": "curl -L https://lista-firme.info/api/v1/info?cui=XXXXXXX",
+        "cache": true,
+        "rol": "legatura-proiect-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/app/Http/Controllers/API/CompanyController.php",
+        "text": "'legalRepresentatives',",
+        "cache": true,
+        "rol": "relatie-in-raspunsul-api"
+      }
+    ],
+    "nota": "File of tudorr89/info-firme at commit 1dcb375547439c3ee66882c8f779f9f402e854c3. The catalogue links the repository; its README names the deployed API (https://lista-firme.info/api/v1/info?cui=...). The API controller returns Company::toArray() with the relations address, info, status, caen, legalRepresentatives, naturalPersonRepresentatives and euBranches, and the model hides id, created_at and updated_at. Later migration: adds website, parent_country and mark to companies. The live API was not requested."
+  },
+  {
+    "proiect": "lista-firme",
+    "url": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_190138_create_addresses_table.php",
+    "metoda": "repo-la-revizie",
+    "parinte": "https://github.com/tudorr89/info-firme/tree/1dcb375547439c3ee66882c8f779f9f402e854c3",
+    "repo": {
+      "arbore": "https://api.github.com/repos/tudorr89/info-firme/git/trees/1dcb375547439c3ee66882c8f779f9f402e854c3?recursive=1",
+      "revizie": "1dcb375547439c3ee66882c8f779f9f402e854c3",
+      "cale": "database/migrations/2024_02_18_190138_create_addresses_table.php"
+    },
+    "dovezi": [
+      {
+        "pagina": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/README.md",
+        "text": "curl -L https://lista-firme.info/api/v1/info?cui=XXXXXXX",
+        "cache": true,
+        "rol": "legatura-proiect-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/app/Http/Controllers/API/CompanyController.php",
+        "text": "'legalRepresentatives',",
+        "cache": true,
+        "rol": "relatie-in-raspunsul-api"
+      }
+    ],
+    "nota": "File of tudorr89/info-firme at commit 1dcb375547439c3ee66882c8f779f9f402e854c3. The catalogue links the repository; its README names the deployed API (https://lista-firme.info/api/v1/info?cui=...). The API controller returns Company::toArray() with the relations address, info, status, caen, legalRepresentatives, naturalPersonRepresentatives and euBranches, and the model hides id, created_at and updated_at. Creation migration of the table addresses (the relation address). Later migrations (unique company_id) were not read. The live API was not requested."
+  },
+  {
+    "proiect": "lista-firme",
+    "url": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_184907_create_infos_table.php",
+    "metoda": "repo-la-revizie",
+    "parinte": "https://github.com/tudorr89/info-firme/tree/1dcb375547439c3ee66882c8f779f9f402e854c3",
+    "repo": {
+      "arbore": "https://api.github.com/repos/tudorr89/info-firme/git/trees/1dcb375547439c3ee66882c8f779f9f402e854c3?recursive=1",
+      "revizie": "1dcb375547439c3ee66882c8f779f9f402e854c3",
+      "cale": "database/migrations/2024_02_18_184907_create_infos_table.php"
+    },
+    "dovezi": [
+      {
+        "pagina": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/README.md",
+        "text": "curl -L https://lista-firme.info/api/v1/info?cui=XXXXXXX",
+        "cache": true,
+        "rol": "legatura-proiect-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/app/Http/Controllers/API/CompanyController.php",
+        "text": "'legalRepresentatives',",
+        "cache": true,
+        "rol": "relatie-in-raspunsul-api"
+      }
+    ],
+    "nota": "File of tudorr89/info-firme at commit 1dcb375547439c3ee66882c8f779f9f402e854c3. The catalogue links the repository; its README names the deployed API (https://lista-firme.info/api/v1/info?cui=...). The API controller returns Company::toArray() with the relations address, info, status, caen, legalRepresentatives, naturalPersonRepresentatives and euBranches, and the model hides id, created_at and updated_at. Creation migration of the table infos (the relation info: ANAF enrichment fields). Later migrations were not read. The live API was not requested."
+  },
+  {
+    "proiect": "lista-firme",
+    "url": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_184809_create_statuses_table.php",
+    "metoda": "repo-la-revizie",
+    "parinte": "https://github.com/tudorr89/info-firme/tree/1dcb375547439c3ee66882c8f779f9f402e854c3",
+    "repo": {
+      "arbore": "https://api.github.com/repos/tudorr89/info-firme/git/trees/1dcb375547439c3ee66882c8f779f9f402e854c3?recursive=1",
+      "revizie": "1dcb375547439c3ee66882c8f779f9f402e854c3",
+      "cale": "database/migrations/2024_02_18_184809_create_statuses_table.php"
+    },
+    "dovezi": [
+      {
+        "pagina": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/README.md",
+        "text": "curl -L https://lista-firme.info/api/v1/info?cui=XXXXXXX",
+        "cache": true,
+        "rol": "legatura-proiect-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/app/Http/Controllers/API/CompanyController.php",
+        "text": "'legalRepresentatives',",
+        "cache": true,
+        "rol": "relatie-in-raspunsul-api"
+      }
+    ],
+    "nota": "File of tudorr89/info-firme at commit 1dcb375547439c3ee66882c8f779f9f402e854c3. The catalogue links the repository; its README names the deployed API (https://lista-firme.info/api/v1/info?cui=...). The API controller returns Company::toArray() with the relations address, info, status, caen, legalRepresentatives, naturalPersonRepresentatives and euBranches, and the model hides id, created_at and updated_at. Creation migration of the table statuses (the relation status). Two later migrations (change_statuses_fields, alter_statuses_table) change this table and were not read, so the columns here are partial. The live API was not requested."
+  },
+  {
+    "proiect": "reciclare-arad",
+    "url": "https://raw.githubusercontent.com/baditaflorin/calendar-ridicare-gunoi-arad/00ee173de1da726135a62e2c1fd2730816819d13/docs/data/catalog.json",
+    "metoda": "repo-la-revizie",
+    "parinte": "https://github.com/baditaflorin/calendar-ridicare-gunoi-arad/tree/00ee173de1da726135a62e2c1fd2730816819d13",
+    "repo": {
+      "arbore": "https://api.github.com/repos/baditaflorin/calendar-ridicare-gunoi-arad/git/trees/00ee173de1da726135a62e2c1fd2730816819d13?recursive=1",
+      "revizie": "00ee173de1da726135a62e2c1fd2730816819d13",
+      "cale": "docs/data/catalog.json"
+    },
+    "dovezi": [
+      {
+        "proiect": "reciclare-arad",
+        "profil": "repos",
+        "rol": "legatura-proiect-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/baditaflorin/calendar-ridicare-gunoi-arad/00ee173de1da726135a62e2c1fd2730816819d13/docs/static/app.js",
+        "text": "state.catalog = await fetchJSON(new URL(\"catalog.json\", dataRoot));",
+        "cache": true,
+        "rol": "utilizare-in-pagina-publica"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/baditaflorin/calendar-ridicare-gunoi-arad/00ee173de1da726135a62e2c1fd2730816819d13/docs/sources.md",
+        "text": "https://retim.ro/utile-arad/zona-1/",
+        "cache": true,
+        "rol": "sursa-declarata-in-repo"
+      }
+    ],
+    "nota": "File of baditaflorin/calendar-ridicare-gunoi-arad at commit 00ee173de1da726135a62e2c1fd2730816819d13, in docs/, the folder that GitHub Pages serves. The profiler found the repository link on the project site. docs/sources.md lists the RETIM and Primaria Arad pages that the export reads. The catalogue lists the neighbourhoods and the 1,064 streets (places). The public page loads it (docs/static/app.js and analize.js). The sample bound of 25 elements applies to its lists."
+  },
+  {
+    "proiect": "reciclare-arad",
+    "url": "https://raw.githubusercontent.com/baditaflorin/calendar-ridicare-gunoi-arad/00ee173de1da726135a62e2c1fd2730816819d13/docs/data/places/1.json",
+    "metoda": "repo-la-revizie",
+    "parinte": "https://github.com/baditaflorin/calendar-ridicare-gunoi-arad/tree/00ee173de1da726135a62e2c1fd2730816819d13",
+    "repo": {
+      "arbore": "https://api.github.com/repos/baditaflorin/calendar-ridicare-gunoi-arad/git/trees/00ee173de1da726135a62e2c1fd2730816819d13?recursive=1",
+      "revizie": "00ee173de1da726135a62e2c1fd2730816819d13",
+      "cale": "docs/data/places/1.json"
+    },
+    "dovezi": [
+      {
+        "proiect": "reciclare-arad",
+        "profil": "repos",
+        "rol": "legatura-proiect-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/baditaflorin/calendar-ridicare-gunoi-arad/00ee173de1da726135a62e2c1fd2730816819d13/docs/static/app.js",
+        "text": "fetchJSON(new URL(`places/${placeId}.json`, dataRoot))",
+        "cache": true,
+        "rol": "utilizare-in-pagina-publica"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/baditaflorin/calendar-ridicare-gunoi-arad/00ee173de1da726135a62e2c1fd2730816819d13/docs/sources.md",
+        "text": "https://retim.ro/utile-arad/zona-1/",
+        "cache": true,
+        "rol": "sursa-declarata-in-repo"
+      }
+    ],
+    "nota": "File of baditaflorin/calendar-ridicare-gunoi-arad at commit 00ee173de1da726135a62e2c1fd2730816819d13, in docs/, the folder that GitHub Pages serves. The profiler found the repository link on the project site. docs/sources.md lists the RETIM and Primaria Arad pages that the export reads. One of 1,064 files, one for each street (place): the place and its collection events. The public page loads the file of the chosen street. This record is the first file only; the others have the same shape."
+  },
+  {
+    "proiect": "reciclare-arad",
+    "url": "https://raw.githubusercontent.com/baditaflorin/calendar-ridicare-gunoi-arad/00ee173de1da726135a62e2c1fd2730816819d13/docs/data/stats.json",
+    "metoda": "repo-la-revizie",
+    "parinte": "https://github.com/baditaflorin/calendar-ridicare-gunoi-arad/tree/00ee173de1da726135a62e2c1fd2730816819d13",
+    "repo": {
+      "arbore": "https://api.github.com/repos/baditaflorin/calendar-ridicare-gunoi-arad/git/trees/00ee173de1da726135a62e2c1fd2730816819d13?recursive=1",
+      "revizie": "00ee173de1da726135a62e2c1fd2730816819d13",
+      "cale": "docs/data/stats.json"
+    },
+    "dovezi": [
+      {
+        "proiect": "reciclare-arad",
+        "profil": "repos",
+        "rol": "legatura-proiect-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/baditaflorin/calendar-ridicare-gunoi-arad/00ee173de1da726135a62e2c1fd2730816819d13/docs/static/analize.js",
+        "text": "fetchJSON(new URL(\"stats.json\", dataRoot))",
+        "cache": true,
+        "rol": "utilizare-in-pagina-publica"
+      }
+    ],
+    "nota": "File of baditaflorin/calendar-ridicare-gunoi-arad at commit 00ee173de1da726135a62e2c1fd2730816819d13, in docs/, the folder that GitHub Pages serves. The profiler found the repository link on the project site. docs/sources.md lists the RETIM and Primaria Arad pages that the export reads. Counts of places, events and waste types, and the events of each day. The statistics page loads it (docs/static/analize.js)."
+  },
+  {
+    "proiect": "onorata-instanta",
+    "url": "https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/performanta-instante.tsv",
+    "metoda": "repo-la-revizie",
+    "citire": {
+      "tip": "csv",
+      "delimitator": "tab",
+      "coloane_fara_nume": "omise"
+    },
+    "parinte": "https://github.com/funkycitizens/onoratainstanta/tree/b92894e45ac64f8c5987758d86f30ce2e94620aa",
+    "repo": {
+      "arbore": "https://api.github.com/repos/funkycitizens/onoratainstanta/git/trees/b92894e45ac64f8c5987758d86f30ce2e94620aa?recursive=1",
+      "revizie": "b92894e45ac64f8c5987758d86f30ce2e94620aa",
+      "cale": "_build/tables/performanta-instante.tsv"
+    },
+    "dovezi": [
+      {
+        "pagina": "https://www.onoratainstanta.ro/despre.html",
+        "link": "https://github.com/funkycitizens/onoratainstanta",
+        "rol": "legatura-proiect-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/gulpfile.js",
+        "text": "table('performanta-instante')",
+        "cache": true,
+        "rol": "utilizare-in-constructia-sitului"
+      }
+    ],
+    "nota": "Table of funkycitizens/onoratainstanta at commit b92894e45ac64f8c5987758d86f30ce2e94620aa (_build/tables). The Despre page links the repository. The build script generates the pages of the deployed site from the tables. The last commit is from 2023-02-19; the tables hold the 2013-2015 statistics of the project. Read as a sample of the first 5,000 bytes (the header and the first rows). The performance index of the courts (2014 and 2015). The home page of the deployed site shows the 2015 values (Curtea de Apel CRAIOVA +0.83 equals perf_2015 in the first row). The header row is read; the year groups below it are not."
+  },
+  {
+    "proiect": "onorata-instanta",
+    "url": "https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/performanta-parchete.tsv",
+    "metoda": "repo-la-revizie",
+    "citire": {
+      "tip": "csv",
+      "delimitator": "tab",
+      "coloane_fara_nume": "omise"
+    },
+    "parinte": "https://github.com/funkycitizens/onoratainstanta/tree/b92894e45ac64f8c5987758d86f30ce2e94620aa",
+    "repo": {
+      "arbore": "https://api.github.com/repos/funkycitizens/onoratainstanta/git/trees/b92894e45ac64f8c5987758d86f30ce2e94620aa?recursive=1",
+      "revizie": "b92894e45ac64f8c5987758d86f30ce2e94620aa",
+      "cale": "_build/tables/performanta-parchete.tsv"
+    },
+    "dovezi": [
+      {
+        "pagina": "https://www.onoratainstanta.ro/despre.html",
+        "link": "https://github.com/funkycitizens/onoratainstanta",
+        "rol": "legatura-proiect-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/gulpfile.js",
+        "text": "table('performanta-parchete')",
+        "cache": true,
+        "rol": "utilizare-in-constructia-sitului"
+      }
+    ],
+    "nota": "Table of funkycitizens/onoratainstanta at commit b92894e45ac64f8c5987758d86f30ce2e94620aa (_build/tables). The Despre page links the repository. The build script generates the pages of the deployed site from the tables. The last commit is from 2023-02-19; the tables hold the 2013-2015 statistics of the project. Read as a sample of the first 5,000 bytes (the header and the first rows). The performance index of the prosecutor offices (2015)."
+  },
+  {
+    "proiect": "onorata-instanta",
+    "url": "https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/judecatorii-instante-2014.tsv",
+    "metoda": "repo-la-revizie",
+    "citire": {
+      "tip": "csv",
+      "delimitator": "tab",
+      "rand_antet": 2,
+      "coloane_fara_nume": "omise"
+    },
+    "parinte": "https://github.com/funkycitizens/onoratainstanta/tree/b92894e45ac64f8c5987758d86f30ce2e94620aa",
+    "repo": {
+      "arbore": "https://api.github.com/repos/funkycitizens/onoratainstanta/git/trees/b92894e45ac64f8c5987758d86f30ce2e94620aa?recursive=1",
+      "revizie": "b92894e45ac64f8c5987758d86f30ce2e94620aa",
+      "cale": "_build/tables/judecatorii-instante-2014.tsv"
+    },
+    "dovezi": [
+      {
+        "pagina": "https://www.onoratainstanta.ro/despre.html",
+        "link": "https://github.com/funkycitizens/onoratainstanta",
+        "rol": "legatura-proiect-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/gulpfile.js",
+        "text": "table('judecatorii-instante-2014')",
+        "cache": true,
+        "rol": "utilizare-in-constructia-sitului"
+      }
+    ],
+    "nota": "Table of funkycitizens/onoratainstanta at commit b92894e45ac64f8c5987758d86f30ce2e94620aa (_build/tables). The Despre page links the repository. The build script generates the pages of the deployed site from the tables. The last commit is from 2023-02-19; the tables hold the 2013-2015 statistics of the project. Read as a sample of the first 5,000 bytes (the header and the first rows). Statistics of the courts of first instance, 2014. The second row holds the label of each column and is the header; the first row holds the machine names."
+  },
+  {
+    "proiect": "onorata-instanta",
+    "url": "https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/judecatorii-parchete-2014.tsv",
+    "metoda": "repo-la-revizie",
+    "citire": {
+      "tip": "csv",
+      "delimitator": "tab",
+      "rand_antet": 2
+    },
+    "parinte": "https://github.com/funkycitizens/onoratainstanta/tree/b92894e45ac64f8c5987758d86f30ce2e94620aa",
+    "repo": {
+      "arbore": "https://api.github.com/repos/funkycitizens/onoratainstanta/git/trees/b92894e45ac64f8c5987758d86f30ce2e94620aa?recursive=1",
+      "revizie": "b92894e45ac64f8c5987758d86f30ce2e94620aa",
+      "cale": "_build/tables/judecatorii-parchete-2014.tsv"
+    },
+    "dovezi": [
+      {
+        "pagina": "https://www.onoratainstanta.ro/despre.html",
+        "link": "https://github.com/funkycitizens/onoratainstanta",
+        "rol": "legatura-proiect-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/gulpfile.js",
+        "text": "table('judecatorii-parchete-2014')",
+        "cache": true,
+        "rol": "utilizare-in-constructia-sitului"
+      }
+    ],
+    "nota": "Table of funkycitizens/onoratainstanta at commit b92894e45ac64f8c5987758d86f30ce2e94620aa (_build/tables). The Despre page links the repository. The build script generates the pages of the deployed site from the tables. The last commit is from 2023-02-19; the tables hold the 2013-2015 statistics of the project. Read as a sample of the first 5,000 bytes (the header and the first rows). Activity of the prosecutor offices of the courts of first instance, 2014 (UNITATEA DE PARCHET). The second row holds the label of each column and is the header."
+  },
+  {
+    "proiect": "onorata-instanta",
+    "url": "https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/judecatorii-instante-contact.tsv",
+    "metoda": "repo-la-revizie",
+    "citire": {
+      "tip": "csv",
+      "delimitator": "tab",
+      "coloane_fara_nume": "omise"
+    },
+    "parinte": "https://github.com/funkycitizens/onoratainstanta/tree/b92894e45ac64f8c5987758d86f30ce2e94620aa",
+    "repo": {
+      "arbore": "https://api.github.com/repos/funkycitizens/onoratainstanta/git/trees/b92894e45ac64f8c5987758d86f30ce2e94620aa?recursive=1",
+      "revizie": "b92894e45ac64f8c5987758d86f30ce2e94620aa",
+      "cale": "_build/tables/judecatorii-instante-contact.tsv"
+    },
+    "dovezi": [
+      {
+        "pagina": "https://www.onoratainstanta.ro/despre.html",
+        "link": "https://github.com/funkycitizens/onoratainstanta",
+        "rol": "legatura-proiect-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/gulpfile.js",
+        "text": "table('judecatorii-instante-contact')",
+        "cache": true,
+        "rol": "utilizare-in-constructia-sitului"
+      }
+    ],
+    "nota": "Table of funkycitizens/onoratainstanta at commit b92894e45ac64f8c5987758d86f30ce2e94620aa (_build/tables). The Despre page links the repository. The build script generates the pages of the deployed site from the tables. The last commit is from 2023-02-19; the tables hold the 2013-2015 statistics of the project. Read as a sample of the first 5,000 bytes (the header and the first rows). Contact details of the courts (institutional): the header only was read; the multi-line cell of the first rows is not parsed. The people table of the same folder (oameni.tsv, names of persons) was not requested."
+  },
+  {
+    "proiect": "sondaje-romania",
+    "url": "https://sondajeromania.ro/average-voting-intentions.json",
+    "metoda": "adaugat-explicit",
+    "parinte": "https://sondajeromania.ro/parlamentare",
+    "locate": {
+      "pagina": "https://sondajeromania.ro/parlamentare",
+      "text": "\"contentUrl\":\"https://sondajeromania.ro/average-voting-intentions.json\"",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://sondajeromania.ro/parlamentare",
+        "text": "\"encodingFormat\":\"application/json\"",
+        "cache": true,
+        "rol": "format-declarat-de-pagina"
+      },
+      {
+        "pagina": "https://sondajeromania.ro/llms.txt",
+        "text": "Datele sunt disponibile sub licență Creative Commons Attribution 4.0 (CC BY 4.0).",
+        "rol": "licenta-declarata-in-llms"
+      }
+    ],
+    "nota": "The JSON-LD Dataset of the parlamentare page names this file as its DataDownload. The file holds the weighted average of the polls of the last 90 days for each party. The page declares the licence CC BY 4.0 in the first Dataset and CC BY-NC 4.0 in the second, and llms.txt declares CC BY 4.0."
+  },
+  {
+    "proiect": "sondaje-romania",
+    "url": "https://sondajeromania.ro/parlamentare",
+    "metoda": "adaugat-explicit",
+    "citire": "js-literale",
+    "parinte": "https://sondajeromania.ro/",
+    "locate": {
+      "pagina": "https://sondajeromania.ro/",
+      "link": "https://sondajeromania.ro/parlamentare"
+    },
+    "dovezi": [
+      {
+        "pagina": "https://sondajeromania.ro/metodologie",
+        "text": "Mediile sondajelor sunt calculate folosind o ponderare",
+        "rol": "metoda-declarata"
+      }
+    ],
+    "nota": "The page carries two schema.org Datasets in its JSON-LD. The second one declares the variables Voting Intention (percent) and Seat Projection (seats), its period (temporalCoverage), the measurement technique and the licence. The page is a Next.js application: the poll data itself is not a literal of a script."
+  },
+  {
+    "proiect": "politicieni-corupti",
+    "url": "https://raw.githubusercontent.com/robert-adnas/posibil-penali/581cd3a4c45b4b008dd86d531c02cfafa1d0909b/data/politicians.json",
+    "metoda": "repo-la-revizie",
+    "citire": "json-esantion",
+    "parinte": "https://github.com/robert-adnas/posibil-penali/tree/581cd3a4c45b4b008dd86d531c02cfafa1d0909b",
+    "repo": {
+      "arbore": "https://api.github.com/repos/robert-adnas/posibil-penali/git/trees/581cd3a4c45b4b008dd86d531c02cfafa1d0909b?recursive=1",
+      "revizie": "581cd3a4c45b4b008dd86d531c02cfafa1d0909b",
+      "cale": "data/politicians.json"
+    },
+    "dovezi": [
+      {
+        "pagina": "https://politicieni-corupti.ro/",
+        "text": "https://github.com/robert-adnas/posibil-penali",
+        "cache": true,
+        "rol": "legatura-proiect-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/robert-adnas/posibil-penali/581cd3a4c45b4b008dd86d531c02cfafa1d0909b/scripts/validate.js",
+        "text": "const REQUIRED_FIELDS = ['name', 'party', 'position', 'position_type', 'crime', 'status'];",
+        "cache": true,
+        "rol": "campuri-obligatorii-declarate-in-cod"
+      }
+    ],
+    "nota": "File of robert-adnas/posibil-penali at commit 581cd3a4c45b4b008dd86d531c02cfafa1d0909b. The JSON-LD of the project site names the repository (sameAs). The file is the base data of the archive: it holds records about named persons, so the inventory keeps the field names and observed types only, and no value. Read as a sample of the first 4,108 bytes (one object of metadata and the first four records). The final public records add fields that the build script and the validator declare (geography, county, verified_at, sources with label, kind, published_at, source_type, description); they are in the notes and not in this source. The site is a client-side application: the methodology page is a shell."
+  },
+  {
+    "proiect": "dupa-cutremur",
+    "url": "https://storage.googleapis.com/dupacutremur/cladiri_complete_03032024.geojson?v=1",
+    "metoda": "adaugat-explicit",
+    "citire": "json-esantion",
+    "parinte": "https://storage.googleapis.com/dupacutremur/map.html?v=1",
+    "locate": {
+      "pagina": "https://storage.googleapis.com/dupacutremur/map.html?v=1",
+      "text": "$.getJSON(\"https://storage.googleapis.com/dupacutremur/cladiri_complete_03032024.geojson?v=1\")",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://sites.google.com/rerise.org/dupacutremur/descarc%C4%83-datele",
+        "text": "publicate sub licență ",
+        "cache": true,
+        "rol": "licenta-declarata-de-pagina"
+      },
+      {
+        "pagina": "https://sites.google.com/rerise.org/dupacutremur/descarc%C4%83-datele",
+        "text": "<em>kml, csv</em>",
+        "cache": true,
+        "rol": "formate-declarate-de-pagina"
+      }
+    ],
+    "nota": "GeoJSON file that the live map page loads with $.getJSON. The buildings of the risk classes RS1, RS2 and U1-U3 (polygons with the attributes of the official list of expert reports). Read as a range sample of the first 30,000 bytes: the complete features are read, the size of the file is unknown. Feature properties include the name of the technical expert who signed the report (a person); the inventory keeps no value. The download page offers the data as kml, csv and geojson in a Google Drive folder (not requested)."
+  },
+  {
+    "proiect": "dupa-cutremur",
+    "url": "https://storage.googleapis.com/dupacutremur/arie_colaps_complete_03032024.geojson?v=1",
+    "metoda": "adaugat-explicit",
+    "citire": "json-esantion",
+    "parinte": "https://storage.googleapis.com/dupacutremur/map.html?v=1",
+    "locate": {
+      "pagina": "https://storage.googleapis.com/dupacutremur/map.html?v=1",
+      "text": "$.getJSON(\"https://storage.googleapis.com/dupacutremur/arie_colaps_complete_03032024.geojson?v=1\")",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://sites.google.com/rerise.org/dupacutremur/descarc%C4%83-datele",
+        "text": "publicate sub licență ",
+        "cache": true,
+        "rol": "licenta-declarata-de-pagina"
+      },
+      {
+        "pagina": "https://sites.google.com/rerise.org/dupacutremur/descarc%C4%83-datele",
+        "text": "<em>kml, csv</em>",
+        "cache": true,
+        "rol": "formate-declarate-de-pagina"
+      }
+    ],
+    "nota": "GeoJSON file that the live map page loads with $.getJSON. The estimated collapse area of each building (polygons). Read as a range sample of the first 30,000 bytes: the complete features are read, the size of the file is unknown. Feature properties include the name of the technical expert who signed the report (a person); the inventory keeps no value. The download page offers the data as kml, csv and geojson in a Google Drive folder (not requested)."
+  },
+  {
+    "proiect": "dupa-cutremur",
+    "url": "https://storage.googleapis.com/dupacutremur/_strazi_arie_colaps_06122022.geojson",
+    "metoda": "adaugat-explicit",
+    "citire": "json-esantion",
+    "parinte": "https://storage.googleapis.com/dupacutremur/map.html?v=1",
+    "locate": {
+      "pagina": "https://storage.googleapis.com/dupacutremur/map.html?v=1",
+      "text": "$.getJSON(\"https://storage.googleapis.com/dupacutremur/_strazi_arie_colaps_06122022.geojson\")",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://sites.google.com/rerise.org/dupacutremur/descarc%C4%83-datele",
+        "text": "publicate sub licență ",
+        "cache": true,
+        "rol": "licenta-declarata-de-pagina"
+      },
+      {
+        "pagina": "https://sites.google.com/rerise.org/dupacutremur/descarc%C4%83-datele",
+        "text": "<em>kml, csv</em>",
+        "cache": true,
+        "rol": "formate-declarate-de-pagina"
+      }
+    ],
+    "nota": "GeoJSON file that the live map page loads with $.getJSON. The road segments that the collapse areas can block (lines, from OpenStreetMap). Read as a range sample of the first 30,000 bytes: the complete features are read, the size of the file is unknown. Feature properties include the name of the technical expert who signed the report (a person); the inventory keeps no value. The download page offers the data as kml, csv and geojson in a Google Drive folder (not requested)."
+  },
+  {
+    "proiect": "dupa-cutremur",
+    "url": "https://storage.googleapis.com/dupacutremur/puncte_complete_03032024.geojson?v=1",
+    "metoda": "adaugat-explicit",
+    "citire": "json-esantion",
+    "parinte": "https://storage.googleapis.com/dupacutremur/map.html?v=1",
+    "locate": {
+      "pagina": "https://storage.googleapis.com/dupacutremur/map.html?v=1",
+      "text": "$.getJSON(\"https://storage.googleapis.com/dupacutremur/puncte_complete_03032024.geojson?v=1\")",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://sites.google.com/rerise.org/dupacutremur/descarc%C4%83-datele",
+        "text": "publicate sub licență ",
+        "cache": true,
+        "rol": "licenta-declarata-de-pagina"
+      },
+      {
+        "pagina": "https://sites.google.com/rerise.org/dupacutremur/descarc%C4%83-datele",
+        "text": "<em>kml, csv</em>",
+        "cache": true,
+        "rol": "formate-declarate-de-pagina"
+      }
+    ],
+    "nota": "GeoJSON file that the live map page loads with $.getJSON. The buildings as points, with the coordinates and the risk class. Read as a range sample of the first 30,000 bytes: the complete features are read, the size of the file is unknown. Feature properties include the name of the technical expert who signed the report (a person); the inventory keeps no value. The download page offers the data as kml, csv and geojson in a Google Drive folder (not requested)."
+  },
+  {
+    "proiect": "dupa-cutremur",
+    "url": "https://storage.googleapis.com/dupacutremur/adaposturi.geojson",
+    "metoda": "adaugat-explicit",
+    "citire": "json-esantion",
+    "parinte": "https://storage.googleapis.com/dupacutremur/map.html?v=1",
+    "locate": {
+      "pagina": "https://storage.googleapis.com/dupacutremur/map.html?v=1",
+      "text": "$.getJSON(\"https://storage.googleapis.com/dupacutremur/adaposturi.geojson\")",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://sites.google.com/rerise.org/dupacutremur/descarc%C4%83-datele",
+        "text": "publicate sub licență ",
+        "cache": true,
+        "rol": "licenta-declarata-de-pagina"
+      },
+      {
+        "pagina": "https://sites.google.com/rerise.org/dupacutremur/descarc%C4%83-datele",
+        "text": "<em>kml, csv</em>",
+        "cache": true,
+        "rol": "formate-declarate-de-pagina"
+      }
+    ],
+    "nota": "GeoJSON file that the live map page loads with $.getJSON. The civil protection shelters (points). Read as a range sample of the first 30,000 bytes: the complete features are read, the size of the file is unknown. Feature properties include the name of the technical expert who signed the report (a person); the inventory keeps no value. The download page offers the data as kml, csv and geojson in a Google Drive folder (not requested)."
+  },
+  {
+    "proiect": "unde-locuiesc",
+    "url": "https://mariuscomper.uk/unde-locuiesc/data.js",
+    "metoda": "adaugat-explicit",
+    "citire": "js-literale",
+    "parinte": "https://mariuscomper.uk/unde-locuiesc/",
+    "locate": {
+      "pagina": "https://mariuscomper.uk/unde-locuiesc/",
+      "text": "<script defer src=\"/unde-locuiesc/data.js\"></script>",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://mariuscomper.uk/unde-locuiesc/",
+        "text": "Date feroviare: S.C. Informatică Feroviară S.A., via data.gov.ro",
+        "cache": true,
+        "rol": "furnizor-declarat-de-pagina"
+      },
+      {
+        "pagina": "https://mariuscomper.uk/unde-locuiesc/",
+        "text": "Populația rezidentă vine din RPL 2021, la 1 decembrie.",
+        "cache": true,
+        "rol": "sursa-populatiei-declarata-de-pagina"
+      }
+    ],
+    "nota": "Script file that the page loads. It holds the snapshot facts (SNAPSHOT) and the catalogue of the eight cities (CITY_DATA: population, scheduled trips, direct stops). The page names its sources: the 2021 census (Table 1.22) and the railway timetable on data.gov.ro."
+  },
+  {
+    "proiect": "trei-din-patru",
+    "url": "https://mariuscomper.uk/trei-din-patru/",
+    "metoda": "adaugat-explicit",
+    "citire": {
+      "tip": "html-tabele",
+      "tabele": [
+        1
+      ]
+    },
+    "parinte": "https://mariuscomper.uk/trei-din-patru/",
+    "locate": {
+      "pagina": "https://mariuscomper.uk/trei-din-patru/",
+      "text": "Județele, de la cele mai afectate la cele mai puțin afectate"
+    },
+    "dovezi": [],
+    "nota": "The first table of the page: villages with a school in 2013-14 and 2025-26, by county."
+  },
+  {
+    "proiect": "trei-din-patru",
+    "url": "https://mariuscomper.uk/trei-din-patru/assets/places.7edc94b58896.json",
+    "metoda": "adaugat-explicit",
+    "parinte": "https://mariuscomper.uk/trei-din-patru/",
+    "locate": {
+      "pagina": "https://mariuscomper.uk/trei-din-patru/",
+      "text": "data-places=\"/trei-din-patru/assets/places.7edc94b58896.json\"",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://mariuscomper.uk/trei-din-patru/",
+        "text": "codul SIRUTA al localității",
+        "cache": true,
+        "rol": "cod-siruta-declarat-de-pagina"
+      }
+    ],
+    "nota": "Data file that the page loads: the school years, the counties, the communes and one row for each village with a school (positional rows of eight cells). The meaning of the positions is not declared; the page says that a row has the SIIIR and SIRUTA codes and the coordinates from Wikidata. 449,133 characters; the sample bound of 25 elements applies."
+  },
+  {
+    "proiect": "trei-din-patru",
+    "url": "https://mariuscomper.uk/trei-din-patru/assets/names.135c9dbdff65.json",
+    "metoda": "adaugat-explicit",
+    "parinte": "https://mariuscomper.uk/trei-din-patru/",
+    "locate": {
+      "pagina": "https://mariuscomper.uk/trei-din-patru/",
+      "text": "data-names=\"/trei-din-patru/assets/names.135c9dbdff65.json\"",
+      "cache": true
+    },
+    "dovezi": [],
+    "nota": "Data file that the page loads: the names of the school structures for each key (two lists for each key)."
+  },
+  {
+    "proiect": "trei-din-patru",
+    "url": "https://ins.gov2.ro/api/datasets/SCL101B?lang=en",
+    "metoda": "adaugat-explicit",
+    "parinte": "https://mariuscomper.uk/trei-din-patru/",
+    "locate": {
+      "pagina": "https://mariuscomper.uk/trei-din-patru/",
+      "text": "TEMPO-Online: SCL101B, SCL105A, SCL103I",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://mariuscomper.uk/trei-din-patru/",
+        "text": "Sursa: INS, matricele SCL101B, SCL105A și SCL103I.",
+        "cache": true,
+        "rol": "utilizare-in-proiect"
+      }
+    ],
+    "nota": "INS TEMPO metadata of the matrix SCL101B, which the page names in its list of sources."
+  },
+  {
+    "proiect": "trei-din-patru",
+    "url": "https://ins.gov2.ro/api/datasets/SCL105A?lang=en",
+    "metoda": "adaugat-explicit",
+    "parinte": "https://mariuscomper.uk/trei-din-patru/",
+    "locate": {
+      "pagina": "https://mariuscomper.uk/trei-din-patru/",
+      "text": "TEMPO-Online: SCL101B, SCL105A, SCL103I",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://mariuscomper.uk/trei-din-patru/",
+        "text": "Sursa: INS, matricele SCL101B, SCL105A și SCL103I.",
+        "cache": true,
+        "rol": "utilizare-in-proiect"
+      }
+    ],
+    "nota": "INS TEMPO metadata of the matrix SCL105A, which the page names in its list of sources."
+  },
+  {
+    "proiect": "trei-din-patru",
+    "url": "https://ins.gov2.ro/api/datasets/SCL103I?lang=en",
+    "metoda": "adaugat-explicit",
+    "parinte": "https://mariuscomper.uk/trei-din-patru/",
+    "locate": {
+      "pagina": "https://mariuscomper.uk/trei-din-patru/",
+      "text": "TEMPO-Online: SCL101B, SCL105A, SCL103I",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://mariuscomper.uk/trei-din-patru/",
+        "text": "Sursa: INS, matricele SCL101B, SCL105A și SCL103I.",
+        "cache": true,
+        "rol": "utilizare-in-proiect"
+      }
+    ],
+    "nota": "INS TEMPO metadata of the matrix SCL103I, which the page names in its list of sources."
+  },
+  {
+    "proiect": "statul-digital",
+    "url": "https://mariuscomper.uk/statul-digital/data.js",
+    "metoda": "adaugat-explicit",
+    "citire": "js-literale",
+    "parinte": "https://mariuscomper.uk/statul-digital/",
+    "locate": {
+      "pagina": "https://mariuscomper.uk/statul-digital/",
+      "text": "<script src=\"/statul-digital/data.js\"></script>",
+      "cache": true
+    },
+    "dovezi": [],
+    "nota": "Script file that the page loads: the data bundle of the report (the executive summary, the registers, the contracts, the rings and the nodes). The bound of 2,000 fields and of 25 elements applies."
+  },
+  {
+    "proiect": "statul-digital",
+    "url": "https://mariuscomper.uk/statul-digital/",
+    "metoda": "adaugat-explicit",
+    "citire": {
+      "tip": "html-tabele"
+    },
+    "parinte": "https://mariuscomper.uk/statul-digital/",
+    "locate": {
+      "pagina": "https://mariuscomper.uk/statul-digital/",
+      "text": "20 de contracte de migrare aplicații"
+    },
+    "dovezi": [],
+    "nota": "The table of the 20 migration contracts of the page (announcement number, winning consortium, object, person-days, value in lei)."
+  },
+  {
+    "proiect": "pe-datorie",
+    "url": "https://mariuscomper.uk/pe-datorie/",
+    "metoda": "adaugat-explicit",
+    "citire": {
+      "tip": "js-literale",
+      "tabele": true
+    },
+    "parinte": "https://mariuscomper.uk/pe-datorie/",
+    "locate": {
+      "pagina": "https://mariuscomper.uk/pe-datorie/",
+      "text": "id=\"pd-data\"",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://mariuscomper.uk/pe-datorie/",
+        "text": "Eurostat, gov_10a_main",
+        "cache": true,
+        "rol": "sursa-declarata-de-pagina"
+      }
+    ],
+    "nota": "The page holds its data in a data island (pd-data: the spending, borrowing and interest of each 100 lei collected, by country and year) and in two tables. The page names Eurostat gov_10a_main, gov_10a_exp and gov_10dd_edpt1."
+  },
+  {
+    "proiect": "ce-face-statul-cu-1000-de-lei",
+    "url": "https://mariuscomper.uk/ce-face-statul-cu-1000-de-lei/data/budget-romania.json",
+    "metoda": "adaugat-explicit",
+    "parinte": "https://mariuscomper.uk/ce-face-statul-cu-1000-de-lei/",
+    "locate": {
+      "pagina": "https://mariuscomper.uk/ce-face-statul-cu-1000-de-lei/assets/app.js",
+      "text": "fetch(\"./data/budget-romania.json\")",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://mariuscomper.uk/ce-face-statul-cu-1000-de-lei/",
+        "text": "Pagina oficială de execuție bugetară",
+        "cache": true,
+        "rol": "sursa-declarata-de-pagina"
+      }
+    ],
+    "nota": "Data file that the page script loads. It declares its own source: \"Ministerul Finanțelor — Anexa nr.2 (Sinteza execuției bugetului general consolidat)\". The eleven years (2015-2025) are eleven members, below the keyed-collection threshold, so the paths repeat for each year."
+  }
+]

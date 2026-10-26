@@ -738,11 +738,14 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "5f086657d679090a0fb4",
+        "ffa54acfa918ac2c5d04",
+        "5cf7d1d9d489d6e8521e"
+      ],
+      "campuri_din_surse": 40,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
     },
@@ -1470,11 +1473,16 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "35d2d1b9b7e30cdf2631",
+        "850a6beac09232dc8076",
+        "6b773654d273a69ee0d9",
+        "bc640ea938a9be55e63f",
+        "c169fd6fec8323f15357"
+      ],
+      "campuri_din_surse": 90,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
     },
@@ -3401,7 +3409,7 @@
       "slug": "onorata-instanta",
       "nume": "Onorata Instanță",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "",
       "permite": [
         "Compară",
@@ -3415,11 +3423,16 @@
         "slug": "onorata-instanta"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "d428b824a3a93d68d711",
+        "aff7b0c40468ab55f481",
+        "6f3fe2c5afbaf3c6a9f7",
+        "98ea02d8e2da357c86d2",
+        "df4d4cc67d89e1cbd38a"
+      ],
+      "campuri_din_surse": 73,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
@@ -3539,7 +3552,7 @@
       "slug": "politicieni-corupti",
       "nume": "Politicieni Corupți",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "Arhivă independentă despre corupție și integritate",
       "permite": [
         "Caută și consultă"
@@ -3552,11 +3565,12 @@
         "slug": "politicieni-corupti"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "6036044b0650ef7e493c"
+      ],
+      "campuri_din_surse": 15,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
@@ -4462,7 +4476,7 @@
       "slug": "sondaje-romania",
       "nume": "Sondaje România",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "Agregator de sondaje electorale",
       "permite": [
         "Compară",
@@ -4478,11 +4492,15 @@
         "slug": "sondaje-romania"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "218f1838e52fb4587763",
+        "887f79474dd088d4a7bb",
+        "f175a0aca8381f0ebf37",
+        "73e7ad63b42c98cbf7e6"
+      ],
+      "campuri_din_surse": 36,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
@@ -6906,11 +6924,12 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "74b7351310edbbf50354"
+      ],
+      "campuri_din_surse": 23,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
     },
@@ -7023,11 +7042,12 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "c62675d2221b7c2ed3c0"
+      ],
+      "campuri_din_surse": 333,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
     },
@@ -7146,11 +7166,13 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "ddcedb1c18db2c5eb70d",
+        "53f66d3c79414ca962ba"
+      ],
+      "campuri_din_surse": 99,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
@@ -7280,11 +7302,12 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "5b8b79f4d220b8c604e3"
+      ],
+      "campuri_din_surse": 68,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
@@ -7503,11 +7526,17 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "c4b0b971cd54e91e6b95",
+        "d4f2f764942ea0275061",
+        "bd840885b142210b971a",
+        "1c60859ed42825f5cbe2",
+        "c3ab87d6cdd9766c843c",
+        "e61082046b3aed1ac1b7"
+      ],
+      "campuri_din_surse": 27,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
@@ -7940,11 +7969,17 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "d5ce1494e22e32152ea0",
+        "3535ffae34fe5e42c44e",
+        "14394f6cdfd52805fc2a",
+        "6a4c81098671506aa1d4",
+        "efa6e1cd255637961c92",
+        "bc985c6b55c6abf07ec2"
+      ],
+      "campuri_din_surse": 51,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
     },
