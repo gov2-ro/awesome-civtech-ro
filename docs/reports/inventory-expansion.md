@@ -33,13 +33,13 @@ Field-level meaning is thinner than group-level meaning. Source-declared field d
 
 ## 2. Coverage before and after
 
-The 127 projects and resources of the data finder:
+The 129 projects and resources of the catalogue (the finder lists the 85 that are in scope):
 
 | Measure | Baseline | Now |
 | --- | ---: | ---: |
 | Catalogue entries | 140 | 142 |
 | Projects / resources / organisations | 106 / 21 / 13 | 108 / 21 / 13 |
-| Projects and resources in the data finder | 127 | 129 |
+| Projects and resources (catalogue, hidden entries included) | 127 | 129 |
 | Entries with structured field evidence | 14 | 31 |
 | Projects/resources without extracted structured fields | 113 | 98 |
 | Retained structured-source URLs | 25 | 115 |
@@ -56,9 +56,11 @@ The 127 projects and resources of the data finder:
 
 Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 57 in all; deschis 1, acceptat 49, respins 4, amanat 0, tehnic 3. Variable groups: 38 in all; propus 5, revizuit 33, respins 0, amanat 0. Group members (selectors): 116 in all; propus 14, confirmat 102, exclus 0.
 
+Scope of the data finder (`/date/`): 85 of the 126 public projects and resources are in scope. An entry is in scope when it is not inactive (`offline`, `arhivat`) and its `relatie_date` is `date-publice`, `date-proprii` or `calcul`. The finder leaves out 41: 18 without data (`fara-date`), 5 not assessed (empty value), 18 inactive (counted first: an inactive entry is never counted as another reason). 3 hidden entries (`ascuns`) are in no count of this paragraph.
+
 Field records by evidence type now: declarat-in-schema 1,367, observat-in-esantion-json 1,341, declarat-in-cod-sursa 366, exemplu-in-documentatie 364, neprecizat-in-antet-csv 238, declarat-in-lista-baza 172, antet-tabel-html 85, declarat-in-tabel-documentatie 53, declarat-in-metadate 43, declarat-in-lista-documentatie 40, declarat-in-documentatie-api 33, declarat-in-text-documentatie 23, utilizat-in-cod-pagina 9.
 
-Coverage by measure, for the 127 projects and resources (`acoperire.csv` has the rows). A column that counts fields counts source paths:
+Coverage by measure, for the 129 projects and resources (`acoperire.csv` has the rows). A column that counts fields counts source paths:
 
 | Measure | Entries counted | Total |
 | --- | ---: | ---: |
@@ -75,16 +77,20 @@ Coverage by measure, for the 127 projects and resources (`acoperire.csv` has the
 Totals add the per-entry counts. A source that several entries share counts once for each of them, so the field total here is higher than the number of distinct field records above.
 Denominators are defined in `docs/DATA-SCHEMA.md` (Coverage export). Entries without a structured source have an empty (unknown) measure count, not zero.
 
-All 140 catalogue entries:
+All 142 catalogue entries (hidden entries included):
 
 | State | Entries |
 | --- | ---: |
 | blocat | 1 |
 | cu-surse-structurate | 31 |
+| fara-date | 18 |
 | in-afara-ariei | 13 |
-| neinvestigat-in-lot | 97 |
+| inactiv | 19 |
+| neevaluat | 7 |
+| neinvestigat-in-lot | 53 |
 
 `in-afara-ariei` entries are organisations: the finder lists projects and resources. An organisation need not expose a dataset. Missing extraction never proves missing data.
+`fara-date`, `inactiv` and `neevaluat` are projects and resources that the finder leaves out and that have no source record. An entry with a usable source keeps `cu-surse-structurate`, and an entry whose sources failed keeps `blocat`, whatever its scope: the evidence stays in `observatii/`, and only the public output leaves the entry out.
 
 ## 3. Outcome per selected project
 

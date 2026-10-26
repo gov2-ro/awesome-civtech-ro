@@ -38,7 +38,7 @@ class Coverage(unittest.TestCase):
         self.assertEqual(text, report.render_report(self.data, self.rows) + '\n', 'run scripts/inventory_report.py')
 
     def test_unknown_stays_unknown_and_zero_means_checked(self):
-        empty = self.by['465']
+        empty = next(r for r in self.table if r['stare_investigare'] == 'neinvestigat-in-lot')
         self.assertEqual((empty['stare_investigare'], empty['surse_structurate'], empty['campuri_din_surse']), ('neinvestigat-in-lot', '0', '0'))
         for column in ('concepte_propuse', 'masuri_cu_unitate', 'masuri_fara_unitate', 'surse_cu_provenienta_verificata'):
             self.assertEqual(empty[column], '', column)
@@ -102,13 +102,14 @@ class Coverage(unittest.TestCase):
 
     def test_a_blocker_in_the_notes_decides_the_state_of_an_entry_without_sources_and_nothing_else_does(self):
         slug = next(e['slug'] for e in self.data['entries'] if e['kind'] != 'organizatie' and not self.data['profiles'][e['slug']]['surse_structurate']
-                    and e['slug'] not in self.data['notes']['note'])
+                    and e['slug'] not in self.data['notes']['note'] and not self.data['scope'][e['slug']])
         notes = self.data['notes']
         blocked = {**self.data, 'notes': {**notes, 'note': {**notes['note'], slug: {'blocaj': 'HTTP 403 la cererea automată'}}}}
         row = {r[0]: dict(zip(report.COLUMNS, r)) for r in report.coverage_rows(blocked)}[slug]
         self.assertEqual((row['stare_investigare'], row['blocaj']), ('blocat', 'HTTP 403 la cererea automată'))
         self.assertEqual(self.by[slug]['stare_investigare'], 'neinvestigat-in-lot', 'without the note the entry has no state of its own')
-        self.assertEqual(self.by['465']['stare_investigare'], 'neinvestigat-in-lot', 'an entry with no note stays uninvestigated')
+        self.assertEqual(self.by[next(r['slug'] for r in self.table if r['stare_investigare'] == 'neinvestigat-in-lot')]['stare_investigare'], 'neinvestigat-in-lot',
+                         'an entry with no note stays uninvestigated')
 
     def test_provider_items_of_batch_c2_cite_evidence_that_the_retained_copy_holds(self):
         # The review state belongs to the owner, so the test does not pin it; an item still open must not block the gate.
@@ -179,6 +180,74 @@ class Coverage(unittest.TestCase):
         self.assertIn('D147', text)
         accepted = sum(1 for r in self.data['relations'] if r['predicat'] == 'date_din' and r['stare'] == 'acceptat')
         self.assertIn(f'| 26 / 11 | {accepted} / ', text, 'the report states the measured accepted relations next to the baseline')
+
+
+class Scope(unittest.TestCase):
+    """The states of an entry that the variable inventory leaves out. Each test builds its own scope; none pins the `relatie_date` that an editor sets."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.data = report.load(PUBLIC_ROOT)
+        cls.bare = [e['slug'] for e in cls.data['entries'] if e['kind'] != 'organizatie' and not cls.data['profiles'][e['slug']]['surse_structurate']
+                    and e['slug'] not in cls.data['notes']['note']]
+        cls.with_sources = next(e['slug'] for e in cls.data['entries'] if cls.data['profiles'][e['slug']]['surse_structurate'] and e['kind'] != 'organizatie'
+                                and any(cls.data['sources'][r].get('stare') == 'analizat' for r in cls.data['profiles'][e['slug']]['surse_structurate']))
+
+    def rows(self, scope, **changes):
+        data = {**self.data, 'scope': {**self.data['scope'], **scope}, **changes}
+        return {r[0]: dict(zip(report.COLUMNS, r)) for r in report.coverage_rows(data)}
+
+    def test_an_entry_out_of_scope_gets_the_reason_as_its_state_and_no_next_step_except_for_a_missing_value(self):
+        a, b, c, d = self.bare[:4]
+        rows = self.rows({a: 'fara-date', b: 'inactiv', c: 'neevaluat', d: ''})
+        self.assertEqual((rows[a]['stare_investigare'], rows[a]['urmatorul_pas']), ('fara-date', ''))
+        self.assertEqual((rows[b]['stare_investigare'], rows[b]['urmatorul_pas']), ('inactiv', ''))
+        self.assertEqual(rows[c]['stare_investigare'], 'neevaluat')
+        self.assertIn('relatie_date', rows[c]['urmatorul_pas'], 'an editor sets the value; without it the entry stays out of /date/')
+        self.assertEqual(rows[d]['stare_investigare'], 'neinvestigat-in-lot')
+        self.assertIn('Lipsa extragerii nu înseamnă lipsa datelor', rows[d]['urmatorul_pas'], 'the old sentence stays with the entries that are in scope')
+        self.assertTrue({'fara-date', 'inactiv', 'neevaluat'} <= set(report.STATES))
+
+    def test_evidence_decides_before_scope(self):
+        rows = self.rows({self.with_sources: 'inactiv'})
+        self.assertEqual(rows[self.with_sources]['stare_investigare'], 'cu-surse-structurate', 'retained evidence is never hidden by the scope')
+        self.assertGreater(int(rows[self.with_sources]['campuri_din_surse']), 0)
+        blocked = {**self.data['notes'], 'note': {**self.data['notes']['note'], self.bare[0]: {'blocaj': 'HTTP 403'}}}
+        self.assertEqual(self.rows({self.bare[0]: 'fara-date'}, notes=blocked)[self.bare[0]]['stare_investigare'], 'blocat')
+
+    def test_an_organisation_stays_outside_the_area_and_a_hidden_entry_has_no_next_step(self):
+        organisation = next(e['slug'] for e in self.data['entries'] if e['kind'] == 'organizatie')
+        self.assertEqual(self.rows({organisation: 'in-afara-ariei'})[organisation]['stare_investigare'], 'in-afara-ariei')
+        hidden = [{**e, 'classification_state': 'ascuns'} if e['slug'] == self.bare[0] else e for e in self.data['entries']]
+        row = self.rows({self.bare[0]: 'neevaluat'}, entries=hidden)[self.bare[0]]
+        self.assertEqual((row['stare_investigare'], row['urmatorul_pas']), ('neevaluat', ''))
+
+    def test_the_tracked_table_gives_the_state_that_the_shared_rule_gives(self):
+        from common import OUT_OF_SCOPE
+        scope = self.data['scope']
+        self.assertEqual(set(scope), {e['slug'] for e in self.data['entries']})
+        table = {r[0]: r[3] for r in report.coverage_rows(self.data)}
+        for slug, state in table.items():
+            if state in OUT_OF_SCOPE:
+                self.assertEqual(scope[slug], state, slug)
+            if state == 'neinvestigat-in-lot':
+                self.assertEqual(scope[slug], '', slug + ' is out of scope, so it is not "not investigated in the batch"')
+        self.assertTrue(set(table.values()) <= set(report.STATES))
+
+    def test_the_report_counts_what_the_finder_leaves_out_and_hidden_entries_apart(self):
+        entries = [e for e in self.data['entries'] if e['kind'] != 'organizatie']
+        pick = [e['slug'] for e in entries if e.get('classification_state') != 'ascuns'][:7]
+        reasons = dict(zip(pick, ['', '', 'fara-date', 'fara-date', 'neevaluat', 'inactiv', 'inactiv']))
+        scope = {**self.data['scope'], **{e['slug']: '' for e in entries}, **reasons}
+        data = {**self.data, 'scope': scope}
+        measured = report.metrics(data, report.coverage_rows(data))
+        public = len([e for e in entries if e.get('classification_state') != 'ascuns'])
+        self.assertEqual(measured['left_out'], {'fara-date': 2, 'neevaluat': 1, 'inactiv': 2})
+        self.assertEqual(measured['in_scope'], public - 5)
+        self.assertEqual(measured['hidden'], len(entries) - public)
+        text = report.render_report(data, report.coverage_rows(data))
+        self.assertIn(f'{public - 5} of the {public} public projects and resources are in scope', text)
+        self.assertIn('2 without data (`fara-date`), 1 not assessed (empty value), 2 inactive', text)
 
 
 if __name__ == '__main__':

@@ -17,13 +17,20 @@ from collections import Counter
 from pathlib import Path
 
 from collect_docs import is_saved
-from common import ROOT, PUBLIC_ROOT, load_catalogue, observation_paths
+from common import ROOT, PUBLIC_ROOT, UNASSESSED, inventory_scope, load_catalogue, observation_paths
 from inventory_concepts import GROUP_STATES, SELECTOR_STATES, active_groups, group_state, selector_matches, selector_state
 from inventory_state import counted_fields
+from taxonomy_v2 import HIDDEN
 
 COLUMNS = ['slug', 'tip_entitate', 'investigat_in_lot', 'stare_investigare', 'surse_structurate', 'campuri_din_surse', 'concepte_propuse',
            'campuri_cu_definitie', 'campuri_cu_tip_declarat', 'campuri_cu_tip_observat', 'masuri_cu_unitate', 'masuri_fara_unitate',
            'surse_cu_provenienta_verificata', 'limite', 'blocaj', 'urmatorul_pas']
+# The states of `stare_investigare` for an entry without a usable or failed source. An entry out of the variable inventory (common.inventory_exclusion)
+# gets the reason as its state: `fara-date`, `inactiv` or `neevaluat` (an empty `relatie_date`). Their `urmatorul_pas` is empty, except `neevaluat`:
+# it asks the editor for a value, because the entry leaves /date/ until there is one. An entry with a usable or a failed source keeps `cu-surse-structurate` or `blocat`.
+STATES = ('cu-surse-structurate', 'blocat', 'neinvestigat-in-lot', 'fara-date', 'inactiv', UNASSESSED, 'in-afara-ariei')
+NEXT_STEP = {'neinvestigat-in-lot': 'Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor.',
+             UNASSESSED: 'Stabiliți valoarea relatie_date în intrari.csv. Fără ea, intrarea nu apare în /date/.'}
 # Measured at the baseline commit (the brief, section 3).
 BASELINE = {'entries': 140, 'projects': 106, 'resources': 21, 'organisations': 13, 'finder': 127, 'with_fields': 14, 'without_fields': 113,
             'source_urls': 25, 'parsed': 24, 'failed': 1, 'field_records': 2302, 'schema_declarations': 1312, 'sampled_paths': 904,
@@ -51,6 +58,7 @@ def load(root):
             'controls': list(csv.DictReader((inv / 'intrari-utilizator.csv').open(newline=''))),
             'review': list(csv.DictReader((root / 'revizuire.csv').open(newline=''))),
             'relations': list(csv.DictReader((root / 'relatii.csv').open(newline='')))}
+    data['scope'] = inventory_scope(data['entries'], root)  # slug -> why the entry is out of the variable inventory; '' when in scope
     return data
 
 
@@ -118,7 +126,7 @@ def coverage_rows(data):
         elif failed or (note.get('blocaj') and not sources):  # a host that refused every request leaves no source record; the notes say why
             state = 'blocat'
         else:
-            state = 'neinvestigat-in-lot'
+            state = data['scope'][slug] or 'neinvestigat-in-lot'
         measures = members[slug]['measures']
         known_measures = bool(usable)
         verified = sum(1 for r in registry.get(slug, []) if r['locator_stare'] == 'cunoscut' and r['metoda'] != 'membru-anterior'
@@ -139,8 +147,7 @@ def coverage_rows(data):
                      sum(1 for f in fields if f.get('tipuri_observate')),
                      sum(measures.values()) if known_measures else '', sum(1 for v in measures.values() if not v) if known_measures else '',
                      verified if sources else '', ' '.join(limits), blocker,
-                     note.get('urmatorul_pas', '' if entry['kind'] == 'organizatie' else
-                              'Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor.' if state == 'neinvestigat-in-lot' else '')])
+                     note.get('urmatorul_pas', '' if entry.get('classification_state') == HIDDEN else NEXT_STEP.get(state, ''))])
     return rows
 
 
@@ -164,9 +171,12 @@ def metrics(data, rows):
     parsed = [s for s in sources.values() if s.get('stare') == 'analizat']
     accepted = [(e['slug'], r['name']) for e in entries for r in e['data_sources']]
     log_direct = [r for r in data['log'] if r['cache'] == 'nu']
+    public = [e for e in finder if e.get('classification_state') != HIDDEN]  # what /date/ can list: a hidden entry never reaches the site
+    reasons = Counter(data['scope'][e['slug']] for e in public)
     return {'entries': len(entries), 'projects': sum(e['kind'] == 'proiect' for e in entries), 'resources': sum(e['kind'] == 'resursa' for e in entries),
             'organisations': sum(e['kind'] == 'organizatie' for e in entries), 'finder': len(finder), 'with_fields': len(with_fields),
-            'without_fields': len(finder) - len(with_fields), 'source_urls': len(sources), 'parsed': len(parsed), 'failed': len(sources) - len(parsed),
+            'without_fields': len(finder) - len(with_fields), 'hidden': len(finder) - len(public), 'in_scope': reasons[''],
+            'left_out': {reason: reasons[reason] for reason in ('fara-date', UNASSESSED, 'inactiv')}, 'source_urls': len(sources), 'parsed': len(parsed), 'failed': len(sources) - len(parsed),
             'field_records': sum(kinds.values()), 'schema_declarations': kinds['declarat-in-schema'], 'sampled_paths': kinds['observat-in-esantion-json'],
             'csv_headers': kinds['neprecizat-in-antet-csv'], 'ins_dimensions': sum(1 for s in sources.values() for f in s['campuri']
                                                                                      if f.get('rol') == 'dimensiune' and f['stare_tip'] == 'declarat-in-metadate' and 'ACC102B' in s['url']),
@@ -236,7 +246,7 @@ def render_report(data, rows):
     w('')
     w('## 2. Coverage before and after')
     w('')
-    w('The 127 projects and resources of the data finder:')
+    w(f'The {m["finder"]} projects and resources of the catalogue (the finder lists the {m["in_scope"]} that are in scope):')
     w('')
     w('| Measure | Baseline | Now |')
     w('| --- | ---: | ---: |')
@@ -244,7 +254,7 @@ def render_report(data, rows):
         w(f'| {label} | {BASELINE[key]:,} | {m[key]:,}{extra} |')
     line('Catalogue entries', 'entries')
     w(f'| Projects / resources / organisations | {BASELINE["projects"]} / {BASELINE["resources"]} / {BASELINE["organisations"]} | {m["projects"]} / {m["resources"]} / {m["organisations"]} |')
-    line('Projects and resources in the data finder', 'finder')
+    line('Projects and resources (catalogue, hidden entries included)', 'finder')
     line('Entries with structured field evidence', 'with_fields')
     line('Projects/resources without extracted structured fields', 'without_fields')
     line('Retained structured-source URLs', 'source_urls')
@@ -265,10 +275,17 @@ def render_report(data, rows):
       f'Variable groups: {len(data["concepts"])} in all; {count_line(m["group_states"], GROUP_STATES)}. '
       f'Group members (selectors): {sum(m["member_states"].values())} in all; {count_line(m["member_states"], SELECTOR_STATES)}.')
     w('')
+    left = m['left_out']
+    w(f'Scope of the data finder (`/date/`): {m["in_scope"]} of the {m["finder"] - m["hidden"]} public projects and resources are in scope. '
+      f'An entry is in scope when it is not inactive (`offline`, `arhivat`) and its `relatie_date` is `date-publice`, `date-proprii` or `calcul`. '
+      f'The finder leaves out {sum(left.values())}: {left["fara-date"]} without data (`fara-date`), {left[UNASSESSED]} not assessed (empty value), '
+      f'{left["inactiv"]} inactive (counted first: an inactive entry is never counted as another reason). '
+      f'{m["hidden"]} hidden entries (`ascuns`) are in no count of this paragraph.')
+    w('')
     kinds = m['kinds']
     w('Field records by evidence type now: ' + ', '.join(f'{k} {v:,}' for k, v in sorted(kinds.items(), key=lambda kv: -kv[1])) + '.')
     w('')
-    w('Coverage by measure, for the 127 projects and resources (`acoperire.csv` has the rows). A column that counts fields counts source paths:')
+    w(f'Coverage by measure, for the {len(finder_slugs)} projects and resources (`acoperire.csv` has the rows). A column that counts fields counts source paths:')
     w('')
     def total(column, subset):
         values = [by_slug[s][column] for s in subset if by_slug[s][column] != '']
@@ -289,7 +306,7 @@ def render_report(data, rows):
     w('Totals add the per-entry counts. A source that several entries share counts once for each of them, so the field total here is higher than the number of distinct field records above.')
     w('Denominators are defined in `docs/DATA-SCHEMA.md` (Coverage export). Entries without a structured source have an empty (unknown) measure count, not zero.')
     w('')
-    w('All 140 catalogue entries:')
+    w(f'All {len(rows)} catalogue entries (hidden entries included):')
     w('')
     states = Counter(r[3] for r in rows)
     w('| State | Entries |')
@@ -298,6 +315,8 @@ def render_report(data, rows):
         w(f'| {state} | {count} |')
     w('')
     w('`in-afara-ariei` entries are organisations: the finder lists projects and resources. An organisation need not expose a dataset. Missing extraction never proves missing data.')
+    w('`fara-date`, `inactiv` and `neevaluat` are projects and resources that the finder leaves out and that have no source record. '
+      'An entry with a usable source keeps `cu-surse-structurate`, and an entry whose sources failed keeps `blocat`, whatever its scope: the evidence stays in `observatii/`, and only the public output leaves the entry out.')
     w('')
     w('## 3. Outcome per selected project')
     w('')
