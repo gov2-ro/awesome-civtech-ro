@@ -643,7 +643,7 @@ An editor sets it; the Form does not ask for it. The code list is `relatie_date`
 | `date-proprii` | Date proprii | The entry collects or curates its own data: reports from users, quiz positions, an editorial database. |
 | `calcul` | Calculator sau formular | The entry takes user inputs and applies rules or parameters, with no data set behind it. |
 | `fara-date` | Fără date | A guide, course, campaign, article or list of links. There is nothing to extract. |
-| (empty) | Neevaluat | Not assessed yet. The entry stays out of `/date/` until an editor sets a code (owner, 2026-10-26). |
+| (empty) | Neevaluat | Not assessed yet. The entry stays out of `/date/` until an editor sets a code (owner, 2026-10-26). The public pages count it in the group `fara-date`, "Fără date". |
 
 When two codes apply, use the first one in the table. One code settles the mixed cases, because the data finder needs one answer.
 `formate` does not replace the column: a quiz (`testvot`) holds a data set, and a publication can be data journalism.
@@ -652,7 +652,9 @@ The checks refuse an unknown code, a value on an organisation, and `fara-date` t
 The build writes the code as `dataRelation` on each item and the code list as `vocabulary.dataRelations`.
 An entry is in scope of the variable inventory (`/date/`, `/date/lista/`, `inventar/<slug>.json`, the explorer markers and the default selection of `collect_docs.py` and `inventory.py`) when it is a project or a resource,
 its built status is not inactive (`offline`, `arhivat`), and its code is `date-publice`, `date-proprii` or `calcul`. An empty value and `fara-date` both leave the entry out.
-The explorer filters by the relation to data (`dat`, with `neevaluat` for an empty value) and by status group (`st`: `activ`, `inactiv`, `neconfirmat`), under "Mai multe filtre".
+The explorer filters by the relation to data (`dat`: the group `cu-date`, "Lucrează cu date", with `date-publice`, `date-proprii` and `calcul`, or the group `fara-date`, "Fără date", with `fara-date` and an empty value)
+and by status group (`st`: `activ`, `inactiv`, `neconfirmat`), under "Mai multe filtre". `common.DATA_GROUPS` defines the two groups; the build writes them as `vocabulary.dataGroups`.
+`/date/` and `/date/lista/` count the entries they leave out by two reasons: without data and inactive.
 `DATA-SCHEMA.md` ("Scope of the variable inventory") has the rule and the places that use it; `docs/briefs/data-relation.md` has the decisions.
 
 For location filtering, distinguish where an entry applies from whether it contains records for a particular place.

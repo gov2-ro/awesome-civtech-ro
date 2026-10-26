@@ -419,7 +419,7 @@ One row for each entry (project, organisation or resource). Today it holds the 1
 | `arii_acoperite` | The areas it covers. | IDs of `arii.csv`. |
 | `detaliere_date` | The geographic detail of the data, independent of project reach. | Optional code: `agregat-national`, `judete`, `localitati`, `judete-localitati`. Empty means unverified or not applicable. |
 | `dovada_detaliere` | The evidence page for the recorded data detail. | An HTTP(S) URL is required when `detaliere_date` is set. |
-| `relatie_date` | How the entry relates to data. | Optional code: `date-publice`, `date-proprii`, `calcul`, `fara-date`. Empty means not assessed, and an empty value leaves the entry out of the variable inventory (`/date/`), like `fara-date` (see "Scope of the variable inventory"). Only a project or a resource has one: a value on an organisation is an error. `fara-date` and `detaliere_date` exclude each other. When two codes apply, use the first one in the list order. The Form has no question for it. |
+| `relatie_date` | How the entry relates to data. | Optional code: `date-publice`, `date-proprii`, `calcul`, `fara-date`. Empty means not assessed, and an empty value leaves the entry out of the variable inventory (`/date/`), like `fara-date` (see "Scope of the variable inventory"). The explorer and `/date/` show two groups: `cu-date` (the first three codes) and `fara-date` (that code and an empty value). Only a project or a resource has one: a value on an organisation is an error. `fara-date` and `detaliere_date` exclude each other. When two codes apply, use the first one in the list order. The Form has no question for it. |
 | `localitate_originala` | The v1 `oras`, unchanged. | Text. It does not limit the coverage. |
 | `autor_original` | The v1 `autor`, unchanged. | Text. `relatii.csv` holds the structured form. |
 | `contact` | The v1 `contact`. | Text. |
@@ -775,7 +775,10 @@ and replaces the v1 classification:
 - `coverageLevel` and `areas`: the coverage code and area IDs.
 - `dataDetail`, `dataDetailEvidence`: geographic data detail and its evidence URL.
 - `dataRelation`: the code of `relatie_date`, or an empty string when the entry is not assessed. `vocabulary.dataRelations` lists the codes
-  with their labels, in list order: `[{key, label, labelEn}]`. The explorer reads an empty string as `neevaluat` (its facet `dat`).
+  with their labels, in list order: `[{key, label, labelEn}]`. The detail of the four codes stays here and in `intrari.csv`.
+  `vocabulary.dataGroups` lists the two public groups: `[{key, label, codes}]`, from `common.DATA_GROUPS`. `cu-date` ("Lucrează cu date") has the codes
+  `date-publice`, `date-proprii` and `calcul`. `fara-date` ("Fără date") has `fara-date` and the empty string. The explorer facet `dat` reads the groups
+  from here and keeps no list of codes.
 - `dataSources`: `{name, evidence}` for each accepted data provider or publication.
 - `attributions`: `{name, org, role, accepted}`. `role` is the relation predicate; an unconfirmed role shows neutrally.
 - `legacy`: the original `domeniu`, `tips`, `keywords`, `fel`, `acoperire` and `oras`, only for old bookmarks.
@@ -1208,7 +1211,7 @@ The export keeps fields, business groups, declarations, observations and unknown
 | --- | --- |
 | `slug`, `tip_entitate` | The entry and its type in the catalogue (`proiect`, `resursa`, `publicatie`, `organizatie`). |
 | `investigat_in_lot` | The collection lots that touched the entry: `C` (the primary batch), `B` (INS metadata attached), `B2` (a source added for a named gap), `C2` (the three active projects of public-sector data), `S` (a page that the owner saved by hand), `baza` (fields from the first pass only). Empty: not investigated. |
-| `stare_investigare` | `cu-surse-structurate` (at least one parsed source), `blocat` (sources only failed, or the notes file records a blocker for an entry that has no source record: a host that refused every request), `in-afara-ariei` (organisations: the finder lists projects and resources). Another entry has no source record. If it is in scope, its state is `neinvestigat-in-lot`. If it is out of the scope of the variable inventory (see "Scope of the variable inventory"), its state is the reason: `inactiv` (status `offline` or `arhivat`), `fara-date` (`relatie_date` `fara-date`) or `neevaluat` (an empty `relatie_date`). An entry with a parsed or a failed source keeps `cu-surse-structurate` or `blocat`, whatever its scope: the evidence stays. |
+| `stare_investigare` | `cu-surse-structurate` (at least one parsed source), `blocat` (sources only failed, or the notes file records a blocker for an entry that has no source record: a host that refused every request), `in-afara-ariei` (organisations: the finder lists projects and resources). Another entry has no source record. If it is in scope, its state is `neinvestigat-in-lot`. If it is out of the scope of the variable inventory (see "Scope of the variable inventory"), its state is the reason: `inactiv` (status `offline` or `arhivat`), `fara-date` (`relatie_date` `fara-date`) or `neevaluat` (an empty `relatie_date`). `neevaluat` is an internal state for editors: the public pages count an empty value as `fara-date` (see "Scope of the variable inventory"). An entry with a parsed or a failed source keeps `cu-surse-structurate` or `blocat`, whatever its scope: the evidence stays. |
 | `surse_structurate` | Parsed structured sources in the profile. A source that several entries share counts for each. |
 | `campuri_din_surse` | Source-scoped field records of those sources. They are paths, not independent variables. |
 | `concepte_propuse` | Distinct proposed groups that contain at least one field of the entry. Empty when there is no source. |
@@ -1307,14 +1310,28 @@ An entry is in scope of the variable inventory when all three conditions are tru
 One rule serves all places: `common.inventory_exclusion(kind, status, relation)` returns the reason, or an empty string when the entry is in scope.
 The reasons, in the order in which the first one that applies wins: `in-afara-ariei` (an organisation), `inactiv`, `fara-date`, `neevaluat` (an empty or unknown value).
 So an inactive entry is counted as inactive, whatever its `relatie_date`. `inventory_site.scope_reason(item)` applies the rule to a built item.
+
+The public pages show two groups of the relation to data, not the five states (owner's decision of 2026-10-26, brief section 9). `common.DATA_GROUPS` defines them once:
+
+| Group (URL value) | Label | Codes |
+| --- | --- | --- |
+| `cu-date` | Lucrează cu date | `date-publice`, `date-proprii`, `calcul` (`common.IN_SCOPE_RELATIONS`) |
+| `fara-date` | Fără date | `fara-date` and an empty value |
+
+`common.data_group(relation)` gives the group of a value. A code that `valori.csv` does not list is `fara-date`.
+`common.public_reason(reason)` turns the reason `neevaluat` into `fara-date`; so the public pages name two reasons, without data and inactive.
+The coverage export keeps `neevaluat` as a state for editors. `build.py` writes the groups to `vocabulary.dataGroups`, and `site/app.js` reads them there.
+Python and the browser therefore share one definition. The tests keep it in step with the rule:
+`test_taxonomy_v2.py` checks that each code, and the empty value, belongs to one group, and that the group `cu-date` is exactly what `inventory_exclusion` keeps in scope.
+`test_inventory_site.py` checks that `site/app.js` holds no code literal. `check_data_finder.py` checks that `?dat=cu-date` lists the same entries as the finder on each tab.
 `common.inventory_scope(entries, root)` applies it to catalogue entries with the status of `profil.csv`; a v1 root has no `relatie_date`, so every entry counts as in scope there.
 
 | Place | What the rule does |
 | --- | --- |
 | `build.py --with-inventory` | `publish_preview`, `publish_finder` and `publish_overview` list only entries in scope: `inventar/<slug>.json`, `inventar/index.json`, `/date/`, `/date/lista/` and the key `inventory` of an item in `data.json` (the markers and the "Date & metodă" panel of the explorer). An entry out of scope has no `inventory` key, documentation links included. |
-| `inventar/index.json` | `leftOut`: `{fara-date, neevaluat, inactiv}`, each `{proiect, resursa}`, the number of projects and resources that the finder leaves out. `inactiv` counts every inactive project or resource; the other two count active ones. An organisation is never counted. |
-| `/date/` | A line in the footer says how many entries the finder leaves out, by reason, with links to the explorer. |
-| `/date/lista/` | The section "Lăsate pe dinafară (N)" gives a count for each reason and a link to the explorer for each kind: `?dat=fara-date`, `?dat=neevaluat`, `?st=inactiv` (and `?k=resursa&…` for resources). The note "Lipsa câmpurilor nu înseamnă lipsa datelor" stays with the entries that are in scope and have no fields. |
+| `inventar/index.json` | `leftOut`: `{fara-date, inactiv}`, each `{proiect, resursa}`, the number of projects and resources that the finder leaves out. `fara-date` is the group without data (the code and an empty value together) and counts active entries. `inactiv` counts every inactive project or resource. An organisation is never counted. |
+| `/date/` | A line in the footer says how many entries the finder leaves out, by the two reasons, with links to the explorer. |
+| `/date/lista/` | The section "Lăsate pe dinafară (N)" gives a count for each of the two reasons and a link to the explorer for each kind: `?dat=fara-date` and `?st=inactiv` (and `?k=resursa&…` for resources). The note "Lipsa câmpurilor nu înseamnă lipsa datelor" stays with the entries that are in scope and have no fields. |
 | `inventory_report.py` | The states `inactiv`, `fara-date` and `neevaluat` of `stare_investigare` (see the coverage export). |
 | `collect_docs.py`, `inventory.py` | Without `--only`, a run skips the entries that are out of scope and prints how many it skipped, by reason. Their records and evidence stay as they are. `--only SLUG` runs the entry and prints `NOTE: SLUG is out of the variable inventory (reason)`. An explicit `--add-source` or `--retire` always runs its entry. An entry with no tracked record still gets one. |
 
@@ -1323,7 +1340,8 @@ When an editor sets `relatie_date`, the entry returns at the next build, and the
 
 The explorer has two facets under "Mai multe filtre", in the pattern of `ent` (comma-separated values, OR within a facet):
 
-- `dat` ("Date"): the codes of `relatie_date`, and `neevaluat` for an empty value. `?dat=fara-date` shows the entries without data. The facet is not offered on the organisation tab.
+- `dat` ("Date"): the two groups of the table above. `?dat=cu-date` shows "Lucrează cu date" and `?dat=fara-date` shows "Fără date". An organisation has no code, so the facet has one option on the organisation tab and is not offered there.
+  `dat=cu-date` lists the same entries as `/date/` on each tab. The four codes are not facet values. A bookmark with one of them, or with `neevaluat`, lists nothing (no such URL was ever published).
 - `st` ("Stare"): the status groups `activ`, `inactiv` and `neconfirmat`. Inactive entries stay hidden by default (`ina`). When `st` selects `inactiv`, they show without `ina=1`,
   and the option "Ascunde proiecte inactive" is off and disabled. The counts of the `st` options ignore the hiding of inactive entries, so `inactiv` shows its number.
 
