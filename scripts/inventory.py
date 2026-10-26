@@ -1285,13 +1285,8 @@ def main():
         previous = load_previous(out)
         reading = reading_of(args.reading)
         additions = [(slug, {'url': url, 'metoda': args.method, 'parinte': args.parent, 'nota': args.note, 'citire': reading}) for slug, url in args.add_source]
-        if args.add_sources_file:
-            try:
-                specs = json.loads(args.add_sources_file.read_text())
-            except (OSError, ValueError) as exc:
-                raise StateError(f'Cannot read {args.add_sources_file}: {exc}') from exc
-            additions += [(spec['proiect'], resolve_spec(docs, spec['proiect'], {k: v for k, v in spec.items() if k != 'proiect'}, out / 'surse')) for spec in specs]
         if args.import_saved:
+            # The copy goes into the cache first, so that a specification of --add-sources-file can locate a fragment in it (`cache: true`).
             slug, url, file = args.import_saved
             try:
                 raw = Path(file).read_bytes()
@@ -1299,6 +1294,13 @@ def main():
                 raise StateError(f'Cannot read {file}: {exc}') from exc
             response, replaced = import_saved(out / 'surse', url, raw, args.saved_at, file, args.note)
             imported = (response['url'], replaced)
+        if args.add_sources_file:
+            try:
+                specs = json.loads(args.add_sources_file.read_text())
+            except (OSError, ValueError) as exc:
+                raise StateError(f'Cannot read {args.add_sources_file}: {exc}') from exc
+            additions += [(spec['proiect'], resolve_spec(docs, spec['proiect'], {k: v for k, v in spec.items() if k != 'proiect'}, out / 'surse')) for spec in specs]
+        if args.import_saved:
             # The source joins the project like `--add-source`; a specification in --add-sources-file for the same address comes first and keeps its locator.
             additions.append((slug, {'url': response['url'], 'metoda': args.method, 'parinte': args.parent, 'nota': None, 'citire': reading}))
         state = update_inventory(

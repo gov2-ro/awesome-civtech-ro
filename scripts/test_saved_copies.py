@@ -5,9 +5,12 @@ The copy is evidence with its own origin: it is never labelled as fetched, no re
 Every network call here is a fake or is absent. The fixture is the trimmed copy of https://harta-firmelor.ro/date used by the reader tests.
 """
 import hashlib
+import io
 import json
+import socket
 import tempfile
 import unittest
+from contextlib import redirect_stdout
 from datetime import datetime, timezone
 from pathlib import Path
 from unittest.mock import patch
@@ -323,6 +326,46 @@ class CommandLine(unittest.TestCase):
             self.assertEqual(self.run_main('--import-saved', 'p', URL, 'x.html', '--saved-at', SAVED_AT, '--dry-run'), 2)
             self.assertEqual(self.run_main('--import-saved', 'p', URL, 'x.html', '--saved-at', SAVED_AT, '--only', 'q'), 2)
             self.assertEqual(self.run_main('--saved-at', SAVED_AT), 2)
+
+    def test_a_specification_of_the_same_run_finds_its_fragment_in_the_copy_and_no_request_is_made(self):
+        # The copy is in the cache before the specifications are resolved, so a specification can locate a fragment in it (`cache: true`).
+        url = 'https://p.example/data.csv'
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp)
+            copy, spec, out = tmp / 'data.csv', tmp / 'spec.json', tmp / 'inventare'
+            copy.write_text('year,county\n2020,AB\n')
+            spec.write_text(json.dumps([{'proiect': 'p', 'url': url, 'metoda': 'adaugat-explicit', 'locate': {'cache': True, 'pagina': url, 'text': 'year,county'},
+                                         'dovezi': [{'cache': True, 'pagina': url, 'text': '2020,AB', 'rol': 'rand-de-proba'}]}]))
+            argv = ['inventory.py', '--import-saved', 'p', url, str(copy), '--saved-at', SAVED_AT, '--add-sources-file', str(spec), '--out', str(out)]
+            with patch('sys.argv', argv), patch.object(inventory, 'load_catalogue', return_value=[entry('p', 'https://p.example/')]), \
+                    patch.object(inventory, 'restore', return_value={'p': docs_for('p', 'https://p.example/', [])}), \
+                    patch.object(inventory, 'load_vocabulary', return_value={'concepts': {}}), \
+                    patch.object(socket, 'socket', side_effect=AssertionError('a request was made')), \
+                    redirect_stdout(io.StringIO()) as output:
+                code = inventory.main()
+            self.assertEqual(code, 0, output.getvalue())
+            records = [r for r in json.loads((out / 'descoperiri.json').read_text())['descoperiri'] if r['url'] == url]
+            self.assertEqual(len(records), 1, 'the specification and the import make one registry record')
+            self.assertEqual((records[0]['locator_stare'], records[0]['dovada']['fragment'], records[0]['dovada']['pointer']), ('cunoscut', 'year,county', '/body'))
+            self.assertEqual([e['rol'] for e in records[0]['dovezi_suplimentare']], ['rand-de-proba'])
+            self.assertEqual(check_report(out, tmp)['errors'], [])
+
+    def test_a_specification_that_finds_nothing_leaves_no_copy_in_the_cache(self):
+        url = 'https://p.example/data.csv'
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp)
+            copy, spec, out = tmp / 'data.csv', tmp / 'spec.json', tmp / 'inventare'
+            copy.write_text('year,county\n2020,AB\n')
+            spec.write_text(json.dumps([{'proiect': 'p', 'url': url, 'locate': {'cache': True, 'pagina': url, 'text': 'not in the copy'}}]))
+            argv = ['inventory.py', '--import-saved', 'p', url, str(copy), '--saved-at', SAVED_AT, '--add-sources-file', str(spec), '--out', str(out)]
+            with patch('sys.argv', argv), patch.object(inventory, 'load_catalogue', return_value=[entry('p', 'https://p.example/')]), \
+                    patch.object(inventory, 'restore', return_value={'p': docs_for('p', 'https://p.example/', [])}), \
+                    patch.object(inventory, 'load_vocabulary', return_value={'concepts': {}}), redirect_stdout(io.StringIO()) as output:
+                code = inventory.main()
+            self.assertEqual(code, 2, output.getvalue())
+            self.assertIn('Evidence not found', output.getvalue())
+            self.assertFalse((out / 'surse' / (source_id(url) + '.json')).exists(), 'the failed run puts the cache back')
+            self.assertFalse((out / 'seturi-date.json').exists())
 
 
 if __name__ == '__main__':

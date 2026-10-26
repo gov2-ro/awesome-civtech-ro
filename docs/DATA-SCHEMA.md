@@ -1121,7 +1121,8 @@ helper saw. A `link` locator (`/links/N` of a collected page, with `fragment` th
 **Pages saved by the owner (`--import-saved`).** `inventory.py --import-saved SLUG URL FILE --saved-at 2026-10-25T20:39:00+02:00 [--note TEXT] [--reading NAME|JSON] [--parent URL]`
 keeps a file that the owner saved from their browser as the retained body of `URL`, and adds `URL` to project `SLUG` like `--add-source`. It implies `--offline --only SLUG`
 and refuses `--check`, `--probe`, `--dry-run`, `--force` and `--force-url`, so it cannot make a request. `--add-sources-file` can accompany it; a specification for the same address
-comes first and keeps its locators and its reader (`citire`). The body goes to the ordinary cache (`surse/<id>.json`, gitignored) and, once parsed, to the immutable snapshot. Both are
+comes first and keeps its locators and its reader (`citire`). The copy is in the cache before the specifications are resolved, so a specification can locate a fragment in it
+(`locate` with `cache: true`, and `dovezi` the same way). The body goes to the ordinary cache (`surse/<id>.json`, gitignored) and, once parsed, to the immutable snapshot. Both are
 the same kind of file as a fetched body, so the reader, `--check` and the review interface treat them alike. The source record differs from a fetched one in these keys:
 
 - `origine` `copie-salvata-de-proprietar`, `salvat_la`, `nume_fisier`, `sha256_fisier`, `nota_copie`: as for a saved documentation page (see above).
