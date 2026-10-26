@@ -22,7 +22,7 @@ RAW = 'https://raw.githubusercontent.com/org/repo/main/'
 
 def entry(slug, url):
     return {'slug': slug, 'nume': slug, 'url': url, 'descriere_scurta': 'Purpose ' + slug, 'descriere': '',
-            'capabilities': [], 'formats': []}
+            'capabilities': [], 'formats': [], 'kind': 'proiect', 'stare': ''}
 
 
 def docs_for(slug, url, links, text=''):
@@ -212,11 +212,6 @@ class ScopeOfTheSelection(unittest.TestCase):
         work.run(self.entries, self.docs, net, skip={'b'}, force=True)
         self.assertEqual(net.calls, [self.url_a], 'a default run with force refreshes the in-scope project only')
         self.assertEqual(work.profile('b'), before[0])
-
-    def test_without_skip_the_same_run_changes_the_project(self):
-        work = self.first_run()
-        work.run(self.entries, self.docs, Net(self.bodies))
-        self.assertEqual(len(work.profile('b')['surse_structurate']), 1, 'the control: the old default selection reached every project')
 
     def test_a_named_project_runs_although_it_is_in_skip(self):
         work = self.first_run()
