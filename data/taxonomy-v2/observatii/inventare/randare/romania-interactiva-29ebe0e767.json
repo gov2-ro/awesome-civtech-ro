@@ -1,0 +1,25 @@
+{
+  "versiune": 1,
+  "proiect": "romania-interactiva",
+  "url_cerut": "https://romaniainteractiva.ro/harta-notelor/",
+  "url_final": "https://romaniainteractiva.ro/harta-notelor/",
+  "stare": "ok",
+  "http_status": 200,
+  "titlu": "Harta notelor: promovabilitatea la Evaluarea Națională și bacalaureat | România Interactivă",
+  "randat_la": "2026-10-26T15:33:30.224629+00:00",
+  "text_randat": "ROMÂNIA INTERACTIVĂ\nHarta notelor\n\nPromovabilitatea la Evaluarea Națională și la bacalaureat, din 2018 până în 2026: în țară, pe regiuni, județe, localități și școli.\n\n↓ Începe aici: caută o localitate, un județ sau o școală\nCaută\nÎncearcă:\nRomânia\nJudețul Cluj\nTurda\nCiurila\nRegiunea Nord-Est\nsau începe cu toată țara →\n\nPromovabilitate. La Evaluarea Națională: procentul elevilor care au obținut media cel puțin 5 (examenul nu are, oficial, promovare; 5 e reperul obișnuit). La bacalaureat: procentul candidaților prezenți care au promovat.\n\nPrima și ultima medie. Cea mai mare și cea mai mică medie din anul respectiv. La bacalaureat, ultima medie e cea mai mică medie cu care s-a promovat (minimum 6); mediile celor respinși nu sunt complete în date.\n\nAtenție. Rezultatele sunt atribuite localității în care se află școala (unitatea cu personalitate juridică), nu domiciliului elevului. Școlile mici arondate din alte sate sunt incluse la școala de care țin. Distribuția mediilor pe școli e disponibilă pentru 2022–2026. Pe ecranele mici, tabelele an de an arată ultimii 5 ani. În localitățile și școlile cu puțini candidați, procentele variază mult de la an la an, de aceea în clasamente intră doar cele cu cel puțin 20 de candidați în anul respectiv.\n\nDate. Ministerul Educației, fișierele de date deschise de pe data.gov.ro: Evaluarea Națională (clasa a VIII-a) și bacalaureat, sesiunea I, 2018–2026, după contestații. Cifrele pe țară, regiuni și județe includ toți candidații; cele pe localități și școli, doar școlile care au putut fi legate de o localitate (95–100% din candidați, în funcție de an). Regiunile sunt cele 8 regiuni de dezvoltare. Numele școlilor: rețeaua școlară 2025–2026 a Ministerului Educației, legată prin codul SIIIR; școlile desființate între timp apar cu codul lor.\n\nUn proiect România Interactivă.\n\nAutori:\n\nAdrian Hudrea, lector universitar doctor, FSPAC, Universitatea Babeș-Bolyai · adrian.hudrea@ubbcluj.ro\n\nDorin Spoaller, lector universitar doctor, FSPAC, Universitatea Babeș-Bolyai · dorin.spoaller@ubbcluj.ro\n\nStatistici de vizitare anonime: fără cookie-uri, fără adrese IP salvate. Dacă ai activat Do Not Track, nu ești numărat.",
+  "controale_vizibile": [
+    {
+      "tag": "input",
+      "name": null,
+      "id": "q",
+      "type": "search",
+      "label": "Caută o localitate, un județ sau o școală",
+      "options": null
+    }
+  ],
+  "cereri_date": [],
+  "corpuri_pastrate": [],
+  "corpuri_omise": [],
+  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+}

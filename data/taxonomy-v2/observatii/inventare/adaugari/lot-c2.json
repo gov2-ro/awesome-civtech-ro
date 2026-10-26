@@ -1,0 +1,272 @@
+[
+  {
+    "proiect": "romania-interactiva",
+    "url": "https://romaniainteractiva.ro/recensaminte/",
+    "metoda": "adaugat-explicit",
+    "citire": {
+      "tip": "js-literale",
+      "tabele": true
+    },
+    "parinte": "https://romaniainteractiva.ro/",
+    "locate": {
+      "pagina": "https://romaniainteractiva.ro/",
+      "text": "url:\"https://romaniainteractiva.ro/recensaminte/\"",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://romaniainteractiva.ro/recensaminte/",
+        "text": "Surse: Institutul Național de Statistică, ",
+        "cache": true,
+        "rol": "sursa-declarata-de-pagina"
+      },
+      {
+        "pagina": "https://romaniainteractiva.ro/recensaminte/",
+        "text": "Populația la recensămintele din anii 1948, 1956, 1966, 1977, 1992, 2002 și 2011 – categorii de localități și județe",
+        "cache": true,
+        "rol": "set-sursa-declarat-de-pagina"
+      }
+    ],
+    "nota": "Tool page of the project, listed in its catalog (TOOLS) and in sitemap.xml. The page keeps its data in script constants (RAW: one row per county, one value per census year; URB: urban population; RO, RO_U, RO_R: national totals) and has one HTML table. Its JSON-LD declares the data set. No API or file download exists; no request beyond the page was made."
+  },
+  {
+    "proiect": "romania-interactiva",
+    "url": "https://romaniainteractiva.ro/guverne/",
+    "metoda": "adaugat-explicit",
+    "citire": {
+      "tip": "js-literale",
+      "tabele": true
+    },
+    "parinte": "https://romaniainteractiva.ro/",
+    "locate": {
+      "pagina": "https://romaniainteractiva.ro/",
+      "text": "url:\"https://romaniainteractiva.ro/guverne/\"",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://romaniainteractiva.ro/guverne/",
+        "text": "Surse: Guvernul României, ",
+        "cache": true,
+        "rol": "sursa-declarata-de-pagina"
+      },
+      {
+        "pagina": "https://romaniainteractiva.ro/guverne/",
+        "text": "Monitorul Oficial al României, hotărârile Parlamentului privind acordarea încrederii Guvernului",
+        "cache": true,
+        "rol": "sursa-declarata-de-pagina"
+      },
+      {
+        "pagina": "https://romaniainteractiva.ro/guverne/",
+        "text": "Agerpres, documentarul privind moțiunile de cenzură",
+        "cache": true,
+        "rol": "sursa-declarata-de-pagina"
+      }
+    ],
+    "nota": "Tool page of the project, listed in its catalog and in sitemap.xml. The page keeps its data in script constants (G: one record per government with short keys, explained by the comment above the constant; PF, MV, MWHO, PRES, ELEC) and has one HTML table. Its JSON-LD declares the data set and the three sources."
+  },
+  {
+    "proiect": "romania-interactiva",
+    "url": "https://romaniainteractiva.ro/universitati/",
+    "metoda": "adaugat-explicit",
+    "citire": {
+      "tip": "js-literale",
+      "tabele": true
+    },
+    "parinte": "https://romaniainteractiva.ro/",
+    "locate": {
+      "pagina": "https://romaniainteractiva.ro/",
+      "text": "url:\"https://romaniainteractiva.ro/universitati/\"",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://romaniainteractiva.ro/universitati/",
+        "text": "<b>Sursa:</b> Institutul Național de Statistică, TEMPO-Online, tabelul SCL103D (populația școlară pe niveluri de educație, județe și localități)",
+        "cache": true,
+        "rol": "sursa-declarata-de-pagina"
+      },
+      {
+        "pagina": "https://romaniainteractiva.ro/universitati/",
+        "text": "vin de la CNFIS",
+        "cache": true,
+        "rol": "sursa-declarata-de-pagina"
+      }
+    ],
+    "nota": "Tool page of the project, listed in its catalog and in sitemap.xml. The page keeps its data in script constants (D: one record per university centre; U and UH: universities of the state; CAM: dormitory places) and has three HTML tables whose rows a script fills. Its JSON-LD declares the data set."
+  },
+  {
+    "proiect": "romania-interactiva",
+    "url": "https://romaniainteractiva.ro/cupluri/",
+    "metoda": "adaugat-explicit",
+    "citire": {
+      "tip": "js-literale",
+      "tabele": true
+    },
+    "parinte": "https://romaniainteractiva.ro/",
+    "locate": {
+      "pagina": "https://romaniainteractiva.ro/",
+      "text": "url:\"https://romaniainteractiva.ro/cupluri/\"",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://romaniainteractiva.ro/cupluri/",
+        "text": "INS, TEMPO-Online — POP210A (căsătorii) și POP212A (divorțuri), după domiciliul soților",
+        "cache": true,
+        "rol": "sursa-declarata-de-pagina"
+      },
+      {
+        "pagina": "https://romaniainteractiva.ro/cupluri/",
+        "text": "Eurostat (demo_nind, demo_ndivind)",
+        "cache": true,
+        "rol": "sursa-declarata-de-pagina"
+      },
+      {
+        "pagina": "https://romaniainteractiva.ro/cupluri/",
+        "text": "folosesc populația după domiciliu (POP107A)",
+        "cache": true,
+        "rol": "sursa-declarata-de-pagina"
+      }
+    ],
+    "nota": "Tool page of the project, listed in its catalog and in sitemap.xml. The page keeps its data in script constants (DATA: years and, for each county, the arrays m, d and p; NAT25; LONG: national rates since 1960; COLS: the table columns). The table is filled by a script. Its JSON-LD declares the data set."
+  },
+  {
+    "proiect": "romania-interactiva",
+    "url": "https://orase-digitale.ro/",
+    "metoda": "adaugat-explicit",
+    "citire": {
+      "tip": "js-literale",
+      "tabele": true
+    },
+    "parinte": "https://romaniainteractiva.ro/",
+    "locate": {
+      "pagina": "https://romaniainteractiva.ro/",
+      "text": "url:\"https://orase-digitale.ro\"",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://orase-digitale.ro/",
+        "text": "Datele sunt colectate manual de către un grup format din cercetători și asistenți studenți",
+        "cache": true,
+        "rol": "metoda-declarata-de-pagina"
+      },
+      {
+        "pagina": "https://orase-digitale.ro/",
+        "text": "data-i18n=\"meth.lede\"",
+        "cache": true,
+        "rol": "descriere-metodologie"
+      }
+    ],
+    "nota": "Featured tool of the project (its home page shows it first, with 325 cities, 46 indicators and three waves). It sits on its own host. The page holds a data island (dataScript: the cities with the total score, the rank and the five category scores of each wave), script constants and an HTML table. Its JSON-LD declares the data set and six measured variables. The indicator list (INDICATOR_SET) is a literal of the page."
+  },
+  {
+    "proiect": "romania-interactiva",
+    "url": "https://romaniainteractiva.ro/locale/",
+    "metoda": "adaugat-explicit",
+    "citire": {
+      "tip": "js-literale",
+      "tabele": true
+    },
+    "parinte": "https://romaniainteractiva.ro/",
+    "locate": {
+      "pagina": "https://romaniainteractiva.ro/",
+      "text": "url:\"https://romaniainteractiva.ro/locale/\"",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://romaniainteractiva.ro/locale/",
+        "text": "<b>Surse.</b> Autoritatea Electorală Permanentă, procesele-verbale finale ale alegerilor locale din 9 iunie 2024",
+        "cache": true,
+        "rol": "sursa-declarata-de-pagina"
+      }
+    ],
+    "nota": "Tool page of the project, listed in its catalog and in sitemap.xml. The response is over 2,000,000 bytes; a range read of the first 600,000 bytes ends at the last complete line, before the script that holds the data. The sample holds the text and the JSON-LD data set, no table and no literal."
+  },
+  {
+    "proiect": "romania-interactiva",
+    "url": "https://romaniainteractiva.ro/harta-notelor/",
+    "metoda": "adaugat-explicit",
+    "citire": {
+      "tip": "js-literale",
+      "tabele": true
+    },
+    "parinte": "https://romaniainteractiva.ro/",
+    "locate": {
+      "pagina": "https://romaniainteractiva.ro/",
+      "text": "url:\"https://romaniainteractiva.ro/harta-notelor/\"",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://romaniainteractiva.ro/harta-notelor/",
+        "text": "<b>Date.</b> Ministerul Educației, fișierele de date deschise de pe ",
+        "cache": true,
+        "rol": "sursa-declarata-de-pagina"
+      }
+    ],
+    "nota": "Tool page of the project, listed in its catalog and in sitemap.xml. The response is over 2,000,000 bytes; a range read of the first 600,000 bytes ends at the last complete line, before the script that holds the data. The sample holds the text (definitions of the indicators) and the JSON-LD data set, no table and no literal."
+  },
+  {
+    "proiect": "romania-interactiva",
+    "url": "https://ins.gov2.ro/api/datasets/SCL103D?lang=en",
+    "metoda": "adaugat-explicit",
+    "parinte": "https://romaniainteractiva.ro/universitati/",
+    "locate": {
+      "pagina": "https://romaniainteractiva.ro/universitati/",
+      "text": "<b>Sursa:</b> Institutul Național de Statistică, TEMPO-Online, tabelul SCL103D (populația școlară pe niveluri de educație, județe și localități)",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "proiect": "ins-gov2",
+        "pagina": "https://ins.gov2.ro/llms.txt",
+        "text": "GET /api/datasets/{matrix_code}?lang={ro|en}",
+        "rol": "ruta-metadate-set"
+      }
+    ],
+    "nota": "The page of the tool names TEMPO matrix SCL103D as the source of the students per university centre. The metadata is read from the ins.gov2.ro API, which is not the project's own source."
+  },
+  {
+    "proiect": "romania-interactiva",
+    "url": "https://ins.gov2.ro/api/datasets/POP210A?lang=en",
+    "metoda": "adaugat-explicit",
+    "parinte": "https://romaniainteractiva.ro/cupluri/",
+    "locate": {
+      "pagina": "https://romaniainteractiva.ro/cupluri/",
+      "text": "INS, TEMPO-Online — POP210A (căsătorii) și POP212A (divorțuri), după domiciliul soților",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "proiect": "ins-gov2",
+        "pagina": "https://ins.gov2.ro/llms.txt",
+        "text": "GET /api/datasets/{matrix_code}?lang={ro|en}",
+        "rol": "ruta-metadate-set"
+      }
+    ],
+    "nota": "The page of the tool names TEMPO matrix POP210A (marriages, by the domicile of the spouses). The metadata is read from the ins.gov2.ro API, which is not the project's own source."
+  },
+  {
+    "proiect": "romania-interactiva",
+    "url": "https://ins.gov2.ro/api/datasets/POP212A?lang=en",
+    "metoda": "adaugat-explicit",
+    "parinte": "https://romaniainteractiva.ro/cupluri/",
+    "locate": {
+      "pagina": "https://romaniainteractiva.ro/cupluri/",
+      "text": "INS, TEMPO-Online — POP210A (căsătorii) și POP212A (divorțuri), după domiciliul soților",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "proiect": "ins-gov2",
+        "pagina": "https://ins.gov2.ro/llms.txt",
+        "text": "GET /api/datasets/{matrix_code}?lang={ro|en}",
+        "rol": "ruta-metadate-set"
+      }
+    ],
+    "nota": "The page of the tool names TEMPO matrix POP212A (divorces, by the domicile of the spouses). The metadata is read from the ins.gov2.ro API, which is not the project's own source."
+  }
+]
