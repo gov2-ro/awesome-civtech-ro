@@ -13,6 +13,9 @@ The reader keeps what the listing states and nothing else. It never requests a t
   its address and attribution, the visible tables (name, row count, column names), the number of hidden tables and the names of the views.
   Each fact is `{valoare, pointer, baza}`. `baza` is `declarat-in-metadate` (the server's metadata: source and licence), `declarat-in-lista`
   (names and the hidden count) or `calculat-de-server` (the size and a row count: the server computed them when it answered).
+- A column that names a personal identifier (`PERSONAL_IDS`: the CNP, the Romanian personal numeric code) is discarded: it gets no field and
+  its name leaves the column list of its table. The table keeps the count of discarded columns in `coloane_omise`. The catalogue publishes
+  the field list, and a personal identifier is not a variable that it lists (owner, 2026-10-26).
 - A hidden table (the full-text index tables `*_fts*`) holds no variable: it gets no field. A view has no column in the listing: it is named
   and nothing more. Primary keys, foreign keys, saved queries and the other members of the listing are not read.
 
@@ -25,6 +28,8 @@ FIELD_STATE = 'declarat-in-lista-baza'
 FORMAT = 'baza-datasette'
 METADATA, LISTED, COMPUTED = 'declarat-in-metadate', 'declarat-in-lista', 'calculat-de-server'
 MAX_FIELDS = 2000
+# Column names (compared without case and outer spaces) that the reader discards.
+PERSONAL_IDS = {'cnp'}
 
 
 def is_listing(doc):
@@ -72,6 +77,10 @@ def columns_of(table):
     return names
 
 
+def discarded(column):
+    return column.strip().casefold() in PERSONAL_IDS
+
+
 def row_count(table):
     count = table.get('count')
     return count if isinstance(count, int) and not isinstance(count, bool) and count >= 0 else None
@@ -85,6 +94,8 @@ def read(doc):
             continue
         count = row_count(table)
         for m, column in enumerate(columns_of(table)):
+            if discarded(column):
+                continue
             field = {'nume': column, 'cale': f'{table["name"]}.{column}', 'grup': table['name'], 'rol': 'coloana-sql', 'tip_declarat': None,
                      'stare_tip': FIELD_STATE, 'pointer': f'/tables/{n}/columns/{m}'}
             if count is not None:
@@ -98,7 +109,8 @@ def database(doc):
     tables = checked_tables(doc)
     visible = [{'nume': fact(t['name'], f'/tables/{n}/name', LISTED),
                 'randuri': fact(row_count(t), f'/tables/{n}/count', COMPUTED) if row_count(t) is not None else None,
-                'coloane': columns_of(t), 'pointer': f'/tables/{n}'} for n, t in tables if not t['hidden']]
+                'coloane': [c for c in columns_of(t) if not discarded(c)], 'pointer': f'/tables/{n}',
+                **({'coloane_omise': omitted} if (omitted := sum(map(discarded, columns_of(t)))) else {})} for n, t in tables if not t['hidden']]
     views = []
     for n, view in enumerate(doc.get('views') or []):
         if not isinstance(view, dict) or not isinstance(view.get('name'), str) or not view['name']:

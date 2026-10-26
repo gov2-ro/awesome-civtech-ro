@@ -44977,16 +44977,6 @@
           "randuri_tabel": 30791
         },
         {
-          "nume": "CNP",
-          "cale": "Donatori persoane fizice.CNP",
-          "grup": "Donatori persoane fizice",
-          "rol": "coloana-sql",
-          "tip_declarat": null,
-          "stare_tip": "declarat-in-lista-baza",
-          "pointer": "/tables/5/columns/5",
-          "randuri_tabel": 30791
-        },
-        {
           "nume": "Ce s-a donat",
           "cale": "Donatori persoane fizice.Ce s-a donat",
           "grup": "Donatori persoane fizice",
@@ -46298,12 +46288,12 @@
               "An",
               "Partid",
               "Tip donație",
-              "CNP",
               "Ce s-a donat",
               "Data donației",
               "Organizația"
             ],
-            "pointer": "/tables/5"
+            "pointer": "/tables/5",
+            "coloane_omise": 1
           },
           {
             "nume": {

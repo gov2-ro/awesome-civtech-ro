@@ -1072,6 +1072,8 @@ metadata members `source`, `source_url`, `license`, `license_url`). It is not a 
   A fact that the listing lacks is `null`.
 - `licenta` is the licence that the metadata declares: `valoare` (as written, for example `CC Attribution 4.0 License`), `acopera` `tabelele-bazei`, `url` (the member `license_url`, as written) and `atribuire` (the member `source`, word for word).
   It is `null` when the listing has no `license` member: a licence address alone is not a licence. The field browser credits it like the licence of a page of CSV files (`Sursa: <source>`).
+- A column that names a personal identifier (`PERSONAL_IDS`, today only `CNP`, compared without case and outer spaces) is discarded: it gets no field, and its name leaves `coloane`.
+  The table record keeps the number of discarded columns in `coloane_omise`. The other fields keep their pointers into the listing. Decided by the owner on 2026-10-26.
 - A hidden table (the full-text index tables `*_fts*`) gets no field. A view has no column in the listing, so it is named and nothing more. Primary keys, foreign keys, saved queries and the other members of the listing are not read.
   The `source` of the listing names who published the database. It is the project author or the distributor, not a provider of the data; the review items name the provider.
 - A table or a view with no name, a table named twice, a table with no column list or no boolean `hidden`, a column with no name, a column twice in one table and a `source` that is not text are errors (state `eroare-parsare`); the reader never guesses.

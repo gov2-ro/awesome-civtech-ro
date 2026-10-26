@@ -1941,7 +1941,6 @@ bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baz
 bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,An,Donatori persoane fizice.An,,,,,,,/tables/5/columns/2,declarat-in-lista-baza
 bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Partid,Donatori persoane fizice.Partid,,,,,,,/tables/5/columns/3,declarat-in-lista-baza
 bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Tip donație,Donatori persoane fizice.Tip donație,,,,,,,/tables/5/columns/4,declarat-in-lista-baza
-bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,CNP,Donatori persoane fizice.CNP,,,,,,,/tables/5/columns/5,declarat-in-lista-baza
 bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Ce s-a donat,Donatori persoane fizice.Ce s-a donat,,,,,,,/tables/5/columns/6,declarat-in-lista-baza
 bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Data donației,Donatori persoane fizice.Data donației,,,,,,,/tables/5/columns/7,declarat-in-lista-baza
 bani-partide,8f8229240b7f63743cd4,https://db.banipartide.ro/banipartide.json,baza-datasette,coloana-sql,Organizația,Donatori persoane fizice.Organizația,,,,,,,/tables/5/columns/8,declarat-in-lista-baza

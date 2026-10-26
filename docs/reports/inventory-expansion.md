@@ -6,7 +6,7 @@ Inventory assertions are proposals. Raw field totals count source paths, not ind
 ## 1. Outcome
 
 - Milestones A (safe incremental collection), B (INS), C (12 entries), D (meanings and shared groups) and E (preview, coverage, report) are complete.
-- Structured field evidence now covers 31 of 129 projects and resources (baseline 14). The retained sources are 115 URLs (110 parsed, 5 failed) with 4,134 field records.
+- Structured field evidence now covers 31 of 129 projects and resources (baseline 14). The retained sources are 115 URLs (110 parsed, 5 failed) with 4,133 field records.
 - Each field record is a path in a source. The proposals are 38 shared groups (baseline 7), 16 provider review items and the dictionary evidence that `inventory.py --check` verifies.
 - The public build is unchanged: the default payload equals the v0.13.0 payload apart from its generation time; classifications and accepted providers are identical.
 - Collection used 126 direct requests in total (6 browser navigations); the 150-request limit of lot C was not reached.
@@ -44,28 +44,28 @@ The 129 projects and resources of the catalogue (the finder lists the 85 that ar
 | Projects/resources without extracted structured fields | 113 | 98 |
 | Retained structured-source URLs | 25 | 115 |
 | Parsed sources / HTTP failures | 24 / 1 | 110 / 5 |
-| Source-scoped field records (paths, not variables) | 2,302 | 4,134 |
+| Source-scoped field records (paths, not variables) | 2,302 | 4,133 |
 | Schema declarations / sampled JSON paths / CSV headers / INS dimensions | 1,312 / 904 / 82 / 4 | 1,367 / 1,341 / 238 / 4 |
 | HTML control candidates / entries with candidates | 308 / 78 | 310 / 80 |
 | Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 83 / 59 |
-| Accepted provider relations / entries with accepted providers | 26 / 11 | 75 / 26 |
-| Pending provider proposals (review items D132 and later) | 15 | 1 |
+| Accepted provider relations / entries with accepted providers | 26 / 11 | 76 / 27 |
+| Pending provider proposals (review items D132 and later) | 15 | 0 |
 | Proposed business-variable groups | 7 | 38 |
 | Unit tests discovered / skipped | 308 / 6 | 724 / 6 |
 | Explorer inventory / dedicated finder browser checks | 25 / 25 | 36 / 62 |
 
-Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 57 in all; deschis 1, acceptat 49, respins 4, amanat 0, tehnic 3. Variable groups: 38 in all; propus 5, revizuit 33, respins 0, amanat 0. Group members (selectors): 116 in all; propus 14, confirmat 102, exclus 0.
+Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 57 in all; deschis 0, acceptat 50, respins 4, amanat 0, tehnic 3. Variable groups: 38 in all; propus 5, revizuit 33, respins 0, amanat 0. Group members (selectors): 116 in all; propus 14, confirmat 102, exclus 0.
 
 Scope of the data finder (`/date/`): 85 of the 126 public projects and resources are in scope. An entry is in scope when it is not inactive (`offline`, `arhivat`) and its `relatie_date` is `date-publice`, `date-proprii` or `calcul`. The finder leaves out 41: 18 without data (`fara-date`), 5 not assessed (empty value), 18 inactive (counted first: an inactive entry is never counted as another reason). 3 hidden entries (`ascuns`) are in no count of this paragraph.
 
-Field records by evidence type now: declarat-in-schema 1,367, observat-in-esantion-json 1,341, declarat-in-cod-sursa 366, exemplu-in-documentatie 364, neprecizat-in-antet-csv 238, declarat-in-lista-baza 172, antet-tabel-html 85, declarat-in-tabel-documentatie 53, declarat-in-metadate 43, declarat-in-lista-documentatie 40, declarat-in-documentatie-api 33, declarat-in-text-documentatie 23, utilizat-in-cod-pagina 9.
+Field records by evidence type now: declarat-in-schema 1,367, observat-in-esantion-json 1,341, declarat-in-cod-sursa 366, exemplu-in-documentatie 364, neprecizat-in-antet-csv 238, declarat-in-lista-baza 171, antet-tabel-html 85, declarat-in-tabel-documentatie 53, declarat-in-metadate 43, declarat-in-lista-documentatie 40, declarat-in-documentatie-api 33, declarat-in-text-documentatie 23, utilizat-in-cod-pagina 9.
 
 Coverage by measure, for the 129 projects and resources (`acoperire.csv` has the rows). A column that counts fields counts source paths:
 
 | Measure | Entries counted | Total |
 | --- | ---: | ---: |
 | Structured sources | 31 | 120 |
-| Field records from sources | 31 | 4,196 |
+| Field records from sources | 31 | 4,195 |
 | Entries in at least one proposed group | 31 | 23 |
 | Fields with a source-declared description | 31 | 1,358 |
 | Fields with a declared type | 31 | 1,599 |
@@ -257,7 +257,7 @@ Portal of data sets that Expert Forum (EFOR) compiled for its projects. The page
 
 Platform on political party finance in Romania since 2006 (donations, campaign finance, public subsidies, income and expenses of parties; catalogue text). Every automated request to banipartide.ro answers HTTP 403, and the host is on the list of hosts that no script requests. The owner saved the listing of its Datasette database (`https://db.banipartide.ro/banipartide.json`) from a browser on 2026-10-26 at 20:30 (+02:00), and the inventory reads that copy (part 3, brief section 8.1). The listing names the database `banipartide` (46,718,976 bytes) with 18 visible tables, 20 hidden full-text tables and 4 views (names only). The 18 tables have 172 columns, one field record for each, and 457,900 rows in all. The largest are `Donatori rapoarte de venituri și cheltuieli` (353,473 rows), `Contributii campanie` (49,697), `Donatori persoane fizice` (30,791), `Cheltuieli subventii` (8,950) and `Venituri anuale din rapoarte de venituri și cheltuieli` (3,923). The listing declares the source „Expert Forum”, the source address https://expertforum.ro/tag/finantare-politica/ and the licence CC Attribution 4.0, and the field browser credits them. It declares no type, description, unit, period or provider, so each field has a name and nothing more. The tables of donors and `Contributii campanie` hold data about persons (`Nume donator`, `CNP`, `Nume`): the inventory keeps the column names only and no row was read. Mapping: the column `Partid` of 12 tables is proposed for the group `partid-politic` and `Legenda partide.UAT` for `uat` (both groups still proposed); two groups are new (`subventie-partid`, `donatie-partid`, state `propus`); six selectors are candidates for the reviewed groups `cui`, `judet` and `perioada-de-referinta`. Providers: one proposal (D187). The table `Venituri anuale partide de la MF` names the Ministry of Finance by its initials; no other text of the copy names a provider. The source „Expert Forum” is the project author and distributor, not a provider. Relation to another entry: the political finance data set of `data-expertforum` links https://www.banipartide.ro/ as its related report; the two entries share no data source (the Drive file of that data set was not read), so nothing is counted twice.
 
-- State: cu-surse-structurate. Sources 1, field records 172, groups 4.
+- State: cu-surse-structurate. Sources 1, field records 171, groups 4.
 - Source URLs: `https://db.banipartide.ro/banipartide.json`
 - Proposed groups: `donatie-partid`, `partid-politic`, `subventie-partid`, `uat`
 - Documented inputs: none documented in the sources read. HTML controls stay candidates.

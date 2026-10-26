@@ -57,6 +57,15 @@ class Reader(unittest.TestCase):
         self.assertFalse([f for f in self.fields if '_fts' in f['grup']], 'the full-text tables are hidden and hold no variable')
         self.assertFalse([f for f in self.fields if f['nume'] in ('rank', 'k', 'v')])
 
+    def test_a_column_that_names_a_personal_identifier_is_discarded_and_only_counted(self):
+        doc = listing(tables=[table('Donatori', ['Nume', 'CNP', 'Suma', ' cnp '])])
+        fields, _ = read(doc)
+        self.assertEqual([f['nume'] for f in fields], ['Nume', 'Suma'])
+        self.assertEqual([f['pointer'] for f in fields], ['/tables/0/columns/0', '/tables/0/columns/2'], 'the pointers keep the position in the listing')
+        facts = database(doc)['tabele'][0]
+        self.assertEqual((facts['coloane'], facts['coloane_omise']), (['Nume', 'Suma'], 2))
+        self.assertNotIn('coloane_omise', database(listing())['tabele'][0])
+
     def test_a_field_has_the_path_table_dot_column_the_role_and_no_type(self):
         field = next(f for f in self.fields if f['cale'] == 'Subvenții.Suma')
         self.assertEqual((field['nume'], field['grup'], field['rol'], field['tip_declarat']), ('Suma', 'Subvenții', 'coloana-sql', None))
@@ -247,12 +256,14 @@ class TrackedBaniPartide(unittest.TestCase):
         cls.notes = json.loads((cls.ROOT / 'inventar-note.json').read_text())
         cls.fields = [({'name': f['nume'], 'path': f['cale'], 'role': f['rol']}, cls.URL) for f in cls.source['campuri']]
 
-    def test_the_source_is_the_owners_copy_with_one_field_for_each_column_of_the_18_visible_tables(self):
+    def test_the_source_is_the_owners_copy_with_one_field_for_each_kept_column_of_the_18_visible_tables(self):
         source = self.source
         self.assertEqual((source['origine'], source['http_status'], source['format'], source['stare']), ('copie-salvata-de-proprietar', None, 'baza-datasette', 'analizat'))
         self.assertEqual(source['salvat_la'], '2026-10-26T20:30:00+02:00')
         base = source['baza']
-        self.assertEqual((len(base['tabele']), len(source['campuri']), len(base['vederi'])), (18, 172, 4))
+        self.assertEqual((len(base['tabele']), len(source['campuri']), len(base['vederi'])), (18, 171, 4), '172 columns, less the discarded CNP')
+        self.assertEqual([(t['nume']['valoare'], t['coloane_omise']) for t in base['tabele'] if t.get('coloane_omise')], [('Donatori persoane fizice', 1)])
+        self.assertFalse([f for f in source['campuri'] if f['nume'].strip().casefold() == 'cnp'], 'a personal identifier is never a field')
         self.assertEqual((base['tabele_ascunse']['valoare'], base['ascunse_in_lista']), (20, 20), 'the hidden full-text tables get no field')
         self.assertEqual(sum(len(t['coloane']) for t in base['tabele']), len(source['campuri']))
         self.assertFalse([f for f in source['campuri'] if '_fts' in f['grup']])
@@ -274,7 +285,7 @@ class TrackedBaniPartide(unittest.TestCase):
         allowed = {'nume', 'cale', 'grup', 'rol', 'tip_declarat', 'stare_tip', 'pointer', 'randuri_tabel'}
         self.assertTrue(all(set(f) <= allowed and f['tip_declarat'] is None for f in self.source['campuri']))
         for table in self.source['baza']['tabele']:
-            self.assertEqual(set(table), {'nume', 'randuri', 'coloane', 'pointer'})
+            self.assertLessEqual(set(table), {'nume', 'randuri', 'coloane', 'pointer', 'coloane_omise'})
 
     def test_the_discovery_locator_is_a_fragment_of_the_copy(self):
         record = next(r for r in self.registry if r['url'] == self.URL)
