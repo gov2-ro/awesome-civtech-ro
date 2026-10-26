@@ -14,6 +14,9 @@ Each reader returns field records in the shape of inventory.parse_source and nev
   It lists the keys the document shows, the alternatives it declares and its comments. Example values are not a type contract.
 - `html-api-docs` (module `inventory_apidocs`): an API reference page whose endpoints are cards. Request inputs and response members become
   fields; the operations themselves are a separate list (`inventory_apidocs.operations`).
+- `js-literale` (module `inventory_literals`): the data that a page script holds as literals (`const DATA = {...}`) and data islands
+  (`<script type="application/json">`). Each path in a literal is a field with the types that a bounded sample shows. The option `tabele`
+  (`true`, or a list of positions) adds the table readers of the same page.
 - `html-carduri-csv` (module `inventory_csvcards`): a page whose cards offer CSV files with a list of columns. Each column becomes a field with
   the description that the page declares; the files themselves are a separate list of datasets (`inventory_csvcards.csv_datasets`).
 
@@ -28,6 +31,7 @@ from html.parser import HTMLParser
 
 from inventory_apidocs import api_docs
 from inventory_csvcards import csv_cards
+from inventory_literals import read as read_literals
 
 SAMPLE_ROWS = 5
 NAME_COLUMNS = {'matrice', 'nume', 'denumire', 'variabila', 'camp', 'coloana', 'field', 'column', 'name', 'variable', 'indicator',
@@ -605,6 +609,15 @@ def json_comentat(body):
     return 'json-comentat', fields[:2000], skipped > 0 or len(fields) > 2000
 
 
+def js_literale(body, options=None):
+    """Data literals of page scripts, and (with the option `tabele`) the tables of the same page. Table fields come first: they are what a visitor sees."""
+    fields, truncated = read_literals(body)
+    tables = (options or {}).get('tabele')
+    if tables:
+        fields = table_fields(parse_tables(body), selected=None if tables is True else set(tables)) + fields
+    return 'js-literale', fields, truncated
+
+
 def js_acces(body, objects=('fields',)):
     """Names that inline page scripts read from a record object, `fields['Name']` or `fields.name`. Not a schema."""
     fields, seen = [], {}
@@ -626,7 +639,7 @@ def js_acces(body, objects=('fields',)):
 READERS = {'html-tabele': html_tabele, 'markdown': markdown, 'csharp': lambda body, options=None: csharp(body),
            'sql': lambda body, options=None: sql(body), 'php': lambda body, options=None: php(body),
            'json-comentat': lambda body, options=None: json_comentat(body), 'html-api-docs': lambda body, options=None: api_docs(body, options),
-           'html-carduri-csv': csv_cards}
+           'html-carduri-csv': csv_cards, 'js-literale': js_literale}
 EXTENSIONS = {'.cs': 'csharp', '.sql': 'sql', '.php': 'php', '.md': 'markdown'}
 
 

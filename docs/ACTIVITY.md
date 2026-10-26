@@ -1,5 +1,42 @@
 # Activity
 
+## 2026-10-26 — Inventory batch C2: România Interactivă read; both EFOR hosts answer 403
+
+**Done**
+- Lot `C2` (brief `docs/briefs/inventory-batch-c2.md`) covered the three active entries `data-expertforum`, `bani-partide` and `romania-interactiva`. The coverage export gives them the lot code `C2`.
+- `romania-interactiva` has ten structured sources (specification file `observatii/inventare/adaugari/lot-c2.json`): seven tool pages (`recensaminte/`, `guverne/`, `universitati/`, `cupluri/`, `locale/`, `harta-notelor/` and the site `orase-digitale.ro`) and three INS TEMPO metadata records (SCL103D, POP210A, POP212A).
+  Each source has an exact discovery locator in the project's own pages. Measured: 269 field records, 17 with a description, 5 measures with a unit and 11 without, 10 sources with a verified locator.
+- New reader `js-literale` (`scripts/inventory_literals.py`): the data that a page script holds as literals, JSON data islands, and the schema.org `Dataset` of the JSON-LD (`seturi_ld`, and `variableMeasured` as fields). It reads no value into a record except three example keys of a collection. 21 offline tests.
+  Reason: the tool pages keep their data in script constants and in one data island; no existing reader sees them, and the pages declare no schema.
+- Three proposed groups, state `propus`: `casatorii`, `divorturi` and `studenti` (10 members, family `populatie-teritoriu`). Every definition and unit fact has a fragment of a retained body with its hash (`inventory.py --check`: 84 dictionary evidence items verified, 22 more than before).
+- Ten provider items D176–D185, state `deschis`: INS, Eurostat, CNFIS, AEP, Ministerul Educației, Guvernul României, Monitorul Oficial (priority `medie`), Agerpres, ANOSR and Cushman & Wakefield Echinox (priority `mica`).
+  Each cites the tool page that names the provider, with the hash of the retained copy. `relatii.csv` did not change.
+- `inventory_report.py` knows lot `C2`, and a note that records a blocker gives the state `blocat` to an entry that has no source record. The report has a subsection for the batch and a network summary. 3 new tests.
+- Network (lot C2): 18 direct requests in the log (limit 60) plus 2 of `collect_docs.py` (it does not write the log): 20. Bytes read: 7,484,573, of which 4,000,002 came from two responses that the fetcher refused. No retry.
+  Hosts: romaniainteractiva.ro 12, ins.gov2.ro 3, expertforum.ro 2, banipartide.ro 1, data.expertforum.ro 1, orase-digitale.ro 1. Browser: 2 navigations (`harta-notelor/`, `locale/`), 0 data requests.
+- Tests: 614 run, 6 skipped (590 and 6 before). `validate.py --publication`: 0 errors. `inventory.py --check`: 0 errors, 98 bodies hash-verified (88 before). A build with `--with-inventory` into a scratch folder: 128 finder entries, 33 groups; `site/` has no change. Browser checks against that build: `check_preview.py` 111/111, `check_inventory_preview.py` 31/31, `check_data_finder.py` 40/40.
+- A fresh clone of the branch (no local caches): 614 tests pass, `validate.py --publication` 0 errors, `inventory.py --check` 0 errors with 305 bodies reported unavailable (never counted as verified). An offline replay from the caches gives the six generated files byte for byte.
+
+**Hard**
+- `banipartide.ro`, `data.expertforum.ro` and `expertforum.ro` answer HTTP 403 to every automated request (the documentation collector got 403 on four pages of each of the first two on 2026-10-24; the home pages again on 2026-10-26, and two pages of `expertforum.ro`).
+  The brief says to stop on a host after a 403. The two entries have no source, no field and no group, and the question "which provider supplies each record" stays open. Proposed rows for `colectare-interzisa.csv` are in the report (section 7); none was added.
+- The sealed run `runs/2026-10-19-reasoned-evidence` holds a text of the page of `data.expertforum.ro` (a table of data sets; "Finanțarea politică 2006–2021" links to `banipartide.ro`). It shows that both entries may share one data set. It is context only: it has no locator that the inventory can verify, and the folder is sealed.
+- A response over 2,000,000 bytes is refused by the fetcher after it read that many bytes. `locale/` and `harta-notelor/` were the first requests that had this size, so 4,000,002 bytes were read for nothing. The range read of 600,000 bytes ends at the last complete line, which is before the data script (12,844 and 32,622 characters). Their data was not read.
+  Lesson for the next batch: probe a page of unknown size with `--sample-bytes` first.
+- All 30 groups are `revizuit`, and a reviewed group cannot hold a member that the owner has not confirmed (`validate_group_state`). A new selector would need `confirmat` (the owner's decision) or a group that goes back to `amanat`. Neither is for this session.
+  So no field was added to a reviewed group. 19 field records match 10 candidate selectors of four groups: `perioada-de-referinta` (5: TIME_PERIOD of POP210A, POP212A and SCL103D, `Y[]`, `DATA.years[]`), `judet` (2: REF_AREA of SCL103D, `RAW[][0]`), `localitate` (3: REF_AREA_2 of SCL103D, `D[].n`, `dataScript.cities[].name`) and `populatie` (9: `RAW[][1..8]` and `DATA.c{*}.p[]`).
+  The REF_AREA of POP210A and POP212A mixes macroregions, regions and counties, so the `judet` group keeps them out. The selectors are in section 5 of `docs/reports/inventory-expansion.md` (`selectori_candidati` of `inventar-note.json`).
+- POP210A: the INS note says the data are split by "the place where the marriage was registered"; the page says "according to the domicile of the spouses". Both texts are in `ambiguitati` of `casatorii`.
+- Orașe digitale holds the authors' own data (manual coding, 46 indicators, three waves). The page names no source for the population of a city (`pop`) and no licence. The data island and the app also hold interface state (`rankingsState`, `GA_ROUTE_TITLES`); the reader lists them because they are literals of the page. They are paths, not variables.
+- The keys of the page data (`L`, `T`, `V`, `m`, `d`, `p`, `t`, `b`, `x`) are short and are not described. Their meaning comes from button labels, code and sums. Each such statement in a group has the basis `deductie-din-dovezi` or `observatie-esantion`, so that the review interface asks the owner to tick it.
+
+**Decided**
+- Stop on the three hosts after the first 403 and do not pass the refusal with a browser (the precedent is `harta-firmelor.ro`, and the brief says to stop). The cost: two of three entries have no inventory. A browser pass would work around a refusal; the owner decides.
+- Do not run `collect_docs.py` for the two blocked entries: its first request fails, and it asks for three more pages of the same host.
+- Reuse the evidence type `observat-in-esantion-json` and `declarat-in-metadate` for the new reader. A new type would need a change in the label maps of `site/app.js` and `site/inventory.js` and a new stamp of `site/index.html`.
+- Admit `locale/` and `harta-notelor/` as sources although they hold no field: the JSON-LD data set (period, licence, `isBasedOn`) and the provider sentence are retained evidence, and the ten-source limit allowed it. Cost: two sources with zero field records.
+- No provider item for Orașe digitale: its data are the project's own. No item for the map of the home page (the code comment names Natural Earth and GeoNames); both are decoration.
+
 ## 2026-10-26 — The relation to data: the column `relatie_date` and its proposals (steps A and B)
 
 **Done**

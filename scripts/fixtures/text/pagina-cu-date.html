@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<title>Căsătorii pe județe, pagină de probă</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"WebPage","name":"Probă","url":"https://example.org/probe/"},
+ {"@type":["Dataset"],"name":"Căsătorii pe județe, 1990–2024","description":"Numărul de căsătorii pe județe.","temporalCoverage":"1990/2025",
+  "spatialCoverage":{"@type":"Place","name":"România"},"isBasedOn":["https://insse.ro/","https://ec.europa.eu/eurostat"],"license":"https://creativecommons.org/licenses/by/4.0/",
+  "creator":[{"@type":"Person","name":"Autor Probă"},{"@id":"https://example.org/#org"}],"isAccessibleForFree":true,
+  "variableMeasured":[{"@type":"PropertyValue","name":"Căsătorii","description":"Număr de căsătorii","unitText":"număr"},{"@type":"PropertyValue","name":"Rata"},"Divorțuri"]}
+]}
+</script>
+<script type="application/ld+json">{"@type":"Dataset","name":</script>
+<script src="https://example.org/stats.js"></script>
+</head>
+<body>
+<h1>Căsătorii pe județe</h1>
+<table id="tbl"><thead><tr><th>Județ</th><th>Căsătorii</th><th>Căs. ‰</th></tr></thead>
+<tbody><tr><td>Alba</td><td>1.522</td><td>4,1</td></tr><tr><td>Arad</td><td>1.801</td><td>4,4</td></tr></tbody></table>
+<script id="dataScript" type="application/json">{"cities":[{"name":"Abrud","pop":4360,"lat":46.2749,"t1":25.22,"c1":[60.87,34.48,5.88,0.0,40.0]},{"name":"Aiud","pop":22876,"lat":46.3,"t1":null,"c1":[1,2,3,4,5]}],"agg":{"w1":39.62}}</script>
+<script>
+const SIRUTA_CODES = ["010103", "010202"];
+// s = învestire, e = învestirea următorului guvern
+const G = [
+  {g: "Roman I", pm: 'Petre Roman', s: "1989-12-26", e: "1990-06-28",},
+  {g: "Roman II", pm: 'Petre Roman', s: "1990-06-28", f: "1991-09-26", e: "1991-10-16"},
+];
+/* ===== Numele județelor ===== */
+const NICE = {"Alba":"Alba","Arad":"Arad","Arges":"Argeș","Bacau":"Bacău","Bihor":"Bihor","Botosani":"Botoșani","Braila":"Brăila","Brasov":"Brașov","Buzau":"Buzău","Cluj":"Cluj","Dolj":"Dolj","Iasi":"Iași"};
+const DATA = {"years":[1990,1991,1992],"c":{"Alba":{"m":[3271,3214,2949],"d":[531,592,520]},"Arad":{"m":[3000,2900,2800],"d":[500,null,450]},"Arges":{"m":[1,2,3],"d":[1,2,3]},"Bacau":{"m":[1,2,3],"d":[1,2,3]},"Bihor":{"m":[1,2,3],"d":[1,2,3]},"Botosani":{"m":[1,2,3],"d":[1,2,3]},"Braila":{"m":[1,2,3],"d":[1,2,3]},"Brasov":{"m":[1,2,3],"d":[1,2,3]},"Buzau":{"m":[1,2,3],"d":[1,2,3]},"Cluj":{"m":[1,2,3],"d":[1,2,3]},"Dolj":{"m":[1,2,3],"d":[1,2,3]},"Iasi":{"m":[1,2,3],"d":[1,2,3]}}};
+const ROWS = [["Alba", 361062, 370800], ["Arad", 476207, 475620]];
+const IND = {mr:{t:"Căsătorii la 1.000 de locuitori",fmt:v=>v.toFixed(1),u:"‰"}};
+const ALL = DATA.c;
+const MARRIAGES = [1, 2, 3].map(x => x * 2);
+const LAZY = [1, 2, 3], OTHER = [4, 5];
+const SPREAD = [...document.querySelectorAll("p")];
+const TEMPLATE = `${DATA}`;
+let counter = 0;
+function draw() {
+  const INSIDE = [1, 2, 3];
+}
+</script>
+</body>
+</html>

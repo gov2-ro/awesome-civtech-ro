@@ -2264,6 +2264,436 @@
       "stare": "revizuit",
       "decizie_editor": "revizuit în bloc la cererea proprietarului; se corectează la nevoie",
       "data_revizie": "2026-10-26"
+    },
+    {
+      "id": "casatorii",
+      "label": "Căsătorii",
+      "definition": "Numărul de căsătorii dintr-un an, pe teritoriu. Regula teritorială (locul înregistrării sau domiciliul soților) și perioada seriei trebuie citite în sursă. Un total și o rată la 1.000 de locuitori nu sunt aceeași măsură.",
+      "selectors": [
+        {
+          "projects": [
+            "romania-interactiva"
+          ],
+          "names": [
+            "m[]"
+          ],
+          "path": [
+            "DATA.c{*}.m[]"
+          ],
+          "source": "https://romaniainteractiva.ro/cupluri/",
+          "context": "numărul de căsătorii al fiecărui județ, pe ani, 1990–2024 (cheia `m` din `DATA`; pagina o numește „Număr de căsătorii” și o leagă de matricea INS POP210A)",
+          "fapte": [
+            {
+              "cheie": "unitate",
+              "valoare": "număr de căsătorii",
+              "baza": "deductie-din-dovezi",
+              "dovada": {
+                "sursa": "https://romaniainteractiva.ro/cupluri/",
+                "text": "sursa",
+                "fragment": "m:{t:\"Număr de căsătorii\"",
+                "sha256": "55642b5fca95c1ad9653636d92b7c0bb506f5a2f05ae9d3d506c9fff64e27243",
+                "baza": "deductie-din-dovezi"
+              }
+            },
+            {
+              "cheie": "regula_teritoriala",
+              "valoare": "după domiciliul soților (declarația paginii)",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://romaniainteractiva.ro/cupluri/",
+                "text": "sursa",
+                "fragment": "INS, TEMPO-Online — POP210A (căsătorii) și POP212A (divorțuri), după domiciliul soților",
+                "sha256": "55642b5fca95c1ad9653636d92b7c0bb506f5a2f05ae9d3d506c9fff64e27243",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        },
+        {
+          "projects": [
+            "romania-interactiva"
+          ],
+          "names": [
+            "OBS_VALUE"
+          ],
+          "source": "https://ins.gov2.ro/api/datasets/POP210A?lang=en",
+          "context": "numărul de căsătorii pe medii de reședință, macroregiuni, regiuni de dezvoltare și județe, 1990–2024 (INS POP210A, matricea pe care pagina o numește)",
+          "fapte": [
+            {
+              "cheie": "unitate",
+              "valoare": "Număr",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://ins.gov2.ro/api/datasets/POP210A?lang=en",
+                "text": "sursa",
+                "fragment": "\"sdmx_value\":\"Numar\"",
+                "sha256": "b7b67c8c1997a605d23fec65a348755cd19e1419ff0fc61e88d7c6ebd7fafb88",
+                "baza": "declaratie-directa"
+              }
+            },
+            {
+              "cheie": "regula_teritoriala",
+              "valoare": "după locul înregistrării căsătoriei (nota INS a setului)",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://ins.gov2.ro/api/datasets/POP210A?lang=en",
+                "text": "sursa",
+                "fragment": "Repartizarea datelor in profil teritorial s-a facut dupa locul inregistrarii casatoriei.",
+                "sha256": "b7b67c8c1997a605d23fec65a348755cd19e1419ff0fc61e88d7c6ebd7fafb88",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        },
+        {
+          "projects": [
+            "romania-interactiva"
+          ],
+          "names": [
+            "m"
+          ],
+          "path": [
+            "NAT25.m"
+          ],
+          "source": "https://romaniainteractiva.ro/cupluri/",
+          "context": "totalul național al căsătoriilor din 2025, fără județe, din datele INS publicate în 2026",
+          "fapte": [
+            {
+              "cheie": "nivel_geografic",
+              "valoare": "național",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://romaniainteractiva.ro/cupluri/",
+                "text": "sursa",
+                "fragment": "doar total național, din datele INS publicate în 2026 (95.713 căsătorii, 21.479 divorțuri)",
+                "sha256": "55642b5fca95c1ad9653636d92b7c0bb506f5a2f05ae9d3d506c9fff64e27243",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        }
+      ],
+      "categorie": "masura",
+      "familie": "populatie-teritoriu",
+      "baza_definitiei": "parafraza-editoriala",
+      "dovezi": [
+        {
+          "sursa": "https://ins.gov2.ro/api/datasets/POP210A?lang=en",
+          "text": "sursa",
+          "fragment": "Casatoria reprezinta uniunea liber consimtita intre un barbat si o femeie, incheiata in conditiile legii.",
+          "sha256": "b7b67c8c1997a605d23fec65a348755cd19e1419ff0fc61e88d7c6ebd7fafb88",
+          "baza": "declaratie-directa"
+        },
+        {
+          "sursa": "https://romaniainteractiva.ro/cupluri/",
+          "text": "sursa",
+          "fragment": "m:{t:\"Număr de căsătorii\"",
+          "sha256": "55642b5fca95c1ad9653636d92b7c0bb506f5a2f05ae9d3d506c9fff64e27243",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "Pagina scrie „după domiciliul soților” pentru POP210A, iar nota INS a setului scrie „după locul înregistrării căsătoriei”. Cele două texte diferă; grupul nu alege între ele.",
+        "Ratele la 1.000 de locuitori (cheia `mr`, seria `LONG.mr` din Eurostat) nu intră în grup: totalurile și ratele rămân măsuri distincte.",
+        "Pentru 2025 pagina are doar totalul național; datele pe județe pentru 2025 nu sunt încă în TEMPO (declarația paginii)."
+      ],
+      "stare": "propus"
+    },
+    {
+      "id": "divorturi",
+      "label": "Divorțuri",
+      "definition": "Numărul de divorțuri dintr-un an, pe teritoriu. Regula teritorială (ultimul domiciliu comun al soților) și felul divorțurilor numărate (în instanță, la starea civilă, la notar, din străinătate) trebuie citite în sursă.",
+      "selectors": [
+        {
+          "projects": [
+            "romania-interactiva"
+          ],
+          "names": [
+            "d[]"
+          ],
+          "path": [
+            "DATA.c{*}.d[]"
+          ],
+          "source": "https://romaniainteractiva.ro/cupluri/",
+          "context": "numărul de divorțuri al fiecărui județ, pe ani, 1990–2024 (cheia `d` din `DATA`; pagina o numește „Număr de divorțuri” și o leagă de matricea INS POP212A)",
+          "fapte": [
+            {
+              "cheie": "unitate",
+              "valoare": "număr de divorțuri",
+              "baza": "deductie-din-dovezi",
+              "dovada": {
+                "sursa": "https://romaniainteractiva.ro/cupluri/",
+                "text": "sursa",
+                "fragment": "d:{t:\"Număr de divorțuri\"",
+                "sha256": "55642b5fca95c1ad9653636d92b7c0bb506f5a2f05ae9d3d506c9fff64e27243",
+                "baza": "deductie-din-dovezi"
+              }
+            },
+            {
+              "cheie": "felul_divorturilor",
+              "valoare": "în instanță, la starea civilă și la notar (Legea 202/2010), plus divorțurile din străinătate transcrise în România",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://romaniainteractiva.ro/cupluri/",
+                "text": "sursa",
+                "fragment": "Divorțurile includ cele pronunțate în instanță, la starea civilă și la notar (Legea 202/2010), plus divorțurile din străinătate transcrise în România.",
+                "sha256": "55642b5fca95c1ad9653636d92b7c0bb506f5a2f05ae9d3d506c9fff64e27243",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        },
+        {
+          "projects": [
+            "romania-interactiva"
+          ],
+          "names": [
+            "OBS_VALUE"
+          ],
+          "source": "https://ins.gov2.ro/api/datasets/POP212A?lang=en",
+          "context": "numărul de divorțuri pe medii de reședință, macroregiuni, regiuni de dezvoltare și județe, 1990–2024 (INS POP212A, matricea pe care pagina o numește)",
+          "fapte": [
+            {
+              "cheie": "unitate",
+              "valoare": "Număr",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://ins.gov2.ro/api/datasets/POP212A?lang=en",
+                "text": "sursa",
+                "fragment": "\"sdmx_value\":\"Numar\"",
+                "sha256": "1ed183a4a555385bc71ad668bebdaec3f2e90ec7e99e94173ff850c7339734e2",
+                "baza": "declaratie-directa"
+              }
+            },
+            {
+              "cheie": "regula_teritoriala",
+              "valoare": "după ultimul domiciliu comun al soților (nota INS a setului)",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://ins.gov2.ro/api/datasets/POP212A?lang=en",
+                "text": "sursa",
+                "fragment": "Repartizarea datelor in profil teritorial  s-a facut dupa ultimul domiciliu comun al sotilor.",
+                "sha256": "1ed183a4a555385bc71ad668bebdaec3f2e90ec7e99e94173ff850c7339734e2",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        },
+        {
+          "projects": [
+            "romania-interactiva"
+          ],
+          "names": [
+            "d"
+          ],
+          "path": [
+            "NAT25.d"
+          ],
+          "source": "https://romaniainteractiva.ro/cupluri/",
+          "context": "totalul național al divorțurilor din 2025, fără județe, din datele INS publicate în 2026",
+          "fapte": [
+            {
+              "cheie": "nivel_geografic",
+              "valoare": "național",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://romaniainteractiva.ro/cupluri/",
+                "text": "sursa",
+                "fragment": "doar total național, din datele INS publicate în 2026 (95.713 căsătorii, 21.479 divorțuri)",
+                "sha256": "55642b5fca95c1ad9653636d92b7c0bb506f5a2f05ae9d3d506c9fff64e27243",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        }
+      ],
+      "categorie": "masura",
+      "familie": "populatie-teritoriu",
+      "baza_definitiei": "parafraza-editoriala",
+      "dovezi": [
+        {
+          "sursa": "https://ins.gov2.ro/api/datasets/POP212A?lang=en",
+          "text": "sursa",
+          "fragment": "Divortul reprezinta desfacerea unei casatorii incheiate legal, printr-o hotarare definitiva a instantei judecatoresti, a ofiterului de stare civila sau a unui notar public.",
+          "sha256": "1ed183a4a555385bc71ad668bebdaec3f2e90ec7e99e94173ff850c7339734e2",
+          "baza": "declaratie-directa"
+        },
+        {
+          "sursa": "https://romaniainteractiva.ro/cupluri/",
+          "text": "sursa",
+          "fragment": "d:{t:\"Număr de divorțuri\"",
+          "sha256": "55642b5fca95c1ad9653636d92b7c0bb506f5a2f05ae9d3d506c9fff64e27243",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "Nota INS spune că datele numără cererile de divorț pentru care desfacerea a fost admisă. Pagina adaugă divorțurile din străinătate transcrise în România. Cele două texte nu sunt identice.",
+        "Ratele (cheile `dr` și `ratio`, seria `LONG.dr` din Eurostat) nu intră în grup: totalurile și ratele rămân măsuri distincte.",
+        "Pentru 1967 seria Eurostat nu are date despre divorțuri (declarația paginii); valoarea lipsă este `null` în `LONG.dr`."
+      ],
+      "stare": "propus"
+    },
+    {
+      "id": "studenti",
+      "label": "Studenți",
+      "definition": "Numărul de studenți înmatriculați într-un an universitar, pe centru universitar sau pe universitate. Ciclul (licență, master, doctorat), anul de început al seriei și locul numărării trebuie citite în sursă.",
+      "selectors": [
+        {
+          "projects": [
+            "romania-interactiva"
+          ],
+          "names": [
+            "L[]"
+          ],
+          "path": [
+            "D[].L[]"
+          ],
+          "source": "https://romaniainteractiva.ro/universitati/",
+          "context": "studenții la licență din fiecare centru universitar (localitatea facultății), pe an universitar, din 1992/93 (cheia `L`; butonul „Doar studenții la licență (1992–2026)”)",
+          "fapte": [
+            {
+              "cheie": "ciclu",
+              "valoare": "licență",
+              "baza": "deductie-din-dovezi",
+              "dovada": {
+                "sursa": "https://romaniainteractiva.ro/universitati/",
+                "text": "sursa",
+                "fragment": "Doar studenții la licență (1992–2026)",
+                "sha256": "74bd4a631586718fc74f48111b775958bd0f418074ef589898814b45ae87d346",
+                "baza": "deductie-din-dovezi"
+              }
+            },
+            {
+              "cheie": "inceputul_seriei",
+              "valoare": "anul universitar 1992/93",
+              "baza": "deductie-din-dovezi",
+              "dovada": {
+                "sursa": "https://romaniainteractiva.ro/universitati/",
+                "text": "sursa",
+                "fragment": "const Y0=1992, YL=2025, T0=2014;",
+                "sha256": "74bd4a631586718fc74f48111b775958bd0f418074ef589898814b45ae87d346",
+                "baza": "deductie-din-dovezi"
+              }
+            }
+          ]
+        },
+        {
+          "projects": [
+            "romania-interactiva"
+          ],
+          "names": [
+            "T[]"
+          ],
+          "path": [
+            "D[].T[]"
+          ],
+          "source": "https://romaniainteractiva.ro/universitati/",
+          "context": "toți studenții (licență, master, doctorat) din fiecare centru universitar, pe an universitar, din 2014/15 (cheia `T`; butonul „Toți studenții (2014–2026)”)",
+          "fapte": [
+            {
+              "cheie": "ciclu",
+              "valoare": "toate ciclurile",
+              "baza": "deductie-din-dovezi",
+              "dovada": {
+                "sursa": "https://romaniainteractiva.ro/universitati/",
+                "text": "sursa",
+                "fragment": "Toți studenții (2014–2026)",
+                "sha256": "74bd4a631586718fc74f48111b775958bd0f418074ef589898814b45ae87d346",
+                "baza": "deductie-din-dovezi"
+              }
+            },
+            {
+              "cheie": "inceputul_seriei",
+              "valoare": "anul universitar 2014/15",
+              "baza": "deductie-din-dovezi",
+              "dovada": {
+                "sursa": "https://romaniainteractiva.ro/universitati/",
+                "text": "sursa",
+                "fragment": "const Y0=1992, YL=2025, T0=2014;",
+                "sha256": "74bd4a631586718fc74f48111b775958bd0f418074ef589898814b45ae87d346",
+                "baza": "deductie-din-dovezi"
+              }
+            }
+          ]
+        },
+        {
+          "projects": [
+            "romania-interactiva"
+          ],
+          "names": [
+            "OBS_VALUE"
+          ],
+          "source": "https://ins.gov2.ro/api/datasets/SCL103D?lang=en",
+          "context": "populația școlară pe niveluri de educație, județe și localități, 1992–2024 (INS SCL103D, matricea pe care pagina o numește)",
+          "fapte": [
+            {
+              "cheie": "unitate",
+              "valoare": "Număr persoane",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://ins.gov2.ro/api/datasets/SCL103D?lang=en",
+                "text": "sursa",
+                "fragment": "\"sdmx_value\":\"Numar persoane\"",
+                "sha256": "c234dba22cf64e7c29436da5e2e000cbe740aa76d4f1d8252dbcf5ac0febc200",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        },
+        {
+          "projects": [
+            "romania-interactiva"
+          ],
+          "names": [
+            "t"
+          ],
+          "path": [
+            "U[].t"
+          ],
+          "source": "https://romaniainteractiva.ro/universitati/",
+          "context": "toți studenții unei universități de stat în 2024/25 (CNFIS); pagina nu descrie cheia `t`",
+          "fapte": [
+            {
+              "cheie": "sens_cheie",
+              "valoare": "total = licență + master + doctorat (primul rând: 25.896 + 10.414 + 2.618 = 38.928)",
+              "baza": "observatie-esantion",
+              "dovada": {
+                "sursa": "https://romaniainteractiva.ro/universitati/",
+                "text": "sursa",
+                "fragment": "\"t\":38928,\"b\":30780,\"x\":8148,\"L\":25896,\"M\":10414,\"D\":2618",
+                "sha256": "74bd4a631586718fc74f48111b775958bd0f418074ef589898814b45ae87d346",
+                "baza": "observatie-esantion"
+              }
+            }
+          ]
+        }
+      ],
+      "categorie": "masura",
+      "familie": "populatie-teritoriu",
+      "baza_definitiei": "parafraza-editoriala",
+      "dovezi": [
+        {
+          "sursa": "https://ins.gov2.ro/api/datasets/SCL103D?lang=en",
+          "text": "sursa",
+          "fragment": "Populatia scolara - reprezinta totalitatea copiilor din gradinite si crese, a elevilor si studentilor",
+          "sha256": "c234dba22cf64e7c29436da5e2e000cbe740aa76d4f1d8252dbcf5ac0febc200",
+          "baza": "declaratie-directa"
+        },
+        {
+          "sursa": "https://romaniainteractiva.ro/universitati/",
+          "text": "sursa",
+          "fragment": "în localitatea facultății",
+          "sha256": "74bd4a631586718fc74f48111b775958bd0f418074ef589898814b45ae87d346",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "Cheile `L`, `T`, `V`, `TV` (pe centre) și `t`, `b`, `x` (pe universități) nu sunt descrise de pagină. Sensul vine din etichetele butoanelor, din codul paginii și din sume, nu dintr-o declarație.",
+        "INS numără studenții în localitatea facultății, nu a universității; extensiile apar ca centre separate (declarația paginii). CNFIS numără universitățile de stat cu toți studenții lor, inclusiv cei din extensii.",
+        "Matricea SCL103D acoperă toate nivelurile de educație (dimensiunea NIVELURI_DE_EDUCATIE), de la grădiniță la doctorat; doar nivelurile superioare sunt studenți.",
+        "Seria pe centre (licență din 1992, total din 2014) și datele CNFIS pe universități (de stat, 2024/25) au surse și acoperiri diferite; nu se adună."
+      ],
+      "stare": "propus"
     }
   ]
 }

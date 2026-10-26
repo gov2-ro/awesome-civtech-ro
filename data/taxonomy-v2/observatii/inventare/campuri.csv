@@ -2172,6 +2172,46 @@ ins-gov2|demoanaf|biografia-localitatii|constru-pentru-cine|orasul-care-se-intin
 ins-gov2|demoanaf|biografia-localitatii|constru-pentru-cine|orasul-care-se-intinde,c6284bf08f131cbfe339,https://ins.gov2.ro/api/datasets/POP107D?lang=en,metadate-ins,masura,OBS_VALUE,OBS_VALUE,,,,Numar persoane,"Populatia dupa domiciliu la data de 1 ianuarie a anului de referinta reprezinta numarul persoanelor cu cetatenie romana si domiciliu pe teritoriul Romaniei, delimitat dupa criterii administrativ-teritoriale.
 Domiciliul persoanei este adresa la care aceasta declara ca are locuinta principala, trecuta in actul de identitate (CI, BI), asa cum este luata in evidenta organelor administrative ale statului.
 In stabilirea valorii acestui indicator nu se tine cont de resedinta obisnuita, de perioada si/sau motivul absentei de la domiciliu.",,/definitie,declarat-in-documentatie-api
+romania-interactiva,d43ed96e988436aa9676,https://ins.gov2.ro/api/datasets/POP210A?lang=en,metadate-ins,dimensiune,RESIDENCE,RESIDENCE,,,residence,,Medii de rezidenta,,/dimensions/0,declarat-in-metadate
+romania-interactiva,d43ed96e988436aa9676,https://ins.gov2.ro/api/datasets/POP210A?lang=en,metadate-ins,dimensiune,REF_AREA,REF_AREA,,,geo,,"Macroregiuni, regiuni de dezvoltare si judete",,/dimensions/1,declarat-in-metadate
+romania-interactiva,d43ed96e988436aa9676,https://ins.gov2.ro/api/datasets/POP210A?lang=en,metadate-ins,dimensiune,TIME_PERIOD,TIME_PERIOD,,,time,,Perioade,,/dimensions/2,declarat-in-metadate
+romania-interactiva,d43ed96e988436aa9676,https://ins.gov2.ro/api/datasets/POP210A?lang=en,metadate-ins,dimensiune,UNIT_MEASURE,UNIT_MEASURE,,,unit,,UM: Numar,,/dimensions/3,declarat-in-metadate
+romania-interactiva,d43ed96e988436aa9676,https://ins.gov2.ro/api/datasets/POP210A?lang=en,metadate-ins,masura,OBS_VALUE,OBS_VALUE,,,,Numar,"Casatoria reprezinta uniunea liber consimtita intre un barbat si o femeie, incheiata in conditiile legii.",,/definitie,declarat-in-documentatie-api
+romania-interactiva,8f3e4436ef441c0a5f75,https://ins.gov2.ro/api/datasets/POP212A?lang=en,metadate-ins,dimensiune,RESIDENCE,RESIDENCE,,,residence,,Medii de rezidenta,,/dimensions/0,declarat-in-metadate
+romania-interactiva,8f3e4436ef441c0a5f75,https://ins.gov2.ro/api/datasets/POP212A?lang=en,metadate-ins,dimensiune,REF_AREA,REF_AREA,,,geo,,"Macroregiuni, regiuni de dezvoltare si judete",,/dimensions/1,declarat-in-metadate
+romania-interactiva,8f3e4436ef441c0a5f75,https://ins.gov2.ro/api/datasets/POP212A?lang=en,metadate-ins,dimensiune,TIME_PERIOD,TIME_PERIOD,,,time,,Perioade,,/dimensions/2,declarat-in-metadate
+romania-interactiva,8f3e4436ef441c0a5f75,https://ins.gov2.ro/api/datasets/POP212A?lang=en,metadate-ins,dimensiune,UNIT_MEASURE,UNIT_MEASURE,,,unit,,UM: Numar,,/dimensions/3,declarat-in-metadate
+romania-interactiva,8f3e4436ef441c0a5f75,https://ins.gov2.ro/api/datasets/POP212A?lang=en,metadate-ins,masura,OBS_VALUE,OBS_VALUE,,,,Numar,"Divortul reprezinta desfacerea unei casatorii incheiate legal, printr-o hotarare definitiva a instantei judecatoresti, a ofiterului de stare civila sau a unui notar public. Datele se refera la cererile de divort pentru care desfacerea casatoriei a fost admisa.",,/definitie,declarat-in-documentatie-api
+romania-interactiva,d575dbf0d3fb0293af74,https://ins.gov2.ro/api/datasets/SCL103D?lang=en,metadate-ins,dimensiune,NIVELURI_DE_EDUCATIE,NIVELURI_DE_EDUCATIE,,,indicator,,Niveluri de educatie,,/dimensions/0,declarat-in-metadate
+romania-interactiva,d575dbf0d3fb0293af74,https://ins.gov2.ro/api/datasets/SCL103D?lang=en,metadate-ins,dimensiune,REF_AREA,REF_AREA,,,geo,,Judete,,/dimensions/1,declarat-in-metadate
+romania-interactiva,d575dbf0d3fb0293af74,https://ins.gov2.ro/api/datasets/SCL103D?lang=en,metadate-ins,dimensiune,REF_AREA_2,REF_AREA_2,,,geo,,Localitati ,,/dimensions/2,declarat-in-metadate
+romania-interactiva,d575dbf0d3fb0293af74,https://ins.gov2.ro/api/datasets/SCL103D?lang=en,metadate-ins,dimensiune,TIME_PERIOD,TIME_PERIOD,,,time,,Perioade,,/dimensions/3,declarat-in-metadate
+romania-interactiva,d575dbf0d3fb0293af74,https://ins.gov2.ro/api/datasets/SCL103D?lang=en,metadate-ins,dimensiune,UNIT_MEASURE,UNIT_MEASURE,,,unit,,UM: Numar persoane,,/dimensions/4,declarat-in-metadate
+romania-interactiva,d575dbf0d3fb0293af74,https://ins.gov2.ro/api/datasets/SCL103D?lang=en,metadate-ins,masura,OBS_VALUE,OBS_VALUE,,,,Numar persoane,"Populatia scolara - reprezinta totalitatea copiilor din gradinite si crese, a elevilor si studentilor cuprinsi in procesul de instruire si educare dintr-un an scolar/universitar din cadrul educatiei formale, indiferent de formele de invatamant pe care le frecventeaza (de zi/ cu frecventa - program de zi, seral/cu frecventa - program seral, cu frecventa redusa si la distanta), programul de studii si de varsta.
+Nivelurile de instruire, in conformitate cu Clasificarea Internationala Standard a Educatiei - ISCED 97 (pana in anul 2013)/ISCED 2011 (dupa anul 2013) sunt:
+1. Invatamantul anteprescolar este corespunzator nivelului 01, conform reglementarilor internationale in materie de educatie, noua Clasificare Internationala Standard a Educatiei - ISCED 2011 si cuprinde copiii in varsta de 0-2 ani. Datele sunt disponibile incepand cu anul scolar 2014/2015.
+2. Invatamantul prescolar - nivelul 0 conform clasificarii ISCED 97, utilizata pana in anul 2013 - cuprinde copiii in varsta de 3-6 ani si peste; incepand cu anul 2013, invatamantul prescolar - nivelul 02 conform clasificarii ISCED 2011 - cuprinde, de regula, copiii in varsta de 3-5 ani si peste. Ca tip de unitati functioneaza:
+- gradinite de copii cu program prelungit;
+- gradinite de copii cu program saptamanal;
+- gradinite de copii cu program normal;
+- gradinite speciale.
+3. Invatamantul primar - invatamant de nivel 1 - ISCED 97 (pana in anul 2013)/ISCED 2011 (dupa anul 2013), a carui functie principala este de a asigura elementele de baza ale educatiei avand durata de scolarizare de 4 ani (5 ani incepand cu anul scolar 2012/2013); cuprinde, de regula, copii in varsta de 7-10 ani si peste (6-10 ani si peste incepand cu anul scolar 2012/2013) si functioneaza numai ca forma de invatamant de zi/ cu frecventa - program de zi; face parte din tipul de invatamant obligatoriu;
+4. Invatamantul gimnazial - invatamant secundar inferior de nivel 2 - ISCED 97 (pana in anul 2013)/ISCED 2011 (dupa anul 2013), bazat pe cel putin 4 ani de instruire (clasele V-VIII), cuprinde, de regula, elevi in varsta de 11-14 ani si peste; face parte din tipul de invatamant obligatoriu. Functioneaza cu formele de invatamant de zi/ cu frecventa - program de zi si frecventa redusa. Promovatii ultimului an de studiu, obtin Certificat de test national (capacitate).
+5. Invatamantul special primar de nivel 1 - ISCED 97 (pana in anul 2013)/ISCED 2011 (dupa anul 2013) si gimnazial (secundar inferior) de nivel 2 - ISCED 97 (pana in anul 2013)/ISCED 2011 (dupa anul 2013) cuprinde institutiile de invatamant in care sunt inscrisi copii si tineri cu deficiente fizice, senzoriale si intelectuale in vederea instruirii, educarii, corectarii deficientelor potrivit naturii si gradului deficientei si integrarii acestora in viata activa. In profil teritorial seria se urmareste incepand cu anul 1990.
+6. Invatamantul secundar superior - liceal de nivel 3 - ISCED 97 (pana in anul 2013)/ISCED 2011 (dupa anul 2013) - are durata de scolarizare de 4-5 ani (clasele IX-XII/ XIII) si asigura, de regula, educatia specializata a tinerilor in varsta de 15-18 ani si peste. Inscrierea in clasa a IX-a se face numai dintre absolventii invatamantului gimnazial cu certificat de test national (capacitate). Promovatii ultimului an de studiu sustin examenul de bacalaureat in urma caruia obtin Diploma de bacalaureat. Functioneaza cu formele de invatamant: zi/ cu frecventa - program de zi, seral /cu frecventa - program seral, frecventa redusa si deschis la distanta.
+7. Invatamantul secundar superior - profesional de nivel 3 - ISCED 97 (pana in anul 2013)/ISCED 2011 (dupa anul 2013) are durata de scolarizare de 1-4 ani si cuprinde tineri in varsta de 15-18 ani. Functioneaza cu formele de invatamant: zi/cu frecventa - program de zi, seral /cu frecventa - program seral si frecventa redusa. Inscrierea in primul an de invatamant se face numai dintre absolventii invatamantului gimnazial cu sau fara examen de absolvire (test national). Functioneaza cu urmatoarele tipuri de unitati:
+- scoli profesionale / scoli de arte si meserii;
+- invatamant de ucenici (pana in anul 2004);
+- scoli profesionale (scoli de arte si meserii) speciale;
+- scoli speciale de reeducare/centre scolare de educatie inclusiva.
+8. Invatamantul postliceal - invatamant post secundar, neechivalent primului nivel universitar, de nivel 4 - ISCED 97 (pana in anul 2013)/ISCED 2011 (dupa anul 2013) - are durata de scolarizare de 2-3 ani si, de regula, cuprinde tineri in varsta de 19-21 de ani si peste. Inscrierea in primul an de invatamant se face dintre absolventii invatamantului liceal cu sau fara diploma de bacalaureat. Formele de invatamant existente sunt: de zi/ cu frecventa - program de zi, seral /cu frecventa - program seral si frecventa redusa. Absolventii ultimului an de studiu obtin Diploma de absolvire. Acest nivel de educatie functioneaza cu urmatoarele tipuri de unitati:
+- scoli postliceale;
+- scoli de maistri;
+- scoli postliceale speciale.
+9. Invatamantul universitar (tertiar) este invatamantul de nivel 5 -ISCED 97 (pana in anul 2013), in care conditia de admitere este absolvirea invatamantului secundar superior. Invatamantul universitar este organizat astfel: de scurta durata (in care durata studiilor este de 2-3 ani si se finalizeaza cu diploma de absolvire) si de lunga durata (in care durata studiilor este de 4-6 ani si se finalizeaza cu diploma de licenta).
+Din anul 2013 invatamantul universitar de licenta in functie de noua Clasificare Internationala Standard a Educatiei - ISCED 2011 este invatamantul pentru nivelurile 6 si 7 - ISCED 2011 care cuprinde invatamantul universitar de licenta cu durate de 3-4 ani (nivelul 6 - ISCED 2011) si invatamantul universitar de licenta cu durate de 5, 6 ani (nivelul 7 - ISCED 2011).
+Nivelul 7 - ISCED 2011 cuprinde invatamantul universitar de master si cursuri/studii postuniversitare, iar nivelul 8 - ISCED 2011 este corespunzator invatamantului universitar de doctorat si programe postdoctorale de cercetare avansata.
+Incepand cu anul 2014 a fost folosita clasificarea ISCED-F 2013. Clasificarea specializarilor ISCED-F 2013 a fost adoptata in anul 2014, urmare a revizuirii nivelurilor de educatie ISCED-2011.",,/definitie,declarat-in-documentatie-api
 ins-gov2|unde-se-termina-asfaltul,a9578363f3efe25ccaee,https://ins.gov2.ro/api/datasets/TRN139A?lang=en,metadate-ins,dimensiune,CATEGORY,CATEGORY,,,indicator,,Categorii de drumuri publice,,/dimensions/0,declarat-in-metadate
 ins-gov2|unde-se-termina-asfaltul,a9578363f3efe25ccaee,https://ins.gov2.ro/api/datasets/TRN139A?lang=en,metadate-ins,dimensiune,TYPE,TYPE,,,indicator,,Tipuri de acoperamant,,/dimensions/1,declarat-in-metadate
 ins-gov2|unde-se-termina-asfaltul,a9578363f3efe25ccaee,https://ins.gov2.ro/api/datasets/TRN139A?lang=en,metadate-ins,dimensiune,REF_AREA,REF_AREA,,,geo,,"Macroregiuni, regiuni de dezvoltare si judete",,/dimensions/2,declarat-in-metadate
@@ -2674,6 +2714,110 @@ unde-se-termina-asfaltul,3bf0f9eaf66bc1f06dae,https://mariuscomper.uk/unde-se-te
 unde-se-termina-asfaltul,3bf0f9eaf66bc1f06dae,https://mariuscomper.uk/unde-se-termina-asfaltul/assets/osm.json?v=17793b737f,json,camp-date,ins_km,$.counties.Botoșani.ins_km,,number,,,,,/counties/Botoșani/ins_km,observat-in-esantion-json
 unde-se-termina-asfaltul,3bf0f9eaf66bc1f06dae,https://mariuscomper.uk/unde-se-termina-asfaltul/assets/osm.json?v=17793b737f,json,camp-date,ins_unpaved_km,$.counties.Botoșani.ins_unpaved_km,,number,,,,,/counties/Botoșani/ins_unpaved_km,observat-in-esantion-json
 unde-se-termina-asfaltul,3bf0f9eaf66bc1f06dae,https://mariuscomper.uk/unde-se-termina-asfaltul/assets/osm.json?v=17793b737f,json,camp-date,communes[][],$.communes[][],,integer|string|number,,,,,/communes/0/0,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,Rank,tabel2.Rank,,,,,,,/tabele/2/antet/0,antet-tabel-html
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,City,tabel2.City,,,,,,,/tabele/2/antet/1,antet-tabel-html
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,Pop.,tabel2.Pop.,,,,,,,/tabele/2/antet/2,antet-tabel-html
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,Total,tabel2.Total,,,,,,,/tabele/2/antet/3,antet-tabel-html
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,Erg.,tabel2.Erg.,,,,,,,/tabele/2/antet/4,antet-tabel-html
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,Cont.,tabel2.Cont.,,,,,,,/tabele/2/antet/5,antet-tabel-html
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,Serv.,tabel2.Serv.,,,,,,,/tabele/2/antet/6,antet-tabel-html
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,Part.,tabel2.Part.,,,,,,,/tabele/2/antet/7,antet-tabel-html
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,Sec.,tabel2.Sec.,,,,,,,/tabele/2/antet/8,antet-tabel-html
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,Δ vs prev.,tabel2.Δ vs prev.,,,,,,,/tabele/2/antet/9,antet-tabel-html
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,3-wave,tabel2.3-wave,,,,,,,/tabele/2/antet/10,antet-tabel-html
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,masura,Total e-government score,Dataset1.variableMeasured.Total e-government score,,,,,"Weighted composite of five category scores, 0–100",,char:5561-5693,declarat-in-metadate
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,masura,Security & privacy,Dataset1.variableMeasured.Security & privacy,,,,,,,char:5703-5761,declarat-in-metadate
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,masura,Ergonomics,Dataset1.variableMeasured.Ergonomics,,,,,,,char:5771-5821,declarat-in-metadate
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,masura,Content,Dataset1.variableMeasured.Content,,,,,,,char:5831-5878,declarat-in-metadate
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,masura,Online services,Dataset1.variableMeasured.Online services,,,,,,,char:5888-5943,declarat-in-metadate
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,masura,E-participation,Dataset1.variableMeasured.E-participation,,,,,,,char:5953-6008,declarat-in-metadate
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,name,dataScript.cities[].name,,string,,,,,char:182997-183004,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,pop,dataScript.cities[].pop,,integer,,,,,char:183011-183015,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,lat,dataScript.cities[].lat,,number,,,,,char:183022-183029,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,lng,dataScript.cities[].lng,,number,,,,,char:183036-183043,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,pc,dataScript.cities[].pc,,string,,,,,char:183049-183052,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,t1,dataScript.cities[].t1,,number,,,,,char:183058-183063,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,t2,dataScript.cities[].t2,,number,,,,,char:183069-183074,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,t3,dataScript.cities[].t3,,number,,,,,char:183080-183085,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,r1,dataScript.cities[].r1,,integer,,,,,char:183091-183094,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,r2,dataScript.cities[].r2,,integer,,,,,char:183100-183103,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,r3,dataScript.cities[].r3,,integer,,,,,char:183109-183111,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,c1[],dataScript.cities[].c1[],,number,,,,,char:183118-183123,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,c2[],dataScript.cities[].c2[],,number,,,,,char:183151-183156,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,c3[],dataScript.cities[].c3[],,number,,,,,char:183188-183193,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,w1,dataScript.agg.totals.w1,,number,,,,,char:258974-258979,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,w2,dataScript.agg.totals.w2,,number,,,,,char:258985-258990,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,w3,dataScript.agg.totals.w3,,number,,,,,char:258996-259001,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,w1[],dataScript.agg.cats.w1[],,number,,,,,char:259017-259022,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,w2[],dataScript.agg.cats.w2[],,number,,,,,char:259054-259059,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,w3[],dataScript.agg.cats.w3[],,number,,,,,char:259091-259096,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,count,dataScript.agg.count,,integer,,,,,char:259130-259133,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,count,dataScript.peer_cats.A.count,,integer,,,,,char:259161-259164,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,cats_w3[],dataScript.peer_cats.A.cats_w3[],,number,,,,,char:259176-259181,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,cats_w2[],dataScript.peer_cats.A.cats_w2[],,number,,,,,char:259218-259223,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,cats_w1[],dataScript.peer_cats.A.cats_w1[],,number,,,,,char:259259-259264,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,total_w3,dataScript.peer_cats.A.total_w3,,number,,,,,char:259301-259306,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,count,dataScript.peer_cats.B.count,,integer,,,,,char:259321-259324,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,cats_w3[],dataScript.peer_cats.B.cats_w3[],,number,,,,,char:259336-259341,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,cats_w2[],dataScript.peer_cats.B.cats_w2[],,number,,,,,char:259378-259383,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,cats_w1[],dataScript.peer_cats.B.cats_w1[],,number,,,,,char:259420-259425,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,total_w3,dataScript.peer_cats.B.total_w3,,number,,,,,char:259462-259467,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,count,dataScript.peer_cats.C.count,,integer,,,,,char:259482-259484,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,cats_w3[],dataScript.peer_cats.C.cats_w3[],,number,,,,,char:259496-259501,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,cats_w2[],dataScript.peer_cats.C.cats_w2[],,number,,,,,char:259538-259543,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,cats_w1[],dataScript.peer_cats.C.cats_w1[],,number,,,,,char:259580-259585,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,total_w3,dataScript.peer_cats.C.total_w3,,number,,,,,char:259621-259626,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,count,dataScript.peer_cats.D.count,,integer,,,,,char:259641-259643,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,cats_w3[],dataScript.peer_cats.D.cats_w3[],,number,,,,,char:259655-259659,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,cats_w2[],dataScript.peer_cats.D.cats_w2[],,number,,,,,char:259696-259701,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,cats_w1[],dataScript.peer_cats.D.cats_w1[],,number,,,,,char:259738-259743,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,total_w3,dataScript.peer_cats.D.total_w3,,number,,,,,char:259780-259785,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,name,dataScript.top_w3[].name,,string,,,,,char:259806-259819,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,score,dataScript.top_w3[].score,,number,,,,,char:259828-259833,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,name,dataScript.bot_w3[].name,,string,,,,,char:260163-260170,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,score,dataScript.bot_w3[].score,,number,,,,,char:260179-260184,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,name,dataScript.gainers_w3[].name,,string,,,,,char:260548-260559,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,delta,dataScript.gainers_w3[].delta,,number,,,,,char:260568-260573,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,name,dataScript.fallers_w3[].name,,string,,,,,char:260895-260902,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,delta,dataScript.fallers_w3[].delta,,number,,,,,char:260911-260917,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,colectie-cu-chei,ro{*},I18N.ro{*},,object|string,,,,,char:261468-295988,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,colectie-cu-chei,en{*},I18N.en{*},,object|string,,,,,char:295997-327553,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,key,CAT_DEFS[].key,,string,,,,,char:331684-331689,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,i18nKey,CAT_DEFS[].i18nKey,,string,,,,,char:331701-331710,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,weight,CAT_DEFS[].weight,,number,,,,,char:331721-331725,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,idx,CAT_DEFS[].idx,,integer,,,,,char:331732-331733,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,1,WAVE_LABELS.1,,string,,,,,char:332283-332289,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,2,WAVE_LABELS.2,,string,,,,,char:332294-332300,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,3,WAVE_LABELS.3,,string,,,,,char:332305-332311,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,name,lastDotTap.name,,null,,,,,char:333210-333214,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,time,lastDotTap.time,,integer,,,,,char:333222-333223,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,ROUTES[],ROUTES[],,string,,,,,char:333385-333390,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,map,GA_ROUTE_TITLES.map,,string,,,,,char:334538-334543,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,city,GA_ROUTE_TITLES.city,,string,,,,,char:334551-334557,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,compare,GA_ROUTE_TITLES.compare,,string,,,,,char:334568-334577,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,rankings,GA_ROUTE_TITLES.rankings,,string,,,,,char:334589-334599,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,fiveyears,GA_ROUTE_TITLES.fiveyears,,string,,,,,char:334614-334625,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,methodology,GA_ROUTE_TITLES.methodology,,string,,,,,char:334640-334653,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,about,GA_ROUTE_TITLES.about,,string,,,,,char:334662-334669,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,latMin,MAP_BOUNDS.latMin,,number,,,,,char:340176-340180,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,latMax,MAP_BOUNDS.latMax,,number,,,,,char:340191-340195,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,lngMin,MAP_BOUNDS.lngMin,,number,,,,,char:340207-340211,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,lngMax,MAP_BOUNDS.lngMax,,number,,,,,char:340222-340226,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,RO_COUNTIES[][][],RO_COUNTIES[][][],,number,,,,,char:340534-340541,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,wave,rankingsState.wave,,integer,,,,,char:403675-403676,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,popFilter,rankingsState.popFilter,,string,,,,,char:403691-403693,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,sortKey,rankingsState.sortKey,,string,,,,,char:403706-403712,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,sortDir,rankingsState.sortDir,,string,,,,,char:403725-403730,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,CMP_COLORS[],CMP_COLORS[],,string,,,,,char:427907-427916,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,wave,cmpState.wave,,integer,,,,,char:428041-428042,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,catKey,INDICATOR_SET[].catKey,,string,,,,,char:443684-443693,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,weight,INDICATOR_SET[].weight,,integer,,,,,char:443703-443705,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,s,INDICATOR_SET[].items[].s,,integer,,,,,char:443725-443726,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,ro,INDICATOR_SET[].items[].ro,,string,,,,,char:443732-443783,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,en,INDICATOR_SET[].items[].en,,string,,,,,char:443789-443827,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,1,SCALE_BADGE.1,,string,,,,,char:448065-448070,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,2,SCALE_BADGE.2,,string,,,,,char:448075-448082,observat-in-esantion-json
+romania-interactiva,00784681fe856379fb15,https://orase-digitale.ro/,js-literale,camp-date,3,SCALE_BADGE.3,,string,,,,,char:448087-448092,observat-in-esantion-json
 posturi-gov2,7c5a621906988976fb27,https://posturi.gov2.ro/posturi.json,json,camp-date,count,$.count,,integer,,,,,/count,observat-in-esantion-json
 posturi-gov2,7c5a621906988976fb27,https://posturi.gov2.ro/posturi.json,json,camp-date,id,$.results[].id,,integer,,,,,/results/0/id,observat-in-esantion-json
 posturi-gov2,7c5a621906988976fb27,https://posturi.gov2.ro/posturi.json,json,camp-date,title,$.results[].title,,string,,,,,/results/0/title,observat-in-esantion-json
@@ -3569,6 +3713,155 @@ registrul-firmelor,d6697982fd45769dfe4c,https://registru.horecaos.org/api,html-t
 registrul-firmelor,d6697982fd45769dfe4c,https://registru.horecaos.org/api,html-tabele,camp-raspuns,profit net,tabel1.Financiar.profit net,,,,,,,/tabele/1/randuri/4/elemente/1,declarat-in-text-documentatie
 registrul-firmelor,d6697982fd45769dfe4c,https://registru.horecaos.org/api,html-tabele,camp-raspuns,salariați,tabel1.Financiar.salariați,,,,,,,/tabele/1/randuri/4/elemente/2,declarat-in-text-documentatie
 registrul-firmelor,d6697982fd45769dfe4c,https://registru.horecaos.org/api,html-tabele,camp-raspuns,pe ani,tabel1.Financiar.pe ani,,,,,,,/tabele/1/randuri/4/elemente/3,declarat-in-text-documentatie
+romania-interactiva,4cd0bc883db0b33c9cd1,https://romaniainteractiva.ro/cupluri/,js-literale,camp-date,w,GEO.w,,integer,,,,,char:16827-16830,observat-in-esantion-json
+romania-interactiva,4cd0bc883db0b33c9cd1,https://romaniainteractiva.ro/cupluri/,js-literale,camp-date,h,GEO.h,,number,,,,,char:16835-16840,observat-in-esantion-json
+romania-interactiva,4cd0bc883db0b33c9cd1,https://romaniainteractiva.ro/cupluri/,js-literale,colectie-cu-chei,f{*},GEO.f{*},,object,,,,,char:16845-80651,observat-in-esantion-json
+romania-interactiva,4cd0bc883db0b33c9cd1,https://romaniainteractiva.ro/cupluri/,js-literale,camp-date,d,GEO.f{*}.d,,string,,,,,char:16862-18100,observat-in-esantion-json
+romania-interactiva,4cd0bc883db0b33c9cd1,https://romaniainteractiva.ro/cupluri/,js-literale,camp-date,c[],GEO.f{*}.c[],,number,,,,,char:18106-18111,observat-in-esantion-json
+romania-interactiva,4cd0bc883db0b33c9cd1,https://romaniainteractiva.ro/cupluri/,js-literale,camp-date,years[],DATA.years[],,integer,,,,,char:80677-80681,observat-in-esantion-json
+romania-interactiva,4cd0bc883db0b33c9cd1,https://romaniainteractiva.ro/cupluri/,js-literale,colectie-cu-chei,c{*},DATA.c{*},,object,,,,,char:80857-105980,observat-in-esantion-json
+romania-interactiva,4cd0bc883db0b33c9cd1,https://romaniainteractiva.ro/cupluri/,js-literale,camp-date,m[],DATA.c{*}.m[],,integer,,,,,char:80871-80875,observat-in-esantion-json
+romania-interactiva,4cd0bc883db0b33c9cd1,https://romaniainteractiva.ro/cupluri/,js-literale,camp-date,d[],DATA.c{*}.d[],,integer,,,,,char:81052-81055,observat-in-esantion-json
+romania-interactiva,4cd0bc883db0b33c9cd1,https://romaniainteractiva.ro/cupluri/,js-literale,camp-date,p[],DATA.c{*}.p[],,integer,,,,,char:81198-81204,observat-in-esantion-json
+romania-interactiva,4cd0bc883db0b33c9cd1,https://romaniainteractiva.ro/cupluri/,js-literale,camp-date,m,NAT25.m,,integer,,,,,char:106000-106005,observat-in-esantion-json
+romania-interactiva,4cd0bc883db0b33c9cd1,https://romaniainteractiva.ro/cupluri/,js-literale,camp-date,d,NAT25.d,,integer,,,,,char:106009-106014,observat-in-esantion-json
+romania-interactiva,4cd0bc883db0b33c9cd1,https://romaniainteractiva.ro/cupluri/,js-literale,camp-date,y0,LONG.y0,,integer,,,,,char:106037-106041,observat-in-esantion-json
+romania-interactiva,4cd0bc883db0b33c9cd1,https://romaniainteractiva.ro/cupluri/,js-literale,camp-date,mr[],LONG.mr[],,number,,,,,char:106049-106053,observat-in-esantion-json
+romania-interactiva,4cd0bc883db0b33c9cd1,https://romaniainteractiva.ro/cupluri/,js-literale,camp-date,dr[],LONG.dr[],,number|null,,,,,char:106318-106321,observat-in-esantion-json
+romania-interactiva,4cd0bc883db0b33c9cd1,https://romaniainteractiva.ro/cupluri/,js-literale,colectie-cu-chei,NICE{*},NICE{*},,object|string,,,,,char:106596-107420,observat-in-esantion-json
+romania-interactiva,4cd0bc883db0b33c9cd1,https://romaniainteractiva.ro/cupluri/,js-literale,colectie-cu-chei,ABBR{*},ABBR{*},,object|string,,,,,char:107435-108062,observat-in-esantion-json
+romania-interactiva,4cd0bc883db0b33c9cd1,https://romaniainteractiva.ro/cupluri/,js-literale,camp-date,RAMP_B[],RAMP_B[],,string,,,,,char:108156-108165,observat-in-esantion-json
+romania-interactiva,4cd0bc883db0b33c9cd1,https://romaniainteractiva.ro/cupluri/,js-literale,camp-date,RAMP_R[],RAMP_R[],,string,,,,,char:108244-108253,observat-in-esantion-json
+romania-interactiva,4cd0bc883db0b33c9cd1,https://romaniainteractiva.ro/cupluri/,js-literale,camp-date,COLS[][0],COLS[][0],,string,,,,,char:123115-123121,observat-in-esantion-json
+romania-interactiva,4cd0bc883db0b33c9cd1,https://romaniainteractiva.ro/cupluri/,js-literale,camp-date,COLS[][1],COLS[][1],,string,,,,,char:123122-123129,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,Guvern,tabel1.Guvern,,text,,,,,/tabele/1/antet/0,antet-tabel-html
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,Început,tabel1.Început,,forma-de-data,,,,,/tabele/1/antet/1,antet-tabel-html
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,Sfârșit,tabel1.Sfârșit,,forma-de-data,,,,,/tabele/1/antet/2,antet-tabel-html
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,Durată,tabel1.Durată,,text,,,,,/tabele/1/antet/3,antet-tabel-html
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,Cum s-a încheiat,tabel1.Cum s-a încheiat,,text,,,,,/tabele/1/antet/4,antet-tabel-html
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,n,TYPES.mot.n,,string,,,,,char:54682-54702,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,c,TYPES.mot.c,,string,,,,,char:54705-54714,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,n,TYPES.dem.n,,string,,,,,char:54726-54735,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,c,TYPES.dem.c,,string,,,,,char:54738-54747,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,n,TYPES.ale.n,,string,,,,,char:54759-54773,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,c,TYPES.ale.c,,string,,,,,char:54776-54785,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,n,TYPES.rec.n,,string,,,,,char:54797-54820,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,c,TYPES.rec.c,,string,,,,,char:54823-54832,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,n,TYPES.rev.n,,string,,,,,char:54844-54854,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,c,TYPES.rev.c,,string,,,,,char:54857-54866,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,n,TYPES.rot.n,,string,,,,,char:54878-54899,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,c,TYPES.rot.c,,string,,,,,char:54902-54911,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,g,G[].g,,string,,,,,char:55021-55030,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,pm,G[].pm,,string,,,,,char:55034-55047,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,s,G[].s,,string,,,,,char:55050-55062,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,e,G[].e,,string,,,,,char:55065-55077,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,t,G[].t,,string,,,,,char:55080-55085,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,p,G[].p,,string,,,,,char:55088-55113,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,w,G[].w,,string,,,,,char:55116-55191,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,f,G[].f,,string,,,,,char:55243-55255,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,colectie-cu-chei,PF{*},PF{*},,object,,,,,char:60123-60988,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,PF{*}[],PF{*}[],,string,,,,,char:60135-60140,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,PSD,PFN.PSD,,string,,,,,char:61007-61034,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,PD/PDL,PFN.PD/PDL,,string,,,,,char:61044-61054,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,PC/ALDE,PFN.PC/ALDE,,string,,,,,char:61065-61082,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,FSN,PFN.FSN,,string,,,,,char:61089-61106,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,Boc I[],MV.Boc I[],,integer,,,,,char:61186-61189,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,Ungureanu[],MV.Ungureanu[],,integer,,,,,char:61208-61211,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,Grindeanu[],MV.Grindeanu[],,integer,,,,,char:61228-61231,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,Dăncilă[],MV.Dăncilă[],,integer,,,,,char:61247-61250,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,Orban I[],MV.Orban I[],,integer,,,,,char:61265-61268,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,Cîțu[],MV.Cîțu[],,integer,,,,,char:61282-61285,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,Bolojan[],MV.Bolojan[],,integer,,,,,char:61300-61303,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,Boc I,MWHO.Boc I,,string,,,,,char:61329-61360,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,Ungureanu,MWHO.Ungureanu,,string,,,,,char:61373-61393,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,Grindeanu,MWHO.Grindeanu,,string,,,,,char:61406-61448,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,Dăncilă,MWHO.Dăncilă,,string,,,,,char:61459-61499,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,Orban I,MWHO.Orban I,,string,,,,,char:61510-61515,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,Cîțu,MWHO.Cîțu,,string,,,,,char:61523-61528,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,Bolojan,MWHO.Bolojan,,string,,,,,char:61539-61573,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,n,PRES[].n,,string,,,,,char:61593-61606,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,s,PRES[].s,,string,,,,,char:61609-61621,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,e,PRES[].e,,string|null,,,,,char:61624-61636,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,short,PRES[].short,,integer,,,,,char:61920-61921,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,ELEC[],ELEC[],,string,,,,,char:61980-61992,observat-in-esantion-json
+romania-interactiva,fe9e4e9f5ccbc2287318,https://romaniainteractiva.ro/guverne/,js-literale,camp-date,MONTHS[],MONTHS[],,string,,,,,char:62296-62302,observat-in-esantion-json
+romania-interactiva,0d5f5faf20db101c5549,https://romaniainteractiva.ro/recensaminte/,js-literale,camp-date,Anul,tabel1.Anul,,forma-numerica,,,,,/tabele/1/antet/0,antet-tabel-html
+romania-interactiva,0d5f5faf20db101c5549,https://romaniainteractiva.ro/recensaminte/,js-literale,camp-date,Locuitori,tabel1.Locuitori,,forma-numerica,,,,,/tabele/1/antet/1,antet-tabel-html
+romania-interactiva,0d5f5faf20db101c5549,https://romaniainteractiva.ro/recensaminte/,js-literale,camp-date,Schimbare,tabel1.Schimbare,,text,,,,,/tabele/1/antet/2,antet-tabel-html
+romania-interactiva,0d5f5faf20db101c5549,https://romaniainteractiva.ro/recensaminte/,js-literale,camp-date,La oraș,tabel1.La oraș,,forma-numerica,,,,,/tabele/1/antet/3,antet-tabel-html
+romania-interactiva,0d5f5faf20db101c5549,https://romaniainteractiva.ro/recensaminte/,js-literale,camp-date,w,GEO.w,,integer,,,,,char:170691-170694,observat-in-esantion-json
+romania-interactiva,0d5f5faf20db101c5549,https://romaniainteractiva.ro/recensaminte/,js-literale,camp-date,h,GEO.h,,number,,,,,char:170699-170704,observat-in-esantion-json
+romania-interactiva,0d5f5faf20db101c5549,https://romaniainteractiva.ro/recensaminte/,js-literale,colectie-cu-chei,p{*},GEO.p{*},,object|string,,,,,char:170709-252825,observat-in-esantion-json
+romania-interactiva,0d5f5faf20db101c5549,https://romaniainteractiva.ro/recensaminte/,js-literale,colectie-cu-chei,URB{*},URB{*},,object,,,,,char:252838-255303,observat-in-esantion-json
+romania-interactiva,0d5f5faf20db101c5549,https://romaniainteractiva.ro/recensaminte/,js-literale,camp-date,URB{*}[],URB{*}[],,integer,,,,,char:252847-252852,observat-in-esantion-json
+romania-interactiva,0d5f5faf20db101c5549,https://romaniainteractiva.ro/recensaminte/,js-literale,camp-date,Y[],Y[],,integer,,,,,char:255314-255318,observat-in-esantion-json
+romania-interactiva,0d5f5faf20db101c5549,https://romaniainteractiva.ro/recensaminte/,js-literale,camp-date,RAW[][0],RAW[][0],,string,,,,,char:255368-255374,observat-in-esantion-json
+romania-interactiva,0d5f5faf20db101c5549,https://romaniainteractiva.ro/recensaminte/,js-literale,camp-date,RAW[][1],RAW[][1],,integer,,,,,char:255375-255381,observat-in-esantion-json
+romania-interactiva,0d5f5faf20db101c5549,https://romaniainteractiva.ro/recensaminte/,js-literale,camp-date,RAW[][2],RAW[][2],,integer,,,,,char:255382-255388,observat-in-esantion-json
+romania-interactiva,0d5f5faf20db101c5549,https://romaniainteractiva.ro/recensaminte/,js-literale,camp-date,RAW[][3],RAW[][3],,integer,,,,,char:255389-255395,observat-in-esantion-json
+romania-interactiva,0d5f5faf20db101c5549,https://romaniainteractiva.ro/recensaminte/,js-literale,camp-date,RAW[][4],RAW[][4],,integer,,,,,char:255396-255402,observat-in-esantion-json
+romania-interactiva,0d5f5faf20db101c5549,https://romaniainteractiva.ro/recensaminte/,js-literale,camp-date,RAW[][5],RAW[][5],,integer,,,,,char:255403-255409,observat-in-esantion-json
+romania-interactiva,0d5f5faf20db101c5549,https://romaniainteractiva.ro/recensaminte/,js-literale,camp-date,RAW[][6],RAW[][6],,integer,,,,,char:255410-255416,observat-in-esantion-json
+romania-interactiva,0d5f5faf20db101c5549,https://romaniainteractiva.ro/recensaminte/,js-literale,camp-date,RAW[][7],RAW[][7],,integer,,,,,char:255417-255423,observat-in-esantion-json
+romania-interactiva,0d5f5faf20db101c5549,https://romaniainteractiva.ro/recensaminte/,js-literale,camp-date,RAW[][8],RAW[][8],,integer,,,,,char:255424-255430,observat-in-esantion-json
+romania-interactiva,0d5f5faf20db101c5549,https://romaniainteractiva.ro/recensaminte/,js-literale,camp-date,RO[],RO[],,integer,,,,,char:258229-258237,observat-in-esantion-json
+romania-interactiva,0d5f5faf20db101c5549,https://romaniainteractiva.ro/recensaminte/,js-literale,camp-date,RO_U[],RO_U[],,integer,,,,,char:258315-258322,observat-in-esantion-json
+romania-interactiva,0d5f5faf20db101c5549,https://romaniainteractiva.ro/recensaminte/,js-literale,camp-date,RO_R[],RO_R[],,integer,,,,,char:258388-258396,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,An universitar,tabel1.An universitar,,,,,,,/tabele/1/antet/0,antet-tabel-html
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,Total,tabel1.Total,,,,,,,/tabele/1/antet/1,antet-tabel-html
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,Licență,tabel1.Licență,,,,,,,/tabele/1/antet/2,antet-tabel-html
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,Master,tabel1.Master,,,,,,,/tabele/1/antet/3,antet-tabel-html
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,Doctorat,tabel1.Doctorat,,,,,,,/tabele/1/antet/4,antet-tabel-html
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,Oraș,tabel2.Oraș,,,,,,,/tabele/2/antet/0,antet-tabel-html
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,Studenți,tabel2.Studenți,,,,,,,/tabele/2/antet/1,antet-tabel-html
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,Locuri în cămine,tabel2.Locuri în cămine,,,,,,,/tabele/2/antet/2,antet-tabel-html
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,Studenți la un loc,tabel2.Studenți la un loc,,,,,,,/tabele/2/antet/3,antet-tabel-html
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,#,tabel3.#,,,,,,,/tabele/3/antet/0,antet-tabel-html
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,Centru,tabel3.Centru,,,,,,,/tabele/3/antet/1,antet-tabel-html
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,Licență 2025/26,tabel3.Licență 2025/26,,,,,,,/tabele/3/antet/2,antet-tabel-html
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,Vârf,tabel3.Vârf,,,,,,,/tabele/3/antet/3,antet-tabel-html
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,Anul vârfului,tabel3.Anul vârfului,,,,,,,/tabele/3/antet/4,antet-tabel-html
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,Față de vârf,tabel3.Față de vârf,,,,,,,/tabele/3/antet/5,antet-tabel-html
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,Ultimii 10 ani,tabel3.Ultimii 10 ani,,,,,,,/tabele/3/antet/6,antet-tabel-html
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,Evoluție,tabel3.Evoluție,,,,,,,/tabele/3/antet/7,antet-tabel-html
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,n,D[].n,,string,,,,,char:30129-30140,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,j,D[].j,,string,,,,,char:30145-30156,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,L[],D[].L[],,integer|null,,,,,char:30162-30167,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,V[],D[].V[],,null|integer,,,,,char:30403-30407,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,T[],D[].T[],,integer,,,,,char:30616-30622,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,TV[],D[].TV[],,integer|null,,,,,char:30707-30712,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,x,D[].x,,number,,,,,char:30784-30789,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,y,D[].y,,number,,,,,char:30794-30799,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,k,U[].k,,string,,,,,char:67155-67160,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,n,U[].n,,string,,,,,char:67165-67237,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,c,U[].c,,string,,,,,char:67242-67253,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,t,U[].t,,integer,,,,,char:67258-67263,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,b,U[].b,,integer,,,,,char:67268-67273,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,x,U[].x,,integer,,,,,char:67278-67282,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,L,U[].L,,integer,,,,,char:67287-67292,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,M,U[].M,,integer,,,,,char:67297-67302,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,D,U[].D,,integer,,,,,char:67307-67311,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,k,UH[].k,,string,,,,,char:72330-72335,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,n,UH[].n,,string,,,,,char:72340-72412,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,c,UH[].c,,string,,,,,char:72417-72428,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,a,UH[].a,,string,,,,,char:72433-72467,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,note,UH[].note,,string,,,,,char:72475-72543,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,s[][0],UH[].s[][0],,integer,,,,,char:72550-72555,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,s[][1],UH[].s[][1],,integer,,,,,char:72556-72561,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,s[][2],UH[].s[][2],,integer,,,,,char:72562-72566,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,s[][3],UH[].s[][3],,integer,,,,,char:72567-72571,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,s[][],UH[].s[][],,integer,,,,,char:78401-78405,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,s[],UH[].s[],,null,,,,,char:78420-78424,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,colectie-cu-chei,CAM{*},CAM{*},,object,,,,,char:91422-94137,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,y,CAM{*}.y,,string,,,,,char:91434-91443,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,src,CAM{*}.src,,string,,,,,char:91450-91453,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,p,CAM{*}.p,,integer,,,,,char:91458-91462,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,s,CAM{*}.s,,integer,,,,,char:91467-91471,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,o,CAM{*}.o,,number|integer,,,,,char:91476-91481,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,r,CAM{*}.r,,number|integer,,,,,char:91486-91491,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,x,CAM{*}.x,,number|integer,,,,,char:91555-91559,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,n,nat.n,,string,,,,,char:118075-118084,observat-in-esantion-json
+romania-interactiva,d811d4161707affa6e8f,https://romaniainteractiva.ro/universitati/,js-literale,camp-date,j,nat.j,,string,,,,,char:118087-118089,observat-in-esantion-json
 romania-transparenta,af025b841728725821e2,https://romaniatransparenta.eu/date/calitate-masurata.json,json,camp-date,format,$.format,,string,,,,,/format,observat-in-esantion-json
 romania-transparenta,af025b841728725821e2,https://romaniatransparenta.eu/date/calitate-masurata.json,json,camp-date,generat_la,$.generat_la,,string,,,,,/generat_la,observat-in-esantion-json
 romania-transparenta,af025b841728725821e2,https://romaniatransparenta.eu/date/calitate-masurata.json,json,camp-date,metoda,$.metoda,,string,,,,,/metoda,observat-in-esantion-json

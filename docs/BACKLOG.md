@@ -11,7 +11,8 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [ ] Step C of the brief: write the accepted values into `intrari.csv`, then run `validate.py --publication`.
 - [ ] Step D of the brief: the scope of the public inventory (`inventory_site.py`, `/date/lista/`, `inventory_report.py`, `collect_docs.py`, `inventory.py`).
 - [ ] Step E of the brief: the explorer facets `dat` and `st` in `site/app.js`.
-- [ ] Variable inventory for `data-expertforum`, `bani-partide`, `romania-interactiva`. Brief: [inventory-batch-c2.md](briefs/inventory-batch-c2.md).
+- [x] Variable inventory for `data-expertforum`, `bani-partide`, `romania-interactiva`. Brief: [inventory-batch-c2.md](briefs/inventory-batch-c2.md).
+      Done 2026-10-26 (lot `C2`): `romania-interactiva` has 10 sources and 269 field records; `data-expertforum` and `bani-partide` are `blocat` (HTTP 403 on three hosts). Follow-up items are in "Inventory batch C2 follow-up".
 - [-] Inventory `harta-banilor-publici`, `parlament-transparent`, `bani-pierduti`. Reason: inactive (`offline`) in the build; the owner removed inactive entries from the variable inventory on 2026-10-26.
 
 ## New entry fiipregatit.ro — 2026-10-26
@@ -35,6 +36,19 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [ ] Check `harta-tv-locale` for the same pattern: Wayback captures 2014-01-25 to 2018-09-16, repo created 2024-10-19. Add it to `EARLIER_DOMAIN_USE` only if the early captures show another site.
 - [ ] Update `.claude/commands/add-new-url.md` for v2: write `intrari.csv` (facets, `clasificare_stare=propus`) and `relatii.csv` (attribution row), not the frozen `proiecte.csv` / `orgs.csv`. Add the steps `collect_docs.py --only`, `inventory.py --only` and `inventory_report.py` after the profile and search steps.
 - [ ] Review the facts of `lista-firme`: the terms claim the source code for the operator, but `tudorr89/info-firme` is MIT-licensed; the owner attests the repo belongs to the site, but the site does not state the link between the repo owner (Tudor Rusu) and the operator. The API has no documentation page.
+
+## Inventory batch C2 follow-up — 2026-10-26
+
+- [ ] Owner: decide how to reach `banipartide.ro`, `data.expertforum.ro` and `expertforum.ro` (every automated request answers HTTP 403). Option 1: add three rows to `colectare-interzisa.csv` (`gazda`, `motiv`, `dovada`, `data`, `nota`; the evidence is the request log of lot C2 and `documentare/index.json`). Option 2: save the pages from a browser and import them (`collect_docs.py --import-saved`, `inventory.py --import-saved`). Then run `inventory.py --only bani-partide,data-expertforum` and look for AEP and Monitorul Oficial in the retained text.
+- [ ] Owner: review the provider items D176–D185 (`romania-interactiva`) and the groups `casatorii`, `divorturi` and `studenti` (state `propus`; two `ambiguitati` list a conflict between the page and the INS note of POP210A and POP212A).
+- [ ] Owner: decide the candidate members of four reviewed groups (19 field records, 10 selectors; the selectors are in section 5 of `docs/reports/inventory-expansion.md`): `perioada-de-referinta`, `judet`, `localitate`, `populatie`. A reviewed group cannot hold a member that the owner has not confirmed, so the new members need the review interface (`Amân`, then `confirmat`) or a decision to confirm them in the file.
+- [ ] Read more tools of `romaniainteractiva.ro` (15 of 22 catalogue tools are not read; the limit of ten sources per entry was reached): `1vot.ro` (campaign spending per vote, 2019–2025: it may use AEP party and campaign finance data, so it matters for `bani-partide`), `geamanuleuropean.ro` (Eurostat regions), `sondajeleromaniei.ro`, `satulcaresestinge.ro` (census 2011 and 2021) and the paths `UniRankingRO/` (in `sitemap.xml`, not in the catalogue).
+- [ ] Decide whether a response of more than 2,000,000 bytes may be read whole (`locale/` and `harta-notelor/` hold their data in a script of that size). The range read of 600,000 bytes ends before the script. A third option is the browser render of the page with a listing of its literals; the helper keeps only data responses today.
+- [ ] Show `seturi_ld` (name, period, licence, `isBasedOn` of a page's schema.org `Dataset`) in the field browser. The facts are in `seturi-date.json`; the preview does not read them.
+- [ ] Ask the project for the source of the population of a city in Orașe digitale (`pop`, no named source) and for the licence of the index.
+- [x] Run the three browser checks of the preview against a build of this branch: `check_preview.py` 111/111, `check_inventory_preview.py` 31/31, `check_data_finder.py` 40/40. Done 2026-10-26.
+- [x] Reader for the data that a page script holds as literals, and for the schema.org `Dataset` of JSON-LD (`inventory_literals.py`, format `js-literale`, 21 tests). Done 2026-10-26.
+- [x] Make the coverage export and the report know lot `C2` and the state `blocat` for an entry with a recorded blocker and no source. Done 2026-10-26.
 
 ## Filter simplification and data provenance — 2026-10-25
 
@@ -490,6 +504,10 @@ Existing items below also cover profile refresh data loss, Sheets merge conflict
 
 ## Verified limits
 
+- [-] Read `banipartide.ro`, `data.expertforum.ro` and `expertforum.ro` automatically, with a plain request or with a headless browser. All three answer HTTP 403 to automated requests (2026-10-24 and 2026-10-26; four pages of each of the first two,
+      the home pages again, and two pages of the third). A browser would work around the refusal, as for `harta-firmelor.ro`. Use pages that the owner saves, or list the hosts in `colectare-interzisa.csv`.
+- [-] Read the data of `romaniainteractiva.ro/locale/` and `/harta-notelor/` with a range request. Each page is over 2,000,000 bytes, and a range read of 600,000 bytes stops at the last complete line, before the data script
+      (measured 2026-10-26: 12,844 and 32,622 characters). The two renders in the browser made no data request: the data is inside the page.
 - [-] Collect `harta-firmelor.ro` automatically (the site, `/date`, the eight CSV files, `api.harta-firmelor.ro`). Every automated request gets HTTP 429 from a Vercel Security Checkpoint (2026-10-24 and 2026-10-25),
       and its `llms.txt` says that automated mass extraction is not allowed (the terms of use and `robots.txt` protect the database). Do not pass the checkpoint with a headless browser.
       Use a copy that the owner saves from their browser (`--import-saved`), or the official API with a key that the project issues on request.

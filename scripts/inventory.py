@@ -37,6 +37,7 @@ from inventory_concepts import EvidenceLocator, check_concepts, validate_familie
 from inventory_apidocs import operations as api_operations
 from inventory_csvcards import csv_datasets
 from inventory_ins import ins_dataset, ins_listing, ins_measure, is_listing
+from inventory_literals import datasets as literal_datasets, declarations as literal_declarations
 from inventory_text import EXTENSIONS, read_text
 from inventory_state import (REGISTRY, counted_fields, RequestLog, StateError, active_members, admit, check_text, dump, load_previous,
                              new_discovery, now_utc, priority, protect, registry_map, retire, seed_registry, sorted_registry,
@@ -45,7 +46,7 @@ from inventory_state import (REGISTRY, counted_fields, RequestLog, StateError, a
 MAX_FIELDS, MAX_DEPTH, SAMPLE_ROWS = 2000, 7, 25
 # An object with more keys than this is a keyed collection (identifier -> record), not a record with that many members.
 KEYED_COLLECTION = 100
-TEXT_FORMATS = ('html-tabele', 'markdown', 'csharp', 'sql', 'php', 'js-acces', 'json-comentat', 'html-api-docs', 'html-carduri-csv')
+TEXT_FORMATS = ('html-tabele', 'markdown', 'csharp', 'sql', 'php', 'js-acces', 'json-comentat', 'html-api-docs', 'html-carduri-csv', 'js-literale')
 
 
 def pointer_part(value):
@@ -338,7 +339,7 @@ def analyse_source(response, hint=None):
     try:
         fmt, fields, truncated = parse_source(body, response['final_url'], response.get('content_type', ''), hint)
         metadata.update(format=fmt, campuri=fields, stare='analizat', completitudine='partial', limita_atinsa=truncated,
-                        baza_tipului=('esantion-date' if fmt in ('json', 'lista-ins') else 'antet-fara-tipuri' if fmt == 'csv'
+                        baza_tipului=('esantion-date' if fmt in ('json', 'lista-ins', 'js-literale') else 'antet-fara-tipuri' if fmt == 'csv'
                                       else 'cod-sau-documentatie' if fmt in TEXT_FORMATS else 'schema-declarata'))
         if fmt == 'metadate-ins':
             metadata['set_date'] = ins_dataset(json.loads(body))
@@ -348,6 +349,9 @@ def analyse_source(response, hint=None):
             metadata['operatii'] = api_operations(body)
         elif fmt == 'html-carduri-csv':
             metadata['seturi'] = csv_datasets(body, response['final_url'])
+        elif fmt == 'js-literale':
+            metadata['declaratii'] = literal_declarations(body)
+            metadata['seturi_ld'] = literal_datasets(body)
     except (ValueError, TypeError, KeyError, csv.Error) as exc:
         metadata.update(stare='eroare-parsare', error=str(exc))
     return metadata
@@ -567,7 +571,8 @@ def check_report(out, observations):
                     errors.append('Fields or datasets differ from the retained body: ' + source['url'])
             elif source.get('format') in TEXT_FORMATS:
                 _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
-                if fields != source['campuri']:
+                if fields != source['campuri'] or (source['format'] == 'js-literale' and (literal_declarations(body) != source.get('declaratii')
+                                                                                         or literal_datasets(body) != source.get('seturi_ld'))):
                     errors.append('Fields differ from the retained body: ' + source['url'])
             elif source.get('campuri'):
                 document = json.loads(body)

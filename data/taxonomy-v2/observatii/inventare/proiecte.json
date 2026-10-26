@@ -4144,11 +4144,21 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "d43ed96e988436aa9676",
+        "8f3e4436ef441c0a5f75",
+        "d575dbf0d3fb0293af74",
+        "00784681fe856379fb15",
+        "4cd0bc883db0b33c9cd1",
+        "fe9e4e9f5ccbc2287318",
+        "29ebe0e76759019c35bf",
+        "b1c51df8fb7a7411eb90",
+        "0d5f5faf20db101c5549",
+        "d811d4161707affa6e8f"
+      ],
+      "campuri_din_surse": 269,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {

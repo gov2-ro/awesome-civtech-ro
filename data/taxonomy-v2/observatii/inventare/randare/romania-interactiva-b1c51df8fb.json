@@ -1,0 +1,25 @@
+{
+  "versiune": 1,
+  "proiect": "romania-interactiva",
+  "url_cerut": "https://romaniainteractiva.ro/locale/",
+  "url_final": "https://romaniainteractiva.ro/locale/#primar",
+  "stare": "ok",
+  "http_status": 200,
+  "titlu": "Harta alegerilor locale 2024, localitate cu localitate | România Interactivă",
+  "randat_la": "2026-10-26T15:33:36.162581+00:00",
+  "text_randat": "ROMÂNIA INTERACTIVĂ\nRomânia în puncte\n\nCine a câștigat alegerile locale din 9 iunie 2024 în fiecare dintre cele 13.447 de sate și orașe ale României: primarul, consiliul local, consiliul județean și președintele consiliului județean. Fiecare punct e o localitate.\n\nPrimarul\nConsiliul local\nConsiliul județean\nPreședintele CJ\nPrimar față de consiliul local\nPreședinte CJ față de consiliul județean\nPartidul primarului ales\n\nFiecare localitate are culoarea partidului din care face parte primarul ales pe 9 iunie 2024. Satele unei comune au toate aceeași culoare.\n\nCOMUNE ȘI ORAȘE\nDIN TOTAL\nPSD\n1.674\n52,5%\nPNL\n1.133\n35,6%\nUDMR\n200\n6,3%\nIndependent\n43\n1,3%\nAUR\n30\n0,9%\nAlianța PSD–PNL\n29\n0,9%\nAlianța USR–PMP–Forța Dreptei\n28\n0,9%\nUSR\n10\n0,3%\nAlianța PSD–PUSL\n5\n0,2%\nForumul Germanilor\n5\n0,2%\nAlianța Maghiară din Transilvania\n4\n0,1%\nPUSL\n4\n0,1%\nEgalitate\n2\n0,1%\nREPER\n2\n0,1%\nForța Dreptei\n2\n0,1%\nAlianța USR–PMP\n2\n0,1%\nForța Civică Maghiară\n1\n0,0%\nalte partide (Partidul Patrioții Poporului Român, Uniunea Democratică a Slovacilor și Cehilor din România, Alianța pentru Întorsura Buzăului - USR PNL, Partida Romilor, Blocul Suveranist Român, Uniunea Ucrainenilor, Alianța Electorală UIPS - Forța Dreptei, Partidul România în Acțiune, Alianța Electorală PSD PRO România, PER, Alianța Timișoara Unită USR - PMP - Forța Dreptei - UDMR, Alianța pentru ȘAG)\n12\n0,4%\n\nPSD are 1.674 de primari, PNL 1.133, UDMR 200. În Poșaga (Alba) și Chețani (Mureș) primii doi candidați au avut exact același număr de voturi, iar alegerile s-au repetat; pe hartă apar cu negru.\n\nCaută o localitate\n\nAtinge un punct de pe hartă sau caută o localitate ca să vezi rezultatele tuturor candidaților de acolo.\n\nAi găsit o greșeală sau ai o întrebare?\ndorin.spoaller@ubbcluj.ro\nCopiază\n\nSurse. Autoritatea Electorală Permanentă, procesele-verbale finale ale alegerilor locale din 9 iunie 2024, pe fiecare județ: primari, consilii locale, consilii județene și președinți ai consiliilor județene. În București, sectoarele au primarii și consiliile lor; consiliul județean e Consiliul General, iar președintele lui e primarul general.\n\nUn proiect România Interactivă (romaniainteractiva.ro), făcut de Dorin Spoaller, FSPAC, Universitatea Babeș-Bolyai. Contact: dorin.spoaller@ubbcluj.ro",
+  "controale_vizibile": [
+    {
+      "tag": "input",
+      "name": null,
+      "id": "q",
+      "type": "search",
+      "label": "ex. Mărișel, Cluj",
+      "options": null
+    }
+  ],
+  "cereri_date": [],
+  "corpuri_pastrate": [],
+  "corpuri_omise": [],
+  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+}

@@ -999,8 +999,9 @@ All readers return the common field keys and add the keys below; none infers a m
 | `js-acces` | Names that inline page scripts read from a record object. `{tip: js-acces, obiecte: [fields]}`. | `stare_tip` `utilizat-in-cod-pagina`, `accesari`. It shows what the page uses; it is not a schema and it does not read the data behind the page. |
 | `html-api-docs` | An API reference page whose endpoints are cards: a method badge, a path template with `:name` segments, access badges, a `Cache:` label, a description and a `Parametri:` line. `{tip: html-api-docs, contract: URL}`; `contract` names the OpenAPI source of the same project (optional). | Module `inventory_apidocs`. See "API reference pages" below. Request inputs and response members become fields; operations are a separate list. `stare_tip` `declarat-in-documentatie-api`; locator `char:START-END`. |
 | `html-carduri-csv` | A page whose cards offer CSV files: a title, a description, a download link to a `.csv` file, a list of labelled values (`Rânduri`, `Perioada`, `Măsurat la`, `Surse`) and, under the heading `Coloanele`, a list of columns (name and description). `{tip: html-carduri-csv}`. | Module `inventory_csvcards`. See "Pages of CSV files" below. Each column is a field; each file is a dataset in the source key `seturi`. `stare_tip` `declarat-in-lista-documentatie`; locator `char:START-END`. |
+| `js-literale` | The data that a page script holds as literals, and the schema.org `Dataset` of its JSON-LD. `{tip: js-literale, tabele: true}`; `tabele` (`true`, or a list of positions) adds the table readers of the same page, and their fields come first. | Module `inventory_literals`. See "Data literals in page scripts" below. `stare_tip` `observat-in-esantion-json` (a path in a literal) or `declarat-in-metadate` (a `variableMeasured` entry); locator `char:START-END`. |
 
-New `stare_tip` values: `declarat-in-cod-sursa`, `antet-tabel-html`, `declarat-in-tabel-documentatie`, `declarat-in-text-documentatie`,
+New `stare_tip` values (`js-literale` adds none: it reuses `observat-in-esantion-json` and `declarat-in-metadate`): `declarat-in-cod-sursa`, `antet-tabel-html`, `declarat-in-tabel-documentatie`, `declarat-in-text-documentatie`,
 `exemplu-in-documentatie`, `utilizat-in-cod-pagina`; `html-api-docs` also uses `declarat-in-documentatie-api`; `html-carduri-csv` uses `declarat-in-lista-documentatie`
 (the page lists the column with its description; the list is not a table and not a type declaration). `baza_tipului` of a source in these formats is `cod-sau-documentatie`.
 `--check` parses the retained body again and compares every field, so a changed interval, pointer or type is an error.
@@ -1035,6 +1036,38 @@ New `stare_tip` values: `declarat-in-cod-sursa`, `antet-tabel-html`, `declarat-i
   (`în lei nominali`); a column name such as `median_turnover_lei` is not evidence of a unit. The locator is the interval from the `<dt>` of the column to the end of its `<dd>`.
 - A page with no file card, a file offered twice, a column listed twice in one file or a column without a description is an error (state `eroare-parsare`); the reader never guesses.
 - `--check` parses the retained body again and compares the fields and the datasets.
+
+**Data literals in page scripts (`js-literale`).** A single-page tool often keeps its data inside the page. No schema describes that data. The page still shows what it holds.
+The reader makes no request and runs no script.
+
+- A candidate declaration is a `const`, `let` or `var` at the start of a line, with an object or an array as its value. The reader keeps it when the value is a literal.
+  A literal holds only strings, numbers, `true`, `false`, `null`, arrays and objects. Bare keys, single quotes, comments and trailing commas are allowed.
+- A data island is a script of type `application/json`. The reader names it by its `id`. A script with `src` is not read. A repeated name gets a suffix (`DATA#2`).
+- Each path in a literal is a field. Keys: `nume` (the last part of the path), `cale` (the variable and the path, for example `DATA.c{*}.m[]`), `tipuri_observate`, `variabila`, `rol` `camp-date`,
+  `stare_tip` `observat-in-esantion-json`, `pointer` and `linie`. The `pointer` is `char:START-END`: the first node at that path in the retained body.
+  The field has no declared type, no unit and no description, because the page declares none.
+- The bounds are 25 elements of an array, 25 members of a collection, seven levels and 2,000 fields. `limita_atinsa` says that a bound was reached.
+- An object is a keyed collection when it has 100 members or more, or when it has 12 members or more and all its values are of one kind (objects, arrays, strings or numbers).
+  A collection has `rol` `colectie-cu-chei`, `numar_chei` and `chei_exemplu` (at most three keys of 40 characters). Its keys are values, such as county names. They never become field names.
+  A record with 12 members or more and values of several kinds is still a record.
+- An array of rows of one width (2 to 12 cells, all scalars) gives one field for each position, for example `ROWS[][0]` and `ROWS[][1]`.
+  The position is a fact. What a position means is an interpretation: a group selector records it with its own evidence.
+- `declaratii` (a source key) lists every candidate declaration in page order. Keys: `variabila`, `forma-sursa` (`literal-script` or `json-izolat`), `linie`, `citit`, `pointer`.
+  A literal that was read also has `forma` (`obiect` or `tablou`) and `elemente` (the number of members or elements).
+  A declaration that was not read has `motiv`: `valoare-nelitera` (code, an identifier, a function, a template string or a spread), `expresie-dupa-literal` (`[...].map(...)` or a comma),
+  `cheie-nelitera`, `cheie-fara-valoare`, `sintaxa`, `sir-neinchis`, `comentariu-neinchis`, `literal-neterminat` or `literal-prea-adanc`.
+- The comment directly above a declaration is kept as `comentariu`: `valoare`, `pointer` and `trunchiat` (when the text is cut at 600 characters). It is the page's own wording about the variable.
+- A declaration in the middle of a line, or inside a function, is not listed. A line inside a literal that was read is data, never a declaration.
+- `seturi_ld` (a source key) lists each schema.org `Dataset` in the JSON-LD of the page (`application/ld+json`, also inside `@graph`). The reader does not read the rest of the JSON-LD as data.
+  Each fact has `valoare`, `pointer` and `baza` `declarat-in-pagina`.
+  Keys: `nume`, `descriere`, `adresa` (`url`), `perioada` (`temporalCoverage`, as written), `acoperire` (the name of `spatialCoverage`), `licenta`, `limba`, `gratuit` (`isAccessibleForFree`),
+  the lists `bazat_pe` (`isBasedOn`: addresses or free text), `creator`, `editor` (`publisher`), `cuvinte_cheie` and `variabile_masurate`, and `pointer` (the whole node).
+  An object without `name` keeps its `@id` as the value. A missing fact is `null`; a missing list is `[]`.
+  `isBasedOn` is a statement of the page. It is not a provider: the review items name the provider and its role.
+- Each `variableMeasured` entry is also a field: `rol` `masura`, `stare_tip` `declarat-in-metadate`, `grup` (the name of the data set) and `cale` `Dataset1.variableMeasured.NAME`.
+  `descriere` and `unitate` are set only when the page writes `description` and `unitText`.
+- `baza_tipului` of such a source is `esantion-date`. `--check` parses the retained body again and compares the fields, `declaratii` and `seturi_ld`.
+- A response over 2,000,000 bytes has no retained body (`raspuns-prea-mare`). A bounded range read (`--sample-bytes`) stops at the last complete line. It can end before the script of the page.
 
 **Comparison with the contract.** When `citire.contract` names a source of the same project that is parsed and whose body this checkout holds, `inventory.py` compares the page with it after every run.
 Each operation and each request input gets `in_contract`: `{sursa_id, pointer}` of the declaration in the contract, or `null` when the contract does not declare it. A field with no `operatie` has no `in_contract` key
@@ -1113,13 +1146,14 @@ A new checkout needs `collect_docs.py --force` and `inventory.py --force` before
 
 `scripts/inventory_report.py` writes `observatii/inventare/acoperire.csv` (one row for each of the 140 catalogue entries) and the readable report `docs/reports/inventory-expansion.md`.
 `--check` compares both with a fresh computation. The hand-edited input is `data/taxonomy-v2/inventar-note.json`: limits, blockers and next steps of each entry, the narrative of the report and the verification results.
+The keys `lot_c2` and `retea_c2` hold the narrative and the network summary of batch C2; the notes of its entries also carry `blocaj_en` (the blocker, in English, for the report).
 The export keeps fields, business groups, declarations, observations and unknowns apart. A raw field total is never the progress measure.
 
 | Column | Meaning and denominator |
 | --- | --- |
 | `slug`, `tip_entitate` | The entry and its type in the catalogue (`proiect`, `resursa`, `publicatie`, `organizatie`). |
-| `investigat_in_lot` | The collection lots that touched the entry: `C` (the primary batch), `B` (INS metadata attached), `B2` (a source added for a named gap), `S` (a page that the owner saved by hand), `baza` (fields from the first pass only). Empty: not investigated. |
-| `stare_investigare` | `cu-surse-structurate` (at least one parsed source), `blocat` (sources only failed), `neinvestigat-in-lot`, `in-afara-ariei` (organisations: the finder lists projects and resources). |
+| `investigat_in_lot` | The collection lots that touched the entry: `C` (the primary batch), `B` (INS metadata attached), `B2` (a source added for a named gap), `C2` (the three active projects of public-sector data), `S` (a page that the owner saved by hand), `baza` (fields from the first pass only). Empty: not investigated. |
+| `stare_investigare` | `cu-surse-structurate` (at least one parsed source), `blocat` (sources only failed, or the notes file records a blocker for an entry that has no source record: a host that refused every request), `neinvestigat-in-lot`, `in-afara-ariei` (organisations: the finder lists projects and resources). |
 | `surse_structurate` | Parsed structured sources in the profile. A source that several entries share counts for each. |
 | `campuri_din_surse` | Source-scoped field records of those sources. They are paths, not independent variables. |
 | `concepte_propuse` | Distinct proposed groups that contain at least one field of the entry. Empty when there is no source. |
@@ -1260,10 +1294,10 @@ does not ask it to match). A `respins` group produces no matches in the finder a
 and the finder shows its state as a badge (`variables[].state` in the index). The review tool writes the new keys after the existing ones, in the order of the table.
 The top-level `"stare": "propunere"` of the file keeps its meaning: groups remain discovery aids, never join keys.
 
-Current groups (30): identifiers `cui`, `cpv`, `siruta`; dimensions `judet`, `localitate`, `perioada-de-referinta`, `grup-politic`; measures `populatie`, `locuinte`,
+Current groups (33; the last three are proposals of batch C2, state `propus`): identifiers `cui`, `cpv`, `siruta`; dimensions `judet`, `localitate`, `perioada-de-referinta`, `grup-politic`; measures `populatie`, `locuinte`,
 `lungime-drumuri`, `cifra-afaceri`, `profit-net`, `numar-salariati`, `valoare-achizitie-directa`, seven environmental measures (`co2`, `pm25`, `pm10`, `temperatura-aer`,
 `umiditate-relativa`, `presiune-atmosferica`, `viteza-vantului`), election counts (`alegatori-inscrisi`, `alegatori-lista-permanenta`, `alegatori-prezenti`, `voturi-valide`, `voturi-nule`),
-`voturi-pentru`, `voturi-impotriva`, `voturi-abtinere`; derived output `rata-prezenta`. Unit facts exist only where a source declares or implies one with evidence
+`voturi-pentru`, `voturi-impotriva`, `voturi-abtinere`; derived output `rata-prezenta`; measures `casatorii`, `divorturi` and `studenti` (family `populatie-teritoriu`). Unit facts exist only where a source declares or implies one with evidence
 (for example `co2` in ppm from the project page). The seven baseline groups keep every membership that v0.13.0 supported.
 
 An INS dataset has a measure field `OBS_VALUE` (role `masura`, `stare_tip` `declarat-in-documentatie-api`). The API documentation (llms.txt) names `OBS_VALUE` as the observation column of

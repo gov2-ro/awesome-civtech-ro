@@ -51567,6 +51567,1133 @@
       }
     },
     {
+      "url": "https://ins.gov2.ro/api/datasets/POP210A?lang=en",
+      "final_url": "https://ins.gov2.ro/api/datasets/POP210A?lang=en",
+      "http_status": 200,
+      "fetched_at": "2026-10-26T15:31:59.474828+00:00",
+      "content_type": "application/json",
+      "state": "ok",
+      "id": "d43ed96e988436aa9676",
+      "campuri": [
+        {
+          "nume": "RESIDENCE",
+          "cale": "RESIDENCE",
+          "descriere": "Medii de rezidenta",
+          "tip_semantic": "residence",
+          "rol": "dimensiune",
+          "stare_tip": "declarat-in-metadate",
+          "pointer": "/dimensions/0",
+          "valori_declarate": 3
+        },
+        {
+          "nume": "REF_AREA",
+          "cale": "REF_AREA",
+          "descriere": "Macroregiuni, regiuni de dezvoltare si judete",
+          "tip_semantic": "geo",
+          "rol": "dimensiune",
+          "stare_tip": "declarat-in-metadate",
+          "pointer": "/dimensions/1",
+          "valori_declarate": 55
+        },
+        {
+          "nume": "TIME_PERIOD",
+          "cale": "TIME_PERIOD",
+          "descriere": "Perioade",
+          "tip_semantic": "time",
+          "rol": "dimensiune",
+          "stare_tip": "declarat-in-metadate",
+          "pointer": "/dimensions/2",
+          "valori_declarate": 35
+        },
+        {
+          "nume": "UNIT_MEASURE",
+          "cale": "UNIT_MEASURE",
+          "descriere": "UM: Numar",
+          "tip_semantic": "unit",
+          "rol": "dimensiune",
+          "stare_tip": "declarat-in-metadate",
+          "pointer": "/dimensions/3",
+          "valori_declarate": 1
+        },
+        {
+          "nume": "OBS_VALUE",
+          "cale": "OBS_VALUE",
+          "rol": "masura",
+          "stare_tip": "declarat-in-documentatie-api",
+          "tip_declarat": null,
+          "pointer": "/definitie",
+          "descriere": "Casatoria reprezinta uniunea liber consimtita intre un barbat si o femeie, incheiata in conditiile legii.",
+          "unitate": "Numar",
+          "dovada_externa": {
+            "url": "https://ins.gov2.ro/llms.txt",
+            "fragment": "**OBS_VALUE**: The numeric observation value column in all data responses."
+          }
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/d43ed96e988436aa9676-b7b67c8c1997a605.json",
+      "sha256": "b7b67c8c1997a605d23fec65a348755cd19e1419ff0fc61e88d7c6ebd7fafb88",
+      "format": "metadate-ins",
+      "stare": "analizat",
+      "limita_atinsa": false,
+      "baza_tipului": "schema-declarata",
+      "set_date": {
+        "cod": {
+          "valoare": "POP210A",
+          "pointer": "/matrix_code",
+          "baza": "declarat-in-metadate"
+        },
+        "denumire": {
+          "ro": {
+            "valoare": "Casatorii pe medii de rezidenta, macroregiuni, regiuni de dezvoltare si judete",
+            "pointer": "/matrix_name_ro",
+            "baza": "declarat-in-metadate"
+          },
+          "en": {
+            "valoare": "Marriages by urban/ rural area, macroregions, development regions and counties",
+            "pointer": "/matrix_name",
+            "baza": "declarat-in-metadate"
+          }
+        },
+        "actualizat": {
+          "valoare": "2025-06-11",
+          "pointer": "/ultima_actualizare",
+          "baza": "declarat-in-metadate"
+        },
+        "categorie": {
+          "valoare": [
+            {
+              "cod": "1",
+              "nume": "A. SOCIAL STATISTICS"
+            },
+            {
+              "cod": "11",
+              "nume": "A.2 VITAL STATISTICS"
+            },
+            {
+              "cod": "1130",
+              "nume": "3. NUPTIALITY"
+            }
+          ],
+          "pointer": "/context_path",
+          "baza": "declarat-in-metadate"
+        },
+        "definitie_indicator": {
+          "valoare": "Casatoria reprezinta uniunea liber consimtita intre un barbat si o femeie, incheiata in conditiile legii.",
+          "pointer": "/definitie",
+          "baza": "declarat-in-metadate"
+        },
+        "metodologie": {
+          "valoare": "Repartizarea datelor in profil teritorial s-a facut dupa locul inregistrarii casatoriei.\nRaport de metadate si calitate",
+          "pointer": "/metodologie",
+          "baza": "declarat-in-metadate",
+          "transformare": "marcaj-eliminat",
+          "legaturi": [
+            "https://insse.ro/cms/files/Rapoarte%20de%20calitate/populatie/Statistica-demografica.pdf"
+          ]
+        },
+        "observatii": null,
+        "randuri": {
+          "valoare": 3745,
+          "pointer": "/row_count",
+          "baza": "declarat-in-metadate"
+        },
+        "dimensiuni": [
+          {
+            "nume": "RESIDENCE",
+            "eticheta": "Medii de rezidenta",
+            "tip": "residence",
+            "cod_dimensiune": 1,
+            "numar_optiuni_declarat": 3,
+            "numar_optiuni_in_raspuns": 3,
+            "pointer": "/dimensions/0",
+            "exemple_coduri": [
+              {
+                "cod": "Total",
+                "eticheta": "Total",
+                "id_sursa": 108,
+                "pointer": "/dimensions/0/options/0"
+              },
+              {
+                "cod": "Urban",
+                "eticheta": "Urban",
+                "id_sursa": 109,
+                "pointer": "/dimensions/0/options/1"
+              },
+              {
+                "cod": "Rural",
+                "eticheta": "Rural",
+                "id_sursa": 111,
+                "pointer": "/dimensions/0/options/2"
+              }
+            ],
+            "trunchiat": false
+          },
+          {
+            "nume": "REF_AREA",
+            "eticheta": "Macroregiuni, regiuni de dezvoltare si judete",
+            "tip": "geo",
+            "cod_dimensiune": 2,
+            "numar_optiuni_declarat": 55,
+            "numar_optiuni_in_raspuns": 55,
+            "pointer": "/dimensions/1",
+            "exemple_coduri": [
+              {
+                "cod": "TOTAL",
+                "eticheta": "Total",
+                "id_sursa": 112,
+                "pointer": "/dimensions/1/options/0"
+              },
+              {
+                "cod": "MACROREGIUNEA UNU",
+                "eticheta": "Macroregion 1",
+                "id_sursa": 21295,
+                "pointer": "/dimensions/1/options/1"
+              },
+              {
+                "cod": "Regiunea NORD-VEST",
+                "eticheta": "North-West",
+                "id_sursa": 5726,
+                "pointer": "/dimensions/1/options/2"
+              },
+              {
+                "cod": "Bihor",
+                "eticheta": "Bihor",
+                "id_sursa": 3068,
+                "pointer": "/dimensions/1/options/3"
+              },
+              {
+                "cod": "Bistrita-Nasaud",
+                "eticheta": "Bistrita-Nasaud",
+                "id_sursa": 3069,
+                "pointer": "/dimensions/1/options/4"
+              }
+            ],
+            "trunchiat": true,
+            "niveluri_in_optiuni": {
+              "valoare": {
+                "county": 42,
+                "macroregion": 4,
+                "national": 1,
+                "region": 8
+              },
+              "pointer": "/dimensions/1/options/*/parsed/geo_level",
+              "baza": "observat-in-optiuni"
+            }
+          },
+          {
+            "nume": "TIME_PERIOD",
+            "eticheta": "Perioade",
+            "tip": "time",
+            "cod_dimensiune": 3,
+            "numar_optiuni_declarat": 35,
+            "numar_optiuni_in_raspuns": 35,
+            "pointer": "/dimensions/2",
+            "exemple_coduri": [
+              {
+                "cod": "1990",
+                "eticheta": "Year 1990",
+                "id_sursa": 4247,
+                "pointer": "/dimensions/2/options/0"
+              },
+              {
+                "cod": "1991",
+                "eticheta": "Year 1991",
+                "id_sursa": 4266,
+                "pointer": "/dimensions/2/options/1"
+              },
+              {
+                "cod": "1992",
+                "eticheta": "Year 1992",
+                "id_sursa": 4285,
+                "pointer": "/dimensions/2/options/2"
+              },
+              {
+                "cod": "1993",
+                "eticheta": "Year 1993",
+                "id_sursa": 4304,
+                "pointer": "/dimensions/2/options/3"
+              },
+              {
+                "cod": "1994",
+                "eticheta": "Year 1994",
+                "id_sursa": 4323,
+                "pointer": "/dimensions/2/options/4"
+              }
+            ],
+            "trunchiat": true,
+            "ani_in_optiuni": {
+              "valoare": {
+                "min": 1990,
+                "max": 2024,
+                "numar": 35
+              },
+              "pointer": "/dimensions/2/options/*/parsed/year",
+              "baza": "observat-in-optiuni"
+            }
+          },
+          {
+            "nume": "UNIT_MEASURE",
+            "eticheta": "UM: Numar",
+            "tip": "unit",
+            "cod_dimensiune": 4,
+            "numar_optiuni_declarat": 1,
+            "numar_optiuni_in_raspuns": 1,
+            "pointer": "/dimensions/3",
+            "exemple_coduri": [
+              {
+                "cod": "Numar",
+                "eticheta": "Number",
+                "id_sursa": 9669,
+                "pointer": "/dimensions/3/options/0"
+              }
+            ],
+            "trunchiat": false
+          }
+        ],
+        "unitati": [
+          {
+            "cod": "Numar",
+            "eticheta": "Number",
+            "tip_unitate": "count",
+            "scala": 1,
+            "tip_optiune": "unit",
+            "pointer": "/dimensions/3/options/0",
+            "baza": "declarat-in-metadate"
+          }
+        ],
+        "diviziuni": [
+          {
+            "cod": "POP210A_judete",
+            "randuri": 2905,
+            "dimensiuni": null,
+            "pointer": "/splits/0"
+          },
+          {
+            "cod": "POP210A_macroregiuni",
+            "randuri": 280,
+            "dimensiuni": null,
+            "pointer": "/splits/1"
+          },
+          {
+            "cod": "POP210A_regiuni",
+            "randuri": 560,
+            "dimensiuni": null,
+            "pointer": "/splits/2"
+          }
+        ],
+        "licenta": null,
+        "licenta_motiv": "Metadata response declares no licence member.",
+        "perioada": {
+          "an_min": {
+            "valoare": 1990,
+            "pointer": "/profile/time_year_min",
+            "baza": "calculat-de-api"
+          },
+          "an_max": {
+            "valoare": 2024,
+            "pointer": "/profile/time_year_max",
+            "baza": "calculat-de-api"
+          },
+          "granularitate": {
+            "valoare": "annual",
+            "pointer": "/profile/time_granularity",
+            "baza": "calculat-de-api"
+          }
+        },
+        "niveluri_geografice": {
+          "valoare": [
+            "county",
+            "macroregion",
+            "national",
+            "region",
+            "residence"
+          ],
+          "pointer": "/profile/geo_levels",
+          "baza": "calculat-de-api"
+        },
+        "arhetip": {
+          "valoare": "geo_time",
+          "pointer": "/profile/archetype",
+          "baza": "calculat-de-api"
+        }
+      }
+    },
+    {
+      "url": "https://ins.gov2.ro/api/datasets/POP212A?lang=en",
+      "final_url": "https://ins.gov2.ro/api/datasets/POP212A?lang=en",
+      "http_status": 200,
+      "fetched_at": "2026-10-26T15:31:59.828975+00:00",
+      "content_type": "application/json",
+      "state": "ok",
+      "id": "8f3e4436ef441c0a5f75",
+      "campuri": [
+        {
+          "nume": "RESIDENCE",
+          "cale": "RESIDENCE",
+          "descriere": "Medii de rezidenta",
+          "tip_semantic": "residence",
+          "rol": "dimensiune",
+          "stare_tip": "declarat-in-metadate",
+          "pointer": "/dimensions/0",
+          "valori_declarate": 3
+        },
+        {
+          "nume": "REF_AREA",
+          "cale": "REF_AREA",
+          "descriere": "Macroregiuni, regiuni de dezvoltare si judete",
+          "tip_semantic": "geo",
+          "rol": "dimensiune",
+          "stare_tip": "declarat-in-metadate",
+          "pointer": "/dimensions/1",
+          "valori_declarate": 55
+        },
+        {
+          "nume": "TIME_PERIOD",
+          "cale": "TIME_PERIOD",
+          "descriere": "Perioade",
+          "tip_semantic": "time",
+          "rol": "dimensiune",
+          "stare_tip": "declarat-in-metadate",
+          "pointer": "/dimensions/2",
+          "valori_declarate": 35
+        },
+        {
+          "nume": "UNIT_MEASURE",
+          "cale": "UNIT_MEASURE",
+          "descriere": "UM: Numar",
+          "tip_semantic": "unit",
+          "rol": "dimensiune",
+          "stare_tip": "declarat-in-metadate",
+          "pointer": "/dimensions/3",
+          "valori_declarate": 1
+        },
+        {
+          "nume": "OBS_VALUE",
+          "cale": "OBS_VALUE",
+          "rol": "masura",
+          "stare_tip": "declarat-in-documentatie-api",
+          "tip_declarat": null,
+          "pointer": "/definitie",
+          "descriere": "Divortul reprezinta desfacerea unei casatorii incheiate legal, printr-o hotarare definitiva a instantei judecatoresti, a ofiterului de stare civila sau a unui notar public. Datele se refera la cererile de divort pentru care desfacerea casatoriei a fost admisa.",
+          "unitate": "Numar",
+          "dovada_externa": {
+            "url": "https://ins.gov2.ro/llms.txt",
+            "fragment": "**OBS_VALUE**: The numeric observation value column in all data responses."
+          }
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/8f3e4436ef441c0a5f75-1ed183a4a555385b.json",
+      "sha256": "1ed183a4a555385bc71ad668bebdaec3f2e90ec7e99e94173ff850c7339734e2",
+      "format": "metadate-ins",
+      "stare": "analizat",
+      "limita_atinsa": false,
+      "baza_tipului": "schema-declarata",
+      "set_date": {
+        "cod": {
+          "valoare": "POP212A",
+          "pointer": "/matrix_code",
+          "baza": "declarat-in-metadate"
+        },
+        "denumire": {
+          "ro": {
+            "valoare": "Divorturi pe medii de rezidenta, macroregiuni, regiuni de dezvoltare si judete",
+            "pointer": "/matrix_name_ro",
+            "baza": "declarat-in-metadate"
+          },
+          "en": {
+            "valoare": "Divorces by urban/ rural area, macroregions, development regions and counties",
+            "pointer": "/matrix_name",
+            "baza": "declarat-in-metadate"
+          }
+        },
+        "actualizat": {
+          "valoare": "2025-06-11",
+          "pointer": "/ultima_actualizare",
+          "baza": "declarat-in-metadate"
+        },
+        "categorie": {
+          "valoare": [
+            {
+              "cod": "1",
+              "nume": "A. SOCIAL STATISTICS"
+            },
+            {
+              "cod": "11",
+              "nume": "A.2 VITAL STATISTICS"
+            },
+            {
+              "cod": "1140",
+              "nume": "4. DIVORCIALITY"
+            }
+          ],
+          "pointer": "/context_path",
+          "baza": "declarat-in-metadate"
+        },
+        "definitie_indicator": {
+          "valoare": "Divortul reprezinta desfacerea unei casatorii incheiate legal, printr-o hotarare definitiva a instantei judecatoresti, a ofiterului de stare civila sau a unui notar public. Datele se refera la cererile de divort pentru care desfacerea casatoriei a fost admisa.",
+          "pointer": "/definitie",
+          "baza": "declarat-in-metadate"
+        },
+        "metodologie": {
+          "valoare": "Repartizarea datelor in profil teritorial s-a facut dupa ultimul domiciliu comun al sotilor.\nRaport de metadate si calitate",
+          "pointer": "/metodologie",
+          "baza": "declarat-in-metadate",
+          "transformare": "marcaj-eliminat",
+          "legaturi": [
+            "https://insse.ro/cms/files/Rapoarte%20de%20calitate/populatie/Statistica-demografica.pdf"
+          ]
+        },
+        "observatii": null,
+        "randuri": {
+          "valoare": 3745,
+          "pointer": "/row_count",
+          "baza": "declarat-in-metadate"
+        },
+        "dimensiuni": [
+          {
+            "nume": "RESIDENCE",
+            "eticheta": "Medii de rezidenta",
+            "tip": "residence",
+            "cod_dimensiune": 1,
+            "numar_optiuni_declarat": 3,
+            "numar_optiuni_in_raspuns": 3,
+            "pointer": "/dimensions/0",
+            "exemple_coduri": [
+              {
+                "cod": "Total",
+                "eticheta": "Total",
+                "id_sursa": 108,
+                "pointer": "/dimensions/0/options/0"
+              },
+              {
+                "cod": "Urban",
+                "eticheta": "Urban",
+                "id_sursa": 109,
+                "pointer": "/dimensions/0/options/1"
+              },
+              {
+                "cod": "Rural",
+                "eticheta": "Rural",
+                "id_sursa": 111,
+                "pointer": "/dimensions/0/options/2"
+              }
+            ],
+            "trunchiat": false
+          },
+          {
+            "nume": "REF_AREA",
+            "eticheta": "Macroregiuni, regiuni de dezvoltare si judete",
+            "tip": "geo",
+            "cod_dimensiune": 2,
+            "numar_optiuni_declarat": 55,
+            "numar_optiuni_in_raspuns": 55,
+            "pointer": "/dimensions/1",
+            "exemple_coduri": [
+              {
+                "cod": "TOTAL",
+                "eticheta": "Total",
+                "id_sursa": 112,
+                "pointer": "/dimensions/1/options/0"
+              },
+              {
+                "cod": "MACROREGIUNEA UNU",
+                "eticheta": "Macroregion 1",
+                "id_sursa": 21295,
+                "pointer": "/dimensions/1/options/1"
+              },
+              {
+                "cod": "Regiunea NORD-VEST",
+                "eticheta": "North-West",
+                "id_sursa": 5726,
+                "pointer": "/dimensions/1/options/2"
+              },
+              {
+                "cod": "Bihor",
+                "eticheta": "Bihor",
+                "id_sursa": 3068,
+                "pointer": "/dimensions/1/options/3"
+              },
+              {
+                "cod": "Bistrita-Nasaud",
+                "eticheta": "Bistrita-Nasaud",
+                "id_sursa": 3069,
+                "pointer": "/dimensions/1/options/4"
+              }
+            ],
+            "trunchiat": true,
+            "niveluri_in_optiuni": {
+              "valoare": {
+                "county": 42,
+                "macroregion": 4,
+                "national": 1,
+                "region": 8
+              },
+              "pointer": "/dimensions/1/options/*/parsed/geo_level",
+              "baza": "observat-in-optiuni"
+            }
+          },
+          {
+            "nume": "TIME_PERIOD",
+            "eticheta": "Perioade",
+            "tip": "time",
+            "cod_dimensiune": 3,
+            "numar_optiuni_declarat": 35,
+            "numar_optiuni_in_raspuns": 35,
+            "pointer": "/dimensions/2",
+            "exemple_coduri": [
+              {
+                "cod": "1990",
+                "eticheta": "Year 1990",
+                "id_sursa": 4247,
+                "pointer": "/dimensions/2/options/0"
+              },
+              {
+                "cod": "1991",
+                "eticheta": "Year 1991",
+                "id_sursa": 4266,
+                "pointer": "/dimensions/2/options/1"
+              },
+              {
+                "cod": "1992",
+                "eticheta": "Year 1992",
+                "id_sursa": 4285,
+                "pointer": "/dimensions/2/options/2"
+              },
+              {
+                "cod": "1993",
+                "eticheta": "Year 1993",
+                "id_sursa": 4304,
+                "pointer": "/dimensions/2/options/3"
+              },
+              {
+                "cod": "1994",
+                "eticheta": "Year 1994",
+                "id_sursa": 4323,
+                "pointer": "/dimensions/2/options/4"
+              }
+            ],
+            "trunchiat": true,
+            "ani_in_optiuni": {
+              "valoare": {
+                "min": 1990,
+                "max": 2024,
+                "numar": 35
+              },
+              "pointer": "/dimensions/2/options/*/parsed/year",
+              "baza": "observat-in-optiuni"
+            }
+          },
+          {
+            "nume": "UNIT_MEASURE",
+            "eticheta": "UM: Numar",
+            "tip": "unit",
+            "cod_dimensiune": 4,
+            "numar_optiuni_declarat": 1,
+            "numar_optiuni_in_raspuns": 1,
+            "pointer": "/dimensions/3",
+            "exemple_coduri": [
+              {
+                "cod": "Numar",
+                "eticheta": "Number",
+                "id_sursa": 9669,
+                "pointer": "/dimensions/3/options/0"
+              }
+            ],
+            "trunchiat": false
+          }
+        ],
+        "unitati": [
+          {
+            "cod": "Numar",
+            "eticheta": "Number",
+            "tip_unitate": "count",
+            "scala": 1,
+            "tip_optiune": "unit",
+            "pointer": "/dimensions/3/options/0",
+            "baza": "declarat-in-metadate"
+          }
+        ],
+        "diviziuni": [
+          {
+            "cod": "POP212A_judete",
+            "randuri": 2905,
+            "dimensiuni": null,
+            "pointer": "/splits/0"
+          },
+          {
+            "cod": "POP212A_macroregiuni",
+            "randuri": 280,
+            "dimensiuni": null,
+            "pointer": "/splits/1"
+          },
+          {
+            "cod": "POP212A_regiuni",
+            "randuri": 560,
+            "dimensiuni": null,
+            "pointer": "/splits/2"
+          }
+        ],
+        "licenta": null,
+        "licenta_motiv": "Metadata response declares no licence member.",
+        "perioada": {
+          "an_min": {
+            "valoare": 1990,
+            "pointer": "/profile/time_year_min",
+            "baza": "calculat-de-api"
+          },
+          "an_max": {
+            "valoare": 2024,
+            "pointer": "/profile/time_year_max",
+            "baza": "calculat-de-api"
+          },
+          "granularitate": {
+            "valoare": "annual",
+            "pointer": "/profile/time_granularity",
+            "baza": "calculat-de-api"
+          }
+        },
+        "niveluri_geografice": {
+          "valoare": [
+            "county",
+            "macroregion",
+            "national",
+            "region",
+            "residence"
+          ],
+          "pointer": "/profile/geo_levels",
+          "baza": "calculat-de-api"
+        },
+        "arhetip": {
+          "valoare": "geo_time",
+          "pointer": "/profile/archetype",
+          "baza": "calculat-de-api"
+        }
+      }
+    },
+    {
+      "url": "https://ins.gov2.ro/api/datasets/SCL103D?lang=en",
+      "final_url": "https://ins.gov2.ro/api/datasets/SCL103D?lang=en",
+      "http_status": 200,
+      "fetched_at": "2026-10-26T15:31:49.622628+00:00",
+      "content_type": "application/json",
+      "state": "ok",
+      "id": "d575dbf0d3fb0293af74",
+      "campuri": [
+        {
+          "nume": "NIVELURI_DE_EDUCATIE",
+          "cale": "NIVELURI_DE_EDUCATIE",
+          "descriere": "Niveluri de educatie",
+          "tip_semantic": "indicator",
+          "rol": "dimensiune",
+          "stare_tip": "declarat-in-metadate",
+          "pointer": "/dimensions/0",
+          "valori_declarate": 23
+        },
+        {
+          "nume": "REF_AREA",
+          "cale": "REF_AREA",
+          "descriere": "Judete",
+          "tip_semantic": "geo",
+          "rol": "dimensiune",
+          "stare_tip": "declarat-in-metadate",
+          "pointer": "/dimensions/1",
+          "valori_declarate": 43
+        },
+        {
+          "nume": "REF_AREA_2",
+          "cale": "REF_AREA_2",
+          "descriere": "Localitati ",
+          "tip_semantic": "geo",
+          "rol": "dimensiune",
+          "stare_tip": "declarat-in-metadate",
+          "pointer": "/dimensions/2",
+          "valori_declarate": 3183
+        },
+        {
+          "nume": "TIME_PERIOD",
+          "cale": "TIME_PERIOD",
+          "descriere": "Perioade",
+          "tip_semantic": "time",
+          "rol": "dimensiune",
+          "stare_tip": "declarat-in-metadate",
+          "pointer": "/dimensions/3",
+          "valori_declarate": 33
+        },
+        {
+          "nume": "UNIT_MEASURE",
+          "cale": "UNIT_MEASURE",
+          "descriere": "UM: Numar persoane",
+          "tip_semantic": "unit",
+          "rol": "dimensiune",
+          "stare_tip": "declarat-in-metadate",
+          "pointer": "/dimensions/4",
+          "valori_declarate": 1
+        },
+        {
+          "nume": "OBS_VALUE",
+          "cale": "OBS_VALUE",
+          "rol": "masura",
+          "stare_tip": "declarat-in-documentatie-api",
+          "tip_declarat": null,
+          "pointer": "/definitie",
+          "descriere": "Populatia scolara - reprezinta totalitatea copiilor din gradinite si crese, a elevilor si studentilor cuprinsi in procesul de instruire si educare dintr-un an scolar/universitar din cadrul educatiei formale, indiferent de formele de invatamant pe care le frecventeaza (de zi/ cu frecventa - program de zi, seral/cu frecventa - program seral, cu frecventa redusa si la distanta), programul de studii si de varsta.\nNivelurile de instruire, in conformitate cu Clasificarea Internationala Standard a Educatiei - ISCED 97 (pana in anul 2013)/ISCED 2011 (dupa anul 2013) sunt:\n1. Invatamantul anteprescolar este corespunzator nivelului 01, conform reglementarilor internationale in materie de educatie, noua Clasificare Internationala Standard a Educatiei - ISCED 2011 si cuprinde copiii in varsta de 0-2 ani. Datele sunt disponibile incepand cu anul scolar 2014/2015.\n2. Invatamantul prescolar - nivelul 0 conform clasificarii ISCED 97, utilizata pana in anul 2013 - cuprinde copiii in varsta de 3-6 ani si peste; incepand cu anul 2013, invatamantul prescolar - nivelul 02 conform clasificarii ISCED 2011 - cuprinde, de regula, copiii in varsta de 3-5 ani si peste. Ca tip de unitati functioneaza:\n- gradinite de copii cu program prelungit;\n- gradinite de copii cu program saptamanal;\n- gradinite de copii cu program normal;\n- gradinite speciale.\n3. Invatamantul primar - invatamant de nivel 1 - ISCED 97 (pana in anul 2013)/ISCED 2011 (dupa anul 2013), a carui functie principala este de a asigura elementele de baza ale educatiei avand durata de scolarizare de 4 ani (5 ani incepand cu anul scolar 2012/2013); cuprinde, de regula, copii in varsta de 7-10 ani si peste (6-10 ani si peste incepand cu anul scolar 2012/2013) si functioneaza numai ca forma de invatamant de zi/ cu frecventa - program de zi; face parte din tipul de invatamant obligatoriu;\n4. Invatamantul gimnazial - invatamant secundar inferior de nivel 2 - ISCED 97 (pana in anul 2013)/ISCED 2011 (dupa anul 2013), bazat pe cel putin 4 ani de instruire (clasele V-VIII), cuprinde, de regula, elevi in varsta de 11-14 ani si peste; face parte din tipul de invatamant obligatoriu. Functioneaza cu formele de invatamant de zi/ cu frecventa - program de zi si frecventa redusa. Promovatii ultimului an de studiu, obtin Certificat de test national (capacitate).\n5. Invatamantul special primar de nivel 1 - ISCED 97 (pana in anul 2013)/ISCED 2011 (dupa anul 2013) si gimnazial (secundar inferior) de nivel 2 - ISCED 97 (pana in anul 2013)/ISCED 2011 (dupa anul 2013) cuprinde institutiile de invatamant in care sunt inscrisi copii si tineri cu deficiente fizice, senzoriale si intelectuale in vederea instruirii, educarii, corectarii deficientelor potrivit naturii si gradului deficientei si integrarii acestora in viata activa. In profil teritorial seria se urmareste incepand cu anul 1990.\n6. Invatamantul secundar superior - liceal de nivel 3 - ISCED 97 (pana in anul 2013)/ISCED 2011 (dupa anul 2013) - are durata de scolarizare de 4-5 ani (clasele IX-XII/ XIII) si asigura, de regula, educatia specializata a tinerilor in varsta de 15-18 ani si peste. Inscrierea in clasa a IX-a se face numai dintre absolventii invatamantului gimnazial cu certificat de test national (capacitate). Promovatii ultimului an de studiu sustin examenul de bacalaureat in urma caruia obtin Diploma de bacalaureat. Functioneaza cu formele de invatamant: zi/ cu frecventa - program de zi, seral /cu frecventa - program seral, frecventa redusa si deschis la distanta.\n7. Invatamantul secundar superior - profesional de nivel 3 - ISCED 97 (pana in anul 2013)/ISCED 2011 (dupa anul 2013) are durata de scolarizare de 1-4 ani si cuprinde tineri in varsta de 15-18 ani. Functioneaza cu formele de invatamant: zi/cu frecventa - program de zi, seral /cu frecventa - program seral si frecventa redusa. Inscrierea in primul an de invatamant se face numai dintre absolventii invatamantului gimnazial cu sau fara examen de absolvire (test national). Functioneaza cu urmatoarele tipuri de unitati:\n- scoli profesionale / scoli de arte si meserii;\n- invatamant de ucenici (pana in anul 2004);\n- scoli profesionale (scoli de arte si meserii) speciale;\n- scoli speciale de reeducare/centre scolare de educatie inclusiva.\n8. Invatamantul postliceal - invatamant post secundar, neechivalent primului nivel universitar, de nivel 4 - ISCED 97 (pana in anul 2013)/ISCED 2011 (dupa anul 2013) - are durata de scolarizare de 2-3 ani si, de regula, cuprinde tineri in varsta de 19-21 de ani si peste. Inscrierea in primul an de invatamant se face dintre absolventii invatamantului liceal cu sau fara diploma de bacalaureat. Formele de invatamant existente sunt: de zi/ cu frecventa - program de zi, seral /cu frecventa - program seral si frecventa redusa. Absolventii ultimului an de studiu obtin Diploma de absolvire. Acest nivel de educatie functioneaza cu urmatoarele tipuri de unitati:\n- scoli postliceale;\n- scoli de maistri;\n- scoli postliceale speciale.\n9. Invatamantul universitar (tertiar) este invatamantul de nivel 5 -ISCED 97 (pana in anul 2013), in care conditia de admitere este absolvirea invatamantului secundar superior. Invatamantul universitar este organizat astfel: de scurta durata (in care durata studiilor este de 2-3 ani si se finalizeaza cu diploma de absolvire) si de lunga durata (in care durata studiilor este de 4-6 ani si se finalizeaza cu diploma de licenta).\nDin anul 2013 invatamantul universitar de licenta in functie de noua Clasificare Internationala Standard a Educatiei - ISCED 2011 este invatamantul pentru nivelurile 6 si 7 - ISCED 2011 care cuprinde invatamantul universitar de licenta cu durate de 3-4 ani (nivelul 6 - ISCED 2011) si invatamantul universitar de licenta cu durate de 5, 6 ani (nivelul 7 - ISCED 2011).\nNivelul 7 - ISCED 2011 cuprinde invatamantul universitar de master si cursuri/studii postuniversitare, iar nivelul 8 - ISCED 2011 este corespunzator invatamantului universitar de doctorat si programe postdoctorale de cercetare avansata.\nIncepand cu anul 2014 a fost folosita clasificarea ISCED-F 2013. Clasificarea specializarilor ISCED-F 2013 a fost adoptata in anul 2014, urmare a revizuirii nivelurilor de educatie ISCED-2011.",
+          "unitate": "Numar persoane",
+          "dovada_externa": {
+            "url": "https://ins.gov2.ro/llms.txt",
+            "fragment": "**OBS_VALUE**: The numeric observation value column in all data responses."
+          }
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/d575dbf0d3fb0293af74-c234dba22cf64e7c.json",
+      "sha256": "c234dba22cf64e7c29436da5e2e000cbe740aa76d4f1d8252dbcf5ac0febc200",
+      "format": "metadate-ins",
+      "stare": "analizat",
+      "limita_atinsa": false,
+      "baza_tipului": "schema-declarata",
+      "set_date": {
+        "cod": {
+          "valoare": "SCL103D",
+          "pointer": "/matrix_code",
+          "baza": "declarat-in-metadate"
+        },
+        "denumire": {
+          "ro": {
+            "valoare": "Populatia scolara, pe niveluri de educatie, judete si localitati",
+            "pointer": "/matrix_name_ro",
+            "baza": "declarat-in-metadate"
+          },
+          "en": {
+            "valoare": "Enrolled population, by level of education, counties and localities",
+            "pointer": "/matrix_name",
+            "baza": "declarat-in-metadate"
+          }
+        },
+        "actualizat": {
+          "valoare": "2025-09-03",
+          "pointer": "/ultima_actualizare",
+          "baza": "declarat-in-metadate"
+        },
+        "categorie": {
+          "valoare": [
+            {
+              "cod": "1",
+              "nume": "A. SOCIAL STATISTICS"
+            },
+            {
+              "cod": "25",
+              "nume": "A.7 EDUCATION"
+            },
+            {
+              "cod": "2506",
+              "nume": "2. SCHOOL AGED POPULATION"
+            }
+          ],
+          "pointer": "/context_path",
+          "baza": "declarat-in-metadate"
+        },
+        "definitie_indicator": {
+          "valoare": "Populatia scolara - reprezinta totalitatea copiilor din gradinite si crese, a elevilor si studentilor cuprinsi in procesul de instruire si educare dintr-un an scolar/universitar din cadrul educatiei formale, indiferent de formele de invatamant pe care le frecventeaza (de zi/ cu frecventa - program de zi, seral/cu frecventa - program seral, cu frecventa redusa si la distanta), programul de studii si de varsta.\nNivelurile de instruire, in conformitate cu Clasificarea Internationala Standard a Educatiei - ISCED 97 (pana in anul 2013)/ISCED 2011 (dupa anul 2013) sunt:\n1. Invatamantul anteprescolar este corespunzator nivelului 01, conform reglementarilor internationale in materie de educatie, noua Clasificare Internationala Standard a Educatiei - ISCED 2011 si cuprinde copiii in varsta de 0-2 ani. Datele sunt disponibile incepand cu anul scolar 2014/2015.\n2. Invatamantul prescolar - nivelul 0 conform clasificarii ISCED 97, utilizata pana in anul 2013 - cuprinde copiii in varsta de 3-6 ani si peste; incepand cu anul 2013, invatamantul prescolar - nivelul 02 conform clasificarii ISCED 2011 - cuprinde, de regula, copiii in varsta de 3-5 ani si peste. Ca tip de unitati functioneaza:\n- gradinite de copii cu program prelungit;\n- gradinite de copii cu program saptamanal;\n- gradinite de copii cu program normal;\n- gradinite speciale.\n3. Invatamantul primar - invatamant de nivel 1 - ISCED 97 (pana in anul 2013)/ISCED 2011 (dupa anul 2013), a carui functie principala este de a asigura elementele de baza ale educatiei avand durata de scolarizare de 4 ani (5 ani incepand cu anul scolar 2012/2013); cuprinde, de regula, copii in varsta de 7-10 ani si peste (6-10 ani si peste incepand cu anul scolar 2012/2013) si functioneaza numai ca forma de invatamant de zi/ cu frecventa - program de zi; face parte din tipul de invatamant obligatoriu;\n4. Invatamantul gimnazial - invatamant secundar inferior de nivel 2 - ISCED 97 (pana in anul 2013)/ISCED 2011 (dupa anul 2013), bazat pe cel putin 4 ani de instruire (clasele V-VIII), cuprinde, de regula, elevi in varsta de 11-14 ani si peste; face parte din tipul de invatamant obligatoriu. Functioneaza cu formele de invatamant de zi/ cu frecventa - program de zi si frecventa redusa. Promovatii ultimului an de studiu, obtin Certificat de test national (capacitate).\n5. Invatamantul special primar de nivel 1 - ISCED 97 (pana in anul 2013)/ISCED 2011 (dupa anul 2013) si gimnazial (secundar inferior) de nivel 2 - ISCED 97 (pana in anul 2013)/ISCED 2011 (dupa anul 2013) cuprinde institutiile de invatamant in care sunt inscrisi copii si tineri cu deficiente fizice, senzoriale si intelectuale in vederea instruirii, educarii, corectarii deficientelor potrivit naturii si gradului deficientei si integrarii acestora in viata activa. In profil teritorial seria se urmareste incepand cu anul 1990.\n6. Invatamantul secundar superior - liceal de nivel 3 - ISCED 97 (pana in anul 2013)/ISCED 2011 (dupa anul 2013) - are durata de scolarizare de 4-5 ani (clasele IX-XII/ XIII) si asigura, de regula, educatia specializata a tinerilor in varsta de 15-18 ani si peste. Inscrierea in clasa a IX-a se face numai dintre absolventii invatamantului gimnazial cu certificat de test national (capacitate). Promovatii ultimului an de studiu sustin examenul de bacalaureat in urma caruia obtin Diploma de bacalaureat. Functioneaza cu formele de invatamant: zi/ cu frecventa - program de zi, seral /cu frecventa - program seral, frecventa redusa si deschis la distanta.\n7. Invatamantul secundar superior - profesional de nivel 3 - ISCED 97 (pana in anul 2013)/ISCED 2011 (dupa anul 2013) are durata de scolarizare de 1-4 ani si cuprinde tineri in varsta de 15-18 ani. Functioneaza cu formele de invatamant: zi/cu frecventa - program de zi, seral /cu frecventa - program seral si frecventa redusa. Inscrierea in primul an de invatamant se face numai dintre absolventii invatamantului gimnazial cu sau fara examen de absolvire (test national). Functioneaza cu urmatoarele tipuri de unitati:\n- scoli profesionale / scoli de arte si meserii;\n- invatamant de ucenici (pana in anul 2004);\n- scoli profesionale (scoli de arte si meserii) speciale;\n- scoli speciale de reeducare/centre scolare de educatie inclusiva.\n8. Invatamantul postliceal - invatamant post secundar, neechivalent primului nivel universitar, de nivel 4 - ISCED 97 (pana in anul 2013)/ISCED 2011 (dupa anul 2013) - are durata de scolarizare de 2-3 ani si, de regula, cuprinde tineri in varsta de 19-21 de ani si peste. Inscrierea in primul an de invatamant se face dintre absolventii invatamantului liceal cu sau fara diploma de bacalaureat. Formele de invatamant existente sunt: de zi/ cu frecventa - program de zi, seral /cu frecventa - program seral si frecventa redusa. Absolventii ultimului an de studiu obtin Diploma de absolvire. Acest nivel de educatie functioneaza cu urmatoarele tipuri de unitati:\n- scoli postliceale;\n- scoli de maistri;\n- scoli postliceale speciale.\n9. Invatamantul universitar (tertiar) este invatamantul de nivel 5 -ISCED 97 (pana in anul 2013), in care conditia de admitere este absolvirea invatamantului secundar superior. Invatamantul universitar este organizat astfel: de scurta durata (in care durata studiilor este de 2-3 ani si se finalizeaza cu diploma de absolvire) si de lunga durata (in care durata studiilor este de 4-6 ani si se finalizeaza cu diploma de licenta).\nDin anul 2013 invatamantul universitar de licenta in functie de noua Clasificare Internationala Standard a Educatiei - ISCED 2011 este invatamantul pentru nivelurile 6 si 7 - ISCED 2011 care cuprinde invatamantul universitar de licenta cu durate de 3-4 ani (nivelul 6 - ISCED 2011) si invatamantul universitar de licenta cu durate de 5, 6 ani (nivelul 7 - ISCED 2011).\nNivelul 7 - ISCED 2011 cuprinde invatamantul universitar de master si cursuri/studii postuniversitare, iar nivelul 8 - ISCED 2011 este corespunzator invatamantului universitar de doctorat si programe postdoctorale de cercetare avansata.\nIncepand cu anul 2014 a fost folosita clasificarea ISCED-F 2013. Clasificarea specializarilor ISCED-F 2013 a fost adoptata in anul 2014, urmare a revizuirii nivelurilor de educatie ISCED-2011.",
+          "pointer": "/definitie",
+          "baza": "declarat-in-metadate",
+          "transformare": "marcaj-eliminat"
+        },
+        "metodologie": {
+          "valoare": "Nivelurile de educatie, in conformitate cu Clasificarea Internationala Standard a Educatiei - ISCED 97 (pana in anul 2013)/ISCED 2011 (dupa anul 2013).\nRaport de metadate si calitate",
+          "pointer": "/metodologie",
+          "baza": "declarat-in-metadate",
+          "transformare": "marcaj-eliminat",
+          "legaturi": [
+            "https://insse.ro/cms/files/Rapoarte%20de%20calitate/Educatie/Raport-de-calitate-privind-statistica-educatiei.pdf"
+          ]
+        },
+        "observatii": {
+          "valoare": "Datele sunt disponibile incepand cu anul 1992.\nPentru perioada 1992-1994 nu sunt disponibile informatii privind populatia scolara din invatamantul primar si gimnazial (separat pentru primar si separat pentru gimnazial), deoarece nu s-au urmarit pe localitati.\nPana in anul 2012 sunt informatii la nivel de localitate doar pentru invatamantul primar si gimnazial (inclusiv special), iar din anul 2013 sunt detaliate distinct pentru invatamantul primar si gimnazial de masa si pentru invatamantul primar si gimnazial special.\nDatele pentru invatamantul postliceal reprezinta suma datelor din scolile postliceale de masa (de specialitate) si scolile postliceale speciale.\nDatele furnizate pentru invatamantul superior sunt dupa localitatea facultatii.\nDatele aferente invatamantului preuniversitar nu includ invatamantul anteprescolar si prescolar.\nNumarul si denumirile localitatilor Romaniei sunt in concordanta cu impartirea administrativ - teritoriala revizuita in anul curent.\nIncepand cu anul scolar 2014/2015 in cadrul acestui indicator sunt inclusi si numarul de copii din crese.\nIncepand cu anul 2019 (anul universitar 2019/2020), nivelul educational Invatamant universitar - doctorat si programe postdoctorale va avea urmatoarea denumire: Invatamant universitar - doctorat si programe postdoctorale de cercetare avansata.",
+          "pointer": "/observatii",
+          "baza": "declarat-in-metadate"
+        },
+        "randuri": {
+          "valoare": 658746,
+          "pointer": "/row_count",
+          "baza": "declarat-in-metadate"
+        },
+        "dimensiuni": [
+          {
+            "nume": "NIVELURI_DE_EDUCATIE",
+            "eticheta": "Niveluri de educatie",
+            "tip": "indicator",
+            "cod_dimensiune": 1,
+            "numar_optiuni_declarat": 23,
+            "numar_optiuni_in_raspuns": 23,
+            "pointer": "/dimensions/0",
+            "exemple_coduri": [
+              {
+                "cod": "Total",
+                "eticheta": "Total",
+                "id_sursa": 87235,
+                "pointer": "/dimensions/0/options/0"
+              },
+              {
+                "cod": "Copii inscrisi in crese",
+                "eticheta": "Children in creches/nurseries",
+                "id_sursa": 91323,
+                "pointer": "/dimensions/0/options/1"
+              },
+              {
+                "cod": "Copii inscrisi in gradinite",
+                "eticheta": "Children in kindergartens",
+                "id_sursa": 8502,
+                "pointer": "/dimensions/0/options/2"
+              },
+              {
+                "cod": "Elevi inscrisi in invatamantul preuniversitar",
+                "eticheta": "Pupils enrolled in pre-university education",
+                "id_sursa": 8503,
+                "pointer": "/dimensions/0/options/3"
+              },
+              {
+                "cod": "Elevi inscrisi in invatamantul primar si gimnazial (inclusiv invatamantul special)",
+                "eticheta": "Pupils enrolled in primary and secondary education (special education included)",
+                "id_sursa": 8504,
+                "pointer": "/dimensions/0/options/4"
+              }
+            ],
+            "trunchiat": true
+          },
+          {
+            "nume": "REF_AREA",
+            "eticheta": "Judete",
+            "tip": "geo",
+            "cod_dimensiune": 2,
+            "numar_optiuni_declarat": 43,
+            "numar_optiuni_in_raspuns": 43,
+            "pointer": "/dimensions/1",
+            "exemple_coduri": [
+              {
+                "cod": "TOTAL",
+                "eticheta": "Total",
+                "id_sursa": 112,
+                "pointer": "/dimensions/1/options/0"
+              },
+              {
+                "cod": "Alba",
+                "eticheta": "Alba",
+                "id_sursa": 3064,
+                "pointer": "/dimensions/1/options/1"
+              },
+              {
+                "cod": "Arad",
+                "eticheta": "Arad",
+                "id_sursa": 3065,
+                "pointer": "/dimensions/1/options/2"
+              },
+              {
+                "cod": "Arges",
+                "eticheta": "Arges",
+                "id_sursa": 3066,
+                "pointer": "/dimensions/1/options/3"
+              },
+              {
+                "cod": "Bacau",
+                "eticheta": "Bacau",
+                "id_sursa": 3067,
+                "pointer": "/dimensions/1/options/4"
+              }
+            ],
+            "trunchiat": true,
+            "niveluri_in_optiuni": {
+              "valoare": {
+                "county": 42,
+                "national": 1
+              },
+              "pointer": "/dimensions/1/options/*/parsed/geo_level",
+              "baza": "observat-in-optiuni"
+            }
+          },
+          {
+            "nume": "REF_AREA_2",
+            "eticheta": "Localitati",
+            "tip": "geo",
+            "cod_dimensiune": 3,
+            "numar_optiuni_declarat": 3183,
+            "numar_optiuni_in_raspuns": 3183,
+            "pointer": "/dimensions/2",
+            "exemple_coduri": [
+              {
+                "cod": "TOTAL",
+                "eticheta": "Total",
+                "id_sursa": 112,
+                "pointer": "/dimensions/2/options/0"
+              },
+              {
+                "cod": "1017 MUNICIPIUL ALBA IULIA",
+                "eticheta": "1017 ALBA IULIA MUNICIPALITY",
+                "id_sursa": 113,
+                "pointer": "/dimensions/2/options/1"
+              },
+              {
+                "cod": "1213 MUNICIPIUL AIUD",
+                "eticheta": "1213 AIUD MUNICIPALITY",
+                "id_sursa": 116,
+                "pointer": "/dimensions/2/options/2"
+              },
+              {
+                "cod": "1348 MUNICIPIUL BLAJ",
+                "eticheta": "1348 BLAJ MUNICIPALITY",
+                "id_sursa": 117,
+                "pointer": "/dimensions/2/options/3"
+              },
+              {
+                "cod": "1874 MUNICIPIUL SEBES",
+                "eticheta": "1874 SEBES MUNICIPALITY",
+                "id_sursa": 121,
+                "pointer": "/dimensions/2/options/4"
+              }
+            ],
+            "trunchiat": true,
+            "niveluri_in_optiuni": {
+              "valoare": {
+                "county": 1,
+                "locality": 3181,
+                "national": 1
+              },
+              "pointer": "/dimensions/2/options/*/parsed/geo_level",
+              "baza": "observat-in-optiuni"
+            }
+          },
+          {
+            "nume": "TIME_PERIOD",
+            "eticheta": "Perioade",
+            "tip": "time",
+            "cod_dimensiune": 4,
+            "numar_optiuni_declarat": 33,
+            "numar_optiuni_in_raspuns": 33,
+            "pointer": "/dimensions/3",
+            "exemple_coduri": [
+              {
+                "cod": "1992",
+                "eticheta": "Year 1992",
+                "id_sursa": 4285,
+                "pointer": "/dimensions/3/options/0"
+              },
+              {
+                "cod": "1993",
+                "eticheta": "Year 1993",
+                "id_sursa": 4304,
+                "pointer": "/dimensions/3/options/1"
+              },
+              {
+                "cod": "1994",
+                "eticheta": "Year 1994",
+                "id_sursa": 4323,
+                "pointer": "/dimensions/3/options/2"
+              },
+              {
+                "cod": "1995",
+                "eticheta": "Year 1995",
+                "id_sursa": 4342,
+                "pointer": "/dimensions/3/options/3"
+              },
+              {
+                "cod": "1996",
+                "eticheta": "Year 1996",
+                "id_sursa": 4361,
+                "pointer": "/dimensions/3/options/4"
+              }
+            ],
+            "trunchiat": true,
+            "ani_in_optiuni": {
+              "valoare": {
+                "min": 1992,
+                "max": 2024,
+                "numar": 33
+              },
+              "pointer": "/dimensions/3/options/*/parsed/year",
+              "baza": "observat-in-optiuni"
+            }
+          },
+          {
+            "nume": "UNIT_MEASURE",
+            "eticheta": "UM: Numar persoane",
+            "tip": "unit",
+            "cod_dimensiune": 5,
+            "numar_optiuni_declarat": 1,
+            "numar_optiuni_in_raspuns": 1,
+            "pointer": "/dimensions/4",
+            "exemple_coduri": [
+              {
+                "cod": "Numar persoane",
+                "eticheta": "Number of persons",
+                "id_sursa": 9685,
+                "pointer": "/dimensions/4/options/0"
+              }
+            ],
+            "trunchiat": false
+          }
+        ],
+        "unitati": [
+          {
+            "cod": "Numar persoane",
+            "eticheta": "Number of persons",
+            "tip_unitate": "count",
+            "scala": 1,
+            "tip_optiune": "unit",
+            "pointer": "/dimensions/4/options/0",
+            "baza": "declarat-in-metadate"
+          }
+        ],
+        "diviziuni": [
+          {
+            "cod": "SCL103D_judet",
+            "randuri": 587055,
+            "dimensiuni": null,
+            "pointer": "/splits/0"
+          },
+          {
+            "cod": "SCL103D_localitate",
+            "randuri": 658746,
+            "dimensiuni": null,
+            "pointer": "/splits/1"
+          }
+        ],
+        "licenta": null,
+        "licenta_motiv": "Metadata response declares no licence member.",
+        "perioada": {
+          "an_min": {
+            "valoare": 1992,
+            "pointer": "/profile/time_year_min",
+            "baza": "calculat-de-api"
+          },
+          "an_max": {
+            "valoare": 2024,
+            "pointer": "/profile/time_year_max",
+            "baza": "calculat-de-api"
+          },
+          "granularitate": {
+            "valoare": "annual",
+            "pointer": "/profile/time_granularity",
+            "baza": "calculat-de-api"
+          }
+        },
+        "niveluri_geografice": {
+          "valoare": [
+            "county",
+            "locality",
+            "national"
+          ],
+          "pointer": "/profile/geo_levels",
+          "baza": "calculat-de-api"
+        },
+        "arhetip": {
+          "valoare": "geo_time",
+          "pointer": "/profile/archetype",
+          "baza": "calculat-de-api"
+        }
+      }
+    },
+    {
       "url": "https://ins.gov2.ro/api/datasets/TRN139A?lang=en",
       "final_url": "https://ins.gov2.ro/api/datasets/TRN139A?lang=en",
       "http_status": 200,
@@ -57236,6 +58363,1699 @@
       "campuri": [],
       "completitudine": "neconfirmat",
       "snapshot": "surse/18a2aced844c56ee5d64.json"
+    },
+    {
+      "url": "https://orase-digitale.ro/",
+      "final_url": "https://orase-digitale.ro/",
+      "http_status": 200,
+      "fetched_at": "2026-10-26T15:27:14.383157+00:00",
+      "content_type": "text/html",
+      "state": "ok",
+      "citire": {
+        "tip": "js-literale",
+        "tabele": true
+      },
+      "id": "00784681fe856379fb15",
+      "campuri": [
+        {
+          "nume": "Rank",
+          "cale": "tabel2.Rank",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/2/antet/0",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "City",
+          "cale": "tabel2.City",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/2/antet/1",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "Pop.",
+          "cale": "tabel2.Pop.",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/2/antet/2",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "Total",
+          "cale": "tabel2.Total",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/2/antet/3",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "Erg.",
+          "cale": "tabel2.Erg.",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/2/antet/4",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "Cont.",
+          "cale": "tabel2.Cont.",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/2/antet/5",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "Serv.",
+          "cale": "tabel2.Serv.",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/2/antet/6",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "Part.",
+          "cale": "tabel2.Part.",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/2/antet/7",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "Sec.",
+          "cale": "tabel2.Sec.",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/2/antet/8",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "Δ vs prev.",
+          "cale": "tabel2.Δ vs prev.",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/2/antet/9",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "3-wave",
+          "cale": "tabel2.3-wave",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/2/antet/10",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "Total e-government score",
+          "cale": "Dataset1.variableMeasured.Total e-government score",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-metadate",
+          "rol": "masura",
+          "pointer": "char:5561-5693",
+          "linie": 77,
+          "variabila": "Dataset1",
+          "grup": "Romania E-Government Index (2020–2026)",
+          "descriere": "Weighted composite of five category scores, 0–100",
+          "unitate": null
+        },
+        {
+          "nume": "Security & privacy",
+          "cale": "Dataset1.variableMeasured.Security & privacy",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-metadate",
+          "rol": "masura",
+          "pointer": "char:5703-5761",
+          "linie": 78,
+          "variabila": "Dataset1",
+          "grup": "Romania E-Government Index (2020–2026)",
+          "descriere": "",
+          "unitate": null
+        },
+        {
+          "nume": "Ergonomics",
+          "cale": "Dataset1.variableMeasured.Ergonomics",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-metadate",
+          "rol": "masura",
+          "pointer": "char:5771-5821",
+          "linie": 79,
+          "variabila": "Dataset1",
+          "grup": "Romania E-Government Index (2020–2026)",
+          "descriere": "",
+          "unitate": null
+        },
+        {
+          "nume": "Content",
+          "cale": "Dataset1.variableMeasured.Content",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-metadate",
+          "rol": "masura",
+          "pointer": "char:5831-5878",
+          "linie": 80,
+          "variabila": "Dataset1",
+          "grup": "Romania E-Government Index (2020–2026)",
+          "descriere": "",
+          "unitate": null
+        },
+        {
+          "nume": "Online services",
+          "cale": "Dataset1.variableMeasured.Online services",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-metadate",
+          "rol": "masura",
+          "pointer": "char:5888-5943",
+          "linie": 81,
+          "variabila": "Dataset1",
+          "grup": "Romania E-Government Index (2020–2026)",
+          "descriere": "",
+          "unitate": null
+        },
+        {
+          "nume": "E-participation",
+          "cale": "Dataset1.variableMeasured.E-participation",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-metadate",
+          "rol": "masura",
+          "pointer": "char:5953-6008",
+          "linie": 82,
+          "variabila": "Dataset1",
+          "grup": "Romania E-Government Index (2020–2026)",
+          "descriere": "",
+          "unitate": null
+        },
+        {
+          "nume": "name",
+          "cale": "dataScript.cities[].name",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:182997-183004",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "pop",
+          "cale": "dataScript.cities[].pop",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:183011-183015",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "lat",
+          "cale": "dataScript.cities[].lat",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:183022-183029",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "lng",
+          "cale": "dataScript.cities[].lng",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:183036-183043",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "pc",
+          "cale": "dataScript.cities[].pc",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:183049-183052",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "t1",
+          "cale": "dataScript.cities[].t1",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:183058-183063",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "t2",
+          "cale": "dataScript.cities[].t2",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:183069-183074",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "t3",
+          "cale": "dataScript.cities[].t3",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:183080-183085",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "r1",
+          "cale": "dataScript.cities[].r1",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:183091-183094",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "r2",
+          "cale": "dataScript.cities[].r2",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:183100-183103",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "r3",
+          "cale": "dataScript.cities[].r3",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:183109-183111",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "c1[]",
+          "cale": "dataScript.cities[].c1[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:183118-183123",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "c2[]",
+          "cale": "dataScript.cities[].c2[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:183151-183156",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "c3[]",
+          "cale": "dataScript.cities[].c3[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:183188-183193",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "w1",
+          "cale": "dataScript.agg.totals.w1",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:258974-258979",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "w2",
+          "cale": "dataScript.agg.totals.w2",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:258985-258990",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "w3",
+          "cale": "dataScript.agg.totals.w3",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:258996-259001",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "w1[]",
+          "cale": "dataScript.agg.cats.w1[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:259017-259022",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "w2[]",
+          "cale": "dataScript.agg.cats.w2[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:259054-259059",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "w3[]",
+          "cale": "dataScript.agg.cats.w3[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:259091-259096",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "count",
+          "cale": "dataScript.agg.count",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:259130-259133",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "count",
+          "cale": "dataScript.peer_cats.A.count",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:259161-259164",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "cats_w3[]",
+          "cale": "dataScript.peer_cats.A.cats_w3[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:259176-259181",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "cats_w2[]",
+          "cale": "dataScript.peer_cats.A.cats_w2[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:259218-259223",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "cats_w1[]",
+          "cale": "dataScript.peer_cats.A.cats_w1[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:259259-259264",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "total_w3",
+          "cale": "dataScript.peer_cats.A.total_w3",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:259301-259306",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "count",
+          "cale": "dataScript.peer_cats.B.count",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:259321-259324",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "cats_w3[]",
+          "cale": "dataScript.peer_cats.B.cats_w3[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:259336-259341",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "cats_w2[]",
+          "cale": "dataScript.peer_cats.B.cats_w2[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:259378-259383",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "cats_w1[]",
+          "cale": "dataScript.peer_cats.B.cats_w1[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:259420-259425",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "total_w3",
+          "cale": "dataScript.peer_cats.B.total_w3",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:259462-259467",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "count",
+          "cale": "dataScript.peer_cats.C.count",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:259482-259484",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "cats_w3[]",
+          "cale": "dataScript.peer_cats.C.cats_w3[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:259496-259501",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "cats_w2[]",
+          "cale": "dataScript.peer_cats.C.cats_w2[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:259538-259543",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "cats_w1[]",
+          "cale": "dataScript.peer_cats.C.cats_w1[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:259580-259585",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "total_w3",
+          "cale": "dataScript.peer_cats.C.total_w3",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:259621-259626",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "count",
+          "cale": "dataScript.peer_cats.D.count",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:259641-259643",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "cats_w3[]",
+          "cale": "dataScript.peer_cats.D.cats_w3[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:259655-259659",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "cats_w2[]",
+          "cale": "dataScript.peer_cats.D.cats_w2[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:259696-259701",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "cats_w1[]",
+          "cale": "dataScript.peer_cats.D.cats_w1[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:259738-259743",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "total_w3",
+          "cale": "dataScript.peer_cats.D.total_w3",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:259780-259785",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "name",
+          "cale": "dataScript.top_w3[].name",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:259806-259819",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "score",
+          "cale": "dataScript.top_w3[].score",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:259828-259833",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "name",
+          "cale": "dataScript.bot_w3[].name",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:260163-260170",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "score",
+          "cale": "dataScript.bot_w3[].score",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:260179-260184",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "name",
+          "cale": "dataScript.gainers_w3[].name",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:260548-260559",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "delta",
+          "cale": "dataScript.gainers_w3[].delta",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:260568-260573",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "name",
+          "cale": "dataScript.fallers_w3[].name",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:260895-260902",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "delta",
+          "cale": "dataScript.fallers_w3[].delta",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:260911-260917",
+          "linie": 3865,
+          "variabila": "dataScript"
+        },
+        {
+          "nume": "ro{*}",
+          "cale": "I18N.ro{*}",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "object",
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "colectie-cu-chei",
+          "pointer": "char:261468-295988",
+          "linie": 3870,
+          "variabila": "I18N",
+          "numar_chei": 317,
+          "chei_exemplu": [
+            "doc.title",
+            "doc.description",
+            "brand.name"
+          ]
+        },
+        {
+          "nume": "en{*}",
+          "cale": "I18N.en{*}",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "object",
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "colectie-cu-chei",
+          "pointer": "char:295997-327553",
+          "linie": 4235,
+          "variabila": "I18N",
+          "numar_chei": 317,
+          "chei_exemplu": [
+            "doc.title",
+            "doc.description",
+            "brand.name"
+          ]
+        },
+        {
+          "nume": "key",
+          "cale": "CAT_DEFS[].key",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:331684-331689",
+          "linie": 4684,
+          "variabila": "CAT_DEFS"
+        },
+        {
+          "nume": "i18nKey",
+          "cale": "CAT_DEFS[].i18nKey",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:331701-331710",
+          "linie": 4684,
+          "variabila": "CAT_DEFS"
+        },
+        {
+          "nume": "weight",
+          "cale": "CAT_DEFS[].weight",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:331721-331725",
+          "linie": 4684,
+          "variabila": "CAT_DEFS"
+        },
+        {
+          "nume": "idx",
+          "cale": "CAT_DEFS[].idx",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:331732-331733",
+          "linie": 4684,
+          "variabila": "CAT_DEFS"
+        },
+        {
+          "nume": "1",
+          "cale": "WAVE_LABELS.1",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:332283-332289",
+          "linie": 4697,
+          "variabila": "WAVE_LABELS"
+        },
+        {
+          "nume": "2",
+          "cale": "WAVE_LABELS.2",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:332294-332300",
+          "linie": 4697,
+          "variabila": "WAVE_LABELS"
+        },
+        {
+          "nume": "3",
+          "cale": "WAVE_LABELS.3",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:332305-332311",
+          "linie": 4697,
+          "variabila": "WAVE_LABELS"
+        },
+        {
+          "nume": "name",
+          "cale": "lastDotTap.name",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:333210-333214",
+          "linie": 4720,
+          "variabila": "lastDotTap"
+        },
+        {
+          "nume": "time",
+          "cale": "lastDotTap.time",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:333222-333223",
+          "linie": 4720,
+          "variabila": "lastDotTap"
+        },
+        {
+          "nume": "ROUTES[]",
+          "cale": "ROUTES[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:333385-333390",
+          "linie": 4725,
+          "variabila": "ROUTES"
+        },
+        {
+          "nume": "map",
+          "cale": "GA_ROUTE_TITLES.map",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:334538-334543",
+          "linie": 4747,
+          "variabila": "GA_ROUTE_TITLES"
+        },
+        {
+          "nume": "city",
+          "cale": "GA_ROUTE_TITLES.city",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:334551-334557",
+          "linie": 4747,
+          "variabila": "GA_ROUTE_TITLES"
+        },
+        {
+          "nume": "compare",
+          "cale": "GA_ROUTE_TITLES.compare",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:334568-334577",
+          "linie": 4747,
+          "variabila": "GA_ROUTE_TITLES"
+        },
+        {
+          "nume": "rankings",
+          "cale": "GA_ROUTE_TITLES.rankings",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:334589-334599",
+          "linie": 4747,
+          "variabila": "GA_ROUTE_TITLES"
+        },
+        {
+          "nume": "fiveyears",
+          "cale": "GA_ROUTE_TITLES.fiveyears",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:334614-334625",
+          "linie": 4748,
+          "variabila": "GA_ROUTE_TITLES"
+        },
+        {
+          "nume": "methodology",
+          "cale": "GA_ROUTE_TITLES.methodology",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:334640-334653",
+          "linie": 4748,
+          "variabila": "GA_ROUTE_TITLES"
+        },
+        {
+          "nume": "about",
+          "cale": "GA_ROUTE_TITLES.about",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:334662-334669",
+          "linie": 4748,
+          "variabila": "GA_ROUTE_TITLES"
+        },
+        {
+          "nume": "latMin",
+          "cale": "MAP_BOUNDS.latMin",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:340176-340180",
+          "linie": 4886,
+          "variabila": "MAP_BOUNDS"
+        },
+        {
+          "nume": "latMax",
+          "cale": "MAP_BOUNDS.latMax",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:340191-340195",
+          "linie": 4886,
+          "variabila": "MAP_BOUNDS"
+        },
+        {
+          "nume": "lngMin",
+          "cale": "MAP_BOUNDS.lngMin",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:340207-340211",
+          "linie": 4887,
+          "variabila": "MAP_BOUNDS"
+        },
+        {
+          "nume": "lngMax",
+          "cale": "MAP_BOUNDS.lngMax",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:340222-340226",
+          "linie": 4887,
+          "variabila": "MAP_BOUNDS"
+        },
+        {
+          "nume": "RO_COUNTIES[][][]",
+          "cale": "RO_COUNTIES[][][]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:340534-340541",
+          "linie": 4894,
+          "variabila": "RO_COUNTIES"
+        },
+        {
+          "nume": "wave",
+          "cale": "rankingsState.wave",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:403675-403676",
+          "linie": 5645,
+          "variabila": "rankingsState"
+        },
+        {
+          "nume": "popFilter",
+          "cale": "rankingsState.popFilter",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:403691-403693",
+          "linie": 5646,
+          "variabila": "rankingsState"
+        },
+        {
+          "nume": "sortKey",
+          "cale": "rankingsState.sortKey",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:403706-403712",
+          "linie": 5647,
+          "variabila": "rankingsState"
+        },
+        {
+          "nume": "sortDir",
+          "cale": "rankingsState.sortDir",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:403725-403730",
+          "linie": 5648,
+          "variabila": "rankingsState"
+        },
+        {
+          "nume": "CMP_COLORS[]",
+          "cale": "CMP_COLORS[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:427907-427916",
+          "linie": 6189,
+          "variabila": "CMP_COLORS"
+        },
+        {
+          "nume": "wave",
+          "cale": "cmpState.wave",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:428041-428042",
+          "linie": 6193,
+          "variabila": "cmpState"
+        },
+        {
+          "nume": "catKey",
+          "cale": "INDICATOR_SET[].catKey",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:443684-443693",
+          "linie": 6571,
+          "variabila": "INDICATOR_SET"
+        },
+        {
+          "nume": "weight",
+          "cale": "INDICATOR_SET[].weight",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:443703-443705",
+          "linie": 6571,
+          "variabila": "INDICATOR_SET"
+        },
+        {
+          "nume": "s",
+          "cale": "INDICATOR_SET[].items[].s",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:443725-443726",
+          "linie": 6572,
+          "variabila": "INDICATOR_SET"
+        },
+        {
+          "nume": "ro",
+          "cale": "INDICATOR_SET[].items[].ro",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:443732-443783",
+          "linie": 6572,
+          "variabila": "INDICATOR_SET"
+        },
+        {
+          "nume": "en",
+          "cale": "INDICATOR_SET[].items[].en",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:443789-443827",
+          "linie": 6572,
+          "variabila": "INDICATOR_SET"
+        },
+        {
+          "nume": "1",
+          "cale": "SCALE_BADGE.1",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:448065-448070",
+          "linie": 6629,
+          "variabila": "SCALE_BADGE"
+        },
+        {
+          "nume": "2",
+          "cale": "SCALE_BADGE.2",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:448075-448082",
+          "linie": 6629,
+          "variabila": "SCALE_BADGE"
+        },
+        {
+          "nume": "3",
+          "cale": "SCALE_BADGE.3",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:448087-448092",
+          "linie": 6629,
+          "variabila": "SCALE_BADGE"
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/00784681fe856379fb15-a8ac1f3c54c2caaa.json",
+      "sha256": "a8ac1f3c54c2caaa1d6a31e0699c929e96129b125439c789a9ad39bb7839cd85",
+      "format": "js-literale",
+      "stare": "analizat",
+      "limita_atinsa": true,
+      "baza_tipului": "esantion-date",
+      "declaratii": [
+        {
+          "variabila": "dataScript",
+          "forma-sursa": "json-izolat",
+          "linie": 3865,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 7,
+          "pointer": "char:182978-261252"
+        },
+        {
+          "variabila": "I18N",
+          "forma-sursa": "literal-script",
+          "linie": 3869,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 2,
+          "pointer": "char:261460-327555",
+          "comentariu": {
+            "valoare": "I18N – Romanian default, English alternate",
+            "pointer": "char:261270-261446"
+          }
+        },
+        {
+          "variabila": "CITY_BY_NORM",
+          "forma-sursa": "literal-script",
+          "linie": 4665,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 0,
+          "pointer": "char:330975-330977"
+        },
+        {
+          "variabila": "CAT_DEFS",
+          "forma-sursa": "literal-script",
+          "linie": 4683,
+          "citit": true,
+          "forma": "tablou",
+          "elemente": 5,
+          "pointer": "char:331673-331986",
+          "comentariu": {
+            "valoare": "Categories and pop-class labels are derived from the current language at\n   read time. We keep stable keys + indices and compute display names on demand\n   so they refresh when setLang() is called.",
+            "pointer": "char:331452-331655"
+          }
+        },
+        {
+          "variabila": "WAVE_LABELS",
+          "forma-sursa": "literal-script",
+          "linie": 4697,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 3,
+          "pointer": "char:332278-332313"
+        },
+        {
+          "variabila": "lastDotTap",
+          "forma-sursa": "literal-script",
+          "linie": 4720,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 2,
+          "pointer": "char:333202-333225"
+        },
+        {
+          "variabila": "ROUTES",
+          "forma-sursa": "literal-script",
+          "linie": 4725,
+          "citit": true,
+          "forma": "tablou",
+          "elemente": 7,
+          "pointer": "char:333384-333459",
+          "comentariu": {
+            "valoare": "ROUTER",
+            "pointer": "char:333228-333368"
+          }
+        },
+        {
+          "variabila": "GA_ROUTE_TITLES",
+          "forma-sursa": "literal-script",
+          "linie": 4746,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 7,
+          "pointer": "char:334529-334671",
+          "comentariu": {
+            "valoare": "GA4 page-view tracking for the SPA.\n   Routes live in the URL fragment (#rankings), which GA4 ignores, so\n   we translate each route into a VIRTUAL path (/rankings,\n   /city/cluj-napoca) and send a manual page_view on every route\n   change — initial load and Back/Forward included. No-ops entirely\n   until a real Measurement ID is set in the <head> snippet.",
+            "pointer": "char:334076-334504"
+          }
+        },
+        {
+          "variabila": "MAP_BOUNDS",
+          "forma-sursa": "literal-script",
+          "linie": 4885,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 4,
+          "pointer": "char:340164-340229",
+          "comentariu": {
+            "valoare": "MAP – choropleth",
+            "pointer": "char:339994-340144"
+          }
+        },
+        {
+          "variabila": "RO_COUNTIES",
+          "forma-sursa": "literal-script",
+          "linie": 4894,
+          "citit": true,
+          "forma": "tablou",
+          "elemente": 42,
+          "pointer": "char:340531-371055",
+          "comentariu": {
+            "valoare": "Romania county polygons (41 judete + Bucharest) – simplified via Douglas-Peucker.\n   Format: array of polygons; each polygon is an array of rings; each ring is\n   a flat array [lat, lng, lat, lng, ...]. Source: simplemaps.com (CC BY 4.0).",
+            "pointer": "char:340266-340510"
+          }
+        },
+        {
+          "variabila": "mapView",
+          "forma-sursa": "literal-script",
+          "linie": 4931,
+          "citit": false,
+          "motiv": "valoare-nelitera",
+          "pointer": "char:372487-372504",
+          "comentariu": {
+            "valoare": "Zoom state for the main map",
+            "pointer": "char:372439-372472"
+          }
+        },
+        {
+          "variabila": "ORIG_VIEW",
+          "forma-sursa": "literal-script",
+          "linie": 4932,
+          "citit": false,
+          "motiv": "valoare-nelitera",
+          "pointer": "char:372543-372560"
+        },
+        {
+          "variabila": "rankingsState",
+          "forma-sursa": "literal-script",
+          "linie": 5644,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 4,
+          "pointer": "char:403665-403733",
+          "comentariu": {
+            "valoare": "RANKINGS PAGE",
+            "pointer": "char:403497-403644"
+          }
+        },
+        {
+          "variabila": "CMP_COLORS",
+          "forma-sursa": "literal-script",
+          "linie": 6189,
+          "citit": true,
+          "forma": "tablou",
+          "elemente": 4,
+          "pointer": "char:427906-427950",
+          "comentariu": {
+            "valoare": "Slot colors – chosen for distinguishability and palette coherence.\nSlot 0 is navy, slot 1 the terracotta rust, slot 2 a deep green-teal,\nslot 2 a deep green-teal that reads against both, slot 3 a dark gold.",
+            "pointer": "char:427671-427886"
+          }
+        },
+        {
+          "variabila": "cmpState",
+          "forma-sursa": "literal-script",
+          "linie": 6191,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 2,
+          "pointer": "char:427968-428115"
+        },
+        {
+          "variabila": "INDICATOR_SET",
+          "forma-sursa": "literal-script",
+          "linie": 6570,
+          "citit": true,
+          "forma": "tablou",
+          "elemente": 5,
+          "pointer": "char:443670-448037",
+          "comentariu": {
+            "valoare": "FULL INDICATOR INVENTORY – methodology appendix\n   The 46 indicators of the wave-3 grid, in source order, grouped by\n   category. `s` is the scoring scale: 1 = yes/no (0–1 pt),\n   2 = high-importance pass/fail (0 or 4 pts), 3 = five-level rubric (0–4 pts).\n   Counts here must stay in sync with renderMethStructure(): 3 / 9 / 17 / 8 / 9.",
+            "pointer": "char:443176-443647"
+          }
+        },
+        {
+          "variabila": "SCALE_BADGE",
+          "forma-sursa": "literal-script",
+          "linie": 6629,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 3,
+          "pointer": "char:448060-448094"
+        }
+      ],
+      "seturi_ld": [
+        {
+          "nume": {
+            "valoare": "Romania E-Government Index (2020–2026)",
+            "pointer": "char:4627-4667",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Longitudinal measurement of municipal e-government in Romania. All 325 cities are scored on 46 indicators across five categories (security & privacy, ergonomics, content, online services, e-participation), in three waves: 2020, 2023 and 2026. The 2026 national average is 49.32 of 100.",
+            "pointer": "char:4759-5046",
+            "baza": "declarat-in-pagina"
+          },
+          "adresa": {
+            "valoare": "https://orase-digitale.ro/",
+            "pointer": "char:5061-5089",
+            "baza": "declarat-in-pagina"
+          },
+          "perioada": {
+            "valoare": "2020/2026",
+            "pointer": "char:5512-5523",
+            "baza": "declarat-in-pagina"
+          },
+          "licenta": null,
+          "limba": {
+            "valoare": "ro",
+            "pointer": "char:5201-5205",
+            "baza": "declarat-in-pagina"
+          },
+          "gratuit": {
+            "valoare": true,
+            "pointer": "char:5174-5178",
+            "baza": "declarat-in-pagina"
+          },
+          "bazat_pe": [],
+          "creator": [
+            {
+              "valoare": "Nicolae Urs",
+              "pointer": "char:6094-6107",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "Ioana Nisioi",
+              "pointer": "char:6601-6615",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "editor": [
+            {
+              "valoare": "https://orase-digitale.ro/#org",
+              "pointer": "char:6888-6920",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "cuvinte_cheie": [
+            {
+              "valoare": "e-government",
+              "pointer": "char:5233-5247",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "e-guvernare",
+              "pointer": "char:5249-5262",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "digitalizare",
+              "pointer": "char:5264-5278",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "administrație publică locală",
+              "pointer": "char:5280-5310",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "local government",
+              "pointer": "char:5312-5330",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "digital government",
+              "pointer": "char:5332-5352",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "smart city",
+              "pointer": "char:5354-5366",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "Romania",
+              "pointer": "char:5368-5377",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "municipalities",
+              "pointer": "char:5379-5395",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "longitudinal index",
+              "pointer": "char:5397-5417",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "acoperire": {
+            "valoare": "Romania",
+            "pointer": "char:5473-5482",
+            "baza": "declarat-in-pagina"
+          },
+          "variabile_masurate": [
+            {
+              "valoare": "Total e-government score",
+              "pointer": "char:5597-5623",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "Security & privacy",
+              "pointer": "char:5739-5759",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "Ergonomics",
+              "pointer": "char:5807-5819",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "Content",
+              "pointer": "char:5867-5876",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "Online services",
+              "pointer": "char:5924-5941",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "E-participation",
+              "pointer": "char:5989-6006",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "pointer": "char:4534-6928"
+        }
+      ]
     },
     {
       "url": "https://posturi.gov2.ro/posturi.json",
@@ -69548,6 +72368,2875 @@
       "stare": "analizat",
       "limita_atinsa": false,
       "baza_tipului": "cod-sau-documentatie"
+    },
+    {
+      "url": "https://romaniainteractiva.ro/cupluri/",
+      "final_url": "https://romaniainteractiva.ro/cupluri/",
+      "http_status": 200,
+      "fetched_at": "2026-10-26T15:23:40.595244+00:00",
+      "content_type": "text/html",
+      "state": "ok",
+      "citire": {
+        "tip": "js-literale",
+        "tabele": true
+      },
+      "id": "4cd0bc883db0b33c9cd1",
+      "campuri": [
+        {
+          "nume": "w",
+          "cale": "GEO.w",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:16827-16830",
+          "linie": 282,
+          "variabila": "GEO"
+        },
+        {
+          "nume": "h",
+          "cale": "GEO.h",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:16835-16840",
+          "linie": 282,
+          "variabila": "GEO"
+        },
+        {
+          "nume": "f{*}",
+          "cale": "GEO.f{*}",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "object"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "colectie-cu-chei",
+          "pointer": "char:16845-80651",
+          "linie": 282,
+          "variabila": "GEO",
+          "numar_chei": 42,
+          "chei_exemplu": [
+            "Botosani",
+            "Satu Mare",
+            "Maramures"
+          ]
+        },
+        {
+          "nume": "d",
+          "cale": "GEO.f{*}.d",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:16862-18100",
+          "linie": 282,
+          "variabila": "GEO"
+        },
+        {
+          "nume": "c[]",
+          "cale": "GEO.f{*}.c[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:18106-18111",
+          "linie": 282,
+          "variabila": "GEO"
+        },
+        {
+          "nume": "years[]",
+          "cale": "DATA.years[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:80677-80681",
+          "linie": 283,
+          "variabila": "DATA"
+        },
+        {
+          "nume": "c{*}",
+          "cale": "DATA.c{*}",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "object"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "colectie-cu-chei",
+          "pointer": "char:80857-105980",
+          "linie": 283,
+          "variabila": "DATA",
+          "numar_chei": 42,
+          "chei_exemplu": [
+            "Alba",
+            "Arad",
+            "Arges"
+          ]
+        },
+        {
+          "nume": "m[]",
+          "cale": "DATA.c{*}.m[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:80871-80875",
+          "linie": 283,
+          "variabila": "DATA"
+        },
+        {
+          "nume": "d[]",
+          "cale": "DATA.c{*}.d[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81052-81055",
+          "linie": 283,
+          "variabila": "DATA"
+        },
+        {
+          "nume": "p[]",
+          "cale": "DATA.c{*}.p[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81198-81204",
+          "linie": 283,
+          "variabila": "DATA"
+        },
+        {
+          "nume": "m",
+          "cale": "NAT25.m",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:106000-106005",
+          "linie": 284,
+          "variabila": "NAT25"
+        },
+        {
+          "nume": "d",
+          "cale": "NAT25.d",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:106009-106014",
+          "linie": 284,
+          "variabila": "NAT25"
+        },
+        {
+          "nume": "y0",
+          "cale": "LONG.y0",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:106037-106041",
+          "linie": 286,
+          "variabila": "LONG"
+        },
+        {
+          "nume": "mr[]",
+          "cale": "LONG.mr[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:106049-106053",
+          "linie": 287,
+          "variabila": "LONG"
+        },
+        {
+          "nume": "dr[]",
+          "cale": "LONG.dr[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number",
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:106318-106321",
+          "linie": 288,
+          "variabila": "LONG"
+        },
+        {
+          "nume": "NICE{*}",
+          "cale": "NICE{*}",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "object",
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "colectie-cu-chei",
+          "pointer": "char:106596-107420",
+          "linie": 290,
+          "variabila": "NICE",
+          "numar_chei": 42,
+          "chei_exemplu": [
+            "Alba",
+            "Arad",
+            "Arges"
+          ]
+        },
+        {
+          "nume": "ABBR{*}",
+          "cale": "ABBR{*}",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "object",
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "colectie-cu-chei",
+          "pointer": "char:107435-108062",
+          "linie": 291,
+          "variabila": "ABBR",
+          "numar_chei": 42,
+          "chei_exemplu": [
+            "Alba",
+            "Arad",
+            "Arges"
+          ]
+        },
+        {
+          "nume": "RAMP_B[]",
+          "cale": "RAMP_B[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:108156-108165",
+          "linie": 295,
+          "variabila": "RAMP_B"
+        },
+        {
+          "nume": "RAMP_R[]",
+          "cale": "RAMP_R[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:108244-108253",
+          "linie": 296,
+          "variabila": "RAMP_R"
+        },
+        {
+          "nume": "COLS[][0]",
+          "cale": "COLS[][0]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:123115-123121",
+          "linie": 475,
+          "variabila": "COLS"
+        },
+        {
+          "nume": "COLS[][1]",
+          "cale": "COLS[][1]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:123122-123129",
+          "linie": 475,
+          "variabila": "COLS"
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/4cd0bc883db0b33c9cd1-55642b5fca95c1ad.json",
+      "sha256": "55642b5fca95c1ad9653636d92b7c0bb506f5a2f05ae9d3d506c9fff64e27243",
+      "format": "js-literale",
+      "stare": "analizat",
+      "limita_atinsa": true,
+      "baza_tipului": "esantion-date",
+      "declaratii": [
+        {
+          "variabila": "GEO",
+          "forma-sursa": "literal-script",
+          "linie": 282,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 3,
+          "pointer": "char:16822-80652"
+        },
+        {
+          "variabila": "DATA",
+          "forma-sursa": "literal-script",
+          "linie": 283,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 2,
+          "pointer": "char:80667-105981"
+        },
+        {
+          "variabila": "NAT25",
+          "forma-sursa": "literal-script",
+          "linie": 284,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 2,
+          "pointer": "char:105997-106015"
+        },
+        {
+          "variabila": "LONG",
+          "forma-sursa": "literal-script",
+          "linie": 285,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 3,
+          "pointer": "char:106030-106581"
+        },
+        {
+          "variabila": "NICE",
+          "forma-sursa": "literal-script",
+          "linie": 290,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 42,
+          "pointer": "char:106596-107420"
+        },
+        {
+          "variabila": "ABBR",
+          "forma-sursa": "literal-script",
+          "linie": 291,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 42,
+          "pointer": "char:107435-108062"
+        },
+        {
+          "variabila": "RAMP_B",
+          "forma-sursa": "literal-script",
+          "linie": 295,
+          "citit": true,
+          "forma": "tablou",
+          "elemente": 7,
+          "pointer": "char:108155-108226"
+        },
+        {
+          "variabila": "RAMP_R",
+          "forma-sursa": "literal-script",
+          "linie": 296,
+          "citit": true,
+          "forma": "tablou",
+          "elemente": 7,
+          "pointer": "char:108243-108314"
+        },
+        {
+          "variabila": "IND",
+          "forma-sursa": "literal-script",
+          "linie": 297,
+          "citit": false,
+          "motiv": "valoare-nelitera",
+          "pointer": "char:108328-108377"
+        },
+        {
+          "variabila": "BREAKS",
+          "forma-sursa": "literal-script",
+          "linie": 317,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 0,
+          "pointer": "char:109324-109326",
+          "comentariu": {
+            "valoare": "fixed class breaks per indicator, pooled over all years so colors compare across time",
+            "pointer": "char:109222-109310"
+          }
+        },
+        {
+          "variabila": "st",
+          "forma-sursa": "literal-script",
+          "linie": 327,
+          "citit": false,
+          "motiv": "valoare-nelitera",
+          "pointer": "char:109693-109703"
+        },
+        {
+          "variabila": "paths",
+          "forma-sursa": "literal-script",
+          "linie": 337,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 0,
+          "pointer": "char:110288-110290"
+        },
+        {
+          "variabila": "COLS",
+          "forma-sursa": "literal-script",
+          "linie": 475,
+          "citit": true,
+          "forma": "tablou",
+          "elemente": 7,
+          "pointer": "char:123113-123255"
+        }
+      ],
+      "seturi_ld": [
+        {
+          "nume": {
+            "valoare": "Căsătorii și divorțuri pe județe, România, 1990–2024",
+            "pointer": "char:2829-2883",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Numărul de căsătorii și divorțuri pe județe, după domiciliul soților, și ratele la 1.000 de locuitori, 1990–2024, plus totalul național pentru 2025.",
+            "pointer": "char:2898-3048",
+            "baza": "declarat-in-pagina"
+          },
+          "adresa": {
+            "valoare": "https://romaniainteractiva.ro/cupluri/",
+            "pointer": "char:3055-3095",
+            "baza": "declarat-in-pagina"
+          },
+          "perioada": {
+            "valoare": "1990/2025",
+            "pointer": "char:3168-3179",
+            "baza": "declarat-in-pagina"
+          },
+          "licenta": {
+            "valoare": "https://creativecommons.org/licenses/by/4.0/",
+            "pointer": "char:3309-3355",
+            "baza": "declarat-in-pagina"
+          },
+          "limba": null,
+          "gratuit": null,
+          "bazat_pe": [
+            {
+              "valoare": "https://insse.ro/",
+              "pointer": "char:3246-3265",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "https://ec.europa.eu/eurostat",
+              "pointer": "char:3266-3297",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "creator": [
+            {
+              "valoare": "https://dorinspoaller.ro/#person",
+              "pointer": "char:3113-3147",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "editor": [],
+          "cuvinte_cheie": [],
+          "acoperire": {
+            "valoare": "România",
+            "pointer": "char:3222-3231",
+            "baza": "declarat-in-pagina"
+          },
+          "variabile_masurate": [],
+          "pointer": "char:2803-3356"
+        }
+      ]
+    },
+    {
+      "url": "https://romaniainteractiva.ro/guverne/",
+      "final_url": "https://romaniainteractiva.ro/guverne/",
+      "http_status": 200,
+      "fetched_at": "2026-10-26T15:23:39.016751+00:00",
+      "content_type": "text/html",
+      "state": "ok",
+      "citire": {
+        "tip": "js-literale",
+        "tabele": true
+      },
+      "id": "fe9e4e9f5ccbc2287318",
+      "campuri": [
+        {
+          "nume": "Guvern",
+          "cale": "tabel1.Guvern",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/1/antet/0",
+          "tipuri_observate": [
+            "text"
+          ],
+          "unitate": null
+        },
+        {
+          "nume": "Început",
+          "cale": "tabel1.Început",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/1/antet/1",
+          "tipuri_observate": [
+            "forma-de-data"
+          ],
+          "unitate": null
+        },
+        {
+          "nume": "Sfârșit",
+          "cale": "tabel1.Sfârșit",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/1/antet/2",
+          "tipuri_observate": [
+            "forma-de-data"
+          ],
+          "unitate": null
+        },
+        {
+          "nume": "Durată",
+          "cale": "tabel1.Durată",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/1/antet/3",
+          "tipuri_observate": [
+            "text"
+          ],
+          "unitate": null
+        },
+        {
+          "nume": "Cum s-a încheiat",
+          "cale": "tabel1.Cum s-a încheiat",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/1/antet/4",
+          "tipuri_observate": [
+            "text"
+          ],
+          "unitate": null
+        },
+        {
+          "nume": "n",
+          "cale": "TYPES.mot.n",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:54682-54702",
+          "linie": 403,
+          "variabila": "TYPES"
+        },
+        {
+          "nume": "c",
+          "cale": "TYPES.mot.c",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:54705-54714",
+          "linie": 403,
+          "variabila": "TYPES"
+        },
+        {
+          "nume": "n",
+          "cale": "TYPES.dem.n",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:54726-54735",
+          "linie": 404,
+          "variabila": "TYPES"
+        },
+        {
+          "nume": "c",
+          "cale": "TYPES.dem.c",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:54738-54747",
+          "linie": 404,
+          "variabila": "TYPES"
+        },
+        {
+          "nume": "n",
+          "cale": "TYPES.ale.n",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:54759-54773",
+          "linie": 405,
+          "variabila": "TYPES"
+        },
+        {
+          "nume": "c",
+          "cale": "TYPES.ale.c",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:54776-54785",
+          "linie": 405,
+          "variabila": "TYPES"
+        },
+        {
+          "nume": "n",
+          "cale": "TYPES.rec.n",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:54797-54820",
+          "linie": 406,
+          "variabila": "TYPES"
+        },
+        {
+          "nume": "c",
+          "cale": "TYPES.rec.c",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:54823-54832",
+          "linie": 406,
+          "variabila": "TYPES"
+        },
+        {
+          "nume": "n",
+          "cale": "TYPES.rev.n",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:54844-54854",
+          "linie": 407,
+          "variabila": "TYPES"
+        },
+        {
+          "nume": "c",
+          "cale": "TYPES.rev.c",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:54857-54866",
+          "linie": 407,
+          "variabila": "TYPES"
+        },
+        {
+          "nume": "n",
+          "cale": "TYPES.rot.n",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:54878-54899",
+          "linie": 408,
+          "variabila": "TYPES"
+        },
+        {
+          "nume": "c",
+          "cale": "TYPES.rot.c",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:54902-54911",
+          "linie": 408,
+          "variabila": "TYPES"
+        },
+        {
+          "nume": "g",
+          "cale": "G[].g",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:55021-55030",
+          "linie": 412,
+          "variabila": "G"
+        },
+        {
+          "nume": "pm",
+          "cale": "G[].pm",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:55034-55047",
+          "linie": 412,
+          "variabila": "G"
+        },
+        {
+          "nume": "s",
+          "cale": "G[].s",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:55050-55062",
+          "linie": 412,
+          "variabila": "G"
+        },
+        {
+          "nume": "e",
+          "cale": "G[].e",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:55065-55077",
+          "linie": 412,
+          "variabila": "G"
+        },
+        {
+          "nume": "t",
+          "cale": "G[].t",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:55080-55085",
+          "linie": 412,
+          "variabila": "G"
+        },
+        {
+          "nume": "p",
+          "cale": "G[].p",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:55088-55113",
+          "linie": 412,
+          "variabila": "G"
+        },
+        {
+          "nume": "w",
+          "cale": "G[].w",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:55116-55191",
+          "linie": 412,
+          "variabila": "G"
+        },
+        {
+          "nume": "f",
+          "cale": "G[].f",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:55243-55255",
+          "linie": 413,
+          "variabila": "G"
+        },
+        {
+          "nume": "PF{*}",
+          "cale": "PF{*}",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "object"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "colectie-cu-chei",
+          "pointer": "char:60123-60988",
+          "linie": 442,
+          "variabila": "PF",
+          "numar_chei": 28,
+          "chei_exemplu": [
+            "Roman I",
+            "Roman II",
+            "Stolojan"
+          ]
+        },
+        {
+          "nume": "PF{*}[]",
+          "cale": "PF{*}[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:60135-60140",
+          "linie": 442,
+          "variabila": "PF"
+        },
+        {
+          "nume": "PSD",
+          "cale": "PFN.PSD",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:61007-61034",
+          "linie": 450,
+          "variabila": "PFN"
+        },
+        {
+          "nume": "PD/PDL",
+          "cale": "PFN.PD/PDL",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:61044-61054",
+          "linie": 450,
+          "variabila": "PFN"
+        },
+        {
+          "nume": "PC/ALDE",
+          "cale": "PFN.PC/ALDE",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:61065-61082",
+          "linie": 450,
+          "variabila": "PFN"
+        },
+        {
+          "nume": "FSN",
+          "cale": "PFN.FSN",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:61089-61106",
+          "linie": 450,
+          "variabila": "PFN"
+        },
+        {
+          "nume": "Boc I[]",
+          "cale": "MV.Boc I[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:61186-61189",
+          "linie": 452,
+          "variabila": "MV"
+        },
+        {
+          "nume": "Ungureanu[]",
+          "cale": "MV.Ungureanu[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:61208-61211",
+          "linie": 452,
+          "variabila": "MV"
+        },
+        {
+          "nume": "Grindeanu[]",
+          "cale": "MV.Grindeanu[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:61228-61231",
+          "linie": 452,
+          "variabila": "MV"
+        },
+        {
+          "nume": "Dăncilă[]",
+          "cale": "MV.Dăncilă[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:61247-61250",
+          "linie": 452,
+          "variabila": "MV"
+        },
+        {
+          "nume": "Orban I[]",
+          "cale": "MV.Orban I[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:61265-61268",
+          "linie": 452,
+          "variabila": "MV"
+        },
+        {
+          "nume": "Cîțu[]",
+          "cale": "MV.Cîțu[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:61282-61285",
+          "linie": 452,
+          "variabila": "MV"
+        },
+        {
+          "nume": "Bolojan[]",
+          "cale": "MV.Bolojan[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:61300-61303",
+          "linie": 452,
+          "variabila": "MV"
+        },
+        {
+          "nume": "Boc I",
+          "cale": "MWHO.Boc I",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:61329-61360",
+          "linie": 453,
+          "variabila": "MWHO"
+        },
+        {
+          "nume": "Ungureanu",
+          "cale": "MWHO.Ungureanu",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:61373-61393",
+          "linie": 453,
+          "variabila": "MWHO"
+        },
+        {
+          "nume": "Grindeanu",
+          "cale": "MWHO.Grindeanu",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:61406-61448",
+          "linie": 453,
+          "variabila": "MWHO"
+        },
+        {
+          "nume": "Dăncilă",
+          "cale": "MWHO.Dăncilă",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:61459-61499",
+          "linie": 453,
+          "variabila": "MWHO"
+        },
+        {
+          "nume": "Orban I",
+          "cale": "MWHO.Orban I",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:61510-61515",
+          "linie": 453,
+          "variabila": "MWHO"
+        },
+        {
+          "nume": "Cîțu",
+          "cale": "MWHO.Cîțu",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:61523-61528",
+          "linie": 453,
+          "variabila": "MWHO"
+        },
+        {
+          "nume": "Bolojan",
+          "cale": "MWHO.Bolojan",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:61539-61573",
+          "linie": 453,
+          "variabila": "MWHO"
+        },
+        {
+          "nume": "n",
+          "cale": "PRES[].n",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:61593-61606",
+          "linie": 455,
+          "variabila": "PRES"
+        },
+        {
+          "nume": "s",
+          "cale": "PRES[].s",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:61609-61621",
+          "linie": 455,
+          "variabila": "PRES"
+        },
+        {
+          "nume": "e",
+          "cale": "PRES[].e",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string",
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:61624-61636",
+          "linie": 455,
+          "variabila": "PRES"
+        },
+        {
+          "nume": "short",
+          "cale": "PRES[].short",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:61920-61921",
+          "linie": 460,
+          "variabila": "PRES"
+        },
+        {
+          "nume": "ELEC[]",
+          "cale": "ELEC[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:61980-61992",
+          "linie": 463,
+          "variabila": "ELEC"
+        },
+        {
+          "nume": "MONTHS[]",
+          "cale": "MONTHS[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:62296-62302",
+          "linie": 467,
+          "variabila": "MONTHS"
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/fe9e4e9f5ccbc2287318-a2f0c6adb17fbe47.json",
+      "sha256": "a2f0c6adb17fbe4763179cf524e87f4bf241616a218adfdd68636347fafb3f7a",
+      "format": "js-literale",
+      "stare": "analizat",
+      "limita_atinsa": true,
+      "baza_tipului": "esantion-date",
+      "declaratii": [
+        {
+          "variabila": "TYPES",
+          "forma-sursa": "literal-script",
+          "linie": 402,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 6,
+          "pointer": "char:54671-54914"
+        },
+        {
+          "variabila": "G",
+          "forma-sursa": "literal-script",
+          "linie": 411,
+          "citit": true,
+          "forma": "tablou",
+          "elemente": 28,
+          "pointer": "char:55015-60038",
+          "comentariu": {
+            "valoare": "s = învestire, f = cădere (moțiune/demisie/revocare), e = învestirea următorului guvern",
+            "pointer": "char:54916-55006"
+          }
+        },
+        {
+          "variabila": "PF",
+          "forma-sursa": "literal-script",
+          "linie": 442,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 28,
+          "pointer": "char:60123-60988",
+          "comentariu": {
+            "valoare": "familii de partide la învestire (pentru calculul zilelor la guvernare)",
+            "pointer": "char:60040-60113"
+          }
+        },
+        {
+          "variabila": "PFN",
+          "forma-sursa": "literal-script",
+          "linie": 450,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 4,
+          "pointer": "char:61000-61107"
+        },
+        {
+          "variabila": "MV",
+          "forma-sursa": "literal-script",
+          "linie": 452,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 7,
+          "pointer": "char:61176-61307",
+          "comentariu": {
+            "valoare": "voturile „pentru” și „împotrivă” la moțiunile adoptate",
+            "pointer": "char:61109-61166"
+          }
+        },
+        {
+          "variabila": "MWHO",
+          "forma-sursa": "literal-script",
+          "linie": 453,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 7,
+          "pointer": "char:61320-61574"
+        },
+        {
+          "variabila": "PRES",
+          "forma-sursa": "literal-script",
+          "linie": 454,
+          "citit": true,
+          "forma": "tablou",
+          "elemente": 7,
+          "pointer": "char:61587-61966"
+        },
+        {
+          "variabila": "ELEC",
+          "forma-sursa": "literal-script",
+          "linie": 463,
+          "citit": true,
+          "forma": "tablou",
+          "elemente": 10,
+          "pointer": "char:61979-62110"
+        },
+        {
+          "variabila": "MONTHS",
+          "forma-sursa": "literal-script",
+          "linie": 467,
+          "citit": true,
+          "forma": "tablou",
+          "elemente": 12,
+          "pointer": "char:62295-62379"
+        }
+      ],
+      "seturi_ld": [
+        {
+          "nume": {
+            "valoare": "Guvernele României 1989–2026",
+            "pointer": "char:4494-4524",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Lista guvernelor României de după 1989, cu datele de învestire și încetare, premierul, coaliția de la învestire, modul de încheiere și voturile la moțiunile de cenzură adoptate.",
+            "pointer": "char:4541-4720",
+            "baza": "declarat-in-pagina"
+          },
+          "adresa": {
+            "valoare": "https://romaniainteractiva.ro/guverne/",
+            "pointer": "char:3961-4001",
+            "baza": "declarat-in-pagina"
+          },
+          "perioada": {
+            "valoare": "1989-12-26/2026-10-14",
+            "pointer": "char:4742-4765",
+            "baza": "declarat-in-pagina"
+          },
+          "licenta": null,
+          "limba": {
+            "valoare": "ro-RO",
+            "pointer": "char:4017-4024",
+            "baza": "declarat-in-pagina"
+          },
+          "gratuit": {
+            "valoare": true,
+            "pointer": "char:4049-4053",
+            "baza": "declarat-in-pagina"
+          },
+          "bazat_pe": [
+            {
+              "valoare": "https://gov.ro",
+              "pointer": "char:4876-4892",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "https://www.monitoruloficial.ro",
+              "pointer": "char:4894-4927",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "https://www.agerpres.ro",
+              "pointer": "char:4929-4954",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "creator": [
+            {
+              "valoare": "Dorin Spoaller",
+              "pointer": "char:4191-4207",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "editor": [
+            {
+              "valoare": "https://romaniainteractiva.ro/#org",
+              "pointer": "char:4447-4483",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "cuvinte_cheie": [
+            {
+              "valoare": "guverne România",
+              "pointer": "char:4780-4797",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "premieri România",
+              "pointer": "char:4799-4817",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "moțiuni de cenzură",
+              "pointer": "char:4819-4839",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "istorie politică",
+              "pointer": "char:4841-4859",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "acoperire": {
+            "valoare": "România",
+            "pointer": "char:4101-4110",
+            "baza": "declarat-in-pagina"
+          },
+          "variabile_masurate": [],
+          "pointer": "char:3933-4956"
+        }
+      ]
+    },
+    {
+      "url": "https://romaniainteractiva.ro/harta-notelor/",
+      "final_url": "https://romaniainteractiva.ro/harta-notelor/",
+      "http_status": 206,
+      "fetched_at": "2026-10-26T15:28:55.573384+00:00",
+      "content_type": "text/html",
+      "partial": true,
+      "state": "ok",
+      "citire": {
+        "tip": "js-literale",
+        "tabele": true
+      },
+      "id": "29ebe0e76759019c35bf",
+      "campuri": [],
+      "completitudine": "partial",
+      "snapshot": "surse/29ebe0e76759019c35bf-f36f5a321f3be090.json",
+      "sha256": "f36f5a321f3be0902b0455c72a07f11fa2c32752e88e0076a05429c9c7c113ce",
+      "format": "js-literale",
+      "stare": "analizat",
+      "limita_atinsa": false,
+      "baza_tipului": "esantion-date",
+      "declaratii": [],
+      "seturi_ld": [
+        {
+          "nume": {
+            "valoare": "Promovabilitatea la Evaluarea Națională și bacalaureat pe județe, localități și școli, 2018–2026",
+            "pointer": "char:3320-3418",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Rezultate agregate din datele deschise ale Ministerului Educației: promovabilitate, medii și număr de candidați pe țară, regiuni de dezvoltare, județe, localități și școli.",
+            "pointer": "char:3435-3609",
+            "baza": "declarat-in-pagina"
+          },
+          "adresa": {
+            "valoare": "https://romaniainteractiva.ro/harta-notelor/",
+            "pointer": "char:3618-3664",
+            "baza": "declarat-in-pagina"
+          },
+          "perioada": {
+            "valoare": "2018/2026",
+            "pointer": "char:3686-3697",
+            "baza": "declarat-in-pagina"
+          },
+          "licenta": {
+            "valoare": "https://data.gov.ro/base/images/logoinst/OGL-ROU-1.0.pdf",
+            "pointer": "char:3804-3862",
+            "baza": "declarat-in-pagina"
+          },
+          "limba": {
+            "valoare": "ro",
+            "pointer": "char:3878-3882",
+            "baza": "declarat-in-pagina"
+          },
+          "gratuit": null,
+          "bazat_pe": [
+            {
+              "valoare": "https://data.gov.ro",
+              "pointer": "char:3770-3791",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "creator": [
+            {
+              "valoare": "Adrian Hudrea",
+              "pointer": "char:3924-3939",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "Dorin Spoaller",
+              "pointer": "char:3970-3986",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "editor": [],
+          "cuvinte_cheie": [],
+          "acoperire": {
+            "valoare": "România",
+            "pointer": "char:3745-3754",
+            "baza": "declarat-in-pagina"
+          },
+          "variabile_masurate": [],
+          "pointer": "char:3291-3989"
+        }
+      ]
+    },
+    {
+      "url": "https://romaniainteractiva.ro/locale/",
+      "final_url": "https://romaniainteractiva.ro/locale/",
+      "http_status": 206,
+      "fetched_at": "2026-10-26T15:28:53.674576+00:00",
+      "content_type": "text/html",
+      "partial": true,
+      "state": "ok",
+      "citire": {
+        "tip": "js-literale",
+        "tabele": true
+      },
+      "id": "b1c51df8fb7a7411eb90",
+      "campuri": [],
+      "completitudine": "partial",
+      "snapshot": "surse/b1c51df8fb7a7411eb90-57d8d47af76cf7e7.json",
+      "sha256": "57d8d47af76cf7e7c6a4dbd24c0ab747e9e83918d988be0b29f1675c8497845a",
+      "format": "js-literale",
+      "stare": "analizat",
+      "limita_atinsa": false,
+      "baza_tipului": "esantion-date",
+      "declaratii": [],
+      "seturi_ld": [
+        {
+          "nume": {
+            "valoare": "Rezultatele alegerilor locale din 9 iunie 2024, pe fiecare localitate din România",
+            "pointer": "char:2676-2759",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Partidul primarului ales, rezultatele pentru consiliul local, consiliul județean și președintele consiliului județean în fiecare comună, oraș, municipiu și sector din România, cu procentele tuturor candidaților.",
+            "pointer": "char:2774-2987",
+            "baza": "declarat-in-pagina"
+          },
+          "adresa": {
+            "valoare": "https://romaniainteractiva.ro/locale/",
+            "pointer": "char:2994-3033",
+            "baza": "declarat-in-pagina"
+          },
+          "perioada": {
+            "valoare": "2024-06-09",
+            "pointer": "char:3071-3083",
+            "baza": "declarat-in-pagina"
+          },
+          "licenta": null,
+          "limba": {
+            "valoare": "ro",
+            "pointer": "char:3047-3051",
+            "baza": "declarat-in-pagina"
+          },
+          "gratuit": null,
+          "bazat_pe": [
+            {
+              "valoare": "Autoritatea Electorală Permanentă, procese-verbale finale, alegeri locale 9 iunie 2024",
+              "pointer": "char:3149-3237",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "creator": [
+            {
+              "valoare": "Dorin Spoaller",
+              "pointer": "char:3273-3289",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "editor": [
+            {
+              "valoare": "România Interactivă",
+              "pointer": "char:3334-3355",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "cuvinte_cheie": [],
+          "acoperire": {
+            "valoare": "România",
+            "pointer": "char:3126-3135",
+            "baza": "declarat-in-pagina"
+          },
+          "variabile_masurate": [],
+          "pointer": "char:2650-3396"
+        }
+      ]
+    },
+    {
+      "url": "https://romaniainteractiva.ro/recensaminte/",
+      "final_url": "https://romaniainteractiva.ro/recensaminte/",
+      "http_status": 200,
+      "fetched_at": "2026-10-26T15:23:38.615844+00:00",
+      "content_type": "text/html",
+      "state": "ok",
+      "citire": {
+        "tip": "js-literale",
+        "tabele": true
+      },
+      "id": "0d5f5faf20db101c5549",
+      "campuri": [
+        {
+          "nume": "Anul",
+          "cale": "tabel1.Anul",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/1/antet/0",
+          "tipuri_observate": [
+            "forma-numerica"
+          ],
+          "unitate": null
+        },
+        {
+          "nume": "Locuitori",
+          "cale": "tabel1.Locuitori",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/1/antet/1",
+          "tipuri_observate": [
+            "forma-numerica"
+          ],
+          "unitate": null
+        },
+        {
+          "nume": "Schimbare",
+          "cale": "tabel1.Schimbare",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/1/antet/2",
+          "tipuri_observate": [
+            "text"
+          ],
+          "unitate": null
+        },
+        {
+          "nume": "La oraș",
+          "cale": "tabel1.La oraș",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/1/antet/3",
+          "tipuri_observate": [
+            "forma-numerica"
+          ],
+          "unitate": null
+        },
+        {
+          "nume": "w",
+          "cale": "GEO.w",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:170691-170694",
+          "linie": 336,
+          "variabila": "GEO"
+        },
+        {
+          "nume": "h",
+          "cale": "GEO.h",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:170699-170704",
+          "linie": 336,
+          "variabila": "GEO"
+        },
+        {
+          "nume": "p{*}",
+          "cale": "GEO.p{*}",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "object",
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "colectie-cu-chei",
+          "pointer": "char:170709-252825",
+          "linie": 336,
+          "variabila": "GEO",
+          "numar_chei": 42,
+          "chei_exemplu": [
+            "Botoșani",
+            "Satu Mare",
+            "Maramureș"
+          ]
+        },
+        {
+          "nume": "URB{*}",
+          "cale": "URB{*}",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "object"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "colectie-cu-chei",
+          "pointer": "char:252838-255303",
+          "linie": 337,
+          "variabila": "URB",
+          "numar_chei": 42,
+          "chei_exemplu": [
+            "Alba",
+            "Arad",
+            "Argeș"
+          ]
+        },
+        {
+          "nume": "URB{*}[]",
+          "cale": "URB{*}[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:252847-252852",
+          "linie": 337,
+          "variabila": "URB"
+        },
+        {
+          "nume": "Y[]",
+          "cale": "Y[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:255314-255318",
+          "linie": 338,
+          "variabila": "Y"
+        },
+        {
+          "nume": "RAW[][0]",
+          "cale": "RAW[][0]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:255368-255374",
+          "linie": 339,
+          "variabila": "RAW"
+        },
+        {
+          "nume": "RAW[][1]",
+          "cale": "RAW[][1]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:255375-255381",
+          "linie": 339,
+          "variabila": "RAW"
+        },
+        {
+          "nume": "RAW[][2]",
+          "cale": "RAW[][2]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:255382-255388",
+          "linie": 339,
+          "variabila": "RAW"
+        },
+        {
+          "nume": "RAW[][3]",
+          "cale": "RAW[][3]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:255389-255395",
+          "linie": 339,
+          "variabila": "RAW"
+        },
+        {
+          "nume": "RAW[][4]",
+          "cale": "RAW[][4]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:255396-255402",
+          "linie": 339,
+          "variabila": "RAW"
+        },
+        {
+          "nume": "RAW[][5]",
+          "cale": "RAW[][5]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:255403-255409",
+          "linie": 339,
+          "variabila": "RAW"
+        },
+        {
+          "nume": "RAW[][6]",
+          "cale": "RAW[][6]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:255410-255416",
+          "linie": 339,
+          "variabila": "RAW"
+        },
+        {
+          "nume": "RAW[][7]",
+          "cale": "RAW[][7]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:255417-255423",
+          "linie": 339,
+          "variabila": "RAW"
+        },
+        {
+          "nume": "RAW[][8]",
+          "cale": "RAW[][8]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:255424-255430",
+          "linie": 339,
+          "variabila": "RAW"
+        },
+        {
+          "nume": "RO[]",
+          "cale": "RO[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:258229-258237",
+          "linie": 340,
+          "variabila": "RO"
+        },
+        {
+          "nume": "RO_U[]",
+          "cale": "RO_U[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:258315-258322",
+          "linie": 341,
+          "variabila": "RO_U"
+        },
+        {
+          "nume": "RO_R[]",
+          "cale": "RO_R[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:258388-258396",
+          "linie": 342,
+          "variabila": "RO_R"
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/0d5f5faf20db101c5549-0c0d894b45a12bb9.json",
+      "sha256": "0c0d894b45a12bb9cf17f9e49e5a97ad9bc31f0b4282f62bc06445b6689f0c94",
+      "format": "js-literale",
+      "stare": "analizat",
+      "limita_atinsa": true,
+      "baza_tipului": "esantion-date",
+      "declaratii": [
+        {
+          "variabila": "GEO",
+          "forma-sursa": "literal-script",
+          "linie": 336,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 3,
+          "pointer": "char:170686-252826"
+        },
+        {
+          "variabila": "URB",
+          "forma-sursa": "literal-script",
+          "linie": 337,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 42,
+          "pointer": "char:252838-255303"
+        },
+        {
+          "variabila": "Y",
+          "forma-sursa": "literal-script",
+          "linie": 338,
+          "citit": true,
+          "forma": "tablou",
+          "elemente": 8,
+          "pointer": "char:255313-255354"
+        },
+        {
+          "variabila": "RAW",
+          "forma-sursa": "literal-script",
+          "linie": 339,
+          "citit": true,
+          "forma": "tablou",
+          "elemente": 42,
+          "pointer": "char:255366-258217"
+        },
+        {
+          "variabila": "RO",
+          "forma-sursa": "literal-script",
+          "linie": 340,
+          "citit": true,
+          "forma": "tablou",
+          "elemente": 8,
+          "pointer": "char:258228-258301"
+        },
+        {
+          "variabila": "RO_U",
+          "forma-sursa": "literal-script",
+          "linie": 341,
+          "citit": true,
+          "forma": "tablou",
+          "elemente": 7,
+          "pointer": "char:258314-258374"
+        },
+        {
+          "variabila": "RO_R",
+          "forma-sursa": "literal-script",
+          "linie": 342,
+          "citit": true,
+          "forma": "tablou",
+          "elemente": 7,
+          "pointer": "char:258387-258450"
+        },
+        {
+          "variabila": "paths",
+          "forma-sursa": "literal-script",
+          "linie": 372,
+          "citit": false,
+          "motiv": "valoare-nelitera",
+          "pointer": "char:260390-260391"
+        },
+        {
+          "variabila": "sorted",
+          "forma-sursa": "literal-script",
+          "linie": 396,
+          "citit": false,
+          "motiv": "valoare-nelitera",
+          "pointer": "char:262776-262777"
+        }
+      ],
+      "seturi_ld": [
+        {
+          "nume": {
+            "valoare": "Populația județelor României la recensămintele din 1948–2021",
+            "pointer": "char:4500-4562",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Populația fiecărui județ și a municipiului București la recensămintele din 1948, 1956, 1966, 1977, 1992, 2002, 2011 și 2021, pe granițele județelor de azi, cu populația urbană și rurală pentru 1948–2011.",
+            "pointer": "char:4579-4784",
+            "baza": "declarat-in-pagina"
+          },
+          "adresa": {
+            "valoare": "https://romaniainteractiva.ro/recensaminte/",
+            "pointer": "char:3962-4007",
+            "baza": "declarat-in-pagina"
+          },
+          "perioada": {
+            "valoare": "1948/2021",
+            "pointer": "char:4806-4817",
+            "baza": "declarat-in-pagina"
+          },
+          "licenta": null,
+          "limba": {
+            "valoare": "ro-RO",
+            "pointer": "char:4023-4030",
+            "baza": "declarat-in-pagina"
+          },
+          "gratuit": {
+            "valoare": true,
+            "pointer": "char:4055-4059",
+            "baza": "declarat-in-pagina"
+          },
+          "bazat_pe": [
+            {
+              "valoare": "https://www.recensamantromania.ro",
+              "pointer": "char:4914-4949",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "https://insse.ro",
+              "pointer": "char:4951-4969",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "creator": [
+            {
+              "valoare": "Dorin Spoaller",
+              "pointer": "char:4197-4213",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "editor": [
+            {
+              "valoare": "https://romaniainteractiva.ro/#org",
+              "pointer": "char:4453-4489",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "cuvinte_cheie": [
+            {
+              "valoare": "recensământ",
+              "pointer": "char:4832-4845",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "populația județelor",
+              "pointer": "char:4847-4868",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "demografie România",
+              "pointer": "char:4870-4890",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "INS",
+              "pointer": "char:4892-4897",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "acoperire": {
+            "valoare": "România",
+            "pointer": "char:4107-4116",
+            "baza": "declarat-in-pagina"
+          },
+          "variabile_masurate": [],
+          "pointer": "char:3934-4971"
+        }
+      ]
+    },
+    {
+      "url": "https://romaniainteractiva.ro/universitati/",
+      "final_url": "https://romaniainteractiva.ro/universitati/",
+      "http_status": 200,
+      "fetched_at": "2026-10-26T15:23:40.227067+00:00",
+      "content_type": "text/html",
+      "state": "ok",
+      "citire": {
+        "tip": "js-literale",
+        "tabele": true
+      },
+      "id": "d811d4161707affa6e8f",
+      "campuri": [
+        {
+          "nume": "An universitar",
+          "cale": "tabel1.An universitar",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/1/antet/0",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "Total",
+          "cale": "tabel1.Total",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/1/antet/1",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "Licență",
+          "cale": "tabel1.Licență",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/1/antet/2",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "Master",
+          "cale": "tabel1.Master",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/1/antet/3",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "Doctorat",
+          "cale": "tabel1.Doctorat",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/1/antet/4",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "Oraș",
+          "cale": "tabel2.Oraș",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/2/antet/0",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "Studenți",
+          "cale": "tabel2.Studenți",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/2/antet/1",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "Locuri în cămine",
+          "cale": "tabel2.Locuri în cămine",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/2/antet/2",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "Studenți la un loc",
+          "cale": "tabel2.Studenți la un loc",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/2/antet/3",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "#",
+          "cale": "tabel3.#",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/3/antet/0",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "Centru",
+          "cale": "tabel3.Centru",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/3/antet/1",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "Licență 2025/26",
+          "cale": "tabel3.Licență 2025/26",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/3/antet/2",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "Vârf",
+          "cale": "tabel3.Vârf",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/3/antet/3",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "Anul vârfului",
+          "cale": "tabel3.Anul vârfului",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/3/antet/4",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "Față de vârf",
+          "cale": "tabel3.Față de vârf",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/3/antet/5",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "Ultimii 10 ani",
+          "cale": "tabel3.Ultimii 10 ani",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/3/antet/6",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "Evoluție",
+          "cale": "tabel3.Evoluție",
+          "tip_declarat": null,
+          "stare_tip": "antet-tabel-html",
+          "rol": "camp-date",
+          "pointer": "/tabele/3/antet/7",
+          "tipuri_observate": [],
+          "unitate": null
+        },
+        {
+          "nume": "n",
+          "cale": "D[].n",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:30129-30140",
+          "linie": 338,
+          "variabila": "D"
+        },
+        {
+          "nume": "j",
+          "cale": "D[].j",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:30145-30156",
+          "linie": 338,
+          "variabila": "D"
+        },
+        {
+          "nume": "L[]",
+          "cale": "D[].L[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer",
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:30162-30167",
+          "linie": 338,
+          "variabila": "D"
+        },
+        {
+          "nume": "V[]",
+          "cale": "D[].V[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "null",
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:30403-30407",
+          "linie": 338,
+          "variabila": "D"
+        },
+        {
+          "nume": "T[]",
+          "cale": "D[].T[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:30616-30622",
+          "linie": 338,
+          "variabila": "D"
+        },
+        {
+          "nume": "TV[]",
+          "cale": "D[].TV[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer",
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:30707-30712",
+          "linie": 338,
+          "variabila": "D"
+        },
+        {
+          "nume": "x",
+          "cale": "D[].x",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:30784-30789",
+          "linie": 338,
+          "variabila": "D"
+        },
+        {
+          "nume": "y",
+          "cale": "D[].y",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:30794-30799",
+          "linie": 338,
+          "variabila": "D"
+        },
+        {
+          "nume": "k",
+          "cale": "U[].k",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:67155-67160",
+          "linie": 339,
+          "variabila": "U"
+        },
+        {
+          "nume": "n",
+          "cale": "U[].n",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:67165-67237",
+          "linie": 339,
+          "variabila": "U"
+        },
+        {
+          "nume": "c",
+          "cale": "U[].c",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:67242-67253",
+          "linie": 339,
+          "variabila": "U"
+        },
+        {
+          "nume": "t",
+          "cale": "U[].t",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:67258-67263",
+          "linie": 339,
+          "variabila": "U"
+        },
+        {
+          "nume": "b",
+          "cale": "U[].b",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:67268-67273",
+          "linie": 339,
+          "variabila": "U"
+        },
+        {
+          "nume": "x",
+          "cale": "U[].x",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:67278-67282",
+          "linie": 339,
+          "variabila": "U"
+        },
+        {
+          "nume": "L",
+          "cale": "U[].L",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:67287-67292",
+          "linie": 339,
+          "variabila": "U"
+        },
+        {
+          "nume": "M",
+          "cale": "U[].M",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:67297-67302",
+          "linie": 339,
+          "variabila": "U"
+        },
+        {
+          "nume": "D",
+          "cale": "U[].D",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:67307-67311",
+          "linie": 339,
+          "variabila": "U"
+        },
+        {
+          "nume": "k",
+          "cale": "UH[].k",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:72330-72335",
+          "linie": 340,
+          "variabila": "UH"
+        },
+        {
+          "nume": "n",
+          "cale": "UH[].n",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:72340-72412",
+          "linie": 340,
+          "variabila": "UH"
+        },
+        {
+          "nume": "c",
+          "cale": "UH[].c",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:72417-72428",
+          "linie": 340,
+          "variabila": "UH"
+        },
+        {
+          "nume": "a",
+          "cale": "UH[].a",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:72433-72467",
+          "linie": 340,
+          "variabila": "UH"
+        },
+        {
+          "nume": "note",
+          "cale": "UH[].note",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:72475-72543",
+          "linie": 340,
+          "variabila": "UH"
+        },
+        {
+          "nume": "s[][0]",
+          "cale": "UH[].s[][0]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:72550-72555",
+          "linie": 340,
+          "variabila": "UH"
+        },
+        {
+          "nume": "s[][1]",
+          "cale": "UH[].s[][1]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:72556-72561",
+          "linie": 340,
+          "variabila": "UH"
+        },
+        {
+          "nume": "s[][2]",
+          "cale": "UH[].s[][2]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:72562-72566",
+          "linie": 340,
+          "variabila": "UH"
+        },
+        {
+          "nume": "s[][3]",
+          "cale": "UH[].s[][3]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:72567-72571",
+          "linie": 340,
+          "variabila": "UH"
+        },
+        {
+          "nume": "s[][]",
+          "cale": "UH[].s[][]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:78401-78405",
+          "linie": 340,
+          "variabila": "UH"
+        },
+        {
+          "nume": "s[]",
+          "cale": "UH[].s[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:78420-78424",
+          "linie": 340,
+          "variabila": "UH"
+        },
+        {
+          "nume": "CAM{*}",
+          "cale": "CAM{*}",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "object"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "colectie-cu-chei",
+          "pointer": "char:91422-94137",
+          "linie": 341,
+          "variabila": "CAM",
+          "numar_chei": 39,
+          "chei_exemplu": [
+            "U02",
+            "U03",
+            "U04"
+          ]
+        },
+        {
+          "nume": "y",
+          "cale": "CAM{*}.y",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:91434-91443",
+          "linie": 341,
+          "variabila": "CAM"
+        },
+        {
+          "nume": "src",
+          "cale": "CAM{*}.src",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:91450-91453",
+          "linie": 341,
+          "variabila": "CAM"
+        },
+        {
+          "nume": "p",
+          "cale": "CAM{*}.p",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:91458-91462",
+          "linie": 341,
+          "variabila": "CAM"
+        },
+        {
+          "nume": "s",
+          "cale": "CAM{*}.s",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:91467-91471",
+          "linie": 341,
+          "variabila": "CAM"
+        },
+        {
+          "nume": "o",
+          "cale": "CAM{*}.o",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number",
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:91476-91481",
+          "linie": 341,
+          "variabila": "CAM"
+        },
+        {
+          "nume": "r",
+          "cale": "CAM{*}.r",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number",
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:91486-91491",
+          "linie": 341,
+          "variabila": "CAM"
+        },
+        {
+          "nume": "x",
+          "cale": "CAM{*}.x",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "number",
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:91555-91559",
+          "linie": 341,
+          "variabila": "CAM"
+        },
+        {
+          "nume": "n",
+          "cale": "nat.n",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:118075-118084",
+          "linie": 349,
+          "variabila": "nat"
+        },
+        {
+          "nume": "j",
+          "cale": "nat.j",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:118087-118089",
+          "linie": 349,
+          "variabila": "nat"
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/d811d4161707affa6e8f-74bd4a631586718f.json",
+      "sha256": "74bd4a631586718fc74f48111b775958bd0f418074ef589898814b45ae87d346",
+      "format": "js-literale",
+      "stare": "analizat",
+      "limita_atinsa": true,
+      "baza_tipului": "esantion-date",
+      "declaratii": [
+        {
+          "variabila": "D",
+          "forma-sursa": "literal-script",
+          "linie": 338,
+          "citit": true,
+          "forma": "tablou",
+          "elemente": 72,
+          "pointer": "char:30123-67139"
+        },
+        {
+          "variabila": "U",
+          "forma-sursa": "literal-script",
+          "linie": 339,
+          "citit": true,
+          "forma": "tablou",
+          "elemente": 45,
+          "pointer": "char:67149-72313"
+        },
+        {
+          "variabila": "UH",
+          "forma-sursa": "literal-script",
+          "linie": 340,
+          "citit": true,
+          "forma": "tablou",
+          "elemente": 49,
+          "pointer": "char:72324-91394"
+        },
+        {
+          "variabila": "CAM",
+          "forma-sursa": "literal-script",
+          "linie": 341,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 39,
+          "pointer": "char:91422-94137"
+        },
+        {
+          "variabila": "nat",
+          "forma-sursa": "literal-script",
+          "linie": 349,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 6,
+          "pointer": "char:118072-118111",
+          "comentariu": {
+            "valoare": "national",
+            "pointer": "char:118050-118061"
+          }
+        },
+        {
+          "variabila": "sorted",
+          "forma-sursa": "literal-script",
+          "linie": 402,
+          "citit": false,
+          "motiv": "valoare-nelitera",
+          "pointer": "char:122998-122999"
+        },
+        {
+          "variabila": "yrs",
+          "forma-sursa": "literal-script",
+          "linie": 468,
+          "citit": false,
+          "motiv": "valoare-nelitera",
+          "pointer": "char:131365-131366"
+        },
+        {
+          "variabila": "cmpK",
+          "forma-sursa": "literal-script",
+          "linie": 513,
+          "citit": true,
+          "forma": "tablou",
+          "elemente": 0,
+          "pointer": "char:138090-138092"
+        }
+      ],
+      "seturi_ld": [
+        {
+          "nume": {
+            "valoare": "Studenți înscriși pe centre universitare din România, 1992–2026",
+            "pointer": "char:2938-3003",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Numărul de studenți la licență (1992–2025/26) și numărul total de studenți (2014–2025/26) pe localități, plus studenții universităților de stat în 2024/25.",
+            "pointer": "char:3020-3177",
+            "baza": "declarat-in-pagina"
+          },
+          "adresa": null,
+          "perioada": {
+            "valoare": "1992/2026",
+            "pointer": "char:3255-3266",
+            "baza": "declarat-in-pagina"
+          },
+          "licenta": {
+            "valoare": "https://creativecommons.org/licenses/by/4.0/",
+            "pointer": "char:3455-3501",
+            "baza": "declarat-in-pagina"
+          },
+          "limba": {
+            "valoare": "ro",
+            "pointer": "char:3517-3521",
+            "baza": "declarat-in-pagina"
+          },
+          "gratuit": null,
+          "bazat_pe": [
+            {
+              "valoare": "http://statistici.insse.ro:8077/tempo-online/",
+              "pointer": "char:3340-3387",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "https://www.cnfis.ro/finantare/finantarea-de-baza/",
+              "pointer": "char:3389-3441",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "creator": [
+            {
+              "valoare": "https://dorinspoaller.ro/#person",
+              "pointer": "char:3198-3232",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "editor": [],
+          "cuvinte_cheie": [],
+          "acoperire": {
+            "valoare": "România",
+            "pointer": "char:3314-3323",
+            "baza": "declarat-in-pagina"
+          },
+          "variabile_masurate": [],
+          "pointer": "char:2909-3522"
+        }
+      ]
     },
     {
       "url": "https://romaniatransparenta.eu/date/calitate-masurata.json",
