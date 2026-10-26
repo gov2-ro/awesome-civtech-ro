@@ -381,6 +381,15 @@ IN_SCOPE_RELATIONS = ("date-publice", "date-proprii", "calcul")  # the codes of 
 UNASSESSED = "neevaluat"  # the name of an empty `relatie_date`; the column never holds it
 OUT_OF_SCOPE = ("in-afara-ariei", "inactiv", "fara-date", UNASSESSED)  # the reasons; the first that applies is the one reported
 
+# The public pages show the relation to data in two groups, not in five states (docs/briefs/data-relation.md, section 9). `cu-date` is the
+# scope of the variable inventory; `fara-date` takes `fara-date` and an empty value. This tuple is the one definition: build.py writes it to
+# `vocabulary.dataGroups` in data.json, and the facet `dat` of site/app.js reads it there. `/date/` and `/date/lista/` count their left-out
+# entries by the group `fara-date` and by `inactiv` (`public_reason`). The coverage export keeps the internal state `neevaluat`.
+DATA_GROUPS = (
+    {"key": "cu-date", "label": "Lucrează cu date", "codes": IN_SCOPE_RELATIONS},
+    {"key": "fara-date", "label": "Fără date", "codes": ("fara-date", "")},
+)
+
 
 def inventory_exclusion(kind: str, status: str, relation: str) -> str:
     """Why an entry is out of the variable inventory, or an empty string when it is in scope. An entry is in scope when it
@@ -393,6 +402,20 @@ def inventory_exclusion(kind: str, status: str, relation: str) -> str:
     if relation in IN_SCOPE_RELATIONS:
         return ""
     return OUT_OF_SCOPE[2] if relation == OUT_OF_SCOPE[2] else UNASSESSED
+
+
+def data_group(relation: str) -> str:
+    """The key of the group of DATA_GROUPS that a `relatie_date` value belongs to. An empty value, and a code that valori.csv does not list,
+    belong to `fara-date`."""
+    for group in DATA_GROUPS:
+        if relation in group["codes"]:
+            return group["key"]
+    return DATA_GROUPS[-1]["key"]
+
+
+def public_reason(reason: str) -> str:
+    """The reason that the public pages name for a reason of `inventory_exclusion`: `neevaluat` joins `fara-date`. The other reasons stay."""
+    return DATA_GROUPS[-1]["key"] if reason == UNASSESSED else reason
 
 
 def inventory_scope(entries: list[dict], data_dir: Path = PUBLIC_ROOT) -> dict[str, str]:

@@ -191,7 +191,7 @@ window.addEventListener('popstate', () => { if (state) { clearTimeout(searchTime
 
 // The entries that the inventory leaves out, by reason, each with a link to the explorer that shows them (the explorer's facets `dat` and `st`).
 function showLeftOut(counts) {
-  const reasons = [['fara-date', 'fără date', 'dat=fara-date'], ['neevaluat', 'neevaluate', 'dat=neevaluat'], ['inactiv', 'inactive', 'st=inactiv']];
+  const reasons = [['fara-date', 'fără date', 'dat=fara-date'], ['inactiv', 'inactive', 'st=inactiv']];
   const kinds = [['proiect', 'proiecte', ''], ['resursa', 'resurse', 'k=resursa&']];
   const parts = reasons.map(([key, text, query]) => {
     const links = kinds.filter(([kind]) => Number(counts[key]?.[kind]) > 0)

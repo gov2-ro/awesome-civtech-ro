@@ -7,7 +7,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 from collect_docs import is_saved
-from common import inventory_exclusion, observation_paths
+from common import inventory_exclusion, observation_paths, public_reason
 from inventory_concepts import active_groups, as_list, group_state, selector_matches
 
 
@@ -30,9 +30,10 @@ SOURCE_LABELS = {
 }
 
 
-# What the finder leaves out of the variable inventory, in the order of the note on `/date/lista/`. `inactiv` counts every inactive
-# project or resource; the others count the active ones. The explorer shows the same sets with `dat=fara-date`, `dat=neevaluat` and `st=inactiv`.
-LEFT_OUT = ('fara-date', 'neevaluat', 'inactiv')
+# What the finder leaves out of the variable inventory, by the two reasons that the public pages name, in the order of the note on `/date/lista/`.
+# `fara-date` is the group `fara-date` of `common.DATA_GROUPS` (the code `fara-date` and an empty value together); `inactiv` counts every inactive
+# project or resource, and `fara-date` counts the active ones. The explorer shows the same sets with `dat=fara-date` and `st=inactiv`.
+LEFT_OUT = ('fara-date', 'inactiv')
 
 
 def scope_reason(item):
@@ -43,11 +44,11 @@ def scope_reason(item):
 
 
 def left_out(items):
-    """{reason: {kind: count}} for the projects and resources that the public inventory leaves out. An organisation is not counted:
-    the inventory never lists one."""
+    """{reason: {kind: count}} for the projects and resources that the public inventory leaves out, by the two public reasons (`LEFT_OUT`).
+    An organisation is not counted: the inventory never lists one."""
     counts = {reason: {'proiect': 0, 'resursa': 0} for reason in LEFT_OUT}
     for item in items:
-        reason = scope_reason(item)
+        reason = public_reason(scope_reason(item))
         if reason in counts:
             counts[reason][item['kind']] += 1
     return counts
@@ -149,14 +150,13 @@ def ro_count(n, one, many):
     return f'1 {one}' if n == 1 else f'{n}{" de" if n % 100 >= 20 or n % 100 == 0 else ""} {many}'
 
 
-LEFT_OUT_TEXT = {'fara-date': ('Fără date', 'ghid, curs, campanie, articol sau listă de linkuri; nu există nimic de extras', 'dat=fara-date'),
-                 'neevaluat': ('Neevaluate', 'relația cu datele nu este stabilită încă', 'dat=neevaluat'),
+LEFT_OUT_TEXT = {'fara-date': ('Fără date', 'intrări fără un set de date de extras: ghid, curs, campanie, articol sau listă de linkuri', 'dat=fara-date'),
                  'inactiv': ('Inactive', 'proiecte și resurse arhivate sau offline', 'st=inactiv')}
 
 
 def left_out_section(counts):
     """The note of `/date/lista/` about the entries that the inventory leaves out: a count and an explorer link for each reason and kind.
-    `fara-date` and `neevaluat` count active entries only, so a link shows the same number that the note gives (the explorer hides inactive entries)."""
+    `fara-date` counts active entries only, so a link shows the same number that the note gives (the explorer hides inactive entries)."""
     total = sum(n for reason in counts.values() for n in reason.values())
     if not total:
         return ''
@@ -171,7 +171,7 @@ def left_out_section(counts):
         items.append(f'<li data-reason="{reason}"><strong>{title}</strong> ({n}): {meaning}. În explorator: {links}.</li>')
     return (f'<section class="ov-left"><h2>Lăsate pe dinafară ({total})</h2>'
             f'<p class="ov-note">Inventarul listează numai proiectele și resursele active care au date, calcule sau formulare. '
-            f'Intrările de mai jos lipsesc din tabel și din căutarea în date. „Fără date” și „Neevaluate” numără numai intrările active; '
+            f'Intrările de mai jos lipsesc din tabel și din căutarea în date. „Fără date” numără numai intrările active; '
             f'cele inactive sunt la „Inactive”.</p><ul>{"".join(items)}</ul></section>')
 
 

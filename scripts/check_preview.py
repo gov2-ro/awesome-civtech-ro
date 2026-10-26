@@ -277,37 +277,59 @@ with sync_playwright() as pw:
     ]:
         go('?coverage=' + coverage)
         ok('geographic coverage ' + coverage, count_text(page) == sum(predicate(i) for i in projects))
-    # The facets `dat` (the relation to data; an empty value is `neevaluat`) and `st` (the status group), under "Mai multe filtre".
+    # The facets `dat` (the relation to data, in two groups) and `st` (the status group), under "Mai multe filtre".
     # The expected sets come from data.json and the rules below, not from the page code. `st=inactiv` shows inactive entries without `ina=1`.
+    # The groups (docs/briefs/data-relation.md, section 9): `cu-date` takes date-publice, date-proprii and calcul; `fara-date` takes `fara-date` and an empty value.
     DATA_CODES = {"date-publice", "date-proprii", "calcul", "fara-date"}
-    relation = lambda i: i.get("dataRelation") or "neevaluat"
+    WITH_DATA = {"date-publice", "date-proprii", "calcul"}
+    GROUPS = {"cu-date": "Lucrează cu date", "fara-date": "Fără date"}
+    relation = lambda i: "cu-date" if i.get("dataRelation") in WITH_DATA else "fara-date"
     everyone = [i for i in DB["items"] if i["kind"] == "proiect"]
     gone = [i for i in everyone if i["status"] in INACTIVE]
     slugs_shown = lambda: set(page.locator('[data-slot="results"] [data-open]').evaluate_all("els => els.map(e => e.dataset.open)"))
     pill_texts = lambda: page.locator('[data-slot="toolbar"] .pill').all_inner_texts()
-    ok("the data carries the relation to data and its code list", all(relation(i) in DATA_CODES | {"neevaluat"} for i in DB["items"])
-       and {c["key"] for c in DB["vocabulary"]["dataRelations"]} == DATA_CODES)
-    for code in sorted({relation(i) for i in projects}):
-        want = [i for i in projects if relation(i) == code]
-        go("?dat=" + code)
-        ok(f"dat={code} shows the visible projects with that relation", count_text(page) == len(want) and slugs_shown() == {i["slug"] for i in want}, f"{count_text(page)} vs {len(want)}")
+    ok("the data carries the relation to data, its code list and the two groups", all(i.get("dataRelation", "") in DATA_CODES | {""} for i in DB["items"])
+       and {c["key"] for c in DB["vocabulary"]["dataRelations"]} == DATA_CODES
+       and {g["key"]: (g["label"], set(g["codes"])) for g in DB["vocabulary"].get("dataGroups", [])}
+       == {"cu-date": (GROUPS["cu-date"], WITH_DATA), "fara-date": (GROUPS["fara-date"], {"fara-date", ""})})
+    for group in GROUPS:
+        want = [i for i in projects if relation(i) == group]
+        go("?dat=" + group)
+        ok(f"dat={group} shows the visible projects of that group", len(want) > 0 and count_text(page) == len(want) and slugs_shown() == {i["slug"] for i in want}, f"{count_text(page)} vs {len(want)}")
+    go("?dat=cu-date")
+    ok("a project with the code calcul is in the group cu-date, with date-publice and date-proprii",
+       any(i.get("dataRelation") == "calcul" for i in projects)
+       and {i["slug"] for i in projects if i.get("dataRelation") in WITH_DATA} == slugs_shown())
     go("?dat=fara-date")
-    ok("dat pill names the facet and the value", any(t.startswith("Date: ") for t in pill_texts()), " | ".join(pill_texts()))
+    ok("the group fara-date holds the code and the empty value", {i.get("dataRelation", "") for i in projects if relation(i) == "fara-date"} == {"fara-date", ""}
+       and slugs_shown() == {i["slug"] for i in projects if i.get("dataRelation", "") in ("fara-date", "")})
+    ok("dat pill names the facet and the value", pill_texts() == ["Date: Fără date"], " | ".join(pill_texts()))
+    go("?dat=date-publice")
+    ok("the codes are not facet values: a bookmark with one finds nothing", count_text(page) == 0 and slugs_shown() == set())
+    go("?dat=neevaluat")
+    ok("the old value neevaluat finds nothing either", count_text(page) == 0)
+    go("?dat=fara-date")
     ok("dat sits under Mai multe filtre, which is open while a value is selected",
        page.locator('[data-facet="more"][open] .subfacet .kicker', has_text="Date").count() == 1)
     ok("dat keeps inactive entries hidden", not ({i["slug"] for i in gone} & slugs_shown()))
-    go("?dat=date-publice,calcul")
-    ok("two dat values are alternatives", count_text(page) == sum(relation(i) in ("date-publice", "calcul") for i in projects))
+    go("?dat=cu-date,fara-date")
+    ok("the two dat values are alternatives, and together they show every visible project", count_text(page) == len(projects))
     go("")
     more = page.locator('[data-facet="more"]')
     if not more.evaluate("e => e.open"):
         more.locator("summary").click()
     dat_counts = {o.get_attribute("data-val"): int(o.locator(".n").text_content()) for o in page.locator('.tag[data-key="dat"]').all()}
     expected_dat = {c: sum(relation(i) == c for i in projects) for c in {relation(i) for i in projects}}
-    ok("dat options show the count of visible projects; options with three entries or fewer sit behind Mai multe", all(expected_dat[v] == n for v, n in dat_counts.items())
+    ok("dat offers the two groups only, with the count of visible projects; an option with three entries or fewer sits behind Mai multe",
+       set(dat_counts) <= set(GROUPS) == set(expected_dat) and all(expected_dat[v] == n for v, n in dat_counts.items())
        and all(expected_dat[c] <= 3 for c in expected_dat if c not in dat_counts), f"{dat_counts} vs {expected_dat}")
-    go("?dat=neevaluat")
-    ok("a selected option stays visible although its count is small", page.locator('.tag[data-key="dat"][data-val="neevaluat"][aria-pressed="true"]').count() == 1)
+    ok("the options of dat read Lucrează cu date and Fără date",
+       {o.get_attribute("data-val"): o.text_content().rstrip("0123456789") for o in page.locator('.tag[data-key="dat"]').all()}
+       == {v: GROUPS.get(v) for v in dat_counts})
+    go("?dat=fara-date&q=zzzqx")
+    ok("a selected option stays visible although its count is small (here 0)", page.locator('.tag[data-key="dat"][data-val="fara-date"][aria-pressed="true"]').count() == 1
+       and page.locator('.tag[data-key="dat"][data-val="cu-date"]').count() == 0)
+    go("?dat=fara-date")
     page.locator('[data-slot="toolbar"] .pill', has_text="Date: ").click()
     ok("removing the dat pill clears the filter and the URL", "dat=" not in page.url and count_text(page) == len(projects))
     go("?k=organizatie")
@@ -323,8 +345,9 @@ with sync_playwright() as pw:
     ok("st=inactiv shows inactive entries without ina=1", "ina=" not in page.url and count_text(page) == len(gone) > 0 and "Stare: Inactiv" in pill_texts())
     toggle = page.locator('[data-act="toggle"][data-key="ina"]')
     ok("with st=inactiv the toggle that hides inactive entries is off and disabled", toggle.count() == 1 and not toggle.is_checked() and toggle.is_disabled())
-    go("?st=inactiv&dat=fara-date")
-    ok("st and dat intersect", count_text(page) == sum(i["status"] in INACTIVE and relation(i) == "fara-date" for i in everyone))
+    for group in GROUPS:
+        go(f"?st=inactiv&dat={group}")
+        ok(f"st and dat intersect (inactiv, {group})", count_text(page) == sum(i["status"] in INACTIVE and relation(i) == group for i in everyone))
     go("?ina=1")
     ok("old ?ina=1 still shows inactive and active projects", count_text(page) == len(everyone))
     go("?ina=1&s=inactiv")

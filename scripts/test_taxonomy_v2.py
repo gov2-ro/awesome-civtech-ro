@@ -496,6 +496,23 @@ class RelationToData(unittest.TestCase):
         strip = lambda items: [{k: v for k, v in i.items() if k != "dataRelation"} for i in items]
         self.assertEqual(strip(before), strip(after))
 
+    def test_the_build_writes_the_two_data_groups_that_the_explorer_reads_and_they_agree_with_the_scope_rule(self):
+        sys.path.insert(0, str(HERE))
+        import build
+        from common import inventory_exclusion
+        _, head = build.items_v2(self.c.overlay, Path(self.c.tmp.name) / "site")
+        vocabulary = head["vocabulary"]
+        groups = {g["key"]: g for g in vocabulary["dataGroups"]}
+        self.assertEqual([g["key"] for g in vocabulary["dataGroups"]], ["cu-date", "fara-date"])
+        self.assertEqual({k: g["label"] for k, g in groups.items()}, {"cu-date": "Lucrează cu date", "fara-date": "Fără date"})
+        self.assertEqual(groups["cu-date"]["codes"], ["date-publice", "date-proprii", "calcul"])
+        self.assertEqual(groups["fara-date"]["codes"], ["fara-date", ""], "the empty value is without data")
+        for code in [c["key"] for c in vocabulary["dataRelations"]] + [""]:
+            homes = [k for k, g in groups.items() if code in g["codes"]]
+            self.assertEqual(len(homes), 1, f"{code!r} belongs to one group")
+            in_scope = inventory_exclusion("proiect", "activ", code) == ""
+            self.assertEqual(homes[0] == "cu-date", in_scope, f"{code!r}: the group cu-date is the scope of /date/")
+
 
 # What a recommendation must not be: the empty or placeholder proposals of the generated queue.
 GENERIC_PROPOSALS = {"", "verificare manuală", "verificare cu dovezi primare", "dovadă primară pentru format"}

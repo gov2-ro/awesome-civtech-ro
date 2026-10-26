@@ -123,6 +123,9 @@ sesizări de la utilizatori, poziții din chestionare, o bază de date editorial
 și `fara-date` (ghid, curs, campanie, articol sau listă de linkuri; nu există nimic de extras).
 Dacă se potrivesc două valori, alegeți-o pe prima din această listă. O celulă goală înseamnă neevaluat.
 O intrare neevaluată sau `fara-date` nu apare în `/date/`, la fel ca o intrare arhivată sau offline. Până când stabiliți o valoare, intrarea lipsește din inventarul de variabile.
+Paginile publice arată două grupuri, nu cinci stări. „Lucrează cu date” are valorile `date-publice`, `date-proprii` și `calcul`. „Fără date” are valoarea `fara-date` și celula goală.
+Filtrul „Date” din explorator (`?dat=cu-date` sau `?dat=fara-date`) și numărătoarea „Lăsate pe dinafară” din `/date/` folosesc aceste grupuri. Celula goală se numără deci la „Fără date”.
+Raportul de acoperire pentru editori (`acoperire.csv`) păstrează starea `neevaluat`, ca să vedeți ce intrări mai așteaptă o valoare.
 `fara-date` nu merge împreună cu `detaliere_date`. Formatul din `formate` nu înlocuiește coloana:
 un chestionar (`testvot`) conține un set de date, iar o publicație poate fi jurnalism de date.
 Coloana este numai pentru editori și nu este în Formular. `validate.py` avertizează când o intrare `fara-date` are câmpuri extrase în inventar.
