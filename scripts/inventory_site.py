@@ -219,7 +219,7 @@ def publish_overview(items, site, projections, concepts, families):
                f'Același nume nu înseamnă că datele se pot combina.</p>'
                f'<div class="ov-scroll"><table class="ov-table"><thead><tr><th scope="col">Proiect<small>{len(rows)}</small></th>{head}'
                f'<th scope="col">Altele<small>câmpuri</small></th></tr></thead><tbody>{"".join(rows)}</tbody></table></div>'
-               f'<section class="ov-bare"><h2>Fără câmpuri extrase ({len(bare)})</h2><p>{", ".join(bare)}</p>'
+               f'<section class="ov-bare"><h2>De analizat ({len(bare)})</h2><p>{", ".join(bare)}</p>'
                f'<p class="ov-note">Lipsa câmpurilor nu înseamnă lipsa datelor: inventarul acestor intrări nu a fost făcut.</p></section>'
                f'{left_out_section(left_out(items))}')
     doc = (Path(__file__).parent / 'templates/inventory-list.html').read_text().replace('<!--LISTA-->', content)

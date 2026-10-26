@@ -438,6 +438,7 @@ class Scope(unittest.TestCase):
         self.assertIn('<a href="./?st=inactiv">2 proiecte</a>', reasons['inactiv'])
         self.assertIn('<a href="./?k=resursa&amp;st=inactiv">1 resursă</a>', reasons['inactiv'])
         bare = page[page.index('<section class="ov-bare">'):page.index('</section>', page.index('<section class="ov-bare">'))]
+        self.assertIn('<h2>De analizat (', bare, 'the heading says that the inventory of these entries is still to do')
         self.assertIn('Lipsa câmpurilor nu înseamnă lipsa datelor', bare, 'the note stays with the entries that are in scope and have no fields')
         self.assertNotIn('Lipsa câmpurilor', section)
 
