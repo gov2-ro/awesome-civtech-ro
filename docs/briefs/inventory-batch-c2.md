@@ -107,5 +107,5 @@ Work:
 2. Read it with a reader for a Datasette database listing: one field for each column of a visible table (path `<table>.<column>`), the table's row count as a fact, the views by name only. Leave out the hidden tables. If no existing reader fits, write one and test it offline with a fixture.
 3. Record the declared licence and source, as for Harta Firmelor (`licence` in the field browser).
 4. Map the columns to groups as in Part 1 and Part 2: candidate members for reviewed groups are listed, not added; a new group is `propus`.
-   A provider needs a name in the copy. The table titles do not name one; the documentation of the project says Monitorul Oficial, the AEP and the Ministry of Finance (`Venituri anuale partide de la MF`), but that is not in the copy. Propose a provider only from text in the copy.
+   A provider needs a name in the copy. The table titles do not name one; the project's own notes name Monitorul Oficial, and a table title names the Ministry of Finance (`Venituri anuale partide de la MF`), but the copy names no provider. Propose a provider only from text in the copy.
 5. The donor tables name private persons. The copy holds only column names, so nothing more is needed; do not request rows.
