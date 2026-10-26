@@ -7,8 +7,8 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [~] Column `relatie_date` (`date-publice`, `date-proprii`, `calcul`, `fara-date`, empty), the scope of `/date/` (active, not `fara-date`) and the explorer facets `dat` and `st`. Brief: [data-relation.md](briefs/data-relation.md). Steps A and B are done; C, D and E wait for the owner's answer on the proposals.
 - [x] Step A of the brief: the column, the code list, the checks, `dataRelation` in `data.json`, the `validate.py` warning and the docs. Done 2026-10-26; the column is empty in every row.
 - [x] Step B of the brief: `observatii/inventare/relatie-date-propuneri.csv`, 129 rows (128 public entries and the hidden `fiipregatit`). Done 2026-10-26.
-- [ ] Owner: review `observatii/inventare/relatie-date-propuneri.csv`. 105 rows have a proposal and 24 are empty (the evidence does not settle them). Accept, change or reject each row.
-- [ ] Step C of the brief: write the accepted values into `intrari.csv`, then run `validate.py --publication`.
+- [x] Owner: review `observatii/inventare/relatie-date-propuneri.csv`. Done 2026-10-26: `testvot` became `calcul`; `didi365` and `harta-tv-locale` were marked for removal (now hidden); empty values stay empty and leave `/date/`.
+- [x] Step C of the brief: 106 values in `intrari.csv`. Done 2026-10-26.
 - [ ] Step D of the brief: the scope of the public inventory (`inventory_site.py`, `/date/lista/`, `inventory_report.py`, `collect_docs.py`, `inventory.py`).
 - [ ] Step E of the brief: the explorer facets `dat` and `st` in `site/app.js`.
 - [x] Variable inventory for `data-expertforum`, `bani-partide`, `romania-interactiva`. Brief: [inventory-batch-c2.md](briefs/inventory-batch-c2.md).
@@ -33,7 +33,7 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [x] Prune the 7 kept search results of `lista-firme` (`editor`=`0`; `search.py --prune-only` recomputed `mentions` to 0). Done 2026-10-26.
 - [ ] `search.py --prune-only` also flips `regula` on 6 rows of `gov2`, `incentru`, `ethicalmedia` and `accesinfo` (stored rules differ from the current rules). Not applied; review before the next full prune.
 - [x] Fix `since` for `lista-firme`: 2024-05-04 from the repo, not 2011-05-19 from a GoDaddy parking page. Done 2026-10-26 with `EARLIER_DOMAIN_USE` in `build.py`.
-- [ ] Check `harta-tv-locale` for the same pattern: Wayback captures 2014-01-25 to 2018-09-16, repo created 2024-10-19. Add it to `EARLIER_DOMAIN_USE` only if the early captures show another site.
+- [-] Check `harta-tv-locale` for an earlier use of its domain. Dropped 2026-10-26: the entry is hidden (`ascuns`).
 - [ ] Update `.claude/commands/add-new-url.md` for v2: write `intrari.csv` (facets, `clasificare_stare=propus`) and `relatii.csv` (attribution row), not the frozen `proiecte.csv` / `orgs.csv`. Add the steps `collect_docs.py --only`, `inventory.py --only` and `inventory_report.py` after the profile and search steps.
 - [ ] Review the facts of `lista-firme`: the terms claim the source code for the operator, but `tudorr89/info-firme` is MIT-licensed; the owner attests the repo belongs to the site, but the site does not state the link between the repo owner (Tudor Rusu) and the operator. The API has no documentation page.
 
@@ -57,7 +57,8 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [ ] Owner: export the Drive file of the political finance data set and the Drive folder of the three health data sets as CSV from a browser, if their headers are wanted, and import them with `inventory.py --import-saved`. The finance data set holds donor data about persons (keep the header only). The page does not say that the Drive file is a spreadsheet, and a folder cannot be listed without the API.
 - [ ] Show the facts of a page-declared data set (category, description, related reports) in the field browser. They are in `seturi-date.json` (`seturi` of the page source); the preview shows only the title of the tab.
 - [x] Review the provider items D176–D185 and the groups `casatorii`, `divorturi`, `studenti`. Done 2026-10-26: the owner decided the providers (7 accepted, 2 rejected, D185 postponed); the three groups were marked `revizuit` in bulk at the owner's request, with their 10 members confirmed.
-- [ ] Owner: decide D185 (Cushman & Wakefield Echinox, postponed).
+- [x] Owner: decide D185. Done 2026-10-26: rejected („too specific”). D186 rejected too; the owner's note names Monitorul Oficial, so D188 proposes it.
+- [ ] Owner: decide D188 (Monitorul Oficial for `data-expertforum`, from the owner's note on D186).
 - [ ] Owner: decide the candidate members of four reviewed groups (19 field records, 10 selectors; the selectors are in section 5 of `docs/reports/inventory-expansion.md`): `perioada-de-referinta`, `judet`, `localitate`, `populatie`. A reviewed group cannot hold a member that the owner has not confirmed, so the new members need the review interface (`Amân`, then `confirmat`) or a decision to confirm them in the file.
 - [ ] Read more tools of `romaniainteractiva.ro` (15 of 22 catalogue tools are not read; the limit of ten sources per entry was reached): `1vot.ro` (campaign spending per vote, 2019–2025: it may use AEP party and campaign finance data, so it matters for `bani-partide`), `geamanuleuropean.ro` (Eurostat regions), `sondajeleromaniei.ro`, `satulcaresestinge.ro` (census 2011 and 2021) and the paths `UniRankingRO/` (in `sitemap.xml`, not in the catalogue).
 - [ ] Decide whether a response of more than 2,000,000 bytes may be read whole (`locale/` and `harta-notelor/` hold their data in a script of that size). The range read of 600,000 bytes ends before the script. A third option is the browser render of the page with a listing of its literals; the helper keeps only data responses today.

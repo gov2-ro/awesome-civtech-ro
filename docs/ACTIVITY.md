@@ -1,5 +1,18 @@
 # Activity
 
+## 2026-10-26 — The relation to data applied (step C); two entries hidden; D185–D188
+
+**Done**
+- The owner edited `relatie-date-propuneri.csv`: `testvot` → `calcul`; `didi365` and `harta-tv-locale` marked „remove”; `data-expertforum` → `date-publice` (earlier). 106 values went into `integrare/intrari.csv`. 21 rows stay empty (15 inactive entries, the hidden `fiipregatit` and 5 active entries with too little evidence), and 2 carried the removal mark.
+- `didi365` (not specific to Romania) and `harta-tv-locale` are `ascuns`, as for `fiipregatit`; the two `didi365` images left `site/img/` (`harta-tv-locale` had none). `build.py` writes 139 entries.
+- The owner decided D185 (rejected), D186 (rejected: „should be Monitorul Oficial, HG's are published in MO”) and D187 (accepted, L183). D188 proposes Monitorul Oficial for `data-expertforum` with the evidence of D186; it is open for the owner.
+- Two tests pinned data that the owner edits: the round trip of `relatie_date` in `test_sheets_form.py` (it expected an empty column), and the batch C2 part 2 provider test (it expected one item). Both now check the behaviour only. 701 tests pass.
+
+**Decided**
+- The owner decided that an entry without a value leaves `/date/`, like `fara-date`. The first brief kept it in. The cost: 5 active entries without enough evidence (`observatori-votcorect`, `romania-fara-gropi`, `votcorect`, `votez-info`, `presspay`) leave the finder until someone sets a value. `data-relation.md` section 3 is updated.
+- „Remove” was applied as `ascuns`, not as a deleted row: the public result is the same, and the data, relations and observations stay. The precedent is `fiipregatit`.
+- D188 is a proposal, not an accepted row: `CLAUDE.md` says that an agent never decides a review item for the owner, even when the owner's note names the answer.
+
 ## 2026-10-26 — Inventory batch C2, part 3: bani-partide from the owner's saved Datasette listing
 
 **Done**
