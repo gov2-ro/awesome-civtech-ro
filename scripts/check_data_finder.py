@@ -137,6 +137,9 @@ with sync_playwright() as pw:
     ok('empty results preserve search focus', page.locator('#data-search').evaluate('(e)=>e===document.activeElement'))
     page.locator('[data-clear="all"]').click()
     ok('reset restores all catalogue entries', page.locator('#data-count').inner_text() == TOTAL_LABEL)
+    # The cards with evidence come first and 24 are shown at a time, so an uninventoried project is on a later page: open them all.
+    while page.locator('[data-more]').count():
+        page.locator('[data-more]').click()
     ok('uninventoried projects remain reachable', any(not e['inventory'].get('count') for e in INDEX['entries']) and 'Câmpuri încă neinventariate' in page.locator('#data-cards').inner_text())
     page.screenshot(path='/tmp/civtech-data-finder-desktop.png', full_page=False)
     for width in (390,320):
