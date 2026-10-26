@@ -54,6 +54,8 @@ const STATUS = {
   necunoscut: { label: 'Neconfirmat', cls: 'warn', group: 'neconfirmat' },
   neverificat: { label: 'Neverificat', cls: 'warn', group: 'neconfirmat' },
 };
+// The three status groups of STATUS, as the facet `st` offers them.
+const STATE_GROUPS = [['activ', 'Activ'], ['inactiv', 'Inactiv'], ['neconfirmat', 'Neconfirmat']];
 const SORTS = [['subiect', 'Pe subiecte'], ['az', 'A–Z'], ['top', 'Active și relevante'], ['relevanta', 'Relevanță'], ['nou', 'Apărute recent (prima urmă)'], ['recent', 'Actualizate recent'], ['random', 'Aleatoriu']];
 // What the two date columns and their sorts mean. `since` is the first trace the profiler observed (a web archive capture,
 // the creation of the code repository, or the first TLS certificate of the domain); it is not the date the project launched.
@@ -63,14 +65,16 @@ const DATE_HELP = {
 };
 const SORT_HELP = { nou: DATE_HELP.since, recent: DATE_HELP.updated };
 const MIN_Q = 3;
-// ina=1 shows inactive projects (hidden by default); a and s are kept for URLs but have no UI for now.
+// ina=1 shows inactive projects (hidden by default; st=inactiv shows them too); a and s are kept for URLs but have no UI for now.
+// dat (the relation to data: the codes of valori.csv `relatie_date`, and `neevaluat` for an empty value) and st (the status group) are facets
+// in the pattern of ent: comma-separated values, OR within the facet, under "Mai multe filtre".
 // The facets hold comma-separated concept or area IDs: OR within a facet, AND between facets.
 // d, t, kw and c are v1 bookmarks (domain, types, keywords, city): they keep their v1 meaning through each entry's
 // `legacy` fields and show as their own pills; they are never translated into the new facets.
-const DEFAULTS = { k: 'proiect', q: '', subj: '', topic: '', cap: '', fmt: '', source: '', coverage: '', area: '', purpose: '', tech: '', inst: '', ent: '', orgt: '',
+const DEFAULTS = { k: 'proiect', q: '', subj: '', topic: '', cap: '', fmt: '', source: '', coverage: '', area: '', purpose: '', tech: '', inst: '', ent: '', orgt: '', dat: '', st: '',
   d: '', t: '', kw: '', c: '', org: '', a: '', s: '', cod: '', civ: '', nou: '', ina: '', v: '', o: '', p: '' };
-const FACETS = ['subj', 'topic', 'cap', 'fmt', 'source', 'coverage', 'area', 'purpose', 'tech', 'inst', 'ent', 'orgt'];
-const MORE = ['coverage', 'area', 'purpose', 'tech', 'inst', 'ent', 'orgt'];  // under "Mai multe filtre"
+const FACETS = ['subj', 'topic', 'cap', 'fmt', 'source', 'coverage', 'area', 'purpose', 'tech', 'inst', 'ent', 'orgt', 'dat', 'st'];
+const MORE = ['coverage', 'area', 'purpose', 'tech', 'inst', 'ent', 'orgt', 'dat', 'st'];  // under "Mai multe filtre"
 const LEGACY = ['d', 't', 'kw', 'c'];
 // The "classifications are proposals" notices (toolbar and detail panel); hidden for now. build.py has its own switch.
 const DRAFT_NOTE = false;
@@ -94,6 +98,8 @@ const expandedOptions = new Set();
 
 const isInactive = it => STATUS[it.status].group === 'inactiv';
 const listOf = key => state[key] ? state[key].split(',') : [];
+// Inactive entries show when the visitor asks for them: ina=1, or a status facet that selects `inactiv` (st=inactiv).
+const showsInactive = () => !!state.ina || listOf('st').includes('inactiv');
 const kwLabel = k => k.replace(/-/g, ' ');
 // The v1 words of an entry (category, types, keywords, town). Free-text search reads them, so that a v1 search still
 // finds the same entries; they are never shown or used as classification.
@@ -104,7 +110,7 @@ const label = id => CONCEPT.get(id)?.label || AREA.get(id)?.label || id;
 // A facet's visible title: the scheme label, with the few that differ by tab or have no scheme.
 function facetTitle(key) {
   if (key === 'cap' && state.k === 'organizatie') return 'Activități';
-  return { topic: 'Subiect', area: 'Acoperire geografică', source: 'Surse de date', coverage: 'Acoperire', ent: 'Tip de intrare' }[key] || TAX.scheme[SCHEME_OF[key]]?.label || key;
+  return { topic: 'Subiect', area: 'Acoperire geografică', source: 'Surse de date', coverage: 'Acoperire', ent: 'Tip de intrare', dat: 'Date', st: 'Stare' }[key] || TAX.scheme[SCHEME_OF[key]]?.label || key;
 }
 // Match explicit coverage and its parents. National coverage does not imply a local assignment.
 const areaUp = id => { const out = []; for (let a = AREA.get(id); a?.parent; a = AREA.get(a.parent)) out.push(a.parent); return out; };
@@ -167,7 +173,8 @@ function matches(it, skip) {
   if (skip !== 'cod' && state.cod && !it.code) return false;
   if (skip !== 'civ' && state.civ && !it.civictech) return false;
   if (skip !== 'nou' && state.nou && !isFresh(it)) return false;
-  if (skip !== 'ina' && !state.ina && isInactive(it)) return false;
+  // The status facet counts its own options without this rule, or `inactiv` would show 0 and could not be chosen.
+  if (skip !== 'ina' && skip !== 'st' && !showsInactive() && isInactive(it)) return false;
   const q = query();
   if (q) {
     const terms = norm(q).split(/\s+/).filter(Boolean);
@@ -402,7 +409,8 @@ const sourceGroups = sources => {
   }
   return [...groups.values()];
 };
-const optLabel = (key, v) => key === 'coverage' ? COVERAGE_LABELS[v] || v : key === 'ent' ? TAX.ent[v]?.label || v : label(v);
+const optLabel = (key, v) => key === 'coverage' ? COVERAGE_LABELS[v] || v : key === 'ent' ? TAX.ent[v]?.label || v
+  : key === 'dat' ? TAX.dat[v]?.label || v : key === 'st' ? STATE_GROUPS.find(([g]) => g === v)?.[1] || v : label(v);
 
 // A facet with a selection stays open, so that its choice is never hidden.
 function facet(id, title, body, selected = false) {
@@ -427,7 +435,8 @@ function facetsHTML() {
     if (!useful(key, options)) continue;
     out.push(facet(key, facetTitle(key), tagsHTML(key, options, facetCounts(key, options)), !!state[key]));
   }
-  const more = MORE.filter(k => k !== 'orgt' || state.k === 'organizatie').map(key => {
+  // An organisation has no relation to data (`dat`), and a project or a resource has no organisation type (`orgt`).
+  const more = MORE.filter(k => k === 'orgt' ? state.k === 'organizatie' : k !== 'dat' || state.k !== 'organizatie').map(key => {
     const options = optionsOf(key);
     return useful(key, options) ? `<div class="subfacet"><p class="kicker">${esc(facetTitle(key))}</p>${tagsHTML(key, options, facetCounts(key, options))}</div>` : '';
   }).join('');
@@ -435,10 +444,11 @@ function facetsHTML() {
 
   const has = (pred) => kindItems().some(pred);
   const toggles = [];
-  const toggle = (key, text, checked, n) => toggles.push(`<label class="toggle"><input type="checkbox" data-act="toggle" data-key="${key}" ${checked ? 'checked' : ''}><span class="l">${text}</span>${n != null ? `<span class="n">${n}</span>` : ''}</label>`);
+  const toggle = (key, text, checked, n, disabled = false) => toggles.push(`<label class="toggle"><input type="checkbox" data-act="toggle" data-key="${key}" ${checked ? 'checked' : ''}${disabled ? ' disabled' : ''}><span class="l">${text}</span>${n != null ? `<span class="n">${n}</span>` : ''}</label>`);
   if (has(i => i.code) && has(i => !i.code)) toggle('cod', 'Doar cu cod sursă public', state.cod, DB.items.filter(i => matches(i, 'cod') && i.code).length);
   if (has(isFresh) && has(i => !isFresh(i))) toggle('nou', 'Doar proiecte apărute recent', state.nou, DB.items.filter(i => matches(i, 'nou') && isFresh(i)).length);
-  if (has(isInactive)) toggle('ina', 'Ascunde proiecte inactive', !state.ina, null);
+  // With st=inactiv the status facet already shows the inactive entries: the toggle is off and cannot hide them.
+  if (has(isInactive)) toggle('ina', 'Ascunde proiecte inactive', !showsInactive(), null, listOf('st').includes('inactiv'));
   if (has(i => i.civictech) && has(i => !i.civictech)) toggle('civ', 'Doar proiecte civtech', state.civ, DB.items.filter(i => matches(i, 'civ') && i.civictech).length);
   if (toggles.length) out.push(facet('optiuni', 'Opțiuni', toggles.join('')));
   out.push('<p class="fhelp">În același filtru: oricare dintre opțiuni. Între filtre: toate condițiile. Numerele arată câte intrări are fiecare opțiune, cu celelalte filtre aplicate.</p>');
@@ -974,7 +984,7 @@ function scoreOf(names, q) {
   return [best, via];
 }
 function countFor(s) {
-  const base = DB.items.filter(i => i.kind === state.k && (state.ina || !isInactive(i)));
+  const base = DB.items.filter(i => i.kind === state.k && (showsInactive() || !isInactive(i)));
   if (s.kind === 'org') return DB.items.filter(i => i._orgs.includes(s.val)).length;
   if (s.kind === 'item') return null;
   return base.filter(i => has(i, s.kind, s.val)).length;
@@ -1317,7 +1327,7 @@ function start(db) {
   const v = db.vocabulary;
   for (const c of v.concepts) CONCEPT.set(c.id, c);
   for (const a of v.areas) AREA.set(a.id, a);
-  TAX = { kind: map(v.kinds), ent: map(v.entityTypes), cov: map(v.coverage), pred: map(v.predicates), scheme: map(v.schemes),
+  TAX = { kind: map(v.kinds), ent: map(v.entityTypes), dat: map([...(v.dataRelations || []), { key: 'neevaluat', label: 'Neevaluat' }]), cov: map(v.coverage), pred: map(v.predicates), scheme: map(v.schemes),
     dom: map(db.legacyTaxonomy.domenii), tip: map(db.legacyTaxonomy.tipuri) };
   // Paths in the data are relative to the site root; the address bar changes with pushState, so make them absolute.
   const abs = p => p ? ROOT + p : p;
@@ -1339,6 +1349,8 @@ function start(db) {
     it._f.source = new Set(it.dataSources.map(s => sourceLabel(s.name)));
     it._f.coverage = new Set([coverageKey(it)]);
     it._f.ent = new Set([it.entityType]);
+    it._f.dat = new Set([it.dataRelation || 'neevaluat']);
+    it._f.st = new Set([STATUS[it.status].group]);
     it._orgs = it.attributions.map(a => a.name);
     // What ties entries together by attribution: the slug of an organisation, else the written name.
     it._akeys = it.attributions.map(a => a.org || norm(a.name));
