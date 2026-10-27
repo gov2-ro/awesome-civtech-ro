@@ -2,16 +2,41 @@
 import csv
 import hashlib
 import io
+import json
 import re
+import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
+from urllib.parse import urlsplit
 
 import inventory_report as report
 from common import PUBLIC_ROOT, forbidden
 from inventory_concepts import EvidenceLocator, selector_matches
 
 ROOT = Path(__file__).resolve().parents[1]
+LISTA_FIRME_API = 'https://lista-firme.info/api/v1/info?cui=51859625'
+# Keys of a representative record that hold a label and not an identity: a role and a country name say nothing about who the person is.
+LABEL_KEYS = ('role', 'birth_country', 'current_country')
+
+
+def person_values(body):
+    """The string values of the person relations of a response of the lista-firme API, without the label keys. Numbers (ids) are left out."""
+    values = set()
+    for relation in ('legal_representatives', 'natural_person_representatives'):
+        for record in body.get(relation) or []:
+            values |= {v for k, v in record.items() if isinstance(v, str) and len(v) >= 4 and k not in LABEL_KEYS}
+    return values
+
+
+def leaked(values, files):
+    """(file, fingerprint) pairs where a value is in the text of a file. The answer holds the first 8 hex digits of the SHA-256 of the value,
+    never the value, so that a failing run does not print a person into a log."""
+    found = []
+    for path in files:
+        text = Path(path).read_text(errors='replace')
+        found += [(path, hashlib.sha256(value.encode()).hexdigest()[:8]) for value in sorted(values) if value in text]
+    return found
 BRIEF_COLUMNS = ['slug', 'tip_entitate', 'investigat_in_lot', 'stare_investigare', 'surse_structurate', 'campuri_din_surse', 'concepte_propuse',
                  'campuri_cu_definitie', 'campuri_cu_tip_declarat', 'campuri_cu_tip_observat', 'masuri_cu_unitate', 'masuri_fara_unitate',
                  'surse_cu_provenienta_verificata', 'limite', 'blocaj', 'urmatorul_pas']
@@ -255,10 +280,13 @@ class Coverage(unittest.TestCase):
 
     def test_the_inventory_of_the_entries_with_records_about_persons_keeps_field_names_and_no_value(self):
         allowed = {'csv': {'nume', 'cale', 'tip_declarat', 'stare_tip', 'rol', 'coloana_csv', 'pointer'},
-                   'json-esantion': {'nume', 'cale', 'tipuri_observate', 'stare_tip', 'rol', 'pointer', 'numar_chei'}}
-        for slug in ('onorata-instanta', 'politicieni-corupti', 'dupa-cutremur'):
+                   'json-esantion': {'nume', 'cale', 'tipuri_observate', 'stare_tip', 'rol', 'pointer', 'numar_chei'},
+                   'json': {'nume', 'cale', 'tipuri_observate', 'stare_tip', 'rol', 'pointer'}}
+        for slug in ('onorata-instanta', 'politicieni-corupti', 'dupa-cutremur', 'lista-firme'):
             for ref in self.data['profiles'][slug]['surse_structurate']:
                 source = self.data['sources'][ref]
+                if slug == 'lista-firme' and source['url'] != LISTA_FIRME_API:
+                    continue  # the migrations of the repository hold columns; only the live response names persons
                 self.assertIn(source['format'], allowed, source['url'])
                 for field in source['campuri']:
                     self.assertLessEqual(set(field), allowed[source['format']], (source['url'], field['nume']))
@@ -267,6 +295,57 @@ class Coverage(unittest.TestCase):
             for item in evidence:
                 if any(slug in item['sursa'] for slug in ('dupacutremur', 'posibil-penali')):
                     self.assertNotIn('"expert"', item['fragment'], 'the name of a person is not evidence of a variable')
+
+    def test_the_live_response_of_lista_firme_is_a_source_of_key_paths_and_types_and_holds_no_value(self):
+        source = next((s for s in self.data['sources'].values() if s['url'] == LISTA_FIRME_API), None)
+        self.assertIsNotNone(source, 'the source of the one request that the owner allowed')
+        self.assertIn(source['id'], self.data['profiles']['lista-firme']['surse_structurate'])
+        self.assertEqual((source['format'], source['stare'], source['http_status']), ('json', 'analizat', 200))
+        # The tracked record holds the metadata of the request and key paths. No key of it can hold a body or a sample of values.
+        self.assertLessEqual(set(source), {'url', 'final_url', 'http_status', 'fetched_at', 'content_type', 'state', 'id', 'campuri', 'completitudine', 'snapshot',
+                                           'sha256', 'format', 'stare', 'limita_atinsa', 'baza_tipului', 'citire', 'ultima_incercare', 'versiuni_anterioare'})
+        types = {'string', 'integer', 'number', 'boolean', 'null', 'object', 'array'}
+        self.assertTrue(source['campuri'])
+        for field in source['campuri']:
+            self.assertLessEqual(set(field['tipuri_observate']), types, field['cale'])
+            # A key name is an identifier. A name with a space, a digit run or an accent could be a value used as a key.
+            self.assertRegex(field['cale'], r'^\$(\.[A-Za-z_][A-Za-z_]*(\[\])?)+$', 'a path of the response is a chain of key names')
+        notes = self.data['notes']['note']['lista-firme']
+        self.assertTrue(notes['rezultat'] and notes['limite_en'] and notes['urmator_en'])
+        # With the retained body (it is not in git, so a fresh checkout skips this part): no value of a person is in a file that git tracks.
+        locator = EvidenceLocator(ROOT / 'data/taxonomy-v2/observatii/inventare', ROOT / 'data/taxonomy-v2/observatii', list(self.data['sources'].values()))
+        text, _ = locator.text(LISTA_FIRME_API, 'sursa')
+        if text is None:
+            return
+        values = person_values(json.loads(text))
+        self.assertTrue(values, 'the check must have values to look for')
+        files = [p for pattern in ('data/taxonomy-v2/observatii/inventare/*.json', 'data/taxonomy-v2/observatii/inventare/*.csv',
+                                   'data/taxonomy-v2/observatii/inventare/adaugari/*.json', 'data/taxonomy-v2/*.json', 'data/taxonomy-v2/integrare/*.csv',
+                                   'docs/*.md', 'docs/reports/*.md', 'docs/briefs/*.md') for p in sorted(ROOT.glob(pattern))]
+        self.assertTrue(files)
+        self.assertEqual(leaked(values, files), [], 'a value of a person reached a file that git tracks (the answer shows file and fingerprint)')
+
+    def test_the_leak_check_finds_a_value_that_it_is_given(self):
+        # Without this test the check above would pass for a wrong list of files or a wrong list of values.
+        body = {'legal_representatives': [{'id': 7, 'person_name': 'Ana Exemplu', 'role': 'Administrator', 'birth_date': '1980-01-01T00:00:00.000000Z'}],
+                'natural_person_representatives': [{'person_name': 'Ion Fictiv'}], 'name': 'A COMPANY'}
+        values = person_values(body)
+        self.assertEqual(sorted(values), ['1980-01-01T00:00:00.000000Z', 'Ana Exemplu', 'Ion Fictiv'], 'a role is a label, an id is a number, a company name is not a person')
+        with tempfile.TemporaryDirectory() as folder:
+            clean, dirty = Path(folder) / 'clean.md', Path(folder) / 'dirty.md'
+            clean.write_text('Legal representatives: key names only.\n')
+            dirty.write_text('The administrator is Ion Fictiv.\n')
+            self.assertEqual(leaked(values, [clean, dirty]), [(dirty, hashlib.sha256(b'Ion Fictiv').hexdigest()[:8])])
+            self.assertEqual(leaked(values, [clean]), [])
+
+    def test_lista_firme_got_one_api_request_and_no_other_request_to_its_host(self):
+        # The owner raised the limit of the entry for ONE request. The log is append-only, so this pins history, not an editor's choice.
+        rows = [r for r in self.data['log'] if r['cache'] == 'nu' and urlsplit(r['url']).hostname == 'lista-firme.info']
+        api = [r for r in rows if r['url'] == LISTA_FIRME_API]
+        self.assertEqual(len(api), 1, 'one request to the API, no retry')
+        self.assertEqual((api[0]['lot'], api[0]['metoda'], api[0]['stare'], api[0]['http_status']), ('D', 'GET', 'ok', '200'))
+        others = [r['url'] for r in rows if r['url'] != LISTA_FIRME_API]
+        self.assertFalse([u for u in others if urlsplit(u).path.startswith('/api') or 'cui=' in u or 'name=' in u or 'company=' in u], 'no other API path, CUI or name query')
 
     def test_the_request_log_of_batch_d_stays_inside_the_limits_and_asks_no_listed_host(self):
         rows = [r for r in self.data['log'] if r['lot'] == 'D']
