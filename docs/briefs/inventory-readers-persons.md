@@ -1,7 +1,7 @@
 # Brief — person data in sources, and three corrections of the JSON reader
 
 Date: 2026-10-27. Baseline: commit `5739a73` (the brief itself is in the next commit).
-Status: ready for implementation.
+Status: done on 2026-10-27 (merged from branch `readers-persons`, v0.37.0).
 
 ## 1. Start here
 
