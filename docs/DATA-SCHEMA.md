@@ -1156,18 +1156,24 @@ The reader makes no request and runs no script.
 - The same name under two headings is an error; so is a page with no such heading. The reader does not choose between two definitions.
 - Names that the page lists in a sentence (`Adaugă câmpurile: hasDGPC = 1, dgpcDate`) are not fields of this reader: no heading defines them.
 
-**Pasted Eurostat extractions (`html-tabele-eurostat`).** A page can paste the table that the Eurostat data browser exports (monitorsocial.ro). The reader makes no request and opens no link.
+**Pasted Eurostat extractions (`html-tabele-eurostat`).** A page can paste the table that the Eurostat data browser exports (monitorsocial.ro). The editors paste by hand, so the shapes vary. The reader makes no request and opens no link.
 
-- An extraction is a table whose first row starts with `Data extracted on DD/MM/YYYY HH:MM:SS from [SOURCE]` (also when that row is made of `<th>` cells). Other tables are not read.
-  The heading directly above the table (empty paragraphs between them are allowed) reads `Title [code]`; the code is as the page writes it (`hbs_str_t211__custom_8391811`). Without a heading the title is `Tabel N` and the path is `tabelN`.
-- The rows up to the last row whose first cell ends with `(Labels)` are metadata and dimensions. A table with no such row is an error: the data rows could not be told from the dimensions.
-- The measure is one field: `nume` (the title), `cale` (the code), `rol` `masura`, `unitate` (the first value on the `Unit of measure` row; null when the row is missing), `tipuri_observate` (the written form of the cells
-  of the first five data rows, as for `html-tabele`: `forma-numerica`, `text`, `null`), `sursa_declarata` (`ESTAT`), `extras_la` (the extraction time as written), `actualizat_declarat` (the `Last updated:` value), `cod_set`.
+- An extraction is a part of a table with a row `Last updated:`. It starts at its title row (a row of one cell, directly above the `Last updated:` row, with `Dataset:` and extraction lines between them allowed) or at the first row of the table,
+  and it runs to the next extraction. A table can hold several extractions. A table with no `Last updated:` row is an extraction when its first row holds an extraction line
+  `Data extracted on DD/MM/YYYY HH:MM:SS from [SOURCE]` (`Date extrase la ...` in Romanian; also when that row is made of `<th>` cells).
+- The title row reads `Title [code]` and may continue with the extraction line. The code is as the page writes it (`hbs_str_t211__custom_8391811`). Without a title row, the heading directly above the table (empty paragraphs between them
+  are allowed) gives the title and the code. Without both, the title is `Tabel N` and the path is `tabelN`.
+- The metadata and dimension rows end at the `(Labels)` rows: the first row whose first cell ends with `(Labels)`, and the rows of that kind that follow it directly. When an extraction has no such row, the row `TIME` (a row with more than one value)
+  ends the block. An extraction with neither is left out, and the source gets `limita_atinsa` true. A page with no extraction, or with none that can be read, is an error.
+- The measure is one field: `nume` (the title), `cale` (the code), `rol` `masura`, `unitate` (the first value on the `Unit of measure` or `Unitate de măsură` row; null when the row or the value is missing), `tipuri_observate` (the written form of
+  the cells of the first five data rows, as for `html-tabele`: `forma-numerica`, `text`, `null`), `sursa_declarata` (`ESTAT`), `extras_la` (the extraction time as written), `actualizat_declarat` (the `Last updated:` value), `cod_set` and
+  `extractii_in_pagina`. A page can paste the same code twice (one extraction for each sex): the data set is listed once, with `extractii_in_pagina` 2 and the fields of its first extraction.
   The page declares no type, so `tip_declarat` is null. The mark `:` for a missing value is text for the reader; it is not a convention that the reader assumes.
-- Every other metadata row is a dimension: `rol` `dimensiune`, `cale` `code.NAME`, `grup` (the title), `valori_in_tabel` (the number of non-empty cells after the first: 0 for the dimension of the rows, 1 for a dimension
-  that the extraction fixes, more for the dimension of the columns). A value is never copied. `(Labels)` is cut from the name (`GEO (Labels)` gives `GEO`).
+- Every other row of the block, except the metadata rows (`Last updated:`, `Dataset:`, the unit row, an extraction line) and a row `Tabel N` (the label of a pasted table), is a dimension: `rol` `dimensiune`, `cale` `code.NAME`, `grup` (the title),
+  `valori_in_tabel` (the number of non-empty cells after the first: 0 for the dimension of the rows, 1 for a dimension that the extraction fixes, more for the dimension of the columns). A value is never copied. `(Labels)` is cut from the name
+  (`GEO (Labels)` gives `GEO`).
 - When the first cell of a data row is a label under no heading (a country in the first column), the reader names no dimension for it: the page does not say which one it is.
-- Locator: `/tabele/T/randuri/R` (1-based table, 0-based data row), or `/tabele/T/antet/0` for a first row of `<th>` cells. `stare_tip` `antet-tabel-html`.
+- Locator: `/tabele/T/randuri/R` (1-based table, 0-based row of the table, the header row of `<th>` cells excluded), or `/tabele/T/antet/0` for a first row of `<th>` cells. `stare_tip` `antet-tabel-html`.
 
 **Data literals in page scripts (`js-literale`).** A single-page tool often keeps its data inside the page. No schema describes that data. The page still shows what it holds.
 The reader makes no request and runs no script.

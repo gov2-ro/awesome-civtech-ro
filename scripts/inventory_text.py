@@ -225,7 +225,8 @@ def html_tabele(body, options=None):
 
 
 def html_tabele_eurostat(body, options=None):
-    return 'html-tabele-eurostat', eurostat_fields(body, parse_tables(body), sample_type), False
+    fields, complete = eurostat_fields(body, parse_tables(body), sample_type)
+    return 'html-tabele-eurostat', fields, not complete
 
 
 def markdown(body, options=None):
