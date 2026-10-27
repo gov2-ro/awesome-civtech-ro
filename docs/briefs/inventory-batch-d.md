@@ -1,7 +1,7 @@
 # Brief — variable inventory, batch D
 
 Date: 2026-10-27. Baseline: commit `e1e8e1c`.
-Status: ready for implementation.
+Status: done on 2026-10-27 (merged from branch `inventory-batch-d`, v0.35.0).
 
 ## 1. Start here
 
