@@ -1,5 +1,19 @@
 # Activity
 
+## 2026-10-27 — Owner decisions on batch D
+
+**Done**
+- At the owner's request („ok with 1, 2, 3, 4”), the batch D proposals were decided in bulk with the review interface's own code (`Store.decide_provider`, `Store.decide_group`, `Store.errors_of`: 0 errors before and after):
+  - The 22 provider items D189–D210 are `acceptat`; they wrote the relations L185–L206.
+  - The groups `deficit-bugetar` and `coordonate-geografice` are `revizuit`, with their 6 members confirmed. `deficit-bugetar` keeps the family `achizitii`.
+  - The four lot D members of the proposed groups `partid-politic` (3) and `uat` (1) are confirmed; the two groups stay `propus`.
+  - The 14 candidate selectors joined their reviewed groups as `confirmat`; the key `selectori_candidati` left `inventar-note.json`.
+- The owner postponed the requests for exports from project owners (`dupa-cutremur`, `guvernezi`, `politicieni-corupti`).
+- 772 unit tests pass; `validate.py --publication` and `inventory.py --check` pass.
+
+**Decided**
+- The owner raised the request limit of `lista-firme` for one API response (the operator's own CUI). A Sonnet agent does that request; the response gives key names only.
+
 ## 2026-10-27 — Inventory batch D: twelve entries of „De analizat”
 
 **Done**

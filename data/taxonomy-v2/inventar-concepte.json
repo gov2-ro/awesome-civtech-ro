@@ -312,6 +312,21 @@
           "context": "CUI-ul partidului: în legenda partidelor și în tabelul veniturilor anuale de la MF, lângă `Partid` (rolul se deduce din antet)",
           "stare": "confirmat",
           "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27): candidat din lotul C2."
+        },
+        {
+          "projects": [
+            "lista-firme"
+          ],
+          "names": [
+            "cui"
+          ],
+          "path": [
+            "companies.cui"
+          ],
+          "source": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_184655_create_companies_table.php",
+          "context": "CUI-ul firmei din tabelul `companies` (coloană text, unică); API-ul îl primește ca parametru `cui`",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         }
       ],
       "categorie": "identificator",
@@ -756,6 +771,66 @@
           "context": "codul județului, lângă coloana `Judet`; lista nu spune ce sistem de coduri folosește",
           "stare": "confirmat",
           "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27): candidat din lotul C2."
+        },
+        {
+          "projects": [
+            "lista-firme"
+          ],
+          "names": [
+            "county"
+          ],
+          "path": [
+            "addresses.county"
+          ],
+          "source": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_190138_create_addresses_table.php",
+          "context": "județul din adresa firmei (relația `address`)",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
+        },
+        {
+          "projects": [
+            "trei-din-patru"
+          ],
+          "names": [
+            "Județul"
+          ],
+          "path": [
+            "tabel1.Județul"
+          ],
+          "source": "https://mariuscomper.uk/trei-din-patru/",
+          "context": "județul din primul tabel al paginii (sate cu școală în 2013–14 și 2025–26)",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
+        },
+        {
+          "projects": [
+            "trei-din-patru"
+          ],
+          "names": [
+            "counties[]"
+          ],
+          "path": [
+            "$.counties[]"
+          ],
+          "source": "https://mariuscomper.uk/trei-din-patru/assets/places.7edc94b58896.json",
+          "context": "lista numelor de județe din fișierul de date al hărții",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
+        },
+        {
+          "projects": [
+            "unde-locuiesc"
+          ],
+          "names": [
+            "county"
+          ],
+          "path": [
+            "CITY_DATA[].county"
+          ],
+          "source": "https://mariuscomper.uk/unde-locuiesc/data.js",
+          "context": "județul orașului din catalogul celor opt orașe",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         }
       ],
       "categorie": "dimensiune",
@@ -975,6 +1050,69 @@
           "context": "antetul spune „Localitate”, dar valorile sunt nume de UAT cu prefix de tip (`Com.Albac`); grupul nou `uat` o conține deja ca propunere",
           "stare": "confirmat",
           "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27): candidat din lotul C2."
+        },
+        {
+          "projects": [
+            "lista-firme"
+          ],
+          "names": [
+            "city"
+          ],
+          "path": [
+            "addresses.city"
+          ],
+          "source": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_190138_create_addresses_table.php",
+          "context": "localitatea din adresa firmei (relația `address`)",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
+        },
+        {
+          "projects": [
+            "unde-locuiesc"
+          ],
+          "names": [
+            "name"
+          ],
+          "path": [
+            "CITY_DATA[].name"
+          ],
+          "source": "https://mariuscomper.uk/unde-locuiesc/data.js",
+          "context": "orașul din catalogul celor opt orașe",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
+        },
+        {
+          "projects": [
+            "dupa-cutremur"
+          ],
+          "names": [
+            "oras"
+          ],
+          "path": [
+            "$.features[].properties.oras"
+          ],
+          "source": [
+            "https://storage.googleapis.com/dupacutremur/cladiri_complete_03032024.geojson?v=1",
+            "https://storage.googleapis.com/dupacutremur/puncte_complete_03032024.geojson?v=1"
+          ],
+          "context": "orașul clădirii, în proprietățile fiecărei clădiri",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
+        },
+        {
+          "projects": [
+            "statul-digital"
+          ],
+          "names": [
+            "city"
+          ],
+          "path": [
+            "STATUL_DIGITAL_DATA.dataCenters[].city"
+          ],
+          "source": "https://mariuscomper.uk/statul-digital/data.js",
+          "context": "orașul unui centru de date al cloudului guvernamental (locul unei infrastructuri, nu adresa unei firme)",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         }
       ],
       "categorie": "dimensiune",
@@ -1131,6 +1269,52 @@
           "context": "anul la care se referă o linie: subvenții, contracte, donații, venituri anuale, rezultate și runde de alegeri (12 tabele); granularitatea este anul; `Luna`, `Luna-nr`, `Data` și `Data donației` nu sunt incluse",
           "stare": "confirmat",
           "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27): candidat din lotul C2."
+        },
+        {
+          "projects": [
+            "trei-din-patru"
+          ],
+          "names": [
+            "TIME_PERIOD"
+          ],
+          "source": [
+            "https://ins.gov2.ro/api/datasets/SCL101B?lang=en",
+            "https://ins.gov2.ro/api/datasets/SCL103I?lang=en",
+            "https://ins.gov2.ro/api/datasets/SCL105A?lang=en"
+          ],
+          "context": "perioada seriei INS (dimensiunea TIME_PERIOD, an)",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
+        },
+        {
+          "projects": [
+            "trei-din-patru"
+          ],
+          "names": [
+            "years[]"
+          ],
+          "path": [
+            "$.years[]"
+          ],
+          "source": "https://mariuscomper.uk/trei-din-patru/assets/places.7edc94b58896.json",
+          "context": "anii școlari 2013–14 … 2025–26 ai listelor Ministerului Educației",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
+        },
+        {
+          "projects": [
+            "pe-datorie"
+          ],
+          "names": [
+            "Anul"
+          ],
+          "path": [
+            "tabel2.Anul"
+          ],
+          "source": "https://mariuscomper.uk/pe-datorie/",
+          "context": "anul din tabelul deficitului, pe ani (an calendaristic)",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         }
       ],
       "dovezi": [
@@ -1293,6 +1477,36 @@
           "context": "populația după domiciliu a județului, pe ani (POP107A, media dintre 1 ianuarie a anului și a anului următor)",
           "stare": "confirmat",
           "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27): candidat din lotul C2."
+        },
+        {
+          "projects": [
+            "unde-locuiesc"
+          ],
+          "names": [
+            "population"
+          ],
+          "path": [
+            "CITY_DATA[].population"
+          ],
+          "source": "https://mariuscomper.uk/unde-locuiesc/data.js",
+          "context": "populația rezidentă a orașului din RPL 2021, la 1 decembrie, cum scrie pagina",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
+        },
+        {
+          "projects": [
+            "onorata-instanta"
+          ],
+          "names": [
+            "Populația"
+          ],
+          "path": [
+            "Populația"
+          ],
+          "source": "https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/judecatorii-instante-2014.tsv",
+          "context": "populația din raza unei judecătorii; pagina „Despre” numește recensământul INS printre surse, dar nu spune de ce an este coloana",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         }
       ],
       "categorie": "masura",
@@ -3209,7 +3423,9 @@
                 "baza": "observatie-esantion"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         }
       ],
       "dovezi": [
@@ -3360,7 +3576,9 @@
                 "baza": "observatie-esantion"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         },
         {
           "projects": [
@@ -3387,7 +3605,9 @@
                 "baza": "observatie-esantion"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         },
         {
           "projects": [
@@ -3414,7 +3634,9 @@
                 "baza": "declaratie-directa"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         }
       ],
       "dovezi": [
@@ -3692,7 +3914,9 @@
                 "baza": "observatie-esantion"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         },
         {
           "projects": [
@@ -3719,7 +3943,9 @@
                 "baza": "declaratie-directa"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         }
       ],
       "dovezi": [
@@ -3743,7 +3969,9 @@
         "Nu este membru: `deficit_units_per_1000_revenue` (deficitul în unități la 1.000 de lei de venituri; altă unitate). Nu sunt membre `revenue_total_mil_lei` și `expenditure_total_mil_lei` (sunt venituri și cheltuieli, nu diferența lor).",
         "Familia `achizitii` se potrivește doar în parte: grupul descrie bani publici. O familie nouă pentru finanțele publice este o decizie a proprietarului, ca pentru `beneficiar-fonduri-publice`."
       ],
-      "stare": "propus"
+      "stare": "revizuit",
+      "decizie_editor": "Revizuit în bloc la cererea proprietarului (2026-10-27)",
+      "data_revizie": "2026-10-27"
     },
     {
       "id": "coordonate-geografice",
@@ -3776,7 +4004,9 @@
                 "baza": "observatie-esantion"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         },
         {
           "projects": [
@@ -3801,7 +4031,9 @@
                 "baza": "observatie-esantion"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         },
         {
           "projects": [
@@ -3828,7 +4060,9 @@
                 "baza": "declaratie-directa"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         },
         {
           "projects": [
@@ -3857,7 +4091,9 @@
                 "baza": "observatie-esantion"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         }
       ],
       "dovezi": [
@@ -3874,7 +4110,9 @@
         "Sistemul de coordonate este declarat (CRS84) doar în fișierele de clădiri și de arii de colaps ale DupăCutremur; celelalte surse nu îl declară.",
         "Nu sunt membre `latMax`, `latMin`, `lngMax` și `lngMin` din Orașe digitale: sunt limitele unei zone, nu un punct."
       ],
-      "stare": "propus"
+      "stare": "revizuit",
+      "decizie_editor": "Revizuit în bloc la cererea proprietarului (2026-10-27)",
+      "data_revizie": "2026-10-27"
     }
   ]
 }

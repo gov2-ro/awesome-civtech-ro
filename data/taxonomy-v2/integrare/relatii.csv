@@ -183,3 +183,25 @@ L181,romania-interactiva,date_din,,Ministerul Educației,surse_date,https://roma
 L182,romania-interactiva,date_din,,ANOSR,surse_date,https://romaniainteractiva.ro/universitati/,acceptat
 L183,bani-partide,date_din,,Ministerul Finanțelor,surse_date,https://db.banipartide.ro/banipartide.json,acceptat
 L184,data-expertforum,date_din,,Monitorul Oficial,surse_date,https://data.expertforum.ro/,acceptat
+L185,lista-firme,date_din,,Oficiul Național al Registrului Comerțului (ONRC),surse_date,https://lista-firme.info/termeni-si-conditii,acceptat
+L186,lista-firme,date_din,,ANAF,surse_date,https://lista-firme.info/termeni-si-conditii,acceptat
+L187,reciclare-arad,date_din,,RETIM,surse_date,https://baditaflorin.github.io/calendar-ridicare-gunoi-arad/,acceptat
+L188,reciclare-arad,date_din,,Primăria Municipiului Arad,surse_date,https://baditaflorin.github.io/calendar-ridicare-gunoi-arad/,acceptat
+L189,onorata-instanta,date_din,,Consiliul Superior al Magistraturii,surse_date,https://www.onoratainstanta.ro/despre.html,acceptat
+L190,onorata-instanta,date_din,,Ministerul Justiției (portalul instanțelor),surse_date,https://www.onoratainstanta.ro/despre.html,acceptat
+L191,onorata-instanta,date_din,,Institutul Național de Statistică (INS),surse_date,https://www.onoratainstanta.ro/despre.html,acceptat
+L192,sondaje-romania,date_din,,Biroul Electoral Central (BEC),surse_date,https://sondajeromania.ro/llms.txt,acceptat
+L193,sondaje-romania,date_din,,INSCOP Research,surse_date,https://sondajeromania.ro/llms.txt,acceptat
+L194,sondaje-romania,date_din,,CURS,surse_date,https://sondajeromania.ro/llms.txt,acceptat
+L195,sondaje-romania,date_din,,IRES,surse_date,https://sondajeromania.ro/llms.txt,acceptat
+L196,sondaje-romania,date_din,,MKOR,surse_date,https://sondajeromania.ro/llms.txt,acceptat
+L197,sondaje-romania,date_din,,Camera Deputaților,surse_date,https://sondajeromania.ro/llms.txt,acceptat
+L198,sondaje-romania,date_din,,Senatul României,surse_date,https://sondajeromania.ro/llms.txt,acceptat
+L199,dupa-cutremur,date_din,,AMCCRS (Primăria Municipiului București),surse_date,https://sites.google.com/rerise.org/dupacutremur,acceptat
+L200,dupa-cutremur,date_din,,OpenStreetMap,surse_date,https://storage.googleapis.com/dupacutremur/_strazi_arie_colaps_06122022.geojson,acceptat
+L201,unde-locuiesc,date_din,,Institutul Național de Statistică (INS),surse_date,https://mariuscomper.uk/unde-locuiesc/,acceptat
+L202,unde-locuiesc,date_din,,S.C. Informatică Feroviară S.A.,surse_date,https://mariuscomper.uk/unde-locuiesc/,acceptat
+L203,trei-din-patru,date_din,,Wikidata,surse_date,https://mariuscomper.uk/trei-din-patru/,acceptat
+L204,statul-digital,date_din,,SICAP / SEAP,surse_date,https://mariuscomper.uk/statul-digital/llms.txt,acceptat
+L205,ce-face-statul-cu-1000-de-lei,date_din,,Ministerul Finanțelor,surse_date,https://mariuscomper.uk/ce-face-statul-cu-1000-de-lei/data/budget-romania.json,acceptat
+L206,pe-datorie,date_din,,Fitch Ratings,surse_date,https://mariuscomper.uk/pe-datorie/,acceptat
