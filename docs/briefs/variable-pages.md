@@ -1,7 +1,7 @@
 # Brief — a variables page for each project, data set facts, and fields added by an editor
 
 Date: 2026-10-27. Baseline: commit `ad20dda`.
-Status: ready for implementation.
+Status: done on 2026-10-27 (merged from branch `variable-pages`, v0.39.0).
 
 ## 1. Start here
 
