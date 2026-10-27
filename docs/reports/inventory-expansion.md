@@ -54,9 +54,9 @@ The 129 projects and resources of the catalogue (the finder lists the 85 that ar
 | Unit tests discovered / skipped | 308 / 6 | 831 / 6 |
 | Explorer inventory / dedicated finder browser checks | 25 / 25 | 36 / 62 |
 
-Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 79 in all; deschis 0, acceptat 72, respins 4, amanat 0, tehnic 3. Variable groups: 41 in all; propus 6, revizuit 35, respins 0, amanat 0. Group members (selectors): 172 in all; propus 19, confirmat 153, exclus 0.
+Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 79 in all; deschis 0, acceptat 72, respins 4, amanat 0, tehnic 3. Variable groups: 41 in all; propus 0, revizuit 41, respins 0, amanat 0. Group members (selectors): 172 in all; propus 0, confirmat 172, exclus 0.
 
-Scope of the data finder (`/date/`): 85 of the 126 public projects and resources are in scope. An entry is in scope when it is not inactive (`offline`, `arhivat`) and its `relatie_date` is `date-publice`, `date-proprii` or `calcul`. The finder leaves out 41: 18 without data (`fara-date`), 5 not assessed (empty value), 18 inactive (counted first: an inactive entry is never counted as another reason). 3 hidden entries (`ascuns`) are in no count of this paragraph.
+Scope of the data finder (`/date/`): 85 of the 126 public projects and resources are in scope. An entry is in scope when it is not inactive (`offline`, `arhivat`) and its `relatie_date` is `date-publice`, `date-proprii` or `calcul`. The finder leaves out 41: 23 without data (`fara-date`), 0 not assessed (empty value), 18 inactive (counted first: an inactive entry is never counted as another reason). 3 hidden entries (`ascuns`) are in no count of this paragraph.
 
 Field records by evidence type now: observat-in-esantion-json 1,400, declarat-in-schema 1,367, declarat-in-cod-sursa 417, exemplu-in-documentatie 364, neprecizat-in-antet-csv 311, declarat-in-lista-baza 171, antet-tabel-html 104, declarat-in-metadate 58, declarat-in-tabel-documentatie 53, declarat-in-lista-documentatie 40, declarat-in-documentatie-api 36, declarat-in-text-documentatie 23, utilizat-in-cod-pagina 9.
 
@@ -83,11 +83,11 @@ All 142 catalogue entries (hidden entries included):
 | --- | ---: |
 | blocat | 1 |
 | cu-surse-structurate | 42 |
-| fara-date | 18 |
+| fara-date | 23 |
 | in-afara-ariei | 13 |
 | inactiv | 19 |
 | investigat-fara-surse | 1 |
-| neevaluat | 7 |
+| neevaluat | 2 |
 | neinvestigat-in-lot | 41 |
 
 `in-afara-ariei` entries are organisations: the finder lists projects and resources. An organisation need not expose a dataset. Missing extraction never proves missing data.

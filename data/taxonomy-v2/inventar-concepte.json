@@ -3376,7 +3376,9 @@
             "camp-raspuns"
           ],
           "source": "https://api.romaniatransparenta.eu/v1/openapi.json",
-          "context": "primăria (UAT-ul) din răspunsurile API-ului; descrierea OpenAPI a câmpului este „primăria (UAT-ul)” sau „localitatea”"
+          "context": "primăria (UAT-ul) din răspunsurile API-ului; descrierea OpenAPI a câmpului este „primăria (UAT-ul)” sau „localitatea”",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         },
         {
           "projects": [
@@ -3390,7 +3392,9 @@
             "https://docs.google.com/spreadsheets/d/1LFqrx69uwDqMlibUB_bDQHe3WsuxmeLR-hmZc-I59B8/export?format=csv&gid=1605213175",
             "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/export?format=csv&gid=768211337"
           ],
-          "context": "numele UAT-ului: în foaia de migrație cu prefix de tip (`Mun.Alba Iulia`), în foile de alocări și solicitări fără prefix"
+          "context": "numele UAT-ului: în foaia de migrație cu prefix de tip (`Mun.Alba Iulia`), în foile de alocări și solicitări fără prefix",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         },
         {
           "projects": [
@@ -3414,7 +3418,9 @@
                 "baza": "observatie-esantion"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         },
         {
           "projects": [
@@ -3441,7 +3447,9 @@
                 "baza": "declaratie-directa"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         },
         {
           "projects": [
@@ -3495,7 +3503,9 @@
         "Un județ nu este un UAT în aceste foi: coloanele de județ sunt în grupul `judet`. `Cj Alba` (consiliul județean) apare în coloana `beneficiar` a foii HG 1088/2021, nu într-o coloană `UAT`.",
         "În banipartide, `Legenda partide.UAT` stă lângă `Adresa`, `Judet` și `Sediul social `. Lista tabelelor nu spune ce UAT descrie coloana (sediul, adresa de corespondență sau altul). Selectorul este o deducție din antet."
       ],
-      "stare": "propus"
+      "stare": "revizuit",
+      "decizie_editor": "Revizuit în bloc la cererea proprietarului (2026-10-27)",
+      "data_revizie": "2026-10-27"
     },
     {
       "id": "partid-politic",
@@ -3512,7 +3522,9 @@
           "names": [
             "partid"
           ],
-          "context": "denumirea partidului din act (API, descrierea OpenAPI „denumirea partidului, cum e în act”) și partidul din lista primarilor (fișierele `primarii`); `partid_la_vot` nu este membru"
+          "context": "denumirea partidului din act (API, descrierea OpenAPI „denumirea partidului, cum e în act”) și partidul din lista primarilor (fișierele `primarii`); `partid_la_vot` nu este membru",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         },
         {
           "projects": [
@@ -3536,7 +3548,9 @@
                 "baza": "declaratie-directa"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         },
         {
           "projects": [
@@ -3560,7 +3574,9 @@
                 "baza": "declaratie-directa"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         },
         {
           "projects": [
@@ -3570,7 +3586,9 @@
             "Partid"
           ],
           "source": "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/export?format=csv&gid=768211337",
-          "context": "partidul din foaia solicitărilor Anghel Saligny; pagina spune doar „cu calcul per capita si partid”, fără să spună al cui este partidul"
+          "context": "partidul din foaia solicitărilor Anghel Saligny; pagina spune doar „cu calcul per capita si partid”, fără să spună al cui este partidul",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         },
         {
           "projects": [
@@ -3594,7 +3612,9 @@
                 "baza": "declaratie-directa"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         },
         {
           "projects": [
@@ -3725,7 +3745,9 @@
         "În `sondaje-romania`, `party` este partidul ale cărui intenții de vot se mediază: partidul însuși, ca în `bani-partide`. În `politicieni-corupti`, `party` este partidul unei persoane, la momentul relevant al dosarului, cum scrie depozitul. Rolurile diferă.",
         "În `politicieni-corupti`, valorile pot fi sigle, denumiri sau „Independent”; validatorul depozitului ține o listă de sigle cunoscute, dar eșantionul citit nu arată câte valori diferite există."
       ],
-      "stare": "propus"
+      "stare": "revizuit",
+      "decizie_editor": "Revizuit în bloc la cererea proprietarului (2026-10-27)",
+      "data_revizie": "2026-10-27"
     },
     {
       "id": "beneficiar-fonduri-publice",
@@ -3746,7 +3768,9 @@
             "camp-raspuns"
           ],
           "source": "https://api.romaniatransparenta.eu/v1/openapi.json",
-          "context": "beneficiarul din răspunsurile API-ului (descrierea OpenAPI: „denumirea beneficiarului, din RegAS”)"
+          "context": "beneficiarul din răspunsurile API-ului (descrierea OpenAPI: „denumirea beneficiarului, din RegAS”)",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         },
         {
           "projects": [
@@ -3770,7 +3794,9 @@
                 "baza": "declaratie-directa"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         },
         {
           "projects": [
@@ -3794,7 +3820,9 @@
                 "baza": "observatie-esantion"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         }
       ],
       "dovezi": [
@@ -3819,7 +3847,9 @@
         "Foaia HG 1264/2021 nu are o coloană de beneficiar; UAT-ul ei (`UAT`) este în grupul `uat`.",
         "Familia `achizitii` (Contracte și achiziții ale autorităților) se potrivește doar în parte: grupul descrie alocări, plăți și ajutoare, nu achiziții. Nicio familie existentă nu descrie banii publici dați unui beneficiar; o familie nouă (de exemplu „Bani publici”) este o decizie a proprietarului."
       ],
-      "stare": "propus"
+      "stare": "revizuit",
+      "decizie_editor": "Revizuit în bloc la cererea proprietarului (2026-10-27)",
+      "data_revizie": "2026-10-27"
     },
     {
       "id": "subventie-partid",
@@ -3854,7 +3884,9 @@
                 "baza": "declaratie-directa"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         }
       ],
       "dovezi": [
@@ -3871,7 +3903,9 @@
         "Nu sunt membre: `Subvenții pe an.Suma` și `Subvenții pe an.Sume alocate` (două sume pe an, fără partid; lista nu spune ce diferență este între ele), `Cheltuieli subventii.Suma` (cheltuieli din subvenții, pe categorie și cod) și `Contracte subventii.Suma` (plăți către furnizori, cu coloana `Moneda`). Sunt alte mărimi.",
         "Familia `alegeri` se potrivește doar în parte: grupul descrie bani publici dați partidelor. O familie nouă pentru finanțarea politică este o decizie a proprietarului, ca pentru `beneficiar-fonduri-publice`."
       ],
-      "stare": "propus"
+      "stare": "revizuit",
+      "decizie_editor": "Revizuit în bloc la cererea proprietarului (2026-10-27)",
+      "data_revizie": "2026-10-27"
     },
     {
       "id": "donatie-partid",
@@ -3908,7 +3942,9 @@
                 "baza": "declaratie-directa"
               }
             }
-          ]
+          ],
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         }
       ],
       "dovezi": [
@@ -3926,7 +3962,9 @@
         "Nu sunt membre: `Donații` din `Contributii campanie` și din `Venituri și cheltuieli campanie` (totaluri pe candidat sau pe campanie, nu o donație) și `Venituri` din `Venituri anuale partide de la MF`.",
         "Donatorii persoane fizice sunt persoane private. Lista conține doar numele coloanelor, nu rânduri; grupul nu copiază nicio valoare."
       ],
-      "stare": "propus"
+      "stare": "revizuit",
+      "decizie_editor": "Revizuit în bloc la cererea proprietarului (2026-10-27)",
+      "data_revizie": "2026-10-27"
     },
     {
       "id": "deficit-bugetar",
@@ -4205,7 +4243,9 @@
               }
             }
           ],
-          "nota": "Răspunsul nu spune ce înseamnă `version` 3 și nu marchează activitatea principală. Lista are 3 elemente în răspunsul păstrat."
+          "nota": "Răspunsul nu spune ce înseamnă `version` 3 și nu marchează activitatea principală. Lista are 3 elemente în răspunsul păstrat.",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         },
         {
           "projects": [
@@ -4233,7 +4273,9 @@
               }
             }
           ],
-          "nota": "Măsurat pe copia păstrată (1.446 de înregistrări): 1.328 de valori au 4 caractere, 118 au 3 caractere și niciuna nu începe cu `0`. Fișierul nu declară versiunea CAEN."
+          "nota": "Măsurat pe copia păstrată (1.446 de înregistrări): 1.328 de valori au 4 caractere, 118 au 3 caractere și niciuna nu începe cu `0`. Fișierul nu declară versiunea CAEN.",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         },
         {
           "projects": [
@@ -4261,7 +4303,9 @@
               }
             }
           ],
-          "nota": "Schema nu declară tipul cheii (`{}`) și nu spune versiunea CAEN."
+          "nota": "Schema nu declară tipul cheii (`{}`) și nu spune versiunea CAEN.",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         },
         {
           "projects": [
@@ -4289,7 +4333,9 @@
               }
             }
           ],
-          "nota": "Descrierea nu spune a cui este activitatea principală; coloanele vecine descriu beneficiarul. Nu spune versiunea CAEN."
+          "nota": "Descrierea nu spune a cui este activitatea principală; coloanele vecine descriu beneficiarul. Nu spune versiunea CAEN.",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         },
         {
           "projects": [
@@ -4332,7 +4378,9 @@
               }
             }
           ],
-          "nota": "Intrare, nu valoare de răspuns: parametrul numește codul căutat. Rolul `parametru-api` exclude câmpul `$.error.code`, care este alt `code`."
+          "nota": "Intrare, nu valoare de răspuns: parametrul numește codul căutat. Rolul `parametru-api` exclude câmpul `$.error.code`, care este alt `code`.",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
         }
       ],
       "dovezi": [
@@ -4381,7 +4429,10 @@
         "Nu este membru: `infos.activityCode` (migrația `create_infos_table` din depozitul `lista-firme`, coloană text). Numele sugerează un cod de activitate, dar nicio copie păstrată nu spune că este codul CAEN.",
         "Documentate, dar fără câmp în inventar, deci fără membru: „CAEN autorizat” în `GET /api/company/{cui}` (DemoANAF) și „CAEN principal + toate codurile autorizate” în pagina registrului-firmelor. Seturile INS cu activitate CAEN Rev. 2 nu au un câmp cu cod în inventar.",
         "Familia `identificatori` și categoria `identificator` urmează grupul `cpv` (un cod de clasificare). Un cod CAEN servește și ca dimensiune, pentru tăierea firmelor pe sectoare. Familia `firme` este alternativa, dar descrierea ei vorbește despre date financiare și de personal. Alegerea este a proprietarului."
-      ]
+      ],
+      "stare": "revizuit",
+      "decizie_editor": "Revizuit în bloc la cererea proprietarului (2026-10-27)",
+      "data_revizie": "2026-10-27"
     }
   ]
 }

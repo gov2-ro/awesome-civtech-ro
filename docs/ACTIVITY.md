@@ -1,5 +1,14 @@
 # Activity
 
+## 2026-10-27 — Six groups approved; five entries without data
+
+**Done**
+- At the owner's request („I approve the 6 groups”), `uat`, `partid-politic`, `beneficiar-fonduri-publice`, `subventie-partid`, `donatie-partid` and `cod-caen` are `revizuit`, with all 23 members confirmed and the 7 deductions ticked. Written with `Store.decide_group`. Every group of `inventar-concepte.json` is now `revizuit` (41).
+- `relatie_date` = `fara-date` for `observatori-votcorect`, `romania-fara-gropi`, `votcorect`, `votez-info` and `presspay` (owner: „right - no data”). No active project or resource has an empty value now.
+
+**Decided**
+- The families stay as proposed: `beneficiar-fonduri-publice` and `deficit-bugetar` in `achizitii`, `subventie-partid` and `donatie-partid` in `alegeri`, `cod-caen` in `identificatori`. The owner approved the groups as they were; a new family stays possible later.
+
 ## 2026-10-27 — Dates in the leak check; the owner's rule for person data
 
 **Done**

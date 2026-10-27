@@ -62,7 +62,7 @@ monitorul-ai,proiect,C,cu-surse-structurate,7,432,4,98,52,305,0,25,7,"Documentel
 multumesc,proiect,,inactiv,0,0,,0,0,0,,,,,,
 muzeul-coruptiei,proiect,,inactiv,0,0,,0,0,0,,,,,,
 nu-astepta-supereroi,proiect,,inactiv,0,0,,0,0,0,,,,,,
-observatori-votcorect,proiect,,neevaluat,0,0,,0,0,0,,,,,,"Stabiliți valoarea relatie_date în intrari.csv. Fără ea, intrarea nu apare în /date/."
+observatori-votcorect,proiect,,fara-date,0,0,,0,0,0,,,,,,
 onesti-city,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
 ong-camera-deputatilor,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
 onorata-instanta,proiect,D,cu-surse-structurate,5,73,1,0,0,0,0,1,5,"Tabelele sunt cele din depozit, cu date din 2013–2015; ultimul commit este din 2023. Pagina live arată indicele de performanță din 2015. Tabelul persoanelor (`oameni.tsv`, numele magistraților pe instanțe) nu a fost cerut; scriptul de construcție îi numește trei coloane (`Instanta`, `Prenume`, `Nume`). Niciun nume de persoană nu a fost citit sau copiat. Fiecare tabel a fost citit ca eșantion de 5.000 de octeți (antet și primele rânduri); tabelul de contact, doar antetul. Tabelele 2013 (aceeași formă) nu sunt surse. Antetele de rând 1 lipsesc la două coloane ale tabelului instanțelor (operativitate și siguranță); eticheta din rândul 2 le numește. Unele fișiere sunt citite ca eșantion.",,"Decideți D193, D194, D195 și candidatul pentru `populatie`."
@@ -77,7 +77,7 @@ posturi-gov2,proiect,baza,cu-surse-structurate,1,22,1,0,0,22,0,0,1,Extragerea a 
 radar-digital,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
 redirectioneaza,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
 rezultate-vot,proiect,C,cu-surse-structurate,10,139,6,7,114,0,0,13,10,Resursele API și migrările depozitului la o revizie; nu se știe dacă API-ul public este identic. Documentele Scramble nu au fost citite.,,"Citiți documentația API publică a proiectului, dacă există."
-romania-fara-gropi,proiect,,neevaluat,0,0,,0,0,0,,,,,,"Stabiliți valoarea relatie_date în intrari.csv. Fără ea, intrarea nu apare în /date/."
+romania-fara-gropi,proiect,,fara-date,0,0,,0,0,0,,,,,,
 romania-interactiva,proiect,C2,cu-surse-structurate,10,269,8,17,0,219,5,20,10,"Șapte dintre cele 22 de instrumente ale catalogului au fost citite; celelalte 15 sunt pe alte gazde și nu au fost cercetate (limita de zece surse). Paginile locale/ și harta-notelor/ au peste 2.000.000 de octeți: s-au păstrat primii 600.000 de octeți, care se opresc înaintea scriptului cu date. Câmpurile din scripturile paginilor sunt observate în eșantion (cel mult 25 de elemente); numele scurte (L, T, V, t, b, x) nu sunt descrise de pagini. Unele fișiere sunt citite ca eșantion.",Datele paginilor locale/ și harta-notelor/ nu au fost citite: răspunsurile depășesc 2.000.000 de octeți. Populația orașelor din Orașe digitale (câmpul pop) nu are sursă numită în pagină.,"Decideți dacă un răspuns de peste 2.000.000 de octeți poate fi citit întreg. Alegeți din cele 15 instrumente neinspectate (de exemplu 1vot.ro, geamanuleuropean.ro, sondajeleromaniei.ro, satulcaresestinge.ro). Hotărâți despre selectorii propuși pentru grupurile revizuite (vezi raportul)."
 romania-transparenta,proiect,B2,cu-surse-structurate,5,1147,11,1010,1081,50,0,2,5,Extragerea a atins o limită de eșantionare.,,
 sicap-ai,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
@@ -93,13 +93,13 @@ unde-locuiesc-romanii,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați do
 verifica-psiholog,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
 vichub-data,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
 vocea-cartierului-tau,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
-votcorect,proiect,,neevaluat,0,0,,0,0,0,,,,,,"Stabiliți valoarea relatie_date în intrari.csv. Fără ea, intrarea nu apare în /date/."
+votcorect,proiect,,fara-date,0,0,,0,0,0,,,,,,
 votdiaspora,proiect,C,cu-surse-structurate,5,50,3,0,50,0,0,0,5,"Depozitul are ultimul commit din 2021; clasele pot fi anterioare site-ului actual. Baza resources.sqlite (8,8 MB) nu a fost descărcată.",,Confirmați cu proiectul dacă API-ul din depozit rulează.
-votez-info,proiect,,neevaluat,0,0,,0,0,0,,,,,,"Stabiliți valoarea relatie_date în intrari.csv. Fără ea, intrarea nu apare în /date/."
+votez-info,proiect,,fara-date,0,0,,0,0,0,,,,,,
 dignitas,proiect,C,cu-surse-structurate,10,177,0,1,151,0,0,0,10,"10 din 84 de patch-uri SQL citite; schema este parțială. Constantele din Statement.php sunt coduri, nu tabele.",,Citiți restul patch-urilor sau o schemă curentă a bazei de date.
 ghiduri-efor,resursa,,fara-date,0,0,,0,0,0,,,,,,
 jurnalism-independent,resursa,,fara-date,0,0,,0,0,0,,,,,,
-presspay,proiect,,neevaluat,0,0,,0,0,0,,,,,,"Stabiliți valoarea relatie_date în intrari.csv. Fără ea, intrarea nu apare în /date/."
+presspay,proiect,,fara-date,0,0,,0,0,0,,,,,,
 aiparte-research,resursa,,fara-date,0,0,,0,0,0,,,,,,
 ro-api-hub,proiect,baza,cu-surse-structurate,2,53,0,12,22,26,0,0,2,Extragerea a atins o limită de eșantionare.,,
 registrul-firmelor,proiect,C,cu-surse-structurate,1,23,6,0,0,0,0,3,1,Lista câmpurilor este din documentația API; răspunsul nu a fost citit. Tipurile nu sunt declarate.,API-ul cere o cheie gratuită; cheia nu a fost cerută.,Cereți proiectului un exemplu de răspuns sau schema OpenAPI.
