@@ -1,7 +1,7 @@
 # Brief — candidate members in the review interface
 
 Date: 2026-10-27. Baseline: commit `9a18b67`.
-Status: ready for implementation.
+Status: done on 2026-10-27 (merged from branch `review-candidates`, v0.42.0).
 
 ## 1. Start here
 
