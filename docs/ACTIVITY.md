@@ -1,5 +1,15 @@
 # Activity
 
+## 2026-10-27 — Owner review of batch E and sicap-ai
+
+**Done**
+- The owner decided the 27 provider items D211–D237 in the review interface: 20 accepted (20 new rows in `relatii.csv`), 7 rejected (D211, D212, D213, D220, D229, D230, D233; the notes say why: from a law, not granular data, not data, not sure).
+- The five proposed groups `datorii`, `capitaluri-proprii`, `sex`, `grupa-de-varsta` and `autoritate-contractanta` are `revizuit`, with their 18 members confirmed. All 46 groups are now `revizuit`.
+- `Store.errors_of` gives 0 errors; 1053 unit tests pass; `validate.py --publication`, `inventory.py --check` and the package checks pass.
+
+**Decided**
+- The 46 candidate members of batch E and `sicap-ai` stay in `inventar-note.json`: the review interface does not show candidates, and the owner has not decided them.
+
 ## 2026-10-27 — sicap-ai without requests to its host (addendum of lot `E`)
 
 **Done**

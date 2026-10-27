@@ -205,3 +205,23 @@ L203,trei-din-patru,date_din,,Wikidata,surse_date,https://mariuscomper.uk/trei-d
 L204,statul-digital,date_din,,SICAP / SEAP,surse_date,https://mariuscomper.uk/statul-digital/llms.txt,acceptat
 L205,ce-face-statul-cu-1000-de-lei,date_din,,Ministerul Finanțelor,surse_date,https://mariuscomper.uk/ce-face-statul-cu-1000-de-lei/data/budget-romania.json,acceptat
 L206,pe-datorie,date_din,,Fitch Ratings,surse_date,https://mariuscomper.uk/pe-datorie/,acceptat
+L207,monitor-safe,date_din,,Monitorul Oficial,surse_date,https://monitorsafe.ro/llms.txt,acceptat
+L208,igov,date_din,,Guvernul României,surse_date,https://igov.ro/reports/guvernanta.html,acceptat
+L209,igov,date_din,,"Ministerul Finanțelor (situații financiare, prin data.gov.ro)",surse_date,https://igov.ro/reports/guvernanta.html,acceptat
+L210,igov,date_din,,Agenția pentru Monitorizarea și Evaluarea Performanțelor Întreprinderilor Publice (AMEPIP),surse_date,https://igov.ro/reports/guvernanta.html,acceptat
+L211,igov,date_din,,SEAP,surse_date,https://igov.ro/reports/guvernanta.html,acceptat
+L212,sicap-ai,date_din,,Ministerul Finanțelor,surse_date,https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/docs/company-enrichment-brief.md,acceptat
+L213,sicap-ai,date_din,,Oficiul Național al Registrului Comerțului (ONRC),surse_date,https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/docs/architecture.md,acceptat
+L214,ani-de-pensie,date_din,,Monitorul Oficial,surse_date,https://mariuscomper.uk/ani-de-pensie/,acceptat
+L215,ani-de-pensie,date_din,,Eurostat,surse_date,https://mariuscomper.uk/ani-de-pensie/,acceptat
+L216,monitor-social,date_din,,Eurostat,surse_date,https://monitorsocial.ro/data/consumul-gospodariilor/,acceptat
+L217,verifica-psiholog,date_din,,Colegiul Psihologilor din România (CPR),surse_date,https://www.verificapsiholog.ro/structura-datelor,acceptat
+L218,igov,date_din,,Comisia Europeană (cazuri de ajutor de stat),surse_date,https://igov.ro/reports/guvernanta.html,acceptat
+L219,companii-publice-ro,date_din,,Ministerul Finanțelor,surse_date,https://cosettechichirau.github.io/companiipublice/companii.json,acceptat
+L220,companii-publice-ro,date_din,,"Ministerul Finanțelor (situații financiare, prin data.gov.ro)",surse_date,https://cosettechichirau.github.io/companiipublice/financials.json,acceptat
+L221,ce-cumpara-primaria,date_din,,SICAP / SEAP,surse_date,https://cecumparaprimaria.vercel.app/,acceptat
+L222,ce-cumpara-primaria,date_din,,Institutul Național de Statistică (INS),surse_date,https://cecumparaprimaria.vercel.app/,acceptat
+L223,ce-cumpara-primaria,date_din,,Ministerul Dezvoltării (MDLPA),surse_date,https://cecumparaprimaria.vercel.app/,acceptat
+L224,ce-cumpara-primaria,date_din,,ANAF,surse_date,https://cecumparaprimaria.vercel.app/,acceptat
+L225,cat-de-tare,date_din,,Institutul Național de Statistică (INS),surse_date,https://mariuscomper.uk/cat-de-tare/,acceptat
+L226,de-unde-vine-apa,date_din,,ANRSC,surse_date,https://mariuscomper.uk/de-unde-vine-apa/,acceptat

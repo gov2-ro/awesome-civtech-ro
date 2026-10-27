@@ -49,13 +49,13 @@ The 129 projects and resources of the catalogue (the finder lists the 85 that ar
 | Schema declarations / sampled JSON paths / CSV headers / INS dimensions | 1,312 / 904 / 82 / 4 | 1,954 / 2,051 / 311 / 4 |
 | HTML control candidates / entries with candidates | 308 / 78 | 310 / 80 |
 | Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 89 / 53 |
-| Accepted provider relations / entries with accepted providers | 26 / 11 | 98 / 35 |
-| Pending provider proposals (review items D132 and later) | 15 | 27 |
+| Accepted provider relations / entries with accepted providers | 26 / 11 | 118 / 44 |
+| Pending provider proposals (review items D132 and later) | 15 | 0 |
 | Proposed business-variable groups | 7 | 46 |
 | Unit tests discovered / skipped | 308 / 6 | 1053 / 6 |
 | Explorer inventory / dedicated finder browser checks | 25 / 25 | 59 / 81 |
 
-Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 106 in all; deschis 27, acceptat 72, respins 4, amanat 0, tehnic 3. Variable groups: 46 in all; propus 5, revizuit 41, respins 0, amanat 0. Group members (selectors): 190 in all; propus 18, confirmat 172, exclus 0.
+Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 106 in all; deschis 0, acceptat 92, respins 11, amanat 0, tehnic 3. Variable groups: 46 in all; propus 0, revizuit 46, respins 0, amanat 0. Group members (selectors): 190 in all; propus 0, confirmat 190, exclus 0.
 
 Scope of the data finder (`/date/`): 85 of the 126 public projects and resources are in scope. An entry is in scope when it is not inactive (`offline`, `arhivat`) and its `relatie_date` is `date-publice`, `date-proprii` or `calcul`. The finder leaves out 41: 23 without data (`fara-date`), 0 not assessed (empty value), 18 inactive (counted first: an inactive entry is never counted as another reason). 3 hidden entries (`ascuns`) are in no count of this paragraph.
 

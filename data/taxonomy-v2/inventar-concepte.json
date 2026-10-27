@@ -4502,7 +4502,8 @@
                 "baza": "declaratie-directa"
               }
             }
-          ]
+          ],
+          "stare": "confirmat"
         },
         {
           "projects": [
@@ -4516,7 +4517,8 @@
           ],
           "source": "https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json",
           "context": "datoriile unei companii de stat din situațiile financiare MFin 2025, pe CUI",
-          "nota": "Sursa nu declară unitatea."
+          "nota": "Sursa nu declară unitatea.",
+          "stare": "confirmat"
         },
         {
           "projects": [
@@ -4543,7 +4545,8 @@
                 "baza": "declaratie-directa"
               }
             }
-          ]
+          ],
+          "stare": "confirmat"
         },
         {
           "projects": [
@@ -4557,7 +4560,8 @@
           ],
           "source": "https://igov.ro/reports/guvernanta.json",
           "context": "datoriile unei companii de stat din registrul de guvernanță, valoarea ultimului an cu situații financiare (`anaf_year`)",
-          "nota": "Unitatea nu este declarată în acest fișier; fișierul seriei declară „mii lei”."
+          "nota": "Unitatea nu este declarată în acest fișier; fișierul seriei declară „mii lei”.",
+          "stare": "confirmat"
         },
         {
           "projects": [
@@ -4585,9 +4589,13 @@
               }
             }
           ],
-          "nota": "Unitatea vine din comentariul tipului pentru tot documentul. `FinancialYear.datorii` este aceeași valoare, normalizată pentru afișare, și nu este membru. Nu se spune ce intră în „datorii”."
+          "nota": "Unitatea vine din comentariul tipului pentru tot documentul. `FinancialYear.datorii` este aceeași valoare, normalizată pentru afișare, și nu este membru. Nu se spune ce intră în „datorii”.",
+          "stare": "confirmat"
         }
-      ]
+      ],
+      "stare": "revizuit",
+      "decizie_editor": "cool",
+      "data_revizie": "2026-10-27"
     },
     {
       "id": "capitaluri-proprii",
@@ -4649,7 +4657,8 @@
                 "baza": "declaratie-directa"
               }
             }
-          ]
+          ],
+          "stare": "confirmat"
         },
         {
           "projects": [
@@ -4663,7 +4672,8 @@
           ],
           "source": "https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json",
           "context": "capitalurile unei companii de stat din situațiile financiare MFin 2025, pe CUI",
-          "nota": "Sursa nu declară unitatea."
+          "nota": "Sursa nu declară unitatea.",
+          "stare": "confirmat"
         },
         {
           "projects": [
@@ -4690,7 +4700,8 @@
                 "baza": "declaratie-directa"
               }
             }
-          ]
+          ],
+          "stare": "confirmat"
         },
         {
           "projects": [
@@ -4704,7 +4715,8 @@
           ],
           "source": "https://igov.ro/reports/guvernanta.json",
           "context": "capitalurile proprii ale unei companii de stat din registrul de guvernanță, valoarea ultimului an cu situații financiare",
-          "nota": "Unitatea nu este declarată în acest fișier; fișierul seriei declară „mii lei”."
+          "nota": "Unitatea nu este declarată în acest fișier; fișierul seriei declară „mii lei”.",
+          "stare": "confirmat"
         },
         {
           "projects": [
@@ -4732,9 +4744,13 @@
               }
             }
           ],
-          "nota": "Brieful numește „equity” printre liniile principale și spune că un `capitaluri` negativ se marchează ca dificultate; nu scrie „capitaluri proprii”. Potrivirea cu grupul este o deducție din aceste două texte și din numele din situațiile financiare românești. `capital_subscris` nu este membru."
+          "nota": "Brieful numește „equity” printre liniile principale și spune că un `capitaluri` negativ se marchează ca dificultate; nu scrie „capitaluri proprii”. Potrivirea cu grupul este o deducție din aceste două texte și din numele din situațiile financiare românești. `capital_subscris` nu este membru.",
+          "stare": "confirmat"
         }
-      ]
+      ],
+      "stare": "revizuit",
+      "decizie_editor": "ok",
+      "data_revizie": "2026-10-27"
     },
     {
       "id": "sex",
@@ -4779,7 +4795,8 @@
             "SEX"
           ],
           "source": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
-          "context": "dimensiunea „Sexe” (`dim_type` gender) a setului INS POP107D: Total, Male, Female"
+          "context": "dimensiunea „Sexe” (`dim_type` gender) a setului INS POP107D: Total, Male, Female",
+          "stare": "confirmat"
         },
         {
           "projects": [
@@ -4795,9 +4812,13 @@
             "https://monitorsocial.ro/data/rata-de-ocupare-a-femeilor-3/",
             "https://monitorsocial.ro/data/populatia-cu-studii-superioare/"
           ],
-          "context": "rândul `Sex` al extracțiilor Eurostat pasted în paginile de date; valorile nu sunt citite"
+          "context": "rândul `Sex` al extracțiilor Eurostat pasted în paginile de date; valorile nu sunt citite",
+          "stare": "confirmat"
         }
-      ]
+      ],
+      "stare": "revizuit",
+      "decizie_editor": "cool",
+      "data_revizie": "2026-10-27"
     },
     {
       "id": "grupa-de-varsta",
@@ -4849,7 +4870,8 @@
             "AGE"
           ],
           "source": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
-          "context": "dimensiunea „Varste si grupe de varsta” (`dim_type` age) a setului INS POP107D"
+          "context": "dimensiunea „Varste si grupe de varsta” (`dim_type` age) a setului INS POP107D",
+          "stare": "confirmat"
         },
         {
           "projects": [
@@ -4866,9 +4888,13 @@
             "https://monitorsocial.ro/data/rata-de-ocupare-a-femeilor-3/",
             "https://monitorsocial.ro/data/populatia-cu-studii-superioare/"
           ],
-          "context": "rândul `Age class` sau `Grupa de vârstă` al extracțiilor Eurostat pasted în paginile de date; valorile nu sunt citite"
+          "context": "rândul `Age class` sau `Grupa de vârstă` al extracțiilor Eurostat pasted în paginile de date; valorile nu sunt citite",
+          "stare": "confirmat"
         }
-      ]
+      ],
+      "stare": "revizuit",
+      "decizie_editor": "1",
+      "data_revizie": "2026-10-27"
     },
     {
       "id": "autoritate-contractanta",
@@ -4925,7 +4951,8 @@
           "role": [
             "camp-raspuns"
           ],
-          "context": "denumirea autorității contractante în răspunsurile API-ului (detaliul unui contract, contractele recente și listele de autorități cele mai active); descrierea OpenAPI: „Denumirea autorității contractante”"
+          "context": "denumirea autorității contractante în răspunsurile API-ului (detaliul unui contract, contractele recente și listele de autorități cele mai active); descrierea OpenAPI: „Denumirea autorității contractante”",
+          "stare": "confirmat"
         },
         {
           "projects": [
@@ -4938,7 +4965,8 @@
             "SearchItemDirect.contractingAuthorityName"
           ],
           "source": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/types.ts",
-          "context": "denumirea autorității în elementul de rezultat al căutării (tip `string`); alături: `contractingAuthorityId`"
+          "context": "denumirea autorității în elementul de rezultat al căutării (tip `string`); alături: `contractingAuthorityId`",
+          "stare": "confirmat"
         },
         {
           "projects": [
@@ -4954,7 +4982,8 @@
             "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/achizitii/types.ts",
             "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/achizitii-offline/types.ts"
           ],
-          "context": "denumirea autorității în elementul `item` al documentelor `achizitii` și `achizitii-offline` (tip `string`)"
+          "context": "denumirea autorității în elementul `item` al documentelor `achizitii` și `achizitii-offline` (tip `string`)",
+          "stare": "confirmat"
         },
         {
           "projects": [
@@ -4964,9 +4993,13 @@
             "Autoritate contractanta"
           ],
           "source": "https://achizitii-directe-ti-2026.mariuscomper.uk/flagged_cases.csv",
-          "context": "antetul coloanei CSV a cazurilor semnalate; fișierul are alături `Ofertant castigator` și `Valoare achizitie (RON)`"
+          "context": "antetul coloanei CSV a cazurilor semnalate; fișierul are alături `Ofertant castigator` și `Valoare achizitie (RON)`",
+          "stare": "confirmat"
         }
-      ]
+      ],
+      "stare": "revizuit",
+      "decizie_editor": "bun",
+      "data_revizie": "2026-10-27"
     }
   ]
 }
