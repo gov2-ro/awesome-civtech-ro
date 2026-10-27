@@ -60,7 +60,7 @@ from inventory_state import (REGISTRY, counted_fields, RequestLog, StateError, a
 MAX_FIELDS, MAX_DEPTH, SAMPLE_ROWS = 2000, 7, 25
 YAML_OPENAPI = 'openapi-yaml'
 TEXT_FORMATS = ('html-tabele', 'markdown', 'csharp', 'sql', 'php', 'js-acces', 'json-comentat', 'html-api-docs', 'html-carduri-csv', 'js-literale',
-                'html-lista-seturi', 'html-glosar', 'html-tabele-eurostat', 'js-pozitii')
+                'html-lista-seturi', 'html-glosar', 'html-tabele-eurostat', 'js-pozitii', 'typescript')
 
 
 def dereference(node, root, visited=()):
