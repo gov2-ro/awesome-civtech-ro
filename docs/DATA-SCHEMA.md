@@ -998,15 +998,15 @@ keyed collection, seven levels and 2,000 fields. A shape is a fact of the docume
 
 | Shape | Field |
 | --- | --- |
-| **Keyed collection.** The rule is the function `inventory_literals.keyed_collection`; the reader of page scripts (`js-literale`) uses it too, and no reader has its own copy. An object is a keyed collection when it has 100 members or more; or 12 members or more whose values are of one kind (objects, arrays, strings or numbers; a null is no kind); or 2 members or more whose keys are all years (`^(19\|20)[0-9]{2}$`) and whose values are of one kind. A record of 12 members or more with values of two kinds stays a record. | The path `…{*}` with `rol` `colectie-cu-chei` and `numar_chei`. The first 25 values are read under `{*}`. Its keys (identifiers, county names, years) never become field names. `limita_atinsa` is true when the collection has more than 25 members. |
+| **Keyed collection.** The rule is the function `inventory_literals.keyed_collection`; the reader of page scripts (`js-literale`) uses it too, and no reader has its own copy. An object is a keyed collection when it has 100 members or more; or 2 members or more whose keys are all years (`^(19\|20)[0-9]{2}$`) and whose values are of one kind; or 12 to 99 members whose values are of one kind (objects, arrays, strings or numbers; a null is no kind) and whose keys are not all identifiers (`^[a-z][A-Za-z0-9_]*$`: a lowercase letter, then letters, digits and underscores). A record of 12 members or more with values of two kinds stays a record, and so does a record of 12 to 99 members whose keys are all identifiers (an address with 12 text members, a record of counters). | The path `…{*}` with `rol` `colectie-cu-chei` and `numar_chei`. The first 25 values are read under `{*}`. Its keys (county names, codes, numbers, dates, years) never become field names. `limita_atinsa` is true when the collection has more than 25 members. |
 | **Rows without names.** An array whose elements (the first 25) are all lists of one width, from 2 to 12 cells, and hold scalars only (`POSITIONAL_WIDTH`, the limit of `js-literale`). | One field for each position: `p[][0]`, `p[][1]`, … Its `pointer` is the cell in the first row. The position is a fact; what it means is for a person to say, with a declared name. A row of 13 cells, rows of two widths, a row that holds a list and a row of one cell give `p[][]` as before. |
 | **Empty container.** An empty list or an empty object. | A field with `tipuri_observate` `array` or `object` and `numar_elemente` 0. A null keeps the type `null` and has no `numar_elemente`. The same key with elements in another record also gives its element paths. |
 
 A range read can cut a list before its first element is whole, and the recovered list is empty. That happens to the last member of the document only. In a cut sample (`json-esantion`)
 the last member of the document gets no record when it is empty; every other empty container is read as in a whole file.
 A keyed collection of years shows the shape and not the years: the object `{"2014": {...}, "2015": {...}}` gives `$.years{*}` and the fields of one record, not the fields of each year.
-The rule has one known cost. A record of 12 members or more whose values are all strings (an address with 12 text members) or all numbers (a record of counters) is read as a collection,
-and its member names are lost: the `address` object of the live `lista-firme` API response and the `counts` object of `complet-online` are such records. Only the owner can change the rule.
+The rule has one known cost. A collection keyed by lowercase identifiers (county slugs such as `alba`, `arad`), with fewer than 100 members, is read as a record, and its keys become field names.
+Before the identifier test (2026-10-27) the `address` object of the live `lista-firme` API response, the `counts` object of `complet-online` and the `inferences[]` objects of `statul-digital` were read as collections, and their member names were lost.
 
 **Text-format readers (`citire`, format names).** A source that is neither a schema nor a data file can still declare fields. The registry
 record of such a source holds `citire`: a reader name, or `{tip, ...options}`. Without `citire`, the URL extension picks `.cs`, `.sql`, `.php` or `.md`.
@@ -1142,10 +1142,10 @@ The reader makes no request and runs no script.
   `stare_tip` `observat-in-esantion-json`, `pointer` and `linie`. The `pointer` is `char:START-END`: the first node at that path in the retained body.
   The field has no declared type, no unit and no description, because the page declares none.
 - The bounds are 25 elements of an array, 25 members of a collection, seven levels and 2,000 fields. `limita_atinsa` says that a bound was reached.
-- An object is a keyed collection when it has 100 members or more, when it has 12 members or more and all its values are of one kind (objects, arrays, strings or numbers),
-  or when it has 2 members or more, all its keys are years and all its values are of one kind (the rule of "Shapes of JSON data": `inventory_literals.keyed_collection`).
+- An object is a keyed collection when it has 100 members or more, when it has 2 members or more, all its keys are years and all its values are of one kind, or when it has 12 to 99 members,
+  all its values are of one kind (objects, arrays, strings or numbers) and its keys are not all identifiers (the rule of "Shapes of JSON data": `inventory_literals.keyed_collection`).
   A collection has `rol` `colectie-cu-chei`, `numar_chei` and `chei_exemplu` (at most three keys of 40 characters). Its keys are values, such as county names or years. They never become field names.
-  A record with 12 members or more and values of several kinds is still a record.
+  A record with 12 members or more and values of several kinds, or with identifier keys only, is still a record.
 - An array of rows of one width (2 to 12 cells, all scalars) gives one field for each position, for example `ROWS[][0]` and `ROWS[][1]`.
   The position is a fact. What a position means is an interpretation: a group selector records it with its own evidence.
 - `declaratii` (a source key) lists every candidate declaration in page order. Keys: `variabila`, `forma-sursa` (`literal-script` or `json-izolat`), `linie`, `citit`, `pointer`.
