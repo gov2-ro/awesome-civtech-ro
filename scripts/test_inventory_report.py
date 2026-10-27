@@ -12,7 +12,8 @@ from urllib.parse import urlsplit
 
 import inventory_report as report
 from common import PUBLIC_ROOT, forbidden
-from inventory_concepts import EvidenceLocator, selector_matches
+from inventory_concepts import EvidenceLocator, as_list, selector_matches
+from inventory_persons import is_marked, problems as person_problems
 
 ROOT = Path(__file__).resolve().parents[1]
 LISTA_FIRME_API = 'https://lista-firme.info/api/v1/info?cui=51859625'
@@ -266,8 +267,16 @@ class Coverage(unittest.TestCase):
             if not set(selector['projects']) & set(report.BATCH_D):
                 continue
             self.assertIn(item['grup'], groups)
-            self.assertTrue(any(selector_matches(selector, slug, f, url) for slug in selector['projects'] for f, url in fields.get(slug, [])), (item['grup'], selector['names']))
+            matches = any(selector_matches(selector, slug, f, url) for slug in selector['projects'] for f, url in fields.get(slug, []))
+            self.assertTrue(matches or self.merged_by_a_keyed_collection(selector), (item['grup'], selector['names']))
             self.assertNotIn(selector, groups[item['grup']]['selectors'], 'a member leaves the candidate list when the owner confirms it')
+
+    def merged_by_a_keyed_collection(self, selector):
+        """The path of a candidate lies under an object that the reader read as a keyed collection (12 members of one kind, `inventory_literals.keyed_collection`):
+        the keys of that object are not field names any more, so the candidate names a field that the inventory no longer has. The notes say so."""
+        sources = [s for s in self.data['sources'].values() if s['url'] in as_list(selector.get('source'))]
+        collections = [f['cale'][:-3] + '.' for s in sources for f in s['campuri'] if f.get('rol') == 'colectie-cu-chei']
+        return any(path.startswith(prefix) for path in as_list(selector.get('path')) for prefix in collections)
 
     def test_every_selector_that_names_a_project_of_batch_d_matches_a_field_of_it(self):
         fields = self.tracked_fields()
@@ -279,17 +288,16 @@ class Coverage(unittest.TestCase):
                                 f'{group["id"]} selector {number}')
 
     def test_the_inventory_of_the_entries_with_records_about_persons_keeps_field_names_and_no_value(self):
-        allowed = {'csv': {'nume', 'cale', 'tip_declarat', 'stare_tip', 'rol', 'coloana_csv', 'pointer'},
-                   'json-esantion': {'nume', 'cale', 'tipuri_observate', 'stare_tip', 'rol', 'pointer', 'numar_chei'},
-                   'json': {'nume', 'cale', 'tipuri_observate', 'stare_tip', 'rol', 'pointer'}}
+        # The mark `persoane` (inventory_persons) is what keeps a source of persons to key names, types and counts. The form of each marked record is checked here from
+        # the tracked files alone, so that a fresh checkout without the retained bodies checks it too.
         for slug in ('onorata-instanta', 'politicieni-corupti', 'dupa-cutremur', 'lista-firme'):
             for ref in self.data['profiles'][slug]['surse_structurate']:
                 source = self.data['sources'][ref]
                 if slug == 'lista-firme' and source['url'] != LISTA_FIRME_API:
                     continue  # the migrations of the repository hold columns; only the live response names persons
-                self.assertIn(source['format'], allowed, source['url'])
-                for field in source['campuri']:
-                    self.assertLessEqual(set(field), allowed[source['format']], (source['url'], field['nume']))
+                self.assertTrue(is_marked(source), source['url'])
+                self.assertEqual(person_problems(source), [], source['url'])
+                self.assertIn(source['format'], ('csv', 'json-esantion', 'json'), source['url'])
         for group in self.data['concepts']:
             evidence = list(group.get('dovezi', [])) + [f['dovada'] for s in group['selectors'] for f in s.get('fapte', []) if f.get('dovada')]
             for item in evidence:
@@ -302,14 +310,16 @@ class Coverage(unittest.TestCase):
         self.assertIn(source['id'], self.data['profiles']['lista-firme']['surse_structurate'])
         self.assertEqual((source['format'], source['stare'], source['http_status']), ('json', 'analizat', 200))
         # The tracked record holds the metadata of the request and key paths. No key of it can hold a body or a sample of values.
+        self.assertTrue(is_marked(source))
+        self.assertEqual(person_problems(source), [])
         self.assertLessEqual(set(source), {'url', 'final_url', 'http_status', 'fetched_at', 'content_type', 'state', 'id', 'campuri', 'completitudine', 'snapshot',
-                                           'sha256', 'format', 'stare', 'limita_atinsa', 'baza_tipului', 'citire', 'ultima_incercare', 'versiuni_anterioare'})
+                                           'sha256', 'format', 'stare', 'limita_atinsa', 'baza_tipului', 'citire', 'ultima_incercare', 'versiuni_anterioare', 'persoane'})
         types = {'string', 'integer', 'number', 'boolean', 'null', 'object', 'array'}
         self.assertTrue(source['campuri'])
         for field in source['campuri']:
             self.assertLessEqual(set(field['tipuri_observate']), types, field['cale'])
             # A key name is an identifier. A name with a space, a digit run or an accent could be a value used as a key.
-            self.assertRegex(field['cale'], r'^\$(\.[A-Za-z_][A-Za-z_]*(\[\])?)+$', 'a path of the response is a chain of key names')
+            self.assertRegex(field['cale'], r'^\$(\.[A-Za-z_][A-Za-z_]*(\{\*\})?(\[\])?)+$', 'a path of the response is a chain of key names')
         notes = self.data['notes']['note']['lista-firme']
         self.assertTrue(notes['rezultat'] and notes['limite_en'] and notes['urmator_en'])
         # With the retained body (it is not in git, so a fresh checkout skips this part): no value of a person is in a file that git tracks.

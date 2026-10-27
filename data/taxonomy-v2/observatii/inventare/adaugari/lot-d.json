@@ -245,6 +245,7 @@
   {
     "proiect": "onorata-instanta",
     "url": "https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/performanta-instante.tsv",
+    "persoane": true,
     "metoda": "repo-la-revizie",
     "citire": {
       "tip": "csv",
@@ -270,11 +271,12 @@
         "rol": "utilizare-in-constructia-sitului"
       }
     ],
-    "nota": "Table of funkycitizens/onoratainstanta at commit b92894e45ac64f8c5987758d86f30ce2e94620aa (_build/tables). The Despre page links the repository. The build script generates the pages of the deployed site from the tables. The last commit is from 2023-02-19; the tables hold the 2013-2015 statistics of the project. Read as a sample of the first 5,000 bytes (the header and the first rows). The performance index of the courts (2014 and 2015). The home page of the deployed site shows the 2015 values (Curtea de Apel CRAIOVA +0.83 equals perf_2015 in the first row). The header row is read; the year groups below it are not."
+    "nota": "Table of funkycitizens/onoratainstanta at commit b92894e45ac64f8c5987758d86f30ce2e94620aa (_build/tables). The Despre page links the repository. The build script generates the pages of the deployed site from the tables. The last commit is from 2023-02-19; the tables hold the 2013-2015 statistics of the project. Read as a sample of the first 5,000 bytes (the header and the first rows). The performance index of the courts (2014 and 2015). The home page of the deployed site shows the 2015 values. They are the column perf_2015. The first row agrees with the home page; the tracked files keep no value of the table. The header row is read; the year groups below it are not."
   },
   {
     "proiect": "onorata-instanta",
     "url": "https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/performanta-parchete.tsv",
+    "persoane": true,
     "metoda": "repo-la-revizie",
     "citire": {
       "tip": "csv",
@@ -305,6 +307,7 @@
   {
     "proiect": "onorata-instanta",
     "url": "https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/judecatorii-instante-2014.tsv",
+    "persoane": true,
     "metoda": "repo-la-revizie",
     "citire": {
       "tip": "csv",
@@ -336,6 +339,7 @@
   {
     "proiect": "onorata-instanta",
     "url": "https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/judecatorii-parchete-2014.tsv",
+    "persoane": true,
     "metoda": "repo-la-revizie",
     "citire": {
       "tip": "csv",
@@ -366,6 +370,7 @@
   {
     "proiect": "onorata-instanta",
     "url": "https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/judecatorii-instante-contact.tsv",
+    "persoane": true,
     "metoda": "repo-la-revizie",
     "citire": {
       "tip": "csv",
@@ -440,6 +445,7 @@
   {
     "proiect": "politicieni-corupti",
     "url": "https://raw.githubusercontent.com/robert-adnas/posibil-penali/581cd3a4c45b4b008dd86d531c02cfafa1d0909b/data/politicians.json",
+    "persoane": true,
     "metoda": "repo-la-revizie",
     "citire": "json-esantion",
     "parinte": "https://github.com/robert-adnas/posibil-penali/tree/581cd3a4c45b4b008dd86d531c02cfafa1d0909b",
@@ -467,6 +473,7 @@
   {
     "proiect": "dupa-cutremur",
     "url": "https://storage.googleapis.com/dupacutremur/cladiri_complete_03032024.geojson?v=1",
+    "persoane": true,
     "metoda": "adaugat-explicit",
     "citire": "json-esantion",
     "parinte": "https://storage.googleapis.com/dupacutremur/map.html?v=1",
@@ -494,6 +501,7 @@
   {
     "proiect": "dupa-cutremur",
     "url": "https://storage.googleapis.com/dupacutremur/arie_colaps_complete_03032024.geojson?v=1",
+    "persoane": true,
     "metoda": "adaugat-explicit",
     "citire": "json-esantion",
     "parinte": "https://storage.googleapis.com/dupacutremur/map.html?v=1",
@@ -521,6 +529,7 @@
   {
     "proiect": "dupa-cutremur",
     "url": "https://storage.googleapis.com/dupacutremur/_strazi_arie_colaps_06122022.geojson",
+    "persoane": true,
     "metoda": "adaugat-explicit",
     "citire": "json-esantion",
     "parinte": "https://storage.googleapis.com/dupacutremur/map.html?v=1",
@@ -548,6 +557,7 @@
   {
     "proiect": "dupa-cutremur",
     "url": "https://storage.googleapis.com/dupacutremur/puncte_complete_03032024.geojson?v=1",
+    "persoane": true,
     "metoda": "adaugat-explicit",
     "citire": "json-esantion",
     "parinte": "https://storage.googleapis.com/dupacutremur/map.html?v=1",
@@ -575,6 +585,7 @@
   {
     "proiect": "dupa-cutremur",
     "url": "https://storage.googleapis.com/dupacutremur/adaposturi.geojson",
+    "persoane": true,
     "metoda": "adaugat-explicit",
     "citire": "json-esantion",
     "parinte": "https://storage.googleapis.com/dupacutremur/map.html?v=1",
