@@ -596,6 +596,7 @@ svg.gh { width: 20px; height: 20px; fill: currentColor; stroke: none; }
 .inv-datasets > summary { cursor: pointer; font-size: calc(13px * var(--fs)); font-weight: 500; color: var(--accent-ink); }
 .inv-datasets ul { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 8px; }
 .inv-datasets li { display: grid; gap: 2px; font-size: calc(13px * var(--fs)); overflow-wrap: anywhere; }
+.inv-facts > .inv-note { margin: 10px 0 0; }
 .inv-examples { display: flex; flex-wrap: wrap; gap: 4px; }
 .inv-all { font-size: calc(13px * var(--fs)); }
 .inv-all a { color: var(--accent-ink); text-underline-offset: 3px; }

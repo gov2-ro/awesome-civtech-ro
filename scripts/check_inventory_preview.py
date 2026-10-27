@@ -202,6 +202,45 @@ with sync_playwright() as pw:
         page.wait_for_selector('.d-inventory', timeout=8000)
         ok('the page of ' + item['slug'] + ' (out of scope) shows its "Date & metodă" panel with its documentation links',
            page.locator('.d-inventory').count() == 1 and all(page.locator(f'.d-inventory a[href="{d["url"]}"]').count() > 0 for d in item['inventory']['docs']))
+    # The data set facts that a source declares: under the source, with the basis. One entry of each kind that the data holds is opened.
+    payloads = {i['slug']: json.load(urllib.request.urlopen(BASE + i['inventory']['url'])) for i in DB['items'] if i.get('inventory', {}).get('url')}
+    for kind in ('sets', 'schema'):
+        slug = next((s for s, data in payloads.items() if any(source.get('facts', {}).get(kind) for source in data['sources'])), None)
+        if slug is None:
+            ok(f'a source declares {kind} (no entry has them: the check cannot run)', False)
+            continue
+        item = next(i for i in DB['items'] if i['slug'] == slug)
+        facts = browser.new_page(viewport={'width': 1280, 'height': 900})
+        facts.goto(BASE + f"{item['kind']}/{slug}/")
+        facts.wait_for_selector('[data-inv-panel]')
+        facts.locator('[data-inv-panel] > summary').click()
+        facts.wait_for_selector('.inv-facts')
+        listed = [x for source in payloads[slug]['sources'] for x in source.get('facts', {}).get('sets', []) + source.get('facts', {}).get('schema', [])]
+        names = [x.get('title') or x.get('name') or 'Set de date' for x in listed]
+        facts.locator('.inv-facts > summary').click()
+        texts = lambda selector: facts.locator(selector).evaluate_all('els=>els.map(e=>e.textContent.trim())')
+        ok(f'the field browser lists each data set that a source of {slug} declares ({kind})', facts.locator('.inv-facts .inv-set').count() == len(listed)
+           and texts('.inv-facts .inv-set > strong') == names)
+        ok(f'each source with facts names its basis ({slug})', texts('.inv-facts .inv-basis') == [s['facts']['basis'] for s in payloads[slug]['sources'] if s.get('facts')]
+           and all(b == 'declarație directă' for b in texts('.inv-facts .inv-basis')))
+        ok(f'a source that declares nothing has no block of facts ({slug})', facts.locator('.inv-facts > .inv-note').count() >= sum(bool(s.get('facts')) for s in payloads[slug]['sources']))
+        facts.close()
+    # A long description is cut in the payload; the note then points to the page that holds the whole text. A set that a source declares stays text.
+    slug = next(s for s, data in payloads.items() if any(source.get('facts', {}).get('sets') for source in data['sources']))
+    item = next(i for i in DB['items'] if i['slug'] == slug)
+    edited = json.loads(json.dumps(payloads[slug]))
+    first = next(source['facts']['sets'][0] for source in edited['sources'] if source.get('facts', {}).get('sets'))
+    first['description'] = 'x' * 299 + '…'
+    first['title'] = '<img src=x onerror="window.factsExecuted=true">'
+    cut = browser.new_page(viewport={'width': 1280, 'height': 900})
+    cut.route(f'**/inventar/{slug}.json', lambda r: r.fulfill(status=200, content_type='application/json', body=json.dumps(edited)))
+    cut.goto(BASE + f"{item['kind']}/{slug}/")
+    cut.wait_for_selector('[data-inv-panel]')
+    cut.locator('[data-inv-panel] > summary').click()
+    cut.wait_for_selector('.inv-facts')
+    ok('a cut description points to the page that holds the whole text', cut.locator('.inv-facts a[href="date/' + slug + '/"]').count() == 1)
+    ok('the title of a set remains inert text', cut.locator('.inv-facts img').count() == 0 and cut.evaluate('window.factsExecuted === undefined'))
+    cut.close()
     # The link to the variables page of an entry (`/date/<slug>/`): only an entry that has the page, and the page is the one of that entry.
     with_page = [i for i in DB['items'] if i.get('inventory', {}).get('page')]
     ok('an entry with a variables page has fields, and the page is date/<slug>/', len(with_page) > 0 and all(i['inventory']['count'] and i['inventory']['page'] == f'date/{i["slug"]}/' for i in with_page))

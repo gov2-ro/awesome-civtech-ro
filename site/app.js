@@ -743,7 +743,25 @@ function inventoryDatasets(sources) {
       <a href="${esc(s.url)}" target="_blank" rel="noopener">Metadate${ICON.out}</a></li>`;
   };
   return `<details class="inv-datasets"><summary>${plural(sets.length, 'set de date descris', 'seturi de date descrise')}</summary>
-    <p class="inv-note">Metadate citite de la ins.gov2.ro, o oglindă a TEMPO. Perioada poate fi mai scurtă decât în sursa originală.</p><ul>${sets.map(row).join('')}</ul></details>`;
+    <p class="inv-note">Metadate citite de la ins.gov2.ro, o oglindă a TEMPO. Perioada poate fi mai scurtă decât în sursa originală. ${sets[0].dataset.basis ? `<span class="inv-basis">${esc(sets[0].dataset.basis)}</span>` : ''}</p><ul>${sets.map(row).join('')}</ul></details>`;
+}
+// Data sets that a page declares about itself: the sets that it lists (title, category, description, related reports) and the sets that it declares with schema.org
+// (name, period, licence, base). A description is cut in the payload; the page `date/<slug>/` holds the whole text. Each source names the basis of its facts.
+function inventoryFacts(sources, page) {
+  const listed = sources.filter(s => s.facts);
+  if (!listed.length) return '';
+  const total = listed.reduce((n, s) => n + (s.facts.sets?.length || 0) + (s.facts.schema?.length || 0), 0);
+  const link = (url, text) => `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(text)}${ICON.out}</a>`;
+  const listedSet = x => `<li class="inv-set"><strong>${esc(x.title)}</strong>${x.category ? ` <span class="inv-note">${esc(x.category)}</span>` : ''}
+    ${x.description ? `<span class="inv-note">${esc(x.description)}</span>` : ''}
+    ${x.reports?.length ? `<span class="inv-note">Rapoarte: ${x.reports.map(r => link(r.url, r.text)).join(', ')}</span>` : ''}</li>`;
+  const schemaSet = x => `<li class="inv-set"><strong>${esc(x.name || 'Set de date')}</strong>
+    ${x.period ? `<span class="inv-note">perioadă ${esc(x.period)}</span>` : ''}
+    ${x.licence ? `<span class="inv-note">licență ${x.licence.url ? link(x.licence.url, x.licence.name) : esc(x.licence.name)}</span>` : ''}
+    ${x.basedOn?.length ? `<span class="inv-note">bazat pe: ${x.basedOn.map(u => link(u, u)).join(', ')}</span>` : ''}</li>`;
+  return `<details class="inv-datasets inv-facts"><summary>${plural(total, 'set de date declarat de sursă', 'seturi de date declarate de surse')}</summary>
+    ${listed.map(s => `<p class="inv-note">${esc(s.title)} <span class="inv-basis">${esc(s.facts.basis)}</span></p><ul>${[...(s.facts.sets || []).map(listedSet), ...(s.facts.schema || []).map(schemaSet)].join('')}</ul>`).join('')}
+    ${page && listed.some(s => s.facts.sets?.some(x => x.description?.endsWith('…'))) ? `<p class="inv-note">Descrierile lungi sunt tăiate aici. Pagina <a href="${esc(page)}">Toate variabilele</a> le are întregi.</p>` : ''}</details>`;
 }
 // A source that declares a licence for its files gets the credit it asks for, next to the names and descriptions copied from it.
 function inventoryCredits(sources) {
@@ -758,7 +776,7 @@ function inventoryControls(panel, data) {
     <div class="inv-selects">
       <label>Informații<select data-inv="role"><option value="">Toate câmpurile</option>${roles.map(role => `<option value="${esc(role)}" ${state.role === role ? 'selected' : ''}>${esc(INV_ROLES[role] || role)}</option>`).join('')}</select></label>
       <label>Sursă<select data-inv="source"><option value="">Toate sursele</option>${data.sources.map(s => `<option value="${esc(s.id)}" ${state.source === s.id ? 'selected' : ''}>${esc(s.title)}</option>`).join('')}</select></label>
-    </div></div>${inventoryDatasets(data.sources)}${inventoryCredits(data.sources)}<p class="inv-count" data-inventory-count role="status" aria-live="polite" tabindex="-1"></p>
+    </div></div>${inventoryDatasets(data.sources)}${inventoryFacts(data.sources, BY_SLUG.get(data.slug)?.inventory?.page)}${inventoryCredits(data.sources)}<p class="inv-count" data-inventory-count role="status" aria-live="polite" tabindex="-1"></p>
     <ul class="inv-fields" id="inventory-fields" data-inventory-fields></ul><div data-inventory-more></div>`;
   renderInventoryRows(panel);
 }

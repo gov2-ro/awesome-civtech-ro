@@ -9,7 +9,8 @@ from urllib.parse import quote, unquote, urlsplit
 
 from collect_docs import is_saved
 from common import inventory_exclusion, observation_paths, public_reason
-from inventory_concepts import active_groups, as_list, group_state, selector_matches
+from inventory_concepts import BASIS_LABELS, active_groups, as_list, group_state, selector_matches
+from inventory_persons import is_marked
 
 
 BASIS = {'declarat-in-schema': 'schema', 'declarat-in-metadate': 'metadata',
@@ -354,6 +355,48 @@ def source_checked(source):
     return parts
 
 
+def ext_link(url, text):
+    e = html.escape
+    return f'<a href="{e(url)}" target="_blank" rel="noopener">{e(text)}</a>'
+
+
+def dataset_html(source):
+    """The facts that a metadata source of INS declares about its data set (`dataset`), in the words of the field browser (`inventoryDatasets` in site/app.js)."""
+    e = html.escape
+    d = source['dataset']
+    period = d.get('period') or [None, None]
+    parts = [f'perioadă {"?" if period[0] is None else period[0]}–{"?" if period[1] is None else period[1]} (calculată de API)' if period[0] or period[1] else '',
+             f'niveluri: {", ".join(map(str, d["levels"]))}' if d.get('levels') else '', f'unitate declarată: {" / ".join(d["units"])}' if d.get('units') else '',
+             f'actualizat {d["updated"]}' if d.get('updated') else '', '' if d.get('licence') else 'licență nedeclarată']
+    label = f'<span class="inv-basis">{e(d["basis"])}</span>' if d.get('basis') else ''
+    return (f'<div class="vp-datasets" data-kind="metadate"><h4>Set de date descris în metadate {label}</h4><ul class="vp-sets"><li class="vp-set">'
+            f'<strong>{e(d.get("code") or "")}</strong> {e(d.get("name") or "")} <span class="ov-note">{e(" · ".join(x for x in parts if x))}</span> {ext_link(source["url"], "Metadate")}</li></ul>'
+            f'<p class="ov-note">Metadate citite de la ins.gov2.ro, o oglindă a TEMPO. Perioada poate fi mai scurtă decât în sursa originală.</p></div>')
+
+
+def facts_html(source):
+    """The data set facts of one source for the part „Pe surse”: the INS metadata (`dataset`), the data sets that a page lists (`facts.sets`) and the data sets that it
+    declares with schema.org (`facts.schema`). Each block names its basis. A description is shown whole. Nothing is shown for a source that declares none."""
+    e = html.escape
+    blocks = [dataset_html(source)] if source.get('dataset') else []
+    facts = source.get('facts') or {}
+    label = f'<span class="inv-basis">{e(facts.get("basis", ""))}</span>'
+    if facts.get('sets'):
+        items = ''.join(
+            f'<li class="vp-set"><strong>{e(x["title"])}</strong>' + (f' <span class="vp-cat">{e(x["category"])}</span>' if x.get('category') else '')
+            + (f'<p>{e(x["description"])}</p>' if x.get('description') else '')
+            + (f'<p class="ov-note">Rapoarte: {", ".join(ext_link(r["url"], r["text"]) for r in x["reports"])}</p>' if x.get('reports') else '') + '</li>' for x in facts['sets'])
+        blocks.append(f'<div class="vp-datasets" data-kind="lista"><h4>Seturi de date descrise de pagină {label}</h4><ul class="vp-sets">{items}</ul></div>')
+    if facts.get('schema'):
+        items = ''.join(
+            f'<li class="vp-set"><strong>{e(x.get("name") or "Set de date")}</strong>'
+            + (f' <span class="ov-note">perioadă {e(x["period"])}</span>' if x.get('period') else '')
+            + (f' <span class="ov-note">licență {ext_link(x["licence"]["url"], x["licence"]["name"]) if x["licence"]["url"] else e(x["licence"]["name"])}</span>' if x.get('licence') else '')
+            + (f'<p class="ov-note">Bazat pe: {", ".join(ext_link(u, u) for u in x["basedOn"])}</p>' if x.get('basedOn') else '') + '</li>' for x in facts['schema'])
+        blocks.append(f'<div class="vp-datasets" data-kind="schema"><h4>Seturi de date declarate în pagină (schema.org) {label}</h4><ul class="vp-sets">{items}</ul></div>')
+    return ''.join(blocks)
+
+
 def source_section(source, fields, positions, groups_of):
     """One source of the part „Pe surse”: its title, address, format and licence, and a table of its fields."""
     e = html.escape
@@ -379,9 +422,11 @@ def source_section(source, fields, positions, groups_of):
         facts.append(('Consultare', e(' · '.join(checked))))
     body = (f'<div class="ov-scroll vp-scroll"><table class="vp-table"><thead><tr><th scope="col">Nume</th><th scope="col">Cale</th><th scope="col">Tip</th>'
             f'<th scope="col">Unitate</th><th scope="col">Descriere</th><th scope="col">Grup</th></tr></thead><tbody>{"".join(rows)}</tbody></table></div>'
-            if rows else '<p class="ov-note">Niciun câmp propriu: câmpurile acestei surse repetă înregistrări ale altor surse și sunt arătate la ele.</p>')
+            if rows else '<p class="ov-note">' + ('Pagina nu are câmpuri proprii: descrie seturi de date, iar câmpurile lor sunt în fișierele la care trimite.'
+                                                  if source.get('facts') or source.get('dataset')
+                                                  else 'Niciun câmp propriu: câmpurile acestei surse repetă înregistrări ale altor surse și sunt arătate la ele.') + '</p>')
     return (f'<section class="vp-source" id="ps-{e(source["id"])}" data-source="{e(source["id"])}"><h3>{e(source.get("title", ""))}</h3>'
-            f'<dl class="vp-facts">{"".join(f"<dt>{k}</dt><dd>{v}</dd>" for k, v in facts)}</dl>'
+            f'<dl class="vp-facts">{"".join(f"<dt>{k}</dt><dd>{v}</dd>" for k, v in facts)}</dl>{facts_html(source)}'
             f'<p class="ov-note">{ro_count(len(rows), "câmp", "câmpuri")}</p>{body}</section>')
 
 
@@ -496,6 +541,84 @@ def source_licence(source):
     return {'name': name, 'url': url, 'attribution': attribution}
 
 
+# The data set facts that a source declares about its own data sets (module docstring of `inventory_setlist` and `inventory_literals`). A fact is shown only when
+# the source declares it: its basis is `declarat-in-pagina`, `declarat-in-metadate` or `declarat-in-lista`. A value that an API computed or that the inventory
+# counted is not a declaration. The basis is named with the label of the review interface (`BASIS_LABELS`, key `declaratie-directa`).
+DECLARED_BASIS = 'declaratie-directa'
+DESCRIPTION_LIMIT = 300  # characters of a description in `inventar/<slug>.json`; the page of the entry keeps the whole text
+
+
+def declared(fact):
+    """The value of a fact that the source declares, or None: a `{valoare, baza}` record whose basis starts with `declarat-in-`, with a value."""
+    if isinstance(fact, dict) and str(fact.get('baza', '')).startswith('declarat-in-') and fact.get('valoare') not in (None, '', []):
+        return fact['valoare']
+    return None
+
+
+def declared_sets(source):
+    """The data sets that a page of described files lists (format `html-lista-seturi`, key `seturi`): title, category, description and related reports.
+    A set without a declared title is not listed."""
+    found = []
+    for item in source.get('seturi', []) if source.get('format') == 'html-lista-seturi' else []:
+        title = declared(item.get('titlu'))
+        if not title:
+            continue
+        fact = {'title': title}
+        category = ' · '.join(x for x in (declared(item.get('categorie')), declared(item.get('subcategorie'))) if x)
+        if category:
+            fact['category'] = category
+        if declared(item.get('descriere')):
+            fact['description'] = declared(item.get('descriere'))
+        reports = []
+        for report in item.get('rapoarte', []):
+            address = http_url(declared(report.get('adresa')) or '')
+            if address:
+                reports.append({'text': declared(report.get('text')) or address, 'url': address})
+        if reports:
+            fact['reports'] = reports
+        found.append(fact)
+    return found
+
+
+def declared_schema(source):
+    """The data sets that a page declares with schema.org `Dataset` (format `js-literale`, key `seturi_ld`): name, period, licence and `isBasedOn`.
+    The creator, the editor, the keywords and the measured variables are not shown. A set with none of the four is not listed."""
+    found = []
+    for item in source.get('seturi_ld', []) if source.get('format') == 'js-literale' else []:
+        fact = {}
+        for key, field in (('name', 'nume'), ('period', 'perioada')):
+            if declared(item.get(field)):
+                fact[key] = declared(item[field])
+        licence = declared(item.get('licenta'))
+        if licence:
+            fact['licence'] = {'name': licence, 'url': http_url(licence)}
+        based = [url for url in (http_url(declared(b) or '') for b in item.get('bazat_pe', [])) if url]
+        if based:
+            fact['basedOn'] = based
+        if fact:
+            found.append(fact)
+    return found
+
+
+def declared_facts(source):
+    """The facts of one source for the field browser and the page of the entry: {'basis': label, 'sets': [...], 'schema': [...]} or None.
+    A source with persons keeps none (its record holds no such key)."""
+    if is_marked(source):
+        return None
+    facts = {key: found for key, found in (('sets', declared_sets(source)), ('schema', declared_schema(source))) if found}
+    return {'basis': BASIS_LABELS[DECLARED_BASIS], **facts} if facts else None
+
+
+def compact_facts(facts):
+    """The facts as `inventar/<slug>.json` keeps them: a description is cut at `DESCRIPTION_LIMIT` characters."""
+    sets = [{**x, 'description': clip(x['description'], DESCRIPTION_LIMIT)} if x.get('description') else x for x in facts.get('sets', [])]
+    return {**facts, **({'sets': sets} if sets else {})}
+
+
+def compact_source(source):
+    return {**source, 'facts': compact_facts(source['facts'])} if source.get('facts') else source
+
+
 def http_url(value):
     try:
         parsed = urlsplit(value)
@@ -597,14 +720,18 @@ def publish_preview(items, root, site):
         for ident in profile.get('surse_structurate', []):
             source = sources.get(ident, {})
             url = http_url(source.get('url', ''))
-            if not url or not source.get('campuri'):
+            facts = declared_facts(source)
+            # A page that lists described data sets has no field of its own (the fields are in the files that it links), but its facts are listed.
+            if not url or not (source.get('campuri') or facts):
                 continue
             fmt = source.get('format', '')
             filename = unquote(Path(urlsplit(url).path).name)
             title = sheets.get(ident) or FORMATS.get(fmt, 'Sursă de date') + (' · ' + filename if filename else '')
             listed = {'id': ident, 'url': url, 'title': title, 'format': fmt, 'checked': str(source.get('fetched_at', ''))[:10]}
             if source.get('set_date'):
-                listed['dataset'] = dataset_summary(source['set_date'])
+                listed['dataset'] = {**dataset_summary(source['set_date']), 'basis': BASIS_LABELS[DECLARED_BASIS]}
+            if facts:
+                listed['facts'] = facts
             licence = source_licence(source)
             if licence:
                 listed['licence'] = licence
@@ -653,7 +780,7 @@ def publish_preview(items, root, site):
             item['inventory']['stale'] = sum(bool(s.get('refreshFailed')) for s in source_list)
         if fields:
             filename = slug + '.json'
-            payload = {'slug': slug, 'partial': True, 'sources': source_list, 'fields': fields}
+            payload = {'slug': slug, 'partial': True, 'sources': [compact_source(x) for x in source_list], 'fields': fields}
             (target / filename).write_text(json.dumps(payload, ensure_ascii=False, separators=(',', ':')))
             written.add(filename)
             item['inventory']['url'] = 'inventar/' + filename

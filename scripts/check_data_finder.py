@@ -176,7 +176,7 @@ with sync_playwright() as pw:
     family_of = {v['id']: v.get('family') for v in INDEX['variables']}
     family_ids = {f['id'] for f in INDEX.get('families', [])}
     by_slug = {i['slug']: i for i in ITEMS}
-    missing, wrong_sources, wrong_families, wrong_rows, wrong_head, sideways, anchors = [], [], [], [], [], [], []
+    missing, wrong_sources, wrong_families, wrong_rows, wrong_head, sideways, anchors, wrong_facts = [], [], [], [], [], [], [], []
     for row in rows:
         slug = row['slug']
         try:
@@ -208,6 +208,14 @@ with sync_playwright() as pw:
             wrong_families.append(slug)
         if page.locator('.vp-table tbody tr').count() != len(payload['fields']):
             wrong_rows.append(slug)
+        # The data set facts that a source declares (and the INS metadata) are listed under that source, each with its basis, and under no other.
+        for source in payload['sources']:
+            facts = source.get('facts') or {}
+            block = page.locator(f'.vp-source[data-source="{source["id"]}"]')
+            titles = [x['title'] for x in facts.get('sets', [])] + [x.get('name') or 'Set de date' for x in facts.get('schema', [])] + ([source['dataset']['code']] if source.get('dataset') else [])
+            on_page = block.locator('.vp-set > strong').all_inner_texts()
+            if on_page != titles or (titles and not all(b == (facts.get('basis') or source['dataset']['basis']) for b in block.locator('.vp-datasets .inv-basis').all_inner_texts())):
+                wrong_facts.append(f'{slug}:{source["id"]}')
         page.set_viewport_size({'width': 1280, 'height': 900})
         page.locator('.vp-nav a', has_text='Pe surse').click()
         if not page.url.endswith(f'/date/{slug}/#pe-surse'):
@@ -217,10 +225,11 @@ with sync_playwright() as pw:
     ok('every page has one block for each source of its own data, in its order', not wrong_sources)
     ok('every page has a block for each family that its own data names, and no other', not wrong_families)
     ok('every page has one row for each field of its own data', not wrong_rows)
+    ok('every page lists the data set facts of each source of its own data under that source, with the basis', not wrong_facts)
     ok('no page scrolls sideways at 1280 px or at 375 px', not sideways)
     ok('the links inside a page stay on the page', not anchors)
-    if missing + wrong_head + wrong_sources + wrong_families + wrong_rows + sideways + anchors:
-        print('  ', missing, wrong_head, wrong_sources, wrong_families, wrong_rows, sideways, anchors)
+    if missing + wrong_head + wrong_sources + wrong_families + wrong_rows + sideways + anchors + wrong_facts:
+        print('  ', missing, wrong_head, wrong_sources, wrong_families, wrong_rows, sideways, anchors, wrong_facts)
     page.set_viewport_size({'width': 1440, 'height': 1100})
     page.goto(BASE + 'date/lista/')
     # The scope: the entries that the inventory leaves out are absent from the index, the list and the finder, and counted by reason.
