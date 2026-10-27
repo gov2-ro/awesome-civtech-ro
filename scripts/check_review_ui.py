@@ -221,6 +221,12 @@ def run(base, files, shots):
         page.reload()
         wait_detail('D140')
         ok('reload keeps the selection', page.url.endswith('#furnizor/D140') and page.locator('#list .row[aria-current="true"] .id').inner_text() == 'D140')
+        # This copy holds no candidate: the empty queue says why it is empty and where candidates come from.
+        page.evaluate('location.hash="#candidati"')
+        until(page, lambda: page.locator('#list .list-empty').count() == 1)
+        ok('an empty candidate queue explains where candidates come from', 'Niciun candidat de decis' in page.locator('#list .list-empty').inner_text()
+           and 'selectori_candidati' in page.locator('#list .list-empty').inner_text())
+        open_item('furnizor', 'D140', 'D140')
         page.locator('#list .row:has(.id:text-is("D141"))').click()
         wait_detail('D141')
         page.go_back()

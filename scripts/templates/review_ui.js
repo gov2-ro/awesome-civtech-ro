@@ -121,7 +121,10 @@ function renderList() {
   if (r.view === 'checks') { list.hidden = true; return; }
   list.hidden = false;
   const shown = queueItems(r.view).filter(item => itemPass(r.view, item) || item.id === r.id);
-  if (!shown.length) list.append(h('p', {class: 'list-empty'}, 'Niciun element în acest filtru.'));
+  const noCandidates = r.view === 'candidates' && !queueItems('candidates').length;
+  if (!shown.length) list.append(h('p', {class: 'list-empty'}, noCandidates
+    ? 'Niciun candidat de decis. Un lot nou de inventar propune aici câmpuri noi pentru grupurile revizuite (inventar-note.json, cheia selectori_candidati).'
+    : 'Niciun element în acest filtru.'));
   for (const item of shown) {
     const label = r.view === 'providers' ? item.project : item.label;
     const detail = r.view === 'groups' ? `${item.members} membri · ${item.confirmat} confirmați · ${item.exclus} excluși`
