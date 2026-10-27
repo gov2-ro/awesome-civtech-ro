@@ -23,6 +23,9 @@ from pathlib import Path
 
 CATEGORIES = ('identificator', 'dimensiune', 'masura', 'intrare-utilizator', 'iesire-derivata')
 EVIDENCE_BASES = ('declaratie-directa', 'observatie-esantion', 'deductie-din-dovezi', 'parafraza-editoriala')
+# The labels of the evidence bases. The review interface (review_ui.py) and the public pages of the data inventory share this one list.
+BASIS_LABELS = {'declaratie-directa': 'declarație directă', 'observatie-esantion': 'observație din eșantion',
+                'deductie-din-dovezi': 'deducție din dovezi', 'parafraza-editoriala': 'parafrază editorială'}
 SELECTOR_KEYS = {'projects', 'names', 'source', 'path', 'role', 'context', 'fapte', 'nota', 'stare', 'nota_editor'}
 GROUP_STATES = ('propus', 'revizuit', 'respins', 'amanat')
 SELECTOR_STATES = ('propus', 'confirmat', 'exclus')
