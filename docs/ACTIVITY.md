@@ -20,7 +20,7 @@
   (`selector_matches` repeats the project test; an editor record has no `operatie`, so `apply_contracts` leaves it as it is; `validate.py` has no row to check without rows).
 - Checks. `validate.py --publication` 0 errors, 0 warnings. `inventory.py --check` 0 errors, 147 bodies hash-verified, 129 dictionary evidence items verified, 0 stale, 12 sources with persons searched. `inventory_report.py --check` current. The three package checks pass.
   `inventory.py --offline` on a copy of the tracked folder (cache copied in) gives the six generated files byte for byte, with the empty file. With one real row (a scratch copy) the run adds one record and `--check` verifies the fragment with the recorded hash; with a missing fragment the run stops and writes nothing.
-  Browser against the served build (`--allow-draft --with-inventory`, as CI): `check_preview.py` 141/141, `check_inventory_preview.py` 57/57 (40 before), `check_data_finder.py` 70/70 (61 before). A break of a generated page or of the script fails the matching check (13 breaks tried).
+  Browser against the served build (`--allow-draft --with-inventory`, as CI): `check_preview.py` 141/141, `check_inventory_preview.py` 57/57 (40 before), `check_data_finder.py` 71/71 (61 before). A break of a generated page or of the script fails the matching check (14 breaks tried).
 
 **Hard**
 - The page of described sets (`data.expertforum.ro`) has no field of its own, so `publish_preview` did not list it and its 15 sets had no place to show. It is listed now when it declares facts (see Decided).
