@@ -930,6 +930,30 @@ class CandidateDecisions(CandidateFixture):
         self.group('cui', 'amanat', note='Mai târziu.')  # nothing is open for the group any more
         self.assertEqual(self.concept('cui')['stare'], 'amanat')
 
+    def test_a_reset_that_would_bring_back_an_error_of_head_is_refused(self):
+        stray = {'grup': 'siruta', 'selector': {**self.selectors['cui'], 'names': ['x']}}
+        self.put_candidates(self.items() + [stray])
+        self.commit('a candidate of a proposed group')
+        self.store = Store(self.root, today=lambda: TODAY)
+        self.assertEqual(len(self.errors()), 1)
+        cid = self.rows()[-1]['id']
+        self.decide(cid, 'exclude', note='Nu.')
+        self.assertEqual(self.errors(), [])
+        before = self.both()
+        with self.assertRaises(ReviewError) as caught:
+            self.decide(cid, 'reset')
+        self.assertEqual(caught.exception.status, 422)
+        self.assertIn('nu s-a scris nimic', str(caught.exception))
+        self.assertEqual(self.both(), before)
+
+    def test_a_member_that_head_already_holds_is_never_taken_out_by_a_reset(self):
+        member = {k: v for k, v in self.concept('judet')['selectors'][0].items() if k not in ('stare', 'nota_editor')}
+        self.put_candidates(self.items() + [{'grup': 'judet', 'selector': member}])
+        self.commit('a candidate that its group holds')  # an error at HEAD
+        self.store = Store(self.root, today=lambda: TODAY)
+        self.put_candidates(self.items()[:-1])  # a person drops it from the notes
+        self.assertEqual([r['stare'] for r in self.rows()], ['propus'] * 3, 'HEAD holds the member: the candidate is not shown as confirmed since HEAD')
+
     def test_a_failed_validation_writes_nothing_to_either_file(self):
         data = json.loads(self.paths['concepte'].read_text())
         data['concepte'][0]['stare'] = 'gata'  # an unknown state: a new error

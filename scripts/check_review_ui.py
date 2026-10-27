@@ -588,23 +588,29 @@ def run_candidates(base, files, shots):
         ok('exclude: no member was added and the queue says so', files['concepte'].read_bytes() == before[0] and row_chip('B') == 'Exclus' and 'Nu poartă județul.' in page.locator('#detail').inner_text())
         progress_has('Candidați: 3 deschiși')
 
-        # -- reset -------------------------------------------------------------------------------------------------------------------------------
+        # -- reset an excluded candidate; confirm another one while A is confirmed (the places of the working list shift) ------------------------------------
         ok('reset is offered for a changed candidate', page.locator('#c-reset').is_enabled())
         page.locator('#c-reset').click()
         status_has('a revenit')
         ok('reset: an excluded candidate is open again, as at HEAD', row_chip('B') == 'Propus' and 'stare' not in next(i for i in items() if i['grup'] == 'judet'))
-        goto('A')
-        page.locator('#c-reset').click()
-        status_has('a revenit')
-        ok('reset: a confirmed candidate leaves its group and returns to the list; both files are the files of HEAD', both() == (head(files['concepte']), head(files['note'])))
-        ok('reset: the queue is as at HEAD', rows() == ['#1', '#2', '#3', '#4', '#6'] and page.locator('#c-reset').is_disabled())
-        progress_has('Candidați: 5 deschiși')
-
-        # -- the last decisions: C confirmed without a note, D excluded (the error goes) ------------------------------------------------------------
+        progress_has('Candidați: 4 deschiși')
+        before_c = cid('C')
         goto('C')
         decide('#c-confirm')
         status_has('confirmat')
         ok('confirm without a note writes no note', 'nota_editor' not in group('localitate')['selectors'][-1] and group('localitate')['selectors'][-1]['stare'] == 'confirmat')
+        ok('the place of a candidate shifts when an earlier one is confirmed, and the page follows it', cid('C') != before_c and page.url.endswith('#candidat/' + cid('C')) and row_chip('C') == 'Confirmat')
+
+        goto('A')
+        page.locator('#c-reset').click()
+        status_has('a revenit')
+        head_cui = next(c for c in json.loads(head(files['concepte']))['concepte'] if c['id'] == 'cui')
+        ok('reset: a confirmed candidate leaves its group and returns to its place in the list', group('cui') == head_cui and row_chip('A') == 'Propus' and items()[0]['grup'] == 'cui'
+           and 'stare' not in items()[0] and group('localitate')['selectors'][-1]['stare'] == 'confirmat')
+        ok('reset: the candidate is back in the list in its place (the places are those of the notes)', rows() == ['#1', '#2', '#3', '#5'] and page.locator('#c-reset').is_disabled())
+        progress_has('Candidați: 4 deschiși')
+
+        # -- D excluded: the error goes ------------------------------------------------------------------------------------------------------------------
         goto('D')
         decide('#c-exclude', 'Grupul nu este revizuit.')
         status_has('exclus')
@@ -623,6 +629,19 @@ def run_candidates(base, files, shots):
         ok('a candidate does not change the public build', 'Nicio schimbare a surselor de date acceptate' in page.locator('#git-panel').inner_text())
         ok('the check panel lists the notes file and suggests committing it', 'inventar-note.json' in page.locator('#git-panel').inner_text() and 'inventar-note.json' in page.locator('#commands').inner_text())
         snap('candidates-checks')
+
+        # -- everything back to HEAD -------------------------------------------------------------------------------------------------------------------
+        goto('C')
+        page.locator('#c-reset').click()
+        status_has('a revenit')
+        goto('D')
+        page.locator('#c-reset').click()
+        until(page, lambda: page.locator('#c-status').inner_text() != '')
+        ok('reset: a candidate whose HEAD version is an error stays excluded (the write would bring the error back)', 'nu s-a scris nimic' in page.locator('#c-status').inner_text()
+           and next(i for i in items() if i['grup'] == 'siruta')['stare'] == 'exclus')
+        head_items = json.loads(head(files['note']))['selectori_candidati']
+        ok('reset: the dictionary is the file of HEAD again, and the notes differ from HEAD by the one excluded candidate of the proposed group',
+           files['concepte'].read_bytes() == head(files['concepte']) and [i for i in items() if i['grup'] != 'siruta'] == [i for i in head_items if i['grup'] != 'siruta'])
 
         # -- a stale file ------------------------------------------------------------------------------------------------------------------------
         goto('F')
@@ -651,8 +670,8 @@ def run_candidates(base, files, shots):
         goto('A')
         snap('candidates-mobile')
         ok('the candidate pages made no request outside the local server', outside == [])
-        refused = [e for e in problems if re.fullmatch(r'Failed to load resource: the server responded with a status of (400|409) \(.*\)', e)]
-        ok('the only console errors are the two refused requests that this check provokes (a missing note, a stale file)', len(refused) == 2)
+        refused = [e for e in problems if re.fullmatch(r'Failed to load resource: the server responded with a status of (400|409|422) \(.*\)', e)]
+        ok('the only console errors are the three refused requests that this check provokes (a missing note, a reset that brings an error back, a stale file)', len(refused) == 3)
         ok('no other browser error on the candidate pages', [e for e in problems if e not in refused] == [])
         browser.close()
 
