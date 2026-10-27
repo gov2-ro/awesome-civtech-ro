@@ -1380,6 +1380,7 @@ A new checkout needs `collect_docs.py --force` and `inventory.py --force` before
 `scripts/inventory_report.py` writes `observatii/inventare/acoperire.csv` (one row for each catalogue entry, hidden entries included) and the readable report `docs/reports/inventory-expansion.md`.
 `--check` compares both with a fresh computation. The hand-edited input is `data/taxonomy-v2/inventar-note.json`: limits, blockers and next steps of each entry, the narrative of the report and the verification results.
 The keys `lot_c2` and `retea_c2` hold the narrative and the network summary of batch C2; the notes of its entries also carry `blocaj_en` (the blocker, in English, for the report).
+The key `selectori_candidati` (present only while a candidate exists) lists the candidate members of reviewed groups; see "Local review interface".
 The export keeps fields, business groups, declarations, observations and unknowns apart. A raw field total is never the progress measure.
 
 | Column | Meaning and denominator |
@@ -1448,7 +1449,7 @@ source/role selection, partial labels, CSV unknown types, retry recovery, inert 
 
 ### Local review interface
 
-`scripts/review_ui.py` is a local tool (stdlib only, never published; `build.py` copies none of it). It reviews two queues in a browser and writes the repository files.
+`scripts/review_ui.py` is a local tool (stdlib only, never published; `build.py` copies none of it). It reviews three queues in a browser and writes the repository files.
 Git is the audit trail: the tool never commits, and its page shows `git status`, `git diff --stat` and the commands to run next.
 
 ```sh
@@ -1459,6 +1460,7 @@ python3 scripts/review_ui.py [--port 8790] [--data-dir data/taxonomy-v2/integrar
 | --- | --- | --- |
 | Providers | `revizuire.csv` items with `camp=surse_date` (D132 and later) | `integrare/revizuire.csv`, `integrare/relatii.csv` |
 | Variable groups | The groups of `inventar-concepte.json` and their members (selectors) | `data/taxonomy-v2/inventar-concepte.json` |
+| Candidate members | The candidates of the list `selectori_candidati` in `data/taxonomy-v2/inventar-note.json` | `inventar-concepte.json` and `inventar-note.json`, together |
 
 Provider decisions follow the rules of [relatii.csv](#relatiicsv) and [revizuire.csv (v2)](#revizuirecsv-v2). The note field is required; the tool writes one line.
 
@@ -1474,14 +1476,35 @@ The tool refuses a second accepted source with the same name for one project. It
 Group decisions: `Revizuit`, `Resping` and `Amân` need a note. `Revizuit` also needs every member `confirmat` or `exclus`, one `confirmat` member, and an explicit tick
 for each statement whose basis is `deductie-din-dovezi`. A member changes only while its group is `propus` or `amanat`; `Resetează` puts the group and its members back to `HEAD`.
 
-Every write reads the file, applies one decision, validates the result (`taxonomy_v2.check` with the publication gate; `validate_concept` for each group) and replaces the
+Candidate members. A batch proposes a selector for a reviewed group as a candidate: an item `{grup, selector}` in the list `selectori_candidati` of `inventar-note.json`.
+A reviewed group cannot hold a member that the owner has not confirmed, so the selector waits in the list. The tool adds two keys to a candidate, after `grup` and `selector`:
+`stare` (`propus` | `exclus`; a missing key means `propus`, that is open) and `nota_editor` (text; `exclus` needs it). The tool never writes `confirmat` there: a confirmed candidate leaves the list.
+
+| Action | `inventar-note.json` | `inventar-concepte.json` |
+| --- | --- | --- |
+| Confirm (the note is optional) | The candidate leaves the list. The key `selectori_candidati` leaves the file when the list is empty. | The selector is appended to the `selectors` of its group with `stare` = `confirmat` and, when the note is not empty, `nota_editor`. The group keeps its `stare`, `decizie_editor` and `data_revizie`. |
+| Exclude (the note is required) | The candidate stays in the list with `stare` = `exclus` and `nota_editor`, so that a later batch sees the refusal. It leaves the open queue. | No change. |
+| Reset | The candidate goes back to its value at `HEAD`, in its place. A key that left the file returns where `HEAD` had it. | A member that the confirmation added leaves its group. |
+
+The page lists the candidates in one queue, with the label of the group on each. Its detail shows the group (label, definition), the selector (projects, names, path, source, role, context),
+how far the selector reaches in the retained inventory, the pinned facts with their evidence, and the confirmed members of the group, for comparison.
+A candidate is identified by its place in the list and the first 12 hexadecimal digits of the SHA-256 of its group and its selector (`#candidat/3-ab12cd34ef56`).
+A request with an old place or hash gets HTTP 409, so that a stale page never decides another candidate. A decision writes both files together, atomically, with the byte-stable writer.
+An open candidate is a validation error (`validate_candidates`) when its group does not exist, is not `revizuit`, or already holds the selector. The page shows the error, and Confirm refuses it (HTTP 422).
+An excluded candidate is history: nobody checks it against its group. Like every write, a decision that would make a new error is refused; this includes a reset that would bring back an error of `HEAD`.
+A candidate that the owner confirmed and no commit holds stays in the queue as `confirmat`, in its place at `HEAD`, so that Reset can undo the confirmation. The tool finds it from the difference between `HEAD` and the working tree.
+After a commit it leaves the queue for good. Reset works only while no commit holds the decision.
+The check panel counts the open candidates. A candidate does not change the public build until it is confirmed, so the panel's list of accepted providers stays as it is.
+
+Every write reads the file, applies one decision, validates the result (`taxonomy_v2.check` with the publication gate; `validate_concept` for each group; `validate_candidates` for the candidate list) and replaces the
 file atomically. New errors refuse the write. The request carries the SHA-256 of each file that the page loaded; a different hash on disk (an editor, a Sheet pull, `git checkout`)
 refuses the write. A file that does not load and save back byte for byte (BOM, line ending, quoting, indentation, final newline) is refused, never rewritten.
 Every request needs `Host` = `localhost` or `127.0.0.1` with the server port; a POST also needs the per-process token that the page carries (else HTTP 403). The server makes no network request.
 The evidence panel reads the retained copies that `inventory.py --check` reads (`surse/`, `documentare/pagini/`; both stay out of git). `verificat` needs a recorded hash that matches the retained text
 and the fragment in it; `schimbat` means the hash differs; `indisponibil local` means no copy; `fără amprentă` means the item records no hash (shown, never called verified).
 The check panel runs `validate.py --publication`, `inventory.py --check` and `inventory_report.py --check` in subprocesses, and shows the accepted providers at `HEAD` against the working tree.
-`inventory_report.py` counts provider items and groups by state.
+`inventory_report.py` counts provider items, groups, members and candidates by state. Section 5 of the report lists only the open candidates, counts the excluded ones in one line,
+and names a candidate that a batch proposes again after the owner excluded an equal one (the same group, projects, names, path, role and source; the text of `context` does not count).
 
 ### Scope of the variable inventory
 
