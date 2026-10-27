@@ -1,0 +1,14 @@
+[
+  {
+    "proiect": "sondaje-romania",
+    "url": "https://sondajeromania.ro/seats-index.json",
+    "metoda": "adaugat-explicit",
+    "parinte": "https://sondajeromania.ro/parlamentare",
+    "locate": {
+      "pagina": "https://sondajeromania.ro/parlamentare",
+      "randare": "https://sondajeromania.ro/seats-index.json"
+    },
+    "dovezi": [],
+    "nota": "The index of the seat projections of single polls. The browser received this file when it rendered the parlamentare page, so the file was not requested again (0 requests). It is one object of 21 members: each key names a poll (an institute and a date, for example INSCOP_2026-03-06) and each value is the name of the file of that poll (poll_NNN_YYYYMMDD_seats.json). The keys are values, so the reader gives the collection and no field name for a key. The 21 files that the values name were not requested. The owner admitted this source on 2026-10-27, after the corrected JSON reader had read it as one keyed collection; the first pass of lot D had left it out."
+  }
+]

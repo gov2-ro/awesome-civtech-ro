@@ -84458,6 +84458,37 @@
       "baza_tipului": "esantion-date"
     },
     {
+      "url": "https://sondajeromania.ro/seats-index.json",
+      "final_url": "https://sondajeromania.ro/seats-index.json",
+      "http_status": 200,
+      "fetched_at": "2026-10-26T23:39:54.668195+00:00",
+      "content_type": "application/json",
+      "state": "ok",
+      "via": "browser",
+      "id": "5335f57d009536be2636",
+      "campuri": [
+        {
+          "nume": "${*}",
+          "cale": "${*}",
+          "tipuri_observate": [
+            "object",
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "colectie-cu-chei",
+          "pointer": "",
+          "numar_chei": 21
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/5335f57d009536be2636-4b052e99b605e1aa.json",
+      "sha256": "4b052e99b605e1aae89ecb1b887b309ae7d16706c9e3ba6256afd314e769a9f8",
+      "format": "json",
+      "stare": "analizat",
+      "limita_atinsa": false,
+      "baza_tipului": "esantion-date"
+    },
+    {
       "url": "https://storage.googleapis.com/dupacutremur/_strazi_arie_colaps_06122022.geojson",
       "final_url": "https://storage.googleapis.com/dupacutremur/_strazi_arie_colaps_06122022.geojson",
       "http_status": 206,

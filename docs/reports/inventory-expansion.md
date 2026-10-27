@@ -6,7 +6,7 @@ Inventory assertions are proposals. Raw field totals count source paths, not ind
 ## 1. Outcome
 
 - Milestones A (safe incremental collection), B (INS), C (12 entries), D (meanings and shared groups) and E (preview, coverage, report) are complete.
-- Structured field evidence now covers 42 of 129 projects and resources (baseline 14). The retained sources are 151 URLs (146 parsed, 5 failed) with 4,352 field records.
+- Structured field evidence now covers 42 of 129 projects and resources (baseline 14). The retained sources are 152 URLs (147 parsed, 5 failed) with 4,353 field records.
 - Each field record is a path in a source. The proposals are 41 shared groups (baseline 7), 16 provider review items and the dictionary evidence that `inventory.py --check` verifies.
 - The public build is unchanged: the default payload equals the v0.13.0 payload apart from its generation time; classifications and accepted providers are identical.
 - Collection used 203 direct requests in total (9 browser navigations); the 150-request limit of lot C was not reached.
@@ -42,10 +42,10 @@ The 129 projects and resources of the catalogue (the finder lists the 85 that ar
 | Projects and resources (catalogue, hidden entries included) | 127 | 129 |
 | Entries with structured field evidence | 14 | 42 |
 | Projects/resources without extracted structured fields | 113 | 87 |
-| Retained structured-source URLs | 25 | 151 |
-| Parsed sources / HTTP failures | 24 / 1 | 146 / 5 |
-| Source-scoped field records (paths, not variables) | 2,302 | 4,352 |
-| Schema declarations / sampled JSON paths / CSV headers / INS dimensions | 1,312 / 904 / 82 / 4 | 1,367 / 1,399 / 311 / 4 |
+| Retained structured-source URLs | 25 | 152 |
+| Parsed sources / HTTP failures | 24 / 1 | 147 / 5 |
+| Source-scoped field records (paths, not variables) | 2,302 | 4,353 |
+| Schema declarations / sampled JSON paths / CSV headers / INS dimensions | 1,312 / 904 / 82 / 4 | 1,367 / 1,400 / 311 / 4 |
 | HTML control candidates / entries with candidates | 308 / 78 | 310 / 80 |
 | Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 86 / 56 |
 | Accepted provider relations / entries with accepted providers | 26 / 11 | 98 / 35 |
@@ -58,21 +58,21 @@ Review state, counted from the tracked files. Provider items (`camp` `surse_date
 
 Scope of the data finder (`/date/`): 85 of the 126 public projects and resources are in scope. An entry is in scope when it is not inactive (`offline`, `arhivat`) and its `relatie_date` is `date-publice`, `date-proprii` or `calcul`. The finder leaves out 41: 18 without data (`fara-date`), 5 not assessed (empty value), 18 inactive (counted first: an inactive entry is never counted as another reason). 3 hidden entries (`ascuns`) are in no count of this paragraph.
 
-Field records by evidence type now: observat-in-esantion-json 1,399, declarat-in-schema 1,367, declarat-in-cod-sursa 417, exemplu-in-documentatie 364, neprecizat-in-antet-csv 311, declarat-in-lista-baza 171, antet-tabel-html 104, declarat-in-metadate 58, declarat-in-tabel-documentatie 53, declarat-in-lista-documentatie 40, declarat-in-documentatie-api 36, declarat-in-text-documentatie 23, utilizat-in-cod-pagina 9.
+Field records by evidence type now: observat-in-esantion-json 1,400, declarat-in-schema 1,367, declarat-in-cod-sursa 417, exemplu-in-documentatie 364, neprecizat-in-antet-csv 311, declarat-in-lista-baza 171, antet-tabel-html 104, declarat-in-metadate 58, declarat-in-tabel-documentatie 53, declarat-in-lista-documentatie 40, declarat-in-documentatie-api 36, declarat-in-text-documentatie 23, utilizat-in-cod-pagina 9.
 
 Coverage by measure, for the 129 projects and resources (`acoperire.csv` has the rows). A column that counts fields counts source paths:
 
 | Measure | Entries counted | Total |
 | --- | ---: | ---: |
-| Structured sources | 42 | 156 |
-| Field records from sources | 42 | 4,414 |
+| Structured sources | 42 | 157 |
+| Field records from sources | 42 | 4,415 |
 | Entries in at least one proposed group | 42 | 34 |
 | Fields with a source-declared description | 42 | 1,374 |
 | Fields with a declared type | 42 | 1,650 |
-| Fields with an observed type | 42 | 1,771 |
+| Fields with an observed type | 42 | 1,772 |
 | Measures with a unit | 42 | 70 |
 | Measures without a unit | 42 | 120 |
-| Sources with a verified discovery locator | 42 | 160 |
+| Sources with a verified discovery locator | 42 | 161 |
 
 Totals add the per-entry counts. A source that several entries share counts once for each of them, so the field total here is higher than the number of distinct field records above.
 Denominators are defined in `docs/DATA-SCHEMA.md` (Coverage export). Entries without a structured source have an empty (unknown) measure count, not zero.
@@ -284,13 +284,15 @@ Platform of public tools by three lecturers of FSPAC, Babeș-Bolyai University: 
 
 Batch D (brief `docs/briefs/inventory-batch-d.md`, 2026-10-27) covers twelve entries of „De analizat” with the strongest signals: an API, a data download, a linked repository, or a methodology or `llms.txt` page. The lot code is `D`. The documentation of all twelve was collected on 2026-10-24 and 2026-10-25 (`collect_docs.py --only` made 0 requests). The discovery order of `inventory-expansion.md` section 6.C was followed: the project's own documentation, then downloads and data files named by the pages and the page code, then linked repositories at a recorded commit, then browser renders (3 navigations).
 
-Result: eleven of the twelve entries have a structured inventory (33 sources by the first specification, 2 more from the browser renders, 35 in all; one more source on 2026-10-27, see the last paragraph). `guvernezi` has none: the project publishes no file, API or schema, and its data are text pages. No reserve entry was used (`monitor-safe`, `igov`, `ce-fac-politicienii`): no primary entry was blocked, and no host answered 401, 403 or 429. Five entries are on `mariuscomper.uk`; no source is shared by two of them (each page loads its own data), so no source counts for two project uses.
+Result: eleven of the twelve entries have a structured inventory (33 sources by the first specification, 2 more from the browser renders, 35 in all; two more sources on 2026-10-27, see the last two paragraphs). `guvernezi` has none: the project publishes no file, API or schema, and its data are text pages. No reserve entry was used (`monitor-safe`, `igov`, `ce-fac-politicienii`): no primary entry was blocked, and no host answered 401, 403 or 429. Five entries are on `mariuscomper.uk`; no source is shared by two of them (each page loads its own data), so no source counts for two project uses.
 
 Four reader changes serve the batch, each with offline fixture tests: the new reader `json-esantion` (a JSON or GeoJSON file that a range read cut), the CSV option `delimitator` `tab` (the TSV tables of `onorata-instanta`), script files and the forms `window.NAME = {...}` and `Object.freeze([...])` in `js-literale` (two pages of mariuscomper.uk), and Laravel `Schema::table` migrations in the `php` reader (`lista-firme`). The collector now encodes letters outside ASCII in a link (the download page of `dupa-cutremur` was a network error). A partial repository file is no longer compared with its blob hash.
 
 Proposals for the owner: 22 provider items (D189–D210), two new proposed groups (`deficit-bugetar`, `coordonate-geografice`), selectors added to two proposed groups (`partid-politic`, `uat`), and candidate members for five reviewed groups (`cui`, `judet`, `localitate`, `populatie`, `perioada-de-referinta`; see section 5). Nothing was accepted or decided. `relatii.csv` and the review decisions did not change.
 
 Addendum, 2026-10-27 (branch `lista-firme-api`): the owner raised the request limit of `lista-firme` for one request. `GET https://lista-firme.info/api/v1/info?cui=51859625` (the CUI of the operator) answered HTTP 200 with 2,276 bytes of JSON and no key. It is the 36th source of the lot (57 field records and 637 in all for the lot after the corrected readers of 2026-10-27; 55 and 910 before). The response adds no new reviewed group member by itself: three candidate members (`cui`, `judet`, `localitate`) are in section 5. No provider item and no proposed group was added. The inventory keeps key names and observed types of the response; no value of a person is in a tracked file.
+
+Addendum, 2026-10-27 (branch `caen-seats`): the owner admitted `seats-index.json` of `sondaje-romania`, which the first pass had left out because the plain JSON reader made field names from its keys. The corrected reader of the same day reads it as one keyed collection. The browser had received the file when it rendered the parlamentare page, so its body was already in the cache (`via: browser`) and the source was registered offline: 0 requests (`sondaje-romania` stays at 5 of 15). It is the 37th source of the lot, with 1 field record (`${*}`, 21 keys; 638 field records in all for the lot). The keys name seven institutes (INSCOP, CURS, IRES, Avangarde, Sociopol, ARA, ARP) and a date; the values are file names. No field matches a group, so there is no candidate member and no new proposed member. No provider item: `llms.txt` and the methodology page already name Avangarde, Sociopol and ARA as institutes collected by hand, the Institutes page names ARP (Agenția de Rating Politic), and a key is the identifier of a poll, not a statement of who produced the data.
 
 #### `lista-firme` — lista-firme.info
 
@@ -303,7 +305,7 @@ Search by CUI or name over the Romanian companies, with an API (catalogue: `form
 - Provider proposals: D189, D190.
 - Blocker: none
 - Limitations: The keys come from one response of the deployed API, for one company (the operator). `info` is null, so the 18 columns of `infos` were not observed. `natural_person_representatives` and `eu_branches` are empty lists, so their keys are unknown. `mark` was null only, so its type is unknown. The 51 migration columns come from a recorded commit. Only the creation migrations of `addresses`, `infos` and `statuses` were read; two later migrations change `statuses`. The tables of legal representatives, natural-person representatives, EU branches and CAEN codes were not read (the limit of 15 requests). The response shows the keys of two of those relations (`caen`, `legal_representatives`), not the columns of their tables. The response holds data about a natural person (name, birth date and place, current location). The inventory keeps key names and observed types, no value. The terms forbid mass collection, so the entry had no second request. The README says `name` and the code reads `company`; that query was not requested.
-- Remaining work: Decide the three new candidate members of the reviewed groups `cui`, `judet` and `localitate`: the paths `$.cui`, `$.address.county` and `$.address.city` of the API response (D189, D190 and the candidates from the migrations are decided). Decide whether a group `cod-caen` is wanted: the CAEN code is a field in three entries (`lista-firme`, `companii-de-stat`, `romania-transparenta`). A second request to the API needs a new decision on the request limit of the entry.
+- Remaining work: Decide the three new candidate members of the reviewed groups `cui`, `judet` and `localitate`: the paths `$.cui`, `$.address.county` and `$.address.city` of the API response (D189, D190 and the candidates from the migrations are decided). Decide the proposed group `cod-caen` (5 members, in four entries: `lista-firme`, `companii-de-stat`, `romania-transparenta` and `demoanaf`). A second request to the API needs a new decision on the request limit of the entry.
 
 #### `dupa-cutremur` — După cutremur
 
@@ -346,15 +348,15 @@ Platform of the Funky Citizens project Open Justice 2.0: performance index and s
 
 #### `sondaje-romania` — Sondaje România
 
-Independent aggregator of Romanian polls (catalogue: `format:vizualizare|registru`; project `llms.txt` and methodology page). The JSON-LD of the page declares a schema.org Dataset with a download address (`average-voting-intentions.json`), the variables Voting Intention (percent) and Seat Projection (seats), the period 2026-09-07/2026-09-22, the measurement technique and the licence. One browser navigation of the page (the Next.js application) showed four JSON files that it requests: the weighted average, the seat projection, the chart series and an index of polls. 4 sources (the page, the average, the seat projection, the chart series), 36 field records. `llms.txt` lists the data sources: BEC, the polling institutes (INSCOP, CURS, IRES and MKOR via RSS, more than 20 collected by hand) and the two chambers. One selector set joins the proposed group `partid-politic`; 7 provider items (D196–D202).
+Independent aggregator of Romanian polls (catalogue: `format:vizualizare|registru`; project `llms.txt` and methodology page). The JSON-LD of the page declares a schema.org Dataset with a download address (`average-voting-intentions.json`), the variables Voting Intention (percent) and Seat Projection (seats), the period 2026-09-07/2026-09-22, the measurement technique and the licence. One browser navigation of the page (the Next.js application) showed four JSON files that it requests: the weighted average, the seat projection, the chart series and an index of polls. 5 sources (the page, the average, the seat projection, the chart series, the index of polls), 37 field records. `llms.txt` lists the data sources: BEC, the polling institutes (INSCOP, CURS, IRES and MKOR via RSS, more than 20 collected by hand) and the two chambers. One selector set joins the proposed group `partid-politic`; 7 provider items (D196–D202).
 
-- State: cu-surse-structurate. Sources 4, field records 36, groups 1.
-- Source URLs: `https://sondajeromania.ro/average-seats.json`; `https://sondajeromania.ro/average-voting-intentions.json`; `https://sondajeromania.ro/parlamentare`; `https://sondajeromania.ro/parliamentary-chart-data.json`
+- State: cu-surse-structurate. Sources 5, field records 37, groups 1.
+- Source URLs: `https://sondajeromania.ro/average-seats.json`; `https://sondajeromania.ro/average-voting-intentions.json`; `https://sondajeromania.ro/parlamentare`; `https://sondajeromania.ro/parliamentary-chart-data.json`; `https://sondajeromania.ro/seats-index.json`
 - Proposed groups: `partid-politic`
 - Documented inputs: none documented in the sources read. HTML controls stay candidates.
 - Provider proposals: D196, D197, D198, D199, D200, D201, D202.
 - Blocker: none
-- Limitations: The licence differs between declarations: `llms.txt` and the first Dataset say CC BY 4.0, the Dataset of the parliamentary page says CC BY-NC 4.0. The file `seats-index.json` was seen and not admitted: its keys are poll identifiers (institute and date), and the JSON reader would turn values into field names. The individual polls (339 on the Institutes page) are in pages, not in a downloadable file; the chart series holds the poll points, read as a sample of 25 elements. New parliamentary polls are extracted by a language model (`llms.txt`); the project does not publish the extracted fields.
+- Limitations: The licence differs between declarations: `llms.txt` and the first Dataset say CC BY 4.0, the Dataset of the parliamentary page says CC BY-NC 4.0. The file `seats-index.json` (21 keys, poll identifiers made of an institute and a date; the values are the file names of the polls) is admitted as a source since 2026-10-27, at the owner's request. The reader gives it as one keyed collection (`${*}`, 1 field record): the keys never become field names. The 21 files that the values name were not requested and have no field records. The individual polls (339 on the Institutes page) are in pages, not in a downloadable file; the chart series holds the poll points, read as a sample of 25 elements. New parliamentary polls are extracted by a language model (`llms.txt`); the project does not publish the extracted fields.
 - Remaining work: Decide D196–D202 and the selectors added to the proposed group `partid-politic`. Clarify the licence (CC BY or CC BY-NC) before reusing the files.
 
 #### `guvernezi` — Guvernezi!
@@ -728,3 +730,4 @@ External blockers and security findings:
 - Resolve the 62 unconfirmed profiles and the 100 projects and resources without extracted fields; a missing extraction does not prove missing data.
 - Batch C2: decide the 3 proposed groups of part 1 (`casatorii`, `divorturi`, `studenti`; done 2026-10-26) and the 3 of part 2 (`uat`, `partid-politic`, `beneficiar-fonduri-publice`), the candidate members for the reviewed groups (`judet`, `perioada-de-referinta`, `populatie`, `localitate` from part 1; `siruta`, `cui`, `judet`, `localitate`, `voturi-valide` from part 2), and the provider items D176–D185 (decided 2026-10-26) and D186. Decide whether a tab over 2,000,000 bytes may be read for its header. Part 3 (`bani-partide`): decide D187, the two proposed groups (`subventie-partid`, `donatie-partid`), the new members of the proposed groups `partid-politic` and `uat`, and the six candidate selectors for `cui`, `judet` and `perioada-de-referinta`; save the documentation pages of `banipartide.ro` if you want providers looked for in their text.
 - Batch D (twelve entries of „De analizat”): decide the provider items D189–D210, the two new proposed groups (`deficit-bugetar`, `coordonate-geografice`), the selectors added to the proposed groups `partid-politic` and `uat`, and the candidate members for the reviewed groups (section 5). Decide whether a new family for public finance is wanted (`deficit-bugetar` sits in `achizitii`). Decide whether `guvernezi` needs a reader for its profile pages or an export from its owner.
+- Decide the proposed group `cod-caen` (the CAEN code, `inventar-concepte.json`; 5 members from `lista-firme`, `companii-de-stat` (two sources), `romania-transparenta` and `demoanaf`; 8 ambiguity entries; none of the members is confirmed). Decide whether the family `identificatori` is right, or `firme`.
