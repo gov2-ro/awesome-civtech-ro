@@ -18,7 +18,8 @@ from pathlib import Path
 
 from collect_docs import is_saved
 from common import ROOT, PUBLIC_ROOT, UNASSESSED, inventory_scope, load_catalogue, observation_paths
-from inventory_concepts import GROUP_STATES, SELECTOR_STATES, active_groups, group_state, selector_matches, selector_state
+from inventory_concepts import (CANDIDATE_STATES, GROUP_STATES, SELECTOR_STATES, active_groups, candidate_items, candidate_label, candidate_state, group_state,
+                                repeated_exclusions, selector_matches, selector_state)
 from inventory_state import counted_fields
 from taxonomy_v2 import HIDDEN
 
@@ -206,7 +207,36 @@ def review_state(data):
     selectors = [s for c in data['concepts'] for s in c['selectors']]
     return {'provider_items': len(providers), 'provider_states': Counter(r['stare'] for r in providers),
             'group_states': Counter(group_state(c) for c in data['concepts']),
-            'member_states': Counter(selector_state(s) for s in selectors)}
+            'member_states': Counter(selector_state(s) for s in selectors),
+            'candidate_states': Counter(candidate_state(i) for i in candidate_items(data['notes']) if isinstance(i, dict))}
+
+
+def candidate_lines(notes):
+    """Section 5, the candidate members. Only the open candidates are listed (the owner decides them in the review interface); the excluded ones are counted
+    in one line, so that a later batch sees the refusal; a candidate that equals an excluded one is named, with the note of the owner."""
+    items = [i for i in candidate_items(notes) if isinstance(i, dict)]
+    opened = [i for i in items if candidate_state(i) == 'propus']
+    excluded = [i for i in items if candidate_state(i) == 'exclus']
+    out = []
+    if opened:
+        out += ['Open candidate members of reviewed groups. They are not in `inventar-concepte.json`: a reviewed group cannot hold a member that the owner has not confirmed. '
+                'The owner confirms or excludes each one in the review interface (the queue „Candidați”). Each line is a selector:', '']
+        out += [f'- `{i["grup"]}`: `{json.dumps(i["selector"], ensure_ascii=False)}`' for i in opened]
+        out.append('')
+    if excluded:
+        out += [f'Excluded candidates: {len(excluded)}. The owner refused them. They stay in `inventar-note.json` (`stare` `exclus`, with `nota_editor`) so that a later batch sees the refusal: '
+                + ', '.join(f'`{candidate_label(i)}`' for i in excluded) + '.', '']
+    again = repeated_exclusions(items)
+    if again:
+        out += ['Candidates proposed again after an exclusion (same group, projects, names, path, role and source). The owner decides again, with the earlier note in view:', '']
+        out += [f'- `{candidate_label(new)}`: the owner excluded it with the note „{old.get("nota_editor", "")}”.' for new, old in again]
+        out.append('')
+    return out
+
+
+def candidate_sentence(states):
+    """The candidate counts for the review-state paragraph of section 1 (empty when no candidate exists)."""
+    return f' Candidate members: {count_line(states, CANDIDATE_STATES)}.' if sum(states.values()) else ''
 
 
 def count_line(counter, states):
@@ -283,7 +313,7 @@ def render_report(data, rows):
     w('')
     w(f'Review state, counted from the tracked files. Provider items (`camp` `surse_date`): {m["provider_items"]} in all; {count_line(m["provider_states"], REVIEW_STATES)}. '
       f'Variable groups: {len(data["concepts"])} in all; {count_line(m["group_states"], GROUP_STATES)}. '
-      f'Group members (selectors): {sum(m["member_states"].values())} in all; {count_line(m["member_states"], SELECTOR_STATES)}.')
+      f'Group members (selectors): {sum(m["member_states"].values())} in all; {count_line(m["member_states"], SELECTOR_STATES)}.' + candidate_sentence(m['candidate_states']))
     w('')
     left = m['left_out']
     w(f'Scope of the data finder (`/date/`): {m["in_scope"]} of the {m["finder"] - m["hidden"]} public projects and resources are in scope. '
@@ -416,13 +446,8 @@ def render_report(data, rows):
         for text in concept.get('ambiguitati', []):
             w(f'- `{concept["id"]}`: {text}')
     w('')
-    if notes.get('selectori_candidati'):
-        w('Candidate members of reviewed groups (batches C2 and D). They are not in `inventar-concepte.json`: a reviewed group cannot hold a member that the owner has not confirmed. '
-          'Each line is a selector that the owner can add after the decision:')
-        w('')
-        for item in notes['selectori_candidati']:
-            w(f'- `{item["grup"]}`: `{json.dumps(item["selector"], ensure_ascii=False)}`')
-        w('')
+    for line in candidate_lines(notes):
+        w(line)
     w('## 6. Provider proposals')
     w('')
     w('Review items D147 and later hold provider findings from this pass. None changes `relatii.csv`, none closes D132–D146, and the accepted provider facet is unchanged.')

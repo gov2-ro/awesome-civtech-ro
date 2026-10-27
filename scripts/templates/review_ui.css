@@ -35,8 +35,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .progress, .validation { margin: 0; font-size: 14px; color: var(--ink-2); }
 .validation[data-ok="true"] { color: var(--ok); }
 .validation[data-ok="false"] { color: var(--bad); font-weight: 600; }
-.tabs { display: flex; gap: 4px; }
-.tabs a { padding: 5px 12px; border-radius: var(--radius); text-decoration: none; color: var(--ink-2); border: 1px solid transparent; }
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; }
+.tabs a { padding: 5px 12px; border-radius: var(--radius); text-decoration: none; color: var(--ink-2); border: 1px solid transparent; white-space: nowrap; }
 .tabs a[aria-current="page"] { border-color: var(--line-strong); background: var(--surface); color: var(--ink); font-weight: 600; }
 .filter { display: flex; margin-left: auto; }
 .filter button { border: 1px solid var(--line-strong); background: var(--bg); padding: 4px 12px; cursor: pointer; }
@@ -102,6 +102,10 @@ ul.plain li { padding: 4px 0; border-bottom: 1px solid var(--line); overflow-wra
 .examples { width: 100%; border-collapse: collapse; font-size: 13px; margin: 6px 0; display: block; overflow-x: auto; }
 .examples td, .examples th { text-align: left; padding: 2px 10px 2px 0; vertical-align: top; }
 .examples code { white-space: normal; }
+
+.compare { max-height: 18em; overflow: auto; border: 1px solid var(--line); border-radius: var(--radius); padding: 0 10px; min-width: 0; }
+.compare li[data-this="1"] { background: var(--surface-2); }
+.compare .ctx { display: block; font-size: 12px; color: var(--muted); }
 
 .decision { border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 12px; margin-top: 24px; background: var(--surface); }
 .actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }

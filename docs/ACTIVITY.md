@@ -1,5 +1,35 @@
 # Activity
 
+## 2026-10-27 — Candidate members in the review interface
+
+**Done**
+- Branch `review-candidates` (base `e6e2fd5`), brief `docs/briefs/review-ui-candidates.md`. A third queue, „Candidați”, lists the open candidates of `inventar-note.json` (`selectori_candidati`) with the label of the group on each. The tab shows the count of open candidates; the header adds `Candidați: N deschiși` when a candidate exists.
+- The detail of a candidate shows the group (label, definition, basis), the selector (projects, names, path, source, role, context), its reach in the retained inventory (`FieldIndex.examples`), its pinned facts with their evidence (`Evidence.view`), and the confirmed members of the group (the members of the same project first). Confirm, Exclude and Reset follow section 3 of the brief.
+- A decision writes `inventar-concepte.json` and `inventar-note.json` together (atomic, byte-stable, hash check of both files, `refuse_new_errors`). The shared code moved to `inventory_concepts.py` (`validate_candidates`, `candidate_blockers`, `repeated_exclusions`, `candidate_key`); `Store.member_view` serves the group and the candidate.
+- `inventory_report.py`: section 5 lists only the open candidates, counts the excluded ones in one line, and names a candidate that a batch proposes again after an exclusion. The tracked report did not change (the notes hold no candidate).
+- The check panel counts the open candidates (`/api/git` has `candidates`). `public_diff` is unchanged.
+- Docs: `docs/DATA-SCHEMA.md` (keys, actions, identity, errors), `CLAUDE.md`, `AGENTS.md`, `data/taxonomy-v2/README.md`.
+- Measured: unit tests 1053 (6 skipped) before, 1102 (6 skipped) after (+43 in `test_review_ui.py`, +6 in `test_inventory_report.py`). The browser check had 75 checks and has 127: a second temporary copy holds six candidates that the check makes itself. `node --check` passes. `validate.py --publication`, `inventory.py --check`, `inventory_report.py --check` and the three package checks pass. No real review file changed.
+- Mutation checks: 35 mutations of the new Python rules (one rule each) and 6 of the page; all are killed by a test or a browser check.
+
+**Hard**
+- The first mutation round left one survivor (M34: the comparison listed every member, not only the confirmed ones). The fixture had only confirmed members. A test with an excluded member kills it.
+- A confirmed candidate leaves `selectori_candidati`, so a Reset had nothing to show. The page reads the difference between HEAD and the working tree: a candidate that HEAD lists, that the notes do not list, and that a group holds as a new member is shown as `confirmat`, in its place at HEAD. After a commit it is gone for good, as the brief says („works only while no commit holds the decision”).
+- The place of a working candidate shifts when an earlier one is confirmed. The browser check first missed this because it reset the first candidate before it confirmed the next. The check now confirms a second candidate while the first is confirmed, and the page follows the new id.
+- `refuse_new_errors` blocks a reset that would bring back an error that HEAD holds (the first browser run tried it on a candidate of a proposed group). This is the rule of the brief; a unit test pins it.
+- In `zsh` an unquoted `$c` does not split into words; two verification commands failed on that until they ran through `eval`.
+
+**Decided**
+- `stare` and `nota_editor` of a candidate sit on the item (`{grup, selector, stare, nota_editor}`), not inside the selector. The selector then stays equal to the member that a confirmation creates, and the identity does not change with a decision. The alternative (keys inside the selector) would change the hash of a candidate at each decision.
+- The identity of a candidate is its place in the list and the first 12 hex digits of the SHA-256 of its group and its selector. The brief says „a hash of its selector”; the group is part of the hash, so that two groups that propose one selector stay apart.
+- An excluded candidate can be confirmed or excluded again (an owner may change a decision, as for a provider item). A candidate that is confirmed and not committed can only be reset.
+- When the list is empty the key `selectori_candidati` leaves the file, as in the commit `9a18b67`. A reset puts the key back where HEAD had it, so that the bytes of HEAD return. The alternative (an empty list in the file) would need no code but would leave a key that the batches remove.
+- An open candidate is a validation error when its group is missing, is not `revizuit`, or already holds the selector. An excluded candidate is history and is not checked. A consequence: a group decision that would leave an open candidate without a reviewed group (for example `Amân` on a reviewed group) is refused as a new error until the candidate is decided.
+- Confirm also refuses a selector that the group holds already (the brief does not say; a double member is wrong).
+- „Equal” for a refused proposal means the same group and the same sorted `projects`, `names`, `path`, `role` and `source`; the text of `context`, `nota` and `fapte` does not count. The page also shows the earlier note on the detail of such a candidate (the brief asks only for the report).
+- The tool refuses to load a candidate list of the wrong shape (not a list of objects with `grup` and `selector`), as it refuses a file that does not round-trip.
+- Not done: `validate.py` and `inventory.py --check` do not read `selectori_candidati`; only the review interface does (a backlog item).
+
 ## 2026-10-27 — Owner review of batch E and sicap-ai
 
 **Done**

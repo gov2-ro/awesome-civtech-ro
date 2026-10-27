@@ -3,10 +3,12 @@
 
     python3 scripts/review_ui.py [--port 8790] [--data-dir data/taxonomy-v2/integrare]
 
-It serves one page and a small JSON API on 127.0.0.1 and nothing else. Two queues:
+It serves one page and a small JSON API on 127.0.0.1 and nothing else. Three queues:
 
 * Providers: the open `revizuire.csv` items with `camp=surse_date` (written: `revizuire.csv`, `relatii.csv` of the data root).
 * Variable groups: the groups of `inventar-concepte.json` and their members, the selectors (written: that file).
+* Candidate members: the selectors that a batch proposes for a reviewed group (`selectori_candidati` of `inventar-note.json`). A confirmed candidate
+  moves into its group; an excluded one stays in the notes with `stare` and `nota_editor` (written: both files, together).
 
 The tool writes repository files and never commits: git is the audit trail. Each write reads the file, applies one decision, validates
 the result with the existing loaders, and replaces the file atomically. A request carries the hash of the file that the page loaded;
@@ -40,8 +42,10 @@ from urllib.parse import urlsplit
 
 import taxonomy_v2
 from common import PUBLIC_ROOT, ROOT, observation_paths
-from inventory_concepts import (BASIS_LABELS, GROUP_REVIEW_KEYS, GROUP_STATES, SELECTOR_REVIEW_KEYS, SELECTOR_STATES, EvidenceLocator, as_list,
-                                group_state, selector_matches, selector_state, sha, validate_concept, validate_families)
+from inventory_concepts import (BASIS_LABELS, CANDIDATE_REVIEW_KEYS, CANDIDATES, GROUP_REVIEW_KEYS, GROUP_STATES, SELECTOR_REVIEW_KEYS, SELECTOR_STATES,
+                                EvidenceLocator, as_list, candidate_blockers, candidate_items, candidate_key, candidate_label, candidate_state, candidate_what,
+                                group_state, repeated_exclusions, same_member, selector_matches, selector_state, sha, validate_candidates,
+                                validate_concept, validate_families)
 
 SCRIPTS = Path(__file__).resolve().parent
 TEMPLATES = SCRIPTS / 'templates'
@@ -49,6 +53,7 @@ ASSETS = {'review_ui.css': 'text/css; charset=utf-8', 'review_ui.js': 'text/java
 SITE_URL = 'https://civtech.gov2.ro/'  # the public catalogue; the same constant as build.py (that module is heavy to import)
 PROVIDER_ID = re.compile(r'^D\d+$')
 GROUP_ID = re.compile(r'^[a-z0-9]+(?:-[a-z0-9]+)*$')
+CANDIDATE_ID = re.compile(r'^(\d+)-([0-9a-f]{12})$')  # its place in the list and the start of the SHA-256 of its group and selector
 LINKED = re.compile(r'^(L\d+): (.*)$', re.S)
 APPENDED = re.compile(r'\(rând (L\d+)\)')
 EVIDENCE_IN_REASON = re.compile(r'Dovadă: (\S+) \(text păstrat, sha256 ([0-9a-f]{8,64})\)')
@@ -68,6 +73,7 @@ STATE_LABELS = {'verificat': 'verificat', 'schimbat': 'schimbat', 'indisponibil'
                 'fara-amprenta': 'fără amprentă', 'fragment-lipsa': 'fragment lipsă'}
 COPY_KINDS = ('sursa', 'documentatie', 'cache')
 STALE = 'Un fișier s-a schimbat pe disc după ce pagina l-a încărcat (editor, Sheets sau git). Reîncărcați datele.'
+STALE_CANDIDATE = 'Lista de candidați s-a schimbat: candidatul nu mai este la această poziție. Reîncărcați datele.'
 
 
 class ReviewError(Exception):
@@ -123,6 +129,14 @@ def parse_json(raw: bytes):
     if dump_json(data, raw) != raw:
         raise ReviewError('Fișierul JSON nu se rescrie identic octet cu octet (indentare, ordinea cheilor sau newline-ul final). Instrumentul refuză să-l rescrie.', 500)
     return data
+
+
+def check_candidate_shape(notes):
+    """The candidate list must be a list of objects that have a `grup` and a `selector`: the page cannot show anything else. Raises ReviewError."""
+    items = notes.get(CANDIDATES) if isinstance(notes, dict) else None
+    if items is not None and not (isinstance(items, list) and all(isinstance(i, dict) and isinstance(i.get('grup'), str) and isinstance(i.get('selector'), dict) for i in items)):
+        raise ReviewError(f'inventar-note.json: {CANDIDATES} trebuie să fie o listă de obiecte cu «grup» și «selector». Instrumentul refuză să o citească.', 500)
+    return notes
 
 
 def dump_json(data, like: bytes | None = None) -> bytes:
@@ -349,7 +363,7 @@ class FieldIndex:
         from different sources first."""
         self.load()
         found = []
-        for slug in as_list(selector['projects']):
+        for slug in as_list(selector.get('projects')):
             for ref in self.profiles.get(slug, {}).get('surse_structurate', []):
                 source = self.sources.get(ref)
                 for field in (source or {}).get('campuri', []):
@@ -599,11 +613,135 @@ def apply_member(data, gid, number, action, *, note=''):
 
 
 # ---------------------------------------------------------------------------------------------------------------------
+# Candidate decisions (pure: the dictionary and the notes in, the dictionary and the notes out)
+# ---------------------------------------------------------------------------------------------------------------------
+
+def candidate_id(number: int, item: dict) -> str:
+    return f'{number}-{candidate_key(item)[:12]}'
+
+
+def blocker_text(reason: str, value) -> str:
+    return {'missing-group': f'Grupul «{value}» nu există.',
+            'group-state': f'Grupul este «{value}». Un candidat se confirmă numai într-un grup revizuit; un membru al unui alt grup se adaugă direct în grup.',
+            'held': f'Grupul are deja acest selector ca membru (membrul {value}).'}[reason]
+
+
+def confirmed_since_head(data: dict, notes: dict, head_data, head_notes) -> list[dict]:
+    """The candidates that HEAD lists, that the notes do not list any more, and whose selector a group holds now but did not hold at HEAD:
+    confirmed and not committed. Each is {'number' (its place at HEAD), 'item', 'member' (its number in the group)}, in HEAD order."""
+    if head_data is None or head_notes is None:
+        return []
+    present = {candidate_key(i) for i in candidate_items(notes)}
+    groups = {c['id']: c for c in data['concepte']}
+    head_groups = {c['id']: c for c in head_data['concepte']}
+    found, seen = [], set()
+    for number, item in enumerate(candidate_items(head_notes), 1):
+        key, group = candidate_key(item), groups.get(item.get('grup'))
+        if key in present or key in seen or group is None:
+            continue
+        selector = item.get('selector') or {}
+        at = next((n for n, member in enumerate(group['selectors'], 1) if same_member(selector, member)), None)
+        held = any(same_member(selector, member) for member in head_groups.get(item.get('grup'), {}).get('selectors', []))
+        if at is not None and not held:
+            seen.add(key)
+            found.append({'number': number, 'item': item, 'member': at})
+    return found
+
+
+def with_candidates(notes: dict, items: list, head_notes) -> dict:
+    """The notes with this candidate list. An empty list removes the key, as the batches do. A key that comes back goes where HEAD had it,
+    so that a reset gives the bytes of HEAD."""
+    if not items:
+        notes.pop(CANDIDATES, None)
+        return notes
+    if CANDIDATES in notes:
+        notes[CANDIDATES] = items
+        return notes
+    order = list(head_notes) if head_notes is not None and CANDIDATES in head_notes else list(notes) + [CANDIDATES]
+    before = [k for k in order[:order.index(CANDIDATES)] if k in notes]
+    out = {CANDIDATES: items} if not before else {}
+    for key, value in notes.items():
+        out[key] = value
+        if before and key == before[-1]:
+            out[CANDIDATES] = items
+    return out
+
+
+def insert_position(items: list, head_items: list, at_head: int) -> int:
+    """Where a candidate that HEAD lists at `at_head` goes back: after the last listed candidate that HEAD lists before it."""
+    head_index = {}
+    for n, item in enumerate(head_items):
+        head_index.setdefault(candidate_key(item), n)
+    position = 0
+    for n, item in enumerate(items):
+        placed = head_index.get(candidate_key(item))
+        if placed is not None and placed < at_head:
+            position = n + 1
+    return position
+
+
+def apply_candidate(data, notes, cid, action, *, note='', head_data=None, head_notes=None):
+    """One decision on a candidate (`cid` is its place in the list and the start of its hash, as in the page). Returns (dictionary, notes,
+    a sentence for the page, the key of the candidate). `head_data` and `head_notes` are the two files at HEAD (None without git)."""
+    data, notes = copy.deepcopy(data), copy.deepcopy(notes)
+    found = CANDIDATE_ID.match(cid or '')
+    if not found:
+        raise ReviewError('Nu este un identificator de candidat.', 404)
+    number, prefix = int(found.group(1)), found.group(2)
+    if action not in ('confirm', 'exclude', 'reset'):
+        raise ReviewError(f'Acțiune necunoscută: {action!r}.')
+    items = candidate_items(notes)
+    at = number - 1 if 1 <= number <= len(items) and candidate_key(items[number - 1]).startswith(prefix) else None
+    since = [g for g in confirmed_since_head(data, notes, head_data, head_notes) if g['number'] == number and candidate_key(g['item']).startswith(prefix)]
+    if action == 'reset':
+        if head_data is None or head_notes is None:
+            raise ReviewError('Nu există o versiune HEAD a notelor la care să revină (fără depozit git sau commit).')
+        if at is None and not since:
+            raise ReviewError(STALE_CANDIDATE, 409, reload=True)
+        item = items[at] if at is not None else since[0]['item']
+        head_items = candidate_items(head_notes)
+        at_head = next((n for n, held in enumerate(head_items) if candidate_key(held) == candidate_key(item)), None)
+        if at_head is None:
+            raise ReviewError('Candidatul nu există în HEAD (a fost propus după ultimul commit); nu are la ce să revină.')
+        restored = copy.deepcopy(head_items[at_head])
+        if at is not None:
+            items[at] = restored
+        else:  # confirmed since HEAD: the member leaves its group and the candidate goes back to its place
+            group = find_group(data, item['grup'])
+            del group['selectors'][since[0]['member'] - 1]
+            items.insert(insert_position(items, head_items, at_head), restored)
+        return data, with_candidates(notes, items, head_notes), f'Candidatul «{candidate_label(item)}» a revenit la valorile din HEAD.', candidate_key(item)
+    if at is None:
+        if since:
+            raise ReviewError('Candidatul este deja confirmat și nu este în HEAD. Resetați-l înainte să-l schimbați.')
+        raise ReviewError(STALE_CANDIDATE, 409, reload=True)
+    item = items[at]
+    label = candidate_label(item)
+    if action == 'exclude':
+        text = clean_text(note, 'Notă')
+        items[at] = reorder({**item, 'stare': 'exclus', 'nota_editor': text}, CANDIDATE_REVIEW_KEYS)
+        return data, with_candidates(notes, items, head_notes), f'Candidatul «{label}»: exclus.', candidate_key(item)
+    groups = {c['id']: c for c in data['concepte']}
+    blockers = candidate_blockers(item, groups)
+    if blockers:
+        raise ReviewError('Candidatul nu poate fi confirmat. ' + ' '.join(blocker_text(*b) for b in blockers), 422)
+    text = clean_text(note, 'Notă', required=False)
+    member = {k: v for k, v in copy.deepcopy(item['selector']).items() if k not in SELECTOR_REVIEW_KEYS}
+    member['stare'] = 'confirmat'
+    if text:
+        member['nota_editor'] = text
+    group = groups[item['grup']]
+    group['selectors'].append(reorder(member, SELECTOR_REVIEW_KEYS))
+    del items[at]
+    return data, with_candidates(notes, items, head_notes), f'Candidatul «{label}» este membrul {len(group["selectors"])} al grupului {group["id"]}: confirmat.', candidate_key(item)
+
+
+# ---------------------------------------------------------------------------------------------------------------------
 # The store: one data root
 # ---------------------------------------------------------------------------------------------------------------------
 
 class Store:
-    """Reads, shows and writes the three review files of one data root. Every public method takes the lock."""
+    """Reads, shows and writes the four review files of one data root. Every public method takes the lock."""
 
     def __init__(self, root: Path = PUBLIC_ROOT, today=None):
         self.root = Path(root).resolve()
@@ -611,7 +749,7 @@ class Store:
             raise SystemExit(f'{root}: not a taxonomy v2 data root')
         files = taxonomy_v2.Files(self.root)
         self.paths = {'revizuire': files.path('revizuire.csv'), 'relatii': files.path('relatii.csv'),
-                      'concepte': self.root.parent / 'inventar-concepte.json'}
+                      'concepte': self.root.parent / 'inventar-concepte.json', 'note': self.root.parent / 'inventar-note.json'}
         missing = [str(p) for p in self.paths.values() if not p.exists()]
         if missing:
             raise SystemExit('Missing review files: ' + ', '.join(missing))
@@ -630,17 +768,20 @@ class Store:
         rev_header, rev_rows = parse_csv(raw['revizuire'])
         rel_header, rel_rows = parse_csv(raw['relatii'])
         return {'raw': raw, 'hashes': {k: digest(v) for k, v in raw.items()}, 'rev_header': rev_header, 'rev_rows': rev_rows,
-                'rel_header': rel_header, 'rel_rows': rel_rows, 'concepts': parse_json(raw['concepte'])}
+                'rel_header': rel_header, 'rel_rows': rel_rows, 'concepts': parse_json(raw['concepte']), 'notes': check_candidate_shape(parse_json(raw['note']))}
 
     def head(self) -> dict:
-        """The three files at HEAD, parsed; an entry is None when git or the commit is missing."""
-        out = {'rev': None, 'rel': None, 'concepts': None}
-        for key, name, parser in (('rev', 'revizuire', parse_csv), ('rel', 'relatii', parse_csv), ('concepts', 'concepte', parse_json)):
+        """The four files at HEAD, parsed; an entry is None when git or the commit is missing."""
+        out = {'rev': None, 'rel': None, 'concepts': None, 'notes': None}
+        for key, name, parser in (('rev', 'revizuire', parse_csv), ('rel', 'relatii', parse_csv), ('concepts', 'concepte', parse_json),
+                                  ('notes', 'note', parse_json)):
             raw = self.git.head_bytes(self.paths[name])
             if raw is None:
                 continue
             try:
                 parsed = parser(raw)
+                if key == 'notes':
+                    check_candidate_shape(parsed)
             except ReviewError:
                 continue
             out[key] = {r['id']: r for r in parsed[1]} if parser is parse_csv else parsed
@@ -660,8 +801,9 @@ class Store:
 
     # -- validation ------------------------------------------------------------------------------------------------
 
-    def errors_of(self, data: dict, rev_rows=None, rel_rows=None) -> list[str]:
-        """Package errors (with the publication gate) and dictionary errors for the given content of the three files."""
+    def errors_of(self, data: dict, rev_rows=None, rel_rows=None, notes=None) -> list[str]:
+        """Package errors (with the publication gate), dictionary errors and candidate errors for the given content of the four files.
+        A file that the caller does not pass is the file on disk."""
         pkg = self.package()
         if rev_rows is not None:
             pkg.tables['revizuire.csv'] = rev_rows
@@ -674,13 +816,14 @@ class Store:
             errors.append('inventar-concepte.json: duplicate group ids')
         for concept in data['concepte']:
             errors += validate_concept(concept, known)
-        return errors + validate_families(data)
+        notes = notes if notes is not None else parse_json(self.paths['note'].read_bytes())
+        return errors + validate_families(data) + validate_candidates(notes.get(CANDIDATES), data['concepte'], known)
 
     def current_errors(self, snapshot: dict) -> list[str]:
         """The errors of the files as they are on disk, computed once for each content of the three files."""
         key = tuple(snapshot['hashes'].values())
         if self._validation[0] != key:
-            self._validation = (key, self.errors_of(snapshot['concepts']))
+            self._validation = (key, self.errors_of(snapshot['concepts'], notes=snapshot['notes']))
         return self._validation[1]
 
     def validation(self, snapshot: dict) -> dict:
@@ -722,13 +865,59 @@ class Store:
                                'propus': members['propus']})
             by_state = Counter(p['stare'] for p in providers)
             group_states = Counter(g['stare'] for g in groups)
+            by_id = {c['id']: c for c in snap['concepts']['concepte']}
+            candidates = [self.candidate_row(r, by_id, entries) for r in self.candidate_records(snap, self.head())]
+            candidate_states = Counter(c['stare'] for c in candidates)
             return {
-                'hashes': snap['hashes'], 'today': self.today(), 'root': str(self.root), 'providers': providers, 'groups': groups,
+                'hashes': snap['hashes'], 'today': self.today(), 'root': str(self.root), 'providers': providers, 'groups': groups, 'candidates': candidates,
                 'progress': {
                     'providers': {'total': len(providers), 'decided': sum(by_state[s] for s in PROVIDER_DECIDED), 'by_state': dict(by_state)},
-                    'groups': {'total': len(groups), 'decided': sum(group_states[s] for s in GROUP_DECIDED), 'by_state': dict(group_states)}},
+                    'groups': {'total': len(groups), 'decided': sum(group_states[s] for s in GROUP_DECIDED), 'by_state': dict(group_states)},
+                    'candidates': {'total': len(candidates), 'open': candidate_states['propus'], 'decided': candidate_states['exclus'] + candidate_states['confirmat'],
+                                   'by_state': dict(candidate_states)}},
                 'validation': self.validation(snap), 'git': {'available': self.git.available},
             }
+
+    # -- the candidate queue -----------------------------------------------------------------------------------------
+
+    def candidate_records(self, snap: dict, head: dict) -> list[dict]:
+        """The candidate queue: the listed candidates in file order, and among them (in their place at HEAD) the ones confirmed since HEAD,
+        which the notes do not list any more and a group holds now. Each record has its `id`, `key`, `item`, `origin` (`lista` or `confirmat`)
+        and `head` (`available`: HEAD lists it; `changed`: it differs from HEAD, so a reset has something to do)."""
+        head_notes = head['notes']
+        head_items = candidate_items(head_notes) if head_notes is not None else None
+        head_index = {}
+        for n, item in enumerate(head_items or []):
+            head_index.setdefault(candidate_key(item), n)
+        listed = []
+        for number, item in enumerate(candidate_items(snap['notes']), 1):
+            key = candidate_key(item)
+            at_head = head_index.get(key)
+            listed.append({'origin': 'lista', 'number': number, 'key': key, 'item': item, 'member': None, 'at_head': at_head,
+                           'head': {'available': at_head is not None, 'changed': at_head is not None and head_items[at_head] != item}})
+        ghosts = [{'origin': 'confirmat', 'number': g['number'], 'key': candidate_key(g['item']), 'item': g['item'], 'member': g['member'],
+                   'at_head': g['number'] - 1, 'head': {'available': True, 'changed': True}}
+                  for g in confirmed_since_head(snap['concepts'], snap['notes'], head['concepts'], head_notes)]
+        ordered = []
+        for record in listed:
+            while ghosts and record['at_head'] is not None and ghosts[0]['at_head'] < record['at_head']:
+                ordered.append(ghosts.pop(0))
+            ordered.append(record)
+        ordered += ghosts
+        for record in ordered:
+            record['id'] = candidate_id(record['number'], record['item'])
+        return ordered
+
+    def candidate_row(self, record: dict, groups: dict, entries: dict) -> dict:
+        item, group = record['item'], groups.get(record['item'].get('grup'))
+        selector = item.get('selector') or {}
+        what = candidate_what(selector)
+        projects = ', '.join(entries.get(s, {}).get('nume', s) for s in as_list(selector.get('projects')))
+        stare = 'confirmat' if record['origin'] == 'confirmat' else candidate_state(item)
+        return {'id': record['id'], 'short': f'#{record["number"]}', 'number': record['number'], 'key': record['key'], 'group': item.get('grup'),
+                'label': group['label'] if group else str(item.get('grup')), 'group_stare': group_state(group) if group else None,
+                'proposal': f'{what} · {projects}', 'stare': stare,
+                'problems': len(candidate_blockers(item, groups)) if stare == 'propus' else 0}
 
     def related(self, rows, item) -> list[dict]:
         name = provider_name(item)
@@ -779,6 +968,20 @@ class Store:
                 'hashes': {k: snap['hashes'][k] for k in ('revizuire', 'relatii')},
             }
 
+    @staticmethod
+    def pin_view(evidence: Evidence, pin):
+        return None if not pin else evidence.view(pin['sursa'], pin=pin.get('sha256'), fragment=pin['fragment'], kind=pin.get('text'))
+
+    def member_view(self, number, selector: dict, entries: dict, evidence: Evidence) -> dict:
+        """What the page shows of one selector: where it points, how far it reaches in the retained inventory, and its pinned facts with their evidence."""
+        return {
+            'number': number, 'projects': [{'slug': s, 'name': entries.get(s, {}).get('nume', s)} for s in as_list(selector.get('projects'))],
+            'names': as_list(selector.get('names')), 'path': as_list(selector.get('path')), 'source': as_list(selector.get('source')),
+            'role': as_list(selector.get('role')), 'context': selector.get('context', ''), 'nota': selector.get('nota', ''),
+            'stare': selector_state(selector), 'nota_editor': selector.get('nota_editor', ''), 'reach': self.fields.examples(selector),
+            'facts': [{'key': f['cheie'], 'value': f['valoare'], 'basis': f['baza'], 'basis_label': BASIS_LABELS.get(f['baza'], f['baza']),
+                       'evidence': self.pin_view(evidence, f.get('dovada'))} for f in selector.get('fapte', [])]}
+
     def group(self, gid: str) -> dict:
         with self.lock:
             if not GROUP_ID.match(gid):
@@ -786,17 +989,8 @@ class Store:
             snap = self.read()
             concept = find_group(snap['concepts'], gid)
             entries, evidence = self.entry_names(), self.evidence()
-            view = lambda pin: None if not pin else evidence.view(pin['sursa'], pin=pin.get('sha256'), fragment=pin['fragment'], kind=pin.get('text'))
-            members = []
-            for number, selector in enumerate(concept['selectors'], 1):
-                reach = self.fields.examples(selector)
-                members.append({
-                    'number': number, 'projects': [{'slug': s, 'name': entries.get(s, {}).get('nume', s)} for s in as_list(selector['projects'])],
-                    'names': as_list(selector.get('names')), 'path': as_list(selector.get('path')), 'source': as_list(selector.get('source')),
-                    'role': as_list(selector.get('role')), 'context': selector.get('context', ''), 'nota': selector.get('nota', ''),
-                    'stare': selector_state(selector), 'nota_editor': selector.get('nota_editor', ''), 'reach': reach,
-                    'facts': [{'key': f['cheie'], 'value': f['valoare'], 'basis': f['baza'], 'basis_label': BASIS_LABELS.get(f['baza'], f['baza']),
-                               'evidence': view(f.get('dovada'))} for f in selector.get('fapte', [])]})
+            view = lambda pin: self.pin_view(evidence, pin)
+            members = [self.member_view(number, selector, entries, evidence) for number, selector in enumerate(concept['selectors'], 1)]
             head = self.head()['concepts']
             head_concept = next((c for c in head['concepte'] if c['id'] == gid), None) if head else None
             blockers = review_blockers(concept)
@@ -810,6 +1004,46 @@ class Store:
                 'deductions': deduction_items(concept), 'blockers': blockers, 'members': members,
                 'head': {'available': head_concept is not None, 'changed': head_concept is not None and head_concept != concept},
                 'hashes': {'concepte': snap['hashes']['concepte']},
+            }
+
+    def candidate(self, cid: str) -> dict:
+        """One candidate as the page shows it: the group, the selector with its reach and pinned facts, and the confirmed members of the group."""
+        with self.lock:
+            if not CANDIDATE_ID.match(cid):
+                raise ReviewError('Nu este un identificator de candidat.', 404)
+            snap, head = self.read(), self.head()
+            records = self.candidate_records(snap, head)
+            record = next((r for r in records if r['id'] == cid), None)
+            if record is None:
+                raise ReviewError(STALE_CANDIDATE, 404, reload=True)
+            groups = {c['id']: c for c in snap['concepts']['concepte']}
+            item, entries = record['item'], self.entry_names()
+            group, listed = groups.get(item.get('grup')), record['origin'] == 'lista'
+            selector = item['selector'] if listed else group['selectors'][record['member'] - 1]
+            member = self.member_view(record['member'], selector, entries, self.evidence())
+            stare = candidate_state(item) if listed else 'confirmat'
+            if listed:
+                member.update(stare=stare, nota_editor=item.get('nota_editor', ''))
+            mine = set(as_list(selector.get('projects')))
+            confirmed = [{'number': n, 'projects': [{'slug': s, 'name': entries.get(s, {}).get('nume', s)} for s in as_list(m.get('projects'))],
+                          'names': as_list(m.get('names')), 'path': as_list(m.get('path')), 'source': as_list(m.get('source')), 'role': as_list(m.get('role')),
+                          'context': m.get('context', ''), 'same_project': bool(mine & set(as_list(m.get('projects')))),
+                          'this': not listed and n == record['member']}
+                         for n, m in enumerate(group['selectors'] if group else [], 1) if selector_state(m) == 'confirmat']
+            confirmed.sort(key=lambda m: not m['same_project'])
+            warnings = [f'Un candidat cu aceeași selecție a fost exclus înainte: „{e.get("nota_editor", "")}”. Citiți nota înainte să confirmați.'
+                        for o, e in repeated_exclusions(candidate_items(snap['notes'])) if o is item]
+            return {
+                'id': cid, 'number': record['number'], 'origin': record['origin'], 'group_id': item.get('grup'), 'stare': stare,
+                'nota_editor': member['nota_editor'],
+                'group': None if group is None else {
+                    'id': group['id'], 'label': group['label'], 'categorie': group.get('categorie'), 'definition': group['definition'],
+                    'basis': group.get('baza_definitiei'), 'basis_label': BASIS_LABELS.get(group.get('baza_definitiei'), group.get('baza_definitiei')),
+                    'ambiguities': group.get('ambiguitati', []), 'stare': group_state(group), 'decizie_editor': group.get('decizie_editor', ''),
+                    'data_revizie': group.get('data_revizie', ''), 'members': len(group['selectors'])},
+                'member': member, 'confirmed': confirmed, 'member_number': record['member'],
+                'blockers': [blocker_text(*b) for b in candidate_blockers(item, groups)] if listed else [], 'warnings': warnings,
+                'head': record['head'], 'hashes': {k: snap['hashes'][k] for k in ('concepte', 'note')},
             }
 
     # -- writing ---------------------------------------------------------------------------------------------------
@@ -831,7 +1065,7 @@ class Store:
             rev_rows, rel_rows, message = apply_provider(
                 snap['rev_rows'], snap['rel_rows'], item_id, action, note=request.get('note', ''), name=request.get('name', ''),
                 url=request.get('url', ''), other=request.get('duplicate_of', ''), today=self.today(), head_rev=head['rev'], head_rel=head['rel'])
-            after = self.errors_of(snap['concepts'], rev_rows, rel_rows)
+            after = self.errors_of(snap['concepts'], rev_rows, rel_rows, notes=snap['notes'])
             self.refuse_new_errors(self.current_errors(snap), after)
             written = {'revizuire': dump_csv(snap['rev_header'], rev_rows), 'relatii': dump_csv(snap['rel_header'], rel_rows)}
             replace_atomically({self.paths[k]: v for k, v in written.items()}, expected)
@@ -851,12 +1085,31 @@ class Store:
                                             head_data=self.head()['concepts'])
             else:
                 data, message = apply_member(snap['concepts'], gid, member, action, note=request.get('note', ''))
-            after = self.errors_of(data)
+            after = self.errors_of(data, notes=snap['notes'])
             self.refuse_new_errors(self.current_errors(snap), after)
             written = {'concepte': dump_json(data, snap['raw']['concepte'])}
             replace_atomically({self.paths[k]: v for k, v in written.items()}, expected)
             self.remember_errors(written, snap, after)
             return {'message': message, 'state': self.state(), 'item': self.group(gid)}
+
+    def decide_candidate(self, cid: str, request: dict) -> dict:
+        """Confirm, exclude or reset one candidate. The dictionary and the notes are written together or not at all."""
+        with self.lock:
+            expected = self._expected(request, ('concepte', 'note'))
+            snap = self.read()
+            if any(digest(p.read_bytes()) != h for p, h in expected.items()):
+                raise ReviewError(STALE, 409, reload=True)
+            head = self.head()
+            data, notes, message, key = apply_candidate(snap['concepts'], snap['notes'], cid, request.get('action'), note=request.get('note', ''),
+                                                        head_data=head['concepts'], head_notes=head['notes'])
+            after = self.errors_of(data, notes=notes)
+            self.refuse_new_errors(self.current_errors(snap), after)
+            written = {'concepte': dump_json(data, snap['raw']['concepte']), 'note': dump_json(notes, snap['raw']['note'])}
+            replace_atomically({self.paths[k]: v for k, v in written.items()}, expected)
+            self.remember_errors(written, snap, after)
+            # The candidate may have a new place (a reset puts it back at HEAD) or none (a confirmation that no commit holds has nothing to show).
+            now = next((r['id'] for r in self.candidate_records(self.read(), self.head()) if r['key'] == key), None)
+            return {'message': message, 'state': self.state(), 'item': self.candidate(now) if now else None}
 
     # -- the check panel ---------------------------------------------------------------------------------------------
 
@@ -877,7 +1130,9 @@ class Store:
             paths = list(self.paths.values())
             relative = [self.git.rel(p) for p in paths] if self.git.available else [str(p) for p in paths]
             generated = ['docs/reports/inventory-expansion.md', 'data/taxonomy-v2/observatii/inventare/acoperire.csv']
+            counts = Counter(c['stare'] for c in self.state()['candidates'])
             return {'available': self.git.available, 'files': self.git.status(paths) if self.git.available else [],
+                    'candidates': {'open': counts['propus'], 'excluded': counts['exclus'], 'confirmed': counts['confirmat']},
                     'stat': self.git.diff_stat(paths), 'public': self.public_diff() if self.git.available else {'available': False, 'lines': []},
                     'commands': ['python3 scripts/inventory_report.py', 'python3 scripts/validate.py --publication',
                                  'python3 scripts/inventory.py --check', 'python3 scripts/build.py',
@@ -990,9 +1245,9 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send_json(200, store.state())
             if path == '/api/git':
                 return self.send_json(200, store.git_panel())
-            found = re.fullmatch(r'/api/(provider|group)/([A-Za-z0-9-]+)', path)
+            found = re.fullmatch(r'/api/(provider|group|candidate)/([A-Za-z0-9-]+)', path)
             if found:
-                return self.send_json(200, store.provider(found.group(2)) if found.group(1) == 'provider' else store.group(found.group(2)))
+                return self.send_json(200, getattr(store, found.group(1))(found.group(2)))
             self.send_json(404, {'error': 'Not found.'})
         except ReviewError as error:
             self.fail(error)
@@ -1014,6 +1269,9 @@ class Handler(BaseHTTPRequestHandler):
             found = re.fullmatch(r'/api/group/([a-z0-9-]+)/member/(\d+)', path)
             if found:
                 return self.send_json(200, store.decide_group(found.group(1), request, member=int(found.group(2))))
+            found = re.fullmatch(r'/api/candidate/(\d+-[0-9a-f]{12})/decide', path)
+            if found:
+                return self.send_json(200, store.decide_candidate(found.group(1), request))
             self.send_json(404, {'error': 'Not found.'})
         except ReviewError as error:
             self.fail(error)

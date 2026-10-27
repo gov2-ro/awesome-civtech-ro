@@ -289,14 +289,14 @@ Previzualizarea nu modifică `site/`. Pagina afișează că clasificările sunt 
 
 ## Revizuirea în interfață
 
-Pentru furnizorii de date (punctele D132 și următoarele din `integrare/revizuire.csv`) și pentru grupurile de variabile
-(`inventar-concepte.json`) există o interfață locală. Ea scrie fișierele din depozit. Nu face commit și nu trimite nimic în rețea.
+Pentru furnizorii de date (punctele D132 și următoarele din `integrare/revizuire.csv`), pentru grupurile de variabile
+(`inventar-concepte.json`) și pentru membrii candidați (`inventar-note.json`) există o interfață locală. Ea scrie fișierele din depozit. Nu face commit și nu trimite nimic în rețea.
 
 ```sh
 python3 scripts/review_ui.py          # apoi deschideți http://127.0.0.1:8790/
 ```
 
-1. Antetul arată progresul (`Furnizori: 12 / 31 decise`, `Grupuri: 4 / 30 revizuite`) și starea validării. Filtrul implicit este `Deschise`.
+1. Antetul arată progresul (`Furnizori: 12 / 31 decise`, `Grupuri: 4 / 30 revizuite`, `Candidați: 3 deschiși`) și starea validării. Filtrul implicit este `Deschise`.
 2. Alegeți un element din listă. Selecția rămâne în adresă. Tastele `j` și `k` trec la elementul următor și la cel precedent.
 3. Pentru un furnizor, citiți propunerea, dovada și elementele înrudite. Alegeți acțiunea (`Accept`, `Resping`, `Amân`, `Duplicat…`, `Resetează`) și citiți consecința.
    Scrieți nota (obligatorie) și salvați. `Accept` cere numele canonic al furnizorului și adresa dovezii; ambele sunt completate din propunere.
@@ -304,8 +304,17 @@ python3 scripts/review_ui.py          # apoi deschideți http://127.0.0.1:8790/
    `indisponibil local` înseamnă că nu există o copie locală. `fără amprentă` înseamnă că elementul nu a înregistrat o amprentă; textul se citește, dar nu se poate verifica.
 5. Pentru un grup, confirmați sau excludeți fiecare membru (excluderea cere notă). `Revizuit` rămâne dezactivat cât timp un membru este `propus`
    sau o deducție din dovezi nu este bifată. Pagina spune de ce. `Resping` și `Amân` cer o notă.
-6. Fila `Verificări` rulează `validate.py --publication`, `inventory.py --check` și `inventory_report.py --check`.
-   Ea arată furnizorii acceptați față de `HEAD`, fișierele modificate și comenzile următoare: `python3 scripts/inventory_report.py`, apoi `git add` și `git commit`.
+6. Un lot de inventar propune uneori un selector pentru un grup deja revizuit. Un grup revizuit nu poate avea un membru pe care proprietarul nu l-a confirmat,
+   deci selectorul așteaptă ca *candidat* în `inventar-note.json` (`selectori_candidati`). Fila `Candidați` îi listează pe cei deschiși într-o singură coadă, cu eticheta grupului.
+   Citiți grupul, selectorul, câmpurile atinse, faptele fixate cu dovezile lor și membrii confirmați ai grupului. Apoi alegeți:
+   - `Confirm` mută selectorul în grup ca membru `confirmat` (nota este opțională). Grupul rămâne `revizuit`.
+   - `Exclud` cere o notă. Candidatul rămâne în `inventar-note.json` cu starea `exclus`, ca un lot următor să vadă refuzul, și iese din coada deschisă.
+   - `Resetează` readuce candidatul la valorile din `HEAD`, cât timp nicio înregistrare git nu conține decizia.
+
+   Un candidat al cărui grup lipsește sau nu este `revizuit` este o eroare de validare: pagina o arată și `Confirm` refuză. Un candidat nu schimbă construirea publică până nu îl confirmați.
+   Decizia scrie `inventar-concepte.json` și `inventar-note.json` împreună.
+7. Fila `Verificări` rulează `validate.py --publication`, `inventory.py --check` și `inventory_report.py --check`.
+   Ea arată numărul candidaților deschiși, furnizorii acceptați față de `HEAD`, fișierele modificate și comenzile următoare: `python3 scripts/inventory_report.py`, apoi `git add` și `git commit`.
 
 O modificare a fișierelor pe disc după încărcarea paginii (editor, `sheets.py pull`, `git checkout`) oprește scrierea. Reîncărcați datele și repetați decizia.
 Decizia rămâne în `git diff` până la commit. `Resetează` readuce elementul la valorile din `HEAD`.
