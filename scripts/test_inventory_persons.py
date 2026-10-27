@@ -17,10 +17,10 @@ from unittest import mock
 
 import render_pages
 from common import PUBLIC_ROOT
-from inventory import analyse_source, check_persons, check_report, header_of, resolve_spec, update_inventory
+from inventory import analyse_source, check_persons, check_report, header_of, resolve_spec
 from inventory_persons import (FIELD_KEYS, MARK, body_values, candidates, identifies, is_marked, leaks, mark_errors, occurs, problems, safe_fields, safe_header,
                                scope_files)
-from inventory_state import StateError, load_previous, new_discovery, source_id, validate_state
+from inventory_state import StateError, load_previous, new_discovery, validate_state
 from test_forbidden_hosts import Browser, Isolated, SyncPage, fake_sync_playwright
 from test_inventory_state import Net, Workspace, docs_for, entry
 
