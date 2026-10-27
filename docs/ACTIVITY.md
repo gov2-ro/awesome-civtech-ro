@@ -8,7 +8,7 @@
 - `Store.errors_of` gives 0 errors; 1053 unit tests pass; `validate.py --publication`, `inventory.py --check` and the package checks pass.
 
 **Decided**
-- The 46 candidate members of batch E and `sicap-ai` stay in `inventar-note.json`: the review interface does not show candidates, and the owner has not decided them.
+- The 46 candidate members of batch E and `sicap-ai` were not in the review interface. The owner then confirmed all 46 in bulk („I confirm all 46”); they joined their reviewed groups as `confirmat` (`Store.errors_of`: 0 errors), and the key `selectori_candidati` left `inventar-note.json`. The owner also asked for the candidates in the review interface.
 
 ## 2026-10-27 — sicap-ai without requests to its host (addendum of lot `E`)
 
