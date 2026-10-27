@@ -7,7 +7,7 @@ Inventory assertions are proposals. Raw field totals count source paths, not ind
 
 - Milestones A (safe incremental collection), B (INS), C (12 entries), D (meanings and shared groups) and E (preview, coverage, report) are complete.
 - Structured field evidence now covers 42 of 129 projects and resources (baseline 14). The retained sources are 151 URLs (146 parsed, 5 failed) with 4,352 field records.
-- Each field record is a path in a source. The proposals are 40 shared groups (baseline 7), 16 provider review items and the dictionary evidence that `inventory.py --check` verifies.
+- Each field record is a path in a source. The proposals are 41 shared groups (baseline 7), 16 provider review items and the dictionary evidence that `inventory.py --check` verifies.
 - The public build is unchanged: the default payload equals the v0.13.0 payload apart from its generation time; classifications and accepted providers are identical.
 - Collection used 203 direct requests in total (9 browser navigations); the 150-request limit of lot C was not reached.
 - Batch C2 (three active projects): three inventories (`romania-interactiva` 10 sources, `data-expertforum` 15 sources from the owner's saved page and 14 Google Sheet tabs, `bani-partide` 1 source from the owner's saved listing), 8 proposed groups and provider items D176–D187; see the subsection of section 3.
@@ -50,11 +50,11 @@ The 129 projects and resources of the catalogue (the finder lists the 85 that ar
 | Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 86 / 56 |
 | Accepted provider relations / entries with accepted providers | 26 / 11 | 98 / 35 |
 | Pending provider proposals (review items D132 and later) | 15 | 0 |
-| Proposed business-variable groups | 7 | 40 |
+| Proposed business-variable groups | 7 | 41 |
 | Unit tests discovered / skipped | 308 / 6 | 724 / 6 |
 | Explorer inventory / dedicated finder browser checks | 25 / 25 | 36 / 62 |
 
-Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 79 in all; deschis 0, acceptat 72, respins 4, amanat 0, tehnic 3. Variable groups: 40 in all; propus 5, revizuit 35, respins 0, amanat 0. Group members (selectors): 167 in all; propus 14, confirmat 153, exclus 0.
+Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 79 in all; deschis 0, acceptat 72, respins 4, amanat 0, tehnic 3. Variable groups: 41 in all; propus 6, revizuit 35, respins 0, amanat 0. Group members (selectors): 172 in all; propus 19, confirmat 153, exclus 0.
 
 Scope of the data finder (`/date/`): 85 of the 126 public projects and resources are in scope. An entry is in scope when it is not inactive (`offline`, `arhivat`) and its `relatie_date` is `date-publice`, `date-proprii` or `calcul`. The finder leaves out 41: 18 without data (`fara-date`), 5 not assessed (empty value), 18 inactive (counted first: an inactive entry is never counted as another reason). 3 hidden entries (`ascuns`) are in no count of this paragraph.
 
@@ -296,9 +296,9 @@ Addendum, 2026-10-27 (branch `lista-firme-api`): the owner raised the request li
 
 Search by CUI or name over the Romanian companies, with an API (catalogue: `format:api`) and the repository `tudorr89/info-firme`. The API has no documentation page. The repository README (commit 1dcb375, 2026-10-24) documents `GET https://lista-firme.info/api/v1/info?cui=...` and `?name=...`; the code reads `company` and not `name`. The routes file has the one route `info` and a fallback that aborts any other API path with 401 (by the code; not requested). Neither the README nor the routes file mentions a key. The six migrations read give 51 field records (the columns of `companies`, `addresses`, `infos` and `statuses`). The terms page names the originators: ONRC (via data.gov.ro) and the public ANAF APIs. On 2026-10-27 the owner raised the request limit of the entry for one request. `GET /api/v1/info?cui=51859625` (the CUI of the operator) answered HTTP 200 with 2,276 bytes of JSON; it needed no key. It is the seventh source, with 57 field records (55 before 2026-10-27: the corrected reader adds the two empty lists as two records): key paths and observed types, no value. The response has 17 keys. Nine are columns of `companies` (`name`, `cui`, `euid`, `registration_date`, `type`, `website`, `parent_country`, `mark`, `reg_com`). One is computed: `is_active` (the scope `preferActive` of the model adds it in the query; it is not a column). Seven are relations: `address` (12 keys), `info`, `status`, `caen`, `legal_representatives`, `natural_person_representatives` and `eu_branches`. Against the migrations the API hides `id`, `created_at` and `updated_at` of `companies`, and `id`, `company_id`, `created_at` and `updated_at` of `addresses`. `status` holds only `details` (`code` and `description`): none of the five `statuses` columns read appears. The relation `caen` has three elements, each with `code`, `version` and the same seven keys under `caen_details` and `details`. The relation `legal_representatives` has one element with 14 keys, among them the name, the birth date and place and the current location of a natural person. It keeps `id`, `company_id`, `created_at` and `updated_at`: the API hides keys of this kind for the company and the address. For this company `info` is null, so the 18 columns of `infos` were not observed. `natural_person_representatives` and `eu_branches` are empty lists (each is a field of the type array with 0 elements), so the keys of their elements are unknown. Three candidate members are proposed for the reviewed groups `cui`, `judet` and `localitate`: the paths `$.cui`, `$.address.county` and `$.address.city` of the response. The two provider items D189 and D190 are decided. A group for the CAEN code is a suggestion only (section 5).
 
-- State: cu-surse-structurate. Sources 7, field records 108, groups 3.
+- State: cu-surse-structurate. Sources 7, field records 108, groups 4.
 - Source URLs: `https://lista-firme.info/api/v1/info?cui=51859625`; `https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_184655_create_companies_table.php`; `https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_184809_create_statuses_table.php`; `https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_184907_create_infos_table.php`; `https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_190138_create_addresses_table.php`; `https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2025_07_12_061535_add_fields_to_companies.php`; `https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2026_01_02_201516_add_website_and_parent_country_to_companies_table.php`
-- Proposed groups: `cui`, `judet`, `localitate`
+- Proposed groups: `cod-caen`, `cui`, `judet`, `localitate`
 - Documented inputs: none documented in the sources read. HTML controls stay candidates.
 - Provider proposals: D189, D190.
 - Blocker: none
@@ -500,6 +500,7 @@ Groups with at least two project memberships (unique entries). A group is a disc
 | `beneficiar-fonduri-publice` Beneficiar de fonduri publice | dimensiune | 2 | data-expertforum, romania-transparenta |
 | `deficit-bugetar` Deficit bugetar | masura | 2 | ce-face-statul-cu-1000-de-lei, pe-datorie |
 | `coordonate-geografice` Coordonate geografice (latitudine, longitudine) | dimensiune | 3 | dupa-cutremur, romania-interactiva, votdiaspora |
+| `cod-caen` Cod CAEN | identificator | 4 | companii-de-stat, demoanaf, lista-firme, romania-transparenta |
 
 Groups with one entry so far (no second project exposes the variable in the sources read): `co2`, `pm25`, `pm10`, `temperatura-aer`, `umiditate-relativa`, `presiune-atmosferica`, `viteza-vantului`, `alegatori-inscrisi`, `alegatori-lista-permanenta`, `alegatori-prezenti`, `voturi-nule`, `rata-prezenta`, `casatorii`, `divorturi`, `studenti`, `subventie-partid`, `donatie-partid`.
 
@@ -572,6 +573,14 @@ Ambiguous candidates, kept out of the groups:
 - `coordonate-geografice`: Tipurile diferă: număr în `dupa-cutremur` (puncte), text în `dupa-cutremur` (adăposturi), `double` în `votdiaspora` și număr în Orașe digitale. Grupul nu normalizează valorile.
 - `coordonate-geografice`: Sistemul de coordonate este declarat (CRS84) doar în fișierele de clădiri și de arii de colaps ale DupăCutremur; celelalte surse nu îl declară.
 - `coordonate-geografice`: Nu sunt membre `latMax`, `latMin`, `lngMax` și `lngMin` din Orașe digitale: sunt limitele unei zone, nu un punct.
+- `cod-caen`: Două versiuni CAEN: Rev. 2 (din 2008) și Rev. 3 (din 2025). DemoANAF declară Rev. 3 pentru `code`. Titlul unui set INS (PPI1035) spune Rev. 2. `lista-firme` are câmpul `version` lângă fiecare cod (valoarea observată este 3; răspunsul nu spune ce înseamnă). Celelalte surse nu spun versiunea. Anii vin din cunoștințe generale, nu dintr-o copie păstrată: verificați-i în actul INS. Un cod fără versiune nu se compară cu un cod din altă sursă.
+- `cod-caen`: Tip și zerouri: `lista-firme` dă codul ca număr întreg (`6210`), `companii-de-stat` ca șir de caractere, `romania-transparenta` ca text sau null, DemoANAF cere un șir de 4 cifre. Un cod din diviziunile 01–09 începe cu zero (de exemplu `0111`). Ca număr întreg, zeroul din față dispare. Cele 118 valori de 3 caractere din `companii-de-stat` arată ca asemenea coduri fără zero; sursa nu spune asta și este o presupunere.
+- `cod-caen`: Un cod sau o listă: `caen` (`companii-de-stat`) și `caen_principal` (`romania-transparenta`) poartă un singur cod; doar a doua sursă spune că este al activității principale. `$.caen[].code` (`lista-firme`) este o listă de coduri și răspunsul păstrat nu marchează care este principal.
+- `cod-caen`: A cui este codul: la `lista-firme` și `companii-de-stat` este codul unei firme; la `romania-transparenta` stă lângă beneficiarul unui ajutor, fără ca descrierea să spună a cui este activitatea; la DemoANAF este codul căutat, nu activitatea unei firme. Citiți `context` înainte de a compara.
+- `cod-caen`: Nu sunt membre: `$.caen[].version` (versiunea, nu codul); `$.caen[].caen_details.*` și `$.caen[].details.*` din `lista-firme` (secțiune, subsecțiune, diviziune, grupă, clasă, denumire, versiune: în răspunsul păstrat `class` are valoarea lui `code`, iar `division` și `group` sunt începutul codului); `section` (litera A–U) și `q` (text de căutare) din `GET /api/caen` (DemoANAF).
+- `cod-caen`: Nu este membru: `infos.activityCode` (migrația `create_infos_table` din depozitul `lista-firme`, coloană text). Numele sugerează un cod de activitate, dar nicio copie păstrată nu spune că este codul CAEN.
+- `cod-caen`: Documentate, dar fără câmp în inventar, deci fără membru: „CAEN autorizat” în `GET /api/company/{cui}` (DemoANAF) și „CAEN principal + toate codurile autorizate” în pagina registrului-firmelor. Seturile INS cu activitate CAEN Rev. 2 nu au un câmp cu cod în inventar.
+- `cod-caen`: Familia `identificatori` și categoria `identificator` urmează grupul `cpv` (un cod de clasificare). Un cod CAEN servește și ca dimensiune, pentru tăierea firmelor pe sectoare. Familia `firme` este alternativa, dar descrierea ei vorbește despre date financiare și de personal. Alegerea este a proprietarului.
 
 ## 6. Provider proposals
 
