@@ -506,6 +506,46 @@ class RenderText(Isolated):
         self.assertEqual(record['controale_vizibile'][0]['options'], ['Alba', 'Arad'])
         self.assertEqual((record['stare'], record['url_cerut'], record['cereri_date'], record['nota'][:8]), ('ok', self.URL, [], 'No click'))
 
+    def render_with_body(self, body, **changes):
+        """A render during which the fake page receives one JSON response of the same site. Returns the record and its raw text."""
+        request = types.SimpleNamespace(resource_type='fetch', method='GET', url='https://ok.example/api/list')
+        response = types.SimpleNamespace(request=request, status=200, headers={'content-type': 'application/json', 'content-length': str(len(body))}, body=lambda: body)
+
+        class PageWithResponse(SyncPage):
+            def on(self, event, handler):
+                if event == 'response':
+                    self.response_handler = handler
+                super().on(event, handler)
+
+            def goto(self, url, **kw):
+                result = super().goto(url, **kw)
+                self.response_handler(response)
+                return result
+
+        observations = {'profile': self.tmp / 'observatii' / 'profil.csv'}  # the helper saves the body in the source cache of the root: a temporary one
+        with mock.patch.dict(sys.modules, fake_sync_playwright(Browser())), contextlib.redirect_stdout(io.StringIO()), \
+                mock.patch.object(render_pages, 'observation_paths', lambda root: observations), \
+                mock.patch('test_forbidden_hosts.SyncPage', PageWithResponse), \
+                mock.patch.object(PageWithResponse, 'inner_text', lambda page, selector: self.TEXT), mock.patch.object(PageWithResponse, 'evaluate', lambda page, script: []):
+            written = render_pages.render([self.URL], self.args(**changes))
+        return json.loads(written[0].read_text()), written[0].read_text()
+
+    def test_the_text_of_the_record_is_the_text_of_the_page_and_never_the_last_body_that_the_page_received(self):
+        # Defect found on 2026-10-27 (lot E): the loop that saved the received bodies reused the name `text`. A render that saved a data body recorded
+        # that body (up to 200,000 bytes; here a list of persons) in `text_randat` instead of the text of the page, and `--fara-text` measured the wrong text.
+        body = json.dumps([{'nume': 'Maria Cobai'}]).encode()
+        record, raw = self.render_with_body(body)
+        self.assertEqual(record['text_randat'], self.TEXT)
+        self.assertEqual([r['url'] for r in record['cereri_date']], ['https://ok.example/api/list'])
+        self.assertEqual(record['corpuri_pastrate'], ['https://ok.example/api/list'], 'the body was kept in the source cache, apart from the record')
+        self.assertNotIn('Maria Cobai', raw)
+        cache = self.tmp / 'observatii' / 'inventare' / 'surse'
+        self.assertIn('Maria Cobai', ''.join(p.read_text() for p in cache.glob('*.json')), 'the body is in the cache of the root and nowhere else')
+        marked, raw = self.render_with_body(body, fara_text=True, out_dir=self.tmp / 'marked')
+        self.assertEqual((marked['text_randat'], marked['text_lungime'], marked['text_sha256']), (None, len(self.TEXT), hashlib.sha256(self.TEXT.encode()).hexdigest()),
+                         'the length and the hash are those of the page text')
+        self.assertNotIn('Maria Cobai', raw)
+
     def test_the_mark_of_a_render_specification_has_the_same_effect_as_the_option(self):
         record, raw = self.render(spec=[self.spec_file(**{MARK: True})])
         self.assertIsNone(record['text_randat'])
