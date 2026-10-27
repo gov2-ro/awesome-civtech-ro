@@ -14,15 +14,15 @@ const groups = [
 ];
 const basis = {schema:'Declarat în schemă', metadata:'Declarat în metadate', sample:'Observat într-un eșantion', header:'Antet CSV · tip neprecizat',
   code:'Declarat în codul sursă', table:'Antet de tabel HTML · tip neprecizat', doctable:'Declarat în tabel de documentație', doctext:'Declarat în textul documentației',
-  pagecode:'Folosit în codul paginii', docexample:'Exemplu în documentație', apidoc:'Declarat în documentația API', doclist:'Declarat în lista de coloane din documentație', dblist:'Declarat în lista bazei de date'};
+  pagecode:'Folosit în codul paginii', docexample:'Exemplu în documentație', apidoc:'Declarat în documentația API', doclist:'Declarat în lista de coloane din documentație', dblist:'Declarat în lista bazei de date', editor:'adăugat de editor'};
 const roles = {'parametru-api':'Parametru API', 'corp-cerere':'Corp de cerere', 'camp-raspuns':'Câmp din răspuns', 'camp-date':'Câmp de date', 'dimensiune':'Dimensiune',
   'camp-dictionar':'Dicționar de date', 'coloana-sql':'Coloană în baza de date', 'camp-model':'Câmp de model', 'cod-enumerare':'Cod sau valoare',
   'camp-exemplu':'Exemplu în documentație', masura:'Măsură', 'camp-folosit-de-pagina':'Folosit de pagină', 'colectie-cu-chei':'Colecție indexată'};
 const categories = {identificator:'Identificator', dimensiune:'Dimensiune', masura:'Măsură', 'iesire-derivata':'Valoare calculată', 'intrare-utilizator':'Intrare a utilizatorului'};
 const stateLabels = {propus:'Propus', revizuit:'Revizuit', amanat:'Amânat'};
 const factKeys = {unitate:'Unitate', formula:'Formulă', rol:'Rol', moment_de_referinta:'Moment de referință'};
-const factBasis = {'declaratie-directa':'declarat', 'observatie-esantion':'observat în eșantion', 'deductie-din-dovezi':'dedus din dovezi', 'parafraza-editoriala':'formulare editorială'};
-let entries = [], labels = {}, definitions = {}, meta = {}, families = [], state, shown = 24;
+// The words for the bases of a fact come from the index (`factBasis`, written by the build): the script keeps no copy of them.
+let entries = [], labels = {}, definitions = {}, meta = {}, families = [], factBasis = {}, state, shown = 24;
 // Families the visitor opened or closed; the others follow the default (open when one of their variables is common).
 const familyOpen = new Map();
 
@@ -213,6 +213,7 @@ async function start() {
     definitions = {variables:{}};
     for (const v of inventory.variables) { labels.variables[v.id]=v.label; definitions.variables[v.id]=v.definition; meta[v.id]={category:v.category, family:v.family, state:v.state || 'propus', ambiguities:v.ambiguities || [], proofs:v.proofs || []}; }
     families = inventory.families || [];
+    factBasis = inventory.factBasis || {};
     for (const c of inventory.concepts) {
       if (c.scheme === 'subiect') labels.subjects[c.id]=c.label;
       if (c.scheme === 'institutie') labels.institutions[c.id]=c.label;

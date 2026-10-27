@@ -19,6 +19,8 @@ A page that the owner saved (--import-saved) keeps its own origin, `copie-salvat
 A source whose body holds records about natural persons carries the mark `persoane: true` (in its specification, or with --persons): the readers keep
 key names, paths, observed types and counts and no value, and --check searches the tracked files for the values of its retained body (module
 inventory_persons). The answer holds file names and fingerprints, never a value.
+A field that the readers missed is added by hand in observatii/inventare/campuri-editor.csv (module inventory_editor): each row becomes a field record of its source
+with `stare_tip` `adaugat-de-editor`, and its fragment must occur in the retained body; --check finds it again and compares the recorded hash.
 A host in data/taxonomy-v2/colectare-interzisa.csv is never requested, --force and --probe included, and neither is a redirect to it.
 The run reports it as `colectare-interzisa` with the reason of the list; the request log gets no row and the request limit does not count it.
 """
@@ -39,6 +41,7 @@ from urllib.parse import unquote, urlsplit
 from collect_docs import Fetcher, canonical, flat, is_saved, restore, saved_copy, saved_errors, scope_of
 from common import FORBIDDEN_STATE, OUT_OF_SCOPE, PUBLIC_ROOT, data_schema, forbidden, inventory_scope, load_catalogue, load_vocabulary, observation_paths
 from inventory_concepts import EvidenceLocator, check_concepts, validate_families
+from inventory_editor import FILE as EDITOR_FILE, check as check_editor, merge as merge_editor, read_file as read_editor, without_added
 from inventory_apidocs import operations as api_operations
 from inventory_csvcards import csv_datasets
 from inventory_datasette import FORMAT as DATASETTE, database as datasette_database, is_listing as is_datasette, read as datasette_fields
@@ -610,7 +613,8 @@ def check_report(out, observations):
     `errors` are corrupt or inconsistent records. `unavailable` lists evidence bodies absent from this checkout;
     those are not hash-verified and are never counted as verified. `stale` lists sources whose last refresh failed."""
     report = {'errors': [], 'unavailable': [], 'verified': 0, 'stale': [], 'concept_stale': [], 'concept_verified': 0,
-              'saved': {'total': 0, 'verified': 0, 'unavailable': 0}, 'persons': {'marked': 0, 'checked': 0, 'unavailable': 0}}
+              'saved': {'total': 0, 'verified': 0, 'unavailable': 0}, 'persons': {'marked': 0, 'checked': 0, 'unavailable': 0},
+              'editor': {'rows': 0, 'verified': 0, 'unavailable': 0}}
     errors = report['errors']
     try:
         previous = load_previous(out)
@@ -623,6 +627,7 @@ def check_report(out, observations):
     if len(known) != len(sources):
         errors.append('Duplicate structured source IDs.')
     for source in sources:
+        source = without_added(source)  # the readers wrote the fields that the retained body is compared with; an editor wrote the others
         if source_id(source['url']) != source['id']:
             errors.append('Source ID does not match URL: ' + source['url'])
         if source.get('ultima_incercare'):
@@ -755,11 +760,23 @@ def check_report(out, observations):
                     elif status:
                         errors.append(status)
     check_saved_pages(report, observations)
+    check_editor_fields(report, previous, out, observations)
     check_dictionary(report, previous, out, observations)
     check_persons(report, previous, out, observations)
     check_external_fragments(report, previous, observations)
     report['unavailable'] = sorted(set(report['unavailable']))
     return report
+
+
+def check_editor_fields(report, previous, out, observations):
+    """The hand-edited file of the fields that an editor added (module `inventory_editor`): its structure, its agreement with the generated records and each fragment
+    in the retained text. A text that is not in this checkout is unavailable and not verified."""
+    rows, errors = read_editor(Path(out) / EDITOR_FILE)
+    report['errors'] += errors
+    result = check_editor(rows, previous, EvidenceLocator(out, observations, list(previous['sources'].values())))
+    report['errors'] += result['errors']
+    report['unavailable'] += result['unavailable']
+    report['editor'] = {'rows': result['rows'], 'verified': result['verified'], 'unavailable': len(result['unavailable'])}
 
 
 def check_persons(report, previous, out, observations):
@@ -1114,13 +1131,14 @@ def reconcile(previous, metadata, fresh, when):
 
 
 def update_inventory(entries, docs, verified, previous, *, cache, selected=(), offline=False, force=False, max_files=3,
-                     fetch=None, now=None, concepts=None, retire_sources=(), add_sources=(), force_urls=(), skip=()):
+                     fetch=None, now=None, concepts=None, retire_sources=(), add_sources=(), force_urls=(), skip=(), editor_rows=()):
     """Compute the next inventory state from the tracked state, local documentation and caches.
 
     Only the selected projects change. `fetch` is called only for sources that selected projects use.
     Without a selection every project changes, except the slugs in `skip` (the entries that are out of the inventory's scope, see
     `common.inventory_scope`): they keep their tracked record and evidence. A project named by an explicit addition or retirement, and a
     project with no tracked record yet, always change.
+    `editor_rows` are the rows of `campuri-editor.csv` (module `inventory_editor`): each becomes a field record of its source before the profiles count the fields.
     Raises StateError before returning when the proposed state is invalid."""
     now = now or now_utc()
     cache = Path(cache)
@@ -1249,6 +1267,11 @@ def update_inventory(entries, docs, verified, previous, *, cache, selected=(), o
     for ident, old in previous['sources'].items():
         sources.setdefault(ident, old)  # a tracked source nothing references any more is history, not garbage
     apply_contracts(sources, cache.parent)
+    problems, notes = merge_editor(sources, list(editor_rows), {(slug, d['sursa_id']) for (slug, _), d in registry.items() if d['stare'] == 'activ'},
+                                   EvidenceLocator(cache.parent, cache.parent.parent, list(sources.values())))
+    if problems:
+        raise StateError('Proposed inventory is invalid:\n  ' + '\n  '.join(problems[:20]))
+    report['avertismente'] += notes
 
     profiles = []
     for entry in entries:
@@ -1421,6 +1444,9 @@ def main():
         if persons['marked']:
             print(f'{persons["marked"]} sources with persons: {persons["checked"]} bodies searched for their values in the tracked files, '
                   f'{persons["unavailable"]} unavailable and not searched')
+        if report['editor']['rows']:
+            print(f'{report["editor"]["rows"]} fields added by an editor ({EDITOR_FILE}): {report["editor"]["verified"]} fragments found with the recorded hash, '
+                  f'{report["editor"]["unavailable"]} in local bodies that are unavailable and not verified')
         saved = report['saved']
         if saved['total']:
             print(f'{saved["total"]} copies saved by the owner (not fetched): {saved["verified"]} hash-verified, {saved["unavailable"]} unavailable and not verified')
@@ -1466,6 +1492,9 @@ def main():
     imported = None
     try:
         previous = load_previous(out)
+        editor_rows, editor_errors = read_editor(out / EDITOR_FILE)
+        if editor_errors:
+            raise StateError('; '.join(editor_errors))
         reading = reading_of(args.reading)
         mark = {MARK: True} if args.persons else {}
         additions = [(slug, {'url': url, 'metoda': args.method, 'parinte': args.parent, 'nota': args.note, 'citire': reading, **mark}) for slug, url in args.add_source]
@@ -1497,7 +1526,7 @@ def main():
             entries, docs, verified, previous, cache=out / 'surse', selected=selected, offline=args.offline, force=args.force,
             max_files=args.max_files, fetch=fetcher, concepts=concepts, force_urls=args.force_url,
             retire_sources=[(slug, canonical(url), args.reason) for slug, url in args.retire],
-            add_sources=additions, skip=skip)
+            add_sources=additions, skip=skip, editor_rows=editor_rows)
         if not args.dry_run:
             write_atomic(out, render_outputs(state))
     except StateError as exc:

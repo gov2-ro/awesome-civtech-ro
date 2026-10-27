@@ -894,6 +894,7 @@ All files below are generated review material. Only the explicit preview build r
 - `descoperiri.json`: the discovery registry. One record per project and source URL (see below).
 - `jurnal-cereri.csv`: the request log of named collection batches (see below).
 - `adaugari/*.json`: specification files for explicitly identified sources (see below). `randare/*.json`: browser renders of single pages (see below).
+- `campuri-editor.csv`: a hand-edited file. An editor adds there a field that the readers missed (see "Fields added by an editor").
 - `surse/*.json`: local HTTP response bodies and cached failures; gitignored. Immutable versions include the body hash in their name.
   A failed response never replaces a cached good body.
 
@@ -1227,6 +1228,40 @@ The registry record keeps the mark (`persoane`, history event `marcat-persoane`)
 - Why not every string of the body: the first version of the rule (every string of 4 characters or more) found words of the GeoJSON format, a coordinate system, road kinds, years and map identifiers in many tracked files, and some of them are in pinned evidence of reviewed members and
   accepted review items, which a tool must not edit.
 
+**Fields added by an editor (`campuri-editor.csv`).** A reader sometimes misses a field. It can be a name in a page that no reader parses, or a column that a document describes in prose.
+An editor adds such a field by hand in `observatii/inventare/campuri-editor.csv`. The file is UTF-8 and comma-separated, so it goes through Google Sheets. It starts with its header row only.
+The guide in Romanian is `data/taxonomy-v2/README.md`. The code is module `inventory_editor`. One row is one field of one source:
+
+| Column | Rule |
+| --- | --- |
+| `slug` | The entry. Required. |
+| `url_sursa` | The address of one active structured source of that entry (`proiecte.json` lists it in `surse_structurate`). A row for another address is an error. Required. |
+| `nume`, `cale` | The name and the locator of the field, as in `campuri.csv`. Required. The same `url_sursa`, `rol`, `cale` and `nume` twice is an error. A field that a reader already gives is an error too. |
+| `rol` | A field role: `camp-date`, `dimensiune`, `parametru-api`, `corp-cerere`, `camp-raspuns`, `model-de-date`, `camp-dictionar`, `coloana-sql`, `camp-model`, `cod-enumerare`, `camp-exemplu`, `masura`, `camp-folosit-de-pagina` or `colectie-cu-chei`. Required. |
+| `tip_declarat` | Empty, or one or more of `string`, `integer`, `number`, `boolean`, `null`, `object`, `array`, separated by `\|`. The editor writes the type that the source declares, never one that the editor infers. A type that is not in the list goes into `descriere`. |
+| `unitate`, `descriere`, `nota` | Free text. `nota` is a note of the editor. It never reaches the site. |
+| `fragment` | The evidence. A text that occurs in the retained body (or snapshot) of `url_sursa`. Required. A line end `\r\n` is read as `\n`. |
+
+`inventory.py` reads the file in every run. It adds each row to the field records of its source. The record goes after the records of the readers.
+The merge runs before the profiles count the fields and before a group selector is matched. The record has `stare_tip` `adaugat-de-editor`, `pointer` `campuri-editor.csv:LINE` and `dovada_editor` `{sha256, text}`.
+`sha256` is the hash of the retained text in which the fragment occurs. `text` is the kind of copy (`sursa`, `documentatie` or `cache`, as for the evidence of the groups).
+The generated files never hold the fragment.
+
+A run drops the editor records of the earlier run first. So a replay gives the same bytes. An empty file gives the bytes of a run without the file.
+The record belongs to the source. Every entry that shares the source shows the field. To retire a source, remove its rows first.
+
+- **The fragment must occur.** A fragment that is not in the retained text is an error. A row for an unknown source is an error too. The run then stops before it writes anything.
+  A fresh clone has no `surse/`. For such a source the field is kept with `dovada_editor` `{sha256: null, text: null}` and a warning. It is not verified.
+- **`inventory.py --check`** reads the file and checks the columns, the empty cells, the code lists, duplicates and the owner of the source. It compares the file with the editor records of `seturi-date.json`.
+  It finds each fragment again in the retained text of the recorded kind and compares the hash. It prints a line: "N fields added by an editor: V fragments found with the recorded hash, U in local bodies that are unavailable and not verified".
+  A text that is absent is unavailable. It is never verified. A changed hash, a hash that was never recorded while the text is at hand, and records that do not follow the file are errors. Each tells the editor to run `inventory.py --offline`.
+- **`validate.py`** checks the form without a retained body, because CI has none. It checks the columns, the required cells, the code lists, the slug, the address, duplicates, and the owner of the source by `proiecte.json`.
+- **A source with persons.** A row may name a source that has the mark `persoane`. The record then keeps the keys of the editor (`descriere`, `unitate`, `nota_editor`, `dovada_editor`) besides the allowed keys.
+  The merge looks for every identifying value of the retained body in the cells of the row (`inventory_persons.identifies`). It makes no exception for a value that an unmarked body holds too.
+  It refuses the row and prints a fingerprint, never a value. The file is in the scope of the leak check of `--check`.
+- **The site.** The field browser and the page `/date/<slug>/` label such a field „adăugat de editor” (`basis` `editor` in `inventar/<slug>.json`). A group selector matches it like any other field.
+  No form of the review interface writes the file yet (see the backlog).
+
 **Credentials.** A public page can embed a credential in its script. The fetcher masks values of the shape of an Airtable personal token,
 or of a quoted `api_key`, `token`, `secret`, `password` or `bearer` value of 16 characters or more, in HTML and script bodies, before the body is stored or hashed.
 `redactari` counts the masked values. The inventory never uses a credential that a page contains.
@@ -1254,6 +1289,7 @@ Type evidence remains distinct:
 - `observat-in-esantion-json`: a type observed in sampled values, including nulls. It is not a type contract.
 - `neprecizat-in-antet-csv`: a CSV header; its storage/logical type remains unknown. Identifier values are not coerced to numbers.
 - `control-html-candidat`: a visible HTML control, which may be a generic search or newsletter field.
+- `adaugat-de-editor`: a field that an editor added by hand with its evidence (see "Fields added by an editor").
 
 Field records are paths scoped to a source. They are not a count of independent business variables.
 Two representations of the same dataset can expose overlapping fields; this pass does not assert their equivalence.
@@ -1321,6 +1357,16 @@ A source whose data sets all declare the same licence carries `licence` (`name`,
   `partial` (read as a bounded sample), `viaBrowser`, `savedByOwner` (a copy that the owner saved by hand) and `refreshFailed`.
 - The URL of a Google Sheet tab ends in `export`, so the title of such a source comes from the page of the same project that lists it (format `html-lista-seturi`):
   `Foaie Google · <title of the data set>`, and, when the data set links several tabs, `· <label of the link>` (the text after the link, or its text). A tab with no such page keeps the title of its format.
+- **Data set facts.** A source that declares facts about its data sets carries `facts` (`basis`, `sets`, `schema`), and the metadata of INS keeps `dataset` (as above, with `basis`). `basis` is the public word for the basis `declaratie-directa`: „declarat”.
+  The one list of public words is `inventory_concepts.PUBLIC_BASIS_LABELS`. The finder reads it from `inventar/index.json` (`factBasis`), and the payload and the page carry the word that the build writes. No script keeps a copy.
+  The review interface (a local tool) keeps its own, more exact labels in `inventory_concepts.BASIS_LABELS` („declarație directă”). A fact is shown only when the source declares it (a basis `declarat-in-pagina`, `declarat-in-metadate` or
+  `declarat-in-lista`); a value that an API computed or that the inventory counted is not one, and a source with persons has none.
+  `sets` come from a page of described files (format `html-lista-seturi`, key `seturi`): `title`, `category` (the category and the subcategory), `description` and `reports` (`text`, `url`; only an http or https address).
+  `schema` come from a page with schema.org `Dataset` (format `js-literale`, key `seturi_ld`): `name`, `period`, `licence` (`name`, `url`) and `basedOn` (`isBasedOn` addresses). The creator, the editor, the keywords and the measured variables stay out.
+  A description is cut at 300 characters in the payload (a word boundary and „…”); the page `/date/<slug>/` keeps the whole text. A page of sets has no field of its own, so it is listed as a source only because it declares facts.
+  The field browser shows them in a block „seturi de date declarate de surse”, under the source.
+- A field that an editor added (`stare_tip` `adaugat-de-editor`) has `basis` `editor`; the field browser labels it „adăugat de editor”.
+- `inventory.page` (`date/<slug>/`) is set for each entry that has a variables page; the panel „Date & metodă” shows the link „Toate variabilele” when it is set.
 - HTML control candidates, raw snapshots, hashes, browser request dumps and network diagnostics do not enter the preview payload.
 - Documentation-only entries link their collected first-party pages. Entries with no inventory evidence get no marker.
 
@@ -1418,7 +1464,20 @@ Old URLs keep their meaning: `ina=1` still adds inactive entries, and the older 
 The same flag generates `/date/` and `inventar/index.json`. It adds a navigation link in the explorer preview.
 It also generates `/date/lista/`, a static table with one row per project or resource that has extracted fields and one column per family:
 a cell names the groups (normalised names) of that family that the entry has. The last column, "Altele", counts the distinct names of fields in no group.
-Entries without fields are named once below the table. Only entries in scope are listed (see "Scope of the variable inventory").
+Entries without fields are named once below the table. Only entries in scope are listed (see "Scope of the variable inventory"). Each row links to the variables page of its entry.
+
+**The variables page of an entry (`/date/<slug>/`).** `build.py --with-inventory` writes one static page (no script; the stylesheet, the header and the footer of `/date/lista/`; `<base href="../../">`) for each entry
+that is in scope and has field records. An entry out of scope, an organisation and an entry without fields get none, and a slug `lista` is refused (it is the list). A rebuild removes the pages that no entry has any more.
+`inventory_site.publish_variable_pages` writes them; the pages carry no value of a data body, no example and no evidence fragment. They show only what the field browser shows: names, paths, types, units, descriptions and groups.
+
+1. The header: the name, the link to the entry (`/<kind>/<slug>/`), the relation to data (the label of `relatie_date`), the number of sources and of fields, and „Inventar parțial”.
+2. „Pe familii”: a block for each family that the entry reaches, in the order of `/date/lista/`; in it, each group (its label links to `/date/?variables=<id>`, with its review state) and the fields that match it, as source title and
+   path. A field that two groups match is under both. A family without a field has no block. „Altele” lists the fields that match no group. The matching rule is `inventory_site.group_hits`, the one that the finder and the list use.
+3. „Pe surse”: a block for each source of `inventar/<slug>.json`, with the title of the field browser, its address, its format, its licence (`source_licence`), when it was read (and a failed refresh), its data set facts and a table of its fields
+   (name with the role and the basis, path, type, unit, description, groups). The rows keep the ranking and the folding of the field browser (`rank_field`, `fold_restatements`, `group_api_parameters`). A field of a source with a table
+   or class (`grup`) shows it under the path. A field that an editor added shows „adăugat de editor”.
+
+The links inside a page are relative to the base (`date/<slug>/#pe-surse`, not `#pe-surse`, which a `<base>` would send to the explorer). `check_data_finder.py` checks every page against its own payload.
 
 Counting rule: a field with a non-null `in_contract` restates a record of another source. It stays in `seturi-date.json` and `campuri.csv` as evidence,
 but counts, group memberships and the preview use the restated record only (`inventory_state.counted_fields`; in the preview it becomes `also` on that record).

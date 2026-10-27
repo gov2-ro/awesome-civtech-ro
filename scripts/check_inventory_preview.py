@@ -16,6 +16,7 @@ from playwright.sync_api import sync_playwright
 BASE = sys.argv[1] if len(sys.argv) > 1 else 'http://localhost:8770/'
 DB = json.load(urllib.request.urlopen(BASE + 'data.json'))
 assert DB.get('inventoryPreview'), 'Build with --with-inventory first.'
+WORDS = json.load(urllib.request.urlopen(BASE + 'inventar/index.json'))['factBasis']  # the public words for the bases; the build writes them, no script keeps a copy
 results, errors = [], []
 
 
@@ -90,6 +91,7 @@ with sync_playwright() as pw:
     ok('INS metadata sources list the datasets with period, unit and the mirror caveat',
        page.locator('.inv-datasets').count() == 1 and 'POP107D' in page.locator('.inv-datasets').text_content() and 'Numar persoane' in page.locator('.inv-datasets').text_content()
        and 'oglindă' in page.locator('.inv-datasets').text_content())
+    ok('the INS metadata names its basis with the public word', page.locator('.inv-datasets .inv-basis').evaluate_all('els=>els.map(e=>e.textContent)') == [WORDS['declaratie-directa']])
     page.locator('[data-inv="q"]').fill('OBS_VALUE')
     ok('an INS dataset has one measure field with its declared unit, not one field per dimension value',
        page.locator('.inv-field').count() == 2 and all('Numar' in t and 'Tip neprecizat' in t for t in page.locator('.inv-field').all_inner_texts()))
@@ -202,6 +204,81 @@ with sync_playwright() as pw:
         page.wait_for_selector('.d-inventory', timeout=8000)
         ok('the page of ' + item['slug'] + ' (out of scope) shows its "Date & metodă" panel with its documentation links',
            page.locator('.d-inventory').count() == 1 and all(page.locator(f'.d-inventory a[href="{d["url"]}"]').count() > 0 for d in item['inventory']['docs']))
+    # The data set facts that a source declares: under the source, with the basis. One entry of each kind that the data holds is opened.
+    payloads = {i['slug']: json.load(urllib.request.urlopen(BASE + i['inventory']['url'])) for i in DB['items'] if i.get('inventory', {}).get('url')}
+    for kind in ('sets', 'schema'):
+        slug = next((s for s, data in payloads.items() if any(source.get('facts', {}).get(kind) for source in data['sources'])), None)
+        if slug is None:
+            ok(f'a source declares {kind} (no entry has them: the check cannot run)', False)
+            continue
+        item = next(i for i in DB['items'] if i['slug'] == slug)
+        facts = browser.new_page(viewport={'width': 1280, 'height': 900})
+        facts.goto(BASE + f"{item['kind']}/{slug}/")
+        facts.wait_for_selector('[data-inv-panel]')
+        facts.locator('[data-inv-panel] > summary').click()
+        facts.wait_for_selector('.inv-facts')
+        listed = [x for source in payloads[slug]['sources'] for x in source.get('facts', {}).get('sets', []) + source.get('facts', {}).get('schema', [])]
+        names = [x.get('title') or x.get('name') or 'Set de date' for x in listed]
+        facts.locator('.inv-facts > summary').click()
+        texts = lambda selector: facts.locator(selector).evaluate_all('els=>els.map(e=>e.textContent.trim())')
+        ok(f'the field browser lists each data set that a source of {slug} declares ({kind})', facts.locator('.inv-facts .inv-set').count() == len(listed)
+           and texts('.inv-facts .inv-set > strong') == names)
+        ok(f'each source with facts names its basis ({slug})', texts('.inv-facts .inv-basis') == [s['facts']['basis'] for s in payloads[slug]['sources'] if s.get('facts')]
+           and all(b == WORDS['declaratie-directa'] for b in texts('.inv-facts .inv-basis')))
+        ok(f'a source that declares nothing has no block of facts ({slug})', facts.locator('.inv-facts > .inv-note').count() >= sum(bool(s.get('facts')) for s in payloads[slug]['sources']))
+        facts.close()
+    # A long description is cut in the payload; the note then points to the page that holds the whole text. A set that a source declares stays text.
+    slug = next(s for s, data in payloads.items() if any(source.get('facts', {}).get('sets') for source in data['sources']))
+    item = next(i for i in DB['items'] if i['slug'] == slug)
+    edited = json.loads(json.dumps(payloads[slug]))
+    first = next(source['facts']['sets'][0] for source in edited['sources'] if source.get('facts', {}).get('sets'))
+    first['description'] = 'x' * 299 + '…'
+    first['title'] = '<img src=x onerror="window.factsExecuted=true">'
+    cut = browser.new_page(viewport={'width': 1280, 'height': 900})
+    cut.route(f'**/inventar/{slug}.json', lambda r: r.fulfill(status=200, content_type='application/json', body=json.dumps(edited)))
+    cut.goto(BASE + f"{item['kind']}/{slug}/")
+    cut.wait_for_selector('[data-inv-panel]')
+    cut.locator('[data-inv-panel] > summary').click()
+    cut.wait_for_selector('.inv-facts')
+    ok('a cut description points to the page that holds the whole text', cut.locator('.inv-facts a[href="date/' + slug + '/"]').count() == 1)
+    ok('the title of a set remains inert text', cut.locator('.inv-facts img').count() == 0 and cut.evaluate('window.factsExecuted === undefined'))
+    cut.close()
+    # A field that an editor added (`campuri-editor.csv`) shows its basis in the field browser: „adăugat de editor”, next to the labels of the other bases.
+    edited = json.loads(json.dumps(payloads['demoanaf']))
+    edited['fields'].insert(0, {**edited['fields'][0], 'name': 'campul_editorului', 'path': '$.campul_editorului', 'basis': 'editor', 'description': 'Adăugat de un editor'})
+    added = browser.new_page(viewport={'width': 1280, 'height': 900})
+    added.route('**/inventar/demoanaf.json', lambda r: r.fulfill(status=200, content_type='application/json', body=json.dumps(edited)))
+    added.goto(BASE + 'proiect/demoanaf/')
+    added.wait_for_selector('[data-inv-panel]')
+    added.locator('[data-inv-panel] > summary').click()
+    added.wait_for_selector('.inv-field')
+    first = added.locator('.inv-field').first
+    ok('a field that an editor added shows the basis „adăugat de editor”', first.locator('code').first.inner_text() == 'campul_editorului'
+       and first.locator('.inv-basis').inner_text() == 'adăugat de editor')
+    ok('the other fields keep their own basis label', added.locator('.inv-field').nth(1).locator('.inv-basis').inner_text() != 'adăugat de editor')
+    added.close()
+    # The link to the variables page of an entry (`/date/<slug>/`): only an entry that has the page, and the page is the one of that entry.
+    with_page = [i for i in DB['items'] if i.get('inventory', {}).get('page')]
+    ok('an entry with a variables page has fields, and the page is date/<slug>/', len(with_page) > 0 and all(i['inventory']['count'] and i['inventory']['page'] == f'date/{i["slug"]}/' for i in with_page))
+    ok('an entry in the scope of /date/ with fields has the page', all(i['inventory'].get('page') for i in DB['items'] if i['kind'] in ('proiect', 'resursa') and i['status'] not in ('offline', 'arhivat')
+                                                                       and i.get('dataRelation') in ('date-publice', 'date-proprii', 'calcul') and i.get('inventory', {}).get('count')))
+    linked = browser.new_page(viewport={'width': 1280, 'height': 900})
+    linked.goto(BASE + 'proiect/demoanaf/')
+    linked.wait_for_selector('.d-inventory')
+    link = linked.locator('.d-inventory .inv-all a')
+    ok('the field browser links to the variables page of the entry', link.count() == 1 and 'Toate variabilele' in link.inner_text() and link.get_attribute('href') == 'date/demoanaf/')
+    link.click()
+    linked.wait_for_selector('.vp-head h1')
+    ok('the link opens the variables page of the entry', linked.url.endswith('/date/demoanaf/') and linked.locator('.vp-head h1').inner_text() == 'DemoANAF')
+    ok('the page links back to the entry in the explorer', linked.locator('.vp-open').get_attribute('href') == 'proiect/demoanaf/')
+    ok('the page and the panel say the basis of the INS metadata with the same word', set(linked.locator('.vp-datasets .inv-basis').evaluate_all('els=>els.map(e=>e.textContent)')) == {WORDS['declaratie-directa']})
+    linked.close()
+    for item in [i for i in DB['items'] if i.get('inventory') and not i['inventory'].get('page')][:2]:
+        other = browser.new_page(viewport={'width': 1280, 'height': 900})
+        other.goto(BASE + f"{item['kind']}/{item['slug']}/")
+        other.wait_for_selector('.d-inventory')
+        ok('an entry without a variables page has no link to one: ' + item['slug'], other.locator('.d-inventory .inv-all').count() == 0)
+        other.close()
     ok('no uncaught page errors', not errors)
     browser.close()
 print(f'{sum(results)}/{len(results)} inventory preview checks passed')

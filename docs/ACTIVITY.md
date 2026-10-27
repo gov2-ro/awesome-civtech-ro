@@ -1,5 +1,50 @@
 # Activity
 
+## 2026-10-27 — A variables page for each project, data set facts, fields added by an editor
+
+**Done**
+- Brief `docs/briefs/variable-pages.md`, parts A, B and C in this order, branch `variable-pages` (base `6dc533c`). 0 requests: the work used the cache, the generated files and the retained bodies (`inventory.py --offline`).
+- **A. `/date/<slug>/`** (`inventory_site.publish_variable_pages`, template `inventory-vars.html`, styles in `inventory.css`). A static page for each entry in scope with field records: 42 pages, 1,707,690 bytes in all (186,105 gzipped; the largest is `romania-transparenta`, 320,770).
+  Header (name, link to `/<kind>/<slug>/`, relation to data, sources, fields, „Inventar parțial”), „Pe familii” (the families of `/date/lista/` in its order, each group with its fields as source title and path, then „Altele”) and „Pe surse” (title, address,
+  format, licence, reading date, facts and a table of the fields). The rows keep the ranking and the folding of the field browser. `group_hits` is now the one matching rule: `variable_matches` and `field_groups` use it, and their output is unchanged.
+  Each row of `/date/lista/` links to its page; the panel „Date & metodă” has „Toate variabilele” (`inventory.page` in `data.json`). Entries without a page: 97 of 139 — 43 in scope without field records („De analizat”), 23 `fara-date`, 18 `inactiv`, 13 organisations.
+  No sitemap or index of the other pages exists (`build.py` writes none for `/date/` and `/date/lista/`), so none was extended.
+- **B. Data set facts.** `facts` in a source of `inventar/<slug>.json` (`sets`: title, category with subcategory, description, reports; `schema`: name, period, licence, `isBasedOn`) with the basis „declarat” (`PUBLIC_BASIS_LABELS` in `inventory_concepts`, the one list of public words; the finder reads it from `inventar/index.json`);
+  `dataset` (INS metadata) names its basis too. Only a fact with a basis `declarat-in-*` is shown. Counts: `set_date` 11 sources, `seturi` 15 sets in 1 source (the page `data.expertforum.ro`), `seturi_ld` 11 sets in 9 sources: 21 sources with facts.
+  The field browser shows them in a block under the sources; the page shows them in „Pe surse”. A description is cut at 300 characters in the payload (the longest real one has 222, so none is cut today) and whole on the page.
+- **C. `campuri-editor.csv`** (module `inventory_editor`): header row only. `inventory.py` merges each row into the field records of its source (`stare_tip` `adaugat-de-editor`) before the profiles count and before a group selector is matched; `--check` finds the fragment again and compares the hash;
+  `validate.py` checks the form; the field browser and the page label the field „adăugat de editor”. `docs/DATA-SCHEMA.md` and the Romanian guide `data/taxonomy-v2/README.md` describe the file. No form in the review interface; the backlog has the item.
+- Sizes. `inventar/*.json` (43 files): 2,075,671 → 2,086,818 bytes (+11,147, +0.54%); `index.json` 352,858 → 354,145 (the key `page`); `data.json` 423,358 → 424,645. The build (`--with-inventory`): 12,319,636 → 14,047,853 bytes (+1,728,217, the pages); `/date/lista/` 20,503 → 22,882.
+- Tests: 927 run, 6 skipped (831 and 6 before): `test_inventory_pages` 39 (new), `test_inventory_editor` 57 (new). None pins a count of entries, of fields or of rows: the one test that reads the tracked inventory compares each page with its own payload, and the one that reads the tracked CSV checks its form only.
+  Mutation checks: 202 breaks of the new rules (49 in A, 39 in B, 94 in C: the file, the merge, the check, the command, `validate.py`, the persons keys, the site labels; 6 in the JavaScript, each failed the browser check; 14 in the review fixes: the public words and the skip link). The first round left 15 survivors. Twelve got a test and then failed it. Three are equivalent breaks
+  (`selector_matches` repeats the project test; an editor record has no `operatie`, so `apply_contracts` leaves it as it is; `validate.py` has no row to check without rows).
+- Checks. `validate.py --publication` 0 errors, 0 warnings. `inventory.py --check` 0 errors, 147 bodies hash-verified, 129 dictionary evidence items verified, 0 stale, 12 sources with persons searched. `inventory_report.py --check` current. The three package checks pass.
+  `inventory.py --offline` on a copy of the tracked folder (cache copied in) gives the six generated files byte for byte, with the empty file. With one real row (a scratch copy) the run adds one record and `--check` verifies the fragment with the recorded hash; with a missing fragment the run stops and writes nothing.
+  Browser against the served build (`--allow-draft --with-inventory`, as CI): `check_preview.py` 141/141, `check_inventory_preview.py` 59/59 (40 before), `check_data_finder.py` 81/81 (61 before). A break of a generated page or of the script fails the matching check (18 breaks tried).
+
+- Review fixes (same day): one public word for each basis (above), and the skip link of `/date/` (`date/#data-results`; a bare `#id` leaves the page through `<base>`). `/date/lista/` and `/date/<slug>/` have no skip link; the browser check asserts that none of the three pages links to a bare anchor and that every skip link stays on its page.
+
+**Hard**
+- The page of described sets (`data.expertforum.ro`) has no field of its own, so `publish_preview` did not list it and its 15 sets had no place to show. It is listed now when it declares facts (see Decided).
+- A `<base href>` sends a link `#id` to the explorer. The new page uses `date/<slug>/#pe-surse`. The same defect is in the skip link of `/date/` (measured: the address becomes `/#data-results`); it is in the backlog and not fixed.
+- A first scratch build of a root with an editor row ran against the tracked folder: `integrare` was a symlink and the data root resolved through it. The replay is byte-stable and `git status` showed no change; the second try copied `integrare`.
+- In `check_data_finder.py` a loop variable named `shown` hid the helper of the same name. A static server answers a folder without a page with a listing, so the check recognises a page by its header.
+- The commit `5c2604e` (module, merge, validate) passes alone but for one test that needs the preview label of the next commit. The two commits together are green.
+
+**Decided**
+- The basis of a fact is named with the public word („declarat”), not with `BASIS_LABELS` of the review interface („declarație directă”). The first version of this work used `BASIS_LABELS`, as the brief says, and put two words for one basis on two public pages; the coordinator asked for one. `PUBLIC_BASIS_LABELS` is the one list: `inventory.js` no longer holds a copy and reads `factBasis` from the index. `BASIS_LABELS` stays for the local review interface.
+- A page of described sets is a source of the browser although it has no field. The cost: `inventory.sources` and the „N surse” of the list grow by one for `data-expertforum` (10 → 11), and the selector of sources has an entry without fields. The alternative was to attach each set to the tab that it describes; five sets have no tab among the sources, so they would stay hidden.
+- Code lists of the file: `rol` takes the 14 roles of the field browser; `tip_declarat` takes the seven JSON types, separated by `|`. A type written as the source writes it (`varchar(255)`) goes into `descriere`. The brief names the lists and not their values.
+- A row for a field that a reader already gives is an error, and so is the same field twice (the slug is not part of the key: the record belongs to the source and every entry that shares the source shows it). The cost: a better reader later makes the run say „remove the row”.
+- The hash is recorded by the run (`inventory.py --offline`), not by `--check`, which never writes. The record keeps the hash and the kind of copy, never the fragment. A source without a retained body takes the record with a null hash and a warning.
+- The merge looks for every identifying value in a row for a source with persons, with no exception for a value that an unmarked body holds too; the check of the files keeps the exception. The record of such a source may keep the keys of the editor.
+- „Pe familii” lists a field under each group that matches it (the list `/date/lista/` counts it once, in the first group); a family without a field has no block; „Altele” appears only when a field has no group. The „Grup” column of the table is the variable group; the table or the class of the source (`grup`) sits under the path.
+- Subcategory and category are one text („Electoral · Gen în alegeri”). The group label links to the finder (`date/?variables=<id>`). The label „adăugat de editor” is lowercase, as in the brief.
+
+**Measured and assumed**
+- Measured: the counts and sizes above (a script over the generated files and over builds into scratch folders: `.../scratchpad/vp/base-site` before, `d-site` after); the tests, the mutations, the checks and the browser results; the screenshots.
+- Assumed: a visitor reads the pages with a script-free browser and at 375 px (checked in Chromium only, for the 42 pages, with no sideways scroll); the facts of `seturi_ld` and `seturi` are declarations of the page (basis `declarat-in-pagina`), as the readers record them.
+
 ## 2026-10-27 — Six groups approved; five entries without data
 
 **Done**

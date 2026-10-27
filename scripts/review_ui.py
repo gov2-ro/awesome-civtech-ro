@@ -40,8 +40,8 @@ from urllib.parse import urlsplit
 
 import taxonomy_v2
 from common import PUBLIC_ROOT, ROOT, observation_paths
-from inventory_concepts import (GROUP_REVIEW_KEYS, GROUP_STATES, SELECTOR_REVIEW_KEYS, SELECTOR_STATES, EvidenceLocator, as_list, group_state,
-                                selector_matches, selector_state, sha, validate_concept, validate_families)
+from inventory_concepts import (BASIS_LABELS, GROUP_REVIEW_KEYS, GROUP_STATES, SELECTOR_REVIEW_KEYS, SELECTOR_STATES, EvidenceLocator, as_list,
+                                group_state, selector_matches, selector_state, sha, validate_concept, validate_families)
 
 SCRIPTS = Path(__file__).resolve().parent
 TEMPLATES = SCRIPTS / 'templates'
@@ -64,8 +64,6 @@ PROVIDER_OPEN = ('deschis', 'amanat')  # still needs a decision
 PROVIDER_DECIDED = ('acceptat', 'respins', 'tehnic')
 GROUP_OPEN = ('propus', 'amanat')
 GROUP_DECIDED = ('revizuit', 'respins')
-BASIS_LABELS = {'declaratie-directa': 'declarație directă', 'observatie-esantion': 'observație din eșantion',
-                'deductie-din-dovezi': 'deducție din dovezi', 'parafraza-editoriala': 'parafrază editorială'}
 STATE_LABELS = {'verificat': 'verificat', 'schimbat': 'schimbat', 'indisponibil': 'indisponibil local',
                 'fara-amprenta': 'fără amprentă', 'fragment-lipsa': 'fragment lipsă'}
 COPY_KINDS = ('sursa', 'documentatie', 'cache')

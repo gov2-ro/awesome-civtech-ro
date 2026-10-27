@@ -23,6 +23,13 @@ from pathlib import Path
 
 CATEGORIES = ('identificator', 'dimensiune', 'masura', 'intrare-utilizator', 'iesire-derivata')
 EVIDENCE_BASES = ('declaratie-directa', 'observatie-esantion', 'deductie-din-dovezi', 'parafraza-editoriala')
+# The labels of the evidence bases in the review interface (review_ui.py), a local tool: it may be more exact than the public pages.
+BASIS_LABELS = {'declaratie-directa': 'declarație directă', 'observatie-esantion': 'observație din eșantion',
+                'deductie-din-dovezi': 'deducție din dovezi', 'parafraza-editoriala': 'parafrază editorială'}
+# The words of the public pages for the same bases. This is the one list: the finder reads it from `inventar/index.json` (`factBasis`), and the
+# field browser and the page of an entry carry the word that the build writes into `inventar/<slug>.json`. No script keeps a copy.
+PUBLIC_BASIS_LABELS = {'declaratie-directa': 'declarat', 'observatie-esantion': 'observat în eșantion',
+                       'deductie-din-dovezi': 'dedus din dovezi', 'parafraza-editoriala': 'formulare editorială'}
 SELECTOR_KEYS = {'projects', 'names', 'source', 'path', 'role', 'context', 'fapte', 'nota', 'stare', 'nota_editor'}
 GROUP_STATES = ('propus', 'revizuit', 'respins', 'amanat')
 SELECTOR_STATES = ('propus', 'confirmat', 'exclus')

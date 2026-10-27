@@ -72,6 +72,7 @@ Un rezultat cu zero erori verifică structura. Nu confirmă corectitudinea clasi
 | `corespondente-v1.csv` | Trecerea de la categorii și etichete vechi la concepte candidate | Istoric de migrare |
 | `atribuiri-initiale.csv` | Dovada locală și raționamentul pentru clasificarea inițială | Istoric de migrare |
 | `observatii/` | Copii de lucru ale profilurilor și mențiunilor; același format ca înainte | Numai prin viitoarele scripturi adaptate |
+| `observatii/inventare/campuri-editor.csv` | Câmpuri de date pe care cititorii inventarului le-au ratat, adăugate de editor | Da, cu fragmentul-dovadă (vezi mai jos) |
 | `source/` | Copii exacte ale tuturor fișierelor CSV/JSON de la primul nivel din `data/` | Nu |
 | `reference/` | Interogarea și răspunsul oficial EuroVoc, plus sursele metodologice | Nu modificați răspunsul sau interogarea |
 | `manifest.json` | Numerele inițiale draft.1 și hashurile copiilor originale | Nu |
@@ -239,6 +240,40 @@ adăugați un rând în `data/taxonomy-v2/colectare-interzisa.csv`: `gazda` (num
 `dovada` (o adresă sau un citat scurt) și `data` (AAAA-LL-ZZ). După aceea niciun script nu mai cere gazda: nici `profile.py`, `review.py`, `collect_docs.py`, `inventory.py`, nici redirecționările către ea.
 Intrarea își păstrează rândul din `profil.csv`; nu devine `offline`. Proprietarul salvează apoi paginile de mână, din browserul propriu,
 și le importă cu `--import-saved` (`collect_docs.py` sau `inventory.py`). `validate.py` verifică fișierul și avertizează când nicio intrare nu mai folosește gazda. Coloanele: `docs/DATA-SCHEMA.md`.
+
+## Câmpuri adăugate de editor
+
+Inventarul de variabile citește automat sursele de date ale fiecărui proiect. Uneori un cititor ratează un câmp.
+Puteți adăuga câmpul de mână în `data/taxonomy-v2/observatii/inventare/campuri-editor.csv`. Un rând este un câmp al unei surse.
+Fișierul este UTF-8, cu virgulă între coloane, și poate trece prin Google Sheets. Rămâne gol, doar cu antetul, până adăugați primul câmp.
+
+| Coloana | Ce scrieți |
+| --- | --- |
+| `slug` | Intrarea (proiectul sau resursa). |
+| `url_sursa` | Adresa uneia dintre sursele de date ale intrării, exact ca în `campuri.csv`. O adresă care nu este sursa intrării este o eroare. |
+| `nume`, `cale` | Numele câmpului și locul lui în sursă (`$.total`, un antet de coloană, un nume de parametru). |
+| `rol` | Una dintre valorile: `camp-date`, `dimensiune`, `parametru-api`, `corp-cerere`, `camp-raspuns`, `model-de-date`, `camp-dictionar`, `coloana-sql`, `camp-model`, `cod-enumerare`, `camp-exemplu`, `masura`, `camp-folosit-de-pagina`, `colectie-cu-chei`. |
+| `tip_declarat` | Gol, sau unul sau mai multe tipuri din `string`, `integer`, `number`, `boolean`, `null`, `object`, `array`, separate prin `\|`. Scrieți tipul pe care îl declară sursa. Nu deduceți un tip. Alt tip se scrie în `descriere`. |
+| `unitate`, `descriere` | Opționale. Apar pe site. |
+| `fragment` | **Dovada.** Un text care apare întocmai în conținutul păstrat al sursei. Copiați-l din sursă; nu îl rescrieți. |
+| `nota` | Opțională. Nota dumneavoastră; nu apare pe site. |
+
+După ce salvați fișierul, rulați `python3 scripts/inventory.py --offline`. Scriptul nu face nicio cerere. Adaugă câmpul la sursă, cu eticheta „adăugat de editor”, și îl numără în inventar.
+Un selector al unui grup de variabile îl poate potrivi ca pe orice alt câmp. Apoi rulați `python3 scripts/inventory.py --check`. Verificarea găsește fragmentul din nou în conținutul păstrat și compară amprenta înregistrată de rularea precedentă.
+
+- Dacă fragmentul nu apare în conținutul păstrat, scriptul se oprește și nu schimbă niciun fișier. Corectați fragmentul.
+- Dacă pe calculatorul dumneavoastră nu există conținutul păstrat al sursei (un depozit proaspăt clonat nu îl are), câmpul se adaugă fără amprentă, cu un avertisment. Verificarea îl numără ca neverificat, nu ca eroare.
+- Dacă cititorul găsește singur câmpul mai târziu, scriptul vă spune să ștergeți rândul.
+- Pentru o sursă care conține date despre persoane (marcată `persoane`), nu scrieți nicio valoare care identifică o persoană. Scriptul respinge rândul și arată doar o amprentă scurtă, nu valoarea.
+- Câmpul aparține sursei. Dacă mai multe intrări folosesc aceeași sursă, toate îl arată.
+- `scripts/validate.py` verifică forma fișierului (coloanele, valorile din liste, sursa intrării). Nu are nevoie de conținutul păstrat.
+
+Coloanele și regulile complete: `docs/DATA-SCHEMA.md`, „Fields added by an editor”. Interfața de revizuire nu are încă un formular pentru acest fișier.
+
+## Pagina de variabile a unui proiect
+
+`python3 scripts/build.py --with-inventory` scrie, pentru fiecare proiect sau resursă cu câmpuri extrase, o pagină statică `/date/<slug>/`: câmpurile surselor, pe familii de variabile și pe surse.
+Pagina nu arată nicio valoare din date. Fiecare rând al listei `/date/lista/` trimite la pagina intrării, iar panoul „Date & metodă” din explorator are legătura „Toate variabilele”.
 
 ## Previzualizare
 
