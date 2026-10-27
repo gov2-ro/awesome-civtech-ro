@@ -4376,6 +4376,7 @@ sondaje-romania,73e7ad63b42c98cbf7e6,https://sondajeromania.ro/parliamentary-cha
 sondaje-romania,73e7ad63b42c98cbf7e6,https://sondajeromania.ro/parliamentary-chart-data.json,json,camp-date,USR_dot,$.rawDots[].USR_dot,,number|integer,,,,,/rawDots/1/USR_dot,observat-in-esantion-json
 sondaje-romania,73e7ad63b42c98cbf7e6,https://sondajeromania.ro/parliamentary-chart-data.json,json,camp-date,SENS_dot,$.rawDots[].SENS_dot,,integer|number,,,,,/rawDots/8/SENS_dot,observat-in-esantion-json
 sondaje-romania,73e7ad63b42c98cbf7e6,https://sondajeromania.ro/parliamentary-chart-data.json,json,camp-date,POT_dot,$.rawDots[].POT_dot,,number|integer,,,,,/rawDots/10/POT_dot,observat-in-esantion-json
+sondaje-romania,5335f57d009536be2636,https://sondajeromania.ro/seats-index.json,json,colectie-cu-chei,${*},${*},,object|string,,,,,,observat-in-esantion-json
 dupa-cutremur,35d2d1b9b7e30cdf2631,https://storage.googleapis.com/dupacutremur/_strazi_arie_colaps_06122022.geojson,json-esantion,camp-date,type,$.type,,string,,,,,/type,observat-in-esantion-json
 dupa-cutremur,35d2d1b9b7e30cdf2631,https://storage.googleapis.com/dupacutremur/_strazi_arie_colaps_06122022.geojson,json-esantion,camp-date,name,$.name,,string,,,,,/name,observat-in-esantion-json
 dupa-cutremur,35d2d1b9b7e30cdf2631,https://storage.googleapis.com/dupacutremur/_strazi_arie_colaps_06122022.geojson,json-esantion,camp-date,type,$.crs.type,,string,,,,,/crs/type,observat-in-esantion-json

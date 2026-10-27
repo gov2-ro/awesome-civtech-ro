@@ -4495,9 +4495,10 @@
         "218f1838e52fb4587763",
         "887f79474dd088d4a7bb",
         "f175a0aca8381f0ebf37",
-        "73e7ad63b42c98cbf7e6"
+        "73e7ad63b42c98cbf7e6",
+        "5335f57d009536be2636"
       ],
-      "campuri_din_surse": 36,
+      "campuri_din_surse": 37,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
