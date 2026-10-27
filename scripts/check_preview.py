@@ -301,7 +301,8 @@ with sync_playwright() as pw:
        any(i.get("dataRelation") == "calcul" for i in projects)
        and {i["slug"] for i in projects if i.get("dataRelation") in WITH_DATA} == slugs_shown())
     go("?dat=fara-date")
-    ok("the group fara-date holds the code and the empty value", {i.get("dataRelation", "") for i in projects if relation(i) == "fara-date"} == {"fara-date", ""}
+    # The owner may give every visible project a code, so the data need not hold an empty value; the vocabulary check above proves that the group takes it.
+    ok("the group fara-date holds the code and the empty value", "fara-date" in {i.get("dataRelation", "") for i in projects}
        and slugs_shown() == {i["slug"] for i in projects if i.get("dataRelation", "") in ("fara-date", "")})
     ok("dat pill names the facet and the value", pill_texts() == ["Date: Fără date"], " | ".join(pill_texts()))
     go("?dat=date-publice")

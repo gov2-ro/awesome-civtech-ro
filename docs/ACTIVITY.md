@@ -5,6 +5,7 @@
 **Done**
 - At the owner's request („I approve the 6 groups”), `uat`, `partid-politic`, `beneficiar-fonduri-publice`, `subventie-partid`, `donatie-partid` and `cod-caen` are `revizuit`, with all 23 members confirmed and the 7 deductions ticked. Written with `Store.decide_group`. Every group of `inventar-concepte.json` is now `revizuit` (41).
 - `relatie_date` = `fara-date` for `observatori-votcorect`, `romania-fara-gropi`, `votcorect`, `votez-info` and `presspay` (owner: „right - no data”). No active project or resource has an empty value now.
+- `check_preview.py` pinned the data: it wanted a visible project with an empty `relatie_date`, and failed (140/141) once the owner gave every one a code. I committed and pushed the data change before I read that result; the browser check now proves the group by the vocabulary and the shown set (141/141).
 
 **Decided**
 - The families stay as proposed: `beneficiar-fonduri-publice` and `deficit-bugetar` in `achizitii`, `subventie-partid` and `donatie-partid` in `alegeri`, `cod-caen` in `identificatori`. The owner approved the groups as they were; a new family stays possible later.
