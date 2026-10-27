@@ -675,9 +675,10 @@ class CandidateDecisions(CandidateFixture):
         self.assertTrue(all(review_ui.CANDIDATE_ID.match(r['id']) for r in state['candidates']))
         self.assertTrue(state['validation']['ok'])
 
-    def test_the_real_data_root_has_an_empty_queue(self):
+    def test_the_real_data_root_loads_its_queue(self):
+        # Read only. The owner edits this data, so the test checks consistency, not a count.
         state = Store(common.PUBLIC_ROOT).state()
-        self.assertEqual((state['candidates'], state['progress']['candidates']['open']), ([], 0))
+        self.assertEqual(state['progress']['candidates']['open'], sum(1 for c in state['candidates'] if c['stare'] == 'propus'))
 
     def test_the_detail_shows_the_group_the_reach_the_pinned_facts_and_the_confirmed_members(self):
         view = self.store.candidate(self.cid('cui'))
