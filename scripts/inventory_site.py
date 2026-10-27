@@ -3,8 +3,9 @@ import html
 import json
 import hashlib
 import re
+import shutil
 from pathlib import Path
-from urllib.parse import unquote, urlsplit
+from urllib.parse import quote, unquote, urlsplit
 
 from collect_docs import is_saved
 from common import inventory_exclusion, observation_paths, public_reason
@@ -35,6 +36,7 @@ SOURCE_LABELS = {
 # `fara-date` is the group `fara-date` of `common.DATA_GROUPS` (the code `fara-date` and an empty value together); `inactiv` counts every inactive
 # project or resource, and `fara-date` counts the active ones. The explorer shows the same sets with `dat=fara-date` and `st=inactiv`.
 LEFT_OUT = ('fara-date', 'inactiv')
+PAGE_DIR = 'date'  # the folder of the finder; the variables page of an entry is `date/<slug>/`
 
 
 def scope_reason(item):
@@ -56,43 +58,59 @@ def left_out(items):
     return counts
 
 
-def variable_matches(slug, fields, sources, concepts):
-    """Match a project's fields to the proposed groups. A field joins a group through a selector of that project; every constraint that
-    the selector supplies (names, source, path, role) must match. Generic names such as `id` never create a match by themselves.
-    A rejected group (`stare` = respins) produces no match, and an excluded selector (`stare` = exclus) matches no field."""
-    matches = []
-    source_map = {s['id']: s for s in sources}
+def group_hits(slug, fields, sources, concepts):
+    """The one matching rule of the groups: [(concept, [(position, selector)])] for the groups that reach at least one field of the project, in the
+    order of the dictionary. A field joins a group through a selector of that project; every constraint that the selector supplies (names,
+    source, path, role) must match. Generic names such as `id` never create a match by themselves. A rejected group (`stare` = respins) produces
+    no match, and an excluded selector (`stare` = exclus) matches no field. `variable_matches`, `field_groups` and the page of a project use this function."""
+    urls = {s['id']: s['url'] for s in sources}
+    hits = []
     for concept in active_groups(concepts):
         selectors = [r for r in concept['selectors'] if slug in as_list(r['projects'])]
+        found = []
+        for n, f in enumerate(fields):
+            selector = next((r for r in selectors if selector_matches(r, slug, f, urls[f['source']])), None)
+            if selector:
+                found.append((n, selector))
+        if found:
+            hits.append((concept, found))
+    return hits
+
+
+def variable_matches(slug, fields, sources, concepts):
+    """Match a project's fields to the proposed groups (`group_hits`) and keep a few of them as the evidence of each group."""
+    matches = []
+    urls = {s['id']: s['url'] for s in sources}
+    for concept, found in group_hits(slug, fields, sources, concepts):
         evidence = []
-        for f in fields:
-            url = source_map[f['source']]['url']
-            selector = next((r for r in selectors if selector_matches(r, slug, f, url)), None)
-            if not selector:
-                continue
+        for n, selector in found:
+            f = fields[n]
             item = dict(name=f['name'], path=f['path'], role=f['role'], basis=f['basis'],
                         declaredType=f['declaredType'], observedTypes=f['observedTypes'], unit=f['unit'],
-                        description=f['description'], url=url, reference=f['reference'], location=f.get('location'))
+                        description=f['description'], url=urls[f['source']], reference=f['reference'], location=f.get('location'))
             if selector.get('context'):
                 item['context'] = selector['context']
             if selector.get('fapte'):
                 item['facts'] = [{'key': x['cheie'], 'value': x['valoare'], 'basis': x['baza']} for x in selector['fapte']]
             evidence.append(item)
-        if evidence:
-            # Show examples from different sources first; the count keeps every matching field.
-            seen, first, rest = set(), [], []
-            for item in evidence:
-                (rest if item['url'] in seen else first).append(item)
-                seen.add(item['url'])
-            matches.append({'id': concept['id'], 'count': len(evidence), 'evidence': (first + rest)[:3]})
+        # Show examples from different sources first; the count keeps every matching field.
+        seen, first, rest = set(), [], []
+        for item in evidence:
+            (rest if item['url'] in seen else first).append(item)
+            seen.add(item['url'])
+        matches.append({'id': concept['id'], 'count': len(evidence), 'evidence': (first + rest)[:3]})
     return matches
 
 
 def publish_finder(items, root, site, projections, vocabulary=None):
-    """Write a cross-project discovery index and its isolated page."""
+    """Write a cross-project discovery index and its isolated page, then the list `date/lista/` and the variables page of each entry (`date/<slug>/`)."""
     concept_path = root.parent / 'inventar-concepte.json'
     document = json.loads(concept_path.read_text()) if concept_path.exists() else {}
     concepts, families = document.get('concepte', []), document.get('familii', [])
+    for item in items:
+        if has_page(item, projections):
+            # The explorer links the page from the „Date & metodă” panel, so the key goes into data.json (build.py writes it after this call).
+            item.setdefault('inventory', {})['page'] = f'{PAGE_DIR}/{item["slug"]}/'
     entries = []
     for item in items:
         if scope_reason(item):
@@ -133,18 +151,25 @@ def publish_finder(items, root, site, projections, vocabulary=None):
     page.mkdir(exist_ok=True)
     (page / 'index.html').write_text(doc)
     publish_overview(items, site, projections, concepts, families)
+    publish_variable_pages(items, site, projections, concepts, families, vocabulary)
 
 
 def field_groups(slug, fields, sources, concepts):
     """{field position: group id} for one project, with the same selector rules as `variable_matches`; the first group that matches wins."""
-    urls = {s['id']: s['url'] for s in sources}
     found = {}
-    for concept in active_groups(concepts):
-        selectors = [r for r in concept['selectors'] if slug in as_list(r['projects'])]
-        for n, f in enumerate(fields):
-            if n not in found and any(selector_matches(r, slug, f, urls[f['source']]) for r in selectors):
-                found[n] = concept['id']
+    for concept, hits in group_hits(slug, fields, sources, concepts):
+        for n, _ in hits:
+            found.setdefault(n, concept['id'])
     return found
+
+
+def family_columns(concepts, families):
+    """The families of the page `/date/lista/`, in its order: [(id, label)], then (None, 'Fără familie') when a group has no known family.
+    The page of a project (`/date/<slug>/`) lists its families in the same order."""
+    columns = [(f['id'], f['label']) for f in families]
+    if any(not c.get('familie') or c['familie'] not in dict(columns) for c in active_groups(concepts)):
+        columns.append((None, 'Fără familie'))
+    return columns
 
 
 def ro_count(n, one, many):
@@ -180,14 +205,12 @@ def left_out_section(counts):
 def publish_overview(items, site, projections, concepts, families):
     """Write `date/lista/`: a table with one row per project or resource that has extracted fields, one column per family of variables,
     and a last column for the fields in no group. A cell lists the group labels (the normalised names), not the source field names;
-    those belong to the project's own page. Entries without fields are named once below the table. The entries that the inventory leaves out
+    those belong to the project's own page (`/date/<slug>/`, linked from each row). Entries without fields are named once below the table. The entries that the inventory leaves out
     are counted by reason below that, with links to the explorer that show them. A static page: it needs no script."""
     e = html.escape
     labels = {c['id']: c['label'] for c in concepts}
     family_of = {c['id']: c.get('familie') for c in concepts}
-    columns = [(f['id'], f['label']) for f in families]
-    if any(not family_of.get(c['id']) or family_of[c['id']] not in dict(columns) for c in active_groups(concepts)):
-        columns.append((None, 'Fără familie'))
+    columns = family_columns(concepts, families)
     rows, bare = [], []
     totals = {fam: 0 for fam, _ in columns}
     entries = sorted((i for i in items if not scope_reason(i)), key=lambda i: i['name'].casefold())
@@ -210,7 +233,8 @@ def publish_overview(items, site, projections, concepts, families):
             totals[fam] += bool(names)
             tds.append(f'<td>{"<ul>" + "".join(f"<li>{e(x)}</li>" for x in names) + "</ul>" if names else ""}</td>')
         kind = 'proiect' if item['kind'] == 'proiect' else 'resursă'
-        rows.append(f'<tr id="{e(item["slug"])}"><th scope="row">{link}<small>{kind} · {len(sources)} {"sursă" if len(sources) == 1 else "surse"}</small></th>'
+        all_link = f'<a href="{PAGE_DIR}/{e(item["slug"])}/">Toate variabilele</a>'
+        rows.append(f'<tr id="{e(item["slug"])}"><th scope="row">{link}<small>{kind} · {len(sources)} {"sursă" if len(sources) == 1 else "surse"} · {all_link}</small></th>'
                     f'{"".join(tds)}<td class="ov-other">{other or ""}</td></tr>')
     head = ''.join(f'<th scope="col">{e(label)}<small>{totals[fam]}</small></th>' for fam, label in columns)
     proposed = sum(group_state(c) == 'propus' for c in active_groups(concepts))
@@ -230,6 +254,189 @@ def publish_overview(items, site, projections, concepts, families):
     page = site / 'date' / 'lista'
     page.mkdir(parents=True, exist_ok=True)
     (page / 'index.html').write_text(doc)
+
+
+# --- the variables page of one entry: `/date/<slug>/` -------------------------------------------------------------------------------------
+# A static page (no script) for every entry in the scope of the inventory that has field records. It lists the source field names of the entry by family of
+# variables and by source, with the facts that the field browser shows (names, paths, types, units, descriptions, groups) and no value of a data body.
+
+# The labels of the field browser: `INV_TYPES`, `INV_ROLES` and `INV_BASIS` in site/app.js, and `stateLabels` in site/inventory.js. A test keeps the copies equal.
+TYPE_LABELS = {'string': 'Text', 'integer': 'Număr întreg', 'number': 'Număr', 'boolean': 'Da / Nu', 'null': 'Valoare nulă', 'text': 'Text în tabel',
+               'forma-numerica': 'Arată ca număr (text)', 'forma-de-data': 'Arată ca dată (text)', 'object': 'Obiect', 'array': 'Listă',
+               'geo': 'Arie geografică', 'time': 'Perioadă', 'indicator': 'Indicator', 'unit': 'Unitate de măsură'}
+ROLE_LABELS = {'camp-date': 'Date', 'dimensiune': 'Dimensiuni', 'parametru-api': 'Intrări API', 'corp-cerere': 'Conținut cerere API',
+               'camp-raspuns': 'Răspunsuri API', 'model-de-date': 'Modele de date', 'camp-dictionar': 'Dicționar de date', 'coloana-sql': 'Coloane în baza de date',
+               'camp-model': 'Câmpuri de model', 'cod-enumerare': 'Coduri și valori', 'camp-exemplu': 'Exemple în documentație', 'masura': 'Măsuri',
+               'camp-folosit-de-pagina': 'Folosite de pagină', 'colectie-cu-chei': 'Colecții indexate'}
+FIELD_BASIS_LABELS = {'schema': 'Descris în schemă', 'metadata': 'Descris în metadate', 'sample': 'Observat în date', 'header': 'Antet CSV',
+                      'code': 'Declarat în codul sursă', 'table': 'Antet de tabel HTML', 'doctable': 'Declarat în tabel de documentație',
+                      'doctext': 'Declarat în textul documentației', 'pagecode': 'Folosit în codul paginii', 'docexample': 'Exemplu în documentație',
+                      'apidoc': 'Declarat în documentația API', 'doclist': 'Declarat în lista de coloane din documentație', 'dblist': 'Declarat în lista bazei de date'}
+GROUP_STATE_LABELS = {'propus': 'Propus', 'revizuit': 'Revizuit', 'amanat': 'Amânat'}
+NOTE_PARTIAL = 'Extrase automat din sursele de mai jos. Proiectul poate folosi și alte date. Un câmp comun nu garantează că seturile se pot combina.'
+
+
+def type_label(field):
+    """The type of a field in the words of the field browser (`inventoryType` in site/app.js): the declared type, else the observed types, else the
+    semantic type, else „Tip neprecizat”. JavaScript calls an empty list true, so an empty declared type hides the observed types in both."""
+    declared = field.get('declaredType')
+    raw = declared if declared not in (None, '', 0, False) else (field.get('observedTypes') or field.get('semanticType'))
+    values = raw if isinstance(raw, list) else [raw] if raw else []
+    return ' / '.join(TYPE_LABELS.get(t, str(t)) for t in values) if values else 'Tip neprecizat'
+
+
+def clip(text, limit):
+    """`clip` of site/app.js: cut a long text at a word, keep the first `limit` characters at most, and end it with an ellipsis."""
+    if len(text) <= limit:
+        return text
+    space = text.rfind(' ', 0, limit + 1)
+    return re.sub(r'[\s,.;:–-]+$', '', text[:space if space > limit * .6 else limit]) + '…'
+
+
+def has_page(item, projections):
+    """True when the entry has a variables page: it is in the scope of the inventory and has field records."""
+    return not scope_reason(item) and bool(projections.get(item['slug'], ([], []))[0])
+
+
+def relation_labels(vocabulary):
+    """{code: label} of the list `relatie_date`, from the vocabulary of the build (`dataRelations`)."""
+    return {r['key']: r['label'] for r in (vocabulary or {}).get('dataRelations', [])}
+
+
+def group_rows(fields, positions, titles):
+    e = html.escape
+    return ('<ul class="vp-rows">' + ''.join(f'<li><span class="vp-from">{e(titles.get(fields[n]["source"], ""))}</span> <code>{e(fields[n]["path"])}</code></li>'
+                                              for n in positions) + '</ul>')
+
+
+def family_section(slug, fields, sources, concepts, families):
+    """The part „Pe familii”: a block for each family of `/date/lista/` that the entry reaches, in the order of that page, with the groups of the family and the
+    fields that match each group (source title, then path). A field that matches two groups is listed under both. The block „Altele” lists the fields that
+    match no group. A family without a field has no block."""
+    e = html.escape
+    titles = {s['id']: s.get('title', '') for s in sources}
+    family_of = {c['id']: c.get('familie') for c in concepts}
+    columns = family_columns(concepts, families)
+    known = dict(columns)
+    hits = group_hits(slug, fields, sources, concepts)
+    by_family = {}
+    for concept, found in hits:
+        by_family.setdefault(family_of.get(concept['id']) if family_of.get(concept['id']) in known else None, []).append((concept, [n for n, _ in found]))
+    blocks = []
+    for fam, label in columns:
+        groups = sorted(by_family.get(fam, []), key=lambda g: g[0]['label'].casefold())
+        if not groups:
+            continue
+        inner = ''.join(
+            f'<div class="vp-group" data-group="{e(c["id"])}"><h4><a href="{PAGE_DIR}/?variables={quote(c["id"])}">{e(c["label"])}</a>'
+            f'<small class="finder-state" data-state="{e(group_state(c))}">{e(GROUP_STATE_LABELS.get(group_state(c), group_state(c)))}</small>'
+            f'<small>{ro_count(len(found), "câmp", "câmpuri")}</small></h4>{group_rows(fields, found, titles)}</div>' for c, found in groups)
+        blocks.append(f'<section class="vp-family" data-family="{e(fam or "")}"><h3>{e(label)}<small>{ro_count(len({n for _, f in groups for n in f}), "câmp", "câmpuri")}</small></h3>{inner}</section>')
+    matched = {n for _, found in hits for n, _ in found}
+    other = [n for n in range(len(fields)) if n not in matched]
+    if other:
+        blocks.append(f'<section class="vp-family vp-other" data-family="altele"><h3>Altele<small>{ro_count(len(other), "câmp", "câmpuri")}</small></h3>'
+                      f'<p class="ov-note">Câmpuri care nu se potrivesc cu niciun grup.</p>{group_rows(fields, other, titles)}</section>')
+    return (f'<section class="vp-section" id="pe-familii"><h2>Pe familii</h2>'
+            f'<p class="ov-note">Fiecare grup numește o variabilă normalizată. Sub el stau câmpurile surselor care îi corespund. Același nume nu înseamnă că datele se pot combina.</p>'
+            f'{"".join(blocks)}</section>')
+
+
+def source_checked(source):
+    """„consultat la 2026-10-26”, or the saved copy of the owner; the same words as the field browser. The failed refresh is said, never hidden."""
+    parts = []
+    if source.get('checked'):
+        parts.append(('copie salvată de proprietar la ' if source.get('savedByOwner') else 'consultat la ') + source['checked'])
+    failed = source.get('refreshFailed')
+    if failed:
+        parts.append('ultima reîmprospătare a eșuat' + (f' la {failed["date"]}' if failed.get('date') else '') + (f' (HTTP {failed["status"]})' if failed.get('status') else '')
+                     + '; informațiile pot fi vechi')
+    return parts
+
+
+def source_section(source, fields, positions, groups_of):
+    """One source of the part „Pe surse”: its title, address, format and licence, and a table of its fields."""
+    e = html.escape
+    rows = []
+    for n in positions:
+        f = fields[n]
+        basis = FIELD_BASIS_LABELS.get(f['basis'], f['basis'])
+        unit = f.get('unit')
+        table = ''
+        if f.get('group'):
+            table = f'<small>{e(f["group"])}' + (f' · {ro_count(f["rows"], "rând", "rânduri")}' if isinstance(f.get('rows'), int) else '') + '</small>'
+        rows.append(f'<tr><th scope="row"><code>{e(f["name"])}</code><small>{e(ROLE_LABELS.get(f["role"], f["role"]))} · {e(basis)}</small></th>'
+                    f'<td><code>{e(f["path"])}</code>{table}</td><td>{e(type_label(f))}</td><td>{e(unit) if unit else ""}</td>'
+                    f'<td>{e(f["description"]) if f["description"] else ""}</td><td>{e(", ".join(groups_of.get(n, [])))}</td></tr>')
+    facts = [('Adresă', f'<a href="{e(source["url"])}" target="_blank" rel="noopener">{e(source["url"])}</a>'),
+             ('Format', e(FORMATS.get(source.get('format'), 'Sursă de date')))]
+    licence = source.get('licence')
+    if licence:
+        name = (f'<a href="{e(licence["url"])}" target="_blank" rel="noopener">{e(licence["name"])}</a>' if licence.get('url') else e(licence['name']))
+        facts.append(('Licență', name + (f' · {e(licence["attribution"])}' if licence.get('attribution') else '')))
+    checked = source_checked(source)
+    if checked:
+        facts.append(('Consultare', e(' · '.join(checked))))
+    body = (f'<div class="ov-scroll vp-scroll"><table class="vp-table"><thead><tr><th scope="col">Nume</th><th scope="col">Cale</th><th scope="col">Tip</th>'
+            f'<th scope="col">Unitate</th><th scope="col">Descriere</th><th scope="col">Grup</th></tr></thead><tbody>{"".join(rows)}</tbody></table></div>'
+            if rows else '<p class="ov-note">Niciun câmp propriu: câmpurile acestei surse repetă înregistrări ale altor surse și sunt arătate la ele.</p>')
+    return (f'<section class="vp-source" id="ps-{e(source["id"])}" data-source="{e(source["id"])}"><h3>{e(source.get("title", ""))}</h3>'
+            f'<dl class="vp-facts">{"".join(f"<dt>{k}</dt><dd>{v}</dd>" for k, v in facts)}</dl>'
+            f'<p class="ov-note">{ro_count(len(rows), "câmp", "câmpuri")}</p>{body}</section>')
+
+
+def variable_page(item, fields, sources, concepts, families, relations):
+    """The body of `/date/<slug>/`: the header, the part „Pe familii” and the part „Pe surse”."""
+    e = html.escape
+    slug, kind = item['slug'], item['kind']
+    labels = {c['id']: c['label'] for c in concepts}
+    groups_of = {}
+    for concept, found in group_hits(slug, fields, sources, concepts):
+        for n, _ in found:
+            groups_of.setdefault(n, []).append(labels[concept['id']])
+    by_source = {}
+    for n, f in enumerate(fields):
+        by_source.setdefault(f['source'], []).append(n)
+    relation = item.get('dataRelation', '')
+    here = f'{PAGE_DIR}/{e(slug)}/'
+    head = (f'<section class="vp-head"><p class="vp-kind">{"Proiect" if kind == "proiect" else "Resursă"}</p><h1>{e(item["name"])}</h1>'
+            f'<p class="vp-meta"><span>Relația cu datele: {e(relations.get(relation, relation))}</span><span>{ro_count(len(sources), "sursă", "surse")}</span>'
+            f'<span>{ro_count(len(fields), "câmp", "câmpuri")}</span><span class="inv-status">Inventar parțial</span></p>'
+            f'<p class="ov-note">{NOTE_PARTIAL}</p>'
+            f'<p><a class="vp-open" href="{e(kind)}/{e(slug)}/">Fișa din explorator →</a></p>'
+            f'<nav class="vp-nav" aria-label="Pe această pagină"><a href="{here}#pe-familii">Pe familii</a><a href="{here}#pe-surse">Pe surse</a></nav></section>')
+    sourced = ''.join(source_section(s, fields, by_source.get(s['id'], []), groups_of) for s in sources)
+    return (head + family_section(slug, fields, sources, concepts, families)
+            + f'<section class="vp-section" id="pe-surse"><h2>Pe surse</h2>{sourced}</section>')
+
+
+def publish_variable_pages(items, site, projections, concepts, families, vocabulary=None):
+    """Write `date/<slug>/index.html` for each entry with a page (`has_page`) and remove every page that no entry has now. The pages sit beside
+    `date/lista/`, which keeps its name: an entry with the slug `lista` would collide with it. Returns the slugs written."""
+    relations = relation_labels(vocabulary)
+    template = (Path(__file__).parent / 'templates/inventory-vars.html').read_text()
+    digests = {asset: hashlib.sha1((site / asset).read_bytes()).hexdigest()[:10] for asset in ('style.css', 'inventory.css')}
+    base = site / PAGE_DIR
+    base.mkdir(exist_ok=True)
+    written = []
+    for item in items:
+        if not has_page(item, projections):
+            continue
+        slug = item['slug']
+        if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', slug) or slug == 'lista':
+            raise ValueError('Invalid or reserved slug for a variables page: ' + slug)
+        fields, sources = projections[slug]
+        doc = (template.replace('<!--NAME-->', html.escape(item['name'])).replace('<!--PAGE-->', variable_page(item, fields, sources, concepts, families, relations)))
+        for asset, digest in digests.items():
+            doc = doc.replace(f'{asset}?v=BUILD', f'{asset}?v={digest}')
+        folder = base / slug
+        folder.mkdir(exist_ok=True)
+        (folder / 'index.html').write_text(doc)
+        written.append(slug)
+    for stale in base.iterdir():
+        if stale.is_dir() and stale.name != 'lista' and stale.name not in written:
+            shutil.rmtree(stale)
+    return written
 
 
 GOOGLE_EXPORT = re.compile(r'^https://docs\.google\.com/spreadsheets/d/([\w-]+)/export\?(?:[^#]*&)?gid=(\d+)(?:&|$)')
