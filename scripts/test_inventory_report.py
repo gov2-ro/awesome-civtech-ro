@@ -12,7 +12,7 @@ from urllib.parse import urlsplit
 
 import inventory_report as report
 from common import PUBLIC_ROOT, forbidden
-from inventory_concepts import EvidenceLocator, as_list, selector_matches
+from inventory_concepts import EvidenceLocator, selector_matches
 from inventory_persons import is_marked, problems as person_problems
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -267,16 +267,8 @@ class Coverage(unittest.TestCase):
             if not set(selector['projects']) & set(report.BATCH_D):
                 continue
             self.assertIn(item['grup'], groups)
-            matches = any(selector_matches(selector, slug, f, url) for slug in selector['projects'] for f, url in fields.get(slug, []))
-            self.assertTrue(matches or self.merged_by_a_keyed_collection(selector), (item['grup'], selector['names']))
+            self.assertTrue(any(selector_matches(selector, slug, f, url) for slug in selector['projects'] for f, url in fields.get(slug, [])), (item['grup'], selector['names']))
             self.assertNotIn(selector, groups[item['grup']]['selectors'], 'a member leaves the candidate list when the owner confirms it')
-
-    def merged_by_a_keyed_collection(self, selector):
-        """The path of a candidate lies under an object that the reader read as a keyed collection (12 members of one kind, `inventory_literals.keyed_collection`):
-        the keys of that object are not field names any more, so the candidate names a field that the inventory no longer has. The notes say so."""
-        sources = [s for s in self.data['sources'].values() if s['url'] in as_list(selector.get('source'))]
-        collections = [f['cale'][:-3] + '.' for s in sources for f in s['campuri'] if f.get('rol') == 'colectie-cu-chei']
-        return any(path.startswith(prefix) for path in as_list(selector.get('path')) for prefix in collections)
 
     def test_every_selector_that_names_a_project_of_batch_d_matches_a_field_of_it(self):
         fields = self.tracked_fields()
@@ -319,7 +311,7 @@ class Coverage(unittest.TestCase):
         for field in source['campuri']:
             self.assertLessEqual(set(field['tipuri_observate']), types, field['cale'])
             # A key name is an identifier. A name with a space, a digit run or an accent could be a value used as a key.
-            self.assertRegex(field['cale'], r'^\$(\.[A-Za-z_][A-Za-z_]*(\{\*\})?(\[\])?)+$', 'a path of the response is a chain of key names')
+            self.assertRegex(field['cale'], r'^\$(\.[A-Za-z_][A-Za-z_]*(\[\])?)+$', 'a path of the response is a chain of key names')
         notes = self.data['notes']['note']['lista-firme']
         self.assertTrue(notes['rezultat'] and notes['limite_en'] and notes['urmator_en'])
         # With the retained body (it is not in git, so a fresh checkout skips this part): no value of a person is in a file that git tracks.

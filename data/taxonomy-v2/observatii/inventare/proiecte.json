@@ -7169,7 +7169,7 @@
         "ddcedb1c18db2c5eb70d",
         "53f66d3c79414ca962ba"
       ],
-      "campuri_din_surse": 99,
+      "campuri_din_surse": 110,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
@@ -7210,7 +7210,7 @@
         "34437fe5524b6fc22329",
         "0cb5a8328ff5fa625eed"
       ],
-      "campuri_din_surse": 47,
+      "campuri_din_surse": 63,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
@@ -7977,7 +7977,7 @@
         "efa6e1cd255637961c92",
         "bc985c6b55c6abf07ec2"
       ],
-      "campuri_din_surse": 97,
+      "campuri_din_surse": 108,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."

@@ -55930,16 +55930,124 @@
           "pointer": "/is_active"
         },
         {
-          "nume": "address{*}",
-          "cale": "$.address{*}",
+          "nume": "country",
+          "cale": "$.address.country",
           "tipuri_observate": [
-            "object",
             "string"
           ],
           "stare_tip": "observat-in-esantion-json",
-          "rol": "colectie-cu-chei",
-          "pointer": "/address",
-          "numar_chei": 12
+          "rol": "camp-date",
+          "pointer": "/address/country"
+        },
+        {
+          "nume": "city",
+          "cale": "$.address.city",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/address/city"
+        },
+        {
+          "nume": "county",
+          "cale": "$.address.county",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/address/county"
+        },
+        {
+          "nume": "street",
+          "cale": "$.address.street",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/address/street"
+        },
+        {
+          "nume": "number",
+          "cale": "$.address.number",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/address/number"
+        },
+        {
+          "nume": "block",
+          "cale": "$.address.block",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/address/block"
+        },
+        {
+          "nume": "scara",
+          "cale": "$.address.scara",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/address/scara"
+        },
+        {
+          "nume": "floor",
+          "cale": "$.address.floor",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/address/floor"
+        },
+        {
+          "nume": "apartment",
+          "cale": "$.address.apartment",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/address/apartment"
+        },
+        {
+          "nume": "postalCode",
+          "cale": "$.address.postalCode",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/address/postalCode"
+        },
+        {
+          "nume": "sector",
+          "cale": "$.address.sector",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/address/sector"
+        },
+        {
+          "nume": "additional",
+          "cale": "$.address.additional",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/address/additional"
         },
         {
           "nume": "info",
@@ -58546,17 +58654,174 @@
           "pointer": "/meta/limitation"
         },
         {
-          "nume": "counts{*}",
-          "cale": "$.counts{*}",
+          "nume": "displayedRows",
+          "cale": "$.counts.displayedRows",
           "tipuri_observate": [
-            "object",
-            "integer",
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/counts/displayedRows"
+        },
+        {
+          "nume": "uniqueDetailUrls",
+          "cale": "$.counts.uniqueDetailUrls",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/counts/uniqueDetailUrls"
+        },
+        {
+          "nume": "counterOnly",
+          "cale": "$.counts.counterOnly",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/counts/counterOnly"
+        },
+        {
+          "nume": "onlineCounter",
+          "cale": "$.counts.onlineCounter",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/counts/onlineCounter"
+        },
+        {
+          "nume": "onlineOnly",
+          "cale": "$.counts.onlineOnly",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/counts/onlineOnly"
+        },
+        {
+          "nume": "undocumented",
+          "cale": "$.counts.undocumented",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/counts/undocumented"
+        },
+        {
+          "nume": "withOnlineDestination",
+          "cale": "$.counts.withOnlineDestination",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/counts/withOnlineDestination"
+        },
+        {
+          "nume": "withoutOnlineDestination",
+          "cale": "$.counts.withoutOnlineDestination",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/counts/withoutOnlineDestination"
+        },
+        {
+          "nume": "documentsUnavailable",
+          "cale": "$.counts.documentsUnavailable",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/counts/documentsUnavailable"
+        },
+        {
+          "nume": "detailLevelMismatch",
+          "cale": "$.counts.detailLevelMismatch",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/counts/detailLevelMismatch"
+        },
+        {
+          "nume": "sharedUpdateDate",
+          "cale": "$.counts.sharedUpdateDate",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/counts/sharedUpdateDate"
+        },
+        {
+          "nume": "excessRowsByUrl",
+          "cale": "$.counts.excessRowsByUrl",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/counts/excessRowsByUrl"
+        },
+        {
+          "nume": "excessRowsByTitleInstitution",
+          "cale": "$.counts.excessRowsByTitleInstitution",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/counts/excessRowsByTitleInstitution"
+        },
+        {
+          "nume": "excessRowsByContentSignature",
+          "cale": "$.counts.excessRowsByContentSignature",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/counts/excessRowsByContentSignature"
+        },
+        {
+          "nume": "counterOnlyPercent",
+          "cale": "$.counts.counterOnlyPercent",
+          "tipuri_observate": [
             "number"
           ],
           "stare_tip": "observat-in-esantion-json",
-          "rol": "colectie-cu-chei",
-          "pointer": "/counts",
-          "numar_chei": 17
+          "rol": "camp-date",
+          "pointer": "/counts/counterOnlyPercent"
+        },
+        {
+          "nume": "withoutOnlineDestinationPercent",
+          "cale": "$.counts.withoutOnlineDestinationPercent",
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/counts/withoutOnlineDestinationPercent"
+        },
+        {
+          "nume": "documentsUnavailablePercent",
+          "cale": "$.counts.documentsUnavailablePercent",
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/counts/documentsUnavailablePercent"
         },
         {
           "nume": "id",
@@ -61157,24 +61422,160 @@
           "variabila": "STATUL_DIGITAL_DATA"
         },
         {
-          "nume": "inferences[]{*}",
-          "cale": "STATUL_DIGITAL_DATA.inferences[]{*}",
+          "nume": "id",
+          "cale": "STATUL_DIGITAL_DATA.inferences[].id",
           "tip_declarat": null,
           "tipuri_observate": [
-            "object",
             "string"
           ],
           "stare_tip": "observat-in-esantion-json",
-          "rol": "colectie-cu-chei",
-          "pointer": "char:35803-37678",
-          "linie": 697,
-          "variabila": "STATUL_DIGITAL_DATA",
-          "numar_chei": 12,
-          "chei_exemplu": [
-            "id",
-            "number",
-            "titleRo"
-          ]
+          "rol": "camp-date",
+          "pointer": "char:35817-35825",
+          "linie": 698,
+          "variabila": "STATUL_DIGITAL_DATA"
+        },
+        {
+          "nume": "number",
+          "cale": "STATUL_DIGITAL_DATA.inferences[].number",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:35843-35847",
+          "linie": 699,
+          "variabila": "STATUL_DIGITAL_DATA"
+        },
+        {
+          "nume": "titleRo",
+          "cale": "STATUL_DIGITAL_DATA.inferences[].titleRo",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:35866-35973",
+          "linie": 700,
+          "variabila": "STATUL_DIGITAL_DATA"
+        },
+        {
+          "nume": "titleEn",
+          "cale": "STATUL_DIGITAL_DATA.inferences[].titleEn",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:35992-36077",
+          "linie": 701,
+          "variabila": "STATUL_DIGITAL_DATA"
+        },
+        {
+          "nume": "claimRo",
+          "cale": "STATUL_DIGITAL_DATA.inferences[].claimRo",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:36096-36246",
+          "linie": 702,
+          "variabila": "STATUL_DIGITAL_DATA"
+        },
+        {
+          "nume": "claimEn",
+          "cale": "STATUL_DIGITAL_DATA.inferences[].claimEn",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:36265-36408",
+          "linie": 703,
+          "variabila": "STATUL_DIGITAL_DATA"
+        },
+        {
+          "nume": "sourceRo",
+          "cale": "STATUL_DIGITAL_DATA.inferences[].sourceRo",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:36428-36565",
+          "linie": 704,
+          "variabila": "STATUL_DIGITAL_DATA"
+        },
+        {
+          "nume": "sourceEn",
+          "cale": "STATUL_DIGITAL_DATA.inferences[].sourceEn",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:36585-36712",
+          "linie": 705,
+          "variabila": "STATUL_DIGITAL_DATA"
+        },
+        {
+          "nume": "argumentRo",
+          "cale": "STATUL_DIGITAL_DATA.inferences[].argumentRo",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:36734-36977",
+          "linie": 706,
+          "variabila": "STATUL_DIGITAL_DATA"
+        },
+        {
+          "nume": "argumentEn",
+          "cale": "STATUL_DIGITAL_DATA.inferences[].argumentEn",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:36999-37208",
+          "linie": 707,
+          "variabila": "STATUL_DIGITAL_DATA"
+        },
+        {
+          "nume": "counterHypothesisRo",
+          "cale": "STATUL_DIGITAL_DATA.inferences[].counterHypothesisRo",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:37239-37450",
+          "linie": 708,
+          "variabila": "STATUL_DIGITAL_DATA"
+        },
+        {
+          "nume": "counterHypothesisEn",
+          "cale": "STATUL_DIGITAL_DATA.inferences[].counterHypothesisEn",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:37481-37672",
+          "linie": 709,
+          "variabila": "STATUL_DIGITAL_DATA"
         },
         {
           "nume": "code",
