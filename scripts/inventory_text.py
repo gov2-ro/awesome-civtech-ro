@@ -16,11 +16,15 @@ Each reader returns field records in the shape of inventory.parse_source and nev
   fields; the operations themselves are a separate list (`inventory_apidocs.operations`).
 - `js-literale` (module `inventory_literals`): the data that a page script holds as literals (`const DATA = {...}`) and data islands
   (`<script type="application/json">`). Each path in a literal is a field with the types that a bounded sample shows. The option `tabele`
-  (`true`, or a list of positions) adds the table readers of the same page.
+  (`true`, or a list of positions) adds the table readers of the same page. The option `indentate` lists names of declarations that a page keeps
+  inside a wrapping function (`  var DATA = [...]`); the reader reads them too, and no other indented declaration.
 - `html-carduri-csv` (module `inventory_csvcards`): a page whose cards offer CSV files with a list of columns. Each column becomes a field with
   the description that the page declares; the files themselves are a separate list of datasets (`inventory_csvcards.csv_datasets`).
 - `html-lista-seturi` (module `inventory_setlist`): a page whose tables list data sets (category, name, description, related reports, links to external files).
   It returns no field: the page declares no column. The data sets are a separate list (`inventory_setlist.list_datasets`).
+- `html-tabele-eurostat` (module `inventory_eurostat`): a page that pastes Eurostat data browser extractions as tables under a heading with the data set code. Each extraction gives
+  a measure with its unit and one field for each dimension that the extraction names.
+- `html-glosar` (module `inventory_glossary`): a page whose headings read `Label (name)` and whose first paragraph below each heading defines the field.
 
 Locators are exact. A character interval `char:START-END` addresses the declaration in the retained body. A table cell is addressed as
 `/tabele/T/randuri/R` or `/tabele/T/antet/C`. `inventory.py --check` parses the retained body again and compares every field.
@@ -33,7 +37,9 @@ from html.parser import HTMLParser
 
 from inventory_apidocs import api_docs
 from inventory_csvcards import csv_cards
-from inventory_literals import read as read_literals
+from inventory_eurostat import read as eurostat_fields
+from inventory_glossary import glossary
+from inventory_literals import indented_names, read as read_literals
 from inventory_setlist import set_list
 
 SAMPLE_ROWS = 5
@@ -213,6 +219,10 @@ def table_fields(tables, fmt='html', selected=None):
 
 def html_tabele(body, options=None):
     return 'html-tabele', table_fields(parse_tables(body), selected=set((options or {}).get('tabele', ()))), False
+
+
+def html_tabele_eurostat(body, options=None):
+    return 'html-tabele-eurostat', eurostat_fields(body, parse_tables(body), sample_type), False
 
 
 def markdown(body, options=None):
@@ -622,7 +632,7 @@ def json_comentat(body):
 
 def js_literale(body, options=None):
     """Data literals of page scripts, and (with the option `tabele`) the tables of the same page. Table fields come first: they are what a visitor sees."""
-    fields, truncated = read_literals(body)
+    fields, truncated = read_literals(body, indented_names(options))
     tables = (options or {}).get('tabele')
     if tables:
         fields = table_fields(parse_tables(body), selected=None if tables is True else set(tables)) + fields
@@ -650,7 +660,8 @@ def js_acces(body, objects=('fields',)):
 READERS = {'html-tabele': html_tabele, 'markdown': markdown, 'csharp': lambda body, options=None: csharp(body),
            'sql': lambda body, options=None: sql(body), 'php': lambda body, options=None: php(body),
            'json-comentat': lambda body, options=None: json_comentat(body), 'html-api-docs': lambda body, options=None: api_docs(body, options),
-           'html-carduri-csv': csv_cards, 'js-literale': js_literale, 'html-lista-seturi': set_list}
+           'html-carduri-csv': csv_cards, 'js-literale': js_literale, 'html-lista-seturi': set_list, 'html-glosar': glossary,
+           'html-tabele-eurostat': html_tabele_eurostat}
 EXTENSIONS = {'.cs': 'csharp', '.sql': 'sql', '.php': 'php', '.md': 'markdown'}
 
 

@@ -1025,9 +1025,11 @@ All readers return the common field keys and add the keys below; none infers a m
 | `js-acces` | Names that inline page scripts read from a record object. `{tip: js-acces, obiecte: [fields]}`. | `stare_tip` `utilizat-in-cod-pagina`, `accesari`. It shows what the page uses; it is not a schema and it does not read the data behind the page. |
 | `html-api-docs` | An API reference page whose endpoints are cards: a method badge, a path template with `:name` segments, access badges, a `Cache:` label, a description and a `Parametri:` line. `{tip: html-api-docs, contract: URL}`; `contract` names the OpenAPI source of the same project (optional). | Module `inventory_apidocs`. See "API reference pages" below. Request inputs and response members become fields; operations are a separate list. `stare_tip` `declarat-in-documentatie-api`; locator `char:START-END`. |
 | `html-carduri-csv` | A page whose cards offer CSV files: a title, a description, a download link to a `.csv` file, a list of labelled values (`Rânduri`, `Perioada`, `Măsurat la`, `Surse`) and, under the heading `Coloanele`, a list of columns (name and description). `{tip: html-carduri-csv}`. | Module `inventory_csvcards`. See "Pages of CSV files" below. Each column is a field; each file is a dataset in the source key `seturi`. `stare_tip` `declarat-in-lista-documentatie`; locator `char:START-END`. |
-| `js-literale` | The data that a page script holds as literals, and the schema.org `Dataset` of its JSON-LD. `{tip: js-literale, tabele: true}`; `tabele` (`true`, or a list of positions) adds the table readers of the same page, and their fields come first. | Module `inventory_literals`. See "Data literals in page scripts" below. `stare_tip` `observat-in-esantion-json` (a path in a literal) or `declarat-in-metadate` (a `variableMeasured` entry); locator `char:START-END`. |
+| `js-literale` | The data that a page script holds as literals, and the schema.org `Dataset` of its JSON-LD. `{tip: js-literale, tabele: true, indentate: [NAME, ...]}`; `tabele` (`true`, or a list of positions) adds the table readers of the same page, and their fields come first; `indentate` lists names of declarations that the page keeps inside a wrapping function. | Module `inventory_literals`. See "Data literals in page scripts" below. `stare_tip` `observat-in-esantion-json` (a path in a literal) or `declarat-in-metadate` (a `variableMeasured` entry); locator `char:START-END`. |
 | `json-esantion` | A JSON or GeoJSON file that a range read cut. `citire` `json-esantion`. | Module `inventory_jsonsample`. See "Cut JSON documents" below. `stare_tip` `observat-in-esantion-json`; source key `esantion`. |
 | `html-lista-seturi` | A page whose tables list data sets: a heading above each table, and one row for each set with a subcategory, a title, a description, related reports and links to external files. `{tip: html-lista-seturi}`. | Module `inventory_setlist`. See "Pages that list data sets" below. It returns no field: the page declares no column. The data sets are in the source key `seturi`. Locator `char:START-END`. |
+| `html-glosar` | A page whose headings read `Label (name)` and whose first paragraph below each heading defines the field. `citire` `html-glosar`. | Module `inventory_glossary`. See "Glossary pages" below. `stare_tip` `declarat-in-text-documentatie`, `rol` `camp-dictionar`, `eticheta` (the label), `descriere`; locator `char:START-END`. |
+| `html-tabele-eurostat` | A page that pastes Eurostat data browser extractions as tables under a heading with the data set code. `citire` `html-tabele-eurostat`. | Module `inventory_eurostat`. See "Pasted Eurostat extractions" below. `stare_tip` `antet-tabel-html`; roles `masura` and `dimensiune`; locator `/tabele/T/randuri/R`. |
 
 New `stare_tip` values (`js-literale` adds none: it reuses `observat-in-esantion-json` and `declarat-in-metadate`): `declarat-in-cod-sursa`, `antet-tabel-html`, `declarat-in-tabel-documentatie`, `declarat-in-text-documentatie`,
 `exemplu-in-documentatie`, `utilizat-in-cod-pagina`; `html-api-docs` also uses `declarat-in-documentatie-api`; `html-carduri-csv` uses `declarat-in-lista-documentatie`
@@ -1129,6 +1131,31 @@ The registry names the reader with `citire` `json-esantion` (module `inventory_j
 - A body with no complete object or array, with no complete field, with text that is not JSON, or nested deeper than 60 levels is an error (state `eroare-parsare`).
 - A repository file that was read as a range cannot be the whole blob. `--check` still verifies the tree entry and the listing hash; it compares the git blob SHA-1 only for a source that is not partial (`partial` absent).
 
+**Glossary pages (`html-glosar`).** Some pages document their fields in prose: a heading with the label and the name of the field, and a paragraph with its definition (the structure page of verificapsiholog.ro).
+The reader makes no request and runs no script.
+
+- A heading (`<h2>` to `<h6>`) is a field when its text reads `Label (name)`, and `name` is an identifier that starts with a lowercase letter and has letters, digits and underscores only (`personalCode`).
+  A heading with a capital letter or with several words in the brackets (`Ontologie`, `RUP Partea I`, `practice regime`) is a plain heading.
+- The definition is the first paragraph (`<p>`) between the heading and the next heading of any level. Tags are removed, entities are decoded, spaces are collapsed. A heading with no paragraph gives an empty `descriere`.
+  An example under the heading (`<small>`, a later paragraph) is never copied: such examples can name a real person.
+- Keys: `nume` and `cale` (the name), `eticheta` (the label as the page writes it), `descriere`, `tip_declarat` (always null: prose such as "Format: număr întreg" stays unread), `stare_tip` `declarat-in-text-documentatie`,
+  `rol` `camp-dictionar`, `pointer` (`char:START-END`, from the start of the heading to the end of its paragraph) and `linie`.
+- The same name under two headings is an error; so is a page with no such heading. The reader does not choose between two definitions.
+- Names that the page lists in a sentence (`Adaugă câmpurile: hasDGPC = 1, dgpcDate`) are not fields of this reader: no heading defines them.
+
+**Pasted Eurostat extractions (`html-tabele-eurostat`).** A page can paste the table that the Eurostat data browser exports (monitorsocial.ro). The reader makes no request and opens no link.
+
+- An extraction is a table whose first row starts with `Data extracted on DD/MM/YYYY HH:MM:SS from [SOURCE]` (also when that row is made of `<th>` cells). Other tables are not read.
+  The heading directly above the table (empty paragraphs between them are allowed) reads `Title [code]`; the code is as the page writes it (`hbs_str_t211__custom_8391811`). Without a heading the title is `Tabel N` and the path is `tabelN`.
+- The rows up to the last row whose first cell ends with `(Labels)` are metadata and dimensions. A table with no such row is an error: the data rows could not be told from the dimensions.
+- The measure is one field: `nume` (the title), `cale` (the code), `rol` `masura`, `unitate` (the first value on the `Unit of measure` row; null when the row is missing), `tipuri_observate` (the written form of the cells
+  of the first five data rows, as for `html-tabele`: `forma-numerica`, `text`, `null`), `sursa_declarata` (`ESTAT`), `extras_la` (the extraction time as written), `actualizat_declarat` (the `Last updated:` value), `cod_set`.
+  The page declares no type, so `tip_declarat` is null. The mark `:` for a missing value is text for the reader; it is not a convention that the reader assumes.
+- Every other metadata row is a dimension: `rol` `dimensiune`, `cale` `code.NAME`, `grup` (the title), `valori_in_tabel` (the number of non-empty cells after the first: 0 for the dimension of the rows, 1 for a dimension
+  that the extraction fixes, more for the dimension of the columns). A value is never copied. `(Labels)` is cut from the name (`GEO (Labels)` gives `GEO`).
+- When the first cell of a data row is a label under no heading (a country in the first column), the reader names no dimension for it: the page does not say which one it is.
+- Locator: `/tabele/T/randuri/R` (1-based table, 0-based data row), or `/tabele/T/antet/0` for a first row of `<th>` cells. `stare_tip` `antet-tabel-html`.
+
 **Data literals in page scripts (`js-literale`).** A single-page tool often keeps its data inside the page. No schema describes that data. The page still shows what it holds.
 The reader makes no request and runs no script.
 
@@ -1155,6 +1182,9 @@ The reader makes no request and runs no script.
   `cheie-nelitera`, `cheie-fara-valoare`, `sintaxa`, `sir-neinchis`, `comentariu-neinchis`, `literal-neterminat` or `literal-prea-adanc`.
 - The comment directly above a declaration is kept as `comentariu`: `valoare`, `pointer` and `trunchiat` (when the text is cut at 600 characters). It is the page's own wording about the variable.
 - A declaration in the middle of a line, or inside a function, is not listed. A line inside a literal that was read is data, never a declaration.
+  The option `indentate` is the one exception. A page may keep its data inside a function that wraps the whole script (`(function(){ var DATA = [...]; })()`); the declarations are then indented.
+  `{tip: js-literale, indentate: ["PROJECTS", "TIMELINE"]}` reads a declaration of exactly those names with leading spaces. Another indented declaration (a local variable such as `var seen = []`) stays unread,
+  and so does a name that only starts with a listed one (`DATA2` for `DATA`). The option is part of the `citire` of the source, so a replay and `--check` read the same declarations.
 - `seturi_ld` (a source key) lists each schema.org `Dataset` in the JSON-LD of the page (`application/ld+json`, also inside `@graph`). The reader does not read the rest of the JSON-LD as data.
   Each fact has `valoare`, `pointer` and `baza` `declarat-in-pagina`.
   Keys: `nume`, `descriere`, `adresa` (`url`), `perioada` (`temporalCoverage`, as written), `acoperire` (the name of `spatialCoverage`), `licenta`, `limba`, `gratuit` (`isAccessibleForFree`),
