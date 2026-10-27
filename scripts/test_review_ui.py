@@ -695,6 +695,16 @@ class CandidateDecisions(CandidateFixture):
         self.assertTrue(all(m['same_project'] for m in view['confirmed'][:sum(m['same_project'] for m in view['confirmed'])]), 'the members of the same project come first')
         self.assertEqual(view['hashes'], {k: self.hashes()[k] for k in ('concepte', 'note')})
 
+    def test_the_comparison_lists_the_confirmed_members_only(self):
+        raw = self.paths['concepte'].read_bytes()
+        data = review_ui.parse_json(raw)
+        group = next(c for c in data['concepte'] if c['id'] == 'cui')
+        group['selectors'][0].update(stare='exclus', nota_editor='Nu este CUI.')
+        self.paths['concepte'].write_bytes(review_ui.dump_json(data, raw))
+        view = self.store.candidate(self.cid('cui'))
+        self.assertEqual([m['number'] for m in view['confirmed']].count(1), 0, 'an excluded member is not a member to compare with')
+        self.assertEqual(sorted(m['number'] for m in view['confirmed']), list(range(2, len(group['selectors']) + 1)))
+
     # -- confirm ---------------------------------------------------------------------------------------------------
 
     def test_confirm_moves_the_selector_into_the_group_and_out_of_the_list(self):
@@ -953,6 +963,28 @@ class CandidateDecisions(CandidateFixture):
         self.store = Store(self.root, today=lambda: TODAY)
         self.put_candidates(self.items()[:-1])  # a person drops it from the notes
         self.assertEqual([r['stare'] for r in self.rows()], ['propus'] * 3, 'HEAD holds the member: the candidate is not shown as confirmed since HEAD')
+
+    def test_a_candidate_list_of_the_wrong_shape_is_refused_not_shown(self):
+        for bad in ('text', {'grup': 'cui'}, ['text'], [{'grup': 'cui'}], [{'grup': 'cui', 'selector': 'x'}], [{'selector': {'projects': ['p'], 'names': ['a']}}]):
+            with self.subTest(bad=bad):
+                raw = self.paths['note'].read_bytes()
+                notes = review_ui.parse_json(raw)
+                notes[CANDIDATES] = bad
+                self.paths['note'].write_bytes(review_ui.dump_json(notes, raw))
+                with self.assertRaises(ReviewError) as caught:
+                    self.store.state()
+                self.assertEqual(caught.exception.status, 500)
+                self.assertIn('listă de obiecte', str(caught.exception))
+                self.paths['note'].write_bytes(raw)
+        self.assertEqual(len(self.store.state()['candidates']), 3)
+        self.assertEqual(self.store.head()['notes'] is None, False)
+
+    def test_a_selector_without_projects_is_shown_with_its_error_and_does_not_crash_the_page(self):
+        broken = {'grup': 'cui', 'selector': {'names': ['x']}}
+        self.put_candidates(self.items() + [broken])
+        self.assertTrue(any('needs projects' in e for e in self.errors()))
+        view = self.store.candidate(self.rows()[-1]['id'])
+        self.assertEqual((view['member']['projects'], view['member']['reach']['count']), ([], 0))
 
     def test_a_failed_validation_writes_nothing_to_either_file(self):
         data = json.loads(self.paths['concepte'].read_text())

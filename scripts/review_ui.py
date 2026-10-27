@@ -131,6 +131,14 @@ def parse_json(raw: bytes):
     return data
 
 
+def check_candidate_shape(notes):
+    """The candidate list must be a list of objects that have a `grup` and a `selector`: the page cannot show anything else. Raises ReviewError."""
+    items = notes.get(CANDIDATES) if isinstance(notes, dict) else None
+    if items is not None and not (isinstance(items, list) and all(isinstance(i, dict) and isinstance(i.get('grup'), str) and isinstance(i.get('selector'), dict) for i in items)):
+        raise ReviewError(f'inventar-note.json: {CANDIDATES} trebuie să fie o listă de obiecte cu «grup» și «selector». Instrumentul refuză să o citească.', 500)
+    return notes
+
+
 def dump_json(data, like: bytes | None = None) -> bytes:
     """Two-space indentation, readable characters, and the final newline that the file already has (the dictionary has none)."""
     text = json.dumps(data, indent=2, ensure_ascii=False)
@@ -355,7 +363,7 @@ class FieldIndex:
         from different sources first."""
         self.load()
         found = []
-        for slug in as_list(selector['projects']):
+        for slug in as_list(selector.get('projects')):
             for ref in self.profiles.get(slug, {}).get('surse_structurate', []):
                 source = self.sources.get(ref)
                 for field in (source or {}).get('campuri', []):
@@ -760,7 +768,7 @@ class Store:
         rev_header, rev_rows = parse_csv(raw['revizuire'])
         rel_header, rel_rows = parse_csv(raw['relatii'])
         return {'raw': raw, 'hashes': {k: digest(v) for k, v in raw.items()}, 'rev_header': rev_header, 'rev_rows': rev_rows,
-                'rel_header': rel_header, 'rel_rows': rel_rows, 'concepts': parse_json(raw['concepte']), 'notes': parse_json(raw['note'])}
+                'rel_header': rel_header, 'rel_rows': rel_rows, 'concepts': parse_json(raw['concepte']), 'notes': check_candidate_shape(parse_json(raw['note']))}
 
     def head(self) -> dict:
         """The four files at HEAD, parsed; an entry is None when git or the commit is missing."""
@@ -772,6 +780,8 @@ class Store:
                 continue
             try:
                 parsed = parser(raw)
+                if key == 'notes':
+                    check_candidate_shape(parsed)
             except ReviewError:
                 continue
             out[key] = {r['id']: r for r in parsed[1]} if parser is parse_csv else parsed
@@ -965,7 +975,7 @@ class Store:
     def member_view(self, number, selector: dict, entries: dict, evidence: Evidence) -> dict:
         """What the page shows of one selector: where it points, how far it reaches in the retained inventory, and its pinned facts with their evidence."""
         return {
-            'number': number, 'projects': [{'slug': s, 'name': entries.get(s, {}).get('nume', s)} for s in as_list(selector['projects'])],
+            'number': number, 'projects': [{'slug': s, 'name': entries.get(s, {}).get('nume', s)} for s in as_list(selector.get('projects'))],
             'names': as_list(selector.get('names')), 'path': as_list(selector.get('path')), 'source': as_list(selector.get('source')),
             'role': as_list(selector.get('role')), 'context': selector.get('context', ''), 'nota': selector.get('nota', ''),
             'stare': selector_state(selector), 'nota_editor': selector.get('nota_editor', ''), 'reach': self.fields.examples(selector),
