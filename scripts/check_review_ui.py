@@ -8,7 +8,8 @@
 
 The check copies the taxonomy v2 package to a temporary folder (with the ignored retained bodies when they exist), makes the copy a git
 repository, starts the real command on it (`python3 scripts/review_ui.py --data-dir ... --port 0`) and drives the page with Chromium.
-It decides items in the copy only. It refuses to run on the real data root and proves at the end that the real review files did not change.
+A second copy holds candidate members that the check makes itself (the real notes hold none): it confirms, excludes and resets them.
+It decides items in the copies only. It refuses to run on the real data root and proves at the end that the real review files did not change.
 """
 import argparse
 import hashlib
@@ -26,7 +27,8 @@ from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parent.parent
 REAL = ROOT / 'data/taxonomy-v2'
-REAL_FILES = [REAL / 'integrare/revizuire.csv', REAL / 'integrare/relatii.csv', REAL / 'inventar-concepte.json']
+REAL_FILES = [REAL / 'integrare/revizuire.csv', REAL / 'integrare/relatii.csv', REAL / 'inventar-concepte.json', REAL / 'inventar-note.json']
+PINNED_FILES = REAL_FILES[:3]  # the files that carry the decisions; the notes of the working tree hold no candidate
 PINNED = 'v0.23.0'  # 31 open provider items and 30 proposed groups
 GIT_ENV = {**os.environ, 'GIT_CONFIG_GLOBAL': '/dev/null', 'GIT_CONFIG_SYSTEM': '/dev/null'}
 results, errors, external = [], [], []
@@ -67,31 +69,88 @@ def start_server(data_dir):
     raise SystemExit('The review server did not start.')
 
 
+def make_copy(tmp, name):
+    """A copy of the taxonomy v2 package in a repository of its own, with the review files of a commit where nothing was decided
+    (so that editorial progress never changes the expected counts). Returns the data folder of the copy."""
+    repo = tmp / name
+    repo.mkdir()
+    shutil.copytree(REAL, repo / 'taxonomy-v2', ignore=shutil.ignore_patterns('runs', '__pycache__', 'catalogue.json'))
+    for real in PINNED_FILES:
+        pinned = subprocess.run(['git', 'show', f'{PINNED}:{real.relative_to(ROOT).as_posix()}'], cwd=ROOT, capture_output=True, env=GIT_ENV, check=True)
+        (repo / 'taxonomy-v2' / real.relative_to(REAL)).write_bytes(pinned.stdout)
+    data = repo / 'taxonomy-v2'
+    assert data.resolve() != REAL.resolve(), 'the check runs on a copy, never on the real data root'
+    return data
+
+
+def commit_all(data):
+    git(data.parent, 'init', '-q')
+    git(data.parent, 'add', '-A')
+    git(data.parent, 'commit', '-qm', 'baseline')
+
+
+def write_like(path, value):
+    """JSON as the review tool writes it: two spaces, readable characters, and the final newline that the file has (or has not)."""
+    like = path.read_bytes()
+    path.write_text(json.dumps(value, indent=2, ensure_ascii=False) + ('\n' if like.endswith(b'\n') else ''))
+
+
+CANDIDATE_GROUPS = ('cui', 'judet', 'localitate')  # reviewed in the second copy, with every member confirmed; `siruta` stays proposed
+
+
+def seed_candidates(data):
+    """Make the candidates of the check in a copy: three reviewed groups, and candidates that a batch could have proposed (selectors of other groups).
+    A: cui, with pinned facts; B: judet; C: localitate; D: siruta (a proposed group: an error); E: excluded earlier; F: E proposed again."""
+    concepts = json.loads((data / 'inventar-concepte.json').read_text())
+    by_id = {c['id']: c for c in concepts['concepte']}
+    with_facts = next(sel for sel in by_id['populatie']['selectors'] if sel.get('fapte'))
+    chosen = {'A': ('cui', with_facts), 'B': ('judet', by_id['localitate']['selectors'][0]), 'C': ('localitate', by_id['cui']['selectors'][0]),
+              'D': ('siruta', {'projects': ['banii-nostri'], 'names': ['siruta_nou']}), 'E': ('cui', {'projects': ['banii-nostri'], 'names': ['cui_vechi'], 'context': 'Primul context.'})}
+    for gid in CANDIDATE_GROUPS:
+        for selector in by_id[gid]['selectors']:
+            selector['stare'] = 'confirmat'
+        by_id[gid].update(stare='revizuit', decizie_editor='Verificat.', data_revizie='2026-10-24')
+    write_like(data / 'inventar-concepte.json', concepts)
+    items = [{'grup': g, 'selector': sel} for g, sel in (chosen['A'], chosen['B'], chosen['C'], chosen['D'])]
+    items.append({'grup': 'cui', 'selector': chosen['E'][1], 'stare': 'exclus', 'nota_editor': 'Este un cod intern.'})
+    items.append({'grup': 'cui', 'selector': {**chosen['E'][1], 'context': 'Alt context, același câmp.'}})
+    notes = json.loads((data / 'inventar-note.json').read_text())
+    anchor, out = list(notes)[len(notes) // 2], {}
+    for key, value in notes.items():
+        out[key] = value
+        if key == anchor:
+            out['selectori_candidati'] = items
+    write_like(data / 'inventar-note.json', out)
+    return concepts
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--screenshots', type=Path)
     args = parser.parse_args()
     before = [hashlib.sha256(p.read_bytes()).hexdigest() for p in REAL_FILES]
     tmp = Path(tempfile.mkdtemp(prefix='review-ui-browser-'))
-    repo = tmp / 'repo'
-    repo.mkdir()
-    shutil.copytree(REAL, repo / 'taxonomy-v2', ignore=shutil.ignore_patterns('runs', '__pycache__', 'catalogue.json'))
-    # The review files come from a commit where nothing was decided, so editorial progress never changes the expected counts.
-    for real in REAL_FILES:
-        pinned = subprocess.run(['git', 'show', f'{PINNED}:{real.relative_to(ROOT).as_posix()}'], cwd=ROOT, capture_output=True, env=GIT_ENV, check=True)
-        (repo / 'taxonomy-v2' / real.relative_to(REAL)).write_bytes(pinned.stdout)
-    git(repo, 'init', '-q')
-    git(repo, 'add', '-A')
-    git(repo, 'commit', '-qm', 'baseline')
-    data = repo / 'taxonomy-v2'
-    assert data.resolve() != REAL.resolve(), 'the check runs on a copy, never on the real data root'
-    files = {'revizuire': data / 'integrare/revizuire.csv', 'relatii': data / 'integrare/relatii.csv', 'concepte': data / 'inventar-concepte.json'}
-    process, base = start_server(data / 'integrare')
     try:
-        run(base, files, args.screenshots)
+        data = make_copy(tmp, 'repo')
+        commit_all(data)
+        files = {'revizuire': data / 'integrare/revizuire.csv', 'relatii': data / 'integrare/relatii.csv', 'concepte': data / 'inventar-concepte.json'}
+        process, base = start_server(data / 'integrare')
+        try:
+            run(base, files, args.screenshots)
+        finally:
+            process.terminate()
+            process.wait(timeout=10)
+        data = make_copy(tmp, 'repo-candidates')
+        seed_candidates(data)
+        commit_all(data)
+        files = {'concepte': data / 'inventar-concepte.json', 'note': data / 'inventar-note.json'}
+        process, base = start_server(data / 'integrare')
+        try:
+            run_candidates(base, files, args.screenshots)
+        finally:
+            process.terminate()
+            process.wait(timeout=10)
     finally:
-        process.terminate()
-        process.wait(timeout=10)
         shutil.rmtree(tmp, ignore_errors=True)
     after = [hashlib.sha256(p.read_bytes()).hexdigest() for p in REAL_FILES]
     ok('the real review files did not change', before == after)
@@ -377,6 +436,224 @@ def run(base, files, shots):
         ok('the only console errors are the three refused requests that this check provokes (a missing note twice, a stale file)',
            len(refused) == 3 and refused == errors[:0] + [e for e in errors if e in refused])
         ok('no other browser error', [e for e in errors if e not in refused] == [])
+        browser.close()
+
+
+def run_candidates(base, files, shots):
+    """The candidate queue, on a copy that holds six candidates (A..F, see seed_candidates). Each step reads the files of the copy."""
+    host = base.rstrip('/')
+    repo = files['concepte'].parent.parent
+    problems, outside = [], []
+
+    def head(path):
+        return subprocess.run(['git', 'show', 'HEAD:' + path.relative_to(repo).as_posix()], cwd=repo, capture_output=True, env=GIT_ENV, check=True).stdout
+
+    def both():
+        return files['concepte'].read_bytes(), files['note'].read_bytes()
+
+    def group(gid):
+        return next(c for c in json.loads(files['concepte'].read_text())['concepte'] if c['id'] == gid)
+
+    def items():
+        return json.loads(files['note'].read_text()).get('selectori_candidati', [])
+
+    with sync_playwright() as pw:
+        browser = pw.chromium.launch()
+        context = browser.new_context(viewport={'width': 1280, 'height': 900}, color_scheme='light')
+        page = context.new_page()
+        page.on('pageerror', lambda e: problems.append(str(e)))
+        page.on('console', lambda m: problems.append(m.text) if m.type == 'error' else None)
+        page.on('request', lambda r: outside.append(r.url) if not r.url.startswith(host) else None)
+
+        def api_get(path):
+            return json.loads(page.request.get(host + path).text())
+
+        def snap(name, selector=None):
+            if shots:
+                shots.mkdir(parents=True, exist_ok=True)
+                if selector:
+                    page.locator(selector).first.screenshot(path=str(shots / f'{name}.png'))
+                else:
+                    page.screenshot(path=str(shots / f'{name}.png'), full_page=False)
+
+        def queue():
+            return api_get('/api/state')['candidates']
+
+        def rows():
+            return page.locator('#list .row').evaluate_all('els=>els.map(e=>e.querySelector(".id").textContent)')
+
+        def cid(letter):
+            return next(c['id'] for c in queue() if c['key'] == keys[letter])
+
+        def goto(letter):
+            wanted = cid(letter)
+            page.evaluate(f'location.hash="#candidat/{wanted}"')
+            until(page, lambda: page.locator('#detail [data-candidate]').count() and page.locator('#detail [data-candidate]').first.get_attribute('data-candidate') == wanted)
+            return wanted
+
+        def row_chip(letter):
+            return page.locator(f'#list a.row[href="#candidat/{cid(letter)}"] .chip').inner_text()
+
+        def status_has(text):
+            until(page, lambda: text in page.locator('#c-status').inner_text())
+
+        def progress_has(text):
+            until(page, lambda: text in page.locator('#progress').inner_text())
+
+        def decide(button, note=None):
+            if note is not None:
+                page.locator('#c-note').fill(note)
+            page.locator(button).click()
+
+        # -- the queue ---------------------------------------------------------------------------------------------------------------------------
+        state = api_get('/api/state')
+        keys = dict(zip('ABCDEF', [c['key'] for c in state['candidates']]))
+        labels = {c['group']: c['label'] for c in state['candidates']}
+        page.goto(base)
+        page.wait_for_selector('#list .row')
+        ok('the navigation counts the open candidates', page.locator('#tab-candidates').inner_text() == 'Candidați (5)')
+        ok('the header counts them too', page.locator('#progress').inner_text().endswith('· Candidați: 5 deschiși'))
+        ok('the candidate of a proposed group is the one validation error', page.locator('#validation').inner_text() == 'Validare: 1 erori')
+        page.locator('#tab-candidates').click()
+        until(page, lambda: len(rows()) == 5)
+        ok('the queue lists the open candidates in the order of the notes, by their place', rows() == ['#1', '#2', '#3', '#4', '#6'])
+        ok('a row names the group and the selector', labels['cui'] in page.locator('#list .row').first.inner_text() and ' · ' in page.locator('#list .row').first.inner_text())
+        until(page, lambda: page.url.endswith('#candidat/' + cid('A')))
+        ok('the first open candidate is selected and its id is in the URL', page.url.endswith('#candidat/' + cid('A')))
+        page.locator('#filter button[data-filter="all"]').click()
+        ok('all candidates are listed under the filter Toate', len(rows()) == 6)
+        page.locator('#filter button[data-filter="decided"]').click()
+        ok('the excluded candidate is listed under Decise, with its state (the selected one stays visible)', rows() == ['#1', '#5'] and row_chip('E') == 'Exclus')
+        page.locator('#filter button[data-filter="open"]').click()
+
+        # -- the detail --------------------------------------------------------------------------------------------------------------------------
+        goto('A')
+        view = api_get('/api/candidate/' + cid('A'))
+        detail = page.locator('#detail').inner_text()
+        ok('the detail names the group, its definition and the candidate', page.locator('#detail h2').inner_text().startswith('Candidat #1 · ' + labels['cui']) and view['group']['definition'][:40] in detail)
+        ok('the detail shows the names, the path, the source and the reach of the selector', 'Câmpuri atinse' in detail and all(n in detail for n in view['member']['names'] + view['member']['path']))
+        ok('the examples of the reach are listed', page.locator('#candidate-member table.examples tbody tr').count() == len(view['member']['reach']['examples']))
+        pinned = view['member']['facts']
+        ok('the pinned facts show their basis and the state of their evidence', len(pinned) >= 1 and page.locator('#candidate-member .evidence .chip').count() == len([f for f in pinned if f['evidence']])
+           and set(page.locator('#candidate-member .evidence .chip').all_inner_texts()) <= {'verificat', 'indisponibil local', 'fără amprentă', 'schimbat', 'fragment lipsă'} and all(f['basis_label'] in page.locator('#candidate-member').inner_text() for f in pinned))
+        ok('the detail lists the confirmed members of the group', page.locator('#confirmed-members li').count() == len(group('cui')['selectors']) and f'membri confirmați ai grupului ({len(group("cui")["selectors"])})' in detail.lower())
+        ok('the members of the same project are tagged', page.locator('#confirmed-members .tag').count() == len([m for m in view['confirmed'] if m['same_project']]))
+        ok('the three actions are there and the consequence of each is stated', page.locator('#c-confirm').is_enabled() and page.locator('#c-exclude').is_enabled() and page.locator('#c-reset').is_disabled()
+           and 'Confirm:' in page.locator('#c-consequences').inner_text() and 'Exclud:' in page.locator('#c-consequences').inner_text() and 'inventar-note.json' in page.locator('#c-consequences').inner_text())
+        page.evaluate('window.scrollTo(0, 0)')
+        snap('candidates-queue')
+        snap('candidate-detail', '#detail')
+        goto('F')
+        ok('a candidate that equals an excluded one shows the refusal', 'a fost exclus înainte' in page.locator('#detail .warn').inner_text() and 'Este un cod intern.' in page.locator('#detail .warn').inner_text())
+        goto('D')
+        ok('a candidate of a proposed group shows why it cannot be confirmed, and Confirm is disabled',
+           'este «propus»' in page.locator('#detail .warn[data-blocker]').inner_text() and page.locator('#c-confirm').is_disabled() and page.locator('#c-exclude').is_enabled())
+        goto('A')
+        page.locator('body').click(position={'x': 5, 'y': 5})
+        page.keyboard.press('j')
+        until(page, lambda: page.url.endswith(cid('B')))
+        page.keyboard.press('k')
+        until(page, lambda: page.url.endswith(cid('A')))
+        ok('j and k move between candidates', page.url.endswith('#candidat/' + cid('A')))
+        ok('no key decided a candidate', both() == (head(files['concepte']), head(files['note'])))
+
+        # -- confirm -----------------------------------------------------------------------------------------------------------------------------
+        goto('A')
+        members_before = len(group('cui')['selectors'])
+        decide('#c-confirm', 'Poartă CUI-ul întreprinderii.')
+        status_has('confirmat')
+        progress_has('Candidați: 4 deschiși')
+        saved = group('cui')
+        ok('confirm: the selector is the last member of its group, confirmed, with the note', len(saved['selectors']) == members_before + 1 and saved['selectors'][-1]['stare'] == 'confirmat'
+           and saved['selectors'][-1]['nota_editor'] == 'Poartă CUI-ul întreprinderii.' and list(saved['selectors'][-1])[-2:] == ['stare', 'nota_editor'])
+        ok('confirm: the group keeps its state and its review date', saved['stare'] == 'revizuit' and saved['data_revizie'] == '2026-10-24')
+        ok('confirm: the candidate left the notes', len(items()) == 5 and items()[0]['grup'] == 'judet')
+        ok('confirm: the navigation and the header count four open candidates', page.locator('#tab-candidates').inner_text() == 'Candidați (4)')
+        ok('confirm: the candidate stays in the queue as confirmed, with Reset only', row_chip('A') == 'Confirmat' and page.locator('#c-reset').is_enabled()
+           and page.locator('#c-confirm').is_disabled() and page.locator('#c-exclude').is_disabled())
+        ok('confirm: the member is marked in the list of the confirmed members', page.locator('#confirmed-members li[data-this="1"]').count() == 1)
+        ok('confirm: the message says which member it became', 'membrul' in page.locator('#c-status').inner_text())
+
+        # -- exclude -----------------------------------------------------------------------------------------------------------------------------
+        goto('B')
+        before = both()
+        decide('#c-exclude', '')
+        until(page, lambda: page.locator('#c-status').inner_text() != '')
+        ok('exclude without a note is refused and nothing is written', 'Notă' in page.locator('#c-status').inner_text() and both() == before)
+        decide('#c-exclude', 'Nu poartă județul.')
+        status_has('exclus')
+        excluded = next(i for i in items() if i['grup'] == 'judet')
+        ok('exclude: the candidate stays in the notes with its state and its note', excluded['stare'] == 'exclus' and excluded['nota_editor'] == 'Nu poartă județul.'
+           and list(excluded) == ['grup', 'selector', 'stare', 'nota_editor'] and len(items()) == 5)
+        ok('exclude: no member was added and the queue says so', files['concepte'].read_bytes() == before[0] and row_chip('B') == 'Exclus' and 'Nu poartă județul.' in page.locator('#detail').inner_text())
+        progress_has('Candidați: 3 deschiși')
+
+        # -- reset -------------------------------------------------------------------------------------------------------------------------------
+        ok('reset is offered for a changed candidate', page.locator('#c-reset').is_enabled())
+        page.locator('#c-reset').click()
+        status_has('a revenit')
+        ok('reset: an excluded candidate is open again, as at HEAD', row_chip('B') == 'Propus' and 'stare' not in next(i for i in items() if i['grup'] == 'judet'))
+        goto('A')
+        page.locator('#c-reset').click()
+        status_has('a revenit')
+        ok('reset: a confirmed candidate leaves its group and returns to the list; both files are the files of HEAD', both() == (head(files['concepte']), head(files['note'])))
+        ok('reset: the queue is as at HEAD', rows() == ['#1', '#2', '#3', '#4', '#6'] and page.locator('#c-reset').is_disabled())
+        progress_has('Candidați: 5 deschiși')
+
+        # -- the last decisions: C confirmed without a note, D excluded (the error goes) ------------------------------------------------------------
+        goto('C')
+        decide('#c-confirm')
+        status_has('confirmat')
+        ok('confirm without a note writes no note', 'nota_editor' not in group('localitate')['selectors'][-1] and group('localitate')['selectors'][-1]['stare'] == 'confirmat')
+        goto('D')
+        decide('#c-exclude', 'Grupul nu este revizuit.')
+        status_has('exclus')
+        until(page, lambda: page.locator('#validation').inner_text() == 'Validare: fără erori')
+        ok('excluding the candidate of a proposed group clears the validation error', page.locator('#validation').inner_text() == 'Validare: fără erori')
+        page.reload()
+        until(page, lambda: page.locator('#detail [data-candidate]').count() == 1)
+        goto('C')
+        ok('a confirmed candidate survives a reload (it is read from HEAD and the group)', row_chip('C') == 'Confirmat' and page.locator('#c-reset').is_enabled())
+
+        # -- the check panel ---------------------------------------------------------------------------------------------------------------------
+        page.locator('#tab-checks').click()
+        page.wait_for_selector('#candidate-counts')
+        ok('the check panel counts the open candidates', page.locator('#candidate-counts').inner_text() == 'Candidați deschiși: 3. Excluși: 2. Confirmați după HEAD: 1.')
+        page.wait_for_selector('#git-panel h3:text-is("Consecința publică")')
+        ok('a candidate does not change the public build', 'Nicio schimbare a surselor de date acceptate' in page.locator('#git-panel').inner_text())
+        ok('the check panel lists the notes file and suggests committing it', 'inventar-note.json' in page.locator('#git-panel').inner_text() and 'inventar-note.json' in page.locator('#commands').inner_text())
+        snap('candidates-checks')
+
+        # -- a stale file ------------------------------------------------------------------------------------------------------------------------
+        goto('F')
+        notes = json.loads(files['note'].read_text())
+        notes['editat'] = 'de mână'
+        write_like(files['note'], notes)
+        before = both()
+        decide('#c-exclude', 'Încerc după o editare externă.')
+        page.wait_for_selector('#banner:not([hidden])')
+        ok('a file edited since the page loaded refuses the decision and offers a reload', 'Reîncărcați' in page.locator('#banner').inner_text() and 'Reîncarcă' in page.locator('#banner button').inner_text() and both() == before)
+        page.locator('#banner button').click()
+        page.wait_for_selector('#banner[hidden]', state='attached')
+        notes.pop('editat')
+        write_like(files['note'], notes)
+
+        # -- layout, requests, errors --------------------------------------------------------------------------------------------------------------
+        page.reload()
+        for width in (1280, 390):
+            page.set_viewport_size({'width': width, 'height': 900})
+            for label, wanted in (('queue', '#candidati'), ('candidate', '#candidat/' + cid('A')), ('candidate of a proposed group', '#candidat/' + cid('F'))):
+                page.evaluate(f'location.hash="{wanted}"')
+                page.wait_for_timeout(600)
+                if label != 'queue':
+                    page.wait_for_selector('#detail [data-candidate]')
+                ok(f'{width}px: the {label} view fits the viewport (no horizontal scroll)', page.evaluate('document.documentElement.scrollWidth<=innerWidth'))
+        goto('A')
+        snap('candidates-mobile')
+        ok('the candidate pages made no request outside the local server', outside == [])
+        refused = [e for e in problems if re.fullmatch(r'Failed to load resource: the server responded with a status of (400|409) \(.*\)', e)]
+        ok('the only console errors are the two refused requests that this check provokes (a missing note, a stale file)', len(refused) == 2)
+        ok('no other browser error on the candidate pages', [e for e in problems if e not in refused] == [])
         browser.close()
 
 

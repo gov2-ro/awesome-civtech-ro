@@ -194,10 +194,15 @@ def candidate_key(item):
     return sha(json.dumps({'grup': item.get('grup'), 'selector': item.get('selector')}, sort_keys=True, ensure_ascii=False))
 
 
+def candidate_what(selector, limit=3):
+    """The names (else the paths) of a selector for a line of text: the first `limit` of them and how many more there are."""
+    names = list(map(str, as_list(selector.get('names')) or as_list(selector.get('path'))))
+    return (', '.join(names[:limit]) + (f' (+{len(names) - limit})' if len(names) > limit else '')) or '?'
+
+
 def candidate_label(item):
     selector = item.get('selector') if isinstance(item, dict) and isinstance(item.get('selector'), dict) else {}
-    what = ', '.join(map(str, as_list(selector.get('names')) or as_list(selector.get('path')))) or '?'
-    return f'{item.get("grup", "?") if isinstance(item, dict) else "?"}: {what} ({", ".join(map(str, as_list(selector.get("projects"))))})'
+    return f'{item.get("grup", "?") if isinstance(item, dict) else "?"}: {candidate_what(selector)} ({", ".join(map(str, as_list(selector.get("projects"))))})'
 
 
 def candidate_signature(item):

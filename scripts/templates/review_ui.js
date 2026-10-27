@@ -392,6 +392,7 @@ function candidateDetail(c) {
     return root;
   }
   const g = c.group;
+  root.dataset.candidate = c.id;
   root.append(h('h2', {}, `Candidat #${c.number} · ${g ? g.label : c.group_id} `, h('code', {}, c.group_id)));
   root.append(h('div', {class: 'chips'}, chip(c.stare), g && h('span', {class: 'chip', dataset: {state: g.stare}}, 'grup ' + (STATE[g.stare] || g.stare)),
     c.origin === 'confirmat' && h('span', {class: 'chip'}, `membrul ${c.member_number} al grupului`),

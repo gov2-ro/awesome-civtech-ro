@@ -43,7 +43,7 @@ from urllib.parse import urlsplit
 import taxonomy_v2
 from common import PUBLIC_ROOT, ROOT, observation_paths
 from inventory_concepts import (BASIS_LABELS, CANDIDATE_REVIEW_KEYS, CANDIDATES, GROUP_REVIEW_KEYS, GROUP_STATES, SELECTOR_REVIEW_KEYS, SELECTOR_STATES,
-                                EvidenceLocator, as_list, candidate_blockers, candidate_items, candidate_key, candidate_label, candidate_state,
+                                EvidenceLocator, as_list, candidate_blockers, candidate_items, candidate_key, candidate_label, candidate_state, candidate_what,
                                 group_state, repeated_exclusions, same_member, selector_matches, selector_state, sha, validate_candidates,
                                 validate_concept, validate_families)
 
@@ -901,7 +901,7 @@ class Store:
     def candidate_row(self, record: dict, groups: dict, entries: dict) -> dict:
         item, group = record['item'], groups.get(record['item'].get('grup'))
         selector = item.get('selector') or {}
-        what = ', '.join(map(str, as_list(selector.get('names')) or as_list(selector.get('path'))))
+        what = candidate_what(selector)
         projects = ', '.join(entries.get(s, {}).get('nume', s) for s in as_list(selector.get('projects')))
         stare = 'confirmat' if record['origin'] == 'confirmat' else candidate_state(item)
         return {'id': record['id'], 'short': f'#{record["number"]}', 'number': record['number'], 'key': record['key'], 'group': item.get('grup'),

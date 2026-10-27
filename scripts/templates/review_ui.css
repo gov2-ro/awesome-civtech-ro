@@ -35,8 +35,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .progress, .validation { margin: 0; font-size: 14px; color: var(--ink-2); }
 .validation[data-ok="true"] { color: var(--ok); }
 .validation[data-ok="false"] { color: var(--bad); font-weight: 600; }
-.tabs { display: flex; gap: 4px; }
-.tabs a { padding: 5px 12px; border-radius: var(--radius); text-decoration: none; color: var(--ink-2); border: 1px solid transparent; }
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; }
+.tabs a { padding: 5px 12px; border-radius: var(--radius); text-decoration: none; color: var(--ink-2); border: 1px solid transparent; white-space: nowrap; }
 .tabs a[aria-current="page"] { border-color: var(--line-strong); background: var(--surface); color: var(--ink); font-weight: 600; }
 .filter { display: flex; margin-left: auto; }
 .filter button { border: 1px solid var(--line-strong); background: var(--bg); padding: 4px 12px; cursor: pointer; }
