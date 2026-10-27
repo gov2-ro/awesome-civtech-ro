@@ -4,6 +4,7 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
 ## Inventory batch D — 2026-10-27
 
+- [~] Variables page for each project, data set facts in the field browser, fields added by an editor. Approved by the owner on 2026-10-27. Brief: [variable-pages.md](briefs/variable-pages.md).
 - [x] Person data in sources and three corrections of the `json` reader (the `persoane` mark, keyed collections with year keys, positional rows, empty containers). Approved by the owner on 2026-10-27. Brief: [inventory-readers-persons.md](briefs/inventory-readers-persons.md).
       Done 2026-10-27 (branch `readers-persons`): the mark, the search of the tracked files, `--fara-text`, the shared keyed rule, positions and empty containers; 0 requests. Field records 5,134 → 4,443 (/date/ 4,845 → 4,154). Open owner decisions: the next three items.
 - [ ] Owner: the five GeoJSON files of `dupa-cutremur` are all marked `persoane` because the notes of lot D say so. In the retained samples only `cladiri_complete` and `puncte_complete` have the key `expert`; `arie_colaps_complete`, `_strazi_arie_colaps` (OpenStreetMap road segments) and `adaposturi` (shelter addresses) have none. No tool takes a mark back (a specification without it never unmarks), so unmarking means a change of the registry by a new option. The cost of keeping the mark: the readers keep key names only for three files that show no person field.
@@ -100,14 +101,14 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [-] Owner, on `db.banipartide.ro`: drop the column `CNP`. Dropped 2026-10-27: another project; the owner handles it there.
 - [ ] (postponed by the owner on 2026-10-26) Decide whether a Google Sheet tab over 2,000,000 bytes may be read for its header with `--sample-bytes`. Four tabs of `data-expertforum` answered with more than 2,000,000 bytes (gid 0, 2098148876, 1630617809 and 1272308734) and have no header. Google ignores a byte range, so a bounded read starts the same request again (the first 2,000,001 bytes of each response were read once already).
 - [ ] Owner: export the Drive file of the political finance data set and the Drive folder of the three health data sets as CSV from a browser, if their headers are wanted, and import them with `inventory.py --import-saved`. The finance data set holds donor data about persons (keep the header only). The page does not say that the Drive file is a spreadsheet, and a folder cannot be listed without the API.
-- [ ] Show the facts of a page-declared data set (category, description, related reports) in the field browser. They are in `seturi-date.json` (`seturi` of the page source); the preview shows only the title of the tab.
+- [~] Show the facts of a page-declared data set (category, description, related reports) in the field browser. They are in `seturi-date.json` (`seturi` of the page source); the preview shows only the title of the tab.
 - [x] Review the provider items D176–D185 and the groups `casatorii`, `divorturi`, `studenti`. Done 2026-10-26: the owner decided the providers (7 accepted, 2 rejected, D185 postponed); the three groups were marked `revizuit` in bulk at the owner's request, with their 10 members confirmed.
 - [x] Owner: decide D185. Done 2026-10-26: rejected („too specific”). D186 rejected too; the owner's note names Monitorul Oficial, so D188 proposes it.
 - [x] Owner: decide D188. Done 2026-10-26: accepted (L184).
 - [x] Owner: decide the candidate members of four reviewed groups (19 field records, 10 selectors; the selectors are in section 5 of `docs/reports/inventory-expansion.md`): `perioada-de-referinta`, `judet`, `localitate`, `populatie`. A reviewed group cannot hold a member that the owner has not confirmed, so the new members need the review interface (`Amân`, then `confirmat`) or a decision to confirm them in the file. Done 2026-10-27: all 24 candidates confirmed in bulk at the owner's request („I'll untangle if I spot mistakes later”).
 - [ ] Read more tools of `romaniainteractiva.ro` (15 of 22 catalogue tools are not read; the limit of ten sources per entry was reached): `1vot.ro` (campaign spending per vote, 2019–2025: it may use AEP party and campaign finance data, so it matters for `bani-partide`), `geamanuleuropean.ro` (Eurostat regions), `sondajeleromaniei.ro`, `satulcaresestinge.ro` (census 2011 and 2021) and the paths `UniRankingRO/` (in `sitemap.xml`, not in the catalogue).
 - [ ] (postponed by the owner on 2026-10-26) Decide whether a response of more than 2,000,000 bytes may be read whole (`locale/` and `harta-notelor/` hold their data in a script of that size). The range read of 600,000 bytes ends before the script. A third option is the browser render of the page with a listing of its literals; the helper keeps only data responses today.
-- [ ] Show `seturi_ld` (name, period, licence, `isBasedOn` of a page's schema.org `Dataset`) in the field browser. The facts are in `seturi-date.json`; the preview does not read them.
+- [~] Show `seturi_ld` (name, period, licence, `isBasedOn` of a page's schema.org `Dataset`) in the field browser. The facts are in `seturi-date.json`; the preview does not read them.
 - [ ] Ask the project for the source of the population of a city in Orașe digitale (`pop`, no named source) and for the licence of the index.
 - [x] Run the three browser checks of the preview against a build of this branch: `check_preview.py` 111/111, `check_inventory_preview.py` 31/31, `check_data_finder.py` 40/40. Done 2026-10-26.
 - [x] Reader for the data that a page script holds as literals, and for the schema.org `Dataset` of JSON-LD (`inventory_literals.py`, format `js-literale`, 21 tests). Done 2026-10-26.
@@ -161,8 +162,8 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [x] Group the variable groups into families (identifiers, geography, time, then subject areas); the finder groups its variable facet by family.
 - [x] Per-project table of variables at `/date/lista/`: one row per entry with fields, one column per family, normalised names only, and a count of ungrouped fields ("Altele").
       Desktop first; the table scrolls horizontally in its frame.
-- [ ] Project variables profile page: the source field names (`source:field`) of one project, by family and by source. The table above leaves them out on purpose.
-- [ ] Let an editor add a field that the extractors missed: a hand-edited file with slug, source URL, name, locator, role, declared type, unit,
+- [~] Project variables profile page: the source field names (`source:field`) of one project, by family and by source. The table above leaves them out on purpose.
+- [~] Let an editor add a field that the extractors missed: a hand-edited file with slug, source URL, name, locator, role, declared type, unit,
       description and an evidence fragment; `inventory.py` merges it as an editor-added field and `--check` verifies the fragment. Entry from the review interface.
       Needs a short brief.
 - [x] Publish `/date/` on the public build. Done 2026-10-26 (v0.25.0) at the owner's request, without a brief: the review was complete,
