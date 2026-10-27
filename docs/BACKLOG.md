@@ -4,6 +4,7 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
 ## Inventory batch D — 2026-10-27
 
+- [~] Person data in sources and three corrections of the `json` reader (the `persoane` mark, keyed collections with year keys, positional rows, empty containers). Approved by the owner on 2026-10-27. Brief: [inventory-readers-persons.md](briefs/inventory-readers-persons.md).
 - [x] Variable inventory for twelve entries of „De analizat”: `lista-firme`, `dupa-cutremur`, `reciclare-arad`, `onorata-instanta`, `sondaje-romania`, `guvernezi`, `politicieni-corupti`, `unde-locuiesc`, `trei-din-patru`, `statul-digital`, `pe-datorie`, `ce-face-statul-cu-1000-de-lei`. Brief: [inventory-batch-d.md](briefs/inventory-batch-d.md).
       Done 2026-10-27 (lot `D`, branch `inventory-batch-d`): eleven entries have 35 sources and 855 field records; `guvernezi` has no structured source (new state `investigat-fara-surse`). 76 direct requests, 3 browser navigations. No reserve entry was used and no host answered 401, 403 or 429.
 - [x] Rename the heading „Fără câmpuri extrase” of `/date/lista/` to „De analizat”. Done 2026-10-27 at the owner's request.
