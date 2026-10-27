@@ -1,5 +1,13 @@
 # Activity
 
+## 2026-10-27 — Dates in the leak check; the owner's rule for person data
+
+**Done**
+- `inventory_persons.identifies` also looks for a date alone (`1975-03-02`, `02.03.1975`, `02/03/1975`), at the owner's request. A birth date without a time was a gap of the check. `inventory.py --check` still finds no leak in the 12 marked sources.
+
+**Decided**
+- The owner's rule for person data: start as open as possible, and limit step by step when a need shows. The six unmarked sources that name persons stay unmarked; the backlog notes them. The cost: values such as the three surnames in `chei_exemplu` of `romaniainteractiva.ro/guverne` stay in tracked files of the public repository.
+
 ## 2026-10-27 — The group `cod-caen` and the source `seats-index.json`
 
 **Done**

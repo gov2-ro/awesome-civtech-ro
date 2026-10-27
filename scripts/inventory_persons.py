@@ -18,7 +18,7 @@ What the check looks for, and why not everything:
 - A value is a string of a JSON body, or a data cell of a CSV body, of 4 characters or more. A key name, a CSV header cell and a text that the
   address of the source already holds are not values.
 - Only a value that identifies is looked for: a text with a space (a name, an address, a title, a free text), an e-mail address, a date with a time,
-  or a string of 10 digits or more (a CNP has 13, a phone number 10). A single word cannot be told from a label (a role, a type, a country, a street kind, an
+  a date alone (`1975-03-02`, `02.03.1975`), or a string of 10 digits or more (a CNP has 13, a phone number 10). A single word cannot be told from a label (a role, a type, a country, a street kind, an
   identifier of a map object), and the label is in many files that no reader wrote. The structure keeps single words out (`FIELD_KEYS`); the check
   does not look for them. A name that sits alone in a cell is therefore a known gap of the check, not of the readers.
 - A value that a retained body of an unmarked source holds too (a county, a town, an institution) is common data and is not a leak.
@@ -49,6 +49,8 @@ SOURCE_KEYS = frozenset({'url', 'final_url', 'http_status', 'fetched_at', 'conte
 MIN_VALUE = 4
 NAME_CELL = re.compile(r'^[A-Za-z_][A-Za-z0-9_.-]*$')
 TIMESTAMP = re.compile(r'\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}')
+# A calendar date (a birth date): 1975-03-02, 02.03.1975, 02/03/1975. Owner decision of 2026-10-27.
+DATE = re.compile(r'\d{4}-\d{2}-\d{2}|\d{2}[./]\d{2}[./]\d{4}')
 LONG_DIGITS = re.compile(r'\+?\d{10,}')
 SCOPE = ('observatii/inventare/*.json', 'observatii/inventare/*.csv', 'observatii/inventare/adaugari/*.json', 'observatii/inventare/randare/*.json',
          '*.json', 'integrare/*.csv')
@@ -132,8 +134,8 @@ def body_values(body, format_name, hint=None):
 
 
 def identifies(value):
-    """True for a text that can name or locate a person: it has a space, an e-mail address, a date with a time, or 10 digits or more."""
-    return bool(re.search(r'\s', value) or '@' in value or TIMESTAMP.search(value) or LONG_DIGITS.fullmatch(value))
+    """True for a text that can name or locate a person: it has a space, an e-mail address, a date with a time, a date alone, or 10 digits or more."""
+    return bool(re.search(r'\s', value) or '@' in value or TIMESTAMP.search(value) or DATE.fullmatch(value) or LONG_DIGITS.fullmatch(value))
 
 
 def candidates(values, names, url=''):

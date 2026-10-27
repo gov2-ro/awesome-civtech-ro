@@ -1219,7 +1219,7 @@ The registry record keeps the mark (`persoane`, history event `marcat-persoane`)
   and the collected pages are not in the scope: no reader of the inventory writes them. A body that is absent is counted as unavailable and is not searched. A leak is an error. The answer names the file and a
   fingerprint (the first 8 hex digits of the SHA-256 of the value) and never the value.
   - A value is a string of a JSON body, or a data cell of a CSV body, of 4 characters or more. A key name, a header cell and a text that the address of the source holds are not values.
-  - The check looks for the values that identify: a text with a space (a name, an address, a title, a free text), an e-mail address, a date with a time, and a string of 10 digits or more (a CNP has 13, a phone number 10).
+  - The check looks for the values that identify: a text with a space (a name, an address, a title, a free text), an e-mail address, a date with a time, a date alone (`1975-03-02`, `02.03.1975`, `02/03/1975`; since 2026-10-27, at the owner's request), and a string of 10 digits or more (a CNP has 13, a phone number 10).
     A single word, a short number and a coordinate are not looked for: a single word cannot be told from a label (a role, a type, a country, a street kind, the identifier of a map object), and labels are in many files that no reader
     wrote. The form of the records (the allowed keys) keeps single words out; the search does not look for them. A name that is alone in a cell is a known gap of the search, not of the readers.
   - A value that a retained body of an unmarked source holds too (a county, a town, an institution) is common data and not a leak.

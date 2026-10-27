@@ -387,9 +387,9 @@ class Search(unittest.TestCase):
 class Values(unittest.TestCase):
     def test_which_values_identify(self):
         for value in ('Ana Exemplu', 'Strada Fictiva 12', 'Curtea de Apel', '1980-01-01T00:00:00.000000Z', '1980-01-01 10:30', 'ana@example.org', '0721000111', '+40721000111',
-                      '1800101123456'):
+                      '1800101123456', '1980-01-01', '01.01.1980', '01/01/1980'):
             self.assertTrue(identifies(value), value)
-        for value in ('Administrator', 'Romania', '23785448', '26.080743', '2019', 'w23785448', '1980-01-01', 'residential', 'urn:ogc:def:crs:OGC:1.3:CRS84', '072100011'):
+        for value in ('Administrator', 'Romania', '23785448', '26.080743', '2019', 'w23785448', '1980-01', '1980-01-01x', 'residential', 'urn:ogc:def:crs:OGC:1.3:CRS84', '072100011'):
             self.assertFalse(identifies(value), value)
 
     def test_the_candidates_leave_out_key_names_short_texts_and_the_address(self):
