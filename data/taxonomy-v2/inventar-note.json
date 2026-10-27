@@ -413,7 +413,7 @@
     "Decide the proposed group `cod-caen` (the CAEN code, `inventar-concepte.json`; 5 members from `lista-firme`, `companii-de-stat` (two sources), `romania-transparenta` and `demoanaf`; 8 ambiguity entries; none of the members is confirmed). Decide whether the family `identificatori` is right, or `firme`."
   ],
   "verificari": {
-    "tests": 724,
+    "tests": 831,
     "tests_skipped": 6,
     "explorer_checks": 36,
     "finder_checks": 62,

@@ -51,7 +51,7 @@ The 129 projects and resources of the catalogue (the finder lists the 85 that ar
 | Accepted provider relations / entries with accepted providers | 26 / 11 | 98 / 35 |
 | Pending provider proposals (review items D132 and later) | 15 | 0 |
 | Proposed business-variable groups | 7 | 41 |
-| Unit tests discovered / skipped | 308 / 6 | 724 / 6 |
+| Unit tests discovered / skipped | 308 / 6 | 831 / 6 |
 | Explorer inventory / dedicated finder browser checks | 25 / 25 | 36 / 62 |
 
 Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 79 in all; deschis 0, acceptat 72, respins 4, amanat 0, tehnic 3. Variable groups: 41 in all; propus 6, revizuit 35, respins 0, amanat 0. Group members (selectors): 172 in all; propus 19, confirmat 153, exclus 0.
