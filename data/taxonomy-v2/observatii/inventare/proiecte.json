@@ -4258,7 +4258,7 @@
       "slug": "sicap-ai",
       "nume": "SICAP.ai",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "Motor de căutare pentru licitații și achiziții directe",
       "permite": [
         "Caută și consultă"
@@ -4271,11 +4271,17 @@
         "slug": "sicap-ai"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "ab1e1c56ea0dfa406173",
+        "0f80ab003c8546e5913a",
+        "f23ad8e5dc52a89d975d",
+        "6762bb842106a10e466a",
+        "bf6d6a9d1ce58849b437",
+        "f2aa7a73c05518b497a5"
+      ],
+      "campuri_din_surse": 1281,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
     },

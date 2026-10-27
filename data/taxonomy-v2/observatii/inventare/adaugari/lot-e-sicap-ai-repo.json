@@ -1,0 +1,157 @@
+[
+  {
+    "proiect": "sicap-ai",
+    "url": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/types.ts",
+    "metoda": "repo-la-revizie",
+    "parinte": "https://github.com/ciocan/SICAP.ai/tree/6697c8068692872d665d6bc7896ade159eb60e16",
+    "repo": {
+      "arbore": "https://api.github.com/repos/ciocan/SICAP.ai/git/trees/6697c8068692872d665d6bc7896ade159eb60e16?recursive=1",
+      "revizie": "6697c8068692872d665d6bc7896ade159eb60e16",
+      "cale": "packages/api/src/es/types.ts"
+    },
+    "dovezi": [
+      {
+        "proiect": "sicap-ai",
+        "profil": "repos",
+        "rol": "legatura-proiect-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/README.md",
+        "text": "folosind date din Sistemul Electronic de Achiziții Publice (e-licitatie.ro)",
+        "cache": true,
+        "rol": "origine-date-declarata-in-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/README.md",
+        "text": "ES_INDEX_PUBLIC=\"sicap-public\"",
+        "cache": true,
+        "rol": "indecsi-declarati-in-repo"
+      }
+    ],
+    "nota": "File of ciocan/SICAP.ai at commit 6697c8068692872d665d6bc7896ade159eb60e16. The profiler found the repository link on the project site, and the README names SEAP (e-licitatie.ro) as the origin of the data. The repository shows what the code declares at that commit; it does not prove that the deployed service uses it today. The live service was not requested (sicap.ai and its subdomains are in colectare-interzisa.csv). Type declarations of the search layer: the filters of a query (SearchFilters: the index, the period, the value range, the authority, the CPV code, the localities and counties of the authority and of the supplier, EU funds), the query itself (SearchProps) and the result items of the three datasets (SearchItemDirect, SearchItemPublic, SearchItemOffline). IndexName names the three Elasticsearch indices by their constants."
+  },
+  {
+    "proiect": "sicap-ai",
+    "url": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/licitatii/types.ts",
+    "metoda": "repo-la-revizie",
+    "parinte": "https://github.com/ciocan/SICAP.ai/tree/6697c8068692872d665d6bc7896ade159eb60e16",
+    "repo": {
+      "arbore": "https://api.github.com/repos/ciocan/SICAP.ai/git/trees/6697c8068692872d665d6bc7896ade159eb60e16?recursive=1",
+      "revizie": "6697c8068692872d665d6bc7896ade159eb60e16",
+      "cale": "packages/api/src/es/licitatii/types.ts"
+    },
+    "dovezi": [
+      {
+        "proiect": "sicap-ai",
+        "profil": "repos",
+        "rol": "legatura-proiect-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/README.md",
+        "text": "folosind date din Sistemul Electronic de Achiziții Publice (e-licitatie.ro)",
+        "cache": true,
+        "rol": "origine-date-declarata-in-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/docs/architecture.md",
+        "text": "The dataset discriminator is the slug `licitatii | achizitii | achizitii-offline`.",
+        "cache": true,
+        "rol": "set-de-date-declarat-in-repo"
+      }
+    ],
+    "nota": "File of ciocan/SICAP.ai at commit 6697c8068692872d665d6bc7896ade159eb60e16. The profiler found the repository link on the project site, and the README names SEAP (e-licitatie.ro) as the origin of the data. The repository shows what the code declares at that commit; it does not prove that the deployed service uses it today. The live service was not requested (sicap.ai and its subdomains are in colectare-interzisa.csv). The document of the dataset licitatii (public tenders, the index of ES_INDEX_PUBLIC) as the code types it: _source with item, publicNotice (the notice sections of e-licitatie) and noticeContracts, and the winners with their addresses. The file looks generated from a sample response (a root type named RootObject, unknown for the members that the sample left null), so a type is what the code expects, not a schema that the source publishes. The addresses of winners and of contracting authorities hold contact data of legal entities; the file holds names of members only."
+  },
+  {
+    "proiect": "sicap-ai",
+    "url": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/achizitii/types.ts",
+    "metoda": "repo-la-revizie",
+    "parinte": "https://github.com/ciocan/SICAP.ai/tree/6697c8068692872d665d6bc7896ade159eb60e16",
+    "repo": {
+      "arbore": "https://api.github.com/repos/ciocan/SICAP.ai/git/trees/6697c8068692872d665d6bc7896ade159eb60e16?recursive=1",
+      "revizie": "6697c8068692872d665d6bc7896ade159eb60e16",
+      "cale": "packages/api/src/es/achizitii/types.ts"
+    },
+    "dovezi": [
+      {
+        "proiect": "sicap-ai",
+        "profil": "repos",
+        "rol": "legatura-proiect-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/README.md",
+        "text": "folosind date din Sistemul Electronic de Achiziții Publice (e-licitatie.ro)",
+        "cache": true,
+        "rol": "origine-date-declarata-in-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/docs/architecture.md",
+        "text": "The dataset discriminator is the slug `licitatii | achizitii | achizitii-offline`.",
+        "cache": true,
+        "rol": "set-de-date-declarat-in-repo"
+      }
+    ],
+    "nota": "File of ciocan/SICAP.ai at commit 6697c8068692872d665d6bc7896ade159eb60e16. The profiler found the repository link on the project site, and the README names SEAP (e-licitatie.ro) as the origin of the data. The repository shows what the code declares at that commit; it does not prove that the deployed service uses it today. The live service was not requested (sicap.ai and its subdomains are in colectare-interzisa.csv). The document of the dataset achizitii (direct acquisitions of the catalogue, the index of ES_INDEX_DIRECT): item, publicDirectAcquisition with its items, authority and supplier. Generated like the file of licitatii (RootObject); values can be null."
+  },
+  {
+    "proiect": "sicap-ai",
+    "url": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/achizitii-offline/types.ts",
+    "metoda": "repo-la-revizie",
+    "parinte": "https://github.com/ciocan/SICAP.ai/tree/6697c8068692872d665d6bc7896ade159eb60e16",
+    "repo": {
+      "arbore": "https://api.github.com/repos/ciocan/SICAP.ai/git/trees/6697c8068692872d665d6bc7896ade159eb60e16?recursive=1",
+      "revizie": "6697c8068692872d665d6bc7896ade159eb60e16",
+      "cale": "packages/api/src/es/achizitii-offline/types.ts"
+    },
+    "dovezi": [
+      {
+        "proiect": "sicap-ai",
+        "profil": "repos",
+        "rol": "legatura-proiect-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/README.md",
+        "text": "folosind date din Sistemul Electronic de Achiziții Publice (e-licitatie.ro)",
+        "cache": true,
+        "rol": "origine-date-declarata-in-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/docs/architecture.md",
+        "text": "The dataset discriminator is the slug `licitatii | achizitii | achizitii-offline`.",
+        "cache": true,
+        "rol": "set-de-date-declarat-in-repo"
+      }
+    ],
+    "nota": "File of ciocan/SICAP.ai at commit 6697c8068692872d665d6bc7896ade159eb60e16. The profiler found the repository link on the project site, and the README names SEAP (e-licitatie.ro) as the origin of the data. The repository shows what the code declares at that commit; it does not prove that the deployed service uses it today. The live service was not requested (sicap.ai and its subdomains are in colectare-interzisa.csv). The document of the dataset achizitii-offline (direct acquisitions reported outside the platform, the index of ES_INDEX_OFFLINE): item, details with the acquisition type, the address of the entity and the direct acquisitions, authority and supplier. Authority and supplier are imported from the types of achizitii."
+  },
+  {
+    "proiect": "sicap-ai",
+    "url": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/company/onrc.ts",
+    "metoda": "repo-la-revizie",
+    "parinte": "https://github.com/ciocan/SICAP.ai/tree/6697c8068692872d665d6bc7896ade159eb60e16",
+    "repo": {
+      "arbore": "https://api.github.com/repos/ciocan/SICAP.ai/git/trees/6697c8068692872d665d6bc7896ade159eb60e16?recursive=1",
+      "revizie": "6697c8068692872d665d6bc7896ade159eb60e16",
+      "cale": "packages/api/src/es/company/onrc.ts"
+    },
+    "dovezi": [
+      {
+        "proiect": "sicap-ai",
+        "profil": "repos",
+        "rol": "legatura-proiect-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/docs/architecture.md",
+        "text": "sicap.ai and [harta-firmelor.ro](https://harta-firmelor.ro) share an owner and the ONRC data.",
+        "cache": true,
+        "rol": "date-onrc-declarate-in-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/docs/company-enrichment-brief.md",
+        "text": "Enrich `/firma/[nationalId]` with Romanian trade-registry (`onrc`) and Ministry of\nFinance financial (`onrc_financials`) data.",
+        "cache": true,
+        "rol": "furnizori-declarati-in-repo"
+      }
+    ],
+    "nota": "File of ciocan/SICAP.ai at commit 6697c8068692872d665d6bc7896ade159eb60e16. The profiler found the repository link on the project site, and the README names SEAP (e-licitatie.ro) as the origin of the data. The repository shows what the code declares at that commit; it does not prove that the deployed service uses it today. The live service was not requested (sicap.ai and its subdomains are in colectare-interzisa.csv). Types of two Elasticsearch indices of company data and the functions that normalise them: onrc (the trade register, one document for each registration: CUI, registration number, name, legal form, address, CAEN codes and activities, representatives, branches, status flags) and onrc_financials (one document for each CUI and year, values in whole lei: turnover, income, expenses, profit and loss, assets, debts, equity, headcount). The design brief of the repository names them „Romanian trade-registry (onrc) and Ministry of Finance financial (onrc_financials) data”. The interface of the representatives declares birth fields; only their names are read, and the file holds no value of a person. The functions below the interfaces are not read."
+  }
+]

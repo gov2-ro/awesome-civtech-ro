@@ -1,0 +1,40 @@
+[
+  {
+    "proiect": "sicap-ai",
+    "url": "https://api.sicap.ai/v1/openapi",
+    "metoda": "adaugat-explicit",
+    "citire": "openapi-yaml",
+    "locate": {
+      "cache": true,
+      "pagina": "https://api.sicap.ai/v1/openapi",
+      "text": "title: SICAP.ai API"
+    },
+    "dovezi": [
+      {
+        "cache": true,
+        "pagina": "https://api.sicap.ai/v1/openapi",
+        "text": "version: 0.44.0",
+        "rol": "versiune-declarata"
+      },
+      {
+        "cache": true,
+        "pagina": "https://api.sicap.ai/v1/openapi",
+        "text": "Autentificare prin cheie API",
+        "rol": "autentificare-declarata"
+      },
+      {
+        "cache": true,
+        "pagina": "https://api.sicap.ai/v1/openapi",
+        "text": "url: https://opensource.org/licenses/MIT",
+        "rol": "licenta-declarata"
+      },
+      {
+        "cache": true,
+        "pagina": "https://api.sicap.ai/v1/openapi",
+        "text": "termsOfService: /terms",
+        "rol": "termeni-declarati"
+      }
+    ],
+    "nota": "The OpenAPI contract of the SICAP.ai API (OpenAPI 3.0.3, version 0.44.0, 15 paths in the tags General, Contracte and Enterprise, the security scheme bearerAuth). The owner saved it from a browser on 2026-10-27 at 21:24 (+02:00) from https://api.sicap.ai/v1/openapi, because sicap.ai and its subdomains are in colectare-interzisa.csv and no script requests them (inventory.py --import-saved; 0 requests). The API serves the contract as YAML, so the reader openapi-yaml reads it. The contract declares the types and the definitions of the parameters and of the response members; it holds no key and no value of a record (the examples in it are written by hand and are not copied). The discovery locator is the copy itself."
+  }
+]

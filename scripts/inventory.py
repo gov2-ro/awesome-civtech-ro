@@ -50,6 +50,7 @@ from inventory_jsonsample import FORMAT as JSON_SAMPLE, list_sizes, recover as r
 from inventory_literals import POSITIONAL_WIDTH, datasets as literal_datasets, declarations as literal_declarations, indented_names, keyed_object, omitted_names
 from inventory_persons import (MARK, READERS as PERSON_READERS, body_values, candidates, is_marked, leaks, mark_errors, occurs, safe_fields, safe_header, scope_files)
 from inventory_setlist import list_datasets
+from inventory_yaml import load as load_yaml, pointer_part
 from inventory_sheet import header_facts, read as read_sheet
 from inventory_text import EXTENSIONS, read_text
 from inventory_state import (REGISTRY, counted_fields, RequestLog, StateError, active_members, admit, check_text, dump, load_previous,
@@ -57,12 +58,9 @@ from inventory_state import (REGISTRY, counted_fields, RequestLog, StateError, a
                              source_id, usable, validate_state, write_atomic, write_file_atomic)
 
 MAX_FIELDS, MAX_DEPTH, SAMPLE_ROWS = 2000, 7, 25
+YAML_OPENAPI = 'openapi-yaml'
 TEXT_FORMATS = ('html-tabele', 'markdown', 'csharp', 'sql', 'php', 'js-acces', 'json-comentat', 'html-api-docs', 'html-carduri-csv', 'js-literale',
-                'html-lista-seturi', 'html-glosar', 'html-tabele-eurostat', 'js-pozitii')
-
-
-def pointer_part(value):
-    return str(value).replace('~', '~0').replace('/', '~1')
+                'html-lista-seturi', 'html-glosar', 'html-tabele-eurostat', 'js-pozitii', 'typescript')
 
 
 def dereference(node, root, visited=()):
@@ -108,7 +106,9 @@ def declared_fields(schema, root, path='$', pointer='', depth=0):
     return fields[:MAX_FIELDS]
 
 
-def openapi_fields(doc):
+def openapi_fields(doc, lines=None):
+    """The fields of an OpenAPI document. `lines` maps a JSON pointer to a line of the text when the document came from YAML (module `inventory_yaml`):
+    a field then keeps `linie`, the line of its declaration."""
     fields = []
     for path, raw_item in doc.get('paths', {}).items():
         item = dereference(raw_item, doc)
@@ -128,7 +128,7 @@ def openapi_fields(doc):
                 fields.append({'nume': parameter.get('name', ''), 'cale': parameter.get('name', ''),
                                'rol': 'parametru-api', 'operatie': op, 'loc': parameter.get('in'),
                                'tip_declarat': schema.get('type'), 'format': schema.get('format'),
-                               'descriere': parameter.get('description', ''), 'obligatoriu': parameter.get('required', False),
+                               'descriere': parameter.get('description') or schema.get('description', ''), 'obligatoriu': parameter.get('required', False),
                                'stare_tip': 'declarat-in-schema', 'pointer': parameter_pointer})
                 if parameter.get('in') == 'body':
                     for f in declared_fields(schema, doc, pointer=parameter_pointer + '/schema'):
@@ -167,7 +167,11 @@ def openapi_fields(doc):
                 occurrence['status_raspuns'] = field['status_raspuns']
             if occurrence not in grouped[key]['aparitii']:
                 grouped[key]['aparitii'].append(occurrence)
-    return list(grouped.values())[:MAX_FIELDS]
+    found = list(grouped.values())[:MAX_FIELDS]
+    for field in found:
+        if lines and field['pointer'] in lines:
+            field['linie'] = lines[field['pointer']]
+    return found
 
 
 def json_type(value):
@@ -270,6 +274,12 @@ def parse_source(body, url, content_type='', hint=None):
     """Parse a retained body. `hint` is the registry's `citire`: a reader name, or {'tip': name, ...options}. Without a hint the
     URL's extension picks a code reader; HTML at a schema/data URL is still an error."""
     kind = hint.get('tip') if isinstance(hint, dict) else hint
+    if kind == YAML_OPENAPI:
+        document, lines = load_yaml(body)
+        if not (isinstance(document, dict) and re.match(r'^\d+(\.\d+)*$', str(document.get('openapi') or document.get('swagger') or ''))):
+            raise ValueError('The YAML document is not an OpenAPI contract: it has no member `openapi` or `swagger` with a version number')
+        fields = openapi_fields(document, lines)
+        return 'openapi', fields, len(fields) >= MAX_FIELDS
     if kind == JSON_SAMPLE:
         document, complete = recover_json(body)
         fields = observed_fields(document, complete)
@@ -602,6 +612,12 @@ def pointer_value(document, pointer):
     return value
 
 
+def reading_name(source):
+    """The name of the reader that the registry gave to a source (`citire`), or None."""
+    hint = source.get('citire')
+    return hint.get('tip') if isinstance(hint, dict) else hint
+
+
 def reread(source, body, response):
     """What the reader gives for a retained body now, in the shape that a replay would write: a source with persons keeps no key beyond the allowed ones."""
     fmt, fields, truncated = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
@@ -699,8 +715,9 @@ def check_report(out, observations):
                                                                                          or literal_datasets(body) != source.get('seturi_ld'))):
                     errors.append('Fields differ from the retained body: ' + source['url'])
             elif source.get('campuri'):
-                document = json.loads(body)
-                if is_marked(source) and reread(source, body, response)[1] != source['campuri']:
+                yaml_contract = reading_name(source) == YAML_OPENAPI
+                document = load_yaml(body)[0] if yaml_contract else json.loads(body)
+                if (is_marked(source) or yaml_contract) and reread(source, body, response)[1] != source['campuri']:
                     errors.append('Fields differ from the retained body: ' + source['url'])
                 if source.get('format') == 'metadate-ins' and ins_dataset(document) != source.get('set_date'):
                     errors.append('Dataset facts differ from the retained body: ' + source['url'])

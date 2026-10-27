@@ -27,6 +27,7 @@ Each reader returns field records in the shape of inventory.parse_source and nev
   a measure with its unit and one field for each dimension that the extraction names.
 - `js-pozitii` (module `inventory_positions`): a script that decodes rows of a data file into objects (`{ name: a[0], county: a[1] }`). Each position that the script names is a field.
 - `html-glosar` (module `inventory_glossary`): a page whose headings read `Label (name)` and whose first paragraph below each heading defines the field.
+- `typescript` (module `inventory_typescript`): the `interface` and object `type` declarations of a TypeScript file. Each member is a field with the type as written.
 
 Locators are exact. A character interval `char:START-END` addresses the declaration in the retained body. A table cell is addressed as
 `/tabele/T/randuri/R` or `/tabele/T/antet/C`. `inventory.py --check` parses the retained body again and compares every field.
@@ -44,6 +45,7 @@ from inventory_glossary import glossary
 from inventory_literals import indented_names, omitted_names, read as read_literals
 from inventory_positions import positions
 from inventory_setlist import set_list
+from inventory_typescript import read as read_typescript
 
 SAMPLE_ROWS = 5
 NAME_COLUMNS = {'matrice', 'nume', 'denumire', 'variabila', 'camp', 'coloana', 'field', 'column', 'name', 'variable', 'indicator',
@@ -281,6 +283,11 @@ def csharp(body):
                                obligatoriu=required, grup=name)
             fields.append({**field, **extra})
     return 'csharp', fields, False
+
+
+def typescript(body):
+    fields, cut = read_typescript(body)
+    return 'typescript', fields, cut
 
 
 SQL_CREATE = re.compile(r'create\s+table\s+(?:if\s+not\s+exists\s+)?[`"]?(\w+)[`"]?\s*\(', re.I)
@@ -665,8 +672,9 @@ READERS = {'html-tabele': html_tabele, 'markdown': markdown, 'csharp': lambda bo
            'sql': lambda body, options=None: sql(body), 'php': lambda body, options=None: php(body),
            'json-comentat': lambda body, options=None: json_comentat(body), 'html-api-docs': lambda body, options=None: api_docs(body, options),
            'html-carduri-csv': csv_cards, 'js-literale': js_literale, 'html-lista-seturi': set_list, 'html-glosar': glossary,
-           'html-tabele-eurostat': html_tabele_eurostat, 'js-pozitii': lambda body, options=None: positions(body, options)}
-EXTENSIONS = {'.cs': 'csharp', '.sql': 'sql', '.php': 'php', '.md': 'markdown'}
+           'html-tabele-eurostat': html_tabele_eurostat, 'js-pozitii': lambda body, options=None: positions(body, options),
+           'typescript': lambda body, options=None: typescript(body)}
+EXTENSIONS = {'.cs': 'csharp', '.sql': 'sql', '.php': 'php', '.md': 'markdown', '.ts': 'typescript'}
 
 
 def read_text(body, kind, options=None):
