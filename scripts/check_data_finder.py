@@ -176,7 +176,8 @@ with sync_playwright() as pw:
     family_of = {v['id']: v.get('family') for v in INDEX['variables']}
     family_ids = {f['id'] for f in INDEX.get('families', [])}
     by_slug = {i['slug']: i for i in ITEMS}
-    missing, wrong_sources, wrong_families, wrong_rows, wrong_head, sideways, anchors, wrong_facts = [], [], [], [], [], [], [], []
+    missing, wrong_sources, wrong_families, wrong_rows, wrong_head, sideways, anchors, wrong_facts, not_loaded = [], [], [], [], [], [], [], [], []
+    page.on('response', lambda r: not_loaded.append(f'{r.status} {r.url}') if r.status >= 400 else None)
     for row in rows:
         slug = row['slug']
         try:
@@ -228,8 +229,9 @@ with sync_playwright() as pw:
     ok('every page lists the data set facts of each source of its own data under that source, with the basis', not wrong_facts)
     ok('no page scrolls sideways at 1280 px or at 375 px', not sideways)
     ok('the links inside a page stay on the page', not anchors)
-    if missing + wrong_head + wrong_sources + wrong_families + wrong_rows + sideways + anchors + wrong_facts:
-        print('  ', missing, wrong_head, wrong_sources, wrong_families, wrong_rows, sideways, anchors, wrong_facts)
+    ok('every file that a page loads (styles, fonts, images) resolves from the address of the page', not not_loaded)
+    if missing + wrong_head + wrong_sources + wrong_families + wrong_rows + sideways + anchors + wrong_facts + not_loaded:
+        print('  ', missing, wrong_head, wrong_sources, wrong_families, wrong_rows, sideways, anchors, wrong_facts, not_loaded[:5])
     page.set_viewport_size({'width': 1440, 'height': 1100})
     page.goto(BASE + 'date/lista/')
     # The scope: the entries that the inventory leaves out are absent from the index, the list and the finder, and counted by reason.

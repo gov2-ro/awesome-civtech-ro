@@ -464,7 +464,7 @@ def publish_variable_pages(items, site, projections, concepts, families, vocabul
     template = (Path(__file__).parent / 'templates/inventory-vars.html').read_text()
     digests = {asset: hashlib.sha1((site / asset).read_bytes()).hexdigest()[:10] for asset in ('style.css', 'inventory.css')}
     base = site / PAGE_DIR
-    base.mkdir(exist_ok=True)
+    base.mkdir(parents=True, exist_ok=True)
     written = []
     for item in items:
         if not has_page(item, projections):
