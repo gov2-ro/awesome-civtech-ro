@@ -271,6 +271,8 @@ class Coverage(unittest.TestCase):
         fields = self.tracked_fields()
         groups = {c['id']: c for c in self.data['concepts']}
         for item in self.data['notes'].get('selectori_candidati', []):
+            if item.get('stare') == 'exclus':
+                continue  # an excluded candidate is history: the field may be gone
             selector = item['selector']
             if not set(selector['projects']) & set(report.BATCH_D + report.BATCH_E + report.RESERVES_E):
                 continue
@@ -582,6 +584,64 @@ class Scope(unittest.TestCase):
         text = report.render_report(data, report.coverage_rows(data))
         self.assertIn(f'{public - 5} of the {public} public projects and resources are in scope', text)
         self.assertIn('2 without data (`fara-date`), 1 not assessed (empty value), 2 inactive', text)
+
+
+class CandidateSection(unittest.TestCase):
+    """Section 5 lists the open candidates, counts the excluded ones, and names a candidate that a batch proposes again after an exclusion."""
+    OPEN = {'grup': 'cui', 'selector': {'projects': ['a'], 'names': ['cui'], 'context': 'Un context nou.'}}
+    EXCLUDED = {'grup': 'cui', 'selector': {'projects': ['a'], 'names': ['cui'], 'context': 'Primul context.'}, 'stare': 'exclus', 'nota_editor': 'Este un cod intern.'}
+    OTHER = {'grup': 'judet', 'selector': {'projects': ['b'], 'path': ['$.j']}, 'stare': 'exclus', 'nota_editor': 'Alt sens.'}
+
+    def text(self, *items):
+        return '\n'.join(report.candidate_lines({'selectori_candidati': list(items)}))
+
+    def test_no_candidate_writes_nothing(self):
+        self.assertEqual(report.candidate_lines({}), [])
+        self.assertEqual(report.candidate_lines({'selectori_candidati': []}), [])
+        self.assertEqual(report.candidate_sentence(report.Counter()), '')
+
+    def test_only_the_open_candidates_are_listed(self):
+        text = self.text(self.OPEN, self.OTHER)
+        self.assertIn('Open candidate members of reviewed groups', text)
+        self.assertIn('- `cui`: `{"projects": ["a"], "names": ["cui"], "context": "Un context nou."}`', text)
+        self.assertNotIn('- `judet`', text, 'an excluded candidate is not an open line')
+        self.assertNotIn('Open candidate members', self.text(self.OTHER), 'no open candidate: no list')
+
+    def test_the_excluded_candidates_are_counted_in_one_line(self):
+        text = self.text(self.OPEN, self.EXCLUDED, self.OTHER)
+        line = next(l for l in text.splitlines() if l.startswith('Excluded candidates'))
+        self.assertTrue(line.startswith('Excluded candidates: 2. The owner refused them.'))
+        self.assertIn('`cui: cui (a)`', line)
+        self.assertIn('`judet: $.j (b)`', line)
+        self.assertNotIn('Excluded candidates', self.text(self.OPEN))
+
+    def test_a_candidate_that_equals_an_excluded_one_is_named_with_the_note(self):
+        text = self.text(self.OPEN, self.EXCLUDED)
+        self.assertIn('Candidates proposed again after an exclusion', text)
+        self.assertIn('- `cui: cui (a)`: the owner excluded it with the note „Este un cod intern.”.', text)
+        self.assertNotIn('proposed again', self.text(self.OPEN, self.OTHER), 'another selection is a new proposal')
+        self.assertNotIn('proposed again', self.text(self.EXCLUDED), 'an excluded candidate alone is not proposed again')
+
+    def test_the_review_state_counts_the_candidates(self):
+        data = {'review': [], 'concepts': [], 'notes': {'selectori_candidati': [self.OPEN, self.OPEN, self.EXCLUDED]}}
+        state = report.review_state(data)
+        self.assertEqual(dict(state['candidate_states']), {'propus': 2, 'exclus': 1})
+        self.assertEqual(report.candidate_sentence(state['candidate_states']), ' Candidate members: propus 2, exclus 1.')
+        self.assertEqual(dict(report.review_state({**data, 'notes': {}})['candidate_states']), {})
+
+    def test_the_report_carries_the_section_when_the_notes_hold_candidates(self):
+        data = report.load(PUBLIC_ROOT)
+        rows = report.coverage_rows(data)
+        plain = report.render_report(data, rows)
+        self.assertNotIn('candidate members', plain.lower().split('## 6.')[0].split('## 5.')[1], 'the tracked notes hold no candidate')
+        notes = {**data['notes'], 'selectori_candidati': [self.OPEN, self.EXCLUDED]}
+        text = report.render_report({**data, 'notes': notes}, rows)
+        section = text.split('## 5.')[1].split('## 6.')[0]
+        self.assertIn('Open candidate members of reviewed groups', section)
+        self.assertIn('Excluded candidates: 1.', section)
+        self.assertIn('Candidates proposed again after an exclusion', section)
+        self.assertIn('Candidate members: propus 1, exclus 1.', text)
+        self.assertNotIn('Candidate members: propus', plain)
 
 
 if __name__ == '__main__':
