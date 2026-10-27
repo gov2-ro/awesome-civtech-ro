@@ -695,7 +695,7 @@ const INV_ROLES = { 'camp-date': 'Date', dimensiune: 'Dimensiuni', 'parametru-ap
   'camp-exemplu': 'Exemple în documentație', masura: 'Măsuri', 'camp-folosit-de-pagina': 'Folosite de pagină', 'colectie-cu-chei': 'Colecții indexate' };
 const INV_BASIS = { schema: 'Descris în schemă', metadata: 'Descris în metadate', sample: 'Observat în date', header: 'Antet CSV',
   code: 'Declarat în codul sursă', table: 'Antet de tabel HTML', doctable: 'Declarat în tabel de documentație', doctext: 'Declarat în textul documentației',
-  pagecode: 'Folosit în codul paginii', docexample: 'Exemplu în documentație', apidoc: 'Declarat în documentația API', doclist: 'Declarat în lista de coloane din documentație', dblist: 'Declarat în lista bazei de date' };
+  pagecode: 'Folosit în codul paginii', docexample: 'Exemplu în documentație', apidoc: 'Declarat în documentația API', doclist: 'Declarat în lista de coloane din documentație', dblist: 'Declarat în lista bazei de date', editor: 'adăugat de editor' };
 const INV_LOCATIONS = { query: 'filtru', path: 'în URL', header: 'în antet', cookie: 'cookie' };
 const INV_TYPES = { string: 'Text', integer: 'Număr întreg', number: 'Număr', boolean: 'Da / Nu', null: 'Valoare nulă', text: 'Text în tabel',
   'forma-numerica': 'Arată ca număr (text)', 'forma-de-data': 'Arată ca dată (text)',

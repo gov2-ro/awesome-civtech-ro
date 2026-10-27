@@ -241,6 +241,20 @@ with sync_playwright() as pw:
     ok('a cut description points to the page that holds the whole text', cut.locator('.inv-facts a[href="date/' + slug + '/"]').count() == 1)
     ok('the title of a set remains inert text', cut.locator('.inv-facts img').count() == 0 and cut.evaluate('window.factsExecuted === undefined'))
     cut.close()
+    # A field that an editor added (`campuri-editor.csv`) shows its basis in the field browser: „adăugat de editor”, next to the labels of the other bases.
+    edited = json.loads(json.dumps(payloads['demoanaf']))
+    edited['fields'].insert(0, {**edited['fields'][0], 'name': 'campul_editorului', 'path': '$.campul_editorului', 'basis': 'editor', 'description': 'Adăugat de un editor'})
+    added = browser.new_page(viewport={'width': 1280, 'height': 900})
+    added.route('**/inventar/demoanaf.json', lambda r: r.fulfill(status=200, content_type='application/json', body=json.dumps(edited)))
+    added.goto(BASE + 'proiect/demoanaf/')
+    added.wait_for_selector('[data-inv-panel]')
+    added.locator('[data-inv-panel] > summary').click()
+    added.wait_for_selector('.inv-field')
+    first = added.locator('.inv-field').first
+    ok('a field that an editor added shows the basis „adăugat de editor”', first.locator('code').first.inner_text() == 'campul_editorului'
+       and first.locator('.inv-basis').inner_text() == 'adăugat de editor')
+    ok('the other fields keep their own basis label', added.locator('.inv-field').nth(1).locator('.inv-basis').inner_text() != 'adăugat de editor')
+    added.close()
     # The link to the variables page of an entry (`/date/<slug>/`): only an entry that has the page, and the page is the one of that entry.
     with_page = [i for i in DB['items'] if i.get('inventory', {}).get('page')]
     ok('an entry with a variables page has fields, and the page is date/<slug>/', len(with_page) > 0 and all(i['inventory']['count'] and i['inventory']['page'] == f'date/{i["slug"]}/' for i in with_page))

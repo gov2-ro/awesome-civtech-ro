@@ -17,7 +17,8 @@ BASIS = {'declarat-in-schema': 'schema', 'declarat-in-metadate': 'metadata',
          'observat-in-esantion-json': 'sample', 'neprecizat-in-antet-csv': 'header',
          'declarat-in-cod-sursa': 'code', 'antet-tabel-html': 'table', 'declarat-in-tabel-documentatie': 'doctable',
          'declarat-in-text-documentatie': 'doctext', 'utilizat-in-cod-pagina': 'pagecode', 'exemplu-in-documentatie': 'docexample',
-         'declarat-in-documentatie-api': 'apidoc', 'declarat-in-lista-documentatie': 'doclist', 'declarat-in-lista-baza': 'dblist'}
+         'declarat-in-documentatie-api': 'apidoc', 'declarat-in-lista-documentatie': 'doclist', 'declarat-in-lista-baza': 'dblist',
+         'adaugat-de-editor': 'editor'}
 FORMATS = {'openapi': 'Schemă API', 'json-schema': 'Schemă JSON', 'metadate-ins': 'Metadate de set',
            'json': 'Fișier JSON', 'csv': 'Fișier CSV', 'lista-ins': 'Listă de seturi INS',
            'html-tabele': 'Pagină cu tabele', 'markdown': 'Document Markdown', 'csharp': 'Cod C#', 'sql': 'Cod SQL', 'php': 'Cod PHP',
@@ -272,7 +273,8 @@ ROLE_LABELS = {'camp-date': 'Date', 'dimensiune': 'Dimensiuni', 'parametru-api':
 FIELD_BASIS_LABELS = {'schema': 'Descris în schemă', 'metadata': 'Descris în metadate', 'sample': 'Observat în date', 'header': 'Antet CSV',
                       'code': 'Declarat în codul sursă', 'table': 'Antet de tabel HTML', 'doctable': 'Declarat în tabel de documentație',
                       'doctext': 'Declarat în textul documentației', 'pagecode': 'Folosit în codul paginii', 'docexample': 'Exemplu în documentație',
-                      'apidoc': 'Declarat în documentația API', 'doclist': 'Declarat în lista de coloane din documentație', 'dblist': 'Declarat în lista bazei de date'}
+                      'apidoc': 'Declarat în documentația API', 'doclist': 'Declarat în lista de coloane din documentație', 'dblist': 'Declarat în lista bazei de date',
+                      'editor': 'adăugat de editor'}
 GROUP_STATE_LABELS = {'propus': 'Propus', 'revizuit': 'Revizuit', 'amanat': 'Amânat'}
 NOTE_PARTIAL = 'Extrase automat din sursele de mai jos. Proiectul poate folosi și alte date. Un câmp comun nu garantează că seturile se pot combina.'
 
