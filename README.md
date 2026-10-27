@@ -285,8 +285,6 @@ pull requests from forks.
 
 <img src="docs/reference/logo/g2-0.png" width=250> 
 
-Copyright (c) 2026 [gov2.ro](https://gov2.ro)
-Date reutilizabile conform [EUPL v1.2](https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12) (the "Licence")
 ### Documentarea proiectelor
 
 ```sh
@@ -353,3 +351,8 @@ Cele 3.593 de înregistrări sunt câmpuri și căi din surse, nu variabile inde
 Raportul complet, cu limite, blocaje și rezultatele verificărilor, este în [inventory-expansion.md](docs/reports/inventory-expansion.md).
 Lucrările rămase sunt în [BACKLOG.md](docs/BACKLOG.md#inventory-expansion--implemented-2026-10-25-milestones-ae-v0140v0180).
 Specificația implementată este în [inventory-expansion.md](docs/briefs/inventory-expansion.md).
+
+----
+
+Copyright (c) 2026 [gov2.ro](https://gov2.ro)
+Date reutilizabile conform [EUPL v1.2](https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12) (the "Licence")
