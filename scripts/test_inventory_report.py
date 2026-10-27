@@ -234,9 +234,10 @@ class Coverage(unittest.TestCase):
             hidden = {**self.data, 'scope': {**self.data['scope'], slug: 'fara-date'}}
             self.assertEqual(rows(hidden)[slug]['stare_investigare'], 'fara-date', 'the scope decides before the lot')
 
-    def test_provider_items_of_batch_d_cite_evidence_that_a_retained_copy_holds(self):
+    def check_provider_items(self, slugs, first):
+        """The provider items of the given entries from the review item D<first> on: each cites a retained copy, its hash and a fragment of it."""
         # The review state belongs to the owner, so the test does not pin it. An item still open must not block the publication gate.
-        items = [r for r in self.data['review'] if r['camp'] == 'surse_date' and r['slug'] in report.BATCH_D and r['id'].startswith('D') and int(r['id'][1:]) >= 189]
+        items = [r for r in self.data['review'] if r['camp'] == 'surse_date' and r['slug'] in slugs and r['id'].startswith('D') and int(r['id'][1:]) >= first]
         self.assertTrue(items)
         locator = EvidenceLocator(ROOT / 'data/taxonomy-v2/observatii/inventare', ROOT / 'data/taxonomy-v2/observatii', list(self.data['sources'].values()))
         for item in items:
@@ -252,10 +253,17 @@ class Coverage(unittest.TestCase):
                 self.assertTrue(matching, item['id'] + ': no retained copy has the cited hash')
                 self.assertTrue(any(item['valoare_originala'] in t for t in matching), item['id'])
 
+    def test_provider_items_of_batch_d_cite_evidence_that_a_retained_copy_holds(self):
+        self.check_provider_items(report.BATCH_D, 189)
+
+    def test_provider_items_of_batch_e_cite_evidence_that_a_retained_copy_holds(self):
+        self.check_provider_items(report.BATCH_E + report.RESERVES_E, 211)
+
     def test_a_provider_item_never_repeats_a_relation_that_the_entry_already_has(self):
         accepted = {(r['subiect'], r['obiect_literal']) for r in self.data['relations'] if r['predicat'] == 'date_din' and r['stare'] == 'acceptat'}
         for item in self.data['review']:
-            if item['camp'] == 'surse_date' and item['slug'] in report.BATCH_D and item['id'].startswith('D') and int(item['id'][1:]) >= 189 and item['stare'] == 'deschis':
+            if item['camp'] == 'surse_date' and item['slug'] in report.BATCH_D + report.BATCH_E + report.RESERVES_E and item['id'].startswith('D') \
+                    and int(item['id'][1:]) >= 189 and item['stare'] == 'deschis':
                 self.assertNotIn((item['slug'], item['propunere'].removeprefix('Furnizor propus: ')), accepted, item['id'])
 
     def test_the_candidate_members_of_batch_d_belong_to_reviewed_groups_match_a_field_and_are_not_members_yet(self):
@@ -264,7 +272,7 @@ class Coverage(unittest.TestCase):
         groups = {c['id']: c for c in self.data['concepts']}
         for item in self.data['notes'].get('selectori_candidati', []):
             selector = item['selector']
-            if not set(selector['projects']) & set(report.BATCH_D):
+            if not set(selector['projects']) & set(report.BATCH_D + report.BATCH_E + report.RESERVES_E):
                 continue
             self.assertIn(item['grup'], groups)
             self.assertTrue(any(selector_matches(selector, slug, f, url) for slug in selector['projects'] for f, url in fields.get(slug, [])), (item['grup'], selector['names']))
@@ -274,7 +282,7 @@ class Coverage(unittest.TestCase):
         fields = self.tracked_fields()
         for group in self.data['concepts']:
             for number, selector in enumerate(group['selectors'], 1):
-                if selector.get('stare') == 'exclus' or not set(selector['projects']) & set(report.BATCH_D):
+                if selector.get('stare') == 'exclus' or not set(selector['projects']) & set(report.BATCH_D + report.BATCH_E + report.RESERVES_E):
                     continue
                 self.assertTrue(any(selector_matches(selector, slug, f, url) for slug in selector['projects'] for f, url in fields.get(slug, [])),
                                 f'{group["id"]} selector {number}')
@@ -376,6 +384,87 @@ class Coverage(unittest.TestCase):
         self.assertEqual({r['metoda'] for r in direct}, {'GET'})
         navigations = [r for r in rows if r['metoda'] == 'BROWSER']
         self.assertEqual(len({r['url'] for r in navigations}), len(navigations), 'a page is rendered once')
+
+    # --- batch E -------------------------------------------------------------------------------------------------------------------------------
+    def test_batch_e_is_the_twelve_entries_of_the_brief_a_reserve_replaces_a_blocked_entry_and_each_state_follows_the_evidence(self):
+        self.assertEqual(report.BATCH_E, ['monitor-safe', 'igov', 'companii-publice-ro', 'executii-bugetare', 'ce-cumpara-primaria', 'sicap-ai', 'open-budget', 'monitor-social',
+                                          'verifica-psiholog', 'portal-just-modern', 'cat-de-tare', 'recontorizarea'])
+        brief_reserves = ['de-unde-vine-apa', 'ani-de-pensie', 'ai-aflat']
+        self.assertEqual(report.RESERVES_E, brief_reserves[:len(report.RESERVES_E)], 'the reserves are used in the order of the brief')
+        self.assertLessEqual(len(report.RESERVES_E), 3, 'the brief allows at most three replacements')
+        blocked = [s for s in report.BATCH_E if self.by[s]['stare_investigare'] == 'blocat']
+        self.assertGreaterEqual(len(blocked), len(report.RESERVES_E), 'a reserve joins the lot only when a primary entry is blocked')
+        for slug in report.BATCH_E + report.RESERVES_E:
+            self.assertEqual(self.by[slug]['investigat_in_lot'].split('|').count('E'), 1, slug)
+            note = self.data['notes']['note'][slug]
+            self.assertTrue(note['rezultat'] and note['limite'] and note['limite_en'] and note['urmator_en'], slug)
+            usable = [r for r in self.data['profiles'][slug]['surse_structurate'] if self.data['sources'][r].get('stare') == 'analizat']
+            self.assertEqual(int(self.by[slug]['surse_structurate']), len(usable), slug)
+            if usable:
+                self.assertEqual(self.by[slug]['stare_investigare'], 'cu-surse-structurate', slug)
+            elif note.get('blocaj'):
+                self.assertEqual(self.by[slug]['stare_investigare'], 'blocat', slug)
+                self.assertTrue(note['blocaj_en'], 'a blocked entry says why in English too')
+            else:
+                self.assertEqual(self.by[slug]['stare_investigare'], 'investigat-fara-surse', slug)
+                self.assertTrue(self.by[slug]['urmatorul_pas'], 'an entry without a source says what could help')
+
+    def test_a_blocked_entry_of_batch_e_got_no_new_request_to_its_host_after_the_answer_that_blocked_it(self):
+        rows = [r for r in self.data['log'] if r['lot'] == 'E' and r['cache'] == 'nu']
+        self.assertFalse([r['url'] for r in rows if urlsplit(r['url']).hostname in ('sicap.ai', 'www.sicap.ai')], 'sicap.ai answered HTTP 429: the batch rule is to stop on that host')
+        # open-budget did not refuse; it never answered. One direct request and one browser render were the only attempts of the batch.
+        self.assertEqual(len([r for r in rows if urlsplit(r['url']).hostname == 'www.openbudget.ro']), 1)
+        navigations = [r for r in self.data['log'] if r['lot'] == 'E' and r['metoda'] == 'BROWSER' and 'openbudget' in r['url']]
+        self.assertEqual(len(navigations), 1)
+
+    def test_the_request_log_of_batch_e_stays_inside_the_limits_and_asks_no_listed_host(self):
+        rows = [r for r in self.data['log'] if r['lot'] == 'E']
+        direct = [r for r in rows if r['cache'] == 'nu']
+        self.assertTrue(direct)
+        self.assertLessEqual(len(direct), 120, 'the brief allows 120 direct requests in all, retries included')
+        self.assertFalse([r['url'] for r in direct if forbidden(r['url'])], 'a listed host gets no request')
+        self.assertEqual({r['metoda'] for r in direct}, {'GET'})
+        entries_on = {}
+        for entry in self.data['entries']:
+            if entry['slug'] in report.BATCH_E + report.RESERVES_E:
+                entries_on[urlsplit(entry['url']).hostname.removeprefix('www.')] = entries_on.get(urlsplit(entry['url']).hostname.removeprefix('www.'), 0) + 1
+        per_host = {}
+        for r in direct:
+            host = urlsplit(r['url']).hostname.removeprefix('www.')
+            per_host[host] = per_host.get(host, 0) + 1
+        for host, count in per_host.items():
+            self.assertLessEqual(count, 15 * max(1, entries_on.get(host, 1)), f'at most 15 direct requests for each entry: {host}')
+        navigations = {}
+        for r in rows:
+            if r['metoda'] == 'BROWSER':
+                slug = r['scop'].removeprefix('randare ')
+                navigations[slug] = navigations.get(slug, 0) + 1
+        self.assertTrue(navigations)
+        self.assertTrue(all(count <= 2 for count in navigations.values()), 'at most two browser pages for each entry')
+        self.assertTrue(set(navigations) <= set(report.BATCH_E), 'only the entries of the lot were rendered')
+
+    def test_the_sources_of_batch_e_marked_with_persons_keep_the_form_and_the_render_of_the_registry_page_kept_no_text(self):
+        marked = []
+        for slug in report.BATCH_E + report.RESERVES_E:
+            for ref in self.data['profiles'][slug]['surse_structurate']:
+                source = self.data['sources'][ref]
+                if is_marked(source):
+                    marked.append(source['url'])
+                    self.assertEqual(person_problems(source), [], source['url'])
+                    self.assertIn(source['format'], ('csv', 'json-esantion', 'json'), source['url'])
+        self.assertTrue(marked, 'the registry list of verifica-psiholog holds records about persons')
+        records = [json.loads(p.read_text()) for p in (ROOT / 'data/taxonomy-v2/observatii/inventare/randare').glob('verifica-psiholog-*.json')]
+        self.assertTrue(records)
+        for record in records:
+            self.assertIsNone(record['text_randat'], 'a page that lists persons is rendered with --fara-text')
+
+    def test_every_lot_e_source_with_an_inventory_is_a_read_source_and_the_new_readers_are_known_to_the_site(self):
+        from inventory_site import FORMATS
+        for slug in report.BATCH_E + report.RESERVES_E:
+            for ref in self.data['profiles'][slug]['surse_structurate']:
+                source = self.data['sources'][ref]
+                self.assertEqual(source.get('stare'), 'analizat', source['url'])
+                self.assertIn(source['format'], FORMATS, 'the field browser needs a label for the format: ' + source['url'])
 
     def test_baseline_figures_are_the_ones_of_the_brief(self):
         self.assertEqual((report.BASELINE['with_fields'], report.BASELINE['field_records'], report.BASELINE['groups']), (14, 2302, 7))
