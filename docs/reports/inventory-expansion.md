@@ -6,7 +6,7 @@ Inventory assertions are proposals. Raw field totals count source paths, not ind
 ## 1. Outcome
 
 - Milestones A (safe incremental collection), B (INS), C (12 entries), D (meanings and shared groups) and E (preview, coverage, report) are complete.
-- Structured field evidence now covers 42 of 129 projects and resources (baseline 14). The retained sources are 151 URLs (146 parsed, 5 failed) with 5,043 field records.
+- Structured field evidence now covers 42 of 129 projects and resources (baseline 14). The retained sources are 151 URLs (146 parsed, 5 failed) with 4,352 field records.
 - Each field record is a path in a source. The proposals are 40 shared groups (baseline 7), 16 provider review items and the dictionary evidence that `inventory.py --check` verifies.
 - The public build is unchanged: the default payload equals the v0.13.0 payload apart from its generation time; classifications and accepted providers are identical.
 - Collection used 203 direct requests in total (9 browser navigations); the 150-request limit of lot C was not reached.
@@ -28,7 +28,7 @@ Field-level meaning is thinner than group-level meaning. Source-declared field d
 | `aerlive` | 1 | 3 | 0 | 0 | 0 | 0 / 0 |
 | `calitate-aer-radauti` | 1 | 41 | 0 | 0 | 7 | 4 / 28 |
 | `banii-nostri` | 3 | 51 | 0 | 0 | 4 | 1 / 2 |
-| `europescope` | 7 | 72 | 0 | 0 | 4 | 0 / 3 |
+| `europescope` | 7 | 73 | 0 | 0 | 4 | 0 / 3 |
 | `despre-femicid` | 1 | 9 | 0 | 0 | 1 | 0 / 0 |
 
 ## 2. Coverage before and after
@@ -44,8 +44,8 @@ The 129 projects and resources of the catalogue (the finder lists the 85 that ar
 | Projects/resources without extracted structured fields | 113 | 87 |
 | Retained structured-source URLs | 25 | 151 |
 | Parsed sources / HTTP failures | 24 / 1 | 146 / 5 |
-| Source-scoped field records (paths, not variables) | 2,302 | 5,043 |
-| Schema declarations / sampled JSON paths / CSV headers / INS dimensions | 1,312 / 904 / 82 / 4 | 1,367 / 2,090 / 311 / 4 |
+| Source-scoped field records (paths, not variables) | 2,302 | 4,352 |
+| Schema declarations / sampled JSON paths / CSV headers / INS dimensions | 1,312 / 904 / 82 / 4 | 1,367 / 1,399 / 311 / 4 |
 | HTML control candidates / entries with candidates | 308 / 78 | 310 / 80 |
 | Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 86 / 56 |
 | Accepted provider relations / entries with accepted providers | 26 / 11 | 98 / 35 |
@@ -58,20 +58,20 @@ Review state, counted from the tracked files. Provider items (`camp` `surse_date
 
 Scope of the data finder (`/date/`): 85 of the 126 public projects and resources are in scope. An entry is in scope when it is not inactive (`offline`, `arhivat`) and its `relatie_date` is `date-publice`, `date-proprii` or `calcul`. The finder leaves out 41: 18 without data (`fara-date`), 5 not assessed (empty value), 18 inactive (counted first: an inactive entry is never counted as another reason). 3 hidden entries (`ascuns`) are in no count of this paragraph.
 
-Field records by evidence type now: observat-in-esantion-json 2,090, declarat-in-schema 1,367, declarat-in-cod-sursa 417, exemplu-in-documentatie 364, neprecizat-in-antet-csv 311, declarat-in-lista-baza 171, antet-tabel-html 104, declarat-in-metadate 58, declarat-in-tabel-documentatie 53, declarat-in-lista-documentatie 40, declarat-in-documentatie-api 36, declarat-in-text-documentatie 23, utilizat-in-cod-pagina 9.
+Field records by evidence type now: observat-in-esantion-json 1,399, declarat-in-schema 1,367, declarat-in-cod-sursa 417, exemplu-in-documentatie 364, neprecizat-in-antet-csv 311, declarat-in-lista-baza 171, antet-tabel-html 104, declarat-in-metadate 58, declarat-in-tabel-documentatie 53, declarat-in-lista-documentatie 40, declarat-in-documentatie-api 36, declarat-in-text-documentatie 23, utilizat-in-cod-pagina 9.
 
 Coverage by measure, for the 129 projects and resources (`acoperire.csv` has the rows). A column that counts fields counts source paths:
 
 | Measure | Entries counted | Total |
 | --- | ---: | ---: |
 | Structured sources | 42 | 156 |
-| Field records from sources | 42 | 5,105 |
+| Field records from sources | 42 | 4,414 |
 | Entries in at least one proposed group | 42 | 34 |
 | Fields with a source-declared description | 42 | 1,374 |
 | Fields with a declared type | 42 | 1,650 |
-| Fields with an observed type | 42 | 2,462 |
-| Measures with a unit | 42 | 90 |
-| Measures without a unit | 42 | 161 |
+| Fields with an observed type | 42 | 1,771 |
+| Measures with a unit | 42 | 70 |
+| Measures without a unit | 42 | 120 |
 | Sources with a verified discovery locator | 42 | 160 |
 
 Totals add the per-entry counts. A source that several entries share counts once for each of them, so the field total here is higher than the number of distinct field records above.
@@ -209,7 +209,7 @@ Public procurement visualisations. The RAJA S.A. Constanța report cites the SIC
 
 European Parliament and Council voting records. Seven documented bulk files: members, votes, vote positions, countries, groups, topic-tagged votes and a methodology registry. The data page describes each file, names the licence (ODC-By 1.0) and the dataset version (2026.05). CSV headers are read from a 24 KB sample; the methodology registry has 16 fields that carry formulas, inclusions, exclusions and limitations.
 
-- State: cu-surse-structurate. Sources 7, field records 72, groups 4.
+- State: cu-surse-structurate. Sources 7, field records 73, groups 4.
 - Source URLs: `https://api.europescope.eu/v1/countries.csv`; `https://api.europescope.eu/v1/groups.csv`; `https://api.europescope.eu/v1/members.csv`; `https://api.europescope.eu/v1/positions.csv`; `https://api.europescope.eu/v1/topic-votes.csv`; `https://api.europescope.eu/v1/votes.csv`; `https://api.europescope.eu/v1/methodology.json`
 - Proposed groups: `grup-politic`, `voturi-abtinere`, `voturi-impotriva`, `voturi-pentru`
 - Documented inputs: none documented in the sources read. HTML controls stay candidates.
@@ -290,13 +290,13 @@ Four reader changes serve the batch, each with offline fixture tests: the new re
 
 Proposals for the owner: 22 provider items (D189–D210), two new proposed groups (`deficit-bugetar`, `coordonate-geografice`), selectors added to two proposed groups (`partid-politic`, `uat`), and candidate members for five reviewed groups (`cui`, `judet`, `localitate`, `populatie`, `perioada-de-referinta`; see section 5). Nothing was accepted or decided. `relatii.csv` and the review decisions did not change.
 
-Addendum, 2026-10-27 (branch `lista-firme-api`): the owner raised the request limit of `lista-firme` for one request. `GET https://lista-firme.info/api/v1/info?cui=51859625` (the CUI of the operator) answered HTTP 200 with 2,276 bytes of JSON and no key. It is the 36th source of the lot (55 field records, 910 in all for the lot). The response adds no new reviewed group member by itself: three candidate members (`cui`, `judet`, `localitate`) are in section 5. No provider item and no proposed group was added. The inventory keeps key names and observed types of the response; no value of a person is in a tracked file.
+Addendum, 2026-10-27 (branch `lista-firme-api`): the owner raised the request limit of `lista-firme` for one request. `GET https://lista-firme.info/api/v1/info?cui=51859625` (the CUI of the operator) answered HTTP 200 with 2,276 bytes of JSON and no key. It is the 36th source of the lot (57 field records and 637 in all for the lot after the corrected readers of 2026-10-27; 55 and 910 before). The response adds no new reviewed group member by itself: three candidate members (`cui`, `judet`, `localitate`) are in section 5. No provider item and no proposed group was added. The inventory keeps key names and observed types of the response; no value of a person is in a tracked file.
 
 #### `lista-firme` — lista-firme.info
 
-Search by CUI or name over the Romanian companies, with an API (catalogue: `format:api`) and the repository `tudorr89/info-firme`. The API has no documentation page. The repository README (commit 1dcb375, 2026-10-24) documents `GET https://lista-firme.info/api/v1/info?cui=...` and `?name=...`; the code reads `company` and not `name`. The routes file has the one route `info` and a fallback that aborts any other API path with 401 (by the code; not requested). Neither the README nor the routes file mentions a key. The six migrations read give 51 field records (the columns of `companies`, `addresses`, `infos` and `statuses`). The terms page names the originators: ONRC (via data.gov.ro) and the public ANAF APIs. On 2026-10-27 the owner raised the request limit of the entry for one request. `GET /api/v1/info?cui=51859625` (the CUI of the operator) answered HTTP 200 with 2,276 bytes of JSON; it needed no key. It is the seventh source, with 55 field records: key paths and observed types, no value. The response has 17 keys. Nine are columns of `companies` (`name`, `cui`, `euid`, `registration_date`, `type`, `website`, `parent_country`, `mark`, `reg_com`). One is computed: `is_active` (the scope `preferActive` of the model adds it in the query; it is not a column). Seven are relations: `address` (12 keys), `info`, `status`, `caen`, `legal_representatives`, `natural_person_representatives` and `eu_branches`. Against the migrations the API hides `id`, `created_at` and `updated_at` of `companies`, and `id`, `company_id`, `created_at` and `updated_at` of `addresses`. `status` holds only `details` (`code` and `description`): none of the five `statuses` columns read appears. The relation `caen` has three elements, each with `code`, `version` and the same seven keys under `caen_details` and `details`. The relation `legal_representatives` has one element with 14 keys, among them the name, the birth date and place and the current location of a natural person. It keeps `id`, `company_id`, `created_at` and `updated_at`: the API hides keys of this kind for the company and the address. For this company `info` is null, so the 18 columns of `infos` were not observed. `natural_person_representatives` and `eu_branches` are empty lists, so their keys are unknown. Three candidate members are proposed for the reviewed groups `cui`, `judet` and `localitate`: the paths `$.cui`, `$.address.county` and `$.address.city` of the response. The two provider items D189 and D190 are decided. A group for the CAEN code is a suggestion only (section 5).
+Search by CUI or name over the Romanian companies, with an API (catalogue: `format:api`) and the repository `tudorr89/info-firme`. The API has no documentation page. The repository README (commit 1dcb375, 2026-10-24) documents `GET https://lista-firme.info/api/v1/info?cui=...` and `?name=...`; the code reads `company` and not `name`. The routes file has the one route `info` and a fallback that aborts any other API path with 401 (by the code; not requested). Neither the README nor the routes file mentions a key. The six migrations read give 51 field records (the columns of `companies`, `addresses`, `infos` and `statuses`). The terms page names the originators: ONRC (via data.gov.ro) and the public ANAF APIs. On 2026-10-27 the owner raised the request limit of the entry for one request. `GET /api/v1/info?cui=51859625` (the CUI of the operator) answered HTTP 200 with 2,276 bytes of JSON; it needed no key. It is the seventh source, with 57 field records (55 before 2026-10-27: the corrected reader adds the two empty lists as two records): key paths and observed types, no value. The response has 17 keys. Nine are columns of `companies` (`name`, `cui`, `euid`, `registration_date`, `type`, `website`, `parent_country`, `mark`, `reg_com`). One is computed: `is_active` (the scope `preferActive` of the model adds it in the query; it is not a column). Seven are relations: `address` (12 keys), `info`, `status`, `caen`, `legal_representatives`, `natural_person_representatives` and `eu_branches`. Against the migrations the API hides `id`, `created_at` and `updated_at` of `companies`, and `id`, `company_id`, `created_at` and `updated_at` of `addresses`. `status` holds only `details` (`code` and `description`): none of the five `statuses` columns read appears. The relation `caen` has three elements, each with `code`, `version` and the same seven keys under `caen_details` and `details`. The relation `legal_representatives` has one element with 14 keys, among them the name, the birth date and place and the current location of a natural person. It keeps `id`, `company_id`, `created_at` and `updated_at`: the API hides keys of this kind for the company and the address. For this company `info` is null, so the 18 columns of `infos` were not observed. `natural_person_representatives` and `eu_branches` are empty lists (each is a field of the type array with 0 elements), so the keys of their elements are unknown. Three candidate members are proposed for the reviewed groups `cui`, `judet` and `localitate`: the paths `$.cui`, `$.address.county` and `$.address.city` of the response. The two provider items D189 and D190 are decided. A group for the CAEN code is a suggestion only (section 5).
 
-- State: cu-surse-structurate. Sources 7, field records 106, groups 3.
+- State: cu-surse-structurate. Sources 7, field records 108, groups 3.
 - Source URLs: `https://lista-firme.info/api/v1/info?cui=51859625`; `https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_184655_create_companies_table.php`; `https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_184809_create_statuses_table.php`; `https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_184907_create_infos_table.php`; `https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_190138_create_addresses_table.php`; `https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2025_07_12_061535_add_fields_to_companies.php`; `https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2026_01_02_201516_add_website_and_parent_country_to_companies_table.php`
 - Proposed groups: `cui`, `judet`, `localitate`
 - Documented inputs: none documented in the sources read. HTML controls stay candidates.
@@ -307,9 +307,9 @@ Search by CUI or name over the Romanian companies, with an API (catalogue: `form
 
 #### `dupa-cutremur` — După cutremur
 
-Interactive map of the Bucharest buildings at seismic risk, with offered data (catalogue: `format:set-date`). The project page and the download page (read through an encoded address: the collector could not request a link with letters outside ASCII) say that all the data is offered as kml, csv and geojson under CC BY 4.0, in a Google Drive folder. The folder was not requested (it cannot be listed without the API). The live map page loads five GeoJSON files from `storage.googleapis.com/dupacutremur/`: buildings (polygons), collapse areas, road segments, building points and shelters. Each was read as a range sample of 30,000 bytes with the new cut-JSON reader: 5 sources and 90 field records. The properties have the truncated names of a shapefile (`incadrare`, `anul_const`, `anul_exper`, `regimul_de`, `niveluri_f`, `estimare_i`, `adresa`, `sector`, `expert`, `latitude`, `longitude`); the files do not describe them. The base list is the official list of AMCCRS (page text; D203); the road segments carry OpenStreetMap identifiers (D204). One proposed group is new (`coordonate-geografice`, with `votdiaspora` and `romania-interactiva`), and one candidate is for a reviewed group (`localitate`, the column `oras`).
+Interactive map of the Bucharest buildings at seismic risk, with offered data (catalogue: `format:set-date`). The project page and the download page (read through an encoded address: the collector could not request a link with letters outside ASCII) say that all the data is offered as kml, csv and geojson under CC BY 4.0, in a Google Drive folder. The folder was not requested (it cannot be listed without the API). The live map page loads five GeoJSON files from `storage.googleapis.com/dupacutremur/`: buildings (polygons), collapse areas, road segments, building points and shelters. Each was read as a range sample of 30,000 bytes with the new cut-JSON reader: 5 sources and 95 field records. The properties have the truncated names of a shapefile (`incadrare`, `anul_const`, `anul_exper`, `regimul_de`, `niveluri_f`, `estimare_i`, `adresa`, `sector`, `expert`, `latitude`, `longitude`); the files do not describe them. The base list is the official list of AMCCRS (page text; D203); the road segments carry OpenStreetMap identifiers (D204). One proposed group is new (`coordonate-geografice`, with `votdiaspora` and `romania-interactiva`), and one candidate is for a reviewed group (`localitate`, the column `oras`).
 
-- State: cu-surse-structurate. Sources 5, field records 90, groups 2.
+- State: cu-surse-structurate. Sources 5, field records 95, groups 2.
 - Source URLs: `https://storage.googleapis.com/dupacutremur/_strazi_arie_colaps_06122022.geojson`; `https://storage.googleapis.com/dupacutremur/adaposturi.geojson`; `https://storage.googleapis.com/dupacutremur/arie_colaps_complete_03032024.geojson?v=1`; `https://storage.googleapis.com/dupacutremur/cladiri_complete_03032024.geojson?v=1`; `https://storage.googleapis.com/dupacutremur/puncte_complete_03032024.geojson?v=1`
 - Proposed groups: `coordonate-geografice`, `localitate`
 - Documented inputs: none documented in the sources read. HTML controls stay candidates.
@@ -333,7 +333,7 @@ Calendar of waste collection for the streets of Arad (static page on GitHub Page
 
 #### `onorata-instanta` — Onorata Instanță
 
-Platform of the Funky Citizens project Open Justice 2.0: performance index and statistics of Romanian courts and prosecutor offices (catalogue: `format:registru`) and the repository `funkycitizens/onoratainstanta` (last commit 2023-02-19, Jekyll). The About page names three sources: the CSM report on the state of justice 2013, the Ministry of Justice portal and the INS census (D193–D195). The build script generates the pages from TSV tables in `_build/tables`. Five tables were read as samples of the first 5,000 bytes: the performance index of courts and of prosecutor offices, the 2014 statistics of the courts (17 columns) and of the prosecutor offices (42 columns), and the header of the contact table. The second row of the statistics tables holds the label of each column and is the header (new TSV option); the machine names stay in the first row. 5 sources, 73 field records. The live performance page shows the values of the 2015 index (Curtea de Apel CRAIOVA +0.83 equals `perf_2015` in the table).
+Platform of the Funky Citizens project Open Justice 2.0: performance index and statistics of Romanian courts and prosecutor offices (catalogue: `format:registru`) and the repository `funkycitizens/onoratainstanta` (last commit 2023-02-19, Jekyll). The About page names three sources: the CSM report on the state of justice 2013, the Ministry of Justice portal and the INS census (D193–D195). The build script generates the pages from TSV tables in `_build/tables`. Five tables were read as samples of the first 5,000 bytes: the performance index of courts and of prosecutor offices, the 2014 statistics of the courts (17 columns) and of the prosecutor offices (42 columns), and the header of the contact table. The second row of the statistics tables holds the label of each column and is the header (new TSV option); the machine names stay in the first row. 5 sources, 73 field records. The live performance page shows the 2015 index: it is the column `perf_2015` of the table (the first row agrees; the tracked files keep no value of the table).
 
 - State: cu-surse-structurate. Sources 5, field records 73, groups 1.
 - Source URLs: `https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/judecatorii-instante-2014.tsv`; `https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/judecatorii-instante-contact.tsv`; `https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/judecatorii-parchete-2014.tsv`; `https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/performanta-instante.tsv`; `https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/performanta-parchete.tsv`
@@ -398,22 +398,22 @@ Tool by Marius Comper (mariuscomper.uk) that compares eight Romanian cities by p
 
 #### `trei-din-patru` — Satele din România care au rămas fără școală
 
-Report by Marius Comper on the villages that lost their school between 2013–14 and 2025–26 (catalogue type `publicatie`). The page documents its method (Ministry of Education lists, INS, Wikidata, geoBoundaries) and loads two data files: `places.json` (school years, counties, communes and a positional row for each village) and `names.json` (school structure names). 6 sources: the first table of the page (five columns by county), the two data files and the INS TEMPO metadata of the three matrices that the page names (SCL101B, SCL105A, SCL103I; 16 field records with the definition from INS). 27 field records. The Ministry of Education and INS are already accepted providers of this entry; Wikidata is proposed (D207). The page says that each row of the list has the SIIIR and SIRUTA codes; the position of the codes in the rows of `places.json` is not declared, so no member is proposed for `siruta`.
+Report by Marius Comper on the villages that lost their school between 2013–14 and 2025–26 (catalogue type `publicatie`). The page documents its method (Ministry of Education lists, INS, Wikidata, geoBoundaries) and loads two data files: `places.json` (school years, counties, communes and a positional row for each village) and `names.json` (school structure names). 6 sources: the first table of the page (five columns by county), the two data files and the INS TEMPO metadata of the three matrices that the page names (SCL101B, SCL105A, SCL103I; 16 field records with the definition from INS). 35 field records (27 before 2026-10-27: the rows of `places.json` now give one field for each of their eight positions, and an empty list of `names.json` is a field). The Ministry of Education and INS are already accepted providers of this entry; Wikidata is proposed (D207). The page says that each row of the list has the SIIIR and SIRUTA codes; the position of the codes in the rows of `places.json` is not declared, so no member is proposed for `siruta`.
 
-- State: cu-surse-structurate. Sources 6, field records 27, groups 2.
+- State: cu-surse-structurate. Sources 6, field records 35, groups 2.
 - Source URLs: `https://ins.gov2.ro/api/datasets/SCL101B?lang=en`; `https://ins.gov2.ro/api/datasets/SCL103I?lang=en`; `https://ins.gov2.ro/api/datasets/SCL105A?lang=en`; `https://mariuscomper.uk/trei-din-patru/`; `https://mariuscomper.uk/trei-din-patru/assets/names.135c9dbdff65.json`; `https://mariuscomper.uk/trei-din-patru/assets/places.7edc94b58896.json`
 - Proposed groups: `judet`, `perioada-de-referinta`
 - Documented inputs: none documented in the sources read. HTML controls stay candidates.
 - Provider proposals: D207.
 - Blocker: none
-- Limitations: The rows of `places.json` have eight cells without field names (positional): the JSON reader gives `p[][]` and loses the positions, whose meaning is in the page text and not in a schema. `names.json` is a keyed collection of name lists. The 13 yearly lists of the Ministry of Education on data.gov.ro were not requested; the page cites them with the licence of each. The positions of SIIIR and SIRUTA in the rows are not declared.
+- Limitations: The rows of `places.json` have eight cells without field names (positional): the JSON reader gives one field for each position (`p[][0]` to `p[][7]`) and no name, because the meaning of a position is in the page text and not in a schema. `names.json` is a keyed collection of name lists. The 13 yearly lists of the Ministry of Education on data.gov.ro were not requested; the page cites them with the licence of each. The positions of SIIIR and SIRUTA in the rows are not declared.
 - Remaining work: Decide D207 and the candidates for `judet` and `perioada-de-referinta`. Confirm the position of the SIRUTA code in `places.json` before a candidate for `siruta`.
 
 #### `statul-digital` — Arhitectura invizibilă a statului digital
 
-Report by Marius Comper on the 136 databases of the Government Private Cloud (catalogue type `publicatie`). The project has its own `llms.txt` (key figures; sources: SICAP numbers, OUG 89/2022, HG 372/2022, PNRR investment sheets). The page loads `data.js`, a data bundle assigned as `window.STATUL_DIGITAL_DATA = {...}` (the reader now accepts this form and script files). 2 sources: `data.js` (93 field records, bound reached; among its fields are `authority`, `databasesCount`, `winner`, `valueRon`, `noticeNo`, `city` and `coordinates[]`) and the contracts table of the page (6 fields). 99 field records. One provider item: SICAP / SEAP (D208).
+Report by Marius Comper on the 136 databases of the Government Private Cloud (catalogue type `publicatie`). The project has its own `llms.txt` (key figures; sources: SICAP numbers, OUG 89/2022, HG 372/2022, PNRR investment sheets). The page loads `data.js`, a data bundle assigned as `window.STATUL_DIGITAL_DATA = {...}` (the reader now accepts this form and script files). 2 sources: `data.js` (104 field records, bound reached; 93 before 2026-10-27, when the 12 members of `inferences[]` were read as a keyed collection; among its fields are `authority`, `databasesCount`, `winner`, `valueRon`, `noticeNo`, `city` and `coordinates[]`) and the contracts table of the page (6 fields). 110 field records. One provider item: SICAP / SEAP (D208).
 
-- State: cu-surse-structurate. Sources 2, field records 99, groups 1.
+- State: cu-surse-structurate. Sources 2, field records 110, groups 1.
 - Source URLs: `https://mariuscomper.uk/statul-digital/`; `https://mariuscomper.uk/statul-digital/data.js`
 - Proposed groups: `localitate`
 - Documented inputs: none documented in the sources read. HTML controls stay candidates.
@@ -437,15 +437,15 @@ Report by Marius Comper on how much of every 100 lei collected the state spends,
 
 #### `ce-face-statul-cu-1000-de-lei` — Ce face statul cu 1.000 de lei?
 
-Explainer by Marius Comper on what the Romanian state does with each 1,000 lei collected, 2015–2025 (catalogue: `format:vizualizare`). The page script loads `data/budget-romania.json` (132,127 characters), which declares its source: Ministry of Finance, Annex 2 (summary of the execution of the consolidated general budget), December notes 2015–2025. 1 source, 333 field records: about 30 paths repeated for each of the 11 years, because eleven year members are below the keyed-collection threshold (the count is a path count, not a count of variables). The file has revenue, expenditure, deficit (in million lei and percent of GDP), GDP, the units per 1,000 lei and the categories. The deficit fields join the proposed group `deficit-bugetar`. One provider item (D209).
+Explainer by Marius Comper on what the Romanian state does with each 1,000 lei collected, 2015–2025 (catalogue: `format:vizualizare`). The page script loads `data/budget-romania.json` (132,127 characters), which declares its source: Ministry of Finance, Annex 2 (summary of the execution of the consolidated general budget), December notes 2015–2025. 1 source, 34 field records (333 before 2026-10-27: about 30 paths repeated for each of the 11 years; the year keys are now one keyed collection, `$.years{*}`). The count is a path count, not a count of variables. The file has revenue, expenditure, deficit (in million lei and percent of GDP), GDP, the units per 1,000 lei and the categories. The deficit fields join the proposed group `deficit-bugetar`. One provider item (D209).
 
-- State: cu-surse-structurate. Sources 1, field records 333, groups 1.
+- State: cu-surse-structurate. Sources 1, field records 34, groups 1.
 - Source URLs: `https://mariuscomper.uk/ce-face-statul-cu-1000-de-lei/data/budget-romania.json`
 - Proposed groups: `deficit-bugetar`
 - Documented inputs: none documented in the sources read. HTML controls stay candidates.
 - Provider proposals: D209.
 - Blocker: none
-- Limitations: The 333 field records are about 30 paths repeated for each of the eleven years (`years.2015.…`): the count is not a count of variables. The units `mil_lei` and `pct_pib` come from the name suffix; the file declares the unit of 1,000 lei in `unit_definition` only. The official page of the Ministry of Finance was not requested.
+- Limitations: The 34 field records are paths, not variables. The years are the keys of the collection `years{*}` (11 members); before 2026-10-27 the reader gave 333 field records, the path repeated for each year (`years.2015.…`). The units `mil_lei` and `pct_pib` come from the name suffix; the file declares the unit of 1,000 lei in `unit_definition` only. The official page of the Ministry of Finance was not requested.
 - Remaining work: Decide D209 and the proposed group `deficit-bugetar`.
 
 ## 4. Existing inventories and INS

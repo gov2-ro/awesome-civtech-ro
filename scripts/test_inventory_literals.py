@@ -8,7 +8,8 @@ from pathlib import Path
 from unittest.mock import patch
 
 from inventory import analyse_source, check_report, parse_source
-from inventory_literals import MAX_FIELDS, SAMPLE_ROWS, Parser, NotLiteral, datasets, declarations, decode, measured_variables, read
+from inventory_literals import (MAX_FIELDS, SAMPLE_ROWS, Parser, NotLiteral, datasets, declarations, decode, json_kind, keyed_collection, measured_variables,
+                                read)
 from inventory_text import js_literale
 
 FIXTURE = Path(__file__).parent / 'fixtures/text/pagina-cu-date.html'
@@ -73,13 +74,38 @@ class Literals(unittest.TestCase):
         paths = [f['cale'] for f in fields]
         self.assertEqual(paths, ['R[].name', 'R[].pop', 'R[].lat', 'R[].lng', 'R[].pc', 'R[].t1', 'R[].t2', 'R[].t3', 'R[].r1', 'R[].r2', 'R[].r3', 'R[].c1[]', 'R[].c2[]', 'R[].c3[]'])
         self.assertFalse([f for f in fields if f['rol'] == 'colectie-cu-chei'])
-        months = '<script>const M = {' + ', '.join(f'"m{n}": {n}' for n in range(12)) + '};</script>'
-        self.assertEqual([(f['cale'], f['rol']) for f in read(months)[0]], [('M{*}', 'colectie-cu-chei')], 'twelve numbers under twelve keys: a collection')
+        months = '<script>const M = {' + ', '.join(f'"{n:02d}": {n}' for n in range(1, 13)) + '};</script>'
+        self.assertEqual([(f['cale'], f['rol']) for f in read(months)[0]], [('M{*}', 'colectie-cu-chei')], 'twelve numbers under twelve keys that are not field names: a collection')
+        counters = '<script>const M = {' + ', '.join(f'"m{n}": {n}' for n in range(12)) + '};</script>'
+        self.assertEqual([f['cale'] for f in read(counters)[0]][:2], ['M.m0', 'M.m1'], 'twelve numbers under twelve identifiers: a record of counters')
         mixed = '<script>const X = {' + ', '.join(f'"k{n}": {n if n % 2 else json_text(n)}' for n in range(110)) + '};</script>'
         self.assertEqual(read(mixed)[0][0]['numar_chei'], 110)
         self.assertEqual(read(mixed)[0][0]['rol'], 'colectie-cu-chei', '100 members or more is always a collection')
         small = '<script>const S = {' + ', '.join(f'"k{n}": {n if n % 2 else json_text(n)}' for n in range(11)) + '};</script>'
         self.assertFalse([f for f in read(small)[0] if f['rol'] == 'colectie-cu-chei'], 'under 12 members is a record')
+
+    def test_year_keys_make_a_collection_from_two_members_and_the_rule_is_one_function(self):
+        years = '<script>const BY = {"2014": {"a": 1}, "2015": {"a": 2}};</script>'
+        self.assertEqual([(f['cale'], f['rol']) for f in read(years)[0]], [('BY{*}', 'colectie-cu-chei'), ('BY{*}.a', 'camp-date')])
+        self.assertFalse([f for f in read('<script>const BY = {"2014": {"a": 1}};</script>')[0] if f['rol'] == 'colectie-cu-chei'], 'one year is a record')
+        self.assertFalse([f for f in read('<script>const BY = {"2014": {"a": 1}, "all": {"a": 2}};</script>')[0] if f['rol'] == 'colectie-cu-chei'])
+        self.assertFalse([f for f in read('<script>const BY = {"2014": {"a": 1}, "2015": 5};</script>')[0] if f['rol'] == 'colectie-cu-chei'], 'values of two kinds')
+        for keys, kinds, expected in ((['2014', '2015'], ['obiect', 'obiect'], True), (['2014', '2015'], ['obiect', 'numar'], False),
+                                      (['2014', '2015'], ['numar', 'nul'], True), (['1999', '2099'], ['text', 'text'], True),
+                                      (['2014', '2100'], ['text', 'text'], False), (['2014', '20150'], ['text', 'text'], False),
+                                      (['2014'], ['text'], False), (['a', 'b'], ['text', 'text'], False),
+                                      ([f'K{n}' for n in range(11)], ['text'] * 11, False), ([f'K{n}' for n in range(12)], ['text'] * 12, True),
+                                      ([f'K{n}' for n in range(12)], ['text'] * 11 + ['obiect'], False), ([f'k{n}' for n in range(100)], ['text', 'obiect'] * 50, True),
+                                      # The keys of a record of 12 to 99 members are field names: letters, digits and underscores after a lowercase letter.
+                                      ([f'k{n}' for n in range(12)], ['text'] * 12, False), ([f'k{n}' for n in range(99)], ['numar'] * 99, False),
+                                      (['country', 'postalCode', 'unique_urls', 'a1'] * 3, ['text'] * 12, False),
+                                      ([f'k{n}' for n in range(11)] + ['Alba'], ['text'] * 12, True), ([f'k{n}' for n in range(11)] + ['_x'], ['text'] * 12, True),
+                                      ([f'k{n}' for n in range(11)] + ['x-y'], ['text'] * 12, True), ([f'k{n}' for n in range(11)] + ['1x'], ['text'] * 12, True),
+                                      ([f'20{n:02d}' for n in range(12)], ['numar'] * 12, True), (['2014', '2015'], ['text'] * 2, True)):
+            self.assertEqual(keyed_collection(keys, kinds), expected, (keys[:2], len(keys), kinds[:2]))
+        self.assertEqual(json_kind(True), 'logic')
+        self.assertEqual(json_kind(3), json_kind(2.5), 'a whole and a decimal number are one kind')
+        self.assertEqual([json_kind(v) for v in (None, 'x', [], {})], ['nul', 'text', 'tablou', 'obiect'])
 
     def test_equal_width_rows_give_one_field_for_each_position_and_no_meaning(self):
         names = [f['cale'] for f in self.fields if f['cale'].startswith('ROWS')]

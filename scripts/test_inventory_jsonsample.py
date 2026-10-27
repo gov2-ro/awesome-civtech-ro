@@ -107,6 +107,28 @@ class InSource(unittest.TestCase):
         whole = analyse_source(response(WHOLE, partial=False), FORMAT)
         self.assertEqual(whole['esantion'], {'complet': True, 'elemente_citite': {'$.features': 1}})
 
+    def test_a_list_that_the_cut_emptied_is_not_read_as_empty_and_a_list_that_is_empty_in_the_file_is(self):
+        def fields_of(body):
+            return {f['cale']: f for f in parse_source(body, URL, '', FORMAT)[1]}
+
+        # The cut ended the first feature, so the recovered list is empty. The file may hold many features: the field says nothing.
+        cut = fields_of('{"type": "T", "info": [], "features": [{"type": "Feat')
+        self.assertNotIn('$.features', cut)
+        self.assertEqual((cut['$.info']['tipuri_observate'], cut['$.info']['numar_elemente']), (['array'], 0), 'a list that closed before the cut is empty in the file')
+        # An empty list inside a complete record is a fact of that record, whatever the cut does after it.
+        inside = fields_of('{"records": [{"a": [], "b": 1}, {"a": [1], "b')
+        self.assertEqual(inside['$.records[].a']['numar_elemente'], 0)
+        self.assertNotIn('$.records[].a[]', inside, 'the second record, with the element, was the one that the cut ended')
+        # A whole document is read whole: its last member can be empty.
+        self.assertEqual(fields_of('{"x": 1, "tail": []}')['$.tail']['numar_elemente'], 0)
+        self.assertEqual(fields_of('{"x": 1, "tail": {}}')['$.tail']['tipuri_observate'], ['object'])
+
+    def test_rows_without_names_and_year_keys_are_read_in_a_cut_sample_like_in_a_whole_file(self):
+        body = '{"p": [[1, "a", 2.5], [2, "b", 3.5], [3, "c", 4'
+        self.assertEqual([f['cale'] for f in parse_source(body, URL, '', FORMAT)[1]], ['$.p[][0]', '$.p[][1]', '$.p[][2]'])
+        years = '{"years": {"2014": {"v": 1}, "2015": {"v": 2}}, "later": [{"w'
+        self.assertEqual([f['cale'] for f in parse_source(years, URL, '', FORMAT)[1]], ['$.years{*}', '$.years{*}.v'])
+
     def test_a_body_with_nothing_complete_gives_a_parse_error_and_no_field(self):
         record = analyse_source(response('{"features": [{"type": "Feat'), FORMAT)
         self.assertEqual((record['stare'], record['campuri']), ('eroare-parsare', []))

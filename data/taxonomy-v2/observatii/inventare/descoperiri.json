@@ -3452,6 +3452,10 @@
         {
           "eveniment": "adaugat",
           "la": "2026-10-26T23:32:27.925197+00:00"
+        },
+        {
+          "eveniment": "marcat-persoane",
+          "la": "2026-10-27T10:04:24.620037+00:00"
         }
       ],
       "nota": "GeoJSON file that the live map page loads with $.getJSON. The road segments that the collapse areas can block (lines, from OpenStreetMap). Read as a range sample of the first 30,000 bytes: the complete features are read, the size of the file is unknown. Feature properties include the name of the technical expert who signed the report (a person); the inventory keeps no value. The download page offers the data as kml, csv and geojson in a Google Drive folder (not requested).",
@@ -3481,7 +3485,8 @@
           "rol": "formate-declarate-de-pagina"
         }
       ],
-      "citire": "json-esantion"
+      "citire": "json-esantion",
+      "persoane": true
     },
     {
       "proiect": "dupa-cutremur",
@@ -3510,6 +3515,10 @@
         {
           "eveniment": "adaugat",
           "la": "2026-10-26T23:32:27.925197+00:00"
+        },
+        {
+          "eveniment": "marcat-persoane",
+          "la": "2026-10-27T10:04:24.620037+00:00"
         }
       ],
       "nota": "GeoJSON file that the live map page loads with $.getJSON. The civil protection shelters (points). Read as a range sample of the first 30,000 bytes: the complete features are read, the size of the file is unknown. Feature properties include the name of the technical expert who signed the report (a person); the inventory keeps no value. The download page offers the data as kml, csv and geojson in a Google Drive folder (not requested).",
@@ -3539,7 +3548,8 @@
           "rol": "formate-declarate-de-pagina"
         }
       ],
-      "citire": "json-esantion"
+      "citire": "json-esantion",
+      "persoane": true
     },
     {
       "proiect": "dupa-cutremur",
@@ -3568,6 +3578,10 @@
         {
           "eveniment": "adaugat",
           "la": "2026-10-26T23:32:27.925197+00:00"
+        },
+        {
+          "eveniment": "marcat-persoane",
+          "la": "2026-10-27T10:04:24.620037+00:00"
         }
       ],
       "nota": "GeoJSON file that the live map page loads with $.getJSON. The estimated collapse area of each building (polygons). Read as a range sample of the first 30,000 bytes: the complete features are read, the size of the file is unknown. Feature properties include the name of the technical expert who signed the report (a person); the inventory keeps no value. The download page offers the data as kml, csv and geojson in a Google Drive folder (not requested).",
@@ -3597,7 +3611,8 @@
           "rol": "formate-declarate-de-pagina"
         }
       ],
-      "citire": "json-esantion"
+      "citire": "json-esantion",
+      "persoane": true
     },
     {
       "proiect": "dupa-cutremur",
@@ -3626,6 +3641,10 @@
         {
           "eveniment": "adaugat",
           "la": "2026-10-26T23:32:27.925197+00:00"
+        },
+        {
+          "eveniment": "marcat-persoane",
+          "la": "2026-10-27T10:04:24.620037+00:00"
         }
       ],
       "nota": "GeoJSON file that the live map page loads with $.getJSON. The buildings of the risk classes RS1, RS2 and U1-U3 (polygons with the attributes of the official list of expert reports). Read as a range sample of the first 30,000 bytes: the complete features are read, the size of the file is unknown. Feature properties include the name of the technical expert who signed the report (a person); the inventory keeps no value. The download page offers the data as kml, csv and geojson in a Google Drive folder (not requested).",
@@ -3655,7 +3674,8 @@
           "rol": "formate-declarate-de-pagina"
         }
       ],
-      "citire": "json-esantion"
+      "citire": "json-esantion",
+      "persoane": true
     },
     {
       "proiect": "dupa-cutremur",
@@ -3684,6 +3704,10 @@
         {
           "eveniment": "adaugat",
           "la": "2026-10-26T23:32:27.925197+00:00"
+        },
+        {
+          "eveniment": "marcat-persoane",
+          "la": "2026-10-27T10:04:24.620037+00:00"
         }
       ],
       "nota": "GeoJSON file that the live map page loads with $.getJSON. The buildings as points, with the coordinates and the risk class. Read as a range sample of the first 30,000 bytes: the complete features are read, the size of the file is unknown. Feature properties include the name of the technical expert who signed the report (a person); the inventory keeps no value. The download page offers the data as kml, csv and geojson in a Google Drive folder (not requested).",
@@ -3713,7 +3737,8 @@
           "rol": "formate-declarate-de-pagina"
         }
       ],
-      "citire": "json-esantion"
+      "citire": "json-esantion",
+      "persoane": true
     },
     {
       "proiect": "europescope",
@@ -4380,9 +4405,18 @@
         {
           "eveniment": "adaugat",
           "la": "2026-10-27T09:03:14.277433+00:00"
+        },
+        {
+          "eveniment": "marcat-persoane",
+          "la": "2026-10-27T10:04:25.542341+00:00"
+        },
+        {
+          "eveniment": "nota-inlocuita",
+          "la": "2026-10-27T10:04:25.542341+00:00",
+          "motiv": "source with persons: the note holds no value of the body"
         }
       ],
-      "nota": "One response of the deployed API for the CUI of the operator of the site (RTI Global Services SRL, the company that the terms page names). The owner raised the request limit of the entry for this one request on 2026-10-27; it is the only request to the API. The retained body stays in the git-ignored cache. The response lists legal representatives and natural-person representatives: the inventory keeps key names and observed types only, and no value of a person is copied into a tracked file. A list that is empty in the response gives no field record, because the reader records only the leaves that it sees.",
+      "nota": "One response of the deployed API for the CUI of the operator of the site (RTI Global Services SRL, the company that the terms page names). The owner raised the request limit of the entry for this one request on 2026-10-27; it is the only request to the API. The retained body stays in the git-ignored cache. The response lists legal representatives and natural-person representatives: the inventory keeps key names and observed types only, and no value of a person is copied into a tracked file. A list that is empty in the response gives one field record of the type array with 0 elements; the keys of its elements stay unknown.",
       "dovezi_suplimentare": [
         {
           "url": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/app/Http/Controllers/API/CompanyController.php",
@@ -4396,7 +4430,8 @@
           "snapshot": "inventare/surse/72e700ee8452aea03a16.json",
           "rol": "relatie-in-raspunsul-api"
         }
-      ]
+      ],
+      "persoane": true
     },
     {
       "proiect": "lista-firme",
@@ -5049,6 +5084,10 @@
         {
           "eveniment": "adaugat",
           "la": "2026-10-26T23:32:27.925197+00:00"
+        },
+        {
+          "eveniment": "marcat-persoane",
+          "la": "2026-10-27T10:04:24.620037+00:00"
         }
       ],
       "nota": "Table of funkycitizens/onoratainstanta at commit b92894e45ac64f8c5987758d86f30ce2e94620aa (_build/tables). The Despre page links the repository. The build script generates the pages of the deployed site from the tables. The last commit is from 2023-02-19; the tables hold the 2013-2015 statistics of the project. Read as a sample of the first 5,000 bytes (the header and the first rows). Statistics of the courts of first instance, 2014. The second row holds the label of each column and is the header; the first row holds the machine names.",
@@ -5079,7 +5118,8 @@
         "delimitator": "tab",
         "rand_antet": 2,
         "coloane_fara_nume": "omise"
-      }
+      },
+      "persoane": true
     },
     {
       "proiect": "onorata-instanta",
@@ -5106,6 +5146,10 @@
         {
           "eveniment": "adaugat",
           "la": "2026-10-26T23:32:27.925197+00:00"
+        },
+        {
+          "eveniment": "marcat-persoane",
+          "la": "2026-10-27T10:04:24.620037+00:00"
         }
       ],
       "nota": "Table of funkycitizens/onoratainstanta at commit b92894e45ac64f8c5987758d86f30ce2e94620aa (_build/tables). The Despre page links the repository. The build script generates the pages of the deployed site from the tables. The last commit is from 2023-02-19; the tables hold the 2013-2015 statistics of the project. Read as a sample of the first 5,000 bytes (the header and the first rows). Contact details of the courts (institutional): the header only was read; the multi-line cell of the first rows is not parsed. The people table of the same folder (oameni.tsv, names of persons) was not requested.",
@@ -5135,7 +5179,8 @@
         "tip": "csv",
         "delimitator": "tab",
         "coloane_fara_nume": "omise"
-      }
+      },
+      "persoane": true
     },
     {
       "proiect": "onorata-instanta",
@@ -5162,6 +5207,10 @@
         {
           "eveniment": "adaugat",
           "la": "2026-10-26T23:32:27.925197+00:00"
+        },
+        {
+          "eveniment": "marcat-persoane",
+          "la": "2026-10-27T10:04:24.620037+00:00"
         }
       ],
       "nota": "Table of funkycitizens/onoratainstanta at commit b92894e45ac64f8c5987758d86f30ce2e94620aa (_build/tables). The Despre page links the repository. The build script generates the pages of the deployed site from the tables. The last commit is from 2023-02-19; the tables hold the 2013-2015 statistics of the project. Read as a sample of the first 5,000 bytes (the header and the first rows). Activity of the prosecutor offices of the courts of first instance, 2014 (UNITATEA DE PARCHET). The second row holds the label of each column and is the header.",
@@ -5191,7 +5240,8 @@
         "tip": "csv",
         "delimitator": "tab",
         "rand_antet": 2
-      }
+      },
+      "persoane": true
     },
     {
       "proiect": "onorata-instanta",
@@ -5218,9 +5268,18 @@
         {
           "eveniment": "adaugat",
           "la": "2026-10-26T23:32:27.925197+00:00"
+        },
+        {
+          "eveniment": "marcat-persoane",
+          "la": "2026-10-27T10:04:24.620037+00:00"
+        },
+        {
+          "eveniment": "nota-inlocuita",
+          "la": "2026-10-27T10:04:24.620037+00:00",
+          "motiv": "source with persons: the note holds no value of the body"
         }
       ],
-      "nota": "Table of funkycitizens/onoratainstanta at commit b92894e45ac64f8c5987758d86f30ce2e94620aa (_build/tables). The Despre page links the repository. The build script generates the pages of the deployed site from the tables. The last commit is from 2023-02-19; the tables hold the 2013-2015 statistics of the project. Read as a sample of the first 5,000 bytes (the header and the first rows). The performance index of the courts (2014 and 2015). The home page of the deployed site shows the 2015 values (Curtea de Apel CRAIOVA +0.83 equals perf_2015 in the first row). The header row is read; the year groups below it are not.",
+      "nota": "Table of funkycitizens/onoratainstanta at commit b92894e45ac64f8c5987758d86f30ce2e94620aa (_build/tables). The Despre page links the repository. The build script generates the pages of the deployed site from the tables. The last commit is from 2023-02-19; the tables hold the 2013-2015 statistics of the project. Read as a sample of the first 5,000 bytes (the header and the first rows). The performance index of the courts (2014 and 2015). The home page of the deployed site shows the 2015 values. They are the column perf_2015. The first row agrees with the home page; the tracked files keep no value of the table. The header row is read; the year groups below it are not.",
       "dovezi_suplimentare": [
         {
           "url": "https://www.onoratainstanta.ro/despre.html",
@@ -5247,7 +5306,8 @@
         "tip": "csv",
         "delimitator": "tab",
         "coloane_fara_nume": "omise"
-      }
+      },
+      "persoane": true
     },
     {
       "proiect": "onorata-instanta",
@@ -5274,6 +5334,10 @@
         {
           "eveniment": "adaugat",
           "la": "2026-10-26T23:32:27.925197+00:00"
+        },
+        {
+          "eveniment": "marcat-persoane",
+          "la": "2026-10-27T10:04:24.620037+00:00"
         }
       ],
       "nota": "Table of funkycitizens/onoratainstanta at commit b92894e45ac64f8c5987758d86f30ce2e94620aa (_build/tables). The Despre page links the repository. The build script generates the pages of the deployed site from the tables. The last commit is from 2023-02-19; the tables hold the 2013-2015 statistics of the project. Read as a sample of the first 5,000 bytes (the header and the first rows). The performance index of the prosecutor offices (2015).",
@@ -5303,7 +5367,8 @@
         "tip": "csv",
         "delimitator": "tab",
         "coloane_fara_nume": "omise"
-      }
+      },
+      "persoane": true
     },
     {
       "proiect": "orasul-care-se-intinde",
@@ -5489,6 +5554,10 @@
         {
           "eveniment": "adaugat",
           "la": "2026-10-26T23:32:27.925197+00:00"
+        },
+        {
+          "eveniment": "marcat-persoane",
+          "la": "2026-10-27T10:04:24.620037+00:00"
         }
       ],
       "nota": "File of robert-adnas/posibil-penali at commit 581cd3a4c45b4b008dd86d531c02cfafa1d0909b. The JSON-LD of the project site names the repository (sameAs). The file is the base data of the archive: it holds records about named persons, so the inventory keeps the field names and observed types only, and no value. Read as a sample of the first 4,108 bytes (one object of metadata and the first four records). The final public records add fields that the build script and the validator declare (geography, county, verified_at, sources with label, kind, published_at, source_type, description); they are in the notes and not in this source. The site is a client-side application: the methodology page is a shell.",
@@ -5518,7 +5587,8 @@
           "rol": "campuri-obligatorii-declarate-in-cod"
         }
       ],
-      "citire": "json-esantion"
+      "citire": "json-esantion",
+      "persoane": true
     },
     {
       "proiect": "posturi-gov2",

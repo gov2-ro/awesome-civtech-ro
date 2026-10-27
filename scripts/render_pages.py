@@ -20,6 +20,11 @@ The helper never works around that answer; the browser copy is the evidence, and
 A host in data/taxonomy-v2/colectare-interzisa.csv is never opened. A listed URL is dropped before the browser starts. The browser aborts a
 request to a listed host that a navigation, a script or a link starts, and it cannot resolve a listed host at all (a redirect hop is not
 visible to a route handler). Such a page has the state `colectare-interzisa`.
+A page that lists natural persons must not leave their names in a tracked record (the text of such a page is the listing). `--fara-text` keeps the
+text out: `text_randat` is `null`, and the record holds `text_lungime` and `text_sha256` (length and SHA-256 of the text that would have been kept).
+The controls and the data requests stay. A render specification (`inventare/adaugari/*-randare.json`, or a file named with `--spec`) that has
+`persoane: true` and `locate.pagina` equal to the requested page makes the render use `--fara-text` without the option.
+Without the mark and without the option, the record is as before.
 Needs Playwright's Chromium: `uv run --with playwright playwright install chromium`.
 """
 from __future__ import annotations
@@ -34,6 +39,7 @@ from pathlib import Path
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 from common import FORBIDDEN_STATE, PUBLIC_ROOT, browser_args, forbidden, host_of, note_failed_request, observation_paths, refuse_route
+from inventory_persons import is_marked, mark_errors
 from inventory_state import RequestLog, dump, protect, source_id, write_file_atomic
 
 DATA_TYPES = ('fetch', 'xhr', 'eventsource', 'websocket')
@@ -91,6 +97,30 @@ def without_forbidden(urls, slug=''):
     return kept
 
 
+def marked_pages(files):
+    """The pages that a render specification marks `persoane: true` (`locate.pagina`). A file that is not a list of specifications, or that holds another
+    value for the mark, is an error: a typo must not leave a page of persons unmarked."""
+    pages = set()
+    for file in files:
+        specs = json.loads(Path(file).read_text())
+        if not isinstance(specs, list):
+            raise ValueError(f'{file}: a render specification file is a list')
+        for spec in specs:
+            problems = mark_errors(spec, f'{file} {spec.get("url")}')
+            if problems:
+                raise ValueError('; '.join(problems))
+            if is_marked(spec) and (spec.get('locate') or {}).get('pagina'):
+                pages.add(spec['locate']['pagina'])
+    return pages
+
+
+def text_fields(text, without_text):
+    """The text keys of a render record. Without the text, the record keeps its length and its hash, which hold no name."""
+    if not without_text:
+        return {'text_randat': text}
+    return {'text_randat': None, 'text_lungime': len(text), 'text_sha256': hashlib.sha256(text.encode()).hexdigest()}
+
+
 def render(urls, args):
     urls = without_forbidden(urls, args.slug)
     if not urls:
@@ -99,11 +129,13 @@ def render(urls, args):
     obs = observation_paths(args.data_dir)['profile'].parent
     out_dir = args.out_dir or obs / 'inventare' / 'randare'
     out_dir.mkdir(parents=True, exist_ok=True)
+    marked = marked_pages([*sorted((obs / 'inventare' / 'adaugari').glob('*-randare.json')), *getattr(args, 'spec', [])])
     log = RequestLog(obs / 'inventare' / 'jurnal-cereri.csv', args.lot) if args.lot else None
     written = []
     with sync_playwright() as p:
         browser = p.chromium.launch(args=browser_args())  # a listed host cannot be resolved inside the browser, redirect hops included
         for url in urls:
+            without_text = getattr(args, 'fara_text', False) or url in marked
             context = browser.new_context(java_script_enabled=True, accept_downloads=False, ignore_https_errors=False)
             # A redirect, a script or a link may lead to a listed host: the browser then makes no request to it.
             refused = []
@@ -169,7 +201,7 @@ def render(urls, args):
             context.close()
             record = {'versiune': 1, 'proiect': args.slug, 'url_cerut': url, 'url_final': final_url, 'stare': state, 'http_status': status,
                       'titlu': title, **({'motiv': motiv, 'gazda_interzisa': host_of(refused[0])} if refused else {}),
-                      'randat_la': datetime.now(timezone.utc).isoformat(), 'text_randat': text,
+                      'randat_la': datetime.now(timezone.utc).isoformat(), **text_fields(text, without_text),
                       'controale_vizibile': controls, 'cereri_date': requests, 'corpuri_pastrate': [redact(u) for u in saved], 'corpuri_omise': omitted,
                       'nota': 'No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only.'}
             name = f'{args.slug or "pagina"}-{hashlib.sha256(url.encode()).hexdigest()[:10]}.json'
@@ -196,6 +228,9 @@ def main():
     parser.add_argument('--wait-ms', type=int, default=2500, help='extra wait after the network settles')
     parser.add_argument('--timeout-ms', type=int, default=25000)
     parser.add_argument('--allow-host', action='append', default=[], help='extra host whose data requests may be kept')
+    parser.add_argument('--fara-text', action='store_true', help='keep no rendered text in the record (null, with its length and SHA-256): the page lists natural persons')
+    parser.add_argument('--spec', action='append', default=[], type=Path, metavar='FILE',
+                        help='a render specification file with `persoane: true`, besides inventare/adaugari/*-randare.json (repeatable)')
     args = parser.parse_args()
     if len(args.urls) > 2:
         parser.error('At most two pages per entry.')

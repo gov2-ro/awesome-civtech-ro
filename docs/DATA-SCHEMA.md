@@ -912,18 +912,20 @@ It is separate from the per-run file limit. A smaller limit never deletes a disc
 - `locator_stare`: `cunoscut` or `necunoscut`. An unavailable original locator stays `necunoscut`; the script never invents one.
   Later documentation can complete it (history event `locator-completat`).
 - `link_original`, `descoperit_la` (retrieval time of the parent page, or `null`), `prioritate` (lower first), `nota` (optional).
+- `persoane`: `true`, or absent. The mark of a source whose body holds records about natural persons (see "Sources with persons"). No other value is allowed.
 - `dovezi_suplimentare`: optional list of further locators, each with `rol`. For a dataset-metadata source, `ruta-metadate-set` locates the
   documented route and `utilizare-in-proiect` locates the sentence in a project's own page that names the dataset code.
   A locator made by `--add-sources-file` also holds `fragment`, the exact text at `interval`. `inventory.py --check` verifies the page hash,
   the interval or link index, and the fragment whenever the documentation snapshot is present.
 - `retras`: `null`, or `motiv` (required), `la` and `stare_anterioara`. `istoric`: events `admis`, `adaugat`, `retras`, `reactivat`,
-  `locator-completat`, each with a time.
+  `locator-completat`, `marcat-persoane` and `nota-inlocuita`, each with a time.
 
 Rules. A project's profile lists exactly its `activ` records. Discovery admits new sources only until a project has `--max-files`
 members (default 3); it never removes a member. A retired source stays in the registry and in `seturi-date.json`.
 Discovery never reactivates it. A temporary HTTP 401, 404 or timeout retires nothing. `--retire SLUG URL --reason TEXT` retires;
 `--add-source SLUG URL --method M --parent URL --note TEXT` adds an explicitly identified source.
-`--add-sources-file FILE` adds many: a JSON list of `{proiect, url, metoda, parinte, nota, locate: {pagina, text}, dovezi: [{pagina, text, rol, proiect?}]}`.
+`--add-sources-file FILE` adds many: a JSON list of `{proiect, url, metoda, parinte, nota, locate: {pagina, text}, dovezi: [{pagina, text, rol, proiect?}], persoane?}`.
+`persoane` is `true` or absent; `--persons` gives the same mark to the source of `--add-source` or `--import-saved`.
 Each `text` must occur in the collected page; otherwise the run stops before it writes anything. A project named by an addition or
 a retirement counts as selected. `--force-url URL` fetches one source again without refreshing the others.
 
@@ -961,6 +963,7 @@ spreadsheet, PDF, gzip, bodies with NUL bytes) get the state `format-binar` and 
 (a changed body, a wrong hash, an invalid pointer, a broken reference), bodies hash-verified, bodies unavailable on this checkout
 (not verified, never counted as verified), and sources whose last refresh failed. Only errors fail the check;
 `--strict-snapshots` also fails on unavailable bodies. When the registry holds copies that the owner saved, a second line counts them apart (see "Pages saved by the owner").
+When the registry marks sources with persons, a line counts them and the bodies that the check searched for values (see "Sources with persons").
 
 **Dataset facts of INS TEMPO metadata (`set_date`, `catalog`).** A source of format `metadate-ins` (a response of the ins.gov2.ro
 route `/api/datasets/{matrix_code}`) keeps its dimension fields (role `dimensiune`) and adds one `set_date` record. Each fact holds
@@ -987,10 +990,23 @@ fields and a `catalog` record: `total`, `carduri_in_esantion`, `complet` (always
 A sample of the listing says nothing about datasets that it does not contain, and a one-card sample does not verify pagination.
 
 Other parser rules added with the INS pass:
-- A JSON object with more than 100 keys is a keyed collection. The parser samples its first 25 values under the path component `{*}`
-  and records one field with role `colectie-cu-chei` and `numar_chei`. Keys never become field names. Smaller objects stay records.
 - A JSON document with an `openapi` or `swagger` member is an API contract only when the member holds a version number.
   A member that holds a URL marks a data index; it is parsed as sampled JSON.
+
+**Shapes of JSON data (the plain `json` reader, `lista-ins` and `json-esantion`; `observed_fields` in `inventory.py`).** The walk reads 25 elements of an array, 25 members of a
+keyed collection, seven levels and 2,000 fields. A shape is a fact of the document, never a value, and it becomes a field.
+
+| Shape | Field |
+| --- | --- |
+| **Keyed collection.** The rule is the function `inventory_literals.keyed_collection`; the reader of page scripts (`js-literale`) uses it too, and no reader has its own copy. An object is a keyed collection when it has 100 members or more; or 2 members or more whose keys are all years (`^(19\|20)[0-9]{2}$`) and whose values are of one kind; or 12 to 99 members whose values are of one kind (objects, arrays, strings or numbers; a null is no kind) and whose keys are not all identifiers (`^[a-z][A-Za-z0-9_]*$`: a lowercase letter, then letters, digits and underscores). A record of 12 members or more with values of two kinds stays a record, and so does a record of 12 to 99 members whose keys are all identifiers (an address with 12 text members, a record of counters). | The path `…{*}` with `rol` `colectie-cu-chei` and `numar_chei`. The first 25 values are read under `{*}`. Its keys (county names, codes, numbers, dates, years) never become field names. `limita_atinsa` is true when the collection has more than 25 members. |
+| **Rows without names.** An array whose elements (the first 25) are all lists of one width, from 2 to 12 cells, and hold scalars only (`POSITIONAL_WIDTH`, the limit of `js-literale`). | One field for each position: `p[][0]`, `p[][1]`, … Its `pointer` is the cell in the first row. The position is a fact; what it means is for a person to say, with a declared name. A row of 13 cells, rows of two widths, a row that holds a list and a row of one cell give `p[][]` as before. |
+| **Empty container.** An empty list or an empty object. | A field with `tipuri_observate` `array` or `object` and `numar_elemente` 0. A null keeps the type `null` and has no `numar_elemente`. The same key with elements in another record also gives its element paths. |
+
+A range read can cut a list before its first element is whole, and the recovered list is empty. That happens to the last member of the document only. In a cut sample (`json-esantion`)
+the last member of the document gets no record when it is empty; every other empty container is read as in a whole file.
+A keyed collection of years shows the shape and not the years: the object `{"2014": {...}, "2015": {...}}` gives `$.years{*}` and the fields of one record, not the fields of each year.
+The rule has one known cost. A collection keyed by lowercase identifiers (county slugs such as `alba`, `arad`), with fewer than 100 members, is read as a record, and its keys become field names.
+Before the identifier test (2026-10-27) the `address` object of the live `lista-firme` API response, the `counts` object of `complet-online` and the `inferences[]` objects of `statul-digital` were read as collections, and their member names were lost.
 
 **Text-format readers (`citire`, format names).** A source that is neither a schema nor a data file can still declare fields. The registry
 record of such a source holds `citire`: a reader name, or `{tip, ...options}`. Without `citire`, the URL extension picks `.cs`, `.sql`, `.php` or `.md`.
@@ -1105,8 +1121,8 @@ The registry names the reader with `citire` `json-esantion` (module `inventory_j
 
 - The reader keeps the complete members of every object and the complete elements of every array. The element or member that the cut ended is dropped, also when most of it was read, because a field list
   built from half a record would show a missing field as absent. A string or a number at the very end of the body is dropped too: the cut may have shortened it. The reader never repairs a bracket.
-- Fields come from the walk of the plain JSON reader on the recovered document (bounds: 25 elements, seven levels, 2,000 fields). `stare_tip` is `observat-in-esantion-json`, `tipuri_observate` is the set of observed types,
-  and the field keeps no value. The `pointer` addresses the recovered document, not the retained body, so `--check` parses the body again and compares the fields. `limita_atinsa` is true when the document was cut.
+- Fields come from the walk of the plain JSON reader on the recovered document (bounds: 25 elements, seven levels, 2,000 fields; see "Shapes of JSON data"). `stare_tip` is `observat-in-esantion-json`, `tipuri_observate` is the set of observed types,
+  and the field keeps no value. The last member of a cut document gets no record when it is an empty list, because the cut may have emptied it. The `pointer` addresses the recovered document, not the retained body, so `--check` parses the body again and compares the fields. `limita_atinsa` is true when the document was cut.
 - The source key `esantion` is `{complet, elemente_citite}`. `complet` is true for a body that parses whole. `elemente_citite` maps the path of each list (`$.features`, `$.metadata.sources`) to its number of complete
   elements; lists nested in elements are not listed. The size of the file and the number of records that it holds are unknown, because the read stopped. `baza_tipului` is `esantion-date`.
 - A body with no complete object or array, with no complete field, with text that is not JSON, or nested deeper than 60 levels is an error (state `eroare-parsare`).
@@ -1126,9 +1142,10 @@ The reader makes no request and runs no script.
   `stare_tip` `observat-in-esantion-json`, `pointer` and `linie`. The `pointer` is `char:START-END`: the first node at that path in the retained body.
   The field has no declared type, no unit and no description, because the page declares none.
 - The bounds are 25 elements of an array, 25 members of a collection, seven levels and 2,000 fields. `limita_atinsa` says that a bound was reached.
-- An object is a keyed collection when it has 100 members or more, or when it has 12 members or more and all its values are of one kind (objects, arrays, strings or numbers).
-  A collection has `rol` `colectie-cu-chei`, `numar_chei` and `chei_exemplu` (at most three keys of 40 characters). Its keys are values, such as county names. They never become field names.
-  A record with 12 members or more and values of several kinds is still a record.
+- An object is a keyed collection when it has 100 members or more, when it has 2 members or more, all its keys are years and all its values are of one kind, or when it has 12 to 99 members,
+  all its values are of one kind (objects, arrays, strings or numbers) and its keys are not all identifiers (the rule of "Shapes of JSON data": `inventory_literals.keyed_collection`).
+  A collection has `rol` `colectie-cu-chei`, `numar_chei` and `chei_exemplu` (at most three keys of 40 characters). Its keys are values, such as county names or years. They never become field names.
+  A record with 12 members or more and values of several kinds, or with identifier keys only, is still a record.
 - An array of rows of one width (2 to 12 cells, all scalars) gives one field for each position, for example `ROWS[][0]` and `ROWS[][1]`.
   The position is a fact. What a position means is an interpretation: a group selector records it with its own evidence.
 - `declaratii` (a source key) lists every candidate declaration in page order. Keys: `variabila`, `forma-sursa` (`literal-script` or `json-izolat`), `linie`, `citit`, `pointer`.
@@ -1187,6 +1204,29 @@ A fetched body that is already in the cache is never replaced by a saved copy (a
 `sha256_fisier` is a SHA-256. It prints a line "N copies saved by the owner (not fetched): V hash-verified, U unavailable and not verified". A body that is absent is unavailable, never verified.
 The coverage export marks an entry with such a source with the lot `S`. The file stays with the owner (it is not in git); the cache and the snapshot are gitignored, so a new checkout imports the file again.
 
+**Sources with persons (`persoane`).** A source specification (`adaugari/*.json`) and a render specification (`adaugari/*-randare.json`) accept the key `persoane: true`. It means that the body holds records about natural persons.
+The only allowed value is `true`; any other value (`false`, a text, a number) is an error of the run, of the state check, of `inventory.py --check` and of `render_pages.py`. Module `inventory_persons`.
+The registry record keeps the mark (`persoane`, history event `marcat-persoane`) and so does the source record in `seturi-date.json`. A mark is never taken back by a specification that lacks it.
+
+- **The readers keep key names, paths, observed types and counts only.** A marked source is read as `csv`, `json` or `json-esantion`; any other reader copies text (a description, an enumeration, an example, a header title)
+  and gives the state `eroare-parsare`. A field record keeps `nume`, `cale`, `tip_declarat`, `tipuri_observate`, `stare_tip`, `rol`, `pointer`, `coloana_csv`, `numar_chei` and `numar_elemente`; no `valori_enum`, no example, no `descriere`.
+  In the header facts (`antet`) of a CSV, a cell above the header stays only when it is a key name (an identifier such as `perf_2015`); any other text keeps its cell address and loses its text.
+  `--check` reads each marked body again and compares the fields and the header facts with the same rule.
+- **A specification never quotes the body of a marked source** (`locate` or `dovezi` with `cache: true` and the address of a marked source is an error), because the registry stores the quoted fragment.
+- **The note of a marked specification replaces the note of its registry record** (history event `nota-inlocuita`), so that a value that an earlier note quoted can leave the tracked file.
+- **`inventory.py --check` searches for the values of each marked body that it holds.** The files are those that the inventory and its editors write: `observatii/inventare/*.json` and `*.csv`, `adaugari/*.json`,
+  `randare/*.json`, `data/taxonomy-v2/*.json`, `integrare/*.csv`, and `docs/*.md`, `docs/reports/*.md`, `docs/briefs/*.md`. Search results (`mentiuni.csv`), the frozen packages (`source/`, `reference/`, `runs/`)
+  and the collected pages are not in the scope: no reader of the inventory writes them. A body that is absent is counted as unavailable and is not searched. A leak is an error. The answer names the file and a
+  fingerprint (the first 8 hex digits of the SHA-256 of the value) and never the value.
+  - A value is a string of a JSON body, or a data cell of a CSV body, of 4 characters or more. A key name, a header cell and a text that the address of the source holds are not values.
+  - The check looks for the values that identify: a text with a space (a name, an address, a title, a free text), an e-mail address, a date with a time, and a string of 10 digits or more (a CNP has 13, a phone number 10).
+    A single word, a short number and a coordinate are not looked for: a single word cannot be told from a label (a role, a type, a country, a street kind, the identifier of a map object), and labels are in many files that no reader
+    wrote. The form of the records (the allowed keys) keeps single words out; the search does not look for them. A name that is alone in a cell is a known gap of the search, not of the readers.
+  - A value that a retained body of an unmarked source holds too (a county, a town, an institution) is common data and not a leak.
+  - The match is a whole-word match, so a number does not hit the inside of a hash, and a value must occur whole: a part of a value is not found.
+- Why not every string of the body: the first version of the rule (every string of 4 characters or more) found words of the GeoJSON format, a coordinate system, road kinds, years and map identifiers in many tracked files, and some of them are in pinned evidence of reviewed members and
+  accepted review items, which a tool must not edit.
+
 **Credentials.** A public page can embed a credential in its script. The fetcher masks values of the shape of an Airtable personal token,
 or of a quoted `api_key`, `token`, `secret`, `password` or `bearer` value of 16 characters or more, in HTML and script bodies, before the body is stored or hashed.
 `redactari` counts the masked values. The inventory never uses a credential that a page contains.
@@ -1196,9 +1236,13 @@ the body ends at its last complete line and the source carries `partial: true`, 
 `scripts/render_pages.py` (optional, PEP 723, needs Playwright's Chromium) opens a page once, writes the same-site fetch and XHR requests to `inventare/randare/*.json`
 (`cereri_date`, `corpuri_pastrate`, `corpuri_omise`), and stores up to six JSON or CSV response bodies of 200,000 bytes or less as sources with `via: browser`. It never clicks, types or submits.
 The server may refuse a plain request for an address that the browser reached; the helper does not work around that refusal. Browser rows in the request log have `cache` `browser`.
+A page that lists natural persons must leave no name in a tracked record. `render_pages.py --fara-text` keeps `text_randat` as `null` and adds `text_lungime` and `text_sha256` (the length and the SHA-256 of the text
+that it would have kept). The controls (`controale_vizibile`) and the data requests (`cereri_date`) stay. A render specification (`adaugari/*-randare.json`, or a file named with `--spec`) that has
+`persoane: true` and `locate.pagina` equal to the requested page makes the render use the option. A wrong value for the mark, or a file that is not a list, stops the render before the browser starts.
+Without the mark and without the option the record is as before.
 
 **Specification files (`adaugari/`).** `inventory.py --add-sources-file` reads `adaugari/*.json`: the investigation inputs. A specification names the project, URL, method, parent, a
-`locate` or `repo` request for the discovery locator, `dovezi` for further locators, `citire` and `nota`. Replaying the files from complete caches gives the same registry.
+`locate` or `repo` request for the discovery locator, `dovezi` for further locators, `citire`, `nota` and the mark `persoane`. Replaying the files from complete caches gives the same registry.
 
 The documentation collector keeps the pages that an earlier run collected and a later run cannot collect again. The page stays and
 gains `ultima_incercare` (`fetched_at`, `state`, `http_status`, `error`). A page collected again replaces its earlier copy.

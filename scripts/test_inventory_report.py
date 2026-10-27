@@ -13,6 +13,7 @@ from urllib.parse import urlsplit
 import inventory_report as report
 from common import PUBLIC_ROOT, forbidden
 from inventory_concepts import EvidenceLocator, selector_matches
+from inventory_persons import is_marked, problems as person_problems
 
 ROOT = Path(__file__).resolve().parents[1]
 LISTA_FIRME_API = 'https://lista-firme.info/api/v1/info?cui=51859625'
@@ -279,17 +280,16 @@ class Coverage(unittest.TestCase):
                                 f'{group["id"]} selector {number}')
 
     def test_the_inventory_of_the_entries_with_records_about_persons_keeps_field_names_and_no_value(self):
-        allowed = {'csv': {'nume', 'cale', 'tip_declarat', 'stare_tip', 'rol', 'coloana_csv', 'pointer'},
-                   'json-esantion': {'nume', 'cale', 'tipuri_observate', 'stare_tip', 'rol', 'pointer', 'numar_chei'},
-                   'json': {'nume', 'cale', 'tipuri_observate', 'stare_tip', 'rol', 'pointer'}}
+        # The mark `persoane` (inventory_persons) is what keeps a source of persons to key names, types and counts. The form of each marked record is checked here from
+        # the tracked files alone, so that a fresh checkout without the retained bodies checks it too.
         for slug in ('onorata-instanta', 'politicieni-corupti', 'dupa-cutremur', 'lista-firme'):
             for ref in self.data['profiles'][slug]['surse_structurate']:
                 source = self.data['sources'][ref]
                 if slug == 'lista-firme' and source['url'] != LISTA_FIRME_API:
                     continue  # the migrations of the repository hold columns; only the live response names persons
-                self.assertIn(source['format'], allowed, source['url'])
-                for field in source['campuri']:
-                    self.assertLessEqual(set(field), allowed[source['format']], (source['url'], field['nume']))
+                self.assertTrue(is_marked(source), source['url'])
+                self.assertEqual(person_problems(source), [], source['url'])
+                self.assertIn(source['format'], ('csv', 'json-esantion', 'json'), source['url'])
         for group in self.data['concepts']:
             evidence = list(group.get('dovezi', [])) + [f['dovada'] for s in group['selectors'] for f in s.get('fapte', []) if f.get('dovada')]
             for item in evidence:
@@ -302,8 +302,10 @@ class Coverage(unittest.TestCase):
         self.assertIn(source['id'], self.data['profiles']['lista-firme']['surse_structurate'])
         self.assertEqual((source['format'], source['stare'], source['http_status']), ('json', 'analizat', 200))
         # The tracked record holds the metadata of the request and key paths. No key of it can hold a body or a sample of values.
+        self.assertTrue(is_marked(source))
+        self.assertEqual(person_problems(source), [])
         self.assertLessEqual(set(source), {'url', 'final_url', 'http_status', 'fetched_at', 'content_type', 'state', 'id', 'campuri', 'completitudine', 'snapshot',
-                                           'sha256', 'format', 'stare', 'limita_atinsa', 'baza_tipului', 'citire', 'ultima_incercare', 'versiuni_anterioare'})
+                                           'sha256', 'format', 'stare', 'limita_atinsa', 'baza_tipului', 'citire', 'ultima_incercare', 'versiuni_anterioare', 'persoane'})
         types = {'string', 'integer', 'number', 'boolean', 'null', 'object', 'array'}
         self.assertTrue(source['campuri'])
         for field in source['campuri']:
