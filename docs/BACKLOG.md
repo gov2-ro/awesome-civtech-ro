@@ -4,7 +4,15 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
 ## Inventory batch D — 2026-10-27
 
-- [~] Variables page for each project, data set facts in the field browser, fields added by an editor. Approved by the owner on 2026-10-27. Brief: [variable-pages.md](briefs/variable-pages.md).
+- [x] Variables page for each project, data set facts in the field browser, fields added by an editor. Approved by the owner on 2026-10-27. Brief: [variable-pages.md](briefs/variable-pages.md).
+      Done 2026-10-27 (branch `variable-pages`): 0 requests. A: a static page `/date/<slug>/` for each entry in scope with fields (42), linked from `/date/lista/` and from the panel „Date & metodă”.
+      B: the declared facts of `seturi`, `seturi_ld` and `set_date`, with their basis, under the source. C: `campuri-editor.csv` and `inventory_editor.py`.
+- [ ] Review interface: a form for `campuri-editor.csv` (the owner's brief of 2026-10-27 leaves it out on purpose). The form lists a source, shows its retained body to pick the fragment, checks that the fragment occurs
+      (`inventory_editor.merge` has the rule) and writes the row atomically, as the other forms of `review_ui.py` do. It never commits.
+- [ ] Defect: the skip link of `/date/` (`<a class="skip" href="#data-results">` in `scripts/templates/inventory.html`) leaves the page. The page has `<base href="../">`, so the browser resolves the anchor against the explorer
+      (measured with Chromium: the address becomes `/#data-results`). The pages of the variables use `date/<slug>/#pe-surse` for this reason. Fix: write `date/#data-results`. Found 2026-10-27, not fixed (outside the brief).
+- [ ] `inventory_site.py` keeps three copies of the labels of the field browser (`TYPE_LABELS`, `ROLE_LABELS`, `FIELD_BASIS_LABELS`) beside `INV_TYPES`, `INV_ROLES` and `INV_BASIS` of `site/app.js` and `stateLabels` of `site/inventory.js`.
+      A test keeps them equal. A generated `labels.json` that both sides read would remove the copies.
 - [x] Person data in sources and three corrections of the `json` reader (the `persoane` mark, keyed collections with year keys, positional rows, empty containers). Approved by the owner on 2026-10-27. Brief: [inventory-readers-persons.md](briefs/inventory-readers-persons.md).
       Done 2026-10-27 (branch `readers-persons`): the mark, the search of the tracked files, `--fara-text`, the shared keyed rule, positions and empty containers; 0 requests. Field records 5,134 → 4,443 (/date/ 4,845 → 4,154). Open owner decisions: the next three items.
 - [ ] Owner: the five GeoJSON files of `dupa-cutremur` are all marked `persoane` because the notes of lot D say so. In the retained samples only `cladiri_complete` and `puncte_complete` have the key `expert`; `arie_colaps_complete`, `_strazi_arie_colaps` (OpenStreetMap road segments) and `adaposturi` (shelter addresses) have none. No tool takes a mark back (a specification without it never unmarks), so unmarking means a change of the registry by a new option. The cost of keeping the mark: the readers keep key names only for three files that show no person field.
@@ -162,10 +170,10 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [x] Group the variable groups into families (identifiers, geography, time, then subject areas); the finder groups its variable facet by family.
 - [x] Per-project table of variables at `/date/lista/`: one row per entry with fields, one column per family, normalised names only, and a count of ungrouped fields ("Altele").
       Desktop first; the table scrolls horizontally in its frame.
-- [~] Project variables profile page: the source field names (`source:field`) of one project, by family and by source. The table above leaves them out on purpose.
-- [~] Let an editor add a field that the extractors missed: a hand-edited file with slug, source URL, name, locator, role, declared type, unit,
+- [x] Project variables profile page: the source field names (`source:field`) of one project, by family and by source. The table above leaves them out on purpose. Done 2026-10-27: `/date/<slug>/` (brief [variable-pages.md](briefs/variable-pages.md), part A).
+- [x] Let an editor add a field that the extractors missed: a hand-edited file with slug, source URL, name, locator, role, declared type, unit,
       description and an evidence fragment; `inventory.py` merges it as an editor-added field and `--check` verifies the fragment. Entry from the review interface.
-      Needs a short brief.
+      Done 2026-10-27: `observatii/inventare/campuri-editor.csv` (brief [variable-pages.md](briefs/variable-pages.md), part C). The form in the review interface is the item at the top of this file.
 - [x] Publish `/date/` on the public build. Done 2026-10-26 (v0.25.0) at the owner's request, without a brief: the review was complete,
       so the labels follow the review state; the Pages workflow builds with `--with-inventory`, and CI runs the inventory browser checks.
 
