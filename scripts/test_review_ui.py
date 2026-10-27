@@ -18,12 +18,13 @@ from unittest.mock import patch
 import common
 import inventory_report
 import review_ui
-from inventory_concepts import (check_concepts, selector_matches, validate_concept, validate_group_state, validate_selector)
+from inventory_concepts import (CANDIDATES, candidate_blockers, candidate_key, candidate_signature, check_concepts, repeated_exclusions, selector_matches,
+                                validate_candidates, validate_concept, validate_group_state, validate_selector)
 from inventory_site import publish_finder, variable_matches
 from review_ui import ReviewError, Store
 
 REAL = common.PUBLIC_ROOT.parent
-REAL_FILES = [common.PUBLIC_ROOT / 'revizuire.csv', common.PUBLIC_ROOT / 'relatii.csv', REAL / 'inventar-concepte.json']
+REAL_FILES = [common.PUBLIC_ROOT / 'revizuire.csv', common.PUBLIC_ROOT / 'relatii.csv', REAL / 'inventar-concepte.json', REAL / 'inventar-note.json']
 # The review files of the fixture come from a commit where no item and no group was decided (31 provider items, 30 groups).
 # The real files change with every editorial decision; the tests must not depend on that progress.
 PINNED = 'v0.23.0'
@@ -48,7 +49,7 @@ def setUpModule():
     atexit.register(shutil.rmtree, TEMPLATE, True)
     shutil.copytree(REAL, TEMPLATE / 'taxonomy-v2', ignore=shutil.ignore_patterns('runs', '__pycache__', 'catalogue.json', 'surse', 'pagini'))
     repo = Path(common.ROOT)
-    for real in REAL_FILES:
+    for real in REAL_FILES[:3]:
         rel = real.relative_to(repo).as_posix()
         pinned = subprocess.run(['git', 'show', f'{PINNED}:{rel}'], cwd=repo, capture_output=True, env=GIT_ENV)
         if pinned.returncode:
@@ -591,6 +592,550 @@ class GroupDecisions(Fixture):
         self.assertEqual(member['reach']['count'], 1)
         self.assertEqual(member['reach']['examples'][0]['path'], '$.items[].afn')
         self.assertEqual(member['projects'], [{'slug': 'banii-nostri', 'name': 'Banii Noștri'}])
+
+
+class CandidateFixture(Fixture):
+    """The candidate queue. The template has no open candidate (the owner confirmed them all), so each test makes its own on the temporary copy: three reviewed
+    groups (all members confirmed) and one candidate for each, a selector that another group holds. The copy is committed, so that HEAD holds the open candidates."""
+    REVIEWED = ('cui', 'judet', 'localitate')
+
+    def setUp(self):
+        super().setUp()
+        raw = self.paths['concepte'].read_bytes()
+        data = review_ui.parse_json(raw)
+        by_id = {c['id']: c for c in data['concepte']}
+        with_facts = next(s for s in by_id['populatie']['selectors'] if s.get('fapte'))  # a selector with pinned facts, to show their evidence
+        self.selectors = {'cui': copy.deepcopy(with_facts), 'judet': copy.deepcopy(by_id['localitate']['selectors'][0]),
+                          'localitate': copy.deepcopy(by_id['cui']['selectors'][0])}
+        for gid in self.REVIEWED:
+            for selector in by_id[gid]['selectors']:
+                selector['stare'] = 'confirmat'
+            by_id[gid].update(stare='revizuit', decizie_editor='Verificat.', data_revizie='2026-10-24')
+        self.paths['concepte'].write_bytes(review_ui.dump_json(data, raw))
+        self.put_candidates([{'grup': gid, 'selector': selector} for gid, selector in self.selectors.items()])
+        self.commit('reviewed groups and candidates')
+        self.store = Store(self.root, today=lambda: TODAY)
+
+    # -- helpers ---------------------------------------------------------------------------------------------------
+
+    def put_candidates(self, items):
+        """Write the candidate list into the notes, in the middle of the file (where a batch puts it), as the tool would write it."""
+        raw = self.paths['note'].read_bytes()
+        notes = review_ui.parse_json(raw)
+        notes.pop(CANDIDATES, None)
+        anchor = list(notes)[len(notes) // 2]
+        out = {}
+        for key, value in notes.items():
+            out[key] = value
+            if key == anchor and items:
+                out[CANDIDATES] = items
+        self.paths['note'].write_bytes(review_ui.dump_json(out, raw))
+
+    def commit(self, message='decision'):
+        git(self.repo, 'add', '-A')
+        git(self.repo, 'commit', '-qm', message)
+
+    def rows(self):
+        return self.store.state()['candidates']
+
+    def cid(self, group, state=None):
+        return next(r['id'] for r in self.rows() if r['group'] == group and (state is None or r['stare'] == state))
+
+    def decide(self, cid, action, note='', **fields):
+        hashes = self.hashes()
+        return self.store.decide_candidate(cid, {'action': action, 'note': note, 'hashes': {k: hashes[k] for k in ('concepte', 'note')}, **fields})
+
+    def notes(self):
+        return json.loads(self.paths['note'].read_text())
+
+    def items(self):
+        return self.notes().get(CANDIDATES, [])
+
+    def both(self):
+        return self.paths['concepte'].read_bytes(), self.paths['note'].read_bytes()
+
+    def head_both(self):
+        return self.head('concepte'), self.head('note')
+
+    def errors(self):
+        snap = self.store.read()
+        return self.store.errors_of(snap['concepts'], notes=snap['notes'])
+
+
+
+class CandidateDecisions(CandidateFixture):
+    # -- the queue and the detail ----------------------------------------------------------------------------------
+
+    def test_the_fixture_is_clean_and_the_queue_lists_the_open_candidates_with_the_group_label(self):
+        self.assertEqual(self.errors(), [])
+        state = self.store.state()
+        self.assertEqual([(r['group'], r['label'], r['stare'], r['problems']) for r in state['candidates']],
+                         [(g, self.concept(g)['label'], 'propus', 0) for g in self.REVIEWED])
+        self.assertEqual(state['progress']['candidates'], {'total': 3, 'open': 3, 'decided': 0, 'by_state': {'propus': 3}})
+        self.assertTrue(all(review_ui.CANDIDATE_ID.match(r['id']) for r in state['candidates']))
+        self.assertTrue(state['validation']['ok'])
+
+    def test_the_real_data_root_has_an_empty_queue(self):
+        state = Store(common.PUBLIC_ROOT).state()
+        self.assertEqual((state['candidates'], state['progress']['candidates']['open']), ([], 0))
+
+    def test_the_detail_shows_the_group_the_reach_the_pinned_facts_and_the_confirmed_members(self):
+        view = self.store.candidate(self.cid('cui'))
+        self.assertEqual((view['stare'], view['origin'], view['blockers'], view['warnings'], view['head']), ('propus', 'lista', [], [], {'available': True, 'changed': False}))
+        self.assertEqual((view['group']['id'], view['group']['label'], view['group']['definition'], view['group']['stare']),
+                         ('cui', self.concept('cui')['label'], self.concept('cui')['definition'], 'revizuit'))
+        selector = self.selectors['cui']
+        self.assertEqual(view['member']['reach'], self.store.fields.examples(selector))
+        self.assertEqual(view['member']['names'], review_ui.as_list(selector.get('names')))
+        self.assertEqual([f['key'] for f in view['member']['facts']], [f['cheie'] for f in selector['fapte']])
+        self.assertTrue(all(f['evidence'] is None or f['evidence']['state'] in review_ui.STATE_LABELS for f in view['member']['facts']))
+        self.assertEqual(len(view['confirmed']), len(self.concept('cui')['selectors']))
+        self.assertEqual([m['number'] for m in view['confirmed'] if m['same_project']], [n for n, m in enumerate(self.concept('cui')['selectors'], 1)
+                         if set(m['projects']) & set(selector['projects'])])
+        self.assertTrue(all(m['same_project'] for m in view['confirmed'][:sum(m['same_project'] for m in view['confirmed'])]), 'the members of the same project come first')
+        self.assertEqual(view['hashes'], {k: self.hashes()[k] for k in ('concepte', 'note')})
+
+    # -- confirm ---------------------------------------------------------------------------------------------------
+
+    def test_confirm_moves_the_selector_into_the_group_and_out_of_the_list(self):
+        before = self.concept('cui')
+        answer = self.decide(self.cid('cui'), 'confirm', note='Poartă CUI-ul.')
+        group = self.concept('cui')
+        self.assertEqual(len(group['selectors']), len(before['selectors']) + 1)
+        self.assertEqual(group['selectors'][:-1], before['selectors'])
+        self.assertEqual(group['selectors'][-1], {**self.selectors['cui'], 'stare': 'confirmat', 'nota_editor': 'Poartă CUI-ul.'})
+        self.assertEqual(list(group['selectors'][-1])[-2:], ['stare', 'nota_editor'], 'the review keys go after the existing ones')
+        self.assertEqual({k: group[k] for k in ('stare', 'decizie_editor', 'data_revizie')}, {k: before[k] for k in ('stare', 'decizie_editor', 'data_revizie')},
+                         'the group keeps its state and its review date')
+        self.assertEqual([i['grup'] for i in self.items()], ['judet', 'localitate'])
+        self.assertEqual([c for c in self.concepts() if c['id'] != 'cui'], [c for c in json.loads(self.head('concepte'))['concepte'] if c['id'] != 'cui'])
+        self.assertEqual(self.errors(), [])
+        self.assertEqual((answer['state']['progress']['candidates']['open'], answer['state']['progress']['candidates']['by_state']), (2, {'propus': 2, 'confirmat': 1}))
+        self.assertEqual((answer['item']['origin'], answer['item']['stare'], answer['item']['member_number']), ('confirmat', 'confirmat', len(group['selectors'])))
+        self.assertIn('membrul', answer['message'])
+
+    def test_confirm_without_a_note_writes_no_note(self):
+        self.decide(self.cid('judet'), 'confirm')
+        self.assertEqual(self.concept('judet')['selectors'][-1], {**self.selectors['judet'], 'stare': 'confirmat'})
+        self.assertNotIn('nota_editor', self.concept('judet')['selectors'][-1])
+
+    def test_a_decision_writes_the_two_files_and_no_other_file(self):
+        self.decide(self.cid('cui'), 'confirm')
+        changed = {line[3:] for line in git(self.repo, 'status', '--porcelain').splitlines()}
+        self.assertEqual({Path(c).name for c in changed}, {'inventar-concepte.json', 'inventar-note.json'})
+        self.decide(self.cid('judet'), 'exclude', note='Nu.')
+        self.assertEqual({Path(line[3:]).name for line in git(self.repo, 'status', '--porcelain').splitlines()}, {'inventar-concepte.json', 'inventar-note.json'})
+
+    def test_confirming_the_last_candidate_removes_the_key_and_a_reset_puts_it_back_in_its_place(self):
+        for group in self.REVIEWED:
+            self.decide(self.cid(group, 'propus'), 'confirm')
+        self.assertNotIn(CANDIDATES, self.notes())
+        self.assertEqual(self.errors(), [])
+        for group in ('localitate', 'cui', 'judet'):  # not in the order of the list: each goes back to its place
+            self.decide(self.cid(group, 'confirmat'), 'reset')
+        self.assertEqual(self.both(), self.head_both(), 'the key and the candidates are back where HEAD had them, byte for byte')
+
+    # -- exclude ---------------------------------------------------------------------------------------------------
+
+    def test_exclude_needs_a_note_and_keeps_the_candidate_for_history(self):
+        cid = self.cid('judet')
+        before = self.both()
+        for note in ('', '   '):
+            with self.assertRaises(ReviewError) as caught:
+                self.decide(cid, 'exclude', note=note)
+            self.assertIn('obligatoriu', str(caught.exception))
+        self.assertEqual(self.both(), before)
+        answer = self.decide(cid, 'exclude', note='Nu poartă județul.')
+        items = self.items()
+        self.assertEqual(len(items), 3, 'the candidate stays in the notes')
+        self.assertEqual(items[1], {'grup': 'judet', 'selector': self.selectors['judet'], 'stare': 'exclus', 'nota_editor': 'Nu poartă județul.'})
+        self.assertEqual(list(items[1]), ['grup', 'selector', 'stare', 'nota_editor'])
+        self.assertEqual(self.paths['concepte'].read_bytes(), before[0], 'no member is added')
+        self.assertEqual(self.errors(), [])
+        progress = answer['state']['progress']['candidates']
+        self.assertEqual((progress['open'], progress['decided'], progress['by_state']), (2, 1, {'propus': 2, 'exclus': 1}))
+        self.assertEqual((answer['item']['stare'], answer['item']['nota_editor']), ('exclus', 'Nu poartă județul.'))
+        self.assertEqual(answer['item']['id'], cid, 'an excluded candidate keeps its place and its id')
+
+    def test_an_excluded_candidate_can_be_confirmed_later_and_excluded_again(self):
+        cid = self.cid('cui')
+        self.decide(cid, 'exclude', note='Nu.')
+        self.decide(cid, 'exclude', note='Încă o dată.')
+        self.assertEqual(self.items()[0]['nota_editor'], 'Încă o dată.')
+        self.decide(cid, 'confirm', note='M-am răzgândit.')
+        self.assertEqual(self.concept('cui')['selectors'][-1]['nota_editor'], 'M-am răzgândit.')
+        self.assertEqual([i['grup'] for i in self.items()], ['judet', 'localitate'])
+
+    # -- reset -----------------------------------------------------------------------------------------------------
+
+    def test_reset_brings_an_excluded_candidate_back_to_head(self):
+        cid = self.cid('cui')
+        self.decide(cid, 'exclude', note='Nu.')
+        self.assertTrue(self.store.candidate(cid)['head']['changed'])
+        self.decide(cid, 'reset')
+        self.assertEqual(self.both(), self.head_both())
+        self.assertEqual(self.store.candidate(cid)['head'], {'available': True, 'changed': False})
+
+    def test_reset_brings_a_confirmed_candidate_back_and_takes_the_member_out_of_the_group(self):
+        self.decide(self.cid('judet'), 'confirm', note='Da.')
+        ghost = next(r for r in self.rows() if r['stare'] == 'confirmat')
+        self.assertEqual((ghost['group'], ghost['short']), ('judet', '#2'), 'a confirmed candidate keeps its place at HEAD in the queue')
+        self.assertEqual([r['group'] for r in self.rows()], ['cui', 'judet', 'localitate'])
+        answer = self.decide(ghost['id'], 'reset')
+        self.assertEqual(self.both(), self.head_both())
+        self.assertEqual((answer['item']['origin'], answer['item']['stare'], answer['item']['id']), ('lista', 'propus', ghost['id']))
+
+    def test_a_confirmed_candidate_cannot_be_changed_before_it_is_reset(self):
+        self.decide(self.cid('judet'), 'confirm')
+        ghost = self.cid('judet', 'confirmat')
+        before = self.both()
+        for action in ('confirm', 'exclude'):
+            with self.assertRaises(ReviewError) as caught:
+                self.decide(ghost, action, note='Nu.')
+            self.assertIn('Resetați-l', str(caught.exception))
+        self.assertEqual(self.both(), before)
+
+    def test_reset_works_only_while_no_commit_holds_the_decision(self):
+        cid = self.cid('cui')
+        self.decide(cid, 'exclude', note='Nu.')
+        self.commit('exclude cui')
+        self.assertEqual(self.store.candidate(cid)['head'], {'available': True, 'changed': False}, 'HEAD holds the exclusion now: nothing to reset')
+        before = self.both()
+        self.decide(cid, 'reset')
+        self.assertEqual(self.both(), before)
+        self.decide(self.cid('judet'), 'confirm')
+        self.commit('confirm judet')
+        self.assertEqual([r['group'] for r in self.rows()], ['cui', 'localitate'], 'a committed confirmation leaves the queue for good')
+        with self.assertRaises(ReviewError) as caught:
+            self.decide('2-' + candidate_key({'grup': 'judet', 'selector': self.selectors['judet']})[:12], 'reset')
+        self.assertEqual(caught.exception.status, 409)
+
+    def test_reset_without_a_head_version_says_so_and_writes_nothing(self):
+        extra = {'grup': 'judet', 'selector': {**self.selectors['judet'], 'names': ['judet_nou']}}
+        self.put_candidates(self.items() + [extra])
+        cid = self.rows()[-1]['id']
+        self.assertEqual(self.store.candidate(cid)['head'], {'available': False, 'changed': False})
+        self.decide(cid, 'exclude', note='Nu.')
+        before = self.both()
+        with self.assertRaises(ReviewError) as caught:
+            self.decide(cid, 'reset')
+        self.assertIn('nu există în HEAD', str(caught.exception))
+        self.assertEqual(self.both(), before)
+        shutil.rmtree(self.repo / '.git')
+        store = Store(self.root, today=lambda: TODAY)
+        with self.assertRaises(ReviewError) as caught:
+            store.decide_candidate(store.state()['candidates'][0]['id'], {'action': 'reset', 'hashes': {k: store.hashes()[k] for k in ('concepte', 'note')}})
+        self.assertIn('Nu există o versiune HEAD', str(caught.exception))
+
+    # -- a stale page ----------------------------------------------------------------------------------------------
+
+    def test_a_stale_file_hash_refuses_the_write(self):
+        cid, hashes = self.cid('cui'), self.hashes()
+        edited = self.notes()
+        edited['editat'] = 'de mână'  # an edit that still round-trips: only the hash changes
+        self.paths['note'].write_bytes(review_ui.dump_json(edited, self.paths['note'].read_bytes()))
+        before = self.both()
+        for stale in ({'concepte': hashes['concepte'], 'note': hashes['note']}, {'concepte': 'old', 'note': self.hashes()['note']},
+                      {'concepte': self.hashes()['concepte'], 'note': 'old'}):
+            with self.subTest(stale=stale), self.assertRaises(ReviewError) as caught:
+                self.store.decide_candidate(cid, {'action': 'confirm', 'hashes': stale})
+            self.assertEqual((caught.exception.status, caught.exception.reload), (409, True))
+        with self.assertRaises(ReviewError) as caught:
+            self.store.decide_candidate(cid, {'action': 'confirm', 'hashes': {'concepte': self.hashes()['concepte']}})  # one hash is missing
+        self.assertEqual(caught.exception.status, 400)
+        self.assertEqual(self.both(), before)
+
+    def test_an_edit_of_the_concepts_file_after_the_page_loaded_refuses_the_write(self):
+        cid, hashes = self.cid('cui'), self.hashes()
+        self.paths['concepte'].write_text(self.paths['concepte'].read_text().replace('"Identificatorul fiscal', '"Un identificator fiscal', 1))
+        before = self.both()
+        with self.assertRaises(ReviewError) as caught:
+            self.store.decide_candidate(cid, {'action': 'exclude', 'note': 'x', 'hashes': {k: hashes[k] for k in ('concepte', 'note')}})
+        self.assertEqual(caught.exception.status, 409)
+        self.assertEqual(self.both(), before)
+
+    def test_a_stale_place_or_hash_cannot_decide_another_candidate(self):
+        first, second = self.cid('cui'), self.cid('judet')
+        before = self.both()
+        wrong = [('2-' + first.split('-')[1], 409), ('1-' + second.split('-')[1], 409), ('9-' + first.split('-')[1], 409), ('0-' + first.split('-')[1], 409)]
+        for cid, status in wrong:
+            with self.subTest(cid=cid), self.assertRaises(ReviewError) as caught:
+                self.decide(cid, 'exclude', note='Nu.')
+            self.assertEqual((caught.exception.status, caught.exception.reload), (status, True))
+        for cid in ('cui', '1', '1-abc', '1-' + 'g' * 12, ''):
+            with self.subTest(cid=cid), self.assertRaises(ReviewError) as caught:
+                self.decide(cid, 'exclude', note='Nu.')
+            self.assertEqual(caught.exception.status, 404)
+        self.assertEqual(self.both(), before)
+        self.decide(first, 'confirm')  # the list shifts: the second candidate is now the first
+        with self.assertRaises(ReviewError) as caught:
+            self.decide(second, 'exclude', note='Nu.')
+        self.assertEqual(caught.exception.status, 409, 'a page that still holds the old place does not decide the candidate that took it')
+        self.assertEqual([i['grup'] for i in self.items()], ['judet', 'localitate'])
+        self.assertNotIn('stare', self.items()[0])
+
+    def test_an_unknown_action_is_refused(self):
+        before = self.both()
+        with self.assertRaises(ReviewError) as caught:
+            self.decide(self.cid('cui'), 'delete')
+        self.assertIn('Acțiune necunoscută', str(caught.exception))
+        self.assertEqual(self.both(), before)
+
+    # -- the group of a candidate ----------------------------------------------------------------------------------
+
+    def test_a_candidate_with_a_missing_group_or_a_group_that_is_not_reviewed_is_an_error_that_the_page_shows(self):
+        stray = {'grup': 'nu-exista', 'selector': {**self.selectors['cui'], 'names': ['x1']}}
+        proposed = {'grup': 'siruta', 'selector': {**self.selectors['cui'], 'names': ['x2']}}
+        self.put_candidates(self.items() + [stray, proposed])
+        errors = self.errors()
+        self.assertEqual(len(errors), 2, errors)
+        self.assertTrue(any('the group nu-exista does not exist' in e for e in errors))
+        self.assertTrue(any('needs a revizuit group, and the group is propus' in e for e in errors))
+        state = self.store.state()
+        self.assertEqual((state['validation']['ok'], state['validation']['count']), (False, 2))
+        self.assertEqual([r['problems'] for r in state['candidates']], [0, 0, 0, 1, 1])
+        for number, text in ((4, 'nu există'), (5, 'este «propus»')):
+            view = self.store.candidate(state['candidates'][number - 1]['id'])
+            self.assertEqual(len(view['blockers']), 1)
+            self.assertIn(text, view['blockers'][0])
+            before = self.both()
+            with self.assertRaises(ReviewError) as caught:
+                self.decide(view['id'], 'confirm')
+            self.assertEqual(caught.exception.status, 422)
+            self.assertIn('nu poate fi confirmat', str(caught.exception))
+            self.assertIn(text, str(caught.exception))
+            self.assertEqual(self.both(), before)
+        self.decide(state['candidates'][3]['id'], 'exclude', note='Grupul nu există.')  # an excluded candidate is history: it is no error any more
+        self.assertEqual(len(self.errors()), 1)
+
+    def test_a_candidate_that_a_group_already_holds_cannot_be_confirmed(self):
+        group = self.concept('judet')
+        held = {'grup': 'judet', 'selector': {k: v for k, v in group['selectors'][0].items() if k not in ('stare', 'nota_editor')}}
+        self.put_candidates(self.items() + [held])
+        self.assertTrue(any('already holds this selector as member 1' in e for e in self.errors()))
+        before = self.both()
+        with self.assertRaises(ReviewError) as caught:
+            self.decide(self.rows()[-1]['id'], 'confirm')
+        self.assertIn('are deja acest selector ca membru (membrul 1)', str(caught.exception))
+        self.assertEqual(self.both(), before)
+
+    def test_a_group_decision_that_would_strand_an_open_candidate_is_refused(self):
+        before = self.paths['concepte'].read_bytes()
+        with self.assertRaises(ReviewError) as caught:
+            self.group('cui', 'amanat', note='Mai târziu.')
+        self.assertEqual(caught.exception.status, 422)
+        self.assertIn('needs a revizuit group', str(caught.exception))
+        self.assertEqual(self.paths['concepte'].read_bytes(), before)
+        self.decide(self.cid('cui'), 'exclude', note='Nu.')
+        self.group('cui', 'amanat', note='Mai târziu.')  # nothing is open for the group any more
+        self.assertEqual(self.concept('cui')['stare'], 'amanat')
+
+    def test_a_failed_validation_writes_nothing_to_either_file(self):
+        data = json.loads(self.paths['concepte'].read_text())
+        data['concepte'][0]['stare'] = 'gata'  # an unknown state: a new error
+        before = self.both()
+        with patch.object(review_ui, 'apply_candidate', return_value=(data, self.notes(), 'x', 'k')), self.assertRaises(ReviewError) as caught:
+            self.decide(self.cid('cui'), 'confirm')
+        self.assertEqual(caught.exception.status, 422)
+        self.assertEqual(self.both(), before)
+        self.assertEqual(list(self.root.parent.glob('.review-*')), [])
+
+    def test_the_write_is_all_or_nothing_across_the_dictionary_and_the_notes(self):
+        before = self.both()
+        real, calls = os.replace, []
+
+        def failing(src, dst):
+            calls.append(dst)
+            if len(calls) == 2:
+                raise OSError('disk full')
+            return real(src, dst)
+
+        with patch.object(review_ui.os, 'replace', failing), self.assertRaises(OSError):
+            self.decide(self.cid('cui'), 'confirm')
+        self.assertEqual(len(calls) >= 2, True)
+        self.assertEqual(self.both(), before)
+        self.assertEqual(list(self.root.parent.glob('.review-*')), [])
+
+    # -- bytes -----------------------------------------------------------------------------------------------------
+
+    def test_both_files_stay_byte_stable_and_only_the_decision_changes(self):
+        for name in ('concepte', 'note'):
+            raw = self.paths[name].read_bytes()
+            self.assertEqual(review_ui.dump_json(review_ui.parse_json(raw), raw), raw)
+        old_keys = list(self.notes())
+        self.decide(self.cid('cui'), 'confirm', note='Da.')
+        self.decide(self.cid('judet'), 'exclude', note='Nu.')
+        for name in ('concepte', 'note'):
+            raw = self.paths[name].read_bytes()
+            self.assertEqual(review_ui.dump_json(review_ui.parse_json(raw), raw), raw, name)
+        notes = self.notes()
+        self.assertEqual(list(notes), old_keys, 'the keys of the notes keep their order')
+        self.assertEqual({k: v for k, v in notes.items() if k != CANDIDATES}, {k: v for k, v in json.loads(self.head('note')).items() if k != CANDIDATES})
+        self.assertFalse(self.paths['note'].read_bytes().endswith(b'\n') != self.head('note').endswith(b'\n'), 'the final newline (or its absence) is kept')
+        diff = [l for l in git(self.repo, 'diff', 'HEAD', '--', self.store.git.rel(self.paths['note'])).splitlines() if l[:1] in '+-' and l[:3] not in ('+++', '---')]
+        self.assertEqual({l[0] for l in diff}, {'-', '+'})
+        self.assertTrue(all('stare' in l or 'nota_editor' in l or 'grup' in l or l[1:].strip() in ('{', '}', '},', '],', ']', '"selector": {') or 'selector' in l
+                            or l[1:].startswith('      ') or l[1:].startswith('        ') for l in diff), diff)
+
+    # -- a batch that proposes a refused candidate again -----------------------------------------------------------
+
+    def test_a_candidate_that_equals_an_excluded_one_is_shown_with_the_refusal(self):
+        self.decide(self.cid('cui'), 'exclude', note='Nu este CUI: este un cod intern.')
+        again = {'grup': 'cui', 'selector': {**copy.deepcopy(self.selectors['cui']), 'context': 'Alt text de context, același câmp.'}}
+        self.put_candidates(self.items() + [again])
+        self.assertEqual(self.errors(), [], 'a repeated proposal is no error: the owner decides again')
+        pairs = repeated_exclusions(self.items())
+        self.assertEqual([(o['selector']['context'], e['nota_editor']) for o, e in pairs], [(again['selector']['context'], 'Nu este CUI: este un cod intern.')])
+        view = self.store.candidate(self.rows()[-1]['id'])
+        self.assertEqual(len(view['warnings']), 1)
+        self.assertIn('Nu este CUI: este un cod intern.', view['warnings'][0])
+        self.assertEqual(self.store.candidate(self.cid('cui', 'exclus'))['warnings'], [], 'the excluded one carries no warning')
+        self.assertEqual(self.store.candidate(self.cid('judet'))['warnings'], [])
+
+    # -- the check panel and the public build ---------------------------------------------------------------------
+
+    def test_the_check_panel_counts_the_open_candidates_and_the_public_diff_stays_empty(self):
+        self.assertEqual(self.store.git_panel()['candidates'], {'open': 3, 'excluded': 0, 'confirmed': 0})
+        self.decide(self.cid('cui'), 'confirm')
+        self.decide(self.cid('judet'), 'exclude', note='Nu.')
+        panel = self.store.git_panel()
+        self.assertEqual(panel['candidates'], {'open': 1, 'excluded': 1, 'confirmed': 1})
+        self.assertEqual(panel['public'], {'available': True, 'lines': []}, 'a candidate does not change the public build')
+        self.assertEqual({Path(f['path']).name for f in panel['files']}, {'inventar-concepte.json', 'inventar-note.json'})
+        self.assertTrue(any(c.startswith('git add') and 'inventar-note.json' in c for c in panel['commands']))
+
+
+class CandidateHttp(CandidateFixture):
+    """The candidate routes over HTTP, on the same temporary copy."""
+    call = Http.call
+
+    def setUp(self):
+        super().setUp()
+        self.server = review_ui.make_server(self.store, 0)
+        self.port = self.server.server_address[1]
+        threading.Thread(target=self.server.serve_forever, daemon=True).start()
+        self.addCleanup(self.server.server_close)
+        self.addCleanup(self.server.shutdown)
+
+    def test_the_queue_the_detail_and_a_decision_over_http(self):
+        status, state, _ = self.call('GET', '/api/state')
+        self.assertEqual((status, [c['group'] for c in state['candidates']], state['progress']['candidates']['open']), (200, list(self.REVIEWED), 3))
+        cid = state['candidates'][1]['id']
+        status, view, _ = self.call('GET', f'/api/candidate/{cid}')
+        self.assertEqual((status, view['group']['id'], view['stare']), (200, 'judet', 'propus'))
+        status, answer, _ = self.call('POST', f'/api/candidate/{cid}/decide', {'action': 'exclude', 'note': 'Nu.', 'hashes': view['hashes']})
+        self.assertEqual((status, answer['item']['stare'], answer['state']['progress']['candidates']['open']), (200, 'exclus', 2), answer)
+        status, answer, _ = self.call('POST', f'/api/candidate/{cid}/decide', {'action': 'confirm', 'hashes': view['hashes']})
+        self.assertEqual((status, answer['reload']), (409, True), 'the hashes of the page are old now')
+        status, view, _ = self.call('GET', f'/api/candidate/{cid}')
+        status, answer, _ = self.call('POST', f'/api/candidate/{cid}/decide', {'action': 'reset', 'hashes': view['hashes']})
+        self.assertEqual((status, answer['item']['stare']), (200, 'propus'))
+        self.assertEqual(self.both(), self.head_both())
+
+    def test_the_candidate_routes_refuse_a_wrong_identifier_a_wrong_token_and_a_wrong_body(self):
+        cid = self.rows()[0]['id']
+        hashes = {k: self.hashes()[k] for k in ('concepte', 'note')}
+        before = self.both()
+        self.assertEqual(self.call('GET', '/api/candidate/1-ffffffffffff')[0], 404)
+        self.assertEqual(self.call('GET', '/api/candidate/x')[0], 404)
+        self.assertEqual(self.call('POST', f'/api/candidate/{cid}/decide', {'action': 'exclude', 'note': 'x', 'hashes': hashes}, token=False)[0], 403)
+        self.assertEqual(self.call('POST', f'/api/candidate/{cid}/decide', {'action': 'exclude', 'note': 'x', 'hashes': hashes}, host='evil.example')[0], 403)
+        self.assertEqual(self.call('POST', f'/api/candidate/{cid}/decide', {'action': 'nonsense', 'hashes': hashes})[0], 400)
+        self.assertEqual(self.call('POST', f'/api/candidate/{cid}/decide', {'action': 'exclude', 'hashes': hashes})[0], 400, 'a note is needed')
+        self.assertEqual(self.call('POST', '/api/candidate/1-ffffffffffff/decide', {'action': 'exclude', 'note': 'x', 'hashes': hashes})[0], 409)
+        self.assertEqual(self.call('POST', '/api/candidate/x/decide', {'action': 'exclude', 'note': 'x', 'hashes': hashes})[0], 404)
+        self.assertEqual(self.both(), before)
+
+    def test_the_page_has_the_candidate_tab(self):
+        status, page, _ = self.call('GET', '/', token=False)
+        self.assertIn('id="tab-candidates"', page)
+        status, script, _ = self.call('GET', '/assets/review_ui.js', token=False)
+        self.assertIn('/api/candidate/', script)
+
+
+class CandidateRules(unittest.TestCase):
+    """The rules of the candidate list that need no data root."""
+    GROUPS = [{'id': 'g', 'label': 'G', 'definition': 'D', 'stare': 'revizuit', 'decizie_editor': 'ok', 'selectors': [{'projects': ['p'], 'names': ['a'], 'stare': 'confirmat'}]},
+              {'id': 'h', 'label': 'H', 'definition': 'D', 'selectors': [{'projects': ['p'], 'names': ['b']}]}]
+
+    def candidate(self, **fields):
+        return {'grup': 'g', 'selector': {'projects': ['p'], 'names': ['c']}, **fields}
+
+    def errors(self, *items):
+        return validate_candidates(list(items), self.GROUPS, {'p'})
+
+    def test_a_valid_open_or_excluded_candidate_has_no_error(self):
+        self.assertEqual(self.errors(self.candidate(), self.candidate(stare='propus'), self.candidate(stare='exclus', nota_editor='Nu.')), [])
+        self.assertEqual(validate_candidates(None, self.GROUPS), [])
+        self.assertEqual(validate_candidates([], self.GROUPS), [])
+
+    def test_each_rule_has_its_error(self):
+        cases = [(self.candidate(stare='gata'), 'unknown candidate state'), (self.candidate(stare='exclus'), 'needs nota_editor'),
+                 (self.candidate(stare='exclus', nota_editor=' '), 'needs nota_editor'), (self.candidate(nota_editor=3), 'nota_editor must be text'),
+                 (self.candidate(extra=1), 'unknown candidate key extra'), ({'selector': self.candidate()['selector']}, 'needs grup'),
+                 ({'grup': 'g'}, 'needs a selector'), (self.candidate(selector={'projects': ['p']}), 'needs names or path'),
+                 (self.candidate(selector={'projects': ['q'], 'names': ['c']}), 'unknown project q'),
+                 (self.candidate(grup='x'), 'the group x does not exist'), (self.candidate(grup='h'), 'the group is propus'),
+                 (self.candidate(selector={'projects': ['p'], 'names': ['a'], 'stare': 'confirmat'}), 'already holds this selector as member 1')]
+        for item, text in cases:
+            with self.subTest(text=text):
+                self.assertTrue(any(text in e for e in self.errors(item)), self.errors(item))
+        self.assertEqual(validate_candidates({'a': 1}, self.GROUPS), ['selectori_candidati: must be a list'])
+        self.assertTrue(any('must be an object' in e for e in self.errors('text')))
+
+    def test_an_excluded_candidate_is_history_and_needs_no_reviewed_group(self):
+        self.assertEqual(self.errors(self.candidate(grup='x', stare='exclus', nota_editor='Nu.'), self.candidate(grup='h', stare='exclus', nota_editor='Nu.')), [])
+
+    def test_the_blockers_of_a_candidate_name_their_reason(self):
+        groups = {c['id']: c for c in self.GROUPS}
+        self.assertEqual(candidate_blockers(self.candidate(), groups), [])
+        self.assertEqual(candidate_blockers(self.candidate(grup='x'), groups), [('missing-group', 'x')])
+        self.assertEqual(candidate_blockers(self.candidate(grup='h'), groups), [('group-state', 'propus')])
+        self.assertEqual(candidate_blockers(self.candidate(selector={'projects': ['p'], 'names': ['a']}), groups), [('held', 1)])
+        self.assertEqual(len({review_ui.blocker_text(*b) for b in [('missing-group', 'x'), ('group-state', 'propus'), ('held', 1)]}), 3)
+
+    def test_the_identity_is_the_group_and_the_selector_whatever_their_key_order(self):
+        a = {'grup': 'g', 'selector': {'projects': ['p'], 'names': ['c']}}
+        b = {'selector': {'names': ['c'], 'projects': ['p']}, 'grup': 'g', 'stare': 'exclus', 'nota_editor': 'x'}
+        self.assertEqual(candidate_key(a), candidate_key(b))
+        self.assertNotEqual(candidate_key(a), candidate_key({**a, 'grup': 'h'}))
+        self.assertNotEqual(candidate_key(a), candidate_key({**a, 'selector': {'projects': ['p'], 'names': ['d']}}))
+
+    def test_equal_selection_ignores_text_and_the_order_of_lists(self):
+        a = self.candidate(selector={'projects': ['p', 'q'], 'names': ['x', 'y'], 'path': ['$.x'], 'context': 'one'})
+        b = self.candidate(selector={'projects': ['q', 'p'], 'names': ['y', 'x'], 'path': '$.x', 'context': 'two', 'nota': 'other'}, stare='exclus', nota_editor='Nu.')
+        self.assertEqual(candidate_signature(a), candidate_signature(b))
+        self.assertEqual(repeated_exclusions([a, b]), [(a, b)])
+        for other in (self.candidate(grup='h', selector=a['selector']), self.candidate(selector={**a['selector'], 'names': ['x']}),
+                      self.candidate(selector={**a['selector'], 'source': 'https://x.example/'}), self.candidate(selector={**a['selector'], 'role': 'camp-date'})):
+            with self.subTest(other=other):
+                self.assertEqual(repeated_exclusions([other, b]), [])
+        self.assertEqual(repeated_exclusions([b, b]), [], 'an excluded candidate is not a new proposal')
+        self.assertEqual(repeated_exclusions([a]), [])
+
+    def test_the_candidate_key_returns_where_head_had_it(self):
+        head = {'a': 1, 'b': 2, CANDIDATES: [1], 'c': 3}
+        self.assertEqual(list(review_ui.with_candidates({'a': 1, 'b': 2, 'c': 3}, [1], head)), ['a', 'b', CANDIDATES, 'c'])
+        self.assertEqual(list(review_ui.with_candidates({'a': 1, 'c': 3}, [1], head)), ['a', CANDIDATES, 'c'], 'the nearest key before it that is still there')
+        self.assertEqual(list(review_ui.with_candidates({'c': 3}, [1], head)), [CANDIDATES, 'c'], 'no key before it is left: first')
+        self.assertEqual(list(review_ui.with_candidates({'a': 1, 'c': 3}, [1], None)), ['a', 'c', CANDIDATES], 'without HEAD: at the end')
+        self.assertEqual(list(review_ui.with_candidates({'a': 1, 'c': 3}, [1], {'a': 1})), ['a', 'c', CANDIDATES], 'HEAD without the key: at the end')
+        self.assertEqual(review_ui.with_candidates({'a': 1, CANDIDATES: [1, 2]}, [2], head), {'a': 1, CANDIDATES: [2]}, 'the list is replaced in place')
+        self.assertEqual(review_ui.with_candidates({'a': 1, CANDIDATES: [1]}, [], head), {'a': 1}, 'an empty list removes the key')
+
+    def test_a_restored_candidate_goes_after_the_last_listed_candidate_that_head_lists_before_it(self):
+        keys = [{'grup': 'g', 'selector': {'projects': ['p'], 'names': [n]}} for n in 'abcd']
+        extra = {'grup': 'g', 'selector': {'projects': ['p'], 'names': ['new']}}
+        self.assertEqual(review_ui.insert_position([], keys, 2), 0)
+        self.assertEqual(review_ui.insert_position([keys[0], keys[3]], keys, 1), 1)
+        self.assertEqual(review_ui.insert_position([keys[3]], keys, 1), 0)
+        self.assertEqual(review_ui.insert_position([keys[0], keys[1]], keys, 3), 2)
+        self.assertEqual(review_ui.insert_position([keys[0], extra, keys[3]], keys, 2), 1, 'a candidate that HEAD does not list does not count: it goes right after the first')
+
+    def test_the_candidate_id_is_the_place_and_the_start_of_the_hash(self):
+        item = self.candidate()
+        self.assertEqual(review_ui.candidate_id(3, item), f'3-{candidate_key(item)[:12]}')
+        self.assertTrue(review_ui.CANDIDATE_ID.match(review_ui.candidate_id(12, item)))
 
 
 class EvidenceStates(unittest.TestCase):

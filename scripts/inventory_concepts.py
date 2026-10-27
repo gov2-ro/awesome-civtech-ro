@@ -11,6 +11,10 @@ Review state (written by scripts/review_ui.py; a missing key means `propus`): a 
 `decizie_editor` and `data_revizie`; a selector has `stare` (propus | confirmat | exclus) and `nota_editor`. An `exclus` selector stays in the
 file for history and never matches a field. A `respins` group produces no matches in the finder.
 
+Candidate members (`selectori_candidati` in `inventar-note.json`, hand-edited by a batch): a list of `{grup, selector}` for reviewed groups. A reviewed group
+cannot hold a member that the owner has not confirmed, so a batch proposes the selector there. The review interface adds `stare` (propus | exclus) and
+`nota_editor` to a candidate that the owner excludes, and moves a confirmed candidate into its group. A missing `stare` means `propus` (open).
+
 Families (`familii`, top level) sort the groups for browsing by what they describe: identifiers, geography, time, then subject areas.
 A group names its family in `familie`. A family is a reading aid; it says nothing about compatibility. A group without one is listed last.
 """
@@ -18,6 +22,7 @@ from __future__ import annotations
 
 import datetime
 import hashlib
+import json
 import json
 from pathlib import Path
 
@@ -36,6 +41,11 @@ SELECTOR_STATES = ('propus', 'confirmat', 'exclus')
 # The keys that a review decision writes, in file order (new keys go after the existing ones).
 GROUP_REVIEW_KEYS = ('stare', 'decizie_editor', 'data_revizie')
 SELECTOR_REVIEW_KEYS = ('stare', 'nota_editor')
+CANDIDATES = 'selectori_candidati'  # the key of inventar-note.json that holds the candidate members
+CANDIDATE_STATES = ('propus', 'exclus')
+CANDIDATE_KEYS = {'grup', 'selector', 'stare', 'nota_editor'}
+CANDIDATE_REVIEW_KEYS = ('stare', 'nota_editor')
+MATCH_KEYS = ('projects', 'names', 'path', 'role', 'source')  # what a selector selects: the keys that selector_matches reads
 
 
 def as_list(value):
@@ -166,6 +176,99 @@ def validate_families(document):
         family = concept.get('familie')
         if family is not None and family not in ids:
             errors.append(f'{concept.get("id", "?")}: unknown family {family!r}')
+    return errors
+
+
+def candidate_items(notes):
+    """The candidate list of the notes (a list; empty when the key is missing or is not a list: validate_candidates reports that)."""
+    value = notes.get(CANDIDATES) if isinstance(notes, dict) else None
+    return value if isinstance(value, list) else []
+
+
+def candidate_state(item):
+    return item.get('stare') or 'propus'
+
+
+def candidate_key(item):
+    """The identity of a candidate: a SHA-256 of its group and its selector, whatever their key order. The review keys are not part of it."""
+    return sha(json.dumps({'grup': item.get('grup'), 'selector': item.get('selector')}, sort_keys=True, ensure_ascii=False))
+
+
+def candidate_label(item):
+    selector = item.get('selector') if isinstance(item, dict) and isinstance(item.get('selector'), dict) else {}
+    what = ', '.join(map(str, as_list(selector.get('names')) or as_list(selector.get('path')))) or '?'
+    return f'{item.get("grup", "?") if isinstance(item, dict) else "?"}: {what} ({", ".join(map(str, as_list(selector.get("projects"))))})'
+
+
+def candidate_signature(item):
+    """What a candidate selects: its group and the sorted values of the keys that select fields. Text (`context`, `nota`, `fapte`) is not part of it."""
+    selector = item.get('selector') or {}
+    return (item.get('grup'),) + tuple(tuple(sorted(map(str, as_list(selector.get(key))))) for key in MATCH_KEYS)
+
+
+def strip_review(selector):
+    return {k: v for k, v in selector.items() if k not in SELECTOR_REVIEW_KEYS}
+
+
+def same_member(selector, member):
+    """True when a group member is this selector (the review keys of the member do not count)."""
+    return strip_review(selector) == strip_review(member)
+
+
+def repeated_exclusions(items):
+    """(open candidate, excluded candidate) pairs: a batch proposes again a selector that the owner has refused (same group and same selection)."""
+    excluded = [i for i in items if isinstance(i, dict) and candidate_state(i) == 'exclus']
+    return [(i, e) for i in items if isinstance(i, dict) and candidate_state(i) == 'propus' for e in excluded if candidate_signature(i) == candidate_signature(e)]
+
+
+def candidate_blockers(item, groups):
+    """Why a candidate cannot become a member now, as (reason, value) pairs; empty when it can. `groups` maps a group id to its dictionary entry.
+    The reasons are `missing-group` (value: the id), `group-state` (value: the state of the group) and `held` (value: the number of the equal member)."""
+    group = groups.get(item.get('grup'))
+    if group is None:
+        return [('missing-group', item.get('grup'))]
+    reasons = []
+    if group_state(group) != 'revizuit':
+        reasons.append(('group-state', group_state(group)))
+    held = next((n for n, member in enumerate(group.get('selectors', []), 1) if same_member(item.get('selector') or {}, member)), None)
+    if held:
+        reasons.append(('held', held))
+    return reasons
+
+
+def validate_candidates(items, concepts, known_projects=None):
+    """Errors of the candidate list. An open candidate needs a reviewed group that does not hold the selector yet; an excluded one is history and needs a note."""
+    if items is None:
+        return []
+    if not isinstance(items, list):
+        return [f'{CANDIDATES}: must be a list']
+    groups, errors = {c.get('id'): c for c in concepts}, []
+    for number, item in enumerate(items, 1):
+        if not isinstance(item, dict):
+            errors.append(f'{CANDIDATES} {number}: must be an object')
+            continue
+        where = f'candidate {candidate_label(item)}'
+        errors += [f'{where}: unknown candidate key {key}' for key in sorted(set(item) - CANDIDATE_KEYS)]
+        if not isinstance(item.get('grup'), str) or not item['grup']:
+            errors.append(f'{where}: a candidate needs grup')
+        if not isinstance(item.get('selector'), dict):
+            errors.append(f'{where}: a candidate needs a selector')
+            continue
+        errors += validate_selector(item['selector'], where)
+        for slug in as_list(item['selector'].get('projects')):
+            if known_projects is not None and slug not in known_projects:
+                errors.append(f'{where}: unknown project {slug}')
+        if item.get('stare') is not None and item['stare'] not in CANDIDATE_STATES:
+            errors.append(f'{where}: unknown candidate state {item["stare"]!r} (use {", ".join(CANDIDATE_STATES)})')
+        if item.get('nota_editor') is not None and not isinstance(item['nota_editor'], str):
+            errors.append(f'{where}: nota_editor must be text')
+        if item.get('stare') == 'exclus' and not str(item.get('nota_editor') or '').strip():
+            errors.append(f'{where}: an excluded candidate needs nota_editor')
+        if candidate_state(item) == 'propus' and isinstance(item.get('grup'), str):
+            for reason, value in candidate_blockers(item, groups):
+                errors.append({'missing-group': f'{where}: the group {value} does not exist',
+                               'group-state': f'{where}: an open candidate needs a revizuit group, and the group is {value} (a member of any other group is added to the group itself)',
+                               'held': f'{where}: the group already holds this selector as member {value}'}[reason])
     return errors
 
 
