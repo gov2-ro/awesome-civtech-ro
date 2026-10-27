@@ -1,0 +1,113 @@
+# A small contract written by hand for the offline tests of inventory_yaml.py. It uses the constructs of an OpenAPI file that a program wrote as YAML:
+# a folded block scalar, a plain scalar over two lines, a quoted scalar over two lines, quoted keys, a flow list, empty collections and a union type.
+openapi: 3.0.3
+info:
+  title: Exemplu API
+  description: >
+    Prima propoziție a descrierii,
+    continuată pe a doua linie.
+
+
+    **Un paragraf nou**, după două rânduri goale.
+  version: 1.2.0
+tags:
+  - name: Contracte
+    description: Operații pentru contracte
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas: {}
+paths:
+  /v1/health:
+    get:
+      summary: Verificare stare
+      tags: []
+      responses:
+        "200":
+          description: Răspuns pentru starea 200
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    description: Starea serviciului
+                    type: string
+      operationId: getV1Health
+  /v1/autoritate/{cif}/contracte:
+    get:
+      summary: Contractele unei autorități
+      description: Obține contractele unei autorități
+        contractante, după codul ei fiscal
+      tags:
+        - Contracte
+      parameters:
+        - name: cif
+          in: path
+          required: true
+          schema:
+            pattern: ^[0-9]{2,13}$
+            description: Cod de identificare fiscală (CIF/CUI)
+            type: string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            default: 20
+            description: Numărul de rezultate
+            anyOf:
+              - format: numeric
+                type: string
+              - type: number
+        - name: sursa
+          in: query
+          description: Indexul sursei
+          schema:
+            type: string
+            enum: [achizitii-directe, licitatii-publice]
+      responses:
+        "200":
+          description: "Răspuns (ex: o listă de contracte) scris pe
+            două rânduri"
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [cif, contracte]
+                properties:
+                  cif:
+                    description: Codul interogat
+                    type: string
+                  contracte:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        valoare:
+                          description: Valoarea în RON
+                          type: number
+                        furnizor:
+                          description: Furnizorul sau furnizorii
+                          anyOf:
+                            - type: string
+                            - type: array
+                              items:
+                                type: string
+                        judet:
+                          description: Județul autorității
+                          type: string
+        "500":
+          description: Eroare
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - error
+                properties:
+                  error:
+                    description: Mesaj de eroare
+                    type: string
+      operationId: getV1AutoritateByCifContracte

@@ -1031,6 +1031,7 @@ All readers return the common field keys and add the keys below; none infers a m
 | `html-glosar` | A page whose headings read `Label (name)` and whose first paragraph below each heading defines the field. `citire` `html-glosar`. | Module `inventory_glossary`. See "Glossary pages" below. `stare_tip` `declarat-in-text-documentatie`, `rol` `camp-dictionar`, `eticheta` (the label), `descriere`; locator `char:START-END`. |
 | `html-tabele-eurostat` | A page that pastes Eurostat data browser extractions as tables under a heading with the data set code. `citire` `html-tabele-eurostat`. | Module `inventory_eurostat`. See "Pasted Eurostat extractions" below. `stare_tip` `antet-tabel-html`; roles `masura` and `dimensiune`; locator `/tabele/T/randuri/R`. |
 | `js-pozitii` | A script that decodes rows of a data file into objects (`{ name: a[0], county: a[1] }`). `citire` `js-pozitii`. | Module `inventory_positions`. See "Names of positions in a script" below. `stare_tip` `utilizat-in-cod-pagina`, `rol` `camp-folosit-de-pagina`, `pozitie`, `indice_in`, `expresie`; locator `char:START-END`. |
+| `openapi-yaml` | An OpenAPI contract that the API serves as YAML (SICAP.ai). `citire` `openapi-yaml`. | Module `inventory_yaml`. See "YAML contracts" below. The format of the source is `openapi`, as for a JSON contract, and the field records are the same, with `linie`. |
 
 New `stare_tip` values (`js-literale` adds none: it reuses `observat-in-esantion-json` and `declarat-in-metadate`): `declarat-in-cod-sursa`, `antet-tabel-html`, `declarat-in-tabel-documentatie`, `declarat-in-text-documentatie`,
 `exemplu-in-documentatie`, `utilizat-in-cod-pagina`; `html-api-docs` also uses `declarat-in-documentatie-api`; `html-carduri-csv` uses `declarat-in-lista-documentatie`
@@ -1219,6 +1220,16 @@ The reader makes no request and runs no script.
   `descriere` and `unitate` are set only when the page writes `description` and `unitText`.
 - `baza_tipului` of such a source is `esantion-date`. `--check` parses the retained body again and compares the fields, `declaratii` and `seturi_ld`.
 - A response over 2,000,000 bytes has no retained body (`raspuns-prea-mare`). A bounded range read (`--sample-bytes`) stops at the last complete line. It can end before the script of the page.
+
+**YAML contracts (`openapi-yaml`).** The standard library has no YAML parser, so `inventory_yaml.load` reads the subset that an OpenAPI file uses and gives the values that `json.loads` gives for the same document. `inventory.py` then reads the contract with the OpenAPI reader. The source keeps `citire` `openapi-yaml`, so a replay and `--check` use the same reader. The reader makes no request.
+
+- Read: block mappings and sequences (a sequence may sit at the indent of its key), plain scalars over several lines, double-quoted and single-quoted scalars, block scalars `|` and `>` with `-` and `+`, flow lists and mappings, comments, and a `---` at the top. Types follow the core schema of YAML 1.2.
+  A date, `yes`, `no`, `on`, `off`, an integer with a leading zero and a hexadecimal or octal integer stay text, because a reading needs a choice between YAML 1.1 and 1.2. Keys are always text.
+- Not read, so the source gets the state `eroare-parsare` and the line number: anchors, aliases, tags, merge keys, complex keys, directives, a tab in the indent, a duplicate key, a second document, an indentation digit on a block scalar, a plain scalar that holds `: `, and a document that has no `openapi` or `swagger` member with a version number.
+- A field record of such a source also has `linie`, the 1-based line of its declaration in the retained body. Its `pointer` is the JSON pointer into the parsed document (`/paths/~1v1~1health/get/...`), as for a JSON contract.
+- A parameter takes its definition from its own `description`, or from the `description` of its schema when it has none (JSON contracts too; no earlier source changes).
+- `--check` parses the retained body again and compares every field, which it does not do for a JSON contract.
+- The parse of the contract of SICAP.ai (4,627 lines) equals the parse of PyYAML with the YAML 1.2 resolvers; 450 other YAML files on the work computer gave 450 equal results and two refusals (empty documents). That comparison is a measurement and is not part of the test suite.
 
 **Comparison with the contract.** When `citire.contract` names a source of the same project that is parsed and whose body this checkout holds, `inventory.py` compares the page with it after every run.
 Each operation and each request input gets `in_contract`: `{sursa_id, pointer}` of the declaration in the contract, or `null` when the contract does not declare it. A field with no `operatie` has no `in_contract` key
