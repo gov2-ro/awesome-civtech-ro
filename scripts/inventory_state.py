@@ -16,6 +16,8 @@ import threading
 from datetime import datetime, timezone
 from pathlib import Path
 
+from inventory_persons import MARK, is_marked, mark_errors, problems as person_problems
+
 REGISTRY = 'descoperiri.json'
 STATES = ('activ', 'descoperit', 'retras')
 METHODS = ('link-in-documentatie', 'url-in-text', 'dovada-pilot', 'adaugat-explicit', 'repo-la-revizie', 'membru-anterior')
@@ -100,8 +102,9 @@ def load_previous(out):
 
 
 def new_discovery(slug, url, method, *, state='descoperit', parent=None, evidence=None, original=None,
-                  discovered_at=None, rank=None, note=None, extra=None, reading=None):
-    """A registry record. `locator_stare` says whether the original discovery locator is known."""
+                  discovered_at=None, rank=None, note=None, extra=None, reading=None, persons=False):
+    """A registry record. `locator_stare` says whether the original discovery locator is known. `persons` marks a source whose body holds
+    records about natural persons (see inventory_persons)."""
     record = {'proiect': slug, 'url': url, 'sursa_id': source_id(url), 'stare': state, 'metoda': method,
               'parinte': parent, 'link_original': original or url, 'dovada': evidence,
               'locator_stare': 'cunoscut' if evidence else 'necunoscut', 'descoperit_la': discovered_at,
@@ -112,6 +115,8 @@ def new_discovery(slug, url, method, *, state='descoperit', parent=None, evidenc
         record['dovezi_suplimentare'] = extra
     if reading:
         record['citire'] = reading
+    if persons:
+        record[MARK] = True
     return record
 
 
@@ -202,6 +207,13 @@ def validate_state(profiles, sources, registry, previous=None):
                 errors.append(f'Active discovery without a source record: {slug} {url}')
         if record['locator_stare'] == 'cunoscut' and not record.get('dovada'):
             errors.append(f'Known locator without evidence: {slug} {url}')
+        errors += mark_errors(record, f'Registry record {slug} {url}')
+    marked = {url for (_, url), record in registry.items() if is_marked(record)}
+    for source in sources:
+        if source['url'] in marked and usable(source) and not is_marked(source):
+            errors.append('A source with persons has no mark in its record (replay it from its body): ' + source['url'])
+        if is_marked(source):
+            errors += person_problems(source)
     for profile in profiles:
         refs = profile.get('surse_structurate', [])
         for ref in refs:

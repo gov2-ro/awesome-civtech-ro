@@ -16,6 +16,9 @@ sources they use. Other projects keep their records, references and evidence. A 
 (failed request, missing cache, failed parse) keeps its last good evidence and records the failed attempt.
 Discoveries live in descoperiri.json, separate from the per-run limits. A run writes all files or none.
 A page that the owner saved (--import-saved) keeps its own origin, `copie-salvata-de-proprietar`; it is never labelled as fetched and never requested.
+A source whose body holds records about natural persons carries the mark `persoane: true` (in its specification, or with --persons): the readers keep
+key names, paths, observed types and counts and no value, and --check searches the tracked files for the values of its retained body (module
+inventory_persons). The answer holds file names and fingerprints, never a value.
 A host in data/taxonomy-v2/colectare-interzisa.csv is never requested, --force and --probe included, and neither is a redirect to it.
 The run reports it as `colectare-interzisa` with the reason of the list; the request log gets no row and the request limit does not count it.
 """
@@ -26,6 +29,7 @@ import csv
 import hashlib
 import io
 import json
+import os
 import re
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
@@ -41,6 +45,7 @@ from inventory_datasette import FORMAT as DATASETTE, database as datasette_datab
 from inventory_ins import ins_dataset, ins_listing, ins_measure, is_listing
 from inventory_jsonsample import FORMAT as JSON_SAMPLE, list_sizes, recover as recover_json
 from inventory_literals import POSITIONAL_WIDTH, datasets as literal_datasets, declarations as literal_declarations, keyed_object
+from inventory_persons import (MARK, READERS as PERSON_READERS, body_values, candidates, is_marked, leaks, mark_errors, occurs, safe_fields, safe_header, scope_files)
 from inventory_setlist import list_datasets
 from inventory_sheet import header_facts, read as read_sheet
 from inventory_text import EXTENSIONS, read_text
@@ -395,12 +400,22 @@ def public_url(url):
     return f'{match.group(1)}…/{match.group(2)}{match.group(3)}' if match else url
 
 
-def analyse_source(response, hint=None):
+def header_of(body, hint, persons=False):
+    """The source key `antet`. A source with persons keeps the cells above the header only when they are key names."""
+    facts = header_facts(body, hint)
+    return safe_header(facts) if persons else facts
+
+
+def analyse_source(response, hint=None, persons=False):
+    """The source record of one response. `persons` is the mark of a source whose body holds records about natural persons: the record keeps key
+    names, paths, observed types and counts, and the reader must be one that copies no text (see inventory_persons)."""
     metadata = {k: v for k, v in response.items() if k != 'body'}
     if 'final_url' in metadata:
         metadata['final_url'] = public_url(metadata['final_url'])
     if hint:
         metadata['citire'] = hint
+    if persons:
+        metadata[MARK] = True
     metadata.update(id=source_id(response['url']), campuri=[], completitudine='neconfirmat', snapshot='surse/' + source_id(response['url']) + '.json')
     if response['state'] != 'ok':
         return metadata
@@ -409,12 +424,16 @@ def analyse_source(response, hint=None):
     metadata['snapshot'] = 'surse/' + source_id(response['url']) + '-' + metadata['sha256'][:16] + '.json'
     try:
         fmt, fields, truncated = parse_source(body, response['final_url'], response.get('content_type', ''), hint)
+        if persons:
+            if fmt not in PERSON_READERS:
+                raise ValueError(f'A source with persons is read as {", ".join(PERSON_READERS)}, not as {fmt}: the other readers copy text')
+            fields = safe_fields(fields)
         metadata.update(format=fmt, campuri=fields, stare='analizat', completitudine='partial', limita_atinsa=truncated,
                         baza_tipului=('esantion-date' if fmt in ('json', 'lista-ins', 'js-literale', JSON_SAMPLE) else 'antet-fara-tipuri' if fmt == 'csv'
                                       else 'lista-fara-tipuri' if fmt == DATASETTE
                                       else 'cod-sau-documentatie' if fmt in TEXT_FORMATS else 'schema-declarata'))
         if has_csv_options(hint):
-            metadata['antet'] = header_facts(body, hint)
+            metadata['antet'] = header_of(body, hint, persons)
         if fmt == 'metadate-ins':
             metadata['set_date'] = ins_dataset(json.loads(body))
         elif fmt == 'lista-ins':
@@ -580,12 +599,18 @@ def pointer_value(document, pointer):
     return value
 
 
+def reread(source, body, response):
+    """What the reader gives for a retained body now, in the shape that a replay would write: a source with persons keeps no key beyond the allowed ones."""
+    fmt, fields, truncated = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
+    return fmt, safe_fields(fields) if is_marked(source) else fields, truncated
+
+
 def check_report(out, observations):
     """Check local evidence hashes, field pointers, references and the registry without requests.
     `errors` are corrupt or inconsistent records. `unavailable` lists evidence bodies absent from this checkout;
     those are not hash-verified and are never counted as verified. `stale` lists sources whose last refresh failed."""
     report = {'errors': [], 'unavailable': [], 'verified': 0, 'stale': [], 'concept_stale': [], 'concept_verified': 0,
-              'saved': {'total': 0, 'verified': 0, 'unavailable': 0}}
+              'saved': {'total': 0, 'verified': 0, 'unavailable': 0}, 'persons': {'marked': 0, 'checked': 0, 'unavailable': 0}}
     errors = report['errors']
     try:
         previous = load_previous(out)
@@ -628,13 +653,13 @@ def check_report(out, observations):
                 if not source.get('redactari') and source.get('sha256_fisier') != source['sha256']:
                     errors.append('The retained body is not the file that the owner saved: ' + source['url'])
             if source.get('format') == 'csv':
-                _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
+                _, fields, _ = reread(source, body, response)
                 if [f['nume'] for f in fields] != [f['nume'] for f in source['campuri']]:
                     errors.append('CSV headers differ: ' + source['url'])
-                elif has_csv_options(source.get('citire')) and (fields != source['campuri'] or header_facts(body, source['citire']) != source.get('antet')):
+                elif has_csv_options(source.get('citire')) and (fields != source['campuri'] or header_of(body, source['citire'], is_marked(source)) != source.get('antet')):
                     errors.append('CSV header facts differ from the retained body: ' + source['url'])
             elif source.get('format') == 'html-api-docs':
-                _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
+                _, fields, _ = reread(source, body, response)
                 fresh = {**strip_links(source), 'campuri': fields, 'operatii': api_operations(body)}
                 contract = contract_of(source, previous['sources'])
                 document = contract_document(out, contract) if contract else None
@@ -648,28 +673,30 @@ def check_report(out, observations):
                 elif fresh.get('comparatie_contract') != source.get('comparatie_contract'):
                     errors.append('The comparison with the contract differs from the retained bodies: ' + source['url'])
             elif source.get('format') == 'html-carduri-csv':
-                _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
+                _, fields, _ = reread(source, body, response)
                 if fields != source['campuri'] or csv_datasets(body, source['final_url']) != source.get('seturi'):
                     errors.append('Fields or datasets differ from the retained body: ' + source['url'])
             elif source.get('format') == 'html-lista-seturi':
-                _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
+                _, fields, _ = reread(source, body, response)
                 if fields != source['campuri'] or list_datasets(body) != source.get('seturi'):
                     errors.append('Datasets differ from the retained body: ' + source['url'])
             elif source.get('format') == JSON_SAMPLE:
-                _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
+                _, fields, _ = reread(source, body, response)
                 if fields != source['campuri'] or sample_facts(body) != source.get('esantion'):
                     errors.append('Fields or sample facts differ from the retained body: ' + source['url'])
             elif source.get('format') == DATASETTE:
-                _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
+                _, fields, _ = reread(source, body, response)
                 if fields != source['campuri'] or datasette_database(json.loads(body)) != source.get('baza'):
                     errors.append('Fields or database facts differ from the retained body: ' + source['url'])
             elif source.get('format') in TEXT_FORMATS:
-                _, fields, _ = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
+                _, fields, _ = reread(source, body, response)
                 if fields != source['campuri'] or (source['format'] == 'js-literale' and (literal_declarations(body) != source.get('declaratii')
                                                                                          or literal_datasets(body) != source.get('seturi_ld'))):
                     errors.append('Fields differ from the retained body: ' + source['url'])
             elif source.get('campuri'):
                 document = json.loads(body)
+                if is_marked(source) and reread(source, body, response)[1] != source['campuri']:
+                    errors.append('Fields differ from the retained body: ' + source['url'])
                 if source.get('format') == 'metadate-ins' and ins_dataset(document) != source.get('set_date'):
                     errors.append('Dataset facts differ from the retained body: ' + source['url'])
                 if source.get('format') == 'lista-ins' and ins_listing(document) != source.get('catalog'):
@@ -729,9 +756,69 @@ def check_report(out, observations):
                         errors.append(status)
     check_saved_pages(report, observations)
     check_dictionary(report, previous, out, observations)
+    check_persons(report, previous, out, observations)
     check_external_fragments(report, previous, observations)
     report['unavailable'] = sorted(set(report['unavailable']))
     return report
+
+
+def check_persons(report, previous, out, observations):
+    """Sources whose body holds records about natural persons (module `inventory_persons`). The registry and the specification files must agree on the mark,
+    and no identifying value of a retained body may be in a tracked file that the inventory or its editors write. `validate_state` (called by
+    `check_report`) already checks the form of each marked record. A body that is absent is unavailable and not searched. The answer holds file
+    names and fingerprints, never a value."""
+    errors, registry = report['errors'], previous['discoveries']
+    marked_urls = {d['url'] for d in registry if is_marked(d)}
+    for path in sorted((Path(out) / 'adaugari').glob('*.json')):
+        try:
+            specs = json.loads(path.read_text())
+        except (OSError, ValueError):
+            continue
+        for spec in specs if isinstance(specs, list) else []:
+            if not isinstance(spec, dict):
+                continue
+            errors += mark_errors(spec, f'{path.name} {spec.get("url")}')
+            if is_marked(spec) and canonical(spec.get('url', '')) not in marked_urls:
+                errors.append(f'{path.name}: {spec.get("url")} has the mark for persons in the specification and not in the registry (replay the file with --add-sources-file)')
+    sources = list(previous['sources'].values())
+    marked = [s for s in sources if s['url'] in marked_urls or is_marked(s)]
+    marked_ids = {s['id'] for s in marked}
+    report['persons']['marked'] = len(marked)
+    taxonomy, files, others, memo = Path(observations).parent, None, None, {}
+
+    def common(value):
+        """True when a retained body of a source without the mark holds the value too: a county, a town, an institution. It is data, not a leak."""
+        nonlocal others
+        if others is None:
+            others = []
+            for source in sources:
+                if source['id'] not in marked_ids and source.get('sha256'):
+                    try:
+                        others.append(json.loads((Path(out) / source['snapshot']).read_text())['body'])
+                    except (OSError, ValueError, KeyError):
+                        continue
+        if value not in memo:
+            memo[value] = any(occurs(value, body) for body in others)
+        return memo[value]
+
+    for source in marked:
+        if not source.get('sha256'):
+            continue
+        try:
+            body = json.loads((Path(out) / source['snapshot']).read_text())['body']
+        except FileNotFoundError:
+            report['persons']['unavailable'] += 1
+            continue
+        except (OSError, ValueError, KeyError):
+            continue  # the evidence check above has reported the unreadable body
+        if source.get('stare') != 'analizat':
+            continue
+        values, names = body_values(body, source.get('format'), source.get('citire'))
+        wanted = candidates(values, names, f'{source["url"]} {source.get("final_url", "")}')
+        files = scope_files(taxonomy) if files is None else files
+        for path, mark in leaks(wanted, files, common):
+            errors.append(f'A value of a source with persons is in a tracked file: {os.path.relpath(path, taxonomy)}, fingerprint {mark} (source {source["url"]})')
+        report['persons']['checked'] += 1
 
 
 def check_saved_pages(report, observations):
@@ -953,10 +1040,11 @@ def locate_render(observations, page_url, data_url):
     return None
 
 
-def resolve_spec(docs, slug, spec, cache=None):
+def resolve_spec(docs, slug, spec, cache=None, marked=()):
     """Turn `locate` / `dovezi` / `repo` requests of an explicit source specification into exact locators.
     A request names a collected documentation page, or (with `cache: true`) a body in the source cache.
-    Fails when a fragment or a repository file is absent."""
+    Fails when a fragment or a repository file is absent, and when a request would quote the body of a source with persons
+    (`marked` holds their addresses): the registry stores the quoted text, so a value of a person could reach a tracked file."""
     spec = dict(spec)
 
     def find(request):
@@ -967,6 +1055,8 @@ def resolve_spec(docs, slug, spec, cache=None):
         elif request.get('link'):
             evidence = locate_link(docs, request.get('proiect', slug), request['pagina'], request['link'])
         elif request.get('cache'):
+            if canonical(request['pagina']) in marked:
+                raise StateError(f'The body of a source with persons is never quoted: {request["pagina"]}')
             evidence = locate_in_cache(cache, request['pagina'], request['text']) if cache else None
         else:
             evidence = locate_text(docs, request.get('proiect', slug), request['pagina'], request['text'])
@@ -1062,6 +1152,9 @@ def update_inventory(entries, docs, verified, previous, *, cache, selected=(), o
         url = canonical(spec['url'])
         if not url:
             raise StateError('Not an HTTP URL: ' + spec['url'])
+        wrong = mark_errors(spec, url)
+        if wrong:
+            raise StateError('; '.join(wrong))
         key = (slug, url)
         if key in registry and registry[key]['stare'] == 'retras':
             registry[key].update(stare='activ', retras=None)
@@ -1069,13 +1162,22 @@ def update_inventory(entries, docs, verified, previous, *, cache, selected=(), o
         elif key not in registry:
             registry[key] = new_discovery(slug, url, spec.get('metoda', 'adaugat-explicit'), state='activ', parent=spec.get('parinte'),
                                           evidence=spec.get('dovada'), discovered_at=now, note=spec.get('nota'),
-                                          extra=spec.get('dovezi_suplimentare'), reading=spec.get('citire'))
+                                          extra=spec.get('dovezi_suplimentare'), reading=spec.get('citire'), persons=is_marked(spec))
             registry[key]['istoric'].append({'eveniment': 'adaugat', 'la': now})
         elif registry[key]['stare'] == 'descoperit':
             registry[key]['stare'] = 'activ'
             registry[key]['istoric'].append({'eveniment': 'admis', 'la': now})
         if spec.get('citire') and not registry[key].get('citire'):
             registry[key]['citire'] = spec['citire']
+        if is_marked(spec):
+            # The mark is never taken back by a specification that lacks it. The note of a marked specification replaces the registry note,
+            # so that a value that an earlier note quoted can leave the tracked file.
+            if not is_marked(registry[key]):
+                registry[key][MARK] = True
+                registry[key]['istoric'].append({'eveniment': 'marcat-persoane', 'la': now})
+            if spec.get('nota') and registry[key].get('nota') != spec['nota']:
+                registry[key]['nota'] = spec['nota']
+                registry[key]['istoric'].append({'eveniment': 'nota-inlocuita', 'la': now, 'motiv': 'source with persons: the note holds no value of the body'})
     for slug in sorted(work):
         for candidate in candidates[slug]:
             key = (slug, candidate['url'])
@@ -1096,6 +1198,7 @@ def update_inventory(entries, docs, verified, previous, *, cache, selected=(), o
         if record.get('citire'):
             hint_of.setdefault(record['url'], record['citire'])
     fetch_urls = {d['url'] for s in chosen for d in active_members(registry, s)}
+    person_urls = {d['url'] for d in registry.values() if is_marked(d)}
 
     def obtain(url):
         ident = source_id(url)
@@ -1117,10 +1220,10 @@ def update_inventory(entries, docs, verified, previous, *, cache, selected=(), o
         if response is None:
             if tracked:
                 return url, tracked, (FORBIDDEN_STATE if skipped else 'neinspectat' if origin == 'omis' else 'pastrat-fara-cache' if url in fetch_urls else 'neatins')
-            return url, analyse_source({'url': url, 'state': 'necolectat'}, hint_of.get(url)), (FORBIDDEN_STATE if skipped else 'necolectat')
+            return url, analyse_source({'url': url, 'state': 'necolectat'}, hint_of.get(url), url in person_urls), (FORBIDDEN_STATE if skipped else 'necolectat')
         if origin == 'retea' and (response.get('state') == 'ok' or cached is None or cached.get('state') != 'ok'):
             write_file_atomic(path, dump(response))
-        metadata = analyse_source(response, hint_of.get(url))
+        metadata = analyse_source(response, hint_of.get(url), url in person_urls)
         if metadata.get('sha256'):
             snapshot = cache.parent / metadata['snapshot']
             if not snapshot.exists():
@@ -1267,7 +1370,9 @@ def main():
     parser.add_argument('--add-source', nargs=2, action='append', metavar=('SLUG', 'URL'), default=[],
                         help='add an explicitly identified structured source to a project')
     parser.add_argument('--add-sources-file', type=Path, metavar='FILE',
-                        help='JSON list of source specifications: proiect, url, metoda, parinte, nota, locate {pagina, text}, dovezi [{pagina, text, rol}]')
+                        help='JSON list of source specifications: proiect, url, metoda, parinte, nota, locate {pagina, text}, dovezi [{pagina, text, rol}], persoane (true)')
+    parser.add_argument('--persons', action='store_true', help='with --add-source or --import-saved: the body holds records about natural persons '
+                        '(the same as `"persoane": true` in a specification file)')
     parser.add_argument('--method', default='adaugat-explicit', help='with --add-source: how the source was identified')
     parser.add_argument('--parent', help='with --add-source: the page or repository where the source was identified')
     parser.add_argument('--note', help='with --add-source: a short note kept with the discovery; with --import-saved: why the owner saved the page by hand')
@@ -1293,6 +1398,8 @@ def main():
         args.offline, args.only = True, args.import_saved[0]
     elif args.saved_at:
         parser.error('--saved-at belongs to --import-saved')
+    if args.persons and not (args.add_source or args.import_saved):
+        parser.error('--persons belongs to --add-source or --import-saved; a specification file says `"persoane": true`')
     if data_schema(args.data_dir) != 'v2':
         parser.error('Variable inventories require a taxonomy v2 data root.')
     obs = observation_paths(args.data_dir)['profile'].parent
@@ -1310,6 +1417,10 @@ def main():
         print(f'{len(report["errors"])} inventory evidence errors; {report["verified"]} source bodies hash-verified; '
               f'{len(report["unavailable"])} local bodies unavailable and not verified; {len(report["stale"])} sources with a failed refresh; '
               f'{report["concept_verified"]} dictionary evidence items verified, {len(report["concept_stale"])} stale')
+        persons = report['persons']
+        if persons['marked']:
+            print(f'{persons["marked"]} sources with persons: {persons["checked"]} bodies searched for their values in the tracked files, '
+                  f'{persons["unavailable"]} unavailable and not searched')
         saved = report['saved']
         if saved['total']:
             print(f'{saved["total"]} copies saved by the owner (not fetched): {saved["verified"]} hash-verified, {saved["unavailable"]} unavailable and not verified')
@@ -1356,7 +1467,8 @@ def main():
     try:
         previous = load_previous(out)
         reading = reading_of(args.reading)
-        additions = [(slug, {'url': url, 'metoda': args.method, 'parinte': args.parent, 'nota': args.note, 'citire': reading}) for slug, url in args.add_source]
+        mark = {MARK: True} if args.persons else {}
+        additions = [(slug, {'url': url, 'metoda': args.method, 'parinte': args.parent, 'nota': args.note, 'citire': reading, **mark}) for slug, url in args.add_source]
         if args.import_saved:
             # The copy goes into the cache first, so that a specification of --add-sources-file can locate a fragment in it (`cache: true`).
             slug, url, file = args.import_saved
@@ -1371,10 +1483,16 @@ def main():
                 specs = json.loads(args.add_sources_file.read_text())
             except (OSError, ValueError) as exc:
                 raise StateError(f'Cannot read {args.add_sources_file}: {exc}') from exc
-            additions += [(spec['proiect'], resolve_spec(docs, spec['proiect'], {k: v for k, v in spec.items() if k != 'proiect'}, out / 'surse')) for spec in specs]
+            errors = [e for spec in specs for e in mark_errors(spec, str(spec.get('url')))]
+            if errors:
+                raise StateError('; '.join(errors))
+            # The addresses of sources with persons: the registry marks, and the specifications of this file mark.
+            marked = {d['url'] for d in previous['discoveries'] if is_marked(d)} | {canonical(spec['url']) for spec in specs if is_marked(spec)}
+            additions += [(spec['proiect'], resolve_spec(docs, spec['proiect'], {k: v for k, v in spec.items() if k != 'proiect'}, out / 'surse', marked))
+                          for spec in specs]
         if args.import_saved:
             # The source joins the project like `--add-source`; a specification in --add-sources-file for the same address comes first and keeps its locator.
-            additions.append((slug, {'url': response['url'], 'metoda': args.method, 'parinte': args.parent, 'nota': None, 'citire': reading}))
+            additions.append((slug, {'url': response['url'], 'metoda': args.method, 'parinte': args.parent, 'nota': None, 'citire': reading, **mark}))
         state = update_inventory(
             entries, docs, verified, previous, cache=out / 'surse', selected=selected, offline=args.offline, force=args.force,
             max_files=args.max_files, fetch=fetcher, concepts=concepts, force_urls=args.force_url,
