@@ -56,6 +56,27 @@ class Recovery(unittest.TestCase):
         self.assertEqual([r['name'] for r in document['records']], ['x', 'y'])
         self.assertEqual(list_sizes(document), {'$.metadata.sources': 2, '$.records': 2})
 
+    def test_a_cut_keyed_collection_keeps_the_members_that_are_whole_records_and_a_cut_record_is_still_dropped(self):
+        # A file with a collection of companies keyed by CUI: the read ends inside the collection. Each complete member is a whole record, so it stays. A record of
+        # named fields that the cut ended is half a record, and it is dropped as before (the fields list would show its last fields as absent).
+        keyed = '{"fields": ["a", "b"], "companii": {' + ', '.join(f'"{1000 + n}": {{"caen": {n}, "y": {{"2020": [1, 2]}}}}' for n in range(14)) + ', "2000": {"caen": 3, "y": {"20'
+        document, complete = recover(keyed)
+        self.assertFalse(complete)
+        self.assertEqual(len(document['companii']), 14, 'the 15th member was cut and is dropped; the 14 whole ones stay')
+        self.assertEqual(document['fields'], ['a', 'b'])
+        record = '{"id": 1, "meta": {"name": "x", "year": 2001, "kind": "a", "owner": "b", "city": "c", "zone": "d", "code": "e", "tier": "f", "lang": "g", "unit": "h", "note": "i", "pa'
+        document, _ = recover(record)
+        self.assertEqual(document, {'id': 1}, 'a record with identifier keys is not a keyed collection: its cut half is dropped')
+        few = '{"id": 1, "a": {"x": {"k": 1}, "y": {"k": 2}, "z": {"k'
+        self.assertEqual(recover(few)[0], {'id': 1}, 'two whole members are not a keyed collection')
+
+    def test_the_keyed_collection_gives_its_own_fields_and_no_key(self):
+        keyed = '{"companii": {' + ', '.join(f'"{1000 + n}": {{"caen": {n}, "y": {{"2020": [1, 2], "2021": [3, 4]}}}}' for n in range(14)) + ', "2000": {"caen": 3'
+        fields = parse_source(keyed, URL, '', FORMAT)[1]
+        self.assertEqual([f['cale'] for f in fields], ['$.companii{*}', '$.companii{*}.caen', '$.companii{*}.y{*}', '$.companii{*}.y{*}[]'])
+        self.assertEqual(fields[0]['numar_chei'], 14)
+        self.assertNotIn('1000', json.dumps([(f['nume'], f['cale']) for f in fields]), 'a key of the collection never becomes a field name')
+
     def test_a_string_or_a_number_that_the_cut_ended_is_never_repaired(self):
         self.assertEqual(recover('[1, 2, 3')[0], [1, 2], 'the 3 may be the start of 34')
         self.assertEqual(recover('["abc", "de')[0], ['abc'])

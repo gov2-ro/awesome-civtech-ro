@@ -1125,6 +1125,9 @@ The registry names the reader with `citire` `json-esantion` (module `inventory_j
 
 - The reader keeps the complete members of every object and the complete elements of every array. The element or member that the cut ended is dropped, also when most of it was read, because a field list
   built from half a record would show a missing field as absent. A string or a number at the very end of the body is dropped too: the cut may have shortened it. The reader never repairs a bracket.
+  One exception, added on 2026-10-27 for `financials.json` of companii-publice-ro: an object that the cut ended keeps its complete members when it is a keyed collection (`inventory_literals.keyed_collection`: companies keyed by CUI, years,
+  100 members or more). Each member is a whole record and the keys are values, not field names, so no field can look absent; the member that the cut ended is dropped. A record with identifier keys that the cut ended is dropped as before.
+  Measured on the 14 tracked cut sources before and after: only the three of lot E change (`financials.json` 7 to 11 fields, `guvernanta-series.json` 9 to 18, `guvernanta-achizitii.json` 22 to 31).
 - Fields come from the walk of the plain JSON reader on the recovered document (bounds: 25 elements, seven levels, 2,000 fields; see "Shapes of JSON data"). `stare_tip` is `observat-in-esantion-json`, `tipuri_observate` is the set of observed types,
   and the field keeps no value. The last member of a cut document gets no record when it is an empty list, because the cut may have emptied it. The `pointer` addresses the recovered document, not the retained body, so `--check` parses the body again and compares the fields. `limita_atinsa` is true when the document was cut.
 - The source key `esantion` is `{complet, elemente_citite}`. `complet` is true for a body that parses whole. `elemente_citite` maps the path of each list (`$.features`, `$.metadata.sources`) to its number of complete
