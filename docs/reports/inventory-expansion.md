@@ -6,10 +6,10 @@ Inventory assertions are proposals. Raw field totals count source paths, not ind
 ## 1. Outcome
 
 - Milestones A (safe incremental collection), B (INS), C (12 entries), D (meanings and shared groups) and E (preview, coverage, report) are complete.
-- Structured field evidence now covers 31 of 129 projects and resources (baseline 14). The retained sources are 115 URLs (110 parsed, 5 failed) with 4,133 field records.
-- Each field record is a path in a source. The proposals are 38 shared groups (baseline 7), 16 provider review items and the dictionary evidence that `inventory.py --check` verifies.
+- Structured field evidence now covers 42 of 129 projects and resources (baseline 14). The retained sources are 150 URLs (145 parsed, 5 failed) with 4,988 field records.
+- Each field record is a path in a source. The proposals are 40 shared groups (baseline 7), 16 provider review items and the dictionary evidence that `inventory.py --check` verifies.
 - The public build is unchanged: the default payload equals the v0.13.0 payload apart from its generation time; classifications and accepted providers are identical.
-- Collection used 126 direct requests in total (6 browser navigations); the 150-request limit of lot C was not reached.
+- Collection used 202 direct requests in total (9 browser navigations); the 150-request limit of lot C was not reached.
 - Batch C2 (three active projects): three inventories (`romania-interactiva` 10 sources, `data-expertforum` 15 sources from the owner's saved page and 14 Google Sheet tabs, `bani-partide` 1 source from the owner's saved listing), 8 proposed groups and provider items D176–D187; see the subsection of section 3.
 
 **Ten-inventory target:** 12 of the 12 primary entries have a new structured inventory; 11 of them carry definitions, declared types, a declared unit or a proposed shared group. No reserve entry was needed. Measured: 12. The target is met.
@@ -24,7 +24,7 @@ Field-level meaning is thinner than group-level meaning. Source-declared field d
 | `dignitas` | 10 | 177 | 1 | 151 | 0 | 0 / 0 |
 | `monitorul-ai` | 7 | 432 | 98 | 52 | 4 | 0 / 25 |
 | `rezultate-vot` | 10 | 139 | 7 | 114 | 6 | 0 / 13 |
-| `votdiaspora` | 5 | 50 | 0 | 50 | 2 | 0 / 0 |
+| `votdiaspora` | 5 | 50 | 0 | 50 | 3 | 0 / 0 |
 | `aerlive` | 1 | 3 | 0 | 0 | 0 | 0 / 0 |
 | `calitate-aer-radauti` | 1 | 41 | 0 | 0 | 7 | 4 / 28 |
 | `banii-nostri` | 3 | 51 | 0 | 0 | 4 | 1 / 2 |
@@ -40,39 +40,39 @@ The 129 projects and resources of the catalogue (the finder lists the 85 that ar
 | Catalogue entries | 140 | 142 |
 | Projects / resources / organisations | 106 / 21 / 13 | 108 / 21 / 13 |
 | Projects and resources (catalogue, hidden entries included) | 127 | 129 |
-| Entries with structured field evidence | 14 | 31 |
-| Projects/resources without extracted structured fields | 113 | 98 |
-| Retained structured-source URLs | 25 | 115 |
-| Parsed sources / HTTP failures | 24 / 1 | 110 / 5 |
-| Source-scoped field records (paths, not variables) | 2,302 | 4,133 |
-| Schema declarations / sampled JSON paths / CSV headers / INS dimensions | 1,312 / 904 / 82 / 4 | 1,367 / 1,341 / 238 / 4 |
+| Entries with structured field evidence | 14 | 42 |
+| Projects/resources without extracted structured fields | 113 | 87 |
+| Retained structured-source URLs | 25 | 150 |
+| Parsed sources / HTTP failures | 24 / 1 | 145 / 5 |
+| Source-scoped field records (paths, not variables) | 2,302 | 4,988 |
+| Schema declarations / sampled JSON paths / CSV headers / INS dimensions | 1,312 / 904 / 82 / 4 | 1,367 / 2,035 / 311 / 4 |
 | HTML control candidates / entries with candidates | 308 / 78 | 310 / 80 |
-| Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 83 / 59 |
+| Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 86 / 56 |
 | Accepted provider relations / entries with accepted providers | 26 / 11 | 76 / 27 |
-| Pending provider proposals (review items D132 and later) | 15 | 0 |
-| Proposed business-variable groups | 7 | 38 |
+| Pending provider proposals (review items D132 and later) | 15 | 22 |
+| Proposed business-variable groups | 7 | 40 |
 | Unit tests discovered / skipped | 308 / 6 | 724 / 6 |
 | Explorer inventory / dedicated finder browser checks | 25 / 25 | 36 / 62 |
 
-Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 57 in all; deschis 0, acceptat 50, respins 4, amanat 0, tehnic 3. Variable groups: 38 in all; propus 5, revizuit 33, respins 0, amanat 0. Group members (selectors): 140 in all; propus 14, confirmat 126, exclus 0.
+Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 79 in all; deschis 22, acceptat 50, respins 4, amanat 0, tehnic 3. Variable groups: 40 in all; propus 7, revizuit 33, respins 0, amanat 0. Group members (selectors): 150 in all; propus 24, confirmat 126, exclus 0.
 
 Scope of the data finder (`/date/`): 85 of the 126 public projects and resources are in scope. An entry is in scope when it is not inactive (`offline`, `arhivat`) and its `relatie_date` is `date-publice`, `date-proprii` or `calcul`. The finder leaves out 41: 18 without data (`fara-date`), 5 not assessed (empty value), 18 inactive (counted first: an inactive entry is never counted as another reason). 3 hidden entries (`ascuns`) are in no count of this paragraph.
 
-Field records by evidence type now: declarat-in-schema 1,367, observat-in-esantion-json 1,341, declarat-in-cod-sursa 366, exemplu-in-documentatie 364, neprecizat-in-antet-csv 238, declarat-in-lista-baza 171, antet-tabel-html 85, declarat-in-tabel-documentatie 53, declarat-in-metadate 43, declarat-in-lista-documentatie 40, declarat-in-documentatie-api 33, declarat-in-text-documentatie 23, utilizat-in-cod-pagina 9.
+Field records by evidence type now: observat-in-esantion-json 2,035, declarat-in-schema 1,367, declarat-in-cod-sursa 417, exemplu-in-documentatie 364, neprecizat-in-antet-csv 311, declarat-in-lista-baza 171, antet-tabel-html 104, declarat-in-metadate 58, declarat-in-tabel-documentatie 53, declarat-in-lista-documentatie 40, declarat-in-documentatie-api 36, declarat-in-text-documentatie 23, utilizat-in-cod-pagina 9.
 
 Coverage by measure, for the 129 projects and resources (`acoperire.csv` has the rows). A column that counts fields counts source paths:
 
 | Measure | Entries counted | Total |
 | --- | ---: | ---: |
-| Structured sources | 31 | 120 |
-| Field records from sources | 31 | 4,195 |
-| Entries in at least one proposed group | 31 | 23 |
-| Fields with a source-declared description | 31 | 1,358 |
-| Fields with a declared type | 31 | 1,599 |
-| Fields with an observed type | 31 | 1,694 |
-| Measures with a unit | 31 | 62 |
-| Measures without a unit | 31 | 159 |
-| Sources with a verified discovery locator | 31 | 124 |
+| Structured sources | 42 | 155 |
+| Field records from sources | 42 | 5,050 |
+| Entries in at least one proposed group | 42 | 29 |
+| Fields with a source-declared description | 42 | 1,374 |
+| Fields with a declared type | 42 | 1,650 |
+| Fields with an observed type | 42 | 2,407 |
+| Measures with a unit | 42 | 90 |
+| Measures without a unit | 42 | 159 |
+| Sources with a verified discovery locator | 42 | 159 |
 
 Totals add the per-entry counts. A source that several entries share counts once for each of them, so the field total here is higher than the number of distinct field records above.
 Denominators are defined in `docs/DATA-SCHEMA.md` (Coverage export). Entries without a structured source have an empty (unknown) measure count, not zero.
@@ -82,12 +82,13 @@ All 142 catalogue entries (hidden entries included):
 | State | Entries |
 | --- | ---: |
 | blocat | 1 |
-| cu-surse-structurate | 31 |
+| cu-surse-structurate | 42 |
 | fara-date | 18 |
 | in-afara-ariei | 13 |
 | inactiv | 19 |
+| investigat-fara-surse | 1 |
 | neevaluat | 7 |
-| neinvestigat-in-lot | 53 |
+| neinvestigat-in-lot | 41 |
 
 `in-afara-ariei` entries are organisations: the finder lists projects and resources. An organisation need not expose a dataset. Missing extraction never proves missing data.
 `fara-date`, `inactiv` and `neevaluat` are projects and resources that the finder leaves out and that have no source record. An entry with a usable source keeps `cu-surse-structurate`, and an entry whose sources failed keeps `blocat`, whatever its scope: the evidence stays in `observatii/`, and only the public output leaves the entry out.
@@ -164,9 +165,9 @@ Election results and turnout. The repository's API resources define the public r
 
 Polling stations for citizens abroad. C# classes define the station (id, latitude, longitude, county, locality, polling station number, institution, address) with assigned street addresses, an upload model, a grouped result with distance, and the query parameters of the station search. The repository link was found by the profiler on the project site.
 
-- State: cu-surse-structurate. Sources 5, field records 50, groups 2.
+- State: cu-surse-structurate. Sources 5, field records 50, groups 3.
 - Source URLs: `https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/src/Models/PollingStationModel.cs`; `https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/src/Models/PollingStationUploadModel.cs`; `https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/src/Models/PollingStationsGroupModel.cs`; `https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/src/Models/PollingStationsQuery.cs`; `https://raw.githubusercontent.com/code4romania/vot-diaspora-api/87b0d20acec077f958ef2e0adff312ee48eba4ca/src/Stores/Entities/PollingStationEntity.cs`
-- Proposed groups: `judet`, `localitate`
+- Proposed groups: `coordonate-geografice`, `judet`, `localitate`
 - Documented inputs: `County`, `address`, `institution`, `locality`, `pollingStationId`, `pollingStationNumber`
 - Limitations: The repository's last commit is from 2021-11-08, so the classes may predate the deployed site. The 8.8 MB sqlite file was not downloaded.
 - Remaining work: Ask whether the API in the repository is the deployed one.
@@ -226,7 +227,7 @@ Monitoring of femicide cases in Romania from media reports and official communic
 - Limitations: Page-script usage only; no types or values. The database was not read.
 - Remaining work: Tell the project about the exposed token; ask for an aggregate export.
 
-Reserve entries (`ce-fac-politicienii`, `onorata-instanta`, `guvernezi`) were not used: all 12 primary entries produced evidence.
+Reserve entries of lot C (`ce-fac-politicienii`, `onorata-instanta`, `guvernezi`) were not used: all 12 primary entries produced evidence.
 
 ### Batch C2: three active projects that publish public-sector data
 
@@ -270,14 +271,180 @@ Platform on political party finance in Romania since 2006 (donations, campaign f
 
 Platform of public tools by three lecturers of FSPAC, Babeș-Bolyai University: its home page lists 22 tools, six on the project host and the others on their own hosts. The pass read seven: the census tool (county population at eight censuses, 1948–2021), the governments timeline (28 governments), the university centres tool (students per centre and per university), the marriages and divorces map (counties, 1990–2024), the local elections map and the exam results map (both over 2,000,000 bytes, read as samples), and Orașe digitale (the e-government index of 325 cities). Each tool keeps its data in the page: script constants, a JSON data island and one HTML table. The new reader `js-literale` lists them with the types of a bounded sample; the JSON-LD `Dataset` of every page gives its name, period, licence and `isBasedOn`. Every page ends with a "Surse" or "Date" note that names its providers: INS (TEMPO matrices SCL103D, POP210A, POP212A, POP107A and census tables), Eurostat, CNFIS, AEP, the Ministry of Education (via data.gov.ro), Guvernul României, Monitorul Oficial and Agerpres; the dormitory data come from an ANOSR analysis and a Cushman & Wakefield Echinox study. Three INS matrices were read as metadata. Orașe digitale is the authors' own collection (manual coding of 46 indicators in five categories, three waves); the page names no source for the population of a city. The pages declare no field types, no units and no field descriptions, except six `variableMeasured` entries of Orașe digitale.
 
-- State: cu-surse-structurate. Sources 10, field records 269, groups 7.
+- State: cu-surse-structurate. Sources 10, field records 269, groups 8.
 - Source URLs: `https://ins.gov2.ro/api/datasets/POP210A?lang=en`; `https://ins.gov2.ro/api/datasets/POP212A?lang=en`; `https://ins.gov2.ro/api/datasets/SCL103D?lang=en`; `https://orase-digitale.ro/`; `https://romaniainteractiva.ro/cupluri/`; `https://romaniainteractiva.ro/guverne/`; `https://romaniainteractiva.ro/harta-notelor/`; `https://romaniainteractiva.ro/locale/`; `https://romaniainteractiva.ro/recensaminte/`; `https://romaniainteractiva.ro/universitati/`
-- Proposed groups: `casatorii`, `divorturi`, `judet`, `localitate`, `perioada-de-referinta`, `populatie`, `studenti`
+- Proposed groups: `casatorii`, `coordonate-geografice`, `divorturi`, `judet`, `localitate`, `perioada-de-referinta`, `populatie`, `studenti`
 - Documented inputs: none documented in the sources read. HTML controls stay candidates.
 - Provider proposals: D176, D177, D178, D179, D180, D181, D182, D183, D184, D185.
 - Blocker: The data of the local elections and exam results pages is beyond the 2,000,000-byte limit of the fetcher; the population of a city in Orașe digitale has no named source.
 - Limitations: Seven of 22 catalogue tools were read. Two pages are samples of 600,000 bytes (no data). Field records come from a bounded sample of script literals; short key names are not described by the pages.
 - Remaining work: Decide whether a response over 2,000,000 bytes may be read whole; choose more tools from the 15 that were not read (1vot.ro, geamanuleuropean.ro, sondajeleromaniei.ro, satulcaresestinge.ro); decide on the candidate selectors for the reviewed groups.
+
+### Batch D: twelve entries of „De analizat”
+
+Batch D (brief `docs/briefs/inventory-batch-d.md`, 2026-10-27) covers twelve entries of „De analizat” with the strongest signals: an API, a data download, a linked repository, or a methodology or `llms.txt` page. The lot code is `D`. The documentation of all twelve was collected on 2026-10-24 and 2026-10-25 (`collect_docs.py --only` made 0 requests). The discovery order of `inventory-expansion.md` section 6.C was followed: the project's own documentation, then downloads and data files named by the pages and the page code, then linked repositories at a recorded commit, then browser renders (3 navigations).
+
+Result: eleven of the twelve entries have a structured inventory (33 sources by the first specification, 2 more from the browser renders, 35 in all). `guvernezi` has none: the project publishes no file, API or schema, and its data are text pages. No reserve entry was used (`monitor-safe`, `igov`, `ce-fac-politicienii`): no primary entry was blocked, and no host answered 401, 403 or 429. Five entries are on `mariuscomper.uk`; no source is shared by two of them (each page loads its own data), so no source counts for two project uses.
+
+Four reader changes serve the batch, each with offline fixture tests: the new reader `json-esantion` (a JSON or GeoJSON file that a range read cut), the CSV option `delimitator` `tab` (the TSV tables of `onorata-instanta`), script files and the forms `window.NAME = {...}` and `Object.freeze([...])` in `js-literale` (two pages of mariuscomper.uk), and Laravel `Schema::table` migrations in the `php` reader (`lista-firme`). The collector now encodes letters outside ASCII in a link (the download page of `dupa-cutremur` was a network error). A partial repository file is no longer compared with its blob hash.
+
+Proposals for the owner: 22 provider items (D189–D210), two new proposed groups (`deficit-bugetar`, `coordonate-geografice`), selectors added to two proposed groups (`partid-politic`, `uat`), and candidate members for five reviewed groups (`cui`, `judet`, `localitate`, `populatie`, `perioada-de-referinta`; see section 5). Nothing was accepted or decided. `relatii.csv` and the review decisions did not change.
+
+#### `lista-firme` — lista-firme.info
+
+Search by CUI or name over the Romanian companies, with an API (catalogue: `format:api`) and the repository `tudorr89/info-firme`. The API has no documentation page. The repository README (commit 1dcb375, 2026-10-24) documents `GET https://lista-firme.info/api/v1/info?cui=...` and `?name=...`; the code reads `company` and not `name`. The routes file has the one route `info` and a fallback that aborts any other API path with 401 (by the code; not requested). Neither the README nor the routes file mentions a key. The controller returns a company with the relations address, info, status, caen, legalRepresentatives, naturalPersonRepresentatives and euBranches. The six migrations read give 51 field records (the columns of `companies`, `addresses`, `infos` and `statuses`). The terms page names the originators: ONRC (via data.gov.ro) and the public ANAF APIs. The live API was not requested (the 15-request limit of the entry was spent on the repository and the terms page, and the response names legal representatives). One candidate member each for the reviewed groups `cui` (`companies.cui`), `judet` and `localitate` (the address columns), and two provider items (D189, D190).
+
+- State: cu-surse-structurate. Sources 6, field records 51, groups 0.
+- Source URLs: `https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_184655_create_companies_table.php`; `https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_184809_create_statuses_table.php`; `https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_184907_create_infos_table.php`; `https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_190138_create_addresses_table.php`; `https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2025_07_12_061535_add_fields_to_companies.php`; `https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2026_01_02_201516_add_website_and_parent_country_to_companies_table.php`
+- Proposed groups: none
+- Documented inputs: none documented in the sources read. HTML controls stay candidates.
+- Provider proposals: D189, D190.
+- Blocker: none
+- Limitations: The columns come from migrations at a recorded commit, not from a response of the deployed API (not requested). The model hides `id`, `created_at` and `updated_at`. Only the creation migrations of `addresses`, `infos` and `statuses` were read; two later migrations change `statuses`, and the tables of legal representatives, natural-person representatives, EU branches and CAEN codes were not read (the limit of 15 requests). The README says `name` and the code reads `company`.
+- Remaining work: Decide D189 and D190 and the candidate members of the reviewed groups `cui`, `judet` and `localitate`. One real API response (for the operator's own CUI, 51859625) would show the keys that the API returns; it needs a decision on the request limit of the entry.
+
+#### `dupa-cutremur` — După cutremur
+
+Interactive map of the Bucharest buildings at seismic risk, with offered data (catalogue: `format:set-date`). The project page and the download page (read through an encoded address: the collector could not request a link with letters outside ASCII) say that all the data is offered as kml, csv and geojson under CC BY 4.0, in a Google Drive folder. The folder was not requested (it cannot be listed without the API). The live map page loads five GeoJSON files from `storage.googleapis.com/dupacutremur/`: buildings (polygons), collapse areas, road segments, building points and shelters. Each was read as a range sample of 30,000 bytes with the new cut-JSON reader: 5 sources and 90 field records. The properties have the truncated names of a shapefile (`incadrare`, `anul_const`, `anul_exper`, `regimul_de`, `niveluri_f`, `estimare_i`, `adresa`, `sector`, `expert`, `latitude`, `longitude`); the files do not describe them. The base list is the official list of AMCCRS (page text; D203); the road segments carry OpenStreetMap identifiers (D204). One proposed group is new (`coordonate-geografice`, with `votdiaspora` and `romania-interactiva`), and one candidate is for a reviewed group (`localitate`, the column `oras`).
+
+- State: cu-surse-structurate. Sources 5, field records 90, groups 1.
+- Source URLs: `https://storage.googleapis.com/dupacutremur/_strazi_arie_colaps_06122022.geojson`; `https://storage.googleapis.com/dupacutremur/adaposturi.geojson`; `https://storage.googleapis.com/dupacutremur/arie_colaps_complete_03032024.geojson?v=1`; `https://storage.googleapis.com/dupacutremur/cladiri_complete_03032024.geojson?v=1`; `https://storage.googleapis.com/dupacutremur/puncte_complete_03032024.geojson?v=1`
+- Proposed groups: `coordonate-geografice`
+- Documented inputs: none documented in the sources read. HTML controls stay candidates.
+- Provider proposals: D203, D204.
+- Blocker: none
+- Limitations: Each GeoJSON file is a range sample of the first 30,000 bytes: the fields of the first complete features are known, the size of the file and the number of records are not. The building properties include the name of the technical expert (a person); the inventory keeps the field name and the observed type, no value. The Drive folder with the kml, csv and geojson sets and the bit.ly short link were not requested. The shelters file names no provider.
+- Remaining work: Decide D203 and D204, the proposed group `coordonate-geografice` and the candidate for `localitate`. The owner can export the Drive folder from a browser and import it with `inventory.py --import-saved` if the columns of the csv sets are wanted.
+
+#### `reciclare-arad` — Calendar ridicare gunoi Arad
+
+Calendar of waste collection for the streets of Arad (static page on GitHub Pages) and the repository `baditaflorin/calendar-ridicare-gunoi-arad` (commit 00ee173, 2026-09-27). The public page loads `docs/data/catalog.json` (neighbourhoods and 1,064 streets) and one file `docs/data/places/N.json` for each street; the statistics page loads `docs/data/stats.json` (the code of `app.js` and `analize.js` says so). Three files were read (the catalogue, the statistics and the first street file): 3 sources, 40 field records, with the street (`street_raw`, `street_norm`), neighbourhood, UAT (`uat`), waste type (`waste_type`), date, start time, kind of event, source address and confidence. `docs/sources.md` lists the RETIM pages as primary sources; the page says „Date publice RETIM si Primaria Arad”. One selector joins the proposed group `uat`; two provider items (D191, D192).
+
+- State: cu-surse-structurate. Sources 3, field records 40, groups 1.
+- Source URLs: `https://raw.githubusercontent.com/baditaflorin/calendar-ridicare-gunoi-arad/00ee173de1da726135a62e2c1fd2730816819d13/docs/data/catalog.json`; `https://raw.githubusercontent.com/baditaflorin/calendar-ridicare-gunoi-arad/00ee173de1da726135a62e2c1fd2730816819d13/docs/data/places/1.json`; `https://raw.githubusercontent.com/baditaflorin/calendar-ridicare-gunoi-arad/00ee173de1da726135a62e2c1fd2730816819d13/docs/data/stats.json`
+- Proposed groups: `uat`
+- Documented inputs: none documented in the sources read. HTML controls stay candidates.
+- Provider proposals: D191, D192.
+- Blocker: none
+- Limitations: The catalogue lists 1,064 streets and the street files have the same shape; the first street file was read, and the bound of 25 elements per list applies. The order form of the page (name, e-mail, phone, address) is a customer form: it was not submitted and it is not a data variable. The files are those of `docs/` at commit 00ee173, the folder that GitHub Pages serves; they were not compared with the files that the site serves.
+- Remaining work: Decide D191, D192 and the selector added to the proposed group `uat`.
+
+#### `onorata-instanta` — Onorata Instanță
+
+Platform of the Funky Citizens project Open Justice 2.0: performance index and statistics of Romanian courts and prosecutor offices (catalogue: `format:registru`) and the repository `funkycitizens/onoratainstanta` (last commit 2023-02-19, Jekyll). The About page names three sources: the CSM report on the state of justice 2013, the Ministry of Justice portal and the INS census (D193–D195). The build script generates the pages from TSV tables in `_build/tables`. Five tables were read as samples of the first 5,000 bytes: the performance index of courts and of prosecutor offices, the 2014 statistics of the courts (17 columns) and of the prosecutor offices (42 columns), and the header of the contact table. The second row of the statistics tables holds the label of each column and is the header (new TSV option); the machine names stay in the first row. 5 sources, 73 field records. The live performance page shows the values of the 2015 index (Curtea de Apel CRAIOVA +0.83 equals `perf_2015` in the table).
+
+- State: cu-surse-structurate. Sources 5, field records 73, groups 0.
+- Source URLs: `https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/judecatorii-instante-2014.tsv`; `https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/judecatorii-instante-contact.tsv`; `https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/judecatorii-parchete-2014.tsv`; `https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/performanta-instante.tsv`; `https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/performanta-parchete.tsv`
+- Proposed groups: none
+- Documented inputs: none documented in the sources read. HTML controls stay candidates.
+- Provider proposals: D193, D194, D195.
+- Blocker: none
+- Limitations: The tables are those of the repository, with 2013–2015 data; the last commit is from 2023, and the live page shows the 2015 index. The people table (`oameni.tsv`, names of magistrates by court) was not requested; the build script names three of its columns. No name of a person was read or copied. Each table is a sample of the first 5,000 bytes (the header and the first rows); the contact table was read for its header only. The 2013 tables have the same shape and are not sources.
+- Remaining work: Decide D193, D194, D195 and the candidate for `populatie`.
+
+#### `sondaje-romania` — Sondaje România
+
+Independent aggregator of Romanian polls (catalogue: `format:vizualizare|registru`; project `llms.txt` and methodology page). The JSON-LD of the page declares a schema.org Dataset with a download address (`average-voting-intentions.json`), the variables Voting Intention (percent) and Seat Projection (seats), the period 2026-09-07/2026-09-22, the measurement technique and the licence. One browser navigation of the page (the Next.js application) showed four JSON files that it requests: the weighted average, the seat projection, the chart series and an index of polls. 4 sources (the page, the average, the seat projection, the chart series), 36 field records. `llms.txt` lists the data sources: BEC, the polling institutes (INSCOP, CURS, IRES and MKOR via RSS, more than 20 collected by hand) and the two chambers. One selector set joins the proposed group `partid-politic`; 7 provider items (D196–D202).
+
+- State: cu-surse-structurate. Sources 4, field records 36, groups 1.
+- Source URLs: `https://sondajeromania.ro/average-seats.json`; `https://sondajeromania.ro/average-voting-intentions.json`; `https://sondajeromania.ro/parlamentare`; `https://sondajeromania.ro/parliamentary-chart-data.json`
+- Proposed groups: `partid-politic`
+- Documented inputs: none documented in the sources read. HTML controls stay candidates.
+- Provider proposals: D196, D197, D198, D199, D200, D201, D202.
+- Blocker: none
+- Limitations: The licence differs between declarations: `llms.txt` and the first Dataset say CC BY 4.0, the Dataset of the parliamentary page says CC BY-NC 4.0. The file `seats-index.json` was seen and not admitted: its keys are poll identifiers (institute and date), and the JSON reader would turn values into field names. The individual polls (339 on the Institutes page) are in pages, not in a downloadable file; the chart series holds the poll points, read as a sample of 25 elements. New parliamentary polls are extracted by a language model (`llms.txt`); the project does not publish the extracted fields.
+- Remaining work: Decide D196–D202 and the selectors added to the proposed group `partid-politic`. Clarify the licence (CC BY or CC BY-NC) before reusing the files.
+
+#### `guvernezi` — Guvernezi!
+
+Free browser game in which the player is prime minister for 16 quarters, and then learns which of 28 politicians they resemble (catalogue: `relatie_date` `date-proprii`). The project publishes `llms.txt`, a methodology page (nine themes on a scale from -2 to +2, the match formula, what the game saves) and a page for each politician (positions on nine themes, with sources, links and dates). No file or API holds these data in a machine-readable form: the pages hold them as text. One browser navigation of the game page showed 16 same-site requests; the only data request is `/api/realizari` (achievements of the signed-in account), which answered `{"cont": null}` without an account. The methodology page says that the game saves each decision with a random game code; no write request was sent or observed. The inventory has no source and no field record.
+
+- State: investigat-fara-surse. Sources 0, field records 0, groups 0.
+- Source URLs: none
+- Proposed groups: none
+- Documented inputs: none documented in the sources read. HTML controls stay candidates.
+- Provider proposals: none.
+- Blocker: none
+- Limitations: There is no public file, API or schema. The 28 politician pages hold positions and sources as text; no reader was written for their HTML structure. The data that the game saves (decisions, a game code, the end of the mandate) are described on the methodology page but cannot be read without playing; no write request was sent. The positions are compiled by the project from public sources, each citation with its own originator, so no provider is proposed.
+- Remaining work: An export of the politicians' positions (a schema or a file) would allow an inventory; the project owner can offer one.
+
+#### `politicieni-corupti` — Politicieni Corupți
+
+Archive of Romanian politicians involved in corruption cases (catalogue: `format:registru`; 849 to 850 profiles on its pages). The site is a client-side application: its methodology, glossary and list pages are the same shell and make no data request in a browser render (one navigation of `/lista`; the render record was not kept, because its text lists persons). The list page shows aggregates: 779 politicians in the main list, by status 392, 4, 32, 30, 101, 43, 32 and 145 (convicted, first instance, indicted, investigated, integrity, prescribed, closed, acquitted, in the order of the page; the eight labels have the order of the eight status values of the validator, a match that no page declares). The JSON-LD names the repository `robert-adnas/posibil-penali` (`sameAs`), which holds the data (`data/politicians.json`, commit 581cd3a, 2026-10-26). The base file was read as a sample of the first 4,108 bytes: one metadata object and four records, which gave 15 field records (name, party, position, position type, crime, sentence, sentence years, conviction year, status, details, source address). The validator and the build script at the same commit declare more: required fields, eight status values, eleven position types, a geography object (county and basis) and the sources with label, kind, publication date and type. The records name persons; the inventory keeps field names and observed types, no value. One selector joins the proposed group `partid-politic`.
+
+- State: cu-surse-structurate. Sources 1, field records 15, groups 1.
+- Source URLs: `https://raw.githubusercontent.com/robert-adnas/posibil-penali/581cd3a4c45b4b008dd86d531c02cfafa1d0909b/data/politicians.json`
+- Proposed groups: `partid-politic`
+- Documented inputs: none documented in the sources read. HTML controls stay candidates.
+- Provider proposals: none.
+- Blocker: none
+- Limitations: The four records of the sample are in the local cache (ignored by git); the repository keeps no value, name or case. The final profile fields (`geography`, `verified_at`, sources with label, kind and publication date) come from `politicianEnhancements.js` (3.2 MB), which was not requested; the validator and the build script declare them, the sample does not show them. The methodology page of the site is a shell; the editorial criteria are in the repository (`README.md`, `REVERIFICATION.md`). The 14 official hosts in the build code (DNA, ANI, portal.just.ro, the two chambers and others) are citation hosts for cases, not data providers; none is proposed.
+- Remaining work: Decide the selector added to the proposed group `partid-politic`. The final fields would need an export of the public set from the owner.
+
+#### `unde-locuiesc` — Unde ți-ar fi bine să locuiești?
+
+Tool by Marius Comper (mariuscomper.uk) that compares eight Romanian cities by population and direct railway connections (catalogue: `format:vizualizare`; the page `llms.txt` is the host-wide one). The page loads `data.js`, which holds the snapshot facts (date, validity of the timetable, stop count) and the eight cities (`CITY_DATA`: population, scheduled trips, direct stops, direct cities, scale, reach, pace, landscape, tags and short texts). The file declares `CITY_DATA` as `Object.freeze([...])`, a form that the literal reader now accepts, like `window.NAME = {...}`. 1 source, 23 field records. The page names its sources: the 2021 census (Table 1.22) and the railway timetable of S.C. Informatică Feroviară S.A. on data.gov.ro (D205 for INS, D206 for Informatică Feroviară). Candidates for the reviewed groups `judet`, `localitate` and `populatie`.
+
+- State: cu-surse-structurate. Sources 1, field records 23, groups 0.
+- Source URLs: `https://mariuscomper.uk/unde-locuiesc/data.js`
+- Proposed groups: none
+- Documented inputs: none documented in the sources read. HTML controls stay candidates.
+- Provider proposals: D205, D206.
+- Blocker: none
+- Limitations: The eight cities are a small catalogue, and the population and railway figures are computed by the author; the source files (census Table 1.22, the GTFS export) were not requested. `population` is the resident population of the 2021 census on 1 December, as the page writes; `scale`, `reach` and `pace` are the author's scores without a definition in the source. The host-wide `llms.txt` does not name this page in the part that was kept, and the registry `projects.json` was not requested.
+- Remaining work: Decide D205, D206 and the candidates for `judet`, `localitate` and `populatie`.
+
+#### `trei-din-patru` — Satele din România care au rămas fără școală
+
+Report by Marius Comper on the villages that lost their school between 2013–14 and 2025–26 (catalogue type `publicatie`). The page documents its method (Ministry of Education lists, INS, Wikidata, geoBoundaries) and loads two data files: `places.json` (school years, counties, communes and a positional row for each village) and `names.json` (school structure names). 6 sources: the first table of the page (five columns by county), the two data files and the INS TEMPO metadata of the three matrices that the page names (SCL101B, SCL105A, SCL103I; 16 field records with the definition from INS). 27 field records. The Ministry of Education and INS are already accepted providers of this entry; Wikidata is proposed (D207). The page says that each row of the list has the SIIIR and SIRUTA codes; the position of the codes in the rows of `places.json` is not declared, so no member is proposed for `siruta`.
+
+- State: cu-surse-structurate. Sources 6, field records 27, groups 0.
+- Source URLs: `https://ins.gov2.ro/api/datasets/SCL101B?lang=en`; `https://ins.gov2.ro/api/datasets/SCL103I?lang=en`; `https://ins.gov2.ro/api/datasets/SCL105A?lang=en`; `https://mariuscomper.uk/trei-din-patru/`; `https://mariuscomper.uk/trei-din-patru/assets/names.135c9dbdff65.json`; `https://mariuscomper.uk/trei-din-patru/assets/places.7edc94b58896.json`
+- Proposed groups: none
+- Documented inputs: none documented in the sources read. HTML controls stay candidates.
+- Provider proposals: D207.
+- Blocker: none
+- Limitations: The rows of `places.json` have eight cells without field names (positional): the JSON reader gives `p[][]` and loses the positions, whose meaning is in the page text and not in a schema. `names.json` is a keyed collection of name lists. The 13 yearly lists of the Ministry of Education on data.gov.ro were not requested; the page cites them with the licence of each. The positions of SIIIR and SIRUTA in the rows are not declared.
+- Remaining work: Decide D207 and the candidates for `judet` and `perioada-de-referinta`. Confirm the position of the SIRUTA code in `places.json` before a candidate for `siruta`.
+
+#### `statul-digital` — Arhitectura invizibilă a statului digital
+
+Report by Marius Comper on the 136 databases of the Government Private Cloud (catalogue type `publicatie`). The project has its own `llms.txt` (key figures; sources: SICAP numbers, OUG 89/2022, HG 372/2022, PNRR investment sheets). The page loads `data.js`, a data bundle assigned as `window.STATUL_DIGITAL_DATA = {...}` (the reader now accepts this form and script files). 2 sources: `data.js` (93 field records, bound reached; among its fields are `authority`, `databasesCount`, `winner`, `valueRon`, `noticeNo`, `city` and `coordinates[]`) and the contracts table of the page (6 fields). 99 field records. One provider item: SICAP / SEAP (D208).
+
+- State: cu-surse-structurate. Sources 2, field records 99, groups 0.
+- Source URLs: `https://mariuscomper.uk/statul-digital/`; `https://mariuscomper.uk/statul-digital/data.js`
+- Proposed groups: none
+- Documented inputs: none documented in the sources read. HTML controls stay candidates.
+- Provider proposals: D208.
+- Blocker: none
+- Limitations: The bundle has more than 2,000 paths; the bounds of 2,000 fields and 25 elements apply, so the register of 136 databases is read as a sample. Field names are in Romanian and English (`titleRo`, `titleEn`) and repeat the content. The contracts are cited by SICAP number; no SICAP export was requested.
+- Remaining work: Decide D208 and the candidate for `localitate` (the city of a data centre).
+
+#### `pe-datorie` — Deficitul și datoria României, 1995–2025
+
+Report by Marius Comper on how much of every 100 lei collected the state spends, borrows and pays as interest, compared with Poland, Hungary and the EU average (catalogue type `publicatie`). The page holds its data in a JSON island (`pd-data`: spent, borrowed, interest and the shares by function for each country and year, 2001–2024) and in two tables (the shares by function; the deficit as a percent of GDP by year and prime minister). 1 source, 68 field records. The page names the Eurostat tables gov_10a_main, gov_10a_exp and gov_10dd_edpt1, the rating agencies and the Government. Eurostat, the Government, the Council of the EU, S&P and Moody's are already accepted providers of this entry; Fitch Ratings is proposed (D210). The deficit column joins the proposed group `deficit-bugetar`; the year column is a candidate for `perioada-de-referinta`.
+
+- State: cu-surse-structurate. Sources 1, field records 68, groups 1.
+- Source URLs: `https://mariuscomper.uk/pe-datorie/`
+- Proposed groups: `deficit-bugetar`
+- Documented inputs: none documented in the sources read. HTML controls stay candidates.
+- Provider proposals: D210.
+- Blocker: none
+- Limitations: The keys for years and countries (2001–2024; RO, PL, HU, EU27) are values, not fields: the reader treats them as a keyed collection. The function codes (GF01, GF04, GF07 …) are the COFOG keys of Eurostat gov_10a_exp; the data island does not define them. The Eurostat tables were not requested.
+- Remaining work: Decide D210, the proposed group `deficit-bugetar` and the candidate for `perioada-de-referinta`.
+
+#### `ce-face-statul-cu-1000-de-lei` — Ce face statul cu 1.000 de lei?
+
+Explainer by Marius Comper on what the Romanian state does with each 1,000 lei collected, 2015–2025 (catalogue: `format:vizualizare`). The page script loads `data/budget-romania.json` (132,127 characters), which declares its source: Ministry of Finance, Annex 2 (summary of the execution of the consolidated general budget), December notes 2015–2025. 1 source, 333 field records: about 30 paths repeated for each of the 11 years, because eleven year members are below the keyed-collection threshold (the count is a path count, not a count of variables). The file has revenue, expenditure, deficit (in million lei and percent of GDP), GDP, the units per 1,000 lei and the categories. The deficit fields join the proposed group `deficit-bugetar`. One provider item (D209).
+
+- State: cu-surse-structurate. Sources 1, field records 333, groups 1.
+- Source URLs: `https://mariuscomper.uk/ce-face-statul-cu-1000-de-lei/data/budget-romania.json`
+- Proposed groups: `deficit-bugetar`
+- Documented inputs: none documented in the sources read. HTML controls stay candidates.
+- Provider proposals: D209.
+- Blocker: none
+- Limitations: The 333 field records are about 30 paths repeated for each of the eleven years (`years.2015.…`): the count is not a count of variables. The units `mil_lei` and `pct_pib` come from the name suffix; the file declares the unit of 1,000 lei in `unit_definition` only. The official page of the Ministry of Finance was not requested.
+- Remaining work: Decide D209 and the proposed group `deficit-bugetar`.
 
 ## 4. Existing inventories and INS
 
@@ -326,9 +493,11 @@ Groups with at least two project memberships (unique entries). A group is a disc
 | `voturi-impotriva` Voturi împotrivă | masura | 2 | europescope, monitorul-ai |
 | `voturi-abtinere` Abțineri | masura | 2 | europescope, monitorul-ai |
 | `grup-politic` Grup politic sau parlamentar | dimensiune | 2 | europescope, monitorul-ai |
-| `uat` UAT (unitate administrativ-teritorială) | dimensiune | 3 | bani-partide, data-expertforum, romania-transparenta |
-| `partid-politic` Partid politic | dimensiune | 3 | bani-partide, data-expertforum, romania-transparenta |
+| `uat` UAT (unitate administrativ-teritorială) | dimensiune | 4 | bani-partide, data-expertforum, reciclare-arad, romania-transparenta |
+| `partid-politic` Partid politic | dimensiune | 5 | bani-partide, data-expertforum, politicieni-corupti, romania-transparenta, sondaje-romania |
 | `beneficiar-fonduri-publice` Beneficiar de fonduri publice | dimensiune | 2 | data-expertforum, romania-transparenta |
+| `deficit-bugetar` Deficit bugetar | masura | 2 | ce-face-statul-cu-1000-de-lei, pe-datorie |
+| `coordonate-geografice` Coordonate geografice (latitudine, longitudine) | dimensiune | 3 | dupa-cutremur, romania-interactiva, votdiaspora |
 
 Groups with one entry so far (no second project exposes the variable in the sources read): `co2`, `pm25`, `pm10`, `temperatura-aer`, `umiditate-relativa`, `presiune-atmosferica`, `viteza-vantului`, `alegatori-inscrisi`, `alegatori-lista-permanenta`, `alegatori-prezenti`, `voturi-nule`, `rata-prezenta`, `casatorii`, `divorturi`, `studenti`, `subventie-partid`, `donatie-partid`.
 
@@ -382,6 +551,8 @@ Ambiguous candidates, kept out of the groups:
 - `partid-politic`: `partid_la_vot` (romania-transparenta: „partidul național la data votului”) este partidul unui parlamentar la un vot, nu partidul unei autorități; nu este membru.
 - `partid-politic`: În banipartide, `Partid` este partidul însuși: cel care primește subvenții și donații, raportează venituri și cheltuieli sau are voturi. Rolul diferă de partidul unei persoane sau al unui beneficiar. Lista tabelelor nu are valori; nu se știe dacă numele sunt denumiri sau sigle. Proprietarul poate muta selectorul într-un grup separat pentru partidul ca entitate care raportează.
 - `partid-politic`: `Alianțe.partide` (partidele unei alianțe, probabil mai multe într-o celulă) și `Legenda partide.Denumire` și `Legenda partide.Cheie` nu sunt membre: lista nu spune ce conțin și `partide` poate numi mai multe partide.
+- `partid-politic`: În `sondaje-romania`, `party` este partidul ale cărui intenții de vot se mediază: partidul însuși, ca în `bani-partide`. În `politicieni-corupti`, `party` este partidul unei persoane, la momentul relevant al dosarului, cum scrie depozitul. Rolurile diferă.
+- `partid-politic`: În `politicieni-corupti`, valorile pot fi sigle, denumiri sau „Independent”; validatorul depozitului ține o listă de sigle cunoscute, dar eșantionul citit nu arată câte valori diferite există.
 - `beneficiar-fonduri-publice`: Natura banilor diferă: alocare din Fondul de rezervă prin HG (UAT), plată din programul de promovare COVID (firme de presă), ajutor din registrul RegAS (romania-transparenta). Un total pe beneficiar nu se adună între aceste surse.
 - `beneficiar-fonduri-publice`: Câmpul `furnizor` nu este în grup. În romania-transparenta el înseamnă uneori „instituția care a acordat ajutorul”, alteori furnizorul dintr-o achiziție; în foaia Plăți, `Furnizor` este firma plătită.
 - `beneficiar-fonduri-publice`: Foaia HG 1264/2021 nu are o coloană de beneficiar; UAT-ul ei (`UAT`) este în grupul `uat`.
@@ -393,6 +564,29 @@ Ambiguous candidates, kept out of the groups:
 - `donatie-partid`: În `Donatori rapoarte de venituri și cheltuieli` există și `Tip venit` și `Mod încasare`. Lista nu spune dacă toate veniturile din tabel sunt donații.
 - `donatie-partid`: Nu sunt membre: `Donații` din `Contributii campanie` și din `Venituri și cheltuieli campanie` (totaluri pe candidat sau pe campanie, nu o donație) și `Venituri` din `Venituri anuale partide de la MF`.
 - `donatie-partid`: Donatorii persoane fizice sunt persoane private. Lista conține doar numele coloanelor, nu rânduri; grupul nu copiază nicio valoare.
+- `deficit-bugetar`: Execuția bugetului general consolidat (Ministerul Finanțelor, încasări și plăți) și deficitul din tabelul Eurostat gov_10dd_edpt1 nu sunt aceeași măsură: baza contabilă și sfera sectorului public diferă. Nu se presupune că valorile coincid.
+- `deficit-bugetar`: Nu este membru: `deficit_units_per_1000_revenue` (deficitul în unități la 1.000 de lei de venituri; altă unitate). Nu sunt membre `revenue_total_mil_lei` și `expenditure_total_mil_lei` (sunt venituri și cheltuieli, nu diferența lor).
+- `deficit-bugetar`: Familia `achizitii` se potrivește doar în parte: grupul descrie bani publici. O familie nouă pentru finanțele publice este o decizie a proprietarului, ca pentru `beneficiar-fonduri-publice`.
+- `coordonate-geografice`: Tipurile diferă: număr în `dupa-cutremur` (puncte), text în `dupa-cutremur` (adăposturi), `double` în `votdiaspora` și număr în Orașe digitale. Grupul nu normalizează valorile.
+- `coordonate-geografice`: Sistemul de coordonate este declarat (CRS84) doar în fișierele de clădiri și de arii de colaps ale DupăCutremur; celelalte surse nu îl declară.
+- `coordonate-geografice`: Nu sunt membre `latMax`, `latMin`, `lngMax` și `lngMin` din Orașe digitale: sunt limitele unei zone, nu un punct.
+
+Candidate members of reviewed groups (batches C2 and D). They are not in `inventar-concepte.json`: a reviewed group cannot hold a member that the owner has not confirmed. Each line is a selector that the owner can add after the decision:
+
+- `cui`: `{"projects": ["lista-firme"], "names": ["cui"], "path": ["companies.cui"], "source": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_184655_create_companies_table.php", "context": "CUI-ul firmei din tabelul `companies` (coloană text, unică); API-ul îl primește ca parametru `cui`"}`
+- `judet`: `{"projects": ["lista-firme"], "names": ["county"], "path": ["addresses.county"], "source": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_190138_create_addresses_table.php", "context": "județul din adresa firmei (relația `address`)"}`
+- `judet`: `{"projects": ["trei-din-patru"], "names": ["Județul"], "path": ["tabel1.Județul"], "source": "https://mariuscomper.uk/trei-din-patru/", "context": "județul din primul tabel al paginii (sate cu școală în 2013–14 și 2025–26)"}`
+- `judet`: `{"projects": ["trei-din-patru"], "names": ["counties[]"], "path": ["$.counties[]"], "source": "https://mariuscomper.uk/trei-din-patru/assets/places.7edc94b58896.json", "context": "lista numelor de județe din fișierul de date al hărții"}`
+- `judet`: `{"projects": ["unde-locuiesc"], "names": ["county"], "path": ["CITY_DATA[].county"], "source": "https://mariuscomper.uk/unde-locuiesc/data.js", "context": "județul orașului din catalogul celor opt orașe"}`
+- `localitate`: `{"projects": ["lista-firme"], "names": ["city"], "path": ["addresses.city"], "source": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_190138_create_addresses_table.php", "context": "localitatea din adresa firmei (relația `address`)"}`
+- `localitate`: `{"projects": ["unde-locuiesc"], "names": ["name"], "path": ["CITY_DATA[].name"], "source": "https://mariuscomper.uk/unde-locuiesc/data.js", "context": "orașul din catalogul celor opt orașe"}`
+- `localitate`: `{"projects": ["dupa-cutremur"], "names": ["oras"], "path": ["$.features[].properties.oras"], "source": ["https://storage.googleapis.com/dupacutremur/cladiri_complete_03032024.geojson?v=1", "https://storage.googleapis.com/dupacutremur/puncte_complete_03032024.geojson?v=1"], "context": "orașul clădirii, în proprietățile fiecărei clădiri"}`
+- `localitate`: `{"projects": ["statul-digital"], "names": ["city"], "path": ["STATUL_DIGITAL_DATA.dataCenters[].city"], "source": "https://mariuscomper.uk/statul-digital/data.js", "context": "orașul unui centru de date al cloudului guvernamental (locul unei infrastructuri, nu adresa unei firme)"}`
+- `populatie`: `{"projects": ["unde-locuiesc"], "names": ["population"], "path": ["CITY_DATA[].population"], "source": "https://mariuscomper.uk/unde-locuiesc/data.js", "context": "populația rezidentă a orașului din RPL 2021, la 1 decembrie, cum scrie pagina"}`
+- `populatie`: `{"projects": ["onorata-instanta"], "names": ["Populația"], "path": ["Populația"], "source": "https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/judecatorii-instante-2014.tsv", "context": "populația din raza unei judecătorii; pagina „Despre” numește recensământul INS printre surse, dar nu spune de ce an este coloana"}`
+- `perioada-de-referinta`: `{"projects": ["trei-din-patru"], "names": ["TIME_PERIOD"], "source": ["https://ins.gov2.ro/api/datasets/SCL101B?lang=en", "https://ins.gov2.ro/api/datasets/SCL103I?lang=en", "https://ins.gov2.ro/api/datasets/SCL105A?lang=en"], "context": "perioada seriei INS (dimensiunea TIME_PERIOD, an)"}`
+- `perioada-de-referinta`: `{"projects": ["trei-din-patru"], "names": ["years[]"], "path": ["$.years[]"], "source": "https://mariuscomper.uk/trei-din-patru/assets/places.7edc94b58896.json", "context": "anii școlari 2013–14 … 2025–26 ai listelor Ministerului Educației"}`
+- `perioada-de-referinta`: `{"projects": ["pe-datorie"], "names": ["Anul"], "path": ["tabel2.Anul"], "source": "https://mariuscomper.uk/pe-datorie/", "context": "anul din tabelul deficitului, pe ani (an calendaristic)"}`
 
 ## 6. Provider proposals
 
@@ -443,6 +637,28 @@ The producer, the distributor and the project author are named apart in each ite
 | D186 | `data-expertforum` | Guvernul României | medie |
 | D187 | `bani-partide` | Ministerul Finanțelor | mica |
 | D188 | `data-expertforum` | Monitorul Oficial | medie |
+| D189 | `lista-firme` | Oficiul Național al Registrului Comerțului (ONRC) | medie |
+| D190 | `lista-firme` | ANAF | medie |
+| D191 | `reciclare-arad` | RETIM | medie |
+| D192 | `reciclare-arad` | Primăria Municipiului Arad | mica |
+| D193 | `onorata-instanta` | Consiliul Superior al Magistraturii | medie |
+| D194 | `onorata-instanta` | Ministerul Justiției (portalul instanțelor) | medie |
+| D195 | `onorata-instanta` | Institutul Național de Statistică (INS) | medie |
+| D196 | `sondaje-romania` | Biroul Electoral Central (BEC) | medie |
+| D197 | `sondaje-romania` | INSCOP Research | medie |
+| D198 | `sondaje-romania` | CURS | medie |
+| D199 | `sondaje-romania` | IRES | medie |
+| D200 | `sondaje-romania` | MKOR | mica |
+| D201 | `sondaje-romania` | Camera Deputaților | mica |
+| D202 | `sondaje-romania` | Senatul României | mica |
+| D203 | `dupa-cutremur` | AMCCRS (Primăria Municipiului București) | medie |
+| D204 | `dupa-cutremur` | OpenStreetMap | mica |
+| D205 | `unde-locuiesc` | Institutul Național de Statistică (INS) | medie |
+| D206 | `unde-locuiesc` | S.C. Informatică Feroviară S.A. | medie |
+| D207 | `trei-din-patru` | Wikidata | medie |
+| D208 | `statul-digital` | SICAP / SEAP | medie |
+| D209 | `ce-face-statul-cu-1000-de-lei` | Ministerul Finanțelor | medie |
+| D210 | `pe-datorie` | Fitch Ratings | mica |
 
 ## 7. Network, methods and blockers
 
@@ -452,14 +668,18 @@ The producer, the distributor and the project author are named apart in each ite
 | B2 | 6 | 0 | 1,525,547 | 0 | 0 |
 | C | 78 | 5 | 2,401,342 | 4 | 6 |
 | C2 | 32 | 10 | 18,880,135 | 2 | 0 |
+| D | 76 | 0 | 4,224,434 | 3 | 96 |
 | demoanaf-api-docs | 4 | 0 | 315,089 | 0 | 0 |
 
-Total direct requests: 126. The limit for lot C was 150 including retries; no request was retried. Lot B is the INS listing and five metadata records; lot B2 is six gap sources of existing inventories. Elapsed work and workers: requests ran one at a time, so the six-worker and two-per-host limits were never reached.
+Total direct requests: 202. The limit for lot C was 150 including retries; no request was retried. Lot B is the INS listing and five metadata records; lot B2 is six gap sources of existing inventories. Elapsed work and workers: requests ran one at a time, so the six-worker and two-per-host limits were never reached.
 Lot C2 (brief limit: 60 direct requests and two browser pages for each entry): 18 direct requests in the request log (6 did not end in HTTP 200 or 206: four answered 403 and two were responses of more than 2,000,000 bytes that the fetcher refused), 7,484,573 bytes read (4,000,002 of them from the two refused responses, which were cut at the size limit), no retry. Two more requests were made by `collect_docs.py --force --only romania-interactiva`, which does not write the log, so 20 in all. Browser: 2 navigations (`harta-notelor/`, `locale/`) and 0 data requests: both pages request no data file.
 Hosts of lot C2: romaniainteractiva.ro 10 (the log) plus 2 (collector), ins.gov2.ro 3, expertforum.ro 2, banipartide.ro 1, data.expertforum.ro 1, orase-digitale.ro 1. All sources except the two sample reads were read once and replayed from the local cache. The three hosts that answered 403 were not requested again after the first answer. The collector did not run for the two blocked entries: a request for each page of an entry that already answered 403 would not have followed the stop rule.
 Proposed rows for `colectare-interzisa.csv` (not added by the session; on 2026-10-26 the owner added `banipartide.ro` and `expertforum.ro`, and the second row covers `data.expertforum.ro`): `banipartide.ro`, `data.expertforum.ro` and `expertforum.ro`, motive "answers HTTP 403 to automated requests", evidence the request log rows of 2026-10-26 and `documentare/index.json` (2026-10-24). A 403 may come from a filter on the client and not from a prohibition; the file lists hosts whose terms or answers forbid automated access, so the owner decides the wording.
 Part 2 (data-expertforum, brief section 7: at most 30 requests, all to docs.google.com and its redirect host): 14 direct requests, one for each Google Sheet tab, all GET to docs.google.com. Each answered HTTP 200 after a redirect to a doc-NN-c0-sheets.googleusercontent.com host (seven hosts). Four responses were over 2,000,000 bytes and the fetcher refused them after 2,000,001 bytes each (8,000,004 bytes); the other ten gave 3,395,558 bytes. No retry. No request went to expertforum.ro, data.expertforum.ro, banipartide.ro or www.google.com: the links of the saved page are wrapped as google.com/url?q=TARGET and the reader takes the target without a request. The Drive file and the Drive folder were not requested. Browser: none.
 Part 3 (bani-partide, brief section 8.1): 0 requests and no browser navigation. The copy that the owner saved (11,493 bytes, SHA-256 `252c26c05f04f3c8…`) was imported with `inventory.py --import-saved`. `banipartide.ro` and its subdomains are on the list of hosts that no script requests, and the owner's local checkout of the project was not read.
+Lot D (brief limit: 120 direct requests, at most 15 for each entry, two browser pages for each entry, ten new sources for each entry): 76 direct requests in the request log, all HTTP 200 or 206 (13 range reads), 4,224,434 bytes, no retry, no concurrent request (the requests ran one at a time). `collect_docs.py` made 0 requests (all twelve entries were collected). By entry: lista-firme 15, onorata-instanta 12, politicieni-corupti 12, reciclare-arad 9, dupa-cutremur 7, trei-din-patru 6, sondaje-romania 5, ce-face-statul-cu-1000-de-lei 3, guvernezi 2, statul-digital 2, unde-locuiesc 2, pe-datorie 1.
+Hosts of lot D: raw.githubusercontent.com 34, mariuscomper.uk 11, api.github.com 8, storage.googleapis.com 6, sondajeromania.ro 5, ins.gov2.ro 3, politicieni-corupti.ro 3, www.onoratainstanta.ro 2, www.guvernezi.ro 2, lista-firme.info 1, sites.google.com 1. No listed host (`colectare-interzisa.csv`) was requested; the Google Drive folder and the bit.ly link of `dupa-cutremur` were not requested.
+Browser: 3 navigations (`guvernezi.ro/`, `sondajeromania.ro/parlamentare`, `politicieni-corupti.ro/lista`), at most one for each entry; the record of the third (20,000 characters of the rendered list, with names of persons) was deleted and is not in git, so the log keeps the navigation and no render record. The browser made 96 same-site requests, which are not counted as direct requests: 80 for sondajeromania.ro (Next.js route prefetches, among them the four JSON data files) and 16 for guvernezi.ro (one data request, `/api/realizari`). The page of politicieni-corupti.ro made none.
 The request log (`observatii/inventare/jurnal-cereri.csv`) lists every request with its outcome, method, bytes and purpose. It holds no headers or credentials.
 
 Methods used: documentation collection with page-link and text discovery; CSV, JSON, JSON Schema and OpenAPI parsers; INS TEMPO metadata facts; readers for HTML tables, markdown tables, SQL, C#, Laravel PHP, annotated JSON in documents, page scripts and API reference pages (endpoint cards); repository files pinned to a recorded commit and verified by git blob hash; bounded range reads for large CSV files; a headless-browser render of single pages (optional, `scripts/render_pages.py`).
@@ -479,6 +699,12 @@ External blockers and security findings:
 - `romaniainteractiva.ro/locale/` and `/harta-notelor/` (lot C2): responses of more than 2,000,000 bytes. A range read of 600,000 bytes ends before the data script; the data was not read.
 - `orase-digitale.ro` (lot C2): the page names no source for the population (`pop`) of a city and no licence for the index.
 - `docs.google.com` tabs of `data-expertforum` (lot C2, part 2): four exports are over 2,000,000 bytes (gid 0, 2098148876, 1630617809 and 1272308734) and are not parsed. Google ignores a byte range on the export, so a bounded read still starts the same request.
+- `lista-firme.info` (lot D): the live API was not requested. The README documents `GET /api/v1/info?cui=` and `?name=` (the code reads `company`); the routes file has the one route `info` and a fallback that aborts any other API path with 401 (by the code; not requested); no key is documented. The response lists legal representatives (natural persons).
+- `onoratainstanta.ro` and `politicieni-corupti.ro` (lot D) hold records about persons. The inventory keeps schemas, column names and observed types only. The people table of onoratainstanta (`oameni.tsv`) was not requested; the four records of the politicians sample are in the ignored local cache, not in git.
+- `dupa-cutremur` (lot D): the download page links a Google Drive folder and a bit.ly address; neither was requested. The collector failed on any link with letters outside ASCII (an `eroare-retea` on three pages of the site in the first collection); fixed on 2026-10-27, with a test.
+- `sondajeromania.ro` (lot D): three declarations of the licence differ (CC BY 4.0 in `llms.txt` and in the first Dataset, CC BY-NC 4.0 in the Dataset of the parliamentary page).
+- `guvernezi.ro` (lot D): no file, API or schema; the data are text pages. The state is `investigat-fara-surse`, a new state of the coverage export.
+- No host answered 401, 403 or 429 in lot D, so there is no proposed row for `colectare-interzisa.csv`.
 
 ## 8. Verification
 
@@ -495,6 +721,7 @@ External blockers and security findings:
 - Batch C2 part 2 (branch `inventory-c2-efor`, 2026-10-26): `python3 scripts/validate.py --publication`: 142 entries, 0 errors, 0 warnings. `python3 scripts/inventory.py --check`: 0 evidence errors; 109 source bodies hash-verified (99 before); 4 copies saved by the owner hash-verified; 95 dictionary evidence items verified (84 before), 0 stale. Unit tests: 669 run, 6 skipped (627 and 6 before part 2); new: `test_inventory_setlist` 26, `test_inventory_sheet` 12, 2 in `test_inventory_site` and 2 in `test_inventory_report`. `python3 scripts/build.py --site-dir <scratch folder> --with-inventory`: succeeds; the finder index holds 128 entries and 36 groups, `site/` has no change. Browser, against the served scratch build on port 8771: `check_preview.py` 111/111, `check_inventory_preview.py` 31/31, `check_data_finder.py` 40/40. Replay: `inventory.py --offline` on a copy of the tracked folder gives the six generated files byte for byte.
 - Batch C2 part 3 (branch `inventory-c2-banipartide`, 2026-10-26): `python3 scripts/validate.py --publication`: 142 entries, 0 errors, 0 warnings. `python3 scripts/inventory.py --check`: 0 evidence errors; 110 source bodies hash-verified (109 before); 5 copies saved by the owner hash-verified (4 before); 102 dictionary evidence items verified (95 before), 0 stale. Unit tests: 701 run, 6 skipped (671 and 6 before part 3); new: `test_inventory_datasette` 24, 2 in `test_saved_copies`, 2 in `test_inventory_site` and 2 in `test_inventory_report` (the blocker test no longer depends on `bani-partide`). `python3 scripts/build.py --site-dir <scratch folder> --with-inventory`: succeeds; the finder index holds 128 entries and 38 groups, `site/` has no change. Browser, against the served scratch build: `check_preview.py` 111/111, `check_inventory_preview.py` 31/31, `check_data_finder.py` 40/40; a one-off check of the field browser of `bani-partide` (10 checks: the tables with their row counts, the licence credit and its link, the title of the source). Replay: `inventory.py --offline` on a copy of the tracked folder gives the six generated files byte for byte. 0 requests in this part.
 - The relation to data, steps D and E (branch `data-relation-de`, 2026-10-26): `python3 scripts/validate.py --publication`: 142 entries, 0 errors, 0 warnings. `python3 scripts/inventory.py --check`: 0 evidence errors; 110 source bodies hash-verified; 5 copies saved by the owner hash-verified; 102 dictionary evidence items verified, 0 stale. Unit tests: 724 run, 6 skipped (701 and 6 before); new: 8 in `test_inventory_site` (class `Scope`), 5 in `test_inventory_report` (`Scope`), 3 in `test_collect_docs`, 7 in `test_inventory_state` (`ScopeOfTheSelection`, `ScopeInTheCommand`). `python3 scripts/build.py --site-dir <scratch folder> --with-inventory`: succeeds; the finder index holds 85 entries (126 before the scope rule): 73 projects and 12 resources; it leaves out 41 (18 without data, 5 not assessed, 18 inactive); `/date/lista/` has 31 rows and 54 entries without fields. Browser, against the served scratch build: `check_preview.py` 138/138 (111 before), `check_inventory_preview.py` 36/36 (31), `check_data_finder.py` 62/62 (40). Replay: `inventory.py --offline` on a copy of the tracked folder gives the six generated files byte for byte. 0 requests in this work.
+- Batch D (branch `inventory-batch-d`, 2026-10-27): `python3 scripts/validate.py --publication`: 142 entries, 0 errors, 0 warnings. `python3 scripts/inventory.py --check`: 0 evidence errors; 145 source bodies hash-verified (110 before the batch); 117 dictionary evidence items verified (103 before), 0 stale. Unit tests: 772 run, 6 skipped (727 and 6 before the batch); new: `test_inventory_jsonsample` 20 and 6 + 6 + 2 + 3 + 8 in `test_inventory_literals`, `test_inventory_sheet`, `test_inventory_text`, `test_collect_docs` and `test_inventory_report`. Replay: `inventory.py --offline` on a copy of the tracked folder reproduces the six generated files byte for byte. `python3 scripts/build.py --site-dir <scratch folder> --with-inventory`: succeeds; `site/` has no change. Browser, against the served preview: `check_preview.py` 141/141, `check_inventory_preview.py` 40/40, `check_data_finder.py` 61/61 (one check was rewritten: cards with evidence come first and 24 are shown at a time, so the check that an uninventoried project is reachable now opens every page of cards).
 
 ## 9. Remaining review work
 
@@ -505,3 +732,4 @@ External blockers and security findings:
 - Re-render `aerlive.ro` with permission for a third navigation; read the other 74 Dignitas patches; fetch the 28 documented candidates only if a reviewer needs them.
 - Resolve the 62 unconfirmed profiles and the 100 projects and resources without extracted fields; a missing extraction does not prove missing data.
 - Batch C2: decide the 3 proposed groups of part 1 (`casatorii`, `divorturi`, `studenti`; done 2026-10-26) and the 3 of part 2 (`uat`, `partid-politic`, `beneficiar-fonduri-publice`), the candidate members for the reviewed groups (`judet`, `perioada-de-referinta`, `populatie`, `localitate` from part 1; `siruta`, `cui`, `judet`, `localitate`, `voturi-valide` from part 2), and the provider items D176–D185 (decided 2026-10-26) and D186. Decide whether a tab over 2,000,000 bytes may be read for its header. Part 3 (`bani-partide`): decide D187, the two proposed groups (`subventie-partid`, `donatie-partid`), the new members of the proposed groups `partid-politic` and `uat`, and the six candidate selectors for `cui`, `judet` and `perioada-de-referinta`; save the documentation pages of `banipartide.ro` if you want providers looked for in their text.
+- Batch D (twelve entries of „De analizat”): decide the provider items D189–D210, the two new proposed groups (`deficit-bugetar`, `coordonate-geografice`), the selectors added to the proposed groups `partid-politic` and `uat`, and the candidate members for the reviewed groups (section 5). Decide whether a new family for public finance is wanted (`deficit-bugetar` sits in `achizitii`). Decide whether `guvernezi` needs a reader for its profile pages or an export from its owner.

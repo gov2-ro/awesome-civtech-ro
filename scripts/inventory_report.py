@@ -28,8 +28,9 @@ COLUMNS = ['slug', 'tip_entitate', 'investigat_in_lot', 'stare_investigare', 'su
 # The states of `stare_investigare` for an entry without a usable or failed source. An entry out of the variable inventory (common.inventory_exclusion)
 # gets the reason as its state: `fara-date`, `inactiv` or `neevaluat` (an empty `relatie_date`). Their `urmatorul_pas` is empty, except `neevaluat`:
 # it asks the editor for a value, because the entry leaves /date/ until there is one. An entry with a usable or a failed source keeps `cu-surse-structurate` or `blocat`.
-STATES = ('cu-surse-structurate', 'blocat', 'neinvestigat-in-lot', 'fara-date', 'inactiv', UNASSESSED, 'in-afara-ariei')
+STATES = ('cu-surse-structurate', 'blocat', 'investigat-fara-surse', 'neinvestigat-in-lot', 'fara-date', 'inactiv', UNASSESSED, 'in-afara-ariei')
 NEXT_STEP = {'neinvestigat-in-lot': 'Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor.',
+             'investigat-fara-surse': 'Un lot a căutat o sursă structurată publică și nu a găsit niciuna. Un export sau o schemă de la proprietar ar ajuta. Lipsa extragerii nu înseamnă lipsa datelor.',
              UNASSESSED: 'Stabiliți valoarea relatie_date în intrari.csv. Fără ea, intrarea nu apare în /date/.'}
 # Measured at the baseline commit (the brief, section 3).
 BASELINE = {'entries': 140, 'projects': 106, 'resources': 21, 'organisations': 13, 'finder': 127, 'with_fields': 14, 'without_fields': 113,
@@ -41,6 +42,8 @@ BATCH = ['afacut', 'biografia-localitatii', 'registrul-firmelor', 'dignitas', 'm
          'calitate-aer-radauti', 'banii-nostri', 'europescope', 'despre-femicid']
 EXTRA_GAPS = ['companii-de-stat', 'transparenta-eu', 'romania-transparenta', 'codurbanism']
 BATCH_C2 = ['data-expertforum', 'bani-partide', 'romania-interactiva']  # lot C2: the three active projects of public-sector data
+BATCH_D = ['lista-firme', 'dupa-cutremur', 'reciclare-arad', 'onorata-instanta', 'sondaje-romania', 'guvernezi', 'politicieni-corupti', 'unde-locuiesc',
+           'trei-din-patru', 'statul-digital', 'pe-datorie', 'ce-face-statul-cu-1000-de-lei']  # lot D: twelve entries of „De analizat” with the strongest signals
 INS_USERS = ['ins-gov2', 'constru-pentru-cine', 'orasul-care-se-intinde', 'demoanaf', 'unde-se-termina-asfaltul', 'biografia-localitatii']
 MEASURE_CATEGORIES = ('masura', 'iesire-derivata')
 REVIEW_STATES = ('deschis', 'acceptat', 'respins', 'amanat', 'tehnic')  # revizuire_stare, in the order the report lists them
@@ -93,10 +96,11 @@ def membership(data):
 def lots(data):
     """Which collection lots touched which entries. C: the primary batch. B: entries given INS dataset records.
     B2: existing inventories that got a source for a named gap. C2: the three active projects of public-sector data (an entry whose host answered 403
-    is in the lot, with the state `blocat`). S: entries with a page that the owner saved by hand (no request was possible).
+    is in the lot, with the state `blocat`). D: twelve entries of „De analizat” (an entry without a usable source has the state `investigat-fara-surse`).
+    S: entries with a page that the owner saved by hand (no request was possible).
     Entries with fields and no lot come from the baseline pass."""
     touched = {}
-    for lot, slugs in (('C', BATCH), ('B', INS_USERS), ('B2', EXTRA_GAPS), ('C2', BATCH_C2)):
+    for lot, slugs in (('C', BATCH), ('B', INS_USERS), ('B2', EXTRA_GAPS), ('C2', BATCH_C2), ('D', BATCH_D)):
         for slug in slugs:
             touched.setdefault(slug, set()).add(lot)
     for slug, profile in data['profiles'].items():
@@ -126,7 +130,7 @@ def coverage_rows(data):
         elif failed or (note.get('blocaj') and not sources):  # a host that refused every request leaves no source record; the notes say why
             state = 'blocat'
         else:
-            state = data['scope'][slug] or 'neinvestigat-in-lot'
+            state = data['scope'][slug] or ('investigat-fara-surse' if touched.get(slug) else 'neinvestigat-in-lot')
         measures = members[slug]['measures']
         known_measures = bool(usable)
         verified = sum(1 for r in registry.get(slug, []) if r['locator_stare'] == 'cunoscut' and r['metoda'] != 'membru-anterior'
@@ -344,7 +348,7 @@ def render_report(data, rows):
 
     for slug in BATCH:
         outcome(slug)
-    w('Reserve entries (`ce-fac-politicienii`, `onorata-instanta`, `guvernezi`) were not used: all 12 primary entries produced evidence.')
+    w('Reserve entries of lot C (`ce-fac-politicienii`, `onorata-instanta`, `guvernezi`) were not used: all 12 primary entries produced evidence.')
     w('')
     if notes.get('lot_c2'):
         w('### Batch C2: three active projects that publish public-sector data')
@@ -353,6 +357,14 @@ def render_report(data, rows):
             w(line)
             w('')
         for slug in BATCH_C2:
+            outcome(slug, '####', proposals=True)
+    if notes.get('lot_d'):
+        w('### Batch D: twelve entries of „De analizat”')
+        w('')
+        for line in notes['lot_d']:
+            w(line)
+            w('')
+        for slug in BATCH_D:
             outcome(slug, '####', proposals=True)
     w('## 4. Existing inventories and INS')
     w('')
@@ -391,7 +403,7 @@ def render_report(data, rows):
             w(f'- `{concept["id"]}`: {text}')
     w('')
     if notes.get('selectori_candidati'):
-        w('Candidate members of reviewed groups (batch C2). They are not in `inventar-concepte.json`: a reviewed group cannot hold a member that the owner has not confirmed. '
+        w('Candidate members of reviewed groups (batches C2 and D). They are not in `inventar-concepte.json`: a reviewed group cannot hold a member that the owner has not confirmed. '
           'Each line is a selector that the owner can add after the decision:')
         w('')
         for item in notes['selectori_candidati']:
@@ -428,6 +440,8 @@ def render_report(data, rows):
     w(f'Total direct requests: {m["direct_requests"]}. The limit for lot C was 150 including retries; no request was retried. Lot B is the INS listing and five metadata records;'
       ' lot B2 is six gap sources of existing inventories. Elapsed work and workers: requests ran one at a time, so the six-worker and two-per-host limits were never reached.')
     for line in notes.get('retea_c2', []):
+        w(line)
+    for line in notes.get('retea_d', []):
         w(line)
     w('The request log (`observatii/inventare/jurnal-cereri.csv`) lists every request with its outcome, method, bytes and purpose. It holds no headers or credentials.')
     w('')

@@ -5,10 +5,11 @@ import io
 import re
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 import inventory_report as report
-from common import PUBLIC_ROOT
-from inventory_concepts import EvidenceLocator
+from common import PUBLIC_ROOT, forbidden
+from inventory_concepts import EvidenceLocator, selector_matches
 
 ROOT = Path(__file__).resolve().parents[1]
 BRIEF_COLUMNS = ['slug', 'tip_entitate', 'investigat_in_lot', 'stare_investigare', 'surse_structurate', 'campuri_din_surse', 'concepte_propuse',
@@ -165,6 +166,117 @@ class Coverage(unittest.TestCase):
         if text is not None:  # the retained bodies are not in git: a fresh checkout cannot compare
             self.assertTrue(hashlib.sha256(text.encode()).hexdigest().startswith(cited.group(2)))
             self.assertIn('"name": "' + item['valoare_originala'] + '"', text)
+
+    # --- batch D -------------------------------------------------------------------------------------------------------------------------------
+    def tracked_fields(self):
+        fields = {}
+        for slug, profile in self.data['profiles'].items():
+            for ref in profile['surse_structurate']:
+                source = self.data['sources'][ref]
+                fields.setdefault(slug, []).extend(({'name': f['nume'], 'path': f['cale'], 'role': f.get('rol')}, source['url']) for f in source['campuri'])
+        return fields
+
+    def test_batch_d_is_the_twelve_entries_of_the_brief_and_each_state_follows_the_evidence(self):
+        self.assertEqual(report.BATCH_D, ['lista-firme', 'dupa-cutremur', 'reciclare-arad', 'onorata-instanta', 'sondaje-romania', 'guvernezi', 'politicieni-corupti',
+                                          'unde-locuiesc', 'trei-din-patru', 'statul-digital', 'pe-datorie', 'ce-face-statul-cu-1000-de-lei'])
+        for reserve in ('monitor-safe', 'igov', 'ce-fac-politicienii'):
+            self.assertNotIn(reserve, report.BATCH_D, 'a reserve entry joins the lot only when a primary entry is blocked')
+        for slug in report.BATCH_D:
+            self.assertEqual(self.by[slug]['investigat_in_lot'].split('|').count('D'), 1, slug)
+            note = self.data['notes']['note'][slug]
+            self.assertTrue(note['rezultat'] and note['limite'] and note['limite_en'] and note['urmator_en'], slug)
+            usable = [r for r in self.data['profiles'][slug]['surse_structurate'] if self.data['sources'][r].get('stare') == 'analizat']
+            self.assertEqual(self.by[slug]['stare_investigare'], 'cu-surse-structurate' if usable else 'investigat-fara-surse', slug)
+            self.assertEqual(int(self.by[slug]['surse_structurate']), len(usable), slug)
+            if not usable:
+                self.assertTrue(self.by[slug]['urmatorul_pas'], 'an entry without a source says what could help')
+
+    def test_an_entry_that_a_lot_touched_without_a_source_or_a_blocker_has_its_own_state_and_nothing_else_does(self):
+        slug = next(e['slug'] for e in self.data['entries'] if e['kind'] != 'organizatie' and not self.data['profiles'][e['slug']]['surse_structurate']
+                    and e['slug'] not in self.data['notes']['note'] and not self.data['scope'][e['slug']] and e['slug'] not in report.lots(self.data))
+        rows = lambda data: {r[0]: dict(zip(report.COLUMNS, r)) for r in report.coverage_rows(data)}
+        self.assertEqual(rows(self.data)[slug]['stare_investigare'], 'neinvestigat-in-lot')
+        with patch.object(report, 'BATCH_D', [slug]):
+            touched = rows(self.data)[slug]
+            self.assertEqual((touched['investigat_in_lot'], touched['stare_investigare']), ('D', 'investigat-fara-surse'))
+            self.assertEqual(touched['surse_structurate'], 0)
+            self.assertEqual((touched['concepte_propuse'], touched['masuri_cu_unitate'], touched['masuri_fara_unitate']), ('', '', ''), 'unknown stays unknown')
+            self.assertIn('investigat-fara-surse', report.STATES)
+            notes = self.data['notes']
+            blocked = {**self.data, 'notes': {**notes, 'note': {**notes['note'], slug: {'blocaj': 'HTTP 403 la cererea automată'}}}}
+            self.assertEqual(rows(blocked)[slug]['stare_investigare'], 'blocat', 'a recorded blocker decides before the lot')
+            hidden = {**self.data, 'scope': {**self.data['scope'], slug: 'fara-date'}}
+            self.assertEqual(rows(hidden)[slug]['stare_investigare'], 'fara-date', 'the scope decides before the lot')
+
+    def test_provider_items_of_batch_d_cite_evidence_that_a_retained_copy_holds(self):
+        # The review state belongs to the owner, so the test does not pin it. An item still open must not block the publication gate.
+        items = [r for r in self.data['review'] if r['camp'] == 'surse_date' and r['slug'] in report.BATCH_D and r['id'].startswith('D') and int(r['id'][1:]) >= 189]
+        self.assertTrue(items)
+        locator = EvidenceLocator(ROOT / 'data/taxonomy-v2/observatii/inventare', ROOT / 'data/taxonomy-v2/observatii', list(self.data['sources'].values()))
+        for item in items:
+            if item['stare'] == 'deschis':
+                self.assertIn(item['prioritate'], ('medie', 'mica'), item['id'] + ': a high-priority open item would block the publication gate')
+            self.assertTrue(item['propunere'].startswith('Furnizor propus: '), item['id'])
+            self.assertIn('nu schimbă relatii.csv', item['motiv'], item['id'])
+            cited = re.search(r'Dovadă: (\S+) \(text păstrat, sha256 ([0-9a-f]{16})\)', item['motiv'])
+            self.assertTrue(cited, item['id'])
+            copies = [text for kind in ('sursa', 'documentatie', 'cache') for text, _ in [locator.text(cited.group(1), kind)] if text is not None]
+            matching = [t for t in copies if hashlib.sha256(t.encode()).hexdigest().startswith(cited.group(2))]
+            if copies:  # the retained bodies are not in git: a fresh checkout cannot compare
+                self.assertTrue(matching, item['id'] + ': no retained copy has the cited hash')
+                self.assertTrue(any(item['valoare_originala'] in t for t in matching), item['id'])
+
+    def test_a_provider_item_never_repeats_a_relation_that_the_entry_already_has(self):
+        accepted = {(r['subiect'], r['obiect_literal']) for r in self.data['relations'] if r['predicat'] == 'date_din' and r['stare'] == 'acceptat'}
+        for item in self.data['review']:
+            if item['camp'] == 'surse_date' and item['slug'] in report.BATCH_D and item['id'].startswith('D') and int(item['id'][1:]) >= 189 and item['stare'] == 'deschis':
+                self.assertNotIn((item['slug'], item['propunere'].removeprefix('Furnizor propus: ')), accepted, item['id'])
+
+    def test_the_candidate_members_of_batch_d_belong_to_reviewed_groups_match_a_field_and_are_not_members_yet(self):
+        # Confirmed candidates leave the notes, so a confirmed one passes this test by being absent.
+        fields = self.tracked_fields()
+        groups = {c['id']: c for c in self.data['concepts']}
+        for item in self.data['notes'].get('selectori_candidati', []):
+            selector = item['selector']
+            if not set(selector['projects']) & set(report.BATCH_D):
+                continue
+            self.assertIn(item['grup'], groups)
+            self.assertTrue(any(selector_matches(selector, slug, f, url) for slug in selector['projects'] for f, url in fields.get(slug, [])), (item['grup'], selector['names']))
+            self.assertNotIn(selector, groups[item['grup']]['selectors'], 'a member leaves the candidate list when the owner confirms it')
+
+    def test_every_selector_that_names_a_project_of_batch_d_matches_a_field_of_it(self):
+        fields = self.tracked_fields()
+        for group in self.data['concepts']:
+            for number, selector in enumerate(group['selectors'], 1):
+                if selector.get('stare') == 'exclus' or not set(selector['projects']) & set(report.BATCH_D):
+                    continue
+                self.assertTrue(any(selector_matches(selector, slug, f, url) for slug in selector['projects'] for f, url in fields.get(slug, [])),
+                                f'{group["id"]} selector {number}')
+
+    def test_the_inventory_of_the_entries_with_records_about_persons_keeps_field_names_and_no_value(self):
+        allowed = {'csv': {'nume', 'cale', 'tip_declarat', 'stare_tip', 'rol', 'coloana_csv', 'pointer'},
+                   'json-esantion': {'nume', 'cale', 'tipuri_observate', 'stare_tip', 'rol', 'pointer', 'numar_chei'}}
+        for slug in ('onorata-instanta', 'politicieni-corupti', 'dupa-cutremur'):
+            for ref in self.data['profiles'][slug]['surse_structurate']:
+                source = self.data['sources'][ref]
+                self.assertIn(source['format'], allowed, source['url'])
+                for field in source['campuri']:
+                    self.assertLessEqual(set(field), allowed[source['format']], (source['url'], field['nume']))
+        for group in self.data['concepts']:
+            evidence = list(group.get('dovezi', [])) + [f['dovada'] for s in group['selectors'] for f in s.get('fapte', []) if f.get('dovada')]
+            for item in evidence:
+                if any(slug in item['sursa'] for slug in ('dupacutremur', 'posibil-penali')):
+                    self.assertNotIn('"expert"', item['fragment'], 'the name of a person is not evidence of a variable')
+
+    def test_the_request_log_of_batch_d_stays_inside_the_limits_and_asks_no_listed_host(self):
+        rows = [r for r in self.data['log'] if r['lot'] == 'D']
+        direct = [r for r in rows if r['cache'] == 'nu']
+        self.assertTrue(direct)
+        self.assertLessEqual(len(direct), 120, 'the brief allows 120 direct requests in all')
+        self.assertFalse([r['url'] for r in direct if forbidden(r['url'])], 'a listed host gets no request')
+        self.assertEqual({r['metoda'] for r in direct}, {'GET'})
+        navigations = [r for r in rows if r['metoda'] == 'BROWSER']
+        self.assertEqual(len({r['url'] for r in navigations}), len(navigations), 'a page is rendered once')
 
     def test_baseline_figures_are_the_ones_of_the_brief(self):
         self.assertEqual((report.BASELINE['with_fields'], report.BASELINE['field_records'], report.BASELINE['groups']), (14, 2302, 7))

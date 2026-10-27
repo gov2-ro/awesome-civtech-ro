@@ -1,0 +1,664 @@
+{
+  "versiune": 1,
+  "proiect": "sondaje-romania",
+  "url_cerut": "https://sondajeromania.ro/parlamentare",
+  "url_final": "https://sondajeromania.ro/parlamentare",
+  "stare": "ok",
+  "http_status": 200,
+  "titlu": "Sondaje Parlamentare | Sondaje Romania",
+  "randat_la": "2026-10-26T23:39:54.679585+00:00",
+  "text_randat": ":HL[\"/_next/static/chunks/ccf753502ff1fde7.css\",\"style\"]\n:HL[\"/_next/static/media/1bffadaabf893a1e-s.p.7cd81963.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n:HL[\"/_next/static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n0:{\"buildId\":\"Om5Gze_nSHNYIT6U5-E8F\",\"tree\":{\"name\":\"\",\"paramType\":null,\"paramKey\":\"\",\"hasRuntimePrefetch\":false,\"slots\":{\"children\":{\"name\":\"coalitii\",\"paramType\":null,\"paramKey\":\"coalitii\",\"hasRuntimePrefetch\":false,\"slots\":{\"children\":{\"name\":\"__PAGE__\",\"paramType\":null,\"paramKey\":\"__PAGE__\",\"hasRuntimePrefetch\":false,\"slots\":null,\"isRootLayout\":false}},\"isRootLayout\":false}},\"isRootLayout\":true},\"staleTime\":300}\n",
+  "controale_vizibile": [],
+  "cereri_date": [
+    {
+      "metoda": "HEAD",
+      "url": "https://sondajeromania.ro/incredere",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/html",
+      "octeti": null
+    },
+    {
+      "metoda": "HEAD",
+      "url": "https://sondajeromania.ro/institute",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/html",
+      "octeti": null
+    },
+    {
+      "metoda": "HEAD",
+      "url": "https://sondajeromania.ro/bucharest",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/html",
+      "octeti": null
+    },
+    {
+      "metoda": "HEAD",
+      "url": "https://sondajeromania.ro/coalitii",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/html",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/seats-index.json",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/parliamentary-chart-data.json",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/average-seats.json",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/average-voting-intentions.json",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/bucharest/__next._tree.txt?_rsc=h02an",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/coalitii/__next._tree.txt?_rsc=h02an",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/institute/__next._tree.txt?_rsc=h02an",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "HEAD",
+      "url": "https://sondajeromania.ro/partid/pot",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/html",
+      "octeti": null
+    },
+    {
+      "metoda": "HEAD",
+      "url": "https://sondajeromania.ro/partid/sens",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/html",
+      "octeti": null
+    },
+    {
+      "metoda": "HEAD",
+      "url": "https://sondajeromania.ro/partid/sos",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/html",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/incredere/__next._tree.txt?_rsc=h02an",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/sos/__next._tree.txt?_rsc=h02an",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/pot/__next._tree.txt?_rsc=h02an",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/sens/__next._tree.txt?_rsc=h02an",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "HEAD",
+      "url": "https://sondajeromania.ro/partid/udmr",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/html",
+      "octeti": null
+    },
+    {
+      "metoda": "HEAD",
+      "url": "https://sondajeromania.ro/partid/usr",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/html",
+      "octeti": null
+    },
+    {
+      "metoda": "HEAD",
+      "url": "https://sondajeromania.ro/partid/aur",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/html",
+      "octeti": null
+    },
+    {
+      "metoda": "HEAD",
+      "url": "https://sondajeromania.ro/partid/pnl",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/html",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/udmr/__next._tree.txt?_rsc=h02an",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/usr/__next._tree.txt?_rsc=h02an",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/aur/__next._tree.txt?_rsc=h02an",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/pnl/__next._tree.txt?_rsc=h02an",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "HEAD",
+      "url": "https://sondajeromania.ro/parlamentare",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/html",
+      "octeti": null
+    },
+    {
+      "metoda": "HEAD",
+      "url": "https://sondajeromania.ro/partid/psd",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/html",
+      "octeti": null
+    },
+    {
+      "metoda": "HEAD",
+      "url": "https://sondajeromania.ro/sondaje-noi",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/html",
+      "octeti": null
+    },
+    {
+      "metoda": "HEAD",
+      "url": "https://sondajeromania.ro/",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/html",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/parlamentare/__next._tree.txt?_rsc=h02an",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/__next._tree.txt?_rsc=h02an",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/sondaje-noi/__next._tree.txt?_rsc=h02an",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/psd/__next._tree.txt?_rsc=h02an",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/sens/__next.partid.txt?_rsc=150mq",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/sens/__next.partid.$d$name.txt?_rsc=frhy1",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/sens/__next._index.txt?_rsc=c2hzv",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/sens/__next._head.txt?_rsc=s2des",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/pot/__next.partid.$d$name.txt?_rsc=frhy1",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/pot/__next.partid.$d$name.__PAGE__.txt?_rsc=1mm2i",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/pot/__next._head.txt?_rsc=s2des",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/sens/__next.partid.$d$name.__PAGE__.txt?_rsc=1mm2i",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/sos/__next._head.txt?_rsc=s2des",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/udmr/__next._head.txt?_rsc=s2des",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/sos/__next.partid.$d$name.__PAGE__.txt?_rsc=1mm2i",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/sos/__next.partid.$d$name.txt?_rsc=frhy1",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/udmr/__next.partid.$d$name.txt?_rsc=frhy1",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/usr/__next._head.txt?_rsc=s2des",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/udmr/__next.partid.$d$name.__PAGE__.txt?_rsc=1mm2i",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/usr/__next.partid.$d$name.txt?_rsc=frhy1",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/usr/__next.partid.$d$name.__PAGE__.txt?_rsc=1mm2i",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/pnl/__next.partid.$d$name.txt?_rsc=frhy1",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/pnl/__next._head.txt?_rsc=s2des",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/pnl/__next.partid.$d$name.__PAGE__.txt?_rsc=1mm2i",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/aur/__next.partid.$d$name.txt?_rsc=frhy1",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/aur/__next.partid.$d$name.__PAGE__.txt?_rsc=1mm2i",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/aur/__next._head.txt?_rsc=s2des",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/psd/__next._head.txt?_rsc=s2des",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/psd/__next.partid.$d$name.txt?_rsc=frhy1",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/institute/__next.institute.txt?_rsc=1pn9g",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/partid/psd/__next.partid.$d$name.__PAGE__.txt?_rsc=1mm2i",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/institute/__next._head.txt?_rsc=s2des",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/institute/__next.institute.__PAGE__.txt?_rsc=tzw7b",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/bucharest/__next._head.txt?_rsc=s2des",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/bucharest/__next.bucharest.txt?_rsc=u6mzg",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/bucharest/__next.bucharest.__PAGE__.txt?_rsc=xkayl",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/coalitii/__next._head.txt?_rsc=s2des",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/coalitii/__next.coalitii.txt?_rsc=16tco",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/coalitii/__next.coalitii.__PAGE__.txt?_rsc=5t7qk",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/incredere/__next._head.txt?_rsc=s2des",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/incredere/__next.incredere.txt?_rsc=10wjt",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/incredere/__next.incredere.__PAGE__.txt?_rsc=rp04f",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/parlamentare/__next._head.txt?_rsc=s2des",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/parlamentare/__next.parlamentare.txt?_rsc=14bvu",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/parlamentare/__next.parlamentare.__PAGE__.txt?_rsc=lsu92",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/sondaje-noi/__next._head.txt?_rsc=s2des",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/sondaje-noi/__next.sondaje-noi.txt?_rsc=12w6y",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/sondaje-noi/__next.sondaje-noi.__PAGE__.txt?_rsc=1brmm",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/__next._head.txt?_rsc=s2des",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://sondajeromania.ro/__next.__PAGE__.txt?_rsc=k3s9p",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    }
+  ],
+  "corpuri_pastrate": [
+    "https://sondajeromania.ro/seats-index.json",
+    "https://sondajeromania.ro/parliamentary-chart-data.json",
+    "https://sondajeromania.ro/average-seats.json",
+    "https://sondajeromania.ro/average-voting-intentions.json",
+    "https://sondajeromania.ro/bucharest/__next._tree.txt?_rsc=h02an",
+    "https://sondajeromania.ro/coalitii/__next._tree.txt?_rsc=h02an"
+  ],
+  "corpuri_omise": [],
+  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+}

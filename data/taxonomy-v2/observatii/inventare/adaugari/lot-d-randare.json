@@ -1,0 +1,26 @@
+[
+  {
+    "proiect": "sondaje-romania",
+    "url": "https://sondajeromania.ro/parliamentary-chart-data.json",
+    "metoda": "adaugat-explicit",
+    "parinte": "https://sondajeromania.ro/parlamentare",
+    "locate": {
+      "pagina": "https://sondajeromania.ro/parlamentare",
+      "randare": "https://sondajeromania.ro/parliamentary-chart-data.json"
+    },
+    "dovezi": [],
+    "nota": "The data of the chart on the parlamentare page: the weighted trend of each party by date (splineData) and the individual poll results as dots (rawDots). The browser received this file when it rendered the page; the plain request was not repeated. Read as the first 25 elements of each list."
+  },
+  {
+    "proiect": "sondaje-romania",
+    "url": "https://sondajeromania.ro/average-seats.json",
+    "metoda": "adaugat-explicit",
+    "parinte": "https://sondajeromania.ro/parlamentare",
+    "locate": {
+      "pagina": "https://sondajeromania.ro/parlamentare",
+      "randare": "https://sondajeromania.ro/average-seats.json"
+    },
+    "dovezi": [],
+    "nota": "The seat projection of the parlamentare page: one element for each seat of the hemicycle (position, radius, colour, party). The browser received this file when it rendered the page."
+  }
+]

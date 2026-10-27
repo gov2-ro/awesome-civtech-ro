@@ -168,6 +168,45 @@ class DocumentationCollection(unittest.TestCase):
         self.assertEqual(canonical('https://example.org/a/#method'), 'https://example.org/a/')
 
 
+class WireAddress(unittest.TestCase):
+    """A link may use letters outside ASCII (Google Sites writes `/descarcă-datele`). The fetcher sent it raw, and `http.client` refused it:
+    the page of the data downloads of dupa-cutremur was an `eroare-retea` ('ascii' codec can't encode character) in the first collection."""
+
+    def test_non_ascii_characters_of_the_path_the_query_and_the_host_are_encoded_for_the_wire(self):
+        self.assertEqual(collect_docs.wire_url('https://sites.google.com/rerise.org/dupacutremur/descarcă-datele'),
+                         'https://sites.google.com/rerise.org/dupacutremur/descarc%C4%83-datele')
+        self.assertEqual(collect_docs.wire_url('https://exemplu-ă.ro:8080/a b?x=ă&y=1'), 'https://xn--exemplu--67a.ro:8080/a%20b?x=%C4%83&y=1')
+
+    def test_an_address_that_is_ascii_or_already_encoded_does_not_change(self):
+        for url in ('https://example.org/a/b.csv?x=1&y=%C4%83', 'https://example.org/%zz?q=100%', 'https://user:pw@h.example/p', 'http://[::1]:80/x'):
+            self.assertEqual(collect_docs.wire_url(url), url)
+
+    def test_the_fetcher_sends_the_encoded_address_and_keeps_the_address_as_written_in_the_record(self):
+        sent = []
+
+        class Answer:
+            status, url = 200, 'https://example.org/descarc%C4%83'
+            headers = type('H', (), {'get_content_type': lambda self: 'text/html', 'get_content_charset': lambda self: 'utf-8', 'get': lambda self, *a: ''})()
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *exc):
+                return False
+
+            def read(self, size=-1):
+                return b'<p>ok</p>'
+
+        def fake_open(request, timeout):
+            sent.append(request.full_url)
+            return Answer()
+
+        with patch.object(collect_docs, 'urlopen', fake_open):
+            result = collect_docs.Fetcher()('https://example.org/descarcă')
+        self.assertEqual(sent, ['https://example.org/descarc%C4%83'])
+        self.assertEqual((result['state'], result['url']), ('ok', 'https://example.org/descarcă'))
+
+
 class ScopeOfTheSelection(unittest.TestCase):
     """The default selection of collect_docs.py leaves out the entries that are out of the variable inventory; `--only` collects them and says so.
     The test replaces the catalogue, the scope and the collection: it makes no request and reads no tracked file."""

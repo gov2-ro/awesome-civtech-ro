@@ -139,6 +139,72 @@ class Literals(unittest.TestCase):
                          [('A', False, 'valoare-nelitera'), ('B', False, 'expresie-dupa-literal')], 'code in the middle of a literal makes it code')
 
 
+SCRIPT_FILE = """// Data of a page, loaded with <script src>
+const SNAPSHOT = {
+  date: "26 august 2026",
+  stopCount: 1695
+};
+
+const CITY_DATA = Object.freeze([
+  { id: "a", name: "Alpha", population: 100, direct: ["B", "C"] },
+  { id: "b", name: "Beta", population: 200, direct: [] }
+]);
+
+window.BUNDLE = {
+  "meta": { "id": "x", "year": 2026 },
+  "rows": [ { "k": 1 }, { "k": 2 } ]
+};
+
+window.SNAPSHOT = SNAPSHOT;
+window.OTHER = Object.freeze(makeRows([1, 2]));
+const FROZEN_CALL = Object.freeze([1, 2]).map(String);
+"""
+
+
+class ScriptFiles(unittest.TestCase):
+    """A file that a page loads with <script src> (a body with no <script> element), `window.NAME = literal` and `Object.freeze(literal)`."""
+
+    def setUp(self):
+        self.fields, self.truncated = read(SCRIPT_FILE)
+        self.paths = by_path(self.fields)
+        self.declared = {d['variabila']: d for d in declarations(SCRIPT_FILE)}
+
+    def test_a_body_without_a_script_element_that_is_not_a_page_is_one_script(self):
+        self.assertIn('SNAPSHOT.stopCount', self.paths)
+        self.assertEqual(self.declared['SNAPSHOT']['linie'], 2)
+        self.assertEqual(self.declared['SNAPSHOT']['forma-sursa'], 'literal-script')
+
+    def test_the_literal_inside_object_freeze_is_the_data_and_the_locator_covers_only_the_literal(self):
+        self.assertEqual(self.paths['CITY_DATA[].population']['tipuri_observate'], ['integer'])
+        declared = self.declared['CITY_DATA']
+        self.assertEqual((declared['citit'], declared['forma'], declared['elemente']), (True, 'tablou', 2))
+        start, end = declared['pointer'].split(':')[1].split('-')
+        self.assertEqual(SCRIPT_FILE[int(start)], '[')
+        self.assertEqual(SCRIPT_FILE[int(end) - 1], ']', 'the closing parenthesis of the call is outside the locator')
+
+    def test_a_window_assignment_of_a_literal_is_read_under_the_name_after_window(self):
+        self.assertIn('BUNDLE.meta.year', self.paths)
+        self.assertEqual(self.declared['BUNDLE']['elemente'], 2)
+
+    def test_a_window_assignment_of_an_identifier_or_a_call_is_not_a_declaration(self):
+        self.assertEqual(self.declared['SNAPSHOT']['elemente'], 2, 'window.SNAPSHOT = SNAPSHOT is not a second declaration')
+        self.assertNotIn('OTHER', self.declared, 'a call other than Object.freeze is not read')
+        self.assertEqual([d for d in self.declared.values() if d.get('motiv')], [{**self.declared['FROZEN_CALL']}])
+        self.assertEqual(self.declared['FROZEN_CALL']['motiv'], 'expresie-dupa-literal')
+
+    def test_a_page_with_a_script_element_is_still_read_by_its_elements_and_an_html_body_without_one_is_not_a_script(self):
+        page = '<!doctype html><html><body><p>const X = {"a": 1};</p></body></html>'
+        self.assertEqual(read(page), ([], False))
+        inline = '<html><script>const Y = {"b": 2};</script></html>'
+        self.assertIn('Y.b', by_path(read(inline)[0]))
+
+    def test_a_script_file_is_a_source_with_the_reader_name_and_a_check_that_holds(self):
+        record = analyse_source({'url': 'https://example.org/data.js', 'final_url': 'https://example.org/data.js', 'state': 'ok', 'http_status': 200,
+                                 'content_type': 'text/javascript', 'body': SCRIPT_FILE, 'fetched_at': '2026-10-27T10:00:00+00:00'}, 'js-literale')
+        self.assertEqual((record['format'], record['stare'], record['baza_tipului']), ('js-literale', 'analizat', 'esantion-date'))
+        self.assertTrue(any(d['variabila'] == 'BUNDLE' for d in record['declaratii']))
+
+
 class JsonLd(unittest.TestCase):
     """The page's own schema.org Dataset: what it declares about its data set, never what the data means."""
 

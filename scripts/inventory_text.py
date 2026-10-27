@@ -7,7 +7,7 @@ Each reader returns field records in the shape of inventory.parse_source and nev
   second column lists items (`group | a, b, c`) gives one field per item.
 - `sql`: CREATE TABLE and single-column ALTER TABLE statements (declared SQL types).
 - `csharp`: public properties of classes, records and structs, and enum members (declared C# types).
-- `php`: Laravel migrations (`Schema::create`), API resources (`toArray`) and class constants (code lists).
+- `php`: Laravel migrations (`Schema::create`, and `Schema::table` in `up()` with `modificare` `alter-add`), API resources (`toArray`) and class constants (code lists).
 - `markdown`: dictionary tables written with pipes.
 - `js-acces`: names that a page script reads from a record object (`fields['Name']`). It is not a schema: it shows what the page uses.
 - `json-comentat`: annotated JSON examples in fenced code blocks of a design document (`"kind": "a | b"`, `// comment`, bare type names).
@@ -316,7 +316,8 @@ def sql(body):
     return 'sql', fields, False
 
 
-PHP_SCHEMA = re.compile(r"Schema::create\(\s*'(\w+)'")
+PHP_SCHEMA = re.compile(r"Schema::(create|table)\(\s*'(\w+)'")
+PHP_DOWN = re.compile(r'function\s+down\s*\(')
 PHP_COLUMN = re.compile(r"\$table->(\w+)\(")
 PHP_CONST = re.compile(r'^[ \t]*(?:public\s+|protected\s+|private\s+)?const\s+(\w+)\s*=\s*(-?\d+|\'[^\']*\'|"[^"]*")\s*;[ \t]*(?://\s*(.*))?$', re.M)
 PHP_RESOURCE = re.compile(r'function\s+toArray\s*\([^)]*\)[^{]*\{.*?\breturn\s*\[', re.S)
@@ -379,8 +380,13 @@ def doc_comment(block):
 
 def php(body):
     fields = []
+    down = PHP_DOWN.search(body)
     for create in PHP_SCHEMA.finditer(body):
-        table = create.group(1)
+        table = create.group(2)
+        altered = create.group(1) == 'table'
+        alter = {'modificare': 'alter-add'} if altered else {}
+        if altered and down and create.start() > down.start():
+            continue  # the reverse of a migration drops or restores columns; it adds nothing
         end = body.find('});', create.end())
         stop_at = end if end > 0 else len(body)
         chunk = body[:stop_at]
@@ -397,7 +403,7 @@ def php(body):
             nullable = 'nullable' in modifiers
             if method == 'timestamps':
                 for stamp in ('created_at', 'updated_at'):
-                    fields.append(code_field(body, stamp, f'{table}.{stamp}', 'timestamp', start, last, role='coloana-sql', grup=table, obligatoriu=False))
+                    fields.append(code_field(body, stamp, f'{table}.{stamp}', 'timestamp', start, last, role='coloana-sql', grup=table, obligatoriu=False, **alter))
                 continue
             if method in ('id',) and not name:
                 name, method = 'id', 'bigint unsigned'
@@ -406,13 +412,15 @@ def php(body):
                 if not model:
                     continue
                 name = re.sub(r'(?<!^)(?=[A-Z])', '_', model.group(1)).lower() + '_id'
-                extra_name = {'baza_numelui': 'conventie-laravel'}
+                extra_name = {'baza_numelui': 'conventie-laravel', **alter}
                 fields.append(code_field(body, name, f'{table}.{name}', 'foreignIdFor', start, last, role='coloana-sql', grup=table,
                                          obligatoriu=not nullable, modificatori=modifiers, **extra_name))
                 continue
             if not name or method in ('index', 'unique', 'primary', 'foreign', 'dropColumn', 'rename', 'dropIndex', 'fullText'):
                 continue
             extra = {'descriere': comment} if comment else {}
+            if altered:
+                extra['modificare'] = 'alter-change' if 'change' in modifiers else 'alter-add'
             if method == 'enum':
                 values = re.findall(r"'([^']+)'", argument)
                 if values:

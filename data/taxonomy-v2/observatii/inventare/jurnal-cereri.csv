@@ -137,3 +137,178 @@ C2,2026-10-26T18:39:31.324945+00:00,GET,https://docs.google.com/spreadsheets/d/1
 C2,2026-10-26T18:39:32.662493+00:00,GET,https://docs.google.com/spreadsheets/d/1PHHdzvmc3IXv530isAHQe7-YEjE0__LV/export?format=csv&gid=1356846398,ok,200,7799,nu,Part 2: CSV export of the tab that a link on the saved page data.expertforum.ro names; one request for each tab
 C2,2026-10-26T18:39:34.243883+00:00,GET,https://docs.google.com/spreadsheets/d/1-facW31PDjxlZhYP6niKcJjHZEe6QueP/export?format=csv&gid=1805797305,ok,200,115640,nu,Part 2: CSV export of the tab that a link on the saved page data.expertforum.ro names; one request for each tab
 C2,2026-10-26T18:39:35.843953+00:00,GET,https://docs.google.com/spreadsheets/d/1-fGcjCn45XU-c5fwc7DDAx_-w8eei5Dt/export?format=csv&gid=1050709184,ok,200,28722,nu,Part 2: CSV export of the tab that a link on the saved page data.expertforum.ro names; one request for each tab
+D,2026-10-26T23:11:19.819962+00:00,GET,https://api.github.com/repos/tudorr89/info-firme/commits/HEAD,ok,200,18890,nu,repository commit at HEAD
+D,2026-10-26T23:11:20.405892+00:00,GET,https://api.github.com/repos/baditaflorin/calendar-ridicare-gunoi-arad/commits/HEAD,ok,200,10248,nu,repository commit at HEAD
+D,2026-10-26T23:11:20.917689+00:00,GET,https://api.github.com/repos/funkycitizens/onoratainstanta/commits/HEAD,ok,200,5120,nu,repository commit at HEAD
+D,2026-10-26T23:11:36.376372+00:00,GET,https://api.github.com/repos/tudorr89/info-firme/git/trees/1dcb375547439c3ee66882c8f779f9f402e854c3?recursive=1,ok,200,130168,nu,repository tree at recorded commit
+D,2026-10-26T23:11:37.029103+00:00,GET,https://api.github.com/repos/baditaflorin/calendar-ridicare-gunoi-arad/git/trees/00ee173de1da726135a62e2c1fd2730816819d13?recursive=1,ok,200,308182,nu,repository tree at recorded commit
+D,2026-10-26T23:11:37.560990+00:00,GET,https://api.github.com/repos/funkycitizens/onoratainstanta/git/trees/b92894e45ac64f8c5987758d86f30ce2e94620aa?recursive=1,ok,200,180977,nu,repository tree at recorded commit
+D,2026-10-26T23:11:58.857887+00:00,GET,https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/README.md,ok,200,7593,nu,repository file at recorded commit (lista-firme)
+D,2026-10-26T23:11:59.177341+00:00,GET,https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/routes/api.php,ok,200,206,nu,repository file at recorded commit (lista-firme)
+D,2026-10-26T23:11:59.499690+00:00,GET,https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/routes/web.php,ok,200,1797,nu,repository file at recorded commit (lista-firme)
+D,2026-10-26T23:11:59.794607+00:00,GET,https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/app/Http/Controllers/API/CompanyController.php,ok,200,2349,nu,repository file at recorded commit (lista-firme)
+D,2026-10-26T23:12:19.214827+00:00,GET,https://lista-firme.info/termeni-si-conditii,ok,200,26912,nu,terms page linked from the home page (lista-firme): API and automated access rules
+D,2026-10-26T23:12:38.028724+00:00,GET,https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/app/Http/Requests/CompanyRequest.php,ok,200,1106,nu,repository file at recorded commit (lista-firme)
+D,2026-10-26T23:12:38.379154+00:00,GET,https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/app/Models/Company.php,ok,200,3705,nu,repository file at recorded commit (lista-firme)
+D,2026-10-26T23:12:38.690525+00:00,GET,https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_184655_create_companies_table.php,ok,200,711,nu,repository file at recorded commit (lista-firme)
+D,2026-10-26T23:12:39.021292+00:00,GET,https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2025_07_12_061535_add_fields_to_companies.php,ok,200,742,nu,repository file at recorded commit (lista-firme)
+D,2026-10-26T23:12:39.313364+00:00,GET,https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2026_01_02_201516_add_website_and_parent_country_to_companies_table.php,ok,200,794,nu,repository file at recorded commit (lista-firme)
+D,2026-10-26T23:13:23.340265+00:00,GET,https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_190138_create_addresses_table.php,ok,200,1202,nu,repository file at recorded commit (lista-firme)
+D,2026-10-26T23:13:23.640752+00:00,GET,https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_184907_create_infos_table.php,ok,200,1349,nu,repository file at recorded commit (lista-firme)
+D,2026-10-26T23:13:23.942378+00:00,GET,https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_184809_create_statuses_table.php,ok,200,632,nu,repository file at recorded commit (lista-firme)
+D,2026-10-26T23:13:57.651707+00:00,GET,https://raw.githubusercontent.com/baditaflorin/calendar-ridicare-gunoi-arad/00ee173de1da726135a62e2c1fd2730816819d13/README.md,ok,200,2394,nu,repository file at recorded commit (reciclare-arad)
+D,2026-10-26T23:13:57.994789+00:00,GET,https://raw.githubusercontent.com/baditaflorin/calendar-ridicare-gunoi-arad/00ee173de1da726135a62e2c1fd2730816819d13/docs/sources.md,ok,200,1178,nu,repository file at recorded commit (reciclare-arad)
+D,2026-10-26T23:13:58.333954+00:00,GET,https://raw.githubusercontent.com/baditaflorin/calendar-ridicare-gunoi-arad/00ee173de1da726135a62e2c1fd2730816819d13/docs/data/stats.json,ok,200,23750,nu,repository file at recorded commit (reciclare-arad)
+D,2026-10-26T23:13:58.656193+00:00,GET,https://raw.githubusercontent.com/baditaflorin/calendar-ridicare-gunoi-arad/00ee173de1da726135a62e2c1fd2730816819d13/docs/data/places/1.json,ok,200,26708,nu,repository file at recorded commit (reciclare-arad)
+D,2026-10-26T23:13:59.089585+00:00,GET,https://raw.githubusercontent.com/baditaflorin/calendar-ridicare-gunoi-arad/00ee173de1da726135a62e2c1fd2730816819d13/docs/data/catalog.json,ok,200,187035,nu,repository file at recorded commit (reciclare-arad)
+D,2026-10-26T23:13:59.407688+00:00,GET,https://raw.githubusercontent.com/baditaflorin/calendar-ridicare-gunoi-arad/00ee173de1da726135a62e2c1fd2730816819d13/docs/static/app.js,ok,200,23227,nu,repository file at recorded commit (reciclare-arad)
+D,2026-10-26T23:14:29.608063+00:00,GET,https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/Readme.md,ok,200,962,nu,repository file at recorded commit (onorata-instanta)
+D,2026-10-26T23:14:29.985129+00:00,GET,https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/gulpfile.js,ok,200,4755,nu,repository file at recorded commit (onorata-instanta)
+D,2026-10-26T23:14:44.219425+00:00,GET,https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/performanta-instante.tsv,ok,206,5000,nu,bounded sample of a TSV table at recorded commit (onorata-instanta)
+D,2026-10-26T23:14:44.576043+00:00,GET,https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/performanta-parchete.tsv,ok,206,5000,nu,bounded sample of a TSV table at recorded commit (onorata-instanta)
+D,2026-10-26T23:14:44.926384+00:00,GET,https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/judecatorii-instante-2014.tsv,ok,206,5000,nu,bounded sample of a TSV table at recorded commit (onorata-instanta)
+D,2026-10-26T23:15:05.673559+00:00,GET,https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/judecatorii-instante-2013.tsv,ok,206,5000,nu,bounded sample of a TSV table at recorded commit (onorata-instanta)
+D,2026-10-26T23:15:06.011364+00:00,GET,https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/judecatorii-parchete-2014.tsv,ok,206,5000,nu,bounded sample of a TSV table at recorded commit (onorata-instanta)
+D,2026-10-26T23:15:06.565283+00:00,GET,https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/judecatorii-instante-contact.tsv,ok,206,900,nu,bounded header sample of a contact table at recorded commit (onorata-instanta)
+D,2026-10-26T23:15:49.649665+00:00,GET,https://www.onoratainstanta.ro/indicele-de-performanta.html,ok,200,156304,nu,methodology pages linked from the home page (onorata-instanta)
+D,2026-10-26T23:15:49.930463+00:00,GET,https://www.onoratainstanta.ro/analize.html,ok,200,17623,nu,methodology pages linked from the home page (onorata-instanta)
+D,2026-10-26T23:16:00.629615+00:00,GET,https://sondajeromania.ro/parlamentare,ok,200,106721,nu,data page and sitemap named by llms.txt (sondaje-romania)
+D,2026-10-26T23:16:00.748471+00:00,GET,https://sondajeromania.ro/sitemap.xml,ok,200,4341,nu,data page and sitemap named by llms.txt (sondaje-romania)
+D,2026-10-26T23:16:14.827638+00:00,GET,https://sondajeromania.ro/average-voting-intentions.json,ok,200,2100,nu,data download and pages named by the Dataset JSON-LD and llms.txt (sondaje-romania)
+D,2026-10-26T23:16:14.985337+00:00,GET,https://sondajeromania.ro/sondaje-noi,ok,200,300906,nu,data download and pages named by the Dataset JSON-LD and llms.txt (sondaje-romania)
+D,2026-10-26T23:16:15.446115+00:00,GET,https://sondajeromania.ro/institute,ok,200,147577,nu,data download and pages named by the Dataset JSON-LD and llms.txt (sondaje-romania)
+D,2026-10-26T23:16:41.260611+00:00,GET,https://www.guvernezi.ro/politicieni,ok,200,124100,nu,politicians page and one profile page named by llms.txt (guvernezi)
+D,2026-10-26T23:16:41.481141+00:00,GET,https://www.guvernezi.ro/politicieni/ana-ciceala,ok,200,66906,nu,politicians page and one profile page named by llms.txt (guvernezi)
+D,2026-10-26T23:17:08.388959+00:00,GET,https://mariuscomper.uk/unde-locuiesc/,ok,200,18266,nu,project page HTML (mariuscomper.uk); the page holds its data
+D,2026-10-26T23:17:08.614521+00:00,GET,https://mariuscomper.uk/trei-din-patru/,ok,200,202094,nu,project page HTML (mariuscomper.uk); the page holds its data
+D,2026-10-26T23:17:08.889012+00:00,GET,https://mariuscomper.uk/statul-digital/,ok,200,63899,nu,project page HTML (mariuscomper.uk); the page holds its data
+D,2026-10-26T23:17:09.086091+00:00,GET,https://mariuscomper.uk/pe-datorie/,ok,200,72679,nu,project page HTML (mariuscomper.uk); the page holds its data
+D,2026-10-26T23:17:09.179321+00:00,GET,https://mariuscomper.uk/ce-face-statul-cu-1000-de-lei/,ok,200,13769,nu,project page HTML (mariuscomper.uk); the page holds its data
+D,2026-10-26T23:17:27.457835+00:00,GET,https://mariuscomper.uk/unde-locuiesc/data.js,ok,200,5901,nu,page data script (mariuscomper.uk)
+D,2026-10-26T23:17:27.662776+00:00,GET,https://mariuscomper.uk/statul-digital/data.js,ok,200,151240,nu,page data script (mariuscomper.uk)
+D,2026-10-26T23:17:27.809830+00:00,GET,https://mariuscomper.uk/ce-face-statul-cu-1000-de-lei/assets/app.js,ok,200,24797,nu,page data script (mariuscomper.uk)
+D,2026-10-26T23:18:08.539879+00:00,GET,https://mariuscomper.uk/ce-face-statul-cu-1000-de-lei/data/budget-romania.json,ok,200,133203,nu,page data files named by the page code or markup (mariuscomper.uk)
+D,2026-10-26T23:18:08.794418+00:00,GET,https://mariuscomper.uk/trei-din-patru/assets/places.7edc94b58896.json,ok,200,457302,nu,page data files named by the page code or markup (mariuscomper.uk)
+D,2026-10-26T23:18:09.080845+00:00,GET,https://mariuscomper.uk/trei-din-patru/assets/names.135c9dbdff65.json,ok,200,644767,nu,page data files named by the page code or markup (mariuscomper.uk)
+D,2026-10-26T23:18:29.973177+00:00,GET,https://sites.google.com/rerise.org/dupacutremur/descarc%C4%83-datele,ok,200,121783,nu,data download page linked from the home page (dupa-cutremur); link text Descarca datele
+D,2026-10-26T23:18:40.814412+00:00,GET,https://storage.googleapis.com/dupacutremur/map.html?v=1,ok,200,39374,nu,map page linked from the home page (dupa-cutremur): look for its data files
+D,2026-10-26T23:19:08.358257+00:00,GET,https://storage.googleapis.com/dupacutremur/cladiri_complete_03032024.geojson?v=1,ok,206,30000,nu,bounded sample of a GeoJSON file used by the live map (dupa-cutremur)
+D,2026-10-26T23:19:08.658489+00:00,GET,https://storage.googleapis.com/dupacutremur/arie_colaps_complete_03032024.geojson?v=1,ok,206,30000,nu,bounded sample of a GeoJSON file used by the live map (dupa-cutremur)
+D,2026-10-26T23:19:08.917662+00:00,GET,https://storage.googleapis.com/dupacutremur/_strazi_arie_colaps_06122022.geojson,ok,206,30000,nu,bounded sample of a GeoJSON file used by the live map (dupa-cutremur)
+D,2026-10-26T23:19:09.177542+00:00,GET,https://storage.googleapis.com/dupacutremur/puncte_complete_03032024.geojson?v=1,ok,206,30000,nu,bounded sample of a GeoJSON file used by the live map (dupa-cutremur)
+D,2026-10-26T23:19:09.523456+00:00,GET,https://storage.googleapis.com/dupacutremur/adaposturi.geojson,ok,206,30000,nu,bounded sample of a GeoJSON file used by the live map (dupa-cutremur)
+D,2026-10-26T23:19:57.976443+00:00,GET,https://politicieni-corupti.ro/,ok,200,17366,nu,"home, methodology and glossary pages (politicieni-corupti): scan for data files and schema"
+D,2026-10-26T23:19:58.484631+00:00,GET,https://politicieni-corupti.ro/metodologie,ok,200,10702,nu,"home, methodology and glossary pages (politicieni-corupti): scan for data files and schema"
+D,2026-10-26T23:19:58.982819+00:00,GET,https://politicieni-corupti.ro/glosar,ok,200,10903,nu,"home, methodology and glossary pages (politicieni-corupti): scan for data files and schema"
+D,2026-10-26T23:20:07.240215+00:00,GET,https://api.github.com/repos/robert-adnas/posibil-penali/commits/HEAD,ok,200,13834,nu,repository commit at HEAD (politicieni-corupti; repo named in the site JSON-LD sameAs)
+D,2026-10-26T23:20:13.786876+00:00,GET,https://api.github.com/repos/robert-adnas/posibil-penali/git/trees/581cd3a4c45b4b008dd86d531c02cfafa1d0909b?recursive=1,ok,200,25907,nu,repository tree at recorded commit (politicieni-corupti)
+D,2026-10-26T23:20:25.241463+00:00,GET,https://raw.githubusercontent.com/robert-adnas/posibil-penali/581cd3a4c45b4b008dd86d531c02cfafa1d0909b/README.md,ok,200,1804,nu,repository file at recorded commit (politicieni-corupti)
+D,2026-10-26T23:20:25.684430+00:00,GET,https://raw.githubusercontent.com/robert-adnas/posibil-penali/581cd3a4c45b4b008dd86d531c02cfafa1d0909b/scripts/validate.js,ok,200,7366,nu,repository file at recorded commit (politicieni-corupti)
+D,2026-10-26T23:21:00.364098+00:00,GET,https://raw.githubusercontent.com/robert-adnas/posibil-penali/581cd3a4c45b4b008dd86d531c02cfafa1d0909b/data/buildDataset.js,ok,200,6743,nu,repository file at recorded commit (politicieni-corupti)
+D,2026-10-26T23:21:00.698491+00:00,GET,https://raw.githubusercontent.com/robert-adnas/posibil-penali/581cd3a4c45b4b008dd86d531c02cfafa1d0909b/REVERIFICATION.md,ok,200,5537,nu,repository file at recorded commit (politicieni-corupti)
+D,2026-10-26T23:21:01.030710+00:00,GET,https://raw.githubusercontent.com/robert-adnas/posibil-penali/581cd3a4c45b4b008dd86d531c02cfafa1d0909b/src/utils/geography.js,ok,200,2657,nu,repository file at recorded commit (politicieni-corupti)
+D,2026-10-26T23:21:01.572344+00:00,GET,https://raw.githubusercontent.com/robert-adnas/posibil-penali/581cd3a4c45b4b008dd86d531c02cfafa1d0909b/data/politicians.json,ok,206,1800,nu,bounded sample of the data file at recorded commit (politicieni-corupti): field names and types only
+D,2026-10-26T23:21:26.728061+00:00,GET,https://ins.gov2.ro/api/datasets/SCL101B?lang=en,ok,200,30082,nu,INS TEMPO metadata of the three matrices that the page of trei-din-patru names
+D,2026-10-26T23:21:27.083116+00:00,GET,https://ins.gov2.ro/api/datasets/SCL105A?lang=en,ok,200,17008,nu,INS TEMPO metadata of the three matrices that the page of trei-din-patru names
+D,2026-10-26T23:21:27.437726+00:00,GET,https://ins.gov2.ro/api/datasets/SCL103I?lang=en,ok,200,37751,nu,INS TEMPO metadata of the three matrices that the page of trei-din-patru names
+D,2026-10-26T23:23:02.650387+00:00,GET,https://raw.githubusercontent.com/robert-adnas/posibil-penali/581cd3a4c45b4b008dd86d531c02cfafa1d0909b/data/politicians.json,ok,206,4200,nu,bounded sample of the data file at recorded commit (politicieni-corupti): field names and types only; second read with a larger range
+D,2026-10-26T23:30:14.742486+00:00,GET,https://raw.githubusercontent.com/baditaflorin/calendar-ridicare-gunoi-arad/00ee173de1da726135a62e2c1fd2730816819d13/docs/static/analize.js,ok,200,6530,nu,repository file at recorded commit (reciclare-arad): the script of the statistics page
+D,2026-10-26T23:39:25.775708+00:00,BROWSER,https://www.guvernezi.ro/,ok,200,,browser,randare guvernezi
+D,2026-10-26T23:39:25.776088+00:00,BROWSER-GET,https://www.guvernezi.ro/?_rsc=5CB68i4pnAekjehf,200,200,458,browser,randare guvernezi
+D,2026-10-26T23:39:25.776211+00:00,BROWSER-GET,https://www.guvernezi.ro/guvernati?_rsc=5CB68i4pnAekjehf,200,200,574,browser,randare guvernezi
+D,2026-10-26T23:39:25.776285+00:00,BROWSER-GET,https://www.guvernezi.ro/realizari?_rsc=5CB68i4pnAekjehf,200,200,510,browser,randare guvernezi
+D,2026-10-26T23:39:25.776378+00:00,BROWSER-GET,https://www.guvernezi.ro/api/realizari,200,200,,browser,randare guvernezi
+D,2026-10-26T23:39:25.776433+00:00,BROWSER-GET,https://www.guvernezi.ro/clasament?_rsc=5CB68i4pnAekjehf,200,200,,browser,randare guvernezi
+D,2026-10-26T23:39:25.776823+00:00,BROWSER-GET,https://www.guvernezi.ro/politicieni?_rsc=5CB68i4pnAekjehf,200,200,512,browser,randare guvernezi
+D,2026-10-26T23:39:25.776886+00:00,BROWSER-GET,https://www.guvernezi.ro/metoda?_rsc=5CB68i4pnAekjehf,200,200,507,browser,randare guvernezi
+D,2026-10-26T23:39:25.776941+00:00,BROWSER-GET,https://www.guvernezi.ro/confidentialitate?_rsc=5CB68i4pnAekjehf,200,200,518,browser,randare guvernezi
+D,2026-10-26T23:39:25.777187+00:00,BROWSER-GET,https://www.guvernezi.ro/guvernati?_rsc=paj4v7EoIiRn-y8h,200,200,,browser,randare guvernezi
+D,2026-10-26T23:39:25.777306+00:00,BROWSER-GET,https://www.guvernezi.ro/?_rsc=8nTjltbQWvg6NcbE,200,200,,browser,randare guvernezi
+D,2026-10-26T23:39:25.777372+00:00,BROWSER-GET,https://www.guvernezi.ro/?_rsc=yIp22O3xgPPxC28X,200,200,,browser,randare guvernezi
+D,2026-10-26T23:39:25.777433+00:00,BROWSER-GET,https://www.guvernezi.ro/clasament?_rsc=UIkFEhagAczmY--L,200,200,,browser,randare guvernezi
+D,2026-10-26T23:39:25.777558+00:00,BROWSER-GET,https://www.guvernezi.ro/realizari?_rsc=fUwzmcaVgyHw-e17,200,200,,browser,randare guvernezi
+D,2026-10-26T23:39:25.777618+00:00,BROWSER-GET,https://www.guvernezi.ro/metoda?_rsc=DbcqOhDP6EQyx0y5,200,200,,browser,randare guvernezi
+D,2026-10-26T23:39:25.777685+00:00,BROWSER-GET,https://www.guvernezi.ro/confidentialitate?_rsc=p1TjoLeyK-vKRWTp,200,200,,browser,randare guvernezi
+D,2026-10-26T23:39:25.777752+00:00,BROWSER-GET,https://www.guvernezi.ro/politicieni?_rsc=NelVe4GbiFE229RU,200,200,,browser,randare guvernezi
+D,2026-10-26T23:39:54.680727+00:00,BROWSER,https://sondajeromania.ro/parlamentare,ok,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.680949+00:00,BROWSER-HEAD,https://sondajeromania.ro/incredere,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.681069+00:00,BROWSER-HEAD,https://sondajeromania.ro/institute,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.681200+00:00,BROWSER-HEAD,https://sondajeromania.ro/bucharest,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.681309+00:00,BROWSER-HEAD,https://sondajeromania.ro/coalitii,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.681390+00:00,BROWSER-GET,https://sondajeromania.ro/seats-index.json,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.681456+00:00,BROWSER-GET,https://sondajeromania.ro/parliamentary-chart-data.json,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.681519+00:00,BROWSER-GET,https://sondajeromania.ro/average-seats.json,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.681582+00:00,BROWSER-GET,https://sondajeromania.ro/average-voting-intentions.json,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.681650+00:00,BROWSER-GET,https://sondajeromania.ro/bucharest/__next._tree.txt?_rsc=h02an,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.681709+00:00,BROWSER-GET,https://sondajeromania.ro/coalitii/__next._tree.txt?_rsc=h02an,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.681767+00:00,BROWSER-GET,https://sondajeromania.ro/institute/__next._tree.txt?_rsc=h02an,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.681824+00:00,BROWSER-HEAD,https://sondajeromania.ro/partid/pot,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.681894+00:00,BROWSER-HEAD,https://sondajeromania.ro/partid/sens,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.681952+00:00,BROWSER-HEAD,https://sondajeromania.ro/partid/sos,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.682022+00:00,BROWSER-GET,https://sondajeromania.ro/incredere/__next._tree.txt?_rsc=h02an,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.682079+00:00,BROWSER-GET,https://sondajeromania.ro/partid/sos/__next._tree.txt?_rsc=h02an,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.682147+00:00,BROWSER-GET,https://sondajeromania.ro/partid/pot/__next._tree.txt?_rsc=h02an,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.682212+00:00,BROWSER-GET,https://sondajeromania.ro/partid/sens/__next._tree.txt?_rsc=h02an,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.682268+00:00,BROWSER-HEAD,https://sondajeromania.ro/partid/udmr,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.682324+00:00,BROWSER-HEAD,https://sondajeromania.ro/partid/usr,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.682378+00:00,BROWSER-HEAD,https://sondajeromania.ro/partid/aur,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.682433+00:00,BROWSER-HEAD,https://sondajeromania.ro/partid/pnl,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.682486+00:00,BROWSER-GET,https://sondajeromania.ro/partid/udmr/__next._tree.txt?_rsc=h02an,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.682540+00:00,BROWSER-GET,https://sondajeromania.ro/partid/usr/__next._tree.txt?_rsc=h02an,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.682667+00:00,BROWSER-GET,https://sondajeromania.ro/partid/aur/__next._tree.txt?_rsc=h02an,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.682709+00:00,BROWSER-GET,https://sondajeromania.ro/partid/pnl/__next._tree.txt?_rsc=h02an,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.682752+00:00,BROWSER-HEAD,https://sondajeromania.ro/parlamentare,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.682795+00:00,BROWSER-HEAD,https://sondajeromania.ro/partid/psd,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.682835+00:00,BROWSER-HEAD,https://sondajeromania.ro/sondaje-noi,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.682876+00:00,BROWSER-HEAD,https://sondajeromania.ro/,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.682917+00:00,BROWSER-GET,https://sondajeromania.ro/parlamentare/__next._tree.txt?_rsc=h02an,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.682959+00:00,BROWSER-GET,https://sondajeromania.ro/__next._tree.txt?_rsc=h02an,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.683002+00:00,BROWSER-GET,https://sondajeromania.ro/sondaje-noi/__next._tree.txt?_rsc=h02an,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.683045+00:00,BROWSER-GET,https://sondajeromania.ro/partid/psd/__next._tree.txt?_rsc=h02an,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.683087+00:00,BROWSER-GET,https://sondajeromania.ro/partid/sens/__next.partid.txt?_rsc=150mq,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.683130+00:00,BROWSER-GET,https://sondajeromania.ro/partid/sens/__next.partid.$d$name.txt?_rsc=frhy1,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.683172+00:00,BROWSER-GET,https://sondajeromania.ro/partid/sens/__next._index.txt?_rsc=c2hzv,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.683214+00:00,BROWSER-GET,https://sondajeromania.ro/partid/sens/__next._head.txt?_rsc=s2des,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.683256+00:00,BROWSER-GET,https://sondajeromania.ro/partid/pot/__next.partid.$d$name.txt?_rsc=frhy1,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.683298+00:00,BROWSER-GET,https://sondajeromania.ro/partid/pot/__next.partid.$d$name.__PAGE__.txt?_rsc=1mm2i,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.683339+00:00,BROWSER-GET,https://sondajeromania.ro/partid/pot/__next._head.txt?_rsc=s2des,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.683381+00:00,BROWSER-GET,https://sondajeromania.ro/partid/sens/__next.partid.$d$name.__PAGE__.txt?_rsc=1mm2i,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.683423+00:00,BROWSER-GET,https://sondajeromania.ro/partid/sos/__next._head.txt?_rsc=s2des,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.683466+00:00,BROWSER-GET,https://sondajeromania.ro/partid/udmr/__next._head.txt?_rsc=s2des,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.683507+00:00,BROWSER-GET,https://sondajeromania.ro/partid/sos/__next.partid.$d$name.__PAGE__.txt?_rsc=1mm2i,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.683549+00:00,BROWSER-GET,https://sondajeromania.ro/partid/sos/__next.partid.$d$name.txt?_rsc=frhy1,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.683591+00:00,BROWSER-GET,https://sondajeromania.ro/partid/udmr/__next.partid.$d$name.txt?_rsc=frhy1,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.683633+00:00,BROWSER-GET,https://sondajeromania.ro/partid/usr/__next._head.txt?_rsc=s2des,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.683806+00:00,BROWSER-GET,https://sondajeromania.ro/partid/udmr/__next.partid.$d$name.__PAGE__.txt?_rsc=1mm2i,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.683880+00:00,BROWSER-GET,https://sondajeromania.ro/partid/usr/__next.partid.$d$name.txt?_rsc=frhy1,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.683929+00:00,BROWSER-GET,https://sondajeromania.ro/partid/usr/__next.partid.$d$name.__PAGE__.txt?_rsc=1mm2i,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.684038+00:00,BROWSER-GET,https://sondajeromania.ro/partid/pnl/__next.partid.$d$name.txt?_rsc=frhy1,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.684089+00:00,BROWSER-GET,https://sondajeromania.ro/partid/pnl/__next._head.txt?_rsc=s2des,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.684135+00:00,BROWSER-GET,https://sondajeromania.ro/partid/pnl/__next.partid.$d$name.__PAGE__.txt?_rsc=1mm2i,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.684181+00:00,BROWSER-GET,https://sondajeromania.ro/partid/aur/__next.partid.$d$name.txt?_rsc=frhy1,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.684226+00:00,BROWSER-GET,https://sondajeromania.ro/partid/aur/__next.partid.$d$name.__PAGE__.txt?_rsc=1mm2i,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.684270+00:00,BROWSER-GET,https://sondajeromania.ro/partid/aur/__next._head.txt?_rsc=s2des,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.684314+00:00,BROWSER-GET,https://sondajeromania.ro/partid/psd/__next._head.txt?_rsc=s2des,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.684358+00:00,BROWSER-GET,https://sondajeromania.ro/partid/psd/__next.partid.$d$name.txt?_rsc=frhy1,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.684403+00:00,BROWSER-GET,https://sondajeromania.ro/institute/__next.institute.txt?_rsc=1pn9g,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.684446+00:00,BROWSER-GET,https://sondajeromania.ro/partid/psd/__next.partid.$d$name.__PAGE__.txt?_rsc=1mm2i,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.684490+00:00,BROWSER-GET,https://sondajeromania.ro/institute/__next._head.txt?_rsc=s2des,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.684529+00:00,BROWSER-GET,https://sondajeromania.ro/institute/__next.institute.__PAGE__.txt?_rsc=tzw7b,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.684610+00:00,BROWSER-GET,https://sondajeromania.ro/bucharest/__next._head.txt?_rsc=s2des,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.684670+00:00,BROWSER-GET,https://sondajeromania.ro/bucharest/__next.bucharest.txt?_rsc=u6mzg,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.684715+00:00,BROWSER-GET,https://sondajeromania.ro/bucharest/__next.bucharest.__PAGE__.txt?_rsc=xkayl,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.684782+00:00,BROWSER-GET,https://sondajeromania.ro/coalitii/__next._head.txt?_rsc=s2des,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.684837+00:00,BROWSER-GET,https://sondajeromania.ro/coalitii/__next.coalitii.txt?_rsc=16tco,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.684879+00:00,BROWSER-GET,https://sondajeromania.ro/coalitii/__next.coalitii.__PAGE__.txt?_rsc=5t7qk,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.684921+00:00,BROWSER-GET,https://sondajeromania.ro/incredere/__next._head.txt?_rsc=s2des,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.684961+00:00,BROWSER-GET,https://sondajeromania.ro/incredere/__next.incredere.txt?_rsc=10wjt,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.685001+00:00,BROWSER-GET,https://sondajeromania.ro/incredere/__next.incredere.__PAGE__.txt?_rsc=rp04f,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.685046+00:00,BROWSER-GET,https://sondajeromania.ro/parlamentare/__next._head.txt?_rsc=s2des,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.685089+00:00,BROWSER-GET,https://sondajeromania.ro/parlamentare/__next.parlamentare.txt?_rsc=14bvu,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.685129+00:00,BROWSER-GET,https://sondajeromania.ro/parlamentare/__next.parlamentare.__PAGE__.txt?_rsc=lsu92,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.685170+00:00,BROWSER-GET,https://sondajeromania.ro/sondaje-noi/__next._head.txt?_rsc=s2des,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.685210+00:00,BROWSER-GET,https://sondajeromania.ro/sondaje-noi/__next.sondaje-noi.txt?_rsc=12w6y,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.685462+00:00,BROWSER-GET,https://sondajeromania.ro/sondaje-noi/__next.sondaje-noi.__PAGE__.txt?_rsc=1brmm,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.685507+00:00,BROWSER-GET,https://sondajeromania.ro/__next._head.txt?_rsc=s2des,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:39:54.685550+00:00,BROWSER-GET,https://sondajeromania.ro/__next.__PAGE__.txt?_rsc=k3s9p,200,200,,browser,randare sondaje-romania
+D,2026-10-26T23:40:04.904862+00:00,BROWSER,https://politicieni-corupti.ro/lista,ok,200,,browser,randare politicieni-corupti
