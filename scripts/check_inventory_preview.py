@@ -202,6 +202,27 @@ with sync_playwright() as pw:
         page.wait_for_selector('.d-inventory', timeout=8000)
         ok('the page of ' + item['slug'] + ' (out of scope) shows its "Date & metodă" panel with its documentation links',
            page.locator('.d-inventory').count() == 1 and all(page.locator(f'.d-inventory a[href="{d["url"]}"]').count() > 0 for d in item['inventory']['docs']))
+    # The link to the variables page of an entry (`/date/<slug>/`): only an entry that has the page, and the page is the one of that entry.
+    with_page = [i for i in DB['items'] if i.get('inventory', {}).get('page')]
+    ok('an entry with a variables page has fields, and the page is date/<slug>/', len(with_page) > 0 and all(i['inventory']['count'] and i['inventory']['page'] == f'date/{i["slug"]}/' for i in with_page))
+    ok('an entry in the scope of /date/ with fields has the page', all(i['inventory'].get('page') for i in DB['items'] if i['kind'] in ('proiect', 'resursa') and i['status'] not in ('offline', 'arhivat')
+                                                                       and i.get('dataRelation') in ('date-publice', 'date-proprii', 'calcul') and i.get('inventory', {}).get('count')))
+    linked = browser.new_page(viewport={'width': 1280, 'height': 900})
+    linked.goto(BASE + 'proiect/demoanaf/')
+    linked.wait_for_selector('.d-inventory')
+    link = linked.locator('.d-inventory .inv-all a')
+    ok('the field browser links to the variables page of the entry', link.count() == 1 and 'Toate variabilele' in link.inner_text() and link.get_attribute('href') == 'date/demoanaf/')
+    link.click()
+    linked.wait_for_selector('.vp-head h1')
+    ok('the link opens the variables page of the entry', linked.url.endswith('/date/demoanaf/') and linked.locator('.vp-head h1').inner_text() == 'DemoANAF')
+    ok('the page links back to the entry in the explorer', linked.locator('.vp-open').get_attribute('href') == 'proiect/demoanaf/')
+    linked.close()
+    for item in [i for i in DB['items'] if i.get('inventory') and not i['inventory'].get('page')][:2]:
+        other = browser.new_page(viewport={'width': 1280, 'height': 900})
+        other.goto(BASE + f"{item['kind']}/{item['slug']}/")
+        other.wait_for_selector('.d-inventory')
+        ok('an entry without a variables page has no link to one: ' + item['slug'], other.locator('.d-inventory .inv-all').count() == 0)
+        other.close()
     ok('no uncaught page errors', not errors)
     browser.close()
 print(f'{sum(results)}/{len(results)} inventory preview checks passed')

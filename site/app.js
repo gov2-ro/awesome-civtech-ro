@@ -718,6 +718,7 @@ function inventoryHTML(it) {
       <p class="inv-note">Extrase automat din sursele de mai jos. Proiectul poate folosi și alte date.</p>
       ${inv.stale ? `<p class="inv-note inv-stale">${plural(inv.stale, 'sursă are', 'surse au')} ultima reîmprospătare eșuată. Datele afișate provin dintr-o consultare anterioară.</p>` : ''}
       <div class="inv-examples">${inv.examples.map(name => `<button data-act="inventory-example" data-slug="${esc(it.slug)}" data-val="${esc(name)}"><code>${esc(name)}</code></button>`).join('')}</div>
+      ${inv.page ? `<p class="inv-all"><a href="${esc(inv.page)}">Toate variabilele <span aria-hidden="true">→</span></a></p>` : ''}
       ${docs}
       <details class="inv-details" data-inv-panel data-slug="${esc(it.slug)}" ${inventoryIntent === it.slug ? 'open' : ''}>
         <summary>Explorează câmpurile <span aria-hidden="true">↗</span></summary>

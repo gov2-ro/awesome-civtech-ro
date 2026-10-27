@@ -597,6 +597,8 @@ svg.gh { width: 20px; height: 20px; fill: currentColor; stroke: none; }
 .inv-datasets ul { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 8px; }
 .inv-datasets li { display: grid; gap: 2px; font-size: calc(13px * var(--fs)); overflow-wrap: anywhere; }
 .inv-examples { display: flex; flex-wrap: wrap; gap: 4px; }
+.inv-all { font-size: calc(13px * var(--fs)); }
+.inv-all a { color: var(--accent-ink); text-underline-offset: 3px; }
 .inv-examples button { border: 0; padding: 3px 6px; border-radius: 3px; cursor: pointer; background: var(--surface); color: var(--ink-2); max-width: 100%; }
 .inv-examples button:hover { color: var(--accent-ink); background: var(--surface-2); }
 .inv-examples code { font: 400 calc(11px * var(--fs))/1.5 var(--font-mono); overflow-wrap: anywhere; }

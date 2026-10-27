@@ -170,6 +170,59 @@ with sync_playwright() as pw:
     shown_cui = set(page.locator('.ov-table tbody tr').evaluate_all('(els, label)=>els.filter(e=>[...e.querySelectorAll("li")].some(li=>li.textContent===label)).map(e=>e.id)', cui['label']))
     ok('a normalised name appears in exactly the rows whose entries have the group', shown_cui == cui_rows)
     ok('the table scrolls inside its frame, not the page', page.evaluate('document.documentElement.scrollWidth===innerWidth'))
+    # The page of each entry with fields (`/date/<slug>/`): linked from its row; one block for each source and for each family that the entry's own data names.
+    rows = page.locator('.ov-table tbody tr').evaluate_all('els=>els.map(e=>({slug:e.id, href:e.querySelector("th small a")?.getAttribute("href")}))')
+    ok('every row of the list links to the page of its entry', len(rows) == with_fields and all(r['href'] == f'date/{r["slug"]}/' for r in rows))
+    family_of = {v['id']: v.get('family') for v in INDEX['variables']}
+    family_ids = {f['id'] for f in INDEX.get('families', [])}
+    by_slug = {i['slug']: i for i in ITEMS}
+    missing, wrong_sources, wrong_families, wrong_rows, wrong_head, sideways, anchors = [], [], [], [], [], [], []
+    for row in rows:
+        slug = row['slug']
+        try:
+            # A static server answers a folder without a page with a listing, so the page is recognised by its header.
+            exists = bool(row['href']) and 'class="vp-head"' in urllib.request.urlopen(BASE + row['href']).read().decode()
+        except urllib.error.HTTPError:
+            exists = False
+        if not exists:
+            missing.append(slug)
+            continue
+        entry = next(e for e in INDEX['entries'] if e['slug'] == slug)
+        payload = json.load(urllib.request.urlopen(BASE + entry['inventory']['url']))
+        for width in (1280, 375):
+            page.set_viewport_size({'width': width, 'height': 900})
+            page.goto(BASE + row['href'])
+            page.wait_for_selector('.vp-head h1')
+            if page.evaluate('document.documentElement.scrollWidth!==innerWidth'):
+                sideways.append(f'{slug}@{width}')
+        item = by_slug[slug]
+        if page.locator('.vp-head h1').inner_text() != item['name'] or page.locator('.vp-open').get_attribute('href') != f'{item["kind"]}/{slug}/':
+            wrong_head.append(slug)
+        counts = [int(n) for n in re.findall(r'\d+', page.locator('.vp-meta').inner_text())]
+        if counts[:2] != [len(payload['sources']), len(payload['fields'])]:
+            wrong_head.append(slug + ' counts')
+        if page.locator('.vp-source').evaluate_all('els=>els.map(e=>e.dataset.source)') != [s['id'] for s in payload['sources']]:
+            wrong_sources.append(slug)
+        shown_families = set(page.locator('.vp-family:not(.vp-other)').evaluate_all('els=>els.map(e=>e.dataset.family)'))
+        if shown_families != {family_of.get(v['id']) if family_of.get(v['id']) in family_ids else '' for v in entry['variables']}:
+            wrong_families.append(slug)
+        if page.locator('.vp-table tbody tr').count() != len(payload['fields']):
+            wrong_rows.append(slug)
+        page.set_viewport_size({'width': 1280, 'height': 900})
+        page.locator('.vp-nav a', has_text='Pe surse').click()
+        if not page.url.endswith(f'/date/{slug}/#pe-surse'):
+            anchors.append(slug)
+    ok('every page of the list exists', not missing)
+    ok('every page names its entry and links to it in the explorer, with the counts of its own data', not wrong_head)
+    ok('every page has one block for each source of its own data, in its order', not wrong_sources)
+    ok('every page has a block for each family that its own data names, and no other', not wrong_families)
+    ok('every page has one row for each field of its own data', not wrong_rows)
+    ok('no page scrolls sideways at 1280 px or at 375 px', not sideways)
+    ok('the links inside a page stay on the page', not anchors)
+    if missing + wrong_head + wrong_sources + wrong_families + wrong_rows + sideways + anchors:
+        print('  ', missing, wrong_head, wrong_sources, wrong_families, wrong_rows, sideways, anchors)
+    page.set_viewport_size({'width': 1440, 'height': 1100})
+    page.goto(BASE + 'date/lista/')
     # The scope: the entries that the inventory leaves out are absent from the index, the list and the finder, and counted by reason.
     ok('the index lists exactly the projects and resources that are in scope', {e['slug'] for e in INDEX['entries']} == EXPECTED and len(OUT) > 0)
     ok('the index counts what it leaves out, by the two reasons and kind', INDEX.get('leftOut') == COUNTS and list(COUNTS) == ['fara-date', 'inactiv'])
