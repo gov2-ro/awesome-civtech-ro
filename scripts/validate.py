@@ -212,6 +212,7 @@ def check_v2(root: Path, publication: bool):
         report("error", files.path(name) if name else files.root, int(m.group(2)) if m and m.group(2) else 1, msg)
     check_mentiuni(observation_paths(root)["mentions"])
     check_relation_fields(root)
+    check_editor_fields(root)
     if summary:
         states = ", ".join(f"{k}: {v}" for k, v in sorted(summary["classification_states"].items()))
         print(f"{summary['schema_version']}: {summary['entries']} intrări ({states}), {summary['concepts']} concepte", file=sys.stderr)
@@ -234,6 +235,26 @@ def check_relation_fields(root: Path):
             if r.get("relatie_date") == taxonomy_v2.NO_DATA and fields.get(r["slug"], 0):
                 report("warning", path, reader.line_num,
                        f"{r['slug']}: relatie_date is {taxonomy_v2.NO_DATA}, but the inventory has {fields[r['slug']]} extracted fields")
+
+
+def check_editor_fields(root: Path):
+    """campuri-editor.csv is edited by hand and holds fields that the inventory readers missed (scripts/inventory_editor.py). A row that is wrong must stop the merge: the
+    columns, the empty cells, the code lists (`rol`, `tip_declarat`), the form of the slug and of the address, duplicates, and the source (it must be a source of the entry,
+    by the generated profiles). The fragment is checked against the retained body by `inventory.py --check`, not here: CI has no bodies."""
+    import inventory_editor
+    folder = observation_paths(root)["profile"].parent / "inventare"
+    path = folder / inventory_editor.FILE
+    rows, found = inventory_editor.read_file(path)
+    profiles = folder / "proiecte.json"
+    if rows and profiles.exists():
+        try:
+            owned = {(p["slug"], ident) for p in json.loads(profiles.read_text())["proiecte"] for ident in p.get("surse_structurate", [])}
+            found += inventory_editor.membership_errors(rows, owned)
+        except (OSError, ValueError, KeyError):
+            report("error", profiles, 1, "proiecte.json nu poate fi citit; sursele din campuri-editor.csv nu se pot verifica")
+    for msg in found:
+        m = re.match(r"^[\w.-]+:(\d+): (.*)$", msg, re.S)
+        report("error", path, int(m.group(1)) if m else 1, m.group(2) if m else msg)
 
 
 def main():

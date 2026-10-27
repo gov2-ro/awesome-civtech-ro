@@ -42,6 +42,9 @@ MARK = 'persoane'
 READERS = ('csv', 'json', JSON_SAMPLE)
 # The keys that a field record of a marked source may keep: a name, a path, a type, a role, a position and a count.
 FIELD_KEYS = frozenset({'nume', 'cale', 'tip_declarat', 'tipuri_observate', 'stare_tip', 'rol', 'pointer', 'coloana_csv', 'numar_chei', 'numar_elemente'})
+# A field that an editor added (`inventory_editor`) may also keep these keys: the editor wrote them and the leak check looks at the file that holds them.
+EDITOR_STATE = 'adaugat-de-editor'
+EDITOR_KEYS = frozenset({'descriere', 'unitate', 'nota_editor', 'dovada_editor'})
 # The keys that a source record of a marked source may keep. None of them holds a value of the body.
 SOURCE_KEYS = frozenset({'url', 'final_url', 'http_status', 'fetched_at', 'content_type', 'state', 'id', 'campuri', 'completitudine', 'snapshot', 'sha256',
                          'format', 'stare', 'limita_atinsa', 'baza_tipului', 'citire', 'ultima_incercare', 'versiuni_anterioare', 'partial', 'antet',
@@ -87,7 +90,8 @@ def problems(source):
         found.append(f'{where}: a source with persons is read as {", ".join(READERS)}, not {source.get("format")}')
     found += [f'{where}: the source record has the key {key}' for key in sorted(set(source) - SOURCE_KEYS)]
     for field in source.get('campuri', []):
-        found += [f'{where}: field {field.get("cale")} has the key {key}' for key in sorted(set(field) - FIELD_KEYS)]
+        allowed = FIELD_KEYS | EDITOR_KEYS if field.get('stare_tip') == EDITOR_STATE else FIELD_KEYS
+        found += [f'{where}: field {field.get("cale")} has the key {key}' for key in sorted(set(field) - allowed)]
     for row in (source.get('antet') or {}).get('randuri_deasupra', []):
         found += [f'{where}: the header row {row["rand"]} keeps the text of cell {cell["celula"]}' for cell in row['celule']
                   if 'valoare' in cell and not NAME_CELL.match(cell['valoare'])]
