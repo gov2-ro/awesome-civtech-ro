@@ -7970,6 +7970,7 @@
         }
       ],
       "surse_structurate": [
+        "1c823d508dba0de4e699",
         "d5ce1494e22e32152ea0",
         "3535ffae34fe5e42c44e",
         "14394f6cdfd52805fc2a",
@@ -7977,7 +7978,7 @@
         "efa6e1cd255637961c92",
         "bc985c6b55c6abf07ec2"
       ],
-      "campuri_din_surse": 51,
+      "campuri_din_surse": 106,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."

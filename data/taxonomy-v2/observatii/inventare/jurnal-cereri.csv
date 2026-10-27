@@ -312,3 +312,4 @@ D,2026-10-26T23:39:54.685462+00:00,BROWSER-GET,https://sondajeromania.ro/sondaje
 D,2026-10-26T23:39:54.685507+00:00,BROWSER-GET,https://sondajeromania.ro/__next._head.txt?_rsc=s2des,200,200,,browser,randare sondaje-romania
 D,2026-10-26T23:39:54.685550+00:00,BROWSER-GET,https://sondajeromania.ro/__next.__PAGE__.txt?_rsc=k3s9p,200,200,,browser,randare sondaje-romania
 D,2026-10-26T23:40:04.904862+00:00,BROWSER,https://politicieni-corupti.ro/lista,ok,200,,browser,randare politicieni-corupti
+D,2026-10-27T09:03:14.852080+00:00,GET,https://lista-firme.info/api/v1/info?cui=51859625,ok,200,2276,nu,one API response for the operator's own CUI; the owner raised the request limit of the entry (lista-firme)

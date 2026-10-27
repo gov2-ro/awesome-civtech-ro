@@ -4355,6 +4355,51 @@
     },
     {
       "proiect": "lista-firme",
+      "url": "https://lista-firme.info/api/v1/info?cui=51859625",
+      "sursa_id": "1c823d508dba0de4e699",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/README.md",
+      "link_original": "https://lista-firme.info/api/v1/info?cui=51859625",
+      "dovada": {
+        "url": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/README.md",
+        "sha256": "ad5e37eb7226bdf3725173ce32ded5a1d3ec620999a2ec8def0dc707524b603a",
+        "pointer": "/body",
+        "interval": [
+          7309,
+          7365
+        ],
+        "fragment": "curl -L https://lista-firme.info/api/v1/info?cui=XXXXXXX",
+        "snapshot": "inventare/surse/685ec4e31e539f311bc4.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-27T09:03:14.277433+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-27T09:03:14.277433+00:00"
+        }
+      ],
+      "nota": "One response of the deployed API for the CUI of the operator of the site (RTI Global Services SRL, the company that the terms page names). The owner raised the request limit of the entry for this one request on 2026-10-27; it is the only request to the API. The retained body stays in the git-ignored cache. The response lists legal representatives and natural-person representatives: the inventory keeps key names and observed types only, and no value of a person is copied into a tracked file. A list that is empty in the response gives no field record, because the reader records only the leaves that it sees.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/app/Http/Controllers/API/CompanyController.php",
+          "sha256": "685d24c66273832d604e4634778f6352be33126387774d95314ff556de80226c",
+          "pointer": "/body",
+          "interval": [
+            554,
+            577
+          ],
+          "fragment": "'legalRepresentatives',",
+          "snapshot": "inventare/surse/72e700ee8452aea03a16.json",
+          "rol": "relatie-in-raspunsul-api"
+        }
+      ]
+    },
+    {
+      "proiect": "lista-firme",
       "url": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_184655_create_companies_table.php",
       "sursa_id": "d5ce1494e22e32152ea0",
       "stare": "activ",
