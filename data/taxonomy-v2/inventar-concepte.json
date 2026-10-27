@@ -327,6 +327,21 @@
           "context": "CUI-ul firmei din tabelul `companies` (coloană text, unică); API-ul îl primește ca parametru `cui`",
           "stare": "confirmat",
           "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
+        },
+        {
+          "projects": [
+            "lista-firme"
+          ],
+          "names": [
+            "cui"
+          ],
+          "path": [
+            "$.cui"
+          ],
+          "source": "https://lista-firme.info/api/v1/info?cui=51859625",
+          "context": "CUI-ul firmei în răspunsul API-ului (cheia `cui`, șir de caractere); API-ul îl primește și ca parametru `cui`",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat la cererea proprietarului (2026-10-27)"
         }
       ],
       "categorie": "identificator",
@@ -831,6 +846,21 @@
           "context": "județul orașului din catalogul celor opt orașe",
           "stare": "confirmat",
           "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
+        },
+        {
+          "projects": [
+            "lista-firme"
+          ],
+          "names": [
+            "county"
+          ],
+          "path": [
+            "$.address.county"
+          ],
+          "source": "https://lista-firme.info/api/v1/info?cui=51859625",
+          "context": "județul din adresa firmei (cheia `address.county`, șir de caractere); aceeași coloană ca `addresses.county` din migrare",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat la cererea proprietarului (2026-10-27)"
         }
       ],
       "categorie": "dimensiune",
@@ -1113,6 +1143,21 @@
           "context": "orașul unui centru de date al cloudului guvernamental (locul unei infrastructuri, nu adresa unei firme)",
           "stare": "confirmat",
           "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
+        },
+        {
+          "projects": [
+            "lista-firme"
+          ],
+          "names": [
+            "city"
+          ],
+          "path": [
+            "$.address.city"
+          ],
+          "source": "https://lista-firme.info/api/v1/info?cui=51859625",
+          "context": "localitatea din adresa firmei (cheia `address.city`, șir de caractere); aceeași coloană ca `addresses.city` din migrare",
+          "stare": "confirmat",
+          "nota_editor": "Confirmat la cererea proprietarului (2026-10-27)"
         }
       ],
       "categorie": "dimensiune",

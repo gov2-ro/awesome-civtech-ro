@@ -54,7 +54,7 @@ The 129 projects and resources of the catalogue (the finder lists the 85 that ar
 | Unit tests discovered / skipped | 308 / 6 | 724 / 6 |
 | Explorer inventory / dedicated finder browser checks | 25 / 25 | 36 / 62 |
 
-Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 79 in all; deschis 0, acceptat 72, respins 4, amanat 0, tehnic 3. Variable groups: 40 in all; propus 5, revizuit 35, respins 0, amanat 0. Group members (selectors): 164 in all; propus 14, confirmat 150, exclus 0.
+Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 79 in all; deschis 0, acceptat 72, respins 4, amanat 0, tehnic 3. Variable groups: 40 in all; propus 5, revizuit 35, respins 0, amanat 0. Group members (selectors): 167 in all; propus 14, confirmat 153, exclus 0.
 
 Scope of the data finder (`/date/`): 85 of the 126 public projects and resources are in scope. An entry is in scope when it is not inactive (`offline`, `arhivat`) and its `relatie_date` is `date-publice`, `date-proprii` or `calcul`. The finder leaves out 41: 18 without data (`fara-date`), 5 not assessed (empty value), 18 inactive (counted first: an inactive entry is never counted as another reason). 3 hidden entries (`ascuns`) are in no count of this paragraph.
 
@@ -572,12 +572,6 @@ Ambiguous candidates, kept out of the groups:
 - `coordonate-geografice`: Tipurile diferă: număr în `dupa-cutremur` (puncte), text în `dupa-cutremur` (adăposturi), `double` în `votdiaspora` și număr în Orașe digitale. Grupul nu normalizează valorile.
 - `coordonate-geografice`: Sistemul de coordonate este declarat (CRS84) doar în fișierele de clădiri și de arii de colaps ale DupăCutremur; celelalte surse nu îl declară.
 - `coordonate-geografice`: Nu sunt membre `latMax`, `latMin`, `lngMax` și `lngMin` din Orașe digitale: sunt limitele unei zone, nu un punct.
-
-Candidate members of reviewed groups (batches C2 and D). They are not in `inventar-concepte.json`: a reviewed group cannot hold a member that the owner has not confirmed. Each line is a selector that the owner can add after the decision:
-
-- `cui`: `{"projects": ["lista-firme"], "names": ["cui"], "path": ["$.cui"], "source": "https://lista-firme.info/api/v1/info?cui=51859625", "context": "CUI-ul firmei în răspunsul API-ului (cheia `cui`, șir de caractere); API-ul îl primește și ca parametru `cui`"}`
-- `judet`: `{"projects": ["lista-firme"], "names": ["county"], "path": ["$.address.county"], "source": "https://lista-firme.info/api/v1/info?cui=51859625", "context": "județul din adresa firmei (cheia `address.county`, șir de caractere); aceeași coloană ca `addresses.county` din migrare"}`
-- `localitate`: `{"projects": ["lista-firme"], "names": ["city"], "path": ["$.address.city"], "source": "https://lista-firme.info/api/v1/info?cui=51859625", "context": "localitatea din adresa firmei (cheia `address.city`, șir de caractere); aceeași coloană ca `addresses.city` din migrare"}`
 
 ## 6. Provider proposals
 

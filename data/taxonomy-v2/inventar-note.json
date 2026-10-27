@@ -459,55 +459,5 @@
     "Lot D (brief limit: 120 direct requests, at most 15 for each entry, two browser pages for each entry, ten new sources for each entry): 77 direct requests in the request log, all HTTP 200 or 206 (13 range reads), 4,226,710 bytes, no retry, no concurrent request (the requests ran one at a time). `collect_docs.py` made 0 requests (all twelve entries were collected). By entry: lista-firme 16 (15 for the repository and the terms page, and the one API request that the owner allowed on 2026-10-27), onorata-instanta 12, politicieni-corupti 12, reciclare-arad 9, dupa-cutremur 7, trei-din-patru 6, sondaje-romania 5, ce-face-statul-cu-1000-de-lei 3, guvernezi 2, statul-digital 2, unde-locuiesc 2, pe-datorie 1.",
     "Hosts of lot D: raw.githubusercontent.com 34, mariuscomper.uk 11, api.github.com 8, storage.googleapis.com 6, sondajeromania.ro 5, ins.gov2.ro 3, politicieni-corupti.ro 3, www.onoratainstanta.ro 2, www.guvernezi.ro 2, lista-firme.info 2, sites.google.com 1. No listed host (`colectare-interzisa.csv`) was requested; the Google Drive folder and the bit.ly link of `dupa-cutremur` were not requested.",
     "Browser: 3 navigations (`guvernezi.ro/`, `sondajeromania.ro/parlamentare`, `politicieni-corupti.ro/lista`), at most one for each entry; the record of the third (20,000 characters of the rendered list, with names of persons) was deleted and is not in git, so the log keeps the navigation and no render record. The browser made 96 same-site requests, which are not counted as direct requests: 80 for sondajeromania.ro (Next.js route prefetches, among them the four JSON data files) and 16 for guvernezi.ro (one data request, `/api/realizari`). The page of politicieni-corupti.ro made none."
-  ],
-  "selectori_candidati": [
-    {
-      "grup": "cui",
-      "selector": {
-        "projects": [
-          "lista-firme"
-        ],
-        "names": [
-          "cui"
-        ],
-        "path": [
-          "$.cui"
-        ],
-        "source": "https://lista-firme.info/api/v1/info?cui=51859625",
-        "context": "CUI-ul firmei în răspunsul API-ului (cheia `cui`, șir de caractere); API-ul îl primește și ca parametru `cui`"
-      }
-    },
-    {
-      "grup": "judet",
-      "selector": {
-        "projects": [
-          "lista-firme"
-        ],
-        "names": [
-          "county"
-        ],
-        "path": [
-          "$.address.county"
-        ],
-        "source": "https://lista-firme.info/api/v1/info?cui=51859625",
-        "context": "județul din adresa firmei (cheia `address.county`, șir de caractere); aceeași coloană ca `addresses.county` din migrare"
-      }
-    },
-    {
-      "grup": "localitate",
-      "selector": {
-        "projects": [
-          "lista-firme"
-        ],
-        "names": [
-          "city"
-        ],
-        "path": [
-          "$.address.city"
-        ],
-        "source": "https://lista-firme.info/api/v1/info?cui=51859625",
-        "context": "localitatea din adresa firmei (cheia `address.city`, șir de caractere); aceeași coloană ca `addresses.city` din migrare"
-      }
-    }
   ]
 }
