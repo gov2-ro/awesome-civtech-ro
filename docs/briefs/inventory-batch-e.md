@@ -1,7 +1,7 @@
 # Brief — variable inventory, batch E
 
 Date: 2026-10-27. Baseline: commit `f8d2546`.
-Status: ready for implementation.
+Status: done on 2026-10-27 (merged from branch `inventory-batch-e`, v0.40.0).
 
 ## 1. Start here
 
