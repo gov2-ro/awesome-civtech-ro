@@ -1,0 +1,62 @@
+{
+  "versiune": 1,
+  "proiect": "portal-just-modern",
+  "url_cerut": "https://portaljustmodern.ro/institutii",
+  "url_final": "https://portaljustmodern.ro/institutii",
+  "stare": "ok",
+  "http_status": 200,
+  "titlu": "Instanțele de judecată din România — judecătorii, tribunale, curți de apel | Magistrum",
+  "randat_la": "2026-10-27T17:05:28.026024+00:00",
+  "text_randat": "[{\"cheie\":\"app_name\",\"valoare\":\"Portal Just Modern\"}, \n {\"cheie\":\"app_short_name\",\"valoare\":\"Portal Just\"}, \n {\"cheie\":\"app_description\",\"valoare\":\"Acces public la dosarele instanțelor de judecată din România într-un format modern.\"}, \n {\"cheie\":\"theme_color\",\"valoare\":\"#000000\"}, \n {\"cheie\":\"background_color\",\"valoare\":\"#000000\"}, \n {\"cheie\":\"display_mode\",\"valoare\":\"fullscreen\"}, \n {\"cheie\":\"start_url\",\"valoare\":\"/\"}, \n {\"cheie\":\"install_banner_enabled\",\"valoare\":\"true\"}, \n {\"cheie\":\"install_banner_text\",\"valoare\":\"Instalează aplicația pentru acces rapid\"}, \n {\"cheie\":\"offline_message\",\"valoare\":\"Fără conexiune la internet. Reconectați-vă pentru a accesa portalul.\"}, \n {\"cheie\":\"app_logo_url\",\"valoare\":\"logo/main-1791581211078.png\"}]",
+  "controale_vizibile": [
+    {
+      "tag": "input",
+      "name": null,
+      "id": "cauta-instanta",
+      "type": "text",
+      "label": "Caută după numele instanței sau al județului",
+      "options": null
+    }
+  ],
+  "cereri_date": [
+    {
+      "metoda": "GET",
+      "url": "https://itastfxwfqsnidyjestx.supabase.co/rest/v1/app_settings?select=cheie%2Cvaloare",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://itastfxwfqsnidyjestx.supabase.co/rest/v1/seo_settings?select=%2A",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": 2
+    },
+    {
+      "metoda": "GET",
+      "url": "https://itastfxwfqsnidyjestx.supabase.co/rest/v1/pwa_settings?select=cheie%2Cvaloare",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "POST",
+      "url": "https://portaljustmodern.ro/__l5e/trackevents",
+      "tip_resursa": "fetch",
+      "http_status": 202,
+      "content_type": "application/json",
+      "octeti": 17
+    }
+  ],
+  "corpuri_pastrate": [
+    "https://itastfxwfqsnidyjestx.supabase.co/rest/v1/app_settings?select=cheie%2Cvaloare",
+    "https://itastfxwfqsnidyjestx.supabase.co/rest/v1/seo_settings?select=%2A",
+    "https://itastfxwfqsnidyjestx.supabase.co/rest/v1/pwa_settings?select=cheie%2Cvaloare"
+  ],
+  "corpuri_omise": [],
+  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+}

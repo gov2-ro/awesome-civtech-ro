@@ -1,0 +1,525 @@
+[
+  {
+    "proiect": "monitor-safe",
+    "url": "https://monitorsafe.ro/",
+    "parinte": "https://monitorsafe.ro/llms.txt",
+    "citire": {
+      "tip": "js-literale",
+      "indentate": [
+        "DOMENII",
+        "INFRA",
+        "MAI_PLAN",
+        "MAI_PROIECTE",
+        "SRI_PROIECTE",
+        "PROIECTE",
+        "TIMELINE",
+        "FURNIZORI"
+      ]
+    },
+    "locate": {
+      "pagina": "https://monitorsafe.ro/llms.txt",
+      "text": "pagina principală, cu defalcare 4,2/9,6/2,8 mld €"
+    },
+    "dovezi": [
+      {
+        "pagina": "https://monitorsafe.ro/",
+        "text": "sursa pipeline/safe.json",
+        "cache": true,
+        "rol": "sursa-declarata-in-comentariul-scriptului"
+      },
+      {
+        "pagina": "https://monitorsafe.ro/",
+        "text": "\"@id\": \"https://monitorsafe.ro/#dataset\"",
+        "cache": true,
+        "rol": "set-de-date-declarat-de-pagina"
+      }
+    ],
+    "nota": "The home page. The data of its charts are literals of the script, inside a function that wraps the script (the reader option `indentate` names the eight declarations): the six domains, the infrastructure lots, the MAI and SRI plans and projects, the 21 army projects, the timeline of 54 events and the suppliers. A comment of the script names `pipeline/safe.json` as its source (the repository that llms.txt links, Andreim14/companii-stat, answered 404 to the API, so the file was not read). The JSON-LD declares a schema.org Dataset whose one distribution is the RSS feed `safe-rss.xml`; no XML reader exists, so the feed (it mirrors the timeline) is not a source.",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "monitor-safe",
+    "url": "https://monitorsafe.ro/contracte/",
+    "parinte": "https://monitorsafe.ro/",
+    "citire": "js-literale",
+    "locate": {
+      "pagina": "https://monitorsafe.ro/",
+      "link": "https://monitorsafe.ro/contracte/"
+    },
+    "dovezi": [
+      {
+        "pagina": "https://monitorsafe.ro/llms.txt",
+        "text": "Detaliu pe contract, cu dosar și istoric: https://monitorsafe.ro/contracte/",
+        "rol": "registru-declarat-in-llms"
+      }
+    ],
+    "nota": "The contract register: the literal `C` holds one record for each signed or unsigned contract (value, beneficiary, signing date, status, approved value, promised localisation, events with their sources), and `F`, `NS`, `ST` and `SCURT` hold the filters, the unsigned projects and short labels. llms.txt says that a CSV with the CUI of each supplier exists on request by e-mail; it is not public, so no CUI field is read.",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "igov",
+    "url": "https://igov.ro/reports/guvernanta.json",
+    "parinte": "https://igov.ro/reports/guvernanta.html",
+    "citire": "json-esantion",
+    "locate": {
+      "pagina": "https://igov.ro/reports/guvernanta.html",
+      "text": "const DATA_URL = 'guvernanta.json';",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://igov.ro/reports/guvernanta.html",
+        "text": "const SOURCE = 'https://guvernanta.gov.ro/';",
+        "cache": true,
+        "rol": "sursa-declarata-in-codul-paginii"
+      }
+    ],
+    "nota": "The derived data file of the governance report (a 150,000-byte range sample). Its top-level keys are `schema`, `built_at`, `source`, `fields`, `authorities`, `companies`, `people`, `appointments`. `fields` declares the names of the positions of the rows of `appointments` (11) and `companies` (12). The body holds the names of members of the boards of state companies (`people`, `appointments`). The source is not marked `persoane`: the plain reader keeps no value for it (88 field records, no key beyond the allowed ones, none of the 1,086 identifying strings of the sample occurs in them), and the mark would make the leak check flag 7 tracked files that hold names of institutions.",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "igov",
+    "url": "https://igov.ro/reports/guvernanta-series.json",
+    "parinte": "https://igov.ro/reports/guvernanta.html",
+    "citire": "json-esantion",
+    "locate": {
+      "pagina": "https://igov.ro/reports/guvernanta.html",
+      "text": "fetch('guvernanta-series.json'",
+      "cache": true
+    },
+    "dovezi": [],
+    "nota": "The financial history of the state companies, 2016-2025, from the same sources as the governance report (a 150,000-byte range sample). The file keeps the address and the SHA-256 of each original file under `sources`.",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "igov",
+    "url": "https://igov.ro/reports/guvernanta-achizitii.json",
+    "parinte": "https://igov.ro/reports/guvernanta.html",
+    "citire": "json-esantion",
+    "locate": {
+      "pagina": "https://igov.ro/reports/guvernanta.html",
+      "text": "fetch('guvernanta-achizitii.json'",
+      "cache": true
+    },
+    "dovezi": [],
+    "nota": "The public procurement of the state companies since 2024 (a 150,000-byte range sample): the periods, the rules that the report applied (framework agreements left out, repeated rows, a direct-award ceiling) and the quarterly files that it read, each with its address and SHA-256.",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "igov",
+    "url": "https://igov.ro/api/channels",
+    "parinte": "https://igov.ro/rapoarte.html",
+    "locate": {
+      "pagina": "https://igov.ro/rapoarte.html",
+      "text": "getJSON('/api/channels')",
+      "cache": true
+    },
+    "dovezi": [],
+    "nota": "The list of the report channels that the page of reports loads when it opens (one request, 1,378 characters).",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "igov",
+    "url": "https://igov.ro/api/institutions",
+    "parinte": "https://igov.ro/rapoarte.html",
+    "locate": {
+      "pagina": "https://igov.ro/rapoarte.html",
+      "text": "getJSON('/api/institutions')",
+      "cache": true
+    },
+    "dovezi": [],
+    "nota": "The index of the institutions that have reports, loaded by the same page (one request, 5,313 characters).",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "companii-publice-ro",
+    "url": "https://cosettechichirau.github.io/companiipublice/companii.json",
+    "parinte": "https://cosettechichirau.github.io/companiipublice/",
+    "citire": "json-esantion",
+    "locate": {
+      "pagina": "https://cosettechichirau.github.io/companiipublice/",
+      "text": "fetch('./companii.json'",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://cosettechichirau.github.io/companiipublice/",
+        "text": "Lista de bază provine din monitorizarea Ministerului Finanțelor, conform O.M.F.P. nr. 2873/2016.",
+        "rol": "furnizor-declarat-de-pagina"
+      }
+    ],
+    "nota": "The list of the public enterprises: CUI, name, level (local or central), county, the CUI and name of the tutelary authority, type, legal form, state, CAEN code and name, the parent company and the lists in which the company appears (a 200,000-byte range sample). The file declares its own source and the date of the list.",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "companii-publice-ro",
+    "url": "https://cosettechichirau.github.io/companiipublice/financials.json",
+    "parinte": "https://cosettechichirau.github.io/companiipublice/",
+    "citire": "json-esantion",
+    "locate": {
+      "pagina": "https://cosettechichirau.github.io/companiipublice/",
+      "text": "fetch('./financials.json'",
+      "cache": true
+    },
+    "dovezi": [],
+    "nota": "The financial statements, 2008-2025 (a 200,000-byte range sample). The file declares the unit (lei, whole numbers), the source and the generation date, and `fields` names the ten positions of the yearly rows (turnover, total income, total expenses, net profit, net loss, debts, equity, fixed assets, current assets, employees). `companii` is a collection keyed by CUI; each company has `caen` and `y`, a collection keyed by year.",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "companii-publice-ro",
+    "url": "https://cosettechichirau.github.io/companiipublice/county_boundaries.geojson",
+    "parinte": "https://cosettechichirau.github.io/companiipublice/",
+    "citire": "json-esantion",
+    "locate": {
+      "pagina": "https://cosettechichirau.github.io/companiipublice/",
+      "text": "fetch('./county_boundaries.geojson'",
+      "cache": true
+    },
+    "dovezi": [],
+    "nota": "The county boundary layer of the map (a 30,000-byte range sample; geometry is not wanted). The properties are the county name and code.",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "executii-bugetare",
+    "url": "https://executii-bugetare.g4d.ro/json/judete.json",
+    "parinte": "https://executii-bugetare.g4d.ro/",
+    "locate": {
+      "pagina": "https://executii-bugetare.g4d.ro/",
+      "randare": "https://executii-bugetare.g4d.ro/json/judete.json"
+    },
+    "dovezi": [],
+    "nota": "Data file that the page fetched when the browser rendered it. The list of the 42 counties that the page loads first: code and name.",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "executii-bugetare",
+    "url": "https://executii-bugetare.g4d.ro/json/2026/B/institutii.json",
+    "parinte": "https://executii-bugetare.g4d.ro/",
+    "locate": {
+      "pagina": "https://executii-bugetare.g4d.ro/",
+      "randare": "https://executii-bugetare.g4d.ro/json/2026/B/institutii.json"
+    },
+    "dovezi": [],
+    "nota": "Data file that the page fetched when the browser rendered it. The institutions of one county (here București): county code, name, CUI (`cif`), and two flags (`primarie`, `municipiu`). The path holds the year and the county code.",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "executii-bugetare",
+    "url": "https://executii-bugetare.g4d.ro/json/2026/B/4267117.json",
+    "parinte": "https://executii-bugetare.g4d.ro/",
+    "locate": {
+      "pagina": "https://executii-bugetare.g4d.ro/",
+      "randare": "https://executii-bugetare.g4d.ro/json/2026/B/4267117.json"
+    },
+    "dovezi": [
+      {
+        "pagina": "https://executii-bugetare.g4d.ro/json/2026/B/4267117.json",
+        "text": "https://static.anaf.ro/rapfxb/",
+        "cache": true,
+        "rol": "fisiere-originale-legate-de-fisier"
+      }
+    ],
+    "nota": "Data file that the page fetched when the browser rendered it. The budget execution of one institution (the file name is its CUI) for the months of 2026 that the Ministry of Finance data covers: revenue and expenditure by budget line (`diagrama`: a series of nine monthly sums for each line; `tabel`: the lines with their sums and sub-lines) and `date`, the links to the original monthly reports (xlsx and pdf) on static.anaf.ro.",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "ce-cumpara-primaria",
+    "url": "https://cecumparaprimaria.vercel.app/clasament",
+    "parinte": "https://cecumparaprimaria.vercel.app/",
+    "citire": {
+      "tip": "html-tabele",
+      "tabele": [
+        1
+      ]
+    },
+    "locate": {
+      "pagina": "https://cecumparaprimaria.vercel.app/",
+      "link": "https://cecumparaprimaria.vercel.app/clasament"
+    },
+    "dovezi": [
+      {
+        "pagina": "https://cecumparaprimaria.vercel.app/",
+        "text": "Sursa datelor: rapoartele trimestriale SEAP/SICAP publicate pe data.gov.ro",
+        "rol": "furnizor-declarat-de-pagina"
+      }
+    ],
+    "nota": "The ranking page: one table of 100 rows (place, locality with its type, county and main service, inhabitants, current spending for each inhabitant, lei for each inhabitant, split, median of similar places, comparison, total). The page is server-rendered; no JSON request exists.",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "ce-cumpara-primaria",
+    "url": "https://cecumparaprimaria.vercel.app/furnizori",
+    "parinte": "https://cecumparaprimaria.vercel.app/",
+    "citire": {
+      "tip": "html-tabele",
+      "tabele": [
+        1
+      ]
+    },
+    "locate": {
+      "pagina": "https://cecumparaprimaria.vercel.app/",
+      "link": "https://cecumparaprimaria.vercel.app/furnizori"
+    },
+    "dovezi": [],
+    "nota": "The suppliers page: one table of 100 rows (rank, firm with its CUI, activity and employees, amount received, number of administrations, number of purchases, main service).",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "ce-cumpara-primaria",
+    "url": "https://cecumparaprimaria.vercel.app/uat/9262?an=2025",
+    "parinte": "https://cecumparaprimaria.vercel.app/",
+    "citire": {
+      "tip": "html-tabele",
+      "tabele": [
+        1,
+        3
+      ]
+    },
+    "locate": {
+      "pagina": "https://cecumparaprimaria.vercel.app/",
+      "link": "https://cecumparaprimaria.vercel.app/uat/9262?an=2025"
+    },
+    "dovezi": [],
+    "nota": "The page of one administrative unit (Arad; the number in the address is its SIRUTA code). Tables 1 and 3: the services with total, lei for each inhabitant and the medians of similar places and of the country; the firms that were paid, with the amount, the number of purchases and the main service.",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "monitor-social",
+    "url": "https://monitorsocial.ro/data/consumul-gospodariilor/",
+    "parinte": "http://monitorsocial.ro/",
+    "citire": "html-tabele-eurostat",
+    "locate": {
+      "pagina": "http://monitorsocial.ro/",
+      "link": "https://monitorsocial.ro/data/consumul-gospodariilor/"
+    },
+    "dovezi": [],
+    "nota": "A data page of the site. The data are tables that the Eurostat data browser exports, pasted into the page. Four Eurostat extractions on household consumption (hbs_exp_t111, hbs_str_t211, hbs_str_t223, hbs_str_t226).",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "monitor-social",
+    "url": "https://monitorsocial.ro/data/rata-de-ocupare-a-femeilor-3/",
+    "parinte": "http://monitorsocial.ro/",
+    "citire": "html-tabele-eurostat",
+    "locate": {
+      "pagina": "http://monitorsocial.ro/",
+      "link": "https://monitorsocial.ro/data/rata-de-ocupare-a-femeilor-3/"
+    },
+    "dovezi": [],
+    "nota": "A data page of the site. The data are tables that the Eurostat data browser exports, pasted into the page. The employment rate by sex and age, with one extraction for each sex (the same code twice).",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "monitor-social",
+    "url": "https://monitorsocial.ro/data/populatia-cu-studii-superioare/",
+    "parinte": "http://monitorsocial.ro/",
+    "citire": "html-tabele-eurostat",
+    "locate": {
+      "pagina": "http://monitorsocial.ro/",
+      "link": "https://monitorsocial.ro/data/populatia-cu-studii-superioare/"
+    },
+    "dovezi": [],
+    "nota": "A data page of the site. The data are tables that the Eurostat data browser exports, pasted into the page. Two stacked extractions on the population by educational attainment (EDAT_LFSE_03, EDAT_LFSE_04).",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "monitor-social",
+    "url": "https://monitorsocial.ro/data/romania-devine-o-tara-de-destinatie-pentru-migratie-economica/",
+    "parinte": "http://monitorsocial.ro/",
+    "citire": "html-tabele-eurostat",
+    "locate": {
+      "pagina": "http://monitorsocial.ro/",
+      "link": "https://monitorsocial.ro/data/romania-devine-o-tara-de-destinatie-pentru-migratie-economica/"
+    },
+    "dovezi": [],
+    "nota": "A data page of the site. The data are tables that the Eurostat data browser exports, pasted into the page. Two extractions on residence permits (MIGR_RESOCC, tps00171).",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "verifica-psiholog",
+    "url": "https://www.verificapsiholog.ro/structura-datelor",
+    "parinte": "https://www.verificapsiholog.ro/",
+    "citire": "html-glosar",
+    "locate": {
+      "pagina": "https://www.verificapsiholog.ro/",
+      "link": "https://www.verificapsiholog.ro/structura-datelor"
+    },
+    "dovezi": [],
+    "nota": "The structure page of the project: 13 fields of the profile of a psychologist, each with its label and a definition paragraph. It names nine more fields in a sentence (hasDGPC, dgpcDate, hasTSA, tsaDate, isExpert, expertDate, hasSupervisorCert, supervisorDate, supervisedSpecialties); no heading defines them, so the glossary reader does not read them.",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "verifica-psiholog",
+    "url": "https://www.verificapsiholog.ro/api/register-metadata",
+    "parinte": "https://www.verificapsiholog.ro/",
+    "locate": {
+      "pagina": "https://www.verificapsiholog.ro/",
+      "randare": "https://www.verificapsiholog.ro/api/register-metadata"
+    },
+    "dovezi": [],
+    "nota": "Data request that the home page made when the browser rendered it: the date of the last update and the eight CPR registers that the platform reads, each with its file name, address on copsi.ro, hash, extraction date, number of records and status. No person.",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "verifica-psiholog",
+    "url": "https://www.verificapsiholog.ro/api/statistics",
+    "parinte": "https://www.verificapsiholog.ro/",
+    "locate": {
+      "pagina": "https://www.verificapsiholog.ro/",
+      "randare": "https://www.verificapsiholog.ro/api/statistics"
+    },
+    "dovezi": [],
+    "nota": "Data request of the home page: the aggregate counts (total, active, suspended, with a special certificate, by county and by branch). No person.",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "verifica-psiholog",
+    "url": "https://www.verificapsiholog.ro/api/psychologists-grouped?limit=1000",
+    "parinte": "https://www.verificapsiholog.ro/",
+    "citire": "json-esantion",
+    "persoane": true,
+    "locate": {
+      "pagina": "https://www.verificapsiholog.ro/",
+      "randare": "https://www.verificapsiholog.ro/api/psychologists-grouped?limit=1000"
+    },
+    "dovezi": [],
+    "nota": "The registry list that the home page loads (2,407,883 bytes in full; the browser helper left it out for its size). The first 4,000 bytes were read by a range request, enough for the first record. The body holds records about natural persons, so the source is marked and the record keeps key names, paths, types and counts only.",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "cat-de-tare",
+    "url": "https://mariuscomper.uk/cat-de-tare/",
+    "parinte": "https://mariuscomper.uk/cat-de-tare/",
+    "citire": {
+      "tip": "js-literale",
+      "tabele": true
+    },
+    "locate": {
+      "pagina": "https://mariuscomper.uk/cat-de-tare/",
+      "text": "\"@type\": \"Dataset\"",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://mariuscomper.uk/cat-de-tare/",
+        "text": "Tabelul A.1 din Anexa A a metodologiei RTC 18-2026 are 3.181 de rânduri",
+        "rol": "sursa-declarata-de-pagina"
+      }
+    ],
+    "nota": "The page. It declares a schema.org Dataset (name, period 2026, licence CC BY 4.0, based on the Monitorul Oficial PDF of the order) and shows the table of the counties (county, localities, minimum, maximum, mean).",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "cat-de-tare",
+    "url": "https://mariuscomper.uk/cat-de-tare/assets/app.js?v=7e09d6d661",
+    "parinte": "https://mariuscomper.uk/cat-de-tare/",
+    "citire": "js-pozitii",
+    "locate": {
+      "pagina": "https://mariuscomper.uk/cat-de-tare/",
+      "text": "src=\"/cat-de-tare/assets/app.js?v=7e09d6d661\"",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://mariuscomper.uk/cat-de-tare/assets/app.js?v=7e09d6d661",
+        "text": "rows = d.rows.map(function (a, i) {",
+        "cache": true,
+        "rol": "decodor-al-randurilor-din-places-json"
+      }
+    ],
+    "nota": "The script of the page. It decodes each row of `places.json` into an object and so names the 19 positions of the row (name, county, kind, pop, v, k, vi, viii, higher, same, lower, x, y, bb, nb, slug, n, page, card). The script is a source of names, not of values.",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "cat-de-tare",
+    "url": "https://mariuscomper.uk/cat-de-tare/assets/places.json?v=5",
+    "parinte": "https://mariuscomper.uk/cat-de-tare/",
+    "citire": "json-esantion",
+    "locate": {
+      "pagina": "https://mariuscomper.uk/cat-de-tare/assets/app.js?v=7e09d6d661",
+      "text": "fetch(PREFIX + \"/assets/places.json?v=\" + CFG.ver)",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://mariuscomper.uk/cat-de-tare/",
+        "text": "\"ver\": \"5\"",
+        "cache": true,
+        "rol": "versiune-declarata-de-pagina"
+      }
+    ],
+    "nota": "The data file that the script fetches (a 200,000-byte range sample of 1,410 rows or more): the version, the colour ramps of day and night, and one row of 19 cells for each locality. The plain reader cannot name the 19 positions; the script source above does.",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "recontorizarea",
+    "url": "https://mariuscomper.uk/recontorizarea/assets/data.json",
+    "parinte": "https://mariuscomper.uk/recontorizarea/",
+    "locate": {
+      "pagina": "https://mariuscomper.uk/recontorizarea/assets/app.js?v=1",
+      "text": "fetch(BASE + \"assets/data.json\")",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://mariuscomper.uk/recontorizarea/",
+        "text": "Ponderile provin din ancheta bugetelor de familie a INS, matricea BUF109I din TEMPO-Online",
+        "rol": "sursa-declarata-de-pagina"
+      }
+    ],
+    "nota": "The data file that the script of the page fetches (6,194 characters): `meta` (anchor year, years, extraction dates, sources), the thirteen categories with their Romanian and English names, the weights of seven household profiles, and the yearly weights and price changes (`w`, `yoy`) for each category.",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "de-unde-vine-apa",
+    "url": "https://mariuscomper.uk/de-unde-vine-apa/",
+    "parinte": "https://mariuscomper.uk/de-unde-vine-apa/",
+    "citire": {
+      "tip": "js-literale",
+      "tabele": true,
+      "indentate": [
+        "__CITIES_DATA__"
+      ]
+    },
+    "locate": {
+      "pagina": "https://mariuscomper.uk/de-unde-vine-apa/",
+      "text": "window.__CITIES_DATA__ = [",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://mariuscomper.uk/de-unde-vine-apa/",
+        "text": "Surse de date și legislație de referință",
+        "rol": "sursele-declarate-de-pagina"
+      }
+    ],
+    "nota": "Reserve entry (it replaces sicap-ai). The page keeps its data in a script that a wrapping element indents: one record for each of the ten cities (operator, source category, sources with their share, treatment, hardness, chlorine, tariff, network length, provenance). Two tables list the parameters of two cities and the primary document of each city.",
+    "metoda": "adaugat-explicit"
+  },
+  {
+    "proiect": "ani-de-pensie",
+    "url": "https://mariuscomper.uk/ani-de-pensie/",
+    "parinte": "https://mariuscomper.uk/ani-de-pensie/",
+    "citire": {
+      "tip": "js-literale",
+      "tabele": true,
+      "omise": [
+        "i18n"
+      ]
+    },
+    "locate": {
+      "pagina": "https://mariuscomper.uk/ani-de-pensie/",
+      "text": "id=\"model\"",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://mariuscomper.uk/ani-de-pensie/",
+        "text": "Eurostat, speranța de viață după vârstă și sex",
+        "rol": "sursa-declarata-de-pagina"
+      }
+    ],
+    "nota": "Reserve entry (it replaces open-budget). The page holds a data island `model` (the statutory retirement ages by birth month for women and men, the life expectancy, the healthy life years and the survivors by age) and a table of retirement ages by country. The island `i18n` holds the interface texts in two languages; the option `omise` keeps it out of the fields.",
+    "metoda": "adaugat-explicit"
+  }
+]
