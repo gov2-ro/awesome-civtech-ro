@@ -1,5 +1,11 @@
 # Activity
 
+## 2026-10-27 — dupa-cutremur documentation collected again
+
+**Done**
+- At the owner's request, `collect_docs.py --only dupa-cutremur --force` (5 requests). The two pages with letters outside ASCII (`ce-înseamnă-redu`, `sistemul-de-mapare-rapidă`) are now collected; the entry changed from `documentatie-neconfirmata` (1 page) to `documentatie-gasita` (3 pages).
+- `inventory.py --check`: 0 stale evidence items, so the accepted provider D203 keeps its pinned evidence. 775 unit tests pass.
+
 ## 2026-10-27 — `lista-firme`: one response of the live API
 
 **Done**
