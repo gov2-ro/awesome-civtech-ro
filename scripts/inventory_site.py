@@ -9,7 +9,7 @@ from urllib.parse import quote, unquote, urlsplit
 
 from collect_docs import is_saved
 from common import inventory_exclusion, observation_paths, public_reason
-from inventory_concepts import BASIS_LABELS, active_groups, as_list, group_state, selector_matches
+from inventory_concepts import PUBLIC_BASIS_LABELS, active_groups, as_list, group_state, selector_matches
 from inventory_persons import is_marked
 
 
@@ -133,7 +133,7 @@ def publish_finder(items, root, site, projections, vocabulary=None):
                         'variables': variable_matches(item['slug'], fields, sources, concepts),
                         'inventory': {k: v for k, v in item.get('inventory', {}).items() if k != 'keywords'},
                         'keywords': item.get('inventory', {}).get('keywords', '')})
-    index = {'partial': True, 'concepts': [{'id': c['id'], 'scheme': c['scheme'], 'label': c['label']}
+    index = {'partial': True, 'factBasis': PUBLIC_BASIS_LABELS, 'concepts': [{'id': c['id'], 'scheme': c['scheme'], 'label': c['label']}
                                          for c in (vocabulary or {}).get('concepts', []) if c['scheme'] in ('subiect', 'institutie')],
              'families': [{'id': f['id'], 'label': f['label']} for f in families],
              'variables': [{**{k: c[k] for k in ('id', 'label', 'definition')}, 'category': c.get('categorie'), 'family': c.get('familie'),
@@ -545,7 +545,7 @@ def source_licence(source):
 
 # The data set facts that a source declares about its own data sets (module docstring of `inventory_setlist` and `inventory_literals`). A fact is shown only when
 # the source declares it: its basis is `declarat-in-pagina`, `declarat-in-metadate` or `declarat-in-lista`. A value that an API computed or that the inventory
-# counted is not a declaration. The basis is named with the label of the review interface (`BASIS_LABELS`, key `declaratie-directa`).
+# counted is not a declaration. The basis is named with the public word for the key `declaratie-directa` (`PUBLIC_BASIS_LABELS`: „declarat”).
 DECLARED_BASIS = 'declaratie-directa'
 DESCRIPTION_LIMIT = 300  # characters of a description in `inventar/<slug>.json`; the page of the entry keeps the whole text
 
@@ -608,7 +608,7 @@ def declared_facts(source):
     if is_marked(source):
         return None
     facts = {key: found for key, found in (('sets', declared_sets(source)), ('schema', declared_schema(source))) if found}
-    return {'basis': BASIS_LABELS[DECLARED_BASIS], **facts} if facts else None
+    return {'basis': PUBLIC_BASIS_LABELS[DECLARED_BASIS], **facts} if facts else None
 
 
 def compact_facts(facts):
@@ -731,7 +731,7 @@ def publish_preview(items, root, site):
             title = sheets.get(ident) or FORMATS.get(fmt, 'Sursă de date') + (' · ' + filename if filename else '')
             listed = {'id': ident, 'url': url, 'title': title, 'format': fmt, 'checked': str(source.get('fetched_at', ''))[:10]}
             if source.get('set_date'):
-                listed['dataset'] = {**dataset_summary(source['set_date']), 'basis': BASIS_LABELS[DECLARED_BASIS]}
+                listed['dataset'] = {**dataset_summary(source['set_date']), 'basis': PUBLIC_BASIS_LABELS[DECLARED_BASIS]}
             if facts:
                 listed['facts'] = facts
             licence = source_licence(source)

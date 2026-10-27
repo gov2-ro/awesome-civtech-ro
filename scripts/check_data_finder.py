@@ -215,7 +215,8 @@ with sync_playwright() as pw:
             block = page.locator(f'.vp-source[data-source="{source["id"]}"]')
             titles = [x['title'] for x in facts.get('sets', [])] + [x.get('name') or 'Set de date' for x in facts.get('schema', [])] + ([source['dataset']['code']] if source.get('dataset') else [])
             on_page = block.locator('.vp-set > strong').all_inner_texts()
-            if on_page != titles or (titles and not all(b == (facts.get('basis') or source['dataset']['basis']) for b in block.locator('.vp-datasets .inv-basis').all_inner_texts())):
+            if on_page != titles or (titles and not all(b == (facts.get('basis') or source['dataset']['basis']) == INDEX['factBasis']['declaratie-directa']
+                                                         for b in block.locator('.vp-datasets .inv-basis').all_inner_texts())):
                 wrong_facts.append(f'{slug}:{source["id"]}')
         page.set_viewport_size({'width': 1280, 'height': 900})
         page.locator('.vp-nav a', has_text='Pe surse').click()
@@ -227,12 +228,44 @@ with sync_playwright() as pw:
     ok('every page has a block for each family that its own data names, and no other', not wrong_families)
     ok('every page has one row for each field of its own data', not wrong_rows)
     ok('every page lists the data set facts of each source of its own data under that source, with the basis', not wrong_facts)
+    words = INDEX.get('factBasis', {})
+    ok('the index carries the public words for the bases, and no basis is left without one', set(words) == {'declaratie-directa', 'observatie-esantion', 'deductie-din-dovezi', 'parafraza-editoriala'} and all(words.values()))
     ok('no page scrolls sideways at 1280 px or at 375 px', not sideways)
     ok('the links inside a page stay on the page', not anchors)
     ok('every file that a page loads (styles, fonts, images) resolves from the address of the page', not not_loaded)
     if missing + wrong_head + wrong_sources + wrong_families + wrong_rows + sideways + anchors + wrong_facts + not_loaded:
         print('  ', missing, wrong_head, wrong_sources, wrong_families, wrong_rows, sideways, anchors, wrong_facts, not_loaded[:5])
     page.set_viewport_size({'width': 1440, 'height': 1100})
+    # The three pages have `<base href>`, which resolves `#id` against the base: a skip link or an anchor must name its page (`date/#data-results`), or a click leaves for the explorer.
+    sample = next(r['slug'] for r in rows)
+    for path in ('date/', 'date/lista/', f'date/{sample}/'):
+        page.goto(BASE + path)
+        page.wait_for_selector('.finder-card, .ov-table, .vp-head')
+        ok(f'{path} has no link to a bare anchor', page.locator('a[href^="#"]').count() == 0)
+        skips = page.locator('a.skip')
+        stays = True
+        for n in range(skips.count()):
+            skips.nth(n).focus()
+            skips.nth(n).click()
+            stays = stays and urllib.parse.urlsplit(page.url).path == '/' + path and page.url.endswith('#' + skips.nth(n).get_attribute('href').split('#')[1])
+            page.goto(BASE + path)
+            page.wait_for_selector('.finder-card, .ov-table, .vp-head')
+        ok(f'{path}: every skip link stays on the page and reaches its target ({skips.count()} found)', stays and (path != 'date/' or skips.count() == 1))
+    page.goto(BASE + 'date/')
+    page.wait_for_selector('.finder-card')
+    page.locator('a.skip').focus()
+    page.locator('a.skip').click()
+    ok('the skip link of the finder moves to the results', page.evaluate("location.hash==='#data-results' && location.pathname.endsWith('/date/')") and page.locator('#data-results').count() == 1)
+    # One word for one basis: the finder shows the word that the index gives to the basis of a fact of a group member.
+    found = next(((e, v, f) for e in INDEX['entries'] for v in e['variables'] for ev in v['evidence'] for f in ev.get('facts', [])), None)
+    ok('a fact of a group member exists to check the word of its basis', found is not None)
+    if found:
+        e, v, f = found
+        page.goto(BASE + 'date/?q=' + urllib.parse.quote(e['name']) + '&variables=' + urllib.parse.quote(v['id']))
+        page.wait_for_selector(f'.finder-card[data-project="{e["slug"]}"]')
+        card = page.locator(f'.finder-card[data-project="{e["slug"]}"]')
+        card.locator('.finder-evidence > summary').click()
+        ok('the finder says the basis of a fact with the word of the index', f'({INDEX["factBasis"][f["basis"]]})' in card.locator('.finder-evidence').inner_text())
     page.goto(BASE + 'date/lista/')
     # The scope: the entries that the inventory leaves out are absent from the index, the list and the finder, and counted by reason.
     ok('the index lists exactly the projects and resources that are in scope', {e['slug'] for e in INDEX['entries']} == EXPECTED and len(OUT) > 0)

@@ -16,6 +16,7 @@ from playwright.sync_api import sync_playwright
 BASE = sys.argv[1] if len(sys.argv) > 1 else 'http://localhost:8770/'
 DB = json.load(urllib.request.urlopen(BASE + 'data.json'))
 assert DB.get('inventoryPreview'), 'Build with --with-inventory first.'
+WORDS = json.load(urllib.request.urlopen(BASE + 'inventar/index.json'))['factBasis']  # the public words for the bases; the build writes them, no script keeps a copy
 results, errors = [], []
 
 
@@ -90,6 +91,7 @@ with sync_playwright() as pw:
     ok('INS metadata sources list the datasets with period, unit and the mirror caveat',
        page.locator('.inv-datasets').count() == 1 and 'POP107D' in page.locator('.inv-datasets').text_content() and 'Numar persoane' in page.locator('.inv-datasets').text_content()
        and 'oglindă' in page.locator('.inv-datasets').text_content())
+    ok('the INS metadata names its basis with the public word', page.locator('.inv-datasets .inv-basis').evaluate_all('els=>els.map(e=>e.textContent)') == [WORDS['declaratie-directa']])
     page.locator('[data-inv="q"]').fill('OBS_VALUE')
     ok('an INS dataset has one measure field with its declared unit, not one field per dimension value',
        page.locator('.inv-field').count() == 2 and all('Numar' in t and 'Tip neprecizat' in t for t in page.locator('.inv-field').all_inner_texts()))
@@ -222,7 +224,7 @@ with sync_playwright() as pw:
         ok(f'the field browser lists each data set that a source of {slug} declares ({kind})', facts.locator('.inv-facts .inv-set').count() == len(listed)
            and texts('.inv-facts .inv-set > strong') == names)
         ok(f'each source with facts names its basis ({slug})', texts('.inv-facts .inv-basis') == [s['facts']['basis'] for s in payloads[slug]['sources'] if s.get('facts')]
-           and all(b == 'declarație directă' for b in texts('.inv-facts .inv-basis')))
+           and all(b == WORDS['declaratie-directa'] for b in texts('.inv-facts .inv-basis')))
         ok(f'a source that declares nothing has no block of facts ({slug})', facts.locator('.inv-facts > .inv-note').count() >= sum(bool(s.get('facts')) for s in payloads[slug]['sources']))
         facts.close()
     # A long description is cut in the payload; the note then points to the page that holds the whole text. A set that a source declares stays text.
@@ -269,6 +271,7 @@ with sync_playwright() as pw:
     linked.wait_for_selector('.vp-head h1')
     ok('the link opens the variables page of the entry', linked.url.endswith('/date/demoanaf/') and linked.locator('.vp-head h1').inner_text() == 'DemoANAF')
     ok('the page links back to the entry in the explorer', linked.locator('.vp-open').get_attribute('href') == 'proiect/demoanaf/')
+    ok('the page and the panel say the basis of the INS metadata with the same word', set(linked.locator('.vp-datasets .inv-basis').evaluate_all('els=>els.map(e=>e.textContent)')) == {WORDS['declaratie-directa']})
     linked.close()
     for item in [i for i in DB['items'] if i.get('inventory') and not i['inventory'].get('page')][:2]:
         other = browser.new_page(viewport={'width': 1280, 'height': 900})

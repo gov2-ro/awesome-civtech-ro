@@ -12,7 +12,7 @@ from pathlib import Path
 from unittest.mock import patch
 from urllib.parse import urljoin, urlsplit
 
-from inventory_concepts import BASIS_LABELS
+from inventory_concepts import BASIS_LABELS, EVIDENCE_BASES, PUBLIC_BASIS_LABELS
 from inventory_site import (DESCRIPTION_LIMIT, FIELD_BASIS_LABELS, GROUP_STATE_LABELS, ROLE_LABELS, TYPE_LABELS, clip, compact_facts, declared, declared_facts,
                             declared_schema, declared_sets, family_columns, field_groups, group_hits, has_page, publish_finder, publish_preview,
                             publish_variable_pages, type_label, variable_matches)
@@ -393,10 +393,10 @@ class Facts(unittest.TestCase):
         self.assertEqual(declared_schema({'format': 'js-literale', 'seturi_ld': [schema_set(based=('javascript:alert(1)', 'https://ok.example/b'))]})[0]['basedOn'], ['https://ok.example/b'],
                          'a base that is not an address is dropped')
 
-    def test_the_basis_is_named_with_the_label_of_the_review_interface(self):
+    def test_the_basis_is_named_with_the_public_word_and_not_with_the_label_of_the_review_interface(self):
         facts = declared_facts(listing(listed_set()))
-        self.assertEqual(facts['basis'], BASIS_LABELS['declaratie-directa'])
-        self.assertEqual(facts['basis'], 'declarație directă')
+        self.assertEqual(facts['basis'], PUBLIC_BASIS_LABELS['declaratie-directa'])
+        self.assertEqual(facts['basis'], 'declarat', 'the public word, as the finder says it; the review interface keeps its own, more exact label')
         self.assertIsNone(declared_facts(listing()))
         self.assertIsNone(declared_facts({'format': 'csv', 'campuri': [record('a')]}))
 
@@ -438,7 +438,7 @@ class Facts(unittest.TestCase):
         self.assertEqual(block.count('<li class="vp-set">'), 2)
         self.assertIn('<strong>Setul A</strong> <span class="vp-cat">Electoral · Gen</span><p>Descrierea setului</p>', block)
         self.assertIn('Rapoarte: <a href="https://expertforum.ro/raport/" target="_blank" rel="noopener">expertforum.ro/raport/</a>', block)
-        self.assertIn('<span class="inv-basis">declarație directă</span>', block)
+        self.assertIn('<span class="inv-basis">declarat</span>', block)
         self.assertIn('Pagina nu are câmpuri proprii', block)
         self.assertNotIn('<table', block)
         self.assertNotIn('vp-set', page[page.index('data-source="s"'):], 'a source without facts shows none')
@@ -475,12 +475,12 @@ class Facts(unittest.TestCase):
             (site, _), _ = fixture(tmp, sources=sources, profiles=[{'slug': 'p', 'surse_structurate': ['m']}])
             payload = json.loads((site / 'inventar/p.json').read_text())
             page = (site / 'date/p/index.html').read_text()
-        self.assertEqual(payload['sources'][0]['dataset']['basis'], 'declarație directă')
+        self.assertEqual(payload['sources'][0]['dataset']['basis'], 'declarat')
         self.assertEqual(payload['sources'][0]['dataset']['code'], 'POP107D')
         block = page[page.index('data-kind="metadate"'):page.index('</ul>', page.index('data-kind="metadate"'))]
         self.assertIn('<strong>POP107D</strong> Populatia', block)
         self.assertIn('perioadă 1992–2024 (calculată de API) · niveluri: Judete · unitate declarată: Numar persoane · actualizat 2024-10-08 · licență nedeclarată', block)
-        self.assertIn('declarație directă', block)
+        self.assertIn('declarat</span>', block)
         self.assertNotIn('SEX', page, 'the names of the dimensions are not part of what the page shows')
 
     def test_facts_are_the_only_new_keys_of_a_source_in_the_payload(self):
@@ -488,6 +488,58 @@ class Facts(unittest.TestCase):
             (site, _), _ = fixture(tmp)
             payload = json.loads((site / 'inventar/p.json').read_text())
         self.assertTrue(all('facts' not in s and 'dataset' not in s for s in payload['sources']), 'a source that declares nothing carries no key for it')
+
+
+class PublicWords(unittest.TestCase):
+    """One word for one basis on the public pages: the finder, the field browser and the page of an entry. The list is `PUBLIC_BASIS_LABELS`; no script keeps a copy."""
+
+    def test_the_public_list_has_the_bases_of_the_review_interface_with_other_words(self):
+        self.assertEqual(set(PUBLIC_BASIS_LABELS), set(BASIS_LABELS))
+        self.assertEqual(set(PUBLIC_BASIS_LABELS), set(EVIDENCE_BASES))
+        self.assertEqual(PUBLIC_BASIS_LABELS['declaratie-directa'], 'declarat')
+        self.assertEqual(BASIS_LABELS['declaratie-directa'], 'declarație directă', 'the review interface is a local tool and stays more exact')
+
+    def test_no_public_script_keeps_a_copy_of_the_words_and_the_finder_reads_them_from_the_index(self):
+        for name in ('app.js', 'inventory.js'):
+            text = (ROOT / 'site' / name).read_text()
+            for key in EVIDENCE_BASES:
+                self.assertNotIn(key, text, f'{name} holds the key {key}: the words belong to the build')
+            for word in PUBLIC_BASIS_LABELS.values():
+                self.assertNotIn(f"'{word}'", text, f'{name} holds the word {word}')
+        self.assertIn('inventory.factBasis', (ROOT / 'site/inventory.js').read_text())
+
+    def test_the_index_the_payload_and_the_page_carry_the_same_words_and_a_change_reaches_all_of_them(self):
+        meta = {'cod': fact('POP107D', 'declarat-in-metadate')}
+        sources = [listing(listed_set()), {'id': 'm', 'url': 'https://ins.gov2.ro/api/datasets/POP107D', 'format': 'metadate-ins', 'campuri': [record('a')], 'set_date': meta}]
+        profiles = [{'slug': 'p', 'surse_structurate': ['l', 'm']}]
+        for words in (PUBLIC_BASIS_LABELS, {**PUBLIC_BASIS_LABELS, 'declaratie-directa': 'cuvânt-nou'}):
+            with patch('inventory_site.PUBLIC_BASIS_LABELS', words), tempfile.TemporaryDirectory() as tmp:
+                (site, _), _ = fixture(tmp, sources=sources, profiles=profiles)
+                index = json.loads((site / 'inventar/index.json').read_text())
+                payload = json.loads((site / 'inventar/p.json').read_text())
+                page = (site / 'date/p/index.html').read_text()
+            word = words['declaratie-directa']
+            self.assertEqual(index['factBasis'], words)
+            self.assertEqual([s.get('facts', {}).get('basis') for s in payload['sources']], [word, None])
+            self.assertEqual(payload['sources'][1]['dataset']['basis'], word)
+            self.assertEqual(re.findall(r'<span class="inv-basis">([^<]*)</span>', page), [word, word])
+
+
+class SkipLinks(unittest.TestCase):
+    """A page with `<base href>` resolves `#id` against the base, so a link to an anchor of the page must name the page (`date/#data-results`)."""
+
+    def test_no_template_and_no_generated_page_has_a_bare_anchor_and_the_skip_link_names_its_page(self):
+        templates = ROOT / 'scripts/templates'
+        with tempfile.TemporaryDirectory() as tmp:
+            (site, _), _ = fixture(tmp)
+            pages = {'date/': (site / 'date/index.html').read_text(), 'date/lista/': (site / 'date/lista/index.html').read_text(), 'date/p/': (site / 'date/p/index.html').read_text()}
+        for where, text in {**pages, **{n: (templates / n).read_text() for n in ('inventory.html', 'inventory-list.html', 'inventory-vars.html')}}.items():
+            bare = [v for _, n, v in parse(text).links if n == 'href' and v.startswith('#')]
+            self.assertEqual(bare, [], f'{where}: a bare anchor would leave the page through the base')
+        skip = [v for t, n, v in parse(pages['date/']).links if n == 'href' and v.endswith('#data-results')]
+        self.assertEqual(skip, ['date/#data-results'])
+        self.assertIn('id="data-results"', pages['date/'], 'the target of the skip link exists')
+        self.assertEqual(urlsplit(urljoin(urljoin('https://civtech.example/date/', '../'), skip[0])).path, '/date/', 'the base of the finder is ../, and the link lands on the finder')
 
 
 def js_object(source, name):
@@ -560,7 +612,7 @@ class RealInventory(unittest.TestCase):
                         record = records[source['id']]
                         self.assertEqual(source.get('facts'), compact_facts(declared_facts(record)) if declared_facts(record) else None, 'the facts of the payload are those that the source declares, cut')
                         self.assertEqual('dataset' in source, 'set_date' in record)
-                        self.assertEqual(source.get('dataset', {}).get('basis'), BASIS_LABELS['declaratie-directa'] if 'set_date' in record else None)
+                        self.assertEqual(source.get('dataset', {}).get('basis'), PUBLIC_BASIS_LABELS['declaratie-directa'] if 'set_date' in record else None)
                         block = page[page.index(f'data-source="{source["id"]}"'):]
                         block = block[:block.index('</section>')]
                         wanted = len((declared_facts(record) or {}).get('sets', [])) + len((declared_facts(record) or {}).get('schema', [])) + ('set_date' in record)

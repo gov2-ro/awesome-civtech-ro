@@ -21,8 +21,8 @@ const roles = {'parametru-api':'Parametru API', 'corp-cerere':'Corp de cerere', 
 const categories = {identificator:'Identificator', dimensiune:'Dimensiune', masura:'Măsură', 'iesire-derivata':'Valoare calculată', 'intrare-utilizator':'Intrare a utilizatorului'};
 const stateLabels = {propus:'Propus', revizuit:'Revizuit', amanat:'Amânat'};
 const factKeys = {unitate:'Unitate', formula:'Formulă', rol:'Rol', moment_de_referinta:'Moment de referință'};
-const factBasis = {'declaratie-directa':'declarat', 'observatie-esantion':'observat în eșantion', 'deductie-din-dovezi':'dedus din dovezi', 'parafraza-editoriala':'formulare editorială'};
-let entries = [], labels = {}, definitions = {}, meta = {}, families = [], state, shown = 24;
+// The words for the bases of a fact come from the index (`factBasis`, written by the build): the script keeps no copy of them.
+let entries = [], labels = {}, definitions = {}, meta = {}, families = [], factBasis = {}, state, shown = 24;
 // Families the visitor opened or closed; the others follow the default (open when one of their variables is common).
 const familyOpen = new Map();
 
@@ -213,6 +213,7 @@ async function start() {
     definitions = {variables:{}};
     for (const v of inventory.variables) { labels.variables[v.id]=v.label; definitions.variables[v.id]=v.definition; meta[v.id]={category:v.category, family:v.family, state:v.state || 'propus', ambiguities:v.ambiguities || [], proofs:v.proofs || []}; }
     families = inventory.families || [];
+    factBasis = inventory.factBasis || {};
     for (const c of inventory.concepts) {
       if (c.scheme === 'subiect') labels.subjects[c.id]=c.label;
       if (c.scheme === 'institutie') labels.institutions[c.id]=c.label;
