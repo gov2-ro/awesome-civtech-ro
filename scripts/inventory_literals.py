@@ -23,9 +23,11 @@ literal followed by an expression (`[...].map(...)`), a declaration in the middl
 
 Each field is a path in a literal with the types that the sample showed. The bounds are those of the JSON sampler: 25 elements of an
 array, 25 members of a keyed collection, seven levels, 2,000 fields. An object with 12 members or more whose values are all of one kind (objects,
-arrays, strings or numbers), or with 100 members or more, is a keyed collection (the keys are values such as county names and never become
-field names; three keys are kept as examples). A wide record, whose values differ in kind, stays a record. An array of equal-width rows of scalars
-gives one field for each position (`ROWS[][0]`, `ROWS[][1]`): the position is a fact, the meaning of a position is not.
+arrays, strings or numbers), or with 100 members or more, or with 2 members or more whose keys are all years (`2014`, `2015`) and whose values are
+of one kind, is a keyed collection (the keys are values such as county names or years and never become field names; three keys are kept as
+examples). The plain JSON reader (`inventory.observed_fields`) applies the same rule through `keyed_collection`. A wide record, whose values
+differ in kind, stays a record. An array of equal-width rows of scalars gives one field for each position (`ROWS[][0]`, `ROWS[][1]`): the
+position is a fact, the meaning of a position is not.
 The locator `char:START-END` addresses the first node at that path in the retained body.
 """
 from __future__ import annotations
@@ -40,6 +42,7 @@ MAX_FIELDS = 2000
 KEYED_COLLECTION = 12
 SURE_COLLECTION = 100
 POSITIONAL_WIDTH = 12
+YEAR_KEY = re.compile(r'^(?:19|20)[0-9]{2}$')
 MAX_NESTING = 40
 EXAMPLE_KEYS = 3
 EXAMPLE_LENGTH = 40
@@ -334,13 +337,42 @@ def declarations(body):
     return out
 
 
-def keyed(members):
-    """A keyed collection maps values (county names, identifiers) to records. 100 members or more is always one. From 12 members, the values must be of one
-    kind (all objects, all arrays, all strings or all numbers): a record that is 14 fields wide has values of several kinds and stays a record."""
-    if len(members) >= SURE_COLLECTION:
+def keyed_collection(keys, kinds):
+    """The one rule for a keyed collection, for both JSON readers. A keyed collection maps values (county names, identifiers, years) to records.
+    `keys` are the member names and `kinds` the kind of each value (`json_kind`, or the kind of a literal Node).
+    - 100 members or more is always one.
+    - From 12 members, the values must be of one kind (all objects, all arrays, all strings or all numbers): a record that is 14 fields wide
+      has values of several kinds and stays a record.
+    - From 2 members, when every key is a year (`^(19|20)[0-9]{2}$`) and the values are of one kind: `{"2014": {...}, "2015": {...}}` repeats
+      one record, and its years are values, not field names.
+    A null does not count as a kind: a year with no data does not break the collection."""
+    if len(keys) >= SURE_COLLECTION:
         return True
-    kinds = {'numar' if child.kind in ('intreg', 'numar') else child.kind for _, child in members if child.kind != 'nul'}
-    return len(members) >= KEYED_COLLECTION and len(kinds) <= 1
+    one_kind = len(set(kinds) - {'nul'}) <= 1
+    if len(keys) >= KEYED_COLLECTION and one_kind:
+        return True
+    return len(keys) >= 2 and one_kind and all(YEAR_KEY.match(key) for key in keys)
+
+
+def json_kind(value):
+    """The kind of a parsed JSON value, in the vocabulary of a literal Node (a number is a number whether it is whole or not)."""
+    if value is None:
+        return 'nul'
+    if isinstance(value, bool):
+        return 'logic'
+    if isinstance(value, (int, float)):
+        return 'numar'
+    return 'text' if isinstance(value, str) else 'tablou' if isinstance(value, list) else 'obiect'
+
+
+def keyed_object(value):
+    """True when a parsed JSON object is a keyed collection (see `keyed_collection`)."""
+    return keyed_collection(list(value), [json_kind(child) for child in value.values()])
+
+
+def keyed(members):
+    """`keyed_collection` for the members (name, Node) of a literal object."""
+    return keyed_collection([key for key, _ in members], ['numar' if child.kind in ('intreg', 'numar') else child.kind for _, child in members])
 
 
 class Walk:

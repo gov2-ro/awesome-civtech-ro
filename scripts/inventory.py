@@ -40,7 +40,7 @@ from inventory_csvcards import csv_datasets
 from inventory_datasette import FORMAT as DATASETTE, database as datasette_database, is_listing as is_datasette, read as datasette_fields
 from inventory_ins import ins_dataset, ins_listing, ins_measure, is_listing
 from inventory_jsonsample import FORMAT as JSON_SAMPLE, list_sizes, recover as recover_json
-from inventory_literals import datasets as literal_datasets, declarations as literal_declarations
+from inventory_literals import POSITIONAL_WIDTH, datasets as literal_datasets, declarations as literal_declarations, keyed_object
 from inventory_setlist import list_datasets
 from inventory_sheet import header_facts, read as read_sheet
 from inventory_text import EXTENSIONS, read_text
@@ -49,8 +49,6 @@ from inventory_state import (REGISTRY, counted_fields, RequestLog, StateError, a
                              source_id, usable, validate_state, write_atomic, write_file_atomic)
 
 MAX_FIELDS, MAX_DEPTH, SAMPLE_ROWS = 2000, 7, 25
-# An object with more keys than this is a keyed collection (identifier -> record), not a record with that many members.
-KEYED_COLLECTION = 100
 TEXT_FORMATS = ('html-tabele', 'markdown', 'csharp', 'sql', 'php', 'js-acces', 'json-comentat', 'html-api-docs', 'html-carduri-csv', 'js-literale',
                 'html-lista-seturi')
 
@@ -178,13 +176,41 @@ def json_type(value):
     return 'array' if isinstance(value, list) else 'object'
 
 
-def observed_fields(doc):
+def positional_rows(elements):
+    """True when the elements are rows of one width (2 to POSITIONAL_WIDTH cells) that hold scalars only, and no row names its cells.
+    The reader of page scripts (`inventory_literals`) gives the same answer for the same rows."""
+    if not elements or not all(isinstance(e, list) and e and not any(isinstance(c, (dict, list)) for c in e) for e in elements):
+        return False
+    return len({len(e) for e in elements}) == 1 and 1 < len(elements[0]) <= POSITIONAL_WIDTH
+
+
+def observed_fields(doc, complete=True):
+    """The paths of a JSON document, with the types that its sample shows. Keyed collections, rows without names and empty containers are
+    facts of the shape and become fields; no value does.
+    `complete` is false for a body that a range read cut (module `inventory_jsonsample`). The cut can end a list before its first element is
+    whole, and the recovered list is then empty. That happens to the last member of the document only, so that member gets no record when it is empty."""
     found = {}
+    unsure = None
+    if not complete and isinstance(doc, dict) and doc:
+        unsure = '${*}' if keyed_object(doc) else '$.' + next(reversed(doc))
+
+    def register(path, pointer, kind, **extra):
+        field = found.get(path)
+        if field is None:
+            field = found[path] = {'nume': path.rsplit('.', 1)[-1], 'cale': path, 'tipuri_observate': [],
+                                   'stare_tip': 'observat-in-esantion-json', 'rol': 'camp-date', 'pointer': pointer}
+        if kind not in field['tipuri_observate']:
+            field['tipuri_observate'].append(kind)
+        field.update(extra)
+
     def walk(value, path='$', pointer='', depth=0):
         if depth > MAX_DEPTH or len(found) >= MAX_FIELDS:
             return
-        if isinstance(value, dict) and len(value) > KEYED_COLLECTION:
-            # Sample the first values like array elements. One path per key would turn identifiers into field names.
+        if isinstance(value, (dict, list)) and not value:
+            if path != unsure:
+                register(path, pointer, json_type(value), numar_elemente=0)
+        elif isinstance(value, dict) and keyed_object(value):
+            # Sample the first values like array elements. One path per key would turn identifiers and years into field names.
             here = path + '{*}'
             found.setdefault(here, {'nume': path.rsplit('.', 1)[-1] + '{*}', 'cale': here, 'tipuri_observate': ['object'],
                                     'stare_tip': 'observat-in-esantion-json', 'rol': 'colectie-cu-chei', 'pointer': pointer,
@@ -195,15 +221,17 @@ def observed_fields(doc):
             for key, child in list(value.items())[:MAX_FIELDS]:
                 walk(child, path + '.' + key, pointer + '/' + pointer_part(key), depth + 1)
         elif isinstance(value, list):
-            for n, child in enumerate(value[:SAMPLE_ROWS]):
-                walk(child, path + '[]', pointer + '/' + str(n), depth + 1)
+            elements = value[:SAMPLE_ROWS]
+            if positional_rows(elements):
+                # Rows of one width without names: one field for each position. What a position means is for a person to say.
+                for n, row in enumerate(elements):
+                    for position, cell in enumerate(row):
+                        register(f'{path}[][{position}]', f'{pointer}/{n}/{position}', json_type(cell))
+            else:
+                for n, child in enumerate(elements):
+                    walk(child, path + '[]', pointer + '/' + str(n), depth + 1)
         else:
-            if path not in found:
-                found[path] = {'nume': path.rsplit('.', 1)[-1], 'cale': path, 'tipuri_observate': [],
-                               'stare_tip': 'observat-in-esantion-json', 'rol': 'camp-date', 'pointer': pointer}
-            typ = json_type(value)
-            if typ not in found[path]['tipuri_observate']:
-                found[path]['tipuri_observate'].append(typ)
+            register(path, pointer, json_type(value))
     walk(doc)
     return list(found.values())
 
@@ -220,7 +248,8 @@ def sampling_limit(value, depth=0):
     if isinstance(value, list):
         return len(value) > SAMPLE_ROWS or any(sampling_limit(v, depth + 1) for v in value[:SAMPLE_ROWS])
     if isinstance(value, dict):
-        return len(value) > KEYED_COLLECTION or any(sampling_limit(v, depth + 1) for v in list(value.values())[:MAX_FIELDS])
+        sampled = keyed_object(value)  # a keyed collection is read through its first values only
+        return (sampled and len(value) > SAMPLE_ROWS) or any(sampling_limit(v, depth + 1) for v in list(value.values())[:SAMPLE_ROWS if sampled else MAX_FIELDS])
     return False
 
 
@@ -235,7 +264,7 @@ def parse_source(body, url, content_type='', hint=None):
     kind = hint.get('tip') if isinstance(hint, dict) else hint
     if kind == JSON_SAMPLE:
         document, complete = recover_json(body)
-        fields = observed_fields(document)
+        fields = observed_fields(document, complete)
         if not fields:
             raise ValueError('The sample holds no complete record with a field')
         return JSON_SAMPLE, fields, not complete or len(fields) >= MAX_FIELDS or sampling_limit(document)
