@@ -349,6 +349,24 @@ class Coverage(unittest.TestCase):
         others = [r['url'] for r in rows if r['url'] != LISTA_FIRME_API]
         self.assertFalse([u for u in others if urlsplit(u).path.startswith('/api') or 'cui=' in u or 'name=' in u or 'company=' in u], 'no other API path, CUI or name query')
 
+    def test_the_poll_index_of_sondaje_romania_is_one_keyed_collection_that_the_browser_received_and_no_key_is_a_field_name(self):
+        # `seats-index.json` has poll identifiers as keys. Before the corrected reader the keys would have become field names. The owner admitted the source on 2026-10-27.
+        url = 'https://sondajeromania.ro/seats-index.json'
+        source = next((s for s in self.data['sources'].values() if s['url'] == url), None)
+        self.assertIsNotNone(source)
+        self.assertIn(source['id'], self.data['profiles']['sondaje-romania']['surse_structurate'])
+        self.assertEqual((source['format'], source['stare'], source.get('via')), ('json', 'analizat', 'browser'))
+        self.assertEqual([(f['cale'], f['rol']) for f in source['campuri']], [('${*}', 'colectie-cu-chei')], 'one field: the collection, never a key')
+        self.assertGreater(source['campuri'][0]['numar_chei'], 1)
+        # The browser received the file, so the plain request was not made: the log has browser rows for it and no direct request.
+        rows = [r for r in self.data['log'] if r['url'] == url]
+        self.assertTrue(rows)
+        self.assertEqual([r['url'] for r in rows if r['cache'] == 'nu'], [], 'no direct request for the index')
+        locator = EvidenceLocator(ROOT / 'data/taxonomy-v2/observatii/inventare', ROOT / 'data/taxonomy-v2/observatii', list(self.data['sources'].values()))
+        text, _ = locator.text(url, 'sursa')
+        if text is not None:  # the retained body is not in git; a fresh checkout skips this part
+            self.assertEqual(source['campuri'][0]['numar_chei'], len(json.loads(text)))
+
     def test_the_request_log_of_batch_d_stays_inside_the_limits_and_asks_no_listed_host(self):
         rows = [r for r in self.data['log'] if r['lot'] == 'D']
         direct = [r for r in rows if r['cache'] == 'nu']
