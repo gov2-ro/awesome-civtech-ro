@@ -4433,6 +4433,386 @@
       "stare": "revizuit",
       "decizie_editor": "Revizuit în bloc la cererea proprietarului (2026-10-27)",
       "data_revizie": "2026-10-27"
+    },
+    {
+      "id": "datorii",
+      "label": "Datorii totale ale unei firme",
+      "categorie": "masura",
+      "familie": "firme",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Datoriile totale ale unei firme într-un an financiar, din situațiile financiare. Sursele le poartă ca `datorii` sau `debts`. Anul, moneda și unitatea (lei sau mii de lei) trebuie verificate în sursă. Datoriile pe scadențe (sub un an, peste un an) și datoriile unui partid nu fac parte din grup.",
+      "dovezi": [
+        {
+          "sursa": "https://api.romaniatransparenta.eu/v1/openapi.json",
+          "text": "sursa",
+          "fragment": "\"datorii\":{\"type\":[\"number\",\"null\"],\"description\":\"datoriile totale, lei\"}",
+          "sha256": "22f254d62529b955547d583428f2d827c5c25bbf9d3e74b0be1d45b3e6410b1e",
+          "baza": "declaratie-directa"
+        },
+        {
+          "sursa": "https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json",
+          "text": "sursa",
+          "fragment": "\"cheltuieli_avans\",\"datorii\",\"venituri_avans\"",
+          "sha256": "09d5c7201cb6a68b346dc7926702e5707c93339a3c49e581fcd1c478d4cbb600",
+          "baza": "observatie-esantion"
+        },
+        {
+          "sursa": "https://igov.ro/reports/guvernanta-series.json",
+          "text": "sursa",
+          "fragment": "\"debts\":[26716,7447,4689,4652,4484,1237,965,831,1651,1385],\"receivables\":",
+          "sha256": "9cf972fec1021d7fbe5ff235c001fea034418802bdbe693f915fcbb1a910f324",
+          "baza": "observatie-esantion"
+        },
+        {
+          "sursa": "https://igov.ro/reports/guvernanta.html",
+          "text": "cache",
+          "fragment": "'Datoriile depășesc activele: capitalurile proprii sunt sub zero.",
+          "sha256": "411b7190b452151d30cba6dcbb471180db76d871d840d188159c98833e021737",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "Unitatea diferă între surse: romania-transparenta declară „lei”, igov declară „mii lei” în fișierul seriei, companii-de-stat nu declară unitatea. Valorile nu se adună și nu se compară între surse fără conversie.",
+        "Nu sunt membre: „Datorii sub 1 an” și „Datorii peste 1 an” din tabelul „Venituri anuale partide de la MF” (bani-partide; datorii ale partidelor, pe scadență) și numele `datorii` din lista `fields` a fișierului `financials.json` (companii-publice-ro: numele apare ca valoare într-o listă, fără înregistrare de câmp, deci niciun selector nu îl potrivește).",
+        "Nicio sursă nu spune ce intră în „datorii totale” (provizioane, venituri în avans). Citiți definiția contabilă a sursei înainte de a compara."
+      ],
+      "selectors": [
+        {
+          "projects": [
+            "romania-transparenta"
+          ],
+          "names": [
+            "datorii"
+          ],
+          "path": [
+            "$.date[].datorii"
+          ],
+          "source": "https://api.romaniatransparenta.eu/v1/openapi.json",
+          "context": "datoriile totale ale firmei din răspunsurile API-ului (descrierea OpenAPI: „datoriile totale, lei”)",
+          "fapte": [
+            {
+              "cheie": "unitate",
+              "valoare": "lei",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://api.romaniatransparenta.eu/v1/openapi.json",
+                "text": "sursa",
+                "fragment": "\"datorii\":{\"type\":[\"number\",\"null\"],\"description\":\"datoriile totale, lei\"}",
+                "sha256": "22f254d62529b955547d583428f2d827c5c25bbf9d3e74b0be1d45b3e6410b1e",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        },
+        {
+          "projects": [
+            "companii-de-stat"
+          ],
+          "names": [
+            "datorii"
+          ],
+          "path": [
+            "$.companii{*}.datorii"
+          ],
+          "source": "https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json",
+          "context": "datoriile unei companii de stat din situațiile financiare MFin 2025, pe CUI",
+          "nota": "Sursa nu declară unitatea."
+        },
+        {
+          "projects": [
+            "igov"
+          ],
+          "names": [
+            "debts[]"
+          ],
+          "path": [
+            "$.companies{*}.debts[]"
+          ],
+          "source": "https://igov.ro/reports/guvernanta-series.json",
+          "context": "datoriile fiecărei companii de stat, o valoare pe an (seria 2016–2025)",
+          "fapte": [
+            {
+              "cheie": "unitate",
+              "valoare": "mii lei (angajații în persoane)",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://igov.ro/reports/guvernanta-series.json",
+                "text": "sursa",
+                "fragment": "\"unit\":\"mii lei; employees: persoane\"",
+                "sha256": "9cf972fec1021d7fbe5ff235c001fea034418802bdbe693f915fcbb1a910f324",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        },
+        {
+          "projects": [
+            "igov"
+          ],
+          "names": [
+            "debts"
+          ],
+          "path": [
+            "$.companies[].debts"
+          ],
+          "source": "https://igov.ro/reports/guvernanta.json",
+          "context": "datoriile unei companii de stat din registrul de guvernanță, valoarea ultimului an cu situații financiare (`anaf_year`)",
+          "nota": "Unitatea nu este declarată în acest fișier; fișierul seriei declară „mii lei”."
+        }
+      ]
+    },
+    {
+      "id": "capitaluri-proprii",
+      "label": "Capitaluri proprii ale unei firme",
+      "categorie": "masura",
+      "familie": "firme",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Capitalurile proprii ale unei firme într-un an financiar, din situațiile financiare. Anul și unitatea trebuie verificate în sursă. Pagina igov spune că o valoare sub zero înseamnă că datoriile depășesc activele.",
+      "dovezi": [
+        {
+          "sursa": "https://api.romaniatransparenta.eu/v1/openapi.json",
+          "text": "sursa",
+          "fragment": "\"capitaluri_proprii\":{\"type\":[\"number\",\"null\"],\"description\":\"capitalurile proprii, lei\"}",
+          "sha256": "22f254d62529b955547d583428f2d827c5c25bbf9d3e74b0be1d45b3e6410b1e",
+          "baza": "declaratie-directa"
+        },
+        {
+          "sursa": "https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json",
+          "text": "sursa",
+          "fragment": "\"provizioane\",\"capitaluri\",\"capital_subscris\"",
+          "sha256": "09d5c7201cb6a68b346dc7926702e5707c93339a3c49e581fcd1c478d4cbb600",
+          "baza": "observatie-esantion"
+        },
+        {
+          "sursa": "https://igov.ro/reports/guvernanta.html",
+          "text": "cache",
+          "fragment": "stCard(1, 'Capitaluri proprii negative', negEq, 'Datoriile depășesc activele: capitalurile proprii sunt sub zero.",
+          "sha256": "411b7190b452151d30cba6dcbb471180db76d871d840d188159c98833e021737",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "Unitatea diferă între surse: romania-transparenta declară „lei”, igov „mii lei” în fișierul seriei, companii-de-stat nu declară unitatea.",
+        "Nu sunt membre: „Capitaluri proprii” și „Capitaluri” din tabelul „Venituri anuale partide de la MF” (bani-partide; descriu un partid) și `mfin_capitaluri` din `data.json` al companii-de-stat (alt fișier, alt context: lista companiilor emblematice; nu a fost comparat cu `capitaluri`)."
+      ],
+      "selectors": [
+        {
+          "projects": [
+            "romania-transparenta"
+          ],
+          "names": [
+            "capitaluri_proprii"
+          ],
+          "path": [
+            "$.date[].capitaluri_proprii"
+          ],
+          "source": "https://api.romaniatransparenta.eu/v1/openapi.json",
+          "context": "capitalurile proprii ale firmei din răspunsurile API-ului (descrierea OpenAPI: „capitalurile proprii, lei”)",
+          "fapte": [
+            {
+              "cheie": "unitate",
+              "valoare": "lei",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://api.romaniatransparenta.eu/v1/openapi.json",
+                "text": "sursa",
+                "fragment": "\"capitaluri_proprii\":{\"type\":[\"number\",\"null\"],\"description\":\"capitalurile proprii, lei\"}",
+                "sha256": "22f254d62529b955547d583428f2d827c5c25bbf9d3e74b0be1d45b3e6410b1e",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        },
+        {
+          "projects": [
+            "companii-de-stat"
+          ],
+          "names": [
+            "capitaluri"
+          ],
+          "path": [
+            "$.companii{*}.capitaluri"
+          ],
+          "source": "https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json",
+          "context": "capitalurile unei companii de stat din situațiile financiare MFin 2025, pe CUI",
+          "nota": "Sursa nu declară unitatea."
+        },
+        {
+          "projects": [
+            "igov"
+          ],
+          "names": [
+            "equity[]"
+          ],
+          "path": [
+            "$.companies{*}.equity[]"
+          ],
+          "source": "https://igov.ro/reports/guvernanta-series.json",
+          "context": "capitalurile proprii ale fiecărei companii de stat, o valoare pe an (seria 2016–2025)",
+          "fapte": [
+            {
+              "cheie": "unitate",
+              "valoare": "mii lei (angajații în persoane)",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://igov.ro/reports/guvernanta-series.json",
+                "text": "sursa",
+                "fragment": "\"unit\":\"mii lei; employees: persoane\"",
+                "sha256": "9cf972fec1021d7fbe5ff235c001fea034418802bdbe693f915fcbb1a910f324",
+                "baza": "declaratie-directa"
+              }
+            }
+          ]
+        },
+        {
+          "projects": [
+            "igov"
+          ],
+          "names": [
+            "equity"
+          ],
+          "path": [
+            "$.companies[].equity"
+          ],
+          "source": "https://igov.ro/reports/guvernanta.json",
+          "context": "capitalurile proprii ale unei companii de stat din registrul de guvernanță, valoarea ultimului an cu situații financiare",
+          "nota": "Unitatea nu este declarată în acest fișier; fișierul seriei declară „mii lei”."
+        }
+      ]
+    },
+    {
+      "id": "sex",
+      "label": "Sex",
+      "categorie": "dimensiune",
+      "familie": "populatie-teritoriu",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Sexul persoanelor dintr-o statistică: dimensiunea care împarte o valoare pe bărbați, femei și total. Sursele o poartă ca dimensiunea `SEX` (INS) sau `Sex` (extracții Eurostat). Valorile (Total, Male, Female; Bărbați, Femei) și clasificările diferă între surse; grupul nu le aliniază. Nu este un atribut al unei persoane anume.",
+      "dovezi": [
+        {
+          "sursa": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+          "text": "sursa",
+          "fragment": "\"dim_label\":\"Sexe\",\"dim_column_name\":\"SEX\",\"dim_type\":\"gender\"",
+          "sha256": "cf0f4598e26577a52548c55677e873ede17abf690219dc1d410ae71d40a9874f",
+          "baza": "declaratie-directa"
+        },
+        {
+          "sursa": "https://monitorsocial.ro/data/rata-de-ocupare-a-femeilor-3/",
+          "text": "sursa",
+          "fragment": "<b>Sex</b></span>",
+          "sha256": "469c0bc2c4225ff48affa0b271657c2b22815371a56c4a8cb8ab23b8b193859a",
+          "baza": "observatie-esantion"
+        }
+      ],
+      "ambiguitati": [
+        "În POP107D dimensiunea `SEX` are trei valori (Total, Male, Female). În extracțiile Eurostat din monitor-social, `Sex` este un rând de metadate: pe pagina „Rata de ocupare a femeilor” fiecare din cele două extracții fixează un sex (o singură dată listate, fiindcă au același cod), iar în cele două extracții ale paginii despre studii superioare rândul nu are valoare. Inventarul nu citește valorile.",
+        "Nu este membră coloana `Sex` din foaia candidaților din data-expertforum: descrie un candidat, nu o dimensiune statistică, și inventarul păstrează doar antetul foii."
+      ],
+      "selectors": [
+        {
+          "projects": [
+            "ins-gov2",
+            "demoanaf",
+            "biografia-localitatii",
+            "constru-pentru-cine",
+            "orasul-care-se-intinde"
+          ],
+          "names": [
+            "SEX"
+          ],
+          "path": [
+            "SEX"
+          ],
+          "source": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+          "context": "dimensiunea „Sexe” (`dim_type` gender) a setului INS POP107D: Total, Male, Female"
+        },
+        {
+          "projects": [
+            "monitor-social"
+          ],
+          "names": [
+            "Sex"
+          ],
+          "role": [
+            "dimensiune"
+          ],
+          "source": [
+            "https://monitorsocial.ro/data/rata-de-ocupare-a-femeilor-3/",
+            "https://monitorsocial.ro/data/populatia-cu-studii-superioare/"
+          ],
+          "context": "rândul `Sex` al extracțiilor Eurostat pasted în paginile de date; valorile nu sunt citite"
+        }
+      ]
+    },
+    {
+      "id": "grupa-de-varsta",
+      "label": "Grupa de vârstă",
+      "categorie": "dimensiune",
+      "familie": "populatie-teritoriu",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Grupa sau clasa de vârstă a persoanelor dintr-o statistică: dimensiunea care împarte o valoare pe vârste. INS o poartă ca dimensiunea `AGE` („Varste si grupe de varsta”), Eurostat ca `Age class` (extracții cu etichete englezești) sau `Grupa de vârstă` (extracție cu etichete românești). Clasificările diferă între surse; grupul nu aliniază limitele grupelor.",
+      "dovezi": [
+        {
+          "sursa": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+          "text": "sursa",
+          "fragment": "\"dim_label\":\"Varste si grupe de varsta\",\"dim_column_name\":\"AGE\",\"dim_type\":\"age\"",
+          "sha256": "cf0f4598e26577a52548c55677e873ede17abf690219dc1d410ae71d40a9874f",
+          "baza": "declaratie-directa"
+        },
+        {
+          "sursa": "https://monitorsocial.ro/data/populatia-cu-studii-superioare/",
+          "text": "sursa",
+          "fragment": "<b>Age class</b></span>",
+          "sha256": "de4d3319da65d61b9d54ff340fd333d242539b4f1443865c069b129de6db4dc0",
+          "baza": "observatie-esantion"
+        },
+        {
+          "sursa": "https://monitorsocial.ro/data/rata-de-ocupare-a-femeilor-3/",
+          "text": "sursa",
+          "fragment": "<b>Grupa de vârstă</b></span>",
+          "sha256": "469c0bc2c4225ff48affa0b271657c2b22815371a56c4a8cb8ab23b8b193859a",
+          "baza": "observatie-esantion"
+        }
+      ],
+      "ambiguitati": [
+        "În POP107D dimensiunea `AGE` are 104 opțiuni (Total, grupe de cinci ani și vârste simple); matricile derivate o împart pe grupe sau pe vârste (`POP107D_grupe_*`, `POP107D_varste_*`). În extracțiile Eurostat, rândul `Age class` nu are valoare în cele două extracții despre studii, iar `Grupa de vârstă` are o valoare fixă („Între 20 și 64 de ani”) pe pagina despre ocuparea femeilor.",
+        "Limitele grupelor nu sunt aceleași în toate sursele (grupe de cinci ani la INS, intervale alese de autorul extracției la Eurostat). Un rezultat pe grupă nu se compară între surse."
+      ],
+      "selectors": [
+        {
+          "projects": [
+            "ins-gov2",
+            "demoanaf",
+            "biografia-localitatii",
+            "constru-pentru-cine",
+            "orasul-care-se-intinde"
+          ],
+          "names": [
+            "AGE"
+          ],
+          "path": [
+            "AGE"
+          ],
+          "source": "https://ins.gov2.ro/api/datasets/POP107D?lang=en",
+          "context": "dimensiunea „Varste si grupe de varsta” (`dim_type` age) a setului INS POP107D"
+        },
+        {
+          "projects": [
+            "monitor-social"
+          ],
+          "names": [
+            "Age class",
+            "Grupa de vârstă"
+          ],
+          "role": [
+            "dimensiune"
+          ],
+          "source": [
+            "https://monitorsocial.ro/data/rata-de-ocupare-a-femeilor-3/",
+            "https://monitorsocial.ro/data/populatia-cu-studii-superioare/"
+          ],
+          "context": "rândul `Age class` sau `Grupa de vârstă` al extracțiilor Eurostat pasted în paginile de date; valorile nu sunt citite"
+        }
+      ]
     }
   ]
 }

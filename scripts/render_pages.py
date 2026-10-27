@@ -190,10 +190,10 @@ def render(urls, args):
             requests = summarise(events, host, args.allow_host)
             kept = {item['url'] for item in requests}
             saved = []
-            for item_url, (content_type, text) in list(bodies.items())[:MAX_BODIES]:
+            for item_url, (content_type, received) in list(bodies.items())[:MAX_BODIES]:  # not `text`: that name holds the rendered text of the page
                 if redact(item_url) in kept:
                     response = protect({'url': item_url, 'final_url': item_url, 'http_status': 200, 'fetched_at': datetime.now(timezone.utc).isoformat(),
-                                        'content_type': content_type, 'state': 'ok', 'body': text, 'via': 'browser'})
+                                        'content_type': content_type, 'state': 'ok', 'body': received, 'via': 'browser'})
                     cache = obs / 'inventare' / 'surse'
                     cache.mkdir(parents=True, exist_ok=True)
                     write_file_atomic(cache / (source_id(item_url) + '.json'), dump(response))

@@ -15,13 +15,13 @@ bucuresti-help,propunere,partial,3,0,0
 bucuresti-verde,propunere,neconfirmat,0,0,0
 reciclare-arad,propunere,partial,11,3,40
 calitate-aer-radauti,propunere,partial,2,1,41
-ce-cumpara-primaria,propunere,partial,1,0,0
+ce-cumpara-primaria,propunere,partial,1,3,25
 ce-fac-politicienii,propunere,partial,1,0,0
 centrul-pentru-cariere,propunere,partial,1,0,0
 ce-zice-legea,propunere,partial,1,0,0
 scoala-pentru-democratie,propunere,neconfirmat,0,0,0
 companii-de-stat,propunere,partial,1,5,303
-companii-publice-ro,propunere,partial,3,0,0
+companii-publice-ro,propunere,partial,3,3,36
 data-expertforum,propunere,partial,0,15,100
 ins-gov2,propunere,partial,2,6,46
 declic,propunere,neconfirmat,0,0,0
@@ -36,7 +36,7 @@ econtractauto,propunere,neconfirmat,0,0,0
 e-cutremur,propunere,partial,1,0,0
 europescope,propunere,partial,3,7,73
 evermed,propunere,neconfirmat,0,0,0
-executii-bugetare,propunere,neconfirmat,0,0,0
+executii-bugetare,propunere,partial,0,3,30
 factual,propunere,partial,4,0,0
 guvernezi,propunere,partial,6,0,0
 harta-banilor-publici,propunere,neconfirmat,0,0,0
@@ -48,7 +48,7 @@ harta-taierilor,propunere,neconfirmat,0,0,0
 harta-tv-locale,propunere,neconfirmat,0,0,0
 hoover,propunere,neconfirmat,0,0,0
 ia-statul-la-intrebari,propunere,partial,9,0,0
-igov,propunere,partial,20,0,0
+igov,propunere,partial,20,5,165
 imobile-rapps,propunere,partial,12,0,0
 interoperabilitate,propunere,neconfirmat,0,0,0
 jailando,propunere,neconfirmat,0,0,0
@@ -56,8 +56,8 @@ mari-corupti,propunere,neconfirmat,0,0,0
 monarh-ai,propunere,partial,4,0,0
 monitor-cetatenie,propunere,neconfirmat,0,0,0
 monitor-energie,propunere,partial,2,1,0
-monitor-safe,propunere,neconfirmat,0,0,0
-monitor-social,propunere,partial,1,0,0
+monitor-safe,propunere,partial,0,2,96
+monitor-social,propunere,partial,1,4,54
 monitorul-ai,propunere,partial,1,7,432
 multumesc,propunere,neconfirmat,0,0,0
 muzeul-coruptiei,propunere,neconfirmat,0,0,0
@@ -90,7 +90,7 @@ tipizatul,propunere,neconfirmat,0,0,0
 apti-unelte-democratie,propunere,neconfirmat,0,0,0
 transparenta-eu,propunere,partial,1,4,35
 unde-locuiesc-romanii,propunere,neconfirmat,0,0,0
-verifica-psiholog,propunere,partial,1,0,0
+verifica-psiholog,propunere,partial,1,4,127
 vichub-data,propunere,neconfirmat,0,0,0
 vocea-cartierului-tau,propunere,partial,4,0,0
 votcorect,propunere,neconfirmat,0,0,0
@@ -121,10 +121,10 @@ radautiul-civic,propunere,partial,6,0,0
 civica,propunere,partial,8,0,0
 tech-and-tonic,propunere,partial,13,0,0
 codurbanism,propunere,partial,3,4,119
-cat-de-tare,propunere,partial,2,0,0
+cat-de-tare,propunere,partial,2,3,33
 biografia-localitatii,propunere,partial,1,4,55
 unde-locuiesc,propunere,partial,1,1,23
-ani-de-pensie,propunere,partial,4,0,0
+ani-de-pensie,propunere,partial,4,1,21
 ce-face-statul-cu-1000-de-lei,propunere,partial,1,1,34
 achizitii-directe-ti-2026,propunere,partial,4,1,26
 statul-digital,propunere,partial,1,2,110
@@ -136,8 +136,8 @@ constru-pentru-cine,propunere,partial,1,2,13
 orasul-care-se-intinde,propunere,partial,3,3,26
 trei-din-patru,propunere,partial,2,6,35
 unde-se-termina-asfaltul,propunere,partial,4,3,30
-de-unde-vine-apa,propunere,partial,6,0,0
-recontorizarea,propunere,partial,1,0,0
+de-unde-vine-apa,propunere,partial,6,1,56
+recontorizarea,propunere,partial,1,1,132
 pensie-din-bursa,propunere,partial,10,0,0
 lista-firme,propunere,partial,1,7,108
 fiipregatit,propunere,partial,1,0,0

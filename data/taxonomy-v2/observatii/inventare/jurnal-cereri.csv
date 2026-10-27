@@ -313,3 +313,103 @@ D,2026-10-26T23:39:54.685507+00:00,BROWSER-GET,https://sondajeromania.ro/__next.
 D,2026-10-26T23:39:54.685550+00:00,BROWSER-GET,https://sondajeromania.ro/__next.__PAGE__.txt?_rsc=k3s9p,200,200,,browser,randare sondaje-romania
 D,2026-10-26T23:40:04.904862+00:00,BROWSER,https://politicieni-corupti.ro/lista,ok,200,,browser,randare politicieni-corupti
 D,2026-10-27T09:03:14.852080+00:00,GET,https://lista-firme.info/api/v1/info?cui=51859625,ok,200,2276,nu,one API response for the operator's own CUI; the owner raised the request limit of the entry (lista-firme)
+E,2026-10-27T16:58:43.575969+00:00,GET,https://www.openbudget.ro/,eroare-retea,,,nu,open-budget: homepage again; the 2026-10-24 collection timed out on all four pages
+E,2026-10-27T16:59:28.868470+00:00,BROWSER,https://www.openbudget.ro/,timeout,,,browser,randare open-budget
+E,2026-10-27T16:59:39.533296+00:00,GET,https://monitorsafe.ro/,ok,200,155792,nu,monitor-safe: the pages and the feed that llms.txt and the home page name
+E,2026-10-27T16:59:40.035066+00:00,GET,https://monitorsafe.ro/contracte/,ok,200,61769,nu,monitor-safe: the pages and the feed that llms.txt and the home page name
+E,2026-10-27T16:59:40.303558+00:00,GET,https://monitorsafe.ro/acorduri/,ok,200,19915,nu,monitor-safe: the pages and the feed that llms.txt and the home page name
+E,2026-10-27T16:59:40.616057+00:00,GET,https://monitorsafe.ro/safe-rss.xml,ok,200,58204,nu,monitor-safe: the pages and the feed that llms.txt and the home page name
+E,2026-10-27T17:00:19.590227+00:00,GET,https://igov.ro/rapoarte.html,ok,200,74031,nu,igov: the report pages that the methodology page links; looking for the downloadable derived data files
+E,2026-10-27T17:00:19.907622+00:00,GET,https://igov.ro/reports/guvernanta.html,ok,200,235219,nu,igov: the report pages that the methodology page links; looking for the downloadable derived data files
+E,2026-10-27T17:00:20.066898+00:00,GET,https://igov.ro/institution-kpis.html,ok,200,6729,nu,igov: the report pages that the methodology page links; looking for the downloadable derived data files
+E,2026-10-27T17:00:43.812367+00:00,GET,https://igov.ro/guvernanta.json,ok,206,57025,nu,"igov: the three derived data files of the governance report (named in the page code of reports/guvernanta.html); a 150,000-byte range sample"
+E,2026-10-27T17:00:44.072309+00:00,GET,https://igov.ro/guvernanta-series.json,ok,206,57025,nu,"igov: the three derived data files of the governance report (named in the page code of reports/guvernanta.html); a 150,000-byte range sample"
+E,2026-10-27T17:00:44.325673+00:00,GET,https://igov.ro/guvernanta-achizitii.json,ok,206,57025,nu,"igov: the three derived data files of the governance report (named in the page code of reports/guvernanta.html); a 150,000-byte range sample"
+E,2026-10-27T17:00:44.656487+00:00,GET,https://igov.ro/api/channels,ok,200,1422,nu,igov: the two list endpoints that the page code of rapoarte.html calls with getJSON
+E,2026-10-27T17:00:44.815096+00:00,GET,https://igov.ro/api/institutions,ok,200,5467,nu,igov: the two list endpoints that the page code of rapoarte.html calls with getJSON
+E,2026-10-27T17:00:51.279802+00:00,GET,https://igov.ro/reports/guvernanta.json,ok,206,150000,nu,"igov: the same three files at their real path (the page is in /reports/, so the relative DATA_URL resolves there; the first try at /guvernanta*.json returned an HTML page)"
+E,2026-10-27T17:00:51.572538+00:00,GET,https://igov.ro/reports/guvernanta-series.json,ok,206,150000,nu,"igov: the same three files at their real path (the page is in /reports/, so the relative DATA_URL resolves there; the first try at /guvernanta*.json returned an HTML page)"
+E,2026-10-27T17:00:51.843487+00:00,GET,https://igov.ro/reports/guvernanta-achizitii.json,ok,206,150000,nu,"igov: the same three files at their real path (the page is in /reports/, so the relative DATA_URL resolves there; the first try at /guvernanta*.json returned an HTML page)"
+E,2026-10-27T17:01:16.822784+00:00,GET,https://cosettechichirau.github.io/companiipublice/,ok,200,132083,nu,"companii-publice-ro: the page itself, to find the data files that its script loads"
+E,2026-10-27T17:01:22.699837+00:00,GET,https://cosettechichirau.github.io/companiipublice/companii.json,ok,206,200000,nu,"companii-publice-ro: the two data files that the page script fetches (200,000-byte range sample)"
+E,2026-10-27T17:01:23.037551+00:00,GET,https://cosettechichirau.github.io/companiipublice/financials.json,ok,206,200000,nu,"companii-publice-ro: the two data files that the page script fetches (200,000-byte range sample)"
+E,2026-10-27T17:01:23.574664+00:00,GET,https://cosettechichirau.github.io/companiipublice/county_boundaries.geojson,ok,206,30000,nu,"companii-publice-ro: the county boundary layer that the page script fetches (30,000-byte range sample; geometry is not wanted)"
+E,2026-10-27T17:02:07.704506+00:00,GET,https://cecumparaprimaria.vercel.app/,ok,200,65576,nu,"ce-cumpara-primaria: the home page, to find its data (server-rendered or JSON requests)"
+E,2026-10-27T17:02:20.672976+00:00,GET,https://cecumparaprimaria.vercel.app/clasament,ok,200,797945,nu,"ce-cumpara-primaria: the ranking page, the suppliers page and one UAT page (Arad), looking for tables or data requests"
+E,2026-10-27T17:02:26.551359+00:00,GET,https://cecumparaprimaria.vercel.app/furnizori,ok,200,350208,nu,"ce-cumpara-primaria: the ranking page, the suppliers page and one UAT page (Arad), looking for tables or data requests"
+E,2026-10-27T17:02:26.962070+00:00,GET,https://cecumparaprimaria.vercel.app/uat/9262?an=2025,ok,200,315161,nu,"ce-cumpara-primaria: the ranking page, the suppliers page and one UAT page (Arad), looking for tables or data requests"
+E,2026-10-27T17:02:49.218189+00:00,GET,https://monitorsocial.ro/data/,ok,200,15919,nu,monitor-social: the data index and one data page (WordPress site of FES Romania)
+E,2026-10-27T17:02:49.352938+00:00,GET,https://monitorsocial.ro/data/consumul-gospodariilor/,ok,200,87885,nu,monitor-social: the data index and one data page (WordPress site of FES Romania)
+E,2026-10-27T17:03:13.169420+00:00,GET,https://www.verificapsiholog.ro/structura-datelor,ok,200,99404,nu,"verifica-psiholog: the data structure page, the statistics page and the terms (checked for a ban on automated access)"
+E,2026-10-27T17:03:13.429384+00:00,GET,https://www.verificapsiholog.ro/statistici,ok,200,68472,nu,"verifica-psiholog: the data structure page, the statistics page and the terms (checked for a ban on automated access)"
+E,2026-10-27T17:03:13.704956+00:00,GET,https://www.verificapsiholog.ro/terms,ok,200,91715,nu,"verifica-psiholog: the data structure page, the statistics page and the terms (checked for a ban on automated access)"
+E,2026-10-27T17:04:09.287704+00:00,BROWSER,https://www.verificapsiholog.ro/,ok,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.288571+00:00,BROWSER-GET,https://www.verificapsiholog.ro/api/banner-announcement,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.288724+00:00,BROWSER-GET,https://www.verificapsiholog.ro/psihologi-autorizati?_rsc=1r34m,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.288799+00:00,BROWSER-GET,https://www.verificapsiholog.ro/api/announcements?published=true&limit=3&sortBy=default,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.288924+00:00,BROWSER-GET,https://www.verificapsiholog.ro/api/register-metadata,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.289001+00:00,BROWSER-GET,https://www.verificapsiholog.ro/cookies?_rsc=1r34m,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.289067+00:00,BROWSER-GET,https://www.verificapsiholog.ro/raportare-problema?_rsc=1r34m,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.289159+00:00,BROWSER-GET,https://www.verificapsiholog.ro/link?_rsc=1r34m,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.289806+00:00,BROWSER-GET,https://www.verificapsiholog.ro/statistici?_rsc=1r34m,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.290049+00:00,BROWSER-GET,https://www.verificapsiholog.ro/structura-datelor?_rsc=1r34m,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.290135+00:00,BROWSER-GET,https://www.verificapsiholog.ro/anunturi?_rsc=1r34m,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.290192+00:00,BROWSER-GET,https://www.verificapsiholog.ro/baza-legala?_rsc=1r34m,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.290294+00:00,BROWSER-GET,https://www.verificapsiholog.ro/link?_rsc=1pn8p,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.290346+00:00,BROWSER-GET,https://www.verificapsiholog.ro/link?_rsc=nn07o,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.290416+00:00,BROWSER-GET,https://www.verificapsiholog.ro/link?_rsc=1l0ia,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.290478+00:00,BROWSER-GET,https://www.verificapsiholog.ro/link?_rsc=1v8nb,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.290582+00:00,BROWSER-GET,https://www.verificapsiholog.ro/psihologi-autorizati?_rsc=p37cr,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.292182+00:00,BROWSER-GET,https://www.verificapsiholog.ro/cookies?_rsc=1pn8p,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.292461+00:00,BROWSER-GET,https://www.verificapsiholog.ro/cookies?_rsc=8wd90,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.292515+00:00,BROWSER-GET,https://www.verificapsiholog.ro/cookies?_rsc=1855t,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.292559+00:00,BROWSER-GET,https://www.verificapsiholog.ro/raportare-problema?_rsc=h4prs,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.292602+00:00,BROWSER-GET,https://www.verificapsiholog.ro/raportare-problema?_rsc=1pn8p,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.292644+00:00,BROWSER-GET,https://www.verificapsiholog.ro/statistici?_rsc=1pn8p,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.292687+00:00,BROWSER-GET,https://www.verificapsiholog.ro/statistici?_rsc=1hekj,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.292726+00:00,BROWSER-GET,https://www.verificapsiholog.ro/statistici?_rsc=1g5ob,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.292764+00:00,BROWSER-GET,https://www.verificapsiholog.ro/structura-datelor?_rsc=1pn8p,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.292803+00:00,BROWSER-GET,https://www.verificapsiholog.ro/structura-datelor?_rsc=3zm16,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.292841+00:00,BROWSER-GET,https://www.verificapsiholog.ro/baza-legala?_rsc=1pn8p,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.292878+00:00,BROWSER-GET,https://www.verificapsiholog.ro/structura-datelor?_rsc=fh8nf,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.292922+00:00,BROWSER-GET,https://www.verificapsiholog.ro/baza-legala?_rsc=6gv86,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.292967+00:00,BROWSER-GET,https://www.verificapsiholog.ro/baza-legala?_rsc=1s8nt,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.293004+00:00,BROWSER-GET,https://www.verificapsiholog.ro/anunturi?_rsc=1pn8p,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.293043+00:00,BROWSER-GET,https://www.verificapsiholog.ro/?_rsc=p37cr,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.293080+00:00,BROWSER-GET,https://www.verificapsiholog.ro/anunturi?_rsc=p1g69,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.293116+00:00,BROWSER-GET,https://www.verificapsiholog.ro/anunturi?_rsc=1ayzr,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.293153+00:00,BROWSER-GET,https://www.verificapsiholog.ro/api/statistics,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.293189+00:00,BROWSER-GET,https://www.verificapsiholog.ro/raportare-problema?_rsc=159sa,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:09.293288+00:00,BROWSER-GET,https://www.verificapsiholog.ro/api/psychologists-grouped?limit=1000,200,200,,browser,randare verifica-psiholog
+E,2026-10-27T17:04:41.705446+00:00,GET,https://www.verificapsiholog.ro/api/psychologists-grouped?limit=1000,ok,200,4001,nu,"verifica-psiholog: first 4,000 bytes of the registry list that the home page loads (2,407,883 bytes in full); names of persons: the schema only, kept in the git-ignored cache"
+E,2026-10-27T17:04:55.579127+00:00,BROWSER,https://portaljustmodern.ro/despre,ok,200,,browser,randare portal-just-modern
+E,2026-10-27T17:04:55.580595+00:00,BROWSER-POST,https://portaljustmodern.ro/__l5e/trackevents,202,202,17,browser,randare portal-just-modern
+E,2026-10-27T17:05:09.344283+00:00,GET,https://portaljustmodern.ro/,ok,200,19736,nu,"portal-just-modern: the page shell (the render of /despre was an empty page), to find the script bundle and API base"
+E,2026-10-27T17:05:28.027427+00:00,BROWSER,https://portaljustmodern.ro/institutii,ok,200,,browser,randare portal-just-modern
+E,2026-10-27T17:05:28.027616+00:00,BROWSER-GET,https://itastfxwfqsnidyjestx.supabase.co/rest/v1/app_settings?select=cheie%2Cvaloare,200,200,,browser,randare portal-just-modern
+E,2026-10-27T17:05:28.027768+00:00,BROWSER-GET,https://itastfxwfqsnidyjestx.supabase.co/rest/v1/seo_settings?select=%2A,200,200,2,browser,randare portal-just-modern
+E,2026-10-27T17:05:28.027889+00:00,BROWSER-GET,https://itastfxwfqsnidyjestx.supabase.co/rest/v1/pwa_settings?select=cheie%2Cvaloare,200,200,,browser,randare portal-just-modern
+E,2026-10-27T17:05:28.027951+00:00,BROWSER-POST,https://portaljustmodern.ro/__l5e/trackevents,202,202,17,browser,randare portal-just-modern
+E,2026-10-27T17:05:43.427450+00:00,GET,https://mariuscomper.uk/cat-de-tare/,ok,200,59175,nu,"cat-de-tare and recontorizarea: the page of each entry, to find the data that it loads"
+E,2026-10-27T17:05:43.943896+00:00,GET,https://mariuscomper.uk/recontorizarea/,ok,200,20881,nu,"cat-de-tare and recontorizarea: the page of each entry, to find the data that it loads"
+E,2026-10-27T17:05:51.021710+00:00,GET,https://mariuscomper.uk/cat-de-tare/assets/app.js?v=7e09d6d661,ok,200,39735,nu,"cat-de-tare and recontorizarea: the script of each page, to find the data files that it fetches"
+E,2026-10-27T17:05:51.182029+00:00,GET,https://mariuscomper.uk/recontorizarea/assets/app.js?v=1,ok,200,28212,nu,"cat-de-tare and recontorizarea: the script of each page, to find the data files that it fetches"
+E,2026-10-27T17:06:05.098212+00:00,GET,https://mariuscomper.uk/cat-de-tare/assets/places.json?v=5,ok,200,200001,nu,"cat-de-tare and recontorizarea: the data file that each page script fetches (200,000-byte range sample)"
+E,2026-10-27T17:06:05.253395+00:00,GET,https://mariuscomper.uk/recontorizarea/assets/data.json,ok,200,6222,nu,"cat-de-tare and recontorizarea: the data file that each page script fetches (200,000-byte range sample)"
+E,2026-10-27T17:06:43.234783+00:00,GET,https://api.github.com/repos/Andreim14/companii-stat/commits/HEAD,eroare-http,404,,nu,monitor-safe: HEAD commit of the repository that llms.txt links (GitHub: Andreim14/companii-stat); the home page names pipeline/safe.json as its data source
+E,2026-10-27T17:06:50.941295+00:00,GET,https://mariuscomper.uk/de-unde-vine-apa/,ok,200,297022,nu,reserve entries de-unde-vine-apa (replaces sicap-ai: HTTP 429) and ani-de-pensie (replaces open-budget: no answer): the page of each
+E,2026-10-27T17:06:51.081452+00:00,GET,https://mariuscomper.uk/ani-de-pensie/,ok,200,59381,nu,reserve entries de-unde-vine-apa (replaces sicap-ai: HTTP 429) and ani-de-pensie (replaces open-budget: no answer): the page of each
+E,2026-10-27T17:20:34.897319+00:00,BROWSER,https://executii-bugetare.g4d.ro/,ok,200,,browser,randare executii-bugetare
+E,2026-10-27T17:20:34.897528+00:00,BROWSER-GET,https://executii-bugetare.g4d.ro/js/views/home.html,200,200,,browser,randare executii-bugetare
+E,2026-10-27T17:20:34.897581+00:00,BROWSER-GET,https://executii-bugetare.g4d.ro/json/judete.json,200,200,408,browser,randare executii-bugetare
+E,2026-10-27T17:20:34.897681+00:00,BROWSER-GET,https://executii-bugetare.g4d.ro/json/2026/B/institutii.json,200,200,189,browser,randare executii-bugetare
+E,2026-10-27T17:20:34.897759+00:00,BROWSER-GET,https://executii-bugetare.g4d.ro/json/2026/B/4267117.json,200,200,15549,browser,randare executii-bugetare
+E,2026-10-27T17:21:40.810973+00:00,GET,https://monitorsocial.ro/data/rata-de-ocupare-a-femeilor-3/,ok,200,82393,nu,monitor-social: three more data pages of the list on the home page (each pastes Eurostat extractions)
+E,2026-10-27T17:21:40.965240+00:00,GET,https://monitorsocial.ro/data/populatia-cu-studii-superioare/,ok,200,137596,nu,monitor-social: three more data pages of the list on the home page (each pastes Eurostat extractions)
+E,2026-10-27T17:21:41.119350+00:00,GET,https://monitorsocial.ro/data/romania-devine-o-tara-de-destinatie-pentru-migratie-economica/,ok,200,91127,nu,monitor-social: three more data pages of the list on the home page (each pastes Eurostat extractions)
+E,2026-10-27T17:35:47.531596+00:00,BROWSER,https://executii-bugetare.g4d.ro/,ok,200,,browser,randare executii-bugetare
+E,2026-10-27T17:35:47.531812+00:00,BROWSER-GET,https://executii-bugetare.g4d.ro/js/views/home.html,200,200,,browser,randare executii-bugetare
+E,2026-10-27T17:35:47.531911+00:00,BROWSER-GET,https://executii-bugetare.g4d.ro/json/judete.json,200,200,408,browser,randare executii-bugetare
+E,2026-10-27T17:35:47.531971+00:00,BROWSER-GET,https://executii-bugetare.g4d.ro/json/2026/B/institutii.json,200,200,189,browser,randare executii-bugetare
+E,2026-10-27T17:35:47.532024+00:00,BROWSER-GET,https://executii-bugetare.g4d.ro/json/2026/B/4267117.json,200,200,15549,browser,randare executii-bugetare
+E,2026-10-27T17:35:56.700250+00:00,GET,https://executii-bugetare.g4d.ro/js/views/home.html,ok,200,16813,nu,executii-bugetare: the home view that the page loads (the render text says 'Date preluate de pe mfinante.gov.ro/transparenta-bugetara'); kept as retained evidence for a provider item

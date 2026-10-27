@@ -47,7 +47,7 @@ from inventory_csvcards import csv_datasets
 from inventory_datasette import FORMAT as DATASETTE, database as datasette_database, is_listing as is_datasette, read as datasette_fields
 from inventory_ins import ins_dataset, ins_listing, ins_measure, is_listing
 from inventory_jsonsample import FORMAT as JSON_SAMPLE, list_sizes, recover as recover_json
-from inventory_literals import POSITIONAL_WIDTH, datasets as literal_datasets, declarations as literal_declarations, keyed_object
+from inventory_literals import POSITIONAL_WIDTH, datasets as literal_datasets, declarations as literal_declarations, indented_names, keyed_object, omitted_names
 from inventory_persons import (MARK, READERS as PERSON_READERS, body_values, candidates, is_marked, leaks, mark_errors, occurs, safe_fields, safe_header, scope_files)
 from inventory_setlist import list_datasets
 from inventory_sheet import header_facts, read as read_sheet
@@ -58,7 +58,7 @@ from inventory_state import (REGISTRY, counted_fields, RequestLog, StateError, a
 
 MAX_FIELDS, MAX_DEPTH, SAMPLE_ROWS = 2000, 7, 25
 TEXT_FORMATS = ('html-tabele', 'markdown', 'csharp', 'sql', 'php', 'js-acces', 'json-comentat', 'html-api-docs', 'html-carduri-csv', 'js-literale',
-                'html-lista-seturi')
+                'html-lista-seturi', 'html-glosar', 'html-tabele-eurostat', 'js-pozitii')
 
 
 def pointer_part(value):
@@ -452,7 +452,7 @@ def analyse_source(response, hint=None, persons=False):
         elif fmt == 'html-lista-seturi':
             metadata['seturi'] = list_datasets(body)
         elif fmt == 'js-literale':
-            metadata['declaratii'] = literal_declarations(body)
+            metadata['declaratii'] = literal_declarations(body, indented_names(hint), omitted_names(hint))
             metadata['seturi_ld'] = literal_datasets(body)
     except (ValueError, TypeError, KeyError, csv.Error) as exc:
         metadata.update(stare='eroare-parsare', error=str(exc))
@@ -695,7 +695,7 @@ def check_report(out, observations):
                     errors.append('Fields or database facts differ from the retained body: ' + source['url'])
             elif source.get('format') in TEXT_FORMATS:
                 _, fields, _ = reread(source, body, response)
-                if fields != source['campuri'] or (source['format'] == 'js-literale' and (literal_declarations(body) != source.get('declaratii')
+                if fields != source['campuri'] or (source['format'] == 'js-literale' and (literal_declarations(body, indented_names(source.get('citire')), omitted_names(source.get('citire'))) != source.get('declaratii')
                                                                                          or literal_datasets(body) != source.get('seturi_ld'))):
                     errors.append('Fields differ from the retained body: ' + source['url'])
             elif source.get('campuri'):

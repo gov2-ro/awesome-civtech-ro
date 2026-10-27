@@ -51,6 +51,8 @@ EXAMPLE_LENGTH = 40
 
 SCRIPT = re.compile(r'<script\b([^>]*)>(.*?)</script\s*>', re.S | re.I)
 DECLARATION = re.compile(r'^(?:(?:const|let|var)[ \t]+|window\.)([A-Za-z_$][\w$]*)[ \t]*=[ \t]*(Object\.freeze\([ \t]*)?(?=[\[{])', re.M)
+# The same, and also a declaration of one of the NAMES with leading spaces (inside a function that wraps the page script).
+INDENTED = r'^(?:[ \t]*(?:(?:const|let|var)[ \t]+|window\.)(?=(?:{names})\b)|(?:const|let|var)[ \t]+|window\.)([A-Za-z_$][\w$]*)[ \t]*=[ \t]*(Object\.freeze\([ \t]*)?(?=[\[{{])'
 HTML_PAGE = re.compile(r'<(?:!doctype\s+html|html|head|body)(?:\s|>)', re.I)
 STRING = {'"': re.compile(r'"[^"\\\n]*(?:\\.[^"\\\n]*)*"', re.S), "'": re.compile(r"'[^'\\\n]*(?:\\.[^'\\\n]*)*'", re.S)}
 NUMBER = re.compile(r'[-+]?(?:\d+\.?\d*|\.\d+)(?:[eE][-+]?\d+)?')
@@ -224,10 +226,32 @@ class Parser:
         raise NotLiteral('expresie-dupa-literal', self.base + i)
 
 
+def indented_names(options):
+    """The names that the reader option `indentate` lists, as a sorted tuple. A reader option is the `citire` of the source: {"tip": "js-literale", "indentate": [...]}."""
+    names = options.get('indentate') if isinstance(options, dict) else None
+    return tuple(sorted({str(n) for n in names})) if names else ()
+
+
+def omitted_names(options):
+    """The names that the reader option `omise` lists, as a sorted tuple: declarations that the reader must not read as data (a dictionary of interface texts)."""
+    names = options.get('omise') if isinstance(options, dict) else None
+    return tuple(sorted({str(n) for n in names})) if names else ()
+
+
+def declaration_pattern(indented):
+    """The pattern of a declaration. Without names it is `DECLARATION`: a declaration at the start of a line. With names, a declaration of one of them may also
+    be indented: `  var DATA = [...]` inside `(function () {...})()`, or `    window.DATA = [...]` in a script element that the page indents. An indented declaration of another name stays unread (it is a local variable, not the page's data)."""
+    if not indented:
+        return DECLARATION
+    return re.compile(INDENTED.format(names='|'.join(re.escape(n) for n in indented)), re.M)
+
+
 @lru_cache(maxsize=8)
-def script_literals(body):
-    """Every candidate in the body, in page order: dicts with `variabila`, `node` (a Node or None), `reason` and `at` (offsets in the body)."""
+def script_literals(body, indented=()):
+    """Every candidate in the body, in page order: dicts with `variabila`, `node` (a Node or None), `reason` and `at` (offsets in the body).
+    `indented` lists the names that may be declared with leading spaces (see `declaration_pattern`)."""
     found, names, islands = [], {}, 0
+    declaration = declaration_pattern(indented)
 
     def unique(name):
         names[name] = names.get(name, 0) + 1
@@ -260,7 +284,7 @@ def script_literals(body):
         if kind not in ('', 'text/javascript', 'application/javascript', 'module'):
             continue
         covered = 0  # a line inside a literal that was read is data, not a declaration
-        for match in DECLARATION.finditer(text):
+        for match in declaration.finditer(text):
             if base + match.start() < covered:
                 continue
             parser = Parser(text, base)
@@ -322,13 +346,16 @@ def preceding_comment(body, start):
     return comment
 
 
-def declarations(body):
-    """What the reader found, read or skipped. A skipped declaration says why. The comment above a declaration is the page's own words."""
+def declarations(body, indented=(), omitted=()):
+    """What the reader found, read or skipped. A skipped declaration says why. The comment above a declaration is the page's own words.
+    A declaration named in `omitted` is listed as not read, with the reason `omisa-prin-optiune`."""
     out = []
-    for item in script_literals(body):
+    for item in script_literals(body, indented):
         node = item['node']
         row = {'variabila': item['variabila'], 'forma-sursa': item['forma-sursa'], 'linie': line_of(body, item['start']), 'citit': node is not None}
-        if node is not None:
+        if node is not None and item['variabila'] in omitted:
+            row.update(citit=False, motiv='omisa-prin-optiune', pointer=f'char:{node.start}-{node.end}')
+        elif node is not None:
             row.update(forma='tablou' if node.kind == 'tablou' else 'obiect', elemente=len(node.payload), pointer=f'char:{node.start}-{node.end}')
         else:
             row.update(motiv=item['reason'], pointer=f'char:{item["start"]}-{item["at"]}')
@@ -433,11 +460,11 @@ class Walk:
 TYPES = {'text': 'string', 'intreg': 'integer', 'numar': 'number', 'logic': 'boolean', 'nul': 'null'}
 
 
-def read(body):
-    """(fields, truncated). Fields are in page order; the same body always gives the same list."""
+def read(body, indented=(), omitted=()):
+    """(fields, truncated). Fields are in page order; the same body always gives the same list. A declaration named in `omitted` is not walked."""
     walker = Walk(body)
-    for item in script_literals(body):
-        if item['node'] is not None:
+    for item in script_literals(body, indented):
+        if item['node'] is not None and item['variabila'] not in omitted:
             walker.walk(item['variabila'], item['node'], item['variabila'], 0)
     return measured_variables(body) + list(walker.found.values()), walker.limit or len(walker.found) >= MAX_FIELDS
 

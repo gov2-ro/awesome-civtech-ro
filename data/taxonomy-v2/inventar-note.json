@@ -7,7 +7,8 @@
     "Each field record is a path in a source. The proposals are {groups} shared groups (baseline 7), 16 provider review items and the dictionary evidence that `inventory.py --check` verifies.",
     "The public build is unchanged: the default payload equals the v0.13.0 payload apart from its generation time; classifications and accepted providers are identical.",
     "Collection used {direct_requests} direct requests in total ({browser_navigations} browser navigations); the 150-request limit of lot C was not reached.",
-    "Batch C2 (three active projects): three inventories (`romania-interactiva` 10 sources, `data-expertforum` 15 sources from the owner's saved page and 14 Google Sheet tabs, `bani-partide` 1 source from the owner's saved listing), 8 proposed groups and provider items D176–D187; see the subsection of section 3."
+    "Batch C2 (three active projects): three inventories (`romania-interactiva` 10 sources, `data-expertforum` 15 sources from the owner's saved page and 14 Google Sheet tabs, `bani-partide` 1 source from the owner's saved listing), 8 proposed groups and provider items D176–D187; see the subsection of section 3.",
+    "Batch E (twelve entries, lot `E`): eleven entries have 30 sources and 775 field records (two of them reserve entries); `sicap-ai` and `open-budget` are `blocat`, `portal-just-modern` has no source; 25 provider items D211–D235, four proposed groups and 26 candidate members; see the subsection of section 3."
   ],
   "note": {
     "afacut": {
@@ -337,6 +338,168 @@
       "limite_en": "The 34 field records are paths, not variables. The years are the keys of the collection `years{*}` (11 members); before 2026-10-27 the reader gave 333 field records, the path repeated for each year (`years.2015.…`). The units `mil_lei` and `pct_pib` come from the name suffix; the file declares the unit of 1,000 lei in `unit_definition` only. The official page of the Ministry of Finance was not requested.",
       "urmatorul_pas": "Decideți D209 și grupul propus `deficit-bugetar`.",
       "urmator_en": "Decide D209 and the proposed group `deficit-bugetar`."
+    },
+    "monitor-safe": {
+      "rezultat": "Live monitor of the EU SAFE defence loan applied to Romania, 16.68 billion euro (catalogue: `relatie_date` `date-publice`). The project publishes `llms.txt` (key figures, each with a source, the legal framework, the contract tables), a home page and a contract register that hold their data as literals of the page script, and an RSS feed. Two sources were read. The home page (47 field records) holds the six domains, the infrastructure lots, the MAI and SRI plans and projects, the 21 army projects, a timeline of 54 events with a source link for each, and the suppliers. Its literals sit inside a function that wraps the script, so the new reader option `indentate` names the eight declarations. The contract register (49 field records) holds `C`, one record for each contract (value, beneficiary, signing date, status, approved value, promised localisation, events with their sources), and `F`, `NS`, `ST`, `SCURT`. The JSON-LD of the home page declares a schema.org Dataset (period 2026-05-29/2027-12-31) with one distribution, the RSS feed `safe-rss.xml`; the feed mirrors the timeline and no XML reader exists, so it is not a source. llms.txt says that a CSV with all contracts and the CUI of each supplier exists on request by e-mail; it is not public. A comment of the script names `pipeline/safe.json` as the source of the data. The repository that llms.txt links (`Andreim14/companii-stat`) answered 404 to the GitHub API, so the file was not read. Four provider items: D211 MApN, D212 MAI, D213 Senatul României, D214 Monitorul Oficial. No candidate member and no group: the measures are values in millions of euro and the pages have no CUI, county or locality field.",
+      "limite": [
+        "Datele sunt literale ale scriptelor paginilor; nu există fișier, schemă sau descriere de câmp. Pagina scrie valorile în „mil €”, dar câmpul `mil` nu declară unitatea.",
+        "Fluxul RSS (`safe-rss.xml`), singura distribuție declarată în JSON-LD, nu are cititor (XML) și oglindește cronologia. CSV-ul cu contractele și CUI-urile furnizorilor se dă doar la cerere prin e-mail.",
+        "Depozitul legat în llms.txt (`Andreim14/companii-stat`) a răspuns 404 la API-ul GitHub; fișierul `pipeline/safe.json` din comentariul scriptului nu a fost citit.",
+        "Eșantion de 25 de elemente pe listă: `TIMELINE` are 54 de evenimente, `PROIECTE` 21; inventarul arată cheile, nu numărul total.",
+        "Pagina de acorduri (`/acorduri/`) are carduri HTML fără tabel și nu a fost citită ca sursă."
+      ],
+      "limite_en": "The data are literals of the page scripts; no file, schema or field description exists. The page writes values in „mil €”, but the field `mil` declares no unit. The RSS feed, the one distribution that the JSON-LD declares, has no reader (XML) and mirrors the timeline. The CSV of contracts with supplier CUIs exists only on request by e-mail. The repository that llms.txt links answered 404, so `pipeline/safe.json` was not read. The sample bound of 25 elements applies. The agreements page has cards, not a table, and was not read as a source.",
+      "urmatorul_pas": "Citiți `pipeline/safe.json` dacă proprietarul publică depozitul. Cereți CSV-ul de contracte (cu CUI) sau un export. Un cititor pentru fluxul RSS ar arăta structura evenimentelor. Decideți elementele D211–D214.",
+      "urmator_en": "Read `pipeline/safe.json` if the owner publishes the repository; ask for the CSV of contracts with CUI or an export; a reader for the RSS feed would show the event structure. Decide D211–D214."
+    },
+    "igov": {
+      "rezultat": "Civic platform that turns public data, documents and press into verifiable reports (catalogue: `date-publice`). The methodology page says that the derived data files of the reports are public and keep the address and the SHA-256 of each original file. The governance report loads three files, found by reading the page code (the first guess at `/guvernanta.json` returned an HTML page: the page is in `/reports/`; three requests lost). They were read as 150,000-byte samples. `guvernanta.json` (88 field records) holds the sources with address, hash and date, the declared names of the positions of the rows of `appointments` (11) and `state_companies` (12), 121 companies (CUI, authority, turnover, net result, equity, employees, debts) and the people and appointments. `guvernanta-series.json` (18) holds companies keyed by CUI with ten-year series of net result, turnover, revenues, expenses, debts, receivables, equity and employees, and declares its unit: „mii lei; employees: persoane”. `guvernanta-achizitii.json` (31) holds the periods, the rules that the report applied and the 21 files that it read, and buyers keyed by CUI with their top suppliers. The reports page loads two list endpoints, `/api/channels` and `/api/institutions` (17 and 11 field records). The companies keyed by CUI came out of the cut samples only after a new rule of the sample reader (a cut keyed collection keeps its whole members). Six provider items D215–D220 (Guvernul României, Ministerul Finanțelor via data.gov.ro, AMEPIP, SEAP, the European Commission and the Consiliul Concurenței for state aid). Candidate members for `cui`, `cifra-afaceri`, `profit-net`, `numar-salariati` and `perioada-de-referinta`, and members of the new proposed groups `datorii` and `capitaluri-proprii`.",
+      "limite": [
+        "Fișierele sunt eșantioane de 150.000 de octeți. Seria are 265 de companii în eșantion, dar numărul total nu este cunoscut.",
+        "`guvernanta.json` conține nume de persoane (membri ai consiliilor de administrație). Sursa nu este marcată `persoane`: cititorul păstrează doar nume de câmpuri (88 de înregistrări, nicio valoare, nicio cheie în afara celor permise), iar marcajul ar face ca verificarea scurgerilor să semnaleze 7 fișiere care conțin nume de instituții. Proprietarul poate marca sursa.",
+        "Pozițiile rândurilor `appointments` (11 celule) și `authorities` au nume declarate în `fields`, dar cititorul JSON nu le folosește: câmpurile sunt `appointments[][0]`…`[][10]`.",
+        "API-ul are alte rute (`/api/channel/…`, `/api/post/…`, `/api/institution-pack/…`) pentru textul rapoartelor; nu au fost cerute."
+      ],
+      "limite_en": "The files are 150,000-byte samples; the total number of companies is unknown. `guvernanta.json` holds names of board members. The source is not marked `persoane`: the reader keeps names of fields only (88 records, no value, no key beyond the allowed ones), and the mark would make the leak check flag 7 tracked files that hold names of institutions; the owner can mark it. The positions of `appointments` have names declared in `fields`, but the JSON reader does not use them. The other API routes (report text) were not requested.",
+      "urmatorul_pas": "Decideți dacă `guvernanta.json` se marchează `persoane`. Decideți D215–D220, cei cinci candidați și grupurile `datorii` și `capitaluri-proprii`. Un cititor care folosește lista `fields` ca nume ale pozițiilor ar da nume câmpurilor `appointments[][n]`.",
+      "urmator_en": "Decide whether `guvernanta.json` is marked `persoane`; decide D215–D220, the candidate members and the groups `datorii` and `capitaluri-proprii`. A reader that takes the list `fields` as the names of positions would name `appointments[][n]`."
+    },
+    "companii-publice-ro": {
+      "rezultat": "Map and tree of the public enterprises (catalogue: `date-publice`; a GitHub Pages site, `cosettechichirau.github.io/companiipublice/`). The page fetches three files; they were read as range samples (200,000 bytes; 30,000 for the boundary layer). `companii.json` (18 field records) holds, for each enterprise, the CUI, the name, the level (local or central), the county code and name, the CUI and name of the tutelary authority, the type, the legal form, the state, the CAEN code and name, the parent company and the lists; it declares its source (the list of public enterprises monitored by the Ministry of Finance, O.M.F.P. 2873/2016) and the date of the list. `financials.json` (11) holds the years 2008–2025, the unit (lei, whole numbers), the source (the Ministry of Finance financial statements on data.gov.ro) and `companii`, a collection keyed by CUI with `caen` and `y`, a collection keyed by year; its `fields` list names the ten yearly measures (turnover, total income, total expenses, net profit, net loss, debts, equity, fixed assets, current assets, employees) as values of a list, so they are not field records. `county_boundaries.geojson` (7) is the map layer. The repository `cosettechichirau/companiipublice` was not requested: no link of the page names it, and the brief's „probably” is not evidence. Two provider items D221 (the list) and D222 (the financial statements). Eight candidate members (`cui` 3, `judet` 2, `cod-caen` 2, `perioada-de-referinta` 1).",
+      "limite": [
+        "Cele zece măsuri anuale din `financials.json` sunt declarate ca valori în lista `fields`, nu ca nume de câmp, iar rândurile `y{*}` au zece poziții fără nume. De aceea niciun grup de măsuri (`cifra-afaceri`, `profit-net`, `numar-salariati`, `datorii`, `capitaluri-proprii`) nu are membru aici.",
+        "Eșantioane de 200.000 de octeți din `companii.json` și `financials.json`: 436 de rânduri în `companii`; fișierele complete nu au fost citite.",
+        "Depozitul `cosettechichirau/companiipublice` nu este legat de pagină și nu a fost cerut."
+      ],
+      "limite_en": "The ten yearly measures of `financials.json` are declared as values of the list `fields`, not as field names, and the rows `y{*}` have ten positions without names, so no measure group has a member here. The files are range samples (436 rows of `companii`). The repository is not linked from the page and was not requested.",
+      "urmatorul_pas": "Un editor poate adăuga cele zece măsuri din `financials.json` în `campuri-editor.csv`; fragmentul listei `fields` apare în copia păstrată. Apoi le poate propune ca membri ai grupurilor de măsuri. Decideți D221–D222 și cei opt candidați.",
+      "urmator_en": "An editor can add the ten measures of `financials.json` to `campuri-editor.csv` (the fragment of the list `fields` is in the retained copy) and then propose them as members of the measure groups. Decide D221–D222 and the eight candidates."
+    },
+    "executii-bugetare": {
+      "rezultat": "Platform for the budget execution of local authorities (catalogue: `date-publice`; a single-page application of the Oracle JET kind). A plain request returns a shell of 44 characters. The browser render (two navigations: the second after the fix of the render helper) showed the data requests, all static JSON files under `/json/`: `judete.json` (42 counties: code and name), `AN/JUDET/institutii.json` (the institutions of a county: CUI as `cif`, name and two flags) and `AN/JUDET/CUI.json` (revenue and expenditure of one institution by month: `diagrama`, a series of nine monthly sums for each budget line; `tabel`, the lines with sums and sub-lines; `total`; and `date`, the links to the original monthly reports, xlsx and pdf, on `static.anaf.ro`). The home view that the page loads says „Date preluate de pe mfinante.gov.ro/transparenta-bugetara”; the provider L135 (Ministerul Finanțelor) is already accepted, so no provider item was written. Three sources, 30 field records. Candidate members: `cui` (`cif`), `judet`, `perioada-de-referinta` (the months). No group: the budget lines are keys of a keyed collection, that is values, not fields.",
+      "limite": [
+        "Un singur fișier de instituție a fost citit (Primăria Municipiului București, 2026). Celelalte instituții și ani au același tipar de adresă (`json/AN/JUDET/CUI.json`) și nu au fost cerute.",
+        "Liniile bugetare sunt chei ale `diagrama` (nume de linii cu coduri între paranteze): sunt valori, nu câmpuri. Inventarul arată colecția cu chei și nu le copiază.",
+        "Fișierele nu declară unitatea sau moneda.",
+        "Vizualizarea `js/views/home.html` a fost cerută o dată ca dovadă de furnizor, nu ca sursă de câmpuri."
+      ],
+      "limite_en": "One institution file was read (Primăria Municipiului București, 2026); the others have the same address pattern and were not requested. The budget lines are keys of a collection, so values, and the inventory shows the collection without copying them. The files declare no unit or currency. The home view was requested once as provider evidence, not as a source of fields.",
+      "urmatorul_pas": "Decideți cei patru candidați (`cui`, `judet` de două ori, `perioada-de-referinta`). Dacă proprietarul vrea, se pot citi alte instituții cu aceeași adresă. Nu este nevoie de un element de furnizor nou (L135 este acceptat).",
+      "urmator_en": "Decide the candidates; other institutions can be read with the same address pattern; no new provider item is needed (L135 is accepted)."
+    },
+    "ce-cumpara-primaria": {
+      "rezultat": "Purchases of the town halls of Romania, 2025: where the money goes, by service (catalogue: `date-publice`; a Next.js site on Vercel). The page is server-rendered: no JSON request exists, and the data are in HTML tables. Three pages were read with the table reader: the ranking (`/clasament`, 9 field records: place, locality, inhabitants, current spending for each inhabitant, lei for each inhabitant, split, median, comparison, total), the suppliers (`/furnizori`, 6: rank, firm with CUI, amount received, number of administrations, number of purchases, main service) and the page of one administrative unit (`/uat/9262?an=2025`, Arad; 10: services with total and medians, and the firms that were paid). The page declares its sources: the quarterly SEAP/SICAP reports on data.gov.ro, the SIRUTA register and the population by UAT (INS / MDLPA), and company data from ANAF. Four provider items D223–D226. Candidate members: `populatie` (inhabitants) and `localitate` (low confidence). No group.",
+      "limite": [
+        "Datele sunt în tabele HTML cu celule compuse: coloana „Localitate” are numele, tipul, județul și serviciul principal într-un singur text, iar coloana „Firmă” are numele și CUI-ul. Cititorul de tabele dă coloana, nu părțile ei.",
+        "O singură pagină de UAT (Arad) a fost citită; paginile celorlalte UAT-uri au aceeași formă. Numărul din adresă (`9262`) seamănă cu un cod SIRUTA, dar nicio pagină nu spune că este codul SIRUTA.",
+        "Sumele sunt atribuite, fără cantități („SEAP nu publică unități de măsură”); anul este cel al anunțului, nu al semnăturii.",
+        "Paginile `/companii-de-stat` și `/serviciu/…` nu au fost citite."
+      ],
+      "limite_en": "The data are in HTML tables with composite cells (locality with type, county and service; firm with CUI). One UAT page (Arad) was read. The number in the address looks like a SIRUTA code, but no page says so. Amounts are awarded values without quantities; the year is that of the announcement. The state-company and service pages were not read.",
+      "urmatorul_pas": "Decideți D223–D226 și cei doi candidați. Dacă proprietarul publică fișierele de date (depozit sau export), un inventar ar putea citi coloanele pe celule simple.",
+      "urmator_en": "Decide D223–D226 and the two candidates. A data export from the owner would give simple columns."
+    },
+    "sicap-ai": {
+      "rezultat": "Search engine for tenders and direct awards (catalogue: `date-publice`). Every request of the documentation pass of 2026-10-24 answered HTTP 429 (the page, llms.txt, /metodologie/ and /despre/, 100 ms apart). The batch rule says to stop on a host that answers 429. The host was not requested again in this batch: the state is `blocat`, and the reserve entry `de-unde-vine-apa` took its place (the first reserve, recorded before the replacement). The host has Vercel name servers, as harta-firmelor.ro, which the project lists in `colectare-interzisa.csv` after the same answer. A row for the list is proposed in the report; it was not added.",
+      "limite": [
+        "Nicio cerere nouă nu s-a trimis în acest lot; dovada este pasul de documentare din 2026-10-24 (4 din 4 cereri cu HTTP 429)."
+      ],
+      "limite_en": "No new request was made in this batch; the evidence is the documentation pass of 2026-10-24 (4 of 4 requests answered HTTP 429).",
+      "blocaj": "HTTP 429 la toate cele patru cereri ale pasului de documentare din 2026-10-24 (pagina, llms.txt, /metodologie/, /despre/). Regula lotului: oprire pe o gazdă care răspunde 429. Gazda nu a fost cerută din nou.",
+      "blocaj_en": "HTTP 429 on all four requests of the documentation pass of 2026-10-24. The batch rule says to stop on such a host; the host was not requested again.",
+      "urmatorul_pas": "Proprietarul decide dacă `sicap.ai` intră în `colectare-interzisa.csv` (rând propus în raport) sau dacă salvează din browser pagina și documentația, pentru `--import-saved`.",
+      "urmator_en": "The owner decides whether `sicap.ai` joins `colectare-interzisa.csv` (a row is proposed in the report) or saves the page and its documentation from a browser for `--import-saved`."
+    },
+    "open-budget": {
+      "rezultat": "Budget visualisation (catalogue: `date-publice`; the host is behind Cloudflare). The four requests of the documentation pass of 2026-10-24 timed out, and so did a new direct request and a browser render in this batch (25-second timeout; the record is `randare/open-budget-*.json`, state `timeout`). Nothing answered: no 401, 403 or 429, so no refusal and no row for `colectare-interzisa.csv`. The state is `blocat`; the reserve entry `ani-de-pensie` took its place (the second reserve, recorded before the replacement).",
+      "limite": [
+        "Gazda nu răspunde unui client automat și nici unui browser fără cap: nu există nicio pagină, nicio sursă și niciun text colectat."
+      ],
+      "limite_en": "The host answers neither an automated client nor a headless browser; no page, source or text was collected.",
+      "blocaj": "Expirarea citirii la patru cereri (2026-10-24), la o cerere directă nouă și la o randare în browser (2026-10-27). DNS rezolvă (Cloudflare); niciun răspuns HTTP.",
+      "blocaj_en": "Read timeouts on four requests (2026-10-24), one new direct request and one browser render (2026-10-27). DNS resolves (Cloudflare); no HTTP answer.",
+      "urmatorul_pas": "Proprietarul poate salva pagina din browserul lui și o poate importa cu `--import-saved`, sau poate verifica dacă site-ul mai există.",
+      "urmator_en": "The owner can save the page from their own browser and import it with `--import-saved`, or check whether the site still exists."
+    },
+    "monitor-social": {
+      "rezultat": "Social data about Romania, a project whose pages give the address and the e-mail domain of FES Romania (fes.de) (catalogue: `date-publice`; a WordPress site). The data pages (`/data/…`) paste the tables that the Eurostat data browser exports; the indicator pages (`/indicator/…`) hold charts. Four of the seven data pages that the home page lists were read with the new reader `html-tabele-eurostat` (54 field records): household consumption (hbs_exp_t111, hbs_str_t211, hbs_str_t223, hbs_str_t226), the employment rate by sex and age (LFSI_EMP_A, two extractions of one code), the population by educational attainment (EDAT_LFSE_03, EDAT_LFSE_04) and residence permits (MIGR_RESOCC, tps00171). Each extraction gives one measure (title, code, unit, extraction date, source `ESTAT`) and its dimensions (TIME, GEO, COICOP, Sex, Age class and others); no value is copied. The four pages hold 10 extractions and 9 data sets. The pasted tables have several shapes (the extraction line first, a title row with the code, stacked extractions, Romanian labels), and the reader was extended for them. Provider: Eurostat (D227). One candidate (`perioada-de-referinta`), and members of the new proposed groups `sex` and `grupa-de-varsta`.",
+      "limite": [
+        "Trei din cele șapte pagini de date nu au fost citite. Cele patru pagini citite au 10 extracții Eurostat, care dau 9 seturi (pagina despre ocuparea femeilor lipește același cod de două ori).",
+        "Un tabel fără rând `(Labels)` sau `TIME` nu este citit; sursa se marchează parțială. Cititorul nu citește valori: dimensiunea rândurilor (țări) fără titlu rămâne nenumită.",
+        "Unitatea lipsește la extracțiile despre studii (rândul `Unit of measure` nu are valoare).",
+        "Paginile `/indicator/…` (grafice) nu au fost cerute."
+      ],
+      "limite_en": "Three of the seven data pages were not read. A table with no `(Labels)` row or `TIME` row is not read and the source is marked partial. No value is read; the dimension of the rows (countries) with no heading stays unnamed. The two extractions on educational attainment have no unit value. The indicator pages were not requested.",
+      "urmatorul_pas": "Citiți celelalte trei pagini de date dacă vreți toți indicatorii. Decideți D227, candidatul pentru perioadă și grupurile `sex` și `grupa-de-varsta`.",
+      "urmator_en": "Read the other three data pages for all indicators. Decide D227, the candidate for the period and the groups `sex` and `grupa-de-varsta`."
+    },
+    "verifica-psiholog": {
+      "rezultat": "Independent search of the Romanian psychologists registered with the CPR (catalogue: `date-publice`; a Next.js site). The terms page (one request) bans copying for commercial use and redistribution; it does not ban automated access. One browser navigation of the home page (without text: `--fara-text`) showed the data requests, among them the registry list `GET /api/psychologists-grouped?limit=1000` (2,407,883 bytes: more than 1,000 records about natural persons; the browser helper left it out for its size). The first 4,000 bytes were read by a range request, enough for the first record: 65 field records of a psychologist with a list of certificates (identifiers, name fields, branch, county, certificate fields, flags for the special registers, seniority, update fields). That source is marked `persoane`: the record keeps names, paths, types and counts and no value. The other sources hold no person: `api/register-metadata` (12 field records: the eight CPR registers with file, address on copsi.ro, hash, extraction date, number of records, status), `api/statistics` (37: aggregate counts, by county and branch) and the structure page, read with the new reader `html-glosar` (13 fields with their labels and definitions; nine more names are in a sentence and have no definition). Provider: Colegiul Psihologilor din România (D228). One candidate: `judet`.",
+      "limite": [
+        "Registrul are mai mult de 1.000 de înregistrări; inventarul cunoaște doar prima înregistrare (4.000 de octeți) și nu poate spune cât de mari sunt listele de certificate.",
+        "Fișierele registrelor CPR (`copsi.ro/images/…xlsx`, opt) sunt foi de calcul binare și nu au fost cerute.",
+        "Pagina „Structură date” definește 13 câmpuri; API-ul are 65 de înregistrări de câmp (printre ele câmpuri fără definiție, ca `isDataHidden` și `contactsHidden`).",
+        "Anunțurile și bannerul sunt un CMS al site-ului, nu date despre psihologi; nu sunt surse.",
+        "Textul paginii de pornire nu s-a păstrat (`--fara-text`)."
+      ],
+      "limite_en": "The registry holds more than 1,000 records; the inventory knows the first one (4,000 bytes). The eight CPR registers (binary spreadsheets on copsi.ro) were not requested. The structure page defines 13 fields; the API record has 65 field records, some with no definition. The announcement and banner endpoints are the CMS of the site, not data about psychologists. The text of the rendered home page was not kept.",
+      "urmatorul_pas": "Decideți D228 și candidatul `judet`. Marcajul `persoane` al sursei API este deja pus; păstrați-l. Dacă vreți registrele CPR, un cititor de foi de calcul ar trebui scris.",
+      "urmator_en": "Decide D228 and the candidate. Keep the mark `persoane` of the API source. A spreadsheet reader would be needed for the CPR registers."
+    },
+    "portal-just-modern": {
+      "rezultat": "Magistrum, a search of court files and hearings (catalogue: `date-publice`; a single-page application). `llms.txt` lists nine pages (file search, hearings, jurisprudence, public citations, courts, the Monitorul Oficial, constituencies) and names the official court portal (portal.just.ro) and the Monitorul Oficial as the sources that it aggregates. A plain request returns a shell of 19,649 characters whose backend is a Supabase project (`…supabase.co`). Two browser pages (`/despre`, `/institutii`) rendered with no page text; the only data requests that the browser made were the three configuration tables of the application (`app_settings`, `seo_settings`, `pwa_settings`), which are not data of the project. The REST endpoints of the backend need the application key that the page script holds; the batch rule says not to request a key and not to guess protected endpoints, so none was requested. The case data hold persons (parties), so no record would be copied in any case. No source, no field record.",
+      "limite": [
+        "Datele (dosare, ședințe, jurisprudență, citații, instanțe) sunt în spatele unui backend care cere o cheie de aplicație; cheia nu a fost cerută, iar punctele de acces nu au fost ghicite.",
+        "Cele două randări în browser nu au arătat text (`/despre` are 2 caractere); înregistrările lor păstrează cererile de configurare ale aplicației, nu date ale proiectului.",
+        "Furnizorii numiți în llms.txt (portal.just.ro, Monitorul Oficial) nu au element de furnizor: textul nu spune ce set vine de la care."
+      ],
+      "limite_en": "The data are behind a backend that needs an application key; the key was not requested and no endpoint was guessed. The two browser renders showed no page text and only configuration requests. The providers that llms.txt names (portal.just.ro, the Monitorul Oficial) have no provider item: the text does not say which data set comes from which.",
+      "urmatorul_pas": "Un export sau o schemă de la proprietar ar permite un inventar (câmpurile unui dosar fără valori). Lipsa extragerii nu înseamnă lipsa datelor. Proprietarul poate spune dacă backendul are un API public documentat.",
+      "urmator_en": "An export or a schema from the owner would allow an inventory (the fields of a file, no values). The owner can say whether the backend has a documented public API."
+    },
+    "cat-de-tare": {
+      "rezultat": "Map of the official seismic hazard value of 3,181 localities, from Annex A of the technical regulation RTC 18-2026 (catalogue: `date-publice`; a static page of mariuscomper.uk). Three sources (33 field records): the page (7: the table of the counties with minimum, maximum and mean, and the theme labels; the JSON-LD declares a schema.org Dataset with licence CC BY 4.0, based on the Monitorul Oficial PDF of the order), the script `app.js` (19, read with the new reader `js-pozitii`) and the data file `places.json` (7, a 200,000-byte sample: the version, the colour ramps of day and night, and rows of 19 cells). The plain JSON reader cannot name the 19 positions of a row; the script names them: name, county, kind, pop, v, k, vi, viii, higher, same, lower, x, y, bb, nb, slug, n, page, card. The table of the order (a PDF in the Monitorul Oficial) was not requested. Three provider items D229–D231 (MDLPA, Monitorul Oficial, INS). Candidate members: `judet` (the county of the rows and the table), `uat` (the name) and `populatie` (the inhabitants). A source that two projects share: `mariuscomper.uk/llms.txt` is shared documentation, not a source of fields; no data file is shared with `recontorizarea`.",
+      "limite": [
+        "Numele pozițiilor vin din scriptul paginii; semnificația pozițiilor `v`, `k`, `vi`, `viii`, `higher`, `same`, `lower` nu este declarat de nicio sursă citită și nu este interpretat aici.",
+        "`x`, `y` și `bb` sunt coordonate pe harta desenată (valoarea este împărțită la 10 în script), nu coordonate geografice; nu sunt candidate pentru `coordonate-geografice`.",
+        "`places.json` este un eșantion de 200.000 de octeți; tabelul oficial (PDF) și `shapes.json` (geometrie) nu au fost cerute.",
+        "Legătura dintre `a` (din script) și `rows` (din fișier) este cea a codului `rows = d.rows.map(function (a, i) {`; ea stă în dovezile selectorilor, nu în cititor."
+      ],
+      "limite_en": "The names of the positions come from the page script. The meaning of `v`, `k`, `vi`, `viii`, `higher`, `same` and `lower` is declared by no source read and is not interpreted. `x`, `y` and `bb` are map coordinates, not geographic ones. The data file is a sample; the PDF table and the geometry file were not requested. The link between the script variable `a` and the file member `rows` is the line `rows = d.rows.map(function (a, i) {` and stays in selector evidence, not in the reader.",
+      "urmatorul_pas": "Decideți D229–D231 și cei trei candidați. Cititorul `js-pozitii` ar putea servi și `trei-din-patru` (lotul D), unde pozițiile rândurilor din `places.json` nu au nume.",
+      "urmator_en": "Decide D229–D231 and the three candidates. The reader `js-pozitii` could also serve `trei-din-patru` (lot D), whose row positions have no names."
+    },
+    "recontorizarea": {
+      "rezultat": "Interactive page that compares the household basket of 2021 with the price changes until 2026 (catalogue: `date-publice`; a static page of mariuscomper.uk). The page script fetches one data file, `assets/data.json` (6,194 characters, read whole; 132 field records): `meta` (anchor year, years, extraction dates, three sources), the thirteen categories with Romanian and English names, the weights of seven household profiles (`profiles.<profile>.<category>`) and, for each year 2021–2026, the official rate, the sum, the period, the source, the weight year and the weight and yearly change (`w`, `yoy`) of each category. The 132 are paths: category names are identifier keys, so each category is a field in each profile and each year. The page declares its sources in text: INS TEMPO BUF109I (the weights) and IAPC102 (the price changes) and Eurostat prc_hicp_minr (the rates). Both providers are already accepted (L120 INS, L145 Eurostat), so no provider item was written. No candidate member and no group: no field of the file is a CUI, county, locality or population.",
+      "limite": [
+        "Numărul de 132 este un număr de căi: numele celor 13 categorii sunt chei de tip identificator și repetă câmpurile în fiecare profil și an.",
+        "Fișierul nu declară unități și nu descrie câmpurile `w` și `yoy` (numele sugerează o pondere și o variație anuală, dar fișierul nu o spune).",
+        "Pagina nu are tabel; textul explică modelul, dar nu ca dicționar de câmpuri."
+      ],
+      "limite_en": "The 132 is a count of paths: the thirteen category names are identifier keys and repeat in every profile and year. The file declares no unit or description for `w` and `yoy` (the names suggest a weight and a yearly change; the file does not say so). The page has no table and no data dictionary.",
+      "urmatorul_pas": "Nu e nevoie de elemente de furnizor noi. Un candidat pentru unitatea ponderilor ar cere o declarație în fișier.",
+      "urmator_en": "No new provider item is needed. A unit for the weights would need a declaration in the file."
+    },
+    "de-unde-vine-apa": {
+      "rezultat": "Reserve entry, replacing sicap-ai (first reserve). Interactive investigation of the origin of the drinking water of ten large cities (catalogue: `relatie_date` `date-proprii`; a static page of mariuscomper.uk). The page holds its data in `window.__CITIES_DATA__`, an indented assignment in a script element; the reader option `indentate` names it. One source (56 field records): one record for each city with operator, source category, sources with their share, treatment, hardness, chlorine, tariff, network length and provenance, and two tables (the parameters of two cities and the primary document of each city). Two provider items D232 (ANRSC, the tariffs) and D233 (OMS, the reference values). The hardness and chlorine values come from the bulletins of ten local operators, which the page lists with a link; no item was written for each operator. Candidate members: `coordonate-geografice` (the coordinates of a city) and `localitate` (the name of a city).",
+      "limite": [
+        "Valorile „neverificate” de duritate și clor sunt marcate de pagină ca vechi, fără buletin datat; câmpurile nu spun care sunt neverificate.",
+        "Cei zece operatori locali (Apa Nova București, Compania de Apă Someș și alții) sunt furnizori primari ai buletinelor, dar nu au element de furnizor propriu.",
+        "Eșantion de 25 de elemente: toate cele zece orașe sunt citite."
+      ],
+      "limite_en": "The page marks some hardness and chlorine values as unverified, but the fields do not say which. The ten local operators are primary providers of the bulletins and have no provider item of their own.",
+      "urmatorul_pas": "Decideți D232–D233 și cei doi candidați. Decideți dacă fiecare operator local primește un element de furnizor.",
+      "urmator_en": "Decide D232–D233 and the two candidates. Decide whether each local operator gets a provider item."
+    },
+    "ani-de-pensie": {
+      "rezultat": "Reserve entry, replacing open-budget (second reserve). Calculator of the retirement month under Law 360/2023 and the years after it (catalogue: `date-publice`; a static page of mariuscomper.uk). One source (21 field records): the page holds a data island `model` (the keys `statutory` for women and men, `expectancy`, `hly` and `survivors`) and a table of retirement ages by country; the island `i18n` holds the interface texts in two languages and is left out by the reader option `omise` (new). Two provider items D234 (Eurostat) and D235 (Monitorul Oficial, the law). No candidate member and no group.",
+      "limite": [
+        "Cheia `statutory` are rânduri de două numere întregi fără nume (`rows[][0]`, `rows[][1]`); semnificația pozițiilor nu este declarată.",
+        "Seria sănătoasă are o ruptură între 2023 și 2024 (după pagină); câmpurile `hly2023` și `hly2024` nu sunt comparabile."
+      ],
+      "limite_en": "The rows under `statutory` have two integers with no names; the meaning of the positions is not declared. The healthy-life series has a break between 2023 and 2024, so `hly2023` and `hly2024` are not comparable.",
+      "urmatorul_pas": "Decideți D234–D235.",
+      "urmator_en": "Decide D234–D235."
     }
   },
   "ins": [
@@ -399,7 +562,13 @@
     "`dupa-cutremur` (lot D): the download page links a Google Drive folder and a bit.ly address; neither was requested. The collector failed on any link with letters outside ASCII (an `eroare-retea` on three pages of the site in the first collection); fixed on 2026-10-27, with a test.",
     "`sondajeromania.ro` (lot D): three declarations of the licence differ (CC BY 4.0 in `llms.txt` and in the first Dataset, CC BY-NC 4.0 in the Dataset of the parliamentary page).",
     "`guvernezi.ro` (lot D): no file, API or schema; the data are text pages. The state is `investigat-fara-surse`, a new state of the coverage export.",
-    "No host answered 401, 403 or 429 in lot D, so there is no proposed row for `colectare-interzisa.csv`."
+    "No host answered 401, 403 or 429 in lot D, so there is no proposed row for `colectare-interzisa.csv`.",
+    "`sicap.ai` (lot E): HTTP 429 on every request of the documentation pass (2026-10-24). Not requested again. Proposed row for `colectare-interzisa.csv` in the report; not added.",
+    "`www.openbudget.ro` (lot E): read timeout on five direct requests (four on 2026-10-24, one on 2026-10-27) and one browser render; DNS resolves to Cloudflare; no HTTP answer, so no row is proposed.",
+    "`portaljustmodern.ro` (lot E): the backend (a Supabase REST API) needs an application key; no key was requested and no endpoint was guessed. The two browser renders showed only configuration requests.",
+    "`monitorsafe.ro` (lot E): the repository that llms.txt links (`Andreim14/companii-stat`) answered 404 to the GitHub API; the CSV of contracts with supplier CUIs exists only on request by e-mail.",
+    "`verificapsiholog.ro` (lot E): the registry list holds more than 1,000 records about persons (2,407,883 bytes); only the first 4,000 bytes were read, and the source is marked `persoane`.",
+    "`render_pages.py` (found in lot E): the text of a record could be the last data body that the page received. Fixed; the records of lot D, and two of lot E (`portal-just-modern`, `verifica-psiholog`), were made before the fix."
   ],
   "de_revizuit": [
     "Review the 30 proposed groups: each `ambiguitati` entry and each unit fact in `inventar-concepte.json`. Groups are discovery aids, not join keys.",
@@ -410,13 +579,14 @@
     "Resolve the 62 unconfirmed profiles and the 100 projects and resources without extracted fields; a missing extraction does not prove missing data.",
     "Batch C2: decide the 3 proposed groups of part 1 (`casatorii`, `divorturi`, `studenti`; done 2026-10-26) and the 3 of part 2 (`uat`, `partid-politic`, `beneficiar-fonduri-publice`), the candidate members for the reviewed groups (`judet`, `perioada-de-referinta`, `populatie`, `localitate` from part 1; `siruta`, `cui`, `judet`, `localitate`, `voturi-valide` from part 2), and the provider items D176–D185 (decided 2026-10-26) and D186. Decide whether a tab over 2,000,000 bytes may be read for its header. Part 3 (`bani-partide`): decide D187, the two proposed groups (`subventie-partid`, `donatie-partid`), the new members of the proposed groups `partid-politic` and `uat`, and the six candidate selectors for `cui`, `judet` and `perioada-de-referinta`; save the documentation pages of `banipartide.ro` if you want providers looked for in their text.",
     "Batch D (twelve entries of „De analizat”): decide the provider items D189–D210, the two new proposed groups (`deficit-bugetar`, `coordonate-geografice`), the selectors added to the proposed groups `partid-politic` and `uat`, and the candidate members for the reviewed groups (section 5). Decide whether a new family for public finance is wanted (`deficit-bugetar` sits in `achizitii`). Decide whether `guvernezi` needs a reader for its profile pages or an export from its owner.",
-    "Decide the proposed group `cod-caen` (the CAEN code, `inventar-concepte.json`; 5 members from `lista-firme`, `companii-de-stat` (two sources), `romania-transparenta` and `demoanaf`; 8 ambiguity entries; none of the members is confirmed). Decide whether the family `identificatori` is right, or `firme`."
+    "Decide the proposed group `cod-caen` (the CAEN code, `inventar-concepte.json`; 5 members from `lista-firme`, `companii-de-stat` (two sources), `romania-transparenta` and `demoanaf`; 8 ambiguity entries; none of the members is confirmed). Decide whether the family `identificatori` is right, or `firme`.",
+    "Batch E (twelve entries of „De analizat”, nine with a source, two replaced by reserves): decide the provider items D211–D235, the four new proposed groups (`datorii`, `capitaluri-proprii`, `sex`, `grupa-de-varsta`) and the 26 candidate members for reviewed groups (section 5 of the report). Decide whether `sicap.ai` joins `colectare-interzisa.csv` (proposed row in the report). Decide whether `guvernanta.json` of `igov` is marked `persoane`. Decide whether the render records made before the fix of `render_pages.py` (lot D, `portal-just-modern`, `verifica-psiholog`) are made again (a new render of `portal-just-modern` needs a higher limit of browser pages). Decide whether the ten yearly measures of `financials.json` (companii-publice-ro) are entered in `campuri-editor.csv`, and whether `js-pozitii` is also run on `trei-din-patru`."
   ],
   "verificari": {
-    "tests": 831,
+    "tests": 981,
     "tests_skipped": 6,
-    "explorer_checks": 36,
-    "finder_checks": 62,
+    "explorer_checks": 59,
+    "finder_checks": 81,
     "rezultate": [
       "`python3 scripts/validate.py --publication`: 140 entries, 0 errors, 0 warnings.",
       "`python3 scripts/build.py`: succeeds. The default public payload equals the v0.13.0 payload apart from `generated`; the classifications and the accepted providers of all 140 entries are equal; `site/index.html` differs only by the asset stamps that the build writes.",
@@ -433,7 +603,8 @@
       "The relation to data, steps D and E (branch `data-relation-de`, 2026-10-26): `python3 scripts/validate.py --publication`: 142 entries, 0 errors, 0 warnings. `python3 scripts/inventory.py --check`: 0 evidence errors; 110 source bodies hash-verified; 5 copies saved by the owner hash-verified; 102 dictionary evidence items verified, 0 stale. Unit tests: 724 run, 6 skipped (701 and 6 before); new: 8 in `test_inventory_site` (class `Scope`), 5 in `test_inventory_report` (`Scope`), 3 in `test_collect_docs`, 7 in `test_inventory_state` (`ScopeOfTheSelection`, `ScopeInTheCommand`). `python3 scripts/build.py --site-dir <scratch folder> --with-inventory`: succeeds; the finder index holds 85 entries (126 before the scope rule): 73 projects and 12 resources; it leaves out 41 (18 without data, 5 not assessed, 18 inactive); `/date/lista/` has 31 rows and 54 entries without fields. Browser, against the served scratch build: `check_preview.py` 138/138 (111 before), `check_inventory_preview.py` 36/36 (31), `check_data_finder.py` 62/62 (40). Replay: `inventory.py --offline` on a copy of the tracked folder gives the six generated files byte for byte. 0 requests in this work.",
       "Batch D (branch `inventory-batch-d`, 2026-10-27): `python3 scripts/validate.py --publication`: 142 entries, 0 errors, 0 warnings. `python3 scripts/inventory.py --check`: 0 evidence errors; 145 source bodies hash-verified (110 before the batch); 117 dictionary evidence items verified (103 before), 0 stale. Unit tests: 772 run, 6 skipped (727 and 6 before the batch); new: `test_inventory_jsonsample` 20 and 6 + 6 + 2 + 3 + 8 in `test_inventory_literals`, `test_inventory_sheet`, `test_inventory_text`, `test_collect_docs` and `test_inventory_report`. Replay: `inventory.py --offline` on a copy of the tracked folder reproduces the six generated files byte for byte. `python3 scripts/build.py --site-dir <scratch folder> --with-inventory`: succeeds; `site/` has no change. Browser, against the served preview: `check_preview.py` 141/141, `check_inventory_preview.py` 40/40, `check_data_finder.py` 61/61 (one check was rewritten: cards with evidence come first and 24 are shown at a time, so the check that an uninventoried project is reachable now opens every page of cards).",
       "`lista-firme` API response (branch `lista-firme-api`, 2026-10-27): `python3 scripts/validate.py --publication`: 142 entries, 0 errors, 0 warnings. `python3 scripts/inventory.py --check`: 0 evidence errors; 146 source bodies hash-verified (145 before); 117 dictionary evidence items verified, 0 stale. Unit tests: 775 run, 6 skipped (772 and 6 before); new: 3 in `test_inventory_report` (the live response keeps key names and no value, the leak check finds a value it is given, one API request in the log); the persons test also covers this source. The package checks pass. Replay: `inventory.py --offline` on a copy of the tracked folder gives the six generated files byte for byte, with 0 requests. `python3 scripts/build.py --site-dir <scratch folder> --with-inventory`: succeeds; `site/` has no change. Browser, against the served scratch build: `check_preview.py` 141/141, `check_inventory_preview.py` 40/40, `check_data_finder.py` 61/61. Person values: 0 of 6 identifying values of the person relations are in the blobs of the branch commits, in the working tree (812 files) or in the scratch build (506 files).",
-      "`cod-caen` and `seats-index.json` (branch `caen-seats`, 2026-10-27): `python3 scripts/validate.py --publication`: 0 errors, 0 warnings. `python3 scripts/inventory.py --check`: 0 evidence errors; 147 source bodies hash-verified (146 before); 129 dictionary evidence items verified (117 before), 0 stale; 12 sources with persons searched, 0 leaks. Unit tests: 831 run, 6 skipped (830 and 6 before); new: 1 in `test_inventory_report` (the poll index is one keyed collection, received by the browser, never a key as a field name). The package checks pass. Replay: `inventory.py --offline` on a copy of the tracked folder gives the six generated files byte for byte, also with the new specification file; 0 requests in this work. `python3 scripts/build.py --site-dir <scratch folder> --with-inventory`: succeeds; `site/` has no change; the finder index lists the group `cod-caen` (state `propus`) for 4 entries. Browser, against the served scratch build: `check_preview.py` 141/141, `check_inventory_preview.py` 40/40, `check_data_finder.py` 61/61."
+      "`cod-caen` and `seats-index.json` (branch `caen-seats`, 2026-10-27): `python3 scripts/validate.py --publication`: 0 errors, 0 warnings. `python3 scripts/inventory.py --check`: 0 evidence errors; 147 source bodies hash-verified (146 before); 129 dictionary evidence items verified (117 before), 0 stale; 12 sources with persons searched, 0 leaks. Unit tests: 831 run, 6 skipped (830 and 6 before); new: 1 in `test_inventory_report` (the poll index is one keyed collection, received by the browser, never a key as a field name). The package checks pass. Replay: `inventory.py --offline` on a copy of the tracked folder gives the six generated files byte for byte, also with the new specification file; 0 requests in this work. `python3 scripts/build.py --site-dir <scratch folder> --with-inventory`: succeeds; `site/` has no change; the finder index lists the group `cod-caen` (state `propus`) for 4 entries. Browser, against the served scratch build: `check_preview.py` 141/141, `check_inventory_preview.py` 40/40, `check_data_finder.py` 61/61.",
+      "Batch E (branch `inventory-batch-e`, 2026-10-27): `python3 scripts/validate.py --publication`: 142 entries, 0 errors, 0 warnings. `python3 scripts/inventory.py --check`: 0 evidence errors; 177 source bodies hash-verified (147 before the batch); 145 dictionary evidence items verified (129 before), 0 stale; 13 sources with persons searched, 0 leaks (12 before). Unit tests: 981 run, 6 skipped (927 and 6 before); new: `test_inventory_eurostat` 18, `test_inventory_glossary` 8, `test_inventory_positions` 10, and 2 + 9 + 1 + 6 in `test_inventory_jsonsample`, `test_inventory_literals`, `test_inventory_persons` and `test_inventory_report`. Mutation checks: 13 breaks of the Eurostat reader, 5 of `js-pozitii`, 2 of the cut keyed collection and 1 of the render fix, each failing at least one test. The three package checks and `validate.py --data-dir data/taxonomy-v2/integrare` pass. Replay: `inventory.py --offline` on a copy of the tracked folder gives `proiecte.json`, `seturi-date.json`, `descoperiri.json`, `rezumat.csv`, `campuri.csv` and `intrari-utilizator.csv` byte for byte, with 0 requests. The default public build (`build.py`) gives the same `data.json` as the base commit apart from `generated`. `python3 scripts/build.py --data-dir data/taxonomy-v2/integrare --site-dir <scratch folder> --allow-draft --with-inventory`: succeeds; `site/` has no change; the pages `/date/<slug>/` exist for the eleven entries with field records and not for `sicap-ai`, `open-budget` and `portal-just-modern` (an entry without field records has no page, as for `guvernezi`). Browser, against the served scratch build: `check_preview.py` 141/141, `check_inventory_preview.py` 59/59, `check_data_finder.py` 81/81."
     ]
   },
   "lot_c2": [
@@ -462,5 +633,486 @@
     "Lot D (brief limit: 120 direct requests, at most 15 for each entry, two browser pages for each entry, ten new sources for each entry): 77 direct requests in the request log, all HTTP 200 or 206 (13 range reads), 4,226,710 bytes, no retry, no concurrent request (the requests ran one at a time). `collect_docs.py` made 0 requests (all twelve entries were collected). By entry: lista-firme 16 (15 for the repository and the terms page, and the one API request that the owner allowed on 2026-10-27), onorata-instanta 12, politicieni-corupti 12, reciclare-arad 9, dupa-cutremur 7, trei-din-patru 6, sondaje-romania 5, ce-face-statul-cu-1000-de-lei 3, guvernezi 2, statul-digital 2, unde-locuiesc 2, pe-datorie 1.",
     "Hosts of lot D: raw.githubusercontent.com 34, mariuscomper.uk 11, api.github.com 8, storage.googleapis.com 6, sondajeromania.ro 5, ins.gov2.ro 3, politicieni-corupti.ro 3, www.onoratainstanta.ro 2, www.guvernezi.ro 2, lista-firme.info 2, sites.google.com 1. No listed host (`colectare-interzisa.csv`) was requested; the Google Drive folder and the bit.ly link of `dupa-cutremur` were not requested.",
     "Browser: 3 navigations (`guvernezi.ro/`, `sondajeromania.ro/parlamentare`, `politicieni-corupti.ro/lista`), at most one for each entry; the record of the third (20,000 characters of the rendered list, with names of persons) was deleted and is not in git, so the log keeps the navigation and no render record. The browser made 96 same-site requests, which are not counted as direct requests: 80 for sondajeromania.ro (Next.js route prefetches, among them the four JSON data files) and 16 for guvernezi.ro (one data request, `/api/realizari`). The page of politicieni-corupti.ro made none."
+  ],
+  "selectori_candidati": [
+    {
+      "grup": "cui",
+      "selector": {
+        "projects": [
+          "companii-publice-ro"
+        ],
+        "names": [
+          "cui"
+        ],
+        "path": [
+          "$.companii[].cui"
+        ],
+        "source": "https://cosettechichirau.github.io/companiipublice/companii.json",
+        "context": "CUI-ul întreprinderii publice din rândul listei `companii` (șir de caractere); fiecare rând este o firmă"
+      }
+    },
+    {
+      "grup": "cui",
+      "selector": {
+        "projects": [
+          "companii-publice-ro"
+        ],
+        "names": [
+          "apt_cui"
+        ],
+        "path": [
+          "$.companii[].apt_cui"
+        ],
+        "source": "https://cosettechichirau.github.io/companiipublice/companii.json",
+        "context": "CUI-ul autorității publice tutelare, nu al firmei din rând (rolul de autoritate; șir de caractere)"
+      }
+    },
+    {
+      "grup": "cui",
+      "selector": {
+        "projects": [
+          "companii-publice-ro"
+        ],
+        "names": [
+          "parent_cui"
+        ],
+        "path": [
+          "$.companii[].parent_cui"
+        ],
+        "source": "https://cosettechichirau.github.io/companiipublice/companii.json",
+        "context": "CUI-ul întreprinderii părinte; în eșantion toate valorile sunt null, deci tipul real nu este observat"
+      }
+    },
+    {
+      "grup": "judet",
+      "selector": {
+        "projects": [
+          "companii-publice-ro"
+        ],
+        "names": [
+          "judet_cod",
+          "judet_nume"
+        ],
+        "path": [
+          "$.companii[].judet_cod",
+          "$.companii[].judet_nume"
+        ],
+        "source": "https://cosettechichirau.github.io/companiipublice/companii.json",
+        "context": "codul și numele județului întreprinderii, ca în `companii-de-stat` (`judet_cod`, `judet_nume`)"
+      }
+    },
+    {
+      "grup": "judet",
+      "selector": {
+        "projects": [
+          "companii-publice-ro"
+        ],
+        "names": [
+          "cod",
+          "judet"
+        ],
+        "path": [
+          "$.features[].properties.judet",
+          "$.features[].properties.cod"
+        ],
+        "source": "https://cosettechichirau.github.io/companiipublice/county_boundaries.geojson",
+        "context": "numele și codul județului din proprietățile limitelor de județ ale hărții"
+      }
+    },
+    {
+      "grup": "cod-caen",
+      "selector": {
+        "projects": [
+          "companii-publice-ro"
+        ],
+        "names": [
+          "caen_cod"
+        ],
+        "path": [
+          "$.companii[].caen_cod"
+        ],
+        "source": "https://cosettechichirau.github.io/companiipublice/companii.json",
+        "context": "codul CAEN al activității firmei, șir de caractere; fișierul nu declară versiunea CAEN și are alături denumirea activității (`caen_denumire`)"
+      }
+    },
+    {
+      "grup": "cod-caen",
+      "selector": {
+        "projects": [
+          "companii-publice-ro"
+        ],
+        "names": [
+          "caen"
+        ],
+        "path": [
+          "$.companii{*}.caen"
+        ],
+        "source": "https://cosettechichirau.github.io/companiipublice/financials.json",
+        "context": "codul CAEN al fiecărei companii din fișierul financiar, număr întreg; un zero din față se pierde, iar versiunea CAEN nu este declarată"
+      }
+    },
+    {
+      "grup": "perioada-de-referinta",
+      "selector": {
+        "projects": [
+          "companii-publice-ro"
+        ],
+        "names": [
+          "years[]"
+        ],
+        "path": [
+          "$.years[]"
+        ],
+        "source": "https://cosettechichirau.github.io/companiipublice/financials.json",
+        "context": "anii (2008–2025) pentru care fișierul are situații financiare; cheile `y{*}` ale fiecărei companii sunt anii din această listă"
+      }
+    },
+    {
+      "grup": "cui",
+      "selector": {
+        "projects": [
+          "igov"
+        ],
+        "names": [
+          "cui"
+        ],
+        "path": [
+          "$.companies[].cui"
+        ],
+        "source": "https://igov.ro/reports/guvernanta.json",
+        "context": "CUI-ul companiei de stat din registrul de guvernanță (șir de caractere)"
+      }
+    },
+    {
+      "grup": "cifra-afaceri",
+      "selector": {
+        "projects": [
+          "igov"
+        ],
+        "names": [
+          "turnover",
+          "turnover[]"
+        ],
+        "path": [
+          "$.companies{*}.turnover[]",
+          "$.companies[].turnover"
+        ],
+        "source": [
+          "https://igov.ro/reports/guvernanta-series.json",
+          "https://igov.ro/reports/guvernanta.json"
+        ],
+        "context": "cifra de afaceri a companiei de stat; pagina o numește „cifră de afaceri”; seria o dă pe ani, în mii lei (declarat în fișierul seriei)"
+      }
+    },
+    {
+      "grup": "profit-net",
+      "selector": {
+        "projects": [
+          "igov"
+        ],
+        "names": [
+          "net",
+          "net[]"
+        ],
+        "path": [
+          "$.companies{*}.net[]",
+          "$.companies[].net"
+        ],
+        "source": [
+          "https://igov.ro/reports/guvernanta-series.json",
+          "https://igov.ro/reports/guvernanta.json"
+        ],
+        "context": "rezultatul net al companiei (pagina îl numește „rezultat net”); o valoare negativă este pierdere (seria are valori negative); seria îl dă pe ani, în mii lei",
+        "nota": "Grupul `profit-net` spune „profitul net”; aici câmpul este rezultatul net, deci poate fi și pierdere. romania-transparenta descrie `profit_net` ca „profitul net (negativ = pierdere)”."
+      }
+    },
+    {
+      "grup": "numar-salariati",
+      "selector": {
+        "projects": [
+          "igov"
+        ],
+        "names": [
+          "employees",
+          "employees[]"
+        ],
+        "path": [
+          "$.companies{*}.employees[]",
+          "$.companies[].employees"
+        ],
+        "source": [
+          "https://igov.ro/reports/guvernanta-series.json",
+          "https://igov.ro/reports/guvernanta.json"
+        ],
+        "context": "angajații companiei (pagina arată „Angajați (anul ANAF)”); seria îi dă pe ani, în persoane (declarat în fișierul seriei)"
+      }
+    },
+    {
+      "grup": "perioada-de-referinta",
+      "selector": {
+        "projects": [
+          "igov"
+        ],
+        "names": [
+          "years[]"
+        ],
+        "path": [
+          "$.years[]"
+        ],
+        "source": "https://igov.ro/reports/guvernanta-series.json",
+        "context": "anii seriei financiare (2016–2025)"
+      }
+    },
+    {
+      "grup": "cui",
+      "selector": {
+        "projects": [
+          "executii-bugetare"
+        ],
+        "names": [
+          "cif"
+        ],
+        "path": [
+          "$[].cif",
+          "$.institutie.cif"
+        ],
+        "source": [
+          "https://executii-bugetare.g4d.ro/json/2026/B/institutii.json",
+          "https://executii-bugetare.g4d.ro/json/2026/B/4267117.json"
+        ],
+        "context": "CUI-ul instituției (`cif`), număr întreg în fișier; numele fișierului unei instituții este același număr. Un zero din față s-ar pierde",
+        "nota": "Aici CUI-ul este al unei instituții publice (primărie), nu al unei firme."
+      }
+    },
+    {
+      "grup": "judet",
+      "selector": {
+        "projects": [
+          "executii-bugetare"
+        ],
+        "names": [
+          "judet"
+        ],
+        "path": [
+          "$[].judet",
+          "$.institutie.judet"
+        ],
+        "source": [
+          "https://executii-bugetare.g4d.ro/json/2026/B/institutii.json",
+          "https://executii-bugetare.g4d.ro/json/2026/B/4267117.json"
+        ],
+        "context": "codul județului instituției (de exemplu `B` pentru București), nu numele"
+      }
+    },
+    {
+      "grup": "judet",
+      "selector": {
+        "projects": [
+          "executii-bugetare"
+        ],
+        "names": [
+          "cod",
+          "nume"
+        ],
+        "path": [
+          "$[].cod",
+          "$[].nume"
+        ],
+        "source": "https://executii-bugetare.g4d.ro/json/judete.json",
+        "context": "lista județelor: cod și nume"
+      }
+    },
+    {
+      "grup": "perioada-de-referinta",
+      "selector": {
+        "projects": [
+          "executii-bugetare"
+        ],
+        "names": [
+          "luni[]"
+        ],
+        "path": [
+          "$.luni[]"
+        ],
+        "source": "https://executii-bugetare.g4d.ro/json/2026/B/4267117.json",
+        "context": "lunile anului pentru care instituția are execuție bugetară (granularitate lunară, format `2026.01`)"
+      }
+    },
+    {
+      "grup": "populatie",
+      "selector": {
+        "projects": [
+          "ce-cumpara-primaria"
+        ],
+        "names": [
+          "Locuitori"
+        ],
+        "path": [
+          "tabel1.Locuitori"
+        ],
+        "source": "https://cecumparaprimaria.vercel.app/clasament",
+        "context": "numărul de locuitori al localității, coloana „Locuitori” a clasamentului (populația pe UAT la 1 ianuarie, după pagina principală)"
+      }
+    },
+    {
+      "grup": "localitate",
+      "selector": {
+        "projects": [
+          "ce-cumpara-primaria"
+        ],
+        "names": [
+          "Localitate"
+        ],
+        "path": [
+          "tabel1.Localitate"
+        ],
+        "source": "https://cecumparaprimaria.vercel.app/clasament",
+        "context": "coloana „Localitate” a clasamentului; o celulă are numele, tipul, județul și serviciul principal într-un singur text, deci nu este o valoare curată",
+        "nota": "Candidat cu încredere mică: celula amestecă mai multe fapte."
+      }
+    },
+    {
+      "grup": "perioada-de-referinta",
+      "selector": {
+        "projects": [
+          "monitor-social"
+        ],
+        "names": [
+          "TIME",
+          "Time"
+        ],
+        "role": [
+          "dimensiune"
+        ],
+        "source": [
+          "https://monitorsocial.ro/data/consumul-gospodariilor/",
+          "https://monitorsocial.ro/data/rata-de-ocupare-a-femeilor-3/",
+          "https://monitorsocial.ro/data/populatia-cu-studii-superioare/",
+          "https://monitorsocial.ro/data/romania-devine-o-tara-de-destinatie-pentru-migratie-economica/"
+        ],
+        "context": "rândul `TIME` sau `Time` al extracțiilor Eurostat (anii tabelului); valorile nu sunt citite"
+      }
+    },
+    {
+      "grup": "judet",
+      "selector": {
+        "projects": [
+          "verifica-psiholog"
+        ],
+        "names": [
+          "county"
+        ],
+        "path": [
+          "$.psychologists[].county",
+          "county",
+          "$.topCounties[].county"
+        ],
+        "source": [
+          "https://www.verificapsiholog.ro/api/psychologists-grouped?limit=1000",
+          "https://www.verificapsiholog.ro/structura-datelor",
+          "https://www.verificapsiholog.ro/api/statistics"
+        ],
+        "context": "județul din cartea de identitate a psihologului la înregistrare (definiția din pagina „Structură date”); poate diferi de județul de practică",
+        "nota": "Pagina spune că poate diferi de domiciliul sau locul de activitate actual."
+      }
+    },
+    {
+      "grup": "judet",
+      "selector": {
+        "projects": [
+          "cat-de-tare"
+        ],
+        "names": [
+          "Județ",
+          "county"
+        ],
+        "path": [
+          "a[1]",
+          "tabel1.Județ"
+        ],
+        "source": [
+          "https://mariuscomper.uk/cat-de-tare/assets/app.js?v=7e09d6d661",
+          "https://mariuscomper.uk/cat-de-tare/"
+        ],
+        "context": "județul unei localități: poziția 1 a rândurilor din `places.json` (numele `county` în scriptul paginii) și coloana „Județ” a tabelului județelor"
+      }
+    },
+    {
+      "grup": "uat",
+      "selector": {
+        "projects": [
+          "cat-de-tare"
+        ],
+        "names": [
+          "name"
+        ],
+        "path": [
+          "a[0]"
+        ],
+        "source": "https://mariuscomper.uk/cat-de-tare/assets/app.js?v=7e09d6d661",
+        "context": "numele unității administrative (comună, oraș sau municipiu: tabelul oficial are un rând pentru fiecare) la poziția 0 a rândurilor din `places.json` (numele `name` în scriptul paginii)"
+      }
+    },
+    {
+      "grup": "populatie",
+      "selector": {
+        "projects": [
+          "cat-de-tare"
+        ],
+        "names": [
+          "pop"
+        ],
+        "path": [
+          "a[3]"
+        ],
+        "source": "https://mariuscomper.uk/cat-de-tare/assets/app.js?v=7e09d6d661",
+        "context": "locuitorii unității administrative, recensământul din 2021 (poziția 3 a rândurilor din `places.json`; numele `pop` în scriptul paginii; pagina scrie că locuitorii sunt cei de la recensământul din 2021)"
+      }
+    },
+    {
+      "grup": "coordonate-geografice",
+      "selector": {
+        "projects": [
+          "de-unde-vine-apa"
+        ],
+        "names": [
+          "coordinates[]"
+        ],
+        "path": [
+          "__CITIES_DATA__[].coordinates[]"
+        ],
+        "source": "https://mariuscomper.uk/de-unde-vine-apa/",
+        "context": "coordonatele orașului, listă de două numere; ordinea (longitudine, latitudine) este observată, nu declarată",
+        "nota": "Câmpul `svgCoords` este poziția pe harta desenată a paginii, nu o coordonată geografică; nu intră în candidat."
+      }
+    },
+    {
+      "grup": "localitate",
+      "selector": {
+        "projects": [
+          "de-unde-vine-apa"
+        ],
+        "names": [
+          "ro"
+        ],
+        "path": [
+          "__CITIES_DATA__[].name.ro"
+        ],
+        "source": "https://mariuscomper.uk/de-unde-vine-apa/",
+        "context": "numele orașului în română, în înregistrarea fiecărui oraș din scriptul paginii"
+      }
+    }
+  ],
+  "lot_e": [
+    "Batch E (brief `docs/briefs/inventory-batch-e.md`, 2026-10-27) covers twelve more entries of „De analizat”: `monitor-safe`, `igov`, `companii-publice-ro`, `executii-bugetare`, `ce-cumpara-primaria`, `sicap-ai`, `open-budget`, `monitor-social`, `verifica-psiholog`, `portal-just-modern`, `cat-de-tare` and `recontorizarea`. The lot code is `E`. The documentation of all twelve was already collected (`collect_docs.py --only` made 0 requests). The discovery order of `inventory-expansion.md` section 6.C was followed: the project's own documentation, then the files, scripts and pages that the pages load (found in the page code), then the browser renders of the pages that fill themselves with script (four entries).",
+    "Result: nine of the twelve entries have a structured inventory; with the two reserve entries, eleven entries have 30 sources and 775 field records. `sicap-ai` (HTTP 429 on 4 of 4 requests of the documentation pass) and `open-budget` (no answer to five direct requests and one browser render; no refusal) are `blocat`: the reserve entries `de-unde-vine-apa` and `ani-de-pensie` took their place, in the order of the brief, and the reason is recorded before each replacement. `portal-just-modern` has no source: its backend needs an application key (not requested, not guessed), and two browser renders showed only configuration requests. No third reserve was used. Proposed row for `colectare-interzisa.csv` (not added; columns `gazda,motiv,dovada,data,nota`): `sicap.ai,\"Site-ul răspunde cu HTTP 429 la cererile automate: patru cereri din patru, pe 2026-10-24.\",data/taxonomy-v2/observatii/documentare/index.json (intrarea sicap-ai),2026-10-24,\"Gazda are aceleași servere de nume Vercel ca harta-firmelor.ro. Termenii ei nu au fost citiți (și llms.txt a răspuns 429). Pagina se salvează manual și se importă cu --import-saved.\"`. No row is proposed for `open-budget`: a timeout is not a refusal.",
+    "Reader changes, each with offline tests and mutation checks: two new readers for documentation that no existing reader fitted (`html-glosar`: headings `Label (name)` with a definition paragraph; `html-tabele-eurostat`: Eurostat extractions pasted as tables, in the four shapes of monitorsocial.ro), the reader `js-pozitii` (the names that a script gives to the positions of a row), three options of `js-literale` (`indentate` for declarations inside a wrapping function and indented `window.NAME` assignments, `omise` for a dictionary of interface texts) and a rule of `json-esantion` (a cut keyed collection keeps its whole members; no earlier source changes). The helper `render_pages.py` had a defect: the loop that saved the received bodies reused the name `text`, so a record could hold the last data body instead of the page text; it is fixed with a regression test. Records made before the fix hold the wrong text. Measured in this lot: `portal-just-modern/despre` has `[]` and `portal-just-modern/institutii` has the rows of three configuration tables of the application (no page text), and the record of `verifica-psiholog` has the length (4,129) and the hash of its last saved body, not those of the page text; none holds a person. The records of lot D were not checked. A new render of `portal-just-modern` would exceed the two pages that the brief allows for an entry, so it was not made.",
+    "Persons: `portal-just-modern` (court files) and `verifica-psiholog` (named professionals) were handled as the brief says. No individual record was copied. One source is marked `persoane`: the list `psychologists-grouped` of `verifica-psiholog` (4,000 bytes, one record). `guvernanta.json` of `igov` names members of boards; it is not marked, because the plain reader keeps no value for it and the mark would make the leak check flag 7 tracked files that hold names of institutions (the owner can mark it). The render of `verifica-psiholog` was made with `--fara-text`.",
+    "Proposals for the owner: 25 provider items (D211–D235; three more would have repeated the accepted relations L135, L120 and L145), four new proposed groups (`datorii`, `capitaluri-proprii`, `sex`, `grupa-de-varsta`) and 26 candidate members for reviewed groups (section 5). Nothing was accepted or decided; `relatii.csv` and the review decisions did not change."
+  ],
+  "retea_e": [
+    "Lot E (brief limit: 120 direct requests, at most 15 for each entry, two browser pages for each entry): 44 direct requests in the request log (2 failed: one read timeout, one HTTP 404; 9 range reads; 33 HTTP 200), 4,756,286 bytes, no retry, no concurrent request. By entry: igov 11 (3 of them at a wrong path), monitor-safe 5 (4 pages and one 404 of the GitHub API), monitor-social 5, companii-publice-ro 4, ce-cumpara-primaria 4, verifica-psiholog 4, cat-de-tare 3, recontorizarea 3, de-unde-vine-apa 1, ani-de-pensie 1, executii-bugetare 1, portal-just-modern 1, open-budget 1. `collect_docs.py` made 0 requests. Not in the log: the 8 requests of the documentation pass of 2026-10-24 to `sicap.ai` (4, all HTTP 429) and `open-budget` (4, timeouts).",
+    "Hosts of lot E: igov.ro 11, mariuscomper.uk 8, monitorsocial.ro 5, monitorsafe.ro 4, cosettechichirau.github.io 4, cecumparaprimaria.vercel.app 4, www.verificapsiholog.ro 4, executii-bugetare.g4d.ro 1, www.openbudget.ro 1, portaljustmodern.ro 1, api.github.com 1. No listed host (`colectare-interzisa.csv`) was requested, and `sicap.ai` was not requested. No host answered 401 or 403.",
+    "Browser: 6 navigations (`executii-bugetare.g4d.ro/` twice, the second after the fix of the helper; `verifica-psiholog` home with `--fara-text`; `portaljustmodern.ro/despre` and `/institutii`; `www.openbudget.ro/`, timeout), at most two for each entry. The browser made 50 same-site data requests, which are not direct requests: 37 for verificapsiholog.ro (Next.js route prefetches and 4 API calls; the list of 2.4 MB was not kept), 8 for executii-bugetare.g4d.ro (4 data files), 3 configuration requests to the Supabase backend of portaljustmodern.ro and 2 for portaljustmodern.ro."
   ]
 }

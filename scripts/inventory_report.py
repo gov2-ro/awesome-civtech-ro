@@ -44,6 +44,11 @@ EXTRA_GAPS = ['companii-de-stat', 'transparenta-eu', 'romania-transparenta', 'co
 BATCH_C2 = ['data-expertforum', 'bani-partide', 'romania-interactiva']  # lot C2: the three active projects of public-sector data
 BATCH_D = ['lista-firme', 'dupa-cutremur', 'reciclare-arad', 'onorata-instanta', 'sondaje-romania', 'guvernezi', 'politicieni-corupti', 'unde-locuiesc',
            'trei-din-patru', 'statul-digital', 'pe-datorie', 'ce-face-statul-cu-1000-de-lei']  # lot D: twelve entries of „De analizat” with the strongest signals
+BATCH_E = ['monitor-safe', 'igov', 'companii-publice-ro', 'executii-bugetare', 'ce-cumpara-primaria', 'sicap-ai', 'open-budget', 'monitor-social', 'verifica-psiholog',
+           'portal-just-modern', 'cat-de-tare', 'recontorizarea']  # lot E: twelve more entries of „De analizat”
+# The reserve entries of the brief of lot E, in the order of its list. A reserve joins lot E only when a primary entry is blocked: sicap-ai and open-budget are,
+# so the first two reserves took their place. They carry the lot code `E` like the primary entries.
+RESERVES_E = ['de-unde-vine-apa', 'ani-de-pensie']
 INS_USERS = ['ins-gov2', 'constru-pentru-cine', 'orasul-care-se-intinde', 'demoanaf', 'unde-se-termina-asfaltul', 'biografia-localitatii']
 MEASURE_CATEGORIES = ('masura', 'iesire-derivata')
 REVIEW_STATES = ('deschis', 'acceptat', 'respins', 'amanat', 'tehnic')  # revizuire_stare, in the order the report lists them
@@ -97,10 +102,11 @@ def lots(data):
     """Which collection lots touched which entries. C: the primary batch. B: entries given INS dataset records.
     B2: existing inventories that got a source for a named gap. C2: the three active projects of public-sector data (an entry whose host answered 403
     is in the lot, with the state `blocat`). D: twelve entries of „De analizat” (an entry without a usable source has the state `investigat-fara-surse`).
+    E: twelve more entries of „De analizat” and the reserve entries that replaced the blocked ones (same states).
     S: entries with a page that the owner saved by hand (no request was possible).
     Entries with fields and no lot come from the baseline pass."""
     touched = {}
-    for lot, slugs in (('C', BATCH), ('B', INS_USERS), ('B2', EXTRA_GAPS), ('C2', BATCH_C2), ('D', BATCH_D)):
+    for lot, slugs in (('C', BATCH), ('B', INS_USERS), ('B2', EXTRA_GAPS), ('C2', BATCH_C2), ('D', BATCH_D), ('E', BATCH_E + RESERVES_E)):
         for slug in slugs:
             touched.setdefault(slug, set()).add(lot)
     for slug, profile in data['profiles'].items():
@@ -366,6 +372,14 @@ def render_report(data, rows):
             w('')
         for slug in BATCH_D:
             outcome(slug, '####', proposals=True)
+    if notes.get('lot_e'):
+        w('### Batch E: twelve more entries of „De analizat”')
+        w('')
+        for line in notes['lot_e']:
+            w(line)
+            w('')
+        for slug in BATCH_E + RESERVES_E:
+            outcome(slug, '####', proposals=True)
     w('## 4. Existing inventories and INS')
     w('')
     for line in notes['ins']:
@@ -442,6 +456,8 @@ def render_report(data, rows):
     for line in notes.get('retea_c2', []):
         w(line)
     for line in notes.get('retea_d', []):
+        w(line)
+    for line in notes.get('retea_e', []):
         w(line)
     w('The request log (`observatii/inventare/jurnal-cereri.csv`) lists every request with its outcome, method, bytes and purpose. It holds no headers or credentials.')
     w('')

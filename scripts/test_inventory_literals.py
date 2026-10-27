@@ -8,8 +8,8 @@ from pathlib import Path
 from unittest.mock import patch
 
 from inventory import analyse_source, check_report, parse_source
-from inventory_literals import (MAX_FIELDS, SAMPLE_ROWS, Parser, NotLiteral, datasets, declarations, decode, json_kind, keyed_collection, measured_variables,
-                                read)
+from inventory_literals import (MAX_FIELDS, SAMPLE_ROWS, Parser, NotLiteral, datasets, declarations, decode, indented_names, json_kind, keyed_collection,
+                                measured_variables, omitted_names, read)
 from inventory_text import js_literale
 
 FIXTURE = Path(__file__).parent / 'fixtures/text/pagina-cu-date.html'
@@ -229,6 +229,124 @@ class ScriptFiles(unittest.TestCase):
                                  'content_type': 'text/javascript', 'body': SCRIPT_FILE, 'fetched_at': '2026-10-27T10:00:00+00:00'}, 'js-literale')
         self.assertEqual((record['format'], record['stare'], record['baza_tipului']), ('js-literale', 'analizat', 'esantion-date'))
         self.assertTrue(any(d['variabila'] == 'BUNDLE' for d in record['declaratii']))
+
+
+WRAPPED = """<html><body><script>
+const TOP = [{"a": 1}];
+(function(){
+  "use strict";
+  /* the data of the page */
+  var PROJECTS = [
+    { nume: "Lynx", mil: 2598.4, status: "semnat" },
+    { nume: "Piranha", mil: 831, status: "respins" }
+  ];
+  var TIMELINE = [{ d: "2026-05-29", e: "Contract" }];
+  var seen = [];
+  var local = { tmp: 1 };
+  var state = {};
+  function paint() { var inner = [1, 2, 3]; }
+})();
+</script></body></html>"""
+
+
+class IndentedDeclarations(unittest.TestCase):
+    """A page may keep its data inside a function that wraps the script (monitorsafe.ro). The option `indentate` names the declarations to read."""
+
+    def test_an_indented_declaration_is_read_only_when_its_name_is_listed(self):
+        plain = by_path(read(WRAPPED)[0])
+        self.assertEqual(sorted(plain), ['TOP[].a'], 'without the option, only the declaration at the start of a line is read')
+        listed = by_path(read(WRAPPED, ('PROJECTS', 'TIMELINE'))[0])
+        self.assertEqual(sorted(listed), ['PROJECTS[].mil', 'PROJECTS[].nume', 'PROJECTS[].status', 'TIMELINE[].d', 'TIMELINE[].e', 'TOP[].a'])
+        self.assertEqual(listed['PROJECTS[].mil']['tipuri_observate'], ['number', 'integer'])
+        self.assertNotIn('local.tmp', listed, 'a local variable of the wrapping function is not the page data, whatever it holds')
+        self.assertFalse([p for p in listed if p.startswith(('seen', 'state', 'inner'))])
+
+    def test_an_indented_window_assignment_is_read_when_its_name_is_listed(self):
+        text = '<script>\n    window.__CITIES__ = [{"id": "a", "n": 1}];\n    window.__OTHER__ = [{"z": 1}];\n</script>'
+        self.assertEqual(sorted(by_path(read(text)[0])), [])
+        self.assertEqual(sorted(by_path(read(text, ('__CITIES__',))[0])), ['__CITIES__[].id', '__CITIES__[].n'])
+
+    def test_a_name_that_is_only_a_prefix_of_another_declaration_does_not_match_it(self):
+        text = '<script>\n  var DATA2 = [{"x": 1}];\n  var DATA = [{"y": 1}];\n</script>'
+        self.assertEqual(sorted(by_path(read(text, ('DATA',))[0])), ['DATA[].y'])
+
+    def test_the_locator_is_the_literal_and_the_declaration_list_says_what_was_read(self):
+        body_text = WRAPPED
+        declared = {d['variabila']: d for d in declarations(body_text, ('PROJECTS', 'TIMELINE'))}
+        self.assertEqual(sorted(declared), ['PROJECTS', 'TIMELINE', 'TOP'])
+        start, end = declared['PROJECTS']['pointer'].split(':')[1].split('-')
+        self.assertEqual((body_text[int(start)], body_text[int(end) - 1]), ('[', ']'))
+        self.assertEqual(declared['PROJECTS']['linie'], 6)
+        self.assertEqual(declared['PROJECTS']['comentariu']['valoare'], 'the data of the page')
+        self.assertEqual(declarations(body_text), [d for d in declarations(body_text, ()) if d['variabila'] == 'TOP'])
+
+    def test_the_option_is_part_of_the_reader_hint_and_the_names_are_a_sorted_set(self):
+        hint = {'tip': 'js-literale', 'indentate': ['TIMELINE', 'PROJECTS', 'PROJECTS']}
+        self.assertEqual(indented_names(hint), ('PROJECTS', 'TIMELINE'))
+        self.assertEqual((indented_names('js-literale'), indented_names({'tip': 'js-literale'}), indented_names(None)), ((), (), ()))
+        fmt, fields, _ = parse_source(WRAPPED, URL, 'text/html', hint)
+        self.assertEqual((fmt, sorted(by_path(fields))), ('js-literale', sorted(by_path(read(WRAPPED, ('PROJECTS', 'TIMELINE'))[0]))))
+        self.assertEqual(sorted(by_path(parse_source(WRAPPED, URL, 'text/html', 'js-literale')[1])), ['TOP[].a'])
+
+    def test_the_source_record_and_the_evidence_check_use_the_same_option(self):
+        response = {'url': URL, 'final_url': URL, 'state': 'ok', 'content_type': 'text/html', 'body': WRAPPED}
+        hint = {'tip': 'js-literale', 'indentate': ['PROJECTS']}
+        record = analyse_source(response, hint)
+        self.assertEqual(sorted(d['variabila'] for d in record['declaratii']), ['PROJECTS', 'TOP'])
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp)
+            (out / record['snapshot']).parent.mkdir()
+            (out / record['snapshot']).write_text(json.dumps(response))
+            (out / 'proiecte.json').write_text(json.dumps({'proiecte': []}))
+            (out / 'seturi-date.json').write_text(json.dumps({'surse': [record]}))
+            report = check_report(out, out)
+            self.assertEqual((report['errors'], report['verified']), ([], 1))
+            record['citire'] = 'js-literale'  # the hint changes, the stored fields do not: the check must see the difference
+            (out / 'seturi-date.json').write_text(json.dumps({'surse': [record]}))
+            self.assertTrue(any('Fields differ from the retained body' in e for e in check_report(out, out)['errors']))
+
+
+ISLANDS = """<html><body>
+<script type="application/json" id="i18n">{"form": {"submit": "Trimite", "label": "Luna"}, "months": ["ian", "feb"]}</script>
+<script type="application/json" id="model">{"rows": [[1, 2], [3, 4]], "base": 7}</script>
+<script>const PARAMS = {"a": 1};</script>
+</body></html>"""
+
+
+class OmittedDeclarations(unittest.TestCase):
+    """A page may keep a dictionary of interface texts next to its data (ani-de-pensie). The option `omise` keeps it out of the fields and says so."""
+
+    def test_an_omitted_declaration_gives_no_field_and_the_others_stay(self):
+        self.assertEqual(sorted(p.split('.')[0].split('[')[0] for p in by_path(read(ISLANDS)[0])), ['PARAMS', 'i18n', 'i18n', 'i18n', 'model', 'model', 'model'])
+        kept = by_path(read(ISLANDS, (), ('i18n',))[0])
+        self.assertEqual(sorted(kept), ['PARAMS.a', 'model.base', 'model.rows[][0]', 'model.rows[][1]'])
+
+    def test_the_declaration_list_says_that_the_option_left_it_out(self):
+        declared = {d['variabila']: d for d in declarations(ISLANDS, (), ('i18n',))}
+        self.assertEqual((declared['i18n']['citit'], declared['i18n']['motiv']), (False, 'omisa-prin-optiune'))
+        self.assertNotIn('elemente', declared['i18n'])
+        start, end = declared['i18n']['pointer'].split(':')[1].split('-')
+        self.assertEqual((ISLANDS[int(start)], ISLANDS[int(end) - 1]), ('{', '}'), 'the locator still covers the literal that was left out')
+        self.assertTrue(declared['model']['citit'])
+        self.assertEqual({d['variabila']: d['citit'] for d in declarations(ISLANDS)}, {'i18n': True, 'model': True, 'PARAMS': True})
+
+    def test_the_option_is_part_of_the_hint_and_a_replay_and_the_check_read_the_same_way(self):
+        hint = {'tip': 'js-literale', 'omise': ['i18n', 'i18n']}
+        self.assertEqual((omitted_names(hint), omitted_names('js-literale'), omitted_names(None)), (('i18n',), (), ()))
+        response = {'url': URL, 'final_url': URL, 'state': 'ok', 'content_type': 'text/html', 'body': ISLANDS}
+        record = analyse_source(response, hint)
+        self.assertEqual(sorted(f['cale'] for f in record['campuri']), ['PARAMS.a', 'model.base', 'model.rows[][0]', 'model.rows[][1]'])
+        self.assertFalse(next(d for d in record['declaratii'] if d['variabila'] == 'i18n')['citit'])
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp)
+            (out / record['snapshot']).parent.mkdir()
+            (out / record['snapshot']).write_text(json.dumps(response))
+            (out / 'proiecte.json').write_text(json.dumps({'proiecte': []}))
+            (out / 'seturi-date.json').write_text(json.dumps({'surse': [record]}))
+            self.assertEqual(check_report(out, out)['errors'], [])
+            record['citire'] = 'js-literale'
+            (out / 'seturi-date.json').write_text(json.dumps({'surse': [record]}))
+            self.assertTrue(any('Fields differ from the retained body' in e for e in check_report(out, out)['errors']))
 
 
 class JsonLd(unittest.TestCase):

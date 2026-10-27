@@ -5,6 +5,8 @@ too large to read whole. A cut document is not valid JSON, so the plain reader r
 
 - Complete members of every object and complete elements of every array are kept. The element or the member that the cut ended is dropped,
   also when most of it was read: a field list built from half a record would show a missing field as absent.
+  One exception: an object that the cut ended keeps its complete members when it is a keyed collection (`inventory_literals.keyed_collection`: companies keyed by CUI,
+  years, 100 members or more). Each member is a whole record, and the keys are values, not field names, so no field can look absent. The member that the cut ended is dropped.
 - A document that parses whole is read whole. The reader then gives the same fields as the plain JSON reader.
 - Fields come from the plain observed-fields walk of `inventory.observed_fields` (bounds: 25 elements, seven levels, 2,000 fields) on the recovered
   document. Their pointers address the recovered document, which is the retained body up to the cut. `stare_tip` is `observat-in-esantion-json`.
@@ -18,6 +20,8 @@ from __future__ import annotations
 
 import json
 import re
+
+from inventory_literals import keyed_object
 
 FORMAT = 'json-esantion'
 MAX_NESTING = 60
@@ -124,6 +128,8 @@ class Recover:
                 item, i = self.value(i + 1, depth + 1)
             except Cut as cut:
                 if isinstance(cut.partial, list):  # a list keeps its complete elements; a half object is dropped
+                    found[key] = cut.partial
+                elif isinstance(cut.partial, dict) and keyed_object(cut.partial):  # a keyed collection keeps the members that are whole records
                     found[key] = cut.partial
                 raise Cut(found) from cut
             found[key] = item

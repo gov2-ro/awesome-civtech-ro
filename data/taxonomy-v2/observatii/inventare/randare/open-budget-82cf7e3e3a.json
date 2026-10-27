@@ -1,0 +1,16 @@
+{
+  "versiune": 1,
+  "proiect": "open-budget",
+  "url_cerut": "https://www.openbudget.ro/",
+  "url_final": "about:blank",
+  "stare": "timeout",
+  "http_status": null,
+  "titlu": "",
+  "randat_la": "2026-10-27T16:59:28.867720+00:00",
+  "text_randat": "",
+  "controale_vizibile": [],
+  "cereri_date": [],
+  "corpuri_pastrate": [],
+  "corpuri_omise": [],
+  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+}
