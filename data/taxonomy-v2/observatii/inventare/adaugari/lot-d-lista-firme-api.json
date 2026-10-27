@@ -1,0 +1,22 @@
+[
+  {
+    "proiect": "lista-firme",
+    "url": "https://lista-firme.info/api/v1/info?cui=51859625",
+    "metoda": "adaugat-explicit",
+    "parinte": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/README.md",
+    "locate": {
+      "pagina": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/README.md",
+      "text": "curl -L https://lista-firme.info/api/v1/info?cui=XXXXXXX",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/app/Http/Controllers/API/CompanyController.php",
+        "text": "'legalRepresentatives',",
+        "cache": true,
+        "rol": "relatie-in-raspunsul-api"
+      }
+    ],
+    "nota": "One response of the deployed API for the CUI of the operator of the site (RTI Global Services SRL, the company that the terms page names). The owner raised the request limit of the entry for this one request on 2026-10-27; it is the only request to the API. The retained body stays in the git-ignored cache. The response lists legal representatives and natural-person representatives: the inventory keeps key names and observed types only, and no value of a person is copied into a tracked file. A list that is empty in the response gives no field record, because the reader records only the leaves that it sees."
+  }
+]

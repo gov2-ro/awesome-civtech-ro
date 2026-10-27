@@ -58712,6 +58712,574 @@
       }
     },
     {
+      "url": "https://lista-firme.info/api/v1/info?cui=51859625",
+      "final_url": "https://lista-firme.info/api/v1/info?cui=51859625",
+      "http_status": 200,
+      "fetched_at": "2026-10-27T09:03:14.436347+00:00",
+      "content_type": "application/json",
+      "state": "ok",
+      "id": "1c823d508dba0de4e699",
+      "campuri": [
+        {
+          "nume": "name",
+          "cale": "$.name",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/name"
+        },
+        {
+          "nume": "cui",
+          "cale": "$.cui",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/cui"
+        },
+        {
+          "nume": "euid",
+          "cale": "$.euid",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/euid"
+        },
+        {
+          "nume": "registration_date",
+          "cale": "$.registration_date",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/registration_date"
+        },
+        {
+          "nume": "type",
+          "cale": "$.type",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/type"
+        },
+        {
+          "nume": "website",
+          "cale": "$.website",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/website"
+        },
+        {
+          "nume": "parent_country",
+          "cale": "$.parent_country",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/parent_country"
+        },
+        {
+          "nume": "mark",
+          "cale": "$.mark",
+          "tipuri_observate": [
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/mark"
+        },
+        {
+          "nume": "reg_com",
+          "cale": "$.reg_com",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/reg_com"
+        },
+        {
+          "nume": "is_active",
+          "cale": "$.is_active",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/is_active"
+        },
+        {
+          "nume": "country",
+          "cale": "$.address.country",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/address/country"
+        },
+        {
+          "nume": "city",
+          "cale": "$.address.city",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/address/city"
+        },
+        {
+          "nume": "county",
+          "cale": "$.address.county",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/address/county"
+        },
+        {
+          "nume": "street",
+          "cale": "$.address.street",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/address/street"
+        },
+        {
+          "nume": "number",
+          "cale": "$.address.number",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/address/number"
+        },
+        {
+          "nume": "block",
+          "cale": "$.address.block",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/address/block"
+        },
+        {
+          "nume": "scara",
+          "cale": "$.address.scara",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/address/scara"
+        },
+        {
+          "nume": "floor",
+          "cale": "$.address.floor",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/address/floor"
+        },
+        {
+          "nume": "apartment",
+          "cale": "$.address.apartment",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/address/apartment"
+        },
+        {
+          "nume": "postalCode",
+          "cale": "$.address.postalCode",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/address/postalCode"
+        },
+        {
+          "nume": "sector",
+          "cale": "$.address.sector",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/address/sector"
+        },
+        {
+          "nume": "additional",
+          "cale": "$.address.additional",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/address/additional"
+        },
+        {
+          "nume": "info",
+          "cale": "$.info",
+          "tipuri_observate": [
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/info"
+        },
+        {
+          "nume": "code",
+          "cale": "$.status.details.code",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/status/details/code"
+        },
+        {
+          "nume": "description",
+          "cale": "$.status.details.description",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/status/details/description"
+        },
+        {
+          "nume": "code",
+          "cale": "$.caen[].code",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/caen/0/code"
+        },
+        {
+          "nume": "version",
+          "cale": "$.caen[].version",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/caen/0/version"
+        },
+        {
+          "nume": "section",
+          "cale": "$.caen[].caen_details.section",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/caen/0/caen_details/section"
+        },
+        {
+          "nume": "subsection",
+          "cale": "$.caen[].caen_details.subsection",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/caen/0/caen_details/subsection"
+        },
+        {
+          "nume": "division",
+          "cale": "$.caen[].caen_details.division",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/caen/0/caen_details/division"
+        },
+        {
+          "nume": "group",
+          "cale": "$.caen[].caen_details.group",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/caen/0/caen_details/group"
+        },
+        {
+          "nume": "class",
+          "cale": "$.caen[].caen_details.class",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/caen/0/caen_details/class"
+        },
+        {
+          "nume": "name",
+          "cale": "$.caen[].caen_details.name",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/caen/0/caen_details/name"
+        },
+        {
+          "nume": "version",
+          "cale": "$.caen[].caen_details.version",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/caen/0/caen_details/version"
+        },
+        {
+          "nume": "section",
+          "cale": "$.caen[].details.section",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/caen/0/details/section"
+        },
+        {
+          "nume": "subsection",
+          "cale": "$.caen[].details.subsection",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/caen/0/details/subsection"
+        },
+        {
+          "nume": "division",
+          "cale": "$.caen[].details.division",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/caen/0/details/division"
+        },
+        {
+          "nume": "group",
+          "cale": "$.caen[].details.group",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/caen/0/details/group"
+        },
+        {
+          "nume": "class",
+          "cale": "$.caen[].details.class",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/caen/0/details/class"
+        },
+        {
+          "nume": "name",
+          "cale": "$.caen[].details.name",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/caen/0/details/name"
+        },
+        {
+          "nume": "version",
+          "cale": "$.caen[].details.version",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/caen/0/details/version"
+        },
+        {
+          "nume": "id",
+          "cale": "$.legal_representatives[].id",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/legal_representatives/0/id"
+        },
+        {
+          "nume": "company_id",
+          "cale": "$.legal_representatives[].company_id",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/legal_representatives/0/company_id"
+        },
+        {
+          "nume": "registration",
+          "cale": "$.legal_representatives[].registration",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/legal_representatives/0/registration"
+        },
+        {
+          "nume": "person_name",
+          "cale": "$.legal_representatives[].person_name",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/legal_representatives/0/person_name"
+        },
+        {
+          "nume": "role",
+          "cale": "$.legal_representatives[].role",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/legal_representatives/0/role"
+        },
+        {
+          "nume": "birth_date",
+          "cale": "$.legal_representatives[].birth_date",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/legal_representatives/0/birth_date"
+        },
+        {
+          "nume": "birth_location",
+          "cale": "$.legal_representatives[].birth_location",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/legal_representatives/0/birth_location"
+        },
+        {
+          "nume": "birth_county",
+          "cale": "$.legal_representatives[].birth_county",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/legal_representatives/0/birth_county"
+        },
+        {
+          "nume": "birth_country",
+          "cale": "$.legal_representatives[].birth_country",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/legal_representatives/0/birth_country"
+        },
+        {
+          "nume": "current_location",
+          "cale": "$.legal_representatives[].current_location",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/legal_representatives/0/current_location"
+        },
+        {
+          "nume": "current_county",
+          "cale": "$.legal_representatives[].current_county",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/legal_representatives/0/current_county"
+        },
+        {
+          "nume": "current_country",
+          "cale": "$.legal_representatives[].current_country",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/legal_representatives/0/current_country"
+        },
+        {
+          "nume": "created_at",
+          "cale": "$.legal_representatives[].created_at",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/legal_representatives/0/created_at"
+        },
+        {
+          "nume": "updated_at",
+          "cale": "$.legal_representatives[].updated_at",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/legal_representatives/0/updated_at"
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/1c823d508dba0de4e699-5811ac653724e496.json",
+      "sha256": "5811ac653724e496f5cbae5be8969ab918f5fd3e9f1b0d13babcfee357380166",
+      "format": "json",
+      "stare": "analizat",
+      "limita_atinsa": false,
+      "baza_tipului": "esantion-date"
+    },
+    {
       "url": "https://mariuscomper.uk/biografia-localitatii/metoda/",
       "final_url": "https://mariuscomper.uk/biografia-localitatii/metoda/",
       "http_status": 200,
