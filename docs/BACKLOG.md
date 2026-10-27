@@ -2,6 +2,10 @@
 
 Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
+## Inventory batch E — 2026-10-27
+
+- [~] Variable inventory for twelve entries of „De analizat”: `monitor-safe`, `igov`, `companii-publice-ro`, `executii-bugetare`, `ce-cumpara-primaria`, `sicap-ai`, `open-budget`, `monitor-social`, `verifica-psiholog`, `portal-just-modern`, `cat-de-tare`, `recontorizarea`. Brief: [inventory-batch-e.md](briefs/inventory-batch-e.md).
+
 ## Inventory batch D — 2026-10-27
 
 - [x] Variables page for each project, data set facts in the field browser, fields added by an editor. Approved by the owner on 2026-10-27. Brief: [variable-pages.md](briefs/variable-pages.md).
