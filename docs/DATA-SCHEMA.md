@@ -1357,8 +1357,9 @@ A source whose data sets all declare the same licence carries `licence` (`name`,
   `partial` (read as a bounded sample), `viaBrowser`, `savedByOwner` (a copy that the owner saved by hand) and `refreshFailed`.
 - The URL of a Google Sheet tab ends in `export`, so the title of such a source comes from the page of the same project that lists it (format `html-lista-seturi`):
   `Foaie Google · <title of the data set>`, and, when the data set links several tabs, `· <label of the link>` (the text after the link, or its text). A tab with no such page keeps the title of its format.
-- **Data set facts.** A source that declares facts about its data sets carries `facts` (`basis`, `sets`, `schema`), and the metadata of INS keeps `dataset` (as above, with `basis`). `basis` is the label of the
-  review interface (`inventory_concepts.BASIS_LABELS`, key `declaratie-directa`: „declarație directă”). A fact is shown only when the source declares it (a basis `declarat-in-pagina`, `declarat-in-metadate` or
+- **Data set facts.** A source that declares facts about its data sets carries `facts` (`basis`, `sets`, `schema`), and the metadata of INS keeps `dataset` (as above, with `basis`). `basis` is the public word for the basis `declaratie-directa`: „declarat”.
+  The one list of public words is `inventory_concepts.PUBLIC_BASIS_LABELS`. The finder reads it from `inventar/index.json` (`factBasis`), and the payload and the page carry the word that the build writes. No script keeps a copy.
+  The review interface (a local tool) keeps its own, more exact labels in `inventory_concepts.BASIS_LABELS` („declarație directă”). A fact is shown only when the source declares it (a basis `declarat-in-pagina`, `declarat-in-metadate` or
   `declarat-in-lista`); a value that an API computed or that the inventory counted is not one, and a source with persons has none.
   `sets` come from a page of described files (format `html-lista-seturi`, key `seturi`): `title`, `category` (the category and the subcategory), `description` and `reports` (`text`, `url`; only an http or https address).
   `schema` come from a page with schema.org `Dataset` (format `js-literale`, key `seturi_ld`): `name`, `period`, `licence` (`name`, `url`) and `basedOn` (`isBasedOn` addresses). The creator, the editor, the keywords and the measured variables stay out.

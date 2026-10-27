@@ -9,8 +9,8 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
       B: the declared facts of `seturi`, `seturi_ld` and `set_date`, with their basis, under the source. C: `campuri-editor.csv` and `inventory_editor.py`.
 - [ ] Review interface: a form for `campuri-editor.csv` (the owner's brief of 2026-10-27 leaves it out on purpose). The form lists a source, shows its retained body to pick the fragment, checks that the fragment occurs
       (`inventory_editor.merge` has the rule) and writes the row atomically, as the other forms of `review_ui.py` do. It never commits.
-- [ ] Defect: the skip link of `/date/` (`<a class="skip" href="#data-results">` in `scripts/templates/inventory.html`) leaves the page. The page has `<base href="../">`, so the browser resolves the anchor against the explorer
-      (measured with Chromium: the address becomes `/#data-results`). The pages of the variables use `date/<slug>/#pe-surse` for this reason. Fix: write `date/#data-results`. Found 2026-10-27, not fixed (outside the brief).
+- [x] Defect: the skip link of `/date/` (`<a class="skip" href="#data-results">` in `scripts/templates/inventory.html`) left the page. The page has `<base href="../">`, so the browser resolved the anchor against the explorer
+      (measured with Chromium: the address became `/#data-results`). Done 2026-10-27: the link is `date/#data-results`. `check_data_finder.py` clicks it and checks that `/date/`, `/date/lista/` and `/date/<slug>/` link to no bare anchor.
 - [ ] `inventory_site.py` keeps three copies of the labels of the field browser (`TYPE_LABELS`, `ROLE_LABELS`, `FIELD_BASIS_LABELS`) beside `INV_TYPES`, `INV_ROLES` and `INV_BASIS` of `site/app.js` and `stateLabels` of `site/inventory.js`.
       A test keeps them equal. A generated `labels.json` that both sides read would remove the copies.
 - [x] Person data in sources and three corrections of the `json` reader (the `persoane` mark, keyed collections with year keys, positional rows, empty containers). Approved by the owner on 2026-10-27. Brief: [inventory-readers-persons.md](briefs/inventory-readers-persons.md).
