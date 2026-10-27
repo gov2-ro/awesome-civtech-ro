@@ -462,5 +462,474 @@
     "Lot D (brief limit: 120 direct requests, at most 15 for each entry, two browser pages for each entry, ten new sources for each entry): 77 direct requests in the request log, all HTTP 200 or 206 (13 range reads), 4,226,710 bytes, no retry, no concurrent request (the requests ran one at a time). `collect_docs.py` made 0 requests (all twelve entries were collected). By entry: lista-firme 16 (15 for the repository and the terms page, and the one API request that the owner allowed on 2026-10-27), onorata-instanta 12, politicieni-corupti 12, reciclare-arad 9, dupa-cutremur 7, trei-din-patru 6, sondaje-romania 5, ce-face-statul-cu-1000-de-lei 3, guvernezi 2, statul-digital 2, unde-locuiesc 2, pe-datorie 1.",
     "Hosts of lot D: raw.githubusercontent.com 34, mariuscomper.uk 11, api.github.com 8, storage.googleapis.com 6, sondajeromania.ro 5, ins.gov2.ro 3, politicieni-corupti.ro 3, www.onoratainstanta.ro 2, www.guvernezi.ro 2, lista-firme.info 2, sites.google.com 1. No listed host (`colectare-interzisa.csv`) was requested; the Google Drive folder and the bit.ly link of `dupa-cutremur` were not requested.",
     "Browser: 3 navigations (`guvernezi.ro/`, `sondajeromania.ro/parlamentare`, `politicieni-corupti.ro/lista`), at most one for each entry; the record of the third (20,000 characters of the rendered list, with names of persons) was deleted and is not in git, so the log keeps the navigation and no render record. The browser made 96 same-site requests, which are not counted as direct requests: 80 for sondajeromania.ro (Next.js route prefetches, among them the four JSON data files) and 16 for guvernezi.ro (one data request, `/api/realizari`). The page of politicieni-corupti.ro made none."
+  ],
+  "selectori_candidati": [
+    {
+      "grup": "cui",
+      "selector": {
+        "projects": [
+          "companii-publice-ro"
+        ],
+        "names": [
+          "cui"
+        ],
+        "path": [
+          "$.companii[].cui"
+        ],
+        "source": "https://cosettechichirau.github.io/companiipublice/companii.json",
+        "context": "CUI-ul întreprinderii publice din rândul listei `companii` (șir de caractere); fiecare rând este o firmă"
+      }
+    },
+    {
+      "grup": "cui",
+      "selector": {
+        "projects": [
+          "companii-publice-ro"
+        ],
+        "names": [
+          "apt_cui"
+        ],
+        "path": [
+          "$.companii[].apt_cui"
+        ],
+        "source": "https://cosettechichirau.github.io/companiipublice/companii.json",
+        "context": "CUI-ul autorității publice tutelare, nu al firmei din rând (rolul de autoritate; șir de caractere)"
+      }
+    },
+    {
+      "grup": "cui",
+      "selector": {
+        "projects": [
+          "companii-publice-ro"
+        ],
+        "names": [
+          "parent_cui"
+        ],
+        "path": [
+          "$.companii[].parent_cui"
+        ],
+        "source": "https://cosettechichirau.github.io/companiipublice/companii.json",
+        "context": "CUI-ul întreprinderii părinte; în eșantion toate valorile sunt null, deci tipul real nu este observat"
+      }
+    },
+    {
+      "grup": "judet",
+      "selector": {
+        "projects": [
+          "companii-publice-ro"
+        ],
+        "names": [
+          "judet_cod",
+          "judet_nume"
+        ],
+        "path": [
+          "$.companii[].judet_cod",
+          "$.companii[].judet_nume"
+        ],
+        "source": "https://cosettechichirau.github.io/companiipublice/companii.json",
+        "context": "codul și numele județului întreprinderii, ca în `companii-de-stat` (`judet_cod`, `judet_nume`)"
+      }
+    },
+    {
+      "grup": "judet",
+      "selector": {
+        "projects": [
+          "companii-publice-ro"
+        ],
+        "names": [
+          "cod",
+          "judet"
+        ],
+        "path": [
+          "$.features[].properties.judet",
+          "$.features[].properties.cod"
+        ],
+        "source": "https://cosettechichirau.github.io/companiipublice/county_boundaries.geojson",
+        "context": "numele și codul județului din proprietățile limitelor de județ ale hărții"
+      }
+    },
+    {
+      "grup": "cod-caen",
+      "selector": {
+        "projects": [
+          "companii-publice-ro"
+        ],
+        "names": [
+          "caen_cod"
+        ],
+        "path": [
+          "$.companii[].caen_cod"
+        ],
+        "source": "https://cosettechichirau.github.io/companiipublice/companii.json",
+        "context": "codul CAEN al activității firmei, șir de caractere; fișierul nu declară versiunea CAEN și are alături denumirea activității (`caen_denumire`)"
+      }
+    },
+    {
+      "grup": "cod-caen",
+      "selector": {
+        "projects": [
+          "companii-publice-ro"
+        ],
+        "names": [
+          "caen"
+        ],
+        "path": [
+          "$.companii{*}.caen"
+        ],
+        "source": "https://cosettechichirau.github.io/companiipublice/financials.json",
+        "context": "codul CAEN al fiecărei companii din fișierul financiar, număr întreg; un zero din față se pierde, iar versiunea CAEN nu este declarată"
+      }
+    },
+    {
+      "grup": "perioada-de-referinta",
+      "selector": {
+        "projects": [
+          "companii-publice-ro"
+        ],
+        "names": [
+          "years[]"
+        ],
+        "path": [
+          "$.years[]"
+        ],
+        "source": "https://cosettechichirau.github.io/companiipublice/financials.json",
+        "context": "anii (2008–2025) pentru care fișierul are situații financiare; cheile `y{*}` ale fiecărei companii sunt anii din această listă"
+      }
+    },
+    {
+      "grup": "cui",
+      "selector": {
+        "projects": [
+          "igov"
+        ],
+        "names": [
+          "cui"
+        ],
+        "path": [
+          "$.companies[].cui"
+        ],
+        "source": "https://igov.ro/reports/guvernanta.json",
+        "context": "CUI-ul companiei de stat din registrul de guvernanță (șir de caractere)"
+      }
+    },
+    {
+      "grup": "cifra-afaceri",
+      "selector": {
+        "projects": [
+          "igov"
+        ],
+        "names": [
+          "turnover",
+          "turnover[]"
+        ],
+        "path": [
+          "$.companies{*}.turnover[]",
+          "$.companies[].turnover"
+        ],
+        "source": [
+          "https://igov.ro/reports/guvernanta-series.json",
+          "https://igov.ro/reports/guvernanta.json"
+        ],
+        "context": "cifra de afaceri a companiei de stat; pagina o numește „cifră de afaceri”; seria o dă pe ani, în mii lei (declarat în fișierul seriei)"
+      }
+    },
+    {
+      "grup": "profit-net",
+      "selector": {
+        "projects": [
+          "igov"
+        ],
+        "names": [
+          "net",
+          "net[]"
+        ],
+        "path": [
+          "$.companies{*}.net[]",
+          "$.companies[].net"
+        ],
+        "source": [
+          "https://igov.ro/reports/guvernanta-series.json",
+          "https://igov.ro/reports/guvernanta.json"
+        ],
+        "context": "rezultatul net al companiei (pagina îl numește „rezultat net”); o valoare negativă este pierdere (seria are valori negative); seria îl dă pe ani, în mii lei",
+        "nota": "Grupul `profit-net` spune „profitul net”; aici câmpul este rezultatul net, deci poate fi și pierdere. romania-transparenta descrie `profit_net` ca „profitul net (negativ = pierdere)”."
+      }
+    },
+    {
+      "grup": "numar-salariati",
+      "selector": {
+        "projects": [
+          "igov"
+        ],
+        "names": [
+          "employees",
+          "employees[]"
+        ],
+        "path": [
+          "$.companies{*}.employees[]",
+          "$.companies[].employees"
+        ],
+        "source": [
+          "https://igov.ro/reports/guvernanta-series.json",
+          "https://igov.ro/reports/guvernanta.json"
+        ],
+        "context": "angajații companiei (pagina arată „Angajați (anul ANAF)”); seria îi dă pe ani, în persoane (declarat în fișierul seriei)"
+      }
+    },
+    {
+      "grup": "perioada-de-referinta",
+      "selector": {
+        "projects": [
+          "igov"
+        ],
+        "names": [
+          "years[]"
+        ],
+        "path": [
+          "$.years[]"
+        ],
+        "source": "https://igov.ro/reports/guvernanta-series.json",
+        "context": "anii seriei financiare (2016–2025)"
+      }
+    },
+    {
+      "grup": "cui",
+      "selector": {
+        "projects": [
+          "executii-bugetare"
+        ],
+        "names": [
+          "cif"
+        ],
+        "path": [
+          "$[].cif",
+          "$.institutie.cif"
+        ],
+        "source": [
+          "https://executii-bugetare.g4d.ro/json/2026/B/institutii.json",
+          "https://executii-bugetare.g4d.ro/json/2026/B/4267117.json"
+        ],
+        "context": "CUI-ul instituției (`cif`), număr întreg în fișier; numele fișierului unei instituții este același număr. Un zero din față s-ar pierde",
+        "nota": "Aici CUI-ul este al unei instituții publice (primărie), nu al unei firme."
+      }
+    },
+    {
+      "grup": "judet",
+      "selector": {
+        "projects": [
+          "executii-bugetare"
+        ],
+        "names": [
+          "judet"
+        ],
+        "path": [
+          "$[].judet",
+          "$.institutie.judet"
+        ],
+        "source": [
+          "https://executii-bugetare.g4d.ro/json/2026/B/institutii.json",
+          "https://executii-bugetare.g4d.ro/json/2026/B/4267117.json"
+        ],
+        "context": "codul județului instituției (de exemplu `B` pentru București), nu numele"
+      }
+    },
+    {
+      "grup": "judet",
+      "selector": {
+        "projects": [
+          "executii-bugetare"
+        ],
+        "names": [
+          "cod",
+          "nume"
+        ],
+        "path": [
+          "$[].cod",
+          "$[].nume"
+        ],
+        "source": "https://executii-bugetare.g4d.ro/json/judete.json",
+        "context": "lista județelor: cod și nume"
+      }
+    },
+    {
+      "grup": "perioada-de-referinta",
+      "selector": {
+        "projects": [
+          "executii-bugetare"
+        ],
+        "names": [
+          "luni[]"
+        ],
+        "path": [
+          "$.luni[]"
+        ],
+        "source": "https://executii-bugetare.g4d.ro/json/2026/B/4267117.json",
+        "context": "lunile anului pentru care instituția are execuție bugetară (granularitate lunară, format `2026.01`)"
+      }
+    },
+    {
+      "grup": "populatie",
+      "selector": {
+        "projects": [
+          "ce-cumpara-primaria"
+        ],
+        "names": [
+          "Locuitori"
+        ],
+        "path": [
+          "tabel1.Locuitori"
+        ],
+        "source": "https://cecumparaprimaria.vercel.app/clasament",
+        "context": "numărul de locuitori al localității, coloana „Locuitori” a clasamentului (populația pe UAT la 1 ianuarie, după pagina principală)"
+      }
+    },
+    {
+      "grup": "localitate",
+      "selector": {
+        "projects": [
+          "ce-cumpara-primaria"
+        ],
+        "names": [
+          "Localitate"
+        ],
+        "path": [
+          "tabel1.Localitate"
+        ],
+        "source": "https://cecumparaprimaria.vercel.app/clasament",
+        "context": "coloana „Localitate” a clasamentului; o celulă are numele, tipul, județul și serviciul principal într-un singur text, deci nu este o valoare curată",
+        "nota": "Candidat cu încredere mică: celula amestecă mai multe fapte."
+      }
+    },
+    {
+      "grup": "perioada-de-referinta",
+      "selector": {
+        "projects": [
+          "monitor-social"
+        ],
+        "names": [
+          "TIME",
+          "Time"
+        ],
+        "role": [
+          "dimensiune"
+        ],
+        "source": [
+          "https://monitorsocial.ro/data/consumul-gospodariilor/",
+          "https://monitorsocial.ro/data/rata-de-ocupare-a-femeilor-3/",
+          "https://monitorsocial.ro/data/populatia-cu-studii-superioare/",
+          "https://monitorsocial.ro/data/romania-devine-o-tara-de-destinatie-pentru-migratie-economica/"
+        ],
+        "context": "rândul `TIME` sau `Time` al extracțiilor Eurostat (anii tabelului); valorile nu sunt citite"
+      }
+    },
+    {
+      "grup": "judet",
+      "selector": {
+        "projects": [
+          "verifica-psiholog"
+        ],
+        "names": [
+          "county"
+        ],
+        "path": [
+          "$.psychologists[].county",
+          "county",
+          "$.topCounties[].county"
+        ],
+        "source": [
+          "https://www.verificapsiholog.ro/api/psychologists-grouped?limit=1000",
+          "https://www.verificapsiholog.ro/structura-datelor",
+          "https://www.verificapsiholog.ro/api/statistics"
+        ],
+        "context": "județul din cartea de identitate a psihologului la înregistrare (definiția din pagina „Structură date”); poate diferi de județul de practică",
+        "nota": "Pagina spune că poate diferi de domiciliul sau locul de activitate actual."
+      }
+    },
+    {
+      "grup": "judet",
+      "selector": {
+        "projects": [
+          "cat-de-tare"
+        ],
+        "names": [
+          "Județ",
+          "county"
+        ],
+        "path": [
+          "a[1]",
+          "tabel1.Județ"
+        ],
+        "source": [
+          "https://mariuscomper.uk/cat-de-tare/assets/app.js?v=7e09d6d661",
+          "https://mariuscomper.uk/cat-de-tare/"
+        ],
+        "context": "județul unei localități: poziția 1 a rândurilor din `places.json` (numele `county` în scriptul paginii) și coloana „Județ” a tabelului județelor"
+      }
+    },
+    {
+      "grup": "uat",
+      "selector": {
+        "projects": [
+          "cat-de-tare"
+        ],
+        "names": [
+          "name"
+        ],
+        "path": [
+          "a[0]"
+        ],
+        "source": "https://mariuscomper.uk/cat-de-tare/assets/app.js?v=7e09d6d661",
+        "context": "numele unității administrative (comună, oraș sau municipiu: tabelul oficial are un rând pentru fiecare) la poziția 0 a rândurilor din `places.json` (numele `name` în scriptul paginii)"
+      }
+    },
+    {
+      "grup": "populatie",
+      "selector": {
+        "projects": [
+          "cat-de-tare"
+        ],
+        "names": [
+          "pop"
+        ],
+        "path": [
+          "a[3]"
+        ],
+        "source": "https://mariuscomper.uk/cat-de-tare/assets/app.js?v=7e09d6d661",
+        "context": "locuitorii unității administrative, recensământul din 2021 (poziția 3 a rândurilor din `places.json`; numele `pop` în scriptul paginii; pagina scrie că locuitorii sunt cei de la recensământul din 2021)"
+      }
+    },
+    {
+      "grup": "coordonate-geografice",
+      "selector": {
+        "projects": [
+          "de-unde-vine-apa"
+        ],
+        "names": [
+          "coordinates[]"
+        ],
+        "path": [
+          "__CITIES_DATA__[].coordinates[]"
+        ],
+        "source": "https://mariuscomper.uk/de-unde-vine-apa/",
+        "context": "coordonatele orașului, listă de două numere; ordinea (longitudine, latitudine) este observată, nu declarată",
+        "nota": "Câmpul `svgCoords` este poziția pe harta desenată a paginii, nu o coordonată geografică; nu intră în candidat."
+      }
+    },
+    {
+      "grup": "localitate",
+      "selector": {
+        "projects": [
+          "de-unde-vine-apa"
+        ],
+        "names": [
+          "ro"
+        ],
+        "path": [
+          "__CITIES_DATA__[].name.ro"
+        ],
+        "source": "https://mariuscomper.uk/de-unde-vine-apa/",
+        "context": "numele orașului în română, în înregistrarea fiecărui oraș din scriptul paginii"
+      }
+    }
   ]
 }
