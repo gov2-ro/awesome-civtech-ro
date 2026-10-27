@@ -22,11 +22,11 @@ What it skips, and lists in `declaratii` with the reason: a value that is code (
 literal followed by an expression (`[...].map(...)`), a declaration in the middle of a line and a literal that is nested too deeply.
 
 Each field is a path in a literal with the types that the sample showed. The bounds are those of the JSON sampler: 25 elements of an
-array, 25 members of a keyed collection, seven levels, 2,000 fields. An object with 12 members or more whose values are all of one kind (objects,
-arrays, strings or numbers), or with 100 members or more, or with 2 members or more whose keys are all years (`2014`, `2015`) and whose values are
-of one kind, is a keyed collection (the keys are values such as county names or years and never become field names; three keys are kept as
-examples). The plain JSON reader (`inventory.observed_fields`) applies the same rule through `keyed_collection`. A wide record, whose values
-differ in kind, stays a record. An array of equal-width rows of scalars gives one field for each position (`ROWS[][0]`, `ROWS[][1]`): the
+array, 25 members of a keyed collection, seven levels, 2,000 fields. An object with 100 members or more, or with 12 to 99 members whose values are
+all of one kind (objects, arrays, strings or numbers) and whose keys are not all identifiers, or with 2 members or more whose keys are all years
+(`2014`, `2015`) and whose values are of one kind, is a keyed collection (the keys are values such as county names or years and never become field
+names; three keys are kept as examples). The plain JSON reader (`inventory.observed_fields`) applies the same rule through `keyed_collection`.
+A wide record, whose values differ in kind or whose keys are all identifiers (`country`, `postalCode`, `unique_urls`), stays a record. An array of equal-width rows of scalars gives one field for each position (`ROWS[][0]`, `ROWS[][1]`): the
 position is a fact, the meaning of a position is not.
 The locator `char:START-END` addresses the first node at that path in the retained body.
 """
@@ -43,6 +43,8 @@ KEYED_COLLECTION = 12
 SURE_COLLECTION = 100
 POSITIONAL_WIDTH = 12
 YEAR_KEY = re.compile(r'^(?:19|20)[0-9]{2}$')
+# A field name: a lowercase letter, then letters, digits and underscores (`country`, `postalCode`, `unique_urls`). A county, a code or an id is not one.
+IDENTIFIER_KEY = re.compile(r'^[a-z][A-Za-z0-9_]*$')
 MAX_NESTING = 40
 EXAMPLE_KEYS = 3
 EXAMPLE_LENGTH = 40
@@ -341,17 +343,20 @@ def keyed_collection(keys, kinds):
     """The one rule for a keyed collection, for both JSON readers. A keyed collection maps values (county names, identifiers, years) to records.
     `keys` are the member names and `kinds` the kind of each value (`json_kind`, or the kind of a literal Node).
     - 100 members or more is always one.
-    - From 12 members, the values must be of one kind (all objects, all arrays, all strings or all numbers): a record that is 14 fields wide
-      has values of several kinds and stays a record.
     - From 2 members, when every key is a year (`^(19|20)[0-9]{2}$`) and the values are of one kind: `{"2014": {...}, "2015": {...}}` repeats
       one record, and its years are values, not field names.
+    - From 12 to 99 members, the values must be of one kind (all objects, all arrays, all strings or all numbers), and the keys must not all be
+      identifiers (`^[a-z][A-Za-z0-9_]*$`). A record that is 14 fields wide has values of several kinds; an address of 12 text members or a record of
+      counters has keys that are field names. Both stay records.
     A null does not count as a kind: a year with no data does not break the collection."""
     if len(keys) >= SURE_COLLECTION:
         return True
     one_kind = len(set(kinds) - {'nul'}) <= 1
-    if len(keys) >= KEYED_COLLECTION and one_kind:
+    if not one_kind or len(keys) < 2:
+        return False
+    if all(YEAR_KEY.match(key) for key in keys):
         return True
-    return len(keys) >= 2 and one_kind and all(YEAR_KEY.match(key) for key in keys)
+    return len(keys) >= KEYED_COLLECTION and not all(IDENTIFIER_KEY.match(key) for key in keys)
 
 
 def json_kind(value):

@@ -91,19 +91,52 @@ class Inventory(unittest.TestCase):
         self.assertEqual([f['cale'] for f in observed_fields({'a': {'2014': 1, '2015': None}})], ['$.a{*}'], 'a null does not make a second kind')
 
     def test_the_rule_for_a_keyed_collection_is_the_one_of_the_page_script_reader(self):
+        def collection(reader, value):
+            if reader == 'plain':
+                return any(f['rol'] == 'colectie-cu-chei' for f in observed_fields(value))
+            return any(f['rol'] == 'colectie-cu-chei' for f in read_literals('<script>const D = ' + json.dumps(value) + ';</script>')[0])
+
         for count in (11, 12, 99, 100):
-            same = {f'k{n}': {'v': n} for n in range(count)}
-            mixed = {f'k{n}': ({'v': n} if n % 2 else n) for n in range(count)}
-            for name, value in (('same', same), ('mixed', mixed)):
-                plain = any(f['rol'] == 'colectie-cu-chei' for f in observed_fields(value))
-                script = any(f['rol'] == 'colectie-cu-chei' for f in read_literals('<script>const D = ' + json.dumps(value) + ';</script>')[0])
-                self.assertEqual(plain, script, (count, name))
-                self.assertEqual(plain, count >= 100 or (name == 'same' and count >= 12), (count, name))
+            cases = {'values': ({f'Judet {n}': {'v': n} for n in range(count)}, count >= 12),
+                     'identifiers': ({f'k{n}': {'v': n} for n in range(count)}, count >= 100),
+                     'mixed': ({f'k{n}': ({'v': n} if n % 2 else n) for n in range(count)}, count >= 100)}
+            for name, (value, expected) in cases.items():
+                for reader in ('plain', 'script'):
+                    self.assertEqual(collection(reader, value), expected, (count, name, reader))
         # The two readers share one function: a rule that says "never" changes both.
         with mock.patch.object(inventory_literals, 'keyed_collection', return_value=False):
             value = {f'2015{n}': {'v': n} for n in range(150)}
-            self.assertFalse([f for f in observed_fields(value) if f['rol'] == 'colectie-cu-chei'])
-            self.assertFalse([f for f in read_literals('<script>const D = ' + json.dumps(value) + ';</script>')[0] if f['rol'] == 'colectie-cu-chei'])
+            self.assertFalse(collection('plain', value))
+            self.assertFalse(collection('script', value))
+
+    def test_a_record_whose_keys_are_all_identifiers_stays_a_record_and_an_object_with_value_keys_is_a_collection(self):
+        address = {'country': 'RO', 'city': 'Cluj', 'county': 'CJ', 'street': 'x', 'number': '1', 'block': '', 'scara': '', 'floor': '', 'apartment': '',
+                   'postalCode': '400001', 'sector': '', 'additional': ''}
+        counters = {name: n for n, name in enumerate(['displayedRows', 'uniqueDetailUrls', 'counter_only', 'online2', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'])}
+        record = {name: [fields['cale'] for fields in observed_fields({'o': value})] for name, value in (('address', address), ('counters', counters))}
+        self.assertEqual(record['address'][:3], ['$.o.country', '$.o.city', '$.o.county'], '12 text members under identifier keys are 12 fields')
+        self.assertEqual(len(record['address']), 12)
+        self.assertEqual(len(record['counters']), 12)
+        self.assertFalse([f for f in observed_fields({'o': address}) if f['rol'] == 'colectie-cu-chei'])
+        # Value keys make a collection: county names, codes, ids, dates and keys that are not field names.
+        for label, keys in (('counties', ['Alba', 'Arad', 'Argeș', 'Bacău', 'Bihor', 'Brașov', 'Cluj', 'Dolj', 'Galați', 'Iași', 'Mureș', 'Timiș']),
+                            ('ids', [f'{n:08d}' for n in range(12)]), ('codes', ['AB', 'AR', 'AG', 'BC', 'BH', 'BV', 'CJ', 'DJ', 'GL', 'IS', 'MS', 'TM']),
+                            ('dates', [f'2026-01-{n:02d}' for n in range(1, 13)]), ('hyphen', [f'a-{n}' for n in range(12)]), ('underscore first', [f'_{n}' for n in range(12)])):
+            fields = observed_fields({'o': {key: {'v': 1} for key in keys}})
+            self.assertEqual([f['cale'] for f in fields], ['$.o{*}', '$.o{*}.v'], label)
+        # One key that is not an identifier is enough; 11 identifiers and one county make a collection.
+        mixed = {**{f'k{n}': 1 for n in range(11)}, 'Alba': 1}
+        self.assertEqual([f['cale'] for f in observed_fields({'o': mixed})], ['$.o{*}'])
+        # The identifier rule stops at 99 members; the year rule comes first.
+        self.assertFalse([f for f in observed_fields({'o': {f'k{n}': 1 for n in range(99)}}) if f['rol'] == 'colectie-cu-chei'])
+        self.assertTrue([f for f in observed_fields({'o': {f'k{n}': 1 for n in range(100)}}) if f['rol'] == 'colectie-cu-chei'])
+        self.assertEqual([f['cale'] for f in observed_fields({'o': {str(y): 1 for y in range(2010, 2022)}})], ['$.o{*}'])
+        # Fewer than 12 members: an object with value keys stays a record, as before.
+        self.assertEqual(len(observed_fields({'o': {key: 1 for key in ['Alba', 'Arad', 'Cluj']}})), 3)
+        # The page-script reader gives the same answers.
+        for value, expected in ((address, False), (mixed, True), ({key: 1 for key in ['Alba', 'Arad', 'Argeș', 'Bacău', 'Bihor', 'Brașov', 'Cluj', 'Dolj', 'Galați', 'Iași', 'Mureș', 'Timiș']}, True)):
+            fields = read_literals('<script>const D = ' + json.dumps({'o': value}) + ';</script>')[0]
+            self.assertEqual(any(f['rol'] == 'colectie-cu-chei' for f in fields), expected)
 
     def test_a_year_collection_is_sampled_and_the_limit_says_so(self):
         years = {str(y): {'v': y} for y in range(1990, 2025)}  # 35 years
