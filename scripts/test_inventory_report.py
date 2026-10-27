@@ -392,8 +392,10 @@ class Coverage(unittest.TestCase):
         brief_reserves = ['de-unde-vine-apa', 'ani-de-pensie', 'ai-aflat']
         self.assertEqual(report.RESERVES_E, brief_reserves[:len(report.RESERVES_E)], 'the reserves are used in the order of the brief')
         self.assertLessEqual(len(report.RESERVES_E), 3, 'the brief allows at most three replacements')
-        blocked = [s for s in report.BATCH_E if self.by[s]['stare_investigare'] == 'blocat']
-        self.assertGreaterEqual(len(blocked), len(report.RESERVES_E), 'a reserve joins the lot only when a primary entry is blocked')
+        # A reserve joined because a primary entry was blocked; its note names that entry. The entry can leave the state `blocat` later (sicap-ai did, from a copy that the owner saved).
+        for reserve in report.RESERVES_E:
+            replaced = [s for s in report.BATCH_E if f'replacing {s}' in self.data['notes']['note'][reserve]['rezultat']]
+            self.assertEqual(len(replaced), 1, f'the note of the reserve {reserve} names the primary entry that it replaced')
         for slug in report.BATCH_E + report.RESERVES_E:
             self.assertEqual(self.by[slug]['investigat_in_lot'].split('|').count('E'), 1, slug)
             note = self.data['notes']['note'][slug]
@@ -416,6 +418,35 @@ class Coverage(unittest.TestCase):
         self.assertEqual(len([r for r in rows if urlsplit(r['url']).hostname == 'www.openbudget.ro']), 1)
         navigations = [r for r in self.data['log'] if r['lot'] == 'E' and r['metoda'] == 'BROWSER' and 'openbudget' in r['url']]
         self.assertEqual(len(navigations), 1)
+
+    def test_sicap_ai_is_read_from_a_copy_that_the_owner_saved_and_from_a_repository_at_a_recorded_commit_without_a_request_to_its_host(self):
+        slug = 'sicap-ai'
+        sources = [self.data['sources'][ref] for ref in self.data['profiles'][slug]['surse_structurate']]
+        contract = [s for s in sources if s['format'] == 'openapi']
+        self.assertTrue(contract, 'the contract that the owner saved')
+        for source in contract:
+            self.assertEqual((source['origine'], source['citire'], source['stare']), ('copie-salvata-de-proprietar', 'openapi-yaml', 'analizat'))
+            self.assertIsNone(source['http_status'], 'a saved copy has no HTTP status')
+            self.assertTrue(all('linie' in f for f in source['campuri']), 'a YAML contract gives the line of each declaration')
+        code = [s for s in sources if s['format'] == 'typescript']
+        self.assertTrue(code, 'the type declarations of the public repository')
+        commits = {re.search(r'/ciocan/SICAP\.ai/([0-9a-f]{40})/', s['url']).group(1) for s in code}
+        self.assertEqual(len(commits), 1, 'all files are read at one recorded commit')
+        registry = [r for r in self.data['registry'] if r['proiect'] == slug and r['stare'] == 'activ' and r['metoda'] == 'repo-la-revizie']
+        self.assertEqual(len(registry), len(code))
+        for record in registry:
+            self.assertEqual(record['dovada']['revizie'], commits.copy().pop())
+            self.assertTrue(record['dovada']['blob_sha'] and record['dovada']['sha256'], 'the tree entry and the listing are pinned')
+        self.assertEqual(self.by[slug]['stare_investigare'], 'cu-surse-structurate')
+        self.assertEqual(self.by[slug]['investigat_in_lot'], 'E|S')
+        # The host is on the list, so no script requested it: the log has no row for it, and the repository took at most 15 direct requests.
+        self.assertIsNotNone(forbidden('https://api.sicap.ai/v1/openapi'))
+        self.assertIsNotNone(forbidden('https://sicap.ai/api/mcp'))
+        rows = [r for r in self.data['log'] if r['cache'] == 'nu' and '/ciocan/SICAP.ai' in r['url']]
+        self.assertTrue(rows)
+        self.assertLessEqual(len(rows), 15, 'at most 15 direct requests for this entry')
+        self.assertEqual({urlsplit(r['url']).hostname for r in rows} - {'api.github.com', 'raw.githubusercontent.com'}, set())
+        self.assertFalse([r for r in self.data['log'] if (urlsplit(r['url']).hostname or '').endswith('sicap.ai') and r['lot'] == 'E'])
 
     def test_the_request_log_of_batch_e_stays_inside_the_limits_and_asks_no_listed_host(self):
         rows = [r for r in self.data['log'] if r['lot'] == 'E']

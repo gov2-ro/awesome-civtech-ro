@@ -8,7 +8,7 @@
     "The public build is unchanged: the default payload equals the v0.13.0 payload apart from its generation time; classifications and accepted providers are identical.",
     "Collection used {direct_requests} direct requests in total ({browser_navigations} browser navigations); the 150-request limit of lot C was not reached.",
     "Batch C2 (three active projects): three inventories (`romania-interactiva` 10 sources, `data-expertforum` 15 sources from the owner's saved page and 14 Google Sheet tabs, `bani-partide` 1 source from the owner's saved listing), 8 proposed groups and provider items D176–D187; see the subsection of section 3.",
-    "Batch E (twelve entries, lot `E`): eleven entries have 30 sources and 775 field records (two of them reserve entries); `sicap-ai` and `open-budget` are `blocat`, `portal-just-modern` has no source; 25 provider items D211–D235, four proposed groups and 26 candidate members; see the subsection of section 3."
+    "Batch E (twelve entries, lot `E`): eleven entries have 30 sources and 775 field records (two of them reserve entries); `open-budget` is `blocat`, `portal-just-modern` has no source; 25 provider items D211–D235, four proposed groups and 26 candidate members; see the subsection of section 3. The addendum of 2026-10-27 reads `sicap-ai` (6 sources, 1,281 field records) from a copy that the owner saved and from a public repository, with 0 requests to its host, and adds 2 provider items, 20 candidate members and a proposed group."
   ],
   "note": {
     "afacut": {
@@ -400,15 +400,20 @@
       "urmator_en": "Decide D223–D226 and the two candidates. A data export from the owner would give simple columns."
     },
     "sicap-ai": {
-      "rezultat": "Search engine for tenders and direct awards (catalogue: `date-publice`). Every request of the documentation pass of 2026-10-24 answered HTTP 429 (the page, llms.txt, /metodologie/ and /despre/, 100 ms apart). The batch rule says to stop on a host that answers 429. The host was not requested again in this batch: the state is `blocat`, and the reserve entry `de-unde-vine-apa` took its place (the first reserve, recorded before the replacement). The host has Vercel name servers, as harta-firmelor.ro, which the project lists in `colectare-interzisa.csv` after the same answer. A row for the list is proposed in the report; it was not added.",
+      "rezultat": "Search engine for tenders and direct awards (catalogue: `date-publice`). Lot E could not read it: HTTP 429 on 4 of 4 requests of the documentation pass (2026-10-24), so a reserve entry took its place (`blocat`). On 2026-10-27 the owner put `sicap.ai` (it covers `api.sicap.ai`) on `colectare-interzisa.csv` and offered two other sources, so the entry now has six sources and 1,281 field records, with 0 requests to `sicap.ai` or `api.sicap.ai` and 10 direct requests to GitHub. (1) The OpenAPI contract of the paid API (OpenAPI 3.0.3, version 0.44.0, 15 paths in the tags General, Contracte and Enterprise, the security scheme `bearerAuth`), saved by the owner from a browser on 2026-10-27 at 21:24 (+02:00) and imported with `--import-saved`: 587 field records (60 request parameters and 527 response members, with declared types and definitions). The API serves it as YAML, so the new reader `openapi-yaml` reads it. (2 to 6) Five files of the public repository `ciocan/SICAP.ai` at the commit 6697c80… (2026-09-25; a monorepo with Next.js, Elasticsearch and Turso, MIT): the types of the search layer (`es/types.ts`, 55 field records: the filters of a query and the result items), the Elasticsearch documents of the three datasets as the code types them (`licitatii` 362, `achizitii` 115, `achizitii-offline` 88: the notices of e-licitatie.ro) and the types of the two company indices (`company/onrc.ts`, 74: the trade register `onrc` and the financial statements `onrc_financials`, values in lei). The new reader `typescript` reads the declarations. The README names SEAP (e-licitatie.ro) as the origin of the data; that relation is accepted already (L146), so it is not proposed again. The documents of the repository name the ONRC and the Ministry of Finance: two provider items D236 and D237. Candidate members: 20 for reviewed groups (`cui` 4, `judet` 4, `localitate` 3, `cpv` 2, `perioada-de-referinta` 2, and one each for `cifra-afaceri`, `profit-net`, `numar-salariati`, `cod-caen` and `valoare-achizitie-directa`); two members of the proposed groups `datorii` and `capitaluri-proprii`; one new proposed group, `autoritate-contractanta` (4 members, one of them from `achizitii-directe-ti-2026`). The MCP connector (`sicap.ai/api/mcp`) needs a Google account and was not used. The database files of the repository (the Drizzle schema and the migrations) were not read: the architecture notes call the second migration „the OAuth + rate-limit tables”, and the README names Turso for the application database, so they are not the procurement index.",
       "limite": [
-        "Nicio cerere nouă nu s-a trimis în acest lot; dovada este pasul de documentare din 2026-10-24 (4 din 4 cereri cu HTTP 429)."
+        "Contractul declară tipurile și definițiile, nu valorile; exemplele din el sunt scrise de mână și nu sunt copiate. Mai multe câmpuri au un tip `anyOf` (șir sau listă: `supplier`, `supplierCity`, `supplierCounty`, `supplierFiscalNumber`; parametrii `limit` și `offset`). Cititorul nu le dă un tip, deci `tip_declarat` este gol.",
+        "Tipurile TypeScript ale documentelor Elasticsearch par generate dintr-un răspuns-eșantion (un tip numit `RootObject`, `unknown` pentru valorile null din eșantion): sunt ce așteaptă codul, nu o schemă publicată. Ele nu spun ce înseamnă un câmp (de exemplu `closingValue` sau `contractingAuthorityNameAndFN`).",
+        "Depozitul arată ce declară codul la commitul 6697c80…; nu dovedește că serviciul public îl folosește azi. Documentele de registru (`onrc`, `onrc_financials`) sunt în depozit, nu în contractul OpenAPI.",
+        "Parametrii cu valori enumerate (`source`: achizitii-directe, achizitii-offline, licitatii-publice) nu își păstrează valorile: cititorul OpenAPI nu păstrează `valori_enum` pentru parametri (defect în backlog).",
+        "Fișierele de date ale proiectului și interogările către Elasticsearch nu au fost citite. Conectorul MCP cere un cont Google și nu a fost folosit. Schema bazei de date a aplicației nu a fost citită.",
+        "Persoane: contractul și depozitul le numesc doar prin câmpuri (`contactPerson`, `nationalIDNumber` în adresele entităților din documentele Elasticsearch; `reprezentanti[]` cu `data_nastere` și `localitate_nastere` în indexul `onrc`). Niciun fișier citit nu conține o înregistrare despre o persoană, deci nicio sursă nu are marcajul `persoane`.",
+        "Legătura dintre dosarele `licitatii`, `achizitii`, `achizitii-offline` și constantele `ES_INDEX_PUBLIC`, `ES_INDEX_DIRECT`, `ES_INDEX_OFFLINE` este o citire a numelor: nota arhitecturii dă cele trei sluguri, README-ul dă constantele, iar harta dintre ele (`lib/mcp/index-map.ts`) nu a fost citită. La fel, descrierile seturilor din notele înregistrării („licitații publice”, „achiziții directe din catalog”, „achiziții directe raportate în afara platformei”) vin din nume, nu dintr-un text al depozitului.",
+        "Variabile fără grup, deci fără membru: valoarea unui contract atribuit (`awardedValue`, `ronContractValue`, `contractValue`), numele furnizorului sau al câștigătorului (`supplier`, `winner`), numărul anunțului (`noticeNo`), tipul procedurii și starea contractului. Alte intrări au câmpuri asemănătoare; un grup nou este decizia proprietarului."
       ],
-      "limite_en": "No new request was made in this batch; the evidence is the documentation pass of 2026-10-24 (4 of 4 requests answered HTTP 429).",
-      "blocaj": "HTTP 429 la toate cele patru cereri ale pasului de documentare din 2026-10-24 (pagina, llms.txt, /metodologie/, /despre/). Regula lotului: oprire pe o gazdă care răspunde 429. Gazda nu a fost cerută din nou.",
-      "blocaj_en": "HTTP 429 on all four requests of the documentation pass of 2026-10-24. The batch rule says to stop on such a host; the host was not requested again.",
-      "urmatorul_pas": "Proprietarul decide dacă `sicap.ai` intră în `colectare-interzisa.csv` (rând propus în raport) sau dacă salvează din browser pagina și documentația, pentru `--import-saved`.",
-      "urmator_en": "The owner decides whether `sicap.ai` joins `colectare-interzisa.csv` (a row is proposed in the report) or saves the page and its documentation from a browser for `--import-saved`."
+      "limite_en": "The contract declares types and definitions, not values; its examples are written by hand and are not copied. Several members have an `anyOf` type (a string or a list), and the reader gives them no type. The TypeScript types of the Elasticsearch documents look generated from a sample response, so they show what the code expects and not a published schema; they do not say what a field means. The repository shows what the code declares at commit 6697c80…, not what the public service uses today. Parameters with enumerated values keep no values (a defect in the backlog). The link between the folders `licitatii`, `achizitii`, `achizitii-offline` and the index constants `ES_INDEX_PUBLIC`, `ES_INDEX_DIRECT`, `ES_INDEX_OFFLINE` is a reading of the names (the map `lib/mcp/index-map.ts` was not read); the notes of the three registry records state it as a fact, and no option corrects a registered note. The data files of the project, the Elasticsearch queries, the MCP connector (a Google account) and the database schema of the application were not read. Persons appear as field names only (`contactPerson`, `nationalIDNumber`, `reprezentanti[]` with birth fields); no file read holds a record about a person, so no source is marked `persoane`. The variables that no group covers are the awarded value of a contract, the supplier or winner name, the notice number, the procedure type and the contract state.",
+      "urmatorul_pas": "Decideți D236–D237, cei 20 de candidați, cei doi membri noi din `datorii` și `capitaluri-proprii` și grupul propus `autoritate-contractanta`. Decideți dacă valoarea unui contract atribuit și numele furnizorului primesc grupuri.",
+      "urmator_en": "Decide D236 and D237, the 20 candidates, the two new members of `datorii` and `capitaluri-proprii` and the proposed group `autoritate-contractanta`. Decide whether the awarded value of a contract and the supplier name get groups."
     },
     "open-budget": {
       "rezultat": "Budget visualisation (catalogue: `date-publice`; the host is behind Cloudflare). The four requests of the documentation pass of 2026-10-24 timed out, and so did a new direct request and a browser render in this batch (25-second timeout; the record is `randare/open-budget-*.json`, state `timeout`). Nothing answered: no 401, 403 or 429, so no refusal and no row for `colectare-interzisa.csv`. The state is `blocat`; the reserve entry `ani-de-pensie` took its place (the second reserve, recorded before the replacement).",
@@ -563,7 +568,7 @@
     "`sondajeromania.ro` (lot D): three declarations of the licence differ (CC BY 4.0 in `llms.txt` and in the first Dataset, CC BY-NC 4.0 in the Dataset of the parliamentary page).",
     "`guvernezi.ro` (lot D): no file, API or schema; the data are text pages. The state is `investigat-fara-surse`, a new state of the coverage export.",
     "No host answered 401, 403 or 429 in lot D, so there is no proposed row for `colectare-interzisa.csv`.",
-    "`sicap.ai` (lot E): HTTP 429 on every request of the documentation pass (2026-10-24). Not requested again. Proposed row for `colectare-interzisa.csv` in the report; not added.",
+    "`sicap.ai` (lot E): HTTP 429 on every request of the documentation pass (2026-10-24). On 2026-10-27 the owner put the host on `colectare-interzisa.csv` (it covers `api.sicap.ai`); no script requests it. The entry is read from the contract that the owner saved and from the public repository (see the addendum of batch E).",
     "`www.openbudget.ro` (lot E): read timeout on five direct requests (four on 2026-10-24, one on 2026-10-27) and one browser render; DNS resolves to Cloudflare; no HTTP answer, so no row is proposed.",
     "`portaljustmodern.ro` (lot E): the backend (a Supabase REST API) needs an application key; no key was requested and no endpoint was guessed. The two browser renders showed only configuration requests.",
     "`monitorsafe.ro` (lot E): the repository that llms.txt links (`Andreim14/companii-stat`) answered 404 to the GitHub API; the CSV of contracts with supplier CUIs exists only on request by e-mail.",
@@ -580,10 +585,10 @@
     "Batch C2: decide the 3 proposed groups of part 1 (`casatorii`, `divorturi`, `studenti`; done 2026-10-26) and the 3 of part 2 (`uat`, `partid-politic`, `beneficiar-fonduri-publice`), the candidate members for the reviewed groups (`judet`, `perioada-de-referinta`, `populatie`, `localitate` from part 1; `siruta`, `cui`, `judet`, `localitate`, `voturi-valide` from part 2), and the provider items D176–D185 (decided 2026-10-26) and D186. Decide whether a tab over 2,000,000 bytes may be read for its header. Part 3 (`bani-partide`): decide D187, the two proposed groups (`subventie-partid`, `donatie-partid`), the new members of the proposed groups `partid-politic` and `uat`, and the six candidate selectors for `cui`, `judet` and `perioada-de-referinta`; save the documentation pages of `banipartide.ro` if you want providers looked for in their text.",
     "Batch D (twelve entries of „De analizat”): decide the provider items D189–D210, the two new proposed groups (`deficit-bugetar`, `coordonate-geografice`), the selectors added to the proposed groups `partid-politic` and `uat`, and the candidate members for the reviewed groups (section 5). Decide whether a new family for public finance is wanted (`deficit-bugetar` sits in `achizitii`). Decide whether `guvernezi` needs a reader for its profile pages or an export from its owner.",
     "Decide the proposed group `cod-caen` (the CAEN code, `inventar-concepte.json`; 5 members from `lista-firme`, `companii-de-stat` (two sources), `romania-transparenta` and `demoanaf`; 8 ambiguity entries; none of the members is confirmed). Decide whether the family `identificatori` is right, or `firme`.",
-    "Batch E (twelve entries of „De analizat”, nine with a source, two replaced by reserves): decide the provider items D211–D235, the four new proposed groups (`datorii`, `capitaluri-proprii`, `sex`, `grupa-de-varsta`) and the 26 candidate members for reviewed groups (section 5 of the report). Decide whether `sicap.ai` joins `colectare-interzisa.csv` (proposed row in the report). Decide whether `guvernanta.json` of `igov` is marked `persoane`. Decide whether the render records made before the fix of `render_pages.py` (lot D, `portal-just-modern`, `verifica-psiholog`) are made again (a new render of `portal-just-modern` needs a higher limit of browser pages). Decide whether the ten yearly measures of `financials.json` (companii-publice-ro) are entered in `campuri-editor.csv`, and whether `js-pozitii` is also run on `trei-din-patru`."
+    "Batch E (twelve entries of „De analizat”, nine with a source, two replaced by reserves): decide the provider items D211–D235, the four new proposed groups (`datorii`, `capitaluri-proprii`, `sex`, `grupa-de-varsta`) and the 26 candidate members for reviewed groups (section 5 of the report). Decide whether `guvernanta.json` of `igov` is marked `persoane`. Decide whether the render records made before the fix of `render_pages.py` (lot D, `portal-just-modern`, `verifica-psiholog`) are made again (a new render of `portal-just-modern` needs a higher limit of browser pages). Decide whether the ten yearly measures of `financials.json` (companii-publice-ro) are entered in `campuri-editor.csv`, and whether `js-pozitii` is also run on `trei-din-patru`. Addendum (`sicap-ai`, without requests to its host): decide D236–D237, the 20 candidate members of reviewed groups, the two new members of `datorii` and `capitaluri-proprii`, and the proposed group `autoritate-contractanta`."
   ],
   "verificari": {
-    "tests": 981,
+    "tests": 1053,
     "tests_skipped": 6,
     "explorer_checks": 59,
     "finder_checks": 81,
@@ -604,7 +609,8 @@
       "Batch D (branch `inventory-batch-d`, 2026-10-27): `python3 scripts/validate.py --publication`: 142 entries, 0 errors, 0 warnings. `python3 scripts/inventory.py --check`: 0 evidence errors; 145 source bodies hash-verified (110 before the batch); 117 dictionary evidence items verified (103 before), 0 stale. Unit tests: 772 run, 6 skipped (727 and 6 before the batch); new: `test_inventory_jsonsample` 20 and 6 + 6 + 2 + 3 + 8 in `test_inventory_literals`, `test_inventory_sheet`, `test_inventory_text`, `test_collect_docs` and `test_inventory_report`. Replay: `inventory.py --offline` on a copy of the tracked folder reproduces the six generated files byte for byte. `python3 scripts/build.py --site-dir <scratch folder> --with-inventory`: succeeds; `site/` has no change. Browser, against the served preview: `check_preview.py` 141/141, `check_inventory_preview.py` 40/40, `check_data_finder.py` 61/61 (one check was rewritten: cards with evidence come first and 24 are shown at a time, so the check that an uninventoried project is reachable now opens every page of cards).",
       "`lista-firme` API response (branch `lista-firme-api`, 2026-10-27): `python3 scripts/validate.py --publication`: 142 entries, 0 errors, 0 warnings. `python3 scripts/inventory.py --check`: 0 evidence errors; 146 source bodies hash-verified (145 before); 117 dictionary evidence items verified, 0 stale. Unit tests: 775 run, 6 skipped (772 and 6 before); new: 3 in `test_inventory_report` (the live response keeps key names and no value, the leak check finds a value it is given, one API request in the log); the persons test also covers this source. The package checks pass. Replay: `inventory.py --offline` on a copy of the tracked folder gives the six generated files byte for byte, with 0 requests. `python3 scripts/build.py --site-dir <scratch folder> --with-inventory`: succeeds; `site/` has no change. Browser, against the served scratch build: `check_preview.py` 141/141, `check_inventory_preview.py` 40/40, `check_data_finder.py` 61/61. Person values: 0 of 6 identifying values of the person relations are in the blobs of the branch commits, in the working tree (812 files) or in the scratch build (506 files).",
       "`cod-caen` and `seats-index.json` (branch `caen-seats`, 2026-10-27): `python3 scripts/validate.py --publication`: 0 errors, 0 warnings. `python3 scripts/inventory.py --check`: 0 evidence errors; 147 source bodies hash-verified (146 before); 129 dictionary evidence items verified (117 before), 0 stale; 12 sources with persons searched, 0 leaks. Unit tests: 831 run, 6 skipped (830 and 6 before); new: 1 in `test_inventory_report` (the poll index is one keyed collection, received by the browser, never a key as a field name). The package checks pass. Replay: `inventory.py --offline` on a copy of the tracked folder gives the six generated files byte for byte, also with the new specification file; 0 requests in this work. `python3 scripts/build.py --site-dir <scratch folder> --with-inventory`: succeeds; `site/` has no change; the finder index lists the group `cod-caen` (state `propus`) for 4 entries. Browser, against the served scratch build: `check_preview.py` 141/141, `check_inventory_preview.py` 40/40, `check_data_finder.py` 61/61.",
-      "Batch E (branch `inventory-batch-e`, 2026-10-27): `python3 scripts/validate.py --publication`: 142 entries, 0 errors, 0 warnings. `python3 scripts/inventory.py --check`: 0 evidence errors; 177 source bodies hash-verified (147 before the batch); 145 dictionary evidence items verified (129 before), 0 stale; 13 sources with persons searched, 0 leaks (12 before). Unit tests: 981 run, 6 skipped (927 and 6 before); new: `test_inventory_eurostat` 18, `test_inventory_glossary` 8, `test_inventory_positions` 10, and 2 + 9 + 1 + 6 in `test_inventory_jsonsample`, `test_inventory_literals`, `test_inventory_persons` and `test_inventory_report`. Mutation checks: 13 breaks of the Eurostat reader, 5 of `js-pozitii`, 2 of the cut keyed collection and 1 of the render fix, each failing at least one test. The three package checks and `validate.py --data-dir data/taxonomy-v2/integrare` pass. Replay: `inventory.py --offline` on a copy of the tracked folder gives `proiecte.json`, `seturi-date.json`, `descoperiri.json`, `rezumat.csv`, `campuri.csv` and `intrari-utilizator.csv` byte for byte, with 0 requests. The default public build (`build.py`) gives the same `data.json` as the base commit apart from `generated`. `python3 scripts/build.py --data-dir data/taxonomy-v2/integrare --site-dir <scratch folder> --allow-draft --with-inventory`: succeeds; `site/` has no change; the pages `/date/<slug>/` exist for the eleven entries with field records and not for `sicap-ai`, `open-budget` and `portal-just-modern` (an entry without field records has no page, as for `guvernezi`). Browser, against the served scratch build: `check_preview.py` 141/141, `check_inventory_preview.py` 59/59, `check_data_finder.py` 81/81."
+      "Batch E (branch `inventory-batch-e`, 2026-10-27): `python3 scripts/validate.py --publication`: 142 entries, 0 errors, 0 warnings. `python3 scripts/inventory.py --check`: 0 evidence errors; 177 source bodies hash-verified (147 before the batch); 145 dictionary evidence items verified (129 before), 0 stale; 13 sources with persons searched, 0 leaks (12 before). Unit tests: 981 run, 6 skipped (927 and 6 before); new: `test_inventory_eurostat` 18, `test_inventory_glossary` 8, `test_inventory_positions` 10, and 2 + 9 + 1 + 6 in `test_inventory_jsonsample`, `test_inventory_literals`, `test_inventory_persons` and `test_inventory_report`. Mutation checks: 13 breaks of the Eurostat reader, 5 of `js-pozitii`, 2 of the cut keyed collection and 1 of the render fix, each failing at least one test. The three package checks and `validate.py --data-dir data/taxonomy-v2/integrare` pass. Replay: `inventory.py --offline` on a copy of the tracked folder gives `proiecte.json`, `seturi-date.json`, `descoperiri.json`, `rezumat.csv`, `campuri.csv` and `intrari-utilizator.csv` byte for byte, with 0 requests. The default public build (`build.py`) gives the same `data.json` as the base commit apart from `generated`. `python3 scripts/build.py --data-dir data/taxonomy-v2/integrare --site-dir <scratch folder> --allow-draft --with-inventory`: succeeds; `site/` has no change; the pages `/date/<slug>/` exist for the eleven entries with field records and not for `sicap-ai`, `open-budget` and `portal-just-modern` (an entry without field records has no page, as for `guvernezi`). Browser, against the served scratch build: `check_preview.py` 141/141, `check_inventory_preview.py` 59/59, `check_data_finder.py` 81/81.",
+      "Addendum of batch E (`sicap-ai`, branch `sicap-ai`, 2026-10-27): `python3 scripts/validate.py --publication`: 142 entries, 0 errors, 0 warnings. `python3 scripts/inventory.py --check`: 0 evidence errors; 183 source bodies hash-verified (177 before the addendum); 150 dictionary evidence items verified (145 before), 0 stale; 13 sources with persons searched, 0 leaks; 6 copies saved by the owner, all hash-verified. Unit tests: 1053 run, 6 skipped (981 and 6 before; 72 new: `test_inventory_yaml` 39, `test_inventory_typescript` 32, 1 in `test_inventory_report`). The three package checks pass. `inventory.py --offline` on a copy of the tracked folder (cache in place) gives the six generated files byte for byte. A build with `--allow-draft --with-inventory` into a scratch folder has `/date/sicap-ai/`; browser checks against the served build: 141/141, 59/59, 81/81."
     ]
   },
   "lot_c2": [
@@ -1101,6 +1107,364 @@
         "source": "https://mariuscomper.uk/de-unde-vine-apa/",
         "context": "numele orașului în română, în înregistrarea fiecărui oraș din scriptul paginii"
       }
+    },
+    {
+      "grup": "cui",
+      "selector": {
+        "projects": [
+          "sicap-ai"
+        ],
+        "names": [
+          "cif"
+        ],
+        "source": "https://api.sicap.ai/v1/openapi",
+        "role": [
+          "parametru-api"
+        ],
+        "context": "CIF/CUI-ul din calea cererii; al autorității contractante la `/v1/ac/{cif}/…`, al furnizorului la `/v1/supplier/{cif}/…` și `/v1/cui/{cif}/exists`. Rolul îl dă operația, nu numele; textul parametrului spune „al furnizorului” pe unele operații și nu spune nimic pe altele."
+      }
+    },
+    {
+      "grup": "cui",
+      "selector": {
+        "projects": [
+          "sicap-ai"
+        ],
+        "names": [
+          "contractingAuthorityFiscalNumber",
+          "supplierFiscalNumber",
+          "supplierCif"
+        ],
+        "source": "https://api.sicap.ai/v1/openapi",
+        "role": [
+          "camp-raspuns"
+        ],
+        "context": "codul fiscal al autorității contractante (`contractingAuthorityFiscalNumber`) și al furnizorului (`supplierFiscalNumber`, `supplierCif`) în răspunsuri; `supplierFiscalNumber` poate fi un cod sau o listă (tipul nu este declarat)"
+      }
+    },
+    {
+      "grup": "cui",
+      "selector": {
+        "projects": [
+          "sicap-ai"
+        ],
+        "names": [
+          "authorityFiscalNumber",
+          "supplierFiscalNumber"
+        ],
+        "path": [
+          "SearchItemDirect.authorityFiscalNumber",
+          "SearchItemDirect.supplierFiscalNumber"
+        ],
+        "source": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/types.ts",
+        "context": "codul fiscal al autorității și al furnizorului în elementul de rezultat al căutării (tipul codului este `string`)"
+      }
+    },
+    {
+      "grup": "cui",
+      "selector": {
+        "projects": [
+          "sicap-ai"
+        ],
+        "names": [
+          "cui"
+        ],
+        "path": [
+          "OnrcRegistration.cui",
+          "OnrcFinancialDoc.cui"
+        ],
+        "source": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/company/onrc.ts",
+        "context": "CUI-ul din documentele indecșilor `onrc` și `onrc_financials` (tip `string`; brieful depozitului spune că sunt șiruri numerice, egale cu cheia rutei `nationalId`)"
+      }
+    },
+    {
+      "grup": "cpv",
+      "selector": {
+        "projects": [
+          "sicap-ai"
+        ],
+        "names": [
+          "cpv",
+          "cpvCode"
+        ],
+        "source": "https://api.sicap.ai/v1/openapi",
+        "role": [
+          "parametru-api"
+        ],
+        "context": "codul sau prefixul CPV acceptat ca parametru: `cpv` (primele 2 cifre sau un prefix) și `cpvCode` din calea `/v1/market/{cpvCode}/analysis` (2, 4, 6 sau 8 cifre, cu sau fără cifra de control)"
+      }
+    },
+    {
+      "grup": "cpv",
+      "selector": {
+        "projects": [
+          "sicap-ai"
+        ],
+        "names": [
+          "cpv",
+          "cpvCode"
+        ],
+        "path": [
+          "SearchFilters.cpv",
+          "SearchItemDirect.cpvCode",
+          "Source.item.cpvCode"
+        ],
+        "source": [
+          "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/types.ts",
+          "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/licitatii/types.ts"
+        ],
+        "context": "filtrul de căutare `cpv` și câmpul de cod din elementul de rezultat și din documentul `licitatii`; alături, `cpvCodeAndName` poartă codul și denumirea într-un singur șir și nu este membru"
+      }
+    },
+    {
+      "grup": "judet",
+      "selector": {
+        "projects": [
+          "sicap-ai"
+        ],
+        "names": [
+          "countyAuthority",
+          "supplierCounty",
+          "authorityCounty"
+        ],
+        "source": "https://api.sicap.ai/v1/openapi",
+        "context": "județul autorității contractante și al furnizorului, ca parametri de filtrare și ca membri ai răspunsurilor; `supplierCounty` din răspunsuri poate fi o valoare sau o listă (tipul nu este declarat)"
+      }
+    },
+    {
+      "grup": "judet",
+      "selector": {
+        "projects": [
+          "sicap-ai"
+        ],
+        "names": [
+          "county"
+        ],
+        "path": [
+          "county"
+        ],
+        "source": "https://api.sicap.ai/v1/openapi",
+        "role": [
+          "parametru-api"
+        ],
+        "context": "județul ca parametru de cale sau de filtrare: denumirea sau codul NUTS (București, Cluj, B, CJ); valorile sunt nume sau coduri, după cum scrie textul parametrului"
+      }
+    },
+    {
+      "grup": "judet",
+      "selector": {
+        "projects": [
+          "sicap-ai"
+        ],
+        "names": [
+          "countyAuthority",
+          "countySupplier",
+          "county"
+        ],
+        "path": [
+          "SearchFilters.countyAuthority",
+          "SearchFilters.countySupplier",
+          "Authority.county",
+          "Supplier.county"
+        ],
+        "source": [
+          "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/types.ts",
+          "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/achizitii/types.ts"
+        ],
+        "context": "județul autorității și al furnizorului: filtrele de căutare și câmpurile `county` ale autorității și ale furnizorului din documentul `achizitii` (tip `string`)"
+      }
+    },
+    {
+      "grup": "judet",
+      "selector": {
+        "projects": [
+          "sicap-ai"
+        ],
+        "names": [
+          "judet"
+        ],
+        "path": [
+          "OnrcAddress.judet"
+        ],
+        "source": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/company/onrc.ts",
+        "context": "județul sediului social din documentul `onrc` (alături: `localitate`, `strada`, `cod_postal`, `sector`); județul unui reprezentant (`OnrcRepresentative.judet`) nu este propus"
+      }
+    },
+    {
+      "grup": "localitate",
+      "selector": {
+        "projects": [
+          "sicap-ai"
+        ],
+        "names": [
+          "cityAuthority",
+          "supplierCity",
+          "authorityCity",
+          "city"
+        ],
+        "source": "https://api.sicap.ai/v1/openapi",
+        "context": "localitatea autorității contractante și a furnizorului în parametri și în răspunsuri; `city` vine din analiza furnizorului și din statisticile pe localități. Un nume singur nu identifică localitatea; `supplierCity` poate fi o valoare sau o listă"
+      }
+    },
+    {
+      "grup": "localitate",
+      "selector": {
+        "projects": [
+          "sicap-ai"
+        ],
+        "names": [
+          "localityAuthority",
+          "localitySupplier",
+          "city"
+        ],
+        "path": [
+          "SearchFilters.localityAuthority",
+          "SearchFilters.localitySupplier",
+          "Authority.city",
+          "Supplier.city"
+        ],
+        "source": [
+          "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/types.ts",
+          "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/achizitii/types.ts"
+        ],
+        "context": "localitatea autorității și a furnizorului: filtrele de căutare și câmpurile `city` ale autorității și ale furnizorului din documentul `achizitii` (tip `string`)"
+      }
+    },
+    {
+      "grup": "localitate",
+      "selector": {
+        "projects": [
+          "sicap-ai"
+        ],
+        "names": [
+          "localitate"
+        ],
+        "path": [
+          "OnrcAddress.localitate"
+        ],
+        "source": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/company/onrc.ts",
+        "context": "localitatea sediului social din documentul `onrc`; localitatea unui reprezentant (`OnrcRepresentative.localitate`) nu este propusă"
+      }
+    },
+    {
+      "grup": "perioada-de-referinta",
+      "selector": {
+        "projects": [
+          "sicap-ai"
+        ],
+        "names": [
+          "an"
+        ],
+        "path": [
+          "OnrcFinancialDoc.an"
+        ],
+        "source": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/company/onrc.ts",
+        "context": "anul fiscal al documentului `onrc_financials` (un document pentru fiecare CUI și an; brieful spune acoperirea 2008–2024)"
+      }
+    },
+    {
+      "grup": "perioada-de-referinta",
+      "selector": {
+        "projects": [
+          "sicap-ai"
+        ],
+        "names": [
+          "year"
+        ],
+        "path": [
+          "$.yearlyEvolution[].year"
+        ],
+        "source": "https://api.sicap.ai/v1/openapi",
+        "context": "anul din evoluția anuală a unui furnizor (`yearlyEvolution`: numărul de contracte și valoarea totală pe an)"
+      }
+    },
+    {
+      "grup": "cifra-afaceri",
+      "selector": {
+        "projects": [
+          "sicap-ai"
+        ],
+        "names": [
+          "cifra_afaceri"
+        ],
+        "path": [
+          "OnrcFinancialDoc.cifra_afaceri"
+        ],
+        "source": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/company/onrc.ts",
+        "context": "cifra de afaceri a anului, în lei întregi (comentariul tipului: „values in lei”; brieful: „Values in WHOLE LEI”); `cifraAfaceri` din `FinancialYear` este aceeași valoare, normalizată pentru afișare, și nu se propune"
+      }
+    },
+    {
+      "grup": "profit-net",
+      "selector": {
+        "projects": [
+          "sicap-ai"
+        ],
+        "names": [
+          "profit_net"
+        ],
+        "path": [
+          "OnrcFinancialDoc.profit_net"
+        ],
+        "source": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/company/onrc.ts",
+        "context": "profitul net al anului, în lei; pierderea netă este alt câmp (`pierdere_neta`), deci o firmă în pierdere are `profit_net` absent sau zero, nu negativ (brieful: „Net result = `profit_net` else `-pierdere_neta`”)"
+      }
+    },
+    {
+      "grup": "numar-salariati",
+      "selector": {
+        "projects": [
+          "sicap-ai"
+        ],
+        "names": [
+          "nr_salariati"
+        ],
+        "path": [
+          "OnrcFinancialDoc.nr_salariati"
+        ],
+        "source": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/company/onrc.ts",
+        "context": "numărul mediu de salariați al anului (comentariul tipului: „Average reported headcount for the year. Sparse: omitted in many filings.”)"
+      }
+    },
+    {
+      "grup": "cod-caen",
+      "selector": {
+        "projects": [
+          "sicap-ai"
+        ],
+        "names": [
+          "caen",
+          "caen_codes",
+          "clasa"
+        ],
+        "path": [
+          "OnrcFinancialDoc.caen",
+          "OnrcRegistration.caen_codes",
+          "OnrcActivity.clasa"
+        ],
+        "source": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/company/onrc.ts",
+        "context": "`caen` este codul CAEN principal al anului (brieful: „main CAEN that year”); `caen_codes` este lista codurilor înregistrării; `clasa` din lista `activitati` este clasa de activitate (alături: `versiune` și `denumire`; funcția `getPrincipalActivity` o compară cu `caen`). Versiunea CAEN nu este declarată pentru `caen` și `caen_codes`"
+      }
+    },
+    {
+      "grup": "valoare-achizitie-directa",
+      "selector": {
+        "projects": [
+          "sicap-ai"
+        ],
+        "names": [
+          "closingValue"
+        ],
+        "path": [
+          "PublicDirectAcquisition.closingValue",
+          "DirectAcquisition.closingValue"
+        ],
+        "source": [
+          "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/achizitii/types.ts",
+          "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/achizitii-offline/types.ts"
+        ],
+        "context": "valoarea de închidere a unei achiziții directe, din documentele `achizitii` și `achizitii-offline`; alături sunt `estimatedValue` (estimarea) și `secondCurrencyClosingValue`. Tipurile nu declară moneda"
+      }
     }
   ],
   "lot_e": [
@@ -1108,11 +1472,13 @@
     "Result: nine of the twelve entries have a structured inventory; with the two reserve entries, eleven entries have 30 sources and 775 field records. `sicap-ai` (HTTP 429 on 4 of 4 requests of the documentation pass) and `open-budget` (no answer to five direct requests and one browser render; no refusal) are `blocat`: the reserve entries `de-unde-vine-apa` and `ani-de-pensie` took their place, in the order of the brief, and the reason is recorded before each replacement. `portal-just-modern` has no source: its backend needs an application key (not requested, not guessed), and two browser renders showed only configuration requests. No third reserve was used. Proposed row for `colectare-interzisa.csv` (not added; columns `gazda,motiv,dovada,data,nota`): `sicap.ai,\"Site-ul răspunde cu HTTP 429 la cererile automate: patru cereri din patru, pe 2026-10-24.\",data/taxonomy-v2/observatii/documentare/index.json (intrarea sicap-ai),2026-10-24,\"Gazda are aceleași servere de nume Vercel ca harta-firmelor.ro. Termenii ei nu au fost citiți (și llms.txt a răspuns 429). Pagina se salvează manual și se importă cu --import-saved.\"`. No row is proposed for `open-budget`: a timeout is not a refusal.",
     "Reader changes, each with offline tests and mutation checks: two new readers for documentation that no existing reader fitted (`html-glosar`: headings `Label (name)` with a definition paragraph; `html-tabele-eurostat`: Eurostat extractions pasted as tables, in the four shapes of monitorsocial.ro), the reader `js-pozitii` (the names that a script gives to the positions of a row), three options of `js-literale` (`indentate` for declarations inside a wrapping function and indented `window.NAME` assignments, `omise` for a dictionary of interface texts) and a rule of `json-esantion` (a cut keyed collection keeps its whole members; no earlier source changes). The helper `render_pages.py` had a defect: the loop that saved the received bodies reused the name `text`, so a record could hold the last data body instead of the page text; it is fixed with a regression test. Records made before the fix hold the wrong text. Measured in this lot: `portal-just-modern/despre` has `[]` and `portal-just-modern/institutii` has the rows of three configuration tables of the application (no page text), and the record of `verifica-psiholog` has the length (4,129) and the hash of its last saved body, not those of the page text; none holds a person. The records of lot D were not checked. A new render of `portal-just-modern` would exceed the two pages that the brief allows for an entry, so it was not made.",
     "Persons: `portal-just-modern` (court files) and `verifica-psiholog` (named professionals) were handled as the brief says. No individual record was copied. One source is marked `persoane`: the list `psychologists-grouped` of `verifica-psiholog` (4,000 bytes, one record). `guvernanta.json` of `igov` names members of boards; it is not marked, because the plain reader keeps no value for it and the mark would make the leak check flag 7 tracked files that hold names of institutions (the owner can mark it). The render of `verifica-psiholog` was made with `--fara-text`.",
-    "Proposals for the owner: 25 provider items (D211–D235; three more would have repeated the accepted relations L135, L120 and L145), four new proposed groups (`datorii`, `capitaluri-proprii`, `sex`, `grupa-de-varsta`) and 26 candidate members for reviewed groups (section 5). Nothing was accepted or decided; `relatii.csv` and the review decisions did not change."
+    "Proposals for the owner: 25 provider items (D211–D235; three more would have repeated the accepted relations L135, L120 and L145), four new proposed groups (`datorii`, `capitaluri-proprii`, `sex`, `grupa-de-varsta`) and 26 candidate members for reviewed groups (section 5). Nothing was accepted or decided; `relatii.csv` and the review decisions did not change.",
+    "Addendum of 2026-10-27 (`sicap-ai`, without requests to its host; branch `sicap-ai`, base `408a5e1`). The owner put `sicap.ai` on `colectare-interzisa.csv` (the row proposed above; it covers `api.sicap.ai`) and offered the contract of the API and the public repository as sources. `sicap-ai` leaves the state `blocat`: it has six sources and 1,281 field records (the lot had 5,219 field records before; 6,500 after). The contract that the owner saved (OpenAPI 3.0.3, version 0.44.0, 178,204 bytes) was imported with `--import-saved` and read with the new reader `openapi-yaml`; the standard library has no YAML parser, so the reader is a strict subset parser that gives the same values as `json.loads` for the same document (its parse of this contract equals the parse of PyYAML with the YAML 1.2 resolvers). Five files of `ciocan/SICAP.ai` were read at the commit 6697c80… through the existing repository mechanism (`repo-la-revizie`: the tree listing of the commit, the git blob hash of each file) with the new reader `typescript`, which lists the members of the `interface` and object `type` declarations. Proposals, none decided: two provider items D236 (ONRC) and D237 (Ministerul Finanțelor); 20 candidate members for ten reviewed groups; two members of the proposed groups `datorii` and `capitaluri-proprii`; one new proposed group `autoritate-contractanta`. SEAP is not proposed again: L146 is accepted, and the README of the repository gives a retained text for it (the backlog item about D146 can use it). The MCP connector needs a Google account and was not used. No file read holds a record about a person; no source is marked `persoane`."
   ],
   "retea_e": [
     "Lot E (brief limit: 120 direct requests, at most 15 for each entry, two browser pages for each entry): 44 direct requests in the request log (2 failed: one read timeout, one HTTP 404; 9 range reads; 33 HTTP 200), 4,756,286 bytes, no retry, no concurrent request. By entry: igov 11 (3 of them at a wrong path), monitor-safe 5 (4 pages and one 404 of the GitHub API), monitor-social 5, companii-publice-ro 4, ce-cumpara-primaria 4, verifica-psiholog 4, cat-de-tare 3, recontorizarea 3, de-unde-vine-apa 1, ani-de-pensie 1, executii-bugetare 1, portal-just-modern 1, open-budget 1. `collect_docs.py` made 0 requests. Not in the log: the 8 requests of the documentation pass of 2026-10-24 to `sicap.ai` (4, all HTTP 429) and `open-budget` (4, timeouts).",
     "Hosts of lot E: igov.ro 11, mariuscomper.uk 8, monitorsocial.ro 5, monitorsafe.ro 4, cosettechichirau.github.io 4, cecumparaprimaria.vercel.app 4, www.verificapsiholog.ro 4, executii-bugetare.g4d.ro 1, www.openbudget.ro 1, portaljustmodern.ro 1, api.github.com 1. No listed host (`colectare-interzisa.csv`) was requested, and `sicap.ai` was not requested. No host answered 401 or 403.",
-    "Browser: 6 navigations (`executii-bugetare.g4d.ro/` twice, the second after the fix of the helper; `verifica-psiholog` home with `--fara-text`; `portaljustmodern.ro/despre` and `/institutii`; `www.openbudget.ro/`, timeout), at most two for each entry. The browser made 50 same-site data requests, which are not direct requests: 37 for verificapsiholog.ro (Next.js route prefetches and 4 API calls; the list of 2.4 MB was not kept), 8 for executii-bugetare.g4d.ro (4 data files), 3 configuration requests to the Supabase backend of portaljustmodern.ro and 2 for portaljustmodern.ro."
+    "Browser: 6 navigations (`executii-bugetare.g4d.ro/` twice, the second after the fix of the helper; `verifica-psiholog` home with `--fara-text`; `portaljustmodern.ro/despre` and `/institutii`; `www.openbudget.ro/`, timeout), at most two for each entry. The browser made 50 same-site data requests, which are not direct requests: 37 for verificapsiholog.ro (Next.js route prefetches and 4 API calls; the list of 2.4 MB was not kept), 8 for executii-bugetare.g4d.ro (4 data files), 3 configuration requests to the Supabase backend of portaljustmodern.ro and 2 for portaljustmodern.ro.",
+    "Addendum (`sicap-ai`): 10 direct requests, all to GitHub (`api.github.com` 2: the commit at HEAD and the tree listing of that commit; `raw.githubusercontent.com` 8: README.md, docs/architecture.md, docs/company-enrichment-brief.md and the five type files), 0 failed, 0 requests to `sicap.ai` or `api.sicap.ai`, no browser navigation. The request log counts 54 direct requests for lot E now (44 before). The limit for the entry is 15."
   ]
 }

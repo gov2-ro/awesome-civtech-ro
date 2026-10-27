@@ -4558,6 +4558,34 @@
           "source": "https://igov.ro/reports/guvernanta.json",
           "context": "datoriile unei companii de stat din registrul de guvernanță, valoarea ultimului an cu situații financiare (`anaf_year`)",
           "nota": "Unitatea nu este declarată în acest fișier; fișierul seriei declară „mii lei”."
+        },
+        {
+          "projects": [
+            "sicap-ai"
+          ],
+          "names": [
+            "datorii"
+          ],
+          "path": [
+            "OnrcFinancialDoc.datorii"
+          ],
+          "source": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/company/onrc.ts",
+          "context": "datoriile totale ale unui an din documentul `onrc_financials` al depozitului SICAP.ai (tip `number`)",
+          "fapte": [
+            {
+              "cheie": "unitate",
+              "valoare": "lei",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/company/onrc.ts",
+                "text": "sursa",
+                "fragment": "(one per cui+year, values in lei)",
+                "sha256": "1d60b3de7d454bdb7057480c5c1fd948d9e9a8819a44e0831b42822f7ce4defa",
+                "baza": "declaratie-directa"
+              }
+            }
+          ],
+          "nota": "Unitatea vine din comentariul tipului pentru tot documentul. `FinancialYear.datorii` este aceeași valoare, normalizată pentru afișare, și nu este membru. Nu se spune ce intră în „datorii”."
         }
       ]
     },
@@ -4677,6 +4705,34 @@
           "source": "https://igov.ro/reports/guvernanta.json",
           "context": "capitalurile proprii ale unei companii de stat din registrul de guvernanță, valoarea ultimului an cu situații financiare",
           "nota": "Unitatea nu este declarată în acest fișier; fișierul seriei declară „mii lei”."
+        },
+        {
+          "projects": [
+            "sicap-ai"
+          ],
+          "names": [
+            "capitaluri"
+          ],
+          "path": [
+            "OnrcFinancialDoc.capitaluri"
+          ],
+          "source": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/company/onrc.ts",
+          "context": "capitalurile unui an din documentul `onrc_financials` (tip `number`)",
+          "fapte": [
+            {
+              "cheie": "unitate",
+              "valoare": "lei",
+              "baza": "declaratie-directa",
+              "dovada": {
+                "sursa": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/company/onrc.ts",
+                "text": "sursa",
+                "fragment": "(one per cui+year, values in lei)",
+                "sha256": "1d60b3de7d454bdb7057480c5c1fd948d9e9a8819a44e0831b42822f7ce4defa",
+                "baza": "declaratie-directa"
+              }
+            }
+          ],
+          "nota": "Brieful numește „equity” printre liniile principale și spune că un `capitaluri` negativ se marchează ca dificultate; nu scrie „capitaluri proprii”. Potrivirea cu grupul este o deducție din aceste două texte și din numele din situațiile financiare românești. `capital_subscris` nu este membru."
         }
       ]
     },
@@ -4811,6 +4867,104 @@
             "https://monitorsocial.ro/data/populatia-cu-studii-superioare/"
           ],
           "context": "rândul `Age class` sau `Grupa de vârstă` al extracțiilor Eurostat pasted în paginile de date; valorile nu sunt citite"
+        }
+      ]
+    },
+    {
+      "id": "autoritate-contractanta",
+      "label": "Autoritatea contractantă (denumirea)",
+      "categorie": "dimensiune",
+      "familie": "achizitii",
+      "baza_definitiei": "parafraza-editoriala",
+      "definition": "Denumirea autorității contractante: instituția sau entitatea publică care organizează o achiziție și atribuie contractul. Sursele o poartă ca text; unele scriu numărul fiscal în același șir. Codul fiscal al autorității este în grupul `cui`, iar localitatea și județul ei sunt în grupurile `localitate` și `judet`.",
+      "dovezi": [
+        {
+          "sursa": "https://api.sicap.ai/v1/openapi",
+          "text": "sursa",
+          "fragment": "description: Denumirea autorității contractante",
+          "sha256": "5bd19c093ddb359d90392704d3c85e7cf2c243f4a82fcad92f84909171d21be7",
+          "baza": "declaratie-directa"
+        },
+        {
+          "sursa": "https://achizitii-directe-ti-2026.mariuscomper.uk/flagged_cases.csv",
+          "text": "sursa",
+          "fragment": "Autoritate contractanta",
+          "sha256": "1710cc666f7b1c4f132b8c2d37957b5436cc7c01cd2b1aa8fc76e95d7a49142e",
+          "baza": "declaratie-directa"
+        },
+        {
+          "sursa": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/types.ts",
+          "text": "sursa",
+          "fragment": "contractingAuthorityName: string;",
+          "sha256": "9eb0ac3c72d972ac0706b48b0bef3409404bcf05e34df3f095da62fab613f03d",
+          "baza": "declaratie-directa"
+        }
+      ],
+      "ambiguitati": [
+        "`contractingAuthorityNameAndFN` (documentul `licitatii` al SICAP.ai) poartă numele și numărul fiscal în același șir și nu este membru. `contractingAuthorityType` (tipul autorității) și `contractingAuthorityID`/`contractingAuthorityId` (identificatori interni) nu sunt denumiri.",
+        "Un nume nu identifică autoritatea: două instituții pot avea aceeași denumire, iar scrierea (majuscule, prescurtări) nu a fost comparată între surse. Identificatorul este CUI-ul (grupul `cui`).",
+        "Nu sunt propuse: `authority` din `statul-digital` (`budgetDisparity[]`, `domains[]`) și câmpurile `autoritate_*` din `romania-transparenta`; semnificația lor nu a fost verificată în textul păstrat al acelor surse."
+      ],
+      "selectors": [
+        {
+          "projects": [
+            "sicap-ai"
+          ],
+          "names": [
+            "contractingAuthority",
+            "name"
+          ],
+          "path": [
+            "$.contractingAuthority",
+            "$.recentContracts[].contractingAuthority",
+            "$.clientDiversification.topAuthorities[].name",
+            "$.topAuthorities[].name",
+            "$.buyers.top10Authorities[].name"
+          ],
+          "source": "https://api.sicap.ai/v1/openapi",
+          "role": [
+            "camp-raspuns"
+          ],
+          "context": "denumirea autorității contractante în răspunsurile API-ului (detaliul unui contract, contractele recente și listele de autorități cele mai active); descrierea OpenAPI: „Denumirea autorității contractante”"
+        },
+        {
+          "projects": [
+            "sicap-ai"
+          ],
+          "names": [
+            "contractingAuthorityName"
+          ],
+          "path": [
+            "SearchItemDirect.contractingAuthorityName"
+          ],
+          "source": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/types.ts",
+          "context": "denumirea autorității în elementul de rezultat al căutării (tip `string`); alături: `contractingAuthorityId`"
+        },
+        {
+          "projects": [
+            "sicap-ai"
+          ],
+          "names": [
+            "contractingAuthority"
+          ],
+          "path": [
+            "Item.contractingAuthority"
+          ],
+          "source": [
+            "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/achizitii/types.ts",
+            "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/achizitii-offline/types.ts"
+          ],
+          "context": "denumirea autorității în elementul `item` al documentelor `achizitii` și `achizitii-offline` (tip `string`)"
+        },
+        {
+          "projects": [
+            "achizitii-directe-ti-2026"
+          ],
+          "names": [
+            "Autoritate contractanta"
+          ],
+          "source": "https://achizitii-directe-ti-2026.mariuscomper.uk/flagged_cases.csv",
+          "context": "antetul coloanei CSV a cazurilor semnalate; fișierul are alături `Ofertant castigator` și `Valoare achizitie (RON)`"
         }
       ]
     }
