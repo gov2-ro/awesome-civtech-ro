@@ -1,10 +1,10 @@
 # CivTech România
 
 > Colecție curatoriată de proiecte civic tech, organizații și resurse din România: instrumente civice, date deschise
-> și proiecte de bună guvernare. 105 proiecte, 13 organizații, 21 resurse.
+> și proiecte de bună guvernare. 106 proiecte, 13 organizații, 21 resurse.
 
 Fiecare intrare are o pagină proprie la https://civtech.gov2.ro/<tip>/<slug>/ (tip: proiect, organizatie, resursa). Starea
-(activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-10-25. Textele sunt în
+(activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-10-28. Textele sunt în
 limba română. Datele sunt reutilizabile conform EUPL v1.2.
 
 ## Date
@@ -23,6 +23,7 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 - [Bani Partide](https://civtech.gov2.ro/proiect/bani-partide/): Finanțarea partidelor și a campaniilor electorale. Site: https://banipartide.ro/
 - [Ce fac politicienii?](https://civtech.gov2.ro/proiect/ce-fac-politicienii/): Cronologia declarațiilor și faptelor politicienilor, cu surse. Site: https://cefacpoliticienii.ro/
 - [Date statistice INS](https://civtech.gov2.ro/proiect/ins-gov2/): Date de la Institutul Național de Statistică. Site: https://ins.gov2.ro
+- [destrajă.ro](https://civtech.gov2.ro/proiect/destraja/): Proiectele de lege din consultare la Senat, explicate și evaluate de trei modele AI. Site: https://destraja.ro/
 - [EuropeScope](https://civtech.gov2.ro/proiect/europescope/): Activitatea Parlamentului European și a Consiliului UE. Site: https://www.europescope.eu/
 - [Harta Politicii](https://civtech.gov2.ro/proiect/harta-politicii/) (offline): Site: https://www.hartapoliticii.ro
 - [iGov](https://civtech.gov2.ro/proiect/igov/): Rapoarte verificabile din surse publice. Site: https://igov.ro/

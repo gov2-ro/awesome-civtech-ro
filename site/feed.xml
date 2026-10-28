@@ -3,7 +3,9 @@
 <title>CivTech România — proiecte noi</title><link>https://civtech.gov2.ro/</link>
 <atom:link href="https://civtech.gov2.ro/feed.xml" rel="self" type="application/rss+xml"/>
 <description>Cele mai noi proiecte din colecția CivTech România.</description><language>ro</language>
-<lastBuildDate>Mon, 26 Oct 2026 22:01:39 +0000</lastBuildDate>
+<lastBuildDate>Wed, 28 Oct 2026 14:17:18 +0000</lastBuildDate>
+<item><title>destrajă.ro</title><link>https://civtech.gov2.ro/proiect/destraja/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/destraja/</guid>
+<description>Proiectele de lege din consultare la Senat, explicate și evaluate de trei modele AI</description><pubDate>Tue, 27 Oct 2026 00:00:00 +0000</pubDate></item>
 <item><title>România Interactivă</title><link>https://civtech.gov2.ro/proiect/romania-interactiva/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/romania-interactiva/</guid>
 <description>Clasamente, calculatoare și vizualizări din date oficiale</description><pubDate>Mon, 12 Oct 2026 00:00:00 +0000</pubDate></item>
 <item><title>De Obște</title><link>https://civtech.gov2.ro/proiect/de-obste/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/de-obste/</guid>
@@ -82,6 +84,4 @@
 <description>Monitorizarea manipulării de pe TikTok</description><pubDate>Sat, 10 Jan 2026 00:00:00 +0000</pubDate></item>
 <item><title>iGov</title><link>https://civtech.gov2.ro/proiect/igov/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/igov/</guid>
 <description>Rapoarte verificabile din surse publice</description><pubDate>Wed, 10 Dec 2025 00:00:00 +0000</pubDate></item>
-<item><title>Antibunk</title><link>https://civtech.gov2.ro/proiect/antibunk/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/antibunk/</guid>
-<description>Identificarea și combaterea dezinformării online</description><pubDate>Wed, 26 Nov 2025 00:00:00 +0000</pubDate></item>
 </channel></rss>
