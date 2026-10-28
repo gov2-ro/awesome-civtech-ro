@@ -1,5 +1,24 @@
 # Activity
 
+## 2026-10-28 — New entry destrajă.ro and the v2 `/add-new-url`
+
+**Done**
+- Added `destraja` to `intrari.csv` (`proiect`, facets from the home and methodology pages). The site names no author, so there is no `relatii.csv` row. Profiled: `activ`, HTTP 200, og image, repository `eek/destraja.ro` (AGPL-3.0, 85 commits, created 2026-10-27). Searched with Serper and Brave: 30 rows stored, `mentions` 19 in `profil.csv`.
+- Published at the owner's request: `clasificare_stare` `acceptat`, commit `3807ccd`, with the og image `site/img/og/destraja.webp` tracked.
+- Fixed the CI failure of `3807ccd`: `collect_docs.py --only destraja` (4 requests), `inventory.py --only destraja` (0 requests) and `inventory_report.py`, commit `7ed0d41`. Unit tests: 1102 run, 0 fail, 8 skipped. The `validate` and `pages` runs pass.
+- Rewrote `.claude/commands/add-new-url.md` for v2 (seven steps; the inventory step; the publish steps). Described it in `README.md` and `docs/ARCHITECTURE.md`. Closed the backlog item.
+
+**Hard**
+- `validate.py` found two errors in the first row: `incredere` is required, and `subiecte` must hold the root group of each `teme` value (`subiect:legislatie` needs `subiect:drept-justitie`). Both are now in the command.
+- My first row edit added one cell too many (35 cells, header 34). `validate.py` reported it as „row width differs”.
+- The first push skipped the inventory step. `validate` failed with 3 errors in `test_inventory_report`; `pages` succeeded, so the site was live while CI was red.
+- The search results for „destrajă” are almost all about the word „strajă”. 28 of 30 rows are unrelated. They are not pruned.
+
+**Decided**
+- Set `acceptat` in the same push, because the publication gate refuses `propus` and the Pages build would publish nothing. The cost of the alternative: the owner would have to ask twice.
+- Left `site/data.json` and `site/feed.xml` out of the second commit: a rebuild changed only the timestamp.
+- The command does not accept an entry by itself. It does so only when the owner asks to publish.
+
 ## 2026-10-27 — Candidate members in the review interface
 
 **Done**

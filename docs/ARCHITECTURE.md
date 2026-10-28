@@ -409,9 +409,19 @@ another item, or a fix resolved it). On 2026-10-20 the queue had 103 items: 66 o
 
 ## Adding an entry with Claude Code
 
-`/add-new-url <address>` (in Claude Code, in this repository) checks for a duplicate, reads the site,
-writes the row in the right CSV, then runs `profile.py`, `search.py`, `validate.py` and `build.py`. It
-reports where each value came from and does not commit. It writes v1 rows only.
+`/add-new-url <address>` (in Claude Code, in this repository) is a project command in
+`.claude/commands/add-new-url.md`. It runs in seven steps:
+
+1. Check `intrari.csv` for a duplicate (domain, `linkuri`, name).
+2. Audit the site. A host in `colectare-interzisa.csv` gets no request.
+3. Write one row to `integrare/intrari.csv` (`clasificare_stare=propus`) and, for a named author, one row to `relatii.csv`.
+4. Run `profile.py`, `search.py` and `validate.py`.
+5. Run `collect_docs.py`, `inventory.py`, `inventory_report.py` and the unit tests. Without this step, `test_inventory_report` fails in CI with a `KeyError` for the new slug.
+6. Build a draft preview. The plain build fails for `propus`, by design.
+7. Report each value with its source. The command does not commit and does not accept the entry.
+
+After the owner asks to publish, the command sets `acceptat`, runs `validate.py --publication`, commits the
+files of steps 3–5 and the new image, pushes, and checks the `validate` and `pages` runs.
 
 ## Keys and secrets
 

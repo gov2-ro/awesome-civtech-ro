@@ -49,10 +49,11 @@ kept outside the repo), `SHEET_ID` and `FORM_ID`. Load them with `set -a; source
 
 ## Editing the data
 
-_This section describes the frozen v1 flow (CSV files in `data/`). Since 2026-10-22 the human-edited file is `data/taxonomy-v2/integrare/intrari.csv`; the columns are in [docs/DATA-SCHEMA.md](docs/DATA-SCHEMA.md) and [data/taxonomy-v2/README.md](data/taxonomy-v2/README.md). The commands below take `--data-dir data` to act on v1._
+_Since 2026-10-22 the human-edited files are in `data/taxonomy-v2/integrare/`. The v1 files in `data/` are frozen; the commands below take `--data-dir data` to act on them._
 
-You edit three files: `data/proiecte.csv`, `data/orgs.csv` and (rarely) `data/taxonomy.json`. Every other file
-under `data/` and `site/` is generated. [CONTRIBUTING.md](CONTRIBUTING.md) describes each column.
+You edit `data/taxonomy-v2/integrare/intrari.csv` and `relatii.csv`, and (rarely) the vocabulary files in
+`data/taxonomy-v2/`. The columns are in [docs/DATA-SCHEMA.md](docs/DATA-SCHEMA.md) and
+[data/taxonomy-v2/README.md](data/taxonomy-v2/README.md) (Romanian). `observatii/` and `site/` are generated.
 
 Open the CSVs in a text editor, LibreOffice or Excel. Save as UTF-8 with commas, and keep the header row as it is.
 A cell with a comma or a line break must be in quotes; spreadsheet programs do this for you.
@@ -61,11 +62,12 @@ A cell with a comma or a line break must be in quotes; spreadsheet programs do t
 
 | You changed | Run |
 | --- | --- |
-| Text only: name, description, domain, type, keywords, author, coverage, `stare` | `validate.py`, then `build.py` |
+| Text only: name, description, facets, `maturitate`, `stare`, `clasificare_stare` | `validate.py`, then `build.py` |
 | `linkuri` | `validate.py`, then `build.py` |
-| `url` (a moved site), or you added a row | `profile.py --only <slug>`, then `search.py --only <slug>`, then `validate.py` and `build.py` |
-| a `slug` | Avoid it. The old slug's profile, images and search results stay behind under the old name. If you must, rename it also in `data/profil.csv` and `data/mentiuni.csv`, then run `build.py` |
-| `data/taxonomy.json` | `validate.py`, then `build.py` |
+| `url` (a moved site) | `profile.py --only <slug>`, then `search.py --only <slug>`, then `validate.py` and `build.py` |
+| you added a row | Use `/add-new-url` (below), or run the steps it lists, including the three inventory steps |
+| a `slug` | Avoid it. The old slug's profile, images and search results stay behind under the old name. If you must, rename it also in `observatii/profil.csv`, `observatii/mentiuni.csv` and `relatii.csv`, then run `build.py` |
+| the vocabulary files of `data/taxonomy-v2/` | `validate.py`, then `build.py` |
 
 Then commit and push. On every push to `main`, GitHub runs `validate.py` and `build.py` again and publishes
 `site/`. On a pull request, `validate.yml` also runs the unit tests and the browser checks (see
@@ -77,18 +79,24 @@ Edit the cell. To mark a dead or finished project, set `stare` to `offline` or `
 An offline site with no Wayback capture for a year shows as `arhivat` without an edit.
 
 ### Delete an entry
-Delete its row in `proiecte.csv` or `orgs.csv`, then run `validate.py` and `build.py`. Its rows in
-`profil.csv` and `mentiuni.csv` can stay: nothing shows an entry that is not in the two CSVs, and the
-`editor` marks come back if you add the entry again.
+To take an entry off the site and keep its data, set `clasificare_stare` to `ascuns`.
+
+To delete it, remove its row in `intrari.csv` and its rows in `relatii.csv`, then run `validate.py`,
+`build.py` and the unit tests. Its rows in `observatii/profil.csv` and `observatii/mentiuni.csv` can stay:
+nothing shows an entry that is not in `intrari.csv`, and the `editor` marks come back if you add the entry
+again. The inventory files in `observatii/inventare/` may still list the slug; the unit tests show it.
 
 ### Add an entry: `/add-new-url`
 In Claude Code, in this repo, type `/add-new-url <url>` (for example `/add-new-url techandtonic.ro`).
-Claude checks for a duplicate, reads the site, writes the row (project, resource or organisation), runs
-`profile.py`, `search.py`, `validate.py` and `build.py`, and reports every cell with its source. It does not
-commit. The command lives in `.claude/commands/add-new-url.md`.
+Claude checks for a duplicate, reads the site, writes the row to `data/taxonomy-v2/integrare/intrari.csv`
+(with `clasificare_stare=propus`) and, when the site names an author, to `relatii.csv`. It then runs
+`profile.py`, `search.py`, `validate.py`, `collect_docs.py`, `inventory.py`, `inventory_report.py` and the unit
+tests, and reports every cell with its source. It does not commit and does not accept the entry: the public
+build refuses `propus`. To publish, ask Claude to set `acceptat`, commit and push; the command lists the steps.
+The command lives in `.claude/commands/add-new-url.md`.
 
-To add a row by hand instead, fill at least `slug`, `nume`, `url`, `domeniu` and `acoperire` (and `fel` in
-`proiecte.csv`), then follow the "added a row" line in the table above.
+To add a row by hand instead, follow `data/taxonomy-v2/README.md`. Run the three inventory steps for the new
+slug too, or CI fails.
 
 ### Prune search results
 In `data/mentiuni.csv`, set the `editor` column to `1` (keep) or `0` (drop). Leave the other columns alone.

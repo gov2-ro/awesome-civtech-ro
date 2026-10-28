@@ -102,6 +102,14 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
       Done 2026-10-26 (lot `C2`): `romania-interactiva` has 10 sources and 269 field records; `data-expertforum` and `bani-partide` were `blocat` (HTTP 403 on three hosts). Part 2 (2026-10-26): `data-expertforum` has 15 sources and 100 field records from the page that the owner saved and its Google Sheets. Part 3 (2026-10-26, brief section 8.1): `bani-partide` has 1 source and 172 field records from the Datasette listing that the owner saved. Follow-up items are in "Inventory batch C2 follow-up".
 - [-] Inventory `harta-banilor-publici`, `parlament-transparent`, `bani-pierduti`. Reason: inactive (`offline`) in the build; the owner removed inactive entries from the variable inventory on 2026-10-26.
 
+## New entry destrajă.ro — 2026-10-28
+
+- [x] Add `destraja` (`intrari.csv`), profile it and search it. Accepted on 2026-10-28 at the owner's request to publish it (commit `3807ccd`).
+- [x] Add `destraja` to the inventory (`collect_docs.py`, `inventory.py`, `inventory_report.py`). The first push skipped this and `validate` failed with `KeyError: 'destraja'`; fixed in `7ed0d41`.
+- [ ] Prune the search results of `destraja`: 28 of 30 stored rows are unrelated (the word „strajă”: a ski resort, hotels, Bible verses, dictionaries). Only the two `destraja.ro` rows belong. Mark them in `editor`, then run `search.py --prune-only`. `profil.csv` shows `mentions` 19 until then, and the score counts it.
+- [ ] Find the author of `destraja`. The site names nobody; the repository owner is the GitHub account `eek`. No `relatii.csv` row exists. The site links to the author's other project `droneincidents.eu`; check whether it fits the catalogue.
+- [ ] `destraja.ro` has `since` from the repository (created 2026-10-27) and no Wayback capture. Check `since` and `stale` in the build after the first week.
+
 ## New entry fiipregatit.ro — 2026-10-26
 
 - [x] Decide `fiipregatit` (`intrari.csv`). Accepted by the owner on 2026-10-26, then hidden the same day (`clasificare_stare` `ascuns`): it is an official state platform and does not belong in the catalogue. The data stays; the public site does not show it. To show it again: set `acceptat`, then run `uv run scripts/profile.py --force --only fiipregatit` to make the two images again.
@@ -121,7 +129,7 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [ ] `search.py --prune-only` also flips `regula` on 6 rows of `gov2`, `incentru`, `ethicalmedia` and `accesinfo` (stored rules differ from the current rules). Not applied; review before the next full prune.
 - [x] Fix `since` for `lista-firme`: 2024-05-04 from the repo, not 2011-05-19 from a GoDaddy parking page. Done 2026-10-26 with `EARLIER_DOMAIN_USE` in `build.py`.
 - [-] Check `harta-tv-locale` for an earlier use of its domain. Dropped 2026-10-26: the entry is hidden (`ascuns`).
-- [ ] Update `.claude/commands/add-new-url.md` for v2: write `intrari.csv` (facets, `clasificare_stare=propus`) and `relatii.csv` (attribution row), not the frozen `proiecte.csv` / `orgs.csv`. Add the steps `collect_docs.py --only`, `inventory.py --only` and `inventory_report.py` after the profile and search steps.
+- [x] Update `.claude/commands/add-new-url.md` for v2: write `intrari.csv` (facets, `clasificare_stare=propus`) and `relatii.csv` (attribution row), not the frozen `proiecte.csv` / `orgs.csv`. Add the steps `collect_docs.py --only`, `inventory.py --only` and `inventory_report.py` after the profile and search steps. Done 2026-10-28; described in `README.md` and `docs/ARCHITECTURE.md`.
 - [ ] Review the facts of `lista-firme`: the terms claim the source code for the operator, but `tudorr89/info-firme` is MIT-licensed; the owner attests the repo belongs to the site, but the site does not state the link between the repo owner (Tudor Rusu) and the operator. The API has no documentation page.
 
 ## Inventory batch C2 follow-up — 2026-10-26
