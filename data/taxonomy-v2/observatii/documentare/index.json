@@ -3240,6 +3240,95 @@
       ]
     },
     {
+      "slug": "destraja",
+      "url": "https://destraja.ro/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://destraja.ro/",
+          "final_url": "https://destraja.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-10-28T14:20:40.665547+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "destrajă.ro · Stăm de strajă. Să știi ce se pregătește.",
+          "sections": [
+            {
+              "kind": "metodologie",
+              "heading": "Surse oficiale",
+              "url": "https://destraja.ro/"
+            }
+          ],
+          "sha256": "57e2093b0195e2cbfb4a159aa2906af09fd486c7dfcc6514903c9939f076db70",
+          "snapshot": "pagini/92175c95e12c8ab2359ed797.json",
+          "text_chars": 26529
+        },
+        {
+          "url": "https://destraja.ro/llms.txt",
+          "final_url": "https://destraja.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-10-28T14:20:40.814532+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://destraja.ro/metodologie",
+          "final_url": "https://destraja.ro/metodologie",
+          "http_status": 200,
+          "fetched_at": "2026-10-28T14:20:40.878519+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "metodologie",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Metodologie · destrajă.ro",
+          "sections": [
+            {
+              "kind": "metodologie",
+              "heading": "Surse oficiale",
+              "url": "https://destraja.ro/metodologie"
+            }
+          ],
+          "sha256": "45d3e647585a63146440fbdf769ec49c949fe8b65ffff6db6b74d996e864f1aa",
+          "snapshot": "pagini/6b6881b837262414847cf061.json",
+          "text_chars": 7256
+        },
+        {
+          "url": "https://destraja.ro/cum-functioneaza",
+          "final_url": "https://destraja.ro/cum-functioneaza",
+          "http_status": 200,
+          "fetched_at": "2026-10-28T14:20:40.950706+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "despre",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Cum funcționează · destrajă.ro",
+          "sections": [
+            {
+              "kind": "despre",
+              "heading": "Cum funcționează? În fiecare dimineață, la 8, un Mac citește Senatul.",
+              "url": "https://destraja.ro/cum-functioneaza"
+            },
+            {
+              "kind": "metodologie",
+              "heading": "Surse oficiale",
+              "url": "https://destraja.ro/cum-functioneaza"
+            }
+          ],
+          "sha256": "fb5e654635ba0f0bf99ebe55c03922ecf82e67a408b7a078514380396ad8c8ff",
+          "snapshot": "pagini/2e5c2a9c25800f168c00e333.json",
+          "text_chars": 14451
+        }
+      ]
+    },
+    {
       "slug": "didi365",
       "url": "https://didi365.eu/",
       "state": "documentatie-neconfirmata",

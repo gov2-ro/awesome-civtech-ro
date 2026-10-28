@@ -8060,6 +8060,48 @@
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
         "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
       ]
+    },
+    {
+      "slug": "destraja",
+      "nume": "destrajă.ro",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Proiectele de lege din consultare la Senat, explicate și evaluate de trei modele AI",
+      "permite": [
+        "Monitorizează",
+        "Analizează date",
+        "Completează sau generează documente",
+        "Primește alerte"
+      ],
+      "formate_catalogate": [
+        "Registru sau bază de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "destraja"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "Caută: avocați, impozit, pensii, B563…",
+          "rol": "control-utilizator",
+          "tip_control_html": "search",
+          "descriere": "Caută: avocați, impozit, pensii, B563…",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://destraja.ro/",
+            "sha256": "57e2093b0195e2cbfb4a159aa2906af09fd486c7dfcc6514903c9939f076db70",
+            "sha256_lista_controale": "374199e4fe69e3759704bb37ece8d6526d3e92df3dff2019382bde2236486fd2",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/92175c95e12c8ab2359ed797.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
     }
   ]
 }
