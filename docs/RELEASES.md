@@ -66,3 +66,4 @@
 - **v0.42.1** (2026-10-28): the empty candidate queue of the review interface says why it is empty and where candidates come from.
 - **v0.42.2** (2026-10-28): `destraja` added and published; `/add-new-url` rewritten for v2 (`intrari.csv`, `relatii.csv`, inventory steps, publish steps) and described in `README.md` and `docs/ARCHITECTURE.md`.
 - **v0.43.0** (2026-10-29): dimineața.de accepted for publication with Gabriel Popa attribution, profile, images and inventory record; gio audited and hidden pending a terms check with its author; host collection block and backlog reminder retained.
+- **v0.44.0** (2026-10-30): spec and four-project pilot brief for a separate site structure profiler: collections, URL patterns, API operations, identifier namespaces and roles, evidence, and proposed entity correspondences. Ten named acceptance checks define the pilot; collection, the shared engine and the skill remain future work.

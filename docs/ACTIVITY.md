@@ -1,5 +1,28 @@
 # Activity
 
+## 2026-10-30 — Structure profiler spec and pilot brief
+
+**Done**
+- Wrote [the spec](specs/site-structure-profiler.md) and [the pilot brief](briefs/site-structure-pilot.md).
+- Defined collections, page patterns, API operations, identifier namespaces, subject roles and evidence for record correspondences.
+- Prepared ten named acceptance checks and a four-project pilot with an offline checker. No pilot collection has started.
+- Reviewed the four supplied onboarding commands and their API-discovery guides, plus the `stiri` profiler guide.
+- Validation: zero errors and warnings. Document links resolve; ten distinct acceptance checks are present; `git diff --check` passes.
+
+**Hard**
+- A generated detail URL does not establish that its record exists. Numeric equality does not establish a shared identifier namespace.
+- A contract can name buyer and supplier CUIs. The pilot must keep those subjects distinct from the contract itself.
+- `sicap.ai` is blocked by existing policy. Its pilot profile must use retained evidence, saved pages or public source code.
+- Measured during this design chunk: zero live-site requests, zero profiles generated, zero identity decisions made.
+- Existing catalogue slugs and retained source interfaces were checked locally. The proposed patterns remain leads, not new live measurements.
+
+**Decided**
+- Write the spec and pilot brief before creating a skill. The pilot must expose schema gaps before the workflow becomes reusable instructions.
+- Use site-specific profiles with a future shared engine. Copying the four onboarding scripts would duplicate platform logic and scope assumptions.
+- Keep correspondences separate from access patterns and keep editorial decisions separate from observations. The cost is explicit reference validation.
+- Continue complementary discovery after finding an API. The scraping workflows' first-working-source rule can miss identifiers exposed elsewhere.
+- Version v0.44.0 records a design deliverable. This repository has no Cargo.toml; versions remain in RELEASES.md and git tags.
+
 ## 2026-10-29 — Publish dimineața.de; retain gio for review
 
 **Done**

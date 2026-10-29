@@ -2,6 +2,15 @@
 
 Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
+## Site structure and entity correspondences — 2026-10-30
+
+- [x] Formalize the separate structure profiler and prepare a four-project pilot. [Spec](specs/site-structure-profiler.md), [brief](briefs/site-structure-pilot.md). Defines collections, page patterns, API operations, identifier namespaces and roles, evidence, and proposed record correspondences.
+- [ ] Execute the pilot for `transparenta-eu`, `sicap-ai`, `registrul-firmelor` and `romania-transparenta`. Include bounded API discovery and an offline contract checker. No request to `sicap.ai` or its subdomains.
+- [ ] Review the pilot's measured schema gaps and settle the provisional profile contract before implementing the shared engine.
+- [ ] Build the shared structure profiler from the reviewed pilot. Preserve local identifiers, prior evidence and editorial decisions on refresh.
+- [ ] Create `/profile-structure` as a skill after the workflow has been tested. Keep repeatable mechanics in the shared engine.
+- [ ] Later: entity correspondence review, broader identifier mappings and public links between confirmed records. Bulk harvesting and transitive resolution are outside the pilot.
+
 ## New URLs — 2026-10-29
 
 - [x] Audit and add `dimineata` and `gio` as proposed v2 entries, with Gabriel Popa attribution rows. Profile, search, inventory and draft preview completed. [Cell audit](reports/add-new-url-2026-10-29.md).
