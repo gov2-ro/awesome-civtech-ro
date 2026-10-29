@@ -8102,6 +8102,73 @@
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
         "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
       ]
+    },
+    {
+      "slug": "dimineata",
+      "nume": "dimineața.de",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Jurnalism civic pentru Sibiu și România, cu surse și proces editorial explicat",
+      "permite": [
+        "Caută și consultă"
+      ],
+      "formate_catalogate": [
+        "Articol"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "dimineata"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "email",
+          "rol": "control-utilizator",
+          "tip_control_html": "email",
+          "descriere": "adresa@email.ro",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://dimineata.de/",
+            "sha256": "f88e6b99b7b8bc599fa9cb4fd0cf65d9b1d9c21fa5f96dd75bee8809d3492b0a",
+            "sha256_lista_controale": "0878febe9276e10fc569539a0a372098060acfb2597cd80c3c15e2dfd2cd120b",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/5f0a473581d094d139d0658f.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
+    },
+    {
+      "slug": "gio",
+      "nume": "gio",
+      "stare": "propunere",
+      "completitudine": "neconfirmat",
+      "scop": "Explorează relațiile din România citate în videourile lui Valeriu Nicolae",
+      "permite": [
+        "Caută și consultă",
+        "Analizează date",
+        "Trimite sau urmărește o sesizare"
+      ],
+      "formate_catalogate": [
+        "Vizualizare de date",
+        "Registru sau bază de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "gio"
+      },
+      "intrari_utilizator": [],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
+        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+      ]
     }
   ]
 }

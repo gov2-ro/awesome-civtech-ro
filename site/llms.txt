@@ -1,10 +1,10 @@
 # CivTech România
 
 > Colecție curatoriată de proiecte civic tech, organizații și resurse din România: instrumente civice, date deschise
-> și proiecte de bună guvernare. 106 proiecte, 13 organizații, 21 resurse.
+> și proiecte de bună guvernare. 107 proiecte, 13 organizații, 21 resurse.
 
 Fiecare intrare are o pagină proprie la https://civtech.gov2.ro/<tip>/<slug>/ (tip: proiect, organizatie, resursa). Starea
-(activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-10-28. Textele sunt în
+(activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-10-29. Textele sunt în
 limba română. Datele sunt reutilizabile conform EUPL v1.2.
 
 ## Date
@@ -87,6 +87,7 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 
 - [Antibunk](https://civtech.gov2.ro/proiect/antibunk/): Identificarea și combaterea dezinformării online. Site: https://antibunk.ro/
 - [Dignitas](https://civtech.gov2.ro/proiect/dignitas/): Fact-checking colaborativ pentru afirmații politice românești. Site: https://dignitas.ro/
+- [dimineața.de](https://civtech.gov2.ro/proiect/dimineata/): Jurnalism civic pentru Sibiu și România, cu surse și proces editorial explicat. Site: https://dimineata.de/
 - [Factual](https://civtech.gov2.ro/proiect/factual/): Fact-checking pentru declarațiile politicienilor. Site: https://www.factual.ro
 - [Monarh AI](https://civtech.gov2.ro/proiect/monarh-ai/): Monitorizarea manipulării de pe TikTok. Site: https://monarhdef.ro/
 - [PressPay](https://civtech.gov2.ro/proiect/presspay/): Abonament lunar împărțit între publicațiile independente pe care le apreciezi. Site: https://presspay.ro/

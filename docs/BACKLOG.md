@@ -2,6 +2,16 @@
 
 Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
+## New URLs — 2026-10-29
+
+- [x] Audit and add `dimineata` and `gio` as proposed v2 entries, with Gabriel Popa attribution rows. Profile, search, inventory and draft preview completed. [Cell audit](reports/add-new-url-2026-10-29.md).
+- [x] Owner: publish `dimineata`. Accepted for publication on 2026-10-29. `gio` stays hidden pending review.
+- [ ] Reminder: check gio’s terms with its author, Gabriel Popa. Confirm whether catalogue profiling and documentation collection are permitted before changing the blocklist or publishing gio.
+- [ ] Owner: review search noise for `dimineata` and `gio`. Each has 19 retained rows; all 38 look unrelated from titles and snippets. No editor cell changed.
+- [ ] `gio`: obtain owner-saved documentation or the exact URL of the public `gio-data` repository. Terms §5.2 exclude automated scraping. The collection blocklist now covers the host.
+- [ ] Test fixtures assume that every live entry passes the publication gate. A draft addition causes unrelated tests to fail. Copy only the accepted baseline, or normalize classifications inside each test fixture. Do not accept draft entries to satisfy tests.
+- [ ] `dimineata`: verify the current project's launch date. The first domain capture is 2021-12-29; it does not prove this project's age.
+
 ## Inventory batch E — 2026-10-27
 
 - [x] Variable inventory for twelve entries of „De analizat”: `monitor-safe`, `igov`, `companii-publice-ro`, `executii-bugetare`, `ce-cumpara-primaria`, `sicap-ai`, `open-budget`, `monitor-social`, `verifica-psiholog`, `portal-just-modern`, `cat-de-tare`, `recontorizarea`. Brief: [inventory-batch-e.md](briefs/inventory-batch-e.md).

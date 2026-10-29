@@ -1,5 +1,46 @@
 # Activity
 
+## 2026-10-29 — Publish dimineața.de; retain gio for review
+
+**Done**
+- Accepted `dimineata` for publication at the owner's request. Kept `gio` hidden while its terms await clarification.
+- Added the owner's backlog reminder: check gio's terms with Gabriel Popa before further collection or publication.
+- Publication validation: zero errors and warnings. Public build: 141 entries; only dimineata is added.
+- Full suite: 1,102 tests pass, eight skipped (161.125 seconds). The prior draft-state failures are resolved.
+
+**Hard**
+- A proposed row blocks the public build. Keeping gio hidden preserves its audit and permits dimineata's publication.
+
+**Decided**
+- `dimineata` is `acceptat`; `gio` is `ascuns`. The collection block remains in place.
+- Include the catalogue, observations, audit, images and generated public files in the publication commit.
+- Version v0.43.0 records the catalogue addition and measured audit. This repository has no Cargo.toml; its version history is docs/RELEASES.md and git tags.
+
+## 2026-10-29 — Proposed entries dimineața.de and gio
+
+**Done**
+- Added two catalogue rows and author relations L227–L228 for Gabriel Popa. Existing rows retain their bytes.
+- Recorded each cell and its evidence in [the audit](reports/add-new-url-2026-10-29.md).
+- Profiled `dimineata`: HTTP 200, OG image, icons, update 2026-10-01 from RSS. First domain capture: 2021-12-29.
+- Search used six Serper requests and two Brave requests, approximately $0.016. Stored 29 and 36 results; each entry retains 19.
+- Collected three dimineata documentation pages in five requests. Inventory made zero requests and added zero structured fields.
+- Generated both inventory records and the coverage report. Validation and the isolated draft build pass.
+- Full suite outside the sandbox: 1,102 tests, 18 assertion failures, zero errors, eight skips (148.488 seconds). All failures reflect publication-gate expectations for the two draft entries.
+
+**Hard**
+- gio terms §5.2 exclude automated scraping. The restriction became visible after three audit requests. No subsequent request reached that host.
+- The search names collide with poems, food, music and unrelated people. All 38 retained results look unrelated from snippets.
+- The sandbox denied the uv cache and network access. The profiler, search and documentation collector ran with approved access.
+
+**Decided**
+- Both classifications remain `propus`. No commit or publication was requested.
+- Added `gio.ciolan.io` to the collection blocklist. Further evidence needs owner-saved pages or a linked repository.
+- dimineata is an editorial initiative (`proiect`, `fara-date`). gio structures video statements (`proiect`, `date-proprii`).
+- Both explicitly use Claude. No repository URL was guessed. gio contact placeholders remain empty.
+- A temporary hook enforced dimineata's interval of more than one second between requests. No repository script changed.
+- Left search results untouched. The owner decides editorial pruning; mention counts remain noisy until then.
+- The public build refuses both proposed entries, as expected. The draft preview has 142 visible entries.
+
 ## 2026-10-28 — New entry destrajă.ro and the v2 `/add-new-url`
 
 **Done**

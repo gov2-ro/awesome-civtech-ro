@@ -3518,6 +3518,88 @@
       ]
     },
     {
+      "slug": "dimineata",
+      "url": "https://dimineata.de/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://dimineata.de/",
+          "final_url": "https://dimineata.de/",
+          "http_status": 200,
+          "fetched_at": "2026-10-29T15:09:31.473064+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "dimineața.de — pur și simplu, sincer",
+          "sections": [],
+          "sha256": "f88e6b99b7b8bc599fa9cb4fd0cf65d9b1d9c21fa5f96dd75bee8809d3492b0a",
+          "snapshot": "pagini/5f0a473581d094d139d0658f.json",
+          "text_chars": 3507
+        },
+        {
+          "url": "https://dimineata.de/llms.txt",
+          "final_url": "https://dimineata.de/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-10-29T15:09:31.652803+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://dimineata.de/confidentialitate/",
+          "final_url": "https://dimineata.de/confidentialitate/",
+          "http_status": 200,
+          "fetched_at": "2026-10-29T15:09:32.721397+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "despre",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Politica de confidențialitate — dimineața.de",
+          "sections": [
+            {
+              "kind": "despre",
+              "heading": "Cum funcționează →",
+              "url": "https://dimineata.de/confidentialitate/#pactul-cu-cititorul"
+            }
+          ],
+          "sha256": "8eb05d5737caa04bf4c89d8c60b9468a46e14e2c00eff2a2c2f548c2fbfe4c76",
+          "snapshot": "pagini/22e285d531f2e66f89bba59b.json",
+          "text_chars": 12909
+        },
+        {
+          "url": "https://dimineata.de/biografie/",
+          "final_url": "https://dimineata.de/biografie/",
+          "http_status": 200,
+          "fetched_at": "2026-10-29T15:09:33.876341+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "despre",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Biografie — dimineața.de",
+          "sections": [],
+          "sha256": "745cc1544db77307dab28876031c5786cb42b764be40575796e8603998a404bc",
+          "snapshot": "pagini/76571111ec7eb88c47dcbfda.json",
+          "text_chars": 9287
+        },
+        {
+          "url": "https://dimineata.de/metodologie/",
+          "final_url": "https://dimineata.de/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-10-29T15:09:34.970334+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
       "slug": "domnule-primar",
       "url": "https://www.domnuleprimar.ro/",
       "state": "documentatie-neconfirmata",
@@ -4472,6 +4554,14 @@
           "scope": "proiect"
         }
       ]
+    },
+    {
+      "slug": "gio",
+      "url": "https://gio.ciolan.io/",
+      "state": "colectare-interzisa",
+      "motiv": "Termenii §5.2 exclud scraping-ul automat al site-ului viu.",
+      "inventory_completeness": "neanalizat",
+      "pages": []
     },
     {
       "slug": "guvernezi",
