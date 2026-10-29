@@ -1,5 +1,32 @@
 # Activity
 
+## 2026-10-30 — Shared structure profiler, version-2 contract
+
+**Done**
+- Settled the pilot's schema gaps in spec section 8. Added [the guide](STRUCTURE-PROFILER.md) and [the measured report](reports/site-structure-engine.md).
+- Added `profile_structure.py`, `structure_discovery.py` and `structure_state.py`, stdlib only, with 53 focused tests.
+- Implemented retained and saved-document imports, idempotent pilot import, bounded HTTP discovery, OpenAPI declarations and explicit GET probe plans.
+- The isolated measurement store has four projects, 84 evidence records, 34 patterns and 16 API operations. Seven pilot records and two proposed correspondences remain intact.
+- Both Python 3.12 and 3.15 pass the final 53-test focused suite. The full suite passed 1,193 tests with eight skips before the last two focused URL-location cases.
+- Pilot integrity, engine integrity, repository validation and the public build pass.
+
+**Hard**
+- Measured 33 charged requests: three sandbox DNS failures, 20 successful requests in the first approved pass, ten in the linked-document pass.
+- Zero requests reached forbidden hosts. SICAP remained blocked, and a large company sitemap stayed partial at the 2 MiB cap.
+- The API host of România Transparentă disallows its `/v1` paths through robots rules. The engine skipped contract retrieval and the explicit company probe.
+- The initial full suite had nine existing HTTP-test errors because socket binding was denied. The approved rerun passed 1,187 tests with eight skips before the final compatibility cases were added.
+- Local Python 3.15 resolves broad-Allow/specific-Disallow rules correctly; Python 3.12 accepts the first rule. The engine now uses version-independent longest-match rules, allow ties, wildcard paths and merged named-agent groups.
+- The first pilot adapter left 17 optional evidence pointers in the old ID namespace. Fixed the adapter and remapped only the development store pointers; fresh imports and reference checks pass.
+- No new real local-ID correspondence was measured. New project business bindings remain a curation step.
+
+**Decided**
+- Use a separate version-2 store with an explicit output directory. Preserve the pilot as an immutable version-1 baseline.
+- Keep source declarations separate from live enforcement, and keep field-name hints separate from verified namespace bindings.
+- Do not run a probe with unresolved referenced parameters. It remains a check-plan gap instead of an incomplete request.
+- Preserve immutable evidence and prior findings after refresh failures; never rewrite owner decisions. Dispatch policy snapshots preserve historical audits.
+- Defer browser diagnosis, repository crawling, domain search, GraphQL execution and new business bindings. The engine records these boundaries explicitly.
+- Version v0.46.0 records the contract and first shared engine. This repository has no Cargo.toml.
+
 ## 2026-10-30 — Four-site structure pilot
 
 **Done**

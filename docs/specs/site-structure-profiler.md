@@ -1,10 +1,10 @@
 # Spec: site structure and entity correspondences
 
-Date: 2026-10-30. Status: accepted direction; schema provisional until the pilot review.
+Date: 2026-10-30. Status: accepted; engine contract version 2 is specified in section 8.
 Pilot: [site-structure-pilot.md](../briefs/site-structure-pilot.md).
-This document specifies future work. No structure profiler or correspondence service is implemented by this change.
+`scripts/profile_structure.py` implements the first shared discovery engine.
 The [completed pilot](../reports/site-structure-pilot/README.md) supplies observations and an offline checker.
-The shared engine and stable schema remain future work.
+The version-1 pilot is historical. Correspondence review and bulk resolution remain future work.
 
 ## 1. Goal and terms
 
@@ -237,3 +237,63 @@ The reviewed local workflows supplied these design choices:
 
 These paths are relative to their repositories under `~/devbox/scraping/` or `~/devbox/gov2/`.
 They are design references, not runtime dependencies or delegated instructions.
+
+## 8. Engine contract, version 2 — 2026-10-30
+
+The owner requested the shared engine after the completed pilot.
+The version-1 pilot remains an immutable research baseline.
+The engine writes a separate version-2 store through an explicit `--out` directory.
+It never rewrites the pilot, catalogue sources, health profiles or public output.
+
+### Decisions from the pilot
+
+- An operation has `uses`, a list of collection references and subject roles. No primary collection implies exclusive coverage.
+- Identifier rules record `mapping_basis`: `declared`, `sampled` or `unknown`. A declaration never creates a record correspondence.
+- Collections have `record_grain` and `identity_components`. Registration records can have several rows for one CUI.
+- Relationships name their meaning explicitly. `associated_territory`, `located_in`, `administers`, `buyer`, `supplier` and `parent` differ from identity.
+- API security records declared requirements, schemes and observed enforcement separately. Missing security declarations mean `unspecified`.
+- Unknown code issuers remain unknown. A field name or numeric shape cannot promote an identifier to a shared namespace.
+
+### Store and preservation
+
+`store.json` holds `schema_version: 2`, selected projects and append-only attempt records.
+Each project holds `patterns`, `operations`, `identifier_rules`, `collections`, `namespaces`, `relationships` and `checks`.
+The store also holds bounded `records` and proposed `assertions` imported from the pilot.
+`decisions.json` remains separate. Discovery never changes its bytes.
+`evidence/` holds immutable, content-addressed extracts; `requests.jsonl` records attempted requests and skips.
+
+Findings use stable keys based on project and semantic identity, never array positions.
+A finding's evidence list can grow. A failed refresh cannot delete prior findings or artifacts.
+Applicability lives on findings; source evidence remains immutable.
+An incomplete attempt leaves unconfirmed earlier findings stale. A new supporting observation can make a finding current.
+Every new finding remains proposed. Observed transport success is separate from editorial acceptance.
+
+An explicit `--seed-pilot DIR` imports the four pilot profiles, evidence and record references.
+It is idempotent and never copies identity decisions into the generated store.
+A general output checker verifies keys, references, evidence hashes, request accounting and the decision-file boundary.
+The old pilot checker continues to validate the version-1 baseline.
+
+### Discovery and probes
+
+The stdlib engine accepts explicit catalogue slugs, an isolated output path and request limits.
+It supports offline checks, retained documentation imports and owner-saved text imports with their original save time.
+The engine reads the existing documentation cache without regenerating it.
+
+Live discovery checks robots rules, the project page, scoped `llms.txt`, sitemap samples and explicitly linked documentation or contracts.
+It retains declared templates, GET search forms, bounded path-shape candidates and OpenAPI operation declarations.
+An inferred numeric or slug variable has no shared namespace until semantic evidence establishes one.
+Automated discovery does not assign business meaning to route groups.
+Existing pilot interpretations remain distinct from generated candidates.
+
+API tests require explicitly supplied probe URLs that match known GET operations.
+The engine skips unresolved required parameters and declared authenticated operations.
+It records the response's structure and transport outcome; it does not harvest record values or generate identity matches.
+Browser diagnosis, paid search, repository crawling and automated GraphQL execution remain outside this first engine.
+Their existing evidence can be imported; their absence remains explicit in the check plan.
+
+All requests, redirects and robots checks share per-project and total budgets.
+The default limits are 20 requests per project, 100 overall, one second per host, 20 seconds per request and 2 MiB per response.
+Each redirect target passes the forbidden-host check and applicable robots rules.
+A host stop on 401, 403, 429 or a challenge persists across projects in the same run.
+A missing or failed robots response is recorded; a transport failure cannot grant permission to fetch other paths.
+No browser, alternate client or credential bypass follows a host stop.

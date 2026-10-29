@@ -28,6 +28,9 @@ python3 scripts/cutover_v2.py --plan|--rehearse DIR   # applied on 2026-10-22: -
 uv run scripts/profile.py                   # profile entries missing from profil.csv (--force all, --only slug,slug, --no-shots)
 uv run scripts/profile.py --extra           # age / activity / repo / Wayback / cert / Wikipedia signals (free)
 uv run scripts/profile.py --opr             # Open PageRank (OPR_API_KEY)
+python3 scripts/profile_structure.py --only transparenta-eu --out /tmp/civtech-structure --offline   # separate structure discovery; omit --offline for bounded HTTP
+python3 scripts/profile_structure.py --out /tmp/civtech-structure --check   # verify the isolated version-2 store offline
+python3 -m unittest discover -s scripts -p 'test_profile_structure.py'   # shared structure engine tests (stdlib)
 uv run scripts/search.py --dry-run --only slug,slug   # print the search queries; no requests
 uv run scripts/search.py                    # Serper + Brave (SERPER_API_KEY, BRAVE_API_KEY, paid): entries without rows in data/mentiuni.csv (--only, --force, --provider serper|brave|all)
 uv run scripts/search.py --prune-only       # apply the prune rules to the stored rows and recompute mentions in profil.csv; no requests (profile.py keeps these columns since v0.7.0)
@@ -44,6 +47,10 @@ uv run scripts/form.py --data-dir data/taxonomy-v2/integrare --import propuneri.
 `validate.py` and `build.py` are stdlib-only and run with plain `python3` (CI uses 3.12). `profile.py`, `search.py` and `review.py` declare their dependencies inline (PEP 723 `# /// script` header) and must be run with `uv run`; `profile.py` and `review.py` use Playwright for JS-rendered pages. After changing scripts, run `validate.py` then `build.py` (that is exactly what CI does). Three test files cover the scripts: `scripts/test_taxonomy_v2.py`, `scripts/test_enrichment.py` and `scripts/test_sheets_form.py`. `validate.yml` runs all of them, then the v2 package checks, the v2 preview build, the browser checks (`scripts/check_preview.py`) and actionlint.
 
 ## Data pipeline
+
+The separate structure profiler writes only to an explicit `--out` directory. It never changes health observations or the public catalogue.
+Its version-2 store keeps evidence, patterns, API declarations, identifier candidates and check outcomes. Owner decisions stay separate.
+See `docs/STRUCTURE-PROFILER.md` and spec section 8. The version-1 pilot remains in `docs/reports/site-structure-pilot/`.
 
 ```
 Google Sheet (tab v2-intrari) ⇄ scripts/sheets.py (pull / push)
