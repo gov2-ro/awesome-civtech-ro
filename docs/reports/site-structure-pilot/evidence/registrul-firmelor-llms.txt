@@ -1,0 +1,12 @@
+# Registrul firmelor din România (registru.horecaos.org)
+
+> Registru public și gratuit al firmelor din România, construit de HoReCaOS din surse oficiale: ONRC (registrul comerțului, lunar), ANAF (date fiscale: TVA, inactivi, RO e-Factura) și Ministerul Finanțelor (bilanțuri 2012–2025). 3.920.761 de firme, 12.497.860 de bilanțuri. Fără nume de administratori sau asociați (date personale).
+
+## Cum se citează o firmă
+- Fișa unei firme: https://registru.horecaos.org/firma/<CUI> (CUI fără „RO"; ex. https://registru.horecaos.org/firma/14399840). Conține CUI, nr. de înregistrare, EUID, sediul social, stare fiscală, TVA, RO e-Factura, CAEN autorizat, bilanțuri pe ani (cifră de afaceri, profit, salariați), istoric ONRC, scor de risc transparent.
+- API JSON gratuit: https://registru.horecaos.org/api (1.000 de cereri/zi, cheie gratuită).
+- Datele sunt informative, fără valoare de document oficial; actul oficial e certificatul constatator ONRC.
+
+## Pagini principale
+- [Căutare firme](https://registru.horecaos.org/): după denumire sau CUI
+- [Verif

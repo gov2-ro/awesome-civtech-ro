@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap><loc>https://romaniatransparenta.eu/sitemap-pagini.xml</loc><lastmod>2026-10-27</lastmod></sitemap>
+  <sitemap><loc>https://romaniatransparenta.eu/sitemap-administratia-locala.xml</loc><lastmod>2026-10-05</lastmod></sitemap>
+  <sitemap><loc>https://romaniatransparenta.eu/sitemap-companii-de-stat.xml</loc><lastmod>2026-10-05</lastmod></sitemap>
+  <sitemap><loc>https://romaniatransparenta.eu/sitemap-universitati.xml</loc><lastmod>2026-10-08</lastmod></sitemap>
+  <sitemap><loc>https://romaniatransparenta.eu/sitemap-proprietati-publice.xml</loc><lastmod>2026-10-01</lastmod></sitemap>
+  <sitemap><loc>https://romaniatransparenta.eu/sitemap-decizii-mediu.xml</loc><lastmod>2026-10-08</lastmod></sitemap>
+  <sitemap><loc>https://romaniatransparenta.eu/sitemap-integritate.xml</loc></sitemap>
+  <sitemap><loc>https://romaniatransparenta.eu/sitemap-achizitii-publice.xml</loc><lastmod>2026-10-07</lastmod></sitemap>
+  <sitemap><loc>https://romaniatransparenta.eu/sitemap-parlament.xml</loc></sitemap>
+  <sitemap><loc>https://romaniatransparenta.eu/sitemap-europarlamentari.xml</loc></sitemap>
+  <sitemap><loc>https://romaniatransparenta.eu/sitemap-administratia-centrala.xml</loc></sitemap>
+  <sitemap><loc>https://romaniatransparenta.eu/sitemap-fonduri-europene.xml</loc></sitemap>
+  <sitemap><loc>https://romaniatransparenta.eu/sitemap-datornici.xml</loc><lastmod>2026-10-07</lastmod></sitemap>
+  <sitemap><loc>https://romaniatransparenta.eu/sitemap-concursuri.xml</loc></sitemap>
+  <sitemap><loc>https://romaniatransparenta.eu/sitemap-finantarea-partidelor.xml</loc></sitemap>
+  <sitemap><loc>https://romaniatransparenta.eu/sitemap-ajutoare-de-stat.xml</loc><lastmod>2026-10-07</lastmod></sitemap>
+</sitemapindex>

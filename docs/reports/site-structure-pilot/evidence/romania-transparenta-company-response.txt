@@ -1,0 +1,139 @@
+{
+  "date": {
+    "cui": "43721310",
+    "denumire": "A.D.P. BÂRCA S.R.L.",
+    "forma": "SRL",
+    "categorie": "SOC",
+    "sector": "Salubrizare și deșeuri",
+    "cod_caen": "3811",
+    "judet": "Dolj",
+    "stare": "activa",
+    "stare_sigura": true,
+    "nivel": "local",
+    "uat_sediu": "70940",
+    "tutela_id": null,
+    "tutela": null,
+    "tutela_citita_automat": false,
+    "mama": null,
+    "observat_la": "2026-10-05",
+    "incredere": "derivat",
+    "tutela_siruta": null,
+    "bilanturi": {
+      "descriere": "situațiile financiare anuale (lei); un an lipsă = bilanț nedepus sau negăsit, nu zero",
+      "ani": [
+        {
+          "an": 2021,
+          "cifra_afaceri": 16157,
+          "profit_net": -80490,
+          "angajati": 2,
+          "datorii": 363443,
+          "capitaluri_proprii": -80290,
+          "observat_la": "2026-09-10",
+          "incredere": "oficial"
+        },
+        {
+          "an": 2022,
+          "cifra_afaceri": 109646,
+          "profit_net": -43273,
+          "angajati": 2,
+          "datorii": 358561,
+          "capitaluri_proprii": -123563,
+          "observat_la": "2026-09-10",
+          "incredere": "oficial"
+        },
+        {
+          "an": 2023,
+          "cifra_afaceri": 97966,
+          "profit_net": -68584,
+          "angajati": 2,
+          "datorii": 364942,
+          "capitaluri_proprii": -192146,
+          "observat_la": "2026-09-10",
+          "incredere": "oficial"
+        },
+        {
+          "an": 2024,
+          "cifra_afaceri": 168850,
+          "profit_net": -18429,
+          "angajati": 2,
+          "datorii": 371978,
+          "capitaluri_proprii": -210575,
+          "observat_la": "2026-09-10",
+          "incredere": "oficial"
+        },
+        {
+          "an": 2025,
+          "cifra_afaceri": 143771,
+          "profit_net": -31201,
+          "angajati": 2,
+          "datorii": 22711,
+          "capitaluri_proprii": 108224,
+          "observat_la": "2026-09-10",
+          "incredere": "oficial"
+        }
+      ]
+    },
+    "conducere": {
+      "descriere": "conducerea publicată de companie pe site (ultima colectare); persoanele apar doar prin funcția publică",
+      "persoane": []
+    },
+    "filiale": [],
+    "obligatii": {
+      "descriere": "ce publică pe site din lista OUG 109/2011, la ultima verificare: publicat, partial (doar documente vechi), negasit (căutat și negăsit, nu dovada că lipsește), site_indisponibil",
+      "verificari": []
+    },
+    "remuneratii": {
+      "descriere": "sumele din rapoartele anuale de remunerare, pe funcție și an (citite automat: suma și fraza copiate din raport, funcția aleasă de un model)",
+      "sume": []
+    },
+    "legaturi": {
+      "pagina": "https://romaniatransparenta.eu/registre/companii-de-stat/43721310",
+      "documente": "https://api.romaniatransparenta.eu/v1/date/companii_documente?cui=43721310",
+      "achizitii": "https://api.romaniatransparenta.eu/v1/achizitii?cui_autoritate=43721310",
+      "achizitii_sumar": "https://api.romaniatransparenta.eu/v1/achizitii/sumar?cui_autoritate=43721310",
+      "contracte_castigate": "https://api.romaniatransparenta.eu/v1/achizitii?cui_castigator=43721310",
+      "filiale": "https://api.romaniatransparenta.eu/v1/companii?mama=43721310",
+      "bilanturi": "https://api.romaniatransparenta.eu/v1/date/companii_bilanturi?cui=43721310"
+    }
+  },
+  "provenienta": {
+    "registru": {
+      "id": "companii_de_stat",
+      "denumire": "registrul companiilor de stat",
+      "url": "https://romaniatransparenta.eu/registre/companii-de-stat/43721310"
+    },
+    "sursa": [
+      {
+        "id": "sursa:amepip-indicatori",
+        "denumire": "AMEPIP — Indicatori financiari, nefinanciari și de guvernanță corporativă (întreprinderile publice monitorizate)",
+        "institutie_emitenta": "Agenția pentru Monitorizarea și Evaluarea Performanțelor Întreprinderilor Publice",
+        "url_baza": "https://data.gov.ro/dataset/amepip-indicatori-financiari-nefinanciari-si-de-guvernanta-corporativa",
+        "licenta": "CC BY 4.0"
+      },
+      {
+        "id": "sursa:anaf-bilant",
+        "denumire": "Situațiile financiare anuale depuse la ANAF (bilanțuri)",
+        "institutie_emitenta": "Agenția Națională de Administrare Fiscală",
+        "url_baza": "https://www.anaf.ro",
+        "licenta": "informație publică"
+      }
+    ],
+    "observat_la": "2026-10-05",
+    "incredere": [
+      {
+        "valoare": "derivat",
+        "explicatie": "calculat de noi din date oficiale"
+      },
+      {
+        "valoare": "oficial",
+        "explicatie": "preluat dintr-un document oficial"
+      }
+    ],
+    "editie": "publicare:20261029T133011",
+    "date_actualizate_la": "2026-10-26",
+    "licenta": "CC BY 4.0",
+    "licenta_nota": "Compilația România Transparentă e sub CC BY 4.0; datele preluate își păstrează regimul surselor (câmpul `licenta` din fiecare sursă).",
+    "citare": "România Transparentă, registrul companiilor de stat, https://romaniatransparenta.eu/registre/companii-de-stat/43721310, date actualizate la 2026-10-26, CC BY 4.0",
+    "instructiuni": "Citează sursa folosind textul din `citare`. „Nu avem date” sau o listă goală NU înseamnă zero sau „nu există”: înseamnă că nu am găsit sau nu am verificat încă. Rezultatul `negasit` înseamnă „căutat automat și negăsit”, nu „lipsește”."
+  }
+}

@@ -1,0 +1,29 @@
+} from "../types";
+
+interface AuthorityInfo {
+  entityName: string;
+  fiscalNumber: string;
+  city: string;
+  county: string;
+  entityId?: number;
+}
+
+interface AuthorityByNationalIdArgs {
+  na
+uthorityByNationalIdArgs) {
+  if (!nationalId) {
+    throw new Error("CUI/CIF este obligatoriu");
+  }
+
+  const valueAggScript = `
+    if (doc.containsKey('item.ronContractValue') && doc['item.ronContractV
+NDEX_DIRECT } },
+                        { match_phrase: { "authority.numericFiscalNumber": nationalId } },
+                        { term: { "item.sysDirectAcquisitionState.id": 7 } },
+
+DEX_OFFLINE } },
+                        { match_phrase: { "authority.numericFiscalNumber": nationalId } },
+                      ],
+                    },
+                  },
+                  // L

@@ -1,0 +1,16 @@
+const title = company
+      ? `${company.fiscalNumber} / ${company.entityName} / ${company.city}${company.county ? `, ${company.county}` : ""}`
+      : `Firma: ${nationalId}`;
+
+    const description = `${total} contracte in valoare de ${totalValueRon}`;
+
+    return {
+      title,
+      description,
+      ...generateOpenGraph({
+        id: nationalId,
+        title,
+        description,
+        path: `/firma/${nationalId}`,
+      }),
+    };

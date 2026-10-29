@@ -3,6 +3,8 @@
 Date: 2026-10-30. Status: accepted direction; schema provisional until the pilot review.
 Pilot: [site-structure-pilot.md](../briefs/site-structure-pilot.md).
 This document specifies future work. No structure profiler or correspondence service is implemented by this change.
+The [completed pilot](../reports/site-structure-pilot/README.md) supplies observations and an offline checker.
+The shared engine and stable schema remain future work.
 
 ## 1. Goal and terms
 

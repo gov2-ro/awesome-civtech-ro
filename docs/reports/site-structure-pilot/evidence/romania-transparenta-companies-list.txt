@@ -1,0 +1,57 @@
+{
+  "date": [
+    {
+      "cui": "43721310",
+      "denumire": "A.D.P. BÂRCA S.R.L.",
+      "forma": "SRL",
+      "categorie": "SOC",
+      "sector": "Salubrizare și deșeuri",
+      "judet": "Dolj",
+      "stare": "activa",
+      "stare_sigura": true,
+      "nivel": "local",
+      "uat_sediu": "70940",
+      "tutela": null,
+      "observat_la": "2026-10-05",
+      "incredere": "derivat",
+      "fisa": "https://api.romaniatransparenta.eu/v1/companii/43721310"
+    }
+  ],
+  "paginare": {
+    "limit": 1,
+    "offset": 0,
+    "intoarse": 1,
+    "are_urmatoarea": true,
+    "urmatoarea_offset": 1,
+    "total": 1389
+  },
+  "provenienta": {
+    "registru": {
+      "id": "companii_de_stat",
+      "denumire": "registrul companiilor de stat",
+      "url": "https://romaniatransparenta.eu/registre/companii-de-stat"
+    },
+    "sursa": [
+      {
+        "id": "sursa:amepip-indicatori",
+        "denumire": "AMEPIP — Indicatori financiari, nefinanciari și de guvernanță corporativă (întreprinderile publice monitorizate)",
+        "institutie_emitenta": "Agenția pentru Monitorizarea și Evaluarea Performanțelor Întreprinderilor Publice",
+        "url_baza": "https://data.gov.ro/dataset/amepip-indicatori-financiari-nefinanciari-si-de-guvernanta-corporativa",
+        "licenta": "CC BY 4.0"
+      }
+    ],
+    "observat_la": "2026-10-05",
+    "incredere": [
+      {
+        "valoare": "derivat",
+        "explicatie": "calculat de noi din date oficiale"
+      }
+    ],
+    "editie": "publicare:20261029T133011",
+    "date_actualizate_la": "2026-10-26",
+    "licenta": "CC BY 4.0",
+    "licenta_nota": "Compilația România Transparentă e sub CC BY 4.0; datele preluate își păstrează regimul surselor (câmpul `licenta` din fiecare sursă).",
+    "citare": "România Transparentă, registrul companiilor de stat, https://romaniatransparenta.eu/registre/companii-de-stat, date actualizate la 2026-10-26, CC BY 4.0",
+    "instructiuni": "Citează sursa folosind textul din `citare`. „Nu avem date” sau o listă goală NU înseamnă zero sau „nu există”: înseamnă că nu am găsit sau nu am verificat încă. Rezultatul `negasit` înseamnă „căutat automat și negăsit”, nu „lipsește”."
+  }
+}

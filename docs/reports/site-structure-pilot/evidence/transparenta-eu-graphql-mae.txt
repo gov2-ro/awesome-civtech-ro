@@ -1,0 +1,1 @@
+{"data":{"entity":{"cui":"4266863","name":"MINISTERUL AFACERILOR EXTERNE","entity_type":"public_entity","is_uat":false,"uat":{"name":"SECTORUL 1","siruta_code":"179141"}}}}

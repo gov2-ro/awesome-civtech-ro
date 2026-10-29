@@ -1,0 +1,9 @@
+const GET_ENTITY_ROUTING_SUMMARY_QUERY = `
+  query GetEntityRoutingSummary($cui: ID!) {
+    entity(cui: $cui) {
+      cui
+      entity_type
+      is_uat
+    }
+  }
+`;

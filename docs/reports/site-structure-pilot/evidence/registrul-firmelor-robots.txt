@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+Disallow: /filtre.csv
+Disallow: /verifica.csv
+Disallow: /barometru.json
+Disallow: /cont
+Disallow: /iesire
+Disallow: /auth/
+Disallow: /v1/
+Disallow: /api/v1/
+Disallow: /api/raport-concurenta
+Disallow: /raport-concurenta/confirma
+
+User-agent: GPTBot
+Allow: /
+Disallow: /filtre.cs

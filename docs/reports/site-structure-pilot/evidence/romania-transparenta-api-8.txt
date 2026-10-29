@@ -1,0 +1,99 @@
+{
+  "info": {
+    "description": "Date deschise, doar citire, fără cheie. Limită: 60 cereri/minut pe IP, rafală 20. Fiecare răspuns are `provenienta` (surse, data observării, încredere, licență, citare). API-ul arată doar ce arată site-ul: persoanele apar numai prin funcția lor publică. Serverul MCP e la /mcp."
+  },
+  "path": "/v1/date/datornici",
+  "method": "get",
+  "operationId": "date_datornici",
+  "summary": "Datornicii la stat: persoanele juridice cu obligații fiscale restante (lista ANAF)",
+  "parameters": [
+    {
+      "name": "cui",
+      "in": "query",
+      "required": false,
+      "description": "filtru, egal cu: codul fiscal al debitorului (cheia firmei, ca în /v1/companii/{cui})",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "judet",
+      "in": "query",
+      "required": false,
+      "description": "filtru, egal cu: județul",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "categorie",
+      "in": "query",
+      "required": false,
+      "description": "filtru, egal cu: categoria de contribuabili ANAF: mari, mijlocii sau mici (micii includ instituțiile publice)",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "mari",
+          "mijlocii",
+          "mici"
+        ]
+      }
+    },
+    {
+      "name": "tip_entitate",
+      "in": "query",
+      "required": false,
+      "description": "filtru, egal cu: firma, institutie_publica sau alta (asociații, fundații, cooperative, cluburi)",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "firma",
+          "institutie_publica",
+          "alta"
+        ]
+      }
+    },
+    {
+      "name": "data_referinta",
+      "in": "query",
+      "required": false,
+      "description": "filtru, egal cu: data listei ANAF (sfârșitul trimestrului): sumele sunt restanțele la această dată",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "q",
+      "in": "query",
+      "required": false,
+      "description": "căutare fără diacritice în coloana denumire, 2–80 de caractere",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "description": "rânduri pe pagină (implicit 25, maximum 100)",
+      "schema": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 100,
+        "default": 25
+      }
+    },
+    {
+      "name": "offset",
+      "in": "query",
+      "required": false,
+      "description": "deplasarea: câte rânduri se sar. Fără plafon practic: orice listă se parcurge până la capăt cu offset += limit cât timp `paginare.are_urmatoarea`; `paginare.total` spune câte rânduri are filtrul",
+      "schema": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 99999999,
+        "default": 0
+      }
+    }
+  ]
+}

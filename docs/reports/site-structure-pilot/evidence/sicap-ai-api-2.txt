@@ -1,0 +1,62 @@
+{
+  "path": "/v1/contracts/{source}/{id}",
+  "method": "GET",
+  "summary": "Detalii contract",
+  "description": "Obține detaliile unui contract după sursa de date și ID-ul numeric",
+  "parameters": [
+    {
+      "name": "source",
+      "in": "path",
+      "required": true,
+      "schema": {
+        "type": "string",
+        "enum": [
+          "achizitii-directe",
+          "licitatii-publice",
+          "achizitii-offline"
+        ]
+      }
+    },
+    {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+        "description": "ID-ul contractului: noticeId (numeric, ex: 123456) sau noticeNo (string, ex: DA123456)",
+        "type": "string"
+      }
+    }
+  ],
+  "security": null,
+  "securitySchemes": {
+    "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer",
+      "description": "Autentificare prin cheie API"
+    }
+  },
+  "response_properties": [
+    "source",
+    "noticeId",
+    "publicationDate",
+    "noticeNo",
+    "acquisitionState",
+    "name",
+    "cpvCode",
+    "supplier",
+    "awardedValue",
+    "contractDescription",
+    "contractType",
+    "europeanFund",
+    "contractItems",
+    "hasMoreItems",
+    "totalItems",
+    "contractingAuthority",
+    "contractingAuthorityFiscalNumber",
+    "cityAuthority",
+    "countyAuthority",
+    "supplierFiscalNumber",
+    "supplierCity",
+    "supplierCounty"
+  ]
+}

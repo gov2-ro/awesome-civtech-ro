@@ -1,0 +1,57 @@
+{
+  "date": [
+    {
+      "siruta": "179132",
+      "denumire": "Municipiul București",
+      "tip": "municipiu",
+      "judet": "București",
+      "cod_judet": "B",
+      "populatie": 1716961,
+      "an_populatie": null,
+      "cui_primarie": null,
+      "cui_primarie_incredere": null,
+      "cui_consiliu_judetean": null,
+      "observat_la": "2026-09-14",
+      "incredere": "derivat",
+      "fisa": "https://api.romaniatransparenta.eu/v1/uat/179132",
+      "pagina": "https://romaniatransparenta.eu/registre/administratia-locala/179132"
+    }
+  ],
+  "paginare": {
+    "limit": 1,
+    "offset": 0,
+    "intoarse": 1,
+    "are_urmatoarea": false,
+    "urmatoarea_offset": null,
+    "total": 1
+  },
+  "provenienta": {
+    "registru": {
+      "id": "administratia_locala",
+      "denumire": "registrul administrației locale",
+      "url": "https://romaniatransparenta.eu/registre/administratia-locala"
+    },
+    "sursa": [
+      {
+        "id": "sursa:rt-consilii",
+        "denumire": "Registrul consiliilor locale, reconstituit din procesele-verbale AEP și listele BEC",
+        "institutie_emitenta": "România Transparentă",
+        "url_baza": "https://romaniatransparenta.eu",
+        "licenta": "CC BY 4.0 (compilația România Transparentă; datele preluate își păstrează regimul lor)"
+      }
+    ],
+    "observat_la": "2026-09-14",
+    "incredere": [
+      {
+        "valoare": "derivat",
+        "explicatie": "calculat de noi din date oficiale"
+      }
+    ],
+    "editie": "publicare:20261029T133011",
+    "date_actualizate_la": "2026-10-26",
+    "licenta": "CC BY 4.0",
+    "licenta_nota": "Compilația România Transparentă e sub CC BY 4.0; datele preluate își păstrează regimul surselor (câmpul `licenta` din fiecare sursă).",
+    "citare": "România Transparentă, registrul administrației locale, https://romaniatransparenta.eu/registre/administratia-locala, date actualizate la 2026-10-26, CC BY 4.0",
+    "instructiuni": "Citează sursa folosind textul din `citare`. „Nu avem date” sau o listă goală NU înseamnă zero sau „nu există”: înseamnă că nu am găsit sau nu am verificat încă. Rezultatul `negasit` înseamnă „căutat automat și negăsit”, nu „lipsește”."
+  }
+}

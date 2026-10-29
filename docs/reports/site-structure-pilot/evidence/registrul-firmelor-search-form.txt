@@ -1,0 +1,2 @@
+<form action="/" method="get" data-zz-ignore>
+<input name="q" value="" placeholder="denumire sau CUI — ex. 14399840, plăcintă" autofocus>

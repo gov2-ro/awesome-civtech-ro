@@ -1,0 +1,1 @@
+{"data":{"entity":{"cui":"4267117","name":"MUNICIPIUL BUCURESTI","entity_type":"admin_municipality","is_uat":true,"uat":{"name":"MUNICIPIUL BUCUREȘTI","siruta_code":"179132"}}}}

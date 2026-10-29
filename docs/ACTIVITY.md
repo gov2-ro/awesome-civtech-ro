@@ -1,5 +1,32 @@
 # Activity
 
+## 2026-10-30 — Four-site structure pilot
+
+**Done**
+- Completed [the pilot report](reports/site-structure-pilot/README.md), four profiles, 47 evidence extracts and the request log.
+- Recorded 14 collections, 19 page patterns, 16 API operations and seven real organisation/institution/territory record references.
+- Tested five operations live: Transparenta.eu GraphQL and four România Transparentă REST operations. Six API responses were inspected.
+- Proposed two identity correspondences: MAE CUI 4266863 and A.D.P. Bârca CUI 43721310. No owner decision was made.
+- Recorded a separate association between București institution CUI 4267117 and territory SIRUTA 179132.
+- Added `check_structure_pilot.py`, its snapshot-preservation comparison and 40 focused offline tests. Checker, tests and validation pass.
+- `build.py` succeeds with 141 public entries. Excluded its generated changes from this research deliverable.
+
+**Hard**
+- Charged 44 requests: Transparenta.eu 20, SICAP 5 (GitHub only), Registrul firmelor 7, România Transparentă 12.
+- Measured 39 successful HTTP responses, five sandbox DNS failures and one unsent policy skip. Zero forbidden-host, browser or search requests.
+- The network attempts preceded successful approved retries. The log retains the failures; they do not prove an absent endpoint.
+- The public build changed timestamps and amplify's time-dependent score (68 → 69). A timestamp-only comparison caught that assumption before the generated files were restored.
+- SICAP source declares optional local entity IDs and multiple registrations per CUI. No real local-ID mapping was available; only the format is tested synthetically.
+- România Transparentă's București UAT sample has null `cui_primarie`. Territorial and fiscal identity cannot be equated from that response.
+
+**Decided**
+- Preserve partial profiles and original identifier strings. The cost is explicit unknowns instead of an apparently complete map.
+- Keep both CUI correspondences proposed. Shared identifiers support review; they do not settle identity through reorganisations or historical changes.
+- Respect Registrul firmelor's robots exclusion of API paths and its documented key requirement; retain the declarations without probing them.
+- Keep SICAP's saved contract historical and its pinned source distinct from deployment. Its declared bearer scheme lacks per-operation security requirements.
+- Record the schema gaps for review before the shared engine. No general crawler, skill, dependency, public UI or editorial source changed.
+- Version v0.45.0 records the measured pilot and offline checker. There is no Cargo.toml in this repository.
+
 ## 2026-10-30 — Structure profiler spec and pilot brief
 
 **Done**

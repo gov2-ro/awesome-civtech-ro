@@ -1,0 +1,29 @@
+User-agent: *
+Disallow: /componente/
+Disallow: /cont
+Disallow: /autentificare
+Disallow: /registre/salarii/api/
+Disallow: /registre/salarii/oauth/
+
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+User-agent: Bingbot
+Allow: /
+Disallow: /componente/
+Disallow: /cont
+Disallow: /autentificare
+Disallow: /registre/salarii/api/
+Disallow: /registre/salarii/oauth/
+
+Sitemap: https://romaniatransparenta.eu/sitemap.xml
+Sitemap: https://romaniatransparenta.eu/registre/spitale/sitemap.xml
+Sitemap: https://romaniatransparenta.eu/registre/salarii/sitemap.xml

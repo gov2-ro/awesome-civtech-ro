@@ -1,0 +1,23 @@
+{
+  "info": {
+    "description": "Date deschise, doar citire, fără cheie. Limită: 60 cereri/minut pe IP, rafală 20. Fiecare răspuns are `provenienta` (surse, data observării, încredere, licență, citare). API-ul arată doar ce arată site-ul: persoanele apar numai prin funcția lor publică. Serverul MCP e la /mcp."
+  },
+  "path": "/v1/universitati/{cui}",
+  "method": "get",
+  "operationId": "universitati_cui",
+  "summary": "Fișa universității",
+  "parameters": [
+    {
+      "name": "cui",
+      "in": "path",
+      "required": true,
+      "description": "codul fiscal al universității",
+      "schema": {
+        "type": "string",
+        "examples": [
+          "4305849"
+        ]
+      }
+    }
+  ]
+}

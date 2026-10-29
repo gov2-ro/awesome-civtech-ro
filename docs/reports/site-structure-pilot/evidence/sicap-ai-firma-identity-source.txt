@@ -1,0 +1,30 @@
+s } from "../types";
+
+interface CompanyInfo {
+  entityName: string;
+  fiscalNumber: string;
+  city: string;
+  county: string;
+  entityId?: number;
+}
+
+interface NoticeContractItem {
+  winner?:
+;
+  entityId?: number;
+}
+
+interface NoticeContractItem {
+  winner?: { fiscalNumberInt?: string; fiscalNumber?: string };
+  winners?: Array<{ fiscalNumberInt?: string; fiscalNumber?: string }>;
+interface NoticeContractItem {
+  winner?: { fiscalNumberInt?: string; fiscalNumber?: string };
+  winners?: Array<{ fiscalNumberInt?: string; fiscalNumber?: string }>;
+  contractValue?: number;
+iscalNumberInt?: string; fiscalNumber?: string };
+  winners?: Array<{ fiscalNumberInt?: string; fiscalNumber?: string }>;
+  contractValue?: number;
+}
+
+/**
+ * Calculate the total winning value

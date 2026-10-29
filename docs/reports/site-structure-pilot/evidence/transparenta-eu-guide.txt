@@ -1,0 +1,45 @@
+# API and URL Navigation Guide for AI Agents
+
+Base URL: https://transparenta.eu
+
+This guide documents how to access major resources and parameters programmatically or via URL patterns. It complements the machine‑readable JSON parameter files under `/ai/` and is referenced by `llms.txt`.
+
+## Entities
+- Path: `/entities/{cui}`
+- Parameters:
+  - `year` (number, 2016-2025)
+  - `period` (`YEAR` | `QUARTER` | `MONTH`)
+  - `view` (`overview` | `map` | `income-trends` | `expense-trends`)
+  - `normalization` (`total` | `total_euro` | `per_capita` | `per_capita_euro`)
+  - `accountCategory` (`ch` | `vn`)
+- Parameter schema: https://transparenta.eu/ai/entities-parameters.json
+- Example: `/entities/4267117?year=2024&view=overview`
+
+## Entity Analytics
+- Path: `/entity-analytics`
+- Purpose: Cross‑entity comparisons, line items, and exports
+- Parameters:
+  - `filter.report_period` (object: `type`, `selection`) — ISO 8601 dates or yearly anchors
+  - `filter.account_category` (`ch` | `vn`)
+  - `filter.normalization` (`total` | `per_capita` | `total_euro` | `per_capita_euro`)
+  - `treemapPrimary` (`fn` | `ec`), `treemapDepth` (`chapter` | `subchapter` | `paragraph`)
+- Parameter schema: https://transparenta.eu/ai/entities-analytics-parameters.json
+- Example: `/entity-analytics?view=line-items`
+
+## Budget Explorer
+- Path: `/budget-explorer`
+- Purpose: Explore budget composition across categories and years
+- Parameters:
+  - `view` (`overview` | `treemap` | `sankey` | `list`)
+  - `primary` (`fn` | `ec`), `depth` (`main` | `detail`)
+  - `filter` (object): includes `report_period`, `account_category`, `normalization`, `report_type`
+- Parameter schema: https://transparenta.eu/ai/budget-explorer-parameters.json
+- Example: `/budget-explorer?view=treemap&primary=fn`
+
+## Data Formats
+- JSON & CSV exports are exposed by the backend API; client links use the same filters encoded in URLs. Use the parameters above and refer to the `/ai/*.json` schema files for valid ranges and enum values.
+
+## Notes
+- Year range: see each `parameters.json` for current min/max
+- All parameters are optional unless stated; defaults are provided by the UI
+- For canonical patterns refer to the metadata in `<head>` and `llms.txt`

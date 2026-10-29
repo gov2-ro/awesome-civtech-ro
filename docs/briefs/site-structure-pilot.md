@@ -1,7 +1,7 @@
 # Brief: site structure pilot
 
-Date: 2026-10-30. Status: ready; collection has not started.
-Authority: owner approval to formalize the structure profiler and prepare this brief.
+Date: 2026-10-30. Status: completed bounded pilot; [report](../reports/site-structure-pilot/README.md).
+Authority: owner requested pilot execution on 2026-10-30 ("let's move forward").
 Contract: [site-structure-profiler.md](../specs/site-structure-profiler.md).
 
 ## 1. Goal

@@ -5,11 +5,13 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 ## Site structure and entity correspondences — 2026-10-30
 
 - [x] Formalize the separate structure profiler and prepare a four-project pilot. [Spec](specs/site-structure-profiler.md), [brief](briefs/site-structure-pilot.md). Defines collections, page patterns, API operations, identifier namespaces and roles, evidence, and proposed record correspondences.
-- [ ] Execute the pilot for `transparenta-eu`, `sicap-ai`, `registrul-firmelor` and `romania-transparenta`. Include bounded API discovery and an offline contract checker. No request to `sicap.ai` or its subdomains.
+- [x] Execute the pilot for `transparenta-eu`, `sicap-ai`, `registrul-firmelor` and `romania-transparenta`. [Report](reports/site-structure-pilot/README.md): 14 collections, 19 page patterns, 16 API operations (five tested), seven real record samples, two proposed correspondences and one territory relationship. 44 charged requests, zero to forbidden hosts; 40 offline tests pass.
 - [ ] Review the pilot's measured schema gaps and settle the provisional profile contract before implementing the shared engine.
 - [ ] Build the shared structure profiler from the reviewed pilot. Preserve local identifiers, prior evidence and editorial decisions on refresh.
 - [ ] Create `/profile-structure` as a skill after the workflow has been tested. Keep repeatable mechanics in the shared engine.
 - [ ] Later: entity correspondence review, broader identifier mappings and public links between confirmed records. Bulk harvesting and transitive resolution are outside the pilot.
+- [ ] Structure schema review: multi-collection API operations, declared versus sampled local-ID mappings, registration cardinality, territory roles and incomplete API security declarations. The pilot report records the evidence; no invariant change was needed.
+- [ ] Obtain a real local-ID-to-shared-ID sample when access permits. SICAP declares optional `entityId`, but its live host is blocked. The pilot validates the mapping format with synthetic records only.
 
 ## New URLs — 2026-10-29
 

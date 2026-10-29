@@ -1,0 +1,67 @@
+{
+  "date": [
+    {
+      "cui": "46414469",
+      "denumire": "Cancelaria Prim-Ministrului",
+      "acronim": "CPM",
+      "grup": "aparat_guvern",
+      "cod_opc_2026": null,
+      "cif_ordonator_mf": "4283422",
+      "denumire_anaf": "CANCELARIA PRIM-MINISTRULUI",
+      "confirmat_anaf": true,
+      "data_verificare_anaf": "2026-10-01",
+      "observat_la": "2026-10-06",
+      "incredere": "oficial"
+    },
+    {
+      "cui": "4266863",
+      "denumire": "Ministerul Afacerilor Externe",
+      "acronim": "MAE",
+      "grup": "minister",
+      "cod_opc_2026": "14",
+      "cif_ordonator_mf": null,
+      "denumire_anaf": "MINISTERUL AFACERILOR EXTERNE",
+      "confirmat_anaf": true,
+      "data_verificare_anaf": "2026-10-01",
+      "observat_la": "2026-10-06",
+      "incredere": "oficial"
+    }
+  ],
+  "paginare": {
+    "limit": 2,
+    "offset": 0,
+    "intoarse": 2,
+    "are_urmatoarea": true,
+    "urmatoarea_offset": 2,
+    "total": 18
+  },
+  "provenienta": {
+    "registru": {
+      "id": "administratia_centrala",
+      "denumire": "registrul administrației publice centrale",
+      "url": "https://romaniatransparenta.eu/registre/administratia-centrala"
+    },
+    "sursa": [
+      {
+        "id": "sursa:mf-entitati-publice",
+        "denumire": "Lista entităților publice (1 septembrie 2026)",
+        "institutie_emitenta": "Ministerul Finanțelor",
+        "url_baza": "https://data.gov.ro",
+        "licenta": "licență deschisă (data.gov.ro)"
+      }
+    ],
+    "observat_la": "2026-10-06",
+    "incredere": [
+      {
+        "valoare": "oficial",
+        "explicatie": "preluat dintr-un document oficial"
+      }
+    ],
+    "editie": "publicare:20261029T133011",
+    "date_actualizate_la": "2026-10-26",
+    "licenta": "CC BY 4.0",
+    "licenta_nota": "Compilația România Transparentă e sub CC BY 4.0; datele preluate își păstrează regimul surselor (câmpul `licenta` din fiecare sursă).",
+    "citare": "România Transparentă, registrul administrației publice centrale, https://romaniatransparenta.eu/registre/administratia-centrala, date actualizate la 2026-10-26, CC BY 4.0",
+    "instructiuni": "Citează sursa folosind textul din `citare`. „Nu avem date” sau o listă goală NU înseamnă zero sau „nu există”: înseamnă că nu am găsit sau nu am verificat încă. Rezultatul `negasit` înseamnă „căutat automat și negăsit”, nu „lipsește”."
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "info": {
+    "description": "Date deschise, doar citire, fără cheie. Limită: 60 cereri/minut pe IP, rafală 20. Fiecare răspuns are `provenienta` (surse, data observării, încredere, licență, citare). API-ul arată doar ce arată site-ul: persoanele apar numai prin funcția lor publică. Serverul MCP e la /mcp."
+  },
+  "path": "/v1/uat/{siruta}",
+  "method": "get",
+  "operationId": "uat_siruta",
+  "summary": "Fișa primăriei: CUI, primar, consiliu (agregat), buget pe ani, ce publică pe site, companii locale, legături",
+  "parameters": [
+    {
+      "name": "siruta",
+      "in": "path",
+      "required": true,
+      "description": "codul SIRUTA al UAT-ului",
+      "schema": {
+        "type": "string",
+        "examples": [
+          "54975"
+        ]
+      }
+    }
+  ]
+}

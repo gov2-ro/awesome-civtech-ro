@@ -1,0 +1,31 @@
+/** Raw document shape from the `onrc` index (one per registration, not per company). */
+export interface OnrcRegistration {
+  cui: string;
+  cod_inmatriculare: string;
+  euid?: string;
+  denumire: string;
+  forma_juridica?: string;
+  data_inmatriculare?: string;
+  adresa?: OnrcAddress;
+  caen_codes?: string[];
+  activitati?: OnrcActivity[];
+  reprezentanti?: OnrcRepresentative[];
+  reprezentanti_if?: OnrcRepresentative[];
+  sucursale?: OnrcBranch[];
+  status_codes?: string[];
+  status_labels?: string[];
+  is_functiune?: boolean;
+  is_radiata?: boolean;
+  is_insolventa?: boolean;
+  is_faliment?: boolean;
+  is_dizolvare?: boolean;
+  is_lichidare?: boolean;
+  is_state_owned?: boolean;
+  snapshot?: string;
+}
+
+/**
+ * A CUI can map to several `onrc` registrations (relocations, renames, struck-off
+ * lineage). The canonical record — the one that drives the profile header — is the
+ * active (is_functiune) registration.
+ */

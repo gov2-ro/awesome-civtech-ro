@@ -1,0 +1,6 @@
+<pre>curl -H "x-api-key: CHEIA" https://registru.horecaos.org/api/v1/firma/14399840
+curl -H "x-api-key: CHEIA" "https://registru.horecaos.org/api/v1/cauta?q=placinta"</pre>
+
+    <h2>Ce primești</h2>
+    <div class="card"><table><tbody>
+      <tr><td class="k">

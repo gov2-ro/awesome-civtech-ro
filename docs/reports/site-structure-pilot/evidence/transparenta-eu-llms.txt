@@ -1,0 +1,83 @@
+# Transparenta.eu — AI Usage Guide
+
+Base URL:
+- https://transparenta.eu
+
+## Documentation
+- Parameters index (JSON): https://transparenta.eu/ai/index.json
+- URL/API guide (Markdown): https://transparenta.eu/api-guide.md
+- Sitemap: https://transparenta.eu/sitemap.xml
+
+## Routes Overview
+- /entities/{cui}: Single entity details and analytics
+- /entity-analytics: Cross-entity analytics (table, treemap, line-items)
+- /budget-explorer: Budget exploration by categories (functional/economic)
+- /pnrr: PNRR project dashboard by component, geography, beneficiary, progress, and risk signals
+
+## Entities Page (/entities/{cui})
+How to query:
+1) Put the entity CUI in the path: /entities/4267117
+2) Add filters as query params. Common examples:
+   - ?year=2025
+   - ?period=YEAR | QUARTER | MONTH
+   - ?view=overview | map | income-trends | expense-trends
+   - ?normalization=total | total_euro | per_capita | per_capita_euro
+
+Parameters (full docs):
+- https://transparenta.eu/ai/entities-parameters.json
+
+Examples:
+- https://transparenta.eu/entities/4267117?view=overview&year=2024
+- https://transparenta.eu/entities/4267117?year=2025&view=map&normalization=per_capita
+- https://transparenta.eu/entities/4267117?period=QUARTER&quarter=Q4
+
+## Entity Analytics (/entity-analytics)
+Purpose: Compare entities with filters and switch views (table/line-items/treemap)
+Common params:
+- filter.report_period.type=YEAR|QUARTER|MONTH
+- filter.account_category=ch|vn
+- filter.normalization=total|per_capita|total_euro|per_capita_euro
+- view=table|line-items
+- treemapPrimary=fn|ec, treemapDepth=chapter|subchapter|paragraph
+
+Parameters JSON: (coming from schema)
+- https://transparenta.eu/ai/entities-analytics-parameters.json
+
+Example:
+- https://transparenta.eu/entity-analytics?view=line-items
+
+## Budget Explorer (/budget-explorer)
+Purpose: Explore budget composition across categories and years
+Common params:
+- view=overview|treemap|sankey|list
+- primary=fn|ec, depth=main|detail
+- filter.{report_period, account_category, normalization, report_type}
+
+Parameters JSON:
+- https://transparenta.eu/ai/budget-explorer-parameters.json
+
+Examples:
+- https://transparenta.eu/budget-explorer?view=treemap&primary=fn
+- https://transparenta.eu/budget-explorer?view=list&filter.account_category=vn
+
+## PNRR (/pnrr)
+Purpose: Explore National Recovery and Resilience Plan projects, funding, progress, beneficiaries, geography, and risk signals.
+Common params:
+- view=overview|projects|beneficiaries|map|anomalies
+- components, counties, fundingSources, measures, cris
+- progressCategories=completed|advanced|mid|under30|not-started|unknown
+- onlyAnomalies=true, excludeMicro=true, includeNational=false
+- search, beneficiarySearch, beneficiaryCui, uatSiruta, uatSirutas
+
+Parameters JSON:
+- https://transparenta.eu/ai/pnrr-parameters.json
+
+Examples:
+- https://transparenta.eu/pnrr
+- https://transparenta.eu/pnrr?onlyAnomalies=true&view=anomalies
+- https://transparenta.eu/pnrr?view=map&granularity=county
+
+Notes:
+- Year range supported: dynamic; see parameter JSON files for min/max.
+- All parameters are optional unless stated; defaults are inferred from the UI.
+ - For API integration, prefer `/ai/*.json` schemas and `api-guide.md` patterns.

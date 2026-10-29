@@ -1,0 +1,16 @@
+const title = authority
+      ? `${authority.fiscalNumber} / ${authority.entityName} / ${authority.city}${authority.county ? `, ${authority.county}` : ""}`
+      : `Autoritate: ${nationalId}`;
+
+    const description = `${total} achizitii publice in valoare de ${totalValueRon}`;
+
+    return {
+      title,
+      description,
+      ...generateOpenGraph({
+        id: nationalId,
+        title,
+        description,
+        path: `/autoritate/${nationalId}`,
+      }),
+    };

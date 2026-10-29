@@ -1,0 +1,57 @@
+{
+  "info": {
+    "description": "Date deschise, doar citire, fără cheie. Limită: 60 cereri/minut pe IP, rafală 20. Fiecare răspuns are `provenienta` (surse, data observării, încredere, licență, citare). API-ul arată doar ce arată site-ul: persoanele apar numai prin funcția lor publică. Serverul MCP e la /mcp."
+  },
+  "path": "/v1/date/institutii_centrale",
+  "method": "get",
+  "operationId": "date_institutii_centrale",
+  "summary": "Ministerele și instituțiile Guvernului",
+  "parameters": [
+    {
+      "name": "cui",
+      "in": "query",
+      "required": false,
+      "description": "filtru, egal cu: codul fiscal al instituției (cheia ei)",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "grup",
+      "in": "query",
+      "required": false,
+      "description": "filtru, egal cu: minister sau aparatul de lucru al Guvernului",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "minister",
+          "aparat_guvern"
+        ]
+      }
+    },
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "description": "rânduri pe pagină (implicit 25, maximum 100)",
+      "schema": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 100,
+        "default": 25
+      }
+    },
+    {
+      "name": "offset",
+      "in": "query",
+      "required": false,
+      "description": "deplasarea: câte rânduri se sar. Fără plafon practic: orice listă se parcurge până la capăt cu offset += limit cât timp `paginare.are_urmatoarea`; `paginare.total` spune câte rânduri are filtrul",
+      "schema": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 99999999,
+        "default": 0
+      }
+    }
+  ]
+}

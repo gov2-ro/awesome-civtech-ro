@@ -1,0 +1,781 @@
+{
+  "schema_version": 1,
+  "project_slug": "sicap-ai",
+  "input_url": "https://sicap.ai/",
+  "attempts": [
+    {
+      "id": "sicap-ai-20261030-pilot",
+      "started_at": "2026-10-29T22:42:35.417089+00:00",
+      "finished_at": "2026-10-29T23:09:21.538888+00:00",
+      "method": "mixed",
+      "tool_version": "structure-pilot/1; urllib stdlib helper; offline assembly",
+      "request_budget": 30,
+      "requests_used": 5,
+      "outcome": "partial",
+      "incomplete_reasons": [
+        "Bounded discovery; untested collections and operations remain.",
+        "Browser interaction and domain search were not exercised.",
+        "Live project host is forbidden; pinned source and retained contract only."
+      ]
+    }
+  ],
+  "collections": [
+    {
+      "id": "authorities",
+      "label": "Autorități contractante",
+      "entity_type": "legal_subject",
+      "coverage": "Historical source declaration; deployed coverage and live examples unverified.",
+      "evidence": [
+        "sicap-ai-autoritate-route"
+      ]
+    },
+    {
+      "id": "suppliers",
+      "label": "Furnizori",
+      "entity_type": "legal_subject",
+      "coverage": "Historical source declaration; deployed coverage and live examples unverified.",
+      "evidence": [
+        "sicap-ai-firma-route"
+      ]
+    },
+    {
+      "id": "contracts",
+      "label": "Contracte",
+      "entity_type": "contract",
+      "coverage": "Historical source declaration; deployed coverage and live examples unverified.",
+      "evidence": [
+        "sicap-ai-api-2"
+      ]
+    },
+    {
+      "id": "registrations",
+      "label": "Înregistrări ONRC",
+      "entity_type": "registration",
+      "coverage": "Historical source declaration; deployed coverage and live examples unverified.",
+      "evidence": [
+        "sicap-ai-registration-source"
+      ]
+    }
+  ],
+  "namespaces": [
+    {
+      "id": "ro:cui",
+      "issuer": "Romanian fiscal administration",
+      "scope": "Fiscal identifiers used for authorities and suppliers; source also handles prefixed fiscal strings",
+      "normalization": "identity; preserve string and original value",
+      "evidence": [
+        "sicap-ai-autoritate-identity-source",
+        "sicap-ai-firma-identity-source"
+      ]
+    },
+    {
+      "id": "sicap-ai:contracts:id",
+      "issuer": "SICAP source dataset",
+      "scope": "Contract ID is scoped by procurement source, not globally unique",
+      "normalization": "identity; preserve string and original value",
+      "evidence": [
+        "sicap-ai-api-2"
+      ]
+    },
+    {
+      "id": "ro:onrc:registration",
+      "issuer": "ONRC",
+      "scope": "One registration record; multiple registrations may belong to one CUI",
+      "normalization": "identity; preserve string and original value",
+      "evidence": [
+        "sicap-ai-registration-source"
+      ]
+    },
+    {
+      "id": "sicap-ai:authorities:entityId",
+      "issuer": "SICAP source dataset",
+      "scope": "Optional local entity ID; no actual value sampled.",
+      "normalization": "identity; preserve string and original value",
+      "evidence": [
+        "sicap-ai-autoritate-identity-source"
+      ]
+    },
+    {
+      "id": "sicap-ai:suppliers:entityId",
+      "issuer": "SICAP source dataset",
+      "scope": "Optional local entity ID; no actual value sampled.",
+      "normalization": "identity; preserve string and original value",
+      "evidence": [
+        "sicap-ai-firma-identity-source"
+      ]
+    }
+  ],
+  "patterns": [
+    {
+      "id": "autoritate-detail",
+      "collection": "authorities",
+      "kind": "detail",
+      "url_template": "https://sicap.ai/autoritate/{nationalId}",
+      "evidence": [
+        "sicap-ai-autoritate-route",
+        "sicap-ai-autoritate-identity-source"
+      ],
+      "variables": [
+        {
+          "name": "nationalId",
+          "namespace": "ro:cui",
+          "location": "path",
+          "encoding": "UTF-8 percent-encoding for the individual component"
+        }
+      ],
+      "examples": [],
+      "basis": "declared",
+      "extraction": "literal URL or named template components",
+      "declaration_evidence": "sicap-ai-autoritate-route"
+    },
+    {
+      "id": "firma-detail",
+      "collection": "suppliers",
+      "kind": "detail",
+      "url_template": "https://sicap.ai/firma/{nationalId}",
+      "evidence": [
+        "sicap-ai-firma-route",
+        "sicap-ai-firma-identity-source"
+      ],
+      "variables": [
+        {
+          "name": "nationalId",
+          "namespace": "ro:cui",
+          "location": "path",
+          "encoding": "UTF-8 percent-encoding for the individual component"
+        }
+      ],
+      "examples": [],
+      "basis": "declared",
+      "extraction": "literal URL or named template components",
+      "declaration_evidence": "sicap-ai-firma-route"
+    }
+  ],
+  "operations": [
+    {
+      "id": "api-0",
+      "collection": "authorities",
+      "method": "GET",
+      "url_template": "https://api.sicap.ai/v1/ac/{cif}/contracts/latest",
+      "variables": [
+        {
+          "name": "cif",
+          "namespace": "ro:cui",
+          "location": "path",
+          "encoding": "UTF-8 percent-encoding for the individual component"
+        }
+      ],
+      "purpose": "list",
+      "basis": [
+        "documented"
+      ],
+      "authentication": "key",
+      "parameters": [
+        {
+          "name": "cif",
+          "location": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "request_body": {},
+      "response_paths": {
+        "records": "/contracts",
+        "buyer_id": "/cif",
+        "supplier_id": "unknown",
+        "contract_id": "/contracts/*/noticeId"
+      },
+      "pagination": {
+        "mechanism": "unknown; see documented parameters",
+        "tested_pages": 0
+      },
+      "headers": [
+        "Authorization"
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "last_test": {
+        "outcome": "skipped",
+        "reason": "colectare-interzisa; owner-saved contract only"
+      },
+      "page_patterns": [],
+      "evidence": [
+        "sicap-ai-api-0"
+      ],
+      "limitations": [
+        "The contract declares bearerAuth, but lacks a security requirement for this operation. Runtime enforcement was not tested."
+      ]
+    },
+    {
+      "id": "api-1",
+      "collection": "authorities",
+      "method": "GET",
+      "url_template": "https://api.sicap.ai/v1/ac/{cif}/contracts",
+      "variables": [
+        {
+          "name": "cif",
+          "namespace": "ro:cui",
+          "location": "path",
+          "encoding": "UTF-8 percent-encoding for the individual component"
+        }
+      ],
+      "purpose": "list",
+      "basis": [
+        "documented"
+      ],
+      "authentication": "key",
+      "parameters": [
+        {
+          "name": "cif",
+          "location": "path",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "location": "query",
+          "required": false,
+          "type": "unknown"
+        },
+        {
+          "name": "offset",
+          "location": "query",
+          "required": false,
+          "type": "unknown"
+        },
+        {
+          "name": "source",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "cpv",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "supplier",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "dateFrom",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "dateTo",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "search",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "authorityCity",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "authorityCounty",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "supplierCity",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "supplierCounty",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "request_body": {},
+      "response_paths": {
+        "records": "/contracts",
+        "buyer_id": "/cif",
+        "supplier_id": "unknown",
+        "contract_id": "/contracts/*/noticeId"
+      },
+      "pagination": {
+        "mechanism": "unknown; see documented parameters",
+        "tested_pages": 0
+      },
+      "headers": [
+        "Authorization"
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "last_test": {
+        "outcome": "skipped",
+        "reason": "colectare-interzisa; owner-saved contract only"
+      },
+      "page_patterns": [],
+      "evidence": [
+        "sicap-ai-api-1"
+      ],
+      "limitations": [
+        "The contract declares bearerAuth, but lacks a security requirement for this operation. Runtime enforcement was not tested."
+      ]
+    },
+    {
+      "id": "api-2",
+      "collection": "contracts",
+      "method": "GET",
+      "url_template": "https://api.sicap.ai/v1/contracts/{source}/{id}",
+      "variables": [
+        {
+          "name": "source",
+          "namespace": null,
+          "location": "path",
+          "encoding": "UTF-8 percent-encoding for the individual component"
+        },
+        {
+          "name": "id",
+          "namespace": "sicap-ai:contracts:id",
+          "location": "path",
+          "encoding": "UTF-8 percent-encoding for the individual component"
+        }
+      ],
+      "purpose": "detail",
+      "basis": [
+        "documented"
+      ],
+      "authentication": "key",
+      "parameters": [
+        {
+          "name": "source",
+          "location": "path",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "location": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "request_body": {},
+      "response_paths": {
+        "records": "",
+        "buyer_id": "/contractingAuthorityFiscalNumber",
+        "supplier_id": "/supplierFiscalNumber",
+        "contract_id": "/noticeId"
+      },
+      "pagination": {
+        "mechanism": "unknown; see documented parameters",
+        "tested_pages": 0
+      },
+      "headers": [
+        "Authorization"
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "last_test": {
+        "outcome": "skipped",
+        "reason": "colectare-interzisa; owner-saved contract only"
+      },
+      "page_patterns": [],
+      "evidence": [
+        "sicap-ai-api-2"
+      ],
+      "limitations": [
+        "The contract declares bearerAuth, but lacks a security requirement for this operation. Runtime enforcement was not tested."
+      ]
+    },
+    {
+      "id": "api-3",
+      "collection": "suppliers",
+      "method": "GET",
+      "url_template": "https://api.sicap.ai/v1/cui/{cif}/exists",
+      "variables": [
+        {
+          "name": "cif",
+          "namespace": "ro:cui",
+          "location": "path",
+          "encoding": "UTF-8 percent-encoding for the individual component"
+        }
+      ],
+      "purpose": "search",
+      "basis": [
+        "documented"
+      ],
+      "authentication": "key",
+      "parameters": [
+        {
+          "name": "cif",
+          "location": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "request_body": {},
+      "response_paths": {
+        "records": "",
+        "buyer_id": "not_applicable",
+        "supplier_id": "unknown",
+        "contract_id": "/contracts/*/noticeId"
+      },
+      "pagination": {
+        "mechanism": "unknown; see documented parameters",
+        "tested_pages": 0
+      },
+      "headers": [
+        "Authorization"
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "last_test": {
+        "outcome": "skipped",
+        "reason": "colectare-interzisa; owner-saved contract only"
+      },
+      "page_patterns": [],
+      "evidence": [
+        "sicap-ai-api-3"
+      ],
+      "limitations": [
+        "The contract declares bearerAuth, but lacks a security requirement for this operation. Runtime enforcement was not tested."
+      ]
+    }
+  ],
+  "identifier_rules": [
+    {
+      "id": "autoritate-cui",
+      "collection": "authorities",
+      "namespace": "ro:cui",
+      "location": "route nationalId / source fiscalNumber",
+      "subject_role": "self",
+      "normalization": "preserve source string; no inferred prefix or zero removal",
+      "evidence": [
+        "sicap-ai-autoritate-identity-source"
+      ]
+    },
+    {
+      "id": "firma-cui",
+      "collection": "suppliers",
+      "namespace": "ro:cui",
+      "location": "route nationalId / source fiscalNumber",
+      "subject_role": "self",
+      "normalization": "preserve source string; no inferred prefix or zero removal",
+      "evidence": [
+        "sicap-ai-firma-identity-source"
+      ]
+    },
+    {
+      "id": "registration-cui",
+      "collection": "registrations",
+      "namespace": "ro:cui",
+      "location": "TypeScript OnrcRegistration.cui",
+      "subject_role": "parent",
+      "normalization": "preserve source string; no inferred prefix or zero removal",
+      "evidence": [
+        "sicap-ai-registration-source"
+      ]
+    },
+    {
+      "id": "registration-number",
+      "collection": "registrations",
+      "namespace": "ro:onrc:registration",
+      "location": "TypeScript OnrcRegistration.cod_inmatriculare",
+      "subject_role": "self",
+      "normalization": "preserve source string; no inferred prefix or zero removal",
+      "evidence": [
+        "sicap-ai-registration-source"
+      ]
+    },
+    {
+      "id": "contract-buyer",
+      "collection": "contracts",
+      "namespace": "ro:cui",
+      "location": "schema authority fiscal number; see retained inventory field roles",
+      "subject_role": "buyer",
+      "normalization": "preserve source string; no inferred prefix or zero removal",
+      "evidence": [
+        "sicap-ai-autoritate-identity-source"
+      ]
+    },
+    {
+      "id": "contract-supplier",
+      "collection": "contracts",
+      "namespace": "ro:cui",
+      "location": "schema winner/supplier fiscalNumber; see source field roles",
+      "subject_role": "supplier",
+      "normalization": "preserve source string; no inferred prefix or zero removal",
+      "evidence": [
+        "sicap-ai-firma-identity-source"
+      ]
+    },
+    {
+      "id": "autoritate-local-id",
+      "collection": "authorities",
+      "namespace": "sicap-ai:authorities:entityId",
+      "location": "AuthorityInfo.entityId",
+      "subject_role": "self",
+      "normalization": "preserve source string; no inferred prefix or zero removal",
+      "evidence": [
+        "sicap-ai-autoritate-identity-source"
+      ],
+      "limitations": [
+        "Source declaration only; correspondence to actual fiscal-number values is not sampled."
+      ]
+    },
+    {
+      "id": "firma-local-id",
+      "collection": "suppliers",
+      "namespace": "sicap-ai:suppliers:entityId",
+      "location": "CompanyInfo.entityId",
+      "subject_role": "self",
+      "normalization": "preserve source string; no inferred prefix or zero removal",
+      "evidence": [
+        "sicap-ai-firma-identity-source"
+      ],
+      "limitations": [
+        "Source declaration only; correspondence to actual fiscal-number values is not sampled."
+      ]
+    }
+  ],
+  "relationships": [],
+  "evidence": [
+    {
+      "id": "sicap-ai-autoritate-route",
+      "source": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/apps/web/src/app/(main)/autoritate/[nationalId]/page.tsx",
+      "method": "repository",
+      "observed_at": "2026-10-29T22:42:59.283843+00:00",
+      "artifact": "evidence/sicap-ai-autoritate-route.txt",
+      "sha256": "b28740883bc86d81d85fe04ede423fcf876a2b6f948fc3b03940ce9df88d1e6d",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 473
+      },
+      "excerpt": "const title = authority\n      ? `${authority.fiscalNumber} / ${authority.entityName} / ${authority.city}${authority.county ? `, ${authority.county}` : \"\"}`\n      : `Autoritate: ${nationalId}`;\n\n    const description = `${total} achizitii publice in valoare de ${totalValueRon}`;\n\n    return {\n      title,\n      description,\n      ...generateOpenGraph({\n        id: nationalId,\n        title,\n        description,\n        path: `/autoritate/${nationalId}`,\n      }),\n    };",
+      "applicability": "current",
+      "extract_transform": "Trailing whitespace removed from extract lines; original source hash retained when available.",
+      "source_sha256": "c05e7c5d9bdde2809e7f61f839f744df31739f39bfe643075fdd7e7509128640",
+      "revision": "6697c8068692872d665d6bc7896ade159eb60e16"
+    },
+    {
+      "id": "sicap-ai-autoritate-identity-source",
+      "source": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/authority/get-authority-by-national-id.ts",
+      "method": "repository",
+      "observed_at": "2026-10-29T22:44:41.974453+00:00",
+      "artifact": "evidence/sicap-ai-autoritate-identity-source.txt",
+      "sha256": "b9d3b4e99db483d5ed994f7cebcfe1bba89cb3a4162a314b0abc661315a3325c",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 784
+      },
+      "excerpt": "} from \"../types\";\n\ninterface AuthorityInfo {\n  entityName: string;\n  fiscalNumber: string;\n  city: string;\n  county: string;\n  entityId?: number;\n}\n\ninterface AuthorityByNationalIdArgs {\n  na\nuthorityByNationalIdArgs) {\n  if (!nationalId) {\n    throw new Error(\"CUI/CIF este obligatoriu\");\n  }\n\n  const valueAggScript = `\n    if (doc.containsKey('item.ronContractValue') && doc['item.ronContractV\nNDEX_DIRECT } },\n                        { match_phrase: { \"authority.numericFiscalNumber\": nationalId } },\n                        { term: { \"item.sysDirectAcquisitionState.id\": 7 } },\n\nDEX_OFFLINE } },\n                        { match_phrase: { \"authority.numericFiscalNumber\": nationalId } },\n                      ],\n                    },\n                  },\n                  // L",
+      "applicability": "current",
+      "extract_transform": "Trailing whitespace removed from extract lines; original source hash retained when available.",
+      "source_sha256": "eb4407edb45610856f57c5af9754cd60876f0f0a736efc24f79160e4e685b7af",
+      "revision": "6697c8068692872d665d6bc7896ade159eb60e16"
+    },
+    {
+      "id": "sicap-ai-firma-route",
+      "source": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/apps/web/src/app/(main)/firma/[nationalId]/page.tsx",
+      "method": "repository",
+      "observed_at": "2026-10-29T22:43:00.787362+00:00",
+      "artifact": "evidence/sicap-ai-firma-route.txt",
+      "sha256": "755e8c424436580d215b5d1dac3753cb9b8a88329075a1228a19c6eaa679283e",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 443
+      },
+      "excerpt": "const title = company\n      ? `${company.fiscalNumber} / ${company.entityName} / ${company.city}${company.county ? `, ${company.county}` : \"\"}`\n      : `Firma: ${nationalId}`;\n\n    const description = `${total} contracte in valoare de ${totalValueRon}`;\n\n    return {\n      title,\n      description,\n      ...generateOpenGraph({\n        id: nationalId,\n        title,\n        description,\n        path: `/firma/${nationalId}`,\n      }),\n    };",
+      "applicability": "current",
+      "extract_transform": "Trailing whitespace removed from extract lines; original source hash retained when available.",
+      "source_sha256": "c1cdf30b6996cfeaea9687e9b2d8969f3f27b5bd45b80fa31e1451a9faff2ac9",
+      "revision": "6697c8068692872d665d6bc7896ade159eb60e16"
+    },
+    {
+      "id": "sicap-ai-firma-identity-source",
+      "source": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/company/get-company-by-national-id.ts",
+      "method": "repository",
+      "observed_at": "2026-10-29T22:44:43.331302+00:00",
+      "artifact": "evidence/sicap-ai-firma-identity-source.txt",
+      "sha256": "7b9f186d70de0b9f92cb16dc06fe5c32ac1980362b62e834ff79ff666ca221bd",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 769
+      },
+      "excerpt": "s } from \"../types\";\n\ninterface CompanyInfo {\n  entityName: string;\n  fiscalNumber: string;\n  city: string;\n  county: string;\n  entityId?: number;\n}\n\ninterface NoticeContractItem {\n  winner?:\n;\n  entityId?: number;\n}\n\ninterface NoticeContractItem {\n  winner?: { fiscalNumberInt?: string; fiscalNumber?: string };\n  winners?: Array<{ fiscalNumberInt?: string; fiscalNumber?: string }>;\ninterface NoticeContractItem {\n  winner?: { fiscalNumberInt?: string; fiscalNumber?: string };\n  winners?: Array<{ fiscalNumberInt?: string; fiscalNumber?: string }>;\n  contractValue?: number;\niscalNumberInt?: string; fiscalNumber?: string };\n  winners?: Array<{ fiscalNumberInt?: string; fiscalNumber?: string }>;\n  contractValue?: number;\n}\n\n/**\n * Calculate the total winning value",
+      "applicability": "current",
+      "extract_transform": "Trailing whitespace removed from extract lines; original source hash retained when available.",
+      "source_sha256": "3e50535b089e96824a13b9856fd028134124f33f7ab60f7164057da54bcd0db6",
+      "revision": "6697c8068692872d665d6bc7896ade159eb60e16"
+    },
+    {
+      "id": "sicap-ai-registration-source",
+      "source": "https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/company/onrc.ts",
+      "method": "retained",
+      "observed_at": "2026-10-27T19:44:53.020441+00:00",
+      "artifact": "evidence/sicap-ai-registration-source.txt",
+      "sha256": "3d84fb83ca1e7f23344ead861c137319091ed0cef9c9b703d80c599a5503e956",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 929
+      },
+      "excerpt": "/** Raw document shape from the `onrc` index (one per registration, not per company). */\nexport interface OnrcRegistration {\n  cui: string;\n  cod_inmatriculare: string;\n  euid?: string;\n  denumire: string;\n  forma_juridica?: string;\n  data_inmatriculare?: string;\n  adresa?: OnrcAddress;\n  caen_codes?: string[];\n  activitati?: OnrcActivity[];\n  reprezentanti?: OnrcRepresentative[];\n  reprezentanti_if?: OnrcRepresentative[];\n  sucursale?: OnrcBranch[];\n  status_codes?: string[];\n  status_labels?: string[];\n  is_functiune?: boolean;\n  is_radiata?: boolean;\n  is_insolventa?: boolean;\n  is_faliment?: boolean;\n  is_dizolvare?: boolean;\n  is_lichidare?: boolean;\n  is_state_owned?: boolean;\n  snapshot?: string;\n}\n\n/**\n * A CUI can map to several `onrc` registrations (relocations, renames, struck-off\n * lineage). The canonical record — the one that drives the profile header — is the\n * active (is_functiune) registration.\n */",
+      "applicability": "historical",
+      "extract_transform": "Trailing whitespace removed from extract lines; original source hash retained when available.",
+      "inventory_reference": {
+        "path": "data/taxonomy-v2/observatii/inventare/seturi-date.json",
+        "source_id": "6762bb842106a10e466a",
+        "pointer": "/surse/122"
+      },
+      "source_sha256": "1d60b3de7d454bdb7057480c5c1fd948d9e9a8819a44e0831b42822f7ce4defa"
+    },
+    {
+      "id": "sicap-ai-api-0",
+      "source": "https://api.sicap.ai/v1/openapi",
+      "method": "owner_saved",
+      "observed_at": "2026-10-27T19:24:00+00:00",
+      "artifact": "evidence/sicap-ai-api-0.txt",
+      "sha256": "66dbf36d0947852810df9244668f9025b8a18ab928d83b4540e6900a16ac8c9f",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 871
+      },
+      "excerpt": "{\n  \"path\": \"/v1/ac/{cif}/contracts/latest\",\n  \"method\": \"GET\",\n  \"summary\": \"Ultimele contracte atribuite autorității contractante\",\n  \"description\": \"Obține ultimele 20 de contracte de achiziții atribuite unei autorități contractante, după codul fiscal (CIF/CUI)\",\n  \"parameters\": [\n    {\n      \"name\": \"cif\",\n      \"in\": \"path\",\n      \"required\": true,\n      \"schema\": {\n        \"pattern\": \"^[0-9]{2,13}$\",\n        \"minLength\": 2,\n        \"maxLength\": 13,\n        \"description\": \"Cod de identificare fiscală (CIF/CUI)\",\n        \"error\": \"Format CIF invalid. Trebuie să conțină 2-13 cifre.\",\n        \"type\": \"string\"\n      }\n    }\n  ],\n  \"security\": null,\n  \"securitySchemes\": {\n    \"bearerAuth\": {\n      \"type\": \"http\",\n      \"scheme\": \"bearer\",\n      \"description\": \"Autentificare prin cheie API\"\n    }\n  },\n  \"response_properties\": [\n    \"cif\",\n    \"contracts\"\n  ]\n}",
+      "applicability": "historical",
+      "extract_transform": "Trailing whitespace removed from extract lines; original source hash retained when available.",
+      "inventory_reference": {
+        "path": "data/taxonomy-v2/observatii/inventare/seturi-date.json",
+        "source_id": "ab1e1c56ea0dfa406173",
+        "pointer": "/surse/14"
+      },
+      "source_sha256": "5bd19c093ddb359d90392704d3c85e7cf2c243f4a82fcad92f84909171d21be7",
+      "saved_at": "2026-10-27T21:24:00+02:00",
+      "imported_at": "2026-10-29T23:09:21.538888+00:00"
+    },
+    {
+      "id": "sicap-ai-api-1",
+      "source": "https://api.sicap.ai/v1/openapi",
+      "method": "owner_saved",
+      "observed_at": "2026-10-27T19:24:00+00:00",
+      "artifact": "evidence/sicap-ai-api-1.txt",
+      "sha256": "4d45c044377526e819a39a768ad8e7d456eb87c368af49ac45ab50e59336badd",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 4731
+      },
+      "excerpt": "{\n  \"path\": \"/v1/ac/{cif}/contracts\",\n  \"method\": \"GET\",\n  \"summary\": \"Contracte autoritate contractantă cu paginare și filtre\",\n  \"description\": \"Obține contractele de achiziții atribuite unei autorități contractante cu opțiuni de paginare și filtrare după CPV, furnizor, dată, sursa de date, localitate și județ (separat pentru autoritate și furnizor)\",\n  \"parameters\": [\n    {\n      \"name\": \"cif\",\n      \"in\": \"path\",\n      \"required\": true,\n      \"schema\": {\n        \"pattern\": \"^[0-9]{2,13}$\",\n        \"minLength\": 2,\n        \"maxLength\": 13,\n        \"description\": \"Cod de identificare fiscală (CIF/CUI)\",\n        \"error\": \"Format CIF invalid. Trebuie să conțină 2-13 cifre.\",\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"limit\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"schema\": {\n        \"default\": 20,\n        \"minimum\": 10,\n        \"maximum\": 100,\n        \"description\": \"Numărul de rezultate returnate (10, 20, 50 sau 100)\",\n        \"anyOf\": [\n          {\n            \"format\": \"numeric\",\n            \"default\": 0,\n            \"type\": \"string\"\n          },\n          {\n            \"default\": 20,\n            \"minimum\": 10,\n            \"maximum\": 100,\n            \"description\": \"Numărul de rezultate returnate (10, 20, 50 sau 100)\",\n            \"type\": \"number\"\n          }\n        ]\n      }\n    },\n    {\n      \"name\": \"offset\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"schema\": {\n        \"minimum\": 0,\n        \"default\": 0,\n        \"description\": \"Numărul de rezultate de sărit pentru paginare\",\n        \"anyOf\": [\n          {\n            \"format\": \"numeric\",\n            \"default\": 0,\n            \"type\": \"string\"\n          },\n          {\n            \"minimum\": 0,\n            \"default\": 0,\n            \"description\": \"Numărul de rezultate de sărit pentru paginare\",\n            \"type\": \"number\"\n          }\n        ]\n      }\n    },\n    {\n      \"name\": \"source\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"schema\": {\n        \"type\": \"string\",\n        \"enum\": [\n          \"achizitii-directe\",\n          \"achizitii-offline\",\n          \"licitatii-publice\"\n        ]\n      }\n    },\n    {\n      \"name\": \"cpv\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"schema\": {\n        \"pattern\": \"^[0-9]{2,8}$\",\n        \"minLength\": 2,\n        \"maxLength\": 8,\n        \"description\": \"Prefix cod CPV pentru filtrare (ex: '72' pentru servicii IT)\",\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"supplier\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"schema\": {\n        \"pattern\": \"^[0-9]{2,13}$\",\n        \"minLength\": 2,\n        \"maxLength\": 13,\n        \"description\": \"Cod fiscal (CIF/CUI) al furnizorului pentru filtrare\",\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"dateFrom\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"schema\": {\n        \"format\": \"date\",\n        \"description\": \"Data de început în format ISO (YYYY-MM-DD)\",\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"dateTo\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"schema\": {\n        \"format\": \"date\",\n        \"description\": \"Data de sfârșit în format ISO (YYYY-MM-DD)\",\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"search\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"schema\": {\n        \"minLength\": 2,\n        \"maxLength\": 100,\n        \"description\": \"Termen de căutare în denumirea achiziției (minim 2 caractere)\",\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"authorityCity\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"schema\": {\n        \"minLength\": 2,\n        \"maxLength\": 100,\n        \"description\": \"Localitatea (orașul) autorității contractante\",\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"authorityCounty\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"schema\": {\n        \"minLength\": 2,\n        \"maxLength\": 50,\n        \"description\": \"Județul autorității contractante\",\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"supplierCity\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"schema\": {\n        \"minLength\": 2,\n        \"maxLength\": 100,\n        \"description\": \"Localitatea (orașul) furnizorului\",\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"supplierCounty\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"schema\": {\n        \"minLength\": 2,\n        \"maxLength\": 50,\n        \"description\": \"Județul furnizorului\",\n        \"type\": \"string\"\n      }\n    }\n  ],\n  \"security\": null,\n  \"securitySchemes\": {\n    \"bearerAuth\": {\n      \"type\": \"http\",\n      \"scheme\": \"bearer\",\n      \"description\": \"Autentificare prin cheie API\"\n    }\n  },\n  \"response_properties\": [\n    \"cif\",\n    \"contracts\",\n    \"pagination\"\n  ]\n}",
+      "applicability": "historical",
+      "extract_transform": "Trailing whitespace removed from extract lines; original source hash retained when available.",
+      "inventory_reference": {
+        "path": "data/taxonomy-v2/observatii/inventare/seturi-date.json",
+        "source_id": "ab1e1c56ea0dfa406173",
+        "pointer": "/surse/14"
+      },
+      "source_sha256": "5bd19c093ddb359d90392704d3c85e7cf2c243f4a82fcad92f84909171d21be7",
+      "saved_at": "2026-10-27T21:24:00+02:00",
+      "imported_at": "2026-10-29T23:09:21.538888+00:00"
+    },
+    {
+      "id": "sicap-ai-api-2",
+      "source": "https://api.sicap.ai/v1/openapi",
+      "method": "owner_saved",
+      "observed_at": "2026-10-27T19:24:00+00:00",
+      "artifact": "evidence/sicap-ai-api-2.txt",
+      "sha256": "e1d12cc233312cc54a0f7a47c669dee544c4eed6c1eb7bed9f2a4ee89daf37c0",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 1367
+      },
+      "excerpt": "{\n  \"path\": \"/v1/contracts/{source}/{id}\",\n  \"method\": \"GET\",\n  \"summary\": \"Detalii contract\",\n  \"description\": \"Obține detaliile unui contract după sursa de date și ID-ul numeric\",\n  \"parameters\": [\n    {\n      \"name\": \"source\",\n      \"in\": \"path\",\n      \"required\": true,\n      \"schema\": {\n        \"type\": \"string\",\n        \"enum\": [\n          \"achizitii-directe\",\n          \"licitatii-publice\",\n          \"achizitii-offline\"\n        ]\n      }\n    },\n    {\n      \"name\": \"id\",\n      \"in\": \"path\",\n      \"required\": true,\n      \"schema\": {\n        \"description\": \"ID-ul contractului: noticeId (numeric, ex: 123456) sau noticeNo (string, ex: DA123456)\",\n        \"type\": \"string\"\n      }\n    }\n  ],\n  \"security\": null,\n  \"securitySchemes\": {\n    \"bearerAuth\": {\n      \"type\": \"http\",\n      \"scheme\": \"bearer\",\n      \"description\": \"Autentificare prin cheie API\"\n    }\n  },\n  \"response_properties\": [\n    \"source\",\n    \"noticeId\",\n    \"publicationDate\",\n    \"noticeNo\",\n    \"acquisitionState\",\n    \"name\",\n    \"cpvCode\",\n    \"supplier\",\n    \"awardedValue\",\n    \"contractDescription\",\n    \"contractType\",\n    \"europeanFund\",\n    \"contractItems\",\n    \"hasMoreItems\",\n    \"totalItems\",\n    \"contractingAuthority\",\n    \"contractingAuthorityFiscalNumber\",\n    \"cityAuthority\",\n    \"countyAuthority\",\n    \"supplierFiscalNumber\",\n    \"supplierCity\",\n    \"supplierCounty\"\n  ]\n}",
+      "applicability": "historical",
+      "extract_transform": "Trailing whitespace removed from extract lines; original source hash retained when available.",
+      "inventory_reference": {
+        "path": "data/taxonomy-v2/observatii/inventare/seturi-date.json",
+        "source_id": "ab1e1c56ea0dfa406173",
+        "pointer": "/surse/14"
+      },
+      "source_sha256": "5bd19c093ddb359d90392704d3c85e7cf2c243f4a82fcad92f84909171d21be7",
+      "saved_at": "2026-10-27T21:24:00+02:00",
+      "imported_at": "2026-10-29T23:09:21.538888+00:00"
+    },
+    {
+      "id": "sicap-ai-api-3",
+      "source": "https://api.sicap.ai/v1/openapi",
+      "method": "owner_saved",
+      "observed_at": "2026-10-27T19:24:00+00:00",
+      "artifact": "evidence/sicap-ai-api-3.txt",
+      "sha256": "4506e85259c3c2dc257dc31395264b284a66238a0efcad3aa5621010d53c932b",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 1109
+      },
+      "excerpt": "{\n  \"path\": \"/v1/cui/{cif}/exists\",\n  \"method\": \"GET\",\n  \"summary\": \"Verificare existență contracte pentru un CIF\",\n  \"description\": \"Verifică dacă un cod de identificare fiscală (CIF/CUI) are contracte în sistem, fie ca autoritate contractantă, fie ca furnizor.\\n\\nReturnează:\\n- Confirmare existență contracte (exists: true/false)\\n- Defalcare pe surse de date (achiziții directe, offline, licitații publice)\\n- Numărul total de contracte\\n\\n**Cost: 1 credit per verificare**\",\n  \"parameters\": [\n    {\n      \"name\": \"cif\",\n      \"in\": \"path\",\n      \"required\": true,\n      \"schema\": {\n        \"pattern\": \"^[0-9]{2,13}$\",\n        \"minLength\": 2,\n        \"maxLength\": 13,\n        \"description\": \"Cod de identificare fiscală (CIF/CUI)\",\n        \"error\": \"Format CIF invalid. Trebuie să conțină 2-13 cifre.\",\n        \"type\": \"string\"\n      }\n    }\n  ],\n  \"security\": null,\n  \"securitySchemes\": {\n    \"bearerAuth\": {\n      \"type\": \"http\",\n      \"scheme\": \"bearer\",\n      \"description\": \"Autentificare prin cheie API\"\n    }\n  },\n  \"response_properties\": [\n    \"cif\",\n    \"exists\",\n    \"sources\",\n    \"total\"\n  ]\n}",
+      "applicability": "historical",
+      "extract_transform": "Trailing whitespace removed from extract lines; original source hash retained when available.",
+      "inventory_reference": {
+        "path": "data/taxonomy-v2/observatii/inventare/seturi-date.json",
+        "source_id": "ab1e1c56ea0dfa406173",
+        "pointer": "/surse/14"
+      },
+      "source_sha256": "5bd19c093ddb359d90392704d3c85e7cf2c243f4a82fcad92f84909171d21be7",
+      "saved_at": "2026-10-27T21:24:00+02:00",
+      "imported_at": "2026-10-29T23:09:21.538888+00:00"
+    }
+  ],
+  "checks": [
+    {
+      "id": "documentation",
+      "attempt": "sicap-ai-20261030-pilot",
+      "outcome": "observed",
+      "reason": "Dated documentation or source declarations retained."
+    },
+    {
+      "id": "sitemap",
+      "attempt": "sicap-ai-20261030-pilot",
+      "outcome": "skipped",
+      "reason": "colectare-interzisa"
+    },
+    {
+      "id": "browser",
+      "attempt": "sicap-ai-20261030-pilot",
+      "outcome": "skipped",
+      "reason": "No browser pass; static evidence and source inspection prioritized."
+    },
+    {
+      "id": "domain-search",
+      "attempt": "sicap-ai-20261030-pilot",
+      "outcome": "skipped",
+      "reason": "No search queries; direct documentation and pinned code prioritized."
+    },
+    {
+      "id": "remaining-collections",
+      "attempt": "sicap-ai-20261030-pilot",
+      "outcome": "unchecked",
+      "reason": "Request budget is a ceiling; this pilot sampled organisation and institution access paths."
+    }
+  ]
+}

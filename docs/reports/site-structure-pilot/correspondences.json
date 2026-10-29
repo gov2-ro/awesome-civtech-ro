@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "records": [
+    {
+      "key": "transparenta-eu|entities|ro:cui|4266863",
+      "project": "transparenta-eu",
+      "collection": "entities",
+      "local_namespace": "ro:cui",
+      "local_value": "4266863",
+      "entity_type": "public_institution",
+      "label": "Ministerul Afacerilor Externe",
+      "locators": [
+        "https://transparenta.eu/entities/4266863",
+        "https://api.transparenta.eu/graphql"
+      ],
+      "identifiers": [
+        {
+          "namespace": "ro:cui",
+          "value": "4266863",
+          "raw_value": "4266863",
+          "subject_role": "self"
+        }
+      ],
+      "evidence": [
+        "transparenta-eu-graphql-mae",
+        "transparenta-eu-mae-page"
+      ],
+      "validity": "unknown; observation time is not legal validity"
+    },
+    {
+      "key": "transparenta-eu|entities|ro:cui|4267117",
+      "project": "transparenta-eu",
+      "collection": "entities",
+      "local_namespace": "ro:cui",
+      "local_value": "4267117",
+      "entity_type": "public_institution",
+      "label": "Municipiul București — instituție bugetară",
+      "locators": [
+        "https://transparenta.eu/entities/4267117"
+      ],
+      "identifiers": [
+        {
+          "namespace": "ro:cui",
+          "value": "4267117",
+          "raw_value": "4267117",
+          "subject_role": "self"
+        }
+      ],
+      "evidence": [
+        "transparenta-eu-graphql-bucuresti",
+        "transparenta-eu-bucuresti-page"
+      ],
+      "validity": "unknown; observation time is not legal validity"
+    },
+    {
+      "key": "romania-transparenta|central|ro:cui|4266863",
+      "project": "romania-transparenta",
+      "collection": "central",
+      "local_namespace": "ro:cui",
+      "local_value": "4266863",
+      "entity_type": "public_institution",
+      "label": "Ministerul Afacerilor Externe",
+      "locators": [
+        "https://romaniatransparenta.eu/registre/administratia-centrala/4266863"
+      ],
+      "identifiers": [
+        {
+          "namespace": "ro:cui",
+          "value": "4266863",
+          "raw_value": "4266863",
+          "subject_role": "self"
+        }
+      ],
+      "evidence": [
+        "romania-transparenta-central-response",
+        "romania-transparenta-mae-page"
+      ],
+      "validity": "unknown; observation time is not legal validity"
+    },
+    {
+      "key": "romania-transparenta|companies|ro:cui|43721310",
+      "project": "romania-transparenta",
+      "collection": "companies",
+      "local_namespace": "ro:cui",
+      "local_value": "43721310",
+      "entity_type": "company",
+      "label": "A.D.P. BÂRCA S.R.L.",
+      "locators": [
+        "https://romaniatransparenta.eu/registre/companii-de-stat/43721310"
+      ],
+      "identifiers": [
+        {
+          "namespace": "ro:cui",
+          "value": "43721310",
+          "raw_value": "43721310",
+          "subject_role": "self"
+        }
+      ],
+      "evidence": [
+        "romania-transparenta-company-response",
+        "romania-transparenta-adp-page"
+      ],
+      "validity": "unknown; observation time is not legal validity"
+    },
+    {
+      "key": "registrul-firmelor|companies|ro:cui|43721310",
+      "project": "registrul-firmelor",
+      "collection": "companies",
+      "local_namespace": "ro:cui",
+      "local_value": "43721310",
+      "entity_type": "company",
+      "label": "A.D.P. BÂRCA S.R.L.",
+      "locators": [
+        "https://registru.horecaos.org/firma/43721310"
+      ],
+      "identifiers": [
+        {
+          "namespace": "ro:cui",
+          "value": "43721310",
+          "raw_value": "43721310",
+          "subject_role": "self"
+        },
+        {
+          "namespace": "ro:onrc:euid",
+          "value": "ROONRC.J16/419/2021",
+          "raw_value": "ROONRC.J16/419/2021",
+          "subject_role": "self"
+        }
+      ],
+      "evidence": [
+        "registrul-firmelor-adp-page"
+      ],
+      "validity": "unknown; observation time is not legal validity"
+    },
+    {
+      "key": "registrul-firmelor|companies|ro:cui|14399840",
+      "project": "registrul-firmelor",
+      "collection": "companies",
+      "local_namespace": "ro:cui",
+      "local_value": "14399840",
+      "entity_type": "company",
+      "label": "DANTE INTERNATIONAL SA",
+      "locators": [
+        "https://registru.horecaos.org/firma/14399840"
+      ],
+      "identifiers": [
+        {
+          "namespace": "ro:cui",
+          "value": "14399840",
+          "raw_value": "14399840",
+          "subject_role": "self"
+        }
+      ],
+      "evidence": [
+        "registrul-firmelor-dante-page"
+      ],
+      "validity": "unknown; observation time is not legal validity"
+    },
+    {
+      "key": "romania-transparenta|uat|ro:siruta|179132",
+      "project": "romania-transparenta",
+      "collection": "uat",
+      "local_namespace": "ro:siruta",
+      "local_value": "179132",
+      "entity_type": "territory",
+      "label": "Municipiul București — teritoriu",
+      "locators": [
+        "https://api.romaniatransparenta.eu/v1/uat?q=Bucuresti&limit=1"
+      ],
+      "identifiers": [
+        {
+          "namespace": "ro:siruta",
+          "value": "179132",
+          "raw_value": "179132",
+          "subject_role": "self"
+        }
+      ],
+      "evidence": [
+        "romania-transparenta-uat-response"
+      ],
+      "validity": "unknown; observation time is not legal validity"
+    }
+  ],
+  "assertions": [
+    {
+      "id": "5ac8420845c4054c47935621",
+      "kind": "same_entity",
+      "records": [
+        "transparenta-eu|entities|ro:cui|4266863",
+        "romania-transparenta|central|ro:cui|4266863"
+      ],
+      "basis": "shared_identifier",
+      "evidence": [
+        "transparenta-eu-graphql-mae",
+        "romania-transparenta-central-response"
+      ],
+      "limitations": [
+        "Proposed only; temporal identity and source conflicts need owner review."
+      ]
+    },
+    {
+      "id": "675c721471de5b5e5f64108a",
+      "kind": "same_entity",
+      "records": [
+        "romania-transparenta|companies|ro:cui|43721310",
+        "registrul-firmelor|companies|ro:cui|43721310"
+      ],
+      "basis": "shared_identifier",
+      "evidence": [
+        "romania-transparenta-company-response",
+        "registrul-firmelor-adp-page"
+      ],
+      "limitations": [
+        "Proposed only; temporal identity and source conflicts need owner review."
+      ]
+    }
+  ]
+}

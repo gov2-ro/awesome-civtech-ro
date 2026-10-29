@@ -1,0 +1,89 @@
+{
+  "info": {
+    "description": "Date deschise, doar citire, fără cheie. Limită: 60 cereri/minut pe IP, rafală 20. Fiecare răspuns are `provenienta` (surse, data observării, încredere, licență, citare). API-ul arată doar ce arată site-ul: persoanele apar numai prin funcția lor publică. Serverul MCP e la /mcp."
+  },
+  "path": "/v1/date/ajutoare_agregat",
+  "method": "get",
+  "operationId": "date_ajutoare_agregat",
+  "summary": "Ajutoarele de stat, adunate pe an, județ, măsură și furnizor",
+  "parameters": [
+    {
+      "name": "an",
+      "in": "query",
+      "required": false,
+      "description": "filtru, egal cu: anul",
+      "schema": {
+        "type": "integer"
+      }
+    },
+    {
+      "name": "judet",
+      "in": "query",
+      "required": false,
+      "description": "filtru, egal cu: județul sediului beneficiarului („?” = necunoscut)",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "tip_beneficiar",
+      "in": "query",
+      "required": false,
+      "description": "filtru, egal cu: persoana_juridica, persoana_fizica sau strain",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "persoana_juridica",
+          "persoana_fizica",
+          "strain"
+        ]
+      }
+    },
+    {
+      "name": "tip_valoare",
+      "in": "query",
+      "required": false,
+      "description": "filtru, egal cu: ajutor sau instrument_financiar",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "ajutor",
+          "instrument_financiar"
+        ]
+      }
+    },
+    {
+      "name": "masura_referinta",
+      "in": "query",
+      "required": false,
+      "description": "filtru, egal cu: numărul cazului la Comisia Europeană (SA.)",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "description": "rânduri pe pagină (implicit 25, maximum 100)",
+      "schema": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 100,
+        "default": 25
+      }
+    },
+    {
+      "name": "offset",
+      "in": "query",
+      "required": false,
+      "description": "deplasarea: câte rânduri se sar. Fără plafon practic: orice listă se parcurge până la capăt cu offset += limit cât timp `paginare.are_urmatoarea`; `paginare.total` spune câte rânduri are filtrul",
+      "schema": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 99999999,
+        "default": 0
+      }
+    }
+  ]
+}
