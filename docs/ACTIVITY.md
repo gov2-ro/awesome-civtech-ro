@@ -1,5 +1,30 @@
 # Activity
 
+## 2026-10-30 — Entity lookup and site structure profiles
+
+**Done**
+- Added an isolated `--with-structure` build and the `/entitati/` lookup. [Guide](STRUCTURE-PREVIEW.md), [report](reports/site-structure-preview.md).
+- Added sections and collections, URL patterns, API declarations and source receipts to the existing project profile.
+- The tracked-recipe preview has five projects, 16 collections, 19 patterns, 16 API operations, eleven observed records and four accepted correspondences.
+- The optional catalogue store projects 141 selected entries, 25 collections and 77 patterns. A file-hash comparison proves the store remained unchanged.
+- Added 16 projection/build checks. They pass on Python 3.12. The final suite passes 1,252 tests with eight skips; all 24 new and 141 existing browser checks pass.
+- Validation reports zero errors and warnings. The public build succeeds; generated timestamps and amplify's score drift are excluded.
+
+**Hard**
+- The first full-suite run compared an imported module with a subprocess after a display-label edit. It failed a reproducibility check. Stopped the next run before a collection-scope correction; the final run uses stable code.
+- Equal collection labels could attach the wrong section or API. The projection and both views now use stable collection IDs; a regression check covers equal labels.
+- A browser assertion expected mixed-case territory text, while CSS transformed it to uppercase. Corrected the assertion after inspecting two territory records and no fiscal-institution result.
+- The sandbox denied localhost binding and the existing uv cache. Approved local server and browser runs completed without source-project requests.
+- Mobile source identifiers needed wrapping inside definition-list labels. Inspected both mobile views at 390 pixels; neither has horizontal overflow.
+
+**Decided**
+- Keep this first UI in an isolated preview, as proposed to the owner. Public integration remains a separate step.
+- Search exact observed identifiers within namespace/issuer scopes. Local scopes also include their project; shared URL state cannot silently select an unknown namespace.
+- Expand only direct accepted correspondences. Do not infer transitive clusters, turn a declaration into an observed record, or equate SIRUTA territory with fiscal CUI.
+- Keep API declarations inert and distinguish declared access from observed enforcement. A template-derived page URL needs a separate availability check.
+- Use inline structure data for the profile and a separate compact lookup payload. The default lookup payload is about 32 KiB; larger coverage may need per-project loading.
+- Version v0.48.0 records the preview deliverable. This repository has no Cargo.toml.
+
 ## 2026-10-30 — Structure curation skill, real local IDs and catalogue pass
 
 **Done**

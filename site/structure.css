@@ -1,0 +1,21 @@
+.entity-page { max-width: 960px; padding-block: 32px 64px; }
+.entity-page h1 { font-family: var(--font-head); margin-block: 24px 12px; }
+.entity-search { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; margin-block: 24px 8px; }
+.entity-search label { display: flex; flex: 1 1 240px; flex-direction: column; gap: 6px; }
+.entity-search input, .entity-search select { width: 100%; min-width: 0; padding: 10px; background: var(--surface); color: var(--ink); border: 1px solid var(--line-strong); border-radius: var(--radius); font: inherit; }
+.entity-card { margin-block: 20px; padding: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.entity-card h2 { font-size: 1.2rem; margin-block: 12px; }
+.entity-card h3 { font-size: 1rem; margin-block: 16px 8px; }
+.entity-card li { margin-block: 8px; }
+.entity-card a, .entity-card code, .structure-profile code, .structure-profile a { overflow-wrap: anywhere; }
+.entity-card .dl { margin-block: 16px; }
+.entity-card .dl dt { overflow-wrap: anywhere; }
+.structure-profile { margin-block: 24px; padding-block: 16px; border-block: 1px solid var(--line); }
+.structure-profile h3 { margin-block: 0 10px; }
+.structure-profile h4 { margin-block: 16px 8px; font-size: 1rem; }
+.structure-profile ul { padding-left: 20px; }
+.structure-profile li { margin-block: 10px; }
+.structure-profile summary, .entity-card summary { cursor: pointer; }
+.structure-profile .structure-meta { display: block; margin-block: 4px; }
+.structure-hash { font-size: .72rem; overflow-wrap: anywhere; }
+.structure-warning { color: var(--warn); }

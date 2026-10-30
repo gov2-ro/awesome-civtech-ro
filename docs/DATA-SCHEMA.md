@@ -1662,3 +1662,16 @@ The [curation review packet](reports/site-structure-curation/review.json) is a m
 It includes source receipts that resolve to tracked artifacts and recipe aliases without ignored caches.
 The igov company extract whitelists corporate ID, CUI and company name from complete rows of a retained partial JSON sample.
 It does not copy values from the people or appointments collections.
+
+### Structure preview projection
+
+`build.py --with-structure` adds `structurePreview: true` and per-item `structure` to an isolated v2 build.
+`structure` contains `collections`, `patterns` and `operations`, with source URLs, observation times and hashes.
+The lookup payload at `entitati/data.json` has `schemaVersion: 1`, projects, observed records, scoped namespaces and accepted direct links.
+Each lookup scope includes namespace and issuer; a local scope also includes the project.
+Record identifiers retain their original string values.
+Only selected catalogue entries with matching project URLs are included.
+Conflicts and missing endpoints exclude confirmed links.
+The payload excludes raw evidence, file paths, editorial notes and request journals.
+The [preview guide](STRUCTURE-PREVIEW.md) defines the build flag, URL state and observation limits.
+The public build does not enable this projection.

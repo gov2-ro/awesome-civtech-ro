@@ -334,3 +334,31 @@ The durable owner list is `data/taxonomy-v2/structura/decisions.json`. Report mo
 The importer never rewrites it. Out-of-scope decision IDs stay visible in the report.
 Local evidence without a known public origin can retain a `file://` source; the curation report marks it local-only.
 The HTTP transport does not fetch file URLs.
+
+## 10. Site profile and entity lookup preview — 2026-10-30
+
+The owner requested an entity lookup prototype and structure details in each catalogue site's profile.
+`build.py --with-structure` projects observations into a separate v2 preview directory.
+The flag cannot write the public site. A plain build keeps its existing payload contract.
+The default preview replays tracked recipes without requests or ignored caches.
+An explicit `--structure-store` reads an existing checked store without changing it.
+
+The existing project profile shows sections and collections, URL patterns, API operations and source receipts.
+A listing pattern can establish a section link. A collection alone cannot establish one.
+The profile preserves template placeholders, identifier namespaces, observation status and separate declared/observed API access facts.
+It does not execute API requests or imply present availability.
+
+The `/entitati/` page searches exact identifiers in observed record references.
+Its lookup scope includes namespace, issuer and, for a local namespace, project.
+It preserves original values, leading zeroes, prefixes, case and punctuation.
+It can add direct accepted counterparts but never expands a correspondence chain into an entity cluster.
+Conflicts prevent confirmed links. Unaccepted assertions never produce confirmed links.
+Selected catalogue entries and matching project URLs bound the projection.
+Hidden or missing endpoints prevent a correspondence from reaching the preview.
+
+Derived profile URLs carry an availability qualifier.
+A namespace declaration alone does not produce an entity result for an unobserved identifier.
+Source receipts retain public origin, hash and observation time.
+The projection excludes local file paths, raw extracts, request journals and editorial notes.
+The browser uses a local payload and makes no source-project requests.
+Identity acceptance and preview construction remain separate from publication.

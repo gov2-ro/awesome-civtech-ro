@@ -899,6 +899,35 @@ function classHTML(it) {
     ${DB.draft && DRAFT_NOTE ? '<p class="small muted">Clasificare propusă, neverificată încă de editor.</p>' : ''}</div>`;
 }
 
+function structureHTML(it) {
+  if (!DB.structurePreview) return '';
+  const structure = it.structure;
+  if (!structure) return `<section class="structure-profile"><h3>Structura site-ului</h3><p class="small muted">Structura acestui site nu este încă inclusă în previzualizare.</p><a href="${ROOT}entitati/">Caută o entitate între proiecte →</a></section>`;
+  const kinds = {detail:'Pagină de entitate', listing:'Listă', search:'Căutare', document:'Document', unknown:'Tip necunoscut'};
+  const applicability = {historical:'Observație păstrată', stale:'Sursă nereconfirmată', current:'Observație disponibilă', unknown:'Actualitate necunoscută'};
+  const declared = {unspecified:'Nespecificat', anonymous:'Fără autentificare declarată', authenticated:'Autentificare declarată'};
+  const observed = {unknown:'Neverificat', anonymous:'Acces fără autentificare observat', authenticated:'Autentificare observată'};
+  const evidence = sources => `<details><summary>Surse și data observației</summary><ul>${sources.map(s => `<li>${s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.url)}</a>` : 'Sursă locală'} · <time>${esc(s.observedAt)}</time><br><code class="structure-hash">SHA-256 ${esc(s.sha256)}</code></li>`).join('')}</ul></details>`;
+  return `<section class="structure-profile" data-structure-profile><h3>Structura site-ului</h3>
+    <p class="small muted">Inventar parțial. Tiparele și endpointurile sunt declarații sau observații păstrate. Disponibilitatea lor actuală nu este garantată.</p>
+    <h4>Secțiuni și colecții (${structure.collections.length})</h4>
+    <ul>${structure.collections.map(c => {
+      const listings = structure.patterns.filter(p => p.collectionId === c.id && p.kind === 'listing' && !p.url.includes('{'));
+      return `<li><strong>${esc(c.label)}</strong>${listings.map(p => ` · <a href="${esc(p.url)}" target="_blank" rel="noopener">Deschide secțiunea</a>`).join('')}${evidence(c.sources)}</li>`;
+    }).join('')}</ul>
+    <details data-structure-patterns><summary>Tipare URL (${structure.patterns.length})</summary>
+      <ul>${structure.patterns.map(p => `<li><code>${esc(p.url)}</code><span class="small muted structure-meta">${esc(p.collection)} · ${esc(kinds[p.kind] || p.kind)} · ${esc(applicability[p.applicability] || p.applicability)}</span>
+        ${p.variables.length ? `<span class="small structure-meta">${p.variables.map(v => `${esc(v.name)}: ${esc(v.namespace || 'identificator necunoscut')}`).join(' · ')}</span>` : ''}${evidence(p.sources)}</li>`).join('')}</ul>
+    </details>
+    <details data-structure-apis><summary>Endpointuri API (${structure.operations.length})</summary>
+      <ul>${structure.operations.map(o => `<li><code>${esc(o.method)} ${esc(o.url)}</code><span class="small muted structure-meta">${esc(o.collections.join(' · '))}</span>
+        <span class="small structure-meta">Acces declarat: ${esc(declared[o.declaredSecurity] || o.declaredSecurity)}. Acces observat: ${esc(observed[o.observedSecurity] || o.observedSecurity)}.</span>
+        ${o.unresolvedParameters ? '<span class="small structure-warning">Parametri incompleți; verificarea API este oprită.</span>' : ''}${evidence(o.sources)}</li>`).join('')}</ul>
+    </details>
+    <p><a href="${ROOT}entitati/">Caută o entitate între proiecte →</a></p>
+  </section>`;
+}
+
 function renderDetail() {
   const it = current();
   const drawer = slot('drawer');
@@ -948,6 +977,7 @@ function renderDetail() {
       </div>
       ${it.desc ? `<p class="d-desc">${esc(it.desc)}</p>${it.descSrc === 'site' ? '<p class="d-src">Descriere preluată de pe site-ul proiectului.</p>' : ''}` : ''}
       ${inventoryHTML(it)}
+      ${structureHTML(it)}
       ${classHTML(it)}
       ${it.attributions.filter(a => a.org && BY_SLUG.has(a.org)).map(a => orgCard(BY_SLUG.get(a.org))).join('')}
       <dl class="dl">${dl.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>
@@ -1346,6 +1376,13 @@ async function boot(byUser = false) {
 
 function start(db) {
   DB = db;
+  document.querySelector('[data-structure-link]')?.remove();
+  if (db.structurePreview) {
+    const link = document.createElement('a');
+    link.href = ROOT + 'entitati/'; link.textContent = 'Entități'; link.className = 'hdr-link';
+    link.dataset.structureLink = ''; link.title = 'Caută o entitate între proiecte';
+    document.querySelector('.hdr-links')?.prepend(link);
+  }
   if (db.inventoryPreview) slot('q').placeholder = 'Caută proiect, subiect sau câmp…';
   const map = arr => Object.fromEntries(arr.map(x => [x.key, x]));
   const v = db.vocabulary;

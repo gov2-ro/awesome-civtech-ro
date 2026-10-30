@@ -21,6 +21,7 @@ The recipes use tracked pilot excerpts. They work without ignored caches or live
 They produce eleven real record references and four proposed correspondences, including two actual igov local-ID-to-CUI mappings.
 SICAP contributes declarations, not real sample records; its live host remains blocked.
 The [curation report](reports/site-structure-curation.md) records the evidence and remaining questions.
+The [structure preview](STRUCTURE-PREVIEW.md) shows those observations in project profiles and an exact entity lookup.
 
 ## Recipe fields
 

@@ -105,3 +105,4 @@ docs/reference/init-prototype/*
 # Per-entry inventory payloads are generated for isolated explorer previews.
 /site/inventar/
 /site/date/
+/site/entitati/

@@ -40,7 +40,7 @@ FEED_SIZE = 40
 REPO_URL = "https://github.com/gov2-ro/awesome-civtech-ro"
 PAGE_KINDS = ("proiect", "organizatie", "resursa")  # the folders under site/ that entry_pages() owns
 DEFAULT_SHARE = {"src": "img/share.png", "w": 1106, "h": 558}
-GENERATED = ("data.json", "feed.xml", "llms.txt", "inventar", "date", *PAGE_KINDS)  # what a build writes; never copied from site/
+GENERATED = ("data.json", "feed.xml", "llms.txt", "inventar", "date", "entitati", *PAGE_KINDS)  # what a build writes; never copied from site/
 
 
 def pick_desc(desc: str, prof: dict) -> tuple[str, str]:
@@ -239,7 +239,8 @@ def clip(text: str, n: int) -> str:
     return cut.rstrip(" ,.;:–-") + "…"
 
 
-ASSET_LINKS = {"style.css": r'(href="style\.css)(\?v=[0-9a-f]+)?(")', "app.js": r'(src="app\.js)(\?v=[0-9a-f]+)?(")'}
+ASSET_LINKS = {"style.css": r'(href="style\.css)(\?v=[0-9a-f]+)?(")', "app.js": r'(src="app\.js)(\?v=[0-9a-f]+)?(")',
+               "structure.css": r'(href="structure\.css)(\?v=[0-9a-f]+)?(")'}
 
 
 def stamp_assets(site: Path = SITE) -> bool:
@@ -715,10 +716,16 @@ def main():
     parser.add_argument("--site-dir", type=Path, default=SITE, help="output folder (default: site/, for the public root only)")
     parser.add_argument("--allow-draft", action="store_true", help="v2 preview: allow proposed classifications (never for site/)")
     parser.add_argument("--with-inventory", action="store_true", help="include the data inventories: /date/, /date/lista/ and inventar/*.json (v2 roots only)")
+    parser.add_argument("--with-structure", action="store_true", help="include site structure and entity lookup in an isolated v2 preview")
+    parser.add_argument("--structure-store", type=Path, help="read an existing structure store instead of replaying tracked recipes")
     args = parser.parse_args()
     data_dir, site = args.data_dir.resolve(), args.site_dir.resolve()
     schema, public = data_schema(data_dir), PUBLIC_ROOT.resolve()
     v2 = schema == "v2"
+    if args.structure_store and not args.with_structure:
+        parser.error("--structure-store needs --with-structure")
+    if args.with_structure and (not v2 or site == SITE):
+        parser.error("--with-structure needs a v2 root and a separate --site-dir")
     if args.with_inventory and not v2:
         parser.error("--with-inventory needs a v2 root")
     if site == SITE and data_dir != public and "v2" in (schema, data_schema(public)):
@@ -746,6 +753,12 @@ def main():
     else:
         for name in ("date", "inventar"):
             shutil.rmtree(site / name, ignore_errors=True)
+    if args.with_structure:
+        from structure_site import publish_preview as publish_structure
+        publish_structure(items, site, args.structure_store)
+        head["structurePreview"] = True
+    else:
+        shutil.rmtree(site / "entitati", ignore_errors=True)
     checked = sorted({i["checked"] for i in items if i["checked"]})
     now = datetime.now(timezone.utc)
     out = {"generated": now.isoformat(timespec="seconds"), "checked": checked[-1] if checked else ""}

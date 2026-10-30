@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="../">
+<title>Entități între proiecte · CivTech România</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="img/logo.png">
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="style.css?v=BUILD">
+<link rel="stylesheet" href="structure.css?v=BUILD">
+</head>
+<body>
+<a class="skip" href="entitati/#entity-results">Sari la rezultate</a>
+<main class="wrap entity-page">
+  <a href="./">← Explorator</a>
+  <p class="kicker">Previzualizare · corespondențe între proiecte</p>
+  <h1>Unde apare aceeași entitate?</h1>
+  <p>Caută un identificator în înregistrările observate. Corespondențele confirmate au fost acceptate de editor.</p>
+  <form id="entity-search" class="entity-search">
+    <label>Tip de identificator<select id="entity-namespace" name="namespace"></select></label>
+    <label>Identificator<input id="entity-value" name="value" type="search" autocomplete="off" placeholder="1973096"></label>
+    <button class="btn btn-primary" type="submit">Caută</button>
+  </form>
+  <p class="small muted">Valorile se caută exact. Zerourile inițiale, prefixele și semnele se păstrează.</p>
+  <p id="entity-examples">Exemple:
+    <button class="linkbtn" data-namespace="ro:cui" data-value="1973096">Antibiotice · CUI 1973096</button> ·
+    <button class="linkbtn" data-namespace="ro:cui" data-value="4266863">MAE · CUI 4266863</button> ·
+    <button class="linkbtn" data-namespace="ro:siruta" data-value="179132">București · SIRUTA 179132</button>
+  </p>
+  <p id="entity-count" role="status" aria-live="polite">Se încarcă înregistrările…</p>
+  <section id="entity-results" aria-label="Înregistrări găsite"></section>
+  <p class="small muted">Inventarul este parțial. Lipsa unui rezultat nu înseamnă că entitatea lipsește de pe un site.</p>
+  <p class="small muted">Un URL construit dintr-un tipar nu confirmă disponibilitatea paginii. Data observației nu stabilește valabilitatea juridică.</p>
+  <noscript><p>Activează JavaScript pentru căutare.</p></noscript>
+</main>
+<script src="entities.js?v=BUILD"></script>
+</body>
+</html>

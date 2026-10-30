@@ -33,6 +33,9 @@ python3 scripts/profile_structure.py --out /tmp/civtech-structure --check   # ve
 python3 -m unittest discover -s scripts -p 'test_profile_structure.py'   # shared structure engine tests (stdlib)
 python3 scripts/curate_structure.py apply --out /tmp/civtech-structure --recipe data/taxonomy-v2/structura/recipes/igov.json   # offline typed bindings and samples
 python3 scripts/curate_structure.py report --out /tmp/civtech-structure --decisions data/taxonomy-v2/structura/decisions.json --json   # read-only identity review queue
+python3 scripts/build.py --with-structure --site-dir /tmp/civtech-entity-preview   # isolated site structure profiles and /entitati/ lookup; optional --structure-store DIR
+python3 -m unittest discover -s scripts -p 'test_structure_site.py'   # structure projection and build isolation checks
+uv run scripts/check_structure_preview.py http://127.0.0.1:8784/   # browser checks of a served structure preview
 uv run scripts/search.py --dry-run --only slug,slug   # print the search queries; no requests
 uv run scripts/search.py                    # Serper + Brave (SERPER_API_KEY, BRAVE_API_KEY, paid): entries without rows in data/mentiuni.csv (--only, --force, --provider serper|brave|all)
 uv run scripts/search.py --prune-only       # apply the prune rules to the stored rows and recompute mentions in profil.csv; no requests (profile.py keeps these columns since v0.7.0)
@@ -56,6 +59,8 @@ See `docs/STRUCTURE-PROFILER.md` and spec section 8. The version-1 pilot remains
 The `profile-structure` skill curates evidence-backed recipes under `data/taxonomy-v2/structura/recipes/`.
 `curate_structure.py` applies those inputs offline and proposes identity pairs. Only the owner changes `structura/decisions.json`.
 Local IDs, CUI, SIRUTA, registration IDs and subject roles remain distinct. See `docs/STRUCTURE-CURATION.md`.
+`build.py --with-structure` adds those observations to project profiles and builds an exact entity lookup in an isolated preview.
+It cannot write `site/`. See `docs/STRUCTURE-PREVIEW.md`; identity acceptance does not authorize publication.
 
 ```
 Google Sheet (tab v2-intrari) ⇄ scripts/sheets.py (pull / push)
