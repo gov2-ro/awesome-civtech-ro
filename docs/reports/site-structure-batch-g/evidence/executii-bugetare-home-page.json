@@ -1,0 +1,16 @@
+{
+  "provenance": {
+    "source": "https://executii-bugetare.g4d.ro/",
+    "observed_at": "2026-10-30T16:24:06.998210+00:00",
+    "source_body_sha256": "4a33fff69567083569fc140f6016c029403fd8f62e3781ca471a58cd2516139a",
+    "retained_text_sha256": "4a33fff69567083569fc140f6016c029403fd8f62e3781ca471a58cd2516139a",
+    "source_snapshot": null,
+    "http_status": 200,
+    "extraction": "Exact title, module binding and linked bootstrap path from the observed home page."
+  },
+  "payload": {
+    "title": "Tu ştii pe ce se duc banii localităţii tale?",
+    "module": "home",
+    "bootstrap": "js/root.js"
+  }
+}

@@ -1,5 +1,31 @@
 # Activity
 
+## 2026-10-30 — Push v0.50.0 and profile institutions and territories
+
+**Done**
+- Pushed `8e0febe` and `v0.50.0` to origin. GitHub validation and Pages both succeeded.
+- Profiled Execuții Bugetare, Banii Noștri, Data Expert Forum, Ce cumpără primăria and Hazard seismic 2026. [Report](reports/site-structure-batch-g.md).
+- Added five recipes, fourteen collections, fifteen URL patterns, four API/data operations, 22 record references and six explicit relationships.
+- The fifteen-project set has 75 evidence records, 54 collections, 54 patterns, 87 operations, 48 identifier rules and 49 records. Zero sample gaps and zero conflicts.
+- Proposed thirteen further pairs: one București fiscal-institution pair, seven București territory pairs, three Cluj-Napoca pairs and one each for Alba Iulia and Arad.
+- Sent nine GET requests, all HTTP 200, including four robots checks. Expert Forum and its Google Sheets used retained evidence only; zero forbidden-host or paid-API requests.
+- Seven new offline checks pass on Python 3.12. The final suite passes 1,265 tests with eight skips; all 37 browser checks pass, including ten expansion profiles and the local-only locality lookup.
+- Original pilot, structure integrity, repository validation and public build pass. Verified and excluded generated public timestamp drift.
+
+**Hard**
+- The budget homepage only names its module. Followed the linked bootstrap and explicit home-module path to establish query parameters and JSON paths.
+- Expert Forum provides fiscal CIF and territory SIRUTA in the same rows. Extracted separate subjects and two associations; never treated the codes as equal identity.
+- Google redirect wrappers in the saved page carry tracking signatures. Kept the clean published target links instead; no request followed a wrapper.
+- Ce cumpără primăria's numeric route needed semantic proof. Decoded literal JSON chunks that name the `siruta` property and retained only locality identity fields.
+- The hazard data uses both slugs and first-edition row numbers. The deployed script names each position; neither namespace is shared or inferred as SIRUTA.
+
+**Decided**
+- Preserve the original four accepted decisions and all pending reviews. The owner's push instruction does not accept the 26 earlier or thirteen new proposals.
+- Treat direct-purchase IDs as local record keys. Buyer and supplier CUIs identify separate corporate subjects, with four explicit role relationships.
+- Keep annual budget context separate from institution identity. Fixed year/county detail patterns describe the observed scope only.
+- Read the existing owner-confirmed `afn`/`sfn` bindings from the committed catalogue definition; cite the pushed Git object without another network request.
+- Version v0.51.0 records the new enrollment batch. Public feature integration remains separate; this repository has no Cargo.toml.
+
 ## 2026-10-30 — Five-site structure expansion
 
 **Done**

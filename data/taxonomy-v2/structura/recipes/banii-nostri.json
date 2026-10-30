@@ -1,0 +1,401 @@
+{
+  "schema_version": 1,
+  "id": "banii-nostri-batch-f",
+  "project_slug": "banii-nostri",
+  "input_url": "https://baniinostri.info",
+  "evidence": [
+    {
+      "id": "purchase-parties",
+      "source": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+      "observed_at": "2026-10-25T14:12:08.759216+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-g/evidence/banii-nostri-purchase-parties.json",
+      "sha256": "f4fffa37a6bac3f5e1e36bd4eb8c13e3cef1d84e615babc67c5d7e6d65bd2321",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "reviewed-party-bindings",
+      "source": "https://github.com/gov2-ro/awesome-civtech-ro/blob/8e0febe85180eb34249cdfe0f3044a5c669084e1/data/taxonomy-v2/inventar-concepte.json",
+      "observed_at": "2026-10-30T16:28:07.752227+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-g/evidence/banii-nostri-reviewed-party-bindings.json",
+      "sha256": "261b098c047b3cc9b9c4837a79d97817d3fa388e6e9db662d5fada9b17e7c45a",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "report-sections",
+      "source": "https://baniinostri.info/",
+      "observed_at": "2026-10-24T22:19:21.877341+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-g/evidence/banii-nostri-report-sections.json",
+      "sha256": "88335c615af78cce1eeca17a4e79c337889d9339e7ff38f2309d54d616b3bd4c",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    }
+  ],
+  "collections": [
+    {
+      "id": "purchases",
+      "label": "Achiziții directe",
+      "entity_type": "contract",
+      "record_grain": "direct_purchase",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "purchase-parties",
+        "reviewed-party-bindings"
+      ]
+    },
+    {
+      "id": "buyers",
+      "label": "Companii cumpărătoare",
+      "entity_type": "company",
+      "record_grain": "legal_subject",
+      "identity_components": [
+        "ro:cui"
+      ],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "purchase-parties",
+        "reviewed-party-bindings",
+        "report-sections"
+      ]
+    },
+    {
+      "id": "suppliers",
+      "label": "Furnizori",
+      "entity_type": "company",
+      "record_grain": "legal_subject",
+      "identity_components": [
+        "ro:cui"
+      ],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "purchase-parties",
+        "reviewed-party-bindings"
+      ]
+    },
+    {
+      "id": "reports",
+      "label": "Rapoarte",
+      "entity_type": "unknown",
+      "record_grain": "report",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "report-sections"
+      ]
+    }
+  ],
+  "namespaces": [
+    {
+      "id": "ro:cui",
+      "issuer": "Romanian fiscal administration",
+      "scope": "Romanian fiscal subjects; preserve the observed string.",
+      "normalization": "identity",
+      "shared": true,
+      "evidence": [
+        "purchase-parties",
+        "reviewed-party-bindings"
+      ]
+    },
+    {
+      "id": "banii-nostri:purchase:daid",
+      "issuer": "data.g4d.ro for Banii Noștri",
+      "scope": "Direct-purchase row ID in the retained endpoint. No cross-project identity claim.",
+      "normalization": "identity",
+      "shared": false,
+      "evidence": [
+        "purchase-parties"
+      ]
+    }
+  ],
+  "patterns": [
+    {
+      "id": "home",
+      "collection": "reports",
+      "url_template": "https://baniinostri.info/",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "report-sections"
+      ]
+    },
+    {
+      "id": "reports",
+      "collection": "reports",
+      "url_template": "https://baniinostri.info/rapoarte/",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "report-sections"
+      ]
+    },
+    {
+      "id": "raja-report",
+      "collection": "buyers",
+      "url_template": "https://baniinostri.info/RAJASA/",
+      "kind": "document",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "report-sections",
+        "purchase-parties"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "id": "raja-direct-purchases",
+      "method": "GET",
+      "url_template": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+      "uses": [
+        {
+          "collection": "purchases",
+          "subject_role": "self",
+          "scope": "at_least"
+        },
+        {
+          "collection": "buyers",
+          "subject_role": "buyer",
+          "scope": "at_least"
+        },
+        {
+          "collection": "suppliers",
+          "subject_role": "supplier",
+          "scope": "at_least"
+        }
+      ],
+      "parameters": [],
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "anonymous"
+      },
+      "basis": [
+        "observed-resource"
+      ],
+      "evidence": [
+        "purchase-parties",
+        "reviewed-party-bindings"
+      ],
+      "last_test": {
+        "outcome": "observed",
+        "reason": "Retained public JSON response; historical observation, not a fresh probe.",
+        "checked_at": "2026-10-25T14:12:08.759216+00:00",
+        "evidence": "purchase-parties"
+      },
+      "pagination": {
+        "mechanism": "declared-response-fields",
+        "fields": [
+          "hasMore",
+          "limit",
+          "offset",
+          "count"
+        ],
+        "tested_pages": 1
+      },
+      "coverage_note": "Only buyer CUI 1890420 was sampled. Query arguments and other buyers remain unknown."
+    }
+  ],
+  "identifier_rules": [
+    {
+      "id": "purchase-id",
+      "collection": "purchases",
+      "namespace": "banii-nostri:purchase:daid",
+      "location": "/rows/*/daid",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "purchase-parties"
+      ],
+      "note": ""
+    },
+    {
+      "id": "purchase-buyer",
+      "collection": "purchases",
+      "namespace": "ro:cui",
+      "location": "/rows/*/afn",
+      "subject_role": "buyer",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "purchase-parties",
+        "reviewed-party-bindings"
+      ],
+      "note": ""
+    },
+    {
+      "id": "purchase-supplier",
+      "collection": "purchases",
+      "namespace": "ro:cui",
+      "location": "/rows/*/sfn",
+      "subject_role": "supplier",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "purchase-parties",
+        "reviewed-party-bindings"
+      ],
+      "note": ""
+    },
+    {
+      "id": "buyer-self",
+      "collection": "buyers",
+      "namespace": "ro:cui",
+      "location": "/rows/*/afn",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "purchase-parties",
+        "reviewed-party-bindings"
+      ],
+      "note": ""
+    },
+    {
+      "id": "supplier-self",
+      "collection": "suppliers",
+      "namespace": "ro:cui",
+      "location": "/rows/*/sfn",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "purchase-parties",
+        "reviewed-party-bindings"
+      ],
+      "note": ""
+    }
+  ],
+  "samples": [
+    {
+      "id": "buyer-1890420",
+      "collection": "buyers",
+      "label": "S.C RAJA S.A CONSTANTA",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "buyer-self",
+          "source": "purchase-parties",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/0/afn"
+          }
+        }
+      ]
+    },
+    {
+      "id": "purchase-112526469",
+      "collection": "purchases",
+      "label": "DA31431413",
+      "local_namespace": "banii-nostri:purchase:daid",
+      "identifiers": [
+        {
+          "rule": "purchase-id",
+          "source": "purchase-parties",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/0/daid"
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplier-11394440",
+      "collection": "suppliers",
+      "label": "AUTOPRIMA SERV S.R.L.",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "supplier-self",
+          "source": "purchase-parties",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/0/sfn"
+          }
+        }
+      ]
+    },
+    {
+      "id": "purchase-112648755",
+      "collection": "purchases",
+      "label": "DA31542970",
+      "local_namespace": "banii-nostri:purchase:daid",
+      "identifiers": [
+        {
+          "rule": "purchase-id",
+          "source": "purchase-parties",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/1/daid"
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplier-6776672",
+      "collection": "suppliers",
+      "label": "SISTEM-T.C.",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "supplier-self",
+          "source": "purchase-parties",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/1/sfn"
+          }
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "buyer-for-112526469",
+      "source_sample": "purchase-112526469",
+      "target_sample": "buyer-1890420",
+      "relation": "buyer",
+      "evidence": [
+        "purchase-parties",
+        "reviewed-party-bindings"
+      ]
+    },
+    {
+      "id": "supplier-for-112526469",
+      "source_sample": "purchase-112526469",
+      "target_sample": "supplier-11394440",
+      "relation": "supplier",
+      "evidence": [
+        "purchase-parties",
+        "reviewed-party-bindings"
+      ]
+    },
+    {
+      "id": "buyer-for-112648755",
+      "source_sample": "purchase-112648755",
+      "target_sample": "buyer-1890420",
+      "relation": "buyer",
+      "evidence": [
+        "purchase-parties",
+        "reviewed-party-bindings"
+      ]
+    },
+    {
+      "id": "supplier-for-112648755",
+      "source_sample": "purchase-112648755",
+      "target_sample": "supplier-6776672",
+      "relation": "supplier",
+      "evidence": [
+        "purchase-parties",
+        "reviewed-party-bindings"
+      ]
+    }
+  ]
+}

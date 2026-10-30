@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "id": "cat-de-tare-batch-f",
+  "project_slug": "cat-de-tare",
+  "input_url": "https://mariuscomper.uk/cat-de-tare/",
+  "evidence": [
+    {
+      "id": "locality-ids",
+      "source": "https://mariuscomper.uk/cat-de-tare/assets/places.json?v=5",
+      "observed_at": "2026-10-27T17:06:04.634129+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-g/evidence/cat-de-tare-locality-ids.json",
+      "sha256": "95d6604d7a3955e7a73f1b33c5c1f877e417947e69dd0dd7cd2a9c8cada59b50",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "identifier-and-route-code",
+      "source": "https://mariuscomper.uk/cat-de-tare/assets/app.js?v=7e09d6d661",
+      "observed_at": "2026-10-27T17:05:50.721743+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-g/evidence/cat-de-tare-identifier-and-route-code.json",
+      "sha256": "7732554eed27c5236e001f9b438c1862b1536d3569c72a43626a23f655789542",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "route-config",
+      "source": "https://mariuscomper.uk/cat-de-tare/",
+      "observed_at": "2026-10-27T17:05:42.861638+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-g/evidence/cat-de-tare-route-config.json",
+      "sha256": "e1269707e164f8ab3d5349364d3cffa3464de269b31ae562a7e64b0d0f4a8c75",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    }
+  ],
+  "collections": [
+    {
+      "id": "territories",
+      "label": "Localități — identificatori locali",
+      "entity_type": "territory",
+      "record_grain": "territory",
+      "identity_components": [
+        "ro:siruta"
+      ],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "locality-ids",
+        "identifier-and-route-code",
+        "route-config"
+      ]
+    }
+  ],
+  "namespaces": [
+    {
+      "id": "cat-de-tare:locality-slug",
+      "issuer": "mariuscomper.uk/cat-de-tare",
+      "scope": "Local locality slug in the retained release; no shared geographic identity.",
+      "normalization": "identity",
+      "shared": false,
+      "evidence": [
+        "locality-ids",
+        "identifier-and-route-code"
+      ]
+    },
+    {
+      "id": "cat-de-tare:legacy-row",
+      "issuer": "mariuscomper.uk/cat-de-tare",
+      "scope": "Legacy first-edition row number; do not assume stability across releases.",
+      "normalization": "identity",
+      "shared": false,
+      "evidence": [
+        "locality-ids",
+        "identifier-and-route-code"
+      ]
+    }
+  ],
+  "patterns": [
+    {
+      "id": "home",
+      "collection": "territories",
+      "url_template": "https://mariuscomper.uk/cat-de-tare/",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "route-config"
+      ]
+    },
+    {
+      "id": "locality-page",
+      "collection": "territories",
+      "url_template": "https://mariuscomper.uk/cat-de-tare/l/{slug}/",
+      "kind": "detail",
+      "variables": [
+        {
+          "name": "slug",
+          "namespace": "cat-de-tare:locality-slug",
+          "location": "path"
+        }
+      ],
+      "basis": "declared",
+      "examples": [],
+      "evidence": [
+        "identifier-and-route-code",
+        "route-config"
+      ]
+    },
+    {
+      "id": "locality-query",
+      "collection": "territories",
+      "url_template": "https://mariuscomper.uk/cat-de-tare/?l={slug}",
+      "kind": "detail",
+      "variables": [
+        {
+          "name": "slug",
+          "namespace": "cat-de-tare:locality-slug",
+          "location": "query"
+        }
+      ],
+      "basis": "declared",
+      "examples": [],
+      "evidence": [
+        "identifier-and-route-code"
+      ]
+    }
+  ],
+  "operations": [],
+  "identifier_rules": [
+    {
+      "id": "local-slug",
+      "collection": "territories",
+      "namespace": "cat-de-tare:locality-slug",
+      "location": "/rows/*/slug",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "locality-ids",
+        "identifier-and-route-code"
+      ],
+      "note": ""
+    },
+    {
+      "id": "legacy-row",
+      "collection": "territories",
+      "namespace": "cat-de-tare:legacy-row",
+      "location": "/rows/*/legacy_row",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "locality-ids",
+        "identifier-and-route-code"
+      ],
+      "note": ""
+    }
+  ],
+  "samples": [
+    {
+      "id": "locality-alba-iulia",
+      "collection": "territories",
+      "label": "Alba Iulia — ID local",
+      "local_namespace": "cat-de-tare:locality-slug",
+      "identifiers": [
+        {
+          "rule": "local-slug",
+          "source": "locality-ids",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/0/slug"
+          }
+        },
+        {
+          "rule": "legacy-row",
+          "source": "locality-ids",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/0/legacy_row"
+          }
+        }
+      ]
+    },
+    {
+      "id": "locality-bucuresti",
+      "collection": "territories",
+      "label": "București — ID local",
+      "local_namespace": "cat-de-tare:locality-slug",
+      "identifiers": [
+        {
+          "rule": "local-slug",
+          "source": "locality-ids",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/1/slug"
+          }
+        },
+        {
+          "rule": "legacy-row",
+          "source": "locality-ids",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/1/legacy_row"
+          }
+        }
+      ]
+    },
+    {
+      "id": "locality-cluj-napoca",
+      "collection": "territories",
+      "label": "Cluj-Napoca — ID local",
+      "local_namespace": "cat-de-tare:locality-slug",
+      "identifiers": [
+        {
+          "rule": "local-slug",
+          "source": "locality-ids",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/2/slug"
+          }
+        },
+        {
+          "rule": "legacy-row",
+          "source": "locality-ids",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/2/legacy_row"
+          }
+        }
+      ]
+    }
+  ],
+  "relationships": []
+}

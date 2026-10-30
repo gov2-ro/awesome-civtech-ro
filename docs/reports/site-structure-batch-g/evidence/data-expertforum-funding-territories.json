@@ -1,0 +1,49 @@
+{
+  "provenance": {
+    "source": "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/export?format=csv&gid=768211337",
+    "observed_at": "2026-10-26T18:39:25.584747+00:00",
+    "source_body_sha256": "c46e02d7800625aecb25f98655025bac50a0a2ec265679b5be84e67c1f4725b2",
+    "retained_text_sha256": "c46e02d7800625aecb25f98655025bac50a0a2ec265679b5be84e67c1f4725b2",
+    "source_snapshot": "surse/9e2b0b9a6a6d1bdb0717-c46e02d7800625ae.json",
+    "http_status": 200,
+    "extraction": "Four territory subjects referenced by retained funding-request rows. Project names, amounts, party values and repeated rows excluded."
+  },
+  "payload": {
+    "header": [
+      "UAT",
+      "Judet",
+      "siruta",
+      "Denumirea obiectivului de investiții",
+      "Domeniu",
+      "valoare solicitata",
+      "Tip UAT",
+      "Partid"
+    ],
+    "rows": [
+      {
+        "source_index": 2,
+        "siruta": "179132",
+        "UAT": "Bucuresti ",
+        "Judet": "Bucuresti"
+      },
+      {
+        "source_index": 1454,
+        "siruta": "1017",
+        "UAT": "Alba Iulia ",
+        "Judet": "Alba"
+      },
+      {
+        "source_index": 845,
+        "siruta": "54975",
+        "UAT": "Cluj Napoca ",
+        "Judet": "Cluj"
+      },
+      {
+        "source_index": 34,
+        "siruta": "9262",
+        "UAT": "Arad ",
+        "Judet": "Arad"
+      }
+    ]
+  }
+}

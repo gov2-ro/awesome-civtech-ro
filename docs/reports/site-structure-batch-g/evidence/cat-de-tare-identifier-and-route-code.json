@@ -1,0 +1,35 @@
+{
+  "provenance": {
+    "source": "https://mariuscomper.uk/cat-de-tare/assets/app.js?v=7e09d6d661",
+    "observed_at": "2026-10-27T17:05:50.721743+00:00",
+    "source_body_sha256": "7e09d6d661ec5c2f4d3bdcc4bd7de35e3a9abdbe3377e2b0c42cb3496e21b271",
+    "retained_text_sha256": "7e09d6d661ec5c2f4d3bdcc4bd7de35e3a9abdbe3377e2b0c42cb3496e21b271",
+    "source_snapshot": "surse/a2311288bb40078cef8f-7e09d6d661ec5c2f.json",
+    "http_status": 200,
+    "extraction": "Exact positional mapping, share URL, query writer and restore code. Numeric legacy row IDs are explicitly local; no SIRUTA mapping is declared."
+  },
+  "payload": {
+    "excerpts": [
+      {
+        "start": 10206,
+        "end": 10254,
+        "text": "slug: a[15], n: a[16], page: a[17], card: a[18],"
+      },
+      {
+        "start": 31222,
+        "end": 31344,
+        "text": "function shareUrl(r) { return ORIGIN + PREFIX + \"/\" + CFG.dir + (CFG.placePages ? \"l/\" + r.slug + \"/\" : \"?l=\" + r.slug); }"
+      },
+      {
+        "start": 36257,
+        "end": 36695,
+        "text": "function writeUrl() {\n    var q = A ? \"?l=\" + A.slug + (B ? \"&c=\" + B.slug : \"\") : \"\";\n    var want = location.pathname + q + location.hash;\n    if (location.pathname + location.search + location.hash !== want && history.replaceState) history.replaceState(null, \"\", want);\n    syncLangLinks();\n    document.title = A ? dispName(A) + \": \" + fmtG(A.v) + \" · \" + T.titleTail : document.querySelector('meta[property=\"og:title\"]').content;\n  }"
+      },
+      {
+        "start": 38243,
+        "end": 39062,
+        "text": "function restore() {\n    var p = new URLSearchParams(location.search), l = p.get(\"l\"), c = p.get(\"c\");\n    function find(v) {\n      if (!v) return null;\n      if (/^\\d+$/.test(v)) return rows.filter(function (r) { return r.n === +v; })[0] || null;   // links from the first edition used the row number\n      return rows.filter(function (r) { return r.slug === v; })[0] || null;\n    }\n    var a = find(l), b = find(c);\n    if (a) { A = a; B = b && b !== a ? b : null; renderA(); renderB(); markScales(); writeUrl(); loadShapes(); goTo(fitBox(boxOf(B ? [A, B] : [A].concat(A.nb.map(function (j) { return rows[j]; }))), Math.min(36, cssW * 0.06), 5), true); }\n    else { draw(); setTouch(); if (\"requestIdleCallback\" in window) requestIdleCallback(loadShapes); else setTimeout(loadShapes, 1500); }\n    syncLangLinks();\n  }"
+      }
+    ]
+  }
+}

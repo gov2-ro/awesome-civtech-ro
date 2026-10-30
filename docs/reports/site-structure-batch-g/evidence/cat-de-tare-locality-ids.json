@@ -1,0 +1,38 @@
+{
+  "provenance": {
+    "source": "https://mariuscomper.uk/cat-de-tare/assets/places.json?v=5",
+    "observed_at": "2026-10-27T17:06:04.634129+00:00",
+    "source_body_sha256": "23fd5af110afe9dc399afcbe704854bfa21f8d34919b2df30514dbc656063996",
+    "retained_text_sha256": "23fd5af110afe9dc399afcbe704854bfa21f8d34919b2df30514dbc656063996",
+    "source_snapshot": "surse/c101d8915ef89c1c8965-23fd5af110afe9dc.json",
+    "http_status": 200,
+    "extraction": "Complete positional rows 2, 694 and 940 from a partial read. Only names, county, slug and legacy row ID copied; hazard values and geometry excluded."
+  },
+  "payload": {
+    "complete_document": false,
+    "recovery": "inventory_jsonsample.recover",
+    "rows": [
+      {
+        "source_index": 2,
+        "name": "Alba Iulia",
+        "county": "Alba",
+        "slug": "alba-iulia",
+        "legacy_row": 3
+      },
+      {
+        "source_index": 694,
+        "name": "București",
+        "county": "București",
+        "slug": "bucuresti",
+        "legacy_row": 695
+      },
+      {
+        "source_index": 940,
+        "name": "Cluj-Napoca",
+        "county": "Cluj",
+        "slug": "cluj-napoca",
+        "legacy_row": 941
+      }
+    ]
+  }
+}

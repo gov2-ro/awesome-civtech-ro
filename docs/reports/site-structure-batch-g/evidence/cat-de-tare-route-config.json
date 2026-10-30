@@ -1,0 +1,20 @@
+{
+  "provenance": {
+    "source": "https://mariuscomper.uk/cat-de-tare/",
+    "observed_at": "2026-10-27T17:05:42.861638+00:00",
+    "source_body_sha256": "1d6259c74729ab5e68da73e109ac8d1583640f993f9639664ea73b753bbcef3b",
+    "retained_text_sha256": "1d6259c74729ab5e68da73e109ac8d1583640f993f9639664ea73b753bbcef3b",
+    "source_snapshot": "surse/1f49c4a2a935f0f1602b-1d6259c74729ab5e.json",
+    "http_status": 200,
+    "extraction": "Exact route configuration from the retained page. placePages selects the l/<slug>/ share format; the query restore format remains supported."
+  },
+  "payload": {
+    "config": {
+      "lang": "ro",
+      "prefix": "/cat-de-tare",
+      "dir": "",
+      "ver": "5",
+      "placePages": true
+    }
+  }
+}

@@ -1,0 +1,331 @@
+{
+  "schema_version": 1,
+  "id": "data-expertforum-batch-f",
+  "project_slug": "data-expertforum",
+  "input_url": "https://data.expertforum.ro/",
+  "evidence": [
+    {
+      "id": "fiscal-territory-pairs",
+      "source": "https://docs.google.com/spreadsheets/d/1LFqrx69uwDqMlibUB_bDQHe3WsuxmeLR-hmZc-I59B8/export?format=csv&gid=1605213175",
+      "observed_at": "2026-10-26T18:39:24.117837+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-g/evidence/data-expertforum-fiscal-territory-pairs.json",
+      "sha256": "9166d0a531deb0bb8dd3cd0db42eccd30e8e39618dc6d7ef75c94e9088fbf1ab",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "funding-territories",
+      "source": "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/export?format=csv&gid=768211337",
+      "observed_at": "2026-10-26T18:39:25.584747+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-g/evidence/data-expertforum-funding-territories.json",
+      "sha256": "c076e62d2f37ddb64458f2e9a776996afdd82e907bd593df58ced4177d52fe17",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "saved-page",
+      "source": "https://data.expertforum.ro/",
+      "observed_at": "2026-10-26T18:23:00+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-g/evidence/data-expertforum-saved-page.json",
+      "sha256": "ebe119b24254a5d5c27e450fa51f4e18e379518fd470534defa98f667f156fd7",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    }
+  ],
+  "collections": [
+    {
+      "id": "territories",
+      "label": "Teritorii și UAT-uri beneficiare",
+      "entity_type": "territory",
+      "record_grain": "territory",
+      "identity_components": [
+        "ro:siruta"
+      ],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "fiscal-territory-pairs",
+        "funding-territories"
+      ]
+    },
+    {
+      "id": "institutions",
+      "label": "Instituții locale — cod fiscal",
+      "entity_type": "public_institution",
+      "record_grain": "legal_subject",
+      "identity_components": [
+        "ro:cui"
+      ],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "fiscal-territory-pairs"
+      ]
+    },
+    {
+      "id": "datasets",
+      "label": "Seturi de date",
+      "entity_type": "unknown",
+      "record_grain": "dataset",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "saved-page"
+      ]
+    }
+  ],
+  "namespaces": [
+    {
+      "id": "ro:cui",
+      "issuer": "Romanian fiscal administration",
+      "scope": "Romanian fiscal subjects; preserve the observed string.",
+      "normalization": "identity",
+      "shared": true,
+      "evidence": [
+        "fiscal-territory-pairs"
+      ]
+    },
+    {
+      "id": "ro:siruta",
+      "issuer": "INS",
+      "scope": "Administrative territory code; distinct from the fiscal CIF in the same row.",
+      "normalization": "identity",
+      "shared": true,
+      "evidence": [
+        "fiscal-territory-pairs",
+        "funding-territories"
+      ]
+    }
+  ],
+  "patterns": [
+    {
+      "id": "dataset-list",
+      "collection": "datasets",
+      "url_template": "https://data.expertforum.ro/",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "saved-page"
+      ]
+    },
+    {
+      "id": "allocation-sheet",
+      "collection": "datasets",
+      "url_template": "https://docs.google.com/spreadsheets/d/1LFqrx69uwDqMlibUB_bDQHe3WsuxmeLR-hmZc-I59B8/export?format=csv&gid=1605213175",
+      "kind": "document",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "fiscal-territory-pairs"
+      ]
+    },
+    {
+      "id": "funding-sheet",
+      "collection": "datasets",
+      "url_template": "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/export?format=csv&gid=768211337",
+      "kind": "document",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "funding-territories"
+      ]
+    }
+  ],
+  "operations": [],
+  "identifier_rules": [
+    {
+      "id": "allocation-siruta",
+      "collection": "territories",
+      "namespace": "ro:siruta",
+      "location": "/rows/*/SIRUTA",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "fiscal-territory-pairs"
+      ],
+      "note": ""
+    },
+    {
+      "id": "fiscal-cui",
+      "collection": "institutions",
+      "namespace": "ro:cui",
+      "location": "/rows/*/CIF",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "fiscal-territory-pairs"
+      ],
+      "note": ""
+    },
+    {
+      "id": "funding-siruta",
+      "collection": "territories",
+      "namespace": "ro:siruta",
+      "location": "/rows/*/siruta",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "funding-territories"
+      ],
+      "note": ""
+    }
+  ],
+  "samples": [
+    {
+      "id": "territory-1213",
+      "collection": "territories",
+      "label": "AIUD — teritoriu",
+      "local_namespace": "ro:siruta",
+      "identifiers": [
+        {
+          "rule": "allocation-siruta",
+          "source": "fiscal-territory-pairs",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/0/SIRUTA"
+          }
+        }
+      ]
+    },
+    {
+      "id": "institution-4613636",
+      "collection": "institutions",
+      "label": "AIUD — instituție fiscală",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "fiscal-cui",
+          "source": "fiscal-territory-pairs",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/0/CIF"
+          }
+        }
+      ]
+    },
+    {
+      "id": "territory-1348",
+      "collection": "territories",
+      "label": "BLAJ — teritoriu",
+      "local_namespace": "ro:siruta",
+      "identifiers": [
+        {
+          "rule": "allocation-siruta",
+          "source": "fiscal-territory-pairs",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/1/SIRUTA"
+          }
+        }
+      ]
+    },
+    {
+      "id": "institution-4563007",
+      "collection": "institutions",
+      "label": "BLAJ — instituție fiscală",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "fiscal-cui",
+          "source": "fiscal-territory-pairs",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/1/CIF"
+          }
+        }
+      ]
+    },
+    {
+      "id": "territory-179132",
+      "collection": "territories",
+      "label": "Bucuresti — teritoriu",
+      "local_namespace": "ro:siruta",
+      "identifiers": [
+        {
+          "rule": "funding-siruta",
+          "source": "funding-territories",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/0/siruta"
+          }
+        }
+      ]
+    },
+    {
+      "id": "territory-1017",
+      "collection": "territories",
+      "label": "Alba Iulia — teritoriu",
+      "local_namespace": "ro:siruta",
+      "identifiers": [
+        {
+          "rule": "funding-siruta",
+          "source": "funding-territories",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/1/siruta"
+          }
+        }
+      ]
+    },
+    {
+      "id": "territory-54975",
+      "collection": "territories",
+      "label": "Cluj Napoca — teritoriu",
+      "local_namespace": "ro:siruta",
+      "identifiers": [
+        {
+          "rule": "funding-siruta",
+          "source": "funding-territories",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/2/siruta"
+          }
+        }
+      ]
+    },
+    {
+      "id": "territory-9262",
+      "collection": "territories",
+      "label": "Arad — teritoriu",
+      "local_namespace": "ro:siruta",
+      "identifiers": [
+        {
+          "rule": "funding-siruta",
+          "source": "funding-territories",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/3/siruta"
+          }
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "fiscal-territory-4613636",
+      "source_sample": "institution-4613636",
+      "target_sample": "territory-1213",
+      "relation": "associated_territory",
+      "evidence": [
+        "fiscal-territory-pairs"
+      ]
+    },
+    {
+      "id": "fiscal-territory-4563007",
+      "source_sample": "institution-4563007",
+      "target_sample": "territory-1348",
+      "relation": "associated_territory",
+      "evidence": [
+        "fiscal-territory-pairs"
+      ]
+    }
+  ]
+}

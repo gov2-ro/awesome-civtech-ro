@@ -1,0 +1,33 @@
+{
+  "provenance": {
+    "source": "https://executii-bugetare.g4d.ro/json/2026/B/institutii.json",
+    "observed_at": "2026-10-27T17:35:47.524840+00:00",
+    "source_body_sha256": "dd53962506e853b046b226c662cfd1d51e4d05656824f3df2fa2a91e1f59d6e6",
+    "retained_text_sha256": "dd53962506e853b046b226c662cfd1d51e4d05656824f3df2fa2a91e1f59d6e6",
+    "source_snapshot": "surse/1bcaba276bbadeb68c48-dd53962506e853b0.json",
+    "http_status": 200,
+    "extraction": "Complete list rows 0, 1 and 2; county, institution name and fiscal code only. Original numeric CIF values retained."
+  },
+  "payload": {
+    "rows": [
+      {
+        "source_index": 0,
+        "judet": "B",
+        "nume": "Primaria Municipiului Bucuresti",
+        "cif": 4267117
+      },
+      {
+        "source_index": 1,
+        "judet": "B",
+        "nume": "Primaria Sectorului 1",
+        "cif": 4505359
+      },
+      {
+        "source_index": 2,
+        "judet": "B",
+        "nume": "Primaria Sectorului 2",
+        "cif": 4204038
+      }
+    ]
+  }
+}

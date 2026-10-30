@@ -1,0 +1,893 @@
+{
+  "projects": 15,
+  "records": 49,
+  "links": [
+    {
+      "id": "e47334e23b467abcdd37c70d",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "ce-cumpara-primaria",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "9262",
+              "raw_value": "9262",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://cecumparaprimaria.vercel.app/uat/9262?an=2025"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://cecumparaprimaria.vercel.app/uat/9262?an=2025",
+              "basis": "template-derived",
+              "evidence": [
+                "804fc0b70cab8ee9675d3200",
+                "c331db20e887a482547eca5e",
+                "adb242704bfe38e1948d327b"
+              ]
+            }
+          ],
+          "evidence": [
+            "804fc0b70cab8ee9675d3200"
+          ]
+        },
+        {
+          "project": "data-expertforum",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "9262",
+              "raw_value": "9262",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/export?format=csv&gid=768211337"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "cd49401a48365d97ce9f82bd"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bfac2d202983eb67fe4f2049",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "ce-cumpara-primaria",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://cecumparaprimaria.vercel.app/uat/179132?an=2025"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://cecumparaprimaria.vercel.app/uat/179132?an=2025",
+              "basis": "template-derived",
+              "evidence": [
+                "804fc0b70cab8ee9675d3200",
+                "c331db20e887a482547eca5e",
+                "adb242704bfe38e1948d327b"
+              ]
+            }
+          ],
+          "evidence": [
+            "c331db20e887a482547eca5e"
+          ]
+        },
+        {
+          "project": "data-expertforum",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/export?format=csv&gid=768211337"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "cd49401a48365d97ce9f82bd"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b174a60bf3f32dfc731e1db6",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "ce-cumpara-primaria",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "54975",
+              "raw_value": "54975",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://cecumparaprimaria.vercel.app/uat/54975?an=2025"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://cecumparaprimaria.vercel.app/uat/54975?an=2025",
+              "basis": "template-derived",
+              "evidence": [
+                "804fc0b70cab8ee9675d3200",
+                "c331db20e887a482547eca5e",
+                "adb242704bfe38e1948d327b"
+              ]
+            }
+          ],
+          "evidence": [
+            "adb242704bfe38e1948d327b"
+          ]
+        },
+        {
+          "project": "data-expertforum",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "54975",
+              "raw_value": "54975",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/export?format=csv&gid=768211337"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "cd49401a48365d97ce9f82bd"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd6f20ac8f5159a085702f4b",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "ce-cumpara-primaria",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://cecumparaprimaria.vercel.app/uat/179132?an=2025"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://cecumparaprimaria.vercel.app/uat/179132?an=2025",
+              "basis": "template-derived",
+              "evidence": [
+                "804fc0b70cab8ee9675d3200",
+                "c331db20e887a482547eca5e",
+                "adb242704bfe38e1948d327b"
+              ]
+            }
+          ],
+          "evidence": [
+            "c331db20e887a482547eca5e"
+          ]
+        },
+        {
+          "project": "orasul-care-se-intinde",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://mariuscomper.uk/orasul-care-se-intinde/data/localitati.csv"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "eb80d14c6d9000a9d20b4638"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "74629201af3ca532d67fa9fd",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "data-expertforum",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/export?format=csv&gid=768211337"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "cd49401a48365d97ce9f82bd"
+          ]
+        },
+        {
+          "project": "orasul-care-se-intinde",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://mariuscomper.uk/orasul-care-se-intinde/data/localitati.csv"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "eb80d14c6d9000a9d20b4638"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e23fa9b6bff93499e493ff40",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "ce-cumpara-primaria",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "54975",
+              "raw_value": "54975",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://cecumparaprimaria.vercel.app/uat/54975?an=2025"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://cecumparaprimaria.vercel.app/uat/54975?an=2025",
+              "basis": "template-derived",
+              "evidence": [
+                "804fc0b70cab8ee9675d3200",
+                "c331db20e887a482547eca5e",
+                "adb242704bfe38e1948d327b"
+              ]
+            }
+          ],
+          "evidence": [
+            "adb242704bfe38e1948d327b"
+          ]
+        },
+        {
+          "project": "orasul-care-se-intinde",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "54975",
+              "raw_value": "54975",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://mariuscomper.uk/orasul-care-se-intinde/data/localitati.csv"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "eb80d14c6d9000a9d20b4638"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "21c6dbbc9a54eb2d9e20db2a",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "data-expertforum",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "54975",
+              "raw_value": "54975",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/export?format=csv&gid=768211337"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "cd49401a48365d97ce9f82bd"
+          ]
+        },
+        {
+          "project": "orasul-care-se-intinde",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "54975",
+              "raw_value": "54975",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://mariuscomper.uk/orasul-care-se-intinde/data/localitati.csv"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "eb80d14c6d9000a9d20b4638"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f29e43e267d89f419e61d935",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "data-expertforum",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "1017",
+              "raw_value": "1017",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/export?format=csv&gid=768211337"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "cd49401a48365d97ce9f82bd"
+          ]
+        },
+        {
+          "project": "orasul-care-se-intinde",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "1017",
+              "raw_value": "1017",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://mariuscomper.uk/orasul-care-se-intinde/data/localitati.csv"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "eb80d14c6d9000a9d20b4638"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "13221d4c5bbe5f331083e33d",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "ce-cumpara-primaria",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://cecumparaprimaria.vercel.app/uat/179132?an=2025"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://cecumparaprimaria.vercel.app/uat/179132?an=2025",
+              "basis": "template-derived",
+              "evidence": [
+                "804fc0b70cab8ee9675d3200",
+                "c331db20e887a482547eca5e",
+                "adb242704bfe38e1948d327b"
+              ]
+            }
+          ],
+          "evidence": [
+            "c331db20e887a482547eca5e"
+          ]
+        },
+        {
+          "project": "romania-transparenta",
+          "collection": "uat",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://api.romaniatransparenta.eu/v1/uat?q=Bucuresti&limit=1"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://romaniatransparenta.eu/registre/administratia-locala/179132",
+              "basis": "template-derived",
+              "evidence": [
+                "4b840d5591599b562036d790"
+              ]
+            }
+          ],
+          "evidence": [
+            "94fb3ac2cbbe38aee59b135a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c2a8d70121b007a5cab8a0af",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "data-expertforum",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/export?format=csv&gid=768211337"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "cd49401a48365d97ce9f82bd"
+          ]
+        },
+        {
+          "project": "romania-transparenta",
+          "collection": "uat",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://api.romaniatransparenta.eu/v1/uat?q=Bucuresti&limit=1"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://romaniatransparenta.eu/registre/administratia-locala/179132",
+              "basis": "template-derived",
+              "evidence": [
+                "4b840d5591599b562036d790"
+              ]
+            }
+          ],
+          "evidence": [
+            "94fb3ac2cbbe38aee59b135a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "15c67e2ec921c5d8749a2049",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "ce-cumpara-primaria",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://cecumparaprimaria.vercel.app/uat/179132?an=2025"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://cecumparaprimaria.vercel.app/uat/179132?an=2025",
+              "basis": "template-derived",
+              "evidence": [
+                "804fc0b70cab8ee9675d3200",
+                "c331db20e887a482547eca5e",
+                "adb242704bfe38e1948d327b"
+              ]
+            }
+          ],
+          "evidence": [
+            "c331db20e887a482547eca5e"
+          ]
+        },
+        {
+          "project": "transparenta-eu",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://api.transparenta.eu/graphql"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "52d89462f3071c9e58c04cc9"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d278a478d64ddfc1cfa5c252",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "data-expertforum",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/export?format=csv&gid=768211337"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "cd49401a48365d97ce9f82bd"
+          ]
+        },
+        {
+          "project": "transparenta-eu",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://api.transparenta.eu/graphql"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "52d89462f3071c9e58c04cc9"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1837a929d053d2ca6d442d09",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "executii-bugetare",
+          "collection": "institutions",
+          "entity_type": "public_institution",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "4267117",
+              "raw_value": "4267117",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://executii-bugetare.g4d.ro/json/2026/B/institutii.json"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://executii-bugetare.g4d.ro/?judet=B&institutie=4267117&an=2026",
+              "basis": "template-derived",
+              "evidence": [
+                "40ef2f467231bc82dcda0ef0",
+                "c6b7395517932af6e33ea6e9"
+              ]
+            }
+          ],
+          "evidence": [
+            "c6b7395517932af6e33ea6e9"
+          ]
+        },
+        {
+          "project": "transparenta-eu",
+          "collection": "entities",
+          "entity_type": "public_institution",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "4267117",
+              "raw_value": "4267117",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://api.transparenta.eu/graphql"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://transparenta.eu/entities/4267117",
+              "basis": "template-derived",
+              "evidence": [
+                "1aa59ad489db5e8c9de8b023"
+              ]
+            }
+          ],
+          "evidence": [
+            "52d89462f3071c9e58c04cc9"
+          ]
+        }
+      ]
+    }
+  ],
+  "conflicts": [],
+  "gaps": [],
+  "local_sources": [],
+  "declared_without_samples": [
+    "sicap-ai"
+  ],
+  "evidence": {
+    "804fc0b70cab8ee9675d3200": {
+      "project": "ce-cumpara-primaria",
+      "source": "https://cecumparaprimaria.vercel.app/uat/9262?an=2025",
+      "observed_at": "2026-10-27T17:02:26.628503+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/ce-cumpara-primaria.json",
+      "alias": "territory-9262",
+      "artifact": "docs/reports/site-structure-batch-g/evidence/ce-cumpara-primaria-territory-9262.json",
+      "sha256": "60b122834c70dca3f280a852260eaccae36cddc498e9ef5dabaac6d51c7428d4",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "c331db20e887a482547eca5e": {
+      "project": "ce-cumpara-primaria",
+      "source": "https://cecumparaprimaria.vercel.app/uat/179132?an=2025",
+      "observed_at": "2026-10-30T16:24:08.073104+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/ce-cumpara-primaria.json",
+      "alias": "territory-179132",
+      "artifact": "docs/reports/site-structure-batch-g/evidence/ce-cumpara-primaria-territory-179132.json",
+      "sha256": "e92efd2282ed916f9a2768ae05dd1ae73384c72587c44e4e8bddeb6d815a9f09",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "adb242704bfe38e1948d327b": {
+      "project": "ce-cumpara-primaria",
+      "source": "https://cecumparaprimaria.vercel.app/uat/54975?an=2025",
+      "observed_at": "2026-10-30T16:24:09.077860+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/ce-cumpara-primaria.json",
+      "alias": "territory-54975",
+      "artifact": "docs/reports/site-structure-batch-g/evidence/ce-cumpara-primaria-territory-54975.json",
+      "sha256": "8441a921eca2c0f08381992ffdc32aa2779560c25486ab7016f5b2234e1806e3",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "cd49401a48365d97ce9f82bd": {
+      "project": "data-expertforum",
+      "source": "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/export?format=csv&gid=768211337",
+      "observed_at": "2026-10-26T18:39:25.584747+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/data-expertforum.json",
+      "alias": "funding-territories",
+      "artifact": "docs/reports/site-structure-batch-g/evidence/data-expertforum-funding-territories.json",
+      "sha256": "c076e62d2f37ddb64458f2e9a776996afdd82e907bd593df58ced4177d52fe17",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "eb80d14c6d9000a9d20b4638": {
+      "project": "orasul-care-se-intinde",
+      "source": "https://mariuscomper.uk/orasul-care-se-intinde/data/localitati.csv",
+      "observed_at": "2026-10-24T22:41:11.053100+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/orasul-care-se-intinde.json",
+      "alias": "territories",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/orasul-care-se-intinde-territories.json",
+      "sha256": "732c9e704dba6be39e4332baa4125c78f3d4d8d56300ea655619a95c5e8fe849",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "94fb3ac2cbbe38aee59b135a": {
+      "project": "romania-transparenta",
+      "source": "https://api.romaniatransparenta.eu/v1/uat?q=Bucuresti&limit=1",
+      "observed_at": "2026-10-29T22:42:40.160417+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/romania-transparenta.json",
+      "alias": "romania-transparenta-uat-response",
+      "artifact": "docs/reports/site-structure-pilot/evidence/romania-transparenta-uat-response.txt",
+      "sha256": "a92b1a428b7802da9409d1d23c9118d8211b931b2a5e2fe568e2c6fbea7f79fe",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 2177,
+        "excerpt": "{\n  \"date\": [\n    {\n      \"siruta\": \"179132\",\n      \"denumire\": \"Municipiul București\",\n      \"tip\": \"municipiu\",\n      \"judet\": \"București\",\n      \"cod_judet\": \"B\",\n      \"populatie\": 1716961,\n      \"an_populatie\": null,\n      \"cui_primarie\": null,\n      \"cui_primarie_incredere\": null,\n      \"cui_consiliu_judetean\": null,\n      \"observat_la\": \"2026-09-14\",\n      \"incredere\": \"derivat\",\n      \"fisa\": \"https://api.romaniatransparenta.eu/v1/uat/179132\",\n      \"pagina\": \"https://romaniatransparenta.eu/registre/administratia-locala/179132\"\n    }\n  ],\n  \"paginare\": {\n    \"limit\": 1,\n    \"offset\": 0,\n    \"intoarse\": 1,\n    \"are_urmatoarea\": false,\n    \"urmatoarea_offset\": null,\n    \"total\": 1\n  },\n  \"provenienta\": {\n    \"registru\": {\n      \"id\": \"administratia_locala\",\n      \"denumire\": \"registrul administrației locale\",\n      \"url\": \"https://romaniatransparenta.eu/registre/administratia-locala\"\n    },\n    \"sursa\": [\n      {\n        \"id\": \"sursa:rt-consilii\",\n        \"denumire\": \"Registrul consiliilor locale, reconstituit din procesele-verbale AEP și listele BEC\",\n        \"institutie_emitenta\": \"România Transparentă\",\n        \"url_baza\": \"https://romaniatransparenta.eu\",\n        \"licenta\": \"CC BY 4.0 (compilația România Transparentă; datele preluate își păstrează regimul lor)\"\n      }\n    ],\n    \"observat_la\": \"2026-09-14\",\n    \"incredere\": [\n      {\n        \"valoare\": \"derivat\",\n        \"explicatie\": \"calculat de noi din date oficiale\"\n      }\n    ],\n    \"editie\": \"publicare:20261029T133011\",\n    \"date_actualizate_la\": \"2026-10-26\",\n    \"licenta\": \"CC BY 4.0\",\n    \"licenta_nota\": \"Compilația România Transparentă e sub CC BY 4.0; datele preluate își păstrează regimul surselor (câmpul `licenta` din fiecare sursă).\",\n    \"citare\": \"România Transparentă, registrul administrației locale, https://romaniatransparenta.eu/registre/administratia-locala, date actualizate la 2026-10-26, CC BY 4.0\",\n    \"instructiuni\": \"Citează sursa folosind textul din `citare`. „Nu avem date” sau o listă goală NU înseamnă zero sau „nu există”: înseamnă că nu am găsit sau nu am verificat încă. Rezultatul `negasit` înseamnă „căutat automat și negăsit”, nu „lipsește”.\"\n  }\n}"
+      }
+    },
+    "4b840d5591599b562036d790": {
+      "project": "romania-transparenta",
+      "source": "https://romaniatransparenta.eu/llms.txt",
+      "observed_at": "2026-10-29T22:42:09.892892+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/romania-transparenta.json",
+      "alias": "romania-transparenta-llms-routes",
+      "artifact": "docs/reports/site-structure-pilot/evidence/romania-transparenta-llms-routes.txt",
+      "sha256": "c54cbaa1b6e43afd448e591e0be3877254545e297531680db7a4f9cbf9467b6e",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 3627,
+        "excerpt": "## Fișe (câte o pagină pe entitate)\n\n- https://romaniatransparenta.eu/registre/administratia-locala/<cod SIRUTA>: fișa unei primării (3.187): tip, județ, populație, primar, consiliul local, bugetul 2018–2024, achiziții, companii, ce publică pe site\n- https://romaniatransparenta.eu/registre/companii-de-stat/<CUI>: fișa unei companii de stat sau a unei companii locale: acționar/tutelă, cifră de afaceri, profit, angajați, din bilanțurile depuse la ANAF\n- https://romaniatransparenta.eu/registre/universitati/<CUI>: fișa unei universități de stat: finanțarea CNFIS pe student, achiziții, rectorul (doar cu document oficial)\n- https://romaniatransparenta.eu/registre/parlament/…: fișele deputaților și ale voturilor finale din Camera Deputaților\n- https://romaniatransparenta.eu/registre/administratia-centrala/<CUI>: fișa unui minister, a Secretariatului General al Guvernului sau a Cancelariei Prim-Ministrului: întâlnirile decidenților cu terții din RUTI (funcția, nu numele; organizațiile, nu persoanele), proiectele în consultare publică pe e-consultare.gov.ro, bugetul 2026 din Legea 43/2026\n- https://romaniatransparenta.eu/registre/fonduri-europene/<codul CCI al programului>: fișa unui program european (2021–2027 sau 2014–2020): alocat, decis, cheltuit, plătit de Comisie, după Comisia Europeană și, separat, după MIPE; sume în euro, fără conversii\n- https://romaniatransparenta.eu/registre/finantarea-partidelor/<partidul>: fișa unui partid: ce a declarat în Monitorul Oficial an cu an (cotizații, donații peste prag, donații confidențiale, împrumuturi, venituri proprii), firmele donatoare cu CUI și actele oficiale; persoanele fizice doar ca număr și sumă\n- https://romaniatransparenta.eu/registre/ajutoare-de-stat/<CUI>: ajutoarele de stat primite de o firmă (persoană juridică) care e companie de stat, furnizor în achiziții sau printre beneficiarii mari: rândurile din RegAS (Consiliul Concurenței), cu măsura, instrumentul, suma în lei și furnizorul; garanțiile și creditele separat de granturi; persoanele fizice nu au fișe\n- https://romaniatransparenta.eu/registre/europarlamentari/<ID-ul din Parlamentul European>: fișa unui europarlamentar român (34 de persoane, 33 de locuri): grup european, eticheta de partid din PE, organe, prezență în plen, voturile finale, declarațiile privind conflictele de interese (DCI) cu PDF-ul oficial, cu formula și numitorul fiecărei cifre\n- https://romaniatransparenta.eu/registre/datornici?q=<CUI sau nume>: căutarea în lista ANAF a persoanelor juridice cu obligații fiscale restante (deocamdată lista la 31.03.2016, singura publicată ca fișier deschis): suma restantă pe bugete, din care contestată, la data listei; doar persoane juridice\n- https://romaniatransparenta.eu/registre/concursuri: registrul concursurilor de angajare la stat: anunțurile de pe posturi.gov.ro și ANFP, pe instituții și județe, data limită, proba scrisă, posturile scoase de mai multe ori; fără persoane de contact și fără rezultate (nume de candidați)\n- https://romaniatransparenta.eu/registre/spitale/spital/<CUI>: fișa unei unități sanitare publice: achizițiile directe pe ani, furnizorii, categoriile și salariile de bază pe funcții (registrul spitalelor are și propriul /registre/spitale/llms.txt)\n- https://romaniatransparenta.eu/registre/salarii/…: calculatorul de salarii pentru bugetari pe proiectul legii salarizării: brut și net pe funcție, gradație și sporuri, grilele pe anexe, ghiduri (are și propriul /registre/salarii/llms.txt)\n- https://romaniatransparenta.eu/registre/decizii-mediu/…: actele de mediu (acorduri, avize, autorizații) pe localitate, cu linkul la documentul oficial"
+      }
+    },
+    "52d89462f3071c9e58c04cc9": {
+      "project": "transparenta-eu",
+      "source": "https://api.transparenta.eu/graphql",
+      "observed_at": "2026-10-29T22:45:54.378985+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/transparenta-eu.json",
+      "alias": "transparenta-eu-graphql-bucuresti",
+      "artifact": "docs/reports/site-structure-pilot/evidence/transparenta-eu-graphql-bucuresti.txt",
+      "sha256": "0ba1808b1b0fea17e3586c0d03190f2a25e81c651a040dc9a82f9612fdae4dfb",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 177,
+        "excerpt": "{\"data\":{\"entity\":{\"cui\":\"4267117\",\"name\":\"MUNICIPIUL BUCURESTI\",\"entity_type\":\"admin_municipality\",\"is_uat\":true,\"uat\":{\"name\":\"MUNICIPIUL BUCUREȘTI\",\"siruta_code\":\"179132\"}}}}"
+      }
+    },
+    "c6b7395517932af6e33ea6e9": {
+      "project": "executii-bugetare",
+      "source": "https://executii-bugetare.g4d.ro/json/2026/B/institutii.json",
+      "observed_at": "2026-10-27T17:35:47.524840+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/executii-bugetare.json",
+      "alias": "institutions",
+      "artifact": "docs/reports/site-structure-batch-g/evidence/executii-bugetare-institutions.json",
+      "sha256": "7bc044e3fa4ac96c8d9664732f0a7884affaea94a72ce4a65ff46b143e6de29d",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "40ef2f467231bc82dcda0ef0": {
+      "project": "executii-bugetare",
+      "source": "https://executii-bugetare.g4d.ro/js/viewModels/home.js",
+      "observed_at": "2026-10-30T16:25:41.626197+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/executii-bugetare.json",
+      "alias": "home-module",
+      "artifact": "docs/reports/site-structure-batch-g/evidence/executii-bugetare-home-module.json",
+      "sha256": "9e73035fe96c8d86dc2e6a549700874085c07eeefb5fb0c319c4afd4c934a6bb",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "1aa59ad489db5e8c9de8b023": {
+      "project": "transparenta-eu",
+      "source": "https://transparenta.eu/llms.txt",
+      "observed_at": "2026-10-29T22:41:57.720635+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/transparenta-eu.json",
+      "alias": "transparenta-eu-llms",
+      "artifact": "docs/reports/site-structure-pilot/evidence/transparenta-eu-llms.txt",
+      "sha256": "eba5f749625f2f1feda9272e7d94d331706c0efc9e967bff73da4a0fee28927a",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 3218,
+        "excerpt": "# Transparenta.eu — AI Usage Guide\n\nBase URL:\n- https://transparenta.eu\n\n## Documentation\n- Parameters index (JSON): https://transparenta.eu/ai/index.json\n- URL/API guide (Markdown): https://transparenta.eu/api-guide.md\n- Sitemap: https://transparenta.eu/sitemap.xml\n\n## Routes Overview\n- /entities/{cui}: Single entity details and analytics\n- /entity-analytics: Cross-entity analytics (table, treemap, line-items)\n- /budget-explorer: Budget exploration by categories (functional/economic)\n- /pnrr: PNRR project dashboard by component, geography, beneficiary, progress, and risk signals\n\n## Entities Page (/entities/{cui})\nHow to query:\n1) Put the entity CUI in the path: /entities/4267117\n2) Add filters as query params. Common examples:\n   - ?year=2025\n   - ?period=YEAR | QUARTER | MONTH\n   - ?view=overview | map | income-trends | expense-trends\n   - ?normalization=total | total_euro | per_capita | per_capita_euro\n\nParameters (full docs):\n- https://transparenta.eu/ai/entities-parameters.json\n\nExamples:\n- https://transparenta.eu/entities/4267117?view=overview&year=2024\n- https://transparenta.eu/entities/4267117?year=2025&view=map&normalization=per_capita\n- https://transparenta.eu/entities/4267117?period=QUARTER&quarter=Q4\n\n## Entity Analytics (/entity-analytics)\nPurpose: Compare entities with filters and switch views (table/line-items/treemap)\nCommon params:\n- filter.report_period.type=YEAR|QUARTER|MONTH\n- filter.account_category=ch|vn\n- filter.normalization=total|per_capita|total_euro|per_capita_euro\n- view=table|line-items\n- treemapPrimary=fn|ec, treemapDepth=chapter|subchapter|paragraph\n\nParameters JSON: (coming from schema)\n- https://transparenta.eu/ai/entities-analytics-parameters.json\n\nExample:\n- https://transparenta.eu/entity-analytics?view=line-items\n\n## Budget Explorer (/budget-explorer)\nPurpose: Explore budget composition across categories and years\nCommon params:\n- view=overview|treemap|sankey|list\n- primary=fn|ec, depth=main|detail\n- filter.{report_period, account_category, normalization, report_type}\n\nParameters JSON:\n- https://transparenta.eu/ai/budget-explorer-parameters.json\n\nExamples:\n- https://transparenta.eu/budget-explorer?view=treemap&primary=fn\n- https://transparenta.eu/budget-explorer?view=list&filter.account_category=vn\n\n## PNRR (/pnrr)\nPurpose: Explore National Recovery and Resilience Plan projects, funding, progress, beneficiaries, geography, and risk signals.\nCommon params:\n- view=overview|projects|beneficiaries|map|anomalies\n- components, counties, fundingSources, measures, cris\n- progressCategories=completed|advanced|mid|under30|not-started|unknown\n- onlyAnomalies=true, excludeMicro=true, includeNational=false\n- search, beneficiarySearch, beneficiaryCui, uatSiruta, uatSirutas\n\nParameters JSON:\n- https://transparenta.eu/ai/pnrr-parameters.json\n\nExamples:\n- https://transparenta.eu/pnrr\n- https://transparenta.eu/pnrr?onlyAnomalies=true&view=anomalies\n- https://transparenta.eu/pnrr?view=map&granularity=county\n\nNotes:\n- Year range supported: dynamic; see parameter JSON files for min/max.\n- All parameters are optional unless stated; defaults are inferred from the UI.\n - For API integration, prefer `/ai/*.json` schemas and `api-guide.md` patterns."
+      }
+    }
+  },
+  "summary": {
+    "projects": 15,
+    "records": 49,
+    "assertions": 43,
+    "new_assertions": 13,
+    "existing_assertions": 30,
+    "new_records": 22,
+    "collections": 54,
+    "patterns": 54,
+    "operations": 87,
+    "identifier_rules": 48,
+    "relationships": 11
+  },
+  "scope": "Five-site expansion; source observations and identity proposals. Owner acceptance and publication remain separate."
+}

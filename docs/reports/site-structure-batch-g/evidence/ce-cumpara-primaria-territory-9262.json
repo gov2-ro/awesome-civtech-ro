@@ -1,0 +1,19 @@
+{
+  "provenance": {
+    "source": "https://cecumparaprimaria.vercel.app/uat/9262?an=2025",
+    "observed_at": "2026-10-27T17:02:26.628503+00:00",
+    "source_body_sha256": "aa135634f941fafda2c825c0bc959ed07125302fd249a5c67c9b84dc8d236445",
+    "retained_text_sha256": "aa135634f941fafda2c825c0bc959ed07125302fd249a5c67c9b84dc8d236445",
+    "source_snapshot": "surse/603367a9020ef69e34a3-aa135634f941fafd.json",
+    "http_status": 200,
+    "extraction": "Exact siruta/name values from a JSON-decoded Next.js string chunk; no JavaScript execution. Only the named locality component is retained."
+  },
+  "payload": {
+    "subject": {
+      "siruta": "9262",
+      "name": "Arad"
+    },
+    "decoded_script_index": 0,
+    "decoded_component_offset": 10412
+  }
+}

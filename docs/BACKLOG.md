@@ -20,6 +20,10 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [x] Expand structure coverage to lista-firme, DemoANAF, Companiile de stat, Companii Publice and Se golesc de oameni…. Five recipes add 16 records, 20 URL patterns, 67 API operations and four explicit relationships. [Report](reports/site-structure-batch-f.md).
 - [ ] Owner: review the 26 new structure identity pairs: Antibiotice CUI 1973096 (14), Active Conexe CUI 31029694 (10), București territory SIRUTA 179132 (2). Existing decisions remain unchanged.
 - [ ] Structure gaps: lista-firme's internal company-ID mapping and complete API parameter contract remain unknown. Companii Publice and Se golesc de oameni… have no established per-entity frontend URL; their data locators remain useful.
+- [x] Push `8e0febe` and `v0.50.0` to origin. GitHub validation and Pages both passed before the next structure batch.
+- [x] Profile Execuții Bugetare, Banii Noștri, Data Expert Forum, Ce cumpără primăria and Hazard seismic 2026. Added 22 records, fifteen URL patterns, four API/data operations and six relationships. [Report](reports/site-structure-batch-g.md).
+- [ ] Owner: review thirteen further identity pairs from the institution/territory batch. Four prior decisions remain accepted; 39 pairs remain proposed across both expansion packets.
+- [ ] Structure mappings: the hazard explorer's slugs and legacy row numbers have no confirmed shared geographic mapping. Preserve them locally; names cannot establish SIRUTA.
 - [ ] Structure expansion: inspect the 21 catalogue entries without retained documentation bodies. The offline pass covers all 145 entries and makes no requests; missing snapshots do not prove absent structure.
 - [ ] Existing `inventory_report.py` and inventory tests leave CSV streams open. The full suite emits ResourceWarnings at those readers; use context managers in a separate correction.
 

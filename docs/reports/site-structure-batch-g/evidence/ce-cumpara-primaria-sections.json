@@ -1,0 +1,37 @@
+{
+  "provenance": {
+    "source": "https://cecumparaprimaria.vercel.app/",
+    "observed_at": "2026-10-24T22:19:23.485131+00:00",
+    "source_body_sha256": "b259e1f0599d162a19dad77ed57675a930bd020c9b6ba10ca8b4070a9f228190",
+    "retained_text_sha256": "b259e1f0599d162a19dad77ed57675a930bd020c9b6ba10ca8b4070a9f228190",
+    "source_snapshot": "data/taxonomy-v2/observatii/documentare/pagini/40ea94bff24e9a8f66ece7bf.json",
+    "http_status": 200,
+    "extraction": "Exact document lines and selected link entries; original offsets and link indices retained."
+  },
+  "payload": {
+    "excerpts": [
+      {
+        "start": 5866,
+        "end": 6133,
+        "text": "Sursa datelor: rapoartele trimestriale SEAP/SICAP publicate pe data.gov.ro (achiziții directe și contracte atribuite), registrul SIRUTA și populația pe UAT la 1 ianuarie (INS / MDLPA). Datele despre firme — denumire, cod CAEN, stare fiscală, bilanț — vin de la ANAF ."
+      }
+    ],
+    "links": [
+      {
+        "url": "https://cecumparaprimaria.vercel.app/clasament",
+        "label": "Clasament",
+        "snapshot_link_index": 1
+      },
+      {
+        "url": "https://cecumparaprimaria.vercel.app/furnizori",
+        "label": "Furnizori",
+        "snapshot_link_index": 3
+      },
+      {
+        "url": "https://cecumparaprimaria.vercel.app/clasament",
+        "label": "Clasamentul pe locuitor",
+        "snapshot_link_index": 26
+      }
+    ]
+  }
+}

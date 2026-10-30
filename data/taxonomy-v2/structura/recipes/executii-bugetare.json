@@ -1,0 +1,349 @@
+{
+  "schema_version": 1,
+  "id": "executii-bugetare-batch-f",
+  "project_slug": "executii-bugetare",
+  "input_url": "https://executii-bugetare.g4d.ro/",
+  "evidence": [
+    {
+      "id": "institutions",
+      "source": "https://executii-bugetare.g4d.ro/json/2026/B/institutii.json",
+      "observed_at": "2026-10-27T17:35:47.524840+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-g/evidence/executii-bugetare-institutions.json",
+      "sha256": "7bc044e3fa4ac96c8d9664732f0a7884affaea94a72ce4a65ff46b143e6de29d",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "budget-subject",
+      "source": "https://executii-bugetare.g4d.ro/json/2026/B/4267117.json",
+      "observed_at": "2026-10-27T17:35:47.525343+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-g/evidence/executii-bugetare-budget-subject.json",
+      "sha256": "c2619a98377612a3e3ced124d83a0ca3ef36c1541e9b8b6f783f3adae2c84c2c",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "home-module",
+      "source": "https://executii-bugetare.g4d.ro/js/viewModels/home.js",
+      "observed_at": "2026-10-30T16:25:41.626197+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-g/evidence/executii-bugetare-home-module.json",
+      "sha256": "9e73035fe96c8d86dc2e6a549700874085c07eeefb5fb0c319c4afd4c934a6bb",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "home-page",
+      "source": "https://executii-bugetare.g4d.ro/",
+      "observed_at": "2026-10-30T16:24:06.998210+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-g/evidence/executii-bugetare-home-page.json",
+      "sha256": "84098e63960938b0be854d0077a0ee61bd2d3133f0b66fbbfbbbaa6c31ca350a",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    }
+  ],
+  "collections": [
+    {
+      "id": "institutions",
+      "label": "Instituții publice",
+      "entity_type": "public_institution",
+      "record_grain": "legal_subject",
+      "identity_components": [
+        "ro:cui"
+      ],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "institutions",
+        "budget-subject",
+        "home-module"
+      ]
+    },
+    {
+      "id": "budgets",
+      "label": "Execuții bugetare anuale",
+      "entity_type": "unknown",
+      "record_grain": "institution_year",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "budget-subject",
+        "home-module"
+      ]
+    },
+    {
+      "id": "counties",
+      "label": "Județe",
+      "entity_type": "territory",
+      "record_grain": "territory",
+      "identity_components": [
+        "ro:siruta"
+      ],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "home-module"
+      ]
+    }
+  ],
+  "namespaces": [
+    {
+      "id": "ro:cui",
+      "issuer": "Romanian fiscal administration",
+      "scope": "Romanian fiscal subjects; preserve the observed string.",
+      "normalization": "identity",
+      "shared": true,
+      "evidence": [
+        "institutions",
+        "budget-subject",
+        "home-module"
+      ]
+    }
+  ],
+  "patterns": [
+    {
+      "id": "explorer",
+      "collection": "institutions",
+      "url_template": "https://executii-bugetare.g4d.ro/",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "home-module",
+        "home-page"
+      ]
+    },
+    {
+      "id": "institution-2026-B",
+      "collection": "institutions",
+      "url_template": "https://executii-bugetare.g4d.ro/?judet=B&institutie={cui}&an=2026",
+      "kind": "detail",
+      "variables": [
+        {
+          "name": "cui",
+          "namespace": "ro:cui",
+          "location": "query"
+        }
+      ],
+      "basis": "declared",
+      "examples": [],
+      "evidence": [
+        "home-module",
+        "institutions"
+      ],
+      "scope_note": "Observed context: Bucharest county B, year 2026. This is not a timeless budget URL."
+    }
+  ],
+  "operations": [
+    {
+      "id": "county-list",
+      "method": "GET",
+      "url_template": "https://executii-bugetare.g4d.ro/json/judete.json",
+      "uses": [
+        {
+          "collection": "counties",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "parameters": [],
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown"
+      },
+      "basis": [
+        "observed-resource"
+      ],
+      "evidence": [
+        "home-module"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No new endpoint probe in this batch."
+      }
+    },
+    {
+      "id": "institution-list",
+      "method": "GET",
+      "url_template": "https://executii-bugetare.g4d.ro/json/{year}/{county}/institutii.json",
+      "uses": [
+        {
+          "collection": "institutions",
+          "subject_role": "self",
+          "scope": "at_least"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "year",
+          "location": "path",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "county",
+          "location": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "anonymous"
+      },
+      "basis": [
+        "source-code"
+      ],
+      "evidence": [
+        "home-module",
+        "institutions"
+      ],
+      "last_test": {
+        "outcome": "observed",
+        "reason": "Retained public JSON response; historical observation, not a fresh probe.",
+        "checked_at": "2026-10-27T17:35:47.524840+00:00",
+        "evidence": "institutions"
+      }
+    },
+    {
+      "id": "annual-budget",
+      "method": "GET",
+      "url_template": "https://executii-bugetare.g4d.ro/json/{year}/{county}/{cui}.json",
+      "uses": [
+        {
+          "collection": "budgets",
+          "subject_role": "self",
+          "scope": "at_least"
+        },
+        {
+          "collection": "institutions",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "year",
+          "location": "path",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "county",
+          "location": "path",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "cui",
+          "location": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "anonymous"
+      },
+      "basis": [
+        "source-code"
+      ],
+      "evidence": [
+        "home-module",
+        "budget-subject"
+      ],
+      "last_test": {
+        "outcome": "observed",
+        "reason": "Retained public JSON response; historical observation, not a fresh probe.",
+        "checked_at": "2026-10-27T17:35:47.525343+00:00",
+        "evidence": "budget-subject"
+      }
+    }
+  ],
+  "identifier_rules": [
+    {
+      "id": "institution-cui",
+      "collection": "institutions",
+      "namespace": "ro:cui",
+      "location": "/rows/*/cif",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "institutions"
+      ],
+      "note": ""
+    },
+    {
+      "id": "budget-institution-cui",
+      "collection": "institutions",
+      "namespace": "ro:cui",
+      "location": "/institutie/cif",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "budget-subject"
+      ],
+      "note": ""
+    }
+  ],
+  "samples": [
+    {
+      "id": "institution-4267117",
+      "collection": "institutions",
+      "label": "Primaria Municipiului Bucuresti",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "institution-cui",
+          "source": "institutions",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/0/cif"
+          }
+        }
+      ]
+    },
+    {
+      "id": "institution-4505359",
+      "collection": "institutions",
+      "label": "Primaria Sectorului 1",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "institution-cui",
+          "source": "institutions",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/1/cif"
+          }
+        }
+      ]
+    },
+    {
+      "id": "institution-4204038",
+      "collection": "institutions",
+      "label": "Primaria Sectorului 2",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "institution-cui",
+          "source": "institutions",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/2/cif"
+          }
+        }
+      ]
+    }
+  ],
+  "relationships": []
+}

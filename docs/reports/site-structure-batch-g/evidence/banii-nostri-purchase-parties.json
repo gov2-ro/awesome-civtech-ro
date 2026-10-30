@@ -1,0 +1,39 @@
+{
+  "provenance": {
+    "source": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+    "observed_at": "2026-10-25T14:12:08.759216+00:00",
+    "source_body_sha256": "74f44b70d6d91a5ec376844708515c03f7088e96c70295aa06f6f22a98fc5674",
+    "retained_text_sha256": "74f44b70d6d91a5ec376844708515c03f7088e96c70295aa06f6f22a98fc5674",
+    "source_snapshot": "surse/6a87d31f8778b7d99b69-74f44b70d6d91a5e.json",
+    "http_status": 200,
+    "extraction": "Two complete purchase rows; local purchase IDs and corporate buyer/supplier identifiers and names only. Values, dates and descriptions excluded."
+  },
+  "payload": {
+    "rows": [
+      {
+        "source_index": 0,
+        "daid": 112526469,
+        "uidc": "DA31431413",
+        "afn": "1890420",
+        "ca": "S.C RAJA S.A CONSTANTA",
+        "sfn": "11394440",
+        "sn": "AUTOPRIMA SERV S.R.L."
+      },
+      {
+        "source_index": 81,
+        "daid": 112648755,
+        "uidc": "DA31542970",
+        "afn": "1890420",
+        "ca": "S.C RAJA S.A CONSTANTA",
+        "sfn": "6776672",
+        "sn": "SISTEM-T.C."
+      }
+    ],
+    "pagination": {
+      "hasMore": true,
+      "limit": 200,
+      "offset": 0,
+      "count": 200
+    }
+  }
+}

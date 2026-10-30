@@ -1,0 +1,118 @@
+{
+  "provenance": {
+    "source": "https://github.com/gov2-ro/awesome-civtech-ro/blob/8e0febe85180eb34249cdfe0f3044a5c669084e1/data/taxonomy-v2/inventar-concepte.json",
+    "observed_at": "2026-10-30T16:28:07.752227+00:00",
+    "source_body_sha256": "b57f4d7ccc1f7fe62ed37d364c058aad6025a3fa68038d5eaeb78162283e8d7f",
+    "retained_text_sha256": "b57f4d7ccc1f7fe62ed37d364c058aad6025a3fa68038d5eaeb78162283e8d7f",
+    "source_snapshot": "data/taxonomy-v2/inventar-concepte.json",
+    "http_status": null,
+    "extraction": "Read from the local committed Git object. Existing owner-confirmed afn/sfn bindings; no HTTP request to GitHub."
+  },
+  "payload": {
+    "concept": "cui",
+    "selectors": [
+      {
+        "projects": [
+          "banii-nostri"
+        ],
+        "names": [
+          "afn"
+        ],
+        "source": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+        "context": "CUI-ul autorității contractante",
+        "fapte": [
+          {
+            "cheie": "rol",
+            "valoare": "autoritate contractantă",
+            "baza": "deductie-din-dovezi",
+            "dovada": {
+              "sursa": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+              "fragment": "\"afn\":\"1890420\"",
+              "sha256": "74f44b70d6d91a5ec376844708515c03f7088e96c70295aa06f6f22a98fc5674",
+              "baza": "observatie-esantion"
+            }
+          }
+        ],
+        "nota": "Numele nu este explicat de sursă. Valoarea coincide cu CUI-ul din adresa cererii (da_by_cui/1890420) și cu CUI-ul autorității din raport.",
+        "stare": "confirmat"
+      },
+      {
+        "projects": [
+          "banii-nostri"
+        ],
+        "names": [
+          "sfn"
+        ],
+        "source": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+        "context": "CUI-ul furnizorului",
+        "fapte": [
+          {
+            "cheie": "rol",
+            "valoare": "furnizor",
+            "baza": "deductie-din-dovezi",
+            "dovada": {
+              "sursa": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+              "fragment": "\"sfn\":\"6776672\"",
+              "sha256": "74f44b70d6d91a5ec376844708515c03f7088e96c70295aa06f6f22a98fc5674",
+              "baza": "observatie-esantion"
+            }
+          }
+        ],
+        "nota": "Valoarea 6776672 apare la furnizorul SISTEM-T.C. și în coloana CUI a raportului.",
+        "stare": "confirmat"
+      },
+      {
+        "projects": [
+          "banii-nostri"
+        ],
+        "names": [
+          "afn"
+        ],
+        "source": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+        "context": "CUI-ul autorității contractante",
+        "fapte": [
+          {
+            "cheie": "rol",
+            "valoare": "autoritate contractantă",
+            "baza": "deductie-din-dovezi",
+            "dovada": {
+              "sursa": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+              "text": "sursa",
+              "fragment": "\"afn\":\"1890420\"",
+              "sha256": "74f44b70d6d91a5ec376844708515c03f7088e96c70295aa06f6f22a98fc5674",
+              "baza": "observatie-esantion"
+            }
+          }
+        ],
+        "nota": "Numele nu este explicat de sursă. Valoarea coincide cu CUI-ul din adresa cererii (da_by_cui/1890420) și cu CUI-ul autorității din raport.",
+        "stare": "confirmat"
+      },
+      {
+        "projects": [
+          "banii-nostri"
+        ],
+        "names": [
+          "sfn"
+        ],
+        "source": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+        "context": "CUI-ul furnizorului",
+        "fapte": [
+          {
+            "cheie": "rol",
+            "valoare": "furnizor",
+            "baza": "deductie-din-dovezi",
+            "dovada": {
+              "sursa": "https://data.g4d.ro/ords/opendata/sicap/da_by_cui/1890420/",
+              "text": "sursa",
+              "fragment": "\"sfn\":\"6776672\"",
+              "sha256": "74f44b70d6d91a5ec376844708515c03f7088e96c70295aa06f6f22a98fc5674",
+              "baza": "observatie-esantion"
+            }
+          }
+        ],
+        "nota": "Valoarea 6776672 apare la furnizorul SISTEM-T.C. și în coloana CUI a raportului.",
+        "stare": "confirmat"
+      }
+    ]
+  }
+}

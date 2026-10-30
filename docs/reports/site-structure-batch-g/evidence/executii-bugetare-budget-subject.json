@@ -1,0 +1,18 @@
+{
+  "provenance": {
+    "source": "https://executii-bugetare.g4d.ro/json/2026/B/4267117.json",
+    "observed_at": "2026-10-27T17:35:47.525343+00:00",
+    "source_body_sha256": "e97d762168e7f07825489a3f5e1255b8570281848a341b68a649fbba80b542e7",
+    "retained_text_sha256": "e97d762168e7f07825489a3f5e1255b8570281848a341b68a649fbba80b542e7",
+    "source_snapshot": "surse/de868aba08ba1c07c261-e97d762168e7f078.json",
+    "http_status": 200,
+    "extraction": "Only the institution identity object from an annual budget resource. Measures, links and financial rows excluded."
+  },
+  "payload": {
+    "judet": "B",
+    "nume": "Primăria Municipiului București",
+    "cif": 4267117,
+    "primarie": true,
+    "municipiu": true
+  }
+}

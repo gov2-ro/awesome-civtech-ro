@@ -1,0 +1,52 @@
+{
+  "provenance": {
+    "source": "https://baniinostri.info/",
+    "observed_at": "2026-10-24T22:19:21.877341+00:00",
+    "source_body_sha256": "d97dc30c5831cc9139ee50ed902ac205ec4cc16e4eabd6d2c27b7fa5a6257f17",
+    "retained_text_sha256": "d97dc30c5831cc9139ee50ed902ac205ec4cc16e4eabd6d2c27b7fa5a6257f17",
+    "source_snapshot": "data/taxonomy-v2/observatii/documentare/pagini/1b625cd7bf790c123aeacf46.json",
+    "http_status": 200,
+    "extraction": "Exact document lines and selected link entries; original offsets and link indices retained."
+  },
+  "payload": {
+    "excerpts": [
+      {
+        "start": 76,
+        "end": 193,
+        "text": "Vizualizări, rapoarte și investigații despre achizițiile publice, bugetul de stat și finanțarea politică din România."
+      },
+      {
+        "start": 1069,
+        "end": 1105,
+        "text": "Achiziții publice — surse & rapoarte"
+      },
+      {
+        "start": 1283,
+        "end": 1302,
+        "text": "rapoarte statistici"
+      },
+      {
+        "start": 1426,
+        "end": 1441,
+        "text": "Vezi rapoartele"
+      },
+      {
+        "start": 1442,
+        "end": 1461,
+        "text": "RAJASA investigație"
+      }
+    ],
+    "links": [
+      {
+        "url": "https://baniinostri.info/rapoarte/",
+        "label": "rapoarte statistici Topuri furnizori Statistici despre furnizorii cu cele mai multe achiziții — fie ca număr, fie ca valoare totală câștigată. Vezi rapoartele",
+        "snapshot_link_index": 4
+      },
+      {
+        "url": "https://baniinostri.info/RAJASA/",
+        "label": "RAJASA investigație Raport achiziții ~270 mii lei Investigație punctuală despre o serie de achiziții apropiate de pragul de 270 mii lei. Vezi raportul",
+        "snapshot_link_index": 5
+      }
+    ]
+  }
+}

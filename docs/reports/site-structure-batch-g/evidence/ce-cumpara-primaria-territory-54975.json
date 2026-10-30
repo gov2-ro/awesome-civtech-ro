@@ -1,0 +1,19 @@
+{
+  "provenance": {
+    "source": "https://cecumparaprimaria.vercel.app/uat/54975?an=2025",
+    "observed_at": "2026-10-30T16:24:09.077860+00:00",
+    "source_body_sha256": "a529c673056e67f22f1e933ece918e665807c99866b91d9894a081c3d4838ed3",
+    "retained_text_sha256": "a529c673056e67f22f1e933ece918e665807c99866b91d9894a081c3d4838ed3",
+    "source_snapshot": null,
+    "http_status": 200,
+    "extraction": "Exact siruta/name values from a JSON-decoded Next.js string chunk; no JavaScript execution. Only the named locality component is retained."
+  },
+  "payload": {
+    "subject": {
+      "siruta": "54975",
+      "name": "Cluj-Napoca"
+    },
+    "decoded_script_index": 0,
+    "decoded_component_offset": 10414
+  }
+}

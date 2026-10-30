@@ -1,0 +1,42 @@
+{
+  "provenance": {
+    "source": "https://docs.google.com/spreadsheets/d/1LFqrx69uwDqMlibUB_bDQHe3WsuxmeLR-hmZc-I59B8/export?format=csv&gid=1605213175",
+    "observed_at": "2026-10-26T18:39:24.117837+00:00",
+    "source_body_sha256": "3fdb2b5e5f14fd4846ad39fd4cc8d378f3ea8f33dd144e4b2b96dccbfbd264a1",
+    "retained_text_sha256": "3fdb2b5e5f14fd4846ad39fd4cc8d378f3ea8f33dd144e4b2b96dccbfbd264a1",
+    "source_snapshot": "surse/cd35243c591ff1d3fb45-3fdb2b5e5f14fd48.json",
+    "http_status": 200,
+    "extraction": "Two retained allocation-sheet rows. Only territory code, fiscal code, UAT name/type and county copied; no amounts or party values."
+  },
+  "payload": {
+    "header": [
+      "Nr crt",
+      "JudeT",
+      "SIRUTA",
+      "CIF",
+      "TIP UAT",
+      "UAT",
+      "Alocare",
+      "Per capita",
+      "Partid primar"
+    ],
+    "rows": [
+      {
+        "source_index": 0,
+        "SIRUTA": "1213",
+        "CIF": "4613636",
+        "TIP UAT": "Municipiu",
+        "UAT": "AIUD",
+        "JudeT": "ALBA"
+      },
+      {
+        "source_index": 1,
+        "SIRUTA": "1348",
+        "CIF": "4563007",
+        "TIP UAT": "Municipiu",
+        "UAT": "BLAJ",
+        "JudeT": "ALBA"
+      }
+    ]
+  }
+}

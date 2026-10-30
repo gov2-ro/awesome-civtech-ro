@@ -1,0 +1,17 @@
+{
+  "provenance": {
+    "source": "https://data.expertforum.ro/",
+    "observed_at": "2026-10-26T18:23:00+00:00",
+    "source_body_sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+    "retained_text_sha256": "d6f05a562b778e55b3a8e211da1b22fc5d5bf781f54810b86751043bbff28685",
+    "source_snapshot": "surse/dfb618198f8feeea1af4-d6f05a562b778e55.json",
+    "http_status": null,
+    "extraction": "Published sheet target links decoded from the owner-saved page. Google tracking wrappers are excluded. This is not a live visit or an instruction to access the blocked host."
+  },
+  "payload": {
+    "sheet_links": [
+      "https://docs.google.com/spreadsheets/d/1LFqrx69uwDqMlibUB_bDQHe3WsuxmeLR-hmZc-I59B8/edit#gid=1605213175",
+      "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/edit#gid=768211337"
+    ]
+  }
+}

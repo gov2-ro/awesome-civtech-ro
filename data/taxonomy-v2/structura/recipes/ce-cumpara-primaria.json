@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "id": "ce-cumpara-primaria-batch-f",
+  "project_slug": "ce-cumpara-primaria",
+  "input_url": "https://cecumparaprimaria.vercel.app/",
+  "evidence": [
+    {
+      "id": "territory-9262",
+      "source": "https://cecumparaprimaria.vercel.app/uat/9262?an=2025",
+      "observed_at": "2026-10-27T17:02:26.628503+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-g/evidence/ce-cumpara-primaria-territory-9262.json",
+      "sha256": "60b122834c70dca3f280a852260eaccae36cddc498e9ef5dabaac6d51c7428d4",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "territory-179132",
+      "source": "https://cecumparaprimaria.vercel.app/uat/179132?an=2025",
+      "observed_at": "2026-10-30T16:24:08.073104+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-g/evidence/ce-cumpara-primaria-territory-179132.json",
+      "sha256": "e92efd2282ed916f9a2768ae05dd1ae73384c72587c44e4e8bddeb6d815a9f09",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "territory-54975",
+      "source": "https://cecumparaprimaria.vercel.app/uat/54975?an=2025",
+      "observed_at": "2026-10-30T16:24:09.077860+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-g/evidence/ce-cumpara-primaria-territory-54975.json",
+      "sha256": "8441a921eca2c0f08381992ffdc32aa2779560c25486ab7016f5b2234e1806e3",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "sections",
+      "source": "https://cecumparaprimaria.vercel.app/",
+      "observed_at": "2026-10-24T22:19:23.485131+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-g/evidence/ce-cumpara-primaria-sections.json",
+      "sha256": "b7754e7706d752567e65388c5d88554e6e0cde91e4fddd690a663915870bfb35",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    }
+  ],
+  "collections": [
+    {
+      "id": "territories",
+      "label": "Primării și teritorii — SIRUTA",
+      "entity_type": "territory",
+      "record_grain": "territory",
+      "identity_components": [
+        "ro:siruta"
+      ],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "territory-9262",
+        "territory-179132",
+        "territory-54975",
+        "sections"
+      ]
+    },
+    {
+      "id": "suppliers",
+      "label": "Furnizori",
+      "entity_type": "legal_subject",
+      "record_grain": "legal_subject",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "sections"
+      ]
+    },
+    {
+      "id": "rankings",
+      "label": "Clasamente",
+      "entity_type": "unknown",
+      "record_grain": "aggregate",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "sections"
+      ]
+    }
+  ],
+  "namespaces": [
+    {
+      "id": "ro:siruta",
+      "issuer": "INS",
+      "scope": "Administrative territory code explicitly named siruta in route/component props; not fiscal CUI.",
+      "normalization": "identity",
+      "shared": true,
+      "evidence": [
+        "territory-9262",
+        "territory-179132",
+        "territory-54975"
+      ]
+    }
+  ],
+  "patterns": [
+    {
+      "id": "home",
+      "collection": "territories",
+      "url_template": "https://cecumparaprimaria.vercel.app/",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "sections"
+      ]
+    },
+    {
+      "id": "locality-2025",
+      "collection": "territories",
+      "url_template": "https://cecumparaprimaria.vercel.app/uat/{siruta}?an=2025",
+      "kind": "detail",
+      "variables": [
+        {
+          "name": "siruta",
+          "namespace": "ro:siruta",
+          "location": "path"
+        }
+      ],
+      "basis": "declared",
+      "examples": [],
+      "evidence": [
+        "territory-9262",
+        "territory-179132",
+        "territory-54975"
+      ],
+      "scope_note": "Observed reporting year 2025; identity refers to the territory, not a timeless expenditure record."
+    },
+    {
+      "id": "supplier-list",
+      "collection": "suppliers",
+      "url_template": "https://cecumparaprimaria.vercel.app/furnizori",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "sections"
+      ]
+    },
+    {
+      "id": "ranking-list",
+      "collection": "rankings",
+      "url_template": "https://cecumparaprimaria.vercel.app/clasament",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "sections"
+      ]
+    }
+  ],
+  "operations": [],
+  "identifier_rules": [
+    {
+      "id": "component-siruta",
+      "collection": "territories",
+      "namespace": "ro:siruta",
+      "location": "/subject/siruta",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "territory-9262",
+        "territory-179132",
+        "territory-54975"
+      ],
+      "note": ""
+    }
+  ],
+  "samples": [
+    {
+      "id": "territory-9262",
+      "collection": "territories",
+      "label": "Arad — teritoriu",
+      "local_namespace": "ro:siruta",
+      "identifiers": [
+        {
+          "rule": "component-siruta",
+          "source": "territory-9262",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/subject/siruta"
+          }
+        }
+      ]
+    },
+    {
+      "id": "territory-179132",
+      "collection": "territories",
+      "label": "București — teritoriu",
+      "local_namespace": "ro:siruta",
+      "identifiers": [
+        {
+          "rule": "component-siruta",
+          "source": "territory-179132",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/subject/siruta"
+          }
+        }
+      ]
+    },
+    {
+      "id": "territory-54975",
+      "collection": "territories",
+      "label": "Cluj-Napoca — teritoriu",
+      "local_namespace": "ro:siruta",
+      "identifiers": [
+        {
+          "rule": "component-siruta",
+          "source": "territory-54975",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/subject/siruta"
+          }
+        }
+      ]
+    }
+  ],
+  "relationships": []
+}
