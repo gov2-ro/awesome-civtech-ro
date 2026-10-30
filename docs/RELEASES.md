@@ -75,3 +75,4 @@
 - **v0.48.1** (2026-10-30): publish the proposed hotarari.ro local council decision archive, with its operator attribution, profile, search mentions and inventory record.
 
 - **v0.49.0** (2026-10-30): track `.agents/skills/add-new-url/SKILL.md`, a reusable evidence-led workflow for auditing, cataloguing, profiling and inventorying new sites.
+- **v0.50.0** (2026-10-30): five-site structure expansion: lista-firme, DemoANAF, Companiile de stat, Companii Publice and Se golesc de oameni…. Five recipes add 24 collections, 20 URL patterns, 67 API operations, sixteen real records and four authority/parent relationships. The ten-project set has 27 records and 26 new proposed identity pairs. Fifteen bounded GET requests; no paid API or forbidden-host request. 1,258 tests pass, eight skipped; six new offline checks and thirty browser checks pass.

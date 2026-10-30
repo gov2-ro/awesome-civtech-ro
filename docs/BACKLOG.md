@@ -17,6 +17,9 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [x] Structure curation inputs: five reusable recipes, exact evidence locators, bounded sample extraction, local namespaces, grain-aware match proposals, conflict retention and durable read-only owner-decision overlays. [Report](reports/site-structure-curation.md).
 - [x] Structure API reader: resolve bounded local parameter definitions before probing. Cycles, missing targets and external references remain explicit gaps; their probes stay skipped.
 - [x] Owner: review the four concrete identity proposals in `docs/reports/site-structure-curation/review.json`. Accepted all four on 2026-10-30. The durable decision file records three CUI pairs and one territory-only SIRUTA pair. Source receipt hashes and recipe aliases remain included.
+- [x] Expand structure coverage to lista-firme, DemoANAF, Companiile de stat, Companii Publice and Se golesc de oameni…. Five recipes add 16 records, 20 URL patterns, 67 API operations and four explicit relationships. [Report](reports/site-structure-batch-f.md).
+- [ ] Owner: review the 26 new structure identity pairs: Antibiotice CUI 1973096 (14), Active Conexe CUI 31029694 (10), București territory SIRUTA 179132 (2). Existing decisions remain unchanged.
+- [ ] Structure gaps: lista-firme's internal company-ID mapping and complete API parameter contract remain unknown. Companii Publice and Se golesc de oameni… have no established per-entity frontend URL; their data locators remain useful.
 - [ ] Structure expansion: inspect the 21 catalogue entries without retained documentation bodies. The offline pass covers all 145 entries and makes no requests; missing snapshots do not prove absent structure.
 - [ ] Existing `inventory_report.py` and inventory tests leave CSV streams open. The full suite emits ResourceWarnings at those readers; use context managers in a separate correction.
 

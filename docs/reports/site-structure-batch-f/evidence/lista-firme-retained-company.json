@@ -1,0 +1,16 @@
+{
+  "provenance": {
+    "source": "https://lista-firme.info/api/v1/info?cui=51859625",
+    "observed_at": "2026-10-27T09:03:14.436347+00:00",
+    "source_body_sha256": "5811ac653724e496f5cbae5be8969ab918f5fd3e9f1b0d13babcfee357380166",
+    "retained_text_sha256": "5811ac653724e496f5cbae5be8969ab918f5fd3e9f1b0d13babcfee357380166",
+    "source_snapshot": "surse/1c823d508dba0de4e699-5811ac653724e496.json",
+    "http_status": 200,
+    "extraction": "Whitelist of corporate name, CUI and EUID from a retained response marked persoane; no person values copied."
+  },
+  "payload": {
+    "name": "RTI GLOBAL SERVICES S.R.L.",
+    "cui": "51859625",
+    "euid": "ROONRC.J2025037467000"
+  }
+}

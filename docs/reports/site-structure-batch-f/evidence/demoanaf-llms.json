@@ -1,0 +1,26 @@
+{
+  "provenance": {
+    "source": "https://demoanaf.ro/llms.txt",
+    "observed_at": "2026-10-24T22:19:27.299844+00:00",
+    "source_body_sha256": "61efd55d801e340c66da1ac9fad9f68f69b6a473da2fc9c55352df55a6b2db9c",
+    "retained_text_sha256": "61efd55d801e340c66da1ac9fad9f68f69b6a473da2fc9c55352df55a6b2db9c",
+    "source_snapshot": "data/taxonomy-v2/observatii/documentare/pagini/ab8b3d30fd97968c0ff4e9dd.json",
+    "http_status": 200,
+    "extraction": "Exact document lines and selected link entries; original offsets and link indices retained."
+  },
+  "payload": {
+    "excerpts": [
+      {
+        "start": 1756,
+        "end": 1874,
+        "text": "- [Verificare CUI landing page](https://demoanaf.ro/verificare-cui): individual company pages at /verificare-cui/{cui}"
+      },
+      {
+        "start": 4311,
+        "end": 4436,
+        "text": "The REST API below requires payment for programmatic access — the former free API tier was sunset on 2026-08-21. Two ways in:"
+      }
+    ],
+    "links": []
+  }
+}

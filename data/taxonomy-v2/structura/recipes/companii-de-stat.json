@@ -1,0 +1,1074 @@
+{
+  "schema_version": 1,
+  "id": "companii-de-stat-batch-f",
+  "project_slug": "companii-de-stat",
+  "input_url": "https://companiidestat.ro/",
+  "evidence": [
+    {
+      "id": "openapi",
+      "source": "https://companiidestat.ro/date/v1/openapi.json",
+      "observed_at": "2026-10-24T22:41:10.356601+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-f/evidence/companii-de-stat-openapi.json",
+      "sha256": "a47105c40e6049f0586312812bf2e645a0b0df5f828159fddffdeab758d75cb8",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "search-script",
+      "source": "https://companiidestat.ro/_astro/hoisted.cQ6Rdhz_.js",
+      "observed_at": "2026-10-30T15:53:10.335400+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-f/evidence/companii-de-stat-search-script.json",
+      "sha256": "5d7d88204b13a104f96cca4b4825c56f6187b33a652441e7ba0fb7c210b054b2",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "sections",
+      "source": "https://companiidestat.ro/llms.txt",
+      "observed_at": "2026-10-24T22:19:26.015109+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-f/evidence/companii-de-stat-sections.json",
+      "sha256": "da4a8cce1b23b16e27d3fd389f47e36d0de8fff88a6329dff8967083c5dfff56",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "company-1973096",
+      "source": "https://companiidestat.ro/date/v1/companii/1973096.json",
+      "observed_at": "2026-10-30T15:51:52.370581+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-f/evidence/companii-de-stat-company-1973096.json",
+      "sha256": "13087af4812b7dcf9ce991f723b35e3f6aecd8dca0bb6b95929d09a690e1137e",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "company-31029694",
+      "source": "https://companiidestat.ro/date/v1/companii/31029694.json",
+      "observed_at": "2026-10-30T15:51:53.371640+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-f/evidence/companii-de-stat-company-31029694.json",
+      "sha256": "700191b13da9890d76bbb6ea9cb21df056f5b3ec33fb81edfdea90c304d2b827",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    }
+  ],
+  "collections": [
+    {
+      "id": "companies",
+      "label": "Companii",
+      "entity_type": "company",
+      "record_grain": "legal_subject",
+      "identity_components": [
+        "ro:cui"
+      ],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "openapi",
+        "sections"
+      ]
+    },
+    {
+      "id": "financials",
+      "label": "Bilanțuri anuale",
+      "entity_type": "unknown",
+      "record_grain": "company_year",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "openapi",
+        "sections"
+      ]
+    },
+    {
+      "id": "geography",
+      "label": "Județe și sectoare",
+      "entity_type": "territory",
+      "record_grain": "territory",
+      "identity_components": [
+        "ro:siruta"
+      ],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "openapi",
+        "sections"
+      ]
+    },
+    {
+      "id": "governance",
+      "label": "Guvernanță",
+      "entity_type": "unknown",
+      "record_grain": "governance_observation",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "openapi",
+        "sections"
+      ]
+    },
+    {
+      "id": "procurement",
+      "label": "Achiziții publice",
+      "entity_type": "contract",
+      "record_grain": "contract",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "openapi",
+        "sections"
+      ]
+    },
+    {
+      "id": "datasets",
+      "label": "Date și agregate",
+      "entity_type": "unknown",
+      "record_grain": "aggregate",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "openapi",
+        "sections"
+      ]
+    },
+    {
+      "id": "subsidies",
+      "label": "Subvenții",
+      "entity_type": "unknown",
+      "record_grain": "payment_aggregate",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "openapi",
+        "sections"
+      ]
+    }
+  ],
+  "namespaces": [
+    {
+      "id": "ro:cui",
+      "issuer": "Romanian fiscal administration",
+      "scope": "Romanian fiscal subjects; preserve the observed string.",
+      "normalization": "identity",
+      "shared": true,
+      "evidence": [
+        "openapi",
+        "search-script"
+      ]
+    }
+  ],
+  "patterns": [
+    {
+      "id": "companies-section",
+      "collection": "companies",
+      "url_template": "https://companiidestat.ro/companii/",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "sections"
+      ]
+    },
+    {
+      "id": "financials-section",
+      "collection": "financials",
+      "url_template": "https://companiidestat.ro/ani/",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "sections"
+      ]
+    },
+    {
+      "id": "geography-section",
+      "collection": "geography",
+      "url_template": "https://companiidestat.ro/judete/",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "sections"
+      ]
+    },
+    {
+      "id": "governance-section",
+      "collection": "governance",
+      "url_template": "https://companiidestat.ro/guvernare/",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "sections"
+      ]
+    },
+    {
+      "id": "procurement-section",
+      "collection": "procurement",
+      "url_template": "https://companiidestat.ro/achizitii/",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "sections"
+      ]
+    },
+    {
+      "id": "datasets-section",
+      "collection": "datasets",
+      "url_template": "https://companiidestat.ro/date/",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "sections"
+      ]
+    },
+    {
+      "id": "subsidies-section",
+      "collection": "subsidies",
+      "url_template": "https://companiidestat.ro/subventii/",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "sections"
+      ]
+    },
+    {
+      "id": "company-profile",
+      "collection": "companies",
+      "url_template": "https://companiidestat.ro/companii/{cui}/",
+      "kind": "detail",
+      "variables": [
+        {
+          "name": "cui",
+          "namespace": "ro:cui",
+          "location": "path"
+        }
+      ],
+      "basis": "declared",
+      "examples": [],
+      "evidence": [
+        "search-script",
+        "openapi"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "url_template": "https://companiidestat.ro/date/v1/data.json",
+      "operation_id": "data",
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1data.json/get",
+      "id": "operation-0",
+      "uses": [
+        {
+          "collection": "companies",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://companiidestat.ro/date/v1/companii_search.json",
+      "operation_id": "companii_search",
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1companii_search.json/get",
+      "id": "operation-1",
+      "uses": [
+        {
+          "collection": "companies",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://companiidestat.ro/date/v1/companii/{cui}.json",
+      "operation_id": "companii_cui",
+      "parameters": [
+        {
+          "name": "cui",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "anonymous"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1companii~1{cui}.json/get",
+      "id": "operation-2",
+      "uses": [
+        {
+          "collection": "companies",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented",
+        "tested"
+      ],
+      "evidence": [
+        "openapi",
+        "company-1973096"
+      ],
+      "last_test": {
+        "outcome": "observed",
+        "reason": "Read-only company response; only corporate identity fields retained.",
+        "checked_at": "2026-10-30T15:51:52.370581+00:00",
+        "evidence": "company-1973096"
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://companiidestat.ro/date/v1/mfin_bilanturi_2019.json",
+      "operation_id": "mfin_bilanturi_2019",
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1mfin_bilanturi_2019.json/get",
+      "id": "operation-3",
+      "uses": [
+        {
+          "collection": "financials",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://companiidestat.ro/date/v1/mfin_bilanturi_2020.json",
+      "operation_id": "mfin_bilanturi_2020",
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1mfin_bilanturi_2020.json/get",
+      "id": "operation-4",
+      "uses": [
+        {
+          "collection": "financials",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://companiidestat.ro/date/v1/mfin_bilanturi_2021.json",
+      "operation_id": "mfin_bilanturi_2021",
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1mfin_bilanturi_2021.json/get",
+      "id": "operation-5",
+      "uses": [
+        {
+          "collection": "financials",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://companiidestat.ro/date/v1/mfin_bilanturi_2022.json",
+      "operation_id": "mfin_bilanturi_2022",
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1mfin_bilanturi_2022.json/get",
+      "id": "operation-6",
+      "uses": [
+        {
+          "collection": "financials",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://companiidestat.ro/date/v1/mfin_bilanturi_2023.json",
+      "operation_id": "mfin_bilanturi_2023",
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1mfin_bilanturi_2023.json/get",
+      "id": "operation-7",
+      "uses": [
+        {
+          "collection": "financials",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://companiidestat.ro/date/v1/mfin_bilanturi_2024.json",
+      "operation_id": "mfin_bilanturi_2024",
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1mfin_bilanturi_2024.json/get",
+      "id": "operation-8",
+      "uses": [
+        {
+          "collection": "financials",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://companiidestat.ro/date/v1/mfin_bilanturi_2025.json",
+      "operation_id": "mfin_bilanturi_2025",
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1mfin_bilanturi_2025.json/get",
+      "id": "operation-9",
+      "uses": [
+        {
+          "collection": "financials",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://companiidestat.ro/date/v1/anexa1_summary.json",
+      "operation_id": "anexa1_summary",
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1anexa1_summary.json/get",
+      "id": "operation-10",
+      "uses": [
+        {
+          "collection": "governance",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://companiidestat.ro/date/v1/anexa3_summary.json",
+      "operation_id": "anexa3_summary",
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1anexa3_summary.json/get",
+      "id": "operation-11",
+      "uses": [
+        {
+          "collection": "governance",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://companiidestat.ro/date/v1/sector_trend.json",
+      "operation_id": "sector_trend",
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1sector_trend.json/get",
+      "id": "operation-12",
+      "uses": [
+        {
+          "collection": "companies",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://companiidestat.ro/date/v1/subventii-locale-data.json",
+      "operation_id": "subventii_locale_data",
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1subventii-locale-data.json/get",
+      "id": "operation-13",
+      "uses": [
+        {
+          "collection": "subsidies",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://companiidestat.ro/date/v1/subv_uat_to_soe_2024.json",
+      "operation_id": "subv_uat_to_soe_2024",
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1subv_uat_to_soe_2024.json/get",
+      "id": "operation-14",
+      "uses": [
+        {
+          "collection": "subsidies",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://companiidestat.ro/date/v1/listed-soes.json",
+      "operation_id": "listed_soes",
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1listed-soes.json/get",
+      "id": "operation-15",
+      "uses": [
+        {
+          "collection": "companies",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://companiidestat.ro/date/v1/companii_de_stat_radiate.csv",
+      "operation_id": "companii_de_stat_radiate",
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1companii_de_stat_radiate.csv/get",
+      "id": "operation-16",
+      "uses": [
+        {
+          "collection": "companies",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://companiidestat.ro/date/v1/onrc_amepip_gap.json",
+      "operation_id": "onrc_amepip_gap",
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1onrc_amepip_gap.json/get",
+      "id": "operation-17",
+      "uses": [
+        {
+          "collection": "companies",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://companiidestat.ro/date/v1/salarii_stats.json",
+      "operation_id": "salarii_stats",
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1salarii_stats.json/get",
+      "id": "operation-18",
+      "uses": [
+        {
+          "collection": "governance",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://companiidestat.ro/date/v1/companii_indirect_filiale_clean.csv",
+      "operation_id": "companii_indirect_filiale_clean",
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1companii_indirect_filiale_clean.csv/get",
+      "id": "operation-19",
+      "uses": [
+        {
+          "collection": "companies",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    }
+  ],
+  "identifier_rules": [
+    {
+      "id": "company-cui",
+      "collection": "companies",
+      "namespace": "ro:cui",
+      "location": "/cui",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "openapi",
+        "search-script"
+      ],
+      "note": ""
+    }
+  ],
+  "samples": [
+    {
+      "id": "company-1973096",
+      "collection": "companies",
+      "label": "ANTIBIOTICE SA",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "company-cui",
+          "source": "company-1973096",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/cui"
+          }
+        }
+      ]
+    },
+    {
+      "id": "company-31029694",
+      "collection": "companies",
+      "label": "ACTIVE CONEXE S.A.",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "company-cui",
+          "source": "company-31029694",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/cui"
+          }
+        }
+      ]
+    }
+  ],
+  "relationships": []
+}

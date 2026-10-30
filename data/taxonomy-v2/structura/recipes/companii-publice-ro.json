@@ -1,0 +1,310 @@
+{
+  "schema_version": 1,
+  "id": "companii-publice-ro-batch-f",
+  "project_slug": "companii-publice-ro",
+  "input_url": "https://cosettechichirau.github.io/companiipublice/",
+  "evidence": [
+    {
+      "id": "corporate-roles",
+      "source": "https://cosettechichirau.github.io/companiipublice/companii.json",
+      "observed_at": "2026-10-27T17:01:22.338903+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-f/evidence/companii-publice-ro-corporate-roles.json",
+      "sha256": "6e56716d29ab44f3120882c3cb5ad0091656b87bac486bce2cd8c575cc0a700c",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "sections",
+      "source": "https://cosettechichirau.github.io/companiipublice/",
+      "observed_at": "2026-10-24T22:19:26.127199+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-f/evidence/companii-publice-ro-sections.json",
+      "sha256": "8c4d2f4c2db8007e2367de906a35df5519618d90349a34073908dc6c9a3cd85e",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    }
+  ],
+  "collections": [
+    {
+      "id": "companies",
+      "label": "Întreprinderi publice",
+      "entity_type": "company",
+      "record_grain": "legal_subject",
+      "identity_components": [
+        "ro:cui"
+      ],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "corporate-roles",
+        "sections"
+      ]
+    },
+    {
+      "id": "authorities",
+      "label": "Autorități publice tutelare",
+      "entity_type": "public_institution",
+      "record_grain": "legal_subject",
+      "identity_components": [
+        "ro:cui"
+      ],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "corporate-roles",
+        "sections"
+      ]
+    },
+    {
+      "id": "parents",
+      "label": "Companii părinte",
+      "entity_type": "company",
+      "record_grain": "legal_subject",
+      "identity_components": [
+        "ro:cui"
+      ],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "corporate-roles"
+      ]
+    }
+  ],
+  "namespaces": [
+    {
+      "id": "ro:cui",
+      "issuer": "Romanian fiscal administration",
+      "scope": "Romanian fiscal subjects; preserve the observed string.",
+      "normalization": "identity",
+      "shared": true,
+      "evidence": [
+        "corporate-roles"
+      ]
+    }
+  ],
+  "patterns": [
+    {
+      "id": "company-explorer",
+      "collection": "companies",
+      "url_template": "https://cosettechichirau.github.io/companiipublice/",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "sections"
+      ]
+    },
+    {
+      "id": "company-data",
+      "collection": "companies",
+      "url_template": "https://cosettechichirau.github.io/companiipublice/companii.json",
+      "kind": "document",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "corporate-roles"
+      ]
+    }
+  ],
+  "operations": [],
+  "identifier_rules": [
+    {
+      "id": "company-cui",
+      "collection": "companies",
+      "namespace": "ro:cui",
+      "location": "/rows/*/cui",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "corporate-roles"
+      ],
+      "note": ""
+    },
+    {
+      "id": "authority-reference",
+      "collection": "companies",
+      "namespace": "ro:cui",
+      "location": "/rows/*/apt_cui",
+      "subject_role": "administers",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "corporate-roles"
+      ],
+      "note": ""
+    },
+    {
+      "id": "parent-reference",
+      "collection": "companies",
+      "namespace": "ro:cui",
+      "location": "/rows/*/parent_cui",
+      "subject_role": "parent",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "corporate-roles"
+      ],
+      "note": ""
+    },
+    {
+      "id": "authority-self",
+      "collection": "authorities",
+      "namespace": "ro:cui",
+      "location": "/rows/*/apt_cui",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "corporate-roles"
+      ],
+      "note": "Self of the separately extracted authority subject, never the enclosing company."
+    },
+    {
+      "id": "parent-self",
+      "collection": "parents",
+      "namespace": "ro:cui",
+      "location": "/rows/*/parent_cui",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "corporate-roles"
+      ],
+      "note": "Self of the separately extracted parent company, never the child company."
+    }
+  ],
+  "samples": [
+    {
+      "id": "company-31029694",
+      "collection": "companies",
+      "label": "ACTIVE CONEXE S.A.",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "company-cui",
+          "source": "corporate-roles",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/0/cui"
+          }
+        }
+      ]
+    },
+    {
+      "id": "authority-11795573",
+      "collection": "authorities",
+      "label": "AUTORITATEA PENTRU ADMINISTRAREA ACTIVELOR STATULUI",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "authority-self",
+          "source": "corporate-roles",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/0/apt_cui"
+          }
+        }
+      ]
+    },
+    {
+      "id": "company-1973096",
+      "collection": "companies",
+      "label": "ANTIBIOTICE SA",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "company-cui",
+          "source": "corporate-roles",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/1/cui"
+          }
+        }
+      ]
+    },
+    {
+      "id": "authority-4266456",
+      "collection": "authorities",
+      "label": "MINISTERUL SANATATII",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "authority-self",
+          "source": "corporate-roles",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/1/apt_cui"
+          }
+        }
+      ]
+    },
+    {
+      "id": "company-5622225",
+      "collection": "companies",
+      "label": "SC PIATA DE GROS SA(Loc: BUCURESTI)",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "company-cui",
+          "source": "corporate-roles",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/2/cui"
+          }
+        }
+      ]
+    },
+    {
+      "id": "parent-8359779",
+      "collection": "parents",
+      "label": "SOCIETATEA DE STRATEGIE PENTRU PIATA DE GROS SRL",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "parent-self",
+          "source": "corporate-roles",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/2/parent_cui"
+          }
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "authority-for-31029694",
+      "source_sample": "authority-11795573",
+      "target_sample": "company-31029694",
+      "relation": "administers",
+      "evidence": [
+        "corporate-roles"
+      ]
+    },
+    {
+      "id": "authority-for-1973096",
+      "source_sample": "authority-4266456",
+      "target_sample": "company-1973096",
+      "relation": "administers",
+      "evidence": [
+        "corporate-roles"
+      ]
+    },
+    {
+      "id": "authority-for-5622225",
+      "source_sample": "authority-11795573",
+      "target_sample": "company-5622225",
+      "relation": "administers",
+      "evidence": [
+        "corporate-roles"
+      ]
+    },
+    {
+      "id": "parent-of-5622225",
+      "source_sample": "company-5622225",
+      "target_sample": "parent-8359779",
+      "relation": "parent",
+      "evidence": [
+        "corporate-roles"
+      ]
+    }
+  ]
+}

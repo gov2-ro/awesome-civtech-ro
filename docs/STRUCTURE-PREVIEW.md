@@ -18,8 +18,9 @@ Open these local pages:
 - [București territory by SIRUTA](http://127.0.0.1:8784/entitati/?namespace=ro:siruta&value=179132).
 - [România Transparentă project profile](http://127.0.0.1:8784/proiect/romania-transparenta/).
 
-The default build replays the five tracked recipes without network requests or ignored caches.
-It includes eleven observed records and four accepted correspondences as of 2026-10-30.
+The default build replays ten tracked recipes without network requests or ignored caches.
+It includes 27 observed records, four accepted correspondences and 26 new proposals as of 2026-10-30.
+The [five-site expansion report](reports/site-structure-batch-f.md) documents the added coverage and owner review packet.
 It reads the durable owner decisions in `data/taxonomy-v2/structura/decisions.json`.
 The build never changes those decisions.
 

@@ -17,8 +17,10 @@ python3 scripts/profile_structure.py --out /tmp/curated-structure --check
 python3 scripts/curate_structure.py report --out /tmp/curated-structure --json
 ```
 
-The recipes use tracked pilot excerpts. They work without ignored caches or live sites.
-They produce eleven real record references and four proposed correspondences, including two actual igov local-ID-to-CUI mappings.
+The recipe selection above reproduces the original curation set from tracked pilot excerpts.
+That set produces eleven record references and four correspondences, including two igov local-ID-to-CUI mappings.
+Five expansion recipes add sixteen records and 26 proposed pairs. See the [expansion report](reports/site-structure-batch-f.md).
+All ten recipes work without ignored caches or live sites.
 SICAP contributes declarations, not real sample records; its live host remains blocked.
 The [curation report](reports/site-structure-curation.md) records the evidence and remaining questions.
 The [structure preview](STRUCTURE-PREVIEW.md) shows those observations in project profiles and an exact entity lookup.

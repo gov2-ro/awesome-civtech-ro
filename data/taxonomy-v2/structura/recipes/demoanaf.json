@@ -1,0 +1,2839 @@
+{
+  "schema_version": 1,
+  "id": "demoanaf-batch-f",
+  "project_slug": "demoanaf",
+  "input_url": "https://demoanaf.ro/",
+  "evidence": [
+    {
+      "id": "openapi",
+      "source": "https://demoanaf.ro/openapi.json",
+      "observed_at": "2026-10-24T22:41:10.356821+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-f/evidence/demoanaf-openapi.json",
+      "sha256": "20212d08eaa5876b0748e4b3ffccc61947152f541a7ceed8ecb35473a761b0b6",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "llms",
+      "source": "https://demoanaf.ro/llms.txt",
+      "observed_at": "2026-10-24T22:19:27.299844+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-f/evidence/demoanaf-llms.json",
+      "sha256": "c5f25de96c886c445fdc2cae0ba3ee156f1a0c67f2573e9176e57909547c4fed",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "frontend-1973096",
+      "source": "https://demoanaf.ro/verificare-cui/1973096",
+      "observed_at": "2026-10-30T15:51:49.142984+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-f/evidence/demoanaf-frontend-1973096.json",
+      "sha256": "5c4b571793e4ad64ce31afbf9fe8c12c99a809384dc85d04993bd2b26a81b414",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "frontend-31029694",
+      "source": "https://demoanaf.ro/verificare-cui/31029694",
+      "observed_at": "2026-10-30T15:51:50.148320+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-f/evidence/demoanaf-frontend-31029694.json",
+      "sha256": "62e8e9dc7b28090b28b453efaa22a96c14d18751927403664d5f34533b7540ee",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "procurement-page",
+      "source": "https://demoanaf.ro/achizitii",
+      "observed_at": "2026-10-24T22:19:27.426930+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-f/evidence/demoanaf-procurement-page.json",
+      "sha256": "cf9406d4e4bb1c9d254e15a3fd1affb2a8a63d2b2835ebe29253519f768b4bc8",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    }
+  ],
+  "collections": [
+    {
+      "id": "companies",
+      "label": "Firme",
+      "entity_type": "company",
+      "record_grain": "legal_subject",
+      "identity_components": [
+        "ro:cui"
+      ],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "openapi",
+        "llms"
+      ]
+    },
+    {
+      "id": "financials",
+      "label": "Bilanțuri și indicatori",
+      "entity_type": "unknown",
+      "record_grain": "company_year",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "openapi",
+        "llms"
+      ]
+    },
+    {
+      "id": "related",
+      "label": "Firme asociate",
+      "entity_type": "company",
+      "record_grain": "legal_subject",
+      "identity_components": [
+        "ro:cui"
+      ],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "openapi",
+        "llms"
+      ]
+    },
+    {
+      "id": "rates",
+      "label": "Cursuri valutare",
+      "entity_type": "unknown",
+      "record_grain": "currency_date",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "openapi",
+        "llms"
+      ]
+    },
+    {
+      "id": "caen",
+      "label": "Coduri CAEN",
+      "entity_type": "unknown",
+      "record_grain": "classification_code",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "openapi",
+        "llms"
+      ]
+    },
+    {
+      "id": "geography",
+      "label": "Localități și județe",
+      "entity_type": "territory",
+      "record_grain": "territory",
+      "identity_components": [
+        "ro:siruta"
+      ],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "openapi",
+        "llms"
+      ]
+    },
+    {
+      "id": "treasury",
+      "label": "Conturi de trezorerie",
+      "entity_type": "unknown",
+      "record_grain": "account",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "openapi",
+        "llms"
+      ]
+    },
+    {
+      "id": "press",
+      "label": "Comunicate și articole",
+      "entity_type": "unknown",
+      "record_grain": "document",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "openapi",
+        "llms"
+      ]
+    },
+    {
+      "id": "statistics",
+      "label": "Statistici",
+      "entity_type": "unknown",
+      "record_grain": "aggregate",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "openapi",
+        "llms"
+      ]
+    },
+    {
+      "id": "procurement",
+      "label": "Achiziții publice",
+      "entity_type": "contract",
+      "record_grain": "contract",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "openapi",
+        "llms"
+      ]
+    },
+    {
+      "id": "authorities",
+      "label": "Autorități contractante",
+      "entity_type": "public_institution",
+      "record_grain": "legal_subject",
+      "identity_components": [
+        "ro:cui"
+      ],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "openapi",
+        "llms"
+      ]
+    },
+    {
+      "id": "documents",
+      "label": "Documente și căutare mixtă",
+      "entity_type": "unknown",
+      "record_grain": "unknown",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "openapi",
+        "llms"
+      ]
+    }
+  ],
+  "namespaces": [
+    {
+      "id": "ro:cui",
+      "issuer": "Romanian fiscal administration",
+      "scope": "Romanian fiscal subjects; preserve the observed string.",
+      "normalization": "identity",
+      "shared": true,
+      "evidence": [
+        "openapi",
+        "llms",
+        "frontend-1973096",
+        "frontend-31029694"
+      ]
+    }
+  ],
+  "patterns": [
+    {
+      "id": "company-search",
+      "collection": "companies",
+      "url_template": "https://demoanaf.ro/verificare-cui",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "llms"
+      ]
+    },
+    {
+      "id": "company-profile",
+      "collection": "companies",
+      "url_template": "https://demoanaf.ro/verificare-cui/{cui}",
+      "kind": "detail",
+      "variables": [
+        {
+          "name": "cui",
+          "namespace": "ro:cui",
+          "location": "path"
+        }
+      ],
+      "basis": "declared",
+      "examples": [],
+      "evidence": [
+        "llms",
+        "frontend-1973096",
+        "frontend-31029694"
+      ]
+    },
+    {
+      "id": "financial-profile",
+      "collection": "financials",
+      "url_template": "https://demoanaf.ro/verificare-cui/{cui}/sanatate-financiara",
+      "kind": "detail",
+      "variables": [
+        {
+          "name": "cui",
+          "namespace": "ro:cui",
+          "location": "path"
+        }
+      ],
+      "basis": "declared",
+      "examples": [],
+      "evidence": [
+        "frontend-1973096",
+        "frontend-31029694"
+      ]
+    },
+    {
+      "id": "procurement-search",
+      "collection": "procurement",
+      "url_template": "https://demoanaf.ro/achizitii",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "procurement-page"
+      ]
+    },
+    {
+      "id": "api-documentation",
+      "collection": "documents",
+      "url_template": "https://demoanaf.ro/api-docs",
+      "kind": "document",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "openapi",
+        "llms"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/search",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "q",
+          "in": "query",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "type": "integer"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1search/get",
+      "id": "operation-0",
+      "uses": [
+        {
+          "collection": "companies",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/company/{cui}",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "cui",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1company~1{cui}/get",
+      "id": "operation-1",
+      "uses": [
+        {
+          "collection": "companies",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/company/{cui}/financials",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "cui",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1company~1{cui}~1financials/get",
+      "id": "operation-2",
+      "uses": [
+        {
+          "collection": "financials",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/company/{cui}/balance/{year}",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "cui",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "year",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1company~1{cui}~1balance~1{year}/get",
+      "id": "operation-3",
+      "uses": [
+        {
+          "collection": "financials",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/company/{cui}/related",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "cui",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1company~1{cui}~1related/get",
+      "id": "operation-4",
+      "uses": [
+        {
+          "collection": "related",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/rates",
+      "operation_id": null,
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1rates/get",
+      "id": "operation-5",
+      "uses": [
+        {
+          "collection": "rates",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/rates/history",
+      "operation_id": null,
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1rates~1history/get",
+      "id": "operation-6",
+      "uses": [
+        {
+          "collection": "rates",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/rates/convert",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "from",
+          "in": "query",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "to",
+          "in": "query",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "amount",
+          "in": "query",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1rates~1convert/get",
+      "id": "operation-7",
+      "uses": [
+        {
+          "collection": "rates",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/caen",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "q",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1caen/get",
+      "id": "operation-8",
+      "uses": [
+        {
+          "collection": "caen",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/caen/{code}",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "code",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1caen~1{code}/get",
+      "id": "operation-9",
+      "uses": [
+        {
+          "collection": "caen",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/caen/{code}/hub",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "code",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1caen~1{code}~1hub/get",
+      "id": "operation-10",
+      "uses": [
+        {
+          "collection": "caen",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/firme/{judet}",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "judet",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1firme~1{judet}/get",
+      "id": "operation-11",
+      "uses": [
+        {
+          "collection": "geography",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/firme/{judet}/{oras}",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "judet",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "oras",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1firme~1{judet}~1{oras}/get",
+      "id": "operation-12",
+      "uses": [
+        {
+          "collection": "geography",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/iban",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "q",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1iban/get",
+      "id": "operation-13",
+      "uses": [
+        {
+          "collection": "treasury",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/press",
+      "operation_id": null,
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1press/get",
+      "id": "operation-14",
+      "uses": [
+        {
+          "collection": "press",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/press-articles",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "page",
+          "in": "query",
+          "required": false,
+          "type": "integer"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "type": "integer"
+        },
+        {
+          "name": "topic",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1press-articles/get",
+      "id": "operation-15",
+      "uses": [
+        {
+          "collection": "press",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/press-articles/{slug}",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "slug",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1press-articles~1{slug}/get",
+      "id": "operation-16",
+      "uses": [
+        {
+          "collection": "press",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/statistica",
+      "operation_id": null,
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1statistica/get",
+      "id": "operation-17",
+      "uses": [
+        {
+          "collection": "statistics",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/statistica/leaderboard-years",
+      "operation_id": null,
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1statistica~1leaderboard-years/get",
+      "id": "operation-18",
+      "uses": [
+        {
+          "collection": "statistics",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/statistica/top-companies",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "slice",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "sliceKey",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "year",
+          "in": "query",
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "name": "metric",
+          "in": "query",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "type": "integer"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1statistica~1top-companies/get",
+      "id": "operation-19",
+      "uses": [
+        {
+          "collection": "statistics",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/search/all",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "q",
+          "in": "query",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1search~1all/get",
+      "id": "operation-20",
+      "uses": [
+        {
+          "collection": "documents",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/company/{cui}/decisions",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "cui",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1company~1{cui}~1decisions/get",
+      "id": "operation-21",
+      "uses": [
+        {
+          "collection": "companies",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/company/{cui}/leaderboard",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "cui",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1company~1{cui}~1leaderboard/get",
+      "id": "operation-22",
+      "uses": [
+        {
+          "collection": "financials",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "POST",
+      "url_template": "https://demoanaf.ro/api/company/batch",
+      "operation_id": null,
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1company~1batch/post",
+      "id": "operation-23",
+      "uses": [
+        {
+          "collection": "companies",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/press/pdf",
+      "operation_id": null,
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1press~1pdf/get",
+      "id": "operation-24",
+      "uses": [
+        {
+          "collection": "press",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/sicap/tenders/search",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "q",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "cpv",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "authorityCui",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "from",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "required": false,
+          "type": "integer"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1sicap~1tenders~1search/get",
+      "id": "operation-25",
+      "uses": [
+        {
+          "collection": "procurement",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/sicap/tender/{notice}",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "notice",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1sicap~1tender~1{notice}/get",
+      "id": "operation-26",
+      "uses": [
+        {
+          "collection": "procurement",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/sicap/procedures",
+      "operation_id": null,
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1sicap~1procedures/get",
+      "id": "operation-27",
+      "uses": [
+        {
+          "collection": "procurement",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/sicap/company/{cui}/procedures",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "cui",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1sicap~1company~1{cui}~1procedures/get",
+      "id": "operation-28",
+      "uses": [
+        {
+          "collection": "procurement",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        },
+        {
+          "collection": "authorities",
+          "subject_role": "buyer",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/sicap/procedure/{notice}/documents",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "notice",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1sicap~1procedure~1{notice}~1documents/get",
+      "id": "operation-29",
+      "uses": [
+        {
+          "collection": "procurement",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/sicap/procedure/{notice}/signers",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "notice",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1sicap~1procedure~1{notice}~1signers/get",
+      "id": "operation-30",
+      "uses": [
+        {
+          "collection": "procurement",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/company/{cui}/seap",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "cui",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1company~1{cui}~1seap/get",
+      "id": "operation-31",
+      "uses": [
+        {
+          "collection": "procurement",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/seap/company/{cui}/contracts",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "cui",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "role",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "dateFrom",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "dateTo",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "cpv",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "required": false,
+          "type": "integer"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1seap~1company~1{cui}~1contracts/get",
+      "id": "operation-32",
+      "uses": [
+        {
+          "collection": "procurement",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/seap/company/{cui}/contracts/check",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "cui",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1seap~1company~1{cui}~1contracts~1check/get",
+      "id": "operation-33",
+      "uses": [
+        {
+          "collection": "procurement",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/seap/company/{cui}/direct-purchases",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "cui",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "role",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "dateFrom",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "dateTo",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "cpv",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "required": false,
+          "type": "integer"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1seap~1company~1{cui}~1direct-purchases/get",
+      "id": "operation-34",
+      "uses": [
+        {
+          "collection": "procurement",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/seap/company/{cui}/direct-purchase-awards",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "cui",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "role",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "dateFrom",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "dateTo",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "cpv",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "required": false,
+          "type": "integer"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1seap~1company~1{cui}~1direct-purchase-awards/get",
+      "id": "operation-35",
+      "uses": [
+        {
+          "collection": "procurement",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/seap/company/{cui}/tenders",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "cui",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "required": false,
+          "type": "integer"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1seap~1company~1{cui}~1tenders/get",
+      "id": "operation-36",
+      "uses": [
+        {
+          "collection": "procurement",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/seap/company/{cui}/supplier-issues",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "cui",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "onlyDamages",
+          "in": "query",
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "required": false,
+          "type": "integer"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1seap~1company~1{cui}~1supplier-issues/get",
+      "id": "operation-37",
+      "uses": [
+        {
+          "collection": "procurement",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/seap/supplier-issues/{ackDocId}",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "ackDocId",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1seap~1supplier-issues~1{ackDocId}/get",
+      "id": "operation-38",
+      "uses": [
+        {
+          "collection": "procurement",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/seap/contracts/{number}",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "number",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1seap~1contracts~1{number}/get",
+      "id": "operation-39",
+      "uses": [
+        {
+          "collection": "procurement",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/seap/cpv/{cpv}/contracts",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "cpv",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "supplierCity",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "dateFrom",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "dateTo",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "required": false,
+          "type": "integer"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1contracts/get",
+      "id": "operation-40",
+      "uses": [
+        {
+          "collection": "procurement",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/seap/cpv/{cpv}/direct-purchases",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "cpv",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "dateFrom",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "dateTo",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "required": false,
+          "type": "integer"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1direct-purchases/get",
+      "id": "operation-41",
+      "uses": [
+        {
+          "collection": "procurement",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/seap/cpv/{cpv}/direct-purchase-awards",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "cpv",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "dateFrom",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "dateTo",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "required": false,
+          "type": "integer"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1direct-purchase-awards/get",
+      "id": "operation-42",
+      "uses": [
+        {
+          "collection": "procurement",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/seap/cpv/{cpv}/top-suppliers",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "cpv",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "supplierCity",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "dateFrom",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "dateTo",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "type": "integer"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1top-suppliers/get",
+      "id": "operation-43",
+      "uses": [
+        {
+          "collection": "procurement",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/seap/cpv/{cpv}/analysis",
+      "operation_id": null,
+      "parameters": [
+        {
+          "name": "cpv",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "dateFrom",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "dateTo",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1seap~1cpv~1{cpv}~1analysis/get",
+      "id": "operation-44",
+      "uses": [
+        {
+          "collection": "procurement",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    },
+    {
+      "method": "GET",
+      "url_template": "https://demoanaf.ro/api/health",
+      "operation_id": null,
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "proApiKeyBearer",
+          "proApiKeyHeader"
+        ],
+        "observed_enforcement": "unknown"
+      },
+      "purpose": "unknown",
+      "response_paths": {},
+      "pagination": {
+        "mechanism": "unknown"
+      },
+      "request_body": {},
+      "source_pointer": "/paths/~1api~1health/get",
+      "id": "operation-45",
+      "uses": [
+        {
+          "collection": "documents",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "basis": [
+        "documented"
+      ],
+      "evidence": [
+        "openapi"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No operation was invoked for this declaration."
+      }
+    }
+  ],
+  "identifier_rules": [
+    {
+      "id": "frontend-cui",
+      "collection": "companies",
+      "namespace": "ro:cui",
+      "location": "HTML title: CUI",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "frontend-1973096",
+        "frontend-31029694"
+      ],
+      "note": ""
+    },
+    {
+      "id": "company-api-cui",
+      "collection": "companies",
+      "namespace": "ro:cui",
+      "location": "path.cui",
+      "subject_role": "self",
+      "mapping_basis": "declared",
+      "evidence": [
+        "openapi",
+        "llms"
+      ],
+      "note": ""
+    },
+    {
+      "id": "authority-filter",
+      "collection": "authorities",
+      "namespace": "ro:cui",
+      "location": "query.authorityCui",
+      "subject_role": "self",
+      "mapping_basis": "declared",
+      "evidence": [
+        "openapi"
+      ],
+      "note": ""
+    }
+  ],
+  "samples": [
+    {
+      "id": "frontend-1973096",
+      "collection": "companies",
+      "label": "ANTIBIOTICE SA",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "frontend-cui",
+          "source": "frontend-1973096",
+          "extractor": {
+            "type": "regex",
+            "pattern": "CUI (?P<value>[0-9]+)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "frontend-31029694",
+      "collection": "companies",
+      "label": "ACTIVE CONEXE S.A.",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "frontend-cui",
+          "source": "frontend-31029694",
+          "extractor": {
+            "type": "regex",
+            "pattern": "CUI (?P<value>[0-9]+)"
+          }
+        }
+      ]
+    }
+  ],
+  "relationships": []
+}

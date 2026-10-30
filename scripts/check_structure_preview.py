@@ -14,6 +14,24 @@ DB=json.load(urllib.request.urlopen(BASE+'entitati/data.json'))
 checks=[]
 
 
+def observed(namespace,value):
+    return [r for r in DB['records'] if any(i['namespace']==namespace and i['value']==value for i in r['identifiers'])]
+
+
+def direct_counterparts(record):
+    ids={record['id']}
+    for link in DB['links']:
+        if record['id'] in link['records']:ids.update(link['records'])
+    return ids
+
+
+ANTIBIOTICE=observed('ro:cui','1973096')
+MAE=observed('ro:cui','4266863')
+BUCURESTI=observed('ro:siruta','179132')
+IGOV=next(r for r in ANTIBIOTICE if r['project']=='igov')
+LOCAL_IDS=direct_counterparts(IGOV)
+
+
 def ok(label,condition):
     checks.append(bool(condition));print(('PASS ' if condition else 'FAIL ')+label)
 
@@ -27,25 +45,25 @@ with sync_playwright() as pw:
     page.goto(BASE+'entitati/?namespace=ro:cui&value=1973096')
     page.wait_for_selector('.entity-card')
     cards=page.locator('.entity-card')
-    ok('Antibiotice has two observed records',cards.count()==2 and 'Antibiotice' in page.locator('#entity-results').inner_text())
-    ok('accepted correspondence is visible','1 corespondență confirmată' in page.locator('#entity-count').inner_text())
+    ok('Antibiotice shows the observed records',cards.count()==len(ANTIBIOTICE) and 'Antibiotice' in page.locator('#entity-results').inner_text())
+    ok('confirmation follows the accepted links',page.locator('.entity-card .kicker').filter(has_text='Corespondență confirmată').count()==len({rid for link in DB['links'] for rid in link['records']} & {r['id'] for r in ANTIBIOTICE}))
     ok('igov local ID remains visible','inst_cui-1973096_89f11b5bc5' in page.locator('#entity-results').inner_text())
     ok('template-derived URLs carry an availability qualifier','URL construit din tipar; disponibilitate neverificată' in page.locator('#entity-results').inner_text())
     ok('igov has no invented company page',cards.filter(has_text='igov · fișa proiectului').get_by_text('Nu avem un URL distinct').count()==1)
     page.get_by_role('button',name='MAE · CUI 4266863',exact=True).click()
-    ok('example updates query and results','4266863' in page.url and page.locator('.entity-card').count()==2)
+    ok('example updates query and results','4266863' in page.url and page.locator('.entity-card').count()==len(MAE))
     page.go_back();page.wait_for_selector('.entity-card')
     ok('back restores the input and results',page.locator('#entity-value').input_value()=='1973096' and 'Antibiotice' in page.locator('#entity-results').inner_text())
     page.get_by_role('button',name='București · SIRUTA 179132',exact=True).click()
-    ok('territory search does not equate its fiscal institution',page.locator('.entity-card').count()==2 and '4267117' not in page.locator('#entity-results').inner_text() and 'TERITORIU' in page.locator('#entity-results').inner_text().upper())
+    ok('territory search does not equate its fiscal institution',page.locator('.entity-card').count()==len(BUCURESTI) and '4267117' not in page.locator('#entity-results').inner_text() and 'TERITORIU' in page.locator('#entity-results').inner_text().upper())
     page.locator('#entity-value').fill('0179132');page.get_by_role('button',name='Caută',exact=True).click()
     ok('leading zero is not silently removed',page.locator('.entity-card').count()==0 and 'Nicio înregistrare observată' in page.locator('#entity-count').inner_text())
     local=next(n for n in DB['namespaces'] if n['namespace']=='igov:companies:id')
     page.locator('#entity-namespace').select_option(local['id'])
     page.locator('#entity-value').fill('inst_cui-1973096_89f11b5bc5');page.get_by_role('button',name='Caută',exact=True).click()
-    ok('local identifier returns a direct accepted counterpart',page.locator('.entity-card').count()==2)
+    ok('local identifier returns direct accepted counterparts',page.locator('.entity-card').count()==len(LOCAL_IDS))
     page.reload();page.wait_for_selector('.entity-card')
-    ok('a shared local-ID URL survives reload',page.locator('#entity-namespace').input_value()==local['id'] and page.locator('.entity-card').count()==2)
+    ok('a shared local-ID URL survives reload',page.locator('#entity-namespace').input_value()==local['id'] and page.locator('.entity-card').count()==len(LOCAL_IDS))
     page.goto(BASE+'proiect/romania-transparenta/')
     page.wait_for_selector('[data-structure-profile]')
     profile=page.locator('[data-structure-profile]')
@@ -71,7 +89,7 @@ with sync_playwright() as pw:
     page.reload();page.wait_for_selector('#entity-retry')
     ok('failed payload offers a retry','nu au putut fi încărcate' in page.locator('#entity-count').inner_text())
     page.unroute('**/entitati/data.json');page.locator('#entity-retry').click();page.wait_for_selector('.entity-card')
-    ok('retry restores the deep-linked lookup',page.locator('.entity-card').count()==2)
+    ok('retry restores the deep-linked lookup',page.locator('.entity-card').count()==len(ANTIBIOTICE))
     page.goto(BASE+'entitati/?namespace=unrecognised&value=1973096');page.wait_for_function("document.querySelector('#entity-count').textContent.includes('ambiguu')")
     ok('unknown namespace does not fall back to a CUI match',page.locator('.entity-card').count()==0)
     trial=copy.deepcopy(DB)
@@ -80,7 +98,18 @@ with sync_playwright() as pw:
     trial['records'].append(third);trial['links'].append(dict(id='synthetic-chain',records=[original['id'],third['id']],state='accepted'))
     page.route('**/entitati/data.json',lambda route:route.fulfill(json=trial))
     page.goto(BASE+'entitati/?namespace='+local['id']+'&value=inst_cui-1973096_89f11b5bc5');page.wait_for_selector('.entity-card')
-    ok('accepted links expand one hop without inventing a transitive cluster',page.locator('.entity-card').count()==2 and page.locator('[data-record="synthetic-third"]').count()==0)
+    ok('accepted links expand one hop without inventing a transitive cluster',page.locator('.entity-card').count()==len(LOCAL_IDS) and page.locator('[data-record="synthetic-third"]').count()==0)
+    for slug in ['lista-firme','demoanaf','companii-de-stat','companii-publice-ro','orasul-care-se-intinde']:
+        if slug not in DB['projects']:continue
+        expected=DB['projects'][slug]
+        page.goto(BASE+expected['profile']);page.wait_for_selector('[data-structure-profile]')
+        panel=page.locator('[data-structure-profile]')
+        ok('expansion site profile: '+slug,all(c['label'] in panel.inner_text() for c in expected['collections'])
+           and f"Tipare URL ({len(expected['patterns'])})" in panel.inner_text()
+           and f"Endpointuri API ({len(expected['operations'])})" in panel.inner_text())
+        if slug=='demoanaf':
+            panel.locator('[data-structure-apis] > summary').click()
+            ok('DemoANAF API authentication stays distinct from public frontend records','Autentificare declarată' in panel.inner_text() and 'Acces observat: Neverificat' in panel.inner_text())
     ok('no browser script errors',not errors)
     browser.close()
 print(f'{sum(checks)}/{len(checks)} browser checks pass')

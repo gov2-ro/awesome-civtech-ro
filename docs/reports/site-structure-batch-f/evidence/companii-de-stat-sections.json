@@ -1,0 +1,57 @@
+{
+  "provenance": {
+    "source": "https://companiidestat.ro/llms.txt",
+    "observed_at": "2026-10-24T22:19:26.015109+00:00",
+    "source_body_sha256": "c52a57436d786f077a1cf5e7b637c5aeb050d10f46f8a99f4eb80d2572f92559",
+    "retained_text_sha256": "c52a57436d786f077a1cf5e7b637c5aeb050d10f46f8a99f4eb80d2572f92559",
+    "source_snapshot": "data/taxonomy-v2/observatii/documentare/pagini/f93256c9a0672383b8048931.json",
+    "http_status": 200,
+    "extraction": "Exact document lines and selected link entries; original offsets and link indices retained."
+  },
+  "payload": {
+    "excerpts": [
+      {
+        "start": 4610,
+        "end": 5453,
+        "text": "Stratul de date e public la [/date/](https://companiidestat.ro/date/), documentat cu schema fiecărui fișier. Descriere mașinală: manifestul [/date/v1/index.json](https://companiidestat.ro/date/v1/index.json) și specificația OpenAPI 3.1 [/date/v1/openapi.json](https://companiidestat.ro/date/v1/openapi.json). Adresele vechi /api/v1/ redirecționează permanent, cu calea păstrată. JSON-uri cheie: `data.json` (agregate), `companii_search.json` + `companii/{cui}.json` (profil per companie), `mfin_bilanturi_{an}.json` (bilanțuri Ministerul Finanțelor), `anexa1_summary.json` / `anexa3_summary.json` (verdicte oficiale AMEPIP), `achizitii_complete_per_companie.json` + `furnizori_complete_national.json` (achiziții SEAP/ANAP), `licitatii_soe_2025_2026.json` (licitațiile 2025-2026, cu titlu, câștigători și valoare), `subventii-locale-data.json`."
+      }
+    ],
+    "links": [
+      {
+        "url": "https://companiidestat.ro/companii/",
+        "label": "Companii",
+        "snapshot_link_index": 1
+      },
+      {
+        "url": "https://companiidestat.ro/ani/",
+        "label": "Ani",
+        "snapshot_link_index": 2
+      },
+      {
+        "url": "https://companiidestat.ro/judete/",
+        "label": "Județe",
+        "snapshot_link_index": 3
+      },
+      {
+        "url": "https://companiidestat.ro/achizitii/",
+        "label": "Achizițiile și licitațiile companiilor de stat",
+        "snapshot_link_index": 6
+      },
+      {
+        "url": "https://companiidestat.ro/subventii/",
+        "label": "Subvenții",
+        "snapshot_link_index": 10
+      },
+      {
+        "url": "https://companiidestat.ro/guvernare/",
+        "label": "Programul de guvernare",
+        "snapshot_link_index": 11
+      },
+      {
+        "url": "https://companiidestat.ro/date/",
+        "label": "/date/",
+        "snapshot_link_index": 13
+      }
+    ]
+  }
+}

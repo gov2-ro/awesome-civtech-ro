@@ -1,0 +1,81 @@
+{
+  "provenance": {
+    "source": "https://cosettechichirau.github.io/companiipublice/",
+    "observed_at": "2026-10-24T22:19:26.127199+00:00",
+    "source_body_sha256": "f1fac7eaa74dea054b6d890834780f2e7545f78d016b08c02c63dce40e5d1af4",
+    "retained_text_sha256": "f1fac7eaa74dea054b6d890834780f2e7545f78d016b08c02c63dce40e5d1af4",
+    "source_snapshot": "data/taxonomy-v2/observatii/documentare/pagini/d14075530a66dd2c9cef2954.json",
+    "http_status": 200,
+    "extraction": "Exact document lines and selected link entries; original offsets and link indices retained."
+  },
+  "payload": {
+    "excerpts": [
+      {
+        "start": 0,
+        "end": 26,
+        "text": "Companii Publice — România"
+      },
+      {
+        "start": 0,
+        "end": 26,
+        "text": "Companii Publice — România"
+      },
+      {
+        "start": 162,
+        "end": 228,
+        "text": "Nr. companii Angajați Cifră de afaceri Rezultat net Datorii Puține"
+      },
+      {
+        "start": 235,
+        "end": 252,
+        "text": "Companii centrale"
+      },
+      {
+        "start": 703,
+        "end": 718,
+        "text": "Companii locale"
+      },
+      {
+        "start": 719,
+        "end": 871,
+        "text": "Autoritatea publică tutelară este un consiliu local, un consiliu județean sau o asociație de dezvoltare intercomunitară. Explorabile pe hartă, pe județ."
+      },
+      {
+        "start": 235,
+        "end": 252,
+        "text": "Companii centrale"
+      },
+      {
+        "start": 890,
+        "end": 1056,
+        "text": "Autoritatea publică tutelară este un minister sau o instituție centrală. Organizate ca arbore: instituție → companie → eventuale filiale/companii controlate indirect."
+      },
+      {
+        "start": 1073,
+        "end": 1076,
+        "text": "CUI"
+      },
+      {
+        "start": 1077,
+        "end": 1170,
+        "text": "Codul unic de identificare fiscală al companiei și, separat, al autorității publice tutelare."
+      },
+      {
+        "start": 1637,
+        "end": 1740,
+        "text": "Codul CAEN principal declarat al companiei, cu denumirea domeniului acolo unde a putut fi identificată."
+      },
+      {
+        "start": 2344,
+        "end": 2667,
+        "text": "Linia punctată de pe fiecare grafic arată valoarea mediană a firmelor cu același cod CAEN, an cu an — reperul „firmei tipice\" din sector. Eticheta „#3 din 12\" indică poziția companiei în acel sector, pentru cel mai recent an, ordonând descrescător după indicator. Apare doar când sectorul are cel puțin 3 firme cu depuneri."
+      },
+      {
+        "start": 2729,
+        "end": 2745,
+        "text": "Caută o companie"
+      }
+    ],
+    "links": []
+  }
+}

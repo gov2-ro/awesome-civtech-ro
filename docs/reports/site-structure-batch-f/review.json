@@ -1,0 +1,1903 @@
+{
+  "projects": 10,
+  "records": 27,
+  "links": [
+    {
+      "id": "481fdac503bfd40a97c69f30",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "companii-de-stat",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://companiidestat.ro/date/v1/companii/1973096.json"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://companiidestat.ro/companii/1973096/",
+              "basis": "template-derived",
+              "evidence": [
+                "b64170ce1545bb900e8b4f44",
+                "93a069e67bfb21de1210ea5a"
+              ]
+            }
+          ],
+          "evidence": [
+            "58bcf5d376daf8a287f0425a"
+          ]
+        },
+        {
+          "project": "companii-publice-ro",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://cosettechichirau.github.io/companiipublice/companii.json"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "ccebb687745aa63870c50ae8"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b7c70822d977410c29e00b09",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "companii-de-stat",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://companiidestat.ro/date/v1/companii/31029694.json"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://companiidestat.ro/companii/31029694/",
+              "basis": "template-derived",
+              "evidence": [
+                "b64170ce1545bb900e8b4f44",
+                "93a069e67bfb21de1210ea5a"
+              ]
+            }
+          ],
+          "evidence": [
+            "175cbf494191a23afb365161"
+          ]
+        },
+        {
+          "project": "companii-publice-ro",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://cosettechichirau.github.io/companiipublice/companii.json"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "ccebb687745aa63870c50ae8"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2934f21834900486e90f8c23",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "companii-de-stat",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://companiidestat.ro/date/v1/companii/1973096.json"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://companiidestat.ro/companii/1973096/",
+              "basis": "template-derived",
+              "evidence": [
+                "b64170ce1545bb900e8b4f44",
+                "93a069e67bfb21de1210ea5a"
+              ]
+            }
+          ],
+          "evidence": [
+            "58bcf5d376daf8a287f0425a"
+          ]
+        },
+        {
+          "project": "demoanaf",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://demoanaf.ro/verificare-cui/1973096"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://demoanaf.ro/verificare-cui/1973096",
+              "basis": "template-derived",
+              "evidence": [
+                "a079c59aa70ea817d629b65a",
+                "ebd1ae5d9ed26d4def5419ed",
+                "fd83a1951782ec5ae130735d"
+              ]
+            }
+          ],
+          "evidence": [
+            "ebd1ae5d9ed26d4def5419ed"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "24959524a7d3532963becfb2",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "companii-publice-ro",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://cosettechichirau.github.io/companiipublice/companii.json"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "ccebb687745aa63870c50ae8"
+          ]
+        },
+        {
+          "project": "demoanaf",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://demoanaf.ro/verificare-cui/1973096"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://demoanaf.ro/verificare-cui/1973096",
+              "basis": "template-derived",
+              "evidence": [
+                "a079c59aa70ea817d629b65a",
+                "ebd1ae5d9ed26d4def5419ed",
+                "fd83a1951782ec5ae130735d"
+              ]
+            }
+          ],
+          "evidence": [
+            "ebd1ae5d9ed26d4def5419ed"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "647cf0f633abc4a8e74e36e1",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "companii-de-stat",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://companiidestat.ro/date/v1/companii/31029694.json"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://companiidestat.ro/companii/31029694/",
+              "basis": "template-derived",
+              "evidence": [
+                "b64170ce1545bb900e8b4f44",
+                "93a069e67bfb21de1210ea5a"
+              ]
+            }
+          ],
+          "evidence": [
+            "175cbf494191a23afb365161"
+          ]
+        },
+        {
+          "project": "demoanaf",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://demoanaf.ro/verificare-cui/31029694"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://demoanaf.ro/verificare-cui/31029694",
+              "basis": "template-derived",
+              "evidence": [
+                "a079c59aa70ea817d629b65a",
+                "ebd1ae5d9ed26d4def5419ed",
+                "fd83a1951782ec5ae130735d"
+              ]
+            }
+          ],
+          "evidence": [
+            "fd83a1951782ec5ae130735d"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4ef97e3ccc042ef086da2f6e",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "companii-publice-ro",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://cosettechichirau.github.io/companiipublice/companii.json"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "ccebb687745aa63870c50ae8"
+          ]
+        },
+        {
+          "project": "demoanaf",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://demoanaf.ro/verificare-cui/31029694"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://demoanaf.ro/verificare-cui/31029694",
+              "basis": "template-derived",
+              "evidence": [
+                "a079c59aa70ea817d629b65a",
+                "ebd1ae5d9ed26d4def5419ed",
+                "fd83a1951782ec5ae130735d"
+              ]
+            }
+          ],
+          "evidence": [
+            "fd83a1951782ec5ae130735d"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c49f78550fa3e3f9fa79139a",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "companii-de-stat",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://companiidestat.ro/date/v1/companii/1973096.json"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://companiidestat.ro/companii/1973096/",
+              "basis": "template-derived",
+              "evidence": [
+                "b64170ce1545bb900e8b4f44",
+                "93a069e67bfb21de1210ea5a"
+              ]
+            }
+          ],
+          "evidence": [
+            "58bcf5d376daf8a287f0425a"
+          ]
+        },
+        {
+          "project": "igov",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "igov:companies:id",
+              "value": "inst_cui-1973096_89f11b5bc5",
+              "raw_value": "inst_cui-1973096_89f11b5bc5",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://igov.ro/reports/guvernanta.json"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "eff8a57370d388646a697717"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d2a9b9bece3df2cae858446b",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "companii-publice-ro",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://cosettechichirau.github.io/companiipublice/companii.json"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "ccebb687745aa63870c50ae8"
+          ]
+        },
+        {
+          "project": "igov",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "igov:companies:id",
+              "value": "inst_cui-1973096_89f11b5bc5",
+              "raw_value": "inst_cui-1973096_89f11b5bc5",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://igov.ro/reports/guvernanta.json"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "eff8a57370d388646a697717"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "8402bd3e752c57dd994fe375",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "demoanaf",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://demoanaf.ro/verificare-cui/1973096"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://demoanaf.ro/verificare-cui/1973096",
+              "basis": "template-derived",
+              "evidence": [
+                "a079c59aa70ea817d629b65a",
+                "ebd1ae5d9ed26d4def5419ed",
+                "fd83a1951782ec5ae130735d"
+              ]
+            }
+          ],
+          "evidence": [
+            "ebd1ae5d9ed26d4def5419ed"
+          ]
+        },
+        {
+          "project": "igov",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "igov:companies:id",
+              "value": "inst_cui-1973096_89f11b5bc5",
+              "raw_value": "inst_cui-1973096_89f11b5bc5",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://igov.ro/reports/guvernanta.json"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "eff8a57370d388646a697717"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "27dfeb5f1ad7c635eaf4a1a6",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "companii-de-stat",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://companiidestat.ro/date/v1/companii/31029694.json"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://companiidestat.ro/companii/31029694/",
+              "basis": "template-derived",
+              "evidence": [
+                "b64170ce1545bb900e8b4f44",
+                "93a069e67bfb21de1210ea5a"
+              ]
+            }
+          ],
+          "evidence": [
+            "175cbf494191a23afb365161"
+          ]
+        },
+        {
+          "project": "igov",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "igov:companies:id",
+              "value": "inst_cui-31029694_fbc8ca0d0e",
+              "raw_value": "inst_cui-31029694_fbc8ca0d0e",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://igov.ro/reports/guvernanta.json"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "eff8a57370d388646a697717"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cd4e378d0d3e52f265c2a72f",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "companii-publice-ro",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://cosettechichirau.github.io/companiipublice/companii.json"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "ccebb687745aa63870c50ae8"
+          ]
+        },
+        {
+          "project": "igov",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "igov:companies:id",
+              "value": "inst_cui-31029694_fbc8ca0d0e",
+              "raw_value": "inst_cui-31029694_fbc8ca0d0e",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://igov.ro/reports/guvernanta.json"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "eff8a57370d388646a697717"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ddda7313216930ea4a0f7af3",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "demoanaf",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://demoanaf.ro/verificare-cui/31029694"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://demoanaf.ro/verificare-cui/31029694",
+              "basis": "template-derived",
+              "evidence": [
+                "a079c59aa70ea817d629b65a",
+                "ebd1ae5d9ed26d4def5419ed",
+                "fd83a1951782ec5ae130735d"
+              ]
+            }
+          ],
+          "evidence": [
+            "fd83a1951782ec5ae130735d"
+          ]
+        },
+        {
+          "project": "igov",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "igov:companies:id",
+              "value": "inst_cui-31029694_fbc8ca0d0e",
+              "raw_value": "inst_cui-31029694_fbc8ca0d0e",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://igov.ro/reports/guvernanta.json"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "eff8a57370d388646a697717"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "be236bb90a06ad077ddd5742",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "companii-de-stat",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://companiidestat.ro/date/v1/companii/1973096.json"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://companiidestat.ro/companii/1973096/",
+              "basis": "template-derived",
+              "evidence": [
+                "b64170ce1545bb900e8b4f44",
+                "93a069e67bfb21de1210ea5a"
+              ]
+            }
+          ],
+          "evidence": [
+            "58bcf5d376daf8a287f0425a"
+          ]
+        },
+        {
+          "project": "lista-firme",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:onrc:euid",
+              "value": "ROONRC.J1991000285223",
+              "raw_value": "ROONRC.J1991000285223",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://lista-firme.info/api/v1/info?cui=1973096"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://lista-firme.info/companie/1973096",
+              "basis": "template-derived",
+              "evidence": [
+                "a4a2c708a7dd3d934dac31af",
+                "ea0056ebe028906eb3996bd4"
+              ]
+            }
+          ],
+          "evidence": [
+            "819af9da7819050fbf24f55d"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f397ba7a6f112f90dcafed16",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "companii-publice-ro",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://cosettechichirau.github.io/companiipublice/companii.json"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "ccebb687745aa63870c50ae8"
+          ]
+        },
+        {
+          "project": "lista-firme",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:onrc:euid",
+              "value": "ROONRC.J1991000285223",
+              "raw_value": "ROONRC.J1991000285223",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://lista-firme.info/api/v1/info?cui=1973096"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://lista-firme.info/companie/1973096",
+              "basis": "template-derived",
+              "evidence": [
+                "a4a2c708a7dd3d934dac31af",
+                "ea0056ebe028906eb3996bd4"
+              ]
+            }
+          ],
+          "evidence": [
+            "819af9da7819050fbf24f55d"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b194bdfabd0fb93757801337",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "demoanaf",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://demoanaf.ro/verificare-cui/1973096"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://demoanaf.ro/verificare-cui/1973096",
+              "basis": "template-derived",
+              "evidence": [
+                "a079c59aa70ea817d629b65a",
+                "ebd1ae5d9ed26d4def5419ed",
+                "fd83a1951782ec5ae130735d"
+              ]
+            }
+          ],
+          "evidence": [
+            "ebd1ae5d9ed26d4def5419ed"
+          ]
+        },
+        {
+          "project": "lista-firme",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:onrc:euid",
+              "value": "ROONRC.J1991000285223",
+              "raw_value": "ROONRC.J1991000285223",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://lista-firme.info/api/v1/info?cui=1973096"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://lista-firme.info/companie/1973096",
+              "basis": "template-derived",
+              "evidence": [
+                "a4a2c708a7dd3d934dac31af",
+                "ea0056ebe028906eb3996bd4"
+              ]
+            }
+          ],
+          "evidence": [
+            "819af9da7819050fbf24f55d"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4efb7b487482f172a6089cee",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "igov",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "igov:companies:id",
+              "value": "inst_cui-1973096_89f11b5bc5",
+              "raw_value": "inst_cui-1973096_89f11b5bc5",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://igov.ro/reports/guvernanta.json"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "eff8a57370d388646a697717"
+          ]
+        },
+        {
+          "project": "lista-firme",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:onrc:euid",
+              "value": "ROONRC.J1991000285223",
+              "raw_value": "ROONRC.J1991000285223",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://lista-firme.info/api/v1/info?cui=1973096"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://lista-firme.info/companie/1973096",
+              "basis": "template-derived",
+              "evidence": [
+                "a4a2c708a7dd3d934dac31af",
+                "ea0056ebe028906eb3996bd4"
+              ]
+            }
+          ],
+          "evidence": [
+            "819af9da7819050fbf24f55d"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4a47b85a6c935201ab6fdc53",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "companii-de-stat",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://companiidestat.ro/date/v1/companii/31029694.json"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://companiidestat.ro/companii/31029694/",
+              "basis": "template-derived",
+              "evidence": [
+                "b64170ce1545bb900e8b4f44",
+                "93a069e67bfb21de1210ea5a"
+              ]
+            }
+          ],
+          "evidence": [
+            "175cbf494191a23afb365161"
+          ]
+        },
+        {
+          "project": "lista-firme",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:onrc:euid",
+              "value": "ROONRC.J2013010843400",
+              "raw_value": "ROONRC.J2013010843400",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://lista-firme.info/api/v1/info?cui=31029694"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://lista-firme.info/companie/31029694",
+              "basis": "template-derived",
+              "evidence": [
+                "a4a2c708a7dd3d934dac31af",
+                "ea0056ebe028906eb3996bd4"
+              ]
+            }
+          ],
+          "evidence": [
+            "fbd90e21ba46dfa86dc8471b"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "31ee0196562debc9495b4597",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "companii-publice-ro",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://cosettechichirau.github.io/companiipublice/companii.json"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "ccebb687745aa63870c50ae8"
+          ]
+        },
+        {
+          "project": "lista-firme",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:onrc:euid",
+              "value": "ROONRC.J2013010843400",
+              "raw_value": "ROONRC.J2013010843400",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://lista-firme.info/api/v1/info?cui=31029694"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://lista-firme.info/companie/31029694",
+              "basis": "template-derived",
+              "evidence": [
+                "a4a2c708a7dd3d934dac31af",
+                "ea0056ebe028906eb3996bd4"
+              ]
+            }
+          ],
+          "evidence": [
+            "fbd90e21ba46dfa86dc8471b"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "18df0fba382fdb5f8efa4f8e",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "demoanaf",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://demoanaf.ro/verificare-cui/31029694"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://demoanaf.ro/verificare-cui/31029694",
+              "basis": "template-derived",
+              "evidence": [
+                "a079c59aa70ea817d629b65a",
+                "ebd1ae5d9ed26d4def5419ed",
+                "fd83a1951782ec5ae130735d"
+              ]
+            }
+          ],
+          "evidence": [
+            "fd83a1951782ec5ae130735d"
+          ]
+        },
+        {
+          "project": "lista-firme",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:onrc:euid",
+              "value": "ROONRC.J2013010843400",
+              "raw_value": "ROONRC.J2013010843400",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://lista-firme.info/api/v1/info?cui=31029694"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://lista-firme.info/companie/31029694",
+              "basis": "template-derived",
+              "evidence": [
+                "a4a2c708a7dd3d934dac31af",
+                "ea0056ebe028906eb3996bd4"
+              ]
+            }
+          ],
+          "evidence": [
+            "fbd90e21ba46dfa86dc8471b"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b941bbfb5a68729521498f25",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "igov",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "igov:companies:id",
+              "value": "inst_cui-31029694_fbc8ca0d0e",
+              "raw_value": "inst_cui-31029694_fbc8ca0d0e",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://igov.ro/reports/guvernanta.json"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "eff8a57370d388646a697717"
+          ]
+        },
+        {
+          "project": "lista-firme",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:onrc:euid",
+              "value": "ROONRC.J2013010843400",
+              "raw_value": "ROONRC.J2013010843400",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://lista-firme.info/api/v1/info?cui=31029694"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://lista-firme.info/companie/31029694",
+              "basis": "template-derived",
+              "evidence": [
+                "a4a2c708a7dd3d934dac31af",
+                "ea0056ebe028906eb3996bd4"
+              ]
+            }
+          ],
+          "evidence": [
+            "fbd90e21ba46dfa86dc8471b"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "82038accc09ba9c4344ed270",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "companii-de-stat",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://companiidestat.ro/date/v1/companii/1973096.json"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://companiidestat.ro/companii/1973096/",
+              "basis": "template-derived",
+              "evidence": [
+                "b64170ce1545bb900e8b4f44",
+                "93a069e67bfb21de1210ea5a"
+              ]
+            }
+          ],
+          "evidence": [
+            "58bcf5d376daf8a287f0425a"
+          ]
+        },
+        {
+          "project": "registrul-firmelor",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://registru.horecaos.org/firma/1973096"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://registru.horecaos.org/firma/1973096",
+              "basis": "template-derived",
+              "evidence": [
+                "45da0fac72ec31bfce8eef34"
+              ]
+            }
+          ],
+          "evidence": [
+            "ee420d096aa7c99b33a64ed1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "768af9026c563097dd7f84ec",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "companii-publice-ro",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://cosettechichirau.github.io/companiipublice/companii.json"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "ccebb687745aa63870c50ae8"
+          ]
+        },
+        {
+          "project": "registrul-firmelor",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://registru.horecaos.org/firma/1973096"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://registru.horecaos.org/firma/1973096",
+              "basis": "template-derived",
+              "evidence": [
+                "45da0fac72ec31bfce8eef34"
+              ]
+            }
+          ],
+          "evidence": [
+            "ee420d096aa7c99b33a64ed1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "daee2c0922543e9cfdd62c63",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "demoanaf",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://demoanaf.ro/verificare-cui/1973096"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://demoanaf.ro/verificare-cui/1973096",
+              "basis": "template-derived",
+              "evidence": [
+                "a079c59aa70ea817d629b65a",
+                "ebd1ae5d9ed26d4def5419ed",
+                "fd83a1951782ec5ae130735d"
+              ]
+            }
+          ],
+          "evidence": [
+            "ebd1ae5d9ed26d4def5419ed"
+          ]
+        },
+        {
+          "project": "registrul-firmelor",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://registru.horecaos.org/firma/1973096"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://registru.horecaos.org/firma/1973096",
+              "basis": "template-derived",
+              "evidence": [
+                "45da0fac72ec31bfce8eef34"
+              ]
+            }
+          ],
+          "evidence": [
+            "ee420d096aa7c99b33a64ed1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "12d84d6171f27d6420904fe6",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "lista-firme",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:onrc:euid",
+              "value": "ROONRC.J1991000285223",
+              "raw_value": "ROONRC.J1991000285223",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://lista-firme.info/api/v1/info?cui=1973096"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://lista-firme.info/companie/1973096",
+              "basis": "template-derived",
+              "evidence": [
+                "a4a2c708a7dd3d934dac31af",
+                "ea0056ebe028906eb3996bd4"
+              ]
+            }
+          ],
+          "evidence": [
+            "819af9da7819050fbf24f55d"
+          ]
+        },
+        {
+          "project": "registrul-firmelor",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://registru.horecaos.org/firma/1973096"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://registru.horecaos.org/firma/1973096",
+              "basis": "template-derived",
+              "evidence": [
+                "45da0fac72ec31bfce8eef34"
+              ]
+            }
+          ],
+          "evidence": [
+            "ee420d096aa7c99b33a64ed1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cdaea86b6f465b4eef030546",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "orasul-care-se-intinde",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://mariuscomper.uk/orasul-care-se-intinde/data/localitati.csv"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "eb80d14c6d9000a9d20b4638"
+          ]
+        },
+        {
+          "project": "romania-transparenta",
+          "collection": "uat",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://api.romaniatransparenta.eu/v1/uat?q=Bucuresti&limit=1"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://romaniatransparenta.eu/registre/administratia-locala/179132",
+              "basis": "template-derived",
+              "evidence": [
+                "4b840d5591599b562036d790"
+              ]
+            }
+          ],
+          "evidence": [
+            "94fb3ac2cbbe38aee59b135a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c6143df197acfebcf3b8c364",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "orasul-care-se-intinde",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://mariuscomper.uk/orasul-care-se-intinde/data/localitati.csv"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "eb80d14c6d9000a9d20b4638"
+          ]
+        },
+        {
+          "project": "transparenta-eu",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://api.transparenta.eu/graphql"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "52d89462f3071c9e58c04cc9"
+          ]
+        }
+      ]
+    }
+  ],
+  "conflicts": [],
+  "gaps": [],
+  "local_sources": [],
+  "declared_without_samples": [
+    "sicap-ai"
+  ],
+  "evidence": {
+    "58bcf5d376daf8a287f0425a": {
+      "project": "companii-de-stat",
+      "source": "https://companiidestat.ro/date/v1/companii/1973096.json",
+      "observed_at": "2026-10-30T15:51:52.370581+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/companii-de-stat.json",
+      "alias": "company-1973096",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/companii-de-stat-company-1973096.json",
+      "sha256": "13087af4812b7dcf9ce991f723b35e3f6aecd8dca0bb6b95929d09a690e1137e",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "b64170ce1545bb900e8b4f44": {
+      "project": "companii-de-stat",
+      "source": "https://companiidestat.ro/_astro/hoisted.cQ6Rdhz_.js",
+      "observed_at": "2026-10-30T15:53:10.335400+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/companii-de-stat.json",
+      "alias": "search-script",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/companii-de-stat-search-script.json",
+      "sha256": "5d7d88204b13a104f96cca4b4825c56f6187b33a652441e7ba0fb7c210b054b2",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "93a069e67bfb21de1210ea5a": {
+      "project": "companii-de-stat",
+      "source": "https://companiidestat.ro/date/v1/openapi.json",
+      "observed_at": "2026-10-24T22:41:10.356601+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/companii-de-stat.json",
+      "alias": "openapi",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/companii-de-stat-openapi.json",
+      "sha256": "a47105c40e6049f0586312812bf2e645a0b0df5f828159fddffdeab758d75cb8",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "ccebb687745aa63870c50ae8": {
+      "project": "companii-publice-ro",
+      "source": "https://cosettechichirau.github.io/companiipublice/companii.json",
+      "observed_at": "2026-10-27T17:01:22.338903+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/companii-publice-ro.json",
+      "alias": "corporate-roles",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/companii-publice-ro-corporate-roles.json",
+      "sha256": "6e56716d29ab44f3120882c3cb5ad0091656b87bac486bce2cd8c575cc0a700c",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "175cbf494191a23afb365161": {
+      "project": "companii-de-stat",
+      "source": "https://companiidestat.ro/date/v1/companii/31029694.json",
+      "observed_at": "2026-10-30T15:51:53.371640+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/companii-de-stat.json",
+      "alias": "company-31029694",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/companii-de-stat-company-31029694.json",
+      "sha256": "700191b13da9890d76bbb6ea9cb21df056f5b3ec33fb81edfdea90c304d2b827",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "ebd1ae5d9ed26d4def5419ed": {
+      "project": "demoanaf",
+      "source": "https://demoanaf.ro/verificare-cui/1973096",
+      "observed_at": "2026-10-30T15:51:49.142984+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/demoanaf.json",
+      "alias": "frontend-1973096",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/demoanaf-frontend-1973096.json",
+      "sha256": "5c4b571793e4ad64ce31afbf9fe8c12c99a809384dc85d04993bd2b26a81b414",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "a079c59aa70ea817d629b65a": {
+      "project": "demoanaf",
+      "source": "https://demoanaf.ro/llms.txt",
+      "observed_at": "2026-10-24T22:19:27.299844+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/demoanaf.json",
+      "alias": "llms",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/demoanaf-llms.json",
+      "sha256": "c5f25de96c886c445fdc2cae0ba3ee156f1a0c67f2573e9176e57909547c4fed",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "fd83a1951782ec5ae130735d": {
+      "project": "demoanaf",
+      "source": "https://demoanaf.ro/verificare-cui/31029694",
+      "observed_at": "2026-10-30T15:51:50.148320+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/demoanaf.json",
+      "alias": "frontend-31029694",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/demoanaf-frontend-31029694.json",
+      "sha256": "62e8e9dc7b28090b28b453efaa22a96c14d18751927403664d5f34533b7540ee",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "eff8a57370d388646a697717": {
+      "project": "igov",
+      "source": "https://igov.ro/reports/guvernanta.json",
+      "observed_at": "2026-10-27T17:00:51.012879+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/igov.json",
+      "alias": "companies-sample",
+      "artifact": "docs/reports/site-structure-curation/evidence/igov-company-identifiers.json",
+      "sha256": "cf0639b55db0b1f3772793ba96a0cb62d564cc165b6c69e8f3c0762192f9d525",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 1387,
+        "excerpt": "{\n  \"source\": {\n    \"url\": \"https://igov.ro/reports/guvernanta.json\",\n    \"observed_at\": \"2026-10-27T17:00:51.012879+00:00\",\n    \"snapshot_sha256\": \"37c857d3c20af7d0af862b8f69dac893c667aea1c4aa6044487c4726c999bb52\",\n    \"complete_document\": false,\n    \"reader\": \"inventory_jsonsample.recover; complete company records only\",\n    \"source_indices\": [\n      0,\n      3\n    ],\n    \"transform\": \"Whitelist id, cui and company name; exclude all people and appointment data.\"\n  },\n  \"companies\": [\n    {\n      \"id\": \"inst_cui-31029694_fbc8ca0d0e\",\n      \"cui\": \"31029694\",\n      \"name\": \"Active Conexe SA\"\n    },\n    {\n      \"id\": \"inst_cui-1973096_89f11b5bc5\",\n      \"cui\": \"1973096\",\n      \"name\": \"Antibiotice SA\"\n    }\n  ],\n  \"curation_basis\": {\n    \"artifact\": \"data/taxonomy-v2/inventar-concepte.json\",\n    \"concept\": \"cui\",\n    \"definition\": \"Identificatorul fiscal al unei firme sau instituții. Rolul poate fi diferit: contribuabil, autoritate sau furnizor.\",\n    \"selector\": {\n      \"projects\": [\n        \"igov\"\n      ],\n      \"names\": [\n        \"cui\"\n      ],\n      \"path\": [\n        \"$.companies[].cui\"\n      ],\n      \"source\": \"https://igov.ro/reports/guvernanta.json\",\n      \"context\": \"CUI-ul companiei de stat din registrul de guvernanță (șir de caractere)\",\n      \"stare\": \"confirmat\",\n      \"nota_editor\": \"Confirmat în bloc la cererea proprietarului (2026-10-27)\"\n    }\n  }\n}\n"
+      }
+    },
+    "819af9da7819050fbf24f55d": {
+      "project": "lista-firme",
+      "source": "https://lista-firme.info/api/v1/info?cui=1973096",
+      "observed_at": "2026-10-30T15:51:47.022942+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/lista-firme.json",
+      "alias": "company-1973096",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/lista-firme-company-1973096.json",
+      "sha256": "e2fb52bc75203b8076cfc0d90fd4f2e62da32a9c3c8f53cc006405b7aa43d5c0",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "a4a2c708a7dd3d934dac31af": {
+      "project": "lista-firme",
+      "source": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/routes/web.php",
+      "observed_at": "2026-10-30T15:53:08.964571+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/lista-firme.json",
+      "alias": "routes",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/lista-firme-routes.json",
+      "sha256": "14a9f244b0930407b2a31532b6a8105111739847ecb77ba9d4cd210352f3800a",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "ea0056ebe028906eb3996bd4": {
+      "project": "lista-firme",
+      "source": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_184655_create_companies_table.php",
+      "observed_at": "2026-10-26T23:12:38.379806+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/lista-firme.json",
+      "alias": "company-schema",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/lista-firme-company-schema.json",
+      "sha256": "935c8307f05b37bb46b4b1220b9f2756bdfb35aa4cd0daac1e04c554b1cd7520",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "fbd90e21ba46dfa86dc8471b": {
+      "project": "lista-firme",
+      "source": "https://lista-firme.info/api/v1/info?cui=31029694",
+      "observed_at": "2026-10-30T15:51:48.025168+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/lista-firme.json",
+      "alias": "company-31029694",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/lista-firme-company-31029694.json",
+      "sha256": "e2bac8b775dd0bc7cece86d513104a2acc7311aa80b03cee5e66405f6b5e6bc4",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "ee420d096aa7c99b33a64ed1": {
+      "project": "registrul-firmelor",
+      "source": "https://registru.horecaos.org/firma/1973096",
+      "observed_at": "2026-10-30T10:43:29.392456+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/registrul-firmelor.json",
+      "alias": "registrul-firmelor-antibiotice-page",
+      "artifact": "docs/reports/site-structure-curation/evidence/registrul-firmelor-antibiotice-page.txt",
+      "sha256": "d8f25307080105240a87c15b74f783758ceaa81ce047ef088351a20a12183118",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 246,
+        "excerpt": "<title>ANTIBIOTICE SA — CUI 1973096, bilanț și date firmă</title>\n<meta name=\"description\" content=\"ANTIBIOTICE SA, CUI 1973096 · Municipiul Iaşi, Iaşi · plătitor de TVA\">\n<link rel=\"canonical\" href=\"https://registru.horecaos.org/firma/1973096\">\n"
+      }
+    },
+    "45da0fac72ec31bfce8eef34": {
+      "project": "registrul-firmelor",
+      "source": "https://registru.horecaos.org/llms.txt",
+      "observed_at": "2026-10-29T22:42:08.397615+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/registrul-firmelor.json",
+      "alias": "registrul-firmelor-llms",
+      "artifact": "docs/reports/site-structure-pilot/evidence/registrul-firmelor-llms.txt",
+      "sha256": "7a869379e71e47488cb666b2d78b2886db4586726d3b74c3c3d26d69e6e9d58b",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 1050,
+        "excerpt": "# Registrul firmelor din România (registru.horecaos.org)\n\n> Registru public și gratuit al firmelor din România, construit de HoReCaOS din surse oficiale: ONRC (registrul comerțului, lunar), ANAF (date fiscale: TVA, inactivi, RO e-Factura) și Ministerul Finanțelor (bilanțuri 2012–2025). 3.920.761 de firme, 12.497.860 de bilanțuri. Fără nume de administratori sau asociați (date personale).\n\n## Cum se citează o firmă\n- Fișa unei firme: https://registru.horecaos.org/firma/<CUI> (CUI fără „RO\"; ex. https://registru.horecaos.org/firma/14399840). Conține CUI, nr. de înregistrare, EUID, sediul social, stare fiscală, TVA, RO e-Factura, CAEN autorizat, bilanțuri pe ani (cifră de afaceri, profit, salariați), istoric ONRC, scor de risc transparent.\n- API JSON gratuit: https://registru.horecaos.org/api (1.000 de cereri/zi, cheie gratuită).\n- Datele sunt informative, fără valoare de document oficial; actul oficial e certificatul constatator ONRC.\n\n## Pagini principale\n- [Căutare firme](https://registru.horecaos.org/): după denumire sau CUI\n- [Verif"
+      }
+    },
+    "eb80d14c6d9000a9d20b4638": {
+      "project": "orasul-care-se-intinde",
+      "source": "https://mariuscomper.uk/orasul-care-se-intinde/data/localitati.csv",
+      "observed_at": "2026-10-24T22:41:11.053100+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/orasul-care-se-intinde.json",
+      "alias": "territories",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/orasul-care-se-intinde-territories.json",
+      "sha256": "732c9e704dba6be39e4332baa4125c78f3d4d8d56300ea655619a95c5e8fe849",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "94fb3ac2cbbe38aee59b135a": {
+      "project": "romania-transparenta",
+      "source": "https://api.romaniatransparenta.eu/v1/uat?q=Bucuresti&limit=1",
+      "observed_at": "2026-10-29T22:42:40.160417+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/romania-transparenta.json",
+      "alias": "romania-transparenta-uat-response",
+      "artifact": "docs/reports/site-structure-pilot/evidence/romania-transparenta-uat-response.txt",
+      "sha256": "a92b1a428b7802da9409d1d23c9118d8211b931b2a5e2fe568e2c6fbea7f79fe",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 2177,
+        "excerpt": "{\n  \"date\": [\n    {\n      \"siruta\": \"179132\",\n      \"denumire\": \"Municipiul București\",\n      \"tip\": \"municipiu\",\n      \"judet\": \"București\",\n      \"cod_judet\": \"B\",\n      \"populatie\": 1716961,\n      \"an_populatie\": null,\n      \"cui_primarie\": null,\n      \"cui_primarie_incredere\": null,\n      \"cui_consiliu_judetean\": null,\n      \"observat_la\": \"2026-09-14\",\n      \"incredere\": \"derivat\",\n      \"fisa\": \"https://api.romaniatransparenta.eu/v1/uat/179132\",\n      \"pagina\": \"https://romaniatransparenta.eu/registre/administratia-locala/179132\"\n    }\n  ],\n  \"paginare\": {\n    \"limit\": 1,\n    \"offset\": 0,\n    \"intoarse\": 1,\n    \"are_urmatoarea\": false,\n    \"urmatoarea_offset\": null,\n    \"total\": 1\n  },\n  \"provenienta\": {\n    \"registru\": {\n      \"id\": \"administratia_locala\",\n      \"denumire\": \"registrul administrației locale\",\n      \"url\": \"https://romaniatransparenta.eu/registre/administratia-locala\"\n    },\n    \"sursa\": [\n      {\n        \"id\": \"sursa:rt-consilii\",\n        \"denumire\": \"Registrul consiliilor locale, reconstituit din procesele-verbale AEP și listele BEC\",\n        \"institutie_emitenta\": \"România Transparentă\",\n        \"url_baza\": \"https://romaniatransparenta.eu\",\n        \"licenta\": \"CC BY 4.0 (compilația România Transparentă; datele preluate își păstrează regimul lor)\"\n      }\n    ],\n    \"observat_la\": \"2026-09-14\",\n    \"incredere\": [\n      {\n        \"valoare\": \"derivat\",\n        \"explicatie\": \"calculat de noi din date oficiale\"\n      }\n    ],\n    \"editie\": \"publicare:20261029T133011\",\n    \"date_actualizate_la\": \"2026-10-26\",\n    \"licenta\": \"CC BY 4.0\",\n    \"licenta_nota\": \"Compilația România Transparentă e sub CC BY 4.0; datele preluate își păstrează regimul surselor (câmpul `licenta` din fiecare sursă).\",\n    \"citare\": \"România Transparentă, registrul administrației locale, https://romaniatransparenta.eu/registre/administratia-locala, date actualizate la 2026-10-26, CC BY 4.0\",\n    \"instructiuni\": \"Citează sursa folosind textul din `citare`. „Nu avem date” sau o listă goală NU înseamnă zero sau „nu există”: înseamnă că nu am găsit sau nu am verificat încă. Rezultatul `negasit` înseamnă „căutat automat și negăsit”, nu „lipsește”.\"\n  }\n}"
+      }
+    },
+    "4b840d5591599b562036d790": {
+      "project": "romania-transparenta",
+      "source": "https://romaniatransparenta.eu/llms.txt",
+      "observed_at": "2026-10-29T22:42:09.892892+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/romania-transparenta.json",
+      "alias": "romania-transparenta-llms-routes",
+      "artifact": "docs/reports/site-structure-pilot/evidence/romania-transparenta-llms-routes.txt",
+      "sha256": "c54cbaa1b6e43afd448e591e0be3877254545e297531680db7a4f9cbf9467b6e",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 3627,
+        "excerpt": "## Fișe (câte o pagină pe entitate)\n\n- https://romaniatransparenta.eu/registre/administratia-locala/<cod SIRUTA>: fișa unei primării (3.187): tip, județ, populație, primar, consiliul local, bugetul 2018–2024, achiziții, companii, ce publică pe site\n- https://romaniatransparenta.eu/registre/companii-de-stat/<CUI>: fișa unei companii de stat sau a unei companii locale: acționar/tutelă, cifră de afaceri, profit, angajați, din bilanțurile depuse la ANAF\n- https://romaniatransparenta.eu/registre/universitati/<CUI>: fișa unei universități de stat: finanțarea CNFIS pe student, achiziții, rectorul (doar cu document oficial)\n- https://romaniatransparenta.eu/registre/parlament/…: fișele deputaților și ale voturilor finale din Camera Deputaților\n- https://romaniatransparenta.eu/registre/administratia-centrala/<CUI>: fișa unui minister, a Secretariatului General al Guvernului sau a Cancelariei Prim-Ministrului: întâlnirile decidenților cu terții din RUTI (funcția, nu numele; organizațiile, nu persoanele), proiectele în consultare publică pe e-consultare.gov.ro, bugetul 2026 din Legea 43/2026\n- https://romaniatransparenta.eu/registre/fonduri-europene/<codul CCI al programului>: fișa unui program european (2021–2027 sau 2014–2020): alocat, decis, cheltuit, plătit de Comisie, după Comisia Europeană și, separat, după MIPE; sume în euro, fără conversii\n- https://romaniatransparenta.eu/registre/finantarea-partidelor/<partidul>: fișa unui partid: ce a declarat în Monitorul Oficial an cu an (cotizații, donații peste prag, donații confidențiale, împrumuturi, venituri proprii), firmele donatoare cu CUI și actele oficiale; persoanele fizice doar ca număr și sumă\n- https://romaniatransparenta.eu/registre/ajutoare-de-stat/<CUI>: ajutoarele de stat primite de o firmă (persoană juridică) care e companie de stat, furnizor în achiziții sau printre beneficiarii mari: rândurile din RegAS (Consiliul Concurenței), cu măsura, instrumentul, suma în lei și furnizorul; garanțiile și creditele separat de granturi; persoanele fizice nu au fișe\n- https://romaniatransparenta.eu/registre/europarlamentari/<ID-ul din Parlamentul European>: fișa unui europarlamentar român (34 de persoane, 33 de locuri): grup european, eticheta de partid din PE, organe, prezență în plen, voturile finale, declarațiile privind conflictele de interese (DCI) cu PDF-ul oficial, cu formula și numitorul fiecărei cifre\n- https://romaniatransparenta.eu/registre/datornici?q=<CUI sau nume>: căutarea în lista ANAF a persoanelor juridice cu obligații fiscale restante (deocamdată lista la 31.03.2016, singura publicată ca fișier deschis): suma restantă pe bugete, din care contestată, la data listei; doar persoane juridice\n- https://romaniatransparenta.eu/registre/concursuri: registrul concursurilor de angajare la stat: anunțurile de pe posturi.gov.ro și ANFP, pe instituții și județe, data limită, proba scrisă, posturile scoase de mai multe ori; fără persoane de contact și fără rezultate (nume de candidați)\n- https://romaniatransparenta.eu/registre/spitale/spital/<CUI>: fișa unei unități sanitare publice: achizițiile directe pe ani, furnizorii, categoriile și salariile de bază pe funcții (registrul spitalelor are și propriul /registre/spitale/llms.txt)\n- https://romaniatransparenta.eu/registre/salarii/…: calculatorul de salarii pentru bugetari pe proiectul legii salarizării: brut și net pe funcție, gradație și sporuri, grilele pe anexe, ghiduri (are și propriul /registre/salarii/llms.txt)\n- https://romaniatransparenta.eu/registre/decizii-mediu/…: actele de mediu (acorduri, avize, autorizații) pe localitate, cu linkul la documentul oficial"
+      }
+    },
+    "52d89462f3071c9e58c04cc9": {
+      "project": "transparenta-eu",
+      "source": "https://api.transparenta.eu/graphql",
+      "observed_at": "2026-10-29T22:45:54.378985+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/transparenta-eu.json",
+      "alias": "transparenta-eu-graphql-bucuresti",
+      "artifact": "docs/reports/site-structure-pilot/evidence/transparenta-eu-graphql-bucuresti.txt",
+      "sha256": "0ba1808b1b0fea17e3586c0d03190f2a25e81c651a040dc9a82f9612fdae4dfb",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 177,
+        "excerpt": "{\"data\":{\"entity\":{\"cui\":\"4267117\",\"name\":\"MUNICIPIUL BUCURESTI\",\"entity_type\":\"admin_municipality\",\"is_uat\":true,\"uat\":{\"name\":\"MUNICIPIUL BUCUREȘTI\",\"siruta_code\":\"179132\"}}}}"
+      }
+    }
+  },
+  "summary": {
+    "projects": 10,
+    "records": 27,
+    "assertions": 30,
+    "new_assertions": 26,
+    "existing_assertions": 4,
+    "new_records": 16,
+    "collections": 40,
+    "patterns": 39,
+    "operations": 83,
+    "identifier_rules": 35,
+    "relationships": 5
+  },
+  "scope": "Five-site expansion; source observations and identity proposals. Owner acceptance and publication remain separate."
+}

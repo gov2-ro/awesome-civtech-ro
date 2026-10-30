@@ -1,0 +1,277 @@
+{
+  "provenance": {
+    "source": "https://mariuscomper.uk/orasul-care-se-intinde/",
+    "observed_at": "2026-10-24T22:20:05.613469+00:00",
+    "source_body_sha256": "b1a193fa324786ee204434fbac31901c15adb0ef15cc2562f444b099186693c1",
+    "retained_text_sha256": "b1a193fa324786ee204434fbac31901c15adb0ef15cc2562f444b099186693c1",
+    "source_snapshot": "data/taxonomy-v2/observatii/documentare/pagini/568dae44ada5796edff66ca7.json",
+    "http_status": 200,
+    "extraction": "Exact document lines and selected link entries; original offsets and link indices retained."
+  },
+  "payload": {
+    "excerpts": [
+      {
+        "start": 0,
+        "end": 172,
+        "text": "Se golesc de oameni, dar nu de locuințe: localitățile României, 2000–2020 Sari la conținut mariuscomper.uk Localitatea ta Harta Cât de mult Legea Limite Tabel Surse English"
+      },
+      {
+        "start": 173,
+        "end": 220,
+        "text": "România, 2000–2020 · 2.712 localități comparate"
+      },
+      {
+        "start": 0,
+        "end": 39,
+        "text": "Se golesc de oameni, dar nu de locuințe"
+      },
+      {
+        "start": 261,
+        "end": 587,
+        "text": "Din 1.979 de localități care aveau în 2020 mai puțini locuitori decât în 2000, 1.556 au mai multe locuințe. Imaginile din satelit arată aceeași tendință: în localitățile care s-au golit, creșterea mediană a terenului acoperit de clădiri a fost de aproape o treime. Scrie numele localității tale și vezi ce s-a întâmplat acolo."
+      },
+      {
+        "start": 588,
+        "end": 682,
+        "text": "73% dintre cele 2.712 localități comparabile aveau în 2020 mai puțini locuitori decât în 2000."
+      },
+      {
+        "start": 683,
+        "end": 749,
+        "text": "79% dintre acestea (1.556) au totuși mai multe locuințe, după INS."
+      },
+      {
+        "start": 1092,
+        "end": 1279,
+        "text": "Fiecare poligon este o localitate: comună, oraș sau municipiu. Culoarea combină două numere ale INS pentru 2000–2020: locuitorii și locuințele. Apasă pe o localitate ca să o vezi mai sus."
+      },
+      {
+        "start": 1282,
+        "end": 1518,
+        "text": "Mai puțini locuitori, mai multe locuințe (1.556) Mai puțini locuitori, la fel sau mai puține locuințe (423) Mai mulți locuitori, mai multe locuințe (693) Mai mulți locuitori, mai puține locuințe (40) Nu comparăm (serie întreruptă) (469)"
+      },
+      {
+        "start": 1519,
+        "end": 1725,
+        "text": "Tiparul cel mai clar apare în Ialomița (35 din 40 de localități), Gorj (57 din 70 de localități), Călărași (41 din 51 de localități). Apare mai rar în Ilfov (2 din 38), Brașov (9 din 45), Sibiu (15 din 60)."
+      },
+      {
+        "start": 1726,
+        "end": 1790,
+        "text": "Locuințele urmăresc populația. Terenul construit, mult mai puțin"
+      },
+      {
+        "start": 1791,
+        "end": 1996,
+        "text": "Fiecare punct este o localitate. Pe orizontală: cum s-a schimbat numărul de locuitori. Pe verticală: locuințele (INS) sau terenul acoperit de clădiri (satelit). Linia groasă este mediana fiecărui interval."
+      },
+      {
+        "start": 1997,
+        "end": 2037,
+        "text": "Locuințe (INS) Teren construit (satelit)"
+      },
+      {
+        "start": 2038,
+        "end": 2089,
+        "text": "Locuințele (INS) urmăresc destul de bine populația."
+      },
+      {
+        "start": 2090,
+        "end": 2362,
+        "text": "Locuințele urmăresc aproape fidel populația (coeficient de corelație 0,87). Unde populația a scăzut cu peste 30%, mediana locuințelor scade și ea (−3%). Dar în intervalele obișnuite de scădere, între 0 și 20%, mai multe locuințe decât în 2000 au 82%–91% dintre localități."
+      },
+      {
+        "start": 2363,
+        "end": 2624,
+        "text": "Terenul construit se leagă mult mai slab de populație (0,52). În cele 98 de localități care au pierdut peste 30% din locuitori, mediana creșterii este de +27%. În cele 768 care au pierdut între 0 și 10%, de +34%. În cele 111 care au câștigat peste 30%, de +73%."
+      },
+      {
+        "start": 2664,
+        "end": 2883,
+        "text": "Intervalele grupează localitățile după schimbarea populației între 2000 și 2020. Prima bară: ponderea localităților cu mai multe locuințe în 2020 decât în 2000. A doua: creșterea mediană a terenului acoperit de clădiri."
+      },
+      {
+        "start": 2910,
+        "end": 3270,
+        "text": "În cele 2.712 localități comparabile, estimările din satelit arată cu 544 km² mai mult teren acoperit de clădiri în 2020 decât în 2000. Din această creștere, 319 km² (59%) se află în localitățile care au pierdut locuitori. Acestea aveau 69% din populația din 2000, deci ponderea lor în terenul nou este mai mică decât ponderea în populație, dar tot majoritară."
+      },
+      {
+        "start": 3271,
+        "end": 3526,
+        "text": "În localitățile care s-au golit, suprafața acoperită de clădiri pe locuitor a urcat de la 71 la 104 m². Aritmetica e simplă (mai puțini oameni, clădiri care nu dispar), așa că nu o folosim ca dovadă; comparăm cât a crescut terenul, cu limitele de mai jos."
+      },
+      {
+        "start": 3527,
+        "end": 3861,
+        "text": "Orașe mari care au pierdut locuitori și au crescut totuși: Zalău (Sălaj): locuitori −3%, locuințe +20%, teren construit +42%; Pitești (Argeș): locuitori −8%, locuințe +8%, teren construit +33%; Oradea (Bihor): locuitori −4%, locuințe +16%, teren construit +33%; Slobozia (Ialomița): locuitori −8%, locuințe +11%, teren construit +31%."
+      },
+      {
+        "start": 3898,
+        "end": 4029,
+        "text": "Terenul pe care se poate construi îl stabilește planul urbanistic general (PUG) al fiecărei localități, aprobat de consiliul local."
+      },
+      {
+        "start": 4030,
+        "end": 4791,
+        "text": "În vigoare Codul amenajării teritoriului, urbanismului și construcțiilor (Legea nr. 169/2026, Monitorul Oficial nr. 661 din 10 august 2026) se aplică din 25 august 2026. PUG vechi Potrivit analizelor juridice publicate după adoptare, un PUG mai vechi de șapte ani trebuie actualizat în trei ani de la intrarea în vigoare, deci până în august 2029. Planurile existente, inclusiv cele prelungite, rămân valabile până la aprobarea actualizării, dar nu mai târziu de acest termen. Dacă nu se actualizează Potrivit aceleiași analize, autoritatea care nu actualizează își pierde accesul la fonduri publice. Ce poți face Întreabă la primărie când a fost adoptat PUG-ul localității tale și când va fi actualizat. Hotărârea consiliului local care îl aprobă este publică."
+      },
+      {
+        "start": 5659,
+        "end": 5928,
+        "text": "Demolările nu se văd. Metoda reconstituie trecutul pornind de la imaginea cea mai nouă și poate doar elimina clădiri când reconstituie anii anteriori. Terenul construit nu poate scădea, de aceea nu afirmăm că „în x% dintre localități a crescut”; comparăm cât a crescut."
+      },
+      {
+        "start": 5929,
+        "end": 6129,
+        "text": "2020 și 2015 sunt estimări sprijinite pe imagini din 2018 și 2014. Rezultatul rămâne același pe 2000–2015: mediana este +23% la localitățile care au pierdut locuitori și +32% la cele care au câștigat."
+      },
+      {
+        "start": 6430,
+        "end": 7032,
+        "text": "Fondul de locuințe este un registru, nu o numărătoare. Pornește de la recensământ, adaugă locuințele terminate și scade demolările raportate; la fiecare recensământ este recalculat, la nivel național cu +3,5% în 2011 și cu +8,5% în 2021. Recalculările cresc stocul în toate localitățile, așa că verificăm și perioada 2012–2020, fără recalculare: 82% dintre cele 2.148 de localități care au pierdut locuitori au mai multe locuințe. Registrul poate înregistra scăderi (în 2013–2020, 952 de localități au avut cel puțin un an cu mai puține locuințe), dar demolările neraportate se văd abia la recensământ."
+      },
+      {
+        "start": 7033,
+        "end": 7282,
+        "text": "469 de localități sunt excluse din comparație și apar gri pe hartă: 458 de comune înființate sau despărțite după 1992 și unitățile din care s-au desprins, 10 cu salturi bruște în seria populației și una cu aproape nicio clădire în imaginea din 2000."
+      },
+      {
+        "start": 7527,
+        "end": 7545,
+        "text": "Toate localitățile"
+      },
+      {
+        "start": 7546,
+        "end": 7675,
+        "text": "Caută, sortează după orice coloană și apasă pe un nume ca să-l vezi sus. Localitățile cu „–” au serie de populație necomparabilă."
+      },
+      {
+        "start": 8057,
+        "end": 8132,
+        "text": "Localitate Locuitori 2000 Locuitori 2020 Locuitori Locuințe Teren construit"
+      },
+      {
+        "start": 9314,
+        "end": 9515,
+        "text": "Localități. Cele 3.181 de unități administrativ-teritoriale (UAT) din nomenclatorul INS; municipiul București este una singură, ca în TEMPO. Limitele vin din setul LAU al ANCPI (geo-spatial.org, 2025)."
+      },
+      {
+        "start": 9516,
+        "end": 9712,
+        "text": "Locuitori. INS TEMPO POP107D, populația cu domiciliul la 1 ianuarie, 2000 și 2020. Locuințe. INS TEMPO LOC101B, fondul de locuințe la 31 decembrie, 2000 și 2020. Date accesate pe 2 octombrie 2026."
+      },
+      {
+        "start": 9713,
+        "end": 10029,
+        "text": "Teren construit. JRC GHS-BUILT-S R2023A, celule de trei secunde de arc, epocile 2000, 2015 și 2020; suprafața totală în m² pe localitate, cu celulele atribuite poligonului în care se află centrul lor. Partea nerezidențială: GHS-BUILT-S NRES. Suprafețele localităților sunt calculate în proiecția națională Stereo 70."
+      },
+      {
+        "start": 10030,
+        "end": 10491,
+        "text": "Comparabile. 2.712 localități cu serie de populație fără rupturi 2000–2020. Excludem unitățile apărute după 1992 și cele din care s-au desprins (identificate prin modificările teritoriale din seria INS), localitățile cu o scădere a populației de peste 10% sau o creștere de peste 40% într-un singur an, orice localitate cu populația în creștere cu peste 40% și locuințe în creștere de trei ori mai lent, și localitatea cu mai puțin de 2,5 ha de clădiri în 2000."
+      },
+      {
+        "start": 10492,
+        "end": 10758,
+        "text": "Calcule. Schimbarea procentuală este (valoarea din 2020 / valoarea din 2000 − 1) × 100. Mediana este calculată pe localități, fără ponderare. „S-au golit” înseamnă populația din 2020 mai mică decât cea din 2000. Fișierul tuturor localităților este disponibil ca CSV."
+      },
+      {
+        "start": 10759,
+        "end": 11021,
+        "text": "Pagini înrudite. Pentru o singură zonă, în detaliu, vezi Bucureștiul și Ilfovul văzute din satelit . România construiește. Dar pentru cine? compară locuințele cu populația pe 1992–2025 și pe toate localitățile cu date, de aceea procentele diferă de cele de aici."
+      },
+      {
+        "start": 11028,
+        "end": 11192,
+        "text": "INS, TEMPO-Online: POP107D (populația după domiciliu la 1 ianuarie, pe localități), LOC101B (fondul de locuințe). statistici.insse.ro , accesat pe 2 octombrie 2026."
+      }
+    ],
+    "links": [
+      {
+        "url": "https://mariuscomper.uk/orasul-care-se-intinde/",
+        "label": "Sari la conținut",
+        "snapshot_link_index": 0
+      },
+      {
+        "url": "https://mariuscomper.uk/orasul-care-se-intinde/",
+        "label": "Localitatea ta",
+        "snapshot_link_index": 2
+      },
+      {
+        "url": "https://mariuscomper.uk/orasul-care-se-intinde/",
+        "label": "Harta",
+        "snapshot_link_index": 3
+      },
+      {
+        "url": "https://mariuscomper.uk/orasul-care-se-intinde/",
+        "label": "Cât de mult",
+        "snapshot_link_index": 4
+      },
+      {
+        "url": "https://mariuscomper.uk/orasul-care-se-intinde/",
+        "label": "Legea",
+        "snapshot_link_index": 5
+      },
+      {
+        "url": "https://mariuscomper.uk/orasul-care-se-intinde/",
+        "label": "Limite",
+        "snapshot_link_index": 6
+      },
+      {
+        "url": "https://mariuscomper.uk/orasul-care-se-intinde/",
+        "label": "Tabel",
+        "snapshot_link_index": 7
+      },
+      {
+        "url": "https://mariuscomper.uk/orasul-care-se-intinde/",
+        "label": "Surse",
+        "snapshot_link_index": 8
+      },
+      {
+        "url": "https://mariuscomper.uk/orasul-care-se-intinde/en/",
+        "label": "English",
+        "snapshot_link_index": 9
+      },
+      {
+        "url": "https://mariuscomper.uk/orasul-care-se-intinde/",
+        "label": "Unde s-a întâmplat",
+        "snapshot_link_index": 10
+      },
+      {
+        "url": "https://mariuscomper.uk/orasul-care-se-intinde/",
+        "label": "Locuințele urmăresc populația. Terenul construit, mult mai puțin",
+        "snapshot_link_index": 11
+      },
+      {
+        "url": "https://mariuscomper.uk/orasul-care-se-intinde/",
+        "label": "Cine hotărăște unde se construiește",
+        "snapshot_link_index": 12
+      },
+      {
+        "url": "https://mariuscomper.uk/orasul-care-se-intinde/",
+        "label": "Cât de sigure sunt aceste numere",
+        "snapshot_link_index": 14
+      },
+      {
+        "url": "https://mariuscomper.uk/orasul-care-se-intinde/",
+        "label": "Toate localitățile",
+        "snapshot_link_index": 15
+      },
+      {
+        "url": "https://mariuscomper.uk/orasul-care-se-intinde/",
+        "label": "Metodă și surse",
+        "snapshot_link_index": 17
+      },
+      {
+        "url": "https://mariuscomper.uk/orasul-care-se-intinde/",
+        "label": "Surse",
+        "snapshot_link_index": 20
+      },
+      {
+        "url": "https://mariuscomper.uk/orasul-care-se-intinde/en/",
+        "label": "English",
+        "snapshot_link_index": 32
+      }
+    ]
+  }
+}

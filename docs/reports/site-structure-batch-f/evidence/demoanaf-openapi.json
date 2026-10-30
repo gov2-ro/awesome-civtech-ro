@@ -1,0 +1,1828 @@
+{
+  "provenance": {
+    "source": "https://demoanaf.ro/openapi.json",
+    "observed_at": "2026-10-24T22:41:10.356821+00:00",
+    "source_body_sha256": "77602f7c5dcf77042c8441c06deda260c74e5a8e58e537264f38e858d29934d2",
+    "retained_text_sha256": "77602f7c5dcf77042c8441c06deda260c74e5a8e58e537264f38e858d29934d2",
+    "source_snapshot": "surse/ed97ecda1bdb32c9396e-77602f7c5dcf7704.json",
+    "http_status": 200,
+    "extraction": "Whole retained OpenAPI document. Examples are declarations, not record observations."
+  },
+  "payload": {
+    "openapi": "3.1.0",
+    "info": {
+      "title": "DemoANAF Public API",
+      "version": "1.0.0",
+      "description": "Read-only JSON API for public Romanian company data, BNR rates, CAEN codes, treasury IBANs, and ANAF press releases. Programmatic access requires a Pro subscription API key (the free API tier was sunset on 2026-08-21) or a per-request x402 payment; unauthenticated calls answer HTTP 402 with instructions.",
+      "contact": {
+        "email": "privacy@demoanaf.ro",
+        "url": "https://demoanaf.ro"
+      }
+    },
+    "servers": [
+      {
+        "url": "https://demoanaf.ro"
+      }
+    ],
+    "components": {
+      "securitySchemes": {
+        "proApiKeyBearer": {
+          "type": "http",
+          "scheme": "bearer",
+          "description": "`dmn_live_` API key from https://demoanaf.ro/cont — grants access only while its owner has an active Pro subscription (https://demoanaf.ro/pro)."
+        },
+        "proApiKeyHeader": {
+          "type": "apiKey",
+          "in": "header",
+          "name": "X-API-Key",
+          "description": "Same dmn_live_ Pro API key, as a header instead of a Bearer token."
+        }
+      }
+    },
+    "security": [
+      {
+        "proApiKeyBearer": []
+      },
+      {
+        "proApiKeyHeader": []
+      }
+    ],
+    "tags": [
+      {
+        "name": "Companies"
+      },
+      {
+        "name": "Company hubs"
+      },
+      {
+        "name": "Rates"
+      },
+      {
+        "name": "Reference"
+      },
+      {
+        "name": "Press"
+      },
+      {
+        "name": "Statistics"
+      },
+      {
+        "name": "People"
+      },
+      {
+        "name": "Procurement"
+      },
+      {
+        "name": "Health"
+      }
+    ],
+    "paths": {
+      "/api/search": {
+        "get": {
+          "tags": [
+            "Companies"
+          ],
+          "summary": "Search Romanian companies",
+          "parameters": [
+            {
+              "name": "q",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 50,
+                "default": 20
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Company search results"
+            }
+          }
+        }
+      },
+      "/api/company/{cui}": {
+        "get": {
+          "tags": [
+            "Companies"
+          ],
+          "summary": "Get public company details by CUI",
+          "parameters": [
+            {
+              "name": "cui",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{1,10}$"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Normalized company details"
+            },
+            "404": {
+              "description": "Company not found"
+            }
+          }
+        }
+      },
+      "/api/company/{cui}/financials": {
+        "get": {
+          "tags": [
+            "Companies"
+          ],
+          "summary": "Get available public financial statements by CUI",
+          "parameters": [
+            {
+              "name": "cui",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{1,10}$"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Financial statement rows by year"
+            }
+          }
+        }
+      },
+      "/api/company/{cui}/balance/{year}": {
+        "get": {
+          "tags": [
+            "Companies"
+          ],
+          "summary": "Get one public financial statement year by CUI",
+          "parameters": [
+            {
+              "name": "cui",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{1,10}$"
+              }
+            },
+            {
+              "name": "year",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "minimum": 2000,
+                "maximum": 2100
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "One financial statement row"
+            },
+            "404": {
+              "description": "No statement found for that year"
+            }
+          }
+        }
+      },
+      "/api/company/{cui}/related": {
+        "get": {
+          "tags": [
+            "Companies"
+          ],
+          "summary": "Get related companies by same CAEN and county",
+          "parameters": [
+            {
+              "name": "cui",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{1,10}$"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Related companies"
+            }
+          }
+        }
+      },
+      "/api/rates": {
+        "get": {
+          "tags": [
+            "Rates"
+          ],
+          "summary": "Get current official BNR exchange rates",
+          "responses": {
+            "200": {
+              "description": "Exchange rates"
+            }
+          }
+        }
+      },
+      "/api/rates/history": {
+        "get": {
+          "tags": [
+            "Rates"
+          ],
+          "summary": "Get recent official BNR exchange-rate history",
+          "responses": {
+            "200": {
+              "description": "Exchange-rate history"
+            }
+          }
+        }
+      },
+      "/api/rates/convert": {
+        "get": {
+          "tags": [
+            "Rates"
+          ],
+          "summary": "Convert an amount between currencies using BNR rates",
+          "parameters": [
+            {
+              "name": "from",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 3
+              }
+            },
+            {
+              "name": "to",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 3
+              }
+            },
+            {
+              "name": "amount",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d+(\\.\\d{1,4})?$"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Converted amount"
+            }
+          }
+        }
+      },
+      "/api/caen": {
+        "get": {
+          "tags": [
+            "Reference"
+          ],
+          "summary": "Search CAEN Rev.3 activity codes",
+          "parameters": [
+            {
+              "name": "q",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "CAEN code results"
+            }
+          }
+        }
+      },
+      "/api/caen/{code}": {
+        "get": {
+          "tags": [
+            "Reference"
+          ],
+          "summary": "Get one CAEN Rev.3 code",
+          "parameters": [
+            {
+              "name": "code",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{4}$"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "CAEN code detail"
+            },
+            "404": {
+              "description": "CAEN code not found"
+            }
+          }
+        }
+      },
+      "/api/caen/{code}/hub": {
+        "get": {
+          "tags": [
+            "Company hubs"
+          ],
+          "summary": "Get active-company hub data for one CAEN code",
+          "parameters": [
+            {
+              "name": "code",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{4}$"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "CAEN hub data"
+            },
+            "404": {
+              "description": "CAEN code not found"
+            }
+          }
+        }
+      },
+      "/api/firme/{judet}": {
+        "get": {
+          "tags": [
+            "Company hubs"
+          ],
+          "summary": "Get a county company hub",
+          "parameters": [
+            {
+              "name": "judet",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "County company hub"
+            },
+            "404": {
+              "description": "County not found"
+            }
+          }
+        }
+      },
+      "/api/firme/{judet}/{oras}": {
+        "get": {
+          "tags": [
+            "Company hubs"
+          ],
+          "summary": "Get a city company hub",
+          "parameters": [
+            {
+              "name": "judet",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            },
+            {
+              "name": "oras",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "City company hub"
+            },
+            "404": {
+              "description": "City not found"
+            }
+          }
+        }
+      },
+      "/api/iban": {
+        "get": {
+          "tags": [
+            "Reference"
+          ],
+          "summary": "Search Romanian treasury IBANs",
+          "parameters": [
+            {
+              "name": "q",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Treasury IBAN results"
+            }
+          }
+        }
+      },
+      "/api/press": {
+        "get": {
+          "tags": [
+            "Press"
+          ],
+          "summary": "List the 5 most recent raw ANAF press releases (live RSS mirror, no archive)",
+          "responses": {
+            "200": {
+              "description": "Press releases"
+            }
+          }
+        }
+      },
+      "/api/press-articles": {
+        "get": {
+          "tags": [
+            "Press"
+          ],
+          "summary": "List durable original articles generated from ANAF press releases",
+          "parameters": [
+            {
+              "name": "page",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 1,
+                "default": 1
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 50,
+                "default": 20
+              }
+            },
+            {
+              "name": "topic",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Paginated published articles"
+            }
+          }
+        }
+      },
+      "/api/press-articles/{slug}": {
+        "get": {
+          "tags": [
+            "Press"
+          ],
+          "summary": "Get one press article by slug, plus same-topic related picks",
+          "parameters": [
+            {
+              "name": "slug",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Article + related picks"
+            },
+            "404": {
+              "description": "Article not found"
+            }
+          }
+        }
+      },
+      "/api/statistica": {
+        "get": {
+          "tags": [
+            "Statistics"
+          ],
+          "summary": "Get aggregate company statistics",
+          "responses": {
+            "200": {
+              "description": "Company statistics"
+            }
+          }
+        }
+      },
+      "/api/statistica/leaderboard-years": {
+        "get": {
+          "tags": [
+            "Statistics"
+          ],
+          "summary": "List fiscal years available for top-company rankings",
+          "responses": {
+            "200": {
+              "description": "Available fiscal years"
+            }
+          }
+        }
+      },
+      "/api/statistica/top-companies": {
+        "get": {
+          "tags": [
+            "Statistics"
+          ],
+          "summary": "Rank top companies by revenue, profit, or employee count",
+          "parameters": [
+            {
+              "name": "slice",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "national",
+                  "judet",
+                  "caen"
+                ],
+                "default": "national"
+              }
+            },
+            {
+              "name": "sliceKey",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "maxLength": 120
+              }
+            },
+            {
+              "name": "year",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "minimum": 2000,
+                "maximum": 2100
+              }
+            },
+            {
+              "name": "metric",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "profit",
+                  "cifra",
+                  "angajati"
+                ]
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 10
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Ranked companies"
+            }
+          }
+        }
+      },
+      "/api/search/all": {
+        "get": {
+          "tags": [
+            "People"
+          ],
+          "summary": "Unified search across companies and people",
+          "parameters": [
+            {
+              "name": "q",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/company/{cui}/decisions": {
+        "get": {
+          "tags": [
+            "Companies"
+          ],
+          "summary": "Get Monitorul Oficial decisions for the company",
+          "parameters": [
+            {
+              "name": "cui",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{1,10}$"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/company/{cui}/leaderboard": {
+        "get": {
+          "tags": [
+            "Companies"
+          ],
+          "summary": "Get top-company ranking badges for the company",
+          "parameters": [
+            {
+              "name": "cui",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{1,10}$"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/company/batch": {
+        "post": {
+          "tags": [
+            "Companies"
+          ],
+          "summary": "Fetch multiple companies in one request",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/press/pdf": {
+        "get": {
+          "tags": [
+            "Press"
+          ],
+          "summary": "Get a press release as PDF",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/sicap/tenders/search": {
+        "get": {
+          "tags": [
+            "Procurement"
+          ],
+          "summary": "Search SEAP public-procurement notices",
+          "parameters": [
+            {
+              "name": "q",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "maxLength": 120
+              }
+            },
+            {
+              "name": "cpv",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{0,8}$"
+              }
+            },
+            {
+              "name": "authorityCui",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{0,10}$"
+              }
+            },
+            {
+              "name": "from",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 50,
+                "default": 20
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 0,
+                "default": 0
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/sicap/tender/{notice}": {
+        "get": {
+          "tags": [
+            "Procurement"
+          ],
+          "summary": "Get a procurement notice and its documentation state",
+          "parameters": [
+            {
+              "name": "notice",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^[A-Z]{2,4}\\d{4,12}$"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/sicap/procedures": {
+        "get": {
+          "tags": [
+            "Procurement"
+          ],
+          "summary": "List the most recent procedures with available documentation",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/sicap/company/{cui}/procedures": {
+        "get": {
+          "tags": [
+            "Procurement"
+          ],
+          "summary": "Get procurement procedures for a contracting authority",
+          "parameters": [
+            {
+              "name": "cui",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{1,10}$"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/sicap/procedure/{notice}/documents": {
+        "get": {
+          "tags": [
+            "Procurement"
+          ],
+          "summary": "List the documents of a procedure (metadata free; content Pro)",
+          "parameters": [
+            {
+              "name": "notice",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^[A-Z]{2,4}\\d{4,12}$"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/sicap/procedure/{notice}/signers": {
+        "get": {
+          "tags": [
+            "Procurement"
+          ],
+          "summary": "Document signer identity and cryptographic signature verification (count free; identity Pro)",
+          "parameters": [
+            {
+              "name": "notice",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^[A-Z]{2,4}\\d{4,12}$"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/company/{cui}/seap": {
+        "get": {
+          "tags": [
+            "Procurement"
+          ],
+          "summary": "SEAP/SICAP preview for a company: latest contracts and direct purchases with totals",
+          "parameters": [
+            {
+              "name": "cui",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{1,10}$"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/seap/company/{cui}/contracts": {
+        "get": {
+          "tags": [
+            "Procurement"
+          ],
+          "summary": "Pro: SEAP contracts for a company (newest first, 200/page)",
+          "parameters": [
+            {
+              "name": "cui",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{1,10}$"
+              }
+            },
+            {
+              "name": "role",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "authority",
+                  "supplier",
+                  "both"
+                ]
+              }
+            },
+            {
+              "name": "dateFrom",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              }
+            },
+            {
+              "name": "dateTo",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              }
+            },
+            {
+              "name": "cpv",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{1,12}$"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 200
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK — { success, data, meta }; data is the query-layer result with source/source_url"
+            },
+            "400": {
+              "description": "VALIDATION_ERROR"
+            },
+            "401": {
+              "description": "INVALID_API_KEY"
+            },
+            "403": {
+              "description": "PRO_REQUIRED — needs a Pro API key (or a Pro account session)"
+            },
+            "404": {
+              "description": "NOT_FOUND (detail routes)"
+            }
+          }
+        }
+      },
+      "/api/seap/company/{cui}/contracts/check": {
+        "get": {
+          "tags": [
+            "Procurement"
+          ],
+          "summary": "Pro: whether a company appears in SEAP contracts (counts + latest date)",
+          "parameters": [
+            {
+              "name": "cui",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{1,10}$"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK — { success, data, meta }; data is the query-layer result with source/source_url"
+            },
+            "400": {
+              "description": "VALIDATION_ERROR"
+            },
+            "401": {
+              "description": "INVALID_API_KEY"
+            },
+            "403": {
+              "description": "PRO_REQUIRED — needs a Pro API key (or a Pro account session)"
+            },
+            "404": {
+              "description": "NOT_FOUND (detail routes)"
+            }
+          }
+        }
+      },
+      "/api/seap/company/{cui}/direct-purchases": {
+        "get": {
+          "tags": [
+            "Procurement"
+          ],
+          "summary": "Pro: SICAP direct purchases for a company",
+          "parameters": [
+            {
+              "name": "cui",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{1,10}$"
+              }
+            },
+            {
+              "name": "role",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "authority",
+                  "supplier",
+                  "both"
+                ]
+              }
+            },
+            {
+              "name": "dateFrom",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              }
+            },
+            {
+              "name": "dateTo",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              }
+            },
+            {
+              "name": "cpv",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{1,12}$"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 200
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK — { success, data, meta }; data is the query-layer result with source/source_url"
+            },
+            "400": {
+              "description": "VALIDATION_ERROR"
+            },
+            "401": {
+              "description": "INVALID_API_KEY"
+            },
+            "403": {
+              "description": "PRO_REQUIRED — needs a Pro API key (or a Pro account session)"
+            },
+            "404": {
+              "description": "NOT_FOUND (detail routes)"
+            }
+          }
+        }
+      },
+      "/api/seap/company/{cui}/direct-purchase-awards": {
+        "get": {
+          "tags": [
+            "Procurement"
+          ],
+          "summary": "Pro: SICAP direct-purchase award notices for a company",
+          "parameters": [
+            {
+              "name": "cui",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{1,10}$"
+              }
+            },
+            {
+              "name": "role",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "authority",
+                  "supplier",
+                  "both"
+                ]
+              }
+            },
+            {
+              "name": "dateFrom",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              }
+            },
+            {
+              "name": "dateTo",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              }
+            },
+            {
+              "name": "cpv",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{1,12}$"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 200
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK — { success, data, meta }; data is the query-layer result with source/source_url"
+            },
+            "400": {
+              "description": "VALIDATION_ERROR"
+            },
+            "401": {
+              "description": "INVALID_API_KEY"
+            },
+            "403": {
+              "description": "PRO_REQUIRED — needs a Pro API key (or a Pro account session)"
+            },
+            "404": {
+              "description": "NOT_FOUND (detail routes)"
+            }
+          }
+        }
+      },
+      "/api/seap/company/{cui}/tenders": {
+        "get": {
+          "tags": [
+            "Procurement"
+          ],
+          "summary": "Pro: tender initiation announcements published by an authority",
+          "parameters": [
+            {
+              "name": "cui",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{1,10}$"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 200
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK — { success, data, meta }; data is the query-layer result with source/source_url"
+            },
+            "400": {
+              "description": "VALIDATION_ERROR"
+            },
+            "401": {
+              "description": "INVALID_API_KEY"
+            },
+            "403": {
+              "description": "PRO_REQUIRED — needs a Pro API key (or a Pro account session)"
+            },
+            "404": {
+              "description": "NOT_FOUND (detail routes)"
+            }
+          }
+        }
+      },
+      "/api/seap/company/{cui}/supplier-issues": {
+        "get": {
+          "tags": [
+            "Procurement"
+          ],
+          "summary": "Pro: SICAP supplier-performance reports for a supplier",
+          "parameters": [
+            {
+              "name": "cui",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{1,10}$"
+              }
+            },
+            {
+              "name": "onlyDamages",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 200
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK — { success, data, meta }; data is the query-layer result with source/source_url"
+            },
+            "400": {
+              "description": "VALIDATION_ERROR"
+            },
+            "401": {
+              "description": "INVALID_API_KEY"
+            },
+            "403": {
+              "description": "PRO_REQUIRED — needs a Pro API key (or a Pro account session)"
+            },
+            "404": {
+              "description": "NOT_FOUND (detail routes)"
+            }
+          }
+        }
+      },
+      "/api/seap/supplier-issues/{ackDocId}": {
+        "get": {
+          "tags": [
+            "Procurement"
+          ],
+          "summary": "Pro: one supplier-performance report in full",
+          "parameters": [
+            {
+              "name": "ackDocId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d+$"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK — { success, data, meta }; data is the query-layer result with source/source_url"
+            },
+            "400": {
+              "description": "VALIDATION_ERROR"
+            },
+            "401": {
+              "description": "INVALID_API_KEY"
+            },
+            "403": {
+              "description": "PRO_REQUIRED — needs a Pro API key (or a Pro account session)"
+            },
+            "404": {
+              "description": "NOT_FOUND (detail routes)"
+            }
+          }
+        }
+      },
+      "/api/seap/contracts/{number}": {
+        "get": {
+          "tags": [
+            "Procurement"
+          ],
+          "summary": "Pro: one SEAP contract by contract number (URL-encode; 1/32435 → 1%2F32435)",
+          "parameters": [
+            {
+              "name": "number",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "maxLength": 256
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK — { success, data, meta }; data is the query-layer result with source/source_url"
+            },
+            "400": {
+              "description": "VALIDATION_ERROR"
+            },
+            "401": {
+              "description": "INVALID_API_KEY"
+            },
+            "403": {
+              "description": "PRO_REQUIRED — needs a Pro API key (or a Pro account session)"
+            },
+            "404": {
+              "description": "NOT_FOUND (detail routes)"
+            }
+          }
+        }
+      },
+      "/api/seap/cpv/{cpv}/contracts": {
+        "get": {
+          "tags": [
+            "Procurement"
+          ],
+          "summary": "Pro: SEAP contract rows for a CPV code prefix",
+          "parameters": [
+            {
+              "name": "cpv",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{1,12}$"
+              }
+            },
+            {
+              "name": "supplierCity",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "maxLength": 120
+              }
+            },
+            {
+              "name": "dateFrom",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              }
+            },
+            {
+              "name": "dateTo",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 200
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK — { success, data, meta }; data is the query-layer result with source/source_url"
+            },
+            "400": {
+              "description": "VALIDATION_ERROR"
+            },
+            "401": {
+              "description": "INVALID_API_KEY"
+            },
+            "403": {
+              "description": "PRO_REQUIRED — needs a Pro API key (or a Pro account session)"
+            },
+            "404": {
+              "description": "NOT_FOUND (detail routes)"
+            }
+          }
+        }
+      },
+      "/api/seap/cpv/{cpv}/direct-purchases": {
+        "get": {
+          "tags": [
+            "Procurement"
+          ],
+          "summary": "Pro: SICAP direct purchases for a CPV code prefix",
+          "parameters": [
+            {
+              "name": "cpv",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{1,12}$"
+              }
+            },
+            {
+              "name": "dateFrom",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              }
+            },
+            {
+              "name": "dateTo",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 200
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK — { success, data, meta }; data is the query-layer result with source/source_url"
+            },
+            "400": {
+              "description": "VALIDATION_ERROR"
+            },
+            "401": {
+              "description": "INVALID_API_KEY"
+            },
+            "403": {
+              "description": "PRO_REQUIRED — needs a Pro API key (or a Pro account session)"
+            },
+            "404": {
+              "description": "NOT_FOUND (detail routes)"
+            }
+          }
+        }
+      },
+      "/api/seap/cpv/{cpv}/direct-purchase-awards": {
+        "get": {
+          "tags": [
+            "Procurement"
+          ],
+          "summary": "Pro: SICAP direct-purchase award notices for a CPV code prefix",
+          "parameters": [
+            {
+              "name": "cpv",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{1,12}$"
+              }
+            },
+            {
+              "name": "dateFrom",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              }
+            },
+            {
+              "name": "dateTo",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 200
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK — { success, data, meta }; data is the query-layer result with source/source_url"
+            },
+            "400": {
+              "description": "VALIDATION_ERROR"
+            },
+            "401": {
+              "description": "INVALID_API_KEY"
+            },
+            "403": {
+              "description": "PRO_REQUIRED — needs a Pro API key (or a Pro account session)"
+            },
+            "404": {
+              "description": "NOT_FOUND (detail routes)"
+            }
+          }
+        }
+      },
+      "/api/seap/cpv/{cpv}/top-suppliers": {
+        "get": {
+          "tags": [
+            "Procurement"
+          ],
+          "summary": "Pro: suppliers ranked by total contract value for a CPV code prefix",
+          "parameters": [
+            {
+              "name": "cpv",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{1,12}$"
+              }
+            },
+            {
+              "name": "supplierCity",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "maxLength": 120
+              }
+            },
+            {
+              "name": "dateFrom",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              }
+            },
+            {
+              "name": "dateTo",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK — { success, data, meta }; data is the query-layer result with source/source_url"
+            },
+            "400": {
+              "description": "VALIDATION_ERROR"
+            },
+            "401": {
+              "description": "INVALID_API_KEY"
+            },
+            "403": {
+              "description": "PRO_REQUIRED — needs a Pro API key (or a Pro account session)"
+            },
+            "404": {
+              "description": "NOT_FOUND (detail routes)"
+            }
+          }
+        }
+      },
+      "/api/seap/cpv/{cpv}/analysis": {
+        "get": {
+          "tags": [
+            "Procurement"
+          ],
+          "summary": "Pro: market totals for a CPV code prefix with the full per-year breakdown",
+          "parameters": [
+            {
+              "name": "cpv",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{1,12}$"
+              }
+            },
+            {
+              "name": "dateFrom",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              }
+            },
+            {
+              "name": "dateTo",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK — { success, data, meta }; data is the query-layer result with source/source_url"
+            },
+            "400": {
+              "description": "VALIDATION_ERROR"
+            },
+            "401": {
+              "description": "INVALID_API_KEY"
+            },
+            "403": {
+              "description": "PRO_REQUIRED — needs a Pro API key (or a Pro account session)"
+            },
+            "404": {
+              "description": "NOT_FOUND (detail routes)"
+            }
+          }
+        }
+      },
+      "/api/health": {
+        "get": {
+          "tags": [
+            "Health"
+          ],
+          "summary": "Check DemoANAF service health",
+          "responses": {
+            "200": {
+              "description": "Service health status"
+            }
+          }
+        }
+      }
+    }
+  }
+}

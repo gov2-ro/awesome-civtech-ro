@@ -1,0 +1,16 @@
+{
+  "provenance": {
+    "source": "https://lista-firme.info/api/v1/info?cui=31029694",
+    "observed_at": "2026-10-30T15:51:48.025168+00:00",
+    "source_body_sha256": "274ff15240b8bde15599fc7bf9f86b35f85544a2304a238b5b8b87f68e52f725",
+    "retained_text_sha256": "274ff15240b8bde15599fc7bf9f86b35f85544a2304a238b5b8b87f68e52f725",
+    "source_snapshot": null,
+    "http_status": 200,
+    "extraction": "Whitelist of corporate name, CUI and EUID. All other fields, including legal representatives, excluded."
+  },
+  "payload": {
+    "name": "ACTIVE CONEXE S.A.",
+    "cui": "31029694",
+    "euid": "ROONRC.J2013010843400"
+  }
+}

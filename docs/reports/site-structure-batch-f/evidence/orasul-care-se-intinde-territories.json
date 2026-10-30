@@ -1,0 +1,37 @@
+{
+  "provenance": {
+    "source": "https://mariuscomper.uk/orasul-care-se-intinde/data/localitati.csv",
+    "observed_at": "2026-10-24T22:41:11.053100+00:00",
+    "source_body_sha256": "9e3b81b0e88adfdd9db1e37ce183451475da70a2445a675bc37ff54bc54a8f5c",
+    "retained_text_sha256": "9e3b81b0e88adfdd9db1e37ce183451475da70a2445a675bc37ff54bc54a8f5c",
+    "source_snapshot": "surse/d067c474cb3b48e672ec-9e3b81b0e88adfdd.json",
+    "http_status": 200,
+    "extraction": "CSV header and whitelisted territory identifiers/names from three rows. Metric values excluded; CSV row indices are zero-based after the header."
+  },
+  "payload": {
+    "header": "siruta,localitate,judet,tip,locuitori_2000,locuitori_2020,locuinte_2000,locuinte_2020,teren_construit_ha_2000,teren_construit_ha_2015,teren_construit_ha_2020,suprafata_km2,comparabil",
+    "rows": [
+      {
+        "source_row_index": 0,
+        "siruta": "1017",
+        "localitate": "Alba Iulia",
+        "judet": "Alba",
+        "tip": "municipiu"
+      },
+      {
+        "source_row_index": 853,
+        "siruta": "54975",
+        "localitate": "Cluj-Napoca",
+        "judet": "Cluj",
+        "tip": "municipiu"
+      },
+      {
+        "source_row_index": 3120,
+        "siruta": "179132",
+        "localitate": "București",
+        "judet": "București",
+        "tip": "municipiu"
+      }
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "provenance": {
+    "source": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_184655_create_companies_table.php",
+    "observed_at": "2026-10-26T23:12:38.379806+00:00",
+    "source_body_sha256": "8ea4b8957c19fe223dfa3d369e59b81f62aa74db05c675bf975c61d36934dc82",
+    "retained_text_sha256": "8ea4b8957c19fe223dfa3d369e59b81f62aa74db05c675bf975c61d36934dc82",
+    "source_snapshot": "surse/d5ce1494e22e32152ea0-8ea4b8957c19fe22.json",
+    "http_status": 200,
+    "extraction": "Pinned company schema. No database record or person value copied."
+  },
+  "payload": {
+    "text": "<?php\n\nuse Illuminate\\Database\\Migrations\\Migration;\nuse Illuminate\\Database\\Schema\\Blueprint;\nuse Illuminate\\Support\\Facades\\Schema;\n\nreturn new class extends Migration {\n    /**\n     * Run the migrations.\n     */\n    public function up(): void\n    {\n        Schema::create('companies', function (Blueprint $table) {\n            $table->id();\n            $table->string('name');\n            $table->string('cui')->unique();\n            $table->string('euid')->unique();\n            $table->string('reg_com')->unique();\n            $table->timestamps();\n        });\n    }\n\n    /**\n     * Reverse the migrations.\n     */\n    public function down(): void\n    {\n        Schema::dropIfExists('companies');\n    }\n};\n"
+  }
+}

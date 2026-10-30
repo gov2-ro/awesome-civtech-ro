@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "id": "orasul-care-se-intinde-batch-f",
+  "project_slug": "orasul-care-se-intinde",
+  "input_url": "https://mariuscomper.uk/orasul-care-se-intinde/",
+  "evidence": [
+    {
+      "id": "territories",
+      "source": "https://mariuscomper.uk/orasul-care-se-intinde/data/localitati.csv",
+      "observed_at": "2026-10-24T22:41:11.053100+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-f/evidence/orasul-care-se-intinde-territories.json",
+      "sha256": "732c9e704dba6be39e4332baa4125c78f3d4d8d56300ea655619a95c5e8fe849",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "sections",
+      "source": "https://mariuscomper.uk/orasul-care-se-intinde/",
+      "observed_at": "2026-10-24T22:20:05.613469+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-f/evidence/orasul-care-se-intinde-sections.json",
+      "sha256": "feb7a77868f89ae12b78443f0121e4d644352938096965653eeb7b253c487d16",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    }
+  ],
+  "collections": [
+    {
+      "id": "territories",
+      "label": "Localități și teritorii",
+      "entity_type": "territory",
+      "record_grain": "territory",
+      "identity_components": [
+        "ro:siruta"
+      ],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "territories",
+        "sections"
+      ]
+    }
+  ],
+  "namespaces": [
+    {
+      "id": "ro:siruta",
+      "issuer": "INS",
+      "scope": "Administrative territory codes, not town-hall fiscal IDs.",
+      "normalization": "identity",
+      "shared": true,
+      "evidence": [
+        "territories"
+      ]
+    }
+  ],
+  "patterns": [
+    {
+      "id": "territory-explorer",
+      "collection": "territories",
+      "url_template": "https://mariuscomper.uk/orasul-care-se-intinde/",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "sections"
+      ]
+    },
+    {
+      "id": "english-explorer",
+      "collection": "territories",
+      "url_template": "https://mariuscomper.uk/orasul-care-se-intinde/en/",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "sections"
+      ]
+    },
+    {
+      "id": "territory-data",
+      "collection": "territories",
+      "url_template": "https://mariuscomper.uk/orasul-care-se-intinde/data/localitati.csv",
+      "kind": "document",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "territories"
+      ]
+    }
+  ],
+  "operations": [],
+  "identifier_rules": [
+    {
+      "id": "territory-siruta",
+      "collection": "territories",
+      "namespace": "ro:siruta",
+      "location": "CSV.siruta",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "territories"
+      ],
+      "note": ""
+    }
+  ],
+  "samples": [
+    {
+      "id": "territory-1017",
+      "collection": "territories",
+      "label": "Alba Iulia — teritoriu",
+      "local_namespace": "ro:siruta",
+      "identifiers": [
+        {
+          "rule": "territory-siruta",
+          "source": "territories",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/0/siruta"
+          }
+        }
+      ]
+    },
+    {
+      "id": "territory-54975",
+      "collection": "territories",
+      "label": "Cluj-Napoca — teritoriu",
+      "local_namespace": "ro:siruta",
+      "identifiers": [
+        {
+          "rule": "territory-siruta",
+          "source": "territories",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/1/siruta"
+          }
+        }
+      ]
+    },
+    {
+      "id": "territory-179132",
+      "collection": "territories",
+      "label": "București — teritoriu",
+      "local_namespace": "ro:siruta",
+      "identifiers": [
+        {
+          "rule": "territory-siruta",
+          "source": "territories",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/2/siruta"
+          }
+        }
+      ]
+    }
+  ],
+  "relationships": []
+}

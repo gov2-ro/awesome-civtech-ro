@@ -1,5 +1,31 @@
 # Activity
 
+## 2026-10-30 — Five-site structure expansion
+
+**Done**
+- Profiled lista-firme, DemoANAF, Companiile de stat, Companii Publice and Se golesc de oameni…. [Report](reports/site-structure-batch-f.md).
+- Added five reusable recipes, 24 collections, 20 URL patterns, 67 API operations, sixteen real record references and four explicit relationships.
+- The combined ten-project set has 58 evidence records, 40 collections, 39 patterns, 83 operations, 35 identifier rules and 27 records. Zero sample gaps and zero conflicts.
+- Proposed 26 direct identity pairs: Antibiotice CUI 1973096 (14), Active Conexe CUI 31029694 (10), București territory SIRUTA 179132 (2). Existing owner decisions remain unchanged.
+- Sent fifteen GET requests: fourteen HTTP 200 responses and one robots HTTP 404. Zero forbidden-host requests, paid API calls, browser source crawls, paid searches or owner contacts.
+- Added six offline checks, passing on Python 3.12. The full suite passes 1,258 tests with eight skips; all thirty browser checks pass, including the five new project profiles.
+- Repository validation, public build, original pilot and structure integrity pass. Excluded the generated public timestamp changes.
+
+**Hard**
+- DemoANAF documents paid API access. Used its OpenAPI declarations and two public frontend identity pages; invoked none of its APIs.
+- Companii Publice is a partial JSON read. Recovered complete rows 96, 293 and 79 with the existing reader; copied only corporate identifiers and names.
+- lista-firme responses contain legal representatives. Whitelisted name, CUI and EUID; checked 28 individual names and birth dates against tracked artifacts, with zero matches.
+- A successful lista-firme request does not establish parameter requiredness. Kept that contract incomplete for probes instead of claiming an optional or required CUI parameter.
+- The first whitelist check included `company-schema` as a record extract. Restricted it to actual numeric company extract IDs and the retained response; all six checks pass.
+- Existing browser checks pinned two records per example. Updated them to follow observed records and explicit accepted edges as coverage grows.
+
+**Decided**
+- Keep the original four identity decisions intact. Present the 26 new pairs only after the evidence, profiles and independent checks are complete.
+- Separate a company's CUI, its authority's CUI and its parent's CUI. Preserve the three administers relationships and one parent relationship outside identity assertions.
+- Use the deployed search script and the CUI contract together for Companiile de stat's frontend route. A numeric URL alone cannot establish the namespace.
+- Keep missing per-entity URLs explicit for the two single-page explorers. Their dataset locators remain usable without fabricated detail pages.
+- Version v0.50.0 records this measured expansion after the separate catalogue-intake skill release v0.49.0. Publication remains separate; this repository has no Cargo.toml.
+
 ## 2026-10-30 — Track the add-new-url skill
 
 **Done**

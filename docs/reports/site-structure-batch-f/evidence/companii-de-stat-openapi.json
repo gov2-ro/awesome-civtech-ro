@@ -1,0 +1,564 @@
+{
+  "provenance": {
+    "source": "https://companiidestat.ro/date/v1/openapi.json",
+    "observed_at": "2026-10-24T22:41:10.356601+00:00",
+    "source_body_sha256": "6efc06e7330b2edd6a2ffd667f373de07fa84aaa1ea302bdb3e0739c9723980b",
+    "retained_text_sha256": "6efc06e7330b2edd6a2ffd667f373de07fa84aaa1ea302bdb3e0739c9723980b",
+    "source_snapshot": "surse/fa7f845bb1dc00a71677-6efc06e7330b2edd.json",
+    "http_status": 200,
+    "extraction": "Whole retained OpenAPI document; no API example becomes a sampled record."
+  },
+  "payload": {
+    "openapi": "3.1.0",
+    "info": {
+      "title": "companiidestat.ro - API public",
+      "version": "v1",
+      "summary": "Date deschise despre companiile in care statul roman este actionar unic sau majoritar.",
+      "description": "Date deschise despre companiile de stat ale Romaniei. API read-only: fiecare resursa este un fisier JSON servit prin HTTP GET.\n\nAPI read-only, fara cheie si fara autentificare: fiecare resursa e un fisier JSON servit prin GET, cu Access-Control-Allow-Origin: *.\n\nCaile si campurile de baza din v1 sunt stabile. Adaugarile (campuri noi) sunt permise. O schimbare incompatibila de schema creeaza /api/v2/, iar v1 ramane inghetat.\n\nSurse:\n- AMEPIP - indicatori financiari, indemnizatii, fise de evaluare IP centrale (Anexa 1), fise de evaluare IP locale (Anexa 3)\n- Ministerul Finantelor - situatii financiare 2024 (data.gov.ro)\n- transparenta.eu - executie bugetara ANAF\n- Bursa de Valori Bucuresti",
+      "license": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "contact": {
+        "name": "companiidestat.ro",
+        "url": "https://companiidestat.ro/date/",
+        "email": "contact@companiidestat.ro"
+      },
+      "x-attribution": "companiidestat.ro",
+      "x-updated": "2026-10-24"
+    },
+    "servers": [
+      {
+        "url": "https://companiidestat.ro/date/v1",
+        "description": "Productie"
+      }
+    ],
+    "externalDocs": {
+      "url": "https://companiidestat.ro/date/",
+      "description": "Documentatia stratului de date"
+    },
+    "paths": {
+      "/data.json": {
+        "get": {
+          "summary": "data.json",
+          "description": "Dataset agregat care alimenteaza pagina principala: serii de trend 2019-2024, distributii ale marjei nete, scatter salariu-vs-performanta, companii emblematice, statistici sumare, agregari pe judete, scara de salarii.\n\nChei de nivel inalt: `meta`, `trend`, `buckets_2024`, `scatter`, `top_pierdere`, `top_profit`, `emblematice`, `stats`, `dist_2024`, `judete_2024`, `companii_pe_judet`, `pay_scale_rows`.",
+          "operationId": "data",
+          "responses": {
+            "200": {
+              "description": "Resursa JSON.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "meta": {},
+                      "trend": {},
+                      "buckets_2024": {},
+                      "scatter": {},
+                      "top_pierdere": {},
+                      "top_profit": {},
+                      "emblematice": {},
+                      "stats": {},
+                      "dist_2024": {},
+                      "judete_2024": {},
+                      "companii_pe_judet": {},
+                      "pay_scale_rows": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/companii_search.json": {
+        "get": {
+          "summary": "companii_search.json",
+          "description": "Index slim al tuturor companiilor (CUI, nume, ticker, tier) plus tokenii de cautare. Endpoint de tip lista, pentru enumerare si autocomplete.\n\nChei de nivel inalt: `companii`, `search_tokens`, `meta`.",
+          "operationId": "companii_search",
+          "responses": {
+            "200": {
+              "description": "Resursa JSON.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "companii": {},
+                      "search_tokens": {},
+                      "meta": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/companii/{cui}.json": {
+        "get": {
+          "summary": "companii/{cui}.json",
+          "description": "Fisa completa per companie. 1.247 fisiere, cheia este codul unic de inregistrare (CUI). Contine istoric financiar, salarii, evaluarea AMEPIP (Anexa 1), bilantul MFin, numarul de angajati, codul CAEN si statusul ONRC.\n\nChei de nivel inalt: `cui`, `nume`, `regnr`, `judet_cod`, `judet_nume`, `sector_key`, `caen`, `ticker`, `listat_bvb`, `status_onrc`, `tier`, `fin_2024`, `fin_history`, `fte`, `salarii`, `anexa1`, `mfin`, `derived_status`.",
+          "operationId": "companii_cui",
+          "responses": {
+            "200": {
+              "description": "Resursa JSON.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "cui": {},
+                      "nume": {},
+                      "regnr": {},
+                      "judet_cod": {},
+                      "judet_nume": {},
+                      "sector_key": {},
+                      "caen": {},
+                      "ticker": {},
+                      "listat_bvb": {},
+                      "status_onrc": {},
+                      "tier": {},
+                      "fin_2024": {},
+                      "fin_history": {},
+                      "fte": {},
+                      "salarii": {},
+                      "anexa1": {},
+                      "mfin": {},
+                      "derived_status": {}
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Nu exista o companie cu acest CUI in set."
+            }
+          },
+          "parameters": [
+            {
+              "name": "cui",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "description": "Codul unic de inregistrare al companiei, fara prefix RO. Valorile valide sunt cheile din companii_search.json.",
+              "example": "14056826"
+            }
+          ]
+        }
+      },
+      "/mfin_bilanturi_2019.json": {
+        "get": {
+          "summary": "mfin_bilanturi_2019.json",
+          "description": "Bilanturile publice depuse la Ministerul Finantelor pentru 2019, filtrate la companiile de stat: 873 companii, 53,1% acoperire din master. Sume absolute in lei: cifra de afaceri, profit sau pierdere neta, capitaluri proprii, datorii, numar de salariati.\n\nChei de nivel inalt: `meta`, `companii`.",
+          "operationId": "mfin_bilanturi_2019",
+          "responses": {
+            "200": {
+              "description": "Resursa JSON.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "meta": {},
+                      "companii": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/mfin_bilanturi_2020.json": {
+        "get": {
+          "summary": "mfin_bilanturi_2020.json",
+          "description": "Bilanturile publice depuse la Ministerul Finantelor pentru 2020, filtrate la companiile de stat: 852 companii, 51,8% acoperire din master. Sume absolute in lei: cifra de afaceri, profit sau pierdere neta, capitaluri proprii, datorii, numar de salariati.\n\nChei de nivel inalt: `meta`, `companii`.",
+          "operationId": "mfin_bilanturi_2020",
+          "responses": {
+            "200": {
+              "description": "Resursa JSON.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "meta": {},
+                      "companii": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/mfin_bilanturi_2021.json": {
+        "get": {
+          "summary": "mfin_bilanturi_2021.json",
+          "description": "Bilanturile publice depuse la Ministerul Finantelor pentru 2021, filtrate la companiile de stat: 881 companii, 53,6% acoperire din master. Sume absolute in lei: cifra de afaceri, profit sau pierdere neta, capitaluri proprii, datorii, numar de salariati.\n\nChei de nivel inalt: `meta`, `companii`.",
+          "operationId": "mfin_bilanturi_2021",
+          "responses": {
+            "200": {
+              "description": "Resursa JSON.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "meta": {},
+                      "companii": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/mfin_bilanturi_2022.json": {
+        "get": {
+          "summary": "mfin_bilanturi_2022.json",
+          "description": "Bilanturile publice depuse la Ministerul Finantelor pentru 2022, filtrate la companiile de stat: 941 companii, 57,2% acoperire din master. Sume absolute in lei: cifra de afaceri, profit sau pierdere neta, capitaluri proprii, datorii, numar de salariati.\n\nChei de nivel inalt: `meta`, `companii`.",
+          "operationId": "mfin_bilanturi_2022",
+          "responses": {
+            "200": {
+              "description": "Resursa JSON.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "meta": {},
+                      "companii": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/mfin_bilanturi_2023.json": {
+        "get": {
+          "summary": "mfin_bilanturi_2023.json",
+          "description": "Bilanturile publice depuse la Ministerul Finantelor pentru 2023, filtrate la companiile de stat: 938 companii, 57,1% acoperire din master. Sume absolute in lei: cifra de afaceri, profit sau pierdere neta, capitaluri proprii, datorii, numar de salariati.\n\nChei de nivel inalt: `meta`, `companii`.",
+          "operationId": "mfin_bilanturi_2023",
+          "responses": {
+            "200": {
+              "description": "Resursa JSON.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "meta": {},
+                      "companii": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/mfin_bilanturi_2024.json": {
+        "get": {
+          "summary": "mfin_bilanturi_2024.json",
+          "description": "Bilanturile publice depuse la Ministerul Finantelor pentru 2024, filtrate la companiile de stat: 1.246 companii, 75,8% acoperire din master. Sume absolute in lei: cifra de afaceri, profit sau pierdere neta, capitaluri proprii, datorii, numar de salariati.\n\nChei de nivel inalt: `meta`, `companii`.",
+          "operationId": "mfin_bilanturi_2024",
+          "responses": {
+            "200": {
+              "description": "Resursa JSON.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "meta": {},
+                      "companii": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/mfin_bilanturi_2025.json": {
+        "get": {
+          "summary": "mfin_bilanturi_2025.json",
+          "description": "Bilanturile publice depuse la Ministerul Finantelor pentru 2025, filtrate la companiile de stat: 1.212 companii, 73,7% acoperire din master. Sume absolute in lei: cifra de afaceri, profit sau pierdere neta, capitaluri proprii, datorii, numar de salariati.\n\nChei de nivel inalt: `meta`, `companii`.",
+          "operationId": "mfin_bilanturi_2025",
+          "responses": {
+            "200": {
+              "description": "Resursa JSON.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "meta": {},
+                      "companii": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/anexa1_summary.json": {
+        "get": {
+          "summary": "anexa1_summary.json",
+          "description": "Fisele de evaluare individuala AMEPIP pentru 146 intreprinderi publice centrale. Verdictul oficial al agentiei per indicator: tinta depasita, nerealizata sau date netransmise.\n\nChei de nivel inalt: `companies`.",
+          "operationId": "anexa1_summary",
+          "responses": {
+            "200": {
+              "description": "Resursa JSON.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "companies": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/anexa3_summary.json": {
+        "get": {
+          "summary": "anexa3_summary.json",
+          "description": "Fisele de evaluare individuala AMEPIP pentru 1.210 intreprinderi publice LOCALE (Consilii Locale, Consilii Judetene, holding-uri locale). Echivalentul Anexei 1 pentru companiile aflate sub Autoritate Publica Tutelara locala. Verdict oficial per indicator si APT identificata. Adaugat iunie 2026.\n\nChei de nivel inalt: `meta`, `companies`.",
+          "operationId": "anexa3_summary",
+          "responses": {
+            "200": {
+              "description": "Resursa JSON.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "meta": {},
+                      "companies": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/sector_trend.json": {
+        "get": {
+          "summary": "sector_trend.json",
+          "description": "Evolutia pe 6 sectoare economice peste 6 ani (2019-2024).\n\nChei de nivel inalt: `sector_trend`, `source`, `note`.",
+          "operationId": "sector_trend",
+          "responses": {
+            "200": {
+              "description": "Resursa JSON.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "sector_trend": {},
+                      "source": {},
+                      "note": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/subventii-locale-data.json": {
+        "get": {
+          "summary": "subventii-locale-data.json",
+          "description": "Investigatia subventiilor locale, multi-an (2024 si 2025): sub cheia years, pentru fiecare an UAT-urile peste 30.000 de locuitori si agregarile pe judete; operatorii subventionati doar pentru 2024 (depind de bilanturile MFin). Cod economic 40.xx din executia bugetara.\n\nChei de nivel inalt: `meta`, `years`, `operators`.",
+          "operationId": "subventii_locale_data",
+          "responses": {
+            "200": {
+              "description": "Resursa JSON.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "meta": {},
+                      "years": {},
+                      "operators": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/subv_uat_to_soe_2024.json": {
+        "get": {
+          "summary": "subv_uat_to_soe_2024.json",
+          "description": "Maparea dintre UAT (primaria platitoare) si compania destinatara a subventiei, pentru anul 2024.\n\nChei de nivel inalt: `meta`, `mapping`.",
+          "operationId": "subv_uat_to_soe_2024",
+          "responses": {
+            "200": {
+              "description": "Resursa JSON.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "meta": {},
+                      "mapping": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/listed-soes.json": {
+        "get": {
+          "summary": "listed-soes.json",
+          "description": "Companiile de stat listate la Bursa de Valori Bucuresti.\n\nChei de nivel inalt: `listed_soes`, `_sources`, `_units`.",
+          "operationId": "listed_soes",
+          "responses": {
+            "200": {
+              "description": "Resursa JSON.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "listed_soes": {},
+                      "_sources": {},
+                      "_units": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/companii_de_stat_radiate.csv": {
+        "get": {
+          "summary": "companii_de_stat_radiate.csv",
+          "description": "Lista de referinta istorica: regii autonome si institute nationale de cercetare radiate juridic in ONRC. CSV cu coloanele cui, denumire, forma_juridica, judet, data_inmatriculare, stare_juridica.",
+          "operationId": "companii_de_stat_radiate",
+          "responses": {
+            "200": {
+              "description": "Resursa CSV.",
+              "content": {
+                "text/csv": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/onrc_amepip_gap.json": {
+        "get": {
+          "summary": "onrc_amepip_gap.json",
+          "description": "Entitatile de stat cu CUI valid in Registrul Comertului care nu apar in registrul AMEPIP, defalcate pe stare juridica.\n\nChei de nivel inalt: `meta`, `stats`, `gap_active_principale`, `gap_active_sucursale`, `gap_inactive`, `gap_radiate`, `overlap`.",
+          "operationId": "onrc_amepip_gap",
+          "responses": {
+            "200": {
+              "description": "Resursa JSON.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "meta": {},
+                      "stats": {},
+                      "gap_active_principale": {},
+                      "gap_active_sucursale": {},
+                      "gap_inactive": {},
+                      "gap_radiate": {},
+                      "overlap": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/salarii_stats.json": {
+        "get": {
+          "summary": "salarii_stats.json",
+          "description": "Salariul mediu brut lunar pe companie, din anexele SFA ale Guvernului (2025) si din raportul Guvernului pe 2024, cu numarul de salariati si raportul fata de salariul mediu national. Fara date despre persoane.\n\nChei de nivel inalt: `meta`, `agregat`, `rows`, `judete`.",
+          "operationId": "salarii_stats",
+          "responses": {
+            "200": {
+              "description": "Resursa JSON.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "meta": {},
+                      "agregat": {},
+                      "rows": {},
+                      "judete": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/companii_indirect_filiale_clean.csv": {
+        "get": {
+          "summary": "companii_indirect_filiale_clean.csv",
+          "description": "Filialele companiilor de stat (detinere indirecta), verificate. CSV cu coloanele cui, denumire, forma_juridica, judet, cod_inmatriculare, parent_match (compania-mama).",
+          "operationId": "companii_indirect_filiale_clean",
+          "responses": {
+            "200": {
+              "description": "Resursa CSV.",
+              "content": {
+                "text/csv": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "provenance": {
+    "source": "https://cosettechichirau.github.io/companiipublice/companii.json",
+    "observed_at": "2026-10-27T17:01:22.338903+00:00",
+    "source_body_sha256": "1f3eb8afab2a2af3812815c99cfe6cde9a5bb606f0bd5607ced5659b899d15b2",
+    "retained_text_sha256": "1f3eb8afab2a2af3812815c99cfe6cde9a5bb606f0bd5607ced5659b899d15b2",
+    "source_snapshot": "surse/4186fb614b0c86feac00-1f3eb8afab2a2af3.json",
+    "http_status": 206,
+    "extraction": "Complete rows 96, 293 and 79 recovered from a partial JSON read. Whitelist of company/authority/parent identifiers and corporate names only."
+  },
+  "payload": {
+    "complete_document": false,
+    "recovery": "inventory_jsonsample.recover",
+    "rows": [
+      {
+        "source_index": 96,
+        "cui": "31029694",
+        "denumire": "ACTIVE CONEXE S.A.",
+        "apt_cui": "11795573",
+        "apt_denumire": "AUTORITATEA PENTRU ADMINISTRAREA ACTIVELOR STATULUI",
+        "parent_cui": null,
+        "parent_denumire": null
+      },
+      {
+        "source_index": 293,
+        "cui": "1973096",
+        "denumire": "ANTIBIOTICE SA",
+        "apt_cui": "4266456",
+        "apt_denumire": "MINISTERUL SANATATII",
+        "parent_cui": null,
+        "parent_denumire": null
+      },
+      {
+        "source_index": 79,
+        "cui": "5622225",
+        "denumire": "SC PIATA DE GROS SA(Loc: BUCURESTI)",
+        "apt_cui": "11795573",
+        "apt_denumire": "AUTORITATEA PENTRU ADMINISTRAREA ACTIVELOR STATULUI",
+        "parent_cui": "8359779",
+        "parent_denumire": "SOCIETATEA DE STRATEGIE PENTRU PIATA DE GROS SRL"
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "provenance": {
+    "source": "https://companiidestat.ro/date/v1/companii/1973096.json",
+    "observed_at": "2026-10-30T15:51:52.370581+00:00",
+    "source_body_sha256": "148f4af068a018ce377ceb493a5df0331eded22f3b0a18f2421592990f8486d5",
+    "retained_text_sha256": "148f4af068a018ce377ceb493a5df0331eded22f3b0a18f2421592990f8486d5",
+    "source_snapshot": null,
+    "http_status": 200,
+    "extraction": "Whitelist of the corporate subject CUI and name from a company detail resource. Financial and people-related fields excluded."
+  },
+  "payload": {
+    "cui": "1973096",
+    "nume": "ANTIBIOTICE SA"
+  }
+}

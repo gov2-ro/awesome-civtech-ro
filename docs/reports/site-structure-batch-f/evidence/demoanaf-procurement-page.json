@@ -1,0 +1,31 @@
+{
+  "provenance": {
+    "source": "https://demoanaf.ro/achizitii",
+    "observed_at": "2026-10-24T22:19:27.426930+00:00",
+    "source_body_sha256": "69d0e2ef919b607f5adbc547fbf7bec0c81441fd18720a775643d93793c6b6a3",
+    "retained_text_sha256": "69d0e2ef919b607f5adbc547fbf7bec0c81441fd18720a775643d93793c6b6a3",
+    "source_snapshot": "data/taxonomy-v2/observatii/documentare/pagini/d168cc30e706db1e8b900527.json",
+    "http_status": 200,
+    "extraction": "Exact document lines and selected link entries; original offsets and link indices retained."
+  },
+  "payload": {
+    "excerpts": [
+      {
+        "start": 0,
+        "end": 62,
+        "text": "Documente achiziții publice SEAP/SICAP — căutare | DemoANAF.ro"
+      },
+      {
+        "start": 398,
+        "end": 466,
+        "text": "Scrie numele autorității, obiectul achiziției sau numărul anunțului."
+      },
+      {
+        "start": 819,
+        "end": 841,
+        "text": "Documentație achiziții"
+      }
+    ],
+    "links": []
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "provenance": {
+    "source": "https://demoanaf.ro/verificare-cui/1973096",
+    "observed_at": "2026-10-30T15:51:49.142984+00:00",
+    "source_body_sha256": "babcf49102900d6a3709ecdedcd83b5ec42b1a456284290d014fb2593ee2265c",
+    "retained_text_sha256": "babcf49102900d6a3709ecdedcd83b5ec42b1a456284290d014fb2593ee2265c",
+    "source_snapshot": null,
+    "http_status": 200,
+    "extraction": "Exact title, canonical URL and financial-profile hrefs only. No body tables or person values retained."
+  },
+  "payload": {
+    "title": "ANTIBIOTICE SA din Municipiul Iaşi Iaşi - CUI 1973096 | verificare firmă ANAF, bilanț, CAEN",
+    "canonical": "https://demoanaf.ro/verificare-cui/1973096",
+    "financial_profile_links": [
+      "/verificare-cui/1973096/sanatate-financiara"
+    ]
+  }
+}

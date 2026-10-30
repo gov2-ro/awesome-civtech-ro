@@ -1,0 +1,18 @@
+{
+  "provenance": {
+    "source": "https://demoanaf.ro/verificare-cui/31029694",
+    "observed_at": "2026-10-30T15:51:50.148320+00:00",
+    "source_body_sha256": "212d5f9117891fce6263b36ee8e16a28ef4ef3c47f79d823eb6785ae2367bff7",
+    "retained_text_sha256": "212d5f9117891fce6263b36ee8e16a28ef4ef3c47f79d823eb6785ae2367bff7",
+    "source_snapshot": null,
+    "http_status": 200,
+    "extraction": "Exact title, canonical URL and financial-profile hrefs only. No body tables or person values retained."
+  },
+  "payload": {
+    "title": "ACTIVE CONEXE S.A. din Bucureşti Sectorul 1 Bucureşti - CUI 31029694 | verificare firmă ANAF, bilanț, CAEN",
+    "canonical": "https://demoanaf.ro/verificare-cui/31029694",
+    "financial_profile_links": [
+      "/verificare-cui/31029694/sanatate-financiara"
+    ]
+  }
+}

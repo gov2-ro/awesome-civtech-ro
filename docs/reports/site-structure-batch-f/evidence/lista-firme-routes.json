@@ -1,0 +1,14 @@
+{
+  "provenance": {
+    "source": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/routes/web.php",
+    "observed_at": "2026-10-30T15:53:08.964571+00:00",
+    "source_body_sha256": "c3c6c20550fd41902fe6508929acdb332937b8f6b702ba7c5937a5e540d573e1",
+    "retained_text_sha256": "c3c6c20550fd41902fe6508929acdb332937b8f6b702ba7c5937a5e540d573e1",
+    "source_snapshot": null,
+    "http_status": 200,
+    "extraction": "Pinned public routes file. Declaration only; deployment not inferred."
+  },
+  "payload": {
+    "text": "<?php\n\nuse App\\Http\\Controllers\\API\\SitemapController;\nuse App\\Http\\Controllers\\CompanyController;\nuse App\\Livewire\\CifRemovalForm;\nuse App\\Livewire\\CompanySearch;\nuse Illuminate\\Support\\Facades\\Route;\n\nRoute::get('/', CompanySearch::class)->name('company.search');\nRoute::get('/companie/{cui}', [CompanyController::class, 'show'])\n    ->name('company.show')\n    ->where('cui', '[0-9]+');\n\nRoute::view('/termeni-si-conditii', 'legal.terms')->name('legal.terms');\nRoute::view('/politica-de-confidentialitate', 'legal.privacy')->name('legal.privacy');\nRoute::get('/solicitare-stergere', CifRemovalForm::class)->name('cif-removal.create');\n\n// Container/orchestrator health probe (cheap: no Laravel boot through artisan).\nRoute::get('/up', fn () => response('OK', 200))->name('health');\n\n// Sitemaps - no session middleware: crawlers must not get a session cookie or\n// a Set-Cookie header on a file that rarely changes. The chunks are gzipped,\n// the index stays plain XML.\nRoute::withoutMiddleware(['web'])->group(function () {\n    Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap.index');\n    Route::get('/sitemap-pages.xml.gz', [SitemapController::class, 'pages'])->name('sitemap.pages');\n    Route::get('/sitemap-{number}.xml.gz', [SitemapController::class, 'chunk'])\n        ->where('number', '[0-9]+')\n        ->name('sitemap.chunk');\n\n    // Chunks generated before the switch to gzip, so an index already handed\n    // to a crawler keeps resolving.\n    Route::get('/sitemap-{number}.xml', [SitemapController::class, 'chunk'])\n        ->where('number', '[0-9]+')\n        ->name('sitemap.chunk.plain');\n\n    Route::get('/sitemap-pages.xml', [SitemapController::class, 'pages'])->name('sitemap.pages.plain');\n});\n\nRoute::fallback(function () {\n    abort(404);\n});\n"
+  }
+}

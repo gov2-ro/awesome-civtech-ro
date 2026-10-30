@@ -1,0 +1,311 @@
+{
+  "schema_version": 1,
+  "id": "lista-firme-batch-f",
+  "project_slug": "lista-firme",
+  "input_url": "https://lista-firme.info",
+  "evidence": [
+    {
+      "id": "routes",
+      "source": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/routes/web.php",
+      "observed_at": "2026-10-30T15:53:08.964571+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-f/evidence/lista-firme-routes.json",
+      "sha256": "14a9f244b0930407b2a31532b6a8105111739847ecb77ba9d4cd210352f3800a",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "company-schema",
+      "source": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_184655_create_companies_table.php",
+      "observed_at": "2026-10-26T23:12:38.379806+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-f/evidence/lista-firme-company-schema.json",
+      "sha256": "935c8307f05b37bb46b4b1220b9f2756bdfb35aa4cd0daac1e04c554b1cd7520",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "company-1973096",
+      "source": "https://lista-firme.info/api/v1/info?cui=1973096",
+      "observed_at": "2026-10-30T15:51:47.022942+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-f/evidence/lista-firme-company-1973096.json",
+      "sha256": "e2fb52bc75203b8076cfc0d90fd4f2e62da32a9c3c8f53cc006405b7aa43d5c0",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "company-31029694",
+      "source": "https://lista-firme.info/api/v1/info?cui=31029694",
+      "observed_at": "2026-10-30T15:51:48.025168+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-f/evidence/lista-firme-company-31029694.json",
+      "sha256": "e2bac8b775dd0bc7cece86d513104a2acc7311aa80b03cee5e66405f6b5e6bc4",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "retained-company",
+      "source": "https://lista-firme.info/api/v1/info?cui=51859625",
+      "observed_at": "2026-10-27T09:03:14.436347+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-f/evidence/lista-firme-retained-company.json",
+      "sha256": "365147419d4148c92c1ac0f4eb02569d842cbafe6a5077cdc7f0c532e12a51dc",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    }
+  ],
+  "collections": [
+    {
+      "id": "companies",
+      "label": "Firme",
+      "entity_type": "company",
+      "record_grain": "legal_subject",
+      "identity_components": [
+        "ro:cui"
+      ],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "routes",
+        "company-schema",
+        "company-1973096",
+        "company-31029694",
+        "retained-company"
+      ]
+    }
+  ],
+  "namespaces": [
+    {
+      "id": "ro:cui",
+      "issuer": "Romanian fiscal administration",
+      "scope": "Romanian fiscal subjects; preserve the observed string.",
+      "normalization": "identity",
+      "shared": true,
+      "evidence": [
+        "company-schema",
+        "company-1973096",
+        "company-31029694",
+        "retained-company"
+      ]
+    },
+    {
+      "id": "ro:onrc:euid",
+      "issuer": "ONRC",
+      "scope": "European unique identifier for a registered company.",
+      "normalization": "identity",
+      "shared": true,
+      "evidence": [
+        "company-1973096",
+        "company-31029694",
+        "retained-company"
+      ]
+    },
+    {
+      "id": "lista-firme:companies:id",
+      "issuer": "lista-firme",
+      "scope": "Internal company table ID; no sampled local-ID mapping.",
+      "normalization": "identity",
+      "shared": false,
+      "evidence": [
+        "company-schema"
+      ]
+    }
+  ],
+  "patterns": [
+    {
+      "id": "company-search",
+      "collection": "companies",
+      "url_template": "https://lista-firme.info/",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "routes"
+      ]
+    },
+    {
+      "id": "company-profile",
+      "collection": "companies",
+      "url_template": "https://lista-firme.info/companie/{cui}",
+      "kind": "detail",
+      "variables": [
+        {
+          "name": "cui",
+          "namespace": "ro:cui",
+          "location": "path"
+        }
+      ],
+      "basis": "declared",
+      "examples": [],
+      "evidence": [
+        "routes",
+        "company-schema"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "id": "company-info",
+      "method": "GET",
+      "url_template": "https://lista-firme.info/api/v1/info?cui={cui}",
+      "uses": [
+        {
+          "collection": "companies",
+          "subject_role": "self",
+          "scope": "at_least"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "cui",
+          "location": "query",
+          "type": "string"
+        }
+      ],
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "anonymous"
+      },
+      "basis": [
+        "sampled"
+      ],
+      "last_test": {
+        "outcome": "observed",
+        "checked_at": "2026-10-30T15:51:47.022942+00:00",
+        "reason": "Real company response without a key; contract and required-parameter semantics remain undeclared.",
+        "evidence": "company-1973096"
+      },
+      "parameter_requirement_basis": "The parameter was supplied in the observed requests; requirement is not independently documented.",
+      "evidence": [
+        "company-1973096",
+        "company-31029694",
+        "retained-company"
+      ],
+      "unresolved_parameters": true
+    }
+  ],
+  "identifier_rules": [
+    {
+      "id": "cui-self",
+      "collection": "companies",
+      "namespace": "ro:cui",
+      "location": "/cui",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "company-1973096",
+        "company-31029694",
+        "retained-company"
+      ],
+      "note": ""
+    },
+    {
+      "id": "euid-self",
+      "collection": "companies",
+      "namespace": "ro:onrc:euid",
+      "location": "/euid",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "company-1973096",
+        "company-31029694",
+        "retained-company"
+      ],
+      "note": ""
+    },
+    {
+      "id": "internal-id",
+      "collection": "companies",
+      "namespace": "lista-firme:companies:id",
+      "location": "companies.id",
+      "subject_role": "self",
+      "mapping_basis": "declared",
+      "evidence": [
+        "company-schema"
+      ],
+      "note": "Schema declaration only; do not extract IDs from legal-representative rows."
+    }
+  ],
+  "samples": [
+    {
+      "id": "company-1973096",
+      "collection": "companies",
+      "label": "ANTIBIOTICE SA",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "cui-self",
+          "source": "company-1973096",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/cui"
+          }
+        },
+        {
+          "rule": "euid-self",
+          "source": "company-1973096",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/euid"
+          }
+        }
+      ]
+    },
+    {
+      "id": "company-31029694",
+      "collection": "companies",
+      "label": "ACTIVE CONEXE S.A.",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "cui-self",
+          "source": "company-31029694",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/cui"
+          }
+        },
+        {
+          "rule": "euid-self",
+          "source": "company-31029694",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/euid"
+          }
+        }
+      ]
+    },
+    {
+      "id": "company-51859625",
+      "collection": "companies",
+      "label": "RTI GLOBAL SERVICES S.R.L.",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "cui-self",
+          "source": "retained-company",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/cui"
+          }
+        },
+        {
+          "rule": "euid-self",
+          "source": "retained-company",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/euid"
+          }
+        }
+      ]
+    }
+  ],
+  "relationships": []
+}
