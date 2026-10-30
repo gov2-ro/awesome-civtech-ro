@@ -73,3 +73,5 @@
 - **v0.48.0** (2026-10-30): isolated entity lookup and structure details in project profiles (`build.py --with-structure`). Shows sections, collections, URL patterns, API declarations and source receipts. Exact namespace/issuer scopes, eleven observed records and four direct accepted correspondences; no transitive clustering or source-project requests. Optional read-only discovery-store projection. 1,252 tests pass, eight skipped; 16 focused tests, 24 new browser checks and 141 existing catalogue browser checks pass.
 
 - **v0.48.1** (2026-10-30): publish the proposed hotarari.ro local council decision archive, with its operator attribution, profile, search mentions and inventory record.
+
+- **v0.49.0** (2026-10-30): track `.agents/skills/add-new-url/SKILL.md`, a reusable evidence-led workflow for auditing, cataloguing, profiling and inventorying new sites.

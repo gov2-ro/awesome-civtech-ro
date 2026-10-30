@@ -22,6 +22,8 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
 ## New URLs — 2026-10-30
 
+- [x] Track `.agents/skills/add-new-url/SKILL.md` in the repository.
+
 - [x] Audit, add and publish `hotarari`. Profile, search, inventory and public build completed; 30 search rows remain unpruned because the name is generic.
 
 ## New URLs — 2026-10-29

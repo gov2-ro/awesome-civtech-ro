@@ -1,5 +1,18 @@
 # Activity
 
+## 2026-10-30 — Track the add-new-url skill
+
+**Done**
+- Added `.agents/skills/add-new-url/SKILL.md` to the repository.
+- The skill documents the live v2 catalogue workflow, evidence requirements, data checks and publication steps.
+
+**Hard**
+- None.
+
+**Decided**
+- Version v0.49.0 records the reusable catalogue intake workflow.
+
+
 ## 2026-10-30 — Publish hotarari.ro
 
 **Done**
