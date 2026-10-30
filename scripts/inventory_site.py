@@ -1,4 +1,4 @@
-"""Build a compact, lazy-loaded explorer preview from draft inventory metadata."""
+"""Build a compact, lazy-loaded explorer inventory from draft inventory metadata."""
 import html
 import json
 import hashlib
@@ -105,8 +105,8 @@ def variable_matches(slug, fields, sources, concepts):
     return matches
 
 
-def publish_finder(items, root, site, projections, vocabulary=None):
-    """Write a cross-project discovery index and its isolated page, then the list `date/lista/` and the variables page of each entry (`date/<slug>/`)."""
+def publish_finder(items, root, site, projections, vocabulary=None, entity_lookup=False):
+    """Write the discovery index, finder, project list and each entry's variable page."""
     concept_path = root.parent / 'inventar-concepte.json'
     document = json.loads(concept_path.read_text()) if concept_path.exists() else {}
     concepts, families = document.get('concepte', []), document.get('familii', [])
@@ -147,6 +147,8 @@ def publish_finder(items, root, site, projections, vocabulary=None):
     (site / 'inventar/index.json').write_text(json.dumps(index, ensure_ascii=False, separators=(',', ':')))
     template = Path(__file__).parent / 'templates/inventory.html'
     doc = template.read_text()
+    doc = doc.replace('<!--ENTITY_LOOKUP-->',
+        '<a class="finder-back" href="entitati/" data-entity-lookup>Entități între proiecte →</a>' if entity_lookup else '')
     for asset in ('style.css', 'inventory.css', 'inventory.js'):
         digest = hashlib.sha1((site / asset).read_bytes()).hexdigest()[:10]
         doc = doc.replace(f'{asset}?v=BUILD', f'{asset}?v={digest}')

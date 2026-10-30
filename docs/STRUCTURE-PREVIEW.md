@@ -1,10 +1,24 @@
-# Site structure and entity lookup preview
+# Site structure and entity lookup
 
-The preview adds structure observations to each project's existing profile.
+The site build adds structure observations to each project's existing profile.
 It also adds `/entitati/`, an exact identifier lookup over observed records.
 All source collection remains separate from the site-health profiler.
 
-## Build and open
+## Publish or preview
+
+The production workflows enable both projections:
+
+```sh
+python3 scripts/validate.py --publication
+python3 scripts/build.py --with-inventory --with-structure
+```
+
+The menu contains **Inventar de date** at `/date/`.
+That page links to **Entități între proiecte** at `/entitati/`, which links back to the inventory.
+`--with-structure` also enables the inventory when its flag is omitted.
+The owner authorized publication on 2026-10-30. Pending identity proposals remain unaccepted.
+
+For a local preview:
 
 ```sh
 python3 scripts/build.py --with-structure --site-dir /tmp/civtech-entity-preview
@@ -34,15 +48,16 @@ python3 scripts/build.py --with-structure \
 ```
 
 The build checks that store and reads it without changes.
-Only records and observations for selected catalogue entries reach the preview.
+Only records and observations for selected catalogue entries reach the generated site.
 The catalogue URL must still match the store's project URL.
 The durable repository decision file remains the identity review source.
 A store's own decision file does not override it.
 
-The flag requires a v2 root and an output directory outside the repository.
-It cannot write the public `site/` directory.
+The structure flag requires a v2 root.
+A custom `--structure-store` requires a separate output directory outside the repository.
+Public builds replay tracked recipes; they cannot publish an arbitrary local store.
 A build without the flag removes old lookup outputs and structure payloads from that output directory.
-The existing inventory preview can use the same build through `--with-inventory`.
+An inventory-only build uses `--with-inventory` and omits the entity link.
 
 ## Project profile
 
@@ -72,7 +87,7 @@ It does not expand a chain of accepted pairs into an inferred entity cluster.
 Two records with the same identifier can appear without a confirmed link.
 The interface only labels a correspondence confirmed when an explicit accepted assertion supports it.
 Conflicts suppress that confirmation.
-Hidden catalogue entries and links with a missing endpoint stay out of the preview.
+Hidden catalogue entries and links with a missing endpoint stay out of the generated site.
 
 Profile URLs are derived from typed templates and labelled accordingly.
 They are not live availability checks.
@@ -92,5 +107,5 @@ python3 -m unittest discover -s scripts -p 'test_structure_site.py'
 uv run scripts/check_structure_preview.py http://127.0.0.1:8784/
 ```
 
-The browser checks include desktop, mobile, direct project URLs, local IDs, territory separation, error recovery and non-transitive lookup.
+The browser checks include menu and inventory navigation, desktop, mobile, direct project URLs, local IDs, territory separation, error recovery and non-transitive lookup.
 The [implementation report](reports/site-structure-preview.md) records the measured build.

@@ -716,7 +716,7 @@ def main():
     parser.add_argument("--site-dir", type=Path, default=SITE, help="output folder (default: site/, for the public root only)")
     parser.add_argument("--allow-draft", action="store_true", help="v2 preview: allow proposed classifications (never for site/)")
     parser.add_argument("--with-inventory", action="store_true", help="include the data inventories: /date/, /date/lista/ and inventar/*.json (v2 roots only)")
-    parser.add_argument("--with-structure", action="store_true", help="include site structure and entity lookup in an isolated v2 preview")
+    parser.add_argument("--with-structure", action="store_true", help="include site structure, entity lookup and the data inventory (v2 roots only)")
     parser.add_argument("--structure-store", type=Path, help="read an existing structure store instead of replaying tracked recipes")
     args = parser.parse_args()
     data_dir, site = args.data_dir.resolve(), args.site_dir.resolve()
@@ -724,8 +724,12 @@ def main():
     v2 = schema == "v2"
     if args.structure_store and not args.with_structure:
         parser.error("--structure-store needs --with-structure")
-    if args.with_structure and (not v2 or site == SITE):
-        parser.error("--with-structure needs a v2 root and a separate --site-dir")
+    if args.with_structure and not v2:
+        parser.error("--with-structure needs a v2 root")
+    if args.structure_store and site == SITE:
+        parser.error("--structure-store needs a separate --site-dir; public builds replay tracked recipes")
+    if args.with_structure:
+        args.with_inventory = True
     if args.with_inventory and not v2:
         parser.error("--with-inventory needs a v2 root")
     if site == SITE and data_dir != public and "v2" in (schema, data_schema(public)):
@@ -748,7 +752,7 @@ def main():
     if args.with_inventory:
         from inventory_site import publish_preview, publish_finder
         projections = publish_preview(items, data_dir, site)
-        publish_finder(items, data_dir, site, projections, head.get('vocabulary'))
+        publish_finder(items, data_dir, site, projections, head.get('vocabulary'), entity_lookup=args.with_structure)
         head["inventoryPreview"] = True
     else:
         for name in ("date", "inventar"):

@@ -335,13 +335,16 @@ The importer never rewrites it. Out-of-scope decision IDs stay visible in the re
 Local evidence without a known public origin can retain a `file://` source; the curation report marks it local-only.
 The HTTP transport does not fetch file URLs.
 
-## 10. Site profile and entity lookup preview — 2026-10-30
+## 10. Site profile and entity lookup — 2026-10-30
 
 The owner requested an entity lookup prototype and structure details in each catalogue site's profile.
-`build.py --with-structure` projects observations into a separate v2 preview directory.
-The flag cannot write the public site. A plain build keeps its existing payload contract.
-The default preview replays tracked recipes without requests or ignored caches.
-An explicit `--structure-store` reads an existing checked store without changing it.
+The owner authorized publication on 2026-10-30.
+`build.py --with-structure` projects observations into a v2 public or isolated build.
+The flag also enables the data inventory. A plain build keeps its existing payload contract.
+Public builds replay tracked recipes without requests or ignored caches.
+An explicit `--structure-store` reads an existing checked store only in an isolated build.
+The menu contains only the data inventory link; that page links to the entity lookup.
+Publication does not accept identity proposals or change owner decisions.
 
 The existing project profile shows sections and collections, URL patterns, API operations and source receipts.
 A listing pattern can establish a section link. A collection alone cannot establish one.
@@ -354,11 +357,11 @@ It preserves original values, leading zeroes, prefixes, case and punctuation.
 It can add direct accepted counterparts but never expands a correspondence chain into an entity cluster.
 Conflicts prevent confirmed links. Unaccepted assertions never produce confirmed links.
 Selected catalogue entries and matching project URLs bound the projection.
-Hidden or missing endpoints prevent a correspondence from reaching the preview.
+Hidden or missing endpoints prevent a correspondence from reaching the public projection.
 
 Derived profile URLs carry an availability qualifier.
 A namespace declaration alone does not produce an entity result for an unobserved identifier.
 Source receipts retain public origin, hash and observation time.
 The projection excludes local file paths, raw extracts, request journals and editorial notes.
 The browser uses a local payload and makes no source-project requests.
-Identity acceptance and preview construction remain separate from publication.
+Identity acceptance remains separate from publication. Publication requires its own owner authorization.

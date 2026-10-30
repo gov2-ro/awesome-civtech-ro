@@ -1,8 +1,8 @@
-# Metodologie: starea, datele și scorul
+# Metodologie: catalogul, inventarul de date și entitățile
 
-Această pagină explică cum calculează site-ul starea, datele și scorul unei intrări.
-Textul descrie codul din `scripts/profile.py`, `scripts/search.py`, `scripts/review.py` și `scripts/build.py`
-la 2026-10-19. Dacă se schimbă codul, se schimbă și acest text.
+Această pagină explică starea, datele, scorul, inventarele și corespondențele între entități.
+Textul descrie codul și regulile de publicare la 2026-10-30.
+Catalogul public folosește `data/taxonomy-v2/integrare/`. Fișierele v1 sunt păstrate pentru comparație și revenire.
 
 Aproape toate valorile sunt **semnale automate**. Ele nu sunt verdicte. Un semnal poate fi greșit, vechi sau incomplet.
 Dacă vezi o valoare greșită, folosește „Semnalează o problemă” din fișa intrării.
@@ -14,6 +14,8 @@ Dacă vezi o valoare greșită, folosește „Semnalează o problemă” din fi�
 | Verificarea site-urilor | `profile.py` | Cere adresa fiecărei intrări și citește pagina principală. Apoi adaugă semnalele de vârstă și activitate: arhiva web, depozitul de cod, feed-ul, sitemap-ul, certificatul. `--extra` reia doar acești pași. | La cererea unui editor, nu continuu. |
 | Căutarea mențiunilor | `search.py` | Caută numele și adresa intrării cu Serper (Google) și Brave. | La cererea unui editor. |
 | Etichetarea mențiunilor | `review.py` | Un model de limbaj etichetează rezultatele păstrate, cel mult 40 pe intrare. | La cererea unui editor. |
+| Inventarierea datelor | `collect_docs.py`, `inventory.py` | Păstrează documentația și extrage metadatele câmpurilor din surse structurate. | La cererea unui editor. |
+| Structura site-urilor | `profile_structure.py`, `curate_structure.py` | Observă secțiuni, tipare URL, API-uri și identificatori. Reface interpretările din dovezi păstrate. | Colectare limitată; refacere locală fără cereri. |
 | Construirea site-ului | `build.py` | Combină tabelele editate de om cu rezultatele de mai sus. Calculează starea, datele și scorul. | La fiecare publicare. |
 
 Fără `--force`, `profile.py` nu verifică din nou o intrare deja verificată, dacă adresa ei nu s-a schimbat.
@@ -202,6 +204,105 @@ Această ordonare (în `site/app.js`) pornește de la scor. Ea înmulțește sco
 `proaspăt` este `e^(−zile / 365)`, unde `zile` este vârsta ultimului semn de viață: ultima actualizare
 sau, dacă e mai nouă, prima urmă recentă. Fără nicio dată, `proaspăt` este 0,25.
 
+## 7. Inventarul de date
+
+Meniul **Inventar de date** deschide `/date/`.
+Pagina permite căutarea după variabile, furnizori de date, instituții și text.
+Lista pe proiecte și fișele variabilelor explică unde apar câmpurile comune.
+Fișa unui proiect păstrează și inventarul propriu.
+
+Inventarele sunt **parțiale**. Colectorul citește documentație, scheme și eșantioane limitate.
+Nu descarcă automat toate înregistrările unui proiect.
+Lipsa unui inventar sau câmp nu dovedește lipsa datelor.
+
+Fiecare fapt indică dacă este declarat, observat într-un eșantion sau necunoscut.
+Dovezile păstrează sursa, momentul observației și locul exact din document sau răspuns.
+O schemă poate declara un câmp absent din eșantion.
+Un răspuns reușit nu dovedește că toate endpointurile sunt publice sau funcționale.
+Sursele de intrare, ieșirile proiectului și documentația au roluri separate.
+
+Grupurile de variabile reunesc câmpuri cu un sens documentat, prin selectori limitați la sursă, cale și rol.
+Interfața distinge grupurile propuse de cele revizuite.
+Candidații de extindere a unui grup revizuit cer o decizie editorială.
+Numele asemănătoare nu sunt suficiente pentru echivalență.
+O variabilă comună nu garantează combinarea seturilor: verifică definiția, perioada, unitatea și nivelul geografic.
+
+Furnizorii vin din relațiile `date_din` acceptate.
+Instituția vizată de un proiect nu devine automat furnizorul datelor sale.
+Contoarele numără intrări distincte, nu rânduri din seturile originale.
+Finderul omite organizațiile, intrările inactive și intrările clasificate fără date.
+Pagina „Listă pe proiecte” explică aceste omisiuni.
+O intrare cu inventar lipsă poate rămâne căutabilă prin informațiile catalogului.
+
+## 8. Secțiuni, tipare URL și API-uri
+
+Profilul de structură este separat de verificarea stării site-ului.
+El descrie colecțiile, secțiunile, tiparele URL, endpointurile API și identificatorii observați.
+Panoul **Structura site-ului** apare în fișa proiectului.
+O colecție de date nu presupune o secțiune distinctă în interfața sursei.
+Un link de secțiune apare numai când dovezile stabilesc o adresă exactă.
+
+Colectarea poate consulta `robots.txt`, sitemap-uri, `llms.txt`, documentație și declarații API, cu limite explicite.
+Fiecare interpretare păstrează adresa sursei, data, amprenta SHA-256 și un fragment identificabil.
+Rețetele versionate refac aceste interpretări fără acces la rețea.
+Construcția publică folosește numai rețetele și dovezile din depozit.
+Ea nu consultă un cache local necunoscut.
+
+Un tipar arată variabilele și spațiile lor de identificatori.
+Cifrele dintr-o adresă nu stabilesc singure că variabila reprezintă CUI sau SIRUTA.
+Placeholder-ele rămân text; interfața nu le transformă în pagini fictive.
+API-urile păstrează separat metoda, adresa, accesul declarat și accesul observat.
+O declarație de autentificare nu este o invitație de a ocoli autentificarea.
+
+Observațiile pot fi vechi sau incomplete.
+Un refresh nereușit păstrează dovezile anterioare și limitele lor.
+Absența unui tipar sau endpoint din profil înseamnă că nu avem o observație inclusă.
+Nu dovedește absența sa pe site.
+
+## 9. Aceeași entitate în proiecte diferite
+
+Din inventar, linkul **Entități între proiecte** deschide `/entitati/`.
+Căutarea folosește înregistrările observate, nu toate bazele de date ale surselor.
+Ea poate folosi CUI, SIRUTA sau un identificator local documentat.
+
+Un identificator are un spațiu de nume și un emitent.
+Un identificator local păstrează și proiectul său.
+Compararea păstrează prefixele, literele, semnele și zerourile inițiale.
+Se elimină numai spațiile de la începutul și sfârșitul textului introdus de utilizator.
+Un nume de organizație sau o valoare numerică asemănătoare nu stabilește identitatea.
+
+CUI identifică un subiect fiscal; SIRUTA identifică un teritoriu în spațiul documentat.
+Codul instituției municipale nu este codul teritoriului municipiului.
+CUI-ul cumpărătorului ori furnizorului nu identifică însuși contractul.
+Un contract, un an financiar și o organizație au niveluri de înregistrare diferite.
+Identificatorul unei organizații părinte rămâne o relație, nu identitatea filialei.
+
+Rezultatele arată **înregistrări observate** și **corespondențe confirmate** separat.
+O corespondență devine confirmată numai printr-o decizie explicită de acceptare în `structura/decisions.json`.
+Conflictele, intrările ascunse și capetele lipsă împiedică afișarea confirmării.
+Publicarea funcției nu acceptă propunerile restante.
+Legăturile directe nu se extind automat într-un grup tranzitiv de entități.
+
+Un URL construit dintr-un tipar este etichetat cu disponibilitate neverificată.
+Data dovezii nu stabilește intervalul de valabilitate juridică al identității sau relației.
+O căutare fără rezultat nu dovedește că entitatea lipsește din proiectele respective.
+
+## 10. Publicare și acces la surse
+
+Catalogul public include clasificările acceptate și omite intrările ascunse.
+Revizuirea clasificării, revizuirea variabilelor și acceptarea identității sunt decizii separate.
+Un fapt observat nu devine adevăr verificat doar pentru că apare în site.
+Numărul de câmpuri, endpointuri sau corespondențe nu adaugă puncte la scorul de relevanță.
+
+Construcția site-ului și căutarea din browser folosesc fișiere locale generate.
+Nu cer date în timp real de la proiectele inventariate.
+Browserul deschide sursa numai când utilizatorul urmează un link.
+Corpurile brute, căile locale, jurnalele de cereri și notele editoriale nu intră în această proiecție publică.
+
+Colectoarele nu cer gazdele din `colectare-interzisa.csv`, nici prin redirecționări.
+Starea `colectare-interzisa` descrie această regulă, nu o încercare eșuată și nici un site offline.
+Un refuz sau un blocaj nu autorizează ocolirea cu alt client ori browser.
+
 ## Limite
 
 - Starea arată ce s-a văzut la data verificării. Verificarea nu rulează continuu.
@@ -223,3 +324,9 @@ sau, dacă e mai nouă, prima urmă recentă. Fără nicio dată, `proaspăt` es
 | Ultima activitate | `last_activity()` în `scripts/build.py`; surse în `extras_one()` din `scripts/profile.py` |
 | Scorul | `score()` și `reach_features()` în `scripts/build.py` |
 | Insigne, coloane, ordonări | `site/app.js` |
+| Colectarea documentației și câmpurilor | `scripts/collect_docs.py`, `scripts/inventory.py` |
+| Grupurile de variabile și proiecția inventarului | `scripts/inventory_concepts.py`, `scripts/inventory_site.py` |
+| Descoperirea structurii | `scripts/profile_structure.py`, `scripts/structure_discovery.py` |
+| Interpretarea dovezilor și publicarea structurii | `scripts/structure_curation.py`, `scripts/structure_site.py` |
+| Acceptarea corespondențelor | `data/taxonomy-v2/structura/decisions.json` |
+| Căutarea entităților | `site/entities.js` |

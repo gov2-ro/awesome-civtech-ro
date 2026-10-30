@@ -8,7 +8,7 @@ CivTech România: a curated directory of Romanian civic-tech projects, resources
 
 ```sh
 python3 scripts/validate.py                 # check the public root, the v2 integration copy (CI on every PR); --publication adds the gate; --data-dir data checks the frozen v1 CSVs
-python3 scripts/build.py                    # merge everything into site/data.json (public root; applies the publication gate)
+python3 scripts/build.py --with-inventory --with-structure   # public build: catalogue, data inventory and entity lookup; applies the publication gate
 python3 -m http.server -d site 8000         # preview at http://localhost:8000
 
 python3 scripts/validate.py --data-dir data/taxonomy-v2/integrare      # taxonomy v2 root (draft rules; --publication adds the public gate)
@@ -33,7 +33,7 @@ python3 scripts/profile_structure.py --out /tmp/civtech-structure --check   # ve
 python3 -m unittest discover -s scripts -p 'test_profile_structure.py'   # shared structure engine tests (stdlib)
 python3 scripts/curate_structure.py apply --out /tmp/civtech-structure --recipe data/taxonomy-v2/structura/recipes/igov.json   # offline typed bindings and samples
 python3 scripts/curate_structure.py report --out /tmp/civtech-structure --decisions data/taxonomy-v2/structura/decisions.json --json   # read-only identity review queue
-python3 scripts/build.py --with-structure --site-dir /tmp/civtech-entity-preview   # isolated site structure profiles and /entitati/ lookup; optional --structure-store DIR
+python3 scripts/build.py --with-structure --site-dir /tmp/civtech-entity-preview   # combined inventory, structure profiles and /entitati/ lookup; optional --structure-store DIR for isolated builds
 python3 -m unittest discover -s scripts -p 'test_structure_site.py'   # structure projection and build isolation checks
 uv run scripts/check_structure_preview.py http://127.0.0.1:8784/   # browser checks of a served structure preview
 uv run scripts/search.py --dry-run --only slug,slug   # print the search queries; no requests
@@ -59,8 +59,10 @@ See `docs/STRUCTURE-PROFILER.md` and spec section 8. The version-1 pilot remains
 The `profile-structure` skill curates evidence-backed recipes under `data/taxonomy-v2/structura/recipes/`.
 `curate_structure.py` applies those inputs offline and proposes identity pairs. Only the owner changes `structura/decisions.json`.
 Local IDs, CUI, SIRUTA, registration IDs and subject roles remain distinct. See `docs/STRUCTURE-CURATION.md`.
-`build.py --with-structure` adds those observations to project profiles and builds an exact entity lookup in an isolated preview.
-It cannot write `site/`. See `docs/STRUCTURE-PREVIEW.md`; identity acceptance does not authorize publication.
+`build.py --with-structure` adds those observations to project profiles and builds an exact entity lookup.
+Public builds replay tracked recipes and owner decisions. A custom `--structure-store` requires a separate `--site-dir`.
+`--with-structure` also enables the inventory. The main menu links to `/date/`; that page links to `/entitati/`.
+See `docs/STRUCTURE-PREVIEW.md`. The owner authorized publication on 2026-10-30; pending identity proposals remain unaccepted.
 
 ```
 Google Sheet (tab v2-intrari) ⇄ scripts/sheets.py (pull / push)

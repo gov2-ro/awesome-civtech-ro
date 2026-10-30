@@ -4,7 +4,7 @@ The structure profiler discovers page patterns, API declarations and identifier 
 It runs separately from the site-health profiler and never changes the public catalogue.
 The [spec](specs/site-structure-profiler.md#8-engine-contract-version-2--2026-10-30) defines the version-2 contract.
 The [engine report](reports/site-structure-engine.md) records the first delivery and its measurements.
-The [structure preview](STRUCTURE-PREVIEW.md) displays sections, URL patterns and APIs in project profiles and adds an entity lookup.
+The [site structure and entity lookup](STRUCTURE-PREVIEW.md) displays sections, URL patterns and APIs in project profiles and adds an entity lookup.
 
 ## Start with retained evidence
 

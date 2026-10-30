@@ -2,7 +2,7 @@
 # requires-python = ">=3.11"
 # dependencies = ["playwright>=1.48"]
 # ///
-"""Browser acceptance checks for an isolated --with-structure preview."""
+"""Browser acceptance checks for a combined inventory and structure build."""
 import json
 import copy
 import sys
@@ -42,6 +42,16 @@ with sync_playwright() as pw:
     errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
     # The preview must work without requesting any project host.
     page.route('**/*',lambda route: route.continue_() if route.request.url.startswith(BASE) else route.abort())
+    page.goto(BASE)
+    page.wait_for_selector('.tab[href="date/"]')
+    ok('menu contains one data inventory link',page.locator('.tab[href="date/"]').count()==1)
+    ok('entities stay out of the main menu',page.locator('.tabs a[href*="entitati"], .hdr-links a[href*="entitati"]').count()==0)
+    page.locator('.tab[href="date/"]').click()
+    page.wait_for_selector('[data-entity-lookup]')
+    ok('inventory links to the entity lookup',page.locator('[data-entity-lookup]').evaluate('(a)=>a.href')==BASE+'entitati/')
+    page.locator('[data-entity-lookup]').click()
+    page.wait_for_selector('#entity-value')
+    ok('entity lookup links back to the inventory',page.get_by_role('link',name='← Inventar de date').evaluate('(a)=>a.href')==BASE+'date/')
     page.goto(BASE+'entitati/?namespace=ro:cui&value=1973096')
     page.wait_for_selector('.entity-card')
     cards=page.locator('.entity-card')
@@ -66,6 +76,7 @@ with sync_playwright() as pw:
     ok('a shared local-ID URL survives reload',page.locator('#entity-namespace').input_value()==local['id'] and page.locator('.entity-card').count()==len(LOCAL_IDS))
     page.goto(BASE+'proiect/romania-transparenta/')
     page.wait_for_selector('[data-structure-profile]')
+    ok('direct project URL preserves inventory navigation',page.locator('.tab[href="date/"]').evaluate('(a)=>a.href')==BASE+'date/')
     profile=page.locator('[data-structure-profile]')
     ok('direct project URL opens its site structure','Secțiuni și colecții' in profile.inner_text() and 'Instituții centrale' in profile.inner_text())
     profile.locator('[data-structure-patterns] > summary').click()

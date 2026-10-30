@@ -26,7 +26,7 @@ jobs:
       - name: Check the public data root with the publication gate
         run: python3 scripts/validate.py --publication
       - name: Build the public site
-        run: python3 scripts/build.py
+        run: python3 scripts/build.py --with-inventory --with-structure
       - name: Unit tests (taxonomy v2, enrichment, Sheets and Form)
         run: python3 -m unittest discover -s scripts -p "test_*.py" -v
       - name: Check the v2 package and the integration copy
@@ -54,9 +54,10 @@ jobs:
       - name: JavaScript syntax
         run: |
           node --check site/app.js
+          node --check site/entities.js
       - name: Build and serve the v2 preview
         run: |
-          python3 scripts/build.py --data-dir data/taxonomy-v2/integrare --site-dir "$RUNNER_TEMP/site-v2" --allow-draft --with-inventory
+          python3 scripts/build.py --data-dir data/taxonomy-v2/integrare --site-dir "$RUNNER_TEMP/site-v2" --allow-draft --with-inventory --with-structure
           python3 -m http.server -d "$RUNNER_TEMP/site-v2" 8765 > /dev/null 2>&1 &
           for _ in $(seq 1 20); do curl -fs http://localhost:8765/data.json > /dev/null && break; sleep 0.5; done
       - name: Browser checks (desktop and mobile)
@@ -65,6 +66,7 @@ jobs:
           uv run scripts/check_preview.py http://localhost:8765/
           uv run scripts/check_inventory_preview.py http://localhost:8765/
           uv run scripts/check_data_finder.py http://localhost:8765/
+          uv run scripts/check_structure_preview.py http://localhost:8765/
 
   workflows:
     runs-on: ubuntu-latest

@@ -4,13 +4,12 @@ This file explains every column of every data file, and the rules that check the
 [ARCHITECTURE.md](ARCHITECTURE.md) shows how the files connect.
 [CONTRIBUTING.md](../CONTRIBUTING.md) tells a contributor (in Romanian) how to fill in a row.
 
-The file has two parts:
+The file documents two generations:
 
-- **Production files (taxonomy v1).** The public site uses them today. They are the first table below and the
-  sections up to [data.json](#datajson).
-- **Taxonomy v2 files (preview).** They are the migration target. No editor has accepted a v2 classification yet.
-  The public site does not read them. A script reads them only when it gets `--data-dir`. They start at
-  [Taxonomy v2 package](#taxonomy-v2-package).
+- **Frozen taxonomy v1 files.** The first table and sections up to [data.json](#datajson) describe the rollback model.
+- **Public taxonomy v2 files.** Since 2026-10-22, scripts default to `data/taxonomy-v2/integrare/` and its vocabulary.
+  These sections start at [Taxonomy v2 package](#taxonomy-v2-package).
+  The accepted classifications, observations, inventories and structure projections supply the public site.
 
 The v1 column lists are in `scripts/common.py` (`PROIECTE_COLS`, `ORGS_COLS`, `PROFIL_COLS`,
 `MENTIUNI_COLS`, `ETICHETE_COLS`). When a v1 column changes, change that file, `validate.py`,
@@ -1642,7 +1641,7 @@ Entries with missing inventories remain searchable through their catalogue field
 
 ## Structure curation inputs (`taxonomy-v2/structura/`)
 
-These inputs belong to the separate structure workflow. They are not public-build inputs.
+These inputs belong to the separate structure workflow. Public structure builds replay the tracked recipes offline.
 `recipes/<slug>.json` has schema version 1; `curate_structure.py` applies it to an isolated version-2 store.
 The [recipe guide](STRUCTURE-CURATION.md) defines the fields and executable examples.
 
@@ -1663,9 +1662,10 @@ It includes source receipts that resolve to tracked artifacts and recipe aliases
 The igov company extract whitelists corporate ID, CUI and company name from complete rows of a retained partial JSON sample.
 It does not copy values from the people or appointments collections.
 
-### Structure preview projection
+### Structure site projection
 
-`build.py --with-structure` adds `structurePreview: true` and per-item `structure` to an isolated v2 build.
+`build.py --with-structure` adds `structurePreview: true` and per-item `structure` to a public or isolated v2 build.
+The flag also enables `inventoryPreview: true`, the data inventory and its entity lookup link.
 `structure` contains `collections`, `patterns` and `operations`, with source URLs, observation times and hashes.
 The lookup payload at `entitati/data.json` has `schemaVersion: 1`, projects, observed records, scoped namespaces and accepted direct links.
 Each lookup scope includes namespace and issuer; a local scope also includes the project.
@@ -1673,5 +1673,6 @@ Record identifiers retain their original string values.
 Only selected catalogue entries with matching project URLs are included.
 Conflicts and missing endpoints exclude confirmed links.
 The payload excludes raw evidence, file paths, editorial notes and request journals.
-The [preview guide](STRUCTURE-PREVIEW.md) defines the build flag, URL state and observation limits.
-The public build does not enable this projection.
+The [build guide](STRUCTURE-PREVIEW.md) defines the flags, URL state and observation limits.
+Production workflows enable both projections. A custom `--structure-store` requires an isolated output directory.
+The historical feature keys do not represent editorial acceptance states.

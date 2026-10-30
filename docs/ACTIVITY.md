@@ -1,5 +1,29 @@
 # Activity
 
+## 2026-10-30 — Publish the inventory and entity lookup together
+
+**Done**
+- Enabled structure publication from tracked recipes. The structure flag also enables the data inventory.
+- Kept only “Inventar de date” in the main menu. Added its “Entități între proiecte” link and the lookup backlink.
+- Updated Pages and CI to build both projections. Added five navigation browser checks and a public-build regression test.
+- Rewrote architecture for the current v2 source, inventories, structure curation and deployment. Extended the Romanian methodology and aligned the schema, spec and build guide.
+- Built 142 public entries, twenty structure profiles and 64 observed records. Only four accepted links reach the lookup; 59 proposals remain pending.
+- All 332 browser checks pass: catalogue 141, field panel 59, finder 81, structure and lookup 51.
+- The full Python 3.12 suite runs 1,274 tests in 155.599 seconds: OK, eight skipped. No source-site collection was needed.
+- Publication validation, package checks, JavaScript syntax and actionlint pass. The inventory-only build has no dangling entity link.
+- The combined catalogue JSON is 580,230 bytes, from 304,274 bytes. The lookup JSON is 167,250 bytes.
+
+**Hard**
+- Both features already shared `main`; no feature merge was needed. The inspected preview had enabled structure without the inventory flag.
+- The first public-build test used macOS's unresolved temporary-directory alias. Resolving it fixed the test fixture's same-file copy error.
+- The restricted regression run reported nine socket permission errors in review-interface tests. Reran the suite with local HTTP binding permitted.
+
+**Decided**
+- The owner authorized publication. Keep identity approval separate; do not accept pending correspondences through a deployment decision.
+- Public builds always replay tracked evidence. Custom stores remain isolated; this prevents publication from depending on an unknown local cache.
+- Retain the historical JSON feature keys to avoid a needless payload migration. They indicate enabled features, not review states.
+- Version v0.53.0 records the public integration. This repository has no Cargo.toml; the release log and Git tag record its version.
+
 ## 2026-10-30 — Enrich igov and enroll five more sites
 
 **Done**

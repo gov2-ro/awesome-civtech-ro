@@ -32,6 +32,8 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [ ] Structure expansion: inspect the 21 catalogue entries without retained documentation bodies. The offline pass covers all 145 entries and makes no requests; missing snapshots do not prove absent structure.
 - [ ] Existing `inventory_report.py` and inventory tests leave CSV streams open. The full suite emits ResourceWarnings at those readers; use context managers in a separate correction.
 
+- [x] Publish the combined inventory, structure profiles and entity lookup. Keep only “Inventar de date” in the menu; link “Entități” from it. Update architecture, methodology, build contracts and deployment checks. Owner authorized publication on 2026-10-30.
+
 ## New URLs — 2026-10-30
 
 - [x] Track `.agents/skills/add-new-url/SKILL.md` in the repository.

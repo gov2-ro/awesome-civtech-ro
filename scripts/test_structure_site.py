@@ -1,11 +1,13 @@
-"""Checks for isolated structure profiles and observed-identifier lookup data."""
+"""Checks for public and isolated structure profiles and observed-identifier lookup data."""
 import copy
+import io
 import hashlib
 import json
 import subprocess
 import sys
 import tempfile
 import unittest
+from contextlib import redirect_stdout
 from pathlib import Path
 from unittest.mock import patch
 
@@ -134,15 +136,29 @@ class Build(unittest.TestCase):
     def run_build(self,*args):
         return subprocess.run([sys.executable,str(REPO/'scripts/build.py'),*map(str,args)],cwd=REPO,capture_output=True,text=True)
 
-    def test_public_and_v1_structure_builds_are_refused_before_writes(self):
+    def test_v1_and_untracked_store_publication_are_refused_before_writes(self):
         before=(REPO/'site/data.json').read_bytes()
-        result=self.run_build('--with-structure')
+        result=self.run_build('--with-structure','--structure-store','/missing')
         self.assertEqual(result.returncode,2)
-        self.assertIn('separate --site-dir',result.stderr)
+        self.assertIn('public builds replay tracked recipes',result.stderr)
         with tempfile.TemporaryDirectory() as tmp:
             result=self.run_build('--with-structure','--data-dir','data','--site-dir',tmp)
             self.assertEqual(result.returncode,2)
             self.assertEqual(list(Path(tmp).iterdir()),[])
+        self.assertEqual((REPO/'site/data.json').read_bytes(),before)
+
+    def test_public_structure_build_includes_both_inventories_without_touching_the_source_site(self):
+        import build
+        before=(REPO/'site/data.json').read_bytes()
+        with tempfile.TemporaryDirectory() as tmp:
+            out=Path(tmp).resolve()/'public';build.prepare_site(out)
+            with patch.object(build,'SITE',out),patch('sys.argv',['build.py','--with-structure']),redirect_stdout(io.StringIO()):
+                build.main()
+            db=json.loads((out/'data.json').read_text())
+            self.assertTrue(db['inventoryPreview']);self.assertTrue(db['structurePreview'])
+            self.assertTrue((out/'date/index.html').is_file());self.assertTrue((out/'entitati/index.html').is_file())
+            self.assertIn('data-entity-lookup',(out/'date/index.html').read_text())
+            self.assertIn('href="date/"',(out/'entitati/index.html').read_text())
         self.assertEqual((REPO/'site/data.json').read_bytes(),before)
 
     def test_structure_store_flag_cannot_be_silently_ignored(self):

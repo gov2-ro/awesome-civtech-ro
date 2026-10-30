@@ -1376,13 +1376,6 @@ async function boot(byUser = false) {
 
 function start(db) {
   DB = db;
-  document.querySelector('[data-structure-link]')?.remove();
-  if (db.structurePreview) {
-    const link = document.createElement('a');
-    link.href = ROOT + 'entitati/'; link.textContent = 'Entități'; link.className = 'hdr-link';
-    link.dataset.structureLink = ''; link.title = 'Caută o entitate între proiecte';
-    document.querySelector('.hdr-links')?.prepend(link);
-  }
   if (db.inventoryPreview) slot('q').placeholder = 'Caută proiect, subiect sau câmp…';
   const map = arr => Object.fromEntries(arr.map(x => [x.key, x]));
   const v = db.vocabulary;

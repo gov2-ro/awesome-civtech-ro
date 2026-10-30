@@ -1,4 +1,4 @@
-"""Project structure observations into an isolated site preview. No network access."""
+"""Project retained structure observations into public or preview site builds. No network access."""
 from __future__ import annotations
 
 import hashlib
@@ -129,7 +129,7 @@ def project_preview(items, store, decisions):
 
 
 def publish_preview(items, site, store_path=None):
-    """Compile tracked recipes or read a checked store, then write only the preview folder."""
+    """Compile tracked recipes or read a checked store, then write structure payloads and lookup pages."""
     decisions = read(INPUTS / 'decisions.json')
     if store_path is not None:
         store = load(store_path)
