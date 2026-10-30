@@ -1,0 +1,48 @@
+{
+  "provenance": {
+    "source": "https://igov.ro/reports/guvernanta.html",
+    "observed_at": "2026-10-30T16:46:10.472273+00:00",
+    "source_body_sha256": "411b7190b452151d30cba6dcbb471180db76d871d840d188159c98833e021737",
+    "retained_text_sha256": "411b7190b452151d30cba6dcbb471180db76d871d840d188159c98833e021737",
+    "source_snapshot": null,
+    "http_status": 200,
+    "extraction": "Tab IDs and exact route/data-loader excerpts only. No page tables, people or appointments copied."
+  },
+  "payload": {
+    "tab_ids": [
+      "retea",
+      "graf",
+      "anomalii",
+      "profunzime",
+      "pierderi",
+      "achizitii",
+      "cumul",
+      "remuneratii",
+      "mandate",
+      "tabel",
+      "metoda"
+    ],
+    "excerpts": [
+      {
+        "start": 39169,
+        "end": 39599,
+        "text": "const DATA_URL = 'guvernanta.json';\nconst SOURCE = 'https://guvernanta.gov.ro/';\nconst TODAY = new Date().toISOString().slice(0, 10);\nconst PARTY = {\n  PSD: {label: 'PSD', color: 'var(--gv-psd)'},\n  PNL: {label: 'PNL', color: 'var(--gv-pnl)'},\n  USR: {label: 'USR', color: 'var(--gv-usr)'},\n  ALT: {label: 'Alt partid', color: 'var(--gv-alt)'},\n  NONE: {label: 'Fără apartenență politică', color: 'var(--gv-none)'},\n  NA: {label: "
+      },
+      {
+        "start": 172135,
+        "end": 172565,
+        "text": "function loadSeries() {\n  if (!seriesLoading) seriesLoading = fetch('guvernanta-series.json', {cache: 'no-cache'}).then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })\n    .then(j => { if (j.schema !== 'igov.guvernanta-series/1') throw new Error('format necunoscut'); SERIES = j; return j; });\n  return seriesLoading;\n}\nfunction mdiverge(years, pos, neg, {posLabel, negLabel}) {\n  const width = chartWid"
+      },
+      {
+        "start": 215765,
+        "end": 216195,
+        "text": "function loadBuys() {\n  if (!buysLoading) buysLoading = fetch('guvernanta-achizitii.json', {cache: 'no-cache'}).then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })\n    .then(j => { if (j.schema !== 'igov.guvernanta-achizitii/1') throw new Error('format necunoscut'); BUYS = j; return j; });\n  return buysLoading;\n}\nfunction mparts(all, {label, parts, fmt}) {  // one bar per item, split into coloured p"
+      },
+      {
+        "start": 48262,
+        "end": 48692,
+        "text": "history.replaceState(null, '', '#' + name);\n  render();\n}\nfunction tabs() {\n  const list = [...document.querySelectorAll('.gv-tabs [role=tab]')];\n  list.forEach((b, i) => {\n    b.addEventListener('click', () => setView(b.id.slice(2)));\n    b.addEventListener('keydown', e => {\n      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;\n      if (d) { e.preventDefault(); setView(list[(i + d + list.length) % list"
+      }
+    ]
+  }
+}

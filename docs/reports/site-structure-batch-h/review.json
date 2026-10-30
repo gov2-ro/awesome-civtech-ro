@@ -1,0 +1,1746 @@
+{
+  "projects": 20,
+  "records": 64,
+  "links": [
+    {
+      "id": "ba3904fa6b5c4f1db54b915e",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "biografia-localitatii",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "biografia-localitatii:slug",
+              "value": "cluj-napoca-54975",
+              "raw_value": "cluj-napoca-54975",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:siruta",
+              "value": "54975",
+              "raw_value": "54975",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://mariuscomper.uk/biografia-localitatii/data/uat-index.json"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://mariuscomper.uk/biografia-localitatii/cluj-napoca-54975/",
+              "basis": "template-derived",
+              "evidence": [
+                "505bb51f62f5db6dceb4fa37",
+                "80f5f1d7f5a0696ca5eebed5"
+              ]
+            }
+          ],
+          "evidence": [
+            "505bb51f62f5db6dceb4fa37"
+          ]
+        },
+        {
+          "project": "ce-cumpara-primaria",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "54975",
+              "raw_value": "54975",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://cecumparaprimaria.vercel.app/uat/54975?an=2025"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://cecumparaprimaria.vercel.app/uat/54975?an=2025",
+              "basis": "template-derived",
+              "evidence": [
+                "804fc0b70cab8ee9675d3200",
+                "c331db20e887a482547eca5e",
+                "adb242704bfe38e1948d327b"
+              ]
+            }
+          ],
+          "evidence": [
+            "adb242704bfe38e1948d327b"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "178b2b6832f3f38688e66c07",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "biografia-localitatii",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "biografia-localitatii:slug",
+              "value": "bucuresti-179132",
+              "raw_value": "bucuresti-179132",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://mariuscomper.uk/biografia-localitatii/data/uat-index.json"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://mariuscomper.uk/biografia-localitatii/bucuresti-179132/",
+              "basis": "template-derived",
+              "evidence": [
+                "505bb51f62f5db6dceb4fa37",
+                "80f5f1d7f5a0696ca5eebed5"
+              ]
+            }
+          ],
+          "evidence": [
+            "505bb51f62f5db6dceb4fa37"
+          ]
+        },
+        {
+          "project": "ce-cumpara-primaria",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://cecumparaprimaria.vercel.app/uat/179132?an=2025"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://cecumparaprimaria.vercel.app/uat/179132?an=2025",
+              "basis": "template-derived",
+              "evidence": [
+                "804fc0b70cab8ee9675d3200",
+                "c331db20e887a482547eca5e",
+                "adb242704bfe38e1948d327b"
+              ]
+            }
+          ],
+          "evidence": [
+            "c331db20e887a482547eca5e"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e30e2ab95786b5b36c3bcc22",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "biografia-localitatii",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "biografia-localitatii:slug",
+              "value": "alba-iulia-1017",
+              "raw_value": "alba-iulia-1017",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:siruta",
+              "value": "1017",
+              "raw_value": "1017",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://mariuscomper.uk/biografia-localitatii/data/uat-index.json"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://mariuscomper.uk/biografia-localitatii/alba-iulia-1017/",
+              "basis": "template-derived",
+              "evidence": [
+                "505bb51f62f5db6dceb4fa37",
+                "80f5f1d7f5a0696ca5eebed5"
+              ]
+            }
+          ],
+          "evidence": [
+            "505bb51f62f5db6dceb4fa37"
+          ]
+        },
+        {
+          "project": "data-expertforum",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "1017",
+              "raw_value": "1017",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/export?format=csv&gid=768211337"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "cd49401a48365d97ce9f82bd"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c97d54ed98cb5d5c15254eee",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "biografia-localitatii",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "biografia-localitatii:slug",
+              "value": "cluj-napoca-54975",
+              "raw_value": "cluj-napoca-54975",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:siruta",
+              "value": "54975",
+              "raw_value": "54975",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://mariuscomper.uk/biografia-localitatii/data/uat-index.json"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://mariuscomper.uk/biografia-localitatii/cluj-napoca-54975/",
+              "basis": "template-derived",
+              "evidence": [
+                "505bb51f62f5db6dceb4fa37",
+                "80f5f1d7f5a0696ca5eebed5"
+              ]
+            }
+          ],
+          "evidence": [
+            "505bb51f62f5db6dceb4fa37"
+          ]
+        },
+        {
+          "project": "data-expertforum",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "54975",
+              "raw_value": "54975",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/export?format=csv&gid=768211337"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "cd49401a48365d97ce9f82bd"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f259fb2508b3c6d970258e40",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "biografia-localitatii",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "biografia-localitatii:slug",
+              "value": "bucuresti-179132",
+              "raw_value": "bucuresti-179132",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://mariuscomper.uk/biografia-localitatii/data/uat-index.json"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://mariuscomper.uk/biografia-localitatii/bucuresti-179132/",
+              "basis": "template-derived",
+              "evidence": [
+                "505bb51f62f5db6dceb4fa37",
+                "80f5f1d7f5a0696ca5eebed5"
+              ]
+            }
+          ],
+          "evidence": [
+            "505bb51f62f5db6dceb4fa37"
+          ]
+        },
+        {
+          "project": "data-expertforum",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/export?format=csv&gid=768211337"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "cd49401a48365d97ce9f82bd"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "296cb9b0a388c75a88642e62",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "companii-de-stat",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://companiidestat.ro/date/v1/companii/1973096.json"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://companiidestat.ro/companii/1973096/",
+              "basis": "template-derived",
+              "evidence": [
+                "b64170ce1545bb900e8b4f44",
+                "93a069e67bfb21de1210ea5a"
+              ]
+            }
+          ],
+          "evidence": [
+            "58bcf5d376daf8a287f0425a"
+          ]
+        },
+        {
+          "project": "igov",
+          "collection": "organizations",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "igov:organizations:id",
+              "value": "cui-1973096",
+              "raw_value": "cui-1973096",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://igov.ro/api/organizations/cui-1973096"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://igov.ro/organizatii/cui-1973096",
+              "basis": "template-derived",
+              "evidence": [
+                "ae9c6adbc068456b64a6a119",
+                "f606a93626f0b8cafd455062",
+                "ce21f8af04bee79252f82715"
+              ]
+            }
+          ],
+          "evidence": [
+            "f606a93626f0b8cafd455062"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "0dd03b68f70068d295060742",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "companii-publice-ro",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://cosettechichirau.github.io/companiipublice/companii.json"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "ccebb687745aa63870c50ae8"
+          ]
+        },
+        {
+          "project": "igov",
+          "collection": "organizations",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "igov:organizations:id",
+              "value": "cui-1973096",
+              "raw_value": "cui-1973096",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://igov.ro/api/organizations/cui-1973096"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://igov.ro/organizatii/cui-1973096",
+              "basis": "template-derived",
+              "evidence": [
+                "ae9c6adbc068456b64a6a119",
+                "f606a93626f0b8cafd455062",
+                "ce21f8af04bee79252f82715"
+              ]
+            }
+          ],
+          "evidence": [
+            "f606a93626f0b8cafd455062"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "7f2f7fa1aa9e7a2fd74c6ba2",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "demoanaf",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://demoanaf.ro/verificare-cui/1973096"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://demoanaf.ro/verificare-cui/1973096",
+              "basis": "template-derived",
+              "evidence": [
+                "a079c59aa70ea817d629b65a",
+                "ebd1ae5d9ed26d4def5419ed",
+                "fd83a1951782ec5ae130735d"
+              ]
+            }
+          ],
+          "evidence": [
+            "ebd1ae5d9ed26d4def5419ed"
+          ]
+        },
+        {
+          "project": "igov",
+          "collection": "organizations",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "igov:organizations:id",
+              "value": "cui-1973096",
+              "raw_value": "cui-1973096",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://igov.ro/api/organizations/cui-1973096"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://igov.ro/organizatii/cui-1973096",
+              "basis": "template-derived",
+              "evidence": [
+                "ae9c6adbc068456b64a6a119",
+                "f606a93626f0b8cafd455062",
+                "ce21f8af04bee79252f82715"
+              ]
+            }
+          ],
+          "evidence": [
+            "f606a93626f0b8cafd455062"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fe1dc0bdf53c1a7bf759d790",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "companii-de-stat",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://companiidestat.ro/date/v1/companii/31029694.json"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://companiidestat.ro/companii/31029694/",
+              "basis": "template-derived",
+              "evidence": [
+                "b64170ce1545bb900e8b4f44",
+                "93a069e67bfb21de1210ea5a"
+              ]
+            }
+          ],
+          "evidence": [
+            "175cbf494191a23afb365161"
+          ]
+        },
+        {
+          "project": "igov",
+          "collection": "organizations",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "igov:organizations:id",
+              "value": "cui-31029694",
+              "raw_value": "cui-31029694",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://igov.ro/api/organizations/cui-31029694"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://igov.ro/organizatii/cui-31029694",
+              "basis": "template-derived",
+              "evidence": [
+                "ae9c6adbc068456b64a6a119",
+                "f606a93626f0b8cafd455062",
+                "ce21f8af04bee79252f82715"
+              ]
+            }
+          ],
+          "evidence": [
+            "ce21f8af04bee79252f82715"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "07843181db8ed6c3ed1e3f54",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "companii-publice-ro",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://cosettechichirau.github.io/companiipublice/companii.json"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "ccebb687745aa63870c50ae8"
+          ]
+        },
+        {
+          "project": "igov",
+          "collection": "organizations",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "igov:organizations:id",
+              "value": "cui-31029694",
+              "raw_value": "cui-31029694",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://igov.ro/api/organizations/cui-31029694"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://igov.ro/organizatii/cui-31029694",
+              "basis": "template-derived",
+              "evidence": [
+                "ae9c6adbc068456b64a6a119",
+                "f606a93626f0b8cafd455062",
+                "ce21f8af04bee79252f82715"
+              ]
+            }
+          ],
+          "evidence": [
+            "ce21f8af04bee79252f82715"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b549b9dd602365d92b5e1e7a",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "demoanaf",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://demoanaf.ro/verificare-cui/31029694"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://demoanaf.ro/verificare-cui/31029694",
+              "basis": "template-derived",
+              "evidence": [
+                "a079c59aa70ea817d629b65a",
+                "ebd1ae5d9ed26d4def5419ed",
+                "fd83a1951782ec5ae130735d"
+              ]
+            }
+          ],
+          "evidence": [
+            "fd83a1951782ec5ae130735d"
+          ]
+        },
+        {
+          "project": "igov",
+          "collection": "organizations",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "igov:organizations:id",
+              "value": "cui-31029694",
+              "raw_value": "cui-31029694",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://igov.ro/api/organizations/cui-31029694"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://igov.ro/organizatii/cui-31029694",
+              "basis": "template-derived",
+              "evidence": [
+                "ae9c6adbc068456b64a6a119",
+                "f606a93626f0b8cafd455062",
+                "ce21f8af04bee79252f82715"
+              ]
+            }
+          ],
+          "evidence": [
+            "ce21f8af04bee79252f82715"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6a3d207680b469c9a6fd2170",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "companii-publice-ro",
+          "collection": "parents",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "8359779",
+              "raw_value": "8359779",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://cosettechichirau.github.io/companiipublice/companii.json"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "ccebb687745aa63870c50ae8"
+          ]
+        },
+        {
+          "project": "igov",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "igov:companies:id",
+              "value": "inst_cui-8359779_f989662eb7",
+              "raw_value": "inst_cui-8359779_f989662eb7",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:cui",
+              "value": "8359779",
+              "raw_value": "8359779",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://igov.ro/reports/guvernanta.json"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "3e5ed8ce6a89ece9f675727c"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b71f5d8d5f8ca4ab2c992cdb",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "igov",
+          "collection": "organizations",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "igov:organizations:id",
+              "value": "cui-1973096",
+              "raw_value": "cui-1973096",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://igov.ro/api/organizations/cui-1973096"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://igov.ro/organizatii/cui-1973096",
+              "basis": "template-derived",
+              "evidence": [
+                "ae9c6adbc068456b64a6a119",
+                "f606a93626f0b8cafd455062",
+                "ce21f8af04bee79252f82715"
+              ]
+            }
+          ],
+          "evidence": [
+            "f606a93626f0b8cafd455062"
+          ]
+        },
+        {
+          "project": "lista-firme",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:onrc:euid",
+              "value": "ROONRC.J1991000285223",
+              "raw_value": "ROONRC.J1991000285223",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://lista-firme.info/api/v1/info?cui=1973096"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://lista-firme.info/companie/1973096",
+              "basis": "template-derived",
+              "evidence": [
+                "a4a2c708a7dd3d934dac31af",
+                "ea0056ebe028906eb3996bd4"
+              ]
+            }
+          ],
+          "evidence": [
+            "819af9da7819050fbf24f55d"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "7a76d816a0c5e537e19695d5",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "igov",
+          "collection": "organizations",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "igov:organizations:id",
+              "value": "cui-31029694",
+              "raw_value": "cui-31029694",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://igov.ro/api/organizations/cui-31029694"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://igov.ro/organizatii/cui-31029694",
+              "basis": "template-derived",
+              "evidence": [
+                "ae9c6adbc068456b64a6a119",
+                "f606a93626f0b8cafd455062",
+                "ce21f8af04bee79252f82715"
+              ]
+            }
+          ],
+          "evidence": [
+            "ce21f8af04bee79252f82715"
+          ]
+        },
+        {
+          "project": "lista-firme",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "31029694",
+              "raw_value": "31029694",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:onrc:euid",
+              "value": "ROONRC.J2013010843400",
+              "raw_value": "ROONRC.J2013010843400",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://lista-firme.info/api/v1/info?cui=31029694"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://lista-firme.info/companie/31029694",
+              "basis": "template-derived",
+              "evidence": [
+                "a4a2c708a7dd3d934dac31af",
+                "ea0056ebe028906eb3996bd4"
+              ]
+            }
+          ],
+          "evidence": [
+            "fbd90e21ba46dfa86dc8471b"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "19638883bc2c13bc792fab19",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "biografia-localitatii",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "biografia-localitatii:slug",
+              "value": "alba-iulia-1017",
+              "raw_value": "alba-iulia-1017",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:siruta",
+              "value": "1017",
+              "raw_value": "1017",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://mariuscomper.uk/biografia-localitatii/data/uat-index.json"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://mariuscomper.uk/biografia-localitatii/alba-iulia-1017/",
+              "basis": "template-derived",
+              "evidence": [
+                "505bb51f62f5db6dceb4fa37",
+                "80f5f1d7f5a0696ca5eebed5"
+              ]
+            }
+          ],
+          "evidence": [
+            "505bb51f62f5db6dceb4fa37"
+          ]
+        },
+        {
+          "project": "orasul-care-se-intinde",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "1017",
+              "raw_value": "1017",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://mariuscomper.uk/orasul-care-se-intinde/data/localitati.csv"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "eb80d14c6d9000a9d20b4638"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "08ec221670a0e94559b73876",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "biografia-localitatii",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "biografia-localitatii:slug",
+              "value": "cluj-napoca-54975",
+              "raw_value": "cluj-napoca-54975",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:siruta",
+              "value": "54975",
+              "raw_value": "54975",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://mariuscomper.uk/biografia-localitatii/data/uat-index.json"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://mariuscomper.uk/biografia-localitatii/cluj-napoca-54975/",
+              "basis": "template-derived",
+              "evidence": [
+                "505bb51f62f5db6dceb4fa37",
+                "80f5f1d7f5a0696ca5eebed5"
+              ]
+            }
+          ],
+          "evidence": [
+            "505bb51f62f5db6dceb4fa37"
+          ]
+        },
+        {
+          "project": "orasul-care-se-intinde",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "54975",
+              "raw_value": "54975",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://mariuscomper.uk/orasul-care-se-intinde/data/localitati.csv"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "eb80d14c6d9000a9d20b4638"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "27f53de44980e56857cb7729",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "biografia-localitatii",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "biografia-localitatii:slug",
+              "value": "bucuresti-179132",
+              "raw_value": "bucuresti-179132",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://mariuscomper.uk/biografia-localitatii/data/uat-index.json"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://mariuscomper.uk/biografia-localitatii/bucuresti-179132/",
+              "basis": "template-derived",
+              "evidence": [
+                "505bb51f62f5db6dceb4fa37",
+                "80f5f1d7f5a0696ca5eebed5"
+              ]
+            }
+          ],
+          "evidence": [
+            "505bb51f62f5db6dceb4fa37"
+          ]
+        },
+        {
+          "project": "orasul-care-se-intinde",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://mariuscomper.uk/orasul-care-se-intinde/data/localitati.csv"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "eb80d14c6d9000a9d20b4638"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2803fc704fecaf6c5c35bb5a",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "igov",
+          "collection": "organizations",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "igov:organizations:id",
+              "value": "cui-1973096",
+              "raw_value": "cui-1973096",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://igov.ro/api/organizations/cui-1973096"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://igov.ro/organizatii/cui-1973096",
+              "basis": "template-derived",
+              "evidence": [
+                "ae9c6adbc068456b64a6a119",
+                "f606a93626f0b8cafd455062",
+                "ce21f8af04bee79252f82715"
+              ]
+            }
+          ],
+          "evidence": [
+            "f606a93626f0b8cafd455062"
+          ]
+        },
+        {
+          "project": "registrul-firmelor",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://registru.horecaos.org/firma/1973096"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://registru.horecaos.org/firma/1973096",
+              "basis": "template-derived",
+              "evidence": [
+                "45da0fac72ec31bfce8eef34"
+              ]
+            }
+          ],
+          "evidence": [
+            "ee420d096aa7c99b33a64ed1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "0da2bc51dcf60bd82295e5f6",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "biografia-localitatii",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "biografia-localitatii:slug",
+              "value": "bucuresti-179132",
+              "raw_value": "bucuresti-179132",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://mariuscomper.uk/biografia-localitatii/data/uat-index.json"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://mariuscomper.uk/biografia-localitatii/bucuresti-179132/",
+              "basis": "template-derived",
+              "evidence": [
+                "505bb51f62f5db6dceb4fa37",
+                "80f5f1d7f5a0696ca5eebed5"
+              ]
+            }
+          ],
+          "evidence": [
+            "505bb51f62f5db6dceb4fa37"
+          ]
+        },
+        {
+          "project": "romania-transparenta",
+          "collection": "uat",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://api.romaniatransparenta.eu/v1/uat?q=Bucuresti&limit=1"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://romaniatransparenta.eu/registre/administratia-locala/179132",
+              "basis": "template-derived",
+              "evidence": [
+                "4b840d5591599b562036d790"
+              ]
+            }
+          ],
+          "evidence": [
+            "94fb3ac2cbbe38aee59b135a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f113c21dc23e2befc9622064",
+      "state": "proposed",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "biografia-localitatii",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "biografia-localitatii:slug",
+              "value": "bucuresti-179132",
+              "raw_value": "bucuresti-179132",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://mariuscomper.uk/biografia-localitatii/data/uat-index.json"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://mariuscomper.uk/biografia-localitatii/bucuresti-179132/",
+              "basis": "template-derived",
+              "evidence": [
+                "505bb51f62f5db6dceb4fa37",
+                "80f5f1d7f5a0696ca5eebed5"
+              ]
+            }
+          ],
+          "evidence": [
+            "505bb51f62f5db6dceb4fa37"
+          ]
+        },
+        {
+          "project": "transparenta-eu",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://api.transparenta.eu/graphql"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "52d89462f3071c9e58c04cc9"
+          ]
+        }
+      ]
+    }
+  ],
+  "conflicts": [],
+  "gaps": [],
+  "local_sources": [],
+  "declared_without_samples": [
+    "sicap-ai"
+  ],
+  "evidence": {
+    "505bb51f62f5db6dceb4fa37": {
+      "project": "biografia-localitatii",
+      "source": "https://mariuscomper.uk/biografia-localitatii/data/uat-index.json",
+      "observed_at": "2026-10-30T16:48:32.619278+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/biografia-localitatii.json",
+      "alias": "territory-and-slug-ids",
+      "artifact": "docs/reports/site-structure-batch-h/evidence/biografia-localitatii-territory-and-slug-ids.json",
+      "sha256": "09dfaccb0036bdba235d54d0d0bd3c9a686a2d0f7a30d6104dd9fe697466ad98",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "80f5f1d7f5a0696ca5eebed5": {
+      "project": "biografia-localitatii",
+      "source": "https://mariuscomper.uk/biografia-localitatii/assets/app.js?v=00907ff382",
+      "observed_at": "2026-10-30T16:46:17.665563+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/biografia-localitatii.json",
+      "alias": "index-and-route-code",
+      "artifact": "docs/reports/site-structure-batch-h/evidence/biografia-localitatii-index-and-route-code.json",
+      "sha256": "129b8d6f8c4383fddb6d3d135ef7a3c0ccbde316551a7569b0351c373b4d83d3",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "adb242704bfe38e1948d327b": {
+      "project": "ce-cumpara-primaria",
+      "source": "https://cecumparaprimaria.vercel.app/uat/54975?an=2025",
+      "observed_at": "2026-10-30T16:24:09.077860+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/ce-cumpara-primaria.json",
+      "alias": "territory-54975",
+      "artifact": "docs/reports/site-structure-batch-g/evidence/ce-cumpara-primaria-territory-54975.json",
+      "sha256": "8441a921eca2c0f08381992ffdc32aa2779560c25486ab7016f5b2234e1806e3",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "804fc0b70cab8ee9675d3200": {
+      "project": "ce-cumpara-primaria",
+      "source": "https://cecumparaprimaria.vercel.app/uat/9262?an=2025",
+      "observed_at": "2026-10-27T17:02:26.628503+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/ce-cumpara-primaria.json",
+      "alias": "territory-9262",
+      "artifact": "docs/reports/site-structure-batch-g/evidence/ce-cumpara-primaria-territory-9262.json",
+      "sha256": "60b122834c70dca3f280a852260eaccae36cddc498e9ef5dabaac6d51c7428d4",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "c331db20e887a482547eca5e": {
+      "project": "ce-cumpara-primaria",
+      "source": "https://cecumparaprimaria.vercel.app/uat/179132?an=2025",
+      "observed_at": "2026-10-30T16:24:08.073104+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/ce-cumpara-primaria.json",
+      "alias": "territory-179132",
+      "artifact": "docs/reports/site-structure-batch-g/evidence/ce-cumpara-primaria-territory-179132.json",
+      "sha256": "e92efd2282ed916f9a2768ae05dd1ae73384c72587c44e4e8bddeb6d815a9f09",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "cd49401a48365d97ce9f82bd": {
+      "project": "data-expertforum",
+      "source": "https://docs.google.com/spreadsheets/d/1-k9laB-k9TDdbbHdFpNyBN_xuk3iyoDy/export?format=csv&gid=768211337",
+      "observed_at": "2026-10-26T18:39:25.584747+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/data-expertforum.json",
+      "alias": "funding-territories",
+      "artifact": "docs/reports/site-structure-batch-g/evidence/data-expertforum-funding-territories.json",
+      "sha256": "c076e62d2f37ddb64458f2e9a776996afdd82e907bd593df58ced4177d52fe17",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "58bcf5d376daf8a287f0425a": {
+      "project": "companii-de-stat",
+      "source": "https://companiidestat.ro/date/v1/companii/1973096.json",
+      "observed_at": "2026-10-30T15:51:52.370581+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/companii-de-stat.json",
+      "alias": "company-1973096",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/companii-de-stat-company-1973096.json",
+      "sha256": "13087af4812b7dcf9ce991f723b35e3f6aecd8dca0bb6b95929d09a690e1137e",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "b64170ce1545bb900e8b4f44": {
+      "project": "companii-de-stat",
+      "source": "https://companiidestat.ro/_astro/hoisted.cQ6Rdhz_.js",
+      "observed_at": "2026-10-30T15:53:10.335400+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/companii-de-stat.json",
+      "alias": "search-script",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/companii-de-stat-search-script.json",
+      "sha256": "5d7d88204b13a104f96cca4b4825c56f6187b33a652441e7ba0fb7c210b054b2",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "93a069e67bfb21de1210ea5a": {
+      "project": "companii-de-stat",
+      "source": "https://companiidestat.ro/date/v1/openapi.json",
+      "observed_at": "2026-10-24T22:41:10.356601+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/companii-de-stat.json",
+      "alias": "openapi",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/companii-de-stat-openapi.json",
+      "sha256": "a47105c40e6049f0586312812bf2e645a0b0df5f828159fddffdeab758d75cb8",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "f606a93626f0b8cafd455062": {
+      "project": "igov",
+      "source": "https://igov.ro/api/organizations/cui-1973096",
+      "observed_at": "2026-10-30T16:50:18.807757+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/igov.json",
+      "alias": "organization-1973096",
+      "artifact": "docs/reports/site-structure-batch-h/evidence/igov-organization-1973096.json",
+      "sha256": "14c25c7053b0e54e77696cab0d977baae1d813a0543fd6c4aa33bd6de2fbc006",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "ae9c6adbc068456b64a6a119": {
+      "project": "igov",
+      "source": "https://igov.ro/organization-directory.js",
+      "observed_at": "2026-10-30T16:48:30.436222+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/igov.json",
+      "alias": "organization-routes",
+      "artifact": "docs/reports/site-structure-batch-h/evidence/igov-organization-routes.json",
+      "sha256": "b578e119aa97511b89fd96e4239dad1c8070446ca4304e82860a8cd35a3dccc2",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "ce21f8af04bee79252f82715": {
+      "project": "igov",
+      "source": "https://igov.ro/api/organizations/cui-31029694",
+      "observed_at": "2026-10-30T16:50:20.813616+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/igov.json",
+      "alias": "organization-31029694",
+      "artifact": "docs/reports/site-structure-batch-h/evidence/igov-organization-31029694.json",
+      "sha256": "cd6ccfcc6780b828accaa7f9a8521ab5b011b3348b55d60fce6ed2f81428ba4a",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "ccebb687745aa63870c50ae8": {
+      "project": "companii-publice-ro",
+      "source": "https://cosettechichirau.github.io/companiipublice/companii.json",
+      "observed_at": "2026-10-27T17:01:22.338903+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/companii-publice-ro.json",
+      "alias": "corporate-roles",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/companii-publice-ro-corporate-roles.json",
+      "sha256": "6e56716d29ab44f3120882c3cb5ad0091656b87bac486bce2cd8c575cc0a700c",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "ebd1ae5d9ed26d4def5419ed": {
+      "project": "demoanaf",
+      "source": "https://demoanaf.ro/verificare-cui/1973096",
+      "observed_at": "2026-10-30T15:51:49.142984+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/demoanaf.json",
+      "alias": "frontend-1973096",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/demoanaf-frontend-1973096.json",
+      "sha256": "5c4b571793e4ad64ce31afbf9fe8c12c99a809384dc85d04993bd2b26a81b414",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "a079c59aa70ea817d629b65a": {
+      "project": "demoanaf",
+      "source": "https://demoanaf.ro/llms.txt",
+      "observed_at": "2026-10-24T22:19:27.299844+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/demoanaf.json",
+      "alias": "llms",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/demoanaf-llms.json",
+      "sha256": "c5f25de96c886c445fdc2cae0ba3ee156f1a0c67f2573e9176e57909547c4fed",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "fd83a1951782ec5ae130735d": {
+      "project": "demoanaf",
+      "source": "https://demoanaf.ro/verificare-cui/31029694",
+      "observed_at": "2026-10-30T15:51:50.148320+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/demoanaf.json",
+      "alias": "frontend-31029694",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/demoanaf-frontend-31029694.json",
+      "sha256": "62e8e9dc7b28090b28b453efaa22a96c14d18751927403664d5f34533b7540ee",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "175cbf494191a23afb365161": {
+      "project": "companii-de-stat",
+      "source": "https://companiidestat.ro/date/v1/companii/31029694.json",
+      "observed_at": "2026-10-30T15:51:53.371640+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/companii-de-stat.json",
+      "alias": "company-31029694",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/companii-de-stat-company-31029694.json",
+      "sha256": "700191b13da9890d76bbb6ea9cb21df056f5b3ec33fb81edfdea90c304d2b827",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "3e5ed8ce6a89ece9f675727c": {
+      "project": "igov",
+      "source": "https://igov.ro/reports/guvernanta.json",
+      "observed_at": "2026-10-27T17:00:51.012879+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/igov.json",
+      "alias": "additional-legacy-company",
+      "artifact": "docs/reports/site-structure-batch-h/evidence/igov-additional-legacy-company.json",
+      "sha256": "ea89d2f31464ddc6cec4c9910460368fb992237aa295a9e064b129cc854cefb3",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "819af9da7819050fbf24f55d": {
+      "project": "lista-firme",
+      "source": "https://lista-firme.info/api/v1/info?cui=1973096",
+      "observed_at": "2026-10-30T15:51:47.022942+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/lista-firme.json",
+      "alias": "company-1973096",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/lista-firme-company-1973096.json",
+      "sha256": "e2fb52bc75203b8076cfc0d90fd4f2e62da32a9c3c8f53cc006405b7aa43d5c0",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "a4a2c708a7dd3d934dac31af": {
+      "project": "lista-firme",
+      "source": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/routes/web.php",
+      "observed_at": "2026-10-30T15:53:08.964571+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/lista-firme.json",
+      "alias": "routes",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/lista-firme-routes.json",
+      "sha256": "14a9f244b0930407b2a31532b6a8105111739847ecb77ba9d4cd210352f3800a",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "ea0056ebe028906eb3996bd4": {
+      "project": "lista-firme",
+      "source": "https://raw.githubusercontent.com/tudorr89/info-firme/1dcb375547439c3ee66882c8f779f9f402e854c3/database/migrations/2024_02_18_184655_create_companies_table.php",
+      "observed_at": "2026-10-26T23:12:38.379806+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/lista-firme.json",
+      "alias": "company-schema",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/lista-firme-company-schema.json",
+      "sha256": "935c8307f05b37bb46b4b1220b9f2756bdfb35aa4cd0daac1e04c554b1cd7520",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "fbd90e21ba46dfa86dc8471b": {
+      "project": "lista-firme",
+      "source": "https://lista-firme.info/api/v1/info?cui=31029694",
+      "observed_at": "2026-10-30T15:51:48.025168+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/lista-firme.json",
+      "alias": "company-31029694",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/lista-firme-company-31029694.json",
+      "sha256": "e2bac8b775dd0bc7cece86d513104a2acc7311aa80b03cee5e66405f6b5e6bc4",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "eb80d14c6d9000a9d20b4638": {
+      "project": "orasul-care-se-intinde",
+      "source": "https://mariuscomper.uk/orasul-care-se-intinde/data/localitati.csv",
+      "observed_at": "2026-10-24T22:41:11.053100+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/orasul-care-se-intinde.json",
+      "alias": "territories",
+      "artifact": "docs/reports/site-structure-batch-f/evidence/orasul-care-se-intinde-territories.json",
+      "sha256": "732c9e704dba6be39e4332baa4125c78f3d4d8d56300ea655619a95c5e8fe849",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    "ee420d096aa7c99b33a64ed1": {
+      "project": "registrul-firmelor",
+      "source": "https://registru.horecaos.org/firma/1973096",
+      "observed_at": "2026-10-30T10:43:29.392456+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/registrul-firmelor.json",
+      "alias": "registrul-firmelor-antibiotice-page",
+      "artifact": "docs/reports/site-structure-curation/evidence/registrul-firmelor-antibiotice-page.txt",
+      "sha256": "d8f25307080105240a87c15b74f783758ceaa81ce047ef088351a20a12183118",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 246,
+        "excerpt": "<title>ANTIBIOTICE SA — CUI 1973096, bilanț și date firmă</title>\n<meta name=\"description\" content=\"ANTIBIOTICE SA, CUI 1973096 · Municipiul Iaşi, Iaşi · plătitor de TVA\">\n<link rel=\"canonical\" href=\"https://registru.horecaos.org/firma/1973096\">\n"
+      }
+    },
+    "45da0fac72ec31bfce8eef34": {
+      "project": "registrul-firmelor",
+      "source": "https://registru.horecaos.org/llms.txt",
+      "observed_at": "2026-10-29T22:42:08.397615+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/registrul-firmelor.json",
+      "alias": "registrul-firmelor-llms",
+      "artifact": "docs/reports/site-structure-pilot/evidence/registrul-firmelor-llms.txt",
+      "sha256": "7a869379e71e47488cb666b2d78b2886db4586726d3b74c3c3d26d69e6e9d58b",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 1050,
+        "excerpt": "# Registrul firmelor din România (registru.horecaos.org)\n\n> Registru public și gratuit al firmelor din România, construit de HoReCaOS din surse oficiale: ONRC (registrul comerțului, lunar), ANAF (date fiscale: TVA, inactivi, RO e-Factura) și Ministerul Finanțelor (bilanțuri 2012–2025). 3.920.761 de firme, 12.497.860 de bilanțuri. Fără nume de administratori sau asociați (date personale).\n\n## Cum se citează o firmă\n- Fișa unei firme: https://registru.horecaos.org/firma/<CUI> (CUI fără „RO\"; ex. https://registru.horecaos.org/firma/14399840). Conține CUI, nr. de înregistrare, EUID, sediul social, stare fiscală, TVA, RO e-Factura, CAEN autorizat, bilanțuri pe ani (cifră de afaceri, profit, salariați), istoric ONRC, scor de risc transparent.\n- API JSON gratuit: https://registru.horecaos.org/api (1.000 de cereri/zi, cheie gratuită).\n- Datele sunt informative, fără valoare de document oficial; actul oficial e certificatul constatator ONRC.\n\n## Pagini principale\n- [Căutare firme](https://registru.horecaos.org/): după denumire sau CUI\n- [Verif"
+      }
+    },
+    "94fb3ac2cbbe38aee59b135a": {
+      "project": "romania-transparenta",
+      "source": "https://api.romaniatransparenta.eu/v1/uat?q=Bucuresti&limit=1",
+      "observed_at": "2026-10-29T22:42:40.160417+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/romania-transparenta.json",
+      "alias": "romania-transparenta-uat-response",
+      "artifact": "docs/reports/site-structure-pilot/evidence/romania-transparenta-uat-response.txt",
+      "sha256": "a92b1a428b7802da9409d1d23c9118d8211b931b2a5e2fe568e2c6fbea7f79fe",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 2177,
+        "excerpt": "{\n  \"date\": [\n    {\n      \"siruta\": \"179132\",\n      \"denumire\": \"Municipiul București\",\n      \"tip\": \"municipiu\",\n      \"judet\": \"București\",\n      \"cod_judet\": \"B\",\n      \"populatie\": 1716961,\n      \"an_populatie\": null,\n      \"cui_primarie\": null,\n      \"cui_primarie_incredere\": null,\n      \"cui_consiliu_judetean\": null,\n      \"observat_la\": \"2026-09-14\",\n      \"incredere\": \"derivat\",\n      \"fisa\": \"https://api.romaniatransparenta.eu/v1/uat/179132\",\n      \"pagina\": \"https://romaniatransparenta.eu/registre/administratia-locala/179132\"\n    }\n  ],\n  \"paginare\": {\n    \"limit\": 1,\n    \"offset\": 0,\n    \"intoarse\": 1,\n    \"are_urmatoarea\": false,\n    \"urmatoarea_offset\": null,\n    \"total\": 1\n  },\n  \"provenienta\": {\n    \"registru\": {\n      \"id\": \"administratia_locala\",\n      \"denumire\": \"registrul administrației locale\",\n      \"url\": \"https://romaniatransparenta.eu/registre/administratia-locala\"\n    },\n    \"sursa\": [\n      {\n        \"id\": \"sursa:rt-consilii\",\n        \"denumire\": \"Registrul consiliilor locale, reconstituit din procesele-verbale AEP și listele BEC\",\n        \"institutie_emitenta\": \"România Transparentă\",\n        \"url_baza\": \"https://romaniatransparenta.eu\",\n        \"licenta\": \"CC BY 4.0 (compilația România Transparentă; datele preluate își păstrează regimul lor)\"\n      }\n    ],\n    \"observat_la\": \"2026-09-14\",\n    \"incredere\": [\n      {\n        \"valoare\": \"derivat\",\n        \"explicatie\": \"calculat de noi din date oficiale\"\n      }\n    ],\n    \"editie\": \"publicare:20261029T133011\",\n    \"date_actualizate_la\": \"2026-10-26\",\n    \"licenta\": \"CC BY 4.0\",\n    \"licenta_nota\": \"Compilația România Transparentă e sub CC BY 4.0; datele preluate își păstrează regimul surselor (câmpul `licenta` din fiecare sursă).\",\n    \"citare\": \"România Transparentă, registrul administrației locale, https://romaniatransparenta.eu/registre/administratia-locala, date actualizate la 2026-10-26, CC BY 4.0\",\n    \"instructiuni\": \"Citează sursa folosind textul din `citare`. „Nu avem date” sau o listă goală NU înseamnă zero sau „nu există”: înseamnă că nu am găsit sau nu am verificat încă. Rezultatul `negasit` înseamnă „căutat automat și negăsit”, nu „lipsește”.\"\n  }\n}"
+      }
+    },
+    "4b840d5591599b562036d790": {
+      "project": "romania-transparenta",
+      "source": "https://romaniatransparenta.eu/llms.txt",
+      "observed_at": "2026-10-29T22:42:09.892892+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/romania-transparenta.json",
+      "alias": "romania-transparenta-llms-routes",
+      "artifact": "docs/reports/site-structure-pilot/evidence/romania-transparenta-llms-routes.txt",
+      "sha256": "c54cbaa1b6e43afd448e591e0be3877254545e297531680db7a4f9cbf9467b6e",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 3627,
+        "excerpt": "## Fișe (câte o pagină pe entitate)\n\n- https://romaniatransparenta.eu/registre/administratia-locala/<cod SIRUTA>: fișa unei primării (3.187): tip, județ, populație, primar, consiliul local, bugetul 2018–2024, achiziții, companii, ce publică pe site\n- https://romaniatransparenta.eu/registre/companii-de-stat/<CUI>: fișa unei companii de stat sau a unei companii locale: acționar/tutelă, cifră de afaceri, profit, angajați, din bilanțurile depuse la ANAF\n- https://romaniatransparenta.eu/registre/universitati/<CUI>: fișa unei universități de stat: finanțarea CNFIS pe student, achiziții, rectorul (doar cu document oficial)\n- https://romaniatransparenta.eu/registre/parlament/…: fișele deputaților și ale voturilor finale din Camera Deputaților\n- https://romaniatransparenta.eu/registre/administratia-centrala/<CUI>: fișa unui minister, a Secretariatului General al Guvernului sau a Cancelariei Prim-Ministrului: întâlnirile decidenților cu terții din RUTI (funcția, nu numele; organizațiile, nu persoanele), proiectele în consultare publică pe e-consultare.gov.ro, bugetul 2026 din Legea 43/2026\n- https://romaniatransparenta.eu/registre/fonduri-europene/<codul CCI al programului>: fișa unui program european (2021–2027 sau 2014–2020): alocat, decis, cheltuit, plătit de Comisie, după Comisia Europeană și, separat, după MIPE; sume în euro, fără conversii\n- https://romaniatransparenta.eu/registre/finantarea-partidelor/<partidul>: fișa unui partid: ce a declarat în Monitorul Oficial an cu an (cotizații, donații peste prag, donații confidențiale, împrumuturi, venituri proprii), firmele donatoare cu CUI și actele oficiale; persoanele fizice doar ca număr și sumă\n- https://romaniatransparenta.eu/registre/ajutoare-de-stat/<CUI>: ajutoarele de stat primite de o firmă (persoană juridică) care e companie de stat, furnizor în achiziții sau printre beneficiarii mari: rândurile din RegAS (Consiliul Concurenței), cu măsura, instrumentul, suma în lei și furnizorul; garanțiile și creditele separat de granturi; persoanele fizice nu au fișe\n- https://romaniatransparenta.eu/registre/europarlamentari/<ID-ul din Parlamentul European>: fișa unui europarlamentar român (34 de persoane, 33 de locuri): grup european, eticheta de partid din PE, organe, prezență în plen, voturile finale, declarațiile privind conflictele de interese (DCI) cu PDF-ul oficial, cu formula și numitorul fiecărei cifre\n- https://romaniatransparenta.eu/registre/datornici?q=<CUI sau nume>: căutarea în lista ANAF a persoanelor juridice cu obligații fiscale restante (deocamdată lista la 31.03.2016, singura publicată ca fișier deschis): suma restantă pe bugete, din care contestată, la data listei; doar persoane juridice\n- https://romaniatransparenta.eu/registre/concursuri: registrul concursurilor de angajare la stat: anunțurile de pe posturi.gov.ro și ANFP, pe instituții și județe, data limită, proba scrisă, posturile scoase de mai multe ori; fără persoane de contact și fără rezultate (nume de candidați)\n- https://romaniatransparenta.eu/registre/spitale/spital/<CUI>: fișa unei unități sanitare publice: achizițiile directe pe ani, furnizorii, categoriile și salariile de bază pe funcții (registrul spitalelor are și propriul /registre/spitale/llms.txt)\n- https://romaniatransparenta.eu/registre/salarii/…: calculatorul de salarii pentru bugetari pe proiectul legii salarizării: brut și net pe funcție, gradație și sporuri, grilele pe anexe, ghiduri (are și propriul /registre/salarii/llms.txt)\n- https://romaniatransparenta.eu/registre/decizii-mediu/…: actele de mediu (acorduri, avize, autorizații) pe localitate, cu linkul la documentul oficial"
+      }
+    },
+    "52d89462f3071c9e58c04cc9": {
+      "project": "transparenta-eu",
+      "source": "https://api.transparenta.eu/graphql",
+      "observed_at": "2026-10-29T22:45:54.378985+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/transparenta-eu.json",
+      "alias": "transparenta-eu-graphql-bucuresti",
+      "artifact": "docs/reports/site-structure-pilot/evidence/transparenta-eu-graphql-bucuresti.txt",
+      "sha256": "0ba1808b1b0fea17e3586c0d03190f2a25e81c651a040dc9a82f9612fdae4dfb",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 177,
+        "excerpt": "{\"data\":{\"entity\":{\"cui\":\"4267117\",\"name\":\"MUNICIPIUL BUCURESTI\",\"entity_type\":\"admin_municipality\",\"is_uat\":true,\"uat\":{\"name\":\"MUNICIPIUL BUCUREȘTI\",\"siruta_code\":\"179132\"}}}}"
+      }
+    }
+  },
+  "summary": {
+    "projects": 20,
+    "records": 64,
+    "assertions": 63,
+    "new_assertions": 20,
+    "existing_assertions": 43,
+    "new_records": 15,
+    "collections": 73,
+    "patterns": 80,
+    "operations": 96,
+    "identifier_rules": 58,
+    "relationships": 11
+  },
+  "scope": "Five new sites and igov enrichment; source observations and identity proposals. Owner acceptance and publication remain separate."
+}

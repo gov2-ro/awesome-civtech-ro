@@ -1,0 +1,64 @@
+{
+  "provenance": {
+    "source": "https://achizitii-directe-ti-2026.mariuscomper.uk/flagged_cases.csv",
+    "observed_at": "2026-10-24T22:41:10.355522+00:00",
+    "source_body_sha256": "1710cc666f7b1c4f132b8c2d37957b5436cc7c01cd2b1aa8fc76e95d7a49142e",
+    "retained_text_sha256": "1710cc666f7b1c4f132b8c2d37957b5436cc7c01cd2b1aa8fc76e95d7a49142e",
+    "source_snapshot": "surse/92aab0725bd7591cd85b-1710cc666f7b1c4f.json",
+    "http_status": 200,
+    "extraction": "CSV header and three exact purchase IDs with corporate party labels. No monetary values, risk labels or procurement allegations copied."
+  },
+  "payload": {
+    "header": [
+      "source_row",
+      "Numar achizitie directa",
+      "risk_score",
+      "Valoare achizitie (RON)",
+      "Autoritate contractanta",
+      "Ofertant castigator",
+      "Denumire achizitie",
+      "Cod CPV",
+      "Denumire CPV",
+      "Tip contract",
+      "Finantare prin fonduri comunitare?",
+      "Data publicare",
+      "Data finalizare",
+      "duration_hours",
+      "cluster_count",
+      "cluster_value",
+      "family_count",
+      "family_value",
+      "week_count",
+      "week_value",
+      "day_count",
+      "day_value",
+      "direct_limit",
+      "sector_label",
+      "authority_winner_share",
+      "flags"
+    ],
+    "rows": [
+      {
+        "source_index": 0,
+        "source_row": "180629",
+        "Numar achizitie directa": "DA39806106",
+        "Autoritate contractanta": "Compania Judeteana Apa Serv S.A. Neamt",
+        "Ofertant castigator": "WATER NETWORKS"
+      },
+      {
+        "source_index": 1,
+        "source_row": "321727",
+        "Numar achizitie directa": "DA39954337",
+        "Autoritate contractanta": "ORASUL ORAVITA",
+        "Ofertant castigator": "KLEVER SYSTEM"
+      },
+      {
+        "source_index": 2,
+        "source_row": "317224",
+        "Numar achizitie directa": "DA39949600",
+        "Autoritate contractanta": "ORASUL ORAVITA",
+        "Ofertant castigator": "KLEVER SYSTEM"
+      }
+    ]
+  }
+}

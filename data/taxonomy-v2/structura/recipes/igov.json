@@ -16,6 +16,116 @@
         "end": 1387,
         "excerpt": "{\n  \"source\": {\n    \"url\": \"https://igov.ro/reports/guvernanta.json\",\n    \"observed_at\": \"2026-10-27T17:00:51.012879+00:00\",\n    \"snapshot_sha256\": \"37c857d3c20af7d0af862b8f69dac893c667aea1c4aa6044487c4726c999bb52\",\n    \"complete_document\": false,\n    \"reader\": \"inventory_jsonsample.recover; complete company records only\",\n    \"source_indices\": [\n      0,\n      3\n    ],\n    \"transform\": \"Whitelist id, cui and company name; exclude all people and appointment data.\"\n  },\n  \"companies\": [\n    {\n      \"id\": \"inst_cui-31029694_fbc8ca0d0e\",\n      \"cui\": \"31029694\",\n      \"name\": \"Active Conexe SA\"\n    },\n    {\n      \"id\": \"inst_cui-1973096_89f11b5bc5\",\n      \"cui\": \"1973096\",\n      \"name\": \"Antibiotice SA\"\n    }\n  ],\n  \"curation_basis\": {\n    \"artifact\": \"data/taxonomy-v2/inventar-concepte.json\",\n    \"concept\": \"cui\",\n    \"definition\": \"Identificatorul fiscal al unei firme sau instituții. Rolul poate fi diferit: contribuabil, autoritate sau furnizor.\",\n    \"selector\": {\n      \"projects\": [\n        \"igov\"\n      ],\n      \"names\": [\n        \"cui\"\n      ],\n      \"path\": [\n        \"$.companies[].cui\"\n      ],\n      \"source\": \"https://igov.ro/reports/guvernanta.json\",\n      \"context\": \"CUI-ul companiei de stat din registrul de guvernanță (șir de caractere)\",\n      \"stare\": \"confirmat\",\n      \"nota_editor\": \"Confirmat în bloc la cererea proprietarului (2026-10-27)\"\n    }\n  }\n}\n"
       }
+    },
+    {
+      "id": "additional-legacy-company",
+      "source": "https://igov.ro/reports/guvernanta.json",
+      "observed_at": "2026-10-27T17:00:51.012879+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-h/evidence/igov-additional-legacy-company.json",
+      "sha256": "ea89d2f31464ddc6cec4c9910460368fb992237aa295a9e064b129cc854cefb3",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "current-sections",
+      "source": "https://igov.ro/",
+      "observed_at": "2026-10-30T16:46:07.441118+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-h/evidence/igov-current-sections.json",
+      "sha256": "e296b6f5df00bd6454c15b1463c88c9bf7a94114df798b4b0ee9e46960ffccd2",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "organization-routes",
+      "source": "https://igov.ro/organization-directory.js",
+      "observed_at": "2026-10-30T16:48:30.436222+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-h/evidence/igov-organization-routes.json",
+      "sha256": "b578e119aa97511b89fd96e4239dad1c8070446ca4304e82860a8cd35a3dccc2",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "governance-tabs",
+      "source": "https://igov.ro/reports/guvernanta.html",
+      "observed_at": "2026-10-30T16:46:10.472273+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-h/evidence/igov-governance-tabs.json",
+      "sha256": "84d2bc4315adb02b6d24376ee13f00babb2a233a16f6de6c77f47754b5dc2f26",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "organization-1973096",
+      "source": "https://igov.ro/api/organizations/cui-1973096",
+      "observed_at": "2026-10-30T16:50:18.807757+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-h/evidence/igov-organization-1973096.json",
+      "sha256": "14c25c7053b0e54e77696cab0d977baae1d813a0543fd6c4aa33bd6de2fbc006",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "organization-31029694",
+      "source": "https://igov.ro/api/organizations/cui-31029694",
+      "observed_at": "2026-10-30T16:50:20.813616+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-h/evidence/igov-organization-31029694.json",
+      "sha256": "cd6ccfcc6780b828accaa7f9a8521ab5b011b3348b55d60fce6ed2f81428ba4a",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "channels-api",
+      "source": "https://igov.ro/api/channels",
+      "observed_at": "2026-10-27T17:00:44.506661+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-h/evidence/igov-channels-api.json",
+      "sha256": "2a0e44df8de571519a981c23f8167636bf6ea89bd1157f0ed446716b4ae8b1c5",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "institutions-api",
+      "source": "https://igov.ro/api/institutions",
+      "observed_at": "2026-10-27T17:00:44.656936+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-h/evidence/igov-institutions-api.json",
+      "sha256": "f3391067915a02441c8b3cc5382a6ccea00b984cbb7a927a47ed2da24887acc1",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "public-results-code",
+      "source": "https://igov.ro/home-discovery.js",
+      "observed_at": "2026-10-30T16:46:14.487762+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-h/evidence/igov-public-results-code.json",
+      "sha256": "4ec2933f8efcfad2c4defa5751ec3e29b5ab4bb592eac095b917bf5fa22304bf",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "problem-inspiration-code",
+      "source": "https://igov.ro/home-inspiration.js",
+      "observed_at": "2026-10-30T16:46:15.492486+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-h/evidence/igov-problem-inspiration-code.json",
+      "sha256": "7905a56a43e297908de8b8f8f508b101ba0dfff57f96fa53ca99dfab30ff4fbd",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
     }
   ],
   "collections": [
@@ -27,9 +137,92 @@
       "identity_components": [
         "ro:cui"
       ],
-      "coverage": "Two complete corporate rows from a retained partial report.",
+      "coverage": "Three bounded corporate subjects from the retained governance report.",
       "evidence": [
-        "companies-sample"
+        "companies-sample",
+        "additional-legacy-company"
+      ]
+    },
+    {
+      "id": "organizations",
+      "label": "Companii — catalogul organizațiilor",
+      "entity_type": "company",
+      "record_grain": "legal_subject",
+      "identity_components": [
+        "ro:cui"
+      ],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "organization-routes"
+      ]
+    },
+    {
+      "id": "institutions",
+      "label": "Instituții publice — catalog",
+      "entity_type": "public_institution",
+      "record_grain": "legal_subject",
+      "identity_components": [
+        "ro:cui"
+      ],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "current-sections",
+        "organization-routes"
+      ]
+    },
+    {
+      "id": "projects",
+      "label": "Proiecte civice",
+      "entity_type": "unknown",
+      "record_grain": "project",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "current-sections"
+      ]
+    },
+    {
+      "id": "channels",
+      "label": "Canale și fluxuri publice",
+      "entity_type": "unknown",
+      "record_grain": "channel",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "current-sections"
+      ]
+    },
+    {
+      "id": "governance",
+      "label": "Guvernanță și mandate",
+      "entity_type": "unknown",
+      "record_grain": "appointment",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "governance-tabs"
+      ]
+    },
+    {
+      "id": "financials",
+      "label": "Serii financiare",
+      "entity_type": "unknown",
+      "record_grain": "company_year",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "governance-tabs"
+      ]
+    },
+    {
+      "id": "procurement",
+      "label": "Achiziții — agregate",
+      "entity_type": "unknown",
+      "record_grain": "company_period",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "governance-tabs"
       ]
     }
   ],
@@ -53,10 +246,409 @@
       "evidence": [
         "companies-sample"
       ]
+    },
+    {
+      "id": "igov:organizations:id",
+      "issuer": "igov",
+      "scope": "Canonical organization API IDs; independent of historical governance-report IDs.",
+      "normalization": "identity",
+      "shared": false,
+      "evidence": [
+        "organization-routes"
+      ]
     }
   ],
-  "patterns": [],
-  "operations": [],
+  "patterns": [
+    {
+      "id": "organization-catalogue",
+      "collection": "organizations",
+      "url_template": "https://igov.ro/organizatii",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "organization-routes"
+      ]
+    },
+    {
+      "id": "organization-profile",
+      "collection": "organizations",
+      "url_template": "https://igov.ro/organizatii/{organization_id}",
+      "kind": "detail",
+      "variables": [
+        {
+          "name": "organization_id",
+          "namespace": "igov:organizations:id",
+          "location": "path"
+        }
+      ],
+      "basis": "declared",
+      "examples": [],
+      "evidence": [
+        "organization-routes",
+        "organization-1973096",
+        "organization-31029694"
+      ]
+    },
+    {
+      "id": "institution-section",
+      "collection": "institutions",
+      "url_template": "https://igov.ro/institutii.html",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "current-sections"
+      ]
+    },
+    {
+      "id": "project-section",
+      "collection": "projects",
+      "url_template": "https://igov.ro/proiecte.html",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "current-sections"
+      ]
+    },
+    {
+      "id": "governance-section",
+      "collection": "companies",
+      "url_template": "https://igov.ro/reports/guvernanta.html",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "current-sections"
+      ]
+    },
+    {
+      "id": "governance-tab-tabel",
+      "collection": "companies",
+      "url_template": "https://igov.ro/reports/guvernanta.html#tabel",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "governance-tabs"
+      ]
+    },
+    {
+      "id": "governance-tab-achizitii",
+      "collection": "procurement",
+      "url_template": "https://igov.ro/reports/guvernanta.html#achizitii",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "governance-tabs"
+      ]
+    },
+    {
+      "id": "governance-tab-pierderi",
+      "collection": "financials",
+      "url_template": "https://igov.ro/reports/guvernanta.html#pierderi",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "governance-tabs"
+      ]
+    },
+    {
+      "id": "governance-tab-metoda",
+      "collection": "governance",
+      "url_template": "https://igov.ro/reports/guvernanta.html#metoda",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "governance-tabs"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "id": "channels-api",
+      "method": "GET",
+      "url_template": "https://igov.ro/api/channels",
+      "uses": [
+        {
+          "collection": "channels",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "anonymous"
+      },
+      "basis": [
+        "source-code"
+      ],
+      "evidence": [
+        "channels-api"
+      ],
+      "last_test": {
+        "outcome": "observed",
+        "reason": "Public response observed; only structural or corporate fields retained.",
+        "evidence": "channels-api",
+        "checked_at": "2026-10-27T17:00:44.506661+00:00"
+      }
+    },
+    {
+      "id": "institutions-api",
+      "method": "GET",
+      "url_template": "https://igov.ro/api/institutions",
+      "uses": [
+        {
+          "collection": "institutions",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "anonymous"
+      },
+      "basis": [
+        "source-code"
+      ],
+      "evidence": [
+        "institutions-api"
+      ],
+      "last_test": {
+        "outcome": "observed",
+        "reason": "Public response observed; only structural or corporate fields retained.",
+        "evidence": "institutions-api",
+        "checked_at": "2026-10-27T17:00:44.656936+00:00"
+      }
+    },
+    {
+      "id": "governance-data",
+      "method": "GET",
+      "url_template": "https://igov.ro/reports/guvernanta.json",
+      "uses": [
+        {
+          "collection": "companies",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown"
+      },
+      "basis": [
+        "source-code"
+      ],
+      "evidence": [
+        "governance-tabs"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "Source declaration only; no endpoint probe."
+      }
+    },
+    {
+      "id": "financial-series",
+      "method": "GET",
+      "url_template": "https://igov.ro/reports/guvernanta-series.json",
+      "uses": [
+        {
+          "collection": "financials",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown"
+      },
+      "basis": [
+        "source-code"
+      ],
+      "evidence": [
+        "governance-tabs"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "Source declaration only; no endpoint probe."
+      }
+    },
+    {
+      "id": "procurement-series",
+      "method": "GET",
+      "url_template": "https://igov.ro/reports/guvernanta-achizitii.json",
+      "uses": [
+        {
+          "collection": "procurement",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown"
+      },
+      "basis": [
+        "source-code"
+      ],
+      "evidence": [
+        "governance-tabs"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "Source declaration only; no endpoint probe."
+      }
+    },
+    {
+      "id": "organization-company-search",
+      "method": "GET",
+      "url_template": "https://igov.ro/api/organizations?q={cui}&type=company&limit=1&compact=1",
+      "uses": [
+        {
+          "collection": "organizations",
+          "subject_role": "self",
+          "scope": "at_least"
+        }
+      ],
+      "parameters": [],
+      "unresolved_parameters": true,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown"
+      },
+      "basis": [
+        "source-code"
+      ],
+      "evidence": [
+        "organization-routes",
+        "organization-1973096",
+        "organization-31029694"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "Source declaration only; no endpoint probe."
+      }
+    },
+    {
+      "id": "organization-detail",
+      "method": "GET",
+      "url_template": "https://igov.ro/api/organizations/{organization_id}",
+      "uses": [
+        {
+          "collection": "organizations",
+          "subject_role": "self",
+          "scope": "at_least"
+        }
+      ],
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "anonymous"
+      },
+      "basis": [
+        "source-code"
+      ],
+      "evidence": [
+        "organization-routes",
+        "organization-1973096",
+        "organization-31029694"
+      ],
+      "last_test": {
+        "outcome": "observed",
+        "reason": "Public response observed; only structural or corporate fields retained.",
+        "evidence": "organization-1973096",
+        "checked_at": "2026-10-30T16:50:18.807757+00:00"
+      }
+    },
+    {
+      "id": "public-results",
+      "method": "GET",
+      "url_template": "https://igov.ro/api/public-flows?status=with_results&limit=4&order=latest",
+      "uses": [
+        {
+          "collection": "channels",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown"
+      },
+      "basis": [
+        "source-code"
+      ],
+      "evidence": [
+        "public-results-code"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "Source declaration only; no endpoint probe."
+      }
+    },
+    {
+      "id": "problem-inspiration",
+      "method": "GET",
+      "url_template": "https://igov.ro/api/problem-inspiration",
+      "uses": [
+        {
+          "collection": "channels",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "parameters": [],
+      "unresolved_parameters": false,
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown"
+      },
+      "basis": [
+        "source-code"
+      ],
+      "evidence": [
+        "problem-inspiration-code"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "Source declaration only; no endpoint probe."
+      }
+    }
+  ],
   "identifier_rules": [
     {
       "id": "company-cui",
@@ -79,6 +671,56 @@
       "evidence": [
         "companies-sample"
       ]
+    },
+    {
+      "id": "additional-legacy-cui",
+      "collection": "companies",
+      "namespace": "ro:cui",
+      "location": "/company/cui",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "additional-legacy-company"
+      ],
+      "note": ""
+    },
+    {
+      "id": "additional-legacy-id",
+      "collection": "companies",
+      "namespace": "igov:companies:id",
+      "location": "/company/id",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "additional-legacy-company"
+      ],
+      "note": ""
+    },
+    {
+      "id": "organization-id",
+      "collection": "organizations",
+      "namespace": "igov:organizations:id",
+      "location": "/id",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "organization-1973096",
+        "organization-31029694"
+      ],
+      "note": ""
+    },
+    {
+      "id": "organization-cui",
+      "collection": "organizations",
+      "namespace": "ro:cui",
+      "location": "/cui",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "organization-1973096",
+        "organization-31029694"
+      ],
+      "note": ""
     }
   ],
   "samples": [
@@ -126,6 +768,78 @@
           "extractor": {
             "type": "json_pointer",
             "pointer": "/companies/1/cui"
+          }
+        }
+      ]
+    },
+    {
+      "id": "company-parent-8359779",
+      "collection": "companies",
+      "label": "Societatea de Strategie pentru Piața de Gros SRL",
+      "local_namespace": "igov:companies:id",
+      "identifiers": [
+        {
+          "rule": "additional-legacy-id",
+          "source": "additional-legacy-company",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/company/id"
+          }
+        },
+        {
+          "rule": "additional-legacy-cui",
+          "source": "additional-legacy-company",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/company/cui"
+          }
+        }
+      ]
+    },
+    {
+      "id": "organization-1973096",
+      "collection": "organizations",
+      "label": "Antibiotice SA — catalogul organizațiilor",
+      "local_namespace": "igov:organizations:id",
+      "identifiers": [
+        {
+          "rule": "organization-id",
+          "source": "organization-1973096",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/id"
+          }
+        },
+        {
+          "rule": "organization-cui",
+          "source": "organization-1973096",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/cui"
+          }
+        }
+      ]
+    },
+    {
+      "id": "organization-31029694",
+      "collection": "organizations",
+      "label": "Active Conexe SA — catalogul organizațiilor",
+      "local_namespace": "igov:organizations:id",
+      "identifiers": [
+        {
+          "rule": "organization-id",
+          "source": "organization-31029694",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/id"
+          }
+        },
+        {
+          "rule": "organization-cui",
+          "source": "organization-31029694",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/cui"
           }
         }
       ]

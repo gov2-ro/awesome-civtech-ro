@@ -1,0 +1,39 @@
+{
+  "provenance": {
+    "source": "https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/judecatorii-instante-2014.tsv",
+    "observed_at": "2026-10-26T23:14:44.576745+00:00",
+    "source_body_sha256": "67eea5df2b3658fb6cbc63c1a63613333a6e21428fbeff907eb542fb519a9af1",
+    "retained_text_sha256": "67eea5df2b3658fb6cbc63c1a63613333a6e21428fbeff907eb542fb519a9af1",
+    "source_snapshot": "surse/d428b824a3a93d68d711-67eea5df2b3658fb.json",
+    "http_status": 206,
+    "extraction": "Exact court name/code columns only. The first descriptive row is metadata, not a court. Metrics, contacts and person-related fields excluded."
+  },
+  "payload": {
+    "header": [
+      "nume",
+      "cod"
+    ],
+    "column_descriptions": {
+      "nume": "Denumirea instantei in clar (cu diactritice)",
+      "cod": "Codul informatic al instantei (din portal)"
+    },
+    "rows": [
+      {
+        "source_index": 1,
+        "nume": "Judecătoria ADJUD",
+        "cod": "JudecatoriaADJUD"
+      },
+      {
+        "source_index": 2,
+        "nume": "Judecătoria AGNITA",
+        "cod": "JudecatoriaAGNITA"
+      },
+      {
+        "source_index": 3,
+        "nume": "Judecătoria AIUD",
+        "cod": "JudecatoriaAIUD"
+      }
+    ],
+    "metric_year": 2014
+  }
+}

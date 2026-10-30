@@ -1,0 +1,67 @@
+{
+  "provenance": {
+    "source": "https://www.onoratainstanta.ro/",
+    "observed_at": "2026-10-24T22:19:36.065419+00:00",
+    "source_body_sha256": "6219fb29514aee63cb5d2e2899683ffc4bf166b9ed59ee25a2c4ca27975d5b02",
+    "retained_text_sha256": "6219fb29514aee63cb5d2e2899683ffc4bf166b9ed59ee25a2c4ca27975d5b02",
+    "source_snapshot": "data/taxonomy-v2/observatii/documentare/pagini/760588b64c1719c70bb6ece8.json",
+    "http_status": 200,
+    "extraction": "Exact document lines and selected link entries; original offsets and link indices retained."
+  },
+  "payload": {
+    "excerpts": [
+      {
+        "start": 0,
+        "end": 16,
+        "text": "Onorată Instanță"
+      },
+      {
+        "start": 56,
+        "end": 64,
+        "text": "Instanțe"
+      },
+      {
+        "start": 106,
+        "end": 169,
+        "text": "Topul instanțelor din România, conform indicelui de performanță"
+      },
+      {
+        "start": 170,
+        "end": 181,
+        "text": "Judecatorii"
+      },
+      {
+        "start": 215,
+        "end": 223,
+        "text": "instante"
+      },
+      {
+        "start": 411,
+        "end": 422,
+        "text": "judecătorii"
+      },
+      {
+        "start": 502,
+        "end": 526,
+        "text": "vezi toate judecatoriile"
+      },
+      {
+        "start": 816,
+        "end": 848,
+        "text": "Parchete de pe lângă judecatorii"
+      },
+      {
+        "start": 920,
+        "end": 965,
+        "text": "vezi toate parchetele de pe langa judecatorii"
+      }
+    ],
+    "links": [
+      {
+        "url": "https://www.onoratainstanta.ro/instante/",
+        "label": "Instanțe",
+        "snapshot_link_index": 4
+      }
+    ]
+  }
+}

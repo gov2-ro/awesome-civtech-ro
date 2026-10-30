@@ -21,7 +21,8 @@ The recipe selection above reproduces the original curation set from tracked pil
 That set produces eleven record references and four correspondences, including two igov local-ID-to-CUI mappings.
 Five expansion recipes add sixteen records and 26 proposed pairs. See the [expansion report](reports/site-structure-batch-f.md).
 The [institution/territory expansion](reports/site-structure-batch-g.md) adds five more recipes, 22 records and thirteen proposed pairs.
-All fifteen recipes work without ignored caches or live sites.
+The [igov enrichment and third expansion](reports/site-structure-batch-h.md) add five recipes and fifteen record references.
+All twenty recipes work without ignored caches or live sites.
 SICAP contributes declarations, not real sample records; its live host remains blocked.
 The [curation report](reports/site-structure-curation.md) records the evidence and remaining questions.
 The [structure preview](STRUCTURE-PREVIEW.md) shows those observations in project profiles and an exact entity lookup.

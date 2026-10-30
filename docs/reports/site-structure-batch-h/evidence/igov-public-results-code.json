@@ -1,0 +1,18 @@
+{
+  "provenance": {
+    "source": "https://igov.ro/home-discovery.js",
+    "observed_at": "2026-10-30T16:46:14.487762+00:00",
+    "source_body_sha256": "fc1196b3f531115639a94c441926cdde33e4c8dd05e51ae34f89a03bffc64ed0",
+    "retained_text_sha256": "fc1196b3f531115639a94c441926cdde33e4c8dd05e51ae34f89a03bffc64ed0",
+    "source_snapshot": null,
+    "http_status": 200,
+    "extraction": "Only a literal public GET loader declaration; account and request-submission operations are excluded."
+  },
+  "payload": {
+    "excerpt": {
+      "start": 2953,
+      "end": 3273,
+      "text": "fetch('/api/public-flows?status=with_results&limit=4&order=latest',{cache:'no-store',signal:AbortSignal.timeout(15000)});\n      if(!response.ok||!response.headers.get('content-type')?.includes('json'))throw Error();\n      const data=await response.json();\n      if(data.schema!=='igov.public-flows/v1'||!Array.isArray(da"
+    }
+  }
+}

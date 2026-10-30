@@ -1,0 +1,18 @@
+{
+  "provenance": {
+    "source": "https://igov.ro/home-inspiration.js",
+    "observed_at": "2026-10-30T16:46:15.492486+00:00",
+    "source_body_sha256": "b7fe3f9aa2293ec3034464dffc8669bc1ff065b47145572de604cc3f3e553d5a",
+    "retained_text_sha256": "b7fe3f9aa2293ec3034464dffc8669bc1ff065b47145572de604cc3f3e553d5a",
+    "source_snapshot": null,
+    "http_status": 200,
+    "extraction": "Only a literal public GET loader declaration; account and request-submission operations are excluded."
+  },
+  "payload": {
+    "excerpt": {
+      "start": 7487,
+      "end": 7807,
+      "text": "fetch('/api/problem-inspiration',{cache:'no-cache',signal:AbortSignal.timeout(15000)});\n   if(!r.ok||!r.headers.get('content-type')?.includes('json'))throw Error();\n   const value=await r.json();\n   if(value.schema!=='igov.problem-inspiration/1'||!['local','national','european'].every(level=>Array.isArray(value.groups?"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "provenance": {
+    "source": "https://igov.ro/api/organizations/cui-31029694",
+    "observed_at": "2026-10-30T16:50:20.813616+00:00",
+    "source_body_sha256": "ca1ab9ed5d13cd01fd557eba8e40158c1e5963f0543dd9ccd5a590f6b2f09c7f",
+    "retained_text_sha256": "ca1ab9ed5d13cd01fd557eba8e40158c1e5963f0543dd9ccd5a590f6b2f09c7f",
+    "source_snapshot": null,
+    "http_status": 200,
+    "extraction": "Whitelist of the public corporate entity block only. Excludes all articles, flows, people, memberships and related records. Null registry_id is retained as unknown, never inferred."
+  },
+  "payload": {
+    "id": "cui-31029694",
+    "name": "Active Conexe SA",
+    "display_name": "Active Conexe",
+    "type": "company",
+    "cui": "31029694",
+    "registry_id": null,
+    "url": "/organizatii/cui-31029694"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "provenance": {
+    "source": "https://mariuscomper.uk/biografia-localitatii/data/uat-index.json",
+    "observed_at": "2026-10-30T16:48:32.619278+00:00",
+    "source_body_sha256": "f811672f07f37c4771ce848e8694f29204d95c7a1b3f62e16ba5a9a4453dc7cc",
+    "retained_text_sha256": "f811672f07f37c4771ce848e8694f29204d95c7a1b3f62e16ba5a9a4453dc7cc",
+    "source_snapshot": null,
+    "http_status": 200,
+    "extraction": "Exact index header and three complete locality rows. Only SIRUTA, local slug, names, county and type retained; population and publication metrics excluded."
+  },
+  "payload": {
+    "version": "v1",
+    "fields": [
+      "siruta",
+      "name",
+      "county",
+      "county_code",
+      "type",
+      "slug",
+      "normalized",
+      "population",
+      "publishable"
+    ],
+    "rows": [
+      {
+        "source_index": 0,
+        "siruta": 1017,
+        "name": "Alba Iulia",
+        "county": "Alba",
+        "type": "m",
+        "slug": "alba-iulia-1017"
+      },
+      {
+        "source_index": 853,
+        "siruta": 54975,
+        "name": "Cluj-Napoca",
+        "county": "Cluj",
+        "type": "m",
+        "slug": "cluj-napoca-54975"
+      },
+      {
+        "source_index": 3120,
+        "siruta": 179132,
+        "name": "București",
+        "county": "București",
+        "type": "m",
+        "slug": "bucuresti-179132"
+      }
+    ]
+  }
+}

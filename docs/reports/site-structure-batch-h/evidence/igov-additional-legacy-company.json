@@ -1,0 +1,21 @@
+{
+  "provenance": {
+    "source": "https://igov.ro/reports/guvernanta.json",
+    "observed_at": "2026-10-27T17:00:51.012879+00:00",
+    "source_body_sha256": "37c857d3c20af7d0af862b8f69dac893c667aea1c4aa6044487c4726c999bb52",
+    "retained_text_sha256": "37c857d3c20af7d0af862b8f69dac893c667aea1c4aa6044487c4726c999bb52",
+    "source_snapshot": "surse/f009e6b486bf934a4f56-37c857d3c20af7d0.json",
+    "http_status": 206,
+    "extraction": "Complete company row 94 from the retained partial governance report. Whitelist excludes all people, appointments and financial values."
+  },
+  "payload": {
+    "complete_document": false,
+    "recovery": "inventory_jsonsample.recover",
+    "source_index": 94,
+    "company": {
+      "id": "inst_cui-8359779_f989662eb7",
+      "cui": "8359779",
+      "name": "Societatea de Strategie pentru Piața de Gros SRL"
+    }
+  }
+}

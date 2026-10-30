@@ -1,0 +1,46 @@
+{
+  "provenance": {
+    "source": "https://monitorsafe.ro/contracte/",
+    "observed_at": "2026-10-27T16:59:39.546976+00:00",
+    "source_body_sha256": "45ddf67a2ef29c1a8876b6d92e051072dd003a8ff9d9723a2ad19a04ba3896b3",
+    "retained_text_sha256": "45ddf67a2ef29c1a8876b6d92e051072dd003a8ff9d9723a2ad19a04ba3896b3",
+    "source_snapshot": "surse/2a5f9ecf02e49533dd28-45ddf67a2ef29c1a.json",
+    "http_status": 200,
+    "extraction": "Literal-only parser; two C contract rows and one NS uncontracted proposal. Only local slug, title and buyer label retained; amounts, dates, narratives and names in articles excluded."
+  },
+  "payload": {
+    "declarations": {
+      "C": {
+        "start": 17431,
+        "end": 41929
+      },
+      "NS": {
+        "start": 42133,
+        "end": 51967
+      }
+    },
+    "rows": [
+      {
+        "variable": "C",
+        "source_index": 0,
+        "slug": "lynx",
+        "n": "Mașini de luptă ale infanteriei Lynx",
+        "b": "MApN"
+      },
+      {
+        "variable": "C",
+        "source_index": 1,
+        "slug": "mti-a7-pascani-suceava",
+        "n": "Autostrada A7 Pașcani–Suceava, loturile 1 și 2",
+        "b": "MTI"
+      },
+      {
+        "variable": "NS",
+        "source_index": 0,
+        "slug": "mapn-piranha-respins",
+        "n": "Transportoare blindate 8x8 Piranha 5",
+        "b": "MApN"
+      }
+    ]
+  }
+}

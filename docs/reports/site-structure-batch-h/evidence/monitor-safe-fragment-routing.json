@@ -1,0 +1,30 @@
+{
+  "provenance": {
+    "source": "https://monitorsafe.ro/contracte/",
+    "observed_at": "2026-10-27T16:59:39.546976+00:00",
+    "source_body_sha256": "45ddf67a2ef29c1a8876b6d92e051072dd003a8ff9d9723a2ad19a04ba3896b3",
+    "retained_text_sha256": "45ddf67a2ef29c1a8876b6d92e051072dd003a8ff9d9723a2ad19a04ba3896b3",
+    "source_snapshot": "surse/2a5f9ecf02e49533dd28-45ddf67a2ef29c1a.json",
+    "http_status": 200,
+    "extraction": "Exact row-fragment and hash-dispatch declarations. Contract/proposal collections remain distinct."
+  },
+  "payload": {
+    "excerpts": [
+      {
+        "start": 56534,
+        "end": 56874,
+        "text": "id=\"${c.slug}\">\n      <button type=\"button\" class=\"reg-row-h${cls}\" aria-expanded=\"false\" aria-controls=\"d-${c.slug}\">\n        <span class=\"reg-nmw\">${ic(c.i)}<span class=\"reg-nm\">${esc(c.n)}${c.det ? `<small>${esc(c.det)}</small>` : ''}</span></span>\n        <span class=\"reg-ben\">${esc(c.b)}</span>\n        <span class=\"reg-num\">${mil(c.v"
+      },
+      {
+        "start": 60232,
+        "end": 60572,
+        "text": "const h = decodeURIComponent(location.hash.slice(1));\nif (h === 'nesemnate' || NS.some(c => c.slug === h)) arata('nesemnate', false);\nif (h && (C.some(c => c.slug === h) || NS.some(c => c.slug === h))) deschide(h, true);\n// linkurile din blocul de sus duc la #slug pe aceeasi pagina: deschid dosarul fara reincarcare\nwindow.addEventListener"
+      },
+      {
+        "start": 60311,
+        "end": 60651,
+        "text": "NS.some(c => c.slug === h)) arata('nesemnate', false);\nif (h && (C.some(c => c.slug === h) || NS.some(c => c.slug === h))) deschide(h, true);\n// linkurile din blocul de sus duc la #slug pe aceeasi pagina: deschid dosarul fara reincarcare\nwindow.addEventListener('hashchange', () => {\n  const k = decodeURIComponent(location.hash.slice(1));\n"
+      }
+    ]
+  }
+}

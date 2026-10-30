@@ -1,0 +1,30 @@
+{
+  "provenance": {
+    "source": "https://igov.ro/api/channels",
+    "observed_at": "2026-10-27T17:00:44.506661+00:00",
+    "source_body_sha256": "2dbd1cc97e31a92c47a68a1dc7e40ac52be630dbb2ad01f1243ba9dae234d46b",
+    "retained_text_sha256": "2dbd1cc97e31a92c47a68a1dc7e40ac52be630dbb2ad01f1243ba9dae234d46b",
+    "source_snapshot": "surse/efb8a9efc503c07fd792-2dbd1cc97e31a92c.json",
+    "http_status": 200,
+    "extraction": "Structural keys and bounded array count from the retained public API response. No names or latest-article values copied."
+  },
+  "payload": {
+    "root_fields": [
+      "channels"
+    ],
+    "record_fields": [
+      "channel",
+      "title",
+      "emoji",
+      "kind",
+      "order",
+      "cat",
+      "question",
+      "cadence",
+      "blurb",
+      "count",
+      "latest"
+    ],
+    "sample_count": 2
+  }
+}

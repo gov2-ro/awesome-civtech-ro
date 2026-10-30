@@ -1,0 +1,20 @@
+{
+  "provenance": {
+    "source": "https://afacut.ro/apa-si-canal/",
+    "observed_at": "2026-10-25T14:17:14.226395+00:00",
+    "source_body_sha256": "51f5e6114e7d35654ecc2a7b61c56495b10456db473c028c27fc762257a2ca35",
+    "retained_text_sha256": "51f5e6114e7d35654ecc2a7b61c56495b10456db473c028c27fc762257a2ca35",
+    "source_snapshot": "surse/5c85d57d48f6922090e1-51f5e6114e7d3565.json",
+    "http_status": 200,
+    "extraction": "Exact page title, heading and table-header text. Aggregate values and row labels are not promoted to identifiers."
+  },
+  "payload": {
+    "headings": [
+      "Apă și canal | A făcut?",
+      "A FĂCUT   ? DEVERIFICAT",
+      "Data raportării",
+      "Tranșa (mld lei)",
+      "Cumulat (mld lei)"
+    ]
+  }
+}

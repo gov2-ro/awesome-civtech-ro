@@ -1,0 +1,61 @@
+{
+  "provenance": {
+    "source": "https://achizitii-directe-ti-2026.mariuscomper.uk/",
+    "observed_at": "2026-10-24T22:20:04.390867+00:00",
+    "source_body_sha256": "a9eb8f89dc1e627b38a3a84aff2feba549c02201657788433569400bd4eff604",
+    "retained_text_sha256": "a9eb8f89dc1e627b38a3a84aff2feba549c02201657788433569400bd4eff604",
+    "source_snapshot": "data/taxonomy-v2/observatii/documentare/pagini/fef5fb38fd7f7130bcf76ce6.json",
+    "http_status": 200,
+    "extraction": "Exact document lines and selected link entries; original offsets and link indices retained."
+  },
+  "payload": {
+    "excerpts": [
+      {
+        "start": 0,
+        "end": 25,
+        "text": "Achiziții directe TI 2026"
+      },
+      {
+        "start": 26,
+        "end": 83,
+        "text": "Achiziții directe TI 2026 Întrebări bune din date publice"
+      },
+      {
+        "start": 84,
+        "end": 142,
+        "text": "Cazuri de verificat Sursa datelor Metodologie Descarcă CSV"
+      },
+      {
+        "start": 143,
+        "end": 190,
+        "text": "Unde merită să ne uităm în achizițiile directe?"
+      },
+      {
+        "start": 367,
+        "end": 433,
+        "text": "Observații generate direct din dataset și din regulile de scoring."
+      },
+      {
+        "start": 84,
+        "end": 103,
+        "text": "Cazuri de verificat"
+      },
+      {
+        "start": 913,
+        "end": 977,
+        "text": "Scor Valoare Achiziție Autoritate Ofertant De ce e pe listă Timp"
+      },
+      {
+        "start": 1035,
+        "end": 1261,
+        "text": "A pornit ca o curiozitate civică după ce am văzut The Reckoner, un proiect care urmărește risipa din contracte publice în Australia. Această pagină este un experiment separat, construit cu Codex peste date publice din România."
+      },
+      {
+        "start": 1371,
+        "end": 1598,
+        "text": "Date: Autoritatea pentru Digitalizarea României (ADR), din SEAP, prin data.gov.ro · CC BY 4.0 . Analiză și prelucrare: Marius Comper. Surse și metodologie · Toate proiectele . Documentat, curatoriat și publicat de Marius Comper"
+      }
+    ],
+    "links": []
+  }
+}

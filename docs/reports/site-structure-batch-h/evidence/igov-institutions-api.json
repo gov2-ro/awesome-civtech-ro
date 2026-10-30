@@ -1,0 +1,26 @@
+{
+  "provenance": {
+    "source": "https://igov.ro/api/institutions",
+    "observed_at": "2026-10-27T17:00:44.656936+00:00",
+    "source_body_sha256": "4883ecf58f129575e9249afc4a831bd8613f3b9a7b71a31b7d68d08051d84890",
+    "retained_text_sha256": "4883ecf58f129575e9249afc4a831bd8613f3b9a7b71a31b7d68d08051d84890",
+    "source_snapshot": "surse/a9069447651848a3ec73-4883ecf58f129575.json",
+    "http_status": 200,
+    "extraction": "Structural keys and bounded array count from the retained public API response. No names or latest-article values copied."
+  },
+  "payload": {
+    "root_fields": [
+      "channel",
+      "count",
+      "report_count",
+      "institutions"
+    ],
+    "record_fields": [
+      "name",
+      "count",
+      "updated",
+      "latest"
+    ],
+    "sample_count": 13
+  }
+}

@@ -5,7 +5,7 @@
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const external = url => `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(url)}</a>`;
   const namespace = $('#entity-namespace'), value = $('#entity-value'), results = $('#entity-results'), count = $('#entity-count');
-  const types = {company:'Companie', public_institution:'Instituție publică', territory:'Teritoriu', legal_subject:'Persoană juridică', registration:'Înregistrare', contract:'Contract'};
+  const types = {company:'Companie', public_institution:'Instituție publică', territory:'Teritoriu', legal_subject:'Persoană juridică', registration:'Înregistrare', contract:'Contract', funding_project:'Proiect de finanțare'};
   let data;
   const confirmedCount = n => `${n} ${n === 1 ? 'corespondență confirmată' : 'corespondențe confirmate'}`;
   function render() {

@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "id": "biografia-localitatii-batch-f",
+  "project_slug": "biografia-localitatii",
+  "input_url": "https://mariuscomper.uk/biografia-localitatii/",
+  "evidence": [
+    {
+      "id": "territory-and-slug-ids",
+      "source": "https://mariuscomper.uk/biografia-localitatii/data/uat-index.json",
+      "observed_at": "2026-10-30T16:48:32.619278+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-h/evidence/biografia-localitatii-territory-and-slug-ids.json",
+      "sha256": "09dfaccb0036bdba235d54d0d0bd3c9a686a2d0f7a30d6104dd9fe697466ad98",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "index-and-route-code",
+      "source": "https://mariuscomper.uk/biografia-localitatii/assets/app.js?v=00907ff382",
+      "observed_at": "2026-10-30T16:46:17.665563+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-h/evidence/biografia-localitatii-index-and-route-code.json",
+      "sha256": "129b8d6f8c4383fddb6d3d135ef7a3c0ccbde316551a7569b0351c373b4d83d3",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "sections",
+      "source": "https://mariuscomper.uk/biografia-localitatii/",
+      "observed_at": "2026-10-24T22:20:03.927228+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-h/evidence/biografia-localitatii-sections.json",
+      "sha256": "03a32e5b1d61e65215c8c4fc2895492d3af572df2fdc3162ad3a7a186106eb9c",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    }
+  ],
+  "collections": [
+    {
+      "id": "territories",
+      "label": "Biografii de localități",
+      "entity_type": "territory",
+      "record_grain": "territory",
+      "identity_components": [
+        "ro:siruta"
+      ],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "territory-and-slug-ids",
+        "index-and-route-code"
+      ]
+    },
+    {
+      "id": "method",
+      "label": "Metodă și surse",
+      "entity_type": "unknown",
+      "record_grain": "document",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "sections"
+      ]
+    }
+  ],
+  "namespaces": [
+    {
+      "id": "ro:siruta",
+      "issuer": "INS",
+      "scope": "Administrative territory code explicitly named by the index header.",
+      "normalization": "identity",
+      "shared": true,
+      "evidence": [
+        "territory-and-slug-ids"
+      ]
+    },
+    {
+      "id": "biografia-localitatii:slug",
+      "issuer": "mariuscomper.uk/biografia-localitatii",
+      "scope": "Local page slug, independent of SIRUTA even when its text includes digits.",
+      "normalization": "identity",
+      "shared": false,
+      "evidence": [
+        "territory-and-slug-ids",
+        "index-and-route-code"
+      ]
+    }
+  ],
+  "patterns": [
+    {
+      "id": "home",
+      "collection": "territories",
+      "url_template": "https://mariuscomper.uk/biografia-localitatii/",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "sections"
+      ]
+    },
+    {
+      "id": "locality-biography",
+      "collection": "territories",
+      "url_template": "https://mariuscomper.uk/biografia-localitatii/{slug}/",
+      "kind": "detail",
+      "variables": [
+        {
+          "name": "slug",
+          "namespace": "biografia-localitatii:slug",
+          "location": "path"
+        }
+      ],
+      "basis": "declared",
+      "examples": [],
+      "evidence": [
+        "territory-and-slug-ids",
+        "index-and-route-code"
+      ]
+    },
+    {
+      "id": "method",
+      "collection": "method",
+      "url_template": "https://mariuscomper.uk/biografia-localitatii/metoda/",
+      "kind": "document",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "sections"
+      ]
+    },
+    {
+      "id": "index",
+      "collection": "territories",
+      "url_template": "https://mariuscomper.uk/biografia-localitatii/data/uat-index.json",
+      "kind": "document",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "territory-and-slug-ids",
+        "index-and-route-code"
+      ]
+    }
+  ],
+  "operations": [],
+  "identifier_rules": [
+    {
+      "id": "territory-siruta",
+      "collection": "territories",
+      "namespace": "ro:siruta",
+      "location": "/rows/*/siruta",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "territory-and-slug-ids"
+      ],
+      "note": ""
+    },
+    {
+      "id": "local-slug",
+      "collection": "territories",
+      "namespace": "biografia-localitatii:slug",
+      "location": "/rows/*/slug",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "territory-and-slug-ids",
+        "index-and-route-code"
+      ],
+      "note": ""
+    }
+  ],
+  "samples": [
+    {
+      "id": "territory-1017",
+      "collection": "territories",
+      "label": "Alba Iulia — teritoriu",
+      "local_namespace": "biografia-localitatii:slug",
+      "identifiers": [
+        {
+          "rule": "local-slug",
+          "source": "territory-and-slug-ids",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/0/slug"
+          }
+        },
+        {
+          "rule": "territory-siruta",
+          "source": "territory-and-slug-ids",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/0/siruta"
+          }
+        }
+      ]
+    },
+    {
+      "id": "territory-54975",
+      "collection": "territories",
+      "label": "Cluj-Napoca — teritoriu",
+      "local_namespace": "biografia-localitatii:slug",
+      "identifiers": [
+        {
+          "rule": "local-slug",
+          "source": "territory-and-slug-ids",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/1/slug"
+          }
+        },
+        {
+          "rule": "territory-siruta",
+          "source": "territory-and-slug-ids",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/1/siruta"
+          }
+        }
+      ]
+    },
+    {
+      "id": "territory-179132",
+      "collection": "territories",
+      "label": "București — teritoriu",
+      "local_namespace": "biografia-localitatii:slug",
+      "identifiers": [
+        {
+          "rule": "local-slug",
+          "source": "territory-and-slug-ids",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/2/slug"
+          }
+        },
+        {
+          "rule": "territory-siruta",
+          "source": "territory-and-slug-ids",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/2/siruta"
+          }
+        }
+      ]
+    }
+  ],
+  "relationships": []
+}

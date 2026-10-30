@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "id": "monitor-safe-batch-f",
+  "project_slug": "monitor-safe",
+  "input_url": "https://monitorsafe.ro/",
+  "evidence": [
+    {
+      "id": "contract-and-proposal-ids",
+      "source": "https://monitorsafe.ro/contracte/",
+      "observed_at": "2026-10-27T16:59:39.546976+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-h/evidence/monitor-safe-contract-and-proposal-ids.json",
+      "sha256": "67e229326ba4fe73e2879ac349a2ca211af8ded7406ed1bc3547a192bc4f8215",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "fragment-routing",
+      "source": "https://monitorsafe.ro/contracte/",
+      "observed_at": "2026-10-27T16:59:39.546976+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-h/evidence/monitor-safe-fragment-routing.json",
+      "sha256": "3c23b6604b5fbf7f482a5d1e4a2fd14bbf9f205822328fb61b80ac66a00b14b5",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "sections",
+      "source": "https://monitorsafe.ro/",
+      "observed_at": "2026-10-24T22:19:33.857439+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-h/evidence/monitor-safe-sections.json",
+      "sha256": "51febb4b4c03587a4376938d1ae2f5f6823a018f23128dbfb7911c70f26fc962",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    }
+  ],
+  "collections": [
+    {
+      "id": "contracts",
+      "label": "Contracte SAFE",
+      "entity_type": "contract",
+      "record_grain": "contract",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "contract-and-proposal-ids",
+        "fragment-routing"
+      ]
+    },
+    {
+      "id": "proposals",
+      "label": "Proiecte fără contract semnat",
+      "entity_type": "funding_project",
+      "record_grain": "proposal",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "contract-and-proposal-ids",
+        "fragment-routing"
+      ]
+    },
+    {
+      "id": "overview",
+      "label": "Program și finanțare",
+      "entity_type": "unknown",
+      "record_grain": "aggregate",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "sections"
+      ]
+    }
+  ],
+  "namespaces": [
+    {
+      "id": "monitor-safe:contract:slug",
+      "issuer": "monitorsafe.ro",
+      "scope": "Contract-row slug in the retained registry.",
+      "normalization": "identity",
+      "shared": false,
+      "evidence": [
+        "contract-and-proposal-ids",
+        "fragment-routing"
+      ]
+    },
+    {
+      "id": "monitor-safe:proposal:slug",
+      "issuer": "monitorsafe.ro",
+      "scope": "Uncontracted-proposal slug; not a contract identifier.",
+      "normalization": "identity",
+      "shared": false,
+      "evidence": [
+        "contract-and-proposal-ids",
+        "fragment-routing"
+      ]
+    }
+  ],
+  "patterns": [
+    {
+      "id": "home",
+      "collection": "overview",
+      "url_template": "https://monitorsafe.ro/",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "sections"
+      ]
+    },
+    {
+      "id": "contract-registry",
+      "collection": "contracts",
+      "url_template": "https://monitorsafe.ro/contracte/",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "sections"
+      ]
+    },
+    {
+      "id": "contracts-fragment",
+      "collection": "contracts",
+      "url_template": "https://monitorsafe.ro/contracte/#{contract_slug}",
+      "kind": "detail",
+      "variables": [
+        {
+          "name": "contract_slug",
+          "namespace": "monitor-safe:contract:slug",
+          "location": "fragment",
+          "source_field": "C[].slug"
+        }
+      ],
+      "basis": "declared",
+      "examples": [],
+      "evidence": [
+        "fragment-routing"
+      ],
+      "variable_note": "The typed placeholder aliases the source slug field for this collection; both collections share the same fragment syntax."
+    },
+    {
+      "id": "proposals-fragment",
+      "collection": "proposals",
+      "url_template": "https://monitorsafe.ro/contracte/#{proposal_slug}",
+      "kind": "detail",
+      "variables": [
+        {
+          "name": "proposal_slug",
+          "namespace": "monitor-safe:proposal:slug",
+          "location": "fragment",
+          "source_field": "NS[].slug"
+        }
+      ],
+      "basis": "declared",
+      "examples": [],
+      "evidence": [
+        "fragment-routing"
+      ],
+      "variable_note": "The typed placeholder aliases the source slug field for this collection; both collections share the same fragment syntax."
+    }
+  ],
+  "operations": [],
+  "identifier_rules": [
+    {
+      "id": "contract-slug",
+      "collection": "contracts",
+      "namespace": "monitor-safe:contract:slug",
+      "location": "/rows/*/slug",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "contract-and-proposal-ids",
+        "fragment-routing"
+      ],
+      "note": ""
+    },
+    {
+      "id": "proposal-slug",
+      "collection": "proposals",
+      "namespace": "monitor-safe:proposal:slug",
+      "location": "/rows/*/slug",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "contract-and-proposal-ids",
+        "fragment-routing"
+      ],
+      "note": ""
+    }
+  ],
+  "samples": [
+    {
+      "id": "lynx",
+      "collection": "contracts",
+      "label": "Mașini de luptă ale infanteriei Lynx",
+      "local_namespace": "monitor-safe:contract:slug",
+      "identifiers": [
+        {
+          "rule": "contract-slug",
+          "source": "contract-and-proposal-ids",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/0/slug"
+          }
+        }
+      ]
+    },
+    {
+      "id": "mti-a7-pascani-suceava",
+      "collection": "contracts",
+      "label": "Autostrada A7 Pașcani–Suceava, loturile 1 și 2",
+      "local_namespace": "monitor-safe:contract:slug",
+      "identifiers": [
+        {
+          "rule": "contract-slug",
+          "source": "contract-and-proposal-ids",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/1/slug"
+          }
+        }
+      ]
+    },
+    {
+      "id": "mapn-piranha-respins",
+      "collection": "proposals",
+      "label": "Transportoare blindate 8x8 Piranha 5",
+      "local_namespace": "monitor-safe:proposal:slug",
+      "identifiers": [
+        {
+          "rule": "proposal-slug",
+          "source": "contract-and-proposal-ids",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/2/slug"
+          }
+        }
+      ]
+    }
+  ],
+  "relationships": []
+}

@@ -1,0 +1,172 @@
+{
+  "provenance": {
+    "source": "https://monitorsafe.ro/",
+    "observed_at": "2026-10-24T22:19:33.857439+00:00",
+    "source_body_sha256": "5aa85c2e4a74d06f5e2c2da4c781a7d328a84a23e25eddb170f1029ea0842278",
+    "retained_text_sha256": "5aa85c2e4a74d06f5e2c2da4c781a7d328a84a23e25eddb170f1029ea0842278",
+    "source_snapshot": "data/taxonomy-v2/observatii/documentare/pagini/55a3b19565dc375d20e75261.json",
+    "http_status": 200,
+    "extraction": "Exact document lines and selected link entries; original offsets and link indices retained."
+  },
+  "payload": {
+    "excerpts": [
+      {
+        "start": 141,
+        "end": 204,
+        "text": "Contracte Acorduri Ce se produce în România ← companiidestat.ro"
+      },
+      {
+        "start": 1333,
+        "end": 1487,
+        "text": "Procent din valoarea celor 37 de contracte semnate, 12,62 mld €, nu banii care rămân în țară. Stadiul promis devine realizat abia la recepția certificată."
+      },
+      {
+        "start": 1672,
+        "end": 1985,
+        "text": "Registrul contractelor → 37 semnate, 17 nesemnate Fiecare contract apare cu valoarea, furnizorul și dosarul lui, inclusiv cele care nu au ajuns la semnare. Acordurile de cooperare → Ce au promis Rheinmetall, Airbus, Thales și SIG Sauer Cât din fiecare contract se face în România și cât rămâne în afara acordului."
+      },
+      {
+        "start": 1986,
+        "end": 2010,
+        "text": "Contractele MAI semnate."
+      },
+      {
+        "start": 2011,
+        "end": 2091,
+        "text": "19 contracte SAFE semnate de Ministerul Afacerilor Interne până la 30 mai 2026 ."
+      },
+      {
+        "start": 2192,
+        "end": 2393,
+        "text": "Cele 19 contracte acoperă 36% din cadrul MAI de 2,67 mld € . 15 au operator românesc dar cumulează doar 46% din valoare; cele 4 cu operator străin (Airbus, Leonardo, Auto Vision) acoperă restul de 54%."
+      },
+      {
+        "start": 3113,
+        "end": 3834,
+        "text": "Din contractele semnate de armată, doar camioanele IVECO de la Petrești se produc deja în România: 215 mil € din 6,85 mld, adică 3,1% . Restul producției locale e promisă. Lynx urmează să iasă pe poarta fabricii de la Mediaș , cu o localizare de 40%. Navele OPV și VIS se vor construi la Mangalia , într-un șantier cumpărat pe 9 octombrie de Rheinmetall. Muniția AHEAD vine azi din Germania, cu producție promisă la Victoria până în 2029. Elicopterele H225M se fabrică în Franța; IAR Brașov face mentenanța, iar producția locală ar începe abia cu o comandă separată, din 2028. Pentru 3 din 21 de proiecte nu avem detalii despre cine le execută : armele individuale, simulatorul de antrenament și platforma software C4ISR."
+      },
+      {
+        "start": 3890,
+        "end": 4096,
+        "text": "Din contractele semnate de armată, doar camioanele IVECO de la Petrești se produc deja în România. Pentru Lynx, nave și muniția AHEAD, producția locală e promisă. Restul vine din Italia, Franța și Germania."
+      },
+      {
+        "start": 4209,
+        "end": 4551,
+        "text": "Pe toate cele 37 de contracte semnate, inclusiv MAI și autostrăzile, 2,8% din valoare se produce deja în România, iar 34,1% e producție promisă. Muniția loitering de la ROMAERO nu are încă un contract semnat. Tot ce s-a cumpărat se face în Europa, cum cere SAFE. Detaliul pe fiecare contract e în secțiunea despre unde se face ce s-a semnat ."
+      },
+      {
+        "start": 4571,
+        "end": 4723,
+        "text": "PGZ (de stat) și WB Group. Contracte: Krab 2,1 mld € la HSW, Borsuk 17,2 mld € pentru 1.400 de mașini de luptă a infanteriei, anti-dronă „San\" ~4 mld $."
+      },
+      {
+        "start": 4976,
+        "end": 5125,
+        "text": "A refuzat să aplice. Finanțare proprie, din fondul național, de 100 mld €. Rheinmetall ia însă contracte SAFE prin alte state, inclusiv prin România."
+      },
+      {
+        "start": 7644,
+        "end": 7680,
+        "text": "Monitor contracte, lege, contestare."
+      },
+      {
+        "start": 7681,
+        "end": 7707,
+        "text": "Contracte militare semnate"
+      },
+      {
+        "start": 7708,
+        "end": 7719,
+        "text": "8 contracte"
+      },
+      {
+        "start": 7740,
+        "end": 8289,
+        "text": "21 de proiecte MApN. Cele 10 contracte semnate acoperă 13 proiecte. 7 proiecte rămân în așteptare, 1 e respins (Piranha, 839 mil € rămân nealocați; ministrul apărării a spus că banii au fost redistribuiți spre a doua tranșă Lynx, dar nu există o decizie formală de realocare). Valoarea semnată ajunge la ~6,85 mld € fără TVA, la contractele ferme (8 contracte până la 30 mai plus H225M și radarele Thales pe 17 iulie 2026). Dintre cele 7 proiecte în așteptare, 4 sunt achiziții comune cu termen 31.12.2027. Surse: Digi24, HotNews, Monitorul Oficial."
+      },
+      {
+        "start": 8290,
+        "end": 8357,
+        "text": "Separat, MAI a semnat 19 contracte . Vezi contractele MAI semnate →"
+      },
+      {
+        "start": 8358,
+        "end": 8384,
+        "text": "Plan vs. contracte semnate"
+      },
+      {
+        "start": 8385,
+        "end": 9537,
+        "text": "Planul aprobat și contractele semnate nu coincid. La semnare, prețurile au crescut . Navele OPV au urcat de la 700 la 836 mil €, vedetele de scafandri de la 57 la 84 mil. Ministrul Apărării, Radu Miruță, a acuzat companiile că revin cu oferte \"cu o treime mai scumpe\" pe măsură ce se îngusta termenul. În plus, unele contracte semnate sunt în afara listei celor 15 votate. MANPAD MISTRAL (626 mil €), dronele Quantum (31 mil) și muniția NATO (23 mil) sunt finanțate tot prin SAFE, dar nu apar în planul aprobat în prealabil al Parlamentului . Clarificarea oficială obținută de monitorsafe.ro: aprobarea Parlamentului se cere doar peste pragul de 100 milioane € . MANPAD a fost autorizat anterior prin inițiativa comună franceză; dronele Quantum (31 mil) și muniția NSPA (23 mil) sunt sub prag. Un risc separat vine dinspre furnizor. Documente interne ale Bundeswehr, publicate în august 2026, arată întârzieri de aproape doi ani la Skyranger 30 , varianta germană pe platformă Boxer. România a cumpărat Skyranger 35 pe platformă Lynx, de la Rheinmetall Italia. O parte din presă a prezentat problemele germane ca fiind ale sistemului românesc. Nu sunt."
+      },
+      {
+        "start": 9538,
+        "end": 9668,
+        "text": "Surse: Digi24 (contracte 28.05), Europa FM (Radu Miruță), Defence Industry Europe (prețuri), Defense România (Skyranger 30 vs 35)."
+      },
+      {
+        "start": 10790,
+        "end": 10822,
+        "text": "Câte contracte SAFE s-au semnat?"
+      },
+      {
+        "start": 10823,
+        "end": 11209,
+        "text": "Pentru armată, 10 contracte militare semnate până la 17 iulie 2026, care acoperă 13 din cele 21 de proiecte MApN, în valoare de circa 6,85 miliarde de euro fără TVA, numărate la contractele ferme semnate (la Lynx și IVECO, contractul subsecvent, nu acordul-cadru). Rămân 7 proiecte în așteptare, majoritar achiziții comune cu termen 31 decembrie 2027. MAI a semnat separat 19 contracte."
+      },
+      {
+        "start": 11574,
+        "end": 12590,
+        "text": "Trei entități cu nume aproape identice. Damen Shipyards Mangalia (CUI 9115330, fost Daewoo) e compania în faliment care deținea șantierul mare; activul a fost vândut pe 9 octombrie 2026 către Rheinmetall Real Estate România, la 138 de milioane de euro. Statul deține 51% din companie prin Șantierul Naval 2 Mai, holding listat la bursă. În raportarea Guvernului compania figurează doar la centrale inactive, fără situații financiare depuse, și datorează ANAF 100 de milioane de lei. Șantierul Naval Mangalia SA (CUI 14325290) e o firmă separată de reparații nave, în subordinea Ministerului Economiei, cu 32 de salariați și pe profit; ea a semnat trei contracte SAFE cu MAI pentru 11 ambarcațiuni, 24,3 milioane de euro. Navele OPV și VIS din contractul de 920 de milioane se construiesc acum într-un șantier deținut chiar de Rheinmetall. Pe 31 martie 2026, Guvernul declarase Damen Shipyards Mangalia operator economic de interes strategic, ca salariații să-și primească drepturile restante din fondul de garantare."
+      },
+      {
+        "start": 13009,
+        "end": 13446,
+        "text": "Cele 15 proiecte SAFE aprobate de Parlament pe 28.04.2026, listate la MApN, Programul SAFE . Plus cele 19 contracte și acorduri-cadru semnate de MAI până la 30.05.2026, publicate de MAI, comunicat 01.06.2026 . Plus cele 3 contracte SAFE de infrastructură semnate prin CNIR (A8 Târgu Neamț-Târgu Frumos, 28.05, și A8 Iași-Ungheni/pod Prut, 02.07) și CNAIR (DEx Suceava-Siret, 29.05), comunicate la MTI, 29.05.2026 și G4Media, 02.07.2026 ."
+      },
+      {
+        "start": 13639,
+        "end": 14915,
+        "text": "Planul de investiții SAFE al României a fost aprobat prin Hotărârea CSAT nr. 138 din 24.11.2025. OUG 62/2025 a fost aprobată prin Legea 4/2026, iar OUG 21/2026 prin Legea 95/2026 (proiectul L292/2026 la Senat), declarată constituțională de CCR prin Decizia 589 din 04.06.2026, după respingerea sesizării AUR + SOS România + PACE. Legea 167/2026 ratifică acordul de împrumut, Legea 173/2026 completează OUG 62/2025 cu regulile pentru creditele din 2026, iar HG 680/2026 împarte banii pe instituții. Aprobările prealabile pentru proiectele de peste 100 mil € au fost date prin hotărâri ale Birourilor permanente reunite ale Parlamentului. Separat, OUG 38/2026 (exproprieri și preluări de companii strategice, pe fondul SAFE, care modifică și OUG 73/2025 privind capacitățile de apărare de interes strategic) rămâne contestată la CCR de Avocatul Poporului. Cererea separată a președintelui Camerei Deputaților, Sorin Grindeanu (PSD), pe conflict juridic Parlament-Guvern privind aceeași ordonanță, a fost admisă de CCR pe 22 octombrie 2026, cu 5 voturi la 4, după șase amânări. Motivarea nu e publicată încă, iar sesizarea Avocatului Poporului a fost amânată. Decizia nu schimbă împrumutul și nici contractele SAFE semnate. Clarificări oficiale obținute direct de monitorsafe.ro."
+      },
+      {
+        "start": 14931,
+        "end": 15418,
+        "text": "Până la termenul de 30 mai 2026, MApN a semnat 8 contracte care acoperă 11 din cele 21 de proiecte, pe 28 și 29 mai. Pe 17 iulie 2026 s-au adăugat H225M și radarele Thales, primele două achiziții comune semnate, ajungând la 10 contracte și 13 proiecte acoperite. Au rămas 7 proiecte în așteptare. Dintre ele, 4 sunt achiziții comune cu alte state UE, cu termen real 31.12.2027 conform OUG 62/2025, iar 3 nu au operatorul publicat. Piranha a fost respinsă, cele 839 mil € rămân nealocați."
+      },
+      {
+        "start": 15430,
+        "end": 16308,
+        "text": "Acordurile de cooperare industrială sunt precondiție pentru semnarea contractelor mari (OUG 62/2025). S-au semnat 4, pentru programe de ~7,5 mld € cumulat: Rheinmetall, Airbus, Thales și Sig Sauer. Doar primele trei au ajuns și la contract de achiziție; procedura Sig Sauer pentru armamentul individual, întreruptă la termenul de 30 mai, continuă prin MAI. Testele armelor sunt în desfășurare în SUA, unde fiecare instituție beneficiară le încearcă, iar certificatele de conformitate au întârziat procesul. Penalitățile stau în contractele de achiziție, nu în acorduri, și se plătesc către MApN sau MAI dacă producătorul nu își respectă obligațiile de cooperare. Pentru achizițiile mai mici, furnizorii depun la Ministerul Economiei planuri de cooperare industrială, scadente la ~4 luni de la semnare, deci în toamna 2026. Clarificări oficiale obținute direct de monitorsafe.ro."
+      },
+      {
+        "start": 16322,
+        "end": 17339,
+        "text": "Ministerul Economiei verifică îndeplinirea condițiilor de localizare înainte de fiecare recepție; fără certificarea lui, MApN, MAI și SRI nu recepționează loturile, iar întârzierea atrage penalități. Rolul e gândit ca temporar. Actul normativ pentru o agenție unică, care ar comasa mai multe instituții existente și ar monitoriza toate contractele, e scris și apare în noul program de guvernare. Platforma guvernamentală de cooperare industrială e finalizată, dar așteaptă o ordonanță de urgență care să permită transferul de date între instituții, după ce amendamentul la OUG 62/2025 a picat în sesiunea extraordinară din iulie 2026. Prin memorandumul Guvernului din 23.07.2026, Cancelaria Prim-Ministrului proiectează platforma, iar Serviciul de Telecomunicații Speciale o dezvoltă și o administrează tehnic. Platforma va fi publică. Contractorii cu acord de cooperare vor fi obligați să-și publice acolo nevoile, iar furnizorii români își vor crea un profil. Clarificări oficiale obținute direct de monitorsafe.ro."
+      },
+      {
+        "start": 17839,
+        "end": 18084,
+        "text": "Șase din zece euro din SAFE se semnează cu firme înregistrate în România. Am pus contractele de aici lângă bilanțurile firmelor care le-au semnat: filialele grupurilor străine, firmele private românești și fabricile statului, direct și indirect."
+      },
+      {
+        "start": 18139,
+        "end": 18287,
+        "text": "Avem un CSV actualizat în timp real cu toate contractele SAFE și furnizorii lor, cu CUI, valoare și sursă oficială per rând. Scrie-ne și-l trimitem."
+      }
+    ],
+    "links": [
+      {
+        "url": "https://monitorsafe.ro/contracte/",
+        "label": "Contracte",
+        "snapshot_link_index": 1
+      },
+      {
+        "url": "https://monitorsafe.ro/contracte/",
+        "label": "Registrul contractelor → 37 semnate, 17 nesemnate Fiecare contract apare cu valoarea, furnizorul și dosarul lui, inclusiv cele care nu au ajuns la semnare.",
+        "snapshot_link_index": 5
+      }
+    ]
+  }
+}

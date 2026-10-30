@@ -1,0 +1,30 @@
+{
+  "provenance": {
+    "source": "https://mariuscomper.uk/biografia-localitatii/assets/app.js?v=00907ff382",
+    "observed_at": "2026-10-30T16:46:17.665563+00:00",
+    "source_body_sha256": "00907ff38273b280e64d8b4f50a2b41487a9ed597e88bac06881bfaf6093ff23",
+    "retained_text_sha256": "00907ff38273b280e64d8b4f50a2b41487a9ed597e88bac06881bfaf6093ff23",
+    "source_snapshot": null,
+    "http_status": 200,
+    "extraction": "Exact positional decoder and municipality/metropolitan route split; no script execution."
+  },
+  "payload": {
+    "excerpts": [
+      {
+        "start": 5855,
+        "end": 6275,
+        "text": "function href(r) {\n    return PREFIX + (r.t === \"z\" ? \"/teritoriu/\" : \"/\") + r.slug + \"/\";\n  }\n\n  function search(qRaw) {\n    var q = fold(qRaw);\n    if (!q) return [];\n    var county = \"\";\n    var parts = q.split(/\\s*,\\s*/);\n    if (parts.length > 1) { county = parts[parts.length - 1]; q = parts.slice(0, -1).join(\" \"); }\n    var out = [];\n    for (var i = 0; i < rows.length; i++) {\n      var r = rows[i];\n      if (c"
+      },
+      {
+        "start": 5488,
+        "end": 5908,
+        "text": "rows = d.uats.map(function (u) {\n          return { s: u[0], name: u[1], county: u[2], code: u[3], t: u[4],\n                   slug: u[5], k: fold(u[1]), c: fold(u[2]), pop: u[7], ok: u[8] };\n        });\n      }).catch(function () { pending = null; });\n    return pending;\n  }\n\n  var TYPE = { c: \"comună\", o: \"oraș\", m: \"municipiu\", z: \"teritoriu metropolitan\" };\n\n  function href(r) {\n    return PREFIX + (r.t === \"z\" ?"
+      },
+      {
+        "start": 5374,
+        "end": 5794,
+        "text": "fetch(PREFIX + \"/data/uat-index.json\").then(function (r) { return r.json(); })\n      .then(function (d) {\n        rows = d.uats.map(function (u) {\n          return { s: u[0], name: u[1], county: u[2], code: u[3], t: u[4],\n                   slug: u[5], k: fold(u[1]), c: fold(u[2]), pop: u[7], ok: u[8] };\n        });\n      }).catch(function () { pending = null; });\n    return pending;\n  }\n\n  var TYPE = { c: \"comună\", "
+      }
+    ]
+  }
+}

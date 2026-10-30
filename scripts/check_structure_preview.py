@@ -100,7 +100,8 @@ with sync_playwright() as pw:
     page.goto(BASE+'entitati/?namespace='+local['id']+'&value=inst_cui-1973096_89f11b5bc5');page.wait_for_selector('.entity-card')
     ok('accepted links expand one hop without inventing a transitive cluster',page.locator('.entity-card').count()==len(LOCAL_IDS) and page.locator('[data-record="synthetic-third"]').count()==0)
     for slug in ['lista-firme','demoanaf','companii-de-stat','companii-publice-ro','orasul-care-se-intinde',
-                 'executii-bugetare','banii-nostri','data-expertforum','ce-cumpara-primaria','cat-de-tare']:
+                 'executii-bugetare','banii-nostri','data-expertforum','ce-cumpara-primaria','cat-de-tare',
+                 'igov','monitor-safe','achizitii-directe-ti-2026','onorata-instanta','biografia-localitatii','afacut']:
         if slug not in DB['projects']:continue
         expected=DB['projects'][slug]
         page.goto(BASE+expected['profile']);page.wait_for_selector('[data-structure-profile]')
@@ -118,6 +119,17 @@ with sync_playwright() as pw:
         ok('a local locality slug does not match other sites by name',page.locator('.entity-card').count()==1
            and 'cat-de-tare' in page.locator('.entity-card a').first.get_attribute('href'))
         ok('long local identifier labels fit the mobile lookup',page.evaluate('document.documentElement.scrollWidth<=innerWidth'))
+    if any(n['namespace']=='igov:organizations:id' for n in DB['namespaces']):
+        scope=next(n for n in DB['namespaces'] if n['namespace']=='igov:organizations:id')
+        page.goto(BASE+'entitati/?namespace='+scope['id']+'&value=cui-1973096');page.wait_for_selector('.entity-card')
+        ok('igov canonical organization ID produces its typed company profile',page.locator('a[href="https://igov.ro/organizatii/cui-1973096"]').count()==1)
+    if 'monitor-safe' in DB['projects']:
+        scope=next(n for n in DB['namespaces'] if n['namespace']=='monitor-safe:proposal:slug')
+        page.goto(BASE+'entitati/?namespace='+scope['id']+'&value=mapn-piranha-respins');page.wait_for_selector('.entity-card')
+        ok('an uncontracted proposal is not labelled as a contract','PROIECT DE FINANȚARE' in page.locator('.entity-card .kicker').inner_text().upper()
+           and page.locator('a[href="https://monitorsafe.ro/contracte/#mapn-piranha-respins"]').count()==1)
+    if 'afacut' in DB['projects']:
+        ok('aggregate site structure does not invent entity records',bool(DB['projects']['afacut']['patterns']) and not any(r['project']=='afacut' for r in DB['records']))
     ok('no browser script errors',not errors)
     browser.close()
 print(f'{sum(checks)}/{len(checks)} browser checks pass')

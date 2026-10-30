@@ -1,5 +1,31 @@
 # Activity
 
+## 2026-10-30 — Enrich igov and enroll five more sites
+
+**Done**
+- Confirmed igov's earlier coverage: two company references with independent local-ID/CUI fields. Enriched that recipe with sections, tabs and APIs. [Report](reports/site-structure-batch-h.md).
+- Verified igov canonical organization IDs `cui-1973096` and `cui-31029694` through exact searches and detail responses. Added the historical parent-company reference CUI 8359779.
+- Added Monitor SAFE, Achiziții directe TI 2026, Onorată Instanță, Biografia localității and A Făcut. The last profile contains aggregate sections without fabricated entity IDs.
+- Added nineteen collections, 26 URL patterns, nine igov API/data operations and fifteen record references. The twenty-project set has 99 evidence records, 73 collections, 80 patterns, 96 operations, 58 rules and 64 records.
+- Proposed twenty more direct pairs. Four original decisions remain accepted; 59 pairs remain proposed. No within-project merge or transitive cluster was inferred.
+- Sent 25 GET requests, all HTTP 200, including five robots checks. Visited only igov and scoped Biografia pages/assets; no paid API, forbidden host, account API, browser source crawl or owner contact.
+- Eight new offline checks pass on Python 3.12. The full suite passes 1,273 tests with eight skips; all 46 browser checks pass, including igov's canonical profile URL and the Romanian proposal label.
+- Original pilot, structure integrity, repository validation and public build pass. Public payload comparison found only generated timestamp drift, which is excluded.
+
+**Hard**
+- The first igov recipe had no route or API declarations. The deployed organization directory exposed a newer canonical ID namespace; kept it separate from legacy governance IDs.
+- Both canonical igov responses have null `registry_id`. No direct legacy-ID binding was invented from that field; shared CUI observations support the proposals.
+- Monitor SAFE uses the same fragment shape for contracts and uncontracted proposals. URL-only pattern identity collapsed one binding (79 total patterns). Explicit typed placeholder aliases preserve both (80).
+- A court table starts with a descriptive row. Excluded that row from the three court references and retained its descriptions as metadata.
+- A Făcut's tables expose aggregate progress without stable subject IDs. Profiled the sections and kept entity extraction unavailable.
+
+**Decided**
+- Treat igov canonical catalogue rows and historical governance nodes as separate record references. Preserve original keys, namespace meanings, source dates and owner decisions.
+- Use the independently named SIRUTA field in Biografia's index; never derive it from slug digits. Sample only municipal rows; metropolitan routes remain unsampled.
+- Keep Monitor SAFE proposals separate from contracts and use local purchase/court identifiers without fiscal inference from names.
+- Record only public GET/data declarations. Downloaded account bootstrap code was not executed, copied into identity evidence or used to call account endpoints.
+- Version v0.52.0 records this batch. Public feature integration remains separate; this repository has no Cargo.toml.
+
 ## 2026-10-30 — Push v0.50.0 and profile institutions and territories
 
 **Done**

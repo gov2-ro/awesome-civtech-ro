@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "id": "achizitii-directe-ti-2026-batch-f",
+  "project_slug": "achizitii-directe-ti-2026",
+  "input_url": "https://achizitii-directe-ti-2026.mariuscomper.uk/",
+  "evidence": [
+    {
+      "id": "purchase-ids",
+      "source": "https://achizitii-directe-ti-2026.mariuscomper.uk/flagged_cases.csv",
+      "observed_at": "2026-10-24T22:41:10.355522+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-h/evidence/achizitii-directe-ti-2026-purchase-ids.json",
+      "sha256": "4de5ebdc4372024b142127068f0307d4bb4817cbaa672c541cf62af960a82ad7",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "sections",
+      "source": "https://achizitii-directe-ti-2026.mariuscomper.uk/",
+      "observed_at": "2026-10-24T22:20:04.390867+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-h/evidence/achizitii-directe-ti-2026-sections.json",
+      "sha256": "dc1d0998b1f3d7f3fd0bbcd1eba4fc280342b64951fa1cc91f4b64286a54ed95",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    }
+  ],
+  "collections": [
+    {
+      "id": "purchases",
+      "label": "Achiziții directe semnalate",
+      "entity_type": "contract",
+      "record_grain": "direct_purchase",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "purchase-ids",
+        "sections"
+      ]
+    }
+  ],
+  "namespaces": [
+    {
+      "id": "achizitii-directe-ti-2026:purchase-number",
+      "issuer": "achizitii-directe-ti-2026",
+      "scope": "Purchase-number strings from the source column. No cross-project/global namespace claim.",
+      "normalization": "identity",
+      "shared": false,
+      "evidence": [
+        "purchase-ids"
+      ]
+    }
+  ],
+  "patterns": [
+    {
+      "id": "dashboard",
+      "collection": "purchases",
+      "url_template": "https://achizitii-directe-ti-2026.mariuscomper.uk/",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "sections"
+      ]
+    },
+    {
+      "id": "purchase-export",
+      "collection": "purchases",
+      "url_template": "https://achizitii-directe-ti-2026.mariuscomper.uk/flagged_cases.csv",
+      "kind": "document",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "purchase-ids"
+      ]
+    }
+  ],
+  "operations": [],
+  "identifier_rules": [
+    {
+      "id": "purchase-number",
+      "collection": "purchases",
+      "namespace": "achizitii-directe-ti-2026:purchase-number",
+      "location": "CSV.Numar achizitie directa",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "purchase-ids"
+      ],
+      "note": ""
+    }
+  ],
+  "samples": [
+    {
+      "id": "purchase-DA39806106",
+      "collection": "purchases",
+      "label": "DA39806106",
+      "local_namespace": "achizitii-directe-ti-2026:purchase-number",
+      "identifiers": [
+        {
+          "rule": "purchase-number",
+          "source": "purchase-ids",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/0/Numar achizitie directa"
+          }
+        }
+      ]
+    },
+    {
+      "id": "purchase-DA39954337",
+      "collection": "purchases",
+      "label": "DA39954337",
+      "local_namespace": "achizitii-directe-ti-2026:purchase-number",
+      "identifiers": [
+        {
+          "rule": "purchase-number",
+          "source": "purchase-ids",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/1/Numar achizitie directa"
+          }
+        }
+      ]
+    },
+    {
+      "id": "purchase-DA39949600",
+      "collection": "purchases",
+      "label": "DA39949600",
+      "local_namespace": "achizitii-directe-ti-2026:purchase-number",
+      "identifiers": [
+        {
+          "rule": "purchase-number",
+          "source": "purchase-ids",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/2/Numar achizitie directa"
+          }
+        }
+      ]
+    }
+  ],
+  "relationships": []
+}

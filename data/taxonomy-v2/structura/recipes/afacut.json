@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "id": "afacut-batch-f",
+  "project_slug": "afacut",
+  "input_url": "https://afacut.ro/",
+  "evidence": [
+    {
+      "id": "water-headings",
+      "source": "https://afacut.ro/apa-si-canal/",
+      "observed_at": "2026-10-25T14:17:14.226395+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-h/evidence/afacut-water-headings.json",
+      "sha256": "b0f9c1c87b29b1c7d28fbbf64e8b1bfe133dfa7d99c065b8e3d3c8b9d6703e40",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "roads-headings",
+      "source": "https://afacut.ro/drumuri-si-poduri/",
+      "observed_at": "2026-10-25T14:17:13.391285+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-h/evidence/afacut-roads-headings.json",
+      "sha256": "9365de61174adb9bee75b0b2ff5104ba4bf83a455427056b29467cf907c49a6a",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "counties-headings",
+      "source": "https://afacut.ro/drumuri-si-poduri/judete/",
+      "observed_at": "2026-10-25T14:22:22.586476+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-h/evidence/afacut-counties-headings.json",
+      "sha256": "f963da35aaefd85f64d66dca140105a9de97607b6e8d8578ed6c3d7dfa2f83a5",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "gas-headings",
+      "source": "https://afacut.ro/gaze-naturale/",
+      "observed_at": "2026-10-25T14:17:14.929181+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-h/evidence/afacut-gas-headings.json",
+      "sha256": "eee701714321f1a3695f23cd68441921b75e623b3be0c16e87adc0d2fd50e763",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    }
+  ],
+  "collections": [
+    {
+      "id": "water",
+      "label": "Apă și canal",
+      "entity_type": "unknown",
+      "record_grain": "aggregate",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "water-headings"
+      ]
+    },
+    {
+      "id": "roads",
+      "label": "Drumuri și poduri",
+      "entity_type": "unknown",
+      "record_grain": "aggregate",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "roads-headings"
+      ]
+    },
+    {
+      "id": "counties",
+      "label": "Situația pe județe",
+      "entity_type": "unknown",
+      "record_grain": "aggregate",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "counties-headings"
+      ]
+    },
+    {
+      "id": "gas",
+      "label": "Gaze naturale",
+      "entity_type": "unknown",
+      "record_grain": "aggregate",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "gas-headings"
+      ]
+    }
+  ],
+  "namespaces": [],
+  "patterns": [
+    {
+      "id": "water-section",
+      "collection": "water",
+      "url_template": "https://afacut.ro/apa-si-canal/",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "water-headings"
+      ]
+    },
+    {
+      "id": "roads-section",
+      "collection": "roads",
+      "url_template": "https://afacut.ro/drumuri-si-poduri/",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "roads-headings"
+      ]
+    },
+    {
+      "id": "counties-section",
+      "collection": "counties",
+      "url_template": "https://afacut.ro/drumuri-si-poduri/judete/",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "counties-headings"
+      ]
+    },
+    {
+      "id": "gas-section",
+      "collection": "gas",
+      "url_template": "https://afacut.ro/gaze-naturale/",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "gas-headings"
+      ]
+    }
+  ],
+  "operations": [],
+  "identifier_rules": [],
+  "samples": [],
+  "relationships": []
+}

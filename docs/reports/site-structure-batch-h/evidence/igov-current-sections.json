@@ -1,0 +1,16 @@
+{
+  "provenance": {
+    "source": "https://igov.ro/",
+    "observed_at": "2026-10-30T16:46:07.441118+00:00",
+    "source_body_sha256": "950695b5e51d433ac70ba5e9986daeeeaa691cd0384953e39b685a944b3bd2c2",
+    "retained_text_sha256": "950695b5e51d433ac70ba5e9986daeeeaa691cd0384953e39b685a944b3bd2c2",
+    "source_snapshot": null,
+    "http_status": 200,
+    "extraction": "Only observed same-site section hrefs from the homepage."
+  },
+  "payload": {
+    "links": [
+      "https://igov.ro/reports/guvernanta.html"
+    ]
+  }
+}

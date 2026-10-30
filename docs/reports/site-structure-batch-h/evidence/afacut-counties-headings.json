@@ -1,0 +1,22 @@
+{
+  "provenance": {
+    "source": "https://afacut.ro/drumuri-si-poduri/judete/",
+    "observed_at": "2026-10-25T14:22:22.586476+00:00",
+    "source_body_sha256": "2b43c93695be5fd642d97725bf885309064b38100635c1b393da2f127ecf2e01",
+    "retained_text_sha256": "2b43c93695be5fd642d97725bf885309064b38100635c1b393da2f127ecf2e01",
+    "source_snapshot": "surse/643d4a99e578531b0165-2b43c93695be5fd6.json",
+    "http_status": 200,
+    "extraction": "Exact page title, heading and table-header text. Aggregate values and row labels are not promoted to identifiers."
+  },
+  "payload": {
+    "headings": [
+      "Clasamentul județelor: din 100 de lei alocați | A făcut?",
+      "41 de județe, aceeași scară de 100 de lei",
+      "Județ",
+      "Din 100 de lei",
+      "Alocat (mil. lei)",
+      "Solicitat (mil. lei)",
+      "Localități cu solicitări"
+    ]
+  }
+}

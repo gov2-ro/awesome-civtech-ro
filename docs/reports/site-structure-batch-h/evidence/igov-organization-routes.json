@@ -1,0 +1,35 @@
+{
+  "provenance": {
+    "source": "https://igov.ro/organization-directory.js",
+    "observed_at": "2026-10-30T16:48:30.436222+00:00",
+    "source_body_sha256": "56c53549da72c28d97756001797648190a80fbe2dba33d38bb84aa149952fd1c",
+    "retained_text_sha256": "56c53549da72c28d97756001797648190a80fbe2dba33d38bb84aa149952fd1c",
+    "source_snapshot": null,
+    "http_status": 200,
+    "extraction": "Exact organization catalogue, detail API and canonical profile-route code; no script execution."
+  },
+  "payload": {
+    "excerpts": [
+      {
+        "start": 912,
+        "end": 1612,
+        "text": "const catalogURL=values=>url('/organizatii',values);\n const count=(n,one,many)=>n.toLocaleString('ro-RO')+' '+(n===1?one:many);\n let token=0,abort,timer,lastData,loaded=[],page=1,topicsExpanded=false;\n const catalogCache=new Map();\n async function readCatalog(params,signal){\n  params.sort();const key=params.toString(),saved=catalogCache.get(key);\n  if(saved&&Date.now()<saved.expires)return saved.data;\n  const response=await fetch('/api/organizations?'+key,{signal});if(!response.ok)throw Error();const data=await response.json();\n  if(!data.warnings?.length&&response.headers.get('Cache-Control')?.includes('max-age=')){\n   catalogCache.delete(key);catalogCache.set(key,{data,expires:Date.now()+1"
+      },
+      {
+        "start": 1145,
+        "end": 1845,
+        "text": "async function readCatalog(params,signal){\n  params.sort();const key=params.toString(),saved=catalogCache.get(key);\n  if(saved&&Date.now()<saved.expires)return saved.data;\n  const response=await fetch('/api/organizations?'+key,{signal});if(!response.ok)throw Error();const data=await response.json();\n  if(!data.warnings?.length&&response.headers.get('Cache-Control')?.includes('max-age=')){\n   catalogCache.delete(key);catalogCache.set(key,{data,expires:Date.now()+15000});\n   if(catalogCache.size>24)catalogCache.delete(catalogCache.keys().next().value);\n  }\n  return data;\n }\n function localNav(){document.querySelector('#siteNav>a[href=\"/flows.html\"]')?.setAttribute('aria-current','page');for(co"
+      },
+      {
+        "start": 10046,
+        "end": 10746,
+        "text": "const entityID=()=>decodeURIComponent(location.pathname.split('/').filter(Boolean).at(-1)||'');\n const profileURL=values=>url('/organizatii/'+encodeURIComponent(lastData?.entity?.id||entityID()),values);\n const sectionLink=(section,label)=>link(profileURL({...Object.fromEntries(qs()),section:section==='overview'?'':section,page:''}),label,'data-browse');\n function observation(c){\n  const evidence=(c.evidence||[]).filter(e=>safeURL(e.reference)),info=CivicUI.observationInfo(c),model='/modele/pentru/caz/'+encodeURIComponent(c.id);\n  return '<article class=\"organization-fact\">'+CivicUI.contentMark(c.data_type==='published_result'?'result':'problem',info.label)+'<h3>'+esc(info.title)+'</h3><p cl"
+      },
+      {
+        "start": 17502,
+        "end": 18202,
+        "text": "fetch('/api/organizations/'+encodeURIComponent(entityID())+location.search,{signal:abort.signal});if(!response.ok)throw Error(response.status===404?'Organizația nu a fost găsită.':'Profilul nu poate fi încărcat acum.');const data=await response.json();if(own!==token)return;if(data.entity.id!==entityID())history.replaceState(null,'','/organizatii/'+encodeURIComponent(data.entity.id)+location.search);renderProfile(data);\n  }catch(e){if(e.name==='AbortError'||own!==token)return;$('organizationTitle').textContent=e.message;$('profileContent').innerHTML=empty('Revino la catalog sau încearcă din nou.')+'<button type=\"button\" class=\"brand-button\" data-retry>Reîncearcă</button>';}\n  finally{if(own=="
+      }
+    ]
+  }
+}

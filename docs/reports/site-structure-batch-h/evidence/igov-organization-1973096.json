@@ -1,0 +1,20 @@
+{
+  "provenance": {
+    "source": "https://igov.ro/api/organizations/cui-1973096",
+    "observed_at": "2026-10-30T16:50:18.807757+00:00",
+    "source_body_sha256": "dcea731f41d9611c5aee37fecb7bd362e46fb164ede304e42b3c114156d6a15a",
+    "retained_text_sha256": "dcea731f41d9611c5aee37fecb7bd362e46fb164ede304e42b3c114156d6a15a",
+    "source_snapshot": null,
+    "http_status": 200,
+    "extraction": "Whitelist of the public corporate entity block only. Excludes all articles, flows, people, memberships and related records. Null registry_id is retained as unknown, never inferred."
+  },
+  "payload": {
+    "id": "cui-1973096",
+    "name": "Antibiotice SA",
+    "display_name": "Antibiotice",
+    "type": "company",
+    "cui": "1973096",
+    "registry_id": null,
+    "url": "/organizatii/cui-1973096"
+  }
+}

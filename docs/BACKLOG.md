@@ -24,6 +24,11 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [x] Profile Execuții Bugetare, Banii Noștri, Data Expert Forum, Ce cumpără primăria and Hazard seismic 2026. Added 22 records, fifteen URL patterns, four API/data operations and six relationships. [Report](reports/site-structure-batch-g.md).
 - [ ] Owner: review thirteen further identity pairs from the institution/territory batch. Four prior decisions remain accepted; 39 pairs remain proposed across both expansion packets.
 - [ ] Structure mappings: the hazard explorer's slugs and legacy row numbers have no confirmed shared geographic mapping. Preserve them locally; names cannot establish SIRUTA.
+- [x] Enrich igov with public organization APIs, canonical organization IDs, profile URLs, sections and governance tabs. Preserve legacy company IDs; add the observed parent company CUI 8359779. [Report](reports/site-structure-batch-h.md).
+- [x] Profile Monitor SAFE, Achiziții directe TI 2026, Onorată Instanță, Biografia localității and A Făcut. Twenty sites now have structure recipes and 64 record references.
+- [ ] Owner: review twenty additional direct pairs from igov and Biografia localității. Four decisions remain accepted; 59 pairs remain proposed across the three expansion packets.
+- [ ] Structure gaps: A Făcut has aggregate sections without entity IDs. Court and direct-purchase frontend detail routes remain unknown; local codes are not fiscal IDs. Biografia metropolitan routes were declared by code but not sampled.
+- [ ] Structure pattern identity uses URL template text. Same-shaped routes across collections need explicit typed placeholder aliases; assess collection-aware keys before automated enrollment.
 - [ ] Structure expansion: inspect the 21 catalogue entries without retained documentation bodies. The offline pass covers all 145 entries and makes no requests; missing snapshots do not prove absent structure.
 - [ ] Existing `inventory_report.py` and inventory tests leave CSV streams open. The full suite emits ResourceWarnings at those readers; use context managers in a separate correction.
 

@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "id": "onorata-instanta-batch-f",
+  "project_slug": "onorata-instanta",
+  "input_url": "https://www.onoratainstanta.ro",
+  "evidence": [
+    {
+      "id": "court-codes",
+      "source": "https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/judecatorii-instante-2014.tsv",
+      "observed_at": "2026-10-26T23:14:44.576745+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-h/evidence/onorata-instanta-court-codes.json",
+      "sha256": "ceb74c7743fa517e9ff0a5826bc92875afcb74910578f1cddad1bbfcf4706955",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    },
+    {
+      "id": "sections",
+      "source": "https://www.onoratainstanta.ro/",
+      "observed_at": "2026-10-24T22:19:36.065419+00:00",
+      "artifact": "../../../../docs/reports/site-structure-batch-h/evidence/onorata-instanta-sections.json",
+      "sha256": "2fcfd47edf66d653c7e4beee766be2a403381cf55e84860a0a8ac9bc430eb3ce",
+      "locator": {
+        "type": "json_pointer",
+        "pointer": "/payload"
+      }
+    }
+  ],
+  "collections": [
+    {
+      "id": "courts",
+      "label": "Instanțe — referințe istorice",
+      "entity_type": "public_institution",
+      "record_grain": "legal_subject",
+      "identity_components": [
+        "ro:cui"
+      ],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "court-codes",
+        "sections"
+      ]
+    },
+    {
+      "id": "statistics",
+      "label": "Performanța instanțelor",
+      "entity_type": "unknown",
+      "record_grain": "court_year",
+      "identity_components": [],
+      "coverage": "Bounded retained declarations and samples; not a complete inventory.",
+      "evidence": [
+        "court-codes"
+      ]
+    }
+  ],
+  "namespaces": [
+    {
+      "id": "onorata-instanta:court-code",
+      "issuer": "onorata-instanta",
+      "scope": "Court code strings in the retained 2014 file; no shared national or fiscal namespace asserted.",
+      "normalization": "identity",
+      "shared": false,
+      "evidence": [
+        "court-codes"
+      ]
+    }
+  ],
+  "patterns": [
+    {
+      "id": "home",
+      "collection": "courts",
+      "url_template": "https://www.onoratainstanta.ro",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "sections"
+      ]
+    },
+    {
+      "id": "court-list",
+      "collection": "courts",
+      "url_template": "https://www.onoratainstanta.ro/instante/",
+      "kind": "listing",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "sections"
+      ]
+    },
+    {
+      "id": "historical-court-data",
+      "collection": "statistics",
+      "url_template": "https://raw.githubusercontent.com/funkycitizens/onoratainstanta/b92894e45ac64f8c5987758d86f30ce2e94620aa/_build/tables/judecatorii-instante-2014.tsv",
+      "kind": "document",
+      "variables": [],
+      "basis": "exact",
+      "examples": [],
+      "evidence": [
+        "court-codes"
+      ]
+    }
+  ],
+  "operations": [],
+  "identifier_rules": [
+    {
+      "id": "court-code",
+      "collection": "courts",
+      "namespace": "onorata-instanta:court-code",
+      "location": "CSV.cod",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "court-codes"
+      ],
+      "note": ""
+    }
+  ],
+  "samples": [
+    {
+      "id": "JudecatoriaADJUD",
+      "collection": "courts",
+      "label": "Judecătoria ADJUD",
+      "local_namespace": "onorata-instanta:court-code",
+      "identifiers": [
+        {
+          "rule": "court-code",
+          "source": "court-codes",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/0/cod"
+          }
+        }
+      ]
+    },
+    {
+      "id": "JudecatoriaAGNITA",
+      "collection": "courts",
+      "label": "Judecătoria AGNITA",
+      "local_namespace": "onorata-instanta:court-code",
+      "identifiers": [
+        {
+          "rule": "court-code",
+          "source": "court-codes",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/1/cod"
+          }
+        }
+      ]
+    },
+    {
+      "id": "JudecatoriaAIUD",
+      "collection": "courts",
+      "label": "Judecătoria AIUD",
+      "local_namespace": "onorata-instanta:court-code",
+      "identifiers": [
+        {
+          "rule": "court-code",
+          "source": "court-codes",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/rows/2/cod"
+          }
+        }
+      ]
+    }
+  ],
+  "relationships": []
+}

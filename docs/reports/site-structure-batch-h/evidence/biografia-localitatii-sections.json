@@ -1,0 +1,46 @@
+{
+  "provenance": {
+    "source": "https://mariuscomper.uk/biografia-localitatii/",
+    "observed_at": "2026-10-24T22:20:03.927228+00:00",
+    "source_body_sha256": "3b3618a4d64c0725a2169b64e1c2f37fce0d3bc84d012f4eaf43158918851aa3",
+    "retained_text_sha256": "3b3618a4d64c0725a2169b64e1c2f37fce0d3bc84d012f4eaf43158918851aa3",
+    "source_snapshot": "data/taxonomy-v2/observatii/documentare/pagini/3abf846ee656d8dceec1aecd.json",
+    "http_status": 200,
+    "extraction": "Exact document lines and selected link entries; original offsets and link indices retained."
+  },
+  "payload": {
+    "excerpts": [
+      {
+        "start": 0,
+        "end": 81,
+        "text": "România, loc cu loc — biografia statistică a fiecărei localități Sari la conținut"
+      },
+      {
+        "start": 96,
+        "end": 107,
+        "text": "Metoda Temă"
+      },
+      {
+        "start": 136,
+        "end": 292,
+        "text": "Peste trei decenii de schimbare, în fiecare comună, oraș și municipiu din România. Caută-ți localitatea și vezi momentele în care s-a schimbat ceva durabil."
+      },
+      {
+        "start": 293,
+        "end": 310,
+        "text": "Caută localitatea"
+      },
+      {
+        "start": 311,
+        "end": 425,
+        "text": "Scrie cu sau fără diacritice. Dacă numele se repetă, adaugă județul: Florești, Cluj . Surprinde-mă cu o localitate"
+      },
+      {
+        "start": 941,
+        "end": 1273,
+        "text": "Pentru fiecare localitate, aceleași reguli caută în seriile INS TEMPO răsturnări de ordine, praguri trecute și ținute, apariția sau dispariția unei rețele, tendințe care se mențin un deceniu sau mai mult și serii care merg în direcții opuse. Dintre schimbările găsite rămân 6–10, alese ca să nu spună de mai multe ori același lucru."
+      }
+    ],
+    "links": []
+  }
+}

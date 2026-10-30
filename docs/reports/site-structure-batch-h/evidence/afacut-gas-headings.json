@@ -1,0 +1,20 @@
+{
+  "provenance": {
+    "source": "https://afacut.ro/gaze-naturale/",
+    "observed_at": "2026-10-25T14:17:14.929181+00:00",
+    "source_body_sha256": "91e57caed466f815a6110a8f6bdca6e5526ba7363ff459b8fc3c8a1ea673fbef",
+    "retained_text_sha256": "91e57caed466f815a6110a8f6bdca6e5526ba7363ff459b8fc3c8a1ea673fbef",
+    "source_snapshot": "surse/28b7fba4fae5df74675f-91e57caed466f815.json",
+    "http_status": 200,
+    "extraction": "Exact page title, heading and table-header text. Aggregate values and row labels are not promoted to identifiers."
+  },
+  "payload": {
+    "headings": [
+      "Gaze naturale | A făcut?",
+      "A FĂCUT   ? DEVERIFICAT",
+      "Data raportării",
+      "Tranșa (mld lei)",
+      "Cumulat (mld lei)"
+    ]
+  }
+}
