@@ -20,6 +20,10 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [ ] Structure expansion: inspect the 21 catalogue entries without retained documentation bodies. The offline pass covers all 145 entries and makes no requests; missing snapshots do not prove absent structure.
 - [ ] Existing `inventory_report.py` and inventory tests leave CSV streams open. The full suite emits ResourceWarnings at those readers; use context managers in a separate correction.
 
+## New URLs — 2026-10-30
+
+- [x] Audit, add and publish `hotarari`. Profile, search, inventory and public build completed; 30 search rows remain unpruned because the name is generic.
+
 ## New URLs — 2026-10-29
 
 - [x] Audit and add `dimineata` and `gio` as proposed v2 entries, with Gabriel Popa attribution rows. Profile, search, inventory and draft preview completed. [Cell audit](reports/add-new-url-2026-10-29.md).

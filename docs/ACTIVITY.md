@@ -1,5 +1,21 @@
 # Activity
 
+## 2026-10-30 — Publish hotarari.ro
+
+**Done**
+- Added `hotarari` to the v2 catalogue and attributed the named operator with an unconfirmed role.
+- Profiled the live site (HTTP 200); collected four documentation pages with four requests; inventory found no structured sources.
+- Kept all 30 search results. The generic name returns unrelated decision archives.
+- Accepted the entry at the owner's request, passed publication validation, and built the public site.
+
+**Hard**
+- The search results collide with common uses of “hotărâri”; none were pruned without editorial review.
+
+**Decided**
+- Classify the commercial-operated archive as `civictech_original=0`; retain it as a public information project.
+- Version v0.48.1 records this catalogue publication.
+
+
 ## 2026-10-30 — Entity lookup and site structure profiles
 
 **Done**

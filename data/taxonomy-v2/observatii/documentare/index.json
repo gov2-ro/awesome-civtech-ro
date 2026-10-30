@@ -5043,6 +5043,54 @@
       ]
     },
     {
+      "slug": "hotarari",
+      "url": "https://hotarari.ro/",
+      "state": "documentatie-neconfirmata",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://hotarari.ro/",
+          "final_url": "https://hotarari.ro/",
+          "http_status": null,
+          "fetched_at": "2026-10-30T15:43:58.525148+00:00",
+          "state": "eroare-retea",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>",
+          "kind": "pagina",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://hotarari.ro/llms.txt",
+          "final_url": "https://hotarari.ro/llms.txt",
+          "http_status": null,
+          "fetched_at": "2026-10-30T15:43:58.553761+00:00",
+          "state": "eroare-retea",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://hotarari.ro/metodologie/",
+          "final_url": "https://hotarari.ro/metodologie/",
+          "http_status": null,
+          "fetched_at": "2026-10-30T15:43:58.561363+00:00",
+          "state": "eroare-retea",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://hotarari.ro/despre/",
+          "final_url": "https://hotarari.ro/despre/",
+          "http_status": null,
+          "fetched_at": "2026-10-30T15:43:58.568655+00:00",
+          "state": "eroare-retea",
+          "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
       "slug": "ia-statul-la-intrebari",
       "url": "https://www.romaniacurata.ro/",
       "state": "documentatie-gasita",
