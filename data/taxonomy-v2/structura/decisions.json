@@ -1,0 +1,30 @@
+[
+  {
+    "assertion_id": "5ac8420845c4054c47935621",
+    "state": "accepted",
+    "note": "Owner accepted all four reviewed identity pairs: MAE, CUI 4266863.",
+    "decided_by": "owner",
+    "decided_at": "2026-10-30T10:59:43Z"
+  },
+  {
+    "assertion_id": "675c721471de5b5e5f64108a",
+    "state": "accepted",
+    "note": "Owner accepted all four reviewed identity pairs: A.D.P. Bârca, CUI 43721310.",
+    "decided_by": "owner",
+    "decided_at": "2026-10-30T10:59:43Z"
+  },
+  {
+    "assertion_id": "08c7dd49f427335c63ef4486",
+    "state": "accepted",
+    "note": "Owner accepted all four reviewed identity pairs: Antibiotice, CUI 1973096.",
+    "decided_by": "owner",
+    "decided_at": "2026-10-30T10:59:43Z"
+  },
+  {
+    "assertion_id": "fb64eb05e1f5a9297a619f4d",
+    "state": "accepted",
+    "note": "Owner accepted all four reviewed identity pairs: București territory, SIRUTA 179132. This decision does not equate the territory with its fiscal institution.",
+    "decided_by": "owner",
+    "decided_at": "2026-10-30T10:59:43Z"
+  }
+]

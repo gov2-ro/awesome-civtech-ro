@@ -1639,3 +1639,26 @@ All selected variables must occur in a matching entry. Other facets use OR withi
 Counts measure distinct entries. Values with at most three matches stay under `Mai multe`; selected values remain visible.
 The URL stores search, resource inclusion and repeated facet parameters. Browser navigation restores those selections.
 Entries with missing inventories remain searchable through their catalogue fields. Missing evidence does not assert missing data.
+
+## Structure curation inputs (`taxonomy-v2/structura/`)
+
+These inputs belong to the separate structure workflow. They are not public-build inputs.
+`recipes/<slug>.json` has schema version 1; `curate_structure.py` applies it to an isolated version-2 store.
+The [recipe guide](STRUCTURE-CURATION.md) defines the fields and executable examples.
+
+Evidence aliases retain source, observation time, artifact SHA-256 and a precise locator.
+Samples extract values inside the selected fragment. They do not insert literal guessed identifiers.
+Namespaces retain issuer, scope, sharing status and original values.
+Self, buyer, supplier, parent and territory roles remain distinct.
+Record grain participates in match compatibility. Equal site-local values never establish a cross-project identity.
+
+The human-edited `structura/decisions.json` is the durable owner review list.
+Each decision identifies a proposed assertion and uses `accepted`, `rejected` or `deferred`.
+The importer never changes that file or an output store's `decisions.json`.
+The report reads an explicit durable file through `--decisions` and shows decisions outside the selected scope separately.
+Accepted identity review is separate from publication.
+
+The [curation review packet](reports/site-structure-curation/review.json) is a measured snapshot, generated from recipes and retained evidence.
+It includes source receipts that resolve to tracked artifacts and recipe aliases without ignored caches.
+The igov company extract whitelists corporate ID, CUI and company name from complete rows of a retained partial JSON sample.
+It does not copy values from the people or appointments collections.

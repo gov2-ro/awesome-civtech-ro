@@ -1,0 +1,428 @@
+{
+  "projects": 145,
+  "records": 11,
+  "links": [
+    {
+      "id": "675c721471de5b5e5f64108a",
+      "state": "accepted",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "registrul-firmelor",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "43721310",
+              "raw_value": "43721310",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:onrc:euid",
+              "value": "ROONRC.J16/419/2021",
+              "raw_value": "ROONRC.J16/419/2021",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://registru.horecaos.org/firma/43721310"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://registru.horecaos.org/firma/43721310",
+              "basis": "template-derived",
+              "evidence": [
+                "45da0fac72ec31bfce8eef34"
+              ]
+            }
+          ],
+          "evidence": [
+            "4fa0836f4c8da3f0bce4f4b6"
+          ]
+        },
+        {
+          "project": "romania-transparenta",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "43721310",
+              "raw_value": "43721310",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://api.romaniatransparenta.eu/v1/companii/43721310"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://romaniatransparenta.eu/registre/companii-de-stat/43721310",
+              "basis": "template-derived",
+              "evidence": [
+                "4b840d5591599b562036d790"
+              ]
+            }
+          ],
+          "evidence": [
+            "511ca10b1086e7a7a3e6f788"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5ac8420845c4054c47935621",
+      "state": "accepted",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "romania-transparenta",
+          "collection": "central",
+          "entity_type": "public_institution",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "4266863",
+              "raw_value": "4266863",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://api.romaniatransparenta.eu/v1/date/institutii_centrale?limit=2"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://romaniatransparenta.eu/registre/administratia-centrala/4266863",
+              "basis": "template-derived",
+              "evidence": [
+                "4b840d5591599b562036d790"
+              ]
+            }
+          ],
+          "evidence": [
+            "013cbdfa3f8b3f452bc14466"
+          ]
+        },
+        {
+          "project": "transparenta-eu",
+          "collection": "entities",
+          "entity_type": "public_institution",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "4266863",
+              "raw_value": "4266863",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://api.transparenta.eu/graphql"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://transparenta.eu/entities/4266863",
+              "basis": "template-derived",
+              "evidence": [
+                "1aa59ad489db5e8c9de8b023"
+              ]
+            }
+          ],
+          "evidence": [
+            "50e20207ebd800e40ee5ee21"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fb64eb05e1f5a9297a619f4d",
+      "state": "accepted",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "romania-transparenta",
+          "collection": "uat",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://api.romaniatransparenta.eu/v1/uat?q=Bucuresti&limit=1"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://romaniatransparenta.eu/registre/administratia-locala/179132",
+              "basis": "template-derived",
+              "evidence": [
+                "4b840d5591599b562036d790"
+              ]
+            }
+          ],
+          "evidence": [
+            "94fb3ac2cbbe38aee59b135a"
+          ]
+        },
+        {
+          "project": "transparenta-eu",
+          "collection": "territories",
+          "entity_type": "territory",
+          "identifiers": [
+            {
+              "namespace": "ro:siruta",
+              "value": "179132",
+              "raw_value": "179132",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://api.transparenta.eu/graphql"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "52d89462f3071c9e58c04cc9"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "08c7dd49f427335c63ef4486",
+      "state": "accepted",
+      "conflict": false,
+      "subjects": [
+        {
+          "project": "igov",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "igov:companies:id",
+              "value": "inst_cui-1973096_89f11b5bc5",
+              "raw_value": "inst_cui-1973096_89f11b5bc5",
+              "subject_role": "self"
+            },
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://igov.ro/reports/guvernanta.json"
+          ],
+          "profile_urls": [],
+          "evidence": [
+            "eff8a57370d388646a697717"
+          ]
+        },
+        {
+          "project": "registrul-firmelor",
+          "collection": "companies",
+          "entity_type": "company",
+          "identifiers": [
+            {
+              "namespace": "ro:cui",
+              "value": "1973096",
+              "raw_value": "1973096",
+              "subject_role": "self"
+            }
+          ],
+          "locators": [
+            "https://registru.horecaos.org/firma/1973096"
+          ],
+          "profile_urls": [
+            {
+              "url": "https://registru.horecaos.org/firma/1973096",
+              "basis": "template-derived",
+              "evidence": [
+                "45da0fac72ec31bfce8eef34"
+              ]
+            }
+          ],
+          "evidence": [
+            "ee420d096aa7c99b33a64ed1"
+          ]
+        }
+      ]
+    }
+  ],
+  "conflicts": [],
+  "gaps": [],
+  "local_sources": [],
+  "declared_without_samples": [
+    "sicap-ai"
+  ],
+  "evidence": {
+    "4fa0836f4c8da3f0bce4f4b6": {
+      "project": "registrul-firmelor",
+      "source": "https://registru.horecaos.org/firma/43721310",
+      "observed_at": "2026-10-29T22:43:00.687374+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/registrul-firmelor.json",
+      "alias": "registrul-firmelor-adp-page",
+      "artifact": "docs/reports/site-structure-pilot/evidence/registrul-firmelor-adp-page.txt",
+      "sha256": "7cb88b0479b96eb5ece9f2f58b2e72fb9d8c3c562b6dded1256074da72bea76d",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 342,
+        "excerpt": "<title>A.D.P. BÂRCA S.R.L. — CUI 43721310, bilanț și date firmă</title>\n<meta name=\"description\" content=\"A.D.P. BÂRCA S.R.L., CUI 43721310 · Sat Bârca, Comuna Bârca, Dolj · neplătitor de TVA\">\n<link rel=\"canonical\" href=\"https://registru.horecaos.org/firma/43721310\">\n<tr><td class=\"k\">EUID</td><td class=\"mono\">ROONRC.J16/419/2021</td></tr>"
+      }
+    },
+    "45da0fac72ec31bfce8eef34": {
+      "project": "registrul-firmelor",
+      "source": "https://registru.horecaos.org/llms.txt",
+      "observed_at": "2026-10-29T22:42:08.397615+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/registrul-firmelor.json",
+      "alias": "registrul-firmelor-llms",
+      "artifact": "docs/reports/site-structure-pilot/evidence/registrul-firmelor-llms.txt",
+      "sha256": "7a869379e71e47488cb666b2d78b2886db4586726d3b74c3c3d26d69e6e9d58b",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 1050,
+        "excerpt": "# Registrul firmelor din România (registru.horecaos.org)\n\n> Registru public și gratuit al firmelor din România, construit de HoReCaOS din surse oficiale: ONRC (registrul comerțului, lunar), ANAF (date fiscale: TVA, inactivi, RO e-Factura) și Ministerul Finanțelor (bilanțuri 2012–2025). 3.920.761 de firme, 12.497.860 de bilanțuri. Fără nume de administratori sau asociați (date personale).\n\n## Cum se citează o firmă\n- Fișa unei firme: https://registru.horecaos.org/firma/<CUI> (CUI fără „RO\"; ex. https://registru.horecaos.org/firma/14399840). Conține CUI, nr. de înregistrare, EUID, sediul social, stare fiscală, TVA, RO e-Factura, CAEN autorizat, bilanțuri pe ani (cifră de afaceri, profit, salariați), istoric ONRC, scor de risc transparent.\n- API JSON gratuit: https://registru.horecaos.org/api (1.000 de cereri/zi, cheie gratuită).\n- Datele sunt informative, fără valoare de document oficial; actul oficial e certificatul constatator ONRC.\n\n## Pagini principale\n- [Căutare firme](https://registru.horecaos.org/): după denumire sau CUI\n- [Verif"
+      }
+    },
+    "511ca10b1086e7a7a3e6f788": {
+      "project": "romania-transparenta",
+      "source": "https://api.romaniatransparenta.eu/v1/companii/43721310",
+      "observed_at": "2026-10-29T22:43:01.684550+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/romania-transparenta.json",
+      "alias": "romania-transparenta-company-response",
+      "artifact": "docs/reports/site-structure-pilot/evidence/romania-transparenta-company-response.txt",
+      "sha256": "f595aa2bf57f3cbc8c331adf076b509092fede3d786f12fd8081df9fe28b65a3",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 5321,
+        "excerpt": "{\n  \"date\": {\n    \"cui\": \"43721310\",\n    \"denumire\": \"A.D.P. BÂRCA S.R.L.\",\n    \"forma\": \"SRL\",\n    \"categorie\": \"SOC\",\n    \"sector\": \"Salubrizare și deșeuri\",\n    \"cod_caen\": \"3811\",\n    \"judet\": \"Dolj\",\n    \"stare\": \"activa\",\n    \"stare_sigura\": true,\n    \"nivel\": \"local\",\n    \"uat_sediu\": \"70940\",\n    \"tutela_id\": null,\n    \"tutela\": null,\n    \"tutela_citita_automat\": false,\n    \"mama\": null,\n    \"observat_la\": \"2026-10-05\",\n    \"incredere\": \"derivat\",\n    \"tutela_siruta\": null,\n    \"bilanturi\": {\n      \"descriere\": \"situațiile financiare anuale (lei); un an lipsă = bilanț nedepus sau negăsit, nu zero\",\n      \"ani\": [\n        {\n          \"an\": 2021,\n          \"cifra_afaceri\": 16157,\n          \"profit_net\": -80490,\n          \"angajati\": 2,\n          \"datorii\": 363443,\n          \"capitaluri_proprii\": -80290,\n          \"observat_la\": \"2026-09-10\",\n          \"incredere\": \"oficial\"\n        },\n        {\n          \"an\": 2022,\n          \"cifra_afaceri\": 109646,\n          \"profit_net\": -43273,\n          \"angajati\": 2,\n          \"datorii\": 358561,\n          \"capitaluri_proprii\": -123563,\n          \"observat_la\": \"2026-09-10\",\n          \"incredere\": \"oficial\"\n        },\n        {\n          \"an\": 2023,\n          \"cifra_afaceri\": 97966,\n          \"profit_net\": -68584,\n          \"angajati\": 2,\n          \"datorii\": 364942,\n          \"capitaluri_proprii\": -192146,\n          \"observat_la\": \"2026-09-10\",\n          \"incredere\": \"oficial\"\n        },\n        {\n          \"an\": 2024,\n          \"cifra_afaceri\": 168850,\n          \"profit_net\": -18429,\n          \"angajati\": 2,\n          \"datorii\": 371978,\n          \"capitaluri_proprii\": -210575,\n          \"observat_la\": \"2026-09-10\",\n          \"incredere\": \"oficial\"\n        },\n        {\n          \"an\": 2025,\n          \"cifra_afaceri\": 143771,\n          \"profit_net\": -31201,\n          \"angajati\": 2,\n          \"datorii\": 22711,\n          \"capitaluri_proprii\": 108224,\n          \"observat_la\": \"2026-09-10\",\n          \"incredere\": \"oficial\"\n        }\n      ]\n    },\n    \"conducere\": {\n      \"descriere\": \"conducerea publicată de companie pe site (ultima colectare); persoanele apar doar prin funcția publică\",\n      \"persoane\": []\n    },\n    \"filiale\": [],\n    \"obligatii\": {\n      \"descriere\": \"ce publică pe site din lista OUG 109/2011, la ultima verificare: publicat, partial (doar documente vechi), negasit (căutat și negăsit, nu dovada că lipsește), site_indisponibil\",\n      \"verificari\": []\n    },\n    \"remuneratii\": {\n      \"descriere\": \"sumele din rapoartele anuale de remunerare, pe funcție și an (citite automat: suma și fraza copiate din raport, funcția aleasă de un model)\",\n      \"sume\": []\n    },\n    \"legaturi\": {\n      \"pagina\": \"https://romaniatransparenta.eu/registre/companii-de-stat/43721310\",\n      \"documente\": \"https://api.romaniatransparenta.eu/v1/date/companii_documente?cui=43721310\",\n      \"achizitii\": \"https://api.romaniatransparenta.eu/v1/achizitii?cui_autoritate=43721310\",\n      \"achizitii_sumar\": \"https://api.romaniatransparenta.eu/v1/achizitii/sumar?cui_autoritate=43721310\",\n      \"contracte_castigate\": \"https://api.romaniatransparenta.eu/v1/achizitii?cui_castigator=43721310\",\n      \"filiale\": \"https://api.romaniatransparenta.eu/v1/companii?mama=43721310\",\n      \"bilanturi\": \"https://api.romaniatransparenta.eu/v1/date/companii_bilanturi?cui=43721310\"\n    }\n  },\n  \"provenienta\": {\n    \"registru\": {\n      \"id\": \"companii_de_stat\",\n      \"denumire\": \"registrul companiilor de stat\",\n      \"url\": \"https://romaniatransparenta.eu/registre/companii-de-stat/43721310\"\n    },\n    \"sursa\": [\n      {\n        \"id\": \"sursa:amepip-indicatori\",\n        \"denumire\": \"AMEPIP — Indicatori financiari, nefinanciari și de guvernanță corporativă (întreprinderile publice monitorizate)\",\n        \"institutie_emitenta\": \"Agenția pentru Monitorizarea și Evaluarea Performanțelor Întreprinderilor Publice\",\n        \"url_baza\": \"https://data.gov.ro/dataset/amepip-indicatori-financiari-nefinanciari-si-de-guvernanta-corporativa\",\n        \"licenta\": \"CC BY 4.0\"\n      },\n      {\n        \"id\": \"sursa:anaf-bilant\",\n        \"denumire\": \"Situațiile financiare anuale depuse la ANAF (bilanțuri)\",\n        \"institutie_emitenta\": \"Agenția Națională de Administrare Fiscală\",\n        \"url_baza\": \"https://www.anaf.ro\",\n        \"licenta\": \"informație publică\"\n      }\n    ],\n    \"observat_la\": \"2026-10-05\",\n    \"incredere\": [\n      {\n        \"valoare\": \"derivat\",\n        \"explicatie\": \"calculat de noi din date oficiale\"\n      },\n      {\n        \"valoare\": \"oficial\",\n        \"explicatie\": \"preluat dintr-un document oficial\"\n      }\n    ],\n    \"editie\": \"publicare:20261029T133011\",\n    \"date_actualizate_la\": \"2026-10-26\",\n    \"licenta\": \"CC BY 4.0\",\n    \"licenta_nota\": \"Compilația România Transparentă e sub CC BY 4.0; datele preluate își păstrează regimul surselor (câmpul `licenta` din fiecare sursă).\",\n    \"citare\": \"România Transparentă, registrul companiilor de stat, https://romaniatransparenta.eu/registre/companii-de-stat/43721310, date actualizate la 2026-10-26, CC BY 4.0\",\n    \"instructiuni\": \"Citează sursa folosind textul din `citare`. „Nu avem date” sau o listă goală NU înseamnă zero sau „nu există”: înseamnă că nu am găsit sau nu am verificat încă. Rezultatul `negasit` înseamnă „căutat automat și negăsit”, nu „lipsește”.\"\n  }\n}"
+      }
+    },
+    "4b840d5591599b562036d790": {
+      "project": "romania-transparenta",
+      "source": "https://romaniatransparenta.eu/llms.txt",
+      "observed_at": "2026-10-29T22:42:09.892892+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/romania-transparenta.json",
+      "alias": "romania-transparenta-llms-routes",
+      "artifact": "docs/reports/site-structure-pilot/evidence/romania-transparenta-llms-routes.txt",
+      "sha256": "c54cbaa1b6e43afd448e591e0be3877254545e297531680db7a4f9cbf9467b6e",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 3627,
+        "excerpt": "## Fișe (câte o pagină pe entitate)\n\n- https://romaniatransparenta.eu/registre/administratia-locala/<cod SIRUTA>: fișa unei primării (3.187): tip, județ, populație, primar, consiliul local, bugetul 2018–2024, achiziții, companii, ce publică pe site\n- https://romaniatransparenta.eu/registre/companii-de-stat/<CUI>: fișa unei companii de stat sau a unei companii locale: acționar/tutelă, cifră de afaceri, profit, angajați, din bilanțurile depuse la ANAF\n- https://romaniatransparenta.eu/registre/universitati/<CUI>: fișa unei universități de stat: finanțarea CNFIS pe student, achiziții, rectorul (doar cu document oficial)\n- https://romaniatransparenta.eu/registre/parlament/…: fișele deputaților și ale voturilor finale din Camera Deputaților\n- https://romaniatransparenta.eu/registre/administratia-centrala/<CUI>: fișa unui minister, a Secretariatului General al Guvernului sau a Cancelariei Prim-Ministrului: întâlnirile decidenților cu terții din RUTI (funcția, nu numele; organizațiile, nu persoanele), proiectele în consultare publică pe e-consultare.gov.ro, bugetul 2026 din Legea 43/2026\n- https://romaniatransparenta.eu/registre/fonduri-europene/<codul CCI al programului>: fișa unui program european (2021–2027 sau 2014–2020): alocat, decis, cheltuit, plătit de Comisie, după Comisia Europeană și, separat, după MIPE; sume în euro, fără conversii\n- https://romaniatransparenta.eu/registre/finantarea-partidelor/<partidul>: fișa unui partid: ce a declarat în Monitorul Oficial an cu an (cotizații, donații peste prag, donații confidențiale, împrumuturi, venituri proprii), firmele donatoare cu CUI și actele oficiale; persoanele fizice doar ca număr și sumă\n- https://romaniatransparenta.eu/registre/ajutoare-de-stat/<CUI>: ajutoarele de stat primite de o firmă (persoană juridică) care e companie de stat, furnizor în achiziții sau printre beneficiarii mari: rândurile din RegAS (Consiliul Concurenței), cu măsura, instrumentul, suma în lei și furnizorul; garanțiile și creditele separat de granturi; persoanele fizice nu au fișe\n- https://romaniatransparenta.eu/registre/europarlamentari/<ID-ul din Parlamentul European>: fișa unui europarlamentar român (34 de persoane, 33 de locuri): grup european, eticheta de partid din PE, organe, prezență în plen, voturile finale, declarațiile privind conflictele de interese (DCI) cu PDF-ul oficial, cu formula și numitorul fiecărei cifre\n- https://romaniatransparenta.eu/registre/datornici?q=<CUI sau nume>: căutarea în lista ANAF a persoanelor juridice cu obligații fiscale restante (deocamdată lista la 31.03.2016, singura publicată ca fișier deschis): suma restantă pe bugete, din care contestată, la data listei; doar persoane juridice\n- https://romaniatransparenta.eu/registre/concursuri: registrul concursurilor de angajare la stat: anunțurile de pe posturi.gov.ro și ANFP, pe instituții și județe, data limită, proba scrisă, posturile scoase de mai multe ori; fără persoane de contact și fără rezultate (nume de candidați)\n- https://romaniatransparenta.eu/registre/spitale/spital/<CUI>: fișa unei unități sanitare publice: achizițiile directe pe ani, furnizorii, categoriile și salariile de bază pe funcții (registrul spitalelor are și propriul /registre/spitale/llms.txt)\n- https://romaniatransparenta.eu/registre/salarii/…: calculatorul de salarii pentru bugetari pe proiectul legii salarizării: brut și net pe funcție, gradație și sporuri, grilele pe anexe, ghiduri (are și propriul /registre/salarii/llms.txt)\n- https://romaniatransparenta.eu/registre/decizii-mediu/…: actele de mediu (acorduri, avize, autorizații) pe localitate, cu linkul la documentul oficial"
+      }
+    },
+    "013cbdfa3f8b3f452bc14466": {
+      "project": "romania-transparenta",
+      "source": "https://api.romaniatransparenta.eu/v1/date/institutii_centrale?limit=2",
+      "observed_at": "2026-10-29T22:42:41.332973+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/romania-transparenta.json",
+      "alias": "romania-transparenta-central-response",
+      "artifact": "docs/reports/site-structure-pilot/evidence/romania-transparenta-central-response.txt",
+      "sha256": "0aa7e5d1cebb383816e0e0ae761728b3fb4eb1ef34cf284b08c4573f1d294c14",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 2360,
+        "excerpt": "{\n  \"date\": [\n    {\n      \"cui\": \"46414469\",\n      \"denumire\": \"Cancelaria Prim-Ministrului\",\n      \"acronim\": \"CPM\",\n      \"grup\": \"aparat_guvern\",\n      \"cod_opc_2026\": null,\n      \"cif_ordonator_mf\": \"4283422\",\n      \"denumire_anaf\": \"CANCELARIA PRIM-MINISTRULUI\",\n      \"confirmat_anaf\": true,\n      \"data_verificare_anaf\": \"2026-10-01\",\n      \"observat_la\": \"2026-10-06\",\n      \"incredere\": \"oficial\"\n    },\n    {\n      \"cui\": \"4266863\",\n      \"denumire\": \"Ministerul Afacerilor Externe\",\n      \"acronim\": \"MAE\",\n      \"grup\": \"minister\",\n      \"cod_opc_2026\": \"14\",\n      \"cif_ordonator_mf\": null,\n      \"denumire_anaf\": \"MINISTERUL AFACERILOR EXTERNE\",\n      \"confirmat_anaf\": true,\n      \"data_verificare_anaf\": \"2026-10-01\",\n      \"observat_la\": \"2026-10-06\",\n      \"incredere\": \"oficial\"\n    }\n  ],\n  \"paginare\": {\n    \"limit\": 2,\n    \"offset\": 0,\n    \"intoarse\": 2,\n    \"are_urmatoarea\": true,\n    \"urmatoarea_offset\": 2,\n    \"total\": 18\n  },\n  \"provenienta\": {\n    \"registru\": {\n      \"id\": \"administratia_centrala\",\n      \"denumire\": \"registrul administrației publice centrale\",\n      \"url\": \"https://romaniatransparenta.eu/registre/administratia-centrala\"\n    },\n    \"sursa\": [\n      {\n        \"id\": \"sursa:mf-entitati-publice\",\n        \"denumire\": \"Lista entităților publice (1 septembrie 2026)\",\n        \"institutie_emitenta\": \"Ministerul Finanțelor\",\n        \"url_baza\": \"https://data.gov.ro\",\n        \"licenta\": \"licență deschisă (data.gov.ro)\"\n      }\n    ],\n    \"observat_la\": \"2026-10-06\",\n    \"incredere\": [\n      {\n        \"valoare\": \"oficial\",\n        \"explicatie\": \"preluat dintr-un document oficial\"\n      }\n    ],\n    \"editie\": \"publicare:20261029T133011\",\n    \"date_actualizate_la\": \"2026-10-26\",\n    \"licenta\": \"CC BY 4.0\",\n    \"licenta_nota\": \"Compilația România Transparentă e sub CC BY 4.0; datele preluate își păstrează regimul surselor (câmpul `licenta` din fiecare sursă).\",\n    \"citare\": \"România Transparentă, registrul administrației publice centrale, https://romaniatransparenta.eu/registre/administratia-centrala, date actualizate la 2026-10-26, CC BY 4.0\",\n    \"instructiuni\": \"Citează sursa folosind textul din `citare`. „Nu avem date” sau o listă goală NU înseamnă zero sau „nu există”: înseamnă că nu am găsit sau nu am verificat încă. Rezultatul `negasit` înseamnă „căutat automat și negăsit”, nu „lipsește”.\"\n  }\n}"
+      }
+    },
+    "50e20207ebd800e40ee5ee21": {
+      "project": "transparenta-eu",
+      "source": "https://api.transparenta.eu/graphql",
+      "observed_at": "2026-10-29T22:45:37.302151+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/transparenta-eu.json",
+      "alias": "transparenta-eu-graphql-mae",
+      "artifact": "docs/reports/site-structure-pilot/evidence/transparenta-eu-graphql-mae.txt",
+      "sha256": "47280dc737a75c3b67aaaf30ccd334a9739b85ce85c54b3a1083f5c70113c6c2",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 172,
+        "excerpt": "{\"data\":{\"entity\":{\"cui\":\"4266863\",\"name\":\"MINISTERUL AFACERILOR EXTERNE\",\"entity_type\":\"public_entity\",\"is_uat\":false,\"uat\":{\"name\":\"SECTORUL 1\",\"siruta_code\":\"179141\"}}}}"
+      }
+    },
+    "1aa59ad489db5e8c9de8b023": {
+      "project": "transparenta-eu",
+      "source": "https://transparenta.eu/llms.txt",
+      "observed_at": "2026-10-29T22:41:57.720635+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/transparenta-eu.json",
+      "alias": "transparenta-eu-llms",
+      "artifact": "docs/reports/site-structure-pilot/evidence/transparenta-eu-llms.txt",
+      "sha256": "eba5f749625f2f1feda9272e7d94d331706c0efc9e967bff73da4a0fee28927a",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 3218,
+        "excerpt": "# Transparenta.eu — AI Usage Guide\n\nBase URL:\n- https://transparenta.eu\n\n## Documentation\n- Parameters index (JSON): https://transparenta.eu/ai/index.json\n- URL/API guide (Markdown): https://transparenta.eu/api-guide.md\n- Sitemap: https://transparenta.eu/sitemap.xml\n\n## Routes Overview\n- /entities/{cui}: Single entity details and analytics\n- /entity-analytics: Cross-entity analytics (table, treemap, line-items)\n- /budget-explorer: Budget exploration by categories (functional/economic)\n- /pnrr: PNRR project dashboard by component, geography, beneficiary, progress, and risk signals\n\n## Entities Page (/entities/{cui})\nHow to query:\n1) Put the entity CUI in the path: /entities/4267117\n2) Add filters as query params. Common examples:\n   - ?year=2025\n   - ?period=YEAR | QUARTER | MONTH\n   - ?view=overview | map | income-trends | expense-trends\n   - ?normalization=total | total_euro | per_capita | per_capita_euro\n\nParameters (full docs):\n- https://transparenta.eu/ai/entities-parameters.json\n\nExamples:\n- https://transparenta.eu/entities/4267117?view=overview&year=2024\n- https://transparenta.eu/entities/4267117?year=2025&view=map&normalization=per_capita\n- https://transparenta.eu/entities/4267117?period=QUARTER&quarter=Q4\n\n## Entity Analytics (/entity-analytics)\nPurpose: Compare entities with filters and switch views (table/line-items/treemap)\nCommon params:\n- filter.report_period.type=YEAR|QUARTER|MONTH\n- filter.account_category=ch|vn\n- filter.normalization=total|per_capita|total_euro|per_capita_euro\n- view=table|line-items\n- treemapPrimary=fn|ec, treemapDepth=chapter|subchapter|paragraph\n\nParameters JSON: (coming from schema)\n- https://transparenta.eu/ai/entities-analytics-parameters.json\n\nExample:\n- https://transparenta.eu/entity-analytics?view=line-items\n\n## Budget Explorer (/budget-explorer)\nPurpose: Explore budget composition across categories and years\nCommon params:\n- view=overview|treemap|sankey|list\n- primary=fn|ec, depth=main|detail\n- filter.{report_period, account_category, normalization, report_type}\n\nParameters JSON:\n- https://transparenta.eu/ai/budget-explorer-parameters.json\n\nExamples:\n- https://transparenta.eu/budget-explorer?view=treemap&primary=fn\n- https://transparenta.eu/budget-explorer?view=list&filter.account_category=vn\n\n## PNRR (/pnrr)\nPurpose: Explore National Recovery and Resilience Plan projects, funding, progress, beneficiaries, geography, and risk signals.\nCommon params:\n- view=overview|projects|beneficiaries|map|anomalies\n- components, counties, fundingSources, measures, cris\n- progressCategories=completed|advanced|mid|under30|not-started|unknown\n- onlyAnomalies=true, excludeMicro=true, includeNational=false\n- search, beneficiarySearch, beneficiaryCui, uatSiruta, uatSirutas\n\nParameters JSON:\n- https://transparenta.eu/ai/pnrr-parameters.json\n\nExamples:\n- https://transparenta.eu/pnrr\n- https://transparenta.eu/pnrr?onlyAnomalies=true&view=anomalies\n- https://transparenta.eu/pnrr?view=map&granularity=county\n\nNotes:\n- Year range supported: dynamic; see parameter JSON files for min/max.\n- All parameters are optional unless stated; defaults are inferred from the UI.\n - For API integration, prefer `/ai/*.json` schemas and `api-guide.md` patterns."
+      }
+    },
+    "94fb3ac2cbbe38aee59b135a": {
+      "project": "romania-transparenta",
+      "source": "https://api.romaniatransparenta.eu/v1/uat?q=Bucuresti&limit=1",
+      "observed_at": "2026-10-29T22:42:40.160417+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/romania-transparenta.json",
+      "alias": "romania-transparenta-uat-response",
+      "artifact": "docs/reports/site-structure-pilot/evidence/romania-transparenta-uat-response.txt",
+      "sha256": "a92b1a428b7802da9409d1d23c9118d8211b931b2a5e2fe568e2c6fbea7f79fe",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 2177,
+        "excerpt": "{\n  \"date\": [\n    {\n      \"siruta\": \"179132\",\n      \"denumire\": \"Municipiul București\",\n      \"tip\": \"municipiu\",\n      \"judet\": \"București\",\n      \"cod_judet\": \"B\",\n      \"populatie\": 1716961,\n      \"an_populatie\": null,\n      \"cui_primarie\": null,\n      \"cui_primarie_incredere\": null,\n      \"cui_consiliu_judetean\": null,\n      \"observat_la\": \"2026-09-14\",\n      \"incredere\": \"derivat\",\n      \"fisa\": \"https://api.romaniatransparenta.eu/v1/uat/179132\",\n      \"pagina\": \"https://romaniatransparenta.eu/registre/administratia-locala/179132\"\n    }\n  ],\n  \"paginare\": {\n    \"limit\": 1,\n    \"offset\": 0,\n    \"intoarse\": 1,\n    \"are_urmatoarea\": false,\n    \"urmatoarea_offset\": null,\n    \"total\": 1\n  },\n  \"provenienta\": {\n    \"registru\": {\n      \"id\": \"administratia_locala\",\n      \"denumire\": \"registrul administrației locale\",\n      \"url\": \"https://romaniatransparenta.eu/registre/administratia-locala\"\n    },\n    \"sursa\": [\n      {\n        \"id\": \"sursa:rt-consilii\",\n        \"denumire\": \"Registrul consiliilor locale, reconstituit din procesele-verbale AEP și listele BEC\",\n        \"institutie_emitenta\": \"România Transparentă\",\n        \"url_baza\": \"https://romaniatransparenta.eu\",\n        \"licenta\": \"CC BY 4.0 (compilația România Transparentă; datele preluate își păstrează regimul lor)\"\n      }\n    ],\n    \"observat_la\": \"2026-09-14\",\n    \"incredere\": [\n      {\n        \"valoare\": \"derivat\",\n        \"explicatie\": \"calculat de noi din date oficiale\"\n      }\n    ],\n    \"editie\": \"publicare:20261029T133011\",\n    \"date_actualizate_la\": \"2026-10-26\",\n    \"licenta\": \"CC BY 4.0\",\n    \"licenta_nota\": \"Compilația România Transparentă e sub CC BY 4.0; datele preluate își păstrează regimul surselor (câmpul `licenta` din fiecare sursă).\",\n    \"citare\": \"România Transparentă, registrul administrației locale, https://romaniatransparenta.eu/registre/administratia-locala, date actualizate la 2026-10-26, CC BY 4.0\",\n    \"instructiuni\": \"Citează sursa folosind textul din `citare`. „Nu avem date” sau o listă goală NU înseamnă zero sau „nu există”: înseamnă că nu am găsit sau nu am verificat încă. Rezultatul `negasit` înseamnă „căutat automat și negăsit”, nu „lipsește”.\"\n  }\n}"
+      }
+    },
+    "52d89462f3071c9e58c04cc9": {
+      "project": "transparenta-eu",
+      "source": "https://api.transparenta.eu/graphql",
+      "observed_at": "2026-10-29T22:45:54.378985+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/transparenta-eu.json",
+      "alias": "transparenta-eu-graphql-bucuresti",
+      "artifact": "docs/reports/site-structure-pilot/evidence/transparenta-eu-graphql-bucuresti.txt",
+      "sha256": "0ba1808b1b0fea17e3586c0d03190f2a25e81c651a040dc9a82f9612fdae4dfb",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 177,
+        "excerpt": "{\"data\":{\"entity\":{\"cui\":\"4267117\",\"name\":\"MUNICIPIUL BUCURESTI\",\"entity_type\":\"admin_municipality\",\"is_uat\":true,\"uat\":{\"name\":\"MUNICIPIUL BUCUREȘTI\",\"siruta_code\":\"179132\"}}}}"
+      }
+    },
+    "eff8a57370d388646a697717": {
+      "project": "igov",
+      "source": "https://igov.ro/reports/guvernanta.json",
+      "observed_at": "2026-10-27T17:00:51.012879+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/igov.json",
+      "alias": "companies-sample",
+      "artifact": "docs/reports/site-structure-curation/evidence/igov-company-identifiers.json",
+      "sha256": "cf0639b55db0b1f3772793ba96a0cb62d564cc165b6c69e8f3c0762192f9d525",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 1387,
+        "excerpt": "{\n  \"source\": {\n    \"url\": \"https://igov.ro/reports/guvernanta.json\",\n    \"observed_at\": \"2026-10-27T17:00:51.012879+00:00\",\n    \"snapshot_sha256\": \"37c857d3c20af7d0af862b8f69dac893c667aea1c4aa6044487c4726c999bb52\",\n    \"complete_document\": false,\n    \"reader\": \"inventory_jsonsample.recover; complete company records only\",\n    \"source_indices\": [\n      0,\n      3\n    ],\n    \"transform\": \"Whitelist id, cui and company name; exclude all people and appointment data.\"\n  },\n  \"companies\": [\n    {\n      \"id\": \"inst_cui-31029694_fbc8ca0d0e\",\n      \"cui\": \"31029694\",\n      \"name\": \"Active Conexe SA\"\n    },\n    {\n      \"id\": \"inst_cui-1973096_89f11b5bc5\",\n      \"cui\": \"1973096\",\n      \"name\": \"Antibiotice SA\"\n    }\n  ],\n  \"curation_basis\": {\n    \"artifact\": \"data/taxonomy-v2/inventar-concepte.json\",\n    \"concept\": \"cui\",\n    \"definition\": \"Identificatorul fiscal al unei firme sau instituții. Rolul poate fi diferit: contribuabil, autoritate sau furnizor.\",\n    \"selector\": {\n      \"projects\": [\n        \"igov\"\n      ],\n      \"names\": [\n        \"cui\"\n      ],\n      \"path\": [\n        \"$.companies[].cui\"\n      ],\n      \"source\": \"https://igov.ro/reports/guvernanta.json\",\n      \"context\": \"CUI-ul companiei de stat din registrul de guvernanță (șir de caractere)\",\n      \"stare\": \"confirmat\",\n      \"nota_editor\": \"Confirmat în bloc la cererea proprietarului (2026-10-27)\"\n    }\n  }\n}\n"
+      }
+    },
+    "ee420d096aa7c99b33a64ed1": {
+      "project": "registrul-firmelor",
+      "source": "https://registru.horecaos.org/firma/1973096",
+      "observed_at": "2026-10-30T10:43:29.392456+00:00",
+      "recipe": "data/taxonomy-v2/structura/recipes/registrul-firmelor.json",
+      "alias": "registrul-firmelor-antibiotice-page",
+      "artifact": "docs/reports/site-structure-curation/evidence/registrul-firmelor-antibiotice-page.txt",
+      "sha256": "d8f25307080105240a87c15b74f783758ceaa81ce047ef088351a20a12183118",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 246,
+        "excerpt": "<title>ANTIBIOTICE SA — CUI 1973096, bilanț și date firmă</title>\n<meta name=\"description\" content=\"ANTIBIOTICE SA, CUI 1973096 · Municipiul Iaşi, Iaşi · plătitor de TVA\">\n<link rel=\"canonical\" href=\"https://registru.horecaos.org/firma/1973096\">\n"
+      }
+    }
+  },
+  "scope": "Offline catalogue pass and bounded corporate verification; owner-reviewed identity links; publication remains separate."
+}

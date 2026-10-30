@@ -213,6 +213,7 @@ def check(store, root):
         require(p.get('slug') == slug, 'Invalid project key.')
         require(p.get('latest_attempt') is None or p['latest_attempt'] in attempts, 'Unknown latest attempt.')
         collection_keys = set(p['collections']) | {x['legacy_id'] for x in p['collections'].values() if x.get('legacy_id')}
+        namespace_keys = set(p['namespaces']) | {x['legacy_id'] for x in p['namespaces'].values() if x.get('legacy_id')}
         for section in SECTIONS:
             require(isinstance(p.get(section), dict), f'Invalid findings: {section}')
             for fid, f in p[section].items():
@@ -228,6 +229,7 @@ def check(store, root):
                     require(f.get('security', {}).get('declared_requirement') in {'unspecified', 'anonymous', 'authenticated'}, 'Invalid declared security.')
                 if section == 'identifier_rules':
                     require(f.get('mapping_basis') in {'declared', 'sampled', 'unknown'}, 'Invalid mapping basis.')
+                    require(f.get('namespace') in namespace_keys and f.get('collection') in collection_keys, 'Unknown identifier-rule scope.')
     counts = {}
     for row in store['requests']:
         require(row.get('attempt') in attempts and row.get('project') == attempts[row['attempt']]['project'], 'Unknown request attempt.')
@@ -242,10 +244,19 @@ def check(store, root):
         require(0 <= counts.get(aid, 0) == a['requests_used'] <= a['request_budget'] <= 100, 'Invalid request accounting.')
     record_keys = {r['key'] for r in store['records']}
     require(len(record_keys) == len(store['records']), 'Duplicate record keys.')
+    for record in store['records']:
+        require(record.get('project') in store['projects'], 'Unknown record project.')
+        p = store['projects'][record['project']]
+        namespaces = set(p['namespaces']) | {n.get('legacy_id') for n in p['namespaces'].values()}
+        require(all(i.get('namespace') in namespaces and i.get('subject_role') == 'self' and isinstance(i.get('value'),str) for i in record['identifiers']), 'Invalid record self identifier.')
+        for extraction in record.get('extractions',[]):
+            require(extraction.get('evidence') in store['evidence'], 'Unknown record extraction evidence.')
     assertion_ids = {a['id'] for a in store['assertions']}
     require(len(assertion_ids) == len(store['assertions']), 'Duplicate assertion IDs.')
     for a in store['assertions']:
         require('state' not in a and all(r in record_keys for r in a['records']), 'Invalid proposed assertion.')
+    for conflict in store.get('conflicts',[]):
+        require(conflict.get('record') in record_keys and all(e in store['evidence'] for e in conflict.get('evidence',[])), 'Invalid identity conflict.')
     for item in store['records'] + store['assertions']:
         require(all(e in store['evidence'] for e in item['evidence']), 'Unknown record/assertion evidence.')
     for p in store['projects'].values():

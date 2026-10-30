@@ -1,5 +1,34 @@
 # Activity
 
+## 2026-10-30 — Structure curation skill, real local IDs and catalogue pass
+
+**Done**
+- Added the offline curation importer, [recipe guide](STRUCTURE-CURATION.md), five reusable recipes and [the review report](reports/site-structure-curation.md).
+- Created and installed the versioned `profile-structure` skill. The global discovery path is a symlink to the repository skill.
+- Replayed all 145 catalogue entries offline. Retained documentation was available for 124; missing caches remain gaps.
+- The isolated store has 375 evidence records, 77 patterns, 16 API operations, 22 typed rules and 11 real record references. The owner accepted all four identity proposals.
+- Added two actual igov local-ID-to-CUI mappings from complete company rows in a retained partial JSON report.
+- Verified Antibiotice CUI 1973096 on Registrul firmelor with two robots-aware requests. Its igov local ID is `inst_cui-1973096_89f11b5bc5`.
+- Added a durable owner decision file and a read-only report overlay. Recorded explicit acceptance of all four pairs after presenting the completed review packet.
+- Resolved bounded local OpenAPI parameter references; missing, cyclic and external definitions still prevent probes.
+- Final checks: 1,236 tests pass, eight skipped; 38 curation and 56 engine tests pass on Python 3.12. Curation passes on Python 3.15 too.
+
+**Hard**
+- The igov report is a partial JSON read and contains people elsewhere. Used the existing recovery reader for complete company records; retained only company ID, CUI and company name.
+- The independent skill trial exposed rejection of truthful local file provenance. Added offline file-origin support, without changing the HTTP transport to fetch file URLs.
+- The global Python interpreters lack PyYAML for skill validation. The existing `240826` environment validates the skill; no project dependency was added.
+- The independent retry produced four subjects, two relationships and one correct supplier-related match. Equal local IDs and names produced no primary-company match. Reapplication preserved all generated and owner-decision bytes.
+- This phase made two HTTP requests and zero forbidden-host requests. The 145-entry replay, curation imports and trial made zero requests.
+- No real SICAP record was sampled. Its restriction remains in force; declarations and the owner-saved contract remain useful historical evidence.
+
+**Decided**
+- Keep curation recipes separate from generated stores and durable owner decisions. Their fingerprints and exact evidence locators make the interpretations reviewable.
+- Match only compatible subject types and record grain through declared shared namespaces and consistent issuers. Do not match from a name or local-value coincidence.
+- Preserve original identifier strings, role context, conflicting observations and prior assertions. Unsupported extraction becomes a gap rather than a fabricated record.
+- Derive profile URL candidates only from typed variable bindings. Keep those candidates separate from live availability checks.
+- Accept the three CUI pairs and the territory-only SIRUTA pair, as the owner explicitly requested. Keep generated proposals separate from the decision overlay.
+- Version v0.47.0 records this deliverable. The original pilot and public catalogue implementation remain unchanged.
+
 ## 2026-10-30 — Shared structure profiler, version-2 contract
 
 **Done**

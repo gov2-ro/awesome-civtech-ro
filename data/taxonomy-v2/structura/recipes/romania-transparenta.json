@@ -1,0 +1,1374 @@
+{
+  "schema_version": 1,
+  "id": "romania-transparenta-structure",
+  "project_slug": "romania-transparenta",
+  "input_url": "https://romaniatransparenta.eu/",
+  "evidence": [
+    {
+      "id": "romania-transparenta-llms-routes",
+      "source": "https://romaniatransparenta.eu/llms.txt",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/romania-transparenta-llms-routes.txt",
+      "sha256": "c54cbaa1b6e43afd448e591e0be3877254545e297531680db7a4f9cbf9467b6e",
+      "observed_at": "2026-10-29T22:42:09.892892+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 3627,
+        "excerpt": "## Fișe (câte o pagină pe entitate)\n\n- https://romaniatransparenta.eu/registre/administratia-locala/<cod SIRUTA>: fișa unei primării (3.187): tip, județ, populație, primar, consiliul local, bugetul 2018–2024, achiziții, companii, ce publică pe site\n- https://romaniatransparenta.eu/registre/companii-de-stat/<CUI>: fișa unei companii de stat sau a unei companii locale: acționar/tutelă, cifră de afaceri, profit, angajați, din bilanțurile depuse la ANAF\n- https://romaniatransparenta.eu/registre/universitati/<CUI>: fișa unei universități de stat: finanțarea CNFIS pe student, achiziții, rectorul (doar cu document oficial)\n- https://romaniatransparenta.eu/registre/parlament/…: fișele deputaților și ale voturilor finale din Camera Deputaților\n- https://romaniatransparenta.eu/registre/administratia-centrala/<CUI>: fișa unui minister, a Secretariatului General al Guvernului sau a Cancelariei Prim-Ministrului: întâlnirile decidenților cu terții din RUTI (funcția, nu numele; organizațiile, nu persoanele), proiectele în consultare publică pe e-consultare.gov.ro, bugetul 2026 din Legea 43/2026\n- https://romaniatransparenta.eu/registre/fonduri-europene/<codul CCI al programului>: fișa unui program european (2021–2027 sau 2014–2020): alocat, decis, cheltuit, plătit de Comisie, după Comisia Europeană și, separat, după MIPE; sume în euro, fără conversii\n- https://romaniatransparenta.eu/registre/finantarea-partidelor/<partidul>: fișa unui partid: ce a declarat în Monitorul Oficial an cu an (cotizații, donații peste prag, donații confidențiale, împrumuturi, venituri proprii), firmele donatoare cu CUI și actele oficiale; persoanele fizice doar ca număr și sumă\n- https://romaniatransparenta.eu/registre/ajutoare-de-stat/<CUI>: ajutoarele de stat primite de o firmă (persoană juridică) care e companie de stat, furnizor în achiziții sau printre beneficiarii mari: rândurile din RegAS (Consiliul Concurenței), cu măsura, instrumentul, suma în lei și furnizorul; garanțiile și creditele separat de granturi; persoanele fizice nu au fișe\n- https://romaniatransparenta.eu/registre/europarlamentari/<ID-ul din Parlamentul European>: fișa unui europarlamentar român (34 de persoane, 33 de locuri): grup european, eticheta de partid din PE, organe, prezență în plen, voturile finale, declarațiile privind conflictele de interese (DCI) cu PDF-ul oficial, cu formula și numitorul fiecărei cifre\n- https://romaniatransparenta.eu/registre/datornici?q=<CUI sau nume>: căutarea în lista ANAF a persoanelor juridice cu obligații fiscale restante (deocamdată lista la 31.03.2016, singura publicată ca fișier deschis): suma restantă pe bugete, din care contestată, la data listei; doar persoane juridice\n- https://romaniatransparenta.eu/registre/concursuri: registrul concursurilor de angajare la stat: anunțurile de pe posturi.gov.ro și ANFP, pe instituții și județe, data limită, proba scrisă, posturile scoase de mai multe ori; fără persoane de contact și fără rezultate (nume de candidați)\n- https://romaniatransparenta.eu/registre/spitale/spital/<CUI>: fișa unei unități sanitare publice: achizițiile directe pe ani, furnizorii, categoriile și salariile de bază pe funcții (registrul spitalelor are și propriul /registre/spitale/llms.txt)\n- https://romaniatransparenta.eu/registre/salarii/…: calculatorul de salarii pentru bugetari pe proiectul legii salarizării: brut și net pe funcție, gradație și sporuri, grilele pe anexe, ghiduri (are și propriul /registre/salarii/llms.txt)\n- https://romaniatransparenta.eu/registre/decizii-mediu/…: actele de mediu (acorduri, avize, autorizații) pe localitate, cu linkul la documentul oficial"
+      }
+    },
+    {
+      "id": "romania-transparenta-api-0",
+      "source": "https://api.romaniatransparenta.eu/v1/openapi.json",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/romania-transparenta-api-0.txt",
+      "sha256": "28ed2d9e0018a0f1001aaf998894f381e46c576260a6f4d66599cd6b751cad97",
+      "observed_at": "2026-10-29T22:42:11.106253+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 2383,
+        "excerpt": "{\n  \"info\": {\n    \"description\": \"Date deschise, doar citire, fără cheie. Limită: 60 cereri/minut pe IP, rafală 20. Fiecare răspuns are `provenienta` (surse, data observării, încredere, licență, citare). API-ul arată doar ce arată site-ul: persoanele apar numai prin funcția lor publică. Serverul MCP e la /mcp.\"\n  },\n  \"path\": \"/v1/companii\",\n  \"method\": \"get\",\n  \"operationId\": \"companii\",\n  \"summary\": \"Lista companiilor de stat și locale (după nume sau CUI)\",\n  \"parameters\": [\n    {\n      \"name\": \"q\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"căutare în nume, fără diacritice, 2–80 de caractere\",\n      \"schema\": {\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"judet\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"județul sediului\",\n      \"schema\": {\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"nivel\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"central sau local\",\n      \"schema\": {\n        \"type\": \"string\",\n        \"enum\": [\n          \"central\",\n          \"local\"\n        ]\n      }\n    },\n    {\n      \"name\": \"categorie\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"SOC, RA, FIL, INST\",\n      \"schema\": {\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"tutela_siruta\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"companiile primăriei cu acest SIRUTA\",\n      \"schema\": {\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"mama\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"filialele companiei-mamă cu acest CUI\",\n      \"schema\": {\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"limit\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"rânduri pe pagină (implicit 25, maximum 100)\",\n      \"schema\": {\n        \"type\": \"integer\",\n        \"minimum\": 1,\n        \"maximum\": 100,\n        \"default\": 25\n      }\n    },\n    {\n      \"name\": \"offset\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"deplasarea: câte rânduri se sar. Fără plafon practic: orice listă se parcurge până la capăt cu offset += limit cât timp `paginare.are_urmatoarea`; `paginare.total` spune câte rânduri are filtrul\",\n      \"schema\": {\n        \"type\": \"integer\",\n        \"minimum\": 0,\n        \"maximum\": 99999999,\n        \"default\": 0\n      }\n    }\n  ]\n}"
+      }
+    },
+    {
+      "id": "romania-transparenta-api-1",
+      "source": "https://api.romaniatransparenta.eu/v1/openapi.json",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/romania-transparenta-api-1.txt",
+      "sha256": "dc8a86a00e8126a9329ea26f9b849dff931ae12293a90069d0a6876e4b97fd60",
+      "observed_at": "2026-10-29T22:42:11.106253+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 751,
+        "excerpt": "{\n  \"info\": {\n    \"description\": \"Date deschise, doar citire, fără cheie. Limită: 60 cereri/minut pe IP, rafală 20. Fiecare răspuns are `provenienta` (surse, data observării, încredere, licență, citare). API-ul arată doar ce arată site-ul: persoanele apar numai prin funcția lor publică. Serverul MCP e la /mcp.\"\n  },\n  \"path\": \"/v1/companii/{cui}\",\n  \"method\": \"get\",\n  \"operationId\": \"companii_cui\",\n  \"summary\": \"Fișa companiei: tutelă, bilanțuri, conducere (cea publicată de companie), filiale\",\n  \"parameters\": [\n    {\n      \"name\": \"cui\",\n      \"in\": \"path\",\n      \"required\": true,\n      \"description\": \"codul fiscal, fără RO\",\n      \"schema\": {\n        \"type\": \"string\",\n        \"examples\": [\n          \"13267213\"\n        ]\n      }\n    }\n  ]\n}"
+      }
+    },
+    {
+      "id": "romania-transparenta-api-2",
+      "source": "https://api.romaniatransparenta.eu/v1/openapi.json",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/romania-transparenta-api-2.txt",
+      "sha256": "0353dad17b7522a7e7b8b27b72fbe15c6b1e4a47b2238dad970179fc01e1afa9",
+      "observed_at": "2026-10-29T22:42:11.106253+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 1881,
+        "excerpt": "{\n  \"info\": {\n    \"description\": \"Date deschise, doar citire, fără cheie. Limită: 60 cereri/minut pe IP, rafală 20. Fiecare răspuns are `provenienta` (surse, data observării, încredere, licență, citare). API-ul arată doar ce arată site-ul: persoanele apar numai prin funcția lor publică. Serverul MCP e la /mcp.\"\n  },\n  \"path\": \"/v1/uat\",\n  \"method\": \"get\",\n  \"operationId\": \"uat\",\n  \"summary\": \"Lista UAT-urilor (comune, orașe, municipii, sectoare)\",\n  \"parameters\": [\n    {\n      \"name\": \"judet\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"codul județului (ex. CJ, B) sau numele lui, cu sau fără diacritice\",\n      \"schema\": {\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"q\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"căutare în nume, fără diacritice, 2–80 de caractere\",\n      \"schema\": {\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"tip\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"tipul UAT-ului\",\n      \"schema\": {\n        \"type\": \"string\",\n        \"enum\": [\n          \"comuna\",\n          \"oras\",\n          \"municipiu\",\n          \"sector\"\n        ]\n      }\n    },\n    {\n      \"name\": \"limit\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"rânduri pe pagină (implicit 25, maximum 100)\",\n      \"schema\": {\n        \"type\": \"integer\",\n        \"minimum\": 1,\n        \"maximum\": 100,\n        \"default\": 25\n      }\n    },\n    {\n      \"name\": \"offset\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"deplasarea: câte rânduri se sar. Fără plafon practic: orice listă se parcurge până la capăt cu offset += limit cât timp `paginare.are_urmatoarea`; `paginare.total` spune câte rânduri are filtrul\",\n      \"schema\": {\n        \"type\": \"integer\",\n        \"minimum\": 0,\n        \"maximum\": 99999999,\n        \"default\": 0\n      }\n    }\n  ]\n}"
+      }
+    },
+    {
+      "id": "romania-transparenta-api-3",
+      "source": "https://api.romaniatransparenta.eu/v1/openapi.json",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/romania-transparenta-api-3.txt",
+      "sha256": "473702967271f4971d3f05498cf8bd5a07751ba0dbc8ee424d9f01e7ee9f8e37",
+      "observed_at": "2026-10-29T22:42:11.106253+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 777,
+        "excerpt": "{\n  \"info\": {\n    \"description\": \"Date deschise, doar citire, fără cheie. Limită: 60 cereri/minut pe IP, rafală 20. Fiecare răspuns are `provenienta` (surse, data observării, încredere, licență, citare). API-ul arată doar ce arată site-ul: persoanele apar numai prin funcția lor publică. Serverul MCP e la /mcp.\"\n  },\n  \"path\": \"/v1/uat/{siruta}\",\n  \"method\": \"get\",\n  \"operationId\": \"uat_siruta\",\n  \"summary\": \"Fișa primăriei: CUI, primar, consiliu (agregat), buget pe ani, ce publică pe site, companii locale, legături\",\n  \"parameters\": [\n    {\n      \"name\": \"siruta\",\n      \"in\": \"path\",\n      \"required\": true,\n      \"description\": \"codul SIRUTA al UAT-ului\",\n      \"schema\": {\n        \"type\": \"string\",\n        \"examples\": [\n          \"54975\"\n        ]\n      }\n    }\n  ]\n}"
+      }
+    },
+    {
+      "id": "romania-transparenta-api-4",
+      "source": "https://api.romaniatransparenta.eu/v1/openapi.json",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/romania-transparenta-api-4.txt",
+      "sha256": "cff4cb8dab58a3fcee6bfc59ef52cf6243b78d15c73bfcceacad966e80f8f001",
+      "observed_at": "2026-10-29T22:42:11.106253+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 1706,
+        "excerpt": "{\n  \"info\": {\n    \"description\": \"Date deschise, doar citire, fără cheie. Limită: 60 cereri/minut pe IP, rafală 20. Fiecare răspuns are `provenienta` (surse, data observării, încredere, licență, citare). API-ul arată doar ce arată site-ul: persoanele apar numai prin funcția lor publică. Serverul MCP e la /mcp.\"\n  },\n  \"path\": \"/v1/date/institutii_centrale\",\n  \"method\": \"get\",\n  \"operationId\": \"date_institutii_centrale\",\n  \"summary\": \"Ministerele și instituțiile Guvernului\",\n  \"parameters\": [\n    {\n      \"name\": \"cui\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"filtru, egal cu: codul fiscal al instituției (cheia ei)\",\n      \"schema\": {\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"grup\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"filtru, egal cu: minister sau aparatul de lucru al Guvernului\",\n      \"schema\": {\n        \"type\": \"string\",\n        \"enum\": [\n          \"minister\",\n          \"aparat_guvern\"\n        ]\n      }\n    },\n    {\n      \"name\": \"limit\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"rânduri pe pagină (implicit 25, maximum 100)\",\n      \"schema\": {\n        \"type\": \"integer\",\n        \"minimum\": 1,\n        \"maximum\": 100,\n        \"default\": 25\n      }\n    },\n    {\n      \"name\": \"offset\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"deplasarea: câte rânduri se sar. Fără plafon practic: orice listă se parcurge până la capăt cu offset += limit cât timp `paginare.are_urmatoarea`; `paginare.total` spune câte rânduri are filtrul\",\n      \"schema\": {\n        \"type\": \"integer\",\n        \"minimum\": 0,\n        \"maximum\": 99999999,\n        \"default\": 0\n      }\n    }\n  ]\n}"
+      }
+    },
+    {
+      "id": "romania-transparenta-api-5",
+      "source": "https://api.romaniatransparenta.eu/v1/openapi.json",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/romania-transparenta-api-5.txt",
+      "sha256": "3bc958445beca02ba70670ea0066e24ff8c0e669570f12f0f126f00dc98cf596",
+      "observed_at": "2026-10-29T22:42:11.106253+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 703,
+        "excerpt": "{\n  \"info\": {\n    \"description\": \"Date deschise, doar citire, fără cheie. Limită: 60 cereri/minut pe IP, rafală 20. Fiecare răspuns are `provenienta` (surse, data observării, încredere, licență, citare). API-ul arată doar ce arată site-ul: persoanele apar numai prin funcția lor publică. Serverul MCP e la /mcp.\"\n  },\n  \"path\": \"/v1/universitati/{cui}\",\n  \"method\": \"get\",\n  \"operationId\": \"universitati_cui\",\n  \"summary\": \"Fișa universității\",\n  \"parameters\": [\n    {\n      \"name\": \"cui\",\n      \"in\": \"path\",\n      \"required\": true,\n      \"description\": \"codul fiscal al universității\",\n      \"schema\": {\n        \"type\": \"string\",\n        \"examples\": [\n          \"4305849\"\n        ]\n      }\n    }\n  ]\n}"
+      }
+    },
+    {
+      "id": "romania-transparenta-api-6",
+      "source": "https://api.romaniatransparenta.eu/v1/openapi.json",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/romania-transparenta-api-6.txt",
+      "sha256": "e344db1a021859206b37d39cddf9daa08b9ef3cc422bc17ca86984f61531a389",
+      "observed_at": "2026-10-29T22:42:11.106253+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 2064,
+        "excerpt": "{\n  \"info\": {\n    \"description\": \"Date deschise, doar citire, fără cheie. Limită: 60 cereri/minut pe IP, rafală 20. Fiecare răspuns are `provenienta` (surse, data observării, încredere, licență, citare). API-ul arată doar ce arată site-ul: persoanele apar numai prin funcția lor publică. Serverul MCP e la /mcp.\"\n  },\n  \"path\": \"/v1/date/spitale_unitati\",\n  \"method\": \"get\",\n  \"operationId\": \"date_spitale_unitati\",\n  \"summary\": \"Spitalele și unitățile sanitare publice\",\n  \"parameters\": [\n    {\n      \"name\": \"cui\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"filtru, egal cu: codul fiscal al unității sanitare (cheia spitalului)\",\n      \"schema\": {\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"judet\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"filtru, egal cu: județul\",\n      \"schema\": {\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"tip\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"filtru, egal cu: tipul unității (județean, municipal, orășenesc, clinic, institut, DSP etc.)\",\n      \"schema\": {\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"q\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"căutare fără diacritice în coloana denumire, 2–80 de caractere\",\n      \"schema\": {\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"limit\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"rânduri pe pagină (implicit 25, maximum 100)\",\n      \"schema\": {\n        \"type\": \"integer\",\n        \"minimum\": 1,\n        \"maximum\": 100,\n        \"default\": 25\n      }\n    },\n    {\n      \"name\": \"offset\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"deplasarea: câte rânduri se sar. Fără plafon practic: orice listă se parcurge până la capăt cu offset += limit cât timp `paginare.are_urmatoarea`; `paginare.total` spune câte rânduri are filtrul\",\n      \"schema\": {\n        \"type\": \"integer\",\n        \"minimum\": 0,\n        \"maximum\": 99999999,\n        \"default\": 0\n      }\n    }\n  ]\n}"
+      }
+    },
+    {
+      "id": "romania-transparenta-api-7",
+      "source": "https://api.romaniatransparenta.eu/v1/openapi.json",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/romania-transparenta-api-7.txt",
+      "sha256": "484d2b3864da1264c3589453a655f247d283012c3a15db4da19d413fa3919ec3",
+      "observed_at": "2026-10-29T22:42:11.106253+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 2477,
+        "excerpt": "{\n  \"info\": {\n    \"description\": \"Date deschise, doar citire, fără cheie. Limită: 60 cereri/minut pe IP, rafală 20. Fiecare răspuns are `provenienta` (surse, data observării, încredere, licență, citare). API-ul arată doar ce arată site-ul: persoanele apar numai prin funcția lor publică. Serverul MCP e la /mcp.\"\n  },\n  \"path\": \"/v1/date/ajutoare_agregat\",\n  \"method\": \"get\",\n  \"operationId\": \"date_ajutoare_agregat\",\n  \"summary\": \"Ajutoarele de stat, adunate pe an, județ, măsură și furnizor\",\n  \"parameters\": [\n    {\n      \"name\": \"an\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"filtru, egal cu: anul\",\n      \"schema\": {\n        \"type\": \"integer\"\n      }\n    },\n    {\n      \"name\": \"judet\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"filtru, egal cu: județul sediului beneficiarului („?” = necunoscut)\",\n      \"schema\": {\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"tip_beneficiar\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"filtru, egal cu: persoana_juridica, persoana_fizica sau strain\",\n      \"schema\": {\n        \"type\": \"string\",\n        \"enum\": [\n          \"persoana_juridica\",\n          \"persoana_fizica\",\n          \"strain\"\n        ]\n      }\n    },\n    {\n      \"name\": \"tip_valoare\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"filtru, egal cu: ajutor sau instrument_financiar\",\n      \"schema\": {\n        \"type\": \"string\",\n        \"enum\": [\n          \"ajutor\",\n          \"instrument_financiar\"\n        ]\n      }\n    },\n    {\n      \"name\": \"masura_referinta\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"filtru, egal cu: numărul cazului la Comisia Europeană (SA.)\",\n      \"schema\": {\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"limit\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"rânduri pe pagină (implicit 25, maximum 100)\",\n      \"schema\": {\n        \"type\": \"integer\",\n        \"minimum\": 1,\n        \"maximum\": 100,\n        \"default\": 25\n      }\n    },\n    {\n      \"name\": \"offset\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"deplasarea: câte rânduri se sar. Fără plafon practic: orice listă se parcurge până la capăt cu offset += limit cât timp `paginare.are_urmatoarea`; `paginare.total` spune câte rânduri are filtrul\",\n      \"schema\": {\n        \"type\": \"integer\",\n        \"minimum\": 0,\n        \"maximum\": 99999999,\n        \"default\": 0\n      }\n    }\n  ]\n}"
+      }
+    },
+    {
+      "id": "romania-transparenta-api-8",
+      "source": "https://api.romaniatransparenta.eu/v1/openapi.json",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/romania-transparenta-api-8.txt",
+      "sha256": "a8c8072d70f65b3b257aba477a89f734ac4f9daa17f186807af20214f49a711d",
+      "observed_at": "2026-10-29T22:42:11.106253+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 2842,
+        "excerpt": "{\n  \"info\": {\n    \"description\": \"Date deschise, doar citire, fără cheie. Limită: 60 cereri/minut pe IP, rafală 20. Fiecare răspuns are `provenienta` (surse, data observării, încredere, licență, citare). API-ul arată doar ce arată site-ul: persoanele apar numai prin funcția lor publică. Serverul MCP e la /mcp.\"\n  },\n  \"path\": \"/v1/date/datornici\",\n  \"method\": \"get\",\n  \"operationId\": \"date_datornici\",\n  \"summary\": \"Datornicii la stat: persoanele juridice cu obligații fiscale restante (lista ANAF)\",\n  \"parameters\": [\n    {\n      \"name\": \"cui\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"filtru, egal cu: codul fiscal al debitorului (cheia firmei, ca în /v1/companii/{cui})\",\n      \"schema\": {\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"judet\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"filtru, egal cu: județul\",\n      \"schema\": {\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"categorie\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"filtru, egal cu: categoria de contribuabili ANAF: mari, mijlocii sau mici (micii includ instituțiile publice)\",\n      \"schema\": {\n        \"type\": \"string\",\n        \"enum\": [\n          \"mari\",\n          \"mijlocii\",\n          \"mici\"\n        ]\n      }\n    },\n    {\n      \"name\": \"tip_entitate\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"filtru, egal cu: firma, institutie_publica sau alta (asociații, fundații, cooperative, cluburi)\",\n      \"schema\": {\n        \"type\": \"string\",\n        \"enum\": [\n          \"firma\",\n          \"institutie_publica\",\n          \"alta\"\n        ]\n      }\n    },\n    {\n      \"name\": \"data_referinta\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"filtru, egal cu: data listei ANAF (sfârșitul trimestrului): sumele sunt restanțele la această dată\",\n      \"schema\": {\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"q\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"căutare fără diacritice în coloana denumire, 2–80 de caractere\",\n      \"schema\": {\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"name\": \"limit\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"rânduri pe pagină (implicit 25, maximum 100)\",\n      \"schema\": {\n        \"type\": \"integer\",\n        \"minimum\": 1,\n        \"maximum\": 100,\n        \"default\": 25\n      }\n    },\n    {\n      \"name\": \"offset\",\n      \"in\": \"query\",\n      \"required\": false,\n      \"description\": \"deplasarea: câte rânduri se sar. Fără plafon practic: orice listă se parcurge până la capăt cu offset += limit cât timp `paginare.are_urmatoarea`; `paginare.total` spune câte rânduri are filtrul\",\n      \"schema\": {\n        \"type\": \"integer\",\n        \"minimum\": 0,\n        \"maximum\": 99999999,\n        \"default\": 0\n      }\n    }\n  ]\n}"
+      }
+    },
+    {
+      "id": "romania-transparenta-companies-list",
+      "source": "https://api.romaniatransparenta.eu/v1/companii?limit=1",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/romania-transparenta-companies-list.txt",
+      "sha256": "9a6a8544a1f192300789088abdd93a3de622482644c88989cd23c10d698349e8",
+      "observed_at": "2026-10-29T22:42:38.917124+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 2168,
+        "excerpt": "{\n  \"date\": [\n    {\n      \"cui\": \"43721310\",\n      \"denumire\": \"A.D.P. BÂRCA S.R.L.\",\n      \"forma\": \"SRL\",\n      \"categorie\": \"SOC\",\n      \"sector\": \"Salubrizare și deșeuri\",\n      \"judet\": \"Dolj\",\n      \"stare\": \"activa\",\n      \"stare_sigura\": true,\n      \"nivel\": \"local\",\n      \"uat_sediu\": \"70940\",\n      \"tutela\": null,\n      \"observat_la\": \"2026-10-05\",\n      \"incredere\": \"derivat\",\n      \"fisa\": \"https://api.romaniatransparenta.eu/v1/companii/43721310\"\n    }\n  ],\n  \"paginare\": {\n    \"limit\": 1,\n    \"offset\": 0,\n    \"intoarse\": 1,\n    \"are_urmatoarea\": true,\n    \"urmatoarea_offset\": 1,\n    \"total\": 1389\n  },\n  \"provenienta\": {\n    \"registru\": {\n      \"id\": \"companii_de_stat\",\n      \"denumire\": \"registrul companiilor de stat\",\n      \"url\": \"https://romaniatransparenta.eu/registre/companii-de-stat\"\n    },\n    \"sursa\": [\n      {\n        \"id\": \"sursa:amepip-indicatori\",\n        \"denumire\": \"AMEPIP — Indicatori financiari, nefinanciari și de guvernanță corporativă (întreprinderile publice monitorizate)\",\n        \"institutie_emitenta\": \"Agenția pentru Monitorizarea și Evaluarea Performanțelor Întreprinderilor Publice\",\n        \"url_baza\": \"https://data.gov.ro/dataset/amepip-indicatori-financiari-nefinanciari-si-de-guvernanta-corporativa\",\n        \"licenta\": \"CC BY 4.0\"\n      }\n    ],\n    \"observat_la\": \"2026-10-05\",\n    \"incredere\": [\n      {\n        \"valoare\": \"derivat\",\n        \"explicatie\": \"calculat de noi din date oficiale\"\n      }\n    ],\n    \"editie\": \"publicare:20261029T133011\",\n    \"date_actualizate_la\": \"2026-10-26\",\n    \"licenta\": \"CC BY 4.0\",\n    \"licenta_nota\": \"Compilația România Transparentă e sub CC BY 4.0; datele preluate își păstrează regimul surselor (câmpul `licenta` din fiecare sursă).\",\n    \"citare\": \"România Transparentă, registrul companiilor de stat, https://romaniatransparenta.eu/registre/companii-de-stat, date actualizate la 2026-10-26, CC BY 4.0\",\n    \"instructiuni\": \"Citează sursa folosind textul din `citare`. „Nu avem date” sau o listă goală NU înseamnă zero sau „nu există”: înseamnă că nu am găsit sau nu am verificat încă. Rezultatul `negasit` înseamnă „căutat automat și negăsit”, nu „lipsește”.\"\n  }\n}"
+      }
+    },
+    {
+      "id": "romania-transparenta-company-response",
+      "source": "https://api.romaniatransparenta.eu/v1/companii/43721310",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/romania-transparenta-company-response.txt",
+      "sha256": "f595aa2bf57f3cbc8c331adf076b509092fede3d786f12fd8081df9fe28b65a3",
+      "observed_at": "2026-10-29T22:43:01.684550+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 5321,
+        "excerpt": "{\n  \"date\": {\n    \"cui\": \"43721310\",\n    \"denumire\": \"A.D.P. BÂRCA S.R.L.\",\n    \"forma\": \"SRL\",\n    \"categorie\": \"SOC\",\n    \"sector\": \"Salubrizare și deșeuri\",\n    \"cod_caen\": \"3811\",\n    \"judet\": \"Dolj\",\n    \"stare\": \"activa\",\n    \"stare_sigura\": true,\n    \"nivel\": \"local\",\n    \"uat_sediu\": \"70940\",\n    \"tutela_id\": null,\n    \"tutela\": null,\n    \"tutela_citita_automat\": false,\n    \"mama\": null,\n    \"observat_la\": \"2026-10-05\",\n    \"incredere\": \"derivat\",\n    \"tutela_siruta\": null,\n    \"bilanturi\": {\n      \"descriere\": \"situațiile financiare anuale (lei); un an lipsă = bilanț nedepus sau negăsit, nu zero\",\n      \"ani\": [\n        {\n          \"an\": 2021,\n          \"cifra_afaceri\": 16157,\n          \"profit_net\": -80490,\n          \"angajati\": 2,\n          \"datorii\": 363443,\n          \"capitaluri_proprii\": -80290,\n          \"observat_la\": \"2026-09-10\",\n          \"incredere\": \"oficial\"\n        },\n        {\n          \"an\": 2022,\n          \"cifra_afaceri\": 109646,\n          \"profit_net\": -43273,\n          \"angajati\": 2,\n          \"datorii\": 358561,\n          \"capitaluri_proprii\": -123563,\n          \"observat_la\": \"2026-09-10\",\n          \"incredere\": \"oficial\"\n        },\n        {\n          \"an\": 2023,\n          \"cifra_afaceri\": 97966,\n          \"profit_net\": -68584,\n          \"angajati\": 2,\n          \"datorii\": 364942,\n          \"capitaluri_proprii\": -192146,\n          \"observat_la\": \"2026-09-10\",\n          \"incredere\": \"oficial\"\n        },\n        {\n          \"an\": 2024,\n          \"cifra_afaceri\": 168850,\n          \"profit_net\": -18429,\n          \"angajati\": 2,\n          \"datorii\": 371978,\n          \"capitaluri_proprii\": -210575,\n          \"observat_la\": \"2026-09-10\",\n          \"incredere\": \"oficial\"\n        },\n        {\n          \"an\": 2025,\n          \"cifra_afaceri\": 143771,\n          \"profit_net\": -31201,\n          \"angajati\": 2,\n          \"datorii\": 22711,\n          \"capitaluri_proprii\": 108224,\n          \"observat_la\": \"2026-09-10\",\n          \"incredere\": \"oficial\"\n        }\n      ]\n    },\n    \"conducere\": {\n      \"descriere\": \"conducerea publicată de companie pe site (ultima colectare); persoanele apar doar prin funcția publică\",\n      \"persoane\": []\n    },\n    \"filiale\": [],\n    \"obligatii\": {\n      \"descriere\": \"ce publică pe site din lista OUG 109/2011, la ultima verificare: publicat, partial (doar documente vechi), negasit (căutat și negăsit, nu dovada că lipsește), site_indisponibil\",\n      \"verificari\": []\n    },\n    \"remuneratii\": {\n      \"descriere\": \"sumele din rapoartele anuale de remunerare, pe funcție și an (citite automat: suma și fraza copiate din raport, funcția aleasă de un model)\",\n      \"sume\": []\n    },\n    \"legaturi\": {\n      \"pagina\": \"https://romaniatransparenta.eu/registre/companii-de-stat/43721310\",\n      \"documente\": \"https://api.romaniatransparenta.eu/v1/date/companii_documente?cui=43721310\",\n      \"achizitii\": \"https://api.romaniatransparenta.eu/v1/achizitii?cui_autoritate=43721310\",\n      \"achizitii_sumar\": \"https://api.romaniatransparenta.eu/v1/achizitii/sumar?cui_autoritate=43721310\",\n      \"contracte_castigate\": \"https://api.romaniatransparenta.eu/v1/achizitii?cui_castigator=43721310\",\n      \"filiale\": \"https://api.romaniatransparenta.eu/v1/companii?mama=43721310\",\n      \"bilanturi\": \"https://api.romaniatransparenta.eu/v1/date/companii_bilanturi?cui=43721310\"\n    }\n  },\n  \"provenienta\": {\n    \"registru\": {\n      \"id\": \"companii_de_stat\",\n      \"denumire\": \"registrul companiilor de stat\",\n      \"url\": \"https://romaniatransparenta.eu/registre/companii-de-stat/43721310\"\n    },\n    \"sursa\": [\n      {\n        \"id\": \"sursa:amepip-indicatori\",\n        \"denumire\": \"AMEPIP — Indicatori financiari, nefinanciari și de guvernanță corporativă (întreprinderile publice monitorizate)\",\n        \"institutie_emitenta\": \"Agenția pentru Monitorizarea și Evaluarea Performanțelor Întreprinderilor Publice\",\n        \"url_baza\": \"https://data.gov.ro/dataset/amepip-indicatori-financiari-nefinanciari-si-de-guvernanta-corporativa\",\n        \"licenta\": \"CC BY 4.0\"\n      },\n      {\n        \"id\": \"sursa:anaf-bilant\",\n        \"denumire\": \"Situațiile financiare anuale depuse la ANAF (bilanțuri)\",\n        \"institutie_emitenta\": \"Agenția Națională de Administrare Fiscală\",\n        \"url_baza\": \"https://www.anaf.ro\",\n        \"licenta\": \"informație publică\"\n      }\n    ],\n    \"observat_la\": \"2026-10-05\",\n    \"incredere\": [\n      {\n        \"valoare\": \"derivat\",\n        \"explicatie\": \"calculat de noi din date oficiale\"\n      },\n      {\n        \"valoare\": \"oficial\",\n        \"explicatie\": \"preluat dintr-un document oficial\"\n      }\n    ],\n    \"editie\": \"publicare:20261029T133011\",\n    \"date_actualizate_la\": \"2026-10-26\",\n    \"licenta\": \"CC BY 4.0\",\n    \"licenta_nota\": \"Compilația România Transparentă e sub CC BY 4.0; datele preluate își păstrează regimul surselor (câmpul `licenta` din fiecare sursă).\",\n    \"citare\": \"România Transparentă, registrul companiilor de stat, https://romaniatransparenta.eu/registre/companii-de-stat/43721310, date actualizate la 2026-10-26, CC BY 4.0\",\n    \"instructiuni\": \"Citează sursa folosind textul din `citare`. „Nu avem date” sau o listă goală NU înseamnă zero sau „nu există”: înseamnă că nu am găsit sau nu am verificat încă. Rezultatul `negasit` înseamnă „căutat automat și negăsit”, nu „lipsește”.\"\n  }\n}"
+      }
+    },
+    {
+      "id": "romania-transparenta-uat-response",
+      "source": "https://api.romaniatransparenta.eu/v1/uat?q=Bucuresti&limit=1",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/romania-transparenta-uat-response.txt",
+      "sha256": "a92b1a428b7802da9409d1d23c9118d8211b931b2a5e2fe568e2c6fbea7f79fe",
+      "observed_at": "2026-10-29T22:42:40.160417+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 2177,
+        "excerpt": "{\n  \"date\": [\n    {\n      \"siruta\": \"179132\",\n      \"denumire\": \"Municipiul București\",\n      \"tip\": \"municipiu\",\n      \"judet\": \"București\",\n      \"cod_judet\": \"B\",\n      \"populatie\": 1716961,\n      \"an_populatie\": null,\n      \"cui_primarie\": null,\n      \"cui_primarie_incredere\": null,\n      \"cui_consiliu_judetean\": null,\n      \"observat_la\": \"2026-09-14\",\n      \"incredere\": \"derivat\",\n      \"fisa\": \"https://api.romaniatransparenta.eu/v1/uat/179132\",\n      \"pagina\": \"https://romaniatransparenta.eu/registre/administratia-locala/179132\"\n    }\n  ],\n  \"paginare\": {\n    \"limit\": 1,\n    \"offset\": 0,\n    \"intoarse\": 1,\n    \"are_urmatoarea\": false,\n    \"urmatoarea_offset\": null,\n    \"total\": 1\n  },\n  \"provenienta\": {\n    \"registru\": {\n      \"id\": \"administratia_locala\",\n      \"denumire\": \"registrul administrației locale\",\n      \"url\": \"https://romaniatransparenta.eu/registre/administratia-locala\"\n    },\n    \"sursa\": [\n      {\n        \"id\": \"sursa:rt-consilii\",\n        \"denumire\": \"Registrul consiliilor locale, reconstituit din procesele-verbale AEP și listele BEC\",\n        \"institutie_emitenta\": \"România Transparentă\",\n        \"url_baza\": \"https://romaniatransparenta.eu\",\n        \"licenta\": \"CC BY 4.0 (compilația România Transparentă; datele preluate își păstrează regimul lor)\"\n      }\n    ],\n    \"observat_la\": \"2026-09-14\",\n    \"incredere\": [\n      {\n        \"valoare\": \"derivat\",\n        \"explicatie\": \"calculat de noi din date oficiale\"\n      }\n    ],\n    \"editie\": \"publicare:20261029T133011\",\n    \"date_actualizate_la\": \"2026-10-26\",\n    \"licenta\": \"CC BY 4.0\",\n    \"licenta_nota\": \"Compilația România Transparentă e sub CC BY 4.0; datele preluate își păstrează regimul surselor (câmpul `licenta` din fiecare sursă).\",\n    \"citare\": \"România Transparentă, registrul administrației locale, https://romaniatransparenta.eu/registre/administratia-locala, date actualizate la 2026-10-26, CC BY 4.0\",\n    \"instructiuni\": \"Citează sursa folosind textul din `citare`. „Nu avem date” sau o listă goală NU înseamnă zero sau „nu există”: înseamnă că nu am găsit sau nu am verificat încă. Rezultatul `negasit` înseamnă „căutat automat și negăsit”, nu „lipsește”.\"\n  }\n}"
+      }
+    },
+    {
+      "id": "romania-transparenta-central-response",
+      "source": "https://api.romaniatransparenta.eu/v1/date/institutii_centrale?limit=2",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/romania-transparenta-central-response.txt",
+      "sha256": "0aa7e5d1cebb383816e0e0ae761728b3fb4eb1ef34cf284b08c4573f1d294c14",
+      "observed_at": "2026-10-29T22:42:41.332973+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 2360,
+        "excerpt": "{\n  \"date\": [\n    {\n      \"cui\": \"46414469\",\n      \"denumire\": \"Cancelaria Prim-Ministrului\",\n      \"acronim\": \"CPM\",\n      \"grup\": \"aparat_guvern\",\n      \"cod_opc_2026\": null,\n      \"cif_ordonator_mf\": \"4283422\",\n      \"denumire_anaf\": \"CANCELARIA PRIM-MINISTRULUI\",\n      \"confirmat_anaf\": true,\n      \"data_verificare_anaf\": \"2026-10-01\",\n      \"observat_la\": \"2026-10-06\",\n      \"incredere\": \"oficial\"\n    },\n    {\n      \"cui\": \"4266863\",\n      \"denumire\": \"Ministerul Afacerilor Externe\",\n      \"acronim\": \"MAE\",\n      \"grup\": \"minister\",\n      \"cod_opc_2026\": \"14\",\n      \"cif_ordonator_mf\": null,\n      \"denumire_anaf\": \"MINISTERUL AFACERILOR EXTERNE\",\n      \"confirmat_anaf\": true,\n      \"data_verificare_anaf\": \"2026-10-01\",\n      \"observat_la\": \"2026-10-06\",\n      \"incredere\": \"oficial\"\n    }\n  ],\n  \"paginare\": {\n    \"limit\": 2,\n    \"offset\": 0,\n    \"intoarse\": 2,\n    \"are_urmatoarea\": true,\n    \"urmatoarea_offset\": 2,\n    \"total\": 18\n  },\n  \"provenienta\": {\n    \"registru\": {\n      \"id\": \"administratia_centrala\",\n      \"denumire\": \"registrul administrației publice centrale\",\n      \"url\": \"https://romaniatransparenta.eu/registre/administratia-centrala\"\n    },\n    \"sursa\": [\n      {\n        \"id\": \"sursa:mf-entitati-publice\",\n        \"denumire\": \"Lista entităților publice (1 septembrie 2026)\",\n        \"institutie_emitenta\": \"Ministerul Finanțelor\",\n        \"url_baza\": \"https://data.gov.ro\",\n        \"licenta\": \"licență deschisă (data.gov.ro)\"\n      }\n    ],\n    \"observat_la\": \"2026-10-06\",\n    \"incredere\": [\n      {\n        \"valoare\": \"oficial\",\n        \"explicatie\": \"preluat dintr-un document oficial\"\n      }\n    ],\n    \"editie\": \"publicare:20261029T133011\",\n    \"date_actualizate_la\": \"2026-10-26\",\n    \"licenta\": \"CC BY 4.0\",\n    \"licenta_nota\": \"Compilația România Transparentă e sub CC BY 4.0; datele preluate își păstrează regimul surselor (câmpul `licenta` din fiecare sursă).\",\n    \"citare\": \"România Transparentă, registrul administrației publice centrale, https://romaniatransparenta.eu/registre/administratia-centrala, date actualizate la 2026-10-26, CC BY 4.0\",\n    \"instructiuni\": \"Citează sursa folosind textul din `citare`. „Nu avem date” sau o listă goală NU înseamnă zero sau „nu există”: înseamnă că nu am găsit sau nu am verificat încă. Rezultatul `negasit` înseamnă „căutat automat și negăsit”, nu „lipsește”.\"\n  }\n}"
+      }
+    }
+  ],
+  "collections": [
+    {
+      "id": "central",
+      "label": "Instituții centrale",
+      "entity_type": "public_institution",
+      "coverage": "Central administration, not all institutions.",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "record_grain": "legal_subject",
+      "identity_components": []
+    },
+    {
+      "id": "companies",
+      "label": "Companii de stat",
+      "entity_type": "company",
+      "coverage": "State and local public companies.",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "record_grain": "legal_subject",
+      "identity_components": []
+    },
+    {
+      "id": "uat",
+      "label": "Unități administrativ-teritoriale",
+      "entity_type": "territory",
+      "coverage": "UAT territory identifier differs from town-hall fiscal identity.",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "record_grain": "territory",
+      "identity_components": []
+    },
+    {
+      "id": "universities",
+      "label": "Universități",
+      "entity_type": "public_institution",
+      "coverage": "State universities.",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "record_grain": "legal_subject",
+      "identity_components": []
+    },
+    {
+      "id": "hospitals",
+      "label": "Spitale",
+      "entity_type": "public_institution",
+      "coverage": "Public health institutions.",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "record_grain": "legal_subject",
+      "identity_components": []
+    },
+    {
+      "id": "aid",
+      "label": "Beneficiari de ajutoare",
+      "entity_type": "company",
+      "coverage": "Legal-person aid beneficiaries; not individual persons.",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "record_grain": "legal_subject",
+      "identity_components": []
+    },
+    {
+      "id": "debtors",
+      "label": "Datornici",
+      "entity_type": "legal_subject",
+      "coverage": "Historical ANAF debt list; current debt is not inferred.",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "record_grain": "legal_subject",
+      "identity_components": []
+    }
+  ],
+  "namespaces": [
+    {
+      "id": "ro:cui",
+      "issuer": "Romanian fiscal administration",
+      "scope": "Fiscal identifiers of the named legal subject",
+      "normalization": "identity",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "normalization_note": "identity; preserve string and original value",
+      "shared": true
+    },
+    {
+      "id": "ro:siruta",
+      "issuer": "INS",
+      "scope": "Territorial units, not automatically town-hall legal entities",
+      "normalization": "identity",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "normalization_note": "identity; preserve string and original value",
+      "shared": true
+    }
+  ],
+  "patterns": [
+    {
+      "id": "central-detail",
+      "collection": "central",
+      "kind": "detail",
+      "url_template": "https://romaniatransparenta.eu/registre/administratia-centrala/{cui}",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "variables": [
+        {
+          "name": "cui",
+          "namespace": "ro:cui",
+          "location": "path",
+          "encoding": "UTF-8 percent-encoding for the individual component"
+        }
+      ],
+      "examples": [],
+      "basis": "declared",
+      "extraction": "literal URL or named template components",
+      "declaration_evidence": "romania-transparenta-llms-routes"
+    },
+    {
+      "id": "central-list",
+      "collection": "central",
+      "kind": "listing",
+      "url_template": "https://romaniatransparenta.eu/registre/administratia-centrala",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "variables": [],
+      "examples": [],
+      "basis": "exact",
+      "extraction": "literal URL or named template components"
+    },
+    {
+      "id": "companies-detail",
+      "collection": "companies",
+      "kind": "detail",
+      "url_template": "https://romaniatransparenta.eu/registre/companii-de-stat/{cui}",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "variables": [
+        {
+          "name": "cui",
+          "namespace": "ro:cui",
+          "location": "path",
+          "encoding": "UTF-8 percent-encoding for the individual component"
+        }
+      ],
+      "examples": [],
+      "basis": "declared",
+      "extraction": "literal URL or named template components",
+      "declaration_evidence": "romania-transparenta-llms-routes"
+    },
+    {
+      "id": "companies-list",
+      "collection": "companies",
+      "kind": "listing",
+      "url_template": "https://romaniatransparenta.eu/registre/companii-de-stat",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "variables": [],
+      "examples": [],
+      "basis": "exact",
+      "extraction": "literal URL or named template components"
+    },
+    {
+      "id": "uat-detail",
+      "collection": "uat",
+      "kind": "detail",
+      "url_template": "https://romaniatransparenta.eu/registre/administratia-locala/{siruta}",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "variables": [
+        {
+          "name": "siruta",
+          "namespace": "ro:siruta",
+          "location": "path",
+          "encoding": "UTF-8 percent-encoding for the individual component"
+        }
+      ],
+      "examples": [],
+      "basis": "declared",
+      "extraction": "literal URL or named template components",
+      "declaration_evidence": "romania-transparenta-llms-routes"
+    },
+    {
+      "id": "uat-list",
+      "collection": "uat",
+      "kind": "listing",
+      "url_template": "https://romaniatransparenta.eu/registre/administratia-locala",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "variables": [],
+      "examples": [],
+      "basis": "exact",
+      "extraction": "literal URL or named template components"
+    },
+    {
+      "id": "universities-detail",
+      "collection": "universities",
+      "kind": "detail",
+      "url_template": "https://romaniatransparenta.eu/registre/universitati/{cui}",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "variables": [
+        {
+          "name": "cui",
+          "namespace": "ro:cui",
+          "location": "path",
+          "encoding": "UTF-8 percent-encoding for the individual component"
+        }
+      ],
+      "examples": [],
+      "basis": "declared",
+      "extraction": "literal URL or named template components",
+      "declaration_evidence": "romania-transparenta-llms-routes"
+    },
+    {
+      "id": "universities-list",
+      "collection": "universities",
+      "kind": "listing",
+      "url_template": "https://romaniatransparenta.eu/registre/universitati",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "variables": [],
+      "examples": [],
+      "basis": "exact",
+      "extraction": "literal URL or named template components"
+    },
+    {
+      "id": "hospitals-detail",
+      "collection": "hospitals",
+      "kind": "detail",
+      "url_template": "https://romaniatransparenta.eu/registre/spitale/spital/{cui}",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "variables": [
+        {
+          "name": "cui",
+          "namespace": "ro:cui",
+          "location": "path",
+          "encoding": "UTF-8 percent-encoding for the individual component"
+        }
+      ],
+      "examples": [],
+      "basis": "declared",
+      "extraction": "literal URL or named template components",
+      "declaration_evidence": "romania-transparenta-llms-routes"
+    },
+    {
+      "id": "aid-detail",
+      "collection": "aid",
+      "kind": "detail",
+      "url_template": "https://romaniatransparenta.eu/registre/ajutoare-de-stat/{cui}",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "variables": [
+        {
+          "name": "cui",
+          "namespace": "ro:cui",
+          "location": "path",
+          "encoding": "UTF-8 percent-encoding for the individual component"
+        }
+      ],
+      "examples": [],
+      "basis": "declared",
+      "extraction": "literal URL or named template components",
+      "declaration_evidence": "romania-transparenta-llms-routes"
+    },
+    {
+      "id": "aid-list",
+      "collection": "aid",
+      "kind": "listing",
+      "url_template": "https://romaniatransparenta.eu/registre/ajutoare-de-stat",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "variables": [],
+      "examples": [],
+      "basis": "exact",
+      "extraction": "literal URL or named template components"
+    },
+    {
+      "id": "debt-search",
+      "collection": "debtors",
+      "kind": "search",
+      "url_template": "https://romaniatransparenta.eu/registre/datornici?q={q}",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "variables": [
+        {
+          "name": "q",
+          "namespace": null,
+          "location": "query",
+          "encoding": "UTF-8 percent-encoding for the individual component"
+        }
+      ],
+      "examples": [],
+      "basis": "declared",
+      "extraction": "literal URL or named template components",
+      "declaration_evidence": "romania-transparenta-llms-routes"
+    }
+  ],
+  "operations": [
+    {
+      "id": "api-0",
+      "collection": "companies",
+      "method": "GET",
+      "url_template": "https://api.romaniatransparenta.eu/v1/companii",
+      "variables": [],
+      "purpose": "list",
+      "basis": [
+        "documented",
+        "tested"
+      ],
+      "authentication": "none",
+      "parameters": [
+        {
+          "name": "q",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "judet",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "nivel",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "categorie",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "tutela_siruta",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "mama",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "location": "query",
+          "required": false,
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "location": "query",
+          "required": false,
+          "type": "integer"
+        }
+      ],
+      "request_body": {},
+      "response_paths": {
+        "records": "/date",
+        "pagination": "/paginare",
+        "self_id": "/date/*/cui"
+      },
+      "pagination": {
+        "mechanism": "limit-offset",
+        "tested_pages": 1
+      },
+      "headers": [],
+      "content_types": [
+        "application/json"
+      ],
+      "last_test": {
+        "outcome": "observed",
+        "reason": "Response content inspected, including record identifiers.",
+        "checked_at": "2026-10-29T22:42:38.917124+00:00",
+        "evidence": "romania-transparenta-companies-list"
+      },
+      "page_patterns": [],
+      "evidence": [
+        "romania-transparenta-api-0",
+        "romania-transparenta-companies-list"
+      ],
+      "uses": [
+        {
+          "collection": "companies",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "anonymous",
+        "documented_authentication": "none"
+      }
+    },
+    {
+      "id": "api-1",
+      "collection": "companies",
+      "method": "GET",
+      "url_template": "https://api.romaniatransparenta.eu/v1/companii/{cui}",
+      "variables": [
+        {
+          "name": "cui",
+          "namespace": "ro:cui",
+          "location": "path",
+          "encoding": "UTF-8 percent-encoding for the individual component"
+        }
+      ],
+      "purpose": "detail",
+      "basis": [
+        "documented",
+        "tested"
+      ],
+      "authentication": "none",
+      "parameters": [
+        {
+          "name": "cui",
+          "location": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "request_body": {},
+      "response_paths": {
+        "records": "/date",
+        "pagination": "/paginare",
+        "self_id": "/date/cui"
+      },
+      "pagination": {
+        "mechanism": "not_applicable",
+        "tested_pages": 0
+      },
+      "headers": [],
+      "content_types": [
+        "application/json"
+      ],
+      "last_test": {
+        "outcome": "observed",
+        "reason": "Response content inspected, including record identifiers.",
+        "checked_at": "2026-10-29T22:43:01.684550+00:00",
+        "evidence": "romania-transparenta-company-response"
+      },
+      "page_patterns": [
+        "companies-detail"
+      ],
+      "evidence": [
+        "romania-transparenta-api-1",
+        "romania-transparenta-company-response"
+      ],
+      "uses": [
+        {
+          "collection": "companies",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "anonymous",
+        "documented_authentication": "none"
+      }
+    },
+    {
+      "id": "api-2",
+      "collection": "uat",
+      "method": "GET",
+      "url_template": "https://api.romaniatransparenta.eu/v1/uat",
+      "variables": [],
+      "purpose": "list",
+      "basis": [
+        "documented",
+        "tested"
+      ],
+      "authentication": "none",
+      "parameters": [
+        {
+          "name": "judet",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "q",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "tip",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "location": "query",
+          "required": false,
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "location": "query",
+          "required": false,
+          "type": "integer"
+        }
+      ],
+      "request_body": {},
+      "response_paths": {
+        "records": "/date",
+        "pagination": "/paginare",
+        "self_id": "/date/*/siruta"
+      },
+      "pagination": {
+        "mechanism": "limit-offset",
+        "tested_pages": 1
+      },
+      "headers": [],
+      "content_types": [
+        "application/json"
+      ],
+      "last_test": {
+        "outcome": "observed",
+        "reason": "Response content inspected, including record identifiers.",
+        "checked_at": "2026-10-29T22:42:40.160417+00:00",
+        "evidence": "romania-transparenta-uat-response"
+      },
+      "page_patterns": [],
+      "evidence": [
+        "romania-transparenta-api-2",
+        "romania-transparenta-uat-response"
+      ],
+      "uses": [
+        {
+          "collection": "uat",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "anonymous",
+        "documented_authentication": "none"
+      }
+    },
+    {
+      "id": "api-3",
+      "collection": "uat",
+      "method": "GET",
+      "url_template": "https://api.romaniatransparenta.eu/v1/uat/{siruta}",
+      "variables": [
+        {
+          "name": "siruta",
+          "namespace": "ro:siruta",
+          "location": "path",
+          "encoding": "UTF-8 percent-encoding for the individual component"
+        }
+      ],
+      "purpose": "detail",
+      "basis": [
+        "documented"
+      ],
+      "authentication": "none",
+      "parameters": [
+        {
+          "name": "siruta",
+          "location": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "request_body": {},
+      "response_paths": {
+        "records": "/date",
+        "pagination": "/paginare"
+      },
+      "pagination": {
+        "mechanism": "not_applicable",
+        "tested_pages": 0
+      },
+      "headers": [],
+      "content_types": [
+        "application/json"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No live test in this bounded pass."
+      },
+      "page_patterns": [
+        "uat-detail"
+      ],
+      "evidence": [
+        "romania-transparenta-api-3"
+      ],
+      "uses": [
+        {
+          "collection": "uat",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown",
+        "documented_authentication": "none"
+      }
+    },
+    {
+      "id": "api-4",
+      "collection": "central",
+      "method": "GET",
+      "url_template": "https://api.romaniatransparenta.eu/v1/date/institutii_centrale",
+      "variables": [],
+      "purpose": "list",
+      "basis": [
+        "documented",
+        "tested"
+      ],
+      "authentication": "none",
+      "parameters": [
+        {
+          "name": "cui",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "grup",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "location": "query",
+          "required": false,
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "location": "query",
+          "required": false,
+          "type": "integer"
+        }
+      ],
+      "request_body": {},
+      "response_paths": {
+        "records": "/date",
+        "pagination": "/paginare",
+        "self_id": "/date/*/cui"
+      },
+      "pagination": {
+        "mechanism": "limit-offset",
+        "tested_pages": 1
+      },
+      "headers": [],
+      "content_types": [
+        "application/json"
+      ],
+      "last_test": {
+        "outcome": "observed",
+        "reason": "Response content inspected, including record identifiers.",
+        "checked_at": "2026-10-29T22:42:41.332973+00:00",
+        "evidence": "romania-transparenta-central-response"
+      },
+      "page_patterns": [],
+      "evidence": [
+        "romania-transparenta-api-4",
+        "romania-transparenta-central-response"
+      ],
+      "uses": [
+        {
+          "collection": "central",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "anonymous",
+        "documented_authentication": "none"
+      }
+    },
+    {
+      "id": "api-5",
+      "collection": "universities",
+      "method": "GET",
+      "url_template": "https://api.romaniatransparenta.eu/v1/universitati/{cui}",
+      "variables": [
+        {
+          "name": "cui",
+          "namespace": "ro:cui",
+          "location": "path",
+          "encoding": "UTF-8 percent-encoding for the individual component"
+        }
+      ],
+      "purpose": "detail",
+      "basis": [
+        "documented"
+      ],
+      "authentication": "none",
+      "parameters": [
+        {
+          "name": "cui",
+          "location": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "request_body": {},
+      "response_paths": {
+        "records": "/date",
+        "pagination": "/paginare"
+      },
+      "pagination": {
+        "mechanism": "not_applicable",
+        "tested_pages": 0
+      },
+      "headers": [],
+      "content_types": [
+        "application/json"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No live test in this bounded pass."
+      },
+      "page_patterns": [
+        "universities-detail"
+      ],
+      "evidence": [
+        "romania-transparenta-api-5"
+      ],
+      "uses": [
+        {
+          "collection": "universities",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown",
+        "documented_authentication": "none"
+      }
+    },
+    {
+      "id": "api-6",
+      "collection": "hospitals",
+      "method": "GET",
+      "url_template": "https://api.romaniatransparenta.eu/v1/date/spitale_unitati",
+      "variables": [],
+      "purpose": "list",
+      "basis": [
+        "documented"
+      ],
+      "authentication": "none",
+      "parameters": [
+        {
+          "name": "cui",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "judet",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "tip",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "q",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "location": "query",
+          "required": false,
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "location": "query",
+          "required": false,
+          "type": "integer"
+        }
+      ],
+      "request_body": {},
+      "response_paths": {
+        "records": "/date",
+        "pagination": "/paginare"
+      },
+      "pagination": {
+        "mechanism": "limit-offset",
+        "tested_pages": 0
+      },
+      "headers": [],
+      "content_types": [
+        "application/json"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No live test in this bounded pass."
+      },
+      "page_patterns": [],
+      "evidence": [
+        "romania-transparenta-api-6"
+      ],
+      "uses": [
+        {
+          "collection": "hospitals",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown",
+        "documented_authentication": "none"
+      }
+    },
+    {
+      "id": "api-7",
+      "collection": "aid",
+      "method": "GET",
+      "url_template": "https://api.romaniatransparenta.eu/v1/date/ajutoare_agregat",
+      "variables": [],
+      "purpose": "list",
+      "basis": [
+        "documented"
+      ],
+      "authentication": "none",
+      "parameters": [
+        {
+          "name": "an",
+          "location": "query",
+          "required": false,
+          "type": "integer"
+        },
+        {
+          "name": "judet",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "tip_beneficiar",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "tip_valoare",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "masura_referinta",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "location": "query",
+          "required": false,
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "location": "query",
+          "required": false,
+          "type": "integer"
+        }
+      ],
+      "request_body": {},
+      "response_paths": {
+        "records": "/date",
+        "pagination": "/paginare"
+      },
+      "pagination": {
+        "mechanism": "limit-offset",
+        "tested_pages": 0
+      },
+      "headers": [],
+      "content_types": [
+        "application/json"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No live test in this bounded pass."
+      },
+      "page_patterns": [],
+      "evidence": [
+        "romania-transparenta-api-7"
+      ],
+      "uses": [
+        {
+          "collection": "aid",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown",
+        "documented_authentication": "none"
+      }
+    },
+    {
+      "id": "api-8",
+      "collection": "debtors",
+      "method": "GET",
+      "url_template": "https://api.romaniatransparenta.eu/v1/date/datornici",
+      "variables": [],
+      "purpose": "list",
+      "basis": [
+        "documented"
+      ],
+      "authentication": "none",
+      "parameters": [
+        {
+          "name": "cui",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "judet",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "categorie",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "tip_entitate",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "data_referinta",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "q",
+          "location": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "location": "query",
+          "required": false,
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "location": "query",
+          "required": false,
+          "type": "integer"
+        }
+      ],
+      "request_body": {},
+      "response_paths": {
+        "records": "/date",
+        "pagination": "/paginare"
+      },
+      "pagination": {
+        "mechanism": "limit-offset",
+        "tested_pages": 0
+      },
+      "headers": [],
+      "content_types": [
+        "application/json"
+      ],
+      "last_test": {
+        "outcome": "unchecked",
+        "reason": "No live test in this bounded pass."
+      },
+      "page_patterns": [],
+      "evidence": [
+        "romania-transparenta-api-8"
+      ],
+      "uses": [
+        {
+          "collection": "debtors",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "unknown",
+        "documented_authentication": "none"
+      }
+    }
+  ],
+  "identifier_rules": [
+    {
+      "id": "central-identifier",
+      "collection": "central",
+      "namespace": "ro:cui",
+      "location": "URL path cui",
+      "subject_role": "self",
+      "normalization": "preserve source string; no inferred prefix or zero removal",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "mapping_basis": "declared"
+    },
+    {
+      "id": "companies-identifier",
+      "collection": "companies",
+      "namespace": "ro:cui",
+      "location": "URL path cui",
+      "subject_role": "self",
+      "normalization": "preserve source string; no inferred prefix or zero removal",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "mapping_basis": "declared"
+    },
+    {
+      "id": "uat-identifier",
+      "collection": "uat",
+      "namespace": "ro:siruta",
+      "location": "URL path siruta",
+      "subject_role": "self",
+      "normalization": "preserve source string; no inferred prefix or zero removal",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "mapping_basis": "declared"
+    },
+    {
+      "id": "universities-identifier",
+      "collection": "universities",
+      "namespace": "ro:cui",
+      "location": "URL path cui",
+      "subject_role": "self",
+      "normalization": "preserve source string; no inferred prefix or zero removal",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "mapping_basis": "declared"
+    },
+    {
+      "id": "hospitals-identifier",
+      "collection": "hospitals",
+      "namespace": "ro:cui",
+      "location": "URL path cui",
+      "subject_role": "self",
+      "normalization": "preserve source string; no inferred prefix or zero removal",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "mapping_basis": "declared"
+    },
+    {
+      "id": "aid-identifier",
+      "collection": "aid",
+      "namespace": "ro:cui",
+      "location": "URL path cui",
+      "subject_role": "self",
+      "normalization": "preserve source string; no inferred prefix or zero removal",
+      "evidence": [
+        "romania-transparenta-llms-routes"
+      ],
+      "mapping_basis": "declared"
+    },
+    {
+      "id": "uat-townhall-cui",
+      "collection": "uat",
+      "namespace": "ro:cui",
+      "location": "/date/*/cui_primarie",
+      "subject_role": "administers",
+      "normalization": "preserve source string; no inferred prefix or zero removal",
+      "evidence": [
+        "romania-transparenta-uat-response"
+      ],
+      "limitations": [
+        "Sample value is null; do not manufacture a CUI mapping or identify territory with town hall."
+      ],
+      "mapping_basis": "declared"
+    }
+  ],
+  "samples": [
+    {
+      "id": "mae",
+      "collection": "central",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "central-identifier",
+          "source": "romania-transparenta-central-response",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/date/1/cui"
+          }
+        }
+      ],
+      "label": "Ministerul Afacerilor Externe"
+    },
+    {
+      "id": "adp",
+      "collection": "companies",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "companies-identifier",
+          "source": "romania-transparenta-company-response",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/date/cui"
+          }
+        }
+      ],
+      "label": "A.D.P. BÂRCA S.R.L."
+    },
+    {
+      "id": "bucuresti-territory",
+      "collection": "uat",
+      "local_namespace": "ro:siruta",
+      "identifiers": [
+        {
+          "rule": "uat-identifier",
+          "source": "romania-transparenta-uat-response",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/date/0/siruta"
+          }
+        }
+      ],
+      "label": "Municipiul București — teritoriu"
+    }
+  ],
+  "relationships": []
+}

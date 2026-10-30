@@ -1,0 +1,3 @@
+interface:
+  display_name: "Profile CivTech structure"
+  short_description: "Curate site routes, APIs and entity identifiers"

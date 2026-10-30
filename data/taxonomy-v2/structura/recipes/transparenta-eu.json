@@ -1,0 +1,402 @@
+{
+  "schema_version": 1,
+  "id": "transparenta-eu-structure",
+  "project_slug": "transparenta-eu",
+  "input_url": "https://transparenta.eu/",
+  "evidence": [
+    {
+      "id": "transparenta-eu-llms",
+      "source": "https://transparenta.eu/llms.txt",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/transparenta-eu-llms.txt",
+      "sha256": "eba5f749625f2f1feda9272e7d94d331706c0efc9e967bff73da4a0fee28927a",
+      "observed_at": "2026-10-29T22:41:57.720635+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 3218,
+        "excerpt": "# Transparenta.eu — AI Usage Guide\n\nBase URL:\n- https://transparenta.eu\n\n## Documentation\n- Parameters index (JSON): https://transparenta.eu/ai/index.json\n- URL/API guide (Markdown): https://transparenta.eu/api-guide.md\n- Sitemap: https://transparenta.eu/sitemap.xml\n\n## Routes Overview\n- /entities/{cui}: Single entity details and analytics\n- /entity-analytics: Cross-entity analytics (table, treemap, line-items)\n- /budget-explorer: Budget exploration by categories (functional/economic)\n- /pnrr: PNRR project dashboard by component, geography, beneficiary, progress, and risk signals\n\n## Entities Page (/entities/{cui})\nHow to query:\n1) Put the entity CUI in the path: /entities/4267117\n2) Add filters as query params. Common examples:\n   - ?year=2025\n   - ?period=YEAR | QUARTER | MONTH\n   - ?view=overview | map | income-trends | expense-trends\n   - ?normalization=total | total_euro | per_capita | per_capita_euro\n\nParameters (full docs):\n- https://transparenta.eu/ai/entities-parameters.json\n\nExamples:\n- https://transparenta.eu/entities/4267117?view=overview&year=2024\n- https://transparenta.eu/entities/4267117?year=2025&view=map&normalization=per_capita\n- https://transparenta.eu/entities/4267117?period=QUARTER&quarter=Q4\n\n## Entity Analytics (/entity-analytics)\nPurpose: Compare entities with filters and switch views (table/line-items/treemap)\nCommon params:\n- filter.report_period.type=YEAR|QUARTER|MONTH\n- filter.account_category=ch|vn\n- filter.normalization=total|per_capita|total_euro|per_capita_euro\n- view=table|line-items\n- treemapPrimary=fn|ec, treemapDepth=chapter|subchapter|paragraph\n\nParameters JSON: (coming from schema)\n- https://transparenta.eu/ai/entities-analytics-parameters.json\n\nExample:\n- https://transparenta.eu/entity-analytics?view=line-items\n\n## Budget Explorer (/budget-explorer)\nPurpose: Explore budget composition across categories and years\nCommon params:\n- view=overview|treemap|sankey|list\n- primary=fn|ec, depth=main|detail\n- filter.{report_period, account_category, normalization, report_type}\n\nParameters JSON:\n- https://transparenta.eu/ai/budget-explorer-parameters.json\n\nExamples:\n- https://transparenta.eu/budget-explorer?view=treemap&primary=fn\n- https://transparenta.eu/budget-explorer?view=list&filter.account_category=vn\n\n## PNRR (/pnrr)\nPurpose: Explore National Recovery and Resilience Plan projects, funding, progress, beneficiaries, geography, and risk signals.\nCommon params:\n- view=overview|projects|beneficiaries|map|anomalies\n- components, counties, fundingSources, measures, cris\n- progressCategories=completed|advanced|mid|under30|not-started|unknown\n- onlyAnomalies=true, excludeMicro=true, includeNational=false\n- search, beneficiarySearch, beneficiaryCui, uatSiruta, uatSirutas\n\nParameters JSON:\n- https://transparenta.eu/ai/pnrr-parameters.json\n\nExamples:\n- https://transparenta.eu/pnrr\n- https://transparenta.eu/pnrr?onlyAnomalies=true&view=anomalies\n- https://transparenta.eu/pnrr?view=map&granularity=county\n\nNotes:\n- Year range supported: dynamic; see parameter JSON files for min/max.\n- All parameters are optional unless stated; defaults are inferred from the UI.\n - For API integration, prefer `/ai/*.json` schemas and `api-guide.md` patterns."
+      }
+    },
+    {
+      "id": "transparenta-eu-guide",
+      "source": "https://transparenta.eu/api-guide.md",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/transparenta-eu-guide.txt",
+      "sha256": "09656f7dcca8c66961136c1980086e6e3454b4647aec3e37d3858f1fa47a3d66",
+      "observed_at": "2026-10-29T22:41:58.919869+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 2213,
+        "excerpt": "# API and URL Navigation Guide for AI Agents\n\nBase URL: https://transparenta.eu\n\nThis guide documents how to access major resources and parameters programmatically or via URL patterns. It complements the machine‑readable JSON parameter files under `/ai/` and is referenced by `llms.txt`.\n\n## Entities\n- Path: `/entities/{cui}`\n- Parameters:\n  - `year` (number, 2016-2025)\n  - `period` (`YEAR` | `QUARTER` | `MONTH`)\n  - `view` (`overview` | `map` | `income-trends` | `expense-trends`)\n  - `normalization` (`total` | `total_euro` | `per_capita` | `per_capita_euro`)\n  - `accountCategory` (`ch` | `vn`)\n- Parameter schema: https://transparenta.eu/ai/entities-parameters.json\n- Example: `/entities/4267117?year=2024&view=overview`\n\n## Entity Analytics\n- Path: `/entity-analytics`\n- Purpose: Cross‑entity comparisons, line items, and exports\n- Parameters:\n  - `filter.report_period` (object: `type`, `selection`) — ISO 8601 dates or yearly anchors\n  - `filter.account_category` (`ch` | `vn`)\n  - `filter.normalization` (`total` | `per_capita` | `total_euro` | `per_capita_euro`)\n  - `treemapPrimary` (`fn` | `ec`), `treemapDepth` (`chapter` | `subchapter` | `paragraph`)\n- Parameter schema: https://transparenta.eu/ai/entities-analytics-parameters.json\n- Example: `/entity-analytics?view=line-items`\n\n## Budget Explorer\n- Path: `/budget-explorer`\n- Purpose: Explore budget composition across categories and years\n- Parameters:\n  - `view` (`overview` | `treemap` | `sankey` | `list`)\n  - `primary` (`fn` | `ec`), `depth` (`main` | `detail`)\n  - `filter` (object): includes `report_period`, `account_category`, `normalization`, `report_type`\n- Parameter schema: https://transparenta.eu/ai/budget-explorer-parameters.json\n- Example: `/budget-explorer?view=treemap&primary=fn`\n\n## Data Formats\n- JSON & CSV exports are exposed by the backend API; client links use the same filters encoded in URLs. Use the parameters above and refer to the `/ai/*.json` schema files for valid ranges and enum values.\n\n## Notes\n- Year range: see each `parameters.json` for current min/max\n- All parameters are optional unless stated; defaults are provided by the UI\n- For canonical patterns refer to the metadata in `<head>` and `llms.txt`"
+      }
+    },
+    {
+      "id": "transparenta-eu-sitemap",
+      "source": "https://transparenta.eu/sitemap.xml",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/transparenta-eu-sitemap.txt",
+      "sha256": "6554701d2ff733973538ecd118306facaedb5ea7b241aa93e9992a594dff6d23",
+      "observed_at": "2026-10-29T22:42:00.108107+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 2006,
+        "excerpt": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n    <url>\n        <loc>https://transparenta.eu/</loc>\n        <changefreq>weekly</changefreq>\n        <priority>0.8</priority>\n    </url>\n    <url>\n        <loc>https://transparenta.eu/charts</loc>\n        <changefreq>weekly</changefreq>\n        <priority>0.7</priority>\n    </url>\n    <url>\n        <loc>https://transparenta.eu/map</loc>\n        <changefreq>weekly</changefreq>\n        <priority>0.7</priority>\n    </url>\n    <url>\n        <loc>https://transparenta.eu/budget-explorer</loc>\n        <changefreq>weekly</changefreq>\n        <priority>0.7</priority>\n    </url>\n    <url>\n        <loc>https://transparenta.eu/pnrr</loc>\n        <changefreq>daily</changefreq>\n        <priority>0.8</priority>\n    </url>\n    <url>\n        <loc>https://transparenta.eu/provocare</loc>\n        <changefreq>daily</changefreq>\n        <priority>0.8</priority>\n    </url>\n    <url>\n        <loc>https://transparenta.eu/primarie</loc>\n        <changefreq>daily</changefreq>\n        <priority>0.8</priority>\n    </url>\n    <url>\n        <loc>https://transparenta.eu/primarie/harta</loc>\n        <changefreq>daily</changefreq>\n        <priority>0.8</priority>\n    </url>\n    <url>\n        <loc>https://transparenta.eu/entity-analytics</loc>\n        <changefreq>weekly</changefreq>\n        <priority>0.7</priority>\n    </url>\n    <url>\n        <loc>https://transparenta.eu/privacy</loc>\n        <changefreq>yearly</changefreq>\n        <priority>0.3</priority>\n    </url>\n    <url>\n        <loc>https://transparenta.eu/terms</loc>\n        <changefreq>yearly</changefreq>\n        <priority>0.3</priority>\n    </url>\n    <url>\n        <loc>https://transparenta.eu/cookie-policy</loc>\n        <changefreq>yearly</changefreq>\n        <priority>0.3</priority>\n    </url>\n    <url>\n        <loc>https://transparenta.eu/cookies</loc>\n        <changefreq>yearly</changefreq>\n        <priority>0.3</priority>\n    </url>\n</urlset>"
+      }
+    },
+    {
+      "id": "transparenta-eu-query-source",
+      "source": "https://raw.githubusercontent.com/ClaudiuBogdan/hack-for-facts-eb-client/8c6b501276652664b08f4d5c77c5be67ecc5c1e1/src/lib/api/entities.ts",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/transparenta-eu-query-source.txt",
+      "sha256": "2407bce892f04ee125a7a7eaf92a594ea17776c35d104af43918a0b1c242ec66",
+      "observed_at": "2026-10-29T22:44:51.348795+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 165,
+        "excerpt": "const GET_ENTITY_ROUTING_SUMMARY_QUERY = `\n  query GetEntityRoutingSummary($cui: ID!) {\n    entity(cui: $cui) {\n      cui\n      entity_type\n      is_uat\n    }\n  }\n`;"
+      }
+    },
+    {
+      "id": "transparenta-eu-transport-source",
+      "source": "https://raw.githubusercontent.com/ClaudiuBogdan/hack-for-facts-eb-client/8c6b501276652664b08f4d5c77c5be67ecc5c1e1/src/lib/api/graphql.ts",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/transparenta-eu-transport-source.txt",
+      "sha256": "2bc22be535c5ea66dc7c6e7df11026ae03daa11b185e392971a9aaf0c80a1667",
+      "observed_at": "2026-10-29T22:44:21.903911+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 688,
+        "excerpt": "export async function graphqlRequest<T = unknown>(\n  query: string,\n  variables?: Record<string, unknown>\n): Promise<T> {\n  const endpoint = `${getApiBaseUrl()}/graphql`;\n\n  try {\n    logger.info(\"Making GraphQL request\", { query, variables });\n\n    // Get a fresh token for the request; Clerk manages token lifecycle\n    const token = await getAuthToken();\n\n    const response = await fetch(endpoint, {\n      method: \"POST\",\n      referrerPolicy: API_FETCH_REFERRER_POLICY,\n      headers: {\n        \"Content-Type\": \"application/json\",\n        ...(token ? { Authorization: `Bearer ${token}` } : {}),\n      },\n      body: JSON.stringify({\n        query,\n        variables,\n      }),\n    })"
+      }
+    },
+    {
+      "id": "transparenta-eu-production-api-host",
+      "source": "https://transparenta.eu/",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/transparenta-eu-production-api-host.txt",
+      "sha256": "b2cea7bb4098b52416df43647d81d57b18d38cf320b6e3b77b8b41132506efb0",
+      "observed_at": "2026-10-29T22:42:36.531848+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 44,
+        "excerpt": "\"VITE_API_URL\":\"https://api.transparenta.eu\""
+      }
+    },
+    {
+      "id": "transparenta-eu-graphql-mae",
+      "source": "https://api.transparenta.eu/graphql",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/transparenta-eu-graphql-mae.txt",
+      "sha256": "47280dc737a75c3b67aaaf30ccd334a9739b85ce85c54b3a1083f5c70113c6c2",
+      "observed_at": "2026-10-29T22:45:37.302151+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 172,
+        "excerpt": "{\"data\":{\"entity\":{\"cui\":\"4266863\",\"name\":\"MINISTERUL AFACERILOR EXTERNE\",\"entity_type\":\"public_entity\",\"is_uat\":false,\"uat\":{\"name\":\"SECTORUL 1\",\"siruta_code\":\"179141\"}}}}"
+      }
+    },
+    {
+      "id": "transparenta-eu-graphql-bucuresti",
+      "source": "https://api.transparenta.eu/graphql",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/transparenta-eu-graphql-bucuresti.txt",
+      "sha256": "0ba1808b1b0fea17e3586c0d03190f2a25e81c651a040dc9a82f9612fdae4dfb",
+      "observed_at": "2026-10-29T22:45:54.378985+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 177,
+        "excerpt": "{\"data\":{\"entity\":{\"cui\":\"4267117\",\"name\":\"MUNICIPIUL BUCURESTI\",\"entity_type\":\"admin_municipality\",\"is_uat\":true,\"uat\":{\"name\":\"MUNICIPIUL BUCUREȘTI\",\"siruta_code\":\"179132\"}}}}"
+      }
+    }
+  ],
+  "collections": [
+    {
+      "id": "entities",
+      "label": "Entități publice",
+      "entity_type": "public_institution",
+      "coverage": "Public finance entities; coverage is not complete for all CUI holders.",
+      "evidence": [
+        "transparenta-eu-llms"
+      ],
+      "record_grain": "legal_subject",
+      "identity_components": []
+    },
+    {
+      "id": "pnrr",
+      "label": "Proiecte PNRR",
+      "entity_type": "funding_project",
+      "coverage": "Dashboard documented; records and identity were not sampled.",
+      "evidence": [
+        "transparenta-eu-guide"
+      ],
+      "record_grain": "unknown",
+      "identity_components": []
+    },
+    {
+      "id": "territories",
+      "label": "Teritorii asociate",
+      "entity_type": "territory",
+      "record_grain": "territory",
+      "identity_components": [
+        "ro:siruta"
+      ],
+      "coverage": "Only the associated territory in the retained sample.",
+      "evidence": [
+        "transparenta-eu-graphql-bucuresti"
+      ]
+    }
+  ],
+  "namespaces": [
+    {
+      "id": "ro:cui",
+      "issuer": "Romanian fiscal administration",
+      "scope": "Romanian fiscal identifiers for legal subjects",
+      "normalization": "identity",
+      "evidence": [
+        "transparenta-eu-llms"
+      ],
+      "normalization_note": "identity; preserve string and original value",
+      "shared": true
+    },
+    {
+      "id": "ro:siruta",
+      "issuer": "INS",
+      "scope": "Territorial units, distinct from the institution located there",
+      "normalization": "identity",
+      "evidence": [
+        "transparenta-eu-llms"
+      ],
+      "normalization_note": "identity; preserve string and original value",
+      "shared": true
+    }
+  ],
+  "patterns": [
+    {
+      "id": "entity-detail",
+      "collection": "entities",
+      "kind": "detail",
+      "url_template": "https://transparenta.eu/entities/{cui}",
+      "evidence": [
+        "transparenta-eu-llms"
+      ],
+      "variables": [
+        {
+          "name": "cui",
+          "namespace": "ro:cui",
+          "location": "path",
+          "encoding": "UTF-8 percent-encoding for the individual component"
+        }
+      ],
+      "examples": [
+        "https://transparenta.eu/entities/4267117",
+        "https://transparenta.eu/entities/4266863"
+      ],
+      "basis": "declared",
+      "extraction": "literal URL or named template components",
+      "declaration_evidence": "transparenta-eu-llms"
+    },
+    {
+      "id": "entity-list",
+      "collection": "entities",
+      "kind": "listing",
+      "url_template": "https://transparenta.eu/entity-analytics",
+      "evidence": [
+        "transparenta-eu-llms"
+      ],
+      "variables": [],
+      "examples": [],
+      "basis": "exact",
+      "extraction": "literal URL or named template components"
+    },
+    {
+      "id": "pnrr-dashboard",
+      "collection": "pnrr",
+      "kind": "listing",
+      "url_template": "https://transparenta.eu/pnrr",
+      "evidence": [
+        "transparenta-eu-sitemap"
+      ],
+      "variables": [],
+      "examples": [],
+      "basis": "exact",
+      "extraction": "literal URL or named template components"
+    }
+  ],
+  "operations": [
+    {
+      "id": "graphql-entity",
+      "collection": "entities",
+      "method": "POST",
+      "url_template": "https://api.transparenta.eu/graphql",
+      "variables": [],
+      "purpose": "detail",
+      "basis": [
+        "documented",
+        "tested"
+      ],
+      "authentication": "none",
+      "parameters": [
+        {
+          "name": "cui",
+          "location": "body",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "request_body": {
+        "operationName": "StructurePilot",
+        "query": "query StructurePilot($cui: ID!) { entity(cui: $cui) { cui name entity_type is_uat uat { name siruta_code } } }",
+        "variables": {
+          "cui": "string"
+        }
+      },
+      "response_paths": {
+        "record": "/data/entity",
+        "self_id": "/data/entity/cui",
+        "related_territory": "/data/entity/uat/siruta_code"
+      },
+      "pagination": {
+        "mechanism": "not_applicable",
+        "tested_pages": 0
+      },
+      "headers": [
+        "Content-Type"
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "last_test": {
+        "outcome": "observed",
+        "reason": "Unauthenticated read query returned entity identity.",
+        "checked_at": "2026-10-29T22:45:37.302151+00:00",
+        "evidence": "transparenta-eu-graphql-mae"
+      },
+      "page_patterns": [
+        "entity-detail"
+      ],
+      "evidence": [
+        "transparenta-eu-query-source",
+        "transparenta-eu-transport-source",
+        "transparenta-eu-production-api-host",
+        "transparenta-eu-graphql-mae"
+      ],
+      "read_only_evidence": "transparenta-eu-query-source",
+      "limitations": [
+        "No list/search/pagination operation was inspected. Optional bearer authentication exists in the client; these samples needed none."
+      ],
+      "uses": [
+        {
+          "collection": "entities",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "security": {
+        "declared_requirement": "unspecified",
+        "schemes": [],
+        "observed_enforcement": "anonymous",
+        "documented_authentication": "none"
+      }
+    }
+  ],
+  "identifier_rules": [
+    {
+      "id": "entity-cui",
+      "collection": "entities",
+      "namespace": "ro:cui",
+      "location": "/data/entity/cui and URL path cui",
+      "subject_role": "self",
+      "normalization": "preserve source string; no inferred prefix or zero removal",
+      "evidence": [
+        "transparenta-eu-llms"
+      ],
+      "mapping_basis": "declared"
+    },
+    {
+      "id": "entity-territory",
+      "collection": "entities",
+      "namespace": "ro:siruta",
+      "location": "/data/entity/uat/siruta_code",
+      "subject_role": "associated_territory",
+      "normalization": "preserve source string; no inferred prefix or zero removal",
+      "evidence": [
+        "transparenta-eu-graphql-mae"
+      ],
+      "role_description": "Territory associated with the institution; not its own fiscal identity.",
+      "mapping_basis": "declared"
+    },
+    {
+      "id": "territory-siruta",
+      "collection": "territories",
+      "namespace": "ro:siruta",
+      "location": "/data/entity/uat/siruta_code",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "normalization": "identity",
+      "evidence": [
+        "transparenta-eu-graphql-bucuresti"
+      ]
+    }
+  ],
+  "samples": [
+    {
+      "id": "mae",
+      "collection": "entities",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "entity-cui",
+          "source": "transparenta-eu-graphql-mae",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/data/entity/cui"
+          }
+        }
+      ],
+      "label": "Ministerul Afacerilor Externe"
+    },
+    {
+      "id": "bucuresti",
+      "collection": "entities",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "entity-cui",
+          "source": "transparenta-eu-graphql-bucuresti",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/data/entity/cui"
+          }
+        }
+      ],
+      "label": "Municipiul București"
+    },
+    {
+      "id": "bucuresti-territory",
+      "collection": "territories",
+      "local_namespace": "ro:siruta",
+      "identifiers": [
+        {
+          "rule": "territory-siruta",
+          "source": "transparenta-eu-graphql-bucuresti",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/data/entity/uat/siruta_code"
+          }
+        }
+      ],
+      "label": "Municipiul București — teritoriu"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "bucuresti-associated-territory",
+      "source_sample": "bucuresti",
+      "target_sample": "bucuresti-territory",
+      "relation": "associated_territory",
+      "evidence": [
+        "transparenta-eu-graphql-bucuresti"
+      ]
+    }
+  ]
+}

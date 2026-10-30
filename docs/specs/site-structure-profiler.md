@@ -297,3 +297,40 @@ Each redirect target passes the forbidden-host check and applicable robots rules
 A host stop on 401, 403, 429 or a challenge persists across projects in the same run.
 A missing or failed robots response is recorded; a transport failure cannot grant permission to fetch other paths.
 No browser, alternate client or credential bypass follows a host stop.
+
+## 9. Evidence-backed curation — 2026-10-30
+
+Curation recipes are reviewed inputs, separate from generated stores and owner identity decisions.
+Their schema version is 1. The generated store remains version 2.
+Recipes live under `data/taxonomy-v2/structura/recipes/` and can also be supplied from an isolated directory.
+The offline entry point is `scripts/curate_structure.py`.
+
+A recipe names one existing project, evidence locators, typed collections, namespaces, patterns, operations and identifier rules.
+Each semantic claim cites an evidence alias. Each alias records its source URL, observation time, artifact hash and exact text or JSON locator.
+Artifact paths are relative to the recipe. Evidence outside the recipe directory must remain inside this repository.
+The importer extracts the cited fragment and records its provenance without making requests.
+
+Namespace declarations state issuer, scope, normalization and whether the namespace is shared across projects.
+The first curation importer supports identity normalization only. It preserves original identifier strings and leading zeroes.
+A site-local namespace is never shared merely because its value resembles another site's value.
+Collections record entity type and record grain. Registrations, financial years, territories and legal subjects remain distinct.
+
+Optional samples extract identifiers from evidence through JSON pointers or a named regex group `value`.
+A sample's local key has an explicit namespace. Its self identifiers must cite matching self rules for the same collection.
+Buyer, supplier and location fields cannot identify the enclosing record.
+A contract cannot use CUI as its own identifier. Missing or ambiguous values remain gaps, not invented records.
+There are at most ten newly sampled records per project in one recipe application.
+
+The importer preserves existing records and assertions. It proposes cross-project identity pairs only for compatible subject types and shared namespaces with the same issuer.
+Names never establish a match. No transitive entity cluster is created.
+A conflict between an existing local key and a new self identifier records both observations for review.
+Conflicted records are excluded from new identity proposals. Owner decisions retain their bytes.
+
+A generated report shows records, proposed correspondences, conflicts and gaps together.
+The curation skill should finish independent work before presenting those unresolved items to the owner.
+A source block or missing sample does not prevent completing declarations for other projects.
+
+The durable owner list is `data/taxonomy-v2/structura/decisions.json`. Report mode reads it through an explicit `--decisions` option.
+The importer never rewrites it. Out-of-scope decision IDs stay visible in the report.
+Local evidence without a known public origin can retain a `file://` source; the curation report marks it local-only.
+The HTTP transport does not fetch file URLs.

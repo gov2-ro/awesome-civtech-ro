@@ -44,6 +44,7 @@ An inferred `{id}` has no shared identifier namespace.
 
 Discovery uses the project page, scoped/root `llms.txt`, linked methodology/data pages, sitemap declarations and linked API contracts.
 The parser reads OpenAPI JSON and the existing strict YAML subset.
+It resolves bounded local parameter references. Cycles, missing targets and external references remain explicit probe gaps.
 It records all declared HTTP methods but never invokes mutating operations.
 The first engine does not launch browsers, run paid search, crawl repositories or execute GraphQL requests.
 Its checks retain those limits. A successful bounded pass can therefore remain partial.
@@ -101,7 +102,7 @@ Collections inferred from paths have unknown business meaning and unknown record
 Named template variables preserve their source names; they do not establish CUI, SIRUTA or another namespace.
 Pilot imports preserve the existing typed rules and seven sampled records.
 The engine does not generate new entity correspondences from names, numbers or document declarations.
-Adding curated bindings for new projects is a later curation step.
+Use the [curation recipes](STRUCTURE-CURATION.md) to add evidence-backed bindings and bounded record samples for new projects.
 
 A refresh keeps prior findings, evidence and owner decisions.
 It marks unsupported earlier findings stale. Retained documentation supports historical findings, not a new live observation.

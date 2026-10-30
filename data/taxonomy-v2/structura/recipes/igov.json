@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "id": "igov-company-identity",
+  "project_slug": "igov",
+  "input_url": "https://igov.ro/",
+  "evidence": [
+    {
+      "id": "companies-sample",
+      "source": "https://igov.ro/reports/guvernanta.json",
+      "artifact": "../../../../docs/reports/site-structure-curation/evidence/igov-company-identifiers.json",
+      "sha256": "cf0639b55db0b1f3772793ba96a0cb62d564cc165b6c69e8f3c0762192f9d525",
+      "observed_at": "2026-10-27T17:00:51.012879+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 1387,
+        "excerpt": "{\n  \"source\": {\n    \"url\": \"https://igov.ro/reports/guvernanta.json\",\n    \"observed_at\": \"2026-10-27T17:00:51.012879+00:00\",\n    \"snapshot_sha256\": \"37c857d3c20af7d0af862b8f69dac893c667aea1c4aa6044487c4726c999bb52\",\n    \"complete_document\": false,\n    \"reader\": \"inventory_jsonsample.recover; complete company records only\",\n    \"source_indices\": [\n      0,\n      3\n    ],\n    \"transform\": \"Whitelist id, cui and company name; exclude all people and appointment data.\"\n  },\n  \"companies\": [\n    {\n      \"id\": \"inst_cui-31029694_fbc8ca0d0e\",\n      \"cui\": \"31029694\",\n      \"name\": \"Active Conexe SA\"\n    },\n    {\n      \"id\": \"inst_cui-1973096_89f11b5bc5\",\n      \"cui\": \"1973096\",\n      \"name\": \"Antibiotice SA\"\n    }\n  ],\n  \"curation_basis\": {\n    \"artifact\": \"data/taxonomy-v2/inventar-concepte.json\",\n    \"concept\": \"cui\",\n    \"definition\": \"Identificatorul fiscal al unei firme sau instituții. Rolul poate fi diferit: contribuabil, autoritate sau furnizor.\",\n    \"selector\": {\n      \"projects\": [\n        \"igov\"\n      ],\n      \"names\": [\n        \"cui\"\n      ],\n      \"path\": [\n        \"$.companies[].cui\"\n      ],\n      \"source\": \"https://igov.ro/reports/guvernanta.json\",\n      \"context\": \"CUI-ul companiei de stat din registrul de guvernanță (șir de caractere)\",\n      \"stare\": \"confirmat\",\n      \"nota_editor\": \"Confirmat în bloc la cererea proprietarului (2026-10-27)\"\n    }\n  }\n}\n"
+      }
+    }
+  ],
+  "collections": [
+    {
+      "id": "companies",
+      "label": "Companii de stat",
+      "entity_type": "company",
+      "record_grain": "legal_subject",
+      "identity_components": [
+        "ro:cui"
+      ],
+      "coverage": "Two complete corporate rows from a retained partial report.",
+      "evidence": [
+        "companies-sample"
+      ]
+    }
+  ],
+  "namespaces": [
+    {
+      "id": "ro:cui",
+      "issuer": "Romanian fiscal administration",
+      "scope": "Company fiscal identity; existing confirmed CUI inventory selector.",
+      "shared": true,
+      "normalization": "identity",
+      "evidence": [
+        "companies-sample"
+      ]
+    },
+    {
+      "id": "igov:companies:id",
+      "issuer": "igov",
+      "scope": "Local opaque identifiers in the governance report companies array.",
+      "shared": false,
+      "normalization": "identity",
+      "evidence": [
+        "companies-sample"
+      ]
+    }
+  ],
+  "patterns": [],
+  "operations": [],
+  "identifier_rules": [
+    {
+      "id": "company-cui",
+      "collection": "companies",
+      "namespace": "ro:cui",
+      "location": "/companies/*/cui",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "companies-sample"
+      ]
+    },
+    {
+      "id": "company-local-id",
+      "collection": "companies",
+      "namespace": "igov:companies:id",
+      "location": "/companies/*/id",
+      "subject_role": "self",
+      "mapping_basis": "sampled",
+      "evidence": [
+        "companies-sample"
+      ]
+    }
+  ],
+  "samples": [
+    {
+      "id": "company-0",
+      "label": "Active Conexe SA",
+      "collection": "companies",
+      "local_namespace": "igov:companies:id",
+      "identifiers": [
+        {
+          "rule": "company-local-id",
+          "source": "companies-sample",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/companies/0/id"
+          }
+        },
+        {
+          "rule": "company-cui",
+          "source": "companies-sample",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/companies/0/cui"
+          }
+        }
+      ]
+    },
+    {
+      "id": "company-1",
+      "label": "Antibiotice SA",
+      "collection": "companies",
+      "local_namespace": "igov:companies:id",
+      "identifiers": [
+        {
+          "rule": "company-local-id",
+          "source": "companies-sample",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/companies/1/id"
+          }
+        },
+        {
+          "rule": "company-cui",
+          "source": "companies-sample",
+          "extractor": {
+            "type": "json_pointer",
+            "pointer": "/companies/1/cui"
+          }
+        }
+      ]
+    }
+  ],
+  "relationships": []
+}

@@ -1,0 +1,404 @@
+{
+  "schema_version": 1,
+  "id": "registrul-firmelor-structure",
+  "project_slug": "registrul-firmelor",
+  "input_url": "https://registru.horecaos.org/",
+  "evidence": [
+    {
+      "id": "registrul-firmelor-llms",
+      "source": "https://registru.horecaos.org/llms.txt",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/registrul-firmelor-llms.txt",
+      "sha256": "7a869379e71e47488cb666b2d78b2886db4586726d3b74c3c3d26d69e6e9d58b",
+      "observed_at": "2026-10-29T22:42:08.397615+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 1050,
+        "excerpt": "# Registrul firmelor din România (registru.horecaos.org)\n\n> Registru public și gratuit al firmelor din România, construit de HoReCaOS din surse oficiale: ONRC (registrul comerțului, lunar), ANAF (date fiscale: TVA, inactivi, RO e-Factura) și Ministerul Finanțelor (bilanțuri 2012–2025). 3.920.761 de firme, 12.497.860 de bilanțuri. Fără nume de administratori sau asociați (date personale).\n\n## Cum se citează o firmă\n- Fișa unei firme: https://registru.horecaos.org/firma/<CUI> (CUI fără „RO\"; ex. https://registru.horecaos.org/firma/14399840). Conține CUI, nr. de înregistrare, EUID, sediul social, stare fiscală, TVA, RO e-Factura, CAEN autorizat, bilanțuri pe ani (cifră de afaceri, profit, salariați), istoric ONRC, scor de risc transparent.\n- API JSON gratuit: https://registru.horecaos.org/api (1.000 de cereri/zi, cheie gratuită).\n- Datele sunt informative, fără valoare de document oficial; actul oficial e certificatul constatator ONRC.\n\n## Pagini principale\n- [Căutare firme](https://registru.horecaos.org/): după denumire sau CUI\n- [Verif"
+      }
+    },
+    {
+      "id": "registrul-firmelor-robots",
+      "source": "https://registru.horecaos.org/robots.txt",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/registrul-firmelor-robots.txt",
+      "sha256": "8f2d7d8857c47df89337e9be94a88b9125b1e95338e6b42ae2c8138ead3bb9a9",
+      "observed_at": "2026-10-29T22:42:07.191252+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 300,
+        "excerpt": "User-agent: *\nAllow: /\nDisallow: /filtre.csv\nDisallow: /verifica.csv\nDisallow: /barometru.json\nDisallow: /cont\nDisallow: /iesire\nDisallow: /auth/\nDisallow: /v1/\nDisallow: /api/v1/\nDisallow: /api/raport-concurenta\nDisallow: /raport-concurenta/confirma\n\nUser-agent: GPTBot\nAllow: /\nDisallow: /filtre.cs"
+      }
+    },
+    {
+      "id": "registrul-firmelor-api-documentation",
+      "source": "https://registru.horecaos.org/api",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/registrul-firmelor-api-documentation.txt",
+      "sha256": "edca896e89bf893b1793f4bc36c196a717cab25292ec70a93956807ba83cf424",
+      "observed_at": "2026-10-29T22:42:09.606246+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 260,
+        "excerpt": "<pre>curl -H \"x-api-key: CHEIA\" https://registru.horecaos.org/api/v1/firma/14399840\ncurl -H \"x-api-key: CHEIA\" \"https://registru.horecaos.org/api/v1/cauta?q=placinta\"</pre>\n\n    <h2>Ce primești</h2>\n    <div class=\"card\"><table><tbody>\n      <tr><td class=\"k\">"
+      }
+    },
+    {
+      "id": "registrul-firmelor-search-form",
+      "source": "https://registru.horecaos.org/",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/registrul-firmelor-search-form.txt",
+      "sha256": "1f8cf4011badc28f1392931a189f43e5afa4b1e7e312416de4ceaed370514133",
+      "observed_at": "2026-10-29T22:43:01.897558+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 137,
+        "excerpt": "<form action=\"/\" method=\"get\" data-zz-ignore>\n<input name=\"q\" value=\"\" placeholder=\"denumire sau CUI — ex. 14399840, plăcintă\" autofocus>"
+      }
+    },
+    {
+      "id": "registrul-firmelor-adp-page",
+      "source": "https://registru.horecaos.org/firma/43721310",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/registrul-firmelor-adp-page.txt",
+      "sha256": "7cb88b0479b96eb5ece9f2f58b2e72fb9d8c3c562b6dded1256074da72bea76d",
+      "observed_at": "2026-10-29T22:43:00.687374+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 342,
+        "excerpt": "<title>A.D.P. BÂRCA S.R.L. — CUI 43721310, bilanț și date firmă</title>\n<meta name=\"description\" content=\"A.D.P. BÂRCA S.R.L., CUI 43721310 · Sat Bârca, Comuna Bârca, Dolj · neplătitor de TVA\">\n<link rel=\"canonical\" href=\"https://registru.horecaos.org/firma/43721310\">\n<tr><td class=\"k\">EUID</td><td class=\"mono\">ROONRC.J16/419/2021</td></tr>"
+      }
+    },
+    {
+      "id": "registrul-firmelor-dante-page",
+      "source": "https://registru.horecaos.org/firma/14399840",
+      "artifact": "../../../../docs/reports/site-structure-pilot/evidence/registrul-firmelor-dante-page.txt",
+      "sha256": "f62dd178693a72cc0353d0dd4ec1294e176afdfc8bd5ceccd695fed608c35d60",
+      "observed_at": "2026-10-29T22:42:59.283379+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 350,
+        "excerpt": "<title>DANTE INTERNATIONAL SA — CUI 14399840, bilanț și date firmă</title>\n<meta name=\"description\" content=\"DANTE INTERNATIONAL SA, CUI 14399840 · Bucureşti Sectorul 6, Bucureşti · plătitor de TVA\">\n<link rel=\"canonical\" href=\"https://registru.horecaos.org/firma/14399840\">\n<tr><td class=\"k\">EUID</td><td class=\"mono\">ROONRC.J2002000372404</td></tr>"
+      }
+    },
+    {
+      "id": "registrul-firmelor-antibiotice-page",
+      "source": "https://registru.horecaos.org/firma/1973096",
+      "artifact": "../../../../docs/reports/site-structure-curation/evidence/registrul-firmelor-antibiotice-page.txt",
+      "sha256": "d8f25307080105240a87c15b74f783758ceaa81ce047ef088351a20a12183118",
+      "observed_at": "2026-10-30T10:43:29.392456+00:00",
+      "locator": {
+        "type": "text",
+        "start": 0,
+        "end": 246,
+        "excerpt": "<title>ANTIBIOTICE SA — CUI 1973096, bilanț și date firmă</title>\n<meta name=\"description\" content=\"ANTIBIOTICE SA, CUI 1973096 · Municipiul Iaşi, Iaşi · plătitor de TVA\">\n<link rel=\"canonical\" href=\"https://registru.horecaos.org/firma/1973096\">\n"
+      }
+    }
+  ],
+  "collections": [
+    {
+      "id": "companies",
+      "label": "Firme",
+      "entity_type": "company",
+      "coverage": "ONRC and fiscal company records; not every public institution.",
+      "evidence": [
+        "registrul-firmelor-llms"
+      ],
+      "record_grain": "legal_subject",
+      "identity_components": []
+    }
+  ],
+  "namespaces": [
+    {
+      "id": "ro:cui",
+      "issuer": "Romanian fiscal administration",
+      "scope": "Company fiscal identifier; documentation explicitly excludes RO prefix",
+      "normalization": "identity",
+      "evidence": [
+        "registrul-firmelor-llms"
+      ],
+      "normalization_note": "URL input excludes RO by explicit documentation; sampled values already have no prefix",
+      "shared": true
+    },
+    {
+      "id": "ro:onrc:euid",
+      "issuer": "ONRC",
+      "scope": "Registration identifier; not assumed unique per company over time",
+      "normalization": "identity",
+      "evidence": [
+        "registrul-firmelor-llms"
+      ],
+      "normalization_note": "identity; preserve string and original value",
+      "shared": true
+    }
+  ],
+  "patterns": [
+    {
+      "id": "company-detail",
+      "collection": "companies",
+      "kind": "detail",
+      "url_template": "https://registru.horecaos.org/firma/{cui}",
+      "evidence": [
+        "registrul-firmelor-llms"
+      ],
+      "variables": [
+        {
+          "name": "cui",
+          "namespace": "ro:cui",
+          "location": "path",
+          "encoding": "UTF-8 percent-encoding for the individual component"
+        }
+      ],
+      "examples": [
+        "https://registru.horecaos.org/firma/14399840",
+        "https://registru.horecaos.org/firma/43721310"
+      ],
+      "basis": "declared",
+      "extraction": "literal URL or named template components",
+      "declaration_evidence": "registrul-firmelor-llms"
+    },
+    {
+      "id": "company-search",
+      "collection": "companies",
+      "kind": "search",
+      "url_template": "https://registru.horecaos.org/?q={q}",
+      "evidence": [
+        "registrul-firmelor-search-form"
+      ],
+      "variables": [
+        {
+          "name": "q",
+          "namespace": null,
+          "location": "query",
+          "encoding": "UTF-8 percent-encoding for the individual component"
+        }
+      ],
+      "examples": [],
+      "basis": "declared",
+      "extraction": "literal URL or named template components",
+      "declaration_evidence": "registrul-firmelor-search-form"
+    }
+  ],
+  "operations": [
+    {
+      "id": "company-json",
+      "collection": "companies",
+      "method": "GET",
+      "url_template": "https://registru.horecaos.org/api/v1/firma/{cui}",
+      "variables": [
+        {
+          "name": "cui",
+          "namespace": "ro:cui",
+          "location": "path",
+          "encoding": "UTF-8 percent-encoding for the individual component"
+        }
+      ],
+      "purpose": "detail",
+      "basis": [
+        "documented"
+      ],
+      "authentication": "key",
+      "parameters": [
+        {
+          "name": "cui",
+          "location": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "request_body": {},
+      "response_paths": {
+        "record": "unknown; no authenticated response sampled"
+      },
+      "pagination": {
+        "mechanism": "not_applicable",
+        "tested_pages": 0
+      },
+      "headers": [
+        "x-api-key"
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "last_test": {
+        "outcome": "skipped",
+        "reason": "robots.txt disallows /api/v1/; documentation also requires x-api-key. No credential requested."
+      },
+      "page_patterns": [
+        "company-detail"
+      ],
+      "evidence": [
+        "registrul-firmelor-api-documentation",
+        "registrul-firmelor-robots"
+      ],
+      "uses": [
+        {
+          "collection": "companies",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "apiKey"
+        ],
+        "observed_enforcement": "unknown",
+        "documented_authentication": "key"
+      }
+    },
+    {
+      "id": "company-json-search",
+      "collection": "companies",
+      "method": "GET",
+      "url_template": "https://registru.horecaos.org/api/v1/cauta?q={q}",
+      "variables": [
+        {
+          "name": "q",
+          "namespace": null,
+          "location": "query",
+          "encoding": "UTF-8 percent-encoding for the individual component"
+        }
+      ],
+      "purpose": "search",
+      "basis": [
+        "documented"
+      ],
+      "authentication": "key",
+      "parameters": [
+        {
+          "name": "q",
+          "location": "query",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "request_body": {},
+      "response_paths": {
+        "record": "unknown; no authenticated response sampled"
+      },
+      "pagination": {
+        "mechanism": "not_applicable",
+        "tested_pages": 0
+      },
+      "headers": [
+        "x-api-key"
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "last_test": {
+        "outcome": "skipped",
+        "reason": "robots.txt disallows /api/v1/; documentation also requires x-api-key. No credential requested."
+      },
+      "page_patterns": [
+        "company-search"
+      ],
+      "evidence": [
+        "registrul-firmelor-api-documentation",
+        "registrul-firmelor-robots"
+      ],
+      "uses": [
+        {
+          "collection": "companies",
+          "subject_role": "unknown",
+          "scope": "at_least"
+        }
+      ],
+      "security": {
+        "declared_requirement": "authenticated",
+        "schemes": [
+          "apiKey"
+        ],
+        "observed_enforcement": "unknown",
+        "documented_authentication": "key"
+      }
+    }
+  ],
+  "identifier_rules": [
+    {
+      "id": "company-cui",
+      "collection": "companies",
+      "namespace": "ro:cui",
+      "location": "detail URL cui; page title CUI",
+      "subject_role": "self",
+      "normalization": "preserve source string; no inferred prefix or zero removal",
+      "evidence": [
+        "registrul-firmelor-llms"
+      ],
+      "mapping_basis": "declared"
+    },
+    {
+      "id": "company-euid",
+      "collection": "companies",
+      "namespace": "ro:onrc:euid",
+      "location": "HTML identification table EUID",
+      "subject_role": "self",
+      "normalization": "preserve source string; no inferred prefix or zero removal",
+      "evidence": [
+        "registrul-firmelor-adp-page"
+      ],
+      "mapping_basis": "declared"
+    }
+  ],
+  "samples": [
+    {
+      "id": "adp",
+      "collection": "companies",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "company-cui",
+          "source": "registrul-firmelor-adp-page",
+          "extractor": {
+            "type": "regex",
+            "pattern": "CUI (?P<value>[0-9]+)"
+          }
+        },
+        {
+          "rule": "company-euid",
+          "source": "registrul-firmelor-adp-page",
+          "extractor": {
+            "type": "regex",
+            "pattern": "EUID</td><td[^>]*>(?P<value>[^<]+)"
+          }
+        }
+      ],
+      "label": "A.D.P. BÂRCA S.R.L."
+    },
+    {
+      "id": "dante",
+      "collection": "companies",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "company-cui",
+          "source": "registrul-firmelor-dante-page",
+          "extractor": {
+            "type": "regex",
+            "pattern": "CUI (?P<value>[0-9]+)"
+          }
+        }
+      ],
+      "label": "DANTE INTERNATIONAL SA"
+    },
+    {
+      "id": "antibiotice",
+      "label": "Antibiotice SA",
+      "collection": "companies",
+      "local_namespace": "ro:cui",
+      "identifiers": [
+        {
+          "rule": "company-cui",
+          "source": "registrul-firmelor-antibiotice-page",
+          "extractor": {
+            "type": "regex",
+            "pattern": "CUI (?P<value>[0-9]+)"
+          }
+        }
+      ]
+    }
+  ],
+  "relationships": []
+}

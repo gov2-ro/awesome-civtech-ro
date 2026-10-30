@@ -252,6 +252,30 @@ class Engine(unittest.TestCase):
         runner.probe_api(self.store,self.root,'alpha','https://example.test/api/search',self.transport,self.attempt)
         self.assertEqual(self.opener.calls,[])
 
+    def test_local_reference_keeps_the_required_query_parameter(self):
+        doc=json.loads(self.api())
+        doc['components']={'parameters':{'search':{'name':'q','in':'query','required':True,'schema':{'type':'string'}}}}
+        doc['paths']['/api/search']['get']['parameters']=[{'$ref':'#/components/parameters/search'}]
+        self.observe(json.dumps(doc),'application/json')
+        operation=next(x for x in self.store['projects']['alpha']['operations'].values() if x['method']=='GET')
+        self.assertFalse(operation['unresolved_parameters'])
+        self.assertTrue(operation['parameters'][0]['required'])
+        runner.probe_api(self.store,self.root,'alpha','https://example.test/api/search',self.transport,self.attempt)
+        self.assertEqual(self.opener.calls,[])
+
+    def test_cyclic_parameter_references_remain_unresolved(self):
+        doc=json.loads(self.api())
+        doc['components']={'parameters':{'a':{'$ref':'#/components/parameters/b'},'b':{'$ref':'#/components/parameters/a'}}}
+        doc['paths']['/api/search']['get']['parameters']=[{'$ref':'#/components/parameters/a'}]
+        result=signals(json.dumps(doc),'application/json','https://example.test/openapi.json')
+        self.assertTrue(result['operations'][0]['unresolved_parameters'])
+
+    def test_external_parameter_references_make_no_request(self):
+        doc=json.loads(self.api());doc['paths']['/api/search']['get']['parameters']=[{'$ref':'https://external.test/parameters.json#/search'}]
+        self.observe(json.dumps(doc),'application/json')
+        runner.probe_api(self.store,self.root,'alpha','https://example.test/api/search?q=x',self.transport,self.attempt)
+        self.assertEqual(self.opener.calls,[])
+
     def test_malformed_contract_is_invalid_without_losing_prior_findings(self):
         self.observe('/company/{id}: profile')
         doc=json.loads(self.api());doc['servers']=['not-a-server-object']

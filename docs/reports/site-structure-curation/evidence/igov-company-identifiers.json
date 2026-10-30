@@ -1,0 +1,46 @@
+{
+  "source": {
+    "url": "https://igov.ro/reports/guvernanta.json",
+    "observed_at": "2026-10-27T17:00:51.012879+00:00",
+    "snapshot_sha256": "37c857d3c20af7d0af862b8f69dac893c667aea1c4aa6044487c4726c999bb52",
+    "complete_document": false,
+    "reader": "inventory_jsonsample.recover; complete company records only",
+    "source_indices": [
+      0,
+      3
+    ],
+    "transform": "Whitelist id, cui and company name; exclude all people and appointment data."
+  },
+  "companies": [
+    {
+      "id": "inst_cui-31029694_fbc8ca0d0e",
+      "cui": "31029694",
+      "name": "Active Conexe SA"
+    },
+    {
+      "id": "inst_cui-1973096_89f11b5bc5",
+      "cui": "1973096",
+      "name": "Antibiotice SA"
+    }
+  ],
+  "curation_basis": {
+    "artifact": "data/taxonomy-v2/inventar-concepte.json",
+    "concept": "cui",
+    "definition": "Identificatorul fiscal al unei firme sau instituții. Rolul poate fi diferit: contribuabil, autoritate sau furnizor.",
+    "selector": {
+      "projects": [
+        "igov"
+      ],
+      "names": [
+        "cui"
+      ],
+      "path": [
+        "$.companies[].cui"
+      ],
+      "source": "https://igov.ro/reports/guvernanta.json",
+      "context": "CUI-ul companiei de stat din registrul de guvernanță (șir de caractere)",
+      "stare": "confirmat",
+      "nota_editor": "Confirmat în bloc la cererea proprietarului (2026-10-27)"
+    }
+  }
+}

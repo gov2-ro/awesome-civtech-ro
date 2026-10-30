@@ -213,6 +213,36 @@ class StructureHTML(HTMLParser):
             self.hidden = max(0, self.hidden - 1)
 
 
+def resolve_parameters(document, parameters):
+    """Resolve bounded local parameter references; cycles and external references stay unresolved."""
+    resolved, incomplete = [], False
+    for parameter in parameters:
+        seen = set()
+        original = parameter.get('$ref') if isinstance(parameter,dict) else None
+        while isinstance(parameter,dict) and '$ref' in parameter:
+            reference = parameter['$ref']
+            if not isinstance(reference,str) or not reference.startswith('#/') or reference in seen or len(seen)>=16:
+                parameter = None
+                break
+            seen.add(reference)
+            value = document
+            try:
+                for token in reference[2:].split('/'):
+                    value=value[token.replace('~1','/').replace('~0','~')]
+            except (KeyError,TypeError):
+                value=None
+            parameter=value
+        if not isinstance(parameter,dict) or not parameter.get('name') or not parameter.get('in'):
+            incomplete=True
+            continue
+        item={k:parameter[k] for k in ('name','in','required') if k in parameter}
+        if original: item['source_ref']=original
+        if isinstance(parameter.get('schema'),dict) and parameter['schema'].get('type'):
+            item['type']=parameter['schema']['type']
+        resolved.append(item)
+    return resolved,incomplete
+
+
 def signals(text, content_type, url, sitemap_limit=200):
     """Return only structural signals. Do not retain raw data records or page text."""
     result = dict(links=[], templates=[], forms=[], operations=[], sitemap_urls=[], sitemap_children=[])
@@ -253,9 +283,10 @@ def signals(text, content_type, url, sitemap_limit=200):
                 security = operation.get('security', document.get('security'))
                 declared = 'unspecified' if security is None else 'anonymous' if not security or {} in security else 'authenticated'
                 parameters = methods.get('parameters', []) + operation.get('parameters', [])
+                parameters, unresolved = resolve_parameters(document, parameters)
                 result['operations'].append(dict(method=method.upper(), url_template=urljoin(api_base.rstrip('/')+'/', path.lstrip('/')),
-                    operation_id=operation.get('operationId'), parameters=[{k: p[k] for k in ('name', 'in', 'required') if k in p} for p in parameters if isinstance(p, dict)],
-                    unresolved_parameters=any(not isinstance(p, dict) or '$ref' in p or not p.get('name') or not p.get('in') for p in parameters),
+                    operation_id=operation.get('operationId'), parameters=parameters,
+                    unresolved_parameters=unresolved,
                     security=dict(declared_requirement=declared, schemes=sorted({k for requirement in security or [] for k in requirement}), observed_enforcement='unknown'),
                     purpose='unknown', response_paths={}, pagination={'mechanism':'unknown'}, request_body={},
                     source_pointer='/paths/'+path.replace('~','~0').replace('/','~1')+'/'+method))
