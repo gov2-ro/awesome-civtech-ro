@@ -1,5 +1,21 @@
 # Activity
 
+## 2026-10-31 — Inventory batch H: source audit of six more „De analizat” entries
+
+**Done**
+- Read the local render records first, then made six direct requests (lot `H`, one page per entry, no retry): `redirectioneaza.ro/asociatii/`, `accesinfo.ro`, `evermed.ro`, `amscapat.ro`, `vocea-cartierului-tau.ro`, `465.ro`. No host answered 401, 403 or 429.
+- Result: no new structured source and no profile. The queue stays at 20 entries.
+
+**Findings (the evidence for each gap)**
+- `465.ro` and `amscapat.ro`: single-page apps (Vite bundle; the HTML has an empty `#root`). The render saw no data request on either (`amscapat` only a tracking POST). `465.ro` is a list of the contact data of members of Parliament: persons, and a bundle read would copy their contact values. Not pursued.
+- `evermed.ro`: a Next.js service. The home page shows example clinic cards, and the real search needs a location typed into a form, which the helpers never submit. `/auth` and `/partner` are login pages. Its `_rsc` payloads are page chrome, not data.
+- `redirectioneaza.ro`: an HTML list of organisations (name and slug, 16 on the page). It has no export, no table and no data request. The code is open source (Code for Romania), but no reader for its language exists.
+- `accesinfo.ro`: network error on the one request (`eroare-retea`). Not retried; try again on another day.
+- `vocea-cartierului-tau.ro`: a long static page (840 kB of HTML) about reports on public lighting; no data link.
+
+**Decided**
+- Stop the audit here instead of writing HTML scrapers. A profile of a list page would record only names and slugs, which a reader of `html-lista-seturi` type cannot type. Reopen when an owner exports data, or when a reader for the open-source repositories exists.
+
 ## 2026-10-31 — Inventory batch G: `destraja` profile and the `rsc-json` reader
 
 **Done**

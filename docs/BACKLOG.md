@@ -280,6 +280,7 @@ Baseline: 127 projects/resources; 14 have structured field evidence. Another 113
 The 2,302 field records are source paths, not independent business variables. Seven business groups are proposed.
 The 62 unconfirmed profiles cover the full 140-entry catalogue, including organisations; this is a different measure.
 
+- [ ] Batch H follow-up (audit of 2026-10-31, [activity](ACTIVITY.md)): retry `accesinfo.ro` on another day (one network error). Ask the owners of `465.ro`, `amscapat.ro` and `evermed.ro` for exports; the first two are single-page apps without public data requests.
 - [~] Batch G: finish the source audit for ten entries of „De analizat”. AI Aflat and Monarh AI have 455 field records, `destraja` 80 (2026-10-31, reader `rsc-json`); seven entries still need a structured export, a stable schema, or an unblocked source. See [batch G](briefs/inventory-batch-g.md).
 - [x] Implement [inventory evidence storage](briefs/inventory-storage.md), including `observatii/inventare/randare/`. Prefer keeping raw browser captures outside Git. Preserve compact discovery evidence and committed profiles required for offline builds. Define how original captures are retained, retrieved, and verified. Report unavailable evidence explicitly.
 

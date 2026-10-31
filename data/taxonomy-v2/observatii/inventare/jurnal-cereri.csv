@@ -669,3 +669,9 @@ G,2026-10-31T15:46:46.449860+00:00,GET,https://destraja.ro/presa,ok,200,400001,n
 G,2026-10-31T15:46:46.530207+00:00,GET,https://destraja.ro/robots.txt,ok,200,1248,nu,destraja: find a documented CSV/data download
 G,2026-10-31T15:46:57.608223+00:00,GET,https://destraja.ro/senat.txt?_rsc=1p-R_iEY6bj0jY31,ok,200,322922,nu,destraja: structure of the bill list payload
 G,2026-10-31T15:47:41.131351+00:00,GET,https://destraja.ro/camera.txt?_rsc=1p-R_iEY6bj0jY31,ok,200,913835,nu,destraja: structure of the bill list payload of the Chamber
+H,2026-10-31T15:51:31.718251+00:00,GET,https://redirectioneaza.ro/asociatii/,ok,200,54483,nu,batch H: look for documented data downloads or listings
+H,2026-10-31T15:51:31.783353+00:00,GET,https://accesinfo.ro/,eroare-retea,,,nu,batch H: look for documented data downloads or listings
+H,2026-10-31T15:51:35.615623+00:00,GET,https://www.evermed.ro/,ok,200,116953,nu,batch H: look for documented data downloads or listings
+H,2026-10-31T15:51:36.121002+00:00,GET,https://amscapat.ro/,ok,200,3807,nu,batch H: look for documented data downloads or listings
+H,2026-10-31T15:51:36.494974+00:00,GET,https://vocea-cartierului-tau.ro/,ok,200,842043,nu,batch H: look for documented data downloads or listings
+H,2026-10-31T15:51:37.416443+00:00,GET,https://465.ro/,ok,200,1368,nu,batch H: look for documented data downloads or listings
