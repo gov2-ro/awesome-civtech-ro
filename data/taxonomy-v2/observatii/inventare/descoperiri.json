@@ -214,6 +214,62 @@
       }
     },
     {
+      "proiect": "antibunk",
+      "url": "https://antibunk.ro/kb/hybrid-war/_ui_manifest.json",
+      "sursa_id": "3610a8b1ce588f1c3805",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://antibunk.ro/date",
+      "link_original": "https://antibunk.ro/kb/hybrid-war/_ui_manifest.json",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/antibunk-a1fd57fab3.json",
+        "url": "https://antibunk.ro/date",
+        "pointer": "/cereri_date/4",
+        "valoare": "https://antibunk.ro/kb/hybrid-war/_ui_manifest.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Indexul folosit de interfață. Poate conține înregistrări despre persoane; profilul păstrează numai structura.",
+      "citire": "json-esantion",
+      "persoane": true
+    },
+    {
+      "proiect": "antibunk",
+      "url": "https://antibunk.ro/kb/hybrid-war/manifest.json",
+      "sursa_id": "0d7ea34130336d825e53",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://antibunk.ro/date",
+      "link_original": "https://antibunk.ro/kb/hybrid-war/manifest.json",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/antibunk-a1fd57fab3.json",
+        "url": "https://antibunk.ro/date",
+        "pointer": "/cereri_date/2",
+        "valoare": "https://antibunk.ro/kb/hybrid-war/manifest.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Manifestul setului public despre războiul hibrid. Descrie fișiere, numărători și etichete de relații."
+    },
+    {
       "proiect": "bani-partide",
       "url": "https://db.banipartide.ro/banipartide.json",
       "sursa_id": "8f8229240b7f63743cd4",
@@ -368,6 +424,33 @@
         }
       ],
       "nota": "Public REST address cited by the RAJA S.A. report as its data source. Only the first page (200 items) was read; the response says that more pages exist."
+    },
+    {
+      "proiect": "barometrul-digital",
+      "url": "https://barometrul-digital.ro/api/cauta?pagina=1",
+      "sursa_id": "de173b378597934e7b1f",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://barometrul-digital.ro/catalog/",
+      "link_original": "https://barometrul-digital.ro/api/cauta?pagina=1",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/barometrul-digital-0580984cd0.json",
+        "url": "https://barometrul-digital.ro/catalog/",
+        "pointer": "/cereri_date/0",
+        "valoare": "https://barometrul-digital.ro/api/cauta?pagina=1"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Răspunsul catalogului de instituții, cu denumiri, categorii, județe și indicatori agregați."
     },
     {
       "proiect": "biografia-localitatii",
@@ -536,6 +619,119 @@
           2
         ]
       }
+    },
+    {
+      "proiect": "bucuresti-help",
+      "url": "https://bucuresti.help/api/reports",
+      "sursa_id": "ba4c1371d148a5de2ec8",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://bucuresti.help/map",
+      "link_original": "https://bucuresti.help/api/reports",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/bucuresti-help-1caab95570.json",
+        "url": "https://bucuresti.help/map",
+        "pointer": "/cereri_date/25",
+        "valoare": "https://bucuresti.help/api/reports"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Sesizări civice cu localizare, categorie, stare și descrieri. Profilul păstrează numai structura.",
+      "citire": "json-esantion",
+      "persoane": true
+    },
+    {
+      "proiect": "bucuresti-help",
+      "url": "https://bucuresti.help/api/reports/stats",
+      "sursa_id": "22e6f7c56991df67a333",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://bucuresti.help/map",
+      "link_original": "https://bucuresti.help/api/reports/stats",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/bucuresti-help-1caab95570.json",
+        "url": "https://bucuresti.help/map",
+        "pointer": "/cereri_date/0",
+        "valoare": "https://bucuresti.help/api/reports/stats"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Numărători agregate despre sesizările din București."
+    },
+    {
+      "proiect": "bucuresti-verde",
+      "url": "https://bucurestiverde.ro/api/authorizations",
+      "sursa_id": "fd60fac46dd01576ff03",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://bucurestiverde.ro/map",
+      "link_original": "https://bucurestiverde.ro/api/authorizations",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/bucuresti-verde-55f0d81728.json",
+        "url": "https://bucurestiverde.ro/map",
+        "pointer": "/cereri_date/0",
+        "valoare": "https://bucurestiverde.ro/api/authorizations"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Autorizații pentru intervenții asupra arborilor, cu amplasări și comentarii. Profilul păstrează numai structura.",
+      "citire": "json-esantion",
+      "persoane": true
+    },
+    {
+      "proiect": "bucuresti-verde",
+      "url": "https://bucurestiverde.ro/api/complaints",
+      "sursa_id": "5883327dbe9e6a257354",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://bucurestiverde.ro/map",
+      "link_original": "https://bucurestiverde.ro/api/complaints",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/bucuresti-verde-55f0d81728.json",
+        "url": "https://bucurestiverde.ro/map",
+        "pointer": "/cereri_date/1",
+        "valoare": "https://bucurestiverde.ro/api/complaints"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Sesizări despre spațiile verzi, cu localizare, text și stare. Profilul păstrează numai structura.",
+      "persoane": true
     },
     {
       "proiect": "calitate-aer-radauti",
@@ -4848,6 +5044,63 @@
       "citire": "json-esantion"
     },
     {
+      "proiect": "imobile-rapps",
+      "url": "https://rapps.mirceaserdin.ro/data.json",
+      "sursa_id": "6fb8308549cfd1becaef",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://rapps.mirceaserdin.ro/",
+      "link_original": "https://rapps.mirceaserdin.ro/data.json",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/imobile-rapps-3847138f12.json",
+        "url": "https://rapps.mirceaserdin.ro/",
+        "pointer": "/cereri_date/1",
+        "valoare": "https://rapps.mirceaserdin.ro/data.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Înregistrări despre imobile administrate de RA-APPS, cu suprafețe, stări, contracte, date și valori. Profilul păstrează numai structura.",
+      "citire": "json-esantion",
+      "persoane": true
+    },
+    {
+      "proiect": "imobile-rapps",
+      "url": "https://rapps.mirceaserdin.ro/romania-counties.geojson",
+      "sursa_id": "7225bb6e1fbb88048002",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://rapps.mirceaserdin.ro/",
+      "link_original": "https://rapps.mirceaserdin.ro/romania-counties.geojson",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/imobile-rapps-3847138f12.json",
+        "url": "https://rapps.mirceaserdin.ro/",
+        "pointer": "/cereri_date/0",
+        "valoare": "https://rapps.mirceaserdin.ro/romania-counties.geojson"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Geometria județelor folosită de harta imobilelor.",
+      "citire": "json-esantion"
+    },
+    {
       "proiect": "ins-gov2",
       "url": "https://ins.gov2.ro/api/datasets/ACC102B?lang=en",
       "sursa_id": "a658c6e1fd331dc5bac0",
@@ -5500,6 +5753,92 @@
       ]
     },
     {
+      "proiect": "monarh-ai",
+      "url": "https://monarhdef.ro/wp-content/uploads/monarh/puls_2026-10-31.json?t=29890682",
+      "sursa_id": "cd534d856596e2b803a6",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://monarhdef.ro/",
+      "link_original": "https://monarhdef.ro/wp-content/uploads/monarh/puls_2026-10-31.json?t=29890682",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/monarh-ai-944ee65385.json",
+        "url": "https://monarhdef.ro/",
+        "pointer": "/cereri_date/0",
+        "valoare": "https://monarhdef.ro/wp-content/uploads/monarh/puls_2026-10-31.json?t=29890682"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T10:03:39.920974+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T10:03:39.920974+00:00"
+        }
+      ],
+      "nota": "Date agregate ale pulsului public afișat de pagina principală."
+    },
+    {
+      "proiect": "monarh-ai",
+      "url": "https://monarhdef.ro/wp-content/uploads/monarh/scan_2026-10-31.json?t=29890682",
+      "sursa_id": "4b9c043749781e3b1d85",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://monarhdef.ro/",
+      "link_original": "https://monarhdef.ro/wp-content/uploads/monarh/scan_2026-10-31.json?t=29890682",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/monarh-ai-944ee65385.json",
+        "url": "https://monarhdef.ro/",
+        "pointer": "/cereri_date/1",
+        "valoare": "https://monarhdef.ro/wp-content/uploads/monarh/scan_2026-10-31.json?t=29890682"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T10:03:39.920974+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T10:03:39.920974+00:00"
+        }
+      ],
+      "nota": "Indicatori agregați de scanare afișați de pagina principală."
+    },
+    {
+      "proiect": "monitor-cetatenie",
+      "url": "https://www.gregorieu.com/cetatenie/ro",
+      "sursa_id": "29534364c6bd7b6edd9f",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://www.gregorieu.com/cetatenie/ro",
+      "link_original": "https://www.gregorieu.com/cetatenie/ro",
+      "dovada": {
+        "url": "https://www.gregorieu.com/cetatenie/ro",
+        "sha256": "d623f004000643592b058515d7db3f18726c611aa9364ca16dce03f8f654e4cc",
+        "pointer": "/body",
+        "interval": [
+          19762,
+          19774
+        ],
+        "fragment": "Înregistrări",
+        "snapshot": "inventare/surse/29534364c6bd7b6edd9f.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Tabele agregate despre cereri, soluționări și timpi de procesare pe ani.",
+      "citire": "html-tabele"
+    },
+    {
       "proiect": "monitor-energie",
       "url": "https://monitorenergie.ro/api/openapi.json",
       "sursa_id": "18a2aced844c56ee5d64",
@@ -6018,6 +6357,332 @@
         }
       ],
       "citire": "markdown"
+    },
+    {
+      "proiect": "monitorul-ai-integritate",
+      "url": "https://monitorul.ai/integritate/stats/counties.json",
+      "sursa_id": "22b205c2c1da4cc5ea3c",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://monitorul.ai/integritate/statistici",
+      "link_original": "https://monitorul.ai/integritate/stats/counties.json",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/monitorul-ai-integritate-0e6e9e71ef.json",
+        "url": "https://monitorul.ai/integritate/statistici",
+        "pointer": "/cereri_date/6",
+        "valoare": "https://monitorul.ai/integritate/stats/counties.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Indicatori agregați pe județe."
+    },
+    {
+      "proiect": "monitorul-ai-integritate",
+      "url": "https://monitorul.ai/integritate/stats/cube.json",
+      "sursa_id": "760e9cd26b5d72896766",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://monitorul.ai/integritate/statistici",
+      "link_original": "https://monitorul.ai/integritate/stats/cube.json",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/monitorul-ai-integritate-0e6e9e71ef.json",
+        "url": "https://monitorul.ai/integritate/statistici",
+        "pointer": "/cereri_date/9",
+        "valoare": "https://monitorul.ai/integritate/stats/cube.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Set agregat multidimensional folosit de panoul statistic."
+    },
+    {
+      "proiect": "monitorul-ai-integritate",
+      "url": "https://monitorul.ai/integritate/stats/firms.json",
+      "sursa_id": "babf14d6ec0cc3480ea2",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://monitorul.ai/integritate/statistici",
+      "link_original": "https://monitorul.ai/integritate/stats/firms.json",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/monitorul-ai-integritate-0e6e9e71ef.json",
+        "url": "https://monitorul.ai/integritate/statistici",
+        "pointer": "/cereri_date/8",
+        "valoare": "https://monitorul.ai/integritate/stats/firms.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Indicatori agregați pe firme."
+    },
+    {
+      "proiect": "monitorul-ai-integritate",
+      "url": "https://monitorul.ai/integritate/stats/income.json",
+      "sursa_id": "8b601dd1b222b3fa0ba3",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://monitorul.ai/integritate/statistici",
+      "link_original": "https://monitorul.ai/integritate/stats/income.json",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/monitorul-ai-integritate-0e6e9e71ef.json",
+        "url": "https://monitorul.ai/integritate/statistici",
+        "pointer": "/cereri_date/4",
+        "valoare": "https://monitorul.ai/integritate/stats/income.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Indicatori statistici agregați despre venituri."
+    },
+    {
+      "proiect": "monitorul-ai-integritate",
+      "url": "https://monitorul.ai/integritate/stats/institutions.json",
+      "sursa_id": "3abff1a04c83eb868a43",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://monitorul.ai/integritate/statistici",
+      "link_original": "https://monitorul.ai/integritate/stats/institutions.json",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/monitorul-ai-integritate-0e6e9e71ef.json",
+        "url": "https://monitorul.ai/integritate/statistici",
+        "pointer": "/cereri_date/5",
+        "valoare": "https://monitorul.ai/integritate/stats/institutions.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Indicatori agregați pe instituții."
+    },
+    {
+      "proiect": "monitorul-ai-integritate",
+      "url": "https://monitorul.ai/integritate/stats/localities.json",
+      "sursa_id": "9eaf24ec6d93cb9dac95",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://monitorul.ai/integritate/statistici",
+      "link_original": "https://monitorul.ai/integritate/stats/localities.json",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/monitorul-ai-integritate-0e6e9e71ef.json",
+        "url": "https://monitorul.ai/integritate/statistici",
+        "pointer": "/cereri_date/7",
+        "valoare": "https://monitorul.ai/integritate/stats/localities.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Indicatori agregați pe localități."
+    },
+    {
+      "proiect": "monitorul-ai-integritate",
+      "url": "https://monitorul.ai/integritate/stats/property.json",
+      "sursa_id": "6b3a52a79c14ea6ca468",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://monitorul.ai/integritate/statistici",
+      "link_original": "https://monitorul.ai/integritate/stats/property.json",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/monitorul-ai-integritate-0e6e9e71ef.json",
+        "url": "https://monitorul.ai/integritate/statistici",
+        "pointer": "/cereri_date/3",
+        "valoare": "https://monitorul.ai/integritate/stats/property.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Indicatori statistici agregați despre proprietăți."
+    },
+    {
+      "proiect": "monitorul-ai-integritate",
+      "url": "https://monitorul.ai/integritate/stats/timing.json",
+      "sursa_id": "b50524c924f3729cdce3",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://monitorul.ai/integritate/statistici",
+      "link_original": "https://monitorul.ai/integritate/stats/timing.json",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/monitorul-ai-integritate-0e6e9e71ef.json",
+        "url": "https://monitorul.ai/integritate/statistici",
+        "pointer": "/cereri_date/1",
+        "valoare": "https://monitorul.ai/integritate/stats/timing.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Indicatori agregați despre timpii de soluționare."
+    },
+    {
+      "proiect": "monitorul-ai-integritate",
+      "url": "https://monitorul.ai/integritate/stats/wealth.json",
+      "sursa_id": "8200d38b2c5bc0be04df",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://monitorul.ai/integritate/statistici",
+      "link_original": "https://monitorul.ai/integritate/stats/wealth.json",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/monitorul-ai-integritate-0e6e9e71ef.json",
+        "url": "https://monitorul.ai/integritate/statistici",
+        "pointer": "/cereri_date/2",
+        "valoare": "https://monitorul.ai/integritate/stats/wealth.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Indicatori statistici agregați despre avere."
+    },
+    {
+      "proiect": "onesti-city",
+      "url": "https://www.onesti.city/api/data/air-quality",
+      "sursa_id": "4b24ef635530654dd209",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://www.onesti.city/",
+      "link_original": "https://www.onesti.city/api/data/air-quality",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/onesti-city-566f87b178.json",
+        "url": "https://www.onesti.city/",
+        "pointer": "/cereri_date/6",
+        "valoare": "https://www.onesti.city/api/data/air-quality"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Indicatori locali de calitate a aerului și poluanți măsurați."
+    },
+    {
+      "proiect": "onesti-city",
+      "url": "https://www.onesti.city/api/data/news?limit=60",
+      "sursa_id": "d1d1265403464d35bf2f",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://www.onesti.city/",
+      "link_original": "https://www.onesti.city/api/data/news?limit=60",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/onesti-city-566f87b178.json",
+        "url": "https://www.onesti.city/",
+        "pointer": "/cereri_date/7",
+        "valoare": "https://www.onesti.city/api/data/news?limit=60"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Știri locale încărcate de pagina principală. Sursa poate conține autori; profilul păstrează numai structura.",
+      "persoane": true
+    },
+    {
+      "proiect": "onesti-city",
+      "url": "https://www.onesti.city/api/data/primarie?limit=10",
+      "sursa_id": "4852f2f5ed04f3a8f5ac",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://www.onesti.city/",
+      "link_original": "https://www.onesti.city/api/data/primarie?limit=10",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/onesti-city-566f87b178.json",
+        "url": "https://www.onesti.city/",
+        "pointer": "/cereri_date/8",
+        "valoare": "https://www.onesti.city/api/data/primarie?limit=10"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Anunțuri ale primăriei încărcate de pagina principală. Profilul păstrează numai structura.",
+      "persoane": true
     },
     {
       "proiect": "onorata-instanta",
@@ -9049,6 +9714,114 @@
       "citire": "js-literale"
     },
     {
+      "proiect": "unde-locuiesc-romanii",
+      "url": "https://unde.geo-spatial.org/data/gridspec.json",
+      "sursa_id": "071f813be57c49d905c9",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://unde.geo-spatial.org/",
+      "link_original": "https://unde.geo-spatial.org/data/gridspec.json",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/unde-locuiesc-romanii-094d2e9538.json",
+        "url": "https://unde.geo-spatial.org/",
+        "pointer": "/cereri_date/2",
+        "valoare": "https://unde.geo-spatial.org/data/gridspec.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Descrierea grilei geografice pentru indicatorii hărții."
+    },
+    {
+      "proiect": "unde-locuiesc-romanii",
+      "url": "https://unde.geo-spatial.org/data/live/forecast/manifest.json",
+      "sursa_id": "96a2a4747bbb11e5a615",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://unde.geo-spatial.org/",
+      "link_original": "https://unde.geo-spatial.org/data/live/forecast/manifest.json",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/unde-locuiesc-romanii-094d2e9538.json",
+        "url": "https://unde.geo-spatial.org/",
+        "pointer": "/cereri_date/1",
+        "valoare": "https://unde.geo-spatial.org/data/live/forecast/manifest.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Manifestul prognozei live, cu seriile și metadatele disponibile."
+    },
+    {
+      "proiect": "unde-locuiesc-romanii",
+      "url": "https://unde.geo-spatial.org/data/live/warnings.json",
+      "sursa_id": "25f198fdc166d3dfa8a3",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://unde.geo-spatial.org/",
+      "link_original": "https://unde.geo-spatial.org/data/live/warnings.json",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/unde-locuiesc-romanii-094d2e9538.json",
+        "url": "https://unde.geo-spatial.org/",
+        "pointer": "/cereri_date/0",
+        "valoare": "https://unde.geo-spatial.org/data/live/warnings.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Avertizări agregate din indicatorii live ai hărții populației."
+    },
+    {
+      "proiect": "unde-locuiesc-romanii",
+      "url": "https://unde.geo-spatial.org/data/registry.json",
+      "sursa_id": "4d55fe7e9f6a3a79a38b",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://unde.geo-spatial.org/",
+      "link_original": "https://unde.geo-spatial.org/data/registry.json",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/unde-locuiesc-romanii-094d2e9538.json",
+        "url": "https://unde.geo-spatial.org/",
+        "pointer": "/cereri_date/3",
+        "valoare": "https://unde.geo-spatial.org/data/registry.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Registrul seriilor și dimensiunilor disponibile în depozitul geografic."
+    },
+    {
       "proiect": "unde-se-termina-asfaltul",
       "url": "https://ins.gov2.ro/api/datasets/GOS104A?lang=en",
       "sursa_id": "325ddbb34c8ff236a62a",
@@ -9268,6 +10041,62 @@
       ],
       "nota": "The structure page of the project: 13 fields of the profile of a psychologist, each with its label and a definition paragraph. It names nine more fields in a sentence (hasDGPC, dgpcDate, hasTSA, tsaDate, isExpert, expertDate, hasSupervisorCert, supervisorDate, supervisedSpecialties); no heading defines them, so the glossary reader does not read them.",
       "citire": "html-glosar"
+    },
+    {
+      "proiect": "vichub-data",
+      "url": "https://data.vichub.dev/data/populatie/serii-uat.json",
+      "sursa_id": "37bef5d7813d8f9688fc",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://data.vichub.dev/populatie",
+      "link_original": "https://data.vichub.dev/data/populatie/serii-uat.json",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/vichub-data-ad80555190.json",
+        "url": "https://data.vichub.dev/populatie",
+        "pointer": "/cereri_date/1",
+        "valoare": "https://data.vichub.dev/data/populatie/serii-uat.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Serii istorice de populație pentru unități administrativ-teritoriale.",
+      "citire": "json-esantion"
+    },
+    {
+      "proiect": "vichub-data",
+      "url": "https://data.vichub.dev/data/recensamant-2021/populatie-uat-2021.json?v=20260222-01",
+      "sursa_id": "6e04478bfb8943ccdea7",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://data.vichub.dev/populatie",
+      "link_original": "https://data.vichub.dev/data/recensamant-2021/populatie-uat-2021.json?v=20260222-01",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/vichub-data-ad80555190.json",
+        "url": "https://data.vichub.dev/populatie",
+        "pointer": "/cereri_date/2",
+        "valoare": "https://data.vichub.dev/data/recensamant-2021/populatie-uat-2021.json?v=20260222-01"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T09:51:54.978331+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T09:51:54.978331+00:00"
+        }
+      ],
+      "nota": "Date de recensământ 2021 pe județ și UAT, cu populația și identificatorii administrativi.",
+      "citire": "json-esantion"
     },
     {
       "proiect": "votdiaspora",

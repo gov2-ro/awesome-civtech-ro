@@ -1,5 +1,7 @@
 # Releases
 
+- **v0.54.0** (2026-10-31): ten „De analizat” projects gained 785 source-field records across 28 sources. Publication validation and the isolated inventory build pass. Batch G began with two Monarh AI feeds and 21 fields. The personal-value overlap check still reports findings; the owner requested the commit and push. No provider or variable proposals were accepted.
+
 - **v0.2.0** (2026-10-18): search mentions (Serper + Brave) with rule and editor pruning, labelled
   reach in the score, automatic `arhivat`, keyboard navigation and fresh tag, share preview, RSS,
   `/add-new-url`.

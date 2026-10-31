@@ -1,0 +1,305 @@
+{
+  "versiune": 1,
+  "proiect": "monitorul-ai-integritate",
+  "url_cerut": "https://monitorul.ai/integritate/statistici",
+  "url_final": "https://monitorul.ai/integritate/statistici",
+  "stare": "ok",
+  "http_status": 200,
+  "titlu": "SEMNAL · Atlas statistic",
+  "randat_la": "2026-10-31T09:47:13.174491+00:00",
+  "text_randat": null,
+  "text_lungime": 20000,
+  "text_sha256": "f042ce2ed5315e01e6c7468f5cf3820a3db6b7275e1fb76024185426cab02ee6",
+  "controale_vizibile": [
+    {
+      "tag": "input",
+      "name": null,
+      "id": null,
+      "type": "search",
+      "label": "Caută instituție sau județ",
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": null,
+      "type": "search",
+      "label": "Caută marcă",
+      "options": null
+    },
+    {
+      "tag": "select",
+      "name": null,
+      "id": null,
+      "type": "select-one",
+      "label": null,
+      "options": [
+        "toate funcțiile",
+        "Ales local (funcție executivă)",
+        "Altele",
+        "Conducere",
+        "Consilier ales",
+        "Demnitar",
+        "Educație",
+        "Funcționar",
+        "Magistrat",
+        "Ordine publică și apărare națională",
+        "Parlamentar",
+        "Personal din justiție"
+      ]
+    },
+    {
+      "tag": "select",
+      "name": null,
+      "id": null,
+      "type": "select-one",
+      "label": null,
+      "options": [
+        "toate județele",
+        "Alba",
+        "Arad",
+        "Argeș",
+        "Bacău",
+        "Bihor",
+        "Bistrița-Năsăud",
+        "Botoșani",
+        "Brașov",
+        "Brăila",
+        "București",
+        "Buzău"
+      ]
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": null,
+      "type": "search",
+      "label": "Caută un indicator…",
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": null,
+      "type": "search",
+      "label": "Caută o localitate sau un județ…",
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "_R_dbsnqnb_-company",
+      "type": "text",
+      "label": null,
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "_R_dbsnqnb_-name",
+      "type": "text",
+      "label": null,
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "_R_dbsnqnb_-email",
+      "type": "email",
+      "label": null,
+      "options": null
+    },
+    {
+      "tag": "select",
+      "name": null,
+      "id": null,
+      "type": "select-one",
+      "label": null,
+      "options": [
+        "",
+        "Jurnalist",
+        "ONG / societate civilă",
+        "Cercetător / mediu academic",
+        "Instituție publică",
+        "Altele"
+      ]
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "_R_dbsnqnb_-org",
+      "type": "text",
+      "label": null,
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "_R_dbsnqnb_-link",
+      "type": "url",
+      "label": "Articol, profil sau pagină instituțională",
+      "options": null
+    },
+    {
+      "tag": "textarea",
+      "name": null,
+      "id": "_R_dbsnqnb_-useCase",
+      "type": "textarea",
+      "label": "ex.: o investigație despre achizițiile publice dintr-un anumit județ",
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "_R_dbsnqnb_-consent",
+      "type": "checkbox",
+      "label": null,
+      "options": null
+    }
+  ],
+  "cereri_date": [
+    {
+      "metoda": "GET",
+      "url": "https://monitorul.ai/integritate/story/geo-counties.topo.json",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://monitorul.ai/integritate/stats/timing.json",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://monitorul.ai/integritate/stats/wealth.json",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://monitorul.ai/integritate/stats/property.json",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://monitorul.ai/integritate/stats/income.json",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://monitorul.ai/integritate/stats/institutions.json",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://monitorul.ai/integritate/stats/counties.json",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://monitorul.ai/integritate/stats/localities.json",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://monitorul.ai/integritate/stats/firms.json",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://monitorul.ai/integritate/stats/cube.json",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://clerk.monitorul.ai/v1/client?__clerk_api_version=2026-08-20&_clerk_js_version=6.41.0",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://monitorul.ai/integritate?_rsc=Wg0YWzB89bDc4oHm",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://clerk.monitorul.ai/v1/environment?__clerk_api_version=2026-08-20&_clerk_js_version=6.41.0",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://monitorul.ai/integritate?_rsc=kRqsagonBzwqVwfq",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://monitorul.ai/integritate/statistici?_rsc=kRqsagonBzwqVwfq",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://monitorul.ai/integritate/trace/array/phc_rvhFYSBoGEFKJgAzUMNN4XUXxp5b7mUfrqScu2SgfsQJ/config?_=1793440031056&ver=1.405.2",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    }
+  ],
+  "corpuri_pastrate": [
+    "https://monitorul.ai/integritate/stats/timing.json",
+    "https://monitorul.ai/integritate/stats/wealth.json",
+    "https://monitorul.ai/integritate/stats/property.json",
+    "https://monitorul.ai/integritate/stats/income.json",
+    "https://monitorul.ai/integritate/stats/institutions.json",
+    "https://monitorul.ai/integritate/stats/counties.json"
+  ],
+  "corpuri_omise": [
+    {
+      "url": "https://monitorul.ai/integritate/story/geo-counties.topo.json",
+      "motiv": "body of 544540 bytes is over the 200000 limit"
+    }
+  ],
+  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+}

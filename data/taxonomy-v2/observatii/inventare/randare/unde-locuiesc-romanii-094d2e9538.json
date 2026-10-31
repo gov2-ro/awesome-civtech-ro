@@ -1,0 +1,171 @@
+{
+  "versiune": 1,
+  "proiect": "unde-locuiesc-romanii",
+  "url_cerut": "https://unde.geo-spatial.org/",
+  "url_final": "https://unde.geo-spatial.org/",
+  "stare": "ok",
+  "http_status": 200,
+  "titlu": "Unde locuiesc românii?",
+  "randat_la": "2026-10-31T09:48:56.734339+00:00",
+  "text_randat": null,
+  "text_lungime": 2709,
+  "text_sha256": "5283ef9b710baea9f247e576a268aee1bde7642377a2e48630ae47f6319ba3e7",
+  "controale_vizibile": [
+    {
+      "tag": "select",
+      "name": null,
+      "id": null,
+      "type": "select-one",
+      "label": null,
+      "options": [
+        "persoane (total)",
+        "femei",
+        "bărbați",
+        "copii (0–14 ani)",
+        "persoane 15–64 ani",
+        "vârstnici (65+)",
+        "persoane ocupate"
+      ]
+    },
+    {
+      "tag": "select",
+      "name": null,
+      "id": null,
+      "type": "select-one",
+      "label": null,
+      "options": [
+        "alege variabila…",
+        "Populația totală (2021)",
+        "Mediul (urban/rural)",
+        "Intravilan (oraș/sat)",
+        "Statutul UAT",
+        "Județul",
+        "Regiunea",
+        "Altitudinea medie",
+        "Panta medie",
+        "Tipul formei de relief",
+        "Marea unitate de relief",
+        "Distanța până la mare"
+      ]
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": null,
+      "type": "search",
+      "label": "Caută UAT sau localitate",
+      "options": null
+    }
+  ],
+  "cereri_date": [
+    {
+      "metoda": "GET",
+      "url": "https://unde.geo-spatial.org/data/live/warnings.json",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://unde.geo-spatial.org/data/live/forecast/manifest.json",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://unde.geo-spatial.org/data/gridspec.json",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://unde.geo-spatial.org/data/registry.json",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://unde.geo-spatial.org/assets/duckdb-eh-9ubY-jlA.wasm",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/wasm",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://unde.geo-spatial.org/data/country_line.geojson",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/geo+json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://unde.geo-spatial.org/data/hospitals.geojson",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/geo+json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://unde.geo-spatial.org/data/live/warnings.geojson",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/geo+json",
+      "octeti": 42
+    },
+    {
+      "metoda": "GET",
+      "url": "https://unde.geo-spatial.org/data/county.geojson",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/geo+json",
+      "octeti": null
+    },
+    {
+      "metoda": "HEAD",
+      "url": "https://unde.geo-spatial.org/data/core.parquet",
+      "tip_resursa": "xhr",
+      "http_status": 200,
+      "content_type": "",
+      "octeti": 5407955
+    },
+    {
+      "metoda": "GET",
+      "url": "https://unde.geo-spatial.org/data/core.parquet",
+      "tip_resursa": "xhr",
+      "http_status": 200,
+      "content_type": "",
+      "octeti": 5407955
+    },
+    {
+      "metoda": "HEAD",
+      "url": "https://unde.geo-spatial.org/data/env.parquet",
+      "tip_resursa": "xhr",
+      "http_status": 200,
+      "content_type": "",
+      "octeti": 16723738
+    }
+  ],
+  "corpuri_pastrate": [
+    "https://unde.geo-spatial.org/data/live/warnings.json",
+    "https://unde.geo-spatial.org/data/live/forecast/manifest.json",
+    "https://unde.geo-spatial.org/data/gridspec.json",
+    "https://unde.geo-spatial.org/data/registry.json"
+  ],
+  "corpuri_omise": [
+    {
+      "url": "https://unde.geo-spatial.org/data/county.geojson",
+      "motiv": "body of 1243747 bytes is over the 200000 limit"
+    }
+  ],
+  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+}

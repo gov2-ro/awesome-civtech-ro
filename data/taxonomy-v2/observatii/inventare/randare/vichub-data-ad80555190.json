@@ -1,0 +1,80 @@
+{
+  "versiune": 1,
+  "proiect": "vichub-data",
+  "url_cerut": "https://data.vichub.dev/populatie",
+  "url_final": "https://data.vichub.dev/populatie?year=2021",
+  "stare": "ok",
+  "http_status": 200,
+  "titlu": "Populația României pe UAT (1859–2021) — hartă interactivă a recensămintelor",
+  "randat_la": "2026-10-31T09:47:03.419309+00:00",
+  "text_randat": null,
+  "text_lungime": 2135,
+  "text_sha256": "c19c6931087dd3a364d544a0fa90709e56957b6a0ce43da2fcc1e943d5b3abe6",
+  "controale_vizibile": [
+    {
+      "tag": "input",
+      "name": null,
+      "id": null,
+      "type": "search",
+      "label": "Oraș sau comună…",
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "filter-query",
+      "type": "text",
+      "label": "Filtru UAT",
+      "options": null
+    },
+    {
+      "tag": "select",
+      "name": null,
+      "id": "filter-type",
+      "type": "select-one",
+      "label": "Tip filtru",
+      "options": [
+        "Nume",
+        "SIRUTA"
+      ]
+    }
+  ],
+  "cereri_date": [
+    {
+      "metoda": "POST",
+      "url": "https://data.vichub.dev/cdn-cgi/challenge-platform/h/g/precursor/c787ce48cf6b/0.6462148957448114:1793438356:RiOKpXIq3V0t_nzVbCmAdRyAnXfFcjzfXSEdu9pr0P0/a531bc576d2a52b3",
+      "tip_resursa": "xhr",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": 18
+    },
+    {
+      "metoda": "GET",
+      "url": "https://data.vichub.dev/data/populatie/serii-uat.json",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://data.vichub.dev/data/recensamant-2021/populatie-uat-2021.json?v=20260222-01",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    }
+  ],
+  "corpuri_pastrate": [],
+  "corpuri_omise": [
+    {
+      "url": "https://data.vichub.dev/data/populatie/serii-uat.json",
+      "motiv": "body of 293898 bytes is over the 200000 limit"
+    },
+    {
+      "url": "https://data.vichub.dev/data/recensamant-2021/populatie-uat-2021.json?v=20260222-01",
+      "motiv": "body of 3969444 bytes is over the 200000 limit"
+    }
+  ],
+  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+}

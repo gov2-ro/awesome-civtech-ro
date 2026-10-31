@@ -53,6 +53,9 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
 ## Inventory batch E — 2026-10-27
 
+- [~] Add evidence-based data inventories for ten entries still in `/date/lista/` „De analizat”, selected for civic value and confirmed public sources. [Brief](briefs/inventory-batch-f.md). Profiles now contain 785 field records, but `inventory.py --check` reports personal-value overlaps in retained evidence. Resolve those before marking done. Do not accept provider or variable proposals.
+- [~] Audit ten more „De analizat” entries for structured data. [Brief](briefs/inventory-batch-g.md). The source pass found two public JSON feeds for `monarh-ai` (21 fields). The other nine remain under investigation; honor each host's access limits.
+
 - [x] Variable inventory for twelve entries of „De analizat”: `monitor-safe`, `igov`, `companii-publice-ro`, `executii-bugetare`, `ce-cumpara-primaria`, `sicap-ai`, `open-budget`, `monitor-social`, `verifica-psiholog`, `portal-just-modern`, `cat-de-tare`, `recontorizarea`. Brief: [inventory-batch-e.md](briefs/inventory-batch-e.md).
       Done 2026-10-27 (lot `E`, branch `inventory-batch-e`): nine entries and the two reserves `de-unde-vine-apa` and `ani-de-pensie` have 30 sources and 775 field records (4,444 → 5,219 in all). `sicap-ai` (HTTP 429) and `open-budget` (no answer) are `blocat`; `portal-just-modern` has no source (its backend needs a key).
       44 direct requests, 6 browser navigations; no listed host was requested. Report: section 3 of `docs/reports/inventory-expansion.md`.

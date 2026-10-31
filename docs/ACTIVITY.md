@@ -1,5 +1,37 @@
 # Activity
 
+## 2026-10-31 — Inventory batch F: ten entries from „De analizat”
+
+**Done**
+- Added structured sources for Antibunk, Barometrul Digital, Imobilele RA-APPS, Monitor cetățenie, Onești City, VicHub Data, Pe propria răspundere, București Verde, bucuresti.help and Unde locuiesc românii.
+- The ten entries now have 785 field records. Total inventory coverage rose from 54 to 64 entries; the queue should fall from 33 to 23.
+- The inventory report and isolated preview build completed. Publication validation passed with 0 errors and 0 warnings.
+- The source audit rejected stale or blocked candidates. Hotărâri.ro returned 403 and was added to the forbidden-host list; Ce fac politicienii returned 401; the Harta digitalizării URL resolved to an unrelated article; the Camera Deputaților page timed out.
+
+**Hard**
+- `inventory.py --check` reports personal-value overlaps in tracked evidence for marked sources. Do not publish or accept the profiles until those overlaps are resolved.
+- The lot request log includes exploratory browser requests for provisional candidates. The tracked source specifications include only the final ten entries.
+
+**Decided**
+- Keep the ten profiles as proposals. Do not accept provider or variable candidates in this batch.
+- Exclude authentication, polling, analytics and binary sources. Preserve schemas only for sources that can contain personal records.
+- Record the remaining privacy-check findings for review. The owner explicitly requested the commit and push after seeing the check result.
+
+## 2026-10-31 — Inventory batch G: source audit starts
+
+**Done**
+- Refreshed documentation for ten more queued entries. The pass made 43 requests; one browser navigation per project was bounded to nine sites after excluding the host that had already returned 401.
+- Added two public JSON feeds for `monarh-ai`, with 21 field records. The isolated inventory count is now 65 entries with structured fields.
+- Confirmed public text endpoints for `destraja`, a PDF template for `econtractauto`, and JSON feeds for `monarh-ai`. These findings remain subject to the existing reader and person-data rules.
+
+**Hard**
+- The `monitor-energie` OpenAPI URL had already returned 401; no further request went to that host. `testvot` returned 401 during its single render. `radar-digital` and `tipizatul` timed out. The `econtractauto` home page timed out after exposing a PDF template.
+- `inventory.py` found no new sources automatically. The two Monarh AI feeds were added from the browser evidence. The other entries need a source-by-source review before they can leave „De analizat”.
+
+**Decided**
+- Keep the ten-entry source audit open. Do not claim a complete ten-profile batch or accept any proposals.
+- Use the checked-in brief and collection evidence as the audit trail. Keep failed and empty profiles in the queue.
+
 ## 2026-10-30 — Publish the inventory and entity lookup together
 
 **Done**

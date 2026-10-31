@@ -423,3 +423,239 @@ E,2026-10-27T19:43:34.019618+00:00,GET,https://raw.githubusercontent.com/ciocan/
 E,2026-10-27T19:43:34.343290+00:00,GET,https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/types.ts,ok,200,2139,nu,repository file at recorded commit (sicap-ai): the types of the Elasticsearch documents
 E,2026-10-27T19:44:53.358191+00:00,GET,https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/packages/api/src/es/company/onrc.ts,ok,200,8006,nu,repository file at recorded commit (sicap-ai): the ONRC index and the company enrichment brief
 E,2026-10-27T19:44:53.656176+00:00,GET,https://raw.githubusercontent.com/ciocan/SICAP.ai/6697c8068692872d665d6bc7896ade159eb60e16/docs/company-enrichment-brief.md,ok,200,8502,nu,repository file at recorded commit (sicap-ai): the ONRC index and the company enrichment brief
+F,2026-10-30T23:38:27.939318+00:00,BROWSER,https://465.ro/,ok,200,,browser,randare 465
+F,2026-10-30T23:39:02.947465+00:00,BROWSER,https://antibunk.ro/date,timeout,,,browser,randare antibunk
+F,2026-10-30T23:39:02.947547+00:00,BROWSER-POST,https://antibunk.ro/cdn-cgi/challenge-platform/h/g/jsd/oneshot/c787ce48cf6b/0.39787417150652893:1793402057:F4_ez7M2T6LsxCy57Y-594ff29SYSkbocdszAYtsO1Y/a52e4173fcb368a9,200,200,0,browser,randare antibunk
+F,2026-10-30T23:39:02.947606+00:00,BROWSER-GET,https://antibunk.ro/kb/razboi-hibrid/manifest.json,404,404,,browser,randare antibunk
+F,2026-10-30T23:39:02.947655+00:00,BROWSER-GET,https://antibunk.ro/kb/hybrid-war/manifest.json,200,200,1520,browser,randare antibunk
+F,2026-10-30T23:39:02.947702+00:00,BROWSER-GET,https://antibunk.ro/kb/hybrid-war/edges.jsonl,200,200,173410,browser,randare antibunk
+F,2026-10-30T23:39:02.947747+00:00,BROWSER-GET,https://antibunk.ro/kb/hybrid-war/_ui_manifest.json,200,200,62972,browser,randare antibunk
+F,2026-10-30T23:39:02.947792+00:00,BROWSER-GET,https://notifications.antibunk.ro/events/public,200,200,,browser,randare antibunk
+F,2026-10-30T23:39:02.947836+00:00,BROWSER-POST,https://backend.antibunk.ro/graphql,200,200,325,browser,randare antibunk
+F,2026-10-30T23:39:15.360584+00:00,BROWSER,https://barometrul-digital.ro/catalog/,ok,200,,browser,randare barometrul-digital
+F,2026-10-30T23:39:15.360690+00:00,BROWSER-GET,https://barometrul-digital.ro/api/cauta?pagina=1,200,200,,browser,randare barometrul-digital
+F,2026-10-30T23:39:21.756821+00:00,BROWSER,https://cefacpoliticienii.ro/dev,ok,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.756905+00:00,BROWSER-POST,https://cefacpoliticienii.ro/cdn-cgi/challenge-platform/h/g/jsd/oneshot/c787ce48cf6b/0.39787417150652893:1793402057:F4_ez7M2T6LsxCy57Y-594ff29SYSkbocdszAYtsO1Y/a52e4233eaaa6ce1,200,200,0,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.756967+00:00,BROWSER-GET,https://cefacpoliticienii.ro/cauta?_rsc=3C4NIa5PyWwrGM_5,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.757018+00:00,BROWSER-GET,https://cefacpoliticienii.ro/cont?_rsc=3C4NIa5PyWwrGM_5,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.757063+00:00,BROWSER-GET,https://cefacpoliticienii.ro/arhiva?_rsc=3C4NIa5PyWwrGM_5,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.757107+00:00,BROWSER-GET,https://cefacpoliticienii.ro/despre?_rsc=3C4NIa5PyWwrGM_5,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.757150+00:00,BROWSER-GET,https://cefacpoliticienii.ro/declaratii?_rsc=3C4NIa5PyWwrGM_5,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.757192+00:00,BROWSER-GET,https://cefacpoliticienii.ro/cerceteaza?_rsc=3C4NIa5PyWwrGM_5,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.757234+00:00,BROWSER-GET,https://cefacpoliticienii.ro/contradictii?_rsc=3C4NIa5PyWwrGM_5,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.757275+00:00,BROWSER-GET,https://cefacpoliticienii.ro/voturi?_rsc=3C4NIa5PyWwrGM_5,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.757317+00:00,BROWSER-GET,https://cefacpoliticienii.ro/despre?_rsc=82ZgJ_sx_0kWOpAH,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.757359+00:00,BROWSER-GET,https://cefacpoliticienii.ro/despre?_rsc=pLjy2UU5g7th1DJz,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.757409+00:00,BROWSER-GET,https://cefacpoliticienii.ro/partide?_rsc=3C4NIa5PyWwrGM_5,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.757451+00:00,BROWSER-GET,https://cefacpoliticienii.ro/?_rsc=3C4NIa5PyWwrGM_5,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.757567+00:00,BROWSER-GET,https://cefacpoliticienii.ro/despre?_rsc=LXaNWcjZDeAbYPML,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.757620+00:00,BROWSER-GET,https://cefacpoliticienii.ro/despre?_rsc=si5mCTpYmXUM5SAu,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.757660+00:00,BROWSER-GET,https://cefacpoliticienii.ro/despre?_rsc=rrh3eVbEdol-lQQh,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.757704+00:00,BROWSER-GET,https://cefacpoliticienii.ro/cont?_rsc=_ydrq0-XcjYmqV3D,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.757743+00:00,BROWSER-GET,https://cefacpoliticienii.ro/cauta?_rsc=y3und3ggrW9yiDQY,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.757835+00:00,BROWSER-GET,https://cefacpoliticienii.ro/arhiva?_rsc=uZTQScN7uhmZxD5i,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.757911+00:00,BROWSER-GET,https://cefacpoliticienii.ro/contradictii?_rsc=_ydrq0-XcjYmqV3D,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.757962+00:00,BROWSER-GET,https://cefacpoliticienii.ro/voturi?_rsc=pLjy2UU5g7th1DJz,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.758007+00:00,BROWSER-GET,https://cefacpoliticienii.ro/voturi?_rsc=HPBNy8CBqD0B0vy6,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.758059+00:00,BROWSER-GET,https://cefacpoliticienii.ro/voturi?_rsc=cxNk4-aOkyRp3g_m,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.758112+00:00,BROWSER-GET,https://cefacpoliticienii.ro/cerceteaza?_rsc=pLjy2UU5g7th1DJz,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.758152+00:00,BROWSER-GET,https://cefacpoliticienii.ro/cerceteaza?_rsc=L6IyZvuD1fn_2W2b,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.758192+00:00,BROWSER-GET,https://cefacpoliticienii.ro/cerceteaza?_rsc=IFC9QszFc-FXG1a_,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.758282+00:00,BROWSER-GET,https://cefacpoliticienii.ro/declaratii?_rsc=pLjy2UU5g7th1DJz,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.758352+00:00,BROWSER-GET,https://cefacpoliticienii.ro/cerceteaza?_rsc=w4gyY9yx5Tgv74rP,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.758402+00:00,BROWSER-GET,https://cefacpoliticienii.ro/declaratii?_rsc=hqub9_e41CUEdBmB,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.758448+00:00,BROWSER-GET,https://cefacpoliticienii.ro/declaratii?_rsc=kvlcjK_r5uZjG-8k,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.758524+00:00,BROWSER-GET,https://cefacpoliticienii.ro/partide?_rsc=pLjy2UU5g7th1DJz,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.758568+00:00,BROWSER-GET,https://cefacpoliticienii.ro/partide?_rsc=RhKSY8P5mQuIoFB2,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.758612+00:00,BROWSER-GET,https://cefacpoliticienii.ro/?_rsc=pLjy2UU5g7th1DJz,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.758653+00:00,BROWSER-GET,https://cefacpoliticienii.ro/partide?_rsc=-khGnedJiRQdtzfD,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:21.758711+00:00,BROWSER-GET,https://cefacpoliticienii.ro/?_rsc=6f77T-8baXPIQF_T,200,200,,browser,randare ce-fac-politicienii
+F,2026-10-30T23:39:27.117545+00:00,BROWSER,https://hotarari.ro/statistici,ok,403,,browser,randare hotarari
+F,2026-10-30T23:39:27.117625+00:00,BROWSER-POST,https://hotarari.ro/cdn-cgi/challenge-platform/h/g/jsd/oneshot/c787ce48cf6b/0.39787417150652893:1793402057:F4_ez7M2T6LsxCy57Y-594ff29SYSkbocdszAYtsO1Y/a52e425bcfd4e4b0,200,200,0,browser,randare hotarari
+F,2026-10-30T23:39:54.985330+00:00,BROWSER,https://rapps.mirceaserdin.ro/,ok,200,,browser,randare imobile-rapps
+F,2026-10-30T23:39:54.985418+00:00,BROWSER-GET,https://rapps.mirceaserdin.ro/romania-counties.geojson,200,200,,browser,randare imobile-rapps
+F,2026-10-30T23:39:54.985476+00:00,BROWSER-GET,https://rapps.mirceaserdin.ro/data.json,200,200,,browser,randare imobile-rapps
+F,2026-10-30T23:40:01.712498+00:00,BROWSER,https://www.gregorieu.com/cetatenie/ro,ok,200,,browser,randare monitor-cetatenie
+F,2026-10-30T23:40:01.712573+00:00,BROWSER-POST,https://www.gregorieu.com/cdn-cgi/challenge-platform/h/g/precursor/c787ce48cf6b/0.7093295905512849:1793402057:BiP7MbVS8HkHZQ3vJyDFYdKrB-1U2NOrpe9xFw--PCs/a52e4331a8d0e44a,200,200,18,browser,randare monitor-cetatenie
+F,2026-10-30T23:40:20.135802+00:00,BROWSER,http://www.cdep.ro/informatii_publice/ong.chest_aprobate,timeout,,,browser,randare ong-camera-deputatilor
+F,2026-10-30T23:40:38.436383+00:00,BROWSER,https://radardigital.ro/stats,timeout,,,browser,randare radar-digital
+F,2026-10-30T23:42:37.545202+00:00,GET,https://rapps.mirceaserdin.ro/data.json,eroare-retea,,,nu,Bounded samples of files requested by the rendered RA-APPS page
+F,2026-10-30T23:42:37.553127+00:00,GET,https://rapps.mirceaserdin.ro/romania-counties.geojson,eroare-retea,,,nu,Bounded samples of files requested by the rendered RA-APPS page
+F,2026-10-31T09:42:38.281454+00:00,GET,https://rapps.mirceaserdin.ro/data.json,ok,200,150001,nu,Bounded samples of files requested by the rendered RA-APPS page
+F,2026-10-31T09:42:38.361944+00:00,GET,https://rapps.mirceaserdin.ro/romania-counties.geojson,ok,200,150001,nu,Bounded samples of files requested by the rendered RA-APPS page
+F,2026-10-31T09:43:05.401133+00:00,GET,https://cefacpoliticienii.ro/dev,ok,200,86033,nu,Read the project-linked public API documentation
+F,2026-10-31T09:44:51.397918+00:00,GET,https://radardigital.ro/stats,ok,206,8354,nu,Bounded public page checks for candidate inventories
+F,2026-10-31T09:45:03.441605+00:00,GET,http://www.cdep.ro/informatii_publice/ong.chest_aprobate,eroare-retea,,,nu,Bounded public page checks for candidate inventories
+F,2026-10-31T09:45:12.764961+00:00,GET,https://www.gregorieu.com/cetatenie/ro,ok,200,146135,nu,Bounded source bodies for aggregate statistics and parliamentary contact fields
+F,2026-10-31T09:45:13.720740+00:00,GET,https://465.ro/,ok,206,1368,nu,Bounded source bodies for aggregate statistics and parliamentary contact fields
+F,2026-10-31T09:45:22.419744+00:00,GET,https://cefacpoliticienii.ro/api/v1/politicians,eroare-http,401,,nu,Bounded samples of GET endpoints named in the project API documentation
+F,2026-10-31T09:45:22.555736+00:00,GET,https://cefacpoliticienii.ro/api/v1/votes,eroare-http,401,,nu,Bounded samples of GET endpoints named in the project API documentation
+F,2026-10-31T09:45:37.911426+00:00,GET,https://antibunk.ro/kb/hybrid-war/_ui_manifest.json,ok,206,150000,nu,Bounded sample of the manifest requested by the public graph page
+F,2026-10-31T09:46:33.958542+00:00,BROWSER,https://www.onesti.city/,ok,200,,browser,randare onesti-city
+F,2026-10-31T09:46:33.958791+00:00,BROWSER-GET,https://www.onesti.city/api/data/weather,200,200,391,browser,randare onesti-city
+F,2026-10-31T09:46:33.958854+00:00,BROWSER-GET,https://www.onesti.city/api/data/now-playing,200,200,590,browser,randare onesti-city
+F,2026-10-31T09:46:33.958901+00:00,BROWSER-GET,https://www.onesti.city/api/sondaj/current?voter=ea8836d7d7e1df46bfd54ad781f261ee,200,200,415,browser,randare onesti-city
+F,2026-10-31T09:46:33.958944+00:00,BROWSER-GET,https://www.onesti.city/api/data/listeners-today,200,200,104,browser,randare onesti-city
+F,2026-10-31T09:46:33.958983+00:00,BROWSER-GET,https://www.onesti.city/api/data/nameday,200,200,202,browser,randare onesti-city
+F,2026-10-31T09:46:33.959022+00:00,BROWSER-GET,https://www.onesti.city/api/data/exchange-rates,200,200,647,browser,randare onesti-city
+F,2026-10-31T09:46:33.959060+00:00,BROWSER-GET,https://www.onesti.city/api/data/air-quality,200,200,158,browser,randare onesti-city
+F,2026-10-31T09:46:33.959096+00:00,BROWSER-GET,https://www.onesti.city/api/data/news?limit=60,200,200,,browser,randare onesti-city
+F,2026-10-31T09:46:33.959133+00:00,BROWSER-GET,https://www.onesti.city/api/data/primarie?limit=10,200,200,,browser,randare onesti-city
+F,2026-10-31T09:46:33.959168+00:00,BROWSER-GET,https://www.onesti.city/api/messages?limit=5&view=text,200,200,,browser,randare onesti-city
+F,2026-10-31T09:46:33.959203+00:00,BROWSER-GET,https://www.onesti.city/api/messages?limit=6&view=photos,200,200,,browser,randare onesti-city
+F,2026-10-31T09:46:33.959238+00:00,BROWSER-GET,https://www.onesti.city/api/data/news?limit=300,200,200,,browser,randare onesti-city
+F,2026-10-31T09:46:33.959272+00:00,BROWSER-GET,https://www.onesti.city/api/data/uv-index,200,200,134,browser,randare onesti-city
+F,2026-10-31T09:47:03.420416+00:00,BROWSER,https://data.vichub.dev/populatie,ok,200,,browser,randare vichub-data
+F,2026-10-31T09:47:03.421250+00:00,BROWSER-POST,https://data.vichub.dev/cdn-cgi/challenge-platform/h/g/precursor/c787ce48cf6b/0.6462148957448114:1793438356:RiOKpXIq3V0t_nzVbCmAdRyAnXfFcjzfXSEdu9pr0P0/a531bc576d2a52b3,200,200,18,browser,randare vichub-data
+F,2026-10-31T09:47:03.421336+00:00,BROWSER-GET,https://data.vichub.dev/data/populatie/serii-uat.json,200,200,,browser,randare vichub-data
+F,2026-10-31T09:47:03.421401+00:00,BROWSER-GET,https://data.vichub.dev/data/recensamant-2021/populatie-uat-2021.json?v=20260222-01,200,200,,browser,randare vichub-data
+F,2026-10-31T09:47:13.175247+00:00,BROWSER,https://monitorul.ai/integritate/statistici,ok,200,,browser,randare monitorul-ai-integritate
+F,2026-10-31T09:47:13.175330+00:00,BROWSER-GET,https://monitorul.ai/integritate/story/geo-counties.topo.json,200,200,,browser,randare monitorul-ai-integritate
+F,2026-10-31T09:47:13.175385+00:00,BROWSER-GET,https://monitorul.ai/integritate/stats/timing.json,200,200,,browser,randare monitorul-ai-integritate
+F,2026-10-31T09:47:13.175435+00:00,BROWSER-GET,https://monitorul.ai/integritate/stats/wealth.json,200,200,,browser,randare monitorul-ai-integritate
+F,2026-10-31T09:47:13.175488+00:00,BROWSER-GET,https://monitorul.ai/integritate/stats/property.json,200,200,,browser,randare monitorul-ai-integritate
+F,2026-10-31T09:47:13.175529+00:00,BROWSER-GET,https://monitorul.ai/integritate/stats/income.json,200,200,,browser,randare monitorul-ai-integritate
+F,2026-10-31T09:47:13.175577+00:00,BROWSER-GET,https://monitorul.ai/integritate/stats/institutions.json,200,200,,browser,randare monitorul-ai-integritate
+F,2026-10-31T09:47:13.175616+00:00,BROWSER-GET,https://monitorul.ai/integritate/stats/counties.json,200,200,,browser,randare monitorul-ai-integritate
+F,2026-10-31T09:47:13.175655+00:00,BROWSER-GET,https://monitorul.ai/integritate/stats/localities.json,200,200,,browser,randare monitorul-ai-integritate
+F,2026-10-31T09:47:13.175694+00:00,BROWSER-GET,https://monitorul.ai/integritate/stats/firms.json,200,200,,browser,randare monitorul-ai-integritate
+F,2026-10-31T09:47:13.175732+00:00,BROWSER-GET,https://monitorul.ai/integritate/stats/cube.json,200,200,,browser,randare monitorul-ai-integritate
+F,2026-10-31T09:47:13.175769+00:00,BROWSER-GET,https://clerk.monitorul.ai/v1/client?__clerk_api_version=2026-08-20&_clerk_js_version=6.41.0,200,200,,browser,randare monitorul-ai-integritate
+F,2026-10-31T09:47:13.175807+00:00,BROWSER-GET,https://monitorul.ai/integritate?_rsc=Wg0YWzB89bDc4oHm,200,200,,browser,randare monitorul-ai-integritate
+F,2026-10-31T09:47:13.175843+00:00,BROWSER-GET,https://clerk.monitorul.ai/v1/environment?__clerk_api_version=2026-08-20&_clerk_js_version=6.41.0,200,200,,browser,randare monitorul-ai-integritate
+F,2026-10-31T09:47:13.175880+00:00,BROWSER-GET,https://monitorul.ai/integritate?_rsc=kRqsagonBzwqVwfq,200,200,,browser,randare monitorul-ai-integritate
+F,2026-10-31T09:47:13.175914+00:00,BROWSER-GET,https://monitorul.ai/integritate/statistici?_rsc=kRqsagonBzwqVwfq,200,200,,browser,randare monitorul-ai-integritate
+F,2026-10-31T09:47:13.175949+00:00,BROWSER-GET,https://monitorul.ai/integritate/trace/array/phc_rvhFYSBoGEFKJgAzUMNN4XUXxp5b7mUfrqScu2SgfsQJ/config?_=1793440031056&ver=1.405.2,200,200,,browser,randare monitorul-ai-integritate
+F,2026-10-31T09:47:21.330011+00:00,BROWSER,https://bucurestiverde.ro/map,ok,200,,browser,randare bucuresti-verde
+F,2026-10-31T09:47:21.330094+00:00,BROWSER-GET,https://bucurestiverde.ro/api/authorizations,200,200,,browser,randare bucuresti-verde
+F,2026-10-31T09:47:21.330195+00:00,BROWSER-GET,https://bucurestiverde.ro/api/complaints,200,200,,browser,randare bucuresti-verde
+F,2026-10-31T09:47:28.357762+00:00,BROWSER,https://vocea-cartierului-tau.ro/program-monitorizare-iluminat-public,ok,200,,browser,randare vocea-cartierului-tau
+F,2026-10-31T09:47:36.792351+00:00,BROWSER,https://amscapat.ro/,ok,200,,browser,randare amscapat
+F,2026-10-31T09:47:36.792448+00:00,BROWSER-POST,https://amscapat.ro/__l5e/trackevents,202,202,17,browser,randare amscapat
+F,2026-10-31T09:48:02.868644+00:00,BROWSER,https://bucuresti.help/map,ok,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:02.868859+00:00,BROWSER-GET,https://bucuresti.help/api/reports/stats,200,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:02.868916+00:00,BROWSER-GET,https://bucuresti.help/api/brand,200,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:02.868967+00:00,BROWSER-GET,https://bucuresti.help/?_rsc=GwwRtTerPLiEJR6D,200,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:02.869008+00:00,BROWSER-GET,https://bucuresti.help/in-presa?_rsc=GwwRtTerPLiEJR6D,200,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:02.869048+00:00,BROWSER-GET,https://bucuresti.help/blog?_rsc=GwwRtTerPLiEJR6D,200,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:02.869088+00:00,BROWSER-GET,https://bucuresti.help/report?_rsc=GwwRtTerPLiEJR6D,200,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:02.869126+00:00,BROWSER-GET,https://bucuresti.help/api/auth/session,200,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:02.869164+00:00,BROWSER-GET,https://bucuresti.help/privacy?_rsc=GwwRtTerPLiEJR6D,200,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:02.869201+00:00,BROWSER-GET,https://bucuresti.help/report/photo?_rsc=GwwRtTerPLiEJR6D,200,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:02.869237+00:00,BROWSER-GET,https://bucuresti.help/suport?_rsc=GwwRtTerPLiEJR6D,200,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:02.869273+00:00,BROWSER-GET,https://bucuresti.help/despre?_rsc=GwwRtTerPLiEJR6D,200,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:02.869308+00:00,BROWSER-GET,https://bucuresti.help/suport?_rsc=NoPD7lt1RLsFNciU,200,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:02.869344+00:00,BROWSER-GET,https://bucuresti.help/puncte-civice?_rsc=GwwRtTerPLiEJR6D,200,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:02.869380+00:00,BROWSER-GET,https://bucuresti.help/report/photo?_rsc=qjvxGzUag2bryWDq,200,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:02.869415+00:00,BROWSER-GET,https://bucuresti.help/privacy?_rsc=LFfFrmbPzTek64Sd,200,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:02.869455+00:00,BROWSER-GET,https://bucuresti.help/api/config?t=1793440074287,200,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:02.869491+00:00,BROWSER-GET,https://bucuresti.help/?_rsc=d4Wif2ZBQ3Psxrbk,200,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:02.869525+00:00,BROWSER-GET,https://bucuresti.help/report?_rsc=YMkxdisyTYMqnwg_,200,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:02.869561+00:00,BROWSER-GET,https://bucuresti.help/blog?_rsc=YNB0bdox87mDDkZ-,200,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:02.869596+00:00,BROWSER-GET,https://bucuresti.help/in-presa?_rsc=-W0e8ymk6dglBVVb,200,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:02.869631+00:00,BROWSER-GET,https://bucuresti.help/api/reports/heatmap?probe=1,200,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:02.869666+00:00,BROWSER-GET,https://bucuresti.help/despre?_rsc=Up8MldGIDteWz6oY,200,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:02.869700+00:00,BROWSER-GET,https://bucuresti.help/puncte-civice?_rsc=CsEvwyW9eTzCPT-6,200,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:02.869735+00:00,BROWSER-GET,https://bucuresti.help/map?_rsc=d4Wif2ZBQ3Psxrbk,200,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:02.869769+00:00,BROWSER-GET,https://bucuresti.help/api/config?t=1793440077548,200,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:02.869804+00:00,BROWSER-GET,https://bucuresti.help/api/reports,200,200,,browser,randare bucuresti-help
+F,2026-10-31T09:48:21.485601+00:00,BROWSER,https://www.evermed.ro/partner/dashboard,timeout,,,browser,randare evermed
+F,2026-10-31T09:48:21.485698+00:00,BROWSER-GET,https://www.evermed.ro/?_rsc=qiJXUbjFkCmfup5k,200,200,,browser,randare evermed
+F,2026-10-31T09:48:21.485767+00:00,BROWSER-GET,https://www.evermed.ro/privacy?_rsc=qiJXUbjFkCmfup5k,200,200,,browser,randare evermed
+F,2026-10-31T09:48:21.485916+00:00,BROWSER-GET,https://www.evermed.ro/?_rsc=-QYm0Be5J0-WeER0,200,200,,browser,randare evermed
+F,2026-10-31T09:48:21.486004+00:00,BROWSER-GET,https://www.evermed.ro/privacy?_rsc=-QYm0Be5J0-WeER0,200,200,,browser,randare evermed
+F,2026-10-31T09:48:35.893366+00:00,BROWSER,https://mariuscomper.uk/pensie-din-bursa/,ok,200,,browser,randare pensie-din-bursa
+F,2026-10-31T09:48:35.893465+00:00,BROWSER-POST,https://mariuscomper.uk/cdn-cgi/challenge-platform/h/g/jsd/oneshot/c787ce48cf6b/0.01403518436563389:1793438356:mWkJKZkQd0SE2mmvPMbZ_N_th5NtwJUFxVMOaWQwe_8/a531bea7ceeee4b6,200,200,0,browser,randare pensie-din-bursa
+F,2026-10-31T09:48:43.468264+00:00,BROWSER,https://www.evermed.ro/,ok,200,,browser,randare evermed
+F,2026-10-31T09:48:43.468340+00:00,BROWSER-GET,https://www.evermed.ro/?_rsc=tXyZJ52UQVBCVsD3,200,200,,browser,randare evermed
+F,2026-10-31T09:48:43.468651+00:00,BROWSER-GET,https://www.evermed.ro/privacy?_rsc=5CB68i4pnAekjehf,200,200,,browser,randare evermed
+F,2026-10-31T09:48:43.468717+00:00,BROWSER-GET,https://www.evermed.ro/auth?redirect=%2F&_rsc=5CB68i4pnAekjehf,200,200,312,browser,randare evermed
+F,2026-10-31T09:48:43.468769+00:00,BROWSER-GET,https://www.evermed.ro/privacy?_rsc=tXyZJ52UQVBCVsD3,200,200,,browser,randare evermed
+F,2026-10-31T09:48:43.468815+00:00,BROWSER-GET,https://www.evermed.ro/auth?redirect=%2F&_rsc=7h4NYy5eoyMcNlUN,200,200,,browser,randare evermed
+F,2026-10-31T09:48:43.468859+00:00,BROWSER-GET,https://www.evermed.ro/auth?redirect=%2F&_rsc=yIp22O3xgPPxC28X,200,200,,browser,randare evermed
+F,2026-10-31T09:48:43.468931+00:00,BROWSER-GET,https://www.evermed.ro/auth?redirect=%2F&_rsc=D37pap4lfd7wGiZx,200,200,944,browser,randare evermed
+F,2026-10-31T09:48:43.468974+00:00,BROWSER-GET,https://www.evermed.ro/auth?_rsc=5CB68i4pnAekjehf,200,200,312,browser,randare evermed
+F,2026-10-31T09:48:43.469018+00:00,BROWSER-GET,https://www.evermed.ro/auth?redirect=%2F&_rsc=8bHfaNurnvKk2Y30,200,200,439,browser,randare evermed
+F,2026-10-31T09:48:56.734958+00:00,BROWSER,https://unde.geo-spatial.org/,ok,200,,browser,randare unde-locuiesc-romanii
+F,2026-10-31T09:48:56.735197+00:00,BROWSER-GET,https://unde.geo-spatial.org/data/live/warnings.json,200,200,,browser,randare unde-locuiesc-romanii
+F,2026-10-31T09:48:56.735265+00:00,BROWSER-GET,https://unde.geo-spatial.org/data/live/forecast/manifest.json,200,200,,browser,randare unde-locuiesc-romanii
+F,2026-10-31T09:48:56.735341+00:00,BROWSER-GET,https://unde.geo-spatial.org/data/gridspec.json,200,200,,browser,randare unde-locuiesc-romanii
+F,2026-10-31T09:48:56.735387+00:00,BROWSER-GET,https://unde.geo-spatial.org/data/registry.json,200,200,,browser,randare unde-locuiesc-romanii
+F,2026-10-31T09:48:56.735433+00:00,BROWSER-GET,https://unde.geo-spatial.org/assets/duckdb-eh-9ubY-jlA.wasm,200,200,,browser,randare unde-locuiesc-romanii
+F,2026-10-31T09:48:56.735476+00:00,BROWSER-GET,https://unde.geo-spatial.org/data/country_line.geojson,200,200,,browser,randare unde-locuiesc-romanii
+F,2026-10-31T09:48:56.735526+00:00,BROWSER-GET,https://unde.geo-spatial.org/data/hospitals.geojson,200,200,,browser,randare unde-locuiesc-romanii
+F,2026-10-31T09:48:56.735568+00:00,BROWSER-GET,https://unde.geo-spatial.org/data/live/warnings.geojson,200,200,42,browser,randare unde-locuiesc-romanii
+F,2026-10-31T09:48:56.735618+00:00,BROWSER-GET,https://unde.geo-spatial.org/data/county.geojson,200,200,,browser,randare unde-locuiesc-romanii
+F,2026-10-31T09:48:56.735659+00:00,BROWSER-HEAD,https://unde.geo-spatial.org/data/core.parquet,200,200,5407955,browser,randare unde-locuiesc-romanii
+F,2026-10-31T09:48:56.735708+00:00,BROWSER-GET,https://unde.geo-spatial.org/data/core.parquet,200,200,5407955,browser,randare unde-locuiesc-romanii
+F,2026-10-31T09:48:56.735750+00:00,BROWSER-HEAD,https://unde.geo-spatial.org/data/env.parquet,200,200,16723738,browser,randare unde-locuiesc-romanii
+F,2026-10-31T09:49:59.293302+00:00,GET,https://data.vichub.dev/data/populatie/serii-uat.json,ok,200,150001,nu,Bounded samples of public data requests seen in the browser
+F,2026-10-31T09:49:59.411484+00:00,GET,https://data.vichub.dev/data/recensamant-2021/populatie-uat-2021.json?v=20260222-01,ok,200,150001,nu,Bounded samples of public data requests seen in the browser
+F,2026-10-31T09:49:59.736211+00:00,GET,https://bucurestiverde.ro/api/authorizations,ok,200,150001,nu,Bounded samples of public data requests seen in the browser
+F,2026-10-31T09:50:00.522279+00:00,GET,https://bucuresti.help/api/reports/heatmap?probe=1,ok,200,16,nu,Bounded samples of public data requests seen in the browser
+F,2026-10-31T09:50:00.735107+00:00,GET,https://bucuresti.help/api/reports,ok,200,150001,nu,Bounded samples of public data requests seen in the browser
+F,2026-10-31T09:50:00.952351+00:00,GET,https://www.onesti.city/api/data/news?limit=60,ok,200,48721,nu,Bounded samples of public data requests seen in the browser
+F,2026-10-31T09:50:01.118305+00:00,GET,https://www.onesti.city/api/data/primarie?limit=10,ok,200,13027,nu,Bounded samples of public data requests seen in the browser
+F,2026-10-31T09:50:01.281212+00:00,GET,https://www.onesti.city/api/data/air-quality,ok,200,158,nu,Bounded samples of public data requests seen in the browser
+F,2026-10-31T09:51:56.737007+00:00,GET,https://monitorul.ai/integritate/stats/firms.json,ok,200,8664,nu,inventar
+F,2026-10-31T09:51:56.849388+00:00,GET,https://monitorul.ai/integritate/stats/cube.json,ok,200,168684,nu,inventar
+F,2026-10-31T09:51:56.961661+00:00,GET,https://monitorul.ai/integritate/stats/localities.json,ok,200,153385,nu,inventar
+G,2026-10-31T10:02:47.044608+00:00,BROWSER,https://ai-aflat.ro/,ok,200,,browser,randare ai-aflat
+G,2026-10-31T10:02:47.595435+00:00,BROWSER,https://monarhdef.ro/,ok,200,,browser,randare monarh-ai
+G,2026-10-31T10:02:47.595525+00:00,BROWSER-GET,https://monarhdef.ro/wp-content/uploads/monarh/puls_2026-10-31.json?t=29890682,200,200,1657,browser,randare monarh-ai
+G,2026-10-31T10:02:47.595585+00:00,BROWSER-GET,https://monarhdef.ro/wp-content/uploads/monarh/scan_2026-10-31.json?t=29890682,200,200,2981,browser,randare monarh-ai
+G,2026-10-31T10:02:47.807813+00:00,BROWSER,https://redirectioneaza.ro/,ok,200,,browser,randare redirectioneaza
+G,2026-10-31T10:02:48.364388+00:00,BROWSER,https://www.testvot.eu/,ok,200,,browser,randare testvot
+G,2026-10-31T10:02:48.364461+00:00,BROWSER-GET,https://www.testvot.eu/api/users/me,401,401,126,browser,randare testvot
+G,2026-10-31T10:02:50.939151+00:00,BROWSER,https://semnal.eu/ro/razboi-hibrid/,ok,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.939242+00:00,BROWSER-POST,https://semnal.eu/cdn-cgi/challenge-platform/h/g/jsd/oneshot/c787ce48cf6b/0.01403518436563389:1793438356:mWkJKZkQd0SE2mmvPMbZ_N_th5NtwJUFxVMOaWQwe_8/a531d36f7e793793,200,200,0,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.939419+00:00,BROWSER-GET,https://semnal.eu/ro/newsletter/?_rsc=MdgZyj_8Mn_4ifGj,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.939471+00:00,BROWSER-GET,https://semnal.eu/ro/cookies/?_rsc=MdgZyj_8Mn_4ifGj,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.939518+00:00,BROWSER-GET,https://semnal.eu/ro/politica/?_rsc=MdgZyj_8Mn_4ifGj,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.939563+00:00,BROWSER-GET,https://semnal.eu/ro/?_rsc=MdgZyj_8Mn_4ifGj,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.939605+00:00,BROWSER-GET,https://semnal.eu/ro/international/?_rsc=MdgZyj_8Mn_4ifGj,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.939646+00:00,BROWSER-GET,https://semnal.eu/ro/confidentialitate/?_rsc=MdgZyj_8Mn_4ifGj,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.939688+00:00,BROWSER-GET,https://semnal.eu/ro/asociatie/?_rsc=MdgZyj_8Mn_4ifGj,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.939729+00:00,BROWSER-GET,https://semnal.eu/ro/stiri-pe-scurt/?_rsc=MdgZyj_8Mn_4ifGj,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.939771+00:00,BROWSER-GET,https://semnal.eu/ro/auth/login/?_rsc=MdgZyj_8Mn_4ifGj,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.939812+00:00,BROWSER-GET,https://semnal.eu/ro/cautare/?_rsc=MdgZyj_8Mn_4ifGj,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.939863+00:00,BROWSER-GET,https://semnal.eu/ro/jocuri/?_rsc=MdgZyj_8Mn_4ifGj,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.939905+00:00,BROWSER-GET,https://semnal.eu/ro/dosare/?_rsc=MdgZyj_8Mn_4ifGj,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.939946+00:00,BROWSER-GET,https://semnal.eu/ro/cookies/?_rsc=OMqFa5cEJE2r50j1,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.939988+00:00,BROWSER-GET,https://semnal.eu/ro/confidentialitate/?_rsc=THxdk-igO9FGQD_2,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.940029+00:00,BROWSER-GET,https://semnal.eu/ro/newsletter/?_rsc=uOytRHtbeAf1u-i2,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.940070+00:00,BROWSER-GET,https://semnal.eu/ro/cookies/?_rsc=LB8WsgEAiK52z9yh,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.940159+00:00,BROWSER-GET,https://semnal.eu/ro/?_rsc=uFJXy1ugau-1ieas,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.940312+00:00,BROWSER-GET,https://semnal.eu/ro/international/?_rsc=VlgchaNSZhjsIyQP,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.940373+00:00,BROWSER-GET,https://semnal.eu/ro/politica/?_rsc=VlgchaNSZhjsIyQP,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.940425+00:00,BROWSER-GET,https://semnal.eu/ro/economie/?_rsc=VlgchaNSZhjsIyQP,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.940474+00:00,BROWSER-GET,https://semnal.eu/ro/societate/?_rsc=VlgchaNSZhjsIyQP,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.940519+00:00,BROWSER-GET,https://semnal.eu/ro/ctrl/?_rsc=VlgchaNSZhjsIyQP,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.940562+00:00,BROWSER-GET,https://semnal.eu/ro/perspective/?_rsc=VlgchaNSZhjsIyQP,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.940605+00:00,BROWSER-GET,https://semnal.eu/ro/drive/?_rsc=VlgchaNSZhjsIyQP,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.940649+00:00,BROWSER-GET,https://semnal.eu/ro/astrologie/?_rsc=VlgchaNSZhjsIyQP,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.940692+00:00,BROWSER-GET,https://semnal.eu/ro/asociatie/?_rsc=GuX9htcjAdxXyP5l,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.940734+00:00,BROWSER-GET,https://semnal.eu/ro/semnal-magazin/?_rsc=VlgchaNSZhjsIyQP,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.940776+00:00,BROWSER-GET,https://semnal.eu/ro/stiri-pe-scurt/?_rsc=T0x4l_M_2iBEqw5A,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.940816+00:00,BROWSER-GET,https://semnal.eu/ro/auth/login/?_rsc=VlgchaNSZhjsIyQP,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.940856+00:00,BROWSER-GET,https://semnal.eu/ro/cautare/?_rsc=VlgchaNSZhjsIyQP,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.940897+00:00,BROWSER-GET,https://semnal.eu/ro/evenimente/?_rsc=VlgchaNSZhjsIyQP,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.940941+00:00,BROWSER-GET,https://semnal.eu/ro/sport/?_rsc=VlgchaNSZhjsIyQP,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.940981+00:00,BROWSER-GET,https://semnal.eu/ro/jocuri/?_rsc=x0FggZ_u_13Cft8Q,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.941020+00:00,BROWSER-GET,https://semnal.eu/ro/travel/?_rsc=VlgchaNSZhjsIyQP,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.941060+00:00,BROWSER-GET,https://semnal.eu/ro/semnal-de-razboi/?_rsc=VlgchaNSZhjsIyQP,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:50.941100+00:00,BROWSER-GET,https://semnal.eu/ro/dosare/?_rsc=9wyZQc_4V1xCik9L,200,200,,browser,randare semnal-razboiul-hibrid
+G,2026-10-31T10:02:51.607353+00:00,BROWSER,https://destraja.ro/,ok,200,,browser,randare destraja
+G,2026-10-31T10:02:51.607429+00:00,BROWSER-GET,https://destraja.ro/senat.txt?_rsc=1p-R_iEY6bj0jY31,200,200,,browser,randare destraja
+G,2026-10-31T10:02:51.607487+00:00,BROWSER-GET,https://destraja.ro/camera.txt?_rsc=1p-R_iEY6bj0jY31,200,200,,browser,randare destraja
+G,2026-10-31T10:02:51.607536+00:00,BROWSER-GET,https://destraja.ro/parlamentari.txt?_rsc=1p-R_iEY6bj0jY31,200,200,,browser,randare destraja
+G,2026-10-31T10:02:51.607583+00:00,BROWSER-GET,https://destraja.ro/presa.txt?_rsc=1p-R_iEY6bj0jY31,200,200,,browser,randare destraja
+G,2026-10-31T10:02:51.607626+00:00,BROWSER-GET,https://destraja.ro/metodologie.txt?_rsc=1p-R_iEY6bj0jY31,200,200,,browser,randare destraja
+G,2026-10-31T10:02:51.607797+00:00,BROWSER-GET,https://destraja.ro/abonare.txt?_rsc=1p-R_iEY6bj0jY31,200,200,,browser,randare destraja
+G,2026-10-31T10:02:51.607883+00:00,BROWSER-GET,https://destraja.ro/confidentialitate.txt?_rsc=1p-R_iEY6bj0jY31,200,200,,browser,randare destraja
+G,2026-10-31T10:02:51.607936+00:00,BROWSER-GET,https://destraja.ro/legi/b563-2026.txt?_rsc=1p-R_iEY6bj0jY31,200,200,,browser,randare destraja
+G,2026-10-31T10:02:59.612718+00:00,BROWSER,https://www.tipizatul.eu/,timeout,,,browser,randare tipizatul
+G,2026-10-31T10:02:59.612721+00:00,BROWSER,https://radardigital.ro/,timeout,,,browser,randare radar-digital
+G,2026-10-31T10:02:59.613935+00:00,BROWSER,https://econtractauto.ro/,timeout,,,browser,randare econtractauto
+G,2026-10-31T10:02:59.614012+00:00,BROWSER-POST,https://econtractauto.ro/__l5e/trackevents,202,202,17,browser,randare econtractauto
+G,2026-10-31T10:02:59.614515+00:00,BROWSER-GET,https://econtractauto.ro/templates/contract-template-2026.pdf,200,200,333750,browser,randare econtractauto

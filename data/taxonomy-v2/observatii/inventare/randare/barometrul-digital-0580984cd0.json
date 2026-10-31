@@ -1,0 +1,95 @@
+{
+  "versiune": 1,
+  "proiect": "barometrul-digital",
+  "url_cerut": "https://barometrul-digital.ro/catalog/",
+  "url_final": "https://barometrul-digital.ro/catalog/",
+  "stare": "ok",
+  "http_status": 200,
+  "titlu": "Catalogul instituțiilor · Barometrul Digital",
+  "randat_la": "2026-10-30T23:39:15.360165+00:00",
+  "text_randat": null,
+  "text_lungime": 3197,
+  "text_sha256": "080b2e4c602b6fd3aff0df031c2ada7d60e6be49ea3441753d5c5aeb580e4ed9",
+  "controale_vizibile": [
+    {
+      "tag": "input",
+      "name": "q",
+      "id": null,
+      "type": "search",
+      "label": "Caută instituția",
+      "options": null
+    },
+    {
+      "tag": "select",
+      "name": "judet",
+      "id": null,
+      "type": "select-one",
+      "label": "Județ",
+      "options": [
+        "Toate județele",
+        "Alba",
+        "Arad",
+        "Argeș",
+        "Bacău",
+        "Bihor",
+        "Bistrița-Năsăud",
+        "Botoșani",
+        "Brașov",
+        "Brăila",
+        "București",
+        "Buzău"
+      ]
+    },
+    {
+      "tag": "select",
+      "name": "categorie",
+      "id": null,
+      "type": "select-one",
+      "label": "Categorie",
+      "options": [
+        "Toate categoriile",
+        "Consiliu județean",
+        "Instituție centrală",
+        "Operator de apă",
+        "Operator de energie",
+        "Prefectură",
+        "Primărie",
+        "Spital județean"
+      ]
+    },
+    {
+      "tag": "select",
+      "name": "sort",
+      "id": null,
+      "type": "select-one",
+      "label": "Ordonare",
+      "options": [
+        "alfabetic",
+        "după notă"
+      ]
+    },
+    {
+      "tag": "input",
+      "name": "email",
+      "id": "email-abonare",
+      "type": "email",
+      "label": "adresa@exemplu.ro",
+      "options": null
+    }
+  ],
+  "cereri_date": [
+    {
+      "metoda": "GET",
+      "url": "https://barometrul-digital.ro/api/cauta?pagina=1",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    }
+  ],
+  "corpuri_pastrate": [
+    "https://barometrul-digital.ro/api/cauta?pagina=1"
+  ],
+  "corpuri_omise": [],
+  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+}

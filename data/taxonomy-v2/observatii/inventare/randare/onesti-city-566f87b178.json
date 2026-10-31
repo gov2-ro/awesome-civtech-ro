@@ -1,0 +1,168 @@
+{
+  "versiune": 1,
+  "proiect": "onesti-city",
+  "url_cerut": "https://www.onesti.city/",
+  "url_final": "https://www.onesti.city/",
+  "stare": "ok",
+  "http_status": 200,
+  "titlu": "Onești City — Radioul, știrile și vremea orașului",
+  "randat_la": "2026-10-31T09:46:33.957850+00:00",
+  "text_randat": null,
+  "text_lungime": 14029,
+  "text_sha256": "686f04501dea5af9edf34efda83595ddaf508bbd14601a8a7d8806e7645d8c3f",
+  "controale_vizibile": [
+    {
+      "tag": "input",
+      "name": null,
+      "id": "home-radio-volume",
+      "type": "range",
+      "label": "Volum",
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": "name",
+      "id": "home-message-name",
+      "type": "text",
+      "label": "Cum te numești?",
+      "options": null
+    },
+    {
+      "tag": "textarea",
+      "name": "message",
+      "id": "home-message-text",
+      "type": "textarea",
+      "label": "O idee, un gând sau o dedicație…",
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": null,
+      "type": "text",
+      "label": null,
+      "options": null
+    }
+  ],
+  "cereri_date": [
+    {
+      "metoda": "GET",
+      "url": "https://www.onesti.city/api/data/weather",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": 391
+    },
+    {
+      "metoda": "GET",
+      "url": "https://www.onesti.city/api/data/now-playing",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": 590
+    },
+    {
+      "metoda": "GET",
+      "url": "https://www.onesti.city/api/sondaj/current?voter=ea8836d7d7e1df46bfd54ad781f261ee",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": 415
+    },
+    {
+      "metoda": "GET",
+      "url": "https://www.onesti.city/api/data/listeners-today",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": 104
+    },
+    {
+      "metoda": "GET",
+      "url": "https://www.onesti.city/api/data/nameday",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": 202
+    },
+    {
+      "metoda": "GET",
+      "url": "https://www.onesti.city/api/data/exchange-rates",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": 647
+    },
+    {
+      "metoda": "GET",
+      "url": "https://www.onesti.city/api/data/air-quality",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": 158
+    },
+    {
+      "metoda": "GET",
+      "url": "https://www.onesti.city/api/data/news?limit=60",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://www.onesti.city/api/data/primarie?limit=10",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://www.onesti.city/api/messages?limit=5&view=text",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://www.onesti.city/api/messages?limit=6&view=photos",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://www.onesti.city/api/data/news?limit=300",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://www.onesti.city/api/data/uv-index",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": 134
+    }
+  ],
+  "corpuri_pastrate": [
+    "https://www.onesti.city/api/data/weather",
+    "https://www.onesti.city/api/data/now-playing",
+    "https://www.onesti.city/api/sondaj/current?voter=ea8836d7d7e1df46bfd54ad781f261ee",
+    "https://www.onesti.city/api/data/listeners-today",
+    "https://www.onesti.city/api/data/nameday",
+    "https://www.onesti.city/api/data/exchange-rates"
+  ],
+  "corpuri_omise": [
+    {
+      "url": "https://www.onesti.city/api/data/news?limit=300",
+      "motiv": "body of 274737 bytes is over the 200000 limit"
+    }
+  ],
+  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+}

@@ -1,0 +1,280 @@
+{
+  "versiune": 1,
+  "proiect": "bucuresti-help",
+  "url_cerut": "https://bucuresti.help/map",
+  "url_final": "https://bucuresti.help/map",
+  "stare": "ok",
+  "http_status": 200,
+  "titlu": "Harta sesizărilor din București | bucuresti.help",
+  "randat_la": "2026-10-31T09:48:02.867928+00:00",
+  "text_randat": null,
+  "text_lungime": 1524,
+  "text_sha256": "52674782f666bd782f3cf8e032ad467435e39479938743ab749b95e3598c05ed",
+  "controale_vizibile": [],
+  "cereri_date": [
+    {
+      "metoda": "GET",
+      "url": "https://bucuresti.help/api/reports/stats",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://bucuresti.help/api/brand",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://bucuresti.help/?_rsc=GwwRtTerPLiEJR6D",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://bucuresti.help/in-presa?_rsc=GwwRtTerPLiEJR6D",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://bucuresti.help/blog?_rsc=GwwRtTerPLiEJR6D",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://bucuresti.help/report?_rsc=GwwRtTerPLiEJR6D",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://bucuresti.help/api/auth/session",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://bucuresti.help/privacy?_rsc=GwwRtTerPLiEJR6D",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://bucuresti.help/report/photo?_rsc=GwwRtTerPLiEJR6D",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://bucuresti.help/suport?_rsc=GwwRtTerPLiEJR6D",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://bucuresti.help/despre?_rsc=GwwRtTerPLiEJR6D",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://bucuresti.help/suport?_rsc=NoPD7lt1RLsFNciU",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://bucuresti.help/puncte-civice?_rsc=GwwRtTerPLiEJR6D",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://bucuresti.help/report/photo?_rsc=qjvxGzUag2bryWDq",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://bucuresti.help/privacy?_rsc=LFfFrmbPzTek64Sd",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://bucuresti.help/api/config?t=1793440074287",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://bucuresti.help/?_rsc=d4Wif2ZBQ3Psxrbk",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://bucuresti.help/report?_rsc=YMkxdisyTYMqnwg_",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://bucuresti.help/blog?_rsc=YNB0bdox87mDDkZ-",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://bucuresti.help/in-presa?_rsc=-W0e8ymk6dglBVVb",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://bucuresti.help/api/reports/heatmap?probe=1",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://bucuresti.help/despre?_rsc=Up8MldGIDteWz6oY",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://bucuresti.help/puncte-civice?_rsc=CsEvwyW9eTzCPT-6",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://bucuresti.help/map?_rsc=d4Wif2ZBQ3Psxrbk",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://bucuresti.help/api/config?t=1793440077548",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://bucuresti.help/api/reports",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": null
+    }
+  ],
+  "corpuri_pastrate": [
+    "https://bucuresti.help/api/reports/stats",
+    "https://bucuresti.help/api/brand",
+    "https://bucuresti.help/api/auth/session"
+  ],
+  "corpuri_omise": [
+    {
+      "url": "https://tiles.openfreemap.org/styles/liberty",
+      "motiv": "Error: Response.body: Protocol error (Network.getResponseBody): No resource with given identifier found\nResponse body is not av"
+    },
+    {
+      "url": "https://tiles.openfreemap.org/styles/liberty",
+      "motiv": "Error: Response.body: Protocol error (Network.getResponseBody): No resource with given identifier found\nResponse body is not av"
+    },
+    {
+      "url": "https://bucuresti.help/api/auth/session",
+      "motiv": "Error: Response.body: Protocol error (Network.getResponseBody): No resource with given identifier found\nResponse body is not av"
+    },
+    {
+      "url": "https://tiles.openfreemap.org/planet",
+      "motiv": "Error: Response.body: Protocol error (Network.getResponseBody): No resource with given identifier found\nResponse body is not av"
+    },
+    {
+      "url": "https://tiles.openfreemap.org/sprites/ofm_f384/ofm.json",
+      "motiv": "Error: Response.body: Protocol error (Network.getResponseBody): No resource with given identifier found\nResponse body is not av"
+    },
+    {
+      "url": "https://tiles.openfreemap.org/planet",
+      "motiv": "Error: Response.body: Protocol error (Network.getResponseBody): No resource with given identifier found\nResponse body is not av"
+    },
+    {
+      "url": "https://tiles.openfreemap.org/sprites/ofm_f384/ofm.json",
+      "motiv": "Error: Response.body: Protocol error (Network.getResponseBody): No resource with given identifier found\nResponse body is not av"
+    },
+    {
+      "url": "https://bucuresti.help/api/config?t=1793440074287",
+      "motiv": "Error: Response.body: Protocol error (Network.getResponseBody): No resource with given identifier found\nResponse body is not av"
+    },
+    {
+      "url": "https://bucuresti.help/api/reports/heatmap?probe=1",
+      "motiv": "Error: Response.body: Protocol error (Network.getResponseBody): No resource with given identifier found\nResponse body is not av"
+    },
+    {
+      "url": "https://bucuresti.help/api/reports/heatmap?probe=1",
+      "motiv": "Error: Response.body: Protocol error (Network.getResponseBody): No resource with given identifier found\nResponse body is not av"
+    },
+    {
+      "url": "https://bucuresti.help/api/reports",
+      "motiv": "body of 536308 bytes is over the 200000 limit"
+    },
+    {
+      "url": "https://bucuresti.help/api/reports",
+      "motiv": "body of 536308 bytes is over the 200000 limit"
+    }
+  ],
+  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+}

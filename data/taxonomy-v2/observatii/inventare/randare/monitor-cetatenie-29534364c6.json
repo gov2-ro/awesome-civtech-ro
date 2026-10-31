@@ -1,0 +1,27 @@
+{
+  "versiune": 1,
+  "proiect": "monitor-cetatenie",
+  "url_cerut": "https://www.gregorieu.com/cetatenie/ro",
+  "url_final": "https://www.gregorieu.com/cetatenie/ro",
+  "stare": "ok",
+  "http_status": 200,
+  "titlu": "Panou Cetățenie",
+  "randat_la": "2026-10-30T23:40:01.711385+00:00",
+  "text_randat": null,
+  "text_lungime": 2579,
+  "text_sha256": "39056ebf585ada282b03bb101a6221680e04f34061e3d278bdce066ba3ab6fea",
+  "controale_vizibile": [],
+  "cereri_date": [
+    {
+      "metoda": "POST",
+      "url": "https://www.gregorieu.com/cdn-cgi/challenge-platform/h/g/precursor/c787ce48cf6b/0.7093295905512849:1793402057:BiP7MbVS8HkHZQ3vJyDFYdKrB-1U2NOrpe9xFw--PCs/a52e4331a8d0e44a",
+      "tip_resursa": "xhr",
+      "http_status": 200,
+      "content_type": "application/json",
+      "octeti": 18
+    }
+  ],
+  "corpuri_pastrate": [],
+  "corpuri_omise": [],
+  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+}

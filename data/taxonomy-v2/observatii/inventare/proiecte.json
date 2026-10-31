@@ -277,7 +277,7 @@
       "slug": "antibunk",
       "nume": "Antibunk",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "Identificarea și combaterea dezinformării online",
       "permite": [
         "Verifică fapte",
@@ -293,11 +293,13 @@
         "slug": "antibunk"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "3610a8b1ce588f1c3805",
+        "0d7ea34130336d825e53"
+      ],
+      "campuri_din_surse": 93,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
@@ -468,11 +470,12 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "de173b378597934e7b1f"
+      ],
+      "campuri_din_surse": 12,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
@@ -536,18 +539,20 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "ba4c1371d148a5de2ec8",
+        "22e6f7c56991df67a333"
+      ],
+      "campuri_din_surse": 33,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
       "slug": "bucuresti-verde",
       "nume": "București Verde",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "Documentarea și sesizarea tăierilor de arbori",
       "permite": [
         "Trimite sau urmărește o sesizare",
@@ -562,11 +567,13 @@
         "slug": "bucuresti-verde"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "fd60fac46dd01576ff03",
+        "5883327dbe9e6a257354"
+      ],
+      "campuri_din_surse": 29,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
     },
@@ -872,10 +879,10 @@
           "stare_tip": "control-html-candidat",
           "dovada": {
             "url": "https://cefacpoliticienii.ro/",
-            "sha256": "adc235332fcb3d0d5fd0655328b81aefd5ed5c09b2f57879797018fad60a26cb",
+            "sha256": "199a90e80d56c748fec5fd8d0784d69d4d3eb901eb282db6a550980b18584493",
             "sha256_lista_controale": "c4ef3d1794da3606c16cfe0d0f837966af8f213a336cdbf2af7030dd60221055",
             "pointer_snapshot": "/input_candidates/0",
-            "snapshot": "documentare/pagini/6692c7ba325a30879d5c913d.json"
+            "snapshot": "documentare/pagini/b48b525565dc0b36b214619d.json"
           }
         }
       ],
@@ -2062,11 +2069,20 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "22b205c2c1da4cc5ea3c",
+        "760e9cd26b5d72896766",
+        "babf14d6ec0cc3480ea2",
+        "8b601dd1b222b3fa0ba3",
+        "3abff1a04c83eb868a43",
+        "9eaf24ec6d93cb9dac95",
+        "6b3a52a79c14ea6ca468",
+        "b50524c924f3729cdce3",
+        "8200d38b2c5bc0be04df"
+      ],
+      "campuri_din_surse": 324,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
     },
@@ -2807,11 +2823,13 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "6fb8308549cfd1becaef",
+        "7225bb6e1fbb88048002"
+      ],
+      "campuri_din_surse": 78,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
     },
@@ -2960,18 +2978,20 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "cd534d856596e2b803a6",
+        "4b9c043749781e3b1d85"
+      ],
+      "campuri_din_surse": 21,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
       "slug": "monitor-cetatenie",
       "nume": "Monitor cetățenie",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "Statistici despre cererile de cetățenie română",
       "permite": [
         "Monitorizează",
@@ -2985,11 +3005,12 @@
         "slug": "monitor-cetatenie"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "29534364c6bd7b6edd9f"
+      ],
+      "campuri_din_surse": 40,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
     },
@@ -3018,10 +3039,10 @@
           "stare_tip": "control-html-candidat",
           "dovada": {
             "url": "https://monitorenergie.ro/",
-            "sha256": "ee5ebf961a1c6bf2fc3f73f2658262215da1317517a255136c2a2d294b70ccc7",
+            "sha256": "663268d260855d40f2d42b348887fc00938b047e17a3a46aee6845c6f456b215",
             "sha256_lista_controale": "a62bcc041e4fedc2a6d4e32ac3d20ae689bec60dda6f2ca99591cb7221b3585e",
             "pointer_snapshot": "/input_candidates/0",
-            "snapshot": "documentare/pagini/a4e622f2775bdc4656685c57.json"
+            "snapshot": "documentare/pagini/647c02c995262cbf1ba3891d.json"
           }
         },
         {
@@ -3032,10 +3053,10 @@
           "stare_tip": "control-html-candidat",
           "dovada": {
             "url": "https://monitorenergie.ro/",
-            "sha256": "ee5ebf961a1c6bf2fc3f73f2658262215da1317517a255136c2a2d294b70ccc7",
+            "sha256": "663268d260855d40f2d42b348887fc00938b047e17a3a46aee6845c6f456b215",
             "sha256_lista_controale": "a62bcc041e4fedc2a6d4e32ac3d20ae689bec60dda6f2ca99591cb7221b3585e",
             "pointer_snapshot": "/input_candidates/1",
-            "snapshot": "documentare/pagini/a4e622f2775bdc4656685c57.json"
+            "snapshot": "documentare/pagini/647c02c995262cbf1ba3891d.json"
           }
         }
       ],
@@ -3392,11 +3413,14 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "4b24ef635530654dd209",
+        "d1d1265403464d35bf2f",
+        "4852f2f5ed04f3a8f5ac"
+      ],
+      "campuri_din_surse": 40,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
@@ -3794,10 +3818,10 @@
           "stare_tip": "control-html-candidat",
           "dovada": {
             "url": "https://redirectioneaza.ro/",
-            "sha256": "fe170944a2d2c9712e0c3a5cf14b3245c0d4a5f9cd1d7db46bd00e94f6745e3d",
+            "sha256": "a3d07a92fbcc001dbc1918e6b2846cb9a028c4d8263a11dc9cec2d6379d319cb",
             "sha256_lista_controale": "2458ee85303ba160279d20bdda2bd748ce6df9cc15293acfcdfdb1b3085509eb",
             "pointer_snapshot": "/input_candidates/0",
-            "snapshot": "documentare/pagini/31a3e2cd4204e8099eb22f25.json"
+            "snapshot": "documentare/pagini/e67da870817926dd1cd6fa2c.json"
           }
         }
       ],
@@ -4653,7 +4677,7 @@
       "slug": "unde-locuiesc-romanii",
       "nume": "Unde locuiesc românii?",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "Date despre populație, pe hartă",
       "permite": [
         "Analizează date"
@@ -4666,11 +4690,15 @@
         "slug": "unde-locuiesc-romanii"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "071f813be57c49d905c9",
+        "96a2a4747bbb11e5a615",
+        "25f198fdc166d3dfa8a3",
+        "4d55fe7e9f6a3a79a38b"
+      ],
+      "campuri_din_surse": 117,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
     },
@@ -4722,7 +4750,7 @@
       "slug": "vichub-data",
       "nume": "VicHub Data",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "Date publice despre România, în grafice și hărți",
       "permite": [
         "Analizează date"
@@ -4736,11 +4764,13 @@
         "slug": "vichub-data"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "37bef5d7813d8f9688fc",
+        "6e04478bfb8943ccdea7"
+      ],
+      "campuri_din_surse": 19,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
     },
@@ -5450,7 +5480,7 @@
           "dovada": {
             "url": "https://semnal.eu/ro/razboi-hibrid/",
             "sha256": "f8605ef3ffb2b32e085f8790cc09a720091c95d1050ea5e9bee2eea1ef74cc61",
-            "sha256_lista_controale": "d1c4a3ba91106105651e394444028e0b431ea41b05d35b8989a7b306211f9623",
+            "sha256_lista_controale": "b08372d0970d482b8748d35e2d03283487c9c5de0f0d544ecc7a52aa4a61d314",
             "pointer_snapshot": "/input_candidates/0",
             "snapshot": "documentare/pagini/7c7e2933a126073b2248a974.json"
           }
@@ -5464,7 +5494,7 @@
           "dovada": {
             "url": "https://semnal.eu/ro/razboi-hibrid/",
             "sha256": "f8605ef3ffb2b32e085f8790cc09a720091c95d1050ea5e9bee2eea1ef74cc61",
-            "sha256_lista_controale": "d1c4a3ba91106105651e394444028e0b431ea41b05d35b8989a7b306211f9623",
+            "sha256_lista_controale": "b08372d0970d482b8748d35e2d03283487c9c5de0f0d544ecc7a52aa4a61d314",
             "pointer_snapshot": "/input_candidates/3",
             "snapshot": "documentare/pagini/7c7e2933a126073b2248a974.json"
           }
@@ -8065,7 +8095,7 @@
       "slug": "destraja",
       "nume": "destrajă.ro",
       "stare": "propunere",
-      "completitudine": "partial",
+      "completitudine": "neconfirmat",
       "scop": "Proiectele de lege din consultare la Senat, explicate și evaluate de trei modele AI",
       "permite": [
         "Monitorizează",
@@ -8080,22 +8110,7 @@
         "tabel": "intrari.csv",
         "slug": "destraja"
       },
-      "intrari_utilizator": [
-        {
-          "nume": "Caută: avocați, impozit, pensii, B563…",
-          "rol": "control-utilizator",
-          "tip_control_html": "search",
-          "descriere": "Caută: avocați, impozit, pensii, B563…",
-          "stare_tip": "control-html-candidat",
-          "dovada": {
-            "url": "https://destraja.ro/",
-            "sha256": "57e2093b0195e2cbfb4a159aa2906af09fd486c7dfcc6514903c9939f076db70",
-            "sha256_lista_controale": "374199e4fe69e3759704bb37ece8d6526d3e92df3dff2019382bde2236486fd2",
-            "pointer_snapshot": "/input_candidates/0",
-            "snapshot": "documentare/pagini/92175c95e12c8ab2359ed797.json"
-          }
-        }
-      ],
+      "intrari_utilizator": [],
       "surse_structurate": [],
       "campuri_din_surse": 0,
       "lacune": [
@@ -8192,8 +8207,7 @@
       "campuri_din_surse": 0,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
-        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
       ]
     }
   ]
