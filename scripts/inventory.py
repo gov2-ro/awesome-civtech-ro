@@ -48,6 +48,7 @@ from inventory_apidocs import operations as api_operations
 from inventory_csvcards import csv_datasets
 from inventory_datasette import FORMAT as DATASETTE, database as datasette_database, is_listing as is_datasette, read as datasette_fields
 from inventory_ins import ins_dataset, ins_listing, ins_measure, is_listing
+from inventory_rsc import FORMAT as RSC_JSON, extract as rsc_document
 from inventory_jsonsample import FORMAT as JSON_SAMPLE, list_sizes, recover as recover_json
 from inventory_literals import POSITIONAL_WIDTH, datasets as literal_datasets, declarations as literal_declarations, indented_names, keyed_object, omitted_names
 from inventory_persons import (MARK, READERS as PERSON_READERS, body_values, candidates, is_marked, leaks, mark_errors, occurs,
@@ -283,6 +284,12 @@ def parse_source(body, url, content_type='', hint=None):
             raise ValueError('The YAML document is not an OpenAPI contract: it has no member `openapi` or `swagger` with a version number')
         fields = openapi_fields(document, lines)
         return 'openapi', fields, len(fields) >= MAX_FIELDS
+    if kind == RSC_JSON:
+        document = rsc_document(body)
+        fields = observed_fields(document, True)
+        if not fields:
+            raise ValueError('The payload holds no field')
+        return RSC_JSON, fields, len(fields) >= MAX_FIELDS or sampling_limit(document)
     if kind == JSON_SAMPLE:
         document, complete = recover_json(body)
         fields = observed_fields(document, complete)
@@ -445,7 +452,7 @@ def analyse_source(response, hint=None, persons=False):
                 raise ValueError(f'A source with persons is read as {", ".join(PERSON_READERS)}, not as {fmt}: the other readers copy text')
             fields = safe_fields(fields)
         metadata.update(format=fmt, campuri=fields, stare='analizat', completitudine='partial', limita_atinsa=truncated,
-                        baza_tipului=('esantion-date' if fmt in ('json', 'lista-ins', 'js-literale', JSON_SAMPLE) else 'antet-fara-tipuri' if fmt == 'csv'
+                        baza_tipului=('esantion-date' if fmt in ('json', 'lista-ins', 'js-literale', JSON_SAMPLE, RSC_JSON) else 'antet-fara-tipuri' if fmt == 'csv'
                                       else 'lista-fara-tipuri' if fmt == DATASETTE
                                       else 'cod-sau-documentatie' if fmt in TEXT_FORMATS else 'schema-declarata'))
         if has_csv_options(hint):
@@ -708,6 +715,10 @@ def check_report(out, observations):
                 _, fields, _ = reread(source, body, response)
                 if fields != source['campuri'] or sample_facts(body) != source.get('esantion'):
                     errors.append('Fields or sample facts differ from the retained body: ' + source['url'])
+            elif source.get('format') == RSC_JSON:
+                _, fields, _ = reread(source, body, response)
+                if fields != source['campuri']:
+                    errors.append('Fields differ from the retained body: ' + source['url'])
             elif source.get('format') == DATASETTE:
                 _, fields, _ = reread(source, body, response)
                 if fields != source['campuri'] or datasette_database(json.loads(body)) != source.get('baza'):

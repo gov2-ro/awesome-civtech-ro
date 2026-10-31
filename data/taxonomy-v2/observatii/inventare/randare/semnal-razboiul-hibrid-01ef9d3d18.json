@@ -1,0 +1,319 @@
+{
+  "versiune": 2,
+  "proiect": "semnal-razboiul-hibrid",
+  "url_cerut": "https://semnal.eu/ro/razboi-hibrid/",
+  "url_final": "https://semnal.eu/ro/razboi-hibrid/",
+  "stare": "ok",
+  "http_status": 200,
+  "randat_la": "2026-10-31T10:02:50.937686+00:00",
+  "text_lungime": 20000,
+  "text_sha256": "3d484cfed5c8c1113b13ce3066e958f8632696b26605745349b4ff2aa98e94ed",
+  "controale_numar": 4,
+  "cereri_date": [
+    {
+      "metoda": "POST",
+      "url": "https://semnal.eu/cdn-cgi/challenge-platform/h/g/jsd/oneshot/c787ce48cf6b/0.01403518436563389:1793438356:mWkJKZkQd0SE2mmvPMbZ_N_th5NtwJUFxVMOaWQwe_8/a531d36f7e793793",
+      "tip_resursa": "xhr",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": 0
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/newsletter/?_rsc=MdgZyj_8Mn_4ifGj",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/cookies/?_rsc=MdgZyj_8Mn_4ifGj",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/politica/?_rsc=MdgZyj_8Mn_4ifGj",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/?_rsc=MdgZyj_8Mn_4ifGj",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/international/?_rsc=MdgZyj_8Mn_4ifGj",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/confidentialitate/?_rsc=MdgZyj_8Mn_4ifGj",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/asociatie/?_rsc=MdgZyj_8Mn_4ifGj",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/stiri-pe-scurt/?_rsc=MdgZyj_8Mn_4ifGj",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/auth/login/?_rsc=MdgZyj_8Mn_4ifGj",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/cautare/?_rsc=MdgZyj_8Mn_4ifGj",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/jocuri/?_rsc=MdgZyj_8Mn_4ifGj",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/dosare/?_rsc=MdgZyj_8Mn_4ifGj",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/cookies/?_rsc=OMqFa5cEJE2r50j1",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/confidentialitate/?_rsc=THxdk-igO9FGQD_2",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/newsletter/?_rsc=uOytRHtbeAf1u-i2",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/cookies/?_rsc=LB8WsgEAiK52z9yh",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/?_rsc=uFJXy1ugau-1ieas",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/international/?_rsc=VlgchaNSZhjsIyQP",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/politica/?_rsc=VlgchaNSZhjsIyQP",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/economie/?_rsc=VlgchaNSZhjsIyQP",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/societate/?_rsc=VlgchaNSZhjsIyQP",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/ctrl/?_rsc=VlgchaNSZhjsIyQP",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/perspective/?_rsc=VlgchaNSZhjsIyQP",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/drive/?_rsc=VlgchaNSZhjsIyQP",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/astrologie/?_rsc=VlgchaNSZhjsIyQP",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/asociatie/?_rsc=GuX9htcjAdxXyP5l",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/semnal-magazin/?_rsc=VlgchaNSZhjsIyQP",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/stiri-pe-scurt/?_rsc=T0x4l_M_2iBEqw5A",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/auth/login/?_rsc=VlgchaNSZhjsIyQP",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/cautare/?_rsc=VlgchaNSZhjsIyQP",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/evenimente/?_rsc=VlgchaNSZhjsIyQP",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/sport/?_rsc=VlgchaNSZhjsIyQP",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/jocuri/?_rsc=x0FggZ_u_13Cft8Q",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/travel/?_rsc=VlgchaNSZhjsIyQP",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/semnal-de-razboi/?_rsc=VlgchaNSZhjsIyQP",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://semnal.eu/ro/dosare/?_rsc=9wyZQc_4V1xCik9L",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    }
+  ],
+  "corpuri_pastrate": [],
+  "corpuri_omise": [],
+  "captura": {
+    "algoritm": "sha256",
+    "sha256": "e5c94fa8cc41dbc6a2ba5b1224d3029a1b89a045c56670a75054c7920c73662c",
+    "octeti": 31080,
+    "fisier": "e5c94fa8cc41dbc6a2ba5b1224d3029a1b89a045c56670a75054c7920c73662c.json",
+    "reprezentare": "UTF-8 bytes of the render record as JSON: indent 2, non-ASCII characters kept, one final newline"
+  }
+}

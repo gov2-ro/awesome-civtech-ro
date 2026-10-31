@@ -1,5 +1,21 @@
 # Activity
 
+## 2026-10-31 — Inventory batch G: `destraja` profile and the `rsc-json` reader
+
+**Done**
+- Found that `destraja` publishes its data as Next.js navigation payloads (`senat.txt`, `camera.txt`), under CC BY 4.0. The „CSV complet” button has no address: the browser builds the CSV from these payloads.
+- Added the reader `rsc-json` (`scripts/inventory_rsc.py`, 4 tests). It parses the lines that hold a React element and reads the largest `props` object with the plain field walk. A source with persons keeps names, paths and types only.
+- Added two sources (`senat.txt`, `camera.txt`), marked `persoane` because the bills name initiators. `destraja` now has 80 field records; 67 entries have structured fields (was 66). 5 direct requests: `presa`, `robots.txt`, `senat.txt`, `camera.txt` and one probe; lot G total about 70 of 120.
+- The generic re-check branch parsed every unknown format as plain JSON. `rsc-json` has its own branch.
+- `inventory.py --check`: 0 errors; 23 marked sources searched. Publication validation 0 errors. Report regenerated.
+
+**Hard**
+- The person check first found overlaps in two local legacy render records (`destraja`, `semnal-razboiul-hibrid`) with the new source. The `semnal` overlap is the page date „31 octombrie 2026”, not a person. I migrated both records to manifests (their text now lives only in local `capturi/`) instead of writing a ledger decision for the owner.
+- `parlamentari.txt` (persons) and `presa.txt` were not added. `econtractauto` has only a PDF template and no PDF reader exists; no source added.
+
+**Decided**
+- Treat a framework payload as a source only when its data is documented as public (CC BY 4.0 here). The alternative, parsing the HTML, loses types.
+
 ## 2026-10-31 — Inventory evidence storage: manifests in Git, captures local
 
 **Done**

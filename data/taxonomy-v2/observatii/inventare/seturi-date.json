@@ -65382,6 +65382,859 @@
       "baza_tipului": "cod-sau-documentatie"
     },
     {
+      "url": "https://destraja.ro/camera.txt?_rsc=1p-R_iEY6bj0jY31",
+      "final_url": "https://destraja.ro/camera.txt?_rsc=1p-R_iEY6bj0jY31",
+      "http_status": 200,
+      "fetched_at": "2026-10-31T15:47:40.934950+00:00",
+      "content_type": "text/plain",
+      "state": "ok",
+      "citire": "rsc-json",
+      "persoane": true,
+      "id": "51a1e0d9dd51bb5f6fc3",
+      "campuri": [
+        {
+          "nume": "className",
+          "cale": "$.className",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/className"
+        },
+        {
+          "nume": "children[][]",
+          "cale": "$.children[][]",
+          "tipuri_observate": [
+            "string",
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/children/0/0"
+        },
+        {
+          "nume": "children[][]",
+          "cale": "$.children[][].children[][]",
+          "tipuri_observate": [
+            "string",
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/children/0/3/children/0/0"
+        },
+        {
+          "nume": "className",
+          "cale": "$.children[][].children[][].className",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/children/0/3/children/0/3/className"
+        },
+        {
+          "nume": "children",
+          "cale": "$.children[][].children[][].children",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/children/0/3/children/0/3/children"
+        },
+        {
+          "nume": "className",
+          "cale": "$.children[][].className",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/children/2/3/className"
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/51a1e0d9dd51bb5f6fc3-b21e417daef79544.json",
+      "sha256": "b21e417daef795442b9f354f0909c038ae83fdbb008edfde2108ae150860820c",
+      "format": "rsc-json",
+      "stare": "analizat",
+      "limita_atinsa": true,
+      "baza_tipului": "esantion-date"
+    },
+    {
+      "url": "https://destraja.ro/senat.txt?_rsc=1p-R_iEY6bj0jY31",
+      "final_url": "https://destraja.ro/senat.txt?_rsc=1p-R_iEY6bj0jY31",
+      "http_status": 200,
+      "fetched_at": "2026-10-31T15:46:57.518475+00:00",
+      "content_type": "text/plain",
+      "state": "ok",
+      "citire": "rsc-json",
+      "persoane": true,
+      "id": "eea07f8f2fb96d1d4048",
+      "campuri": [
+        {
+          "nume": "id",
+          "cale": "$.bills[].id",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/id"
+        },
+        {
+          "nume": "slug",
+          "cale": "$.bills[].slug",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/slug"
+        },
+        {
+          "nume": "cod",
+          "cale": "$.bills[].cod",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/cod"
+        },
+        {
+          "nume": "officialTitle",
+          "cale": "$.bills[].officialTitle",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/officialTitle"
+        },
+        {
+          "nume": "consultationDeadline",
+          "cale": "$.bills[].consultationDeadline",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/consultationDeadline"
+        },
+        {
+          "nume": "daysRemaining",
+          "cale": "$.bills[].daysRemaining",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/daysRemaining"
+        },
+        {
+          "nume": "opinionsCount",
+          "cale": "$.bills[].opinionsCount",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/opinionsCount"
+        },
+        {
+          "nume": "sheetUrl",
+          "cale": "$.bills[].sheetUrl",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/sheetUrl"
+        },
+        {
+          "nume": "name",
+          "cale": "$.bills[].initiators[].name",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/initiators/0/name"
+        },
+        {
+          "nume": "role",
+          "cale": "$.bills[].initiators[].role",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/initiators/0/role"
+        },
+        {
+          "nume": "party",
+          "cale": "$.bills[].initiators[].party",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/initiators/0/party"
+        },
+        {
+          "nume": "parties[]",
+          "cale": "$.bills[].parties[]",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/parties/0"
+        },
+        {
+          "nume": "isCrossParty",
+          "cale": "$.bills[].isCrossParty",
+          "tipuri_observate": [
+            "boolean"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/isCrossParty"
+        },
+        {
+          "nume": "emergencyRequested",
+          "cale": "$.bills[].emergencyRequested",
+          "tipuri_observate": [
+            "boolean"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/emergencyRequested"
+        },
+        {
+          "nume": "emergencyApproved",
+          "cale": "$.bills[].emergencyApproved",
+          "tipuri_observate": [
+            "boolean"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/emergencyApproved"
+        },
+        {
+          "nume": "cesNegative",
+          "cale": "$.bills[].cesNegative",
+          "tipuri_observate": [
+            "boolean"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/cesNegative"
+        },
+        {
+          "nume": "ces",
+          "cale": "$.bills[].ces",
+          "tipuri_observate": [
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/ces"
+        },
+        {
+          "nume": "count",
+          "cale": "$.bills[].press.count",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/press/count"
+        },
+        {
+          "nume": "dates[]",
+          "cale": "$.bills[].press.dates[]",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/press/dates/0"
+        },
+        {
+          "nume": "recent",
+          "cale": "$.bills[].press.recent",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/press/recent"
+        },
+        {
+          "nume": "url",
+          "cale": "$.bills[].press.latest.url",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/press/latest/url"
+        },
+        {
+          "nume": "title",
+          "cale": "$.bills[].press.latest.title",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/press/latest/title"
+        },
+        {
+          "nume": "outlet",
+          "cale": "$.bills[].press.latest.outlet",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/press/latest/outlet"
+        },
+        {
+          "nume": "domain",
+          "cale": "$.bills[].press.latest.domain",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/press/latest/domain"
+        },
+        {
+          "nume": "publishedAt",
+          "cale": "$.bills[].press.latest.publishedAt",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/press/latest/publishedAt"
+        },
+        {
+          "nume": "listed",
+          "cale": "$.bills[].press.latest.listed",
+          "tipuri_observate": [
+            "boolean"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/press/latest/listed"
+        },
+        {
+          "nume": "stance",
+          "cale": "$.bills[].press.latest.stance",
+          "tipuri_observate": [
+            "null",
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/press/latest/stance"
+        },
+        {
+          "nume": "source",
+          "cale": "$.bills[].press.latest.source",
+          "tipuri_observate": [
+            "string",
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/press/latest/source"
+        },
+        {
+          "nume": "release",
+          "cale": "$.bills[].press.latest.release",
+          "tipuri_observate": [
+            "boolean"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/press/latest/release"
+        },
+        {
+          "nume": "critical",
+          "cale": "$.bills[].press.stances.critical",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/press/stances/critical"
+        },
+        {
+          "nume": "supportive",
+          "cale": "$.bills[].press.stances.supportive",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/press/stances/supportive"
+        },
+        {
+          "nume": "neutral",
+          "cale": "$.bills[].press.stances.neutral",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/press/stances/neutral"
+        },
+        {
+          "nume": "mixed",
+          "cale": "$.bills[].press.stances.mixed",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/press/stances/mixed"
+        },
+        {
+          "nume": "count",
+          "cale": "$.bills[].positions.count",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/positions/count"
+        },
+        {
+          "nume": "against",
+          "cale": "$.bills[].positions.against",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/positions/against"
+        },
+        {
+          "nume": "oppose",
+          "cale": "$.bills[].positions.oppose",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/positions/oppose"
+        },
+        {
+          "nume": "amend",
+          "cale": "$.bills[].positions.amend",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/positions/amend"
+        },
+        {
+          "nume": "support",
+          "cale": "$.bills[].positions.support",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/positions/support"
+        },
+        {
+          "nume": "line",
+          "cale": "$.bills[].positions.line",
+          "tipuri_observate": [
+            "string",
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/positions/line"
+        },
+        {
+          "nume": "good[]",
+          "cale": "$.bills[].balance.good[]",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/balance/good/0"
+        },
+        {
+          "nume": "bad[]",
+          "cale": "$.bills[].balance.bad[]",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/balance/bad/0"
+        },
+        {
+          "nume": "worst",
+          "cale": "$.bills[].balance.worst",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/balance/worst"
+        },
+        {
+          "nume": "fix",
+          "cale": "$.bills[].balance.fix",
+          "tipuri_observate": [
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/balance/fix"
+        },
+        {
+          "nume": "riskScore",
+          "cale": "$.bills[].analysis.consensus.riskScore",
+          "tipuri_observate": [
+            "number",
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/analysis/consensus/riskScore"
+        },
+        {
+          "nume": "riskLevel",
+          "cale": "$.bills[].analysis.consensus.riskLevel",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/analysis/consensus/riskLevel"
+        },
+        {
+          "nume": "plainTitle",
+          "cale": "$.bills[].analysis.consensus.plainTitle",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/analysis/consensus/plainTitle"
+        },
+        {
+          "nume": "citizenOneLiner",
+          "cale": "$.bills[].analysis.consensus.citizenOneLiner",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/analysis/consensus/citizenOneLiner"
+        },
+        {
+          "nume": "summaryTlDr",
+          "cale": "$.bills[].analysis.consensus.summaryTlDr",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/analysis/consensus/summaryTlDr"
+        },
+        {
+          "nume": "affectedGroups[]",
+          "cale": "$.bills[].analysis.consensus.affectedGroups[]",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/analysis/consensus/affectedGroups/0"
+        },
+        {
+          "nume": "riskScore",
+          "cale": "$.bills[].analysis.council.agy.riskScore",
+          "tipuri_observate": [
+            "number",
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/analysis/council/agy/riskScore"
+        },
+        {
+          "nume": "riskLevel",
+          "cale": "$.bills[].analysis.council.agy.riskLevel",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/analysis/council/agy/riskLevel"
+        },
+        {
+          "nume": "verdictShort",
+          "cale": "$.bills[].analysis.council.agy.verdictShort",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/analysis/council/agy/verdictShort"
+        },
+        {
+          "nume": "riskScore",
+          "cale": "$.bills[].analysis.council.claude.riskScore",
+          "tipuri_observate": [
+            "number",
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/analysis/council/claude/riskScore"
+        },
+        {
+          "nume": "riskLevel",
+          "cale": "$.bills[].analysis.council.claude.riskLevel",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/analysis/council/claude/riskLevel"
+        },
+        {
+          "nume": "verdictShort",
+          "cale": "$.bills[].analysis.council.claude.verdictShort",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/analysis/council/claude/verdictShort"
+        },
+        {
+          "nume": "riskScore",
+          "cale": "$.bills[].analysis.council.codex.riskScore",
+          "tipuri_observate": [
+            "number",
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/analysis/council/codex/riskScore"
+        },
+        {
+          "nume": "riskLevel",
+          "cale": "$.bills[].analysis.council.codex.riskLevel",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/analysis/council/codex/riskLevel"
+        },
+        {
+          "nume": "verdictShort",
+          "cale": "$.bills[].analysis.council.codex.verdictShort",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/0/analysis/council/codex/verdictShort"
+        },
+        {
+          "nume": "number",
+          "cale": "$.bills[].ces.number",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/1/ces/number"
+        },
+        {
+          "nume": "date",
+          "cale": "$.bills[].ces.date",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/1/ces/date"
+        },
+        {
+          "nume": "pdfUrl",
+          "cale": "$.bills[].ces.pdfUrl",
+          "tipuri_observate": [
+            "string",
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/1/ces/pdfUrl"
+        },
+        {
+          "nume": "text",
+          "cale": "$.bills[].ces.reasons[].text",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/1/ces/reasons/0/text"
+        },
+        {
+          "nume": "quote",
+          "cale": "$.bills[].ces.reasons[].quote",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/1/ces/reasons/0/quote"
+        },
+        {
+          "nume": "text",
+          "cale": "$.bills[].balance.fix.text",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/1/balance/fix/text"
+        },
+        {
+          "nume": "removes[]",
+          "cale": "$.bills[].balance.fix.removes[]",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/1/balance/fix/removes/0"
+        },
+        {
+          "nume": "levelAfter",
+          "cale": "$.bills[].balance.fix.levelAfter",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/1/balance/fix/levelAfter"
+        },
+        {
+          "nume": "scoreAfter",
+          "cale": "$.bills[].balance.fix.scoreAfter",
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/1/balance/fix/scoreAfter"
+        },
+        {
+          "nume": "good",
+          "cale": "$.bills[].balance.good",
+          "tipuri_observate": [
+            "array"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/2/balance/good",
+          "numar_elemente": 0
+        },
+        {
+          "nume": "dates",
+          "cale": "$.bills[].press.dates",
+          "tipuri_observate": [
+            "array"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/5/press/dates",
+          "numar_elemente": 0
+        },
+        {
+          "nume": "latest",
+          "cale": "$.bills[].press.latest",
+          "tipuri_observate": [
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/5/press/latest"
+        },
+        {
+          "nume": "balance",
+          "cale": "$.bills[].balance",
+          "tipuri_observate": [
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/5/balance"
+        },
+        {
+          "nume": "reasons",
+          "cale": "$.bills[].ces.reasons",
+          "tipuri_observate": [
+            "array"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bills/7/ces/reasons",
+          "numar_elemente": 0
+        },
+        {
+          "nume": "syncedLabel",
+          "cale": "$.syncedLabel",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/syncedLabel"
+        },
+        {
+          "nume": "mpCount",
+          "cale": "$.mpCount",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/mpCount"
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/eea07f8f2fb96d1d4048-6dc7a672f83bd3cc.json",
+      "sha256": "6dc7a672f83bd3ccde71746bd565cfc8d7a493028f89d9fa6da907ecde7b7c92",
+      "format": "rsc-json",
+      "stare": "analizat",
+      "limita_atinsa": true,
+      "baza_tipului": "esantion-date"
+    },
+    {
       "url": "https://docs.google.com/spreadsheets/d/1-_vKtEX8860ansiyo2Aq7eqyuo7ShYgA/export?format=csv&gid=1630617809",
       "final_url": "https://doc-0o-c0-sheets.googleusercontent.com/export/…/1-_vKtEX8860ansiyo2Aq7eqyuo7ShYgA?format=csv&gid=1630617809",
       "http_status": 200,

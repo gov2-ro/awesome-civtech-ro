@@ -665,3 +665,7 @@ G,2026-10-31T10:06:58.522619+00:00,BROWSER-GET,https://legislatie.ai-aflat.ro/v1
 G,2026-10-31T10:06:58.522673+00:00,BROWSER-GET,https://legislatie.ai-aflat.ro/v1/meta,200,200,,browser,randare ai-aflat
 G,2026-10-31T10:06:58.522726+00:00,BROWSER-GET,https://legislatie.ai-aflat.ro/v1/stats,200,200,,browser,randare ai-aflat
 G,2026-10-31T10:06:58.522770+00:00,BROWSER-POST,https://legislatie.ai-aflat.ro/v1/count,200,200,,browser,randare ai-aflat
+G,2026-10-31T15:46:46.449860+00:00,GET,https://destraja.ro/presa,ok,200,400001,nu,destraja: find a documented CSV/data download
+G,2026-10-31T15:46:46.530207+00:00,GET,https://destraja.ro/robots.txt,ok,200,1248,nu,destraja: find a documented CSV/data download
+G,2026-10-31T15:46:57.608223+00:00,GET,https://destraja.ro/senat.txt?_rsc=1p-R_iEY6bj0jY31,ok,200,322922,nu,destraja: structure of the bill list payload
+G,2026-10-31T15:47:41.131351+00:00,GET,https://destraja.ro/camera.txt?_rsc=1p-R_iEY6bj0jY31,ok,200,913835,nu,destraja: structure of the bill list payload of the Chamber

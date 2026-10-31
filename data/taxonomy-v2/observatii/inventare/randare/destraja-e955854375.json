@@ -1,0 +1,97 @@
+{
+  "versiune": 2,
+  "proiect": "destraja",
+  "url_cerut": "https://destraja.ro/",
+  "url_final": "https://destraja.ro/",
+  "stare": "ok",
+  "http_status": 200,
+  "randat_la": "2026-10-31T10:02:51.606661+00:00",
+  "text_lungime": 13737,
+  "text_sha256": "a56fc5ea2c1a4a38929a5040fe132c39604c3f7b84daf80ef549f6e7525ddd48",
+  "controale_numar": 0,
+  "cereri_date": [
+    {
+      "metoda": "GET",
+      "url": "https://destraja.ro/senat.txt?_rsc=1p-R_iEY6bj0jY31",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://destraja.ro/camera.txt?_rsc=1p-R_iEY6bj0jY31",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://destraja.ro/parlamentari.txt?_rsc=1p-R_iEY6bj0jY31",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://destraja.ro/presa.txt?_rsc=1p-R_iEY6bj0jY31",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://destraja.ro/metodologie.txt?_rsc=1p-R_iEY6bj0jY31",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://destraja.ro/abonare.txt?_rsc=1p-R_iEY6bj0jY31",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://destraja.ro/confidentialitate.txt?_rsc=1p-R_iEY6bj0jY31",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://destraja.ro/legi/b563-2026.txt?_rsc=1p-R_iEY6bj0jY31",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": null
+    }
+  ],
+  "corpuri_pastrate": [
+    "https://destraja.ro/metodologie.txt?_rsc=1p-R_iEY6bj0jY31",
+    "https://destraja.ro/abonare.txt?_rsc=1p-R_iEY6bj0jY31",
+    "https://destraja.ro/confidentialitate.txt?_rsc=1p-R_iEY6bj0jY31"
+  ],
+  "corpuri_omise": [
+    "https://destraja.ro/senat.txt?_rsc=1p-R_iEY6bj0jY31",
+    "https://destraja.ro/camera.txt?_rsc=1p-R_iEY6bj0jY31",
+    "https://destraja.ro/parlamentari.txt?_rsc=1p-R_iEY6bj0jY31",
+    "https://destraja.ro/presa.txt?_rsc=1p-R_iEY6bj0jY31",
+    "https://destraja.ro/legi/b563-2026.txt?_rsc=1p-R_iEY6bj0jY31"
+  ],
+  "captura": {
+    "algoritm": "sha256",
+    "sha256": "b4df3809122026a43d1caa4d265ce86e26b138512cd6b4d2a9ea40a8a2885618",
+    "octeti": 18065,
+    "fisier": "b4df3809122026a43d1caa4d265ce86e26b138512cd6b4d2a9ea40a8a2885618.json",
+    "reprezentare": "UTF-8 bytes of the render record as JSON: indent 2, non-ASCII characters kept, one final newline"
+  }
+}

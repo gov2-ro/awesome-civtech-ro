@@ -3774,6 +3774,64 @@
       }
     },
     {
+      "proiect": "destraja",
+      "url": "https://destraja.ro/camera.txt?_rsc=1p-R_iEY6bj0jY31",
+      "sursa_id": "51a1e0d9dd51bb5f6fc3",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://destraja.ro/",
+      "link_original": "https://destraja.ro/camera.txt?_rsc=1p-R_iEY6bj0jY31",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/destraja-e955854375.json",
+        "url": "https://destraja.ro/",
+        "pointer": "/cereri_date/1",
+        "valoare": "https://destraja.ro/camera.txt?_rsc=1p-R_iEY6bj0jY31"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T15:47:41.340951+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T15:47:41.340951+00:00"
+        }
+      ],
+      "nota": "Proiectele aflate în dezbatere la Camera Deputaților, în răspunsul de navigare Next.js al paginii Camera. Proiectele pot numi inițiatori; profilul păstrează numai structura.",
+      "citire": "rsc-json",
+      "persoane": true
+    },
+    {
+      "proiect": "destraja",
+      "url": "https://destraja.ro/senat.txt?_rsc=1p-R_iEY6bj0jY31",
+      "sursa_id": "eea07f8f2fb96d1d4048",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://destraja.ro/",
+      "link_original": "https://destraja.ro/senat.txt?_rsc=1p-R_iEY6bj0jY31",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/destraja-e955854375.json",
+        "url": "https://destraja.ro/",
+        "pointer": "/cereri_date/0",
+        "valoare": "https://destraja.ro/senat.txt?_rsc=1p-R_iEY6bj0jY31"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T15:47:41.340951+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T15:47:41.340951+00:00"
+        }
+      ],
+      "nota": "Proiectele din consultare la Senat, în răspunsul de navigare Next.js al paginii Senat. Datele sunt sub licența CC BY 4.0 (declarată de site). Proiectele pot numi inițiatori; profilul păstrează numai structura.",
+      "citire": "rsc-json",
+      "persoane": true
+    },
+    {
       "proiect": "dignitas",
       "url": "https://raw.githubusercontent.com/TeamDignitas/dignitas/c8652542fac376b67b6233b25a5ef24c5e78c9d4/lib/model/Statement.php",
       "sursa_id": "4d4ca333750fbf8632ae",

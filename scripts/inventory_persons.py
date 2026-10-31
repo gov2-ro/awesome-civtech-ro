@@ -5,7 +5,7 @@ The registry keeps the mark (`descoperiri.json`) and the source record carries i
 
 What the mark changes:
 
-- The readers keep key names, paths, observed types and counts only. A reader of a marked source is `csv`, `json` or `json-esantion`; every other
+- The readers keep key names, paths, observed types and counts only. A reader of a marked source is `csv`, `json`, `json-esantion` or `rsc-json`; every other
   reader copies text (a description, an enumeration, an example) and is refused. A field record keeps the keys of `FIELD_KEYS` and no other.
   The rows above a CSV header keep a cell only when it is a key name (an identifier such as `perf_2015`); a title or any other text is dropped.
 - A specification cannot quote the body of a marked source (`inventory.resolve_spec`): the registry stores the quoted fragment.
@@ -38,10 +38,11 @@ import re
 from pathlib import Path
 
 from inventory_jsonsample import FORMAT as JSON_SAMPLE, recover
+from inventory_rsc import FORMAT as RSC_JSON, extract as rsc_document
 from inventory_sheet import delimiter, settings
 
 MARK = 'persoane'
-READERS = ('csv', 'json', JSON_SAMPLE)
+READERS = ('csv', 'json', JSON_SAMPLE, RSC_JSON)
 # The keys that a field record of a marked source may keep: a name, a path, a type, a role, a position and a count.
 FIELD_KEYS = frozenset({'nume', 'cale', 'tip_declarat', 'tipuri_observate', 'stare_tip', 'rol', 'pointer', 'coloana_csv', 'numar_chei', 'numar_elemente'})
 # A field that an editor added (`inventory_editor`) may also keep these keys: the editor wrote them and the leak check looks at the file that holds them.
@@ -118,8 +119,8 @@ def leaves(value, keys, found):
 def body_values(body, format_name, hint=None):
     """(values, names): the string values of a retained body and its key names. A JSON key and a CSV header cell are names, also a row above the header."""
     values, names = set(), set()
-    if format_name in ('json', JSON_SAMPLE):
-        document = recover(body)[0] if format_name == JSON_SAMPLE else json.loads(body)
+    if format_name in ('json', JSON_SAMPLE, RSC_JSON):
+        document = recover(body)[0] if format_name == JSON_SAMPLE else rsc_document(body) if format_name == RSC_JSON else json.loads(body)
         leaves(document, names, values)
     elif format_name == 'csv':
         options = hint if isinstance(hint, dict) else {}
