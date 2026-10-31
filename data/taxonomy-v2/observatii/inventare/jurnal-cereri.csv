@@ -659,3 +659,9 @@ G,2026-10-31T10:02:59.612721+00:00,BROWSER,https://radardigital.ro/,timeout,,,br
 G,2026-10-31T10:02:59.613935+00:00,BROWSER,https://econtractauto.ro/,timeout,,,browser,randare econtractauto
 G,2026-10-31T10:02:59.614012+00:00,BROWSER-POST,https://econtractauto.ro/__l5e/trackevents,202,202,17,browser,randare econtractauto
 G,2026-10-31T10:02:59.614515+00:00,BROWSER-GET,https://econtractauto.ro/templates/contract-template-2026.pdf,200,200,333750,browser,randare econtractauto
+G,2026-10-31T10:06:58.522309+00:00,BROWSER,https://legislatie.ai-aflat.ro/,ok,200,,browser,randare ai-aflat
+G,2026-10-31T10:06:58.522555+00:00,BROWSER-GET,https://legislatie.ai-aflat.ro/v1/acts?status=active&importance_min=6&sort=source_id&order=desc&limit=4&offset=0,200,200,,browser,randare ai-aflat
+G,2026-10-31T10:06:58.522619+00:00,BROWSER-GET,https://legislatie.ai-aflat.ro/v1/similarity?sample=500&neighbors=3,200,200,,browser,randare ai-aflat
+G,2026-10-31T10:06:58.522673+00:00,BROWSER-GET,https://legislatie.ai-aflat.ro/v1/meta,200,200,,browser,randare ai-aflat
+G,2026-10-31T10:06:58.522726+00:00,BROWSER-GET,https://legislatie.ai-aflat.ro/v1/stats,200,200,,browser,randare ai-aflat
+G,2026-10-31T10:06:58.522770+00:00,BROWSER-POST,https://legislatie.ai-aflat.ro/v1/count,200,200,,browser,randare ai-aflat

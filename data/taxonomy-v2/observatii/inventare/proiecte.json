@@ -233,7 +233,7 @@
       "slug": "ai-aflat",
       "nume": "AI Aflat",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "Asistent AI care explică legislația pe înțeles",
       "permite": [],
       "formate_catalogate": [],
@@ -242,11 +242,14 @@
         "slug": "ai-aflat"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "6f88877ca426deb675f1",
+        "cdc17ddcc6fe6131a8e6",
+        "057e5c9643b2b88ff53c"
+      ],
+      "campuri_din_surse": 434,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {

@@ -144,7 +144,11 @@
     },
     "monitor-energie": {
       "blocaj": "HTTP 401 la contractul OpenAPI legat din documentație.",
-      "urmatorul_pas": "Reîncercați doar dacă proiectul publică documentația fără autentificare."
+      "urmatorul_pas": "Reîncercați doar dacă proiectul publică documentația fără autentificare.",
+      "rezultat": "The documented OpenAPI contract returned HTTP 401. The source remains blocked under the host stop rule; no further request was made.",
+      "limite_en": "The documented OpenAPI contract returned HTTP 401. No further request was made.",
+      "blocaj_en": "HTTP 401 from the documented OpenAPI contract.",
+      "urmator_en": "Retry only if the project publishes the documentation without authentication."
     },
     "demoanaf": {
       "limite": [
@@ -505,6 +509,108 @@
       "limite_en": "The rows under `statutory` have two integers with no names; the meaning of the positions is not declared. The healthy-life series has a break between 2023 and 2024, so `hly2023` and `hly2024` are not comparable.",
       "urmatorul_pas": "Decideți D234–D235.",
       "urmator_en": "Decide D234–D235."
+    },
+    "ai-aflat": {
+      "rezultat": "Biblioteca legislativă documentată de proiect expune acte active, metadate și statistici printr-un API public. Trei surse dau 434 de câmpuri; lista de acte este marcată `persoane`, iar inventarul reține doar structura.",
+      "limite": [
+        "Eșantionul endpointului de acte este limitat la patru rezultate.",
+        "Profilul nu descrie integral toate endpointurile bibliotecii."
+      ],
+      "blocaj": "",
+      "urmatorul_pas": "Verificați dacă biblioteca publică documentația completă a API-ului și paginarea catalogului.",
+      "limite_en": "The acts endpoint sample is limited to four results. The profile does not cover every library endpoint.",
+      "blocaj_en": "none",
+      "urmator_en": "Check for complete API documentation and catalogue pagination."
+    },
+    "destraja": {
+      "rezultat": "Pagina încarcă fragmente text/plain pentru Senat, Cameră, parlamentari și presă. Aceste răspunsuri nu oferă o schemă structurată pe care cititoarele existente și regulile pentru date despre persoane să o poată păstra în siguranță.",
+      "limite": [
+        "Un singur render de pagină; răspunsurile sunt fragmente text/plain.",
+        "Nu s-a adăugat un cititor nou pentru acest format."
+      ],
+      "blocaj": "",
+      "urmatorul_pas": "Căutați un export CSV/JSON public sau o schemă stabilă.",
+      "limite_en": "One page render; the responses are text/plain fragments. No reader was added for this format.",
+      "blocaj_en": "none",
+      "urmator_en": "Look for a public CSV/JSON export or a stable schema."
+    },
+    "econtractauto": {
+      "rezultat": "Pagina a expus un model PDF de contract și a expirat la navigare. PDF-ul este un formular contractual, nu un set de date public; pipeline-ul de inventar nu are cititor PDF.",
+      "limite": [
+        "Nu s-a păstrat modelul PDF ca sursă de inventar.",
+        "Pagina a expirat la navigare."
+      ],
+      "blocaj": "",
+      "urmatorul_pas": "Reevaluați dacă proiectul publică un export de date sau o schemă reutilizabilă.",
+      "limite_en": "The page exposed a contract-template PDF and timed out. The template is not a public dataset; the inventory has no PDF reader.",
+      "blocaj_en": "none",
+      "urmator_en": "Revisit if the project publishes a data export or reusable schema."
+    },
+    "monarh-ai": {
+      "rezultat": "Două fluxuri JSON agregate sunt încărcate de pagina principală și descriu indicatori de puls și scanare. Ele furnizează 21 de câmpuri.",
+      "limite": [
+        "Instantaneul folosește nume de fișiere datate; valorile se pot schimba la următoarea publicare."
+      ],
+      "blocaj": "",
+      "urmatorul_pas": "Confirmați dacă există o arhivă a acestor instantanee.",
+      "limite_en": "The snapshots use dated file names; values may change in a later release.",
+      "blocaj_en": "none",
+      "urmator_en": "Check whether an archive of these snapshots exists."
+    },
+    "radar-digital": {
+      "rezultat": "Documentația și o navigare de browser nu au identificat un export sau un API. Navigarea a expirat.",
+      "limite": [
+        "O singură navigare de browser; nu s-a repetat după timeout."
+      ],
+      "blocaj": "Timeout la singura navigare de browser; nu s-a repetat.",
+      "urmatorul_pas": "Reluați verificarea numai dacă pagina devine accesibilă.",
+      "limite_en": "One browser navigation; it was not repeated after timeout.",
+      "blocaj_en": "The single browser navigation timed out; it was not repeated.",
+      "urmator_en": "Retry only if the page becomes accessible."
+    },
+    "redirectioneaza": {
+      "rezultat": "Pagina și documentația nu au expus cereri de date publice. Legătura către depozitul public descrie codul aplicației, nu un export de date al proiectului.",
+      "limite": [
+        "Nu s-a găsit un catalog public de ONG-uri sau o schemă de răspuns."
+      ],
+      "blocaj": "",
+      "urmatorul_pas": "Căutați o listă publică de ONG-uri sau un export documentat.",
+      "limite_en": "No public NGO catalogue or response schema was found.",
+      "blocaj_en": "none",
+      "urmator_en": "Look for a public NGO list or documented export."
+    },
+    "semnal-razboiul-hibrid": {
+      "rezultat": "URL-ul proiectului duce la o pagină editorială. Navigarea a încărcat fragmente de pagină, dar nu a identificat un set de date structurat pentru această intrare.",
+      "limite": [
+        "Fluxul RSS este XML și nu are un cititor în pipeline-ul curent."
+      ],
+      "blocaj": "",
+      "urmatorul_pas": "Căutați date structurate specifice proiectului, nu fluxul editorial general.",
+      "limite_en": "The RSS feed is XML and has no reader in the current pipeline.",
+      "blocaj_en": "none",
+      "urmator_en": "Look for structured data specific to this entry, not the general editorial feed."
+    },
+    "testvot": {
+      "rezultat": "Endpointul public observat de pagina TestVot a răspuns HTTP 401. Niciun endpoint protejat nu a fost ghicit sau accesat din nou.",
+      "limite": [
+        "O singură navigare de browser; accesul API a răspuns 401."
+      ],
+      "blocaj": "HTTP 401 la endpointul public observat în navigarea paginii.",
+      "urmatorul_pas": "Reluați numai dacă proiectul documentează un export public fără autentificare.",
+      "limite_en": "One browser navigation; the observed API endpoint returned 401.",
+      "blocaj_en": "The observed page API returned HTTP 401.",
+      "urmator_en": "Retry only if the project documents an unauthenticated public export."
+    },
+    "tipizatul": {
+      "rezultat": "Documentația și o navigare de browser nu au identificat o schemă sau un export public. Navigarea a expirat.",
+      "limite": [
+        "O singură navigare de browser; nu s-a repetat după timeout."
+      ],
+      "blocaj": "Timeout la singura navigare de browser; nu s-a repetat.",
+      "urmatorul_pas": "Reluați verificarea numai dacă pagina devine accesibilă.",
+      "limite_en": "One browser navigation; it was not repeated after timeout.",
+      "blocaj_en": "The single browser navigation timed out; it was not repeated.",
+      "urmator_en": "Retry only if the page becomes accessible."
     }
   },
   "ins": [
@@ -653,5 +759,15 @@
     "Hosts of lot E: igov.ro 11, mariuscomper.uk 8, monitorsocial.ro 5, monitorsafe.ro 4, cosettechichirau.github.io 4, cecumparaprimaria.vercel.app 4, www.verificapsiholog.ro 4, executii-bugetare.g4d.ro 1, www.openbudget.ro 1, portaljustmodern.ro 1, api.github.com 1. No listed host (`colectare-interzisa.csv`) was requested, and `sicap.ai` was not requested. No host answered 401 or 403.",
     "Browser: 6 navigations (`executii-bugetare.g4d.ro/` twice, the second after the fix of the helper; `verifica-psiholog` home with `--fara-text`; `portaljustmodern.ro/despre` and `/institutii`; `www.openbudget.ro/`, timeout), at most two for each entry. The browser made 50 same-site data requests, which are not direct requests: 37 for verificapsiholog.ro (Next.js route prefetches and 4 API calls; the list of 2.4 MB was not kept), 8 for executii-bugetare.g4d.ro (4 data files), 3 configuration requests to the Supabase backend of portaljustmodern.ro and 2 for portaljustmodern.ro.",
     "Addendum (`sicap-ai`): 10 direct requests, all to GitHub (`api.github.com` 2: the commit at HEAD and the tree listing of that commit; `raw.githubusercontent.com` 8: README.md, docs/architecture.md, docs/company-enrichment-brief.md and the five type files), 0 failed, 0 requests to `sicap.ai` or `api.sicap.ai`, no browser navigation. The request log counts 54 direct requests for lot E now (44 before). The limit for the entry is 15."
+  ],
+  "lot_g": [
+    "Batch G audits ten more entries from „De analizat”. Two entries have structured profiles: `ai-aflat` has 3 sources and 434 fields; `monarh-ai` has 2 sources and 21 fields. The other eight have no usable field profile in this pass.",
+    "Four entries have no structured source in the evidence reviewed: `destraja`, `econtractauto`, `redirectioneaza` and `semnal-razboiul-hibrid`. Four are blocked: `monitor-energie` and `testvot` returned HTTP 401; `radar-digital` and `tipizatul` timed out. No blocked host was retried.",
+    "The documentation pass made 43 requests. The browser pass made 10 navigations and 55 same-site data requests. Inventory made 0 direct requests because it reused the browser cache. Three GitHub API listing requests checked the public `destraja.ro` repository; one sandbox DNS attempt failed before the approved retry.",
+    "No provider or variable proposals were accepted. The eight entries without fields remain in „De analizat”; an export or stable schema is still needed."
+  ],
+  "retea_g": [
+    "Lot G: `collect_docs.py --force --follow-data-links` made 43 requests across ten entries. The browser made 10 navigations and 55 same-site data requests. `inventory.py` made 0 direct requests because it reused retained browser responses.",
+    "The public `destraja.ro` repository check made three successful GitHub API listing requests. One request first failed DNS inside the sandbox and succeeded after the approved retry. The host that had already returned HTTP 401 (`monitorenergie.ro`) was not requested again."
   ]
 }

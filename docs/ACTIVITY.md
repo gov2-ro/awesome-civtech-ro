@@ -21,12 +21,12 @@
 
 **Done**
 - Refreshed documentation for ten more queued entries. The pass made 43 requests; one browser navigation per project was bounded to nine sites after excluding the host that had already returned 401.
-- Added two public JSON feeds for `monarh-ai`, with 21 field records. The isolated inventory count is now 65 entries with structured fields.
-- Confirmed public text endpoints for `destraja`, a PDF template for `econtractauto`, and JSON feeds for `monarh-ai`. These findings remain subject to the existing reader and person-data rules.
+- Added the documented AI Aflat legislation API and two Monarh AI JSON feeds. These profiles contain 434 and 21 field records. The isolated inventory count is now 66 entries with structured fields.
+- Confirmed public text endpoints for `destraja`, a PDF template for `econtractauto`, and JSON feeds for `monarh-ai`. The AI Aflat act list is marked for person data; the reader retains its schema only.
 
 **Hard**
 - The `monitor-energie` OpenAPI URL had already returned 401; no further request went to that host. `testvot` returned 401 during its single render. `radar-digital` and `tipizatul` timed out. The `econtractauto` home page timed out after exposing a PDF template.
-- `inventory.py` found no new sources automatically. The two Monarh AI feeds were added from the browser evidence. The other entries need a source-by-source review before they can leave „De analizat”.
+- `inventory.py` found no new sources automatically. The AI Aflat and Monarh AI sources were added from browser evidence. The other eight entries need a source-by-source review before they can leave „De analizat”.
 
 **Decided**
 - Keep the ten-entry source audit open. Do not claim a complete ten-profile batch or accept any proposals.

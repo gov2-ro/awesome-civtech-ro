@@ -1,6 +1,6 @@
 # Brief — data inventories, batch G
 
-Date: 2026-10-31. Status: source audit in progress.
+Date: 2026-10-31. Status: source audit in progress; two entries have field profiles.
 
 ## Goal
 
@@ -37,3 +37,13 @@ or has no structured source, record the evidence and report the gap. Do not repl
 
 Report source findings and parsed fields for each entry, person-data marks, candidate members and providers, blockers, request
 counts, validation results, and owner decisions. Update the activity log and backlog. Build only in a separate preview directory.
+
+## Current findings
+
+`ai-aflat` has three public API sources and 434 field records. The act list is marked `persoane` because records can name initiators;
+the inventory retains only its schema. `monarh-ai` has two aggregate JSON sources and 21 field records.
+
+The remaining eight entries have no new field profile yet. `monitor-energie` and `testvot` already returned HTTP 401, so their hosts
+remain closed to further requests. The `econtractauto` home page timed out after loading a PDF template. The `radar-digital` and
+`tipizatul` home pages timed out. `destraja` exposes text/plain page payloads, but the current person-safe readers do not parse them.
+`redirectioneaza` exposed no data request. `semnal-razboiul-hibrid` loaded page fragments, but no structured dataset was identified.

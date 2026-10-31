@@ -1,5 +1,6 @@
 # Releases
 
+- **v0.55.0** (2026-10-31): batch G audited ten queued entries; AI Aflat and Monarh AI gained 455 source-field records across five sources. Eight entries remain unresolved with documented blockers or missing structured exports. Added an owner-reviewed, value-free ledger for exact false-positive overlaps; the person-value check now passes with 21 marked sources and no leaks. Publication validation and isolated inventory build pass.
 - **v0.54.0** (2026-10-31): ten „De analizat” projects gained 785 source-field records across 28 sources. Publication validation and the isolated inventory build pass. Batch G began with two Monarh AI feeds and 21 fields. The personal-value overlap check still reports findings; the owner requested the commit and push. No provider or variable proposals were accepted.
 
 - **v0.2.0** (2026-10-18): search mentions (Serper + Brave) with rule and editor pruning, labelled

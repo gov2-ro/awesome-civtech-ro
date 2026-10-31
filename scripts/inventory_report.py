@@ -47,6 +47,7 @@ BATCH_D = ['lista-firme', 'dupa-cutremur', 'reciclare-arad', 'onorata-instanta',
            'trei-din-patru', 'statul-digital', 'pe-datorie', 'ce-face-statul-cu-1000-de-lei']  # lot D: twelve entries of „De analizat” with the strongest signals
 BATCH_E = ['monitor-safe', 'igov', 'companii-publice-ro', 'executii-bugetare', 'ce-cumpara-primaria', 'sicap-ai', 'open-budget', 'monitor-social', 'verifica-psiholog',
            'portal-just-modern', 'cat-de-tare', 'recontorizarea']  # lot E: twelve more entries of „De analizat”
+BATCH_G = ['ai-aflat', 'destraja', 'econtractauto', 'monarh-ai', 'monitor-energie', 'radar-digital', 'redirectioneaza', 'semnal-razboiul-hibrid', 'testvot', 'tipizatul']
 # The reserve entries of the brief of lot E, in the order of its list. A reserve joins lot E only when a primary entry is blocked: sicap-ai and open-budget are,
 # so the first two reserves took their place. They carry the lot code `E` like the primary entries.
 RESERVES_E = ['de-unde-vine-apa', 'ani-de-pensie']
@@ -107,7 +108,7 @@ def lots(data):
     S: entries with a page that the owner saved by hand (no request was possible).
     Entries with fields and no lot come from the baseline pass."""
     touched = {}
-    for lot, slugs in (('C', BATCH), ('B', INS_USERS), ('B2', EXTRA_GAPS), ('C2', BATCH_C2), ('D', BATCH_D), ('E', BATCH_E + RESERVES_E)):
+    for lot, slugs in (('C', BATCH), ('B', INS_USERS), ('B2', EXTRA_GAPS), ('C2', BATCH_C2), ('D', BATCH_D), ('E', BATCH_E + RESERVES_E), ('G', BATCH_G)):
         for slug in slugs:
             touched.setdefault(slug, set()).add(lot)
     for slug, profile in data['profiles'].items():
@@ -409,6 +410,14 @@ def render_report(data, rows):
             w(line)
             w('')
         for slug in BATCH_E + RESERVES_E:
+            outcome(slug, '####', proposals=True)
+    if notes.get('lot_g'):
+        w('### Batch G: ten more entries of „De analizat”')
+        w('')
+        for line in notes['lot_g']:
+            w(line)
+            w('')
+        for slug in BATCH_G:
             outcome(slug, '####', proposals=True)
     w('## 4. Existing inventories and INS')
     w('')

@@ -12,6 +12,8 @@ What the mark changes:
 - The note of a marked specification replaces the note of its registry record, so a value that an earlier note quoted can leave the tracked file.
 - `inventory.py --check` looks for the values of each retained body in the tracked files that the inventory and its editors write, and prints a
   fingerprint (the first 8 hex digits of the SHA-256 of the value) for each one found. It never prints a value.
+- Owner-reviewed false positives can be recorded by source, full value hash, and tracked file in
+  `observatii/inventare/persoane-false-positives.csv`. The ledger stores no matched value and suppresses only that exact source/file/hash match.
 
 What the check looks for, and why not everything:
 
@@ -149,6 +151,28 @@ def candidates(values, names, url=''):
 
 def fingerprint(value):
     return hashlib.sha256(value.encode()).hexdigest()[:8]
+
+
+def reviewed_false_positives(taxonomy):
+    """Load owner-reviewed non-personal overlaps without storing their matched values."""
+    path = Path(taxonomy) / 'observatii/inventare/persoane-false-positives.csv'
+    if not path.exists():
+        return set()
+    expected = {'source_url', 'sha256_value', 'tracked_file', 'source_json_path', 'classification', 'decision', 'reviewed_on'}
+    reviewed = set()
+    with path.open(encoding='utf-8-sig', newline='') as stream:
+        reader = csv.DictReader(stream)
+        if set(reader.fieldnames or ()) != expected:
+            raise ValueError(f'{path.name}: expected columns {", ".join(sorted(expected))}')
+        for number, row in enumerate(reader, 2):
+            digest, target = row['sha256_value'], row['tracked_file']
+            if (not re.fullmatch(r'[0-9a-f]{64}', digest) or not row['source_url'].startswith(('http://', 'https://'))
+                    or not target or Path(target).is_absolute() or '..' in Path(target).parts
+                    or row['decision'] != 'false-positive' or not row['classification'].strip()
+                    or not re.fullmatch(r'\d{4}-\d{2}-\d{2}', row['reviewed_on'])):
+                raise ValueError(f'{path.name}:{number}: invalid reviewed false-positive row')
+            reviewed.add((row['source_url'], digest, target))
+    return reviewed
 
 
 def occurs(value, text):

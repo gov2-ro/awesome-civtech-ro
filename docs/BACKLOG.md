@@ -280,6 +280,8 @@ Baseline: 127 projects/resources; 14 have structured field evidence. Another 113
 The 2,302 field records are source paths, not independent business variables. Seven business groups are proposed.
 The 62 unconfirmed profiles cover the full 140-entry catalogue, including organisations; this is a different measure.
 
+- [~] Batch G: finish the source audit for ten entries of „De analizat”. AI Aflat and Monarh AI have 455 field records; eight entries still need a structured export, a stable schema, or an unblocked source. See [batch G](briefs/inventory-batch-g.md).
+
 - [x] Write the implementation specification and a copyable prompt for a fresh session.
 - [x] Fix targeted/offline preservation before new collection (milestone A, v0.14.0). `inventory.py` now reads the tracked state first.
       `--only` changes only the selected projects. A smaller file limit keeps earlier members. A failed refresh keeps the last evidence.

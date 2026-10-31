@@ -162,6 +162,89 @@
       "citire": "html-tabele"
     },
     {
+      "proiect": "ai-aflat",
+      "url": "https://legislatie.ai-aflat.ro/v1/acts?status=active&importance_min=6&sort=source_id&order=desc&limit=4&offset=0",
+      "sursa_id": "6f88877ca426deb675f1",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://legislatie.ai-aflat.ro/",
+      "link_original": "https://legislatie.ai-aflat.ro/v1/acts?status=active&importance_min=6&sort=source_id&order=desc&limit=4&offset=0",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/ai-aflat-b679f36887.json",
+        "url": "https://legislatie.ai-aflat.ro/",
+        "pointer": "/cereri_date/0",
+        "valoare": "https://legislatie.ai-aflat.ro/v1/acts?status=active&importance_min=6&sort=source_id&order=desc&limit=4&offset=0"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T10:07:12.975205+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T10:07:12.975205+00:00"
+        }
+      ],
+      "nota": "Acte legislative active încărcate de biblioteca documentată de proiect. Unele metadate pot numi inițiatori; profilul păstrează numai structura.",
+      "citire": "json-esantion",
+      "persoane": true
+    },
+    {
+      "proiect": "ai-aflat",
+      "url": "https://legislatie.ai-aflat.ro/v1/meta",
+      "sursa_id": "cdc17ddcc6fe6131a8e6",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://legislatie.ai-aflat.ro/",
+      "link_original": "https://legislatie.ai-aflat.ro/v1/meta",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/ai-aflat-b679f36887.json",
+        "url": "https://legislatie.ai-aflat.ro/",
+        "pointer": "/cereri_date/2",
+        "valoare": "https://legislatie.ai-aflat.ro/v1/meta"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T10:07:12.975205+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T10:07:12.975205+00:00"
+        }
+      ],
+      "nota": "Metadate de catalog ale bibliotecii legislative."
+    },
+    {
+      "proiect": "ai-aflat",
+      "url": "https://legislatie.ai-aflat.ro/v1/stats",
+      "sursa_id": "057e5c9643b2b88ff53c",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://legislatie.ai-aflat.ro/",
+      "link_original": "https://legislatie.ai-aflat.ro/v1/stats",
+      "dovada": {
+        "tip": "randare",
+        "snapshot": "inventare/randare/ai-aflat-b679f36887.json",
+        "url": "https://legislatie.ai-aflat.ro/",
+        "pointer": "/cereri_date/3",
+        "valoare": "https://legislatie.ai-aflat.ro/v1/stats"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-10-31T10:07:12.975205+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-10-31T10:07:12.975205+00:00"
+        }
+      ],
+      "nota": "Numărători agregate despre actele din biblioteca legislativă."
+    },
+    {
       "proiect": "ani-de-pensie",
       "url": "https://mariuscomper.uk/ani-de-pensie/",
       "sursa_id": "4db9d3df0564276adf31",

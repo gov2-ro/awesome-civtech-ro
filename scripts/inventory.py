@@ -48,7 +48,8 @@ from inventory_datasette import FORMAT as DATASETTE, database as datasette_datab
 from inventory_ins import ins_dataset, ins_listing, ins_measure, is_listing
 from inventory_jsonsample import FORMAT as JSON_SAMPLE, list_sizes, recover as recover_json
 from inventory_literals import POSITIONAL_WIDTH, datasets as literal_datasets, declarations as literal_declarations, indented_names, keyed_object, omitted_names
-from inventory_persons import (MARK, READERS as PERSON_READERS, body_values, candidates, is_marked, leaks, mark_errors, occurs, safe_fields, safe_header, scope_files)
+from inventory_persons import (MARK, READERS as PERSON_READERS, body_values, candidates, is_marked, leaks, mark_errors, occurs,
+                               fingerprint, reviewed_false_positives, safe_fields, safe_header, scope_files)
 from inventory_setlist import list_datasets
 from inventory_yaml import load as load_yaml, pointer_part
 from inventory_sheet import header_facts, read as read_sheet
@@ -819,6 +820,7 @@ def check_persons(report, previous, out, observations):
     marked_ids = {s['id'] for s in marked}
     report['persons']['marked'] = len(marked)
     taxonomy, files, others, memo = Path(observations).parent, None, None, {}
+    reviewed = reviewed_false_positives(taxonomy)
 
     def common(value):
         """True when a retained body of a source without the mark holds the value too: a county, a town, an institution. It is data, not a leak."""
@@ -851,7 +853,12 @@ def check_persons(report, previous, out, observations):
         wanted = candidates(values, names, f'{source["url"]} {source.get("final_url", "")}')
         files = scope_files(taxonomy) if files is None else files
         for path, mark in leaks(wanted, files, common):
-            errors.append(f'A value of a source with persons is in a tracked file: {os.path.relpath(path, taxonomy)}, fingerprint {mark} (source {source["url"]})')
+            target = os.path.relpath(path, taxonomy.parent.parent)
+            body_text = path.read_text(errors='replace')
+            unreviewed = [value for value in wanted if fingerprint(value) == mark and occurs(value, body_text) and not common(value)
+                          and (source['url'], hashlib.sha256(value.encode()).hexdigest(), target) not in reviewed]
+            if unreviewed:
+                errors.append(f'A value of a source with persons is in a tracked file: {os.path.relpath(path, taxonomy)}, fingerprint {mark} (source {source["url"]})')
         report['persons']['checked'] += 1
 
 

@@ -6,10 +6,10 @@ Inventory assertions are proposals. Raw field totals count source paths, not ind
 ## 1. Outcome
 
 - Milestones A (safe incremental collection), B (INS), C (12 entries), D (meanings and shared groups) and E (preview, coverage, report) are complete.
-- Structured field evidence now covers 65 of 133 projects and resources (baseline 14). The retained sources are 218 URLs (213 parsed, 5 failed) with 7,215 field records.
+- Structured field evidence now covers 66 of 133 projects and resources (baseline 14). The retained sources are 221 URLs (216 parsed, 5 failed) with 7,649 field records.
 - Each field record is a path in a source. The proposals are 46 shared groups (baseline 7), 16 provider review items and the dictionary evidence that `inventory.py --check` verifies.
 - The public build is unchanged: the default payload equals the v0.13.0 payload apart from its generation time; classifications and accepted providers are identical.
-- Collection used 280 direct requests in total (44 browser navigations); the 150-request limit of lot C was not reached.
+- Collection used 280 direct requests in total (45 browser navigations); the 150-request limit of lot C was not reached.
 - Batch C2 (three active projects): three inventories (`romania-interactiva` 10 sources, `data-expertforum` 15 sources from the owner's saved page and 14 Google Sheet tabs, `bani-partide` 1 source from the owner's saved listing), 8 proposed groups and provider items D176–D187; see the subsection of section 3.
 - Batch E (twelve entries, lot `E`): eleven entries have 30 sources and 775 field records (two of them reserve entries); `open-budget` is `blocat`, `portal-just-modern` has no source; 25 provider items D211–D235, four proposed groups and 26 candidate members; see the subsection of section 3. The addendum of 2026-10-27 reads `sicap-ai` (6 sources, 1,281 field records) from a copy that the owner saved and from a public repository, with 0 requests to its host, and adds 2 provider items, 20 candidate members and a proposed group.
 
@@ -41,14 +41,14 @@ The 133 projects and resources of the catalogue (the finder lists the 87 that ar
 | Catalogue entries | 140 | 146 |
 | Projects / resources / organisations | 106 / 21 / 13 | 112 / 21 / 13 |
 | Projects and resources (catalogue, hidden entries included) | 127 | 133 |
-| Entries with structured field evidence | 14 | 65 |
-| Projects/resources without extracted structured fields | 113 | 68 |
-| Retained structured-source URLs | 25 | 218 |
-| Parsed sources / HTTP failures | 24 / 1 | 213 / 5 |
-| Source-scoped field records (paths, not variables) | 2,302 | 7,215 |
-| Schema declarations / sampled JSON paths / CSV headers / INS dimensions | 1,312 / 904 / 82 / 4 | 1,954 / 2,817 / 311 / 4 |
+| Entries with structured field evidence | 14 | 66 |
+| Projects/resources without extracted structured fields | 113 | 67 |
+| Retained structured-source URLs | 25 | 221 |
+| Parsed sources / HTTP failures | 24 / 1 | 216 / 5 |
+| Source-scoped field records (paths, not variables) | 2,302 | 7,649 |
+| Schema declarations / sampled JSON paths / CSV headers / INS dimensions | 1,312 / 904 / 82 / 4 | 1,954 / 3,251 / 311 / 4 |
 | HTML control candidates / entries with candidates | 308 / 78 | 311 / 81 |
-| Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 95 / 51 |
+| Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 96 / 50 |
 | Accepted provider relations / entries with accepted providers | 26 / 11 | 118 / 44 |
 | Pending provider proposals (review items D132 and later) | 15 | 0 |
 | Proposed business-variable groups | 7 | 46 |
@@ -59,21 +59,21 @@ Review state, counted from the tracked files. Provider items (`camp` `surse_date
 
 Scope of the data finder (`/date/`): 87 of the 129 public projects and resources are in scope. An entry is in scope when it is not inactive (`offline`, `arhivat`) and its `relatie_date` is `date-publice`, `date-proprii` or `calcul`. The finder leaves out 42: 24 without data (`fara-date`), 0 not assessed (empty value), 18 inactive (counted first: an inactive entry is never counted as another reason). 4 hidden entries (`ascuns`) are in no count of this paragraph.
 
-Field records by evidence type now: observat-in-esantion-json 2,817, declarat-in-schema 1,954, declarat-in-cod-sursa 1,111, exemplu-in-documentatie 364, neprecizat-in-antet-csv 311, antet-tabel-html 236, declarat-in-lista-baza 171, declarat-in-metadate 58, declarat-in-tabel-documentatie 53, declarat-in-lista-documentatie 40, declarat-in-documentatie-api 36, declarat-in-text-documentatie 36, utilizat-in-cod-pagina 28.
+Field records by evidence type now: observat-in-esantion-json 3,251, declarat-in-schema 1,954, declarat-in-cod-sursa 1,111, exemplu-in-documentatie 364, neprecizat-in-antet-csv 311, antet-tabel-html 236, declarat-in-lista-baza 171, declarat-in-metadate 58, declarat-in-tabel-documentatie 53, declarat-in-lista-documentatie 40, declarat-in-documentatie-api 36, declarat-in-text-documentatie 36, utilizat-in-cod-pagina 28.
 
 Coverage by measure, for the 133 projects and resources (`acoperire.csv` has the rows). A column that counts fields counts source paths:
 
 | Measure | Entries counted | Total |
 | --- | ---: | ---: |
-| Structured sources | 65 | 223 |
-| Field records from sources | 65 | 7,277 |
-| Entries in at least one proposed group | 65 | 43 |
-| Fields with a source-declared description | 65 | 1,892 |
-| Fields with a declared type | 65 | 2,887 |
-| Fields with an observed type | 65 | 3,276 |
-| Measures with a unit | 65 | 82 |
-| Measures without a unit | 65 | 140 |
-| Sources with a verified discovery locator | 65 | 227 |
+| Structured sources | 66 | 226 |
+| Field records from sources | 66 | 7,711 |
+| Entries in at least one proposed group | 66 | 43 |
+| Fields with a source-declared description | 66 | 1,892 |
+| Fields with a declared type | 66 | 2,887 |
+| Fields with an observed type | 66 | 3,710 |
+| Measures with a unit | 66 | 82 |
+| Measures without a unit | 66 | 140 |
+| Sources with a verified discovery locator | 66 | 230 |
 
 Totals add the per-entry counts. A source that several entries share counts once for each of them, so the field total here is higher than the number of distinct field records above.
 Denominators are defined in `docs/DATA-SCHEMA.md` (Coverage export). Entries without a structured source have an empty (unknown) measure count, not zero.
@@ -82,14 +82,14 @@ All 146 catalogue entries (hidden entries included):
 
 | State | Entries |
 | --- | ---: |
-| blocat | 2 |
-| cu-surse-structurate | 65 |
+| blocat | 5 |
+| cu-surse-structurate | 66 |
 | fara-date | 24 |
 | in-afara-ariei | 13 |
 | inactiv | 19 |
-| investigat-fara-surse | 2 |
+| investigat-fara-surse | 6 |
 | neevaluat | 2 |
-| neinvestigat-in-lot | 19 |
+| neinvestigat-in-lot | 11 |
 
 `in-afara-ariei` entries are organisations: the finder lists projects and resources. An organisation need not expose a dataset. Missing extraction never proves missing data.
 `fara-date`, `inactiv` and `neevaluat` are projects and resources that the finder leaves out and that have no source record. An entry with a usable source keeps `cu-surse-structurate`, and an entry whose sources failed keeps `blocat`, whatever its scope: the evidence stays in `observatii/`, and only the public output leaves the entry out.
@@ -647,6 +647,146 @@ Reserve entry, replacing open-budget (second reserve). Calculator of the retirem
 - Limitations: The rows under `statutory` have two integers with no names; the meaning of the positions is not declared. The healthy-life series has a break between 2023 and 2024, so `hly2023` and `hly2024` are not comparable.
 - Remaining work: Decide D234–D235.
 
+### Batch G: ten more entries of „De analizat”
+
+Batch G audits ten more entries from „De analizat”. Two entries have structured profiles: `ai-aflat` has 3 sources and 434 fields; `monarh-ai` has 2 sources and 21 fields. The other eight have no usable field profile in this pass.
+
+Four entries have no structured source in the evidence reviewed: `destraja`, `econtractauto`, `redirectioneaza` and `semnal-razboiul-hibrid`. Four are blocked: `monitor-energie` and `testvot` returned HTTP 401; `radar-digital` and `tipizatul` timed out. No blocked host was retried.
+
+The documentation pass made 43 requests. The browser pass made 10 navigations and 55 same-site data requests. Inventory made 0 direct requests because it reused the browser cache. Three GitHub API listing requests checked the public `destraja.ro` repository; one sandbox DNS attempt failed before the approved retry.
+
+No provider or variable proposals were accepted. The eight entries without fields remain in „De analizat”; an export or stable schema is still needed.
+
+#### `ai-aflat` — AI Aflat
+
+Biblioteca legislativă documentată de proiect expune acte active, metadate și statistici printr-un API public. Trei surse dau 434 de câmpuri; lista de acte este marcată `persoane`, iar inventarul reține doar structura.
+
+- State: cu-surse-structurate. Sources 3, field records 434, groups 0.
+- Source URLs: `https://legislatie.ai-aflat.ro/v1/acts?status=active&importance_min=6&sort=source_id&order=desc&limit=4&offset=0`; `https://legislatie.ai-aflat.ro/v1/meta`; `https://legislatie.ai-aflat.ro/v1/stats`
+- Proposed groups: none
+- Documented inputs: none documented in the sources read. HTML controls stay candidates.
+- Provider proposals: none.
+- Blocker: none
+- Limitations: The acts endpoint sample is limited to four results. The profile does not cover every library endpoint.
+- Remaining work: Check for complete API documentation and catalogue pagination.
+
+#### `destraja` — destrajă.ro
+
+Pagina încarcă fragmente text/plain pentru Senat, Cameră, parlamentari și presă. Aceste răspunsuri nu oferă o schemă structurată pe care cititoarele existente și regulile pentru date despre persoane să o poată păstra în siguranță.
+
+- State: investigat-fara-surse. Sources 0, field records 0, groups 0.
+- Source URLs: none
+- Proposed groups: none
+- Documented inputs: none documented in the sources read. HTML controls stay candidates.
+- Provider proposals: none.
+- Blocker: none
+- Limitations: One page render; the responses are text/plain fragments. No reader was added for this format.
+- Remaining work: Look for a public CSV/JSON export or a stable schema.
+
+#### `econtractauto` — eContractAuto
+
+Pagina a expus un model PDF de contract și a expirat la navigare. PDF-ul este un formular contractual, nu un set de date public; pipeline-ul de inventar nu are cititor PDF.
+
+- State: investigat-fara-surse. Sources 0, field records 0, groups 0.
+- Source URLs: none
+- Proposed groups: none
+- Documented inputs: none documented in the sources read. HTML controls stay candidates.
+- Provider proposals: none.
+- Blocker: none
+- Limitations: The page exposed a contract-template PDF and timed out. The template is not a public dataset; the inventory has no PDF reader.
+- Remaining work: Revisit if the project publishes a data export or reusable schema.
+
+#### `monarh-ai` — Monarh AI
+
+Două fluxuri JSON agregate sunt încărcate de pagina principală și descriu indicatori de puls și scanare. Ele furnizează 21 de câmpuri.
+
+- State: cu-surse-structurate. Sources 2, field records 21, groups 0.
+- Source URLs: `https://monarhdef.ro/wp-content/uploads/monarh/puls_2026-10-31.json?t=29890682`; `https://monarhdef.ro/wp-content/uploads/monarh/scan_2026-10-31.json?t=29890682`
+- Proposed groups: none
+- Documented inputs: none documented in the sources read. HTML controls stay candidates.
+- Provider proposals: none.
+- Blocker: none
+- Limitations: The snapshots use dated file names; values may change in a later release.
+- Remaining work: Check whether an archive of these snapshots exists.
+
+#### `monitor-energie` — Monitor Energie
+
+The documented OpenAPI contract returned HTTP 401. The source remains blocked under the host stop rule; no further request was made.
+
+- State: blocat. Sources 0, field records 0, groups 0.
+- Source URLs: `https://monitorenergie.ro/api/openapi.json`
+- Proposed groups: none
+- Documented inputs: none documented in the sources read. HTML controls stay candidates.
+- Provider proposals: none.
+- Blocker: HTTP 401 from the documented OpenAPI contract.
+- Limitations: The documented OpenAPI contract returned HTTP 401. No further request was made.
+- Remaining work: Retry only if the project publishes the documentation without authentication.
+
+#### `radar-digital` — Radar Digital
+
+Documentația și o navigare de browser nu au identificat un export sau un API. Navigarea a expirat.
+
+- State: blocat. Sources 0, field records 0, groups 0.
+- Source URLs: none
+- Proposed groups: none
+- Documented inputs: none documented in the sources read. HTML controls stay candidates.
+- Provider proposals: none.
+- Blocker: The single browser navigation timed out; it was not repeated.
+- Limitations: One browser navigation; it was not repeated after timeout.
+- Remaining work: Retry only if the page becomes accessible.
+
+#### `redirectioneaza` — Redirecționează
+
+Pagina și documentația nu au expus cereri de date publice. Legătura către depozitul public descrie codul aplicației, nu un export de date al proiectului.
+
+- State: investigat-fara-surse. Sources 0, field records 0, groups 0.
+- Source URLs: none
+- Proposed groups: none
+- Documented inputs: none documented in the sources read. HTML controls stay candidates.
+- Provider proposals: none.
+- Blocker: none
+- Limitations: No public NGO catalogue or response schema was found.
+- Remaining work: Look for a public NGO list or documented export.
+
+#### `semnal-razboiul-hibrid` — Războiul hibrid al Rusiei
+
+URL-ul proiectului duce la o pagină editorială. Navigarea a încărcat fragmente de pagină, dar nu a identificat un set de date structurat pentru această intrare.
+
+- State: investigat-fara-surse. Sources 0, field records 0, groups 0.
+- Source URLs: none
+- Proposed groups: none
+- Documented inputs: none documented in the sources read. HTML controls stay candidates.
+- Provider proposals: none.
+- Blocker: none
+- Limitations: The RSS feed is XML and has no reader in the current pipeline.
+- Remaining work: Look for structured data specific to this entry, not the general editorial feed.
+
+#### `testvot` — Testvot
+
+Endpointul public observat de pagina TestVot a răspuns HTTP 401. Niciun endpoint protejat nu a fost ghicit sau accesat din nou.
+
+- State: blocat. Sources 0, field records 0, groups 0.
+- Source URLs: none
+- Proposed groups: none
+- Documented inputs: none documented in the sources read. HTML controls stay candidates.
+- Provider proposals: none.
+- Blocker: The observed page API returned HTTP 401.
+- Limitations: One browser navigation; the observed API endpoint returned 401.
+- Remaining work: Retry only if the project documents an unauthenticated public export.
+
+#### `tipizatul` — Tipizatul
+
+Documentația și o navigare de browser nu au identificat o schemă sau un export public. Navigarea a expirat.
+
+- State: blocat. Sources 0, field records 0, groups 0.
+- Source URLs: none
+- Proposed groups: none
+- Documented inputs: none documented in the sources read. HTML controls stay candidates.
+- Provider proposals: none.
+- Blocker: The single browser navigation timed out; it was not repeated.
+- Limitations: One browser navigation; it was not repeated after timeout.
+- Remaining work: Retry only if the page becomes accessible.
+
 ## 4. Existing inventories and INS
 
 - Listing `https://ins.gov2.ro/api/datasets?limit=1`: HTTP 200, 557 bytes, `total` 3,368 datasets, 16 card members. The llms.txt file says "about 3,600". Only `limit=1` was run; `offset` is documented but unverified.
@@ -908,7 +1048,7 @@ The producer, the distributor and the project author are named apart in each ite
 | D | 77 | 0 | 4,226,710 | 3 | 96 |
 | E | 54 | 2 | 4,934,972 | 6 | 50 |
 | F | 23 | 5 | 1,684,551 | 20 | 134 |
-| G | 0 | 0 | 0 | 9 | 50 |
+| G | 0 | 0 | 0 | 10 | 55 |
 | demoanaf-api-docs | 4 | 0 | 315,089 | 0 | 0 |
 
 Total direct requests: 280. The limit for lot C was 150 including retries; no request was retried. Lot B is the INS listing and five metadata records; lot B2 is six gap sources of existing inventories. Elapsed work and workers: requests ran one at a time, so the six-worker and two-per-host limits were never reached.
