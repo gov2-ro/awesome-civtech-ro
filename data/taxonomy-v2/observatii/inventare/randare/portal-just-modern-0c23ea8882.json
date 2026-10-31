@@ -1,14 +1,14 @@
 {
-  "versiune": 1,
+  "versiune": 2,
   "proiect": "portal-just-modern",
   "url_cerut": "https://portaljustmodern.ro/despre",
   "url_final": "https://portaljustmodern.ro/despre",
   "stare": "ok",
   "http_status": 200,
-  "titlu": "Despre Magistrum — un proiect făcut de cetățeni",
   "randat_la": "2026-10-27T17:04:55.576530+00:00",
-  "text_randat": "[]",
-  "controale_vizibile": [],
+  "text_lungime": 2,
+  "text_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "controale_numar": 0,
   "cereri_date": [
     {
       "metoda": "POST",
@@ -21,5 +21,11 @@
   ],
   "corpuri_pastrate": [],
   "corpuri_omise": [],
-  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+  "captura": {
+    "algoritm": "sha256",
+    "sha256": "c9ff5b2c9ac40637b1b352ec3d77f5bb92d156bc0f1107984bc782614d84fd1b",
+    "octeti": 774,
+    "fisier": "c9ff5b2c9ac40637b1b352ec3d77f5bb92d156bc0f1107984bc782614d84fd1b.json",
+    "reprezentare": "UTF-8 bytes of the render record as JSON: indent 2, non-ASCII characters kept, one final newline"
+  }
 }

@@ -1,223 +1,14 @@
 {
-  "versiune": 1,
+  "versiune": 2,
   "proiect": "guvernezi",
   "url_cerut": "https://www.guvernezi.ro/",
   "url_final": "https://www.guvernezi.ro/",
   "stare": "ok",
   "http_status": 200,
-  "titlu": "Guvernezi! Joc politic: cu ce politician român semeni?",
   "randat_la": "2026-10-26T23:39:25.774473+00:00",
-  "text_randat": "{\"cont\":null}",
-  "controale_vizibile": [
-    {
-      "tag": "input",
-      "name": null,
-      "id": "raport-titlu-camp",
-      "type": "text",
-      "label": "Pe scurt, ce s-a întâmplat",
-      "options": null
-    },
-    {
-      "tag": "textarea",
-      "name": null,
-      "id": "raport-descriere",
-      "type": "textarea",
-      "label": "Ce făceai, ce te așteptai să se întâmple și ce s-a întâmplat de fapt",
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": null,
-      "id": null,
-      "type": "checkbox",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "textarea",
-      "name": null,
-      "id": null,
-      "type": "textarea",
-      "label": "Scrie numele partidului",
-      "options": null
-    },
-    {
-      "tag": "textarea",
-      "name": null,
-      "id": null,
-      "type": "textarea",
-      "label": "Scrie sloganul",
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": "culoare-partid",
-      "id": null,
-      "type": "radio",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": "culoare-partid",
-      "id": null,
-      "type": "radio",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": "culoare-partid",
-      "id": null,
-      "type": "radio",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": "culoare-partid",
-      "id": null,
-      "type": "radio",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": "culoare-partid",
-      "id": null,
-      "type": "radio",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": "culoare-partid",
-      "id": null,
-      "type": "radio",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": "sigla-partid",
-      "id": null,
-      "type": "radio",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": "sigla-partid",
-      "id": null,
-      "type": "radio",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": "sigla-partid",
-      "id": null,
-      "type": "radio",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": "sigla-partid",
-      "id": null,
-      "type": "radio",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": "sigla-partid",
-      "id": null,
-      "type": "radio",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": "sigla-partid",
-      "id": null,
-      "type": "radio",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": "sigla-partid",
-      "id": null,
-      "type": "radio",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": "sigla-partid",
-      "id": null,
-      "type": "radio",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": "sigla-partid",
-      "id": null,
-      "type": "radio",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": "sigla-partid",
-      "id": null,
-      "type": "radio",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": "sigla-partid",
-      "id": null,
-      "type": "radio",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": "sigla-partid",
-      "id": null,
-      "type": "radio",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": "sigla-partid",
-      "id": null,
-      "type": "radio",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": "sigla-partid",
-      "id": null,
-      "type": "radio",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": "sigla-partid",
-      "id": null,
-      "type": "radio",
-      "label": null,
-      "options": null
-    }
-  ],
+  "text_lungime": 13,
+  "text_sha256": "b627dfbd893b0b8a86fab60d38349b3a6c624a0607954ba01cc99231e021649d",
+  "controale_numar": 26,
   "cereri_date": [
     {
       "metoda": "GET",
@@ -352,5 +143,11 @@
     "https://www.guvernezi.ro/api/realizari"
   ],
   "corpuri_omise": [],
-  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+  "captura": {
+    "algoritm": "sha256",
+    "sha256": "3853abf8fe642ddc44cec2517104ace4b408546865d978c123523f22a99963ad",
+    "octeti": 8226,
+    "fisier": "3853abf8fe642ddc44cec2517104ace4b408546865d978c123523f22a99963ad.json",
+    "reprezentare": "UTF-8 bytes of the render record as JSON: indent 2, non-ASCII characters kept, one final newline"
+  }
 }

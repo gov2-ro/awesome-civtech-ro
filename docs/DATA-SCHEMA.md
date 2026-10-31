@@ -892,7 +892,7 @@ All files below are generated review material. Only the explicit preview build r
 - `rezumat.csv`: `slug`, `stare`, `completitudine`, `controale_utilizator`, `surse_structurate`, `campuri_din_surse`.
 - `descoperiri.json`: the discovery registry. One record per project and source URL (see below).
 - `jurnal-cereri.csv`: the request log of named collection batches (see below).
-- `adaugari/*.json`: specification files for explicitly identified sources (see below). `randare/*.json`: browser renders of single pages (see below).
+- `adaugari/*.json`: specification files for explicitly identified sources (see below). `randare/*.json`: compact manifests of browser renders of single pages (see below). `capturi/<sha256>.json`: the original captures; ignored by Git, local only (see below).
 - `campuri-editor.csv`: a hand-edited file. An editor adds there a field that the readers missed (see "Fields added by an editor").
 - `surse/*.json`: local HTTP response bodies and cached failures; gitignored. Immutable versions include the body hash in their name.
   A failed response never replaces a cached good body.
@@ -1255,7 +1255,7 @@ It does not prove that the deployed project uses it today.
 
 **Other locator kinds in the registry.** `{pointer: /body, interval, fragment, sha256, snapshot}` locates text in a body kept in the source cache
 (a page that the inventory read but did not parse as a source). `{tip: randare, snapshot, pointer /cereri_date/N, valoare}` locates a data request that the browser
-helper saw. A `link` locator (`/links/N` of a collected page, with `fragment` the link) is verified like an automatic discovery.
+helper saw, in the render manifest `snapshot`. The manifest is tracked; the original capture is local (see "Browser captures"). A `link` locator (`/links/N` of a collected page, with `fragment` the link) is verified like an automatic discovery.
 
 **Pages saved by the owner (`--import-saved`).** `inventory.py --import-saved SLUG URL FILE --saved-at 2026-10-25T20:39:00+02:00 [--note TEXT] [--reading NAME|JSON] [--parent URL]`
 keeps a file that the owner saved from their browser as the retained body of `URL`, and adds `URL` to project `SLUG` like `--add-source`. It implies `--offline --only SLUG`
@@ -1340,13 +1340,34 @@ or of a quoted `api_key`, `token`, `secret`, `password` or `bearer` value of 16 
 
 **Bounded reads.** `--probe URL ...` (needs `--lot`) fetches into the source cache and changes no record. `--sample-bytes N` asks for a byte range and keeps at most N bytes;
 the body ends at its last complete line and the source carries `partial: true`, and its hash is the hash of the sample. A response over 2,000,000 bytes is `raspuns-prea-mare` and has no body.
-`scripts/render_pages.py` (optional, PEP 723, needs Playwright's Chromium) opens a page once, writes the same-site fetch and XHR requests to `inventare/randare/*.json`
-(`cereri_date`, `corpuri_pastrate`, `corpuri_omise`), and stores up to six JSON or CSV response bodies of 200,000 bytes or less as sources with `via: browser`. It never clicks, types or submits.
+`scripts/render_pages.py` (optional, PEP 723, needs Playwright's Chromium) opens a page once, records the same-site fetch and XHR requests (`cereri_date`, `corpuri_pastrate`, `corpuri_omise`),
+and stores up to six JSON or CSV response bodies of 200,000 bytes or less as sources with `via: browser`. It never clicks, types or submits.
 The server may refuse a plain request for an address that the browser reached; the helper does not work around that refusal. Browser rows in the request log have `cache` `browser`.
-A page that lists natural persons must leave no name in a tracked record. `render_pages.py --fara-text` keeps `text_randat` as `null` and adds `text_lungime` and `text_sha256` (the length and the SHA-256 of the text
-that it would have kept). The controls (`controale_vizibile`) and the data requests (`cereri_date`) stay. A render specification (`adaugari/*-randare.json`, or a file named with `--spec`) that has
+A page that lists natural persons must leave no name in a tracked record. `render_pages.py --fara-text` keeps `text_randat` as `null` in the capture and adds `text_lungime` and `text_sha256` (the length and the SHA-256 of the text
+that it would have kept). The controls (`controale_vizibile`) and the data requests (`cereri_date`) stay in the capture. A render specification (`adaugari/*-randare.json`, or a file named with `--spec`) that has
 `persoane: true` and `locate.pagina` equal to the requested page makes the render use the option. A wrong value for the mark, or a file that is not a list, stops the render before the browser starts.
-Without the mark and without the option the record is as before.
+Without the mark and without the option the capture keeps the page text.
+
+**Browser captures (`randare/` and `capturi/`).** A render produces two files.
+
+- The *capture* is the full render record (`versiune` 1: page text, title, controls, requests, omitted bodies). It is the original evidence. It lives in `inventare/capturi/<sha256>.json`,
+  an ignored folder. The name is the full SHA-256 (hex) of the bytes of the file: UTF-8 JSON, indent 2, non-ASCII characters kept, one final newline. A capture is never rewritten.
+  A repeat render of the page makes a new file with another hash; the old file stays, and the manifest lists its hash in `capturi_anterioare`.
+- The *manifest* is the tracked file `inventare/randare/<slug>-<hash>.json` (`versiune` 2). Allowlisted keys only: `proiect`, `url_cerut`, `url_final`, `stare`, `http_status`, `randat_la`,
+  `motiv`, `gazda_interzisa`, `text_lungime`, `text_sha256`, `controale_numar`, `cereri_date` (each with exactly `metoda`, `url`, `tip_resursa`, `http_status`, `content_type`, `octeti`),
+  `corpuri_pastrate` (URLs), `corpuri_omise` (URLs), `captura` (`algoritm` `sha256`, `sha256`, `octeti`, `fisier`, `reprezentare`) and `capturi_anterioare`.
+  It holds no page text, no title, no control and no response value. The order of `cereri_date` is the order in the capture, so `/cereri_date/N` locators keep their meaning.
+- A legacy record (`versiune` 1) in `randare/` holds its data inline. `inventory.py` still reads it, and counts it as `legacy`.
+
+States, in `inventory.py --check`: a manifest is *valid* (its form is right), *verified* (a local capture has the recorded hash and agrees with the manifest in every derived key),
+or *unavailable* (no capture in this checkout; reported, not counted as an error). A capture with other bytes than the recorded hash, or one that disagrees with its manifest, is an error.
+`--strict-snapshots` fails when any original is unavailable. The check prints the manifests, the verified originals and the unavailable originals as separate counts.
+
+Retention: the owner keeps `inventare/capturi/` on the machine that rendered the pages (back it up like any local data). Git history before the migration of 2026-10-31 still holds the old records.
+A hash verifies bytes that exist; it does not rebuild bytes that are gone, and a later visit to the page cannot repeat the observation. Another checkout cannot verify an original until the owner
+gives it those exact bytes. Restore: `python3 scripts/inventory.py --restore-capture FILE ...` copies each file into `capturi/` when its SHA-256 is recorded in a manifest (no network, no credentials).
+Migration: `python3 scripts/inventory.py --migrate-captures [FILE ...]` keeps the exact bytes of each legacy record in `capturi/`, reads them back, and then replaces the record by its manifest
+(without FILE: every legacy record that Git tracks; untracked records stay as they are). Repeating it changes nothing. `scripts/inventory_captures.py` holds the format.
 
 **Specification files (`adaugari/`).** `inventory.py --add-sources-file` reads `adaugari/*.json`: the investigation inputs. A specification names the project, URL, method, parent, a
 `locate` or `repo` request for the discovery locator, `dovezi` for further locators, `citire`, `nota` and the mark `persoane`. Replaying the files from complete caches gives the same registry.

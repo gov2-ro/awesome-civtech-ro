@@ -484,7 +484,17 @@ class RenderText(Isolated):
         with mock.patch.dict(sys.modules, fake_sync_playwright(Browser())), contextlib.redirect_stdout(io.StringIO()), \
                 mock.patch.object(SyncPage, 'inner_text', lambda page, selector: self.TEXT), mock.patch.object(SyncPage, 'evaluate', lambda page, script: control):
             written = render_pages.render([url or self.URL], self.args(**changes))
-        return json.loads(written[0].read_text()), written[0].read_text()
+        return self.capture_of(written[0])
+
+    def capture_of(self, manifest_path):
+        """(record, raw text) of the original capture; the tracked manifest holds neither the page text nor the controls."""
+        manifest = json.loads(manifest_path.read_text())
+        self.assertNotIn('text_randat', manifest)
+        self.assertNotIn('controale_vizibile', manifest)
+        self.assertNotIn('Ana Exemplu', manifest_path.read_text())
+        self.assertNotIn('Maria Cobai', manifest_path.read_text())
+        path = self.tmp / 'capturi' / manifest['captura']['fisier']
+        return json.loads(path.read_text()), path.read_text()
 
     def spec_file(self, **item):
         path = self.tmp / 'x-randare.json'
@@ -528,7 +538,7 @@ class RenderText(Isolated):
                 mock.patch('test_forbidden_hosts.SyncPage', PageWithResponse), \
                 mock.patch.object(PageWithResponse, 'inner_text', lambda page, selector: self.TEXT), mock.patch.object(PageWithResponse, 'evaluate', lambda page, script: []):
             written = render_pages.render([self.URL], self.args(**changes))
-        return json.loads(written[0].read_text()), written[0].read_text()
+        return self.capture_of(written[0])
 
     def test_the_text_of_the_record_is_the_text_of_the_page_and_never_the_last_body_that_the_page_received(self):
         # Defect found on 2026-10-27 (lot E): the loop that saved the received bodies reused the name `text`. A render that saved a data body recorded

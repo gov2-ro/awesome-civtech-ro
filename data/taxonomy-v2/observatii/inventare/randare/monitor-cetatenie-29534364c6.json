@@ -1,16 +1,14 @@
 {
-  "versiune": 1,
+  "versiune": 2,
   "proiect": "monitor-cetatenie",
   "url_cerut": "https://www.gregorieu.com/cetatenie/ro",
   "url_final": "https://www.gregorieu.com/cetatenie/ro",
   "stare": "ok",
   "http_status": 200,
-  "titlu": "Panou Cetățenie",
   "randat_la": "2026-10-30T23:40:01.711385+00:00",
-  "text_randat": null,
   "text_lungime": 2579,
   "text_sha256": "39056ebf585ada282b03bb101a6221680e04f34061e3d278bdce066ba3ab6fea",
-  "controale_vizibile": [],
+  "controale_numar": 0,
   "cereri_date": [
     {
       "metoda": "POST",
@@ -23,5 +21,11 @@
   ],
   "corpuri_pastrate": [],
   "corpuri_omise": [],
-  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+  "captura": {
+    "algoritm": "sha256",
+    "sha256": "6e6c979fe3348475d1aedf7584554cbd0488618559d709132fe9aa70201ada0f",
+    "octeti": 978,
+    "fisier": "6e6c979fe3348475d1aedf7584554cbd0488618559d709132fe9aa70201ada0f.json",
+    "reprezentare": "UTF-8 bytes of the render record as JSON: indent 2, non-ASCII characters kept, one final newline"
+  }
 }

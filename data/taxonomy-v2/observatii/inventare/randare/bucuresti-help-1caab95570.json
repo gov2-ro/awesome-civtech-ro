@@ -1,16 +1,14 @@
 {
-  "versiune": 1,
+  "versiune": 2,
   "proiect": "bucuresti-help",
   "url_cerut": "https://bucuresti.help/map",
   "url_final": "https://bucuresti.help/map",
   "stare": "ok",
   "http_status": 200,
-  "titlu": "Harta sesizărilor din București | bucuresti.help",
   "randat_la": "2026-10-31T09:48:02.867928+00:00",
-  "text_randat": null,
   "text_lungime": 1524,
   "text_sha256": "52674782f666bd782f3cf8e032ad467435e39479938743ab749b95e3598c05ed",
-  "controale_vizibile": [],
+  "controale_numar": 0,
   "cereri_date": [
     {
       "metoda": "GET",
@@ -227,54 +225,24 @@
     "https://bucuresti.help/api/auth/session"
   ],
   "corpuri_omise": [
-    {
-      "url": "https://tiles.openfreemap.org/styles/liberty",
-      "motiv": "Error: Response.body: Protocol error (Network.getResponseBody): No resource with given identifier found\nResponse body is not av"
-    },
-    {
-      "url": "https://tiles.openfreemap.org/styles/liberty",
-      "motiv": "Error: Response.body: Protocol error (Network.getResponseBody): No resource with given identifier found\nResponse body is not av"
-    },
-    {
-      "url": "https://bucuresti.help/api/auth/session",
-      "motiv": "Error: Response.body: Protocol error (Network.getResponseBody): No resource with given identifier found\nResponse body is not av"
-    },
-    {
-      "url": "https://tiles.openfreemap.org/planet",
-      "motiv": "Error: Response.body: Protocol error (Network.getResponseBody): No resource with given identifier found\nResponse body is not av"
-    },
-    {
-      "url": "https://tiles.openfreemap.org/sprites/ofm_f384/ofm.json",
-      "motiv": "Error: Response.body: Protocol error (Network.getResponseBody): No resource with given identifier found\nResponse body is not av"
-    },
-    {
-      "url": "https://tiles.openfreemap.org/planet",
-      "motiv": "Error: Response.body: Protocol error (Network.getResponseBody): No resource with given identifier found\nResponse body is not av"
-    },
-    {
-      "url": "https://tiles.openfreemap.org/sprites/ofm_f384/ofm.json",
-      "motiv": "Error: Response.body: Protocol error (Network.getResponseBody): No resource with given identifier found\nResponse body is not av"
-    },
-    {
-      "url": "https://bucuresti.help/api/config?t=1793440074287",
-      "motiv": "Error: Response.body: Protocol error (Network.getResponseBody): No resource with given identifier found\nResponse body is not av"
-    },
-    {
-      "url": "https://bucuresti.help/api/reports/heatmap?probe=1",
-      "motiv": "Error: Response.body: Protocol error (Network.getResponseBody): No resource with given identifier found\nResponse body is not av"
-    },
-    {
-      "url": "https://bucuresti.help/api/reports/heatmap?probe=1",
-      "motiv": "Error: Response.body: Protocol error (Network.getResponseBody): No resource with given identifier found\nResponse body is not av"
-    },
-    {
-      "url": "https://bucuresti.help/api/reports",
-      "motiv": "body of 536308 bytes is over the 200000 limit"
-    },
-    {
-      "url": "https://bucuresti.help/api/reports",
-      "motiv": "body of 536308 bytes is over the 200000 limit"
-    }
+    "https://tiles.openfreemap.org/styles/liberty",
+    "https://tiles.openfreemap.org/styles/liberty",
+    "https://bucuresti.help/api/auth/session",
+    "https://tiles.openfreemap.org/planet",
+    "https://tiles.openfreemap.org/sprites/ofm_f384/ofm.json",
+    "https://tiles.openfreemap.org/planet",
+    "https://tiles.openfreemap.org/sprites/ofm_f384/ofm.json",
+    "https://bucuresti.help/api/config?t=1793440074287",
+    "https://bucuresti.help/api/reports/heatmap?probe=1",
+    "https://bucuresti.help/api/reports/heatmap?probe=1",
+    "https://bucuresti.help/api/reports",
+    "https://bucuresti.help/api/reports"
   ],
-  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+  "captura": {
+    "algoritm": "sha256",
+    "sha256": "da81e689f763647379d12ec58e2d913e3c95568c2abcadaa1b3607268bea907a",
+    "octeti": 9003,
+    "fisier": "da81e689f763647379d12ec58e2d913e3c95568c2abcadaa1b3607268bea907a.json",
+    "reprezentare": "UTF-8 bytes of the render record as JSON: indent 2, non-ASCII characters kept, one final newline"
+  }
 }

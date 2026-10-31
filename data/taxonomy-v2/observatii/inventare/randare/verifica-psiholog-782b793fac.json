@@ -1,141 +1,14 @@
 {
-  "versiune": 1,
+  "versiune": 2,
   "proiect": "verifica-psiholog",
   "url_cerut": "https://www.verificapsiholog.ro/",
   "url_final": "https://www.verificapsiholog.ro/",
   "stare": "ok",
   "http_status": 200,
-  "titlu": "VerificaPsiholog.ro - Găsește psihologi autorizați în România",
   "randat_la": "2026-10-27T17:04:09.286202+00:00",
-  "text_randat": null,
   "text_lungime": 4129,
   "text_sha256": "9a7f12c0961e16c931a79bffecd091fadea9fa4a3bf0eea24476dcebd5dbc4ba",
-  "controale_vizibile": [
-    {
-      "tag": "input",
-      "name": null,
-      "id": "searchInput",
-      "type": "text",
-      "label": "Caută psiholog după nume",
-      "options": null
-    },
-    {
-      "tag": "select",
-      "name": null,
-      "id": "county-finder-select",
-      "type": "select-one",
-      "label": null,
-      "options": [
-        "Alegeți județul…",
-        "Alba (427)",
-        "Arad (790)",
-        "Argeș (1.138)",
-        "Bacău (837)",
-        "Bihor (1.099)",
-        "Bistrița-Năsăud (327)",
-        "Botoșani (383)",
-        "Brașov (1.454)",
-        "Brăila (390)",
-        "București (10.048)",
-        "Buzău (538)"
-      ]
-    },
-    {
-      "tag": "input",
-      "name": null,
-      "id": null,
-      "type": "text",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": null,
-      "id": null,
-      "type": "text",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": null,
-      "id": null,
-      "type": "text",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": null,
-      "id": null,
-      "type": "text",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": null,
-      "id": null,
-      "type": "text",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": null,
-      "id": null,
-      "type": "text",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": null,
-      "id": null,
-      "type": "text",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": null,
-      "id": null,
-      "type": "text",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": null,
-      "id": null,
-      "type": "color",
-      "label": "Personalizat",
-      "options": null
-    },
-    {
-      "tag": "select",
-      "name": null,
-      "id": null,
-      "type": "select-one",
-      "label": null,
-      "options": [
-        "Rapid",
-        "Lent",
-        "Normal"
-      ]
-    },
-    {
-      "tag": "select",
-      "name": null,
-      "id": null,
-      "type": "select-one",
-      "label": null,
-      "options": [
-        "Ioana (Romanian (Romania)",
-        "Ioana (Romanian (Romania)"
-      ]
-    }
-  ],
+  "controale_numar": 13,
   "cereri_date": [
     {
       "metoda": "GET",
@@ -441,10 +314,13 @@
     "https://www.verificapsiholog.ro/api/statistics"
   ],
   "corpuri_omise": [
-    {
-      "url": "https://www.verificapsiholog.ro/api/psychologists-grouped?limit=1000",
-      "motiv": "body of 2407883 bytes is over the 200000 limit"
-    }
+    "https://www.verificapsiholog.ro/api/psychologists-grouped?limit=1000"
   ],
-  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+  "captura": {
+    "algoritm": "sha256",
+    "sha256": "af0d6af17bf5c2803baecf2d50dc4c8337ae0430dba43564bad570a1f4879d3c",
+    "octeti": 11845,
+    "fisier": "af0d6af17bf5c2803baecf2d50dc4c8337ae0430dba43564bad570a1f4879d3c.json",
+    "reprezentare": "UTF-8 bytes of the render record as JSON: indent 2, non-ASCII characters kept, one final newline"
+  }
 }

@@ -1,23 +1,14 @@
 {
-  "versiune": 1,
+  "versiune": 2,
   "proiect": "portal-just-modern",
   "url_cerut": "https://portaljustmodern.ro/institutii",
   "url_final": "https://portaljustmodern.ro/institutii",
   "stare": "ok",
   "http_status": 200,
-  "titlu": "Instanțele de judecată din România — judecătorii, tribunale, curți de apel | Magistrum",
   "randat_la": "2026-10-27T17:05:28.026024+00:00",
-  "text_randat": "[{\"cheie\":\"app_name\",\"valoare\":\"Portal Just Modern\"}, \n {\"cheie\":\"app_short_name\",\"valoare\":\"Portal Just\"}, \n {\"cheie\":\"app_description\",\"valoare\":\"Acces public la dosarele instanțelor de judecată din România într-un format modern.\"}, \n {\"cheie\":\"theme_color\",\"valoare\":\"#000000\"}, \n {\"cheie\":\"background_color\",\"valoare\":\"#000000\"}, \n {\"cheie\":\"display_mode\",\"valoare\":\"fullscreen\"}, \n {\"cheie\":\"start_url\",\"valoare\":\"/\"}, \n {\"cheie\":\"install_banner_enabled\",\"valoare\":\"true\"}, \n {\"cheie\":\"install_banner_text\",\"valoare\":\"Instalează aplicația pentru acces rapid\"}, \n {\"cheie\":\"offline_message\",\"valoare\":\"Fără conexiune la internet. Reconectați-vă pentru a accesa portalul.\"}, \n {\"cheie\":\"app_logo_url\",\"valoare\":\"logo/main-1791581211078.png\"}]",
-  "controale_vizibile": [
-    {
-      "tag": "input",
-      "name": null,
-      "id": "cauta-instanta",
-      "type": "text",
-      "label": "Caută după numele instanței sau al județului",
-      "options": null
-    }
-  ],
+  "text_lungime": 745,
+  "text_sha256": "58a689ca84abd4f63802ef8829e91b97ec443be5372621fe11c757565f927030",
+  "controale_numar": 1,
   "cereri_date": [
     {
       "metoda": "GET",
@@ -58,5 +49,11 @@
     "https://itastfxwfqsnidyjestx.supabase.co/rest/v1/pwa_settings?select=cheie%2Cvaloare"
   ],
   "corpuri_omise": [],
-  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+  "captura": {
+    "algoritm": "sha256",
+    "sha256": "d063a6195b582161c88ff475a0610ac156645faf8c38db3b0d59e5ff85454a58",
+    "octeti": 2891,
+    "fisier": "d063a6195b582161c88ff475a0610ac156645faf8c38db3b0d59e5ff85454a58.json",
+    "reprezentare": "UTF-8 bytes of the render record as JSON: indent 2, non-ASCII characters kept, one final newline"
+  }
 }

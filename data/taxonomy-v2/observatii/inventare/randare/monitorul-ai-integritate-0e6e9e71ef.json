@@ -1,162 +1,14 @@
 {
-  "versiune": 1,
+  "versiune": 2,
   "proiect": "monitorul-ai-integritate",
   "url_cerut": "https://monitorul.ai/integritate/statistici",
   "url_final": "https://monitorul.ai/integritate/statistici",
   "stare": "ok",
   "http_status": 200,
-  "titlu": "SEMNAL · Atlas statistic",
   "randat_la": "2026-10-31T09:47:13.174491+00:00",
-  "text_randat": null,
   "text_lungime": 20000,
   "text_sha256": "f042ce2ed5315e01e6c7468f5cf3820a3db6b7275e1fb76024185426cab02ee6",
-  "controale_vizibile": [
-    {
-      "tag": "input",
-      "name": null,
-      "id": null,
-      "type": "search",
-      "label": "Caută instituție sau județ",
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": null,
-      "id": null,
-      "type": "search",
-      "label": "Caută marcă",
-      "options": null
-    },
-    {
-      "tag": "select",
-      "name": null,
-      "id": null,
-      "type": "select-one",
-      "label": null,
-      "options": [
-        "toate funcțiile",
-        "Ales local (funcție executivă)",
-        "Altele",
-        "Conducere",
-        "Consilier ales",
-        "Demnitar",
-        "Educație",
-        "Funcționar",
-        "Magistrat",
-        "Ordine publică și apărare națională",
-        "Parlamentar",
-        "Personal din justiție"
-      ]
-    },
-    {
-      "tag": "select",
-      "name": null,
-      "id": null,
-      "type": "select-one",
-      "label": null,
-      "options": [
-        "toate județele",
-        "Alba",
-        "Arad",
-        "Argeș",
-        "Bacău",
-        "Bihor",
-        "Bistrița-Năsăud",
-        "Botoșani",
-        "Brașov",
-        "Brăila",
-        "București",
-        "Buzău"
-      ]
-    },
-    {
-      "tag": "input",
-      "name": null,
-      "id": null,
-      "type": "search",
-      "label": "Caută un indicator…",
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": null,
-      "id": null,
-      "type": "search",
-      "label": "Caută o localitate sau un județ…",
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": null,
-      "id": "_R_dbsnqnb_-company",
-      "type": "text",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": null,
-      "id": "_R_dbsnqnb_-name",
-      "type": "text",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": null,
-      "id": "_R_dbsnqnb_-email",
-      "type": "email",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "select",
-      "name": null,
-      "id": null,
-      "type": "select-one",
-      "label": null,
-      "options": [
-        "",
-        "Jurnalist",
-        "ONG / societate civilă",
-        "Cercetător / mediu academic",
-        "Instituție publică",
-        "Altele"
-      ]
-    },
-    {
-      "tag": "input",
-      "name": null,
-      "id": "_R_dbsnqnb_-org",
-      "type": "text",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": null,
-      "id": "_R_dbsnqnb_-link",
-      "type": "url",
-      "label": "Articol, profil sau pagină instituțională",
-      "options": null
-    },
-    {
-      "tag": "textarea",
-      "name": null,
-      "id": "_R_dbsnqnb_-useCase",
-      "type": "textarea",
-      "label": "ex.: o investigație despre achizițiile publice dintr-un anumit județ",
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": null,
-      "id": "_R_dbsnqnb_-consent",
-      "type": "checkbox",
-      "label": null,
-      "options": null
-    }
-  ],
+  "controale_numar": 14,
   "cereri_date": [
     {
       "metoda": "GET",
@@ -296,10 +148,13 @@
     "https://monitorul.ai/integritate/stats/counties.json"
   ],
   "corpuri_omise": [
-    {
-      "url": "https://monitorul.ai/integritate/story/geo-counties.topo.json",
-      "motiv": "body of 544540 bytes is over the 200000 limit"
-    }
+    "https://monitorul.ai/integritate/story/geo-counties.topo.json"
   ],
-  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+  "captura": {
+    "algoritm": "sha256",
+    "sha256": "ac61c88906b0b4cc47c37fef4f15201942838ec296bf5d9c86feabaf6c18ffcb",
+    "octeti": 7971,
+    "fisier": "ac61c88906b0b4cc47c37fef4f15201942838ec296bf5d9c86feabaf6c18ffcb.json",
+    "reprezentare": "UTF-8 bytes of the render record as JSON: indent 2, non-ASCII characters kept, one final newline"
+  }
 }

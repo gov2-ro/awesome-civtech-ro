@@ -1,49 +1,14 @@
 {
-  "versiune": 1,
+  "versiune": 2,
   "proiect": "onesti-city",
   "url_cerut": "https://www.onesti.city/",
   "url_final": "https://www.onesti.city/",
   "stare": "ok",
   "http_status": 200,
-  "titlu": "Onești City — Radioul, știrile și vremea orașului",
   "randat_la": "2026-10-31T09:46:33.957850+00:00",
-  "text_randat": null,
   "text_lungime": 14029,
   "text_sha256": "686f04501dea5af9edf34efda83595ddaf508bbd14601a8a7d8806e7645d8c3f",
-  "controale_vizibile": [
-    {
-      "tag": "input",
-      "name": null,
-      "id": "home-radio-volume",
-      "type": "range",
-      "label": "Volum",
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": "name",
-      "id": "home-message-name",
-      "type": "text",
-      "label": "Cum te numești?",
-      "options": null
-    },
-    {
-      "tag": "textarea",
-      "name": "message",
-      "id": "home-message-text",
-      "type": "textarea",
-      "label": "O idee, un gând sau o dedicație…",
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": null,
-      "id": null,
-      "type": "text",
-      "label": null,
-      "options": null
-    }
-  ],
+  "controale_numar": 4,
   "cereri_date": [
     {
       "metoda": "GET",
@@ -159,10 +124,13 @@
     "https://www.onesti.city/api/data/exchange-rates"
   ],
   "corpuri_omise": [
-    {
-      "url": "https://www.onesti.city/api/data/news?limit=300",
-      "motiv": "body of 274737 bytes is over the 200000 limit"
-    }
+    "https://www.onesti.city/api/data/news?limit=300"
   ],
-  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+  "captura": {
+    "algoritm": "sha256",
+    "sha256": "85d193d814900e470bdafe962eaca48769e522d6a063bce4caef6643fb551121",
+    "octeti": 4667,
+    "fisier": "85d193d814900e470bdafe962eaca48769e522d6a063bce4caef6643fb551121.json",
+    "reprezentare": "UTF-8 bytes of the render record as JSON: indent 2, non-ASCII characters kept, one final newline"
+  }
 }

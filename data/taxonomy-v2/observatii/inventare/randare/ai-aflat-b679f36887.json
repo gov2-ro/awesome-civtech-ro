@@ -1,23 +1,14 @@
 {
-  "versiune": 1,
+  "versiune": 2,
   "proiect": "ai-aflat",
   "url_cerut": "https://legislatie.ai-aflat.ro/",
   "url_final": "https://legislatie.ai-aflat.ro/",
   "stare": "ok",
   "http_status": 200,
-  "titlu": "LegDB — legislația României",
   "randat_la": "2026-10-31T10:06:58.521262+00:00",
-  "text_randat": "Sari la conținut\nLegDB\nAcasă\nLegislație\nCoduri\nDespre date\nMergi direct la un act\nCaută\nsau caută după domeniu, tip și an\nLegislația României, în cifre\nCorpus actualizat pe 31 octombrie 2026 · cât de complete sunt datele?\n306.831\nacte în corpus\n236.994\nîn vigoare azi\n69.818\nabrogate\n1,66 mil.\nlegături între acte\n68.787\nfragmente de act\nActe adoptate în fiecare an și câte mai sunt în vigoare\n1990 – 2026. Anii recenți par mai curați fiindcă a trecut mai puțin timp în care actele să fie abrogate. 2026 e încă în curs.\nÎncă în vigoare\nAbrogate între timp\n1990\n1999\n2008\n2017\n2026\nCele mai mari domenii\nUn act poate avea mai multe domenii.\nFinanțe publice și buget\n124.233\nDrept administrativ\n50.224\nAchiziții publice\n36.935\nDrept constituțional și drepturi fundamentale\n32.838\nJustiție și organizare judiciară\n26.018\nSănătate\n22.637\nCine emite legea\nDupă autoritatea emitentă.\nGuvernul\n75.546\nMinistere\n69.857\nPreședintele\n37.348\nParlamentul\n31.155\nCurtea Constituțională\n25.390\nCât contează pentru un cetățean\nRelevanță, de la 1 la 10. Codurile și legile-cadru stau la 8 – 10.\n1 — rutină\n10 — un cod\nCoduri principale\nToate codurile →\nCodul civil\nLegea 287/2009\nCodul penal\nLegea 286/2009\nCodul de procedură civilă\nLegea 134/2010 (republicat)\nCodul de procedură penală\nLegea 135/2010\nAdăugate recent\nMai multe →\n30 mar. 2016\nNorme metodologice pentru supravegherea și controlul siguranței alimentelor\n30 mar. 2016\nNorme metodologice pentru supravegherea bolilor animalelor și protecția animalelor\n30 mar. 2016\nAprobare program de supraveghere sanitar-veterinară\n5 iun. 2025\nProcedură de implementare a Programului SME Eco-Tech\nHarta legislației, după subiect\n\nCele mai importante acte din corpus, așezate după cât de asemănătoare sunt rezumatele lor. Actele despre același subiect se strâng împreună — nu pentru că se citează, ci pentru că vorbesc despre același lucru.\n\nreal-estate-housing\nconstitutional\nalte domenii\nLegDB — o copie structurată a legislatie.just.ro.\nNu e sursă oficială. Pentru certitudine juridică, mergi la Monitorul Oficial.\nCât de complete sunt datele?",
-  "controale_vizibile": [
-    {
-      "tag": "input",
-      "name": null,
-      "id": null,
-      "type": "text",
-      "label": "Caută un act după nume sau referință — de exemplu Codul fiscal, legea 227/2015 sau legea salarizării",
-      "options": null
-    }
-  ],
+  "text_lungime": 2077,
+  "text_sha256": "eb924ab70206ef59a20d5f54c8d3ae27ab5d6688eadb25cf48ea1d74c21622b2",
+  "controale_numar": 1,
   "cereri_date": [
     {
       "metoda": "GET",
@@ -67,5 +58,11 @@
     "https://legislatie.ai-aflat.ro/v1/stats"
   ],
   "corpuri_omise": [],
-  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+  "captura": {
+    "algoritm": "sha256",
+    "sha256": "5b17c957f888ef357f7831bd1d48cb208a24621278dba51779ab28b8340d394f",
+    "octeti": 4479,
+    "fisier": "5b17c957f888ef357f7831bd1d48cb208a24621278dba51779ab28b8340d394f.json",
+    "reprezentare": "UTF-8 bytes of the render record as JSON: indent 2, non-ASCII characters kept, one final newline"
+  }
 }

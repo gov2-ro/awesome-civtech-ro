@@ -1,16 +1,14 @@
 {
-  "versiune": 1,
+  "versiune": 2,
   "proiect": "antibunk",
   "url_cerut": "https://antibunk.ro/date",
   "url_final": "https://antibunk.ro/date",
   "stare": "timeout",
   "http_status": null,
-  "titlu": "",
   "randat_la": "2026-10-30T23:39:02.947008+00:00",
-  "text_randat": null,
   "text_lungime": 0,
   "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-  "controale_vizibile": [],
+  "controale_numar": 0,
   "cereri_date": [
     {
       "metoda": "POST",
@@ -73,10 +71,13 @@
     "https://antibunk.ro/kb/hybrid-war/manifest.json"
   ],
   "corpuri_omise": [
-    {
-      "url": "https://antibunk.ro/kb/hybrid-war/_ui_manifest.json",
-      "motiv": "body of 705618 bytes is over the 200000 limit"
-    }
+    "https://antibunk.ro/kb/hybrid-war/_ui_manifest.json"
   ],
-  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+  "captura": {
+    "algoritm": "sha256",
+    "sha256": "c5f2ba0718ea0075774c71c570247f90570e7c4455869da581224a97edbc1d37",
+    "octeti": 2432,
+    "fisier": "c5f2ba0718ea0075774c71c570247f90570e7c4455869da581224a97edbc1d37.json",
+    "reprezentare": "UTF-8 bytes of the render record as JSON: indent 2, non-ASCII characters kept, one final newline"
+  }
 }

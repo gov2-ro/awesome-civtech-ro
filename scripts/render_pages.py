@@ -8,8 +8,11 @@
     uv run scripts/render_pages.py URL --out-dir /tmp/renders --wait-ms 4000
 
 The collector in collect_docs.py reads static HTML. A page that fills itself with JavaScript hides its data behind requests.
-This helper opens the page once, waits for the network to settle, and writes what it saw to `randare/<slug>-<hash>.json`:
-the rendered text, the visible controls, and the fetch/XHR requests to the same site (or to hosts named with --allow-host).
+This helper opens the page once, waits for the network to settle, and records what it saw: the rendered text, the visible controls, and the
+fetch/XHR requests to the same site (or to hosts named with --allow-host). The full record is the capture. It goes to the ignored folder
+`inventare/capturi/<sha256>.json` (the SHA-256 of its bytes is its name; a new capture never overwrites another). The tracked file
+`randare/<slug>-<hash>.json` is a compact manifest: URLs, time, outcome, data requests and the capture hash. It holds no page text.
+Module `inventory_captures.py` describes both and the commands that migrate, check and restore captures.
 
 It does not click, type, submit a form, sign in or run any project action. It keeps no cookies between pages and records no request
 headers. Query values that look like credentials are redacted. Third-party and static-asset traffic is dropped, never stored.
@@ -39,6 +42,7 @@ from pathlib import Path
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 from common import FORBIDDEN_STATE, PUBLIC_ROOT, browser_args, forbidden, host_of, note_failed_request, observation_paths, refuse_route
+import inventory_captures
 from inventory_persons import is_marked, mark_errors
 from inventory_state import RequestLog, dump, protect, source_id, write_file_atomic
 
@@ -129,6 +133,7 @@ def render(urls, args):
     obs = observation_paths(args.data_dir)['profile'].parent
     out_dir = args.out_dir or obs / 'inventare' / 'randare'
     out_dir.mkdir(parents=True, exist_ok=True)
+    captures = getattr(args, 'captures_dir', None) or out_dir.parent / inventory_captures.CAPTURE_DIR
     marked = marked_pages([*sorted((obs / 'inventare' / 'adaugari').glob('*-randare.json')), *getattr(args, 'spec', [])])
     log = RequestLog(obs / 'inventare' / 'jurnal-cereri.csv', args.lot) if args.lot else None
     written = []
@@ -205,8 +210,7 @@ def render(urls, args):
                       'controale_vizibile': controls, 'cereri_date': requests, 'corpuri_pastrate': [redact(u) for u in saved], 'corpuri_omise': omitted,
                       'nota': 'No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only.'}
             name = f'{args.slug or "pagina"}-{hashlib.sha256(url.encode()).hexdigest()[:10]}.json'
-            (out_dir / name).write_text(json.dumps(record, ensure_ascii=False, indent=2) + '\n')
-            written.append(out_dir / name)
+            written.append(inventory_captures.write_capture(out_dir, captures, name, record))
             if log:
                 log.add('BROWSER', redact(url), state, status, None, 'browser', f'randare {args.slug}')
                 for item in requests:
@@ -224,7 +228,8 @@ def main():
     parser.add_argument('--slug', default='', help='catalogue slug the page belongs to')
     parser.add_argument('--lot', default='', help='request-log batch name')
     parser.add_argument('--data-dir', type=Path, default=PUBLIC_ROOT)
-    parser.add_argument('--out-dir', type=Path)
+    parser.add_argument('--out-dir', type=Path, help='folder of the manifests (default: inventare/randare)')
+    parser.add_argument('--captures-dir', type=Path, help='folder of the original captures, outside Git (default: capturi/ next to the manifest folder)')
     parser.add_argument('--wait-ms', type=int, default=2500, help='extra wait after the network settles')
     parser.add_argument('--timeout-ms', type=int, default=25000)
     parser.add_argument('--allow-host', action='append', default=[], help='extra host whose data requests may be kept')

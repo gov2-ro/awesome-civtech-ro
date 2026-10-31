@@ -1,16 +1,22 @@
 {
-  "versiune": 1,
+  "versiune": 2,
   "proiect": "open-budget",
   "url_cerut": "https://www.openbudget.ro/",
   "url_final": "about:blank",
   "stare": "timeout",
   "http_status": null,
-  "titlu": "",
   "randat_la": "2026-10-27T16:59:28.867720+00:00",
-  "text_randat": "",
-  "controale_vizibile": [],
+  "text_lungime": 0,
+  "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "controale_numar": 0,
   "cereri_date": [],
   "corpuri_pastrate": [],
   "corpuri_omise": [],
-  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+  "captura": {
+    "algoritm": "sha256",
+    "sha256": "4f494950753817499190544fc15205e66bf34f599e70ecfd9411f77e8d0847cc",
+    "octeti": 470,
+    "fisier": "4f494950753817499190544fc15205e66bf34f599e70ecfd9411f77e8d0847cc.json",
+    "reprezentare": "UTF-8 bytes of the render record as JSON: indent 2, non-ASCII characters kept, one final newline"
+  }
 }

@@ -1,5 +1,27 @@
 # Activity
 
+## 2026-10-31 — Inventory evidence storage: manifests in Git, captures local
+
+**Done**
+- Added `scripts/inventory_captures.py`. A browser capture (the full render record) now goes to the ignored folder `inventare/capturi/<sha256>.json`. The name is the SHA-256 of the file bytes (UTF-8 JSON, indent 2, one final newline).
+- The tracked file `inventare/randare/<name>.json` is now a manifest (`versiune` 2) with an explicit key allowlist: URLs, time, outcome, the data requests, text length and hash, control count, and the capture hash. It holds no page text, title, control or response value.
+- `render_pages.py` writes both files; a repeat render keeps the earlier capture and lists its hash in `capturi_anterioare`. `inventory.py` got `--migrate-captures` and `--restore-capture`; `check_locator` and a new `check_captures` tell valid, verified and unavailable apart.
+- Migrated the 25 tracked records from local copies, with no request. Measured: 25 captures stored and hash-verified (each name equals the SHA-256 of the pre-migration file), tracked bytes 130,486 → 77,772. A second run reported 25 `already` and changed no byte. The 17 untracked exploration records stayed as they were (`legacy`).
+- Unchanged by the migration: the seven structured artifacts (SHA-256 identical), `descoperiri.json` (its 42 render references and the 15 distinct manifests they name), profiles, fields, source membership, review decisions and the false-positive ledger. Publication validation: 0 errors, 0 warnings. `inventory_report.py --check`: 0 outputs out of date.
+- Local `inventory.py --check`: 0 errors; 25 manifests, 25 originals verified, 0 unavailable. A copy of the checkout with the manifests and no `capturi/`: ordinary check exit 0 with 25 originals and 15 discovery locators reported unavailable; `--strict-snapshots` exit 1.
+- The isolated builds with `--with-inventory --with-structure` at the previous commit and at this change differ only in the `generated` and `lastBuildDate` timestamps (`data.json`, `feed.xml`).
+- New tests: `scripts/test_inventory_captures.py` (migration, repeat, missing, altered, restore, allowlist). `test_inventory_persons.py` and `test_inventory_report.py` read the capture for page text.
+
+**Hard**
+- A hash cannot rebuild a lost capture. Another machine cannot verify an original until the owner supplies the exact bytes; there is no remote archive. Git history keeps the old records (history rewriting is out of scope).
+- The strict check on a clean copy also fails for other absent local bodies (`surse/`), so that run alone does not isolate the captures; the unit tests do (`Verification`).
+- The batch G audit (eight unresolved profiles) is not part of this change.
+
+**Decided**
+- Keep the manifest at the old path, so the discovery locators in `descoperiri.json` keep their URLs and pointers. The alternative, a new locator format, needed a migration of every reference at once.
+- Name the capture by content hash. A repeat capture can then never overwrite the original. The cost: a repeat capture of identical bytes shares one file.
+- Migrate only listed or Git-tracked records; untracked exploration records stay.
+
 ## 2026-10-31 — Inventory storage decision and implementation handoff
 
 **Done**

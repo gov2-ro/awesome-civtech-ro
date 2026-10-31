@@ -489,7 +489,11 @@ class Coverage(unittest.TestCase):
         records = [json.loads(p.read_text()) for p in (ROOT / 'data/taxonomy-v2/observatii/inventare/randare').glob('verifica-psiholog-*.json')]
         self.assertTrue(records)
         for record in records:
-            self.assertIsNone(record['text_randat'], 'a page that lists persons is rendered with --fara-text')
+            self.assertNotIn('text_randat', record, 'a tracked manifest holds no page text')
+            self.assertTrue(record['text_sha256'] and record['text_lungime'], 'the manifest keeps the length and the hash of the page text')
+            capture = ROOT / 'data/taxonomy-v2/observatii/inventare/capturi' / record['captura']['fisier']
+            if capture.exists():  # the original is local evidence: this checkout may not hold it
+                self.assertIsNone(json.loads(capture.read_text())['text_randat'], 'a page that lists persons is rendered with --fara-text')
 
     def test_every_lot_e_source_with_an_inventory_is_a_read_source_and_the_new_readers_are_known_to_the_site(self):
         from inventory_site import FORMATS

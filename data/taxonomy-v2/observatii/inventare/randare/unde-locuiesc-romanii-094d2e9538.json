@@ -1,62 +1,14 @@
 {
-  "versiune": 1,
+  "versiune": 2,
   "proiect": "unde-locuiesc-romanii",
   "url_cerut": "https://unde.geo-spatial.org/",
   "url_final": "https://unde.geo-spatial.org/",
   "stare": "ok",
   "http_status": 200,
-  "titlu": "Unde locuiesc românii?",
   "randat_la": "2026-10-31T09:48:56.734339+00:00",
-  "text_randat": null,
   "text_lungime": 2709,
   "text_sha256": "5283ef9b710baea9f247e576a268aee1bde7642377a2e48630ae47f6319ba3e7",
-  "controale_vizibile": [
-    {
-      "tag": "select",
-      "name": null,
-      "id": null,
-      "type": "select-one",
-      "label": null,
-      "options": [
-        "persoane (total)",
-        "femei",
-        "bărbați",
-        "copii (0–14 ani)",
-        "persoane 15–64 ani",
-        "vârstnici (65+)",
-        "persoane ocupate"
-      ]
-    },
-    {
-      "tag": "select",
-      "name": null,
-      "id": null,
-      "type": "select-one",
-      "label": null,
-      "options": [
-        "alege variabila…",
-        "Populația totală (2021)",
-        "Mediul (urban/rural)",
-        "Intravilan (oraș/sat)",
-        "Statutul UAT",
-        "Județul",
-        "Regiunea",
-        "Altitudinea medie",
-        "Panta medie",
-        "Tipul formei de relief",
-        "Marea unitate de relief",
-        "Distanța până la mare"
-      ]
-    },
-    {
-      "tag": "input",
-      "name": null,
-      "id": null,
-      "type": "search",
-      "label": "Caută UAT sau localitate",
-      "options": null
-    }
-  ],
+  "controale_numar": 3,
   "cereri_date": [
     {
       "metoda": "GET",
@@ -162,10 +114,13 @@
     "https://unde.geo-spatial.org/data/registry.json"
   ],
   "corpuri_omise": [
-    {
-      "url": "https://unde.geo-spatial.org/data/county.geojson",
-      "motiv": "body of 1243747 bytes is over the 200000 limit"
-    }
+    "https://unde.geo-spatial.org/data/county.geojson"
   ],
-  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+  "captura": {
+    "algoritm": "sha256",
+    "sha256": "1e0700451e152871be47f58c9344906eb97bf49c1ba75dac3cafdddbd3a2113b",
+    "octeti": 4664,
+    "fisier": "1e0700451e152871be47f58c9344906eb97bf49c1ba75dac3cafdddbd3a2113b.json",
+    "reprezentare": "UTF-8 bytes of the render record as JSON: indent 2, non-ASCII characters kept, one final newline"
+  }
 }

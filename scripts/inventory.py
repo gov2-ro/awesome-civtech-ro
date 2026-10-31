@@ -33,6 +33,7 @@ import io
 import json
 import os
 import re
+import subprocess
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -40,6 +41,7 @@ from urllib.parse import unquote, urlsplit
 
 from collect_docs import Fetcher, canonical, flat, is_saved, restore, saved_copy, saved_errors, scope_of
 from common import FORBIDDEN_STATE, OUT_OF_SCOPE, PUBLIC_ROOT, data_schema, forbidden, inventory_scope, load_catalogue, load_vocabulary, observation_paths
+import inventory_captures
 from inventory_concepts import EvidenceLocator, check_concepts, validate_families
 from inventory_editor import FILE as EDITOR_FILE, check as check_editor, merge as merge_editor, read_file as read_editor, without_added
 from inventory_apidocs import operations as api_operations
@@ -631,7 +633,7 @@ def check_report(out, observations):
     those are not hash-verified and are never counted as verified. `stale` lists sources whose last refresh failed."""
     report = {'errors': [], 'unavailable': [], 'verified': 0, 'stale': [], 'concept_stale': [], 'concept_verified': 0,
               'saved': {'total': 0, 'verified': 0, 'unavailable': 0}, 'persons': {'marked': 0, 'checked': 0, 'unavailable': 0},
-              'editor': {'rows': 0, 'verified': 0, 'unavailable': 0}}
+              'editor': {'rows': 0, 'verified': 0, 'unavailable': 0}, 'captures': {'manifests': 0, 'verified': 0, 'unavailable': 0, 'legacy': 0}}
     errors = report['errors']
     try:
         previous = load_previous(out)
@@ -778,12 +780,42 @@ def check_report(out, observations):
                     elif status:
                         errors.append(status)
     check_saved_pages(report, observations)
+    check_captures(report, observations)
     check_editor_fields(report, previous, out, observations)
     check_dictionary(report, previous, out, observations)
     check_persons(report, previous, out, observations)
     check_external_fragments(report, previous, observations)
     report['unavailable'] = sorted(set(report['unavailable']))
     return report
+
+
+def check_captures(report, observations):
+    """Every render manifest (`inventare/randare/*.json`, versiune 2): its form, then its original capture in `inventare/capturi/`.
+    A manifest with no local capture is unavailable and not verified; a capture with other bytes is an error. Legacy records (versiune 1) hold their data inline."""
+    counts = report['captures'] = {'manifests': 0, 'verified': 0, 'unavailable': 0, 'legacy': 0}
+    folder = Path(observations) / 'inventare' / inventory_captures.MANIFEST_DIR
+    for path in sorted(folder.glob('*.json')) if folder.exists() else []:
+        try:
+            manifest = inventory_captures.read_manifest(path)
+        except (OSError, ValueError) as exc:
+            report['errors'].append(f'{path.name}: {exc}')
+            continue
+        if manifest is None:
+            counts['legacy'] += 1
+            continue
+        counts['manifests'] += 1
+        problems = inventory_captures.manifest_problems(manifest)
+        if problems:
+            report['errors'] += [f'{path.name}: {item}' for item in problems]
+            continue
+        state, detail = inventory_captures.verify(inventory_captures.captures_dir(observations), manifest)
+        if state == 'error':
+            report['errors'].append(f'{path.name}: capture {detail}')
+        elif state == 'unavailable':
+            counts['unavailable'] += 1
+            report['unavailable'].append('capture: ' + path.name)
+        else:
+            counts['verified'] += 1
 
 
 def check_editor_fields(report, previous, out, observations):
@@ -945,7 +977,19 @@ def check_locator(record, evidence, observations):
             return 'unavailable'
         except (OSError, ValueError, KeyError, IndexError):
             return f'{label}: invalid render pointer'
-        return '' if seen == evidence['valoare'] and record.get('url_cerut') == evidence['url'] else f'{label}: render record differs'
+        if seen != evidence['valoare'] or record.get('url_cerut') != evidence['url']:
+            return f'{label}: render record differs'
+        if record.get('versiune') == inventory_captures.MANIFEST_VERSION:
+            # A valid manifest is not yet a verified capture: the original must be here and must have the recorded hash.
+            problems = inventory_captures.manifest_problems(record)
+            if problems:
+                return f'{label}: invalid render manifest: ' + '; '.join(problems)
+            state, detail = inventory_captures.verify(inventory_captures.captures_dir(observations), record)
+            if state == 'error':
+                return f'{label}: capture {detail}'
+            if state == 'unavailable':
+                return 'unavailable'
+        return ''
     if evidence.get('tip') == 'profil':
         try:
             with (observations / evidence['snapshot']).open(newline='') as stream:
@@ -1394,6 +1438,29 @@ def reading_of(value):
         raise StateError(f'--reading is not valid JSON: {exc}') from exc
 
 
+def run_captures(args, obs):
+    """--migrate-captures and --restore-capture. Local files only; no request."""
+    folder, directory = obs / 'inventare' / inventory_captures.MANIFEST_DIR, inventory_captures.captures_dir(obs)
+    try:
+        if args.restore_capture:
+            manifests = [m for m in (inventory_captures.read_manifest(p) for p in sorted(folder.glob('*.json'))) if m]
+            for source in args.restore_capture:
+                print('restored', inventory_captures.restore(directory, source, manifests))
+            return 0
+        if args.migrate_captures:
+            paths = [Path(item) for item in args.migrate_captures]
+        else:
+            tracked = subprocess.run(['git', 'ls-files', '-z', '--', str(folder)], capture_output=True, check=True, cwd=folder.parent).stdout.decode().split('\0')
+            paths = [Path(item) if Path(item).is_absolute() else folder.parent / item for item in tracked if item.endswith('.json')]
+            paths = [p for p in {p.resolve() for p in paths} if p.exists()]
+        for name, state in inventory_captures.migrate(folder, directory, sorted(paths)):
+            print(state, name)
+    except (inventory_captures.CaptureError, OSError, ValueError, subprocess.CalledProcessError) as exc:
+        print('ERROR: ' + str(exc))
+        return 1
+    return 0
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('--data-dir', type=Path, default=PUBLIC_ROOT)
@@ -1402,6 +1469,9 @@ def main():
     parser.add_argument('--offline', action='store_true', help='no requests; a missing cache keeps the tracked record')
     parser.add_argument('--check', action='store_true', help='check existing evidence and references; no requests or rewrites')
     parser.add_argument('--strict-snapshots', action='store_true', help='with --check: fail when local evidence bodies are absent')
+    parser.add_argument('--migrate-captures', nargs='*', metavar='FILE', help='turn legacy render records into manifests (no request): the original bytes go to inventare/capturi/ first; '
+                        'without FILE, every legacy record that Git tracks; repeating it changes nothing')
+    parser.add_argument('--restore-capture', nargs='+', metavar='FILE', help='import files that the owner supplies as original captures; each must have a SHA-256 that a manifest records')
     parser.add_argument('--dry-run', action='store_true', help='compute and report the next state; write nothing')
     parser.add_argument('--force', action='store_true', help='fetch selected sources again even when a cache exists')
     parser.add_argument('--force-url', action='append', default=[], metavar='URL', help='fetch only this source again (repeatable)')
@@ -1451,6 +1521,8 @@ def main():
         parser.error('Variable inventories require a taxonomy v2 data root.')
     obs = observation_paths(args.data_dir)['profile'].parent
     out = args.out or obs / 'inventare'
+    if args.migrate_captures is not None or args.restore_capture:
+        return run_captures(args, obs)
     if args.check:
         report = check_report(out, obs)
         for error in report['errors']:
@@ -1471,6 +1543,10 @@ def main():
         if report['editor']['rows']:
             print(f'{report["editor"]["rows"]} fields added by an editor ({EDITOR_FILE}): {report["editor"]["verified"]} fragments found with the recorded hash, '
                   f'{report["editor"]["unavailable"]} in local bodies that are unavailable and not verified')
+        captures = report['captures']
+        if captures['manifests'] or captures['legacy']:
+            print(f'{captures["manifests"]} render manifests: {captures["verified"]} original captures hash-verified, {captures["unavailable"]} originals unavailable and not verified; '
+                  f'{captures["legacy"]} legacy render records hold their data inline')
         saved = report['saved']
         if saved['total']:
             print(f'{saved["total"]} copies saved by the owner (not fetched): {saved["verified"]} hash-verified, {saved["unavailable"]} unavailable and not verified')

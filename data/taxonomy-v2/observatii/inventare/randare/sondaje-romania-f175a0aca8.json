@@ -1,14 +1,14 @@
 {
-  "versiune": 1,
+  "versiune": 2,
   "proiect": "sondaje-romania",
   "url_cerut": "https://sondajeromania.ro/parlamentare",
   "url_final": "https://sondajeromania.ro/parlamentare",
   "stare": "ok",
   "http_status": 200,
-  "titlu": "Sondaje Parlamentare | Sondaje Romania",
   "randat_la": "2026-10-26T23:39:54.679585+00:00",
-  "text_randat": ":HL[\"/_next/static/chunks/ccf753502ff1fde7.css\",\"style\"]\n:HL[\"/_next/static/media/1bffadaabf893a1e-s.p.7cd81963.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n:HL[\"/_next/static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n0:{\"buildId\":\"Om5Gze_nSHNYIT6U5-E8F\",\"tree\":{\"name\":\"\",\"paramType\":null,\"paramKey\":\"\",\"hasRuntimePrefetch\":false,\"slots\":{\"children\":{\"name\":\"coalitii\",\"paramType\":null,\"paramKey\":\"coalitii\",\"hasRuntimePrefetch\":false,\"slots\":{\"children\":{\"name\":\"__PAGE__\",\"paramType\":null,\"paramKey\":\"__PAGE__\",\"hasRuntimePrefetch\":false,\"slots\":null,\"isRootLayout\":false}},\"isRootLayout\":false}},\"isRootLayout\":true},\"staleTime\":300}\n",
-  "controale_vizibile": [],
+  "text_lungime": 695,
+  "text_sha256": "536b2b7e135e0bae1a4d515294f4f6b83c069e9f99de2c9f6be36137e2fc69d0",
+  "controale_numar": 0,
   "cereri_date": [
     {
       "metoda": "HEAD",
@@ -660,5 +660,11 @@
     "https://sondajeromania.ro/coalitii/__next._tree.txt?_rsc=h02an"
   ],
   "corpuri_omise": [],
-  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+  "captura": {
+    "algoritm": "sha256",
+    "sha256": "e414a5d859163fa79654951db3d9e27e3fbd1f08119c96b2d615f4247894be85",
+    "octeti": 19941,
+    "fisier": "e414a5d859163fa79654951db3d9e27e3fbd1f08119c96b2d615f4247894be85.json",
+    "reprezentare": "UTF-8 bytes of the render record as JSON: indent 2, non-ASCII characters kept, one final newline"
+  }
 }

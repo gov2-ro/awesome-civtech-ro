@@ -1,25 +1,14 @@
 {
-  "versiune": 1,
+  "versiune": 2,
   "proiect": "bucuresti-verde",
   "url_cerut": "https://bucurestiverde.ro/map",
   "url_final": "https://bucurestiverde.ro/map",
   "stare": "ok",
   "http_status": 200,
-  "titlu": "Hartă Sesizări - București Verde",
   "randat_la": "2026-10-31T09:47:21.329527+00:00",
-  "text_randat": null,
   "text_lungime": 901,
   "text_sha256": "9c4a9c4e8140419e153cd6cedd88686827dc15df4dec27b2b7a50a4434144484",
-  "controale_vizibile": [
-    {
-      "tag": "input",
-      "name": null,
-      "id": "address-search-input",
-      "type": "text",
-      "label": "ex: Calea Victoriei 100, Sector 1",
-      "options": null
-    }
-  ],
+  "controale_numar": 1,
   "cereri_date": [
     {
       "metoda": "GET",
@@ -42,10 +31,13 @@
     "https://bucurestiverde.ro/api/complaints"
   ],
   "corpuri_omise": [
-    {
-      "url": "https://bucurestiverde.ro/api/authorizations",
-      "motiv": "body of 647216 bytes is over the 200000 limit"
-    }
+    "https://bucurestiverde.ro/api/authorizations"
   ],
-  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+  "captura": {
+    "algoritm": "sha256",
+    "sha256": "93d3404cf265e9f6cea03399e8636609f4f09ed1ff9ce6fe16df3b01d825c3e0",
+    "octeti": 1442,
+    "fisier": "93d3404cf265e9f6cea03399e8636609f4f09ed1ff9ce6fe16df3b01d825c3e0.json",
+    "reprezentare": "UTF-8 bytes of the render record as JSON: indent 2, non-ASCII characters kept, one final newline"
+  }
 }

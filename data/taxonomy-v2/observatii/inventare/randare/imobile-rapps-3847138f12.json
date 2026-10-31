@@ -1,187 +1,14 @@
 {
-  "versiune": 1,
+  "versiune": 2,
   "proiect": "imobile-rapps",
   "url_cerut": "https://rapps.mirceaserdin.ro/",
   "url_final": "https://rapps.mirceaserdin.ro/",
   "stare": "ok",
   "http_status": 200,
-  "titlu": "RA-APPS · Imobile administrate · ocupate și neocupate",
   "randat_la": "2026-10-30T23:39:54.983850+00:00",
-  "text_randat": null,
   "text_lungime": 9482,
   "text_sha256": "cc1f0e423f92929726d281c68d45db769bd60cfce15d0d830ce3ec3097d2c997",
-  "controale_vizibile": [
-    {
-      "tag": "input",
-      "name": null,
-      "id": "q",
-      "type": "search",
-      "label": "ex. Tennis, Dorobanti, SRL…",
-      "options": null
-    },
-    {
-      "tag": "select",
-      "name": null,
-      "id": "f-occ",
-      "type": "select-one",
-      "label": null,
-      "options": [
-        "Toate",
-        "Ocupate",
-        "Neocupate"
-      ]
-    },
-    {
-      "tag": "select",
-      "name": null,
-      "id": "f-benef",
-      "type": "select-one",
-      "label": null,
-      "options": [
-        "Toate",
-        "Persoane juridice",
-        "Persoane fizice"
-      ]
-    },
-    {
-      "tag": "select",
-      "name": null,
-      "id": "f-pstatus",
-      "type": "select-one",
-      "label": null,
-      "options": [
-        "Toate stările",
-        "Altele",
-        "Atribuire / OUG 101/2011",
-        "De închiriat",
-        "De vânzare",
-        "În renovare/consolidare",
-        "Litigiu",
-        "Nespecificat",
-        "Risc seismic / în conservare"
-      ]
-    },
-    {
-      "tag": "select",
-      "name": null,
-      "id": "f-branch",
-      "type": "select-one",
-      "label": null,
-      "options": [
-        "Toate sucursalele",
-        "Departamentul Bucurestii Noi",
-        "Departamentul Sala Palatului",
-        "Departamentul Scrovistea",
-        "SUCURSALA DE REPREZENTARE ȘI PROTOCOL ”VICTORIA” CLUJ-NAPOCA",
-        "SUCURSALA DE REPREZENTARE ȘI PROTOCOL NEPTUN",
-        "SUCURSALA DE REPREZENTARE ȘI PROTOCOL SINAIA",
-        "SUCURSALA DE REPREZENTARE ȘI PROTOCOL TRIUMF",
-        "SUCURSALA PENTRU ADMINISTRAREA SI INTRETINEREA FONDULUI IMOBILIAR",
-        "SUCURSALA PENTRU ADMINISTRAREA ȘI ÎNTREȚINEREA FONDULUI IMOBILIAR",
-        "SUCURSALA PENTRU REPREZENTARE SI PROTOCOL SINAIA",
-        "SUCURSALA PENTRU REPREZENTARE SI PROTOCOL TRIUMF"
-      ]
-    },
-    {
-      "tag": "select",
-      "name": null,
-      "id": "f-type",
-      "type": "select-one",
-      "label": null,
-      "options": [
-        "Toate tipurile",
-        "Asociere",
-        "Concesiune",
-        "Folosință gratuită",
-        "Închiriere",
-        "Închiriere și prestări servicii",
-        "Prestări servicii",
-        "Servitute de trecere"
-      ]
-    },
-    {
-      "tag": "select",
-      "name": null,
-      "id": "f-alloc",
-      "type": "select-one",
-      "label": null,
-      "options": [
-        "Toate modalitățile",
-        "Atribuire directă",
-        "Licitație publică",
-        "Nespecificat",
-        "servitute de trecere"
-      ]
-    },
-    {
-      "tag": "select",
-      "name": null,
-      "id": "f-county",
-      "type": "select-one",
-      "label": null,
-      "options": [
-        "Toate județele",
-        "Arad",
-        "Bacău",
-        "Bihor",
-        "Braşov",
-        "Bucureşti",
-        "Caraş-Severin",
-        "Cluj",
-        "Constanţa",
-        "Dolj",
-        "Gorj",
-        "Ilfov"
-      ]
-    },
-    {
-      "tag": "select",
-      "name": null,
-      "id": "f-endtype",
-      "type": "select-one",
-      "label": null,
-      "options": [
-        "Toate termenele",
-        "Altele",
-        "Dată fixă",
-        "În procedură de eliberare/evacuare",
-        "Nedeterminat",
-        "Nespecificat",
-        "Până la soluționarea situației locative",
-        "Pe durata construcției/activității",
-        "Pe perioada mandatului"
-      ]
-    },
-    {
-      "tag": "select",
-      "name": null,
-      "id": "f-status",
-      "type": "select-one",
-      "label": null,
-      "options": [
-        "Toate",
-        "În vigoare (la 2026-06-10)",
-        "Expirate",
-        "Fără dată / nedeterminat"
-      ]
-    },
-    {
-      "tag": "input",
-      "name": null,
-      "id": "f-litigiu",
-      "type": "checkbox",
-      "label": null,
-      "options": null
-    },
-    {
-      "tag": "input",
-      "name": null,
-      "id": "f-titlu",
-      "type": "checkbox",
-      "label": null,
-      "options": null
-    }
-  ],
+  "controale_numar": 12,
   "cereri_date": [
     {
       "metoda": "GET",
@@ -202,14 +29,14 @@
   ],
   "corpuri_pastrate": [],
   "corpuri_omise": [
-    {
-      "url": "https://rapps.mirceaserdin.ro/romania-counties.geojson",
-      "motiv": "body of 337057 bytes is over the 200000 limit"
-    },
-    {
-      "url": "https://rapps.mirceaserdin.ro/data.json",
-      "motiv": "body of 959224 bytes is over the 200000 limit"
-    }
+    "https://rapps.mirceaserdin.ro/romania-counties.geojson",
+    "https://rapps.mirceaserdin.ro/data.json"
   ],
-  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+  "captura": {
+    "algoritm": "sha256",
+    "sha256": "278a00998acd40e3c206e9e0ff634c4a7c4cea76b7887f29719c17b29bb73aec",
+    "octeti": 5312,
+    "fisier": "278a00998acd40e3c206e9e0ff634c4a7c4cea76b7887f29719c17b29bb73aec.json",
+    "reprezentare": "UTF-8 bytes of the render record as JSON: indent 2, non-ASCII characters kept, one final newline"
+  }
 }

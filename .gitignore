@@ -106,3 +106,6 @@ docs/reference/init-prototype/*
 /site/inventar/
 /site/date/
 /site/entitati/
+
+# Original browser captures stay local (SHA-256 file names); tracked manifests in inventare/randare/ name them.
+/data/taxonomy-v2/observatii/inventare/capturi/
