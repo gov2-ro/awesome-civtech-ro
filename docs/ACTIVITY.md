@@ -1,5 +1,26 @@
 # Activity
 
+## 2026-10-31 — Inventory storage decision and implementation handoff
+
+**Done**
+- Reviewed the recent inventory commits and recorded the owner's preference to keep raw browser captures outside Git.
+- Added `docs/briefs/inventory-storage.md` with migration constraints, affected consumers, acceptance checks, and a session prompt.
+- Measured 25 tracked browser records totaling 130,486 bytes. The seven structured artifacts total 7,399,013 bytes.
+- Confirmed 42 render-path references in `descoperiri.json`. These references need valid discovery evidence after migration.
+- Recorded version v0.56.0 for the handoff. This repository has no Cargo.toml; the release log and Git tag carry the version.
+
+**Hard**
+- A hash cannot recover missing historical evidence. A fresh checkout cannot fully verify originals kept only on another machine.
+- Earlier wording overstated the person-value check as proving no leaks. The check finds candidate overlaps from marked sources within its configured scope.
+- The batch F findings were resolved in `1310bd9` through owner-reviewed false positives. Its older activity entry records the earlier failure.
+
+**Decided**
+- Keep compact discovery evidence and published inventory profiles tracked. Keep raw captures local with explicit retention and restore instructions.
+- Distinguish manifest validation from original-capture verification. Missing originals must remain visibly unavailable.
+- Keep remote archival services and Git history rewriting outside this implementation. They need separate decisions.
+- Treat extraction and report generation as deterministic with fixed inputs. Source selection, notes, and classifications can be assistant-authored.
+- This change prepares the handoff only. Storage implementation and the eight unresolved batch G profiles remain open.
+
 ## 2026-10-31 — Inventory batch F: ten entries from „De analizat”
 
 **Done**

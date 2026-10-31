@@ -281,6 +281,7 @@ The 2,302 field records are source paths, not independent business variables. Se
 The 62 unconfirmed profiles cover the full 140-entry catalogue, including organisations; this is a different measure.
 
 - [~] Batch G: finish the source audit for ten entries of „De analizat”. AI Aflat and Monarh AI have 455 field records; eight entries still need a structured export, a stable schema, or an unblocked source. See [batch G](briefs/inventory-batch-g.md).
+- [ ] Implement [inventory evidence storage](briefs/inventory-storage.md), including `observatii/inventare/randare/`. Prefer keeping raw browser captures outside Git. Preserve compact discovery evidence and committed profiles required for offline builds. Define how original captures are retained, retrieved, and verified. Report unavailable evidence explicitly.
 
 - [x] Write the implementation specification and a copyable prompt for a fresh session.
 - [x] Fix targeted/offline preservation before new collection (milestone A, v0.14.0). `inventory.py` now reads the tracked state first.
