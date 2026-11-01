@@ -675,3 +675,23 @@ H,2026-10-31T15:51:35.615623+00:00,GET,https://www.evermed.ro/,ok,200,116953,nu,
 H,2026-10-31T15:51:36.121002+00:00,GET,https://amscapat.ro/,ok,200,3807,nu,batch H: look for documented data downloads or listings
 H,2026-10-31T15:51:36.494974+00:00,GET,https://vocea-cartierului-tau.ro/,ok,200,842043,nu,batch H: look for documented data downloads or listings
 H,2026-10-31T15:51:37.416443+00:00,GET,https://465.ro/,ok,200,1368,nu,batch H: look for documented data downloads or listings
+H,2026-11-01T14:24:52.035652+00:00,BROWSER,https://radardigital.ro/stats,timeout,,,browser,randare radar-digital
+H,2026-11-01T14:25:52.648096+00:00,BROWSER,https://www.tipizatul.eu/,timeout,,,browser,randare tipizatul
+H,2026-11-01T14:26:53.282189+00:00,BROWSER,http://www.cdep.ro/informatii_publice/ong.chest_aprobate,timeout,,,browser,randare ong-camera-deputatilor
+H,2026-11-01T14:27:17.108543+00:00,BROWSER,https://econtractauto.ro/,ok,200,,browser,randare econtractauto
+H,2026-11-01T14:27:17.108607+00:00,BROWSER-POST,https://econtractauto.ro/__l5e/trackevents,202,202,17,browser,randare econtractauto
+H,2026-11-01T14:27:17.108655+00:00,BROWSER-GET,https://econtractauto.ro/templates/contract-template-2026.pdf,200,200,333750,browser,randare econtractauto
+H,2026-11-01T14:27:23.521951+00:00,GET,https://radardigital.ro/stats,ok,200,8354,nu,batch H: second attempt on another day
+H,2026-11-01T14:27:23.861903+00:00,GET,https://www.tipizatul.eu/,ok,200,2411,nu,batch H: second attempt on another day
+H,2026-11-01T14:27:35.887771+00:00,GET,http://www.cdep.ro/informatii_publice/ong.chest_aprobate,eroare-retea,,,nu,batch H: second attempt on another day
+H,2026-11-01T14:27:36.032416+00:00,GET,https://accesinfo.ro/,eroare-retea,,,nu,batch H: second attempt on another day
+H,2026-11-01T14:28:15.516472+00:00,GET,https://www.tipizatul.eu/assets/index-Clw5XEq5.js,ok,200,1038656,nu,batch H: data literals in the public script bundle
+H,2026-11-01T14:28:17.218783+00:00,GET,https://465.ro/assets/index-DU08ctOZ.js,ok,200,244008,nu,batch H: data literals in the public script bundle
+H,2026-11-01T14:28:18.468224+00:00,GET,https://amscapat.ro/assets/index-DtOxaVDZ.js,ok,200,774351,nu,batch H: data literals in the public script bundle
+H,2026-11-01T14:28:45.278602+00:00,GET,https://api.github.com/repos/code4romania/redirectioneaza/commits/HEAD,ok,200,97589,nu,batch H: revision of the open-source repository
+H,2026-11-01T14:29:20.890505+00:00,GET,https://api.github.com/repos/code4romania/redirectioneaza/git/trees/d0d0a63ce239e2145463ca92197bb131d5badd00?recursive=1,ok,200,217480,nu,batch H: tree of the repository
+H,2026-11-01T14:29:32.032254+00:00,GET,https://raw.githubusercontent.com/code4romania/redirectioneaza/d0d0a63ce239e2145463ca92197bb131d5badd00/backend/donations/models/ngos.py,ok,200,21447,nu,batch H: model files of the repository
+H,2026-11-01T14:29:33.276121+00:00,GET,https://raw.githubusercontent.com/code4romania/redirectioneaza/d0d0a63ce239e2145463ca92197bb131d5badd00/backend/donations/models/donors.py,ok,200,10025,nu,batch H: model files of the repository
+H,2026-11-01T14:29:34.760317+00:00,GET,https://raw.githubusercontent.com/code4romania/redirectioneaza/d0d0a63ce239e2145463ca92197bb131d5badd00/backend/donations/models/stat_configs.py,ok,200,4785,nu,batch H: model files of the repository
+H,2026-11-01T14:29:35.312658+00:00,GET,https://raw.githubusercontent.com/code4romania/redirectioneaza/d0d0a63ce239e2145463ca92197bb131d5badd00/backend/donations/models/byof.py,ok,200,3630,nu,batch H: model files of the repository
+H,2026-11-01T14:29:36.008086+00:00,GET,https://raw.githubusercontent.com/code4romania/redirectioneaza/d0d0a63ce239e2145463ca92197bb131d5badd00/README.md,ok,200,9423,nu,batch H: model files of the repository

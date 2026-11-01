@@ -1,5 +1,20 @@
 # Activity
 
+## 2026-11-01 — Inventory batch H, second pass: retries, public bundles, the `django-modele` reader
+
+**Done**
+- Retried the timeouts of batch G once, on a new day. Browser renders at 60 s still time out for `radardigital.ro/stats`, `tipizatul.eu` and the `cdep.ro` NGO page (`networkidle` never settles). Plain requests work for `radardigital.ro/stats` and `tipizatul.eu` (HTML shells). `cdep.ro` and `accesinfo.ro` give `eroare-retea` for plain requests too. `econtractauto.ro` rendered (home page, 4,128 characters; the PDF template is its only data request).
+- Read the public script bundles of `tipizatul.eu` (1.0 MB), `465.ro` (244 kB) and `amscapat.ro` (773 kB). `tipizatul` and `radar-digital` read from Firestore with a key in the bundle. `amscapat` reads from a Supabase project. The inventory never uses a credential that a page contains: no source.
+- `465.ro` holds its contacts of the members of Parliament in the bundle with one-letter keys (`c, g, e, cp, u, ph`), mapped to named fields in code. The reader for a script literal copies values and a persons mark does not accept it: no source. See the backlog.
+- New reader `django-modele` (`scripts/inventory_django.py`, 7 tests, the extension `.py` selects it). Added three model files of `code4romania/redirectioneaza` at commit `d0d0a63`: 73 field records (`ngos.py` 41, `donors.py` 23, `byof.py` 9). `stat_configs.py` has no model field and was not added. 68 entries now have structured fields.
+- Requests of lot `H` in this pass: 13 (4 retries, 3 bundles, commit, tree, 5 repository files; one of them the README). No 401, 403 or 429.
+
+**Hard**
+- The person-value check flagged my own activity entry for batch G, because it quoted a calendar date that is also a value of a marked source. I reworded it. A note in a tracked document must not quote a value of a marked body.
+
+**Decided**
+- Use the repository of an open-source project as the schema source when the live site has no public data request. The repository shows the code at a commit, not the deployed data.
+
 ## 2026-10-31 — Inventory batch H: source audit of six more „De analizat” entries
 
 **Done**
@@ -26,7 +41,7 @@
 - `inventory.py --check`: 0 errors; 23 marked sources searched. Publication validation 0 errors. Report regenerated.
 
 **Hard**
-- The person check first found overlaps in two local legacy render records (`destraja`, `semnal-razboiul-hibrid`) with the new source. The `semnal` overlap is the page date „31 octombrie 2026”, not a person. I migrated both records to manifests (their text now lives only in local `capturi/`) instead of writing a ledger decision for the owner.
+- The person check first found overlaps in two local legacy render records (`destraja`, `semnal-razboiul-hibrid`) with the new source. The `semnal` overlap is the synchronisation date of the data (a calendar date in the page footer), not a person. I migrated both records to manifests (their text now lives only in local `capturi/`) instead of writing a ledger decision for the owner.
 - `parlamentari.txt` (persons) and `presa.txt` were not added. `econtractauto` has only a PDF template and no PDF reader exists; no source added.
 
 **Decided**

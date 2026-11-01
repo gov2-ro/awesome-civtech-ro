@@ -3828,11 +3828,14 @@
           }
         }
       ],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "1c5247344784a9f59df0",
+        "c2ead7a9e2f3c9b7c6e5",
+        "a2ecbe1325ad411b098e"
+      ],
+      "campuri_din_surse": 73,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {

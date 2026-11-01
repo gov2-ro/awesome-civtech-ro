@@ -1,0 +1,77 @@
+[
+  {
+    "proiect": "redirectioneaza",
+    "url": "https://raw.githubusercontent.com/code4romania/redirectioneaza/d0d0a63ce239e2145463ca92197bb131d5badd00/backend/donations/models/ngos.py",
+    "metoda": "repo-la-revizie",
+    "parinte": "https://github.com/code4romania/redirectioneaza/tree/d0d0a63ce239e2145463ca92197bb131d5badd00",
+    "repo": {
+      "arbore": "https://api.github.com/repos/code4romania/redirectioneaza/git/trees/d0d0a63ce239e2145463ca92197bb131d5badd00?recursive=1",
+      "revizie": "d0d0a63ce239e2145463ca92197bb131d5badd00",
+      "cale": "backend/donations/models/ngos.py"
+    },
+    "dovezi": [
+      {
+        "proiect": "redirectioneaza",
+        "profil": "repos",
+        "rol": "legatura-proiect-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/code4romania/redirectioneaza/d0d0a63ce239e2145463ca92197bb131d5badd00/README.md",
+        "text": "tax form #230 made easy",
+        "cache": true,
+        "rol": "scop-declarat-in-repo"
+      }
+    ],
+    "nota": "Modelele organizațiilor și cauzelor: identitate juridică (nume, număr de înregistrare, cod TVA), date de contact și de cont, setări de afișare, legătura cu NGO Hub. Declarate în cod; nu dovedesc ce date păstrează serviciul public azi."
+  },
+  {
+    "proiect": "redirectioneaza",
+    "url": "https://raw.githubusercontent.com/code4romania/redirectioneaza/d0d0a63ce239e2145463ca92197bb131d5badd00/backend/donations/models/donors.py",
+    "metoda": "repo-la-revizie",
+    "parinte": "https://github.com/code4romania/redirectioneaza/tree/d0d0a63ce239e2145463ca92197bb131d5badd00",
+    "repo": {
+      "arbore": "https://api.github.com/repos/code4romania/redirectioneaza/git/trees/d0d0a63ce239e2145463ca92197bb131d5badd00?recursive=1",
+      "revizie": "d0d0a63ce239e2145463ca92197bb131d5badd00",
+      "cale": "backend/donations/models/donors.py"
+    },
+    "dovezi": [
+      {
+        "proiect": "redirectioneaza",
+        "profil": "repos",
+        "rol": "legatura-proiect-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/code4romania/redirectioneaza/d0d0a63ce239e2145463ca92197bb131d5badd00/README.md",
+        "text": "tax form #230 made easy",
+        "cache": true,
+        "rol": "scop-declarat-in-repo"
+      }
+    ],
+    "nota": "Modelele donatorilor și ale formularelor 230: structura câmpurilor declarate în cod (profilul păstrează numai numele și tipurile câmpurilor, nicio valoare)."
+  },
+  {
+    "proiect": "redirectioneaza",
+    "url": "https://raw.githubusercontent.com/code4romania/redirectioneaza/d0d0a63ce239e2145463ca92197bb131d5badd00/backend/donations/models/byof.py",
+    "metoda": "repo-la-revizie",
+    "parinte": "https://github.com/code4romania/redirectioneaza/tree/d0d0a63ce239e2145463ca92197bb131d5badd00",
+    "repo": {
+      "arbore": "https://api.github.com/repos/code4romania/redirectioneaza/git/trees/d0d0a63ce239e2145463ca92197bb131d5badd00?recursive=1",
+      "revizie": "d0d0a63ce239e2145463ca92197bb131d5badd00",
+      "cale": "backend/donations/models/byof.py"
+    },
+    "dovezi": [
+      {
+        "proiect": "redirectioneaza",
+        "profil": "repos",
+        "rol": "legatura-proiect-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/code4romania/redirectioneaza/d0d0a63ce239e2145463ca92197bb131d5badd00/README.md",
+        "text": "tax form #230 made easy",
+        "cache": true,
+        "rol": "scop-declarat-in-repo"
+      }
+    ],
+    "nota": "Modelul formularelor proprii ale organizațiilor (câmpurile declarate în cod)."
+  }
+]

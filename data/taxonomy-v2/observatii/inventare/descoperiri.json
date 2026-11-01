@@ -7622,6 +7622,162 @@
       ]
     },
     {
+      "proiect": "redirectioneaza",
+      "url": "https://raw.githubusercontent.com/code4romania/redirectioneaza/d0d0a63ce239e2145463ca92197bb131d5badd00/backend/donations/models/byof.py",
+      "sursa_id": "1c5247344784a9f59df0",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/code4romania/redirectioneaza/tree/d0d0a63ce239e2145463ca92197bb131d5badd00",
+      "link_original": "https://raw.githubusercontent.com/code4romania/redirectioneaza/d0d0a63ce239e2145463ca92197bb131d5badd00/backend/donations/models/byof.py",
+      "dovada": {
+        "url": "https://api.github.com/repos/code4romania/redirectioneaza/git/trees/d0d0a63ce239e2145463ca92197bb131d5badd00?recursive=1",
+        "revizie": "d0d0a63ce239e2145463ca92197bb131d5badd00",
+        "cale": "backend/donations/models/byof.py",
+        "blob_sha": "03669031d19a4eb3e9d5c9d20dec1cc1c91c4829",
+        "pointer": "/tree/161",
+        "sha256": "2201c4311cfc0341723698dc7b49d13042153589068aaa37af2f438b364b9a51",
+        "snapshot": "inventare/surse/ac70667c5815bc9c4fb9.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-01T14:30:21.884788+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-01T14:30:21.884788+00:00"
+        }
+      ],
+      "nota": "Modelul formularelor proprii ale organizațiilor (câmpurile declarate în cod).",
+      "dovezi_suplimentare": [
+        {
+          "tip": "profil",
+          "snapshot": "profil.csv",
+          "slug": "redirectioneaza",
+          "coloana": "repos",
+          "valoare": "https://github.com/code4romania/redirectioneaza",
+          "pointer": "/profil/redirectioneaza/repos",
+          "rol": "legatura-proiect-repo"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/code4romania/redirectioneaza/d0d0a63ce239e2145463ca92197bb131d5badd00/README.md",
+          "sha256": "7345c2a28e170ecf2ac3fe348b34a7c86c29cb474c95726df87c8f39d6a0d6b8",
+          "pointer": "/body",
+          "interval": [
+            192,
+            215
+          ],
+          "fragment": "tax form #230 made easy",
+          "snapshot": "inventare/surse/652113709fcee9a7f518.json",
+          "rol": "scop-declarat-in-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "redirectioneaza",
+      "url": "https://raw.githubusercontent.com/code4romania/redirectioneaza/d0d0a63ce239e2145463ca92197bb131d5badd00/backend/donations/models/donors.py",
+      "sursa_id": "c2ead7a9e2f3c9b7c6e5",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/code4romania/redirectioneaza/tree/d0d0a63ce239e2145463ca92197bb131d5badd00",
+      "link_original": "https://raw.githubusercontent.com/code4romania/redirectioneaza/d0d0a63ce239e2145463ca92197bb131d5badd00/backend/donations/models/donors.py",
+      "dovada": {
+        "url": "https://api.github.com/repos/code4romania/redirectioneaza/git/trees/d0d0a63ce239e2145463ca92197bb131d5badd00?recursive=1",
+        "revizie": "d0d0a63ce239e2145463ca92197bb131d5badd00",
+        "cale": "backend/donations/models/donors.py",
+        "blob_sha": "44a029e4fb83989410c34bc3845e98ded8f691e8",
+        "pointer": "/tree/163",
+        "sha256": "2201c4311cfc0341723698dc7b49d13042153589068aaa37af2f438b364b9a51",
+        "snapshot": "inventare/surse/ac70667c5815bc9c4fb9.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-01T14:30:21.884788+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-01T14:30:21.884788+00:00"
+        }
+      ],
+      "nota": "Modelele donatorilor și ale formularelor 230: structura câmpurilor declarate în cod (profilul păstrează numai numele și tipurile câmpurilor, nicio valoare).",
+      "dovezi_suplimentare": [
+        {
+          "tip": "profil",
+          "snapshot": "profil.csv",
+          "slug": "redirectioneaza",
+          "coloana": "repos",
+          "valoare": "https://github.com/code4romania/redirectioneaza",
+          "pointer": "/profil/redirectioneaza/repos",
+          "rol": "legatura-proiect-repo"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/code4romania/redirectioneaza/d0d0a63ce239e2145463ca92197bb131d5badd00/README.md",
+          "sha256": "7345c2a28e170ecf2ac3fe348b34a7c86c29cb474c95726df87c8f39d6a0d6b8",
+          "pointer": "/body",
+          "interval": [
+            192,
+            215
+          ],
+          "fragment": "tax form #230 made easy",
+          "snapshot": "inventare/surse/652113709fcee9a7f518.json",
+          "rol": "scop-declarat-in-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "redirectioneaza",
+      "url": "https://raw.githubusercontent.com/code4romania/redirectioneaza/d0d0a63ce239e2145463ca92197bb131d5badd00/backend/donations/models/ngos.py",
+      "sursa_id": "a2ecbe1325ad411b098e",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/code4romania/redirectioneaza/tree/d0d0a63ce239e2145463ca92197bb131d5badd00",
+      "link_original": "https://raw.githubusercontent.com/code4romania/redirectioneaza/d0d0a63ce239e2145463ca92197bb131d5badd00/backend/donations/models/ngos.py",
+      "dovada": {
+        "url": "https://api.github.com/repos/code4romania/redirectioneaza/git/trees/d0d0a63ce239e2145463ca92197bb131d5badd00?recursive=1",
+        "revizie": "d0d0a63ce239e2145463ca92197bb131d5badd00",
+        "cale": "backend/donations/models/ngos.py",
+        "blob_sha": "a150d78589a4552b13e1a7b324b4a6ddd8d7de10",
+        "pointer": "/tree/166",
+        "sha256": "2201c4311cfc0341723698dc7b49d13042153589068aaa37af2f438b364b9a51",
+        "snapshot": "inventare/surse/ac70667c5815bc9c4fb9.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-01T14:30:21.884788+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-01T14:30:21.884788+00:00"
+        }
+      ],
+      "nota": "Modelele organizațiilor și cauzelor: identitate juridică (nume, număr de înregistrare, cod TVA), date de contact și de cont, setări de afișare, legătura cu NGO Hub. Declarate în cod; nu dovedesc ce date păstrează serviciul public azi.",
+      "dovezi_suplimentare": [
+        {
+          "tip": "profil",
+          "snapshot": "profil.csv",
+          "slug": "redirectioneaza",
+          "coloana": "repos",
+          "valoare": "https://github.com/code4romania/redirectioneaza",
+          "pointer": "/profil/redirectioneaza/repos",
+          "rol": "legatura-proiect-repo"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/code4romania/redirectioneaza/d0d0a63ce239e2145463ca92197bb131d5badd00/README.md",
+          "sha256": "7345c2a28e170ecf2ac3fe348b34a7c86c29cb474c95726df87c8f39d6a0d6b8",
+          "pointer": "/body",
+          "interval": [
+            192,
+            215
+          ],
+          "fragment": "tax form #230 made easy",
+          "snapshot": "inventare/surse/652113709fcee9a7f518.json",
+          "rol": "scop-declarat-in-repo"
+        }
+      ]
+    },
+    {
       "proiect": "registrul-firmelor",
       "url": "https://registru.horecaos.org/api",
       "sursa_id": "d6697982fd45769dfe4c",

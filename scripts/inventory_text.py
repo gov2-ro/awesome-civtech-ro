@@ -27,6 +27,7 @@ Each reader returns field records in the shape of inventory.parse_source and nev
   a measure with its unit and one field for each dimension that the extraction names.
 - `js-pozitii` (module `inventory_positions`): a script that decodes rows of a data file into objects (`{ name: a[0], county: a[1] }`). Each position that the script names is a field.
 - `html-glosar` (module `inventory_glossary`): a page whose headings read `Label (name)` and whose first paragraph below each heading defines the field.
+- `django-modele` (module `inventory_django`): the model fields of a Django `models.py`, read with `ast` (the extension `.py` selects it). Each `name = models.XField(...)` is a field with the field class as declared type.
 - `typescript` (module `inventory_typescript`): the `interface` and object `type` declarations of a TypeScript file. Each member is a field with the type as written.
 
 Locators are exact. A character interval `char:START-END` addresses the declaration in the retained body. A table cell is addressed as
@@ -40,6 +41,7 @@ from html.parser import HTMLParser
 
 from inventory_apidocs import api_docs
 from inventory_csvcards import csv_cards
+from inventory_django import read as read_django
 from inventory_eurostat import read as eurostat_fields
 from inventory_glossary import glossary
 from inventory_literals import indented_names, omitted_names, read as read_literals
@@ -283,6 +285,11 @@ def csharp(body):
                                obligatoriu=required, grup=name)
             fields.append({**field, **extra})
     return 'csharp', fields, False
+
+
+def django_modele(body):
+    fields, cut = read_django(body)
+    return 'django-modele', fields, cut
 
 
 def typescript(body):
@@ -673,8 +680,8 @@ READERS = {'html-tabele': html_tabele, 'markdown': markdown, 'csharp': lambda bo
            'json-comentat': lambda body, options=None: json_comentat(body), 'html-api-docs': lambda body, options=None: api_docs(body, options),
            'html-carduri-csv': csv_cards, 'js-literale': js_literale, 'html-lista-seturi': set_list, 'html-glosar': glossary,
            'html-tabele-eurostat': html_tabele_eurostat, 'js-pozitii': lambda body, options=None: positions(body, options),
-           'typescript': lambda body, options=None: typescript(body)}
-EXTENSIONS = {'.cs': 'csharp', '.sql': 'sql', '.php': 'php', '.md': 'markdown', '.ts': 'typescript'}
+           'typescript': lambda body, options=None: typescript(body), 'django-modele': lambda body, options=None: django_modele(body)}
+EXTENSIONS = {'.cs': 'csharp', '.sql': 'sql', '.php': 'php', '.md': 'markdown', '.ts': 'typescript', '.py': 'django-modele'}
 
 
 def read_text(body, kind, options=None):
