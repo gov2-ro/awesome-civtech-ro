@@ -6,7 +6,7 @@ Inventory assertions are proposals. Raw field totals count source paths, not ind
 ## 1. Outcome
 
 - Milestones A (safe incremental collection), B (INS), C (12 entries), D (meanings and shared groups) and E (preview, coverage, report) are complete.
-- Structured field evidence now covers 70 of 133 projects and resources (baseline 14). The retained sources are 228 URLs (223 parsed, 5 failed) with 8,081 field records.
+- Structured field evidence now covers 70 of 133 projects and resources (baseline 14). The retained sources are 229 URLs (224 parsed, 5 failed) with 8,093 field records.
 - Each field record is a path in a source. The proposals are 46 shared groups (baseline 7), 16 provider review items and the dictionary evidence that `inventory.py --check` verifies.
 - The public build is unchanged: the default payload equals the v0.13.0 payload apart from its generation time; classifications and accepted providers are identical.
 - Collection used 307 direct requests in total (49 browser navigations); the 150-request limit of lot C was not reached.
@@ -43,9 +43,9 @@ The 133 projects and resources of the catalogue (the finder lists the 86 that ar
 | Projects and resources (catalogue, hidden entries included) | 127 | 133 |
 | Entries with structured field evidence | 14 | 70 |
 | Projects/resources without extracted structured fields | 113 | 63 |
-| Retained structured-source URLs | 25 | 228 |
-| Parsed sources / HTTP failures | 24 / 1 | 223 / 5 |
-| Source-scoped field records (paths, not variables) | 2,302 | 8,081 |
+| Retained structured-source URLs | 25 | 229 |
+| Parsed sources / HTTP failures | 24 / 1 | 224 / 5 |
+| Source-scoped field records (paths, not variables) | 2,302 | 8,093 |
 | Schema declarations / sampled JSON paths / CSV headers / INS dimensions | 1,312 / 904 / 82 / 4 | 1,954 / 3,600 / 311 / 4 |
 | HTML control candidates / entries with candidates | 308 / 78 | 311 / 81 |
 | Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 98 / 48 |
@@ -59,16 +59,16 @@ Review state, counted from the tracked files. Provider items (`camp` `surse_date
 
 Scope of the data finder (`/date/`): 86 of the 128 public projects and resources are in scope. An entry is in scope when it is not inactive (`offline`, `arhivat`) and its `relatie_date` is `date-publice`, `date-proprii` or `calcul`. The finder leaves out 42: 24 without data (`fara-date`), 0 not assessed (empty value), 18 inactive (counted first: an inactive entry is never counted as another reason). 5 hidden entries (`ascuns`) are in no count of this paragraph.
 
-Field records by evidence type now: observat-in-esantion-json 3,600, declarat-in-schema 1,954, declarat-in-cod-sursa 1,184, exemplu-in-documentatie 364, neprecizat-in-antet-csv 311, antet-tabel-html 236, declarat-in-lista-baza 171, declarat-in-metadate 68, declarat-in-tabel-documentatie 53, declarat-in-lista-documentatie 40, declarat-in-documentatie-api 36, declarat-in-text-documentatie 36, utilizat-in-cod-pagina 28.
+Field records by evidence type now: observat-in-esantion-json 3,600, declarat-in-schema 1,954, declarat-in-cod-sursa 1,184, exemplu-in-documentatie 364, neprecizat-in-antet-csv 311, antet-tabel-html 236, declarat-in-lista-baza 171, declarat-in-metadate 68, declarat-in-tabel-documentatie 53, declarat-in-documentatie-api 48, declarat-in-lista-documentatie 40, declarat-in-text-documentatie 36, utilizat-in-cod-pagina 28.
 
 Coverage by measure, for the 133 projects and resources (`acoperire.csv` has the rows). A column that counts fields counts source paths:
 
 | Measure | Entries counted | Total |
 | --- | ---: | ---: |
-| Structured sources | 70 | 233 |
-| Field records from sources | 70 | 8,143 |
+| Structured sources | 70 | 234 |
+| Field records from sources | 70 | 8,155 |
 | Entries in at least one proposed group | 70 | 43 |
-| Fields with a source-declared description | 70 | 1,971 |
+| Fields with a source-declared description | 70 | 1,976 |
 | Fields with a declared type | 70 | 2,960 |
 | Fields with an observed type | 70 | 4,059 |
 | Measures with a unit | 70 | 92 |
@@ -713,10 +713,10 @@ Două fluxuri JSON agregate sunt încărcate de pagina principală și descriu i
 
 The documented OpenAPI contract returned HTTP 401. The source remains blocked under the host stop rule; no further request was made.
 
-- State: cu-surse-structurate. Sources 1, field records 241, groups 0.
-- Source URLs: `https://monitorenergie.ro/api/openapi.json`; `https://monitorenergie.ro/arhiva-energie.html`
+- State: cu-surse-structurate. Sources 2, field records 253, groups 0.
+- Source URLs: `https://monitorenergie.ro/api/openapi.json`; `https://monitorenergie.ro/arhiva-energie.html`; `https://monitorenergie.ro/llms.txt`
 - Proposed groups: none
-- Documented inputs: none documented in the sources read. HTML controls stay candidates.
+- Documented inputs: `from`, `kind`, `series`, `to`
 - Provider proposals: none.
 - Blocker: HTTP 401 from the documented OpenAPI contract.
 - Limitations: The documented OpenAPI contract returned HTTP 401. No further request was made.

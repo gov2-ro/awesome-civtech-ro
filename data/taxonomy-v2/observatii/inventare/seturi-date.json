@@ -96918,6 +96918,156 @@
       ]
     },
     {
+      "url": "https://monitorenergie.ro/llms.txt",
+      "final_url": "https://monitorenergie.ro/llms.txt",
+      "http_status": null,
+      "fetched_at": "2026-11-01T21:52:00+00:00",
+      "content_type": "text/plain",
+      "state": "ok",
+      "origine": "copie-salvata-de-proprietar",
+      "salvat_la": "2026-11-01T23:52:00+02:00",
+      "nume_fisier": "monitorenergie.ro-llms.txt",
+      "sha256_fisier": "0873f4d3fa5ffe2526168605b6f19e8bc90f56c84fb0440f0bc2f1cf0d4a9bcb",
+      "nota_copie": "Salvată din browser; descrie API-ul care cere cheie (cerută prin e-mail).",
+      "citire": "llms-api",
+      "id": "325c70fbc2bf021a98df",
+      "campuri": [
+        {
+          "nume": "openapi.json",
+          "cale": "/api/openapi.json",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "rol": "operatie-api",
+          "pointer": "char:3257-3366",
+          "linie": 35,
+          "descriere": "descrierea completă, generată din configurația reală",
+          "nume_in_text": "OpenAPI"
+        },
+        {
+          "nume": "live.php",
+          "cale": "/api/live.php",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "rol": "operatie-api",
+          "pointer": "char:3367-3455",
+          "linie": 36,
+          "descriere": "ultima citire a sistemului",
+          "nume_in_text": "Instantaneu live"
+        },
+        {
+          "nume": "archive.php",
+          "cale": "/api/archive.php",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "rol": "operatie-api",
+          "pointer": "char:3456-3566",
+          "linie": 37,
+          "descriere": "serii de timp pe interval",
+          "nume_in_text": "Arhivă"
+        },
+        {
+          "nume": "from",
+          "cale": "/api/archive.php?from",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "rol": "parametru-api",
+          "pointer": "char:3456-3566",
+          "linie": 37,
+          "loc": "query",
+          "exemplu_valoare": "2026-01-01"
+        },
+        {
+          "nume": "to",
+          "cale": "/api/archive.php?to",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "rol": "parametru-api",
+          "pointer": "char:3456-3566",
+          "linie": 37,
+          "loc": "query",
+          "exemplu_valoare": "2026-01-31"
+        },
+        {
+          "nume": "analytics.php",
+          "cale": "/api/analytics.php",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "rol": "operatie-api",
+          "pointer": "char:3567-3688",
+          "linie": 38,
+          "descriere": "ziua tipică, cuartile, calendar, topuri",
+          "nume_in_text": "Analize"
+        },
+        {
+          "nume": "kind",
+          "cale": "/api/analytics.php?kind",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "rol": "parametru-api",
+          "pointer": "char:3567-3688",
+          "linie": 38,
+          "loc": "query",
+          "exemplu_valoare": "hourly"
+        },
+        {
+          "nume": "series",
+          "cale": "/api/analytics.php?series",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "rol": "parametru-api",
+          "pointer": "char:3567-3688",
+          "linie": 38,
+          "loc": "query",
+          "exemplu_valoare": "cons"
+        },
+        {
+          "nume": "catalog.php",
+          "cale": "/api/catalog.php",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "rol": "operatie-api",
+          "pointer": "char:3689-3793",
+          "linie": 39,
+          "descriere": "seriile, unitățile și punctele de interconexiune",
+          "nume_in_text": "Catalog"
+        },
+        {
+          "nume": "X-API-Key",
+          "cale": "X-API-Key",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "rol": "autentificare",
+          "pointer": "char:3151-3160",
+          "linie": 32
+        },
+        {
+          "nume": "Authorization: Bearer",
+          "cale": "Authorization: Bearer",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "rol": "autentificare",
+          "pointer": "char:3168-3189",
+          "linie": 32
+        },
+        {
+          "nume": "?key=",
+          "cale": "?key=",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-documentatie-api",
+          "rol": "autentificare",
+          "pointer": "char:3197-3202",
+          "linie": 32
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/325c70fbc2bf021a98df-0873f4d3fa5ffe25.json",
+      "sha256": "0873f4d3fa5ffe2526168605b6f19e8bc90f56c84fb0440f0bc2f1cf0d4a9bcb",
+      "format": "llms-api",
+      "stare": "analizat",
+      "limita_atinsa": false,
+      "baza_tipului": "cod-sau-documentatie"
+    },
+    {
       "url": "https://monitorsafe.ro/",
       "final_url": "https://monitorsafe.ro/",
       "http_status": 200,

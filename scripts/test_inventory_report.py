@@ -72,8 +72,8 @@ class Coverage(unittest.TestCase):
         self.assertTrue(empty['urmatorul_pas'])
         organisation = next(r for r in self.table if r['stare_investigare'] == 'in-afara-ariei')
         self.assertEqual(organisation['tip_entitate'], 'organizatie')
-        self.assertEqual(self.by['monitor-energie']['stare_investigare'], 'blocat')
-        self.assertIn('401', self.by['monitor-energie']['blocaj'])
+        self.assertEqual(self.by['testvot']['stare_investigare'], 'blocat')
+        self.assertIn('401', self.by['testvot']['blocaj'])
 
     def test_fields_groups_declarations_observations_and_units_are_separate_columns(self):
         weather = self.by['calitate-aer-radauti']
@@ -529,7 +529,7 @@ class Scope(unittest.TestCase):
     def setUpClass(cls):
         cls.data = report.load(PUBLIC_ROOT)
         cls.bare = [e['slug'] for e in cls.data['entries'] if e['kind'] != 'organizatie' and not cls.data['profiles'][e['slug']]['surse_structurate']
-                    and e['slug'] not in cls.data['notes']['note']]
+                    and e['slug'] not in cls.data['notes']['note'] and e.get('classification_state') != 'ascuns']
         cls.with_sources = next(e['slug'] for e in cls.data['entries'] if cls.data['profiles'][e['slug']]['surse_structurate'] and e['kind'] != 'organizatie'
                                 and any(cls.data['sources'][r].get('stare') == 'analizat' for r in cls.data['profiles'][e['slug']]['surse_structurate']))
 

@@ -5035,6 +5035,18 @@ monitor-energie,4462bc7bc7a10fdc4d36,https://monitorenergie.ro/arhiva-energie.ht
 monitor-energie,4462bc7bc7a10fdc4d36,https://monitorenergie.ro/arhiva-energie.html,js-literale,camp-date,motion,boot-data.settings.motion,,string,,,,,char:96957-96965,observat-in-esantion-json
 monitor-energie,4462bc7bc7a10fdc4d36,https://monitorenergie.ro/arhiva-energie.html,js-literale,camp-date,theme,boot-data.settings.theme,,string,,,,,char:96974-96980,observat-in-esantion-json
 monitor-energie,4462bc7bc7a10fdc4d36,https://monitorenergie.ro/arhiva-energie.html,js-literale,camp-date,page,boot-data.page,,string,,,,,char:96989-96998,observat-in-esantion-json
+monitor-energie,325c70fbc2bf021a98df,https://monitorenergie.ro/llms.txt,llms-api,operatie-api,openapi.json,/api/openapi.json,,,,,"descrierea completă, generată din configurația reală",,char:3257-3366,declarat-in-documentatie-api
+monitor-energie,325c70fbc2bf021a98df,https://monitorenergie.ro/llms.txt,llms-api,operatie-api,live.php,/api/live.php,,,,,ultima citire a sistemului,,char:3367-3455,declarat-in-documentatie-api
+monitor-energie,325c70fbc2bf021a98df,https://monitorenergie.ro/llms.txt,llms-api,operatie-api,archive.php,/api/archive.php,,,,,serii de timp pe interval,,char:3456-3566,declarat-in-documentatie-api
+monitor-energie,325c70fbc2bf021a98df,https://monitorenergie.ro/llms.txt,llms-api,parametru-api,from,/api/archive.php?from,,,,,,,char:3456-3566,declarat-in-documentatie-api
+monitor-energie,325c70fbc2bf021a98df,https://monitorenergie.ro/llms.txt,llms-api,parametru-api,to,/api/archive.php?to,,,,,,,char:3456-3566,declarat-in-documentatie-api
+monitor-energie,325c70fbc2bf021a98df,https://monitorenergie.ro/llms.txt,llms-api,operatie-api,analytics.php,/api/analytics.php,,,,,"ziua tipică, cuartile, calendar, topuri",,char:3567-3688,declarat-in-documentatie-api
+monitor-energie,325c70fbc2bf021a98df,https://monitorenergie.ro/llms.txt,llms-api,parametru-api,kind,/api/analytics.php?kind,,,,,,,char:3567-3688,declarat-in-documentatie-api
+monitor-energie,325c70fbc2bf021a98df,https://monitorenergie.ro/llms.txt,llms-api,parametru-api,series,/api/analytics.php?series,,,,,,,char:3567-3688,declarat-in-documentatie-api
+monitor-energie,325c70fbc2bf021a98df,https://monitorenergie.ro/llms.txt,llms-api,operatie-api,catalog.php,/api/catalog.php,,,,,"seriile, unitățile și punctele de interconexiune",,char:3689-3793,declarat-in-documentatie-api
+monitor-energie,325c70fbc2bf021a98df,https://monitorenergie.ro/llms.txt,llms-api,autentificare,X-API-Key,X-API-Key,,,,,,,char:3151-3160,declarat-in-documentatie-api
+monitor-energie,325c70fbc2bf021a98df,https://monitorenergie.ro/llms.txt,llms-api,autentificare,Authorization: Bearer,Authorization: Bearer,,,,,,,char:3168-3189,declarat-in-documentatie-api
+monitor-energie,325c70fbc2bf021a98df,https://monitorenergie.ro/llms.txt,llms-api,autentificare,?key=,?key=,,,,,,,char:3197-3202,declarat-in-documentatie-api
 monitor-safe,5f58c94ff2b593fa6e0b,https://monitorsafe.ro/,js-literale,camp-date,nume,DOMENII[].nume,,string,,,,,char:75697-75746,observat-in-esantion-json
 monitor-safe,5f58c94ff2b593fa6e0b,https://monitorsafe.ro/,js-literale,camp-date,icon,DOMENII[].icon,,string,,,,,char:75754-75767,observat-in-esantion-json
 monitor-safe,5f58c94ff2b593fa6e0b,https://monitorsafe.ro/,js-literale,camp-date,op,DOMENII[].op,,string,,,,,char:75777-75816,observat-in-esantion-json

@@ -6064,6 +6064,27 @@
       "citire": "js-literale"
     },
     {
+      "proiect": "monitor-energie",
+      "url": "https://monitorenergie.ro/llms.txt",
+      "sursa_id": "325c70fbc2bf021a98df",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": null,
+      "link_original": "https://monitorenergie.ro/llms.txt",
+      "dovada": null,
+      "locator_stare": "necunoscut",
+      "descoperit_la": "2026-11-01T22:02:15.412061+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-01T22:02:15.412061+00:00"
+        }
+      ],
+      "citire": "llms-api"
+    },
+    {
       "proiect": "monitor-safe",
       "url": "https://monitorsafe.ro/",
       "sursa_id": "5f58c94ff2b593fa6e0b",

@@ -1,5 +1,15 @@
 # Activity
 
+## 2026-11-02 — Reader `llms-api` and the API of `monitor-energie`
+
+**Done**
+- Added the reader `llms-api` (`scripts/inventory_llms.py`, 5 tests). It reads the `## API` section of an `llms.txt` file: endpoints, example query parameters and the names of the key header and parameter. Other sites that publish `llms.txt` can use it.
+- Imported the file that the owner saved (`tmp/monitorenergie.ro-llms.txt`, saved 2026-11-01T23:52:00+02:00, hash `0873f4d3fa5ffe25…`) with `--import-saved --reading llms-api`. 12 field records. 0 requests. `monitor-energie` now has 253 field records.
+- `inventory.py --check`: 0 errors, 8 saved copies hash-verified.
+
+**Decided**
+- The fields of this source say what the text names. They do not show that the API works: it needs a key that the owner of the site gives by e-mail.
+
 ## 2026-11-01 — Inventory batch H, third pass: owner downloads
 
 **Done**

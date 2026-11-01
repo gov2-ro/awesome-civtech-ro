@@ -3066,9 +3066,10 @@
       ],
       "surse_structurate": [
         "18a2aced844c56ee5d64",
-        "4462bc7bc7a10fdc4d36"
+        "4462bc7bc7a10fdc4d36",
+        "325c70fbc2bf021a98df"
       ],
-      "campuri_din_surse": 241,
+      "campuri_din_surse": 253,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
