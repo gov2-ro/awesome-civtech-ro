@@ -1,5 +1,6 @@
 # Releases
 
+- **v0.60.0** (2026-11-01): batch H with the owner's downloads: `harta-digitalizarii-primariilor` (38 fields from the data file of its embedded map) and `monitor-energie` (241 field records from a saved page). `accesinfo` hidden. 70 entries have structured fields.
 - **v0.59.0** (2026-11-01): reader `django-modele` for Django model files; `redirectioneaza` profiled from its open-source repository (73 field records). Second pass on batch H: bundles of three single-page apps read, no credential used. 68 entries have structured fields.
 - **v0.58.0** (2026-10-31): batch G, `destraja`: new reader `rsc-json` for Next.js navigation payloads (CC BY 4.0 data); 80 field records from two sources marked for persons. Seven of ten batch G entries are still without a profile (blockers recorded). 67 entries now have structured fields.
 - **v0.57.0** (2026-10-31): inventory evidence storage. Browser captures moved out of Git into `inventare/capturi/<sha256>.json`; `inventare/randare/` holds compact manifests with an explicit key allowlist. 25 records migrated from local copies (tracked bytes 130,486 → 77,772); the check separates manifests, verified originals and unavailable originals; `--strict-snapshots` requires the originals. Profiles, fields and public output are unchanged. A hash cannot rebuild a missing capture; there is no remote archive.

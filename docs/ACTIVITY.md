@@ -1,5 +1,20 @@
 # Activity
 
+## 2026-11-01 — Inventory batch H, third pass: owner downloads
+
+**Done**
+- `harta-digitalizarii-primariilor`: the address that the owner gave is a WordPress page. Its map is an iframe (`dela0-site.github.io/digitalizare-primarii/`) whose script loads `digitalizare_data.json`. Three requests (page, iframe, a 300,000-byte sample of the data). One source with 38 fields: one record for each commune or town, with population, staff, equipment, scores, costs, suppliers and transparency.
+- `monitor-energie`: imported the saved page `monitorenergie.ro-arhiva-energie.html` (saved 2026-11-01T23:50:57, hash `01692d5e772be2e8…`) with the reader `js-literale`. 241 field records from the data island `boot-data` (series, interconnection points) and the schema.org `Dataset` (CC BY 4.0). About 70 of them are interface configuration; the note of the source says so. 0 requests.
+- `accesinfo` hidden (`clasificare_stare=ascuns`): the link is a Google Play test page, and the owner says the app is in beta.
+- 69 → 70 entries with structured fields. `inventory.py --check`: 0 errors, 7 saved copies hash-verified. Publication validation: 0 errors.
+
+**Hard**
+- The saved `llms.txt` of `monitor-energie` is the only public description of its API (the OpenAPI needs a key by e-mail). The importer parsed it as JSON and recorded a source in `eroare-parsare`; I removed that import and wrote the gap in the backlog.
+- `hotarari.ro` states in its usage policy that the structure of the site cannot be extracted systematically. The saved page holds counts per year and per place only. I made no profile.
+
+**Decided**
+- A page that the owner saved is evidence of the page, not a licence to read what the host forbids. For `hotarari` the owner decides.
+
 ## 2026-11-01 — Inventory batch H, second pass: retries, public bundles, the `django-modele` reader
 
 **Done**
