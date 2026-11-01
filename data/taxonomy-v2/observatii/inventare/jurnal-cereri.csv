@@ -695,3 +695,6 @@ H,2026-11-01T14:29:33.276121+00:00,GET,https://raw.githubusercontent.com/code4ro
 H,2026-11-01T14:29:34.760317+00:00,GET,https://raw.githubusercontent.com/code4romania/redirectioneaza/d0d0a63ce239e2145463ca92197bb131d5badd00/backend/donations/models/stat_configs.py,ok,200,4785,nu,batch H: model files of the repository
 H,2026-11-01T14:29:35.312658+00:00,GET,https://raw.githubusercontent.com/code4romania/redirectioneaza/d0d0a63ce239e2145463ca92197bb131d5badd00/backend/donations/models/byof.py,ok,200,3630,nu,batch H: model files of the repository
 H,2026-11-01T14:29:36.008086+00:00,GET,https://raw.githubusercontent.com/code4romania/redirectioneaza/d0d0a63ce239e2145463ca92197bb131d5badd00/README.md,ok,200,9423,nu,batch H: model files of the repository
+H,2026-11-01T21:56:37.947118+00:00,GET,https://beta.dela0.ro/harta-digitalizarii-primariilor/,ok,200,158095,nu,batch H: the address that the owner gave
+H,2026-11-01T21:56:52.320784+00:00,GET,https://dela0-site.github.io/digitalizare-primarii/,ok,200,113222,nu,batch H: the map iframe of the page that the owner gave
+H,2026-11-01T21:57:14.953394+00:00,GET,https://dela0-site.github.io/digitalizare-primarii/digitalizare_data.json,ok,206,300000,nu,batch H: the data file that the map loads

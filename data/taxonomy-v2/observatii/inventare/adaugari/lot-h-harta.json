@@ -1,0 +1,5 @@
+[
+  {"proiect":"harta-digitalizarii-primariilor","url":"https://dela0-site.github.io/digitalizare-primarii/digitalizare_data.json","parinte":"https://dela0-site.github.io/digitalizare-primarii/","citire":"json-esantion","metoda":"adaugat-explicit",
+   "locate":{"pagina":"https://dela0-site.github.io/digitalizare-primarii/","text":"d3.json('digitalizare_data.json')","cache":true},
+   "nota":"Fișierul pe care harta îl încarcă (pagina găzduită pe GitHub Pages, încorporată în pagina proiectului de pe beta.dela0.ro). Câte o înregistrare pentru fiecare unitate administrativ-teritorială: populație, personal, echipamente, scoruri de digitalizare, costuri, furnizori și transparență. Citit parțial (primii 300 000 de octeți)."}
+]

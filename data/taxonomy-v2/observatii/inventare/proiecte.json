@@ -1910,7 +1910,7 @@
       "slug": "harta-digitalizarii-primariilor",
       "nume": "Harta digitalizării primăriilor",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "Starea reală a digitalizării primăriilor din România",
       "permite": [],
       "formate_catalogate": [
@@ -1921,11 +1921,12 @@
         "slug": "harta-digitalizarii-primariilor"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "dafdc812656ff4a70e55"
+      ],
+      "campuri_din_surse": 38,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
     },
@@ -3064,12 +3065,12 @@
         }
       ],
       "surse_structurate": [
-        "18a2aced844c56ee5d64"
+        "18a2aced844c56ee5d64",
+        "4462bc7bc7a10fdc4d36"
       ],
-      "campuri_din_surse": 0,
+      "campuri_din_surse": 241,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {

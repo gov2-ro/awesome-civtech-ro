@@ -4957,6 +4957,38 @@
       "nota": "Data file that the page fetched when the browser rendered it. The list of the 42 counties that the page loads first: code and name."
     },
     {
+      "proiect": "harta-digitalizarii-primariilor",
+      "url": "https://dela0-site.github.io/digitalizare-primarii/digitalizare_data.json",
+      "sursa_id": "dafdc812656ff4a70e55",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://dela0-site.github.io/digitalizare-primarii/",
+      "link_original": "https://dela0-site.github.io/digitalizare-primarii/digitalizare_data.json",
+      "dovada": {
+        "url": "https://dela0-site.github.io/digitalizare-primarii/",
+        "sha256": "ddc4d84695bbbd33d414f145aee5e4108aeac2e58506543ae5d893edbe7e3edd",
+        "pointer": "/body",
+        "interval": [
+          70857,
+          70890
+        ],
+        "fragment": "d3.json('digitalizare_data.json')",
+        "snapshot": "inventare/surse/52461ba2d24abe694bbc.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-01T21:57:22.503421+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-01T21:57:22.503421+00:00"
+        }
+      ],
+      "nota": "Fișierul pe care harta îl încarcă (pagina găzduită pe GitHub Pages, încorporată în pagina proiectului de pe beta.dela0.ro). Câte o înregistrare pentru fiecare unitate administrativ-teritorială: populație, personal, echipamente, scoruri de digitalizare, costuri, furnizori și transparență. Citit parțial (primii 300 000 de octeți).",
+      "citire": "json-esantion"
+    },
+    {
       "proiect": "harta-firmelor",
       "url": "https://harta-firmelor.ro/date",
       "sursa_id": "d2453a05f2b1481a8a83",
@@ -5998,6 +6030,38 @@
       "prioritate": 0,
       "retras": null,
       "istoric": []
+    },
+    {
+      "proiect": "monitor-energie",
+      "url": "https://monitorenergie.ro/arhiva-energie.html",
+      "sursa_id": "4462bc7bc7a10fdc4d36",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://monitorenergie.ro/",
+      "link_original": "https://monitorenergie.ro/arhiva-energie.html",
+      "dovada": {
+        "url": "https://monitorenergie.ro/arhiva-energie.html",
+        "sha256": "01692d5e772be2e8463defcc574ca95aeca51eb35592a43dfff50d81ea9136b0",
+        "pointer": "/body",
+        "interval": [
+          15591,
+          15610
+        ],
+        "fragment": "isAccessibleForFree",
+        "snapshot": "inventare/surse/4462bc7bc7a10fdc4d36.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-01T21:58:09.721680+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-01T21:58:09.721680+00:00"
+        }
+      ],
+      "nota": "Pagina Arhivă, salvată de proprietar din browser (adresele API cer o cheie care se obține prin e-mail). Catalogul seriilor (consum, producție, sold, surse de producție, import) și al punctelor de interconexiune este în blocul `boot-data`; descrierea Dataset (licență CC BY 4.0, Transelectrica ca sursă) este JSON-LD. Blocul conține și configurația interfeței (tipuri de widget, animații, navigare): acele căi nu sunt câmpuri de date.",
+      "citire": "js-literale"
     },
     {
       "proiect": "monitor-safe",

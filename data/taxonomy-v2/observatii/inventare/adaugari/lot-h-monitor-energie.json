@@ -1,0 +1,5 @@
+[
+  {"proiect":"monitor-energie","url":"https://monitorenergie.ro/arhiva-energie.html","parinte":"https://monitorenergie.ro/","citire":"js-literale","metoda":"adaugat-explicit",
+   "locate":{"pagina":"https://monitorenergie.ro/arhiva-energie.html","text":"isAccessibleForFree","cache":true},
+   "nota":"Pagina Arhivă, salvată de proprietar din browser (adresele API cer o cheie care se obține prin e-mail). Catalogul seriilor (consum, producție, sold, surse de producție, import) și al punctelor de interconexiune este în blocul `boot-data`; descrierea Dataset (licență CC BY 4.0, Transelectrica ca sursă) este JSON-LD. Blocul conține și configurația interfeței (tipuri de widget, animații, navigare): acele căi nu sunt câmpuri de date."}
+]

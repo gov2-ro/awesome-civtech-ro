@@ -60024,6 +60024,435 @@
       }
     },
     {
+      "url": "https://dela0-site.github.io/digitalizare-primarii/digitalizare_data.json",
+      "final_url": "https://dela0-site.github.io/digitalizare-primarii/digitalizare_data.json",
+      "http_status": 206,
+      "fetched_at": "2026-11-01T21:57:14.493081+00:00",
+      "content_type": "application/json",
+      "partial": true,
+      "state": "ok",
+      "citire": "json-esantion",
+      "id": "dafdc812656ff4a70e55",
+      "campuri": [
+        {
+          "nume": "name",
+          "cale": "$.uats[].name",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/name"
+        },
+        {
+          "nume": "judet",
+          "cale": "$.uats[].judet",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/judet"
+        },
+        {
+          "nume": "regiune",
+          "cale": "$.uats[].regiune",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/regiune"
+        },
+        {
+          "nume": "populatie",
+          "cale": "$.uats[].populatie",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/populatie"
+        },
+        {
+          "nume": "angajati",
+          "cale": "$.uats[].angajati",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/angajati"
+        },
+        {
+          "nume": "echipamente",
+          "cale": "$.uats[].echipamente",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/echipamente"
+        },
+        {
+          "nume": "echipamente_per_angajat",
+          "cale": "$.uats[].echipamente_per_angajat",
+          "tipuri_observate": [
+            "number",
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/echipamente_per_angajat"
+        },
+        {
+          "nume": "scor_servicii_cetateni",
+          "cale": "$.uats[].scor_servicii_cetateni",
+          "tipuri_observate": [
+            "number",
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/scor_servicii_cetateni"
+        },
+        {
+          "nume": "scor_procese_interne",
+          "cale": "$.uats[].scor_procese_interne",
+          "tipuri_observate": [
+            "number",
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/scor_procese_interne"
+        },
+        {
+          "nume": "scor_smart_city",
+          "cale": "$.uats[].scor_smart_city",
+          "tipuri_observate": [
+            "number",
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/scor_smart_city"
+        },
+        {
+          "nume": "scor_digitalizare",
+          "cale": "$.uats[].scor_digitalizare",
+          "tipuri_observate": [
+            "number",
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/scor_digitalizare"
+        },
+        {
+          "nume": "cost_tic",
+          "cale": "$.uats[].cost_tic",
+          "tipuri_observate": [
+            "number",
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/cost_tic"
+        },
+        {
+          "nume": "cost_cetateni",
+          "cale": "$.uats[].cost_cetateni",
+          "tipuri_observate": [
+            "number",
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/cost_cetateni"
+        },
+        {
+          "nume": "cost_interne",
+          "cale": "$.uats[].cost_interne",
+          "tipuri_observate": [
+            "number",
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/cost_interne"
+        },
+        {
+          "nume": "cost_smart_city",
+          "cale": "$.uats[].cost_smart_city",
+          "tipuri_observate": [
+            "number",
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/cost_smart_city"
+        },
+        {
+          "nume": "cost_web",
+          "cale": "$.uats[].cost_web",
+          "tipuri_observate": [
+            "number",
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/cost_web"
+        },
+        {
+          "nume": "cheltuieli_total",
+          "cale": "$.uats[].cheltuieli_total",
+          "tipuri_observate": [
+            "number",
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/cheltuieli_total"
+        },
+        {
+          "nume": "cheltuieli_per_capita",
+          "cale": "$.uats[].cheltuieli_per_capita",
+          "tipuri_observate": [
+            "number",
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/cheltuieli_per_capita"
+        },
+        {
+          "nume": "scor_investitie",
+          "cale": "$.uats[].scor_investitie",
+          "tipuri_observate": [
+            "number",
+            "null",
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/scor_investitie"
+        },
+        {
+          "nume": "eficienta_investitie",
+          "cale": "$.uats[].eficienta_investitie",
+          "tipuri_observate": [
+            "integer",
+            "number",
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/eficienta_investitie"
+        },
+        {
+          "nume": "strategie",
+          "cale": "$.uats[].strategie",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/strategie"
+        },
+        {
+          "nume": "monitorizat",
+          "cale": "$.uats[].monitorizat",
+          "tipuri_observate": [
+            "boolean"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/monitorizat"
+        },
+        {
+          "nume": "an_site",
+          "cale": "$.uats[].an_site",
+          "tipuri_observate": [
+            "string",
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/an_site"
+        },
+        {
+          "nume": "personal_instruit",
+          "cale": "$.uats[].personal_instruit",
+          "tipuri_observate": [
+            "boolean"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/personal_instruit"
+        },
+        {
+          "nume": "has_pdf",
+          "cale": "$.uats[].has_pdf",
+          "tipuri_observate": [
+            "boolean"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/has_pdf"
+        },
+        {
+          "nume": "pdf_filename",
+          "cale": "$.uats[].pdf_filename",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/pdf_filename"
+        },
+        {
+          "nume": "sisteme_vechi",
+          "cale": "$.uats[].sisteme_vechi",
+          "tipuri_observate": [
+            "null",
+            "boolean"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/sisteme_vechi"
+        },
+        {
+          "nume": "sisteme_vechi_count",
+          "cale": "$.uats[].sisteme_vechi_count",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/sisteme_vechi_count"
+        },
+        {
+          "nume": "text_544",
+          "cale": "$.uats[].text_544",
+          "tipuri_observate": [
+            "null",
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/text_544"
+        },
+        {
+          "nume": "transparenta",
+          "cale": "$.uats[].transparenta",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/transparenta"
+        },
+        {
+          "nume": "furnizori[]",
+          "cale": "$.uats[].furnizori[]",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/furnizori/0"
+        },
+        {
+          "nume": "furnizori_tic",
+          "cale": "$.uats[].furnizori_tic",
+          "tipuri_observate": [
+            "array"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/furnizori_tic",
+          "numar_elemente": 0
+        },
+        {
+          "nume": "furnizori_solutii",
+          "cale": "$.uats[].furnizori_solutii",
+          "tipuri_observate": [
+            "array"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/furnizori_solutii",
+          "numar_elemente": 0
+        },
+        {
+          "nume": "furnizori_smart",
+          "cale": "$.uats[].furnizori_smart",
+          "tipuri_observate": [
+            "array"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/0/furnizori_smart",
+          "numar_elemente": 0
+        },
+        {
+          "nume": "furnizori_tic[]",
+          "cale": "$.uats[].furnizori_tic[]",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/1/furnizori_tic/0"
+        },
+        {
+          "nume": "furnizori",
+          "cale": "$.uats[].furnizori",
+          "tipuri_observate": [
+            "array"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/3/furnizori",
+          "numar_elemente": 0
+        },
+        {
+          "nume": "furnizori_solutii[]",
+          "cale": "$.uats[].furnizori_solutii[]",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/4/furnizori_solutii/0"
+        },
+        {
+          "nume": "furnizori_smart[]",
+          "cale": "$.uats[].furnizori_smart[]",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/uats/23/furnizori_smart/0"
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/dafdc812656ff4a70e55-14839ff80951d476.json",
+      "sha256": "14839ff80951d4761324bb6b3a7066a16ffb6a44c5d6742aa11627d9d0ffbe91",
+      "format": "json-esantion",
+      "stare": "analizat",
+      "limita_atinsa": true,
+      "baza_tipului": "esantion-date",
+      "esantion": {
+        "complet": false,
+        "elemente_citite": {
+          "$.uats": 222
+        }
+      }
+    },
+    {
       "url": "https://demoanaf.ro/api-docs",
       "final_url": "https://demoanaf.ro/api-docs",
       "http_status": 200,
@@ -93168,6 +93597,3325 @@
       "campuri": [],
       "completitudine": "neconfirmat",
       "snapshot": "surse/18a2aced844c56ee5d64.json"
+    },
+    {
+      "url": "https://monitorenergie.ro/arhiva-energie.html",
+      "final_url": "https://monitorenergie.ro/arhiva-energie.html",
+      "http_status": null,
+      "fetched_at": "2026-11-01T21:50:00+00:00",
+      "content_type": "text/html",
+      "state": "ok",
+      "origine": "copie-salvata-de-proprietar",
+      "salvat_la": "2026-11-01T23:50:00+02:00",
+      "nume_fisier": "monitorenergie.ro-arhiva-energie.html",
+      "sha256_fisier": "01692d5e772be2e8463defcc574ca95aeca51eb35592a43dfff50d81ea9136b0",
+      "nota_copie": "Salvată din browser; API-ul cere cheie.",
+      "citire": "js-literale",
+      "id": "4462bc7bc7a10fdc4d36",
+      "campuri": [
+        {
+          "nume": "Consum",
+          "cale": "Dataset1.variableMeasured.Consum",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-metadate",
+          "rol": "masura",
+          "pointer": "char:16660-16779",
+          "linie": 118,
+          "variabila": "Dataset1",
+          "grup": "Arhivă SEN — Istoric Consum, Producție și Sold | Monitor Energie România",
+          "descriere": "Consum, măsurat în MW.",
+          "unitate": "MW"
+        },
+        {
+          "nume": "Producție",
+          "cale": "Dataset1.variableMeasured.Producție",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-metadate",
+          "rol": "masura",
+          "pointer": "char:16780-16905",
+          "linie": 118,
+          "variabila": "Dataset1",
+          "grup": "Arhivă SEN — Istoric Consum, Producție și Sold | Monitor Energie România",
+          "descriere": "Producție, măsurat în MW.",
+          "unitate": "MW"
+        },
+        {
+          "nume": "Sold",
+          "cale": "Dataset1.variableMeasured.Sold",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-metadate",
+          "rol": "masura",
+          "pointer": "char:16906-17068",
+          "linie": 118,
+          "variabila": "Dataset1",
+          "grup": "Arhivă SEN — Istoric Consum, Producție și Sold | Monitor Energie România",
+          "descriere": "Soldul schimburilor. Valoarea negativă înseamnă că România exportă.",
+          "unitate": "MW"
+        },
+        {
+          "nume": "Fotovoltaic",
+          "cale": "Dataset1.variableMeasured.Fotovoltaic",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-metadate",
+          "rol": "masura",
+          "pointer": "char:17069-17198",
+          "linie": 118,
+          "variabila": "Dataset1",
+          "grup": "Arhivă SEN — Istoric Consum, Producție și Sold | Monitor Energie România",
+          "descriere": "Fotovoltaic, măsurat în MW.",
+          "unitate": "MW"
+        },
+        {
+          "nume": "Eolian",
+          "cale": "Dataset1.variableMeasured.Eolian",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-metadate",
+          "rol": "masura",
+          "pointer": "char:17199-17320",
+          "linie": 118,
+          "variabila": "Dataset1",
+          "grup": "Arhivă SEN — Istoric Consum, Producție și Sold | Monitor Energie România",
+          "descriere": "Eolian, măsurat în MW.",
+          "unitate": "MW"
+        },
+        {
+          "nume": "Hidrocarburi",
+          "cale": "Dataset1.variableMeasured.Hidrocarburi",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-metadate",
+          "rol": "masura",
+          "pointer": "char:17321-17452",
+          "linie": 118,
+          "variabila": "Dataset1",
+          "grup": "Arhivă SEN — Istoric Consum, Producție și Sold | Monitor Energie România",
+          "descriere": "Hidrocarburi, măsurat în MW.",
+          "unitate": "MW"
+        },
+        {
+          "nume": "Cărbune",
+          "cale": "Dataset1.variableMeasured.Cărbune",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-metadate",
+          "rol": "masura",
+          "pointer": "char:17453-17574",
+          "linie": 118,
+          "variabila": "Dataset1",
+          "grup": "Arhivă SEN — Istoric Consum, Producție și Sold | Monitor Energie România",
+          "descriere": "Cărbune, măsurat în MW.",
+          "unitate": "MW"
+        },
+        {
+          "nume": "Nuclear",
+          "cale": "Dataset1.variableMeasured.Nuclear",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-metadate",
+          "rol": "masura",
+          "pointer": "char:17575-17696",
+          "linie": 118,
+          "variabila": "Dataset1",
+          "grup": "Arhivă SEN — Istoric Consum, Producție și Sold | Monitor Energie România",
+          "descriere": "Nuclear, măsurat în MW.",
+          "unitate": "MW"
+        },
+        {
+          "nume": "Hidro",
+          "cale": "Dataset1.variableMeasured.Hidro",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-metadate",
+          "rol": "masura",
+          "pointer": "char:17697-17813",
+          "linie": 118,
+          "variabila": "Dataset1",
+          "grup": "Arhivă SEN — Istoric Consum, Producție și Sold | Monitor Energie România",
+          "descriere": "Hidro, măsurat în MW.",
+          "unitate": "MW"
+        },
+        {
+          "nume": "Biomasă",
+          "cale": "Dataset1.variableMeasured.Biomasă",
+          "tip_declarat": null,
+          "stare_tip": "declarat-in-metadate",
+          "rol": "masura",
+          "pointer": "char:17814-17936",
+          "linie": 118,
+          "variabila": "Dataset1",
+          "grup": "Arhivă SEN — Istoric Consum, Producție și Sold | Monitor Energie România",
+          "descriere": "Biomasă, măsurat în MW.",
+          "unitate": "MW"
+        },
+        {
+          "nume": "admin",
+          "cale": "boot-data.admin",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "boolean"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:80780-80785",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.series.cons.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:80823-80831",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "en",
+          "cale": "boot-data.catalog.series.cons.en",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:80837-80850",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "group",
+          "cale": "boot-data.catalog.series.cons.group",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:80859-80867",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "color",
+          "cale": "boot-data.catalog.series.cons.color",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:80876-80885",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "unit",
+          "cale": "boot-data.catalog.series.cons.unit",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:80893-80897",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.series.cons.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:80905-80911",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.series.prod.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:80929-80940",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "en",
+          "cale": "boot-data.catalog.series.prod.en",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:80946-80958",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "group",
+          "cale": "boot-data.catalog.series.prod.group",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:80967-80975",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "color",
+          "cale": "boot-data.catalog.series.prod.color",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:80984-80993",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "unit",
+          "cale": "boot-data.catalog.series.prod.unit",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81001-81005",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.series.prod.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81013-81019",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.series.sold.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81037-81043",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "en",
+          "cale": "boot-data.catalog.series.sold.en",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81049-81058",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "group",
+          "cale": "boot-data.catalog.series.sold.group",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81067-81075",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "color",
+          "cale": "boot-data.catalog.series.sold.color",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81084-81093",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "unit",
+          "cale": "boot-data.catalog.series.sold.unit",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81101-81105",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.series.sold.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81113-81119",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.series.foto.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81137-81150",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "en",
+          "cale": "boot-data.catalog.series.foto.en",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81156-81163",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "group",
+          "cale": "boot-data.catalog.series.foto.group",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81172-81177",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "color",
+          "cale": "boot-data.catalog.series.foto.color",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81186-81195",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "unit",
+          "cale": "boot-data.catalog.series.foto.unit",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81203-81207",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.series.foto.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81215-81221",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.series.eolian.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81241-81249",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "en",
+          "cale": "boot-data.catalog.series.eolian.en",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81255-81261",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "group",
+          "cale": "boot-data.catalog.series.eolian.group",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81270-81275",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "color",
+          "cale": "boot-data.catalog.series.eolian.color",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81284-81293",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "unit",
+          "cale": "boot-data.catalog.series.eolian.unit",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81301-81305",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.series.eolian.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81313-81321",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.series.gaze.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81339-81353",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "en",
+          "cale": "boot-data.catalog.series.gaze.en",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81359-81375",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "group",
+          "cale": "boot-data.catalog.series.gaze.group",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81384-81389",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "color",
+          "cale": "boot-data.catalog.series.gaze.color",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81398-81407",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "unit",
+          "cale": "boot-data.catalog.series.gaze.unit",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81415-81419",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.series.gaze.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81427-81433",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.series.carb.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81451-81460",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "en",
+          "cale": "boot-data.catalog.series.carb.en",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81466-81472",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "group",
+          "cale": "boot-data.catalog.series.carb.group",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81481-81486",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "color",
+          "cale": "boot-data.catalog.series.carb.color",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81495-81504",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "unit",
+          "cale": "boot-data.catalog.series.carb.unit",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81512-81516",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.series.carb.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81524-81530",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.series.nucl.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81548-81557",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "en",
+          "cale": "boot-data.catalog.series.nucl.en",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81563-81572",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "group",
+          "cale": "boot-data.catalog.series.nucl.group",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81581-81586",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "color",
+          "cale": "boot-data.catalog.series.nucl.color",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81595-81604",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "unit",
+          "cale": "boot-data.catalog.series.nucl.unit",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81612-81616",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.series.nucl.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81624-81630",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.series.ape.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81647-81654",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "en",
+          "cale": "boot-data.catalog.series.ape.en",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81660-81667",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "group",
+          "cale": "boot-data.catalog.series.ape.group",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81676-81681",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "color",
+          "cale": "boot-data.catalog.series.ape.color",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81690-81699",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "unit",
+          "cale": "boot-data.catalog.series.ape.unit",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81707-81711",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.series.ape.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81719-81724",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.series.bmasa.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81743-81752",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "en",
+          "cale": "boot-data.catalog.series.bmasa.en",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81758-81767",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "group",
+          "cale": "boot-data.catalog.series.bmasa.group",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81776-81781",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "color",
+          "cale": "boot-data.catalog.series.bmasa.color",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81790-81799",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "unit",
+          "cale": "boot-data.catalog.series.bmasa.unit",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81807-81811",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.series.bmasa.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81819-81826",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.series.stoc.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81844-81853",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "en",
+          "cale": "boot-data.catalog.series.stoc.en",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81859-81868",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "group",
+          "cale": "boot-data.catalog.series.stoc.group",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81877-81882",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "color",
+          "cale": "boot-data.catalog.series.stoc.color",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81891-81900",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "unit",
+          "cale": "boot-data.catalog.series.stoc.unit",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81908-81912",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.series.stoc.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81920-81927",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.series.import.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81947-81955",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "en",
+          "cale": "boot-data.catalog.series.import.en",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81961-81970",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "group",
+          "cale": "boot-data.catalog.series.import.group",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81979-81985",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "color",
+          "cale": "boot-data.catalog.series.import.color",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:81994-82003",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "unit",
+          "cale": "boot-data.catalog.series.import.unit",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82011-82015",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "from",
+          "cale": "boot-data.catalog.series.import.from",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82023-82029",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "clip",
+          "cale": "boot-data.catalog.series.import.clip",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82037-82047",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.series.export.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82067-82075",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "en",
+          "cale": "boot-data.catalog.series.export.en",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82081-82090",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "group",
+          "cale": "boot-data.catalog.series.export.group",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82099-82105",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "color",
+          "cale": "boot-data.catalog.series.export.color",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82114-82123",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "unit",
+          "cale": "boot-data.catalog.series.export.unit",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82131-82135",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "from",
+          "cale": "boot-data.catalog.series.export.from",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82143-82149",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "clip",
+          "cale": "boot-data.catalog.series.export.clip",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82157-82167",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.series.regenerabil.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82192-82205",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "en",
+          "cale": "boot-data.catalog.series.regenerabil.en",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82211-82222",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "group",
+          "cale": "boot-data.catalog.series.regenerabil.group",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82231-82240",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "color",
+          "cale": "boot-data.catalog.series.regenerabil.color",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82249-82258",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "unit",
+          "cale": "boot-data.catalog.series.regenerabil.unit",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82266-82270",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "derived[]",
+          "cale": "boot-data.catalog.series.regenerabil.derived[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82282-82288",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.series.fosil.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82331-82338",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "en",
+          "cale": "boot-data.catalog.series.fosil.en",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82344-82352",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "group",
+          "cale": "boot-data.catalog.series.fosil.group",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82361-82370",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "color",
+          "cale": "boot-data.catalog.series.fosil.color",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82379-82388",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "unit",
+          "cale": "boot-data.catalog.series.fosil.unit",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82396-82400",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "derived[]",
+          "cale": "boot-data.catalog.series.fosil.derived[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82412-82418",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.series.temp.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82444-82457",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "en",
+          "cale": "boot-data.catalog.series.temp.en",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82463-82476",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "group",
+          "cale": "boot-data.catalog.series.temp.group",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82485-82492",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "color",
+          "cale": "boot-data.catalog.series.temp.color",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82501-82510",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "unit",
+          "cale": "boot-data.catalog.series.temp.unit",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82518-82522",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "source",
+          "cale": "boot-data.catalog.series.temp.source",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82532-82541",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.series.price.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82560-82570",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "en",
+          "cale": "boot-data.catalog.series.price.en",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82576-82593",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "group",
+          "cale": "boot-data.catalog.series.price.group",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82602-82611",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "color",
+          "cale": "boot-data.catalog.series.price.color",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82620-82629",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "unit",
+          "cale": "boot-data.catalog.series.price.unit",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82637-82645",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "source",
+          "cale": "boot-data.catalog.series.price.source",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82655-82663",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "mixKeys[]",
+          "cale": "boot-data.catalog.mixKeys[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82677-82683",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.countries.bulgaria.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82769-82779",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "flag",
+          "cale": "boot-data.catalog.countries.bulgaria.flag",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82787-82791",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.countries.bulgaria.points.varn.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82818-82825",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.countries.bulgaria.points.varn.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82833-82839",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.countries.bulgaria.points.kozl1.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82858-82870",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.countries.bulgaria.points.kozl1.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82878-82885",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.countries.bulgaria.points.kozl2.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82904-82916",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.countries.bulgaria.points.kozl2.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82924-82931",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.countries.bulgaria.points.dobr.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82949-82959",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.countries.bulgaria.points.dobr.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82967-82973",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.countries.serbia.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:82995-83003",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "flag",
+          "cale": "boot-data.catalog.countries.serbia.flag",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83011-83015",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.countries.serbia.points.djer.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83042-83051",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.countries.serbia.points.djer.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83059-83065",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.countries.serbia.points.kusj.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83083-83095",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.countries.serbia.points.kusj.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83103-83109",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.countries.serbia.points.pancevo1.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83131-83142",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.countries.serbia.points.pancevo1.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83150-83161",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.countries.serbia.points.pancevo2.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83183-83194",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.countries.serbia.points.pancevo2.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83202-83213",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.countries.serbia.points.sip.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83230-83235",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.countries.serbia.points.sip.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83243-83249",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.countries.serbia.points.kiki.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83267-83276",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.countries.serbia.points.kiki.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83284-83290",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.countries.ungaria.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83313-83322",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "flag",
+          "cale": "boot-data.catalog.countries.ungaria.flag",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83330-83334",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.countries.ungaria.points.beke1.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83362-83374",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.countries.ungaria.points.beke1.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83382-83389",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.countries.ungaria.points.sand.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83407-83420",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.countries.ungaria.points.sand.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83428-83434",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.countries.moldova.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83457-83466",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "flag",
+          "cale": "boot-data.catalog.countries.moldova.flag",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83474-83478",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.countries.moldova.points.vulc.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83505-83517",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.countries.moldova.points.vulc.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83525-83531",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.countries.moldova.points.unge.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83549-83558",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.countries.moldova.points.unge.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83566-83572",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.countries.moldova.points.cose.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83590-83600",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.countries.moldova.points.cose.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83608-83614",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.countries.moldova.points.cioa.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83632-83640",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.countries.moldova.points.cioa.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83648-83654",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.countries.moldova.points.gote.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83672-83681",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.countries.moldova.points.gote.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83689-83695",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.countries.ucraina.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83718-83727",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "flag",
+          "cale": "boot-data.catalog.countries.ucraina.flag",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83735-83739",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.countries.ucraina.points.muka.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83766-83776",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.countries.ucraina.points.muka.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83784-83790",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "types{*}",
+          "cale": "boot-data.catalog.types{*}",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "object"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "colectie-cu-chei",
+          "pointer": "char:83803-95170",
+          "linie": 796,
+          "variabila": "boot-data",
+          "numar_chei": 75,
+          "chei_exemplu": [
+            "stat-group",
+            "stat",
+            "gauge"
+          ]
+        },
+        {
+          "nume": "min",
+          "cale": "boot-data.catalog.types{*}.series.min",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83834-83835",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "max",
+          "cale": "boot-data.catalog.types{*}.series.max",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83842-83843",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "default[]",
+          "cale": "boot-data.catalog.types{*}.series.default[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83855-83861",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.types{*}.slots.soldExport.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83909-83934",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "default",
+          "cale": "boot-data.catalog.types{*}.slots.soldExport.default",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83945-83961",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.types{*}.slots.soldImport.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:83985-84010",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "default",
+          "cale": "boot-data.catalog.types{*}.slots.soldImport.default",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:84021-84037",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.types{*}.slots.soldZero.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:84059-84078",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "default",
+          "cale": "boot-data.catalog.types{*}.slots.soldZero.default",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:84089-84102",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.types{*}.slots.track.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:84492-84509",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "default",
+          "cale": "boot-data.catalog.types{*}.slots.track.default",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:84520-84537",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "snapshot",
+          "cale": "boot-data.catalog.types{*}.snapshot",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "boolean"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:84609-84613",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "perioada",
+          "cale": "boot-data.catalog.types{*}.perioada",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:84625-84668",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.types{*}.slots.consum.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:84696-84704",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "default",
+          "cale": "boot-data.catalog.types{*}.slots.consum.default",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:84715-84729",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.types{*}.slots.import.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:84890-84898",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "default",
+          "cale": "boot-data.catalog.types{*}.slots.import.default",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:84909-84925",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "label",
+          "cale": "boot-data.catalog.types{*}.slots.export.label",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:85086-85094",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "default",
+          "cale": "boot-data.catalog.types{*}.slots.export.default",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:85105-85121",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "singur",
+          "cale": "boot-data.catalog.types{*}.singur",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "boolean"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:85385-85389",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "none",
+          "cale": "boot-data.catalog.animations.none",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:95192-95198",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "fade",
+          "cale": "boot-data.catalog.animations.fade",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:95206-95215",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "rise",
+          "cale": "boot-data.catalog.animations.rise",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:95223-95252",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "slide",
+          "cale": "boot-data.catalog.animations.slide",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:95261-95279",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "zoom",
+          "cale": "boot-data.catalog.animations.zoom",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:95287-95296",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "blur",
+          "cale": "boot-data.catalog.animations.blur",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:95304-95313",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "flip",
+          "cale": "boot-data.catalog.animations.flip",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:95321-95336",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "none",
+          "cale": "boot-data.catalog.chartAnimations.none",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:95364-95422",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "reveal",
+          "cale": "boot-data.catalog.chartAnimations.reveal",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:95432-95461",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "progressive",
+          "cale": "boot-data.catalog.chartAnimations.progressive",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:95476-95502",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "fade",
+          "cale": "boot-data.catalog.chartAnimations.fade",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:95510-95519",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "slide-x",
+          "cale": "boot-data.catalog.chartAnimations.slide-x",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:95530-95561",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "slide-y",
+          "cale": "boot-data.catalog.chartAnimations.slide-y",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:95572-95593",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "grow",
+          "cale": "boot-data.catalog.chartAnimations.grow",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:95601-95629",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "ease-in",
+          "cale": "boot-data.catalog.chartAnimations.ease-in",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:95640-95659",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "ease-out",
+          "cale": "boot-data.catalog.chartAnimations.ease-out",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:95671-95691",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "ease-in-out",
+          "cale": "boot-data.catalog.chartAnimations.ease-in-out",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:95706-95729",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "toate",
+          "cale": "boot-data.catalog.forecastSources.toate",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:95758-95780",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "foto",
+          "cale": "boot-data.catalog.forecastSources.foto",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:95788-95806",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "eolian",
+          "cale": "boot-data.catalog.forecastSources.eolian",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:95816-95829",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "ape",
+          "cale": "boot-data.catalog.forecastSources.ape",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:95836-95848",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "toate",
+          "cale": "boot-data.catalog.subiecteStiri.toate",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:95875-95890",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "gaze",
+          "cale": "boot-data.catalog.subiecteStiri.gaze",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:95898-95904",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "solar",
+          "cale": "boot-data.catalog.subiecteStiri.solar",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:95913-95935",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "preturi",
+          "cale": "boot-data.catalog.subiecteStiri.preturi",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:95946-95966",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "retea",
+          "cale": "boot-data.catalog.subiecteStiri.retea",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:95975-95995",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live",
+          "cale": "boot-data.catalog.pages.live",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96013-96026",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "archive",
+          "cale": "boot-data.catalog.pages.archive",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96037-96052",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "energy",
+          "cale": "boot-data.catalog.pages.energy",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96062-96080",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "flows",
+          "cale": "boot-data.catalog.pages.flows",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96089-96114",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "prosumers",
+          "cale": "boot-data.catalog.pages.prosumers",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96127-96147",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "prices",
+          "cale": "boot-data.catalog.pages.prices",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96157-96173",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "map",
+          "cale": "boot-data.catalog.pages.map",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96180-96194",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "gas",
+          "cale": "boot-data.catalog.pages.gas",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96201-96214",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "rangePages[]",
+          "cale": "boot-data.catalog.rangePages[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96230-96239",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "live[]",
+          "cale": "boot-data.catalog.nav.live[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96282-96286",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "energy[]",
+          "cale": "boot-data.catalog.nav.energy[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96305-96323",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "flows[]",
+          "cale": "boot-data.catalog.nav.flows[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96346-96368",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "prosumers[]",
+          "cale": "boot-data.catalog.nav.prosumers[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96400-96420",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "calculator[]",
+          "cale": "boot-data.catalog.nav.calculator[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96450-96481",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "map[]",
+          "cale": "boot-data.catalog.nav.map[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96503-96525",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "prices[]",
+          "cale": "boot-data.catalog.nav.prices[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96545-96569",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "fuels[]",
+          "cale": "boot-data.catalog.nav.fuels[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96590-96606",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "gas[]",
+          "cale": "boot-data.catalog.nav.gas[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96628-96641",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "archive[]",
+          "cale": "boot-data.catalog.nav.archive[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96661-96684",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "guides[]",
+          "cale": "boot-data.catalog.nav.guides[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96705-96724",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "news[]",
+          "cale": "boot-data.catalog.nav.news[]",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96741-96755",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "avg",
+          "cale": "boot-data.catalog.aggregates.avg",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96786-96805",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "last",
+          "cale": "boot-data.catalog.aggregates.last",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96813-96828",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "min",
+          "cale": "boot-data.catalog.aggregates.min",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96835-96842",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "max",
+          "cale": "boot-data.catalog.aggregates.max",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96849-96856",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "mwh",
+          "cale": "boot-data.catalog.aggregates.mwh",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96863-96885",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "pollMs",
+          "cale": "boot-data.settings.pollMs",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96909-96914",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "maxPoints",
+          "cale": "boot-data.settings.maxPoints",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96927-96930",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "rangeHours",
+          "cale": "boot-data.settings.rangeHours",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96944-96947",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "motion",
+          "cale": "boot-data.settings.motion",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96957-96965",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "theme",
+          "cale": "boot-data.settings.theme",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96974-96980",
+          "linie": 796,
+          "variabila": "boot-data"
+        },
+        {
+          "nume": "page",
+          "cale": "boot-data.page",
+          "tip_declarat": null,
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "char:96989-96998",
+          "linie": 796,
+          "variabila": "boot-data"
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/4462bc7bc7a10fdc4d36-01692d5e772be2e8.json",
+      "sha256": "01692d5e772be2e8463defcc574ca95aeca51eb35592a43dfff50d81ea9136b0",
+      "format": "js-literale",
+      "stare": "analizat",
+      "limita_atinsa": true,
+      "baza_tipului": "esantion-date",
+      "declaratii": [
+        {
+          "variabila": "boot-data",
+          "forma-sursa": "json-izolat",
+          "linie": 796,
+          "citit": true,
+          "forma": "obiect",
+          "elemente": 4,
+          "pointer": "char:80771-96999"
+        }
+      ],
+      "seturi_ld": [
+        {
+          "nume": {
+            "valoare": "Arhivă SEN — Istoric Consum, Producție și Sold | Monitor Energie România",
+            "pointer": "char:15185-15259",
+            "baza": "declarat-in-pagina"
+          },
+          "descriere": {
+            "valoare": "Arhiva istorică a Sistemului Energetic Național din România. Caută pe interval și vezi evoluția consumului, producției și soldului import/export, cu grafice și statistici detaliate.",
+            "pointer": "char:15274-15457",
+            "baza": "declarat-in-pagina"
+          },
+          "adresa": {
+            "valoare": "https://monitorenergie.ro/arhiva-energie.html",
+            "pointer": "char:15464-15511",
+            "baza": "declarat-in-pagina"
+          },
+          "perioada": {
+            "valoare": "2007-11-10/2026-11-01",
+            "pointer": "char:17957-17980",
+            "baza": "declarat-in-pagina"
+          },
+          "licenta": {
+            "valoare": "https://creativecommons.org/licenses/by/4.0/",
+            "pointer": "char:15543-15589",
+            "baza": "declarat-in-pagina"
+          },
+          "limba": {
+            "valoare": "ro-RO",
+            "pointer": "char:15525-15532",
+            "baza": "declarat-in-pagina"
+          },
+          "gratuit": {
+            "valoare": true,
+            "pointer": "char:15612-15616",
+            "baza": "declarat-in-pagina"
+          },
+          "bazat_pe": [
+            {
+              "valoare": "https://www.transelectrica.ro/",
+              "pointer": "char:15825-15857",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "creator": [
+            {
+              "valoare": "MonitorEnergie.ro",
+              "pointer": "char:15658-15677",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "editor": [
+            {
+              "valoare": "MonitorEnergie.ro",
+              "pointer": "char:15757-15776",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "cuvinte_cheie": [
+            {
+              "valoare": "arhivă energie România",
+              "pointer": "char:16031-16055",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "istoric consum energie",
+              "pointer": "char:16056-16080",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "istoric producție energie",
+              "pointer": "char:16081-16108",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "SEN istoric",
+              "pointer": "char:16109-16122",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "statistici energie România",
+              "pointer": "char:16123-16151",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "acoperire": {
+            "valoare": "România",
+            "pointer": "char:15953-15962",
+            "baza": "declarat-in-pagina"
+          },
+          "variabile_masurate": [
+            {
+              "valoare": "Consum",
+              "pointer": "char:16692-16700",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "Producție",
+              "pointer": "char:16812-16823",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "Sold",
+              "pointer": "char:16938-16944",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "Fotovoltaic",
+              "pointer": "char:17101-17114",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "Eolian",
+              "pointer": "char:17231-17239",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "Hidrocarburi",
+              "pointer": "char:17353-17367",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "Cărbune",
+              "pointer": "char:17485-17494",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "Nuclear",
+              "pointer": "char:17607-17616",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "Hidro",
+              "pointer": "char:17729-17736",
+              "baza": "declarat-in-pagina"
+            },
+            {
+              "valoare": "Biomasă",
+              "pointer": "char:17846-17855",
+              "baza": "declarat-in-pagina"
+            }
+          ],
+          "pointer": "char:15127-18024"
+        }
+      ]
     },
     {
       "url": "https://monitorsafe.ro/",

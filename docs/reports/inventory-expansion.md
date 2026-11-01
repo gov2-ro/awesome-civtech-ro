@@ -6,10 +6,10 @@ Inventory assertions are proposals. Raw field totals count source paths, not ind
 ## 1. Outcome
 
 - Milestones A (safe incremental collection), B (INS), C (12 entries), D (meanings and shared groups) and E (preview, coverage, report) are complete.
-- Structured field evidence now covers 68 of 133 projects and resources (baseline 14). The retained sources are 226 URLs (221 parsed, 5 failed) with 7,802 field records.
+- Structured field evidence now covers 70 of 133 projects and resources (baseline 14). The retained sources are 228 URLs (223 parsed, 5 failed) with 8,081 field records.
 - Each field record is a path in a source. The proposals are 46 shared groups (baseline 7), 16 provider review items and the dictionary evidence that `inventory.py --check` verifies.
 - The public build is unchanged: the default payload equals the v0.13.0 payload apart from its generation time; classifications and accepted providers are identical.
-- Collection used 304 direct requests in total (49 browser navigations); the 150-request limit of lot C was not reached.
+- Collection used 307 direct requests in total (49 browser navigations); the 150-request limit of lot C was not reached.
 - Batch C2 (three active projects): three inventories (`romania-interactiva` 10 sources, `data-expertforum` 15 sources from the owner's saved page and 14 Google Sheet tabs, `bani-partide` 1 source from the owner's saved listing), 8 proposed groups and provider items D176–D187; see the subsection of section 3.
 - Batch E (twelve entries, lot `E`): eleven entries have 30 sources and 775 field records (two of them reserve entries); `open-budget` is `blocat`, `portal-just-modern` has no source; 25 provider items D211–D235, four proposed groups and 26 candidate members; see the subsection of section 3. The addendum of 2026-10-27 reads `sicap-ai` (6 sources, 1,281 field records) from a copy that the owner saved and from a public repository, with 0 requests to its host, and adds 2 provider items, 20 candidate members and a proposed group.
 
@@ -34,21 +34,21 @@ Field-level meaning is thinner than group-level meaning. Source-declared field d
 
 ## 2. Coverage before and after
 
-The 133 projects and resources of the catalogue (the finder lists the 87 that are in scope):
+The 133 projects and resources of the catalogue (the finder lists the 86 that are in scope):
 
 | Measure | Baseline | Now |
 | --- | ---: | ---: |
 | Catalogue entries | 140 | 146 |
 | Projects / resources / organisations | 106 / 21 / 13 | 112 / 21 / 13 |
 | Projects and resources (catalogue, hidden entries included) | 127 | 133 |
-| Entries with structured field evidence | 14 | 68 |
-| Projects/resources without extracted structured fields | 113 | 65 |
-| Retained structured-source URLs | 25 | 226 |
-| Parsed sources / HTTP failures | 24 / 1 | 221 / 5 |
-| Source-scoped field records (paths, not variables) | 2,302 | 7,802 |
-| Schema declarations / sampled JSON paths / CSV headers / INS dimensions | 1,312 / 904 / 82 / 4 | 1,954 / 3,331 / 311 / 4 |
+| Entries with structured field evidence | 14 | 70 |
+| Projects/resources without extracted structured fields | 113 | 63 |
+| Retained structured-source URLs | 25 | 228 |
+| Parsed sources / HTTP failures | 24 / 1 | 223 / 5 |
+| Source-scoped field records (paths, not variables) | 2,302 | 8,081 |
+| Schema declarations / sampled JSON paths / CSV headers / INS dimensions | 1,312 / 904 / 82 / 4 | 1,954 / 3,600 / 311 / 4 |
 | HTML control candidates / entries with candidates | 308 / 78 | 311 / 81 |
-| Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 97 / 49 |
+| Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 98 / 48 |
 | Accepted provider relations / entries with accepted providers | 26 / 11 | 118 / 44 |
 | Pending provider proposals (review items D132 and later) | 15 | 0 |
 | Proposed business-variable groups | 7 | 46 |
@@ -57,23 +57,23 @@ The 133 projects and resources of the catalogue (the finder lists the 87 that ar
 
 Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 106 in all; deschis 0, acceptat 92, respins 11, amanat 0, tehnic 3. Variable groups: 46 in all; propus 0, revizuit 46, respins 0, amanat 0. Group members (selectors): 236 in all; propus 0, confirmat 236, exclus 0.
 
-Scope of the data finder (`/date/`): 87 of the 129 public projects and resources are in scope. An entry is in scope when it is not inactive (`offline`, `arhivat`) and its `relatie_date` is `date-publice`, `date-proprii` or `calcul`. The finder leaves out 42: 24 without data (`fara-date`), 0 not assessed (empty value), 18 inactive (counted first: an inactive entry is never counted as another reason). 4 hidden entries (`ascuns`) are in no count of this paragraph.
+Scope of the data finder (`/date/`): 86 of the 128 public projects and resources are in scope. An entry is in scope when it is not inactive (`offline`, `arhivat`) and its `relatie_date` is `date-publice`, `date-proprii` or `calcul`. The finder leaves out 42: 24 without data (`fara-date`), 0 not assessed (empty value), 18 inactive (counted first: an inactive entry is never counted as another reason). 5 hidden entries (`ascuns`) are in no count of this paragraph.
 
-Field records by evidence type now: observat-in-esantion-json 3,331, declarat-in-schema 1,954, declarat-in-cod-sursa 1,184, exemplu-in-documentatie 364, neprecizat-in-antet-csv 311, antet-tabel-html 236, declarat-in-lista-baza 171, declarat-in-metadate 58, declarat-in-tabel-documentatie 53, declarat-in-lista-documentatie 40, declarat-in-documentatie-api 36, declarat-in-text-documentatie 36, utilizat-in-cod-pagina 28.
+Field records by evidence type now: observat-in-esantion-json 3,600, declarat-in-schema 1,954, declarat-in-cod-sursa 1,184, exemplu-in-documentatie 364, neprecizat-in-antet-csv 311, antet-tabel-html 236, declarat-in-lista-baza 171, declarat-in-metadate 68, declarat-in-tabel-documentatie 53, declarat-in-lista-documentatie 40, declarat-in-documentatie-api 36, declarat-in-text-documentatie 36, utilizat-in-cod-pagina 28.
 
 Coverage by measure, for the 133 projects and resources (`acoperire.csv` has the rows). A column that counts fields counts source paths:
 
 | Measure | Entries counted | Total |
 | --- | ---: | ---: |
-| Structured sources | 68 | 231 |
-| Field records from sources | 68 | 7,864 |
-| Entries in at least one proposed group | 68 | 43 |
-| Fields with a source-declared description | 68 | 1,961 |
-| Fields with a declared type | 68 | 2,960 |
-| Fields with an observed type | 68 | 3,790 |
-| Measures with a unit | 68 | 82 |
-| Measures without a unit | 68 | 140 |
-| Sources with a verified discovery locator | 68 | 235 |
+| Structured sources | 70 | 233 |
+| Field records from sources | 70 | 8,143 |
+| Entries in at least one proposed group | 70 | 43 |
+| Fields with a source-declared description | 70 | 1,971 |
+| Fields with a declared type | 70 | 2,960 |
+| Fields with an observed type | 70 | 4,059 |
+| Measures with a unit | 70 | 92 |
+| Measures without a unit | 70 | 140 |
+| Sources with a verified discovery locator | 70 | 238 |
 
 Totals add the per-entry counts. A source that several entries share counts once for each of them, so the field total here is higher than the number of distinct field records above.
 Denominators are defined in `docs/DATA-SCHEMA.md` (Coverage export). Entries without a structured source have an empty (unknown) measure count, not zero.
@@ -82,14 +82,14 @@ All 146 catalogue entries (hidden entries included):
 
 | State | Entries |
 | --- | ---: |
-| blocat | 5 |
-| cu-surse-structurate | 68 |
+| blocat | 4 |
+| cu-surse-structurate | 70 |
 | fara-date | 24 |
 | in-afara-ariei | 13 |
 | inactiv | 19 |
 | investigat-fara-surse | 4 |
 | neevaluat | 2 |
-| neinvestigat-in-lot | 11 |
+| neinvestigat-in-lot | 10 |
 
 `in-afara-ariei` entries are organisations: the finder lists projects and resources. An organisation need not expose a dataset. Missing extraction never proves missing data.
 `fara-date`, `inactiv` and `neevaluat` are projects and resources that the finder leaves out and that have no source record. An entry with a usable source keeps `cu-surse-structurate`, and an entry whose sources failed keeps `blocat`, whatever its scope: the evidence stays in `observatii/`, and only the public output leaves the entry out.
@@ -713,8 +713,8 @@ Două fluxuri JSON agregate sunt încărcate de pagina principală și descriu i
 
 The documented OpenAPI contract returned HTTP 401. The source remains blocked under the host stop rule; no further request was made.
 
-- State: blocat. Sources 0, field records 0, groups 0.
-- Source URLs: `https://monitorenergie.ro/api/openapi.json`
+- State: cu-surse-structurate. Sources 1, field records 241, groups 0.
+- Source URLs: `https://monitorenergie.ro/api/openapi.json`; `https://monitorenergie.ro/arhiva-energie.html`
 - Proposed groups: none
 - Documented inputs: none documented in the sources read. HTML controls stay candidates.
 - Provider proposals: none.
@@ -1049,10 +1049,10 @@ The producer, the distributor and the project author are named apart in each ite
 | E | 54 | 2 | 4,934,972 | 6 | 50 |
 | F | 23 | 5 | 1,684,551 | 20 | 134 |
 | G | 4 | 0 | 1,638,006 | 10 | 55 |
-| H | 20 | 3 | 3,450,813 | 4 | 2 |
+| H | 23 | 3 | 4,022,130 | 4 | 2 |
 | demoanaf-api-docs | 4 | 0 | 315,089 | 0 | 0 |
 
-Total direct requests: 304. The limit for lot C was 150 including retries; no request was retried. Lot B is the INS listing and five metadata records; lot B2 is six gap sources of existing inventories. Elapsed work and workers: requests ran one at a time, so the six-worker and two-per-host limits were never reached.
+Total direct requests: 307. The limit for lot C was 150 including retries; no request was retried. Lot B is the INS listing and five metadata records; lot B2 is six gap sources of existing inventories. Elapsed work and workers: requests ran one at a time, so the six-worker and two-per-host limits were never reached.
 Lot C2 (brief limit: 60 direct requests and two browser pages for each entry): 18 direct requests in the request log (6 did not end in HTTP 200 or 206: four answered 403 and two were responses of more than 2,000,000 bytes that the fetcher refused), 7,484,573 bytes read (4,000,002 of them from the two refused responses, which were cut at the size limit), no retry. Two more requests were made by `collect_docs.py --force --only romania-interactiva`, which does not write the log, so 20 in all. Browser: 2 navigations (`harta-notelor/`, `locale/`) and 0 data requests: both pages request no data file.
 Hosts of lot C2: romaniainteractiva.ro 10 (the log) plus 2 (collector), ins.gov2.ro 3, expertforum.ro 2, banipartide.ro 1, data.expertforum.ro 1, orase-digitale.ro 1. All sources except the two sample reads were read once and replayed from the local cache. The three hosts that answered 403 were not requested again after the first answer. The collector did not run for the two blocked entries: a request for each page of an entry that already answered 403 would not have followed the stop rule.
 Proposed rows for `colectare-interzisa.csv` (not added by the session; on 2026-10-26 the owner added `banipartide.ro` and `expertforum.ro`, and the second row covers `data.expertforum.ro`): `banipartide.ro`, `data.expertforum.ro` and `expertforum.ro`, motive "answers HTTP 403 to automated requests", evidence the request log rows of 2026-10-26 and `documentare/index.json` (2026-10-24). A 403 may come from a filter on the client and not from a prohibition; the file lists hosts whose terms or answers forbid automated access, so the owner decides the wording.
