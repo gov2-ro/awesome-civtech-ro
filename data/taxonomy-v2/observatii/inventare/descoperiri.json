@@ -9749,7 +9749,7 @@
       "proiect": "transparenta-eu",
       "url": "https://transparenta.eu/ai/pnrr-parameters.json",
       "sursa_id": "fcc18e165f725561b998",
-      "stare": "descoperit",
+      "stare": "activ",
       "metoda": "url-in-text",
       "parinte": "https://transparenta.eu/llms.txt",
       "link_original": "https://transparenta.eu/ai/pnrr-parameters.json",
@@ -9767,7 +9767,12 @@
       "descoperit_la": "2026-10-24T22:19:45.257440+00:00",
       "prioritate": 2,
       "retras": null,
-      "istoric": []
+      "istoric": [
+        {
+          "eveniment": "admis",
+          "la": "2026-11-02T13:39:04.922178+00:00"
+        }
+      ]
     },
     {
       "proiect": "trei-din-patru",
