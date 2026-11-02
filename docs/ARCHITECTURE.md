@@ -30,6 +30,10 @@ Do not write into the sealed `source/`, `reference/` or `runs/` directories.
 
 ## From sources to the website
 
+<img src="reference/pipeline.png" width="900" alt="CivTech România pipeline: people edit CSV files in Git, directly or via a Google Sheet and Form; profile.py, search.py and review.py enrich them; validate.py and build.py check and build the static site; GitHub Pages publishes it at civtech.gov2.ro.">
+
+The figure gives the overview. The diagram below shows the same flow in text form.
+
 ```mermaid
 flowchart TD
     CSV[Editable catalogue and vocabulary] --> BUILD[build.py: publication gate and static build]

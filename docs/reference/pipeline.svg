@@ -1,0 +1,182 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 880" width="1080" height="880" font-family="'IBM Plex Sans', Arial, sans-serif" role="img" aria-labelledby="pl-titlu pl-desc">
+  <title id="pl-titlu">CivTech România: how the catalogue is built and published</title>
+  <desc id="pl-desc">People edit CSV files in Git, directly or through a Google Sheet and a Form. Scripts enrich the entries, validate.py and the publication gate check them, build.py writes the static site, and GitHub Pages publishes it at civtech.gov2.ro.</desc>
+  <rect width="1080" height="880" fill="#ffffff" />
+  <defs>
+    <marker id="pl-arrow-data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1d4ed8" /></marker>
+    <marker id="pl-arrow-human" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#616161" /></marker>
+    <marker id="pl-arrow-check" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#616161" /></marker>
+  </defs>
+  <!-- bands -->
+  <rect x="0" y="60" width="1080" height="135" fill="#f6f6f4" />
+  <text x="24" y="111" font-size="15" font-weight="600" fill="#121212">Sources</text>
+  <text x="24" y="129" font-size="13" fill="#616161">edit, propose</text>
+  <text x="24" y="271" font-size="15" font-weight="600" fill="#121212">Human-edited</text>
+  <text x="24" y="289" font-size="13" fill="#616161">files in Git</text>
+  <rect x="0" y="336" width="1080" height="164" fill="#f6f6f4" />
+  <text x="24" y="434" font-size="15" font-weight="600" fill="#121212">Enrichment</text>
+  <text x="24" y="452" font-size="13" fill="#616161">generated files</text>
+  <text x="24" y="575" font-size="15" font-weight="600" fill="#121212">Gates & build</text>
+  <text x="24" y="593" font-size="13" fill="#616161">CI and local</text>
+  <rect x="0" y="641" width="1080" height="119" fill="#f6f6f4" />
+  <text x="24" y="699" font-size="15" font-weight="600" fill="#121212">Site</text>
+  <text x="24" y="717" font-size="13" fill="#616161">static, no server</text>
+  <text x="24" y="787" font-size="15" font-weight="600" fill="#121212">Features</text>
+  <text x="24" y="805" font-size="13" fill="#616161">of the site</text>
+  <text x="24" y="40" font-size="20" font-weight="600" fill="#121212">CivTech România: how the catalogue is built and published</text>
+  <!-- edges: check (grey, solid) -->
+  <g fill="none" stroke="#616161" stroke-width="1.5">
+    <path d="M398,438 H358" marker-end="url(#pl-arrow-check)" />
+    <path d="M590,438 H630" marker-end="url(#pl-arrow-check)" />
+    <path d="M862,579 H822" marker-end="url(#pl-arrow-check)" />
+  </g>
+  <!-- edges: human action (grey, dashed) -->
+  <g fill="none" stroke="#616161" stroke-width="1.5" stroke-dasharray="5 4">
+    <path d="M726,154 V236" marker-end="url(#pl-arrow-human)" />
+    <path d="M358,275 H398" marker-end="url(#pl-arrow-human)" />
+  </g>
+  <!-- edges: data flow (brand, solid) -->
+  <g fill="none" stroke="#1d4ed8" stroke-width="2.5">
+    <path d="M358,103 H398" marker-end="url(#pl-arrow-data)" />
+    <path d="M398,127 H358" marker-end="url(#pl-arrow-data)" />
+    <path d="M470,154 V236" marker-end="url(#pl-arrow-data)" />
+    <path d="M518,236 V154" marker-end="url(#pl-arrow-data)" />
+    <path d="M958,154 V236" marker-end="url(#pl-arrow-data)" />
+    <path d="M420,314 V352 H262 V390" marker-end="url(#pl-arrow-data)" />
+    <path d="M958,314 V390" marker-end="url(#pl-arrow-data)" />
+    <path d="M862,438 H822" marker-end="url(#pl-arrow-data)" />
+    <path d="M610,314 V430 A8,8 0 0 1 610,446 V540" marker-end="url(#pl-arrow-data)" />
+    <path d="M262,486 V540" marker-end="url(#pl-arrow-data)" />
+    <path d="M726,486 V540" marker-end="url(#pl-arrow-data)" />
+    <path d="M940,486 V512 H790 V540" marker-end="url(#pl-arrow-data)" />
+    <path d="M378,618 V664" marker-end="url(#pl-arrow-data)" />
+    <path d="M590,703 H630" marker-end="url(#pl-arrow-data)" />
+    <path d="M822,703 H862" marker-end="url(#pl-arrow-data)" />
+  </g>
+  <!-- edge labels -->
+  <g font-size="13" fill="#616161">
+    <text x="460" y="186" text-anchor="end"><tspan font-weight="600" fill="#1638a8">pull</tspan> every 6 h:</text>
+    <text x="460" y="203" text-anchor="end">PR on sheets-sync</text>
+    <text x="528" y="186"><tspan font-weight="600" fill="#1638a8">push</tspan> after a</text>
+    <text x="528" y="203">merge to main</text>
+    <text x="736" y="195">pull request</text>
+    <text x="948" y="195" text-anchor="end">form.py --import</text>
+  </g>
+  <!-- nodes -->
+  <rect x="166" y="76" width="192" height="78" rx="8" fill="#ffffff" stroke="#757575" stroke-width="1.5" />
+  <text fill="#121212" text-anchor="middle" font-size="15">
+    <tspan x="262" y="101" font-weight="600">Google Sheet</tspan>
+    <tspan x="262" y="120">tab v2-intrari</tspan>
+    <tspan x="262" y="139">editors edit cells</tspan>
+  </text>
+  <rect x="398" y="76" width="192" height="78" rx="8" fill="#e8eefc" stroke="#1d4ed8" stroke-width="1.5" />
+  <text fill="#121212" text-anchor="middle" font-size="15">
+    <tspan x="494" y="101" font-weight="600">sheets.py</tspan>
+    <tspan x="494" y="120">pull / push</tspan>
+    <tspan x="494" y="139">_sync tab: last push</tspan>
+  </text>
+  <rect x="630" y="76" width="192" height="78" rx="8" fill="#ffffff" stroke="#757575" stroke-width="1.5" />
+  <text fill="#121212" text-anchor="middle" font-size="15">
+    <tspan x="726" y="101" font-weight="600">Contributors</tspan>
+    <tspan x="726" y="120">edit the CSV files</tspan>
+    <tspan x="726" y="139">on GitHub</tspan>
+  </text>
+  <rect x="862" y="76" width="192" height="78" rx="8" fill="#ffffff" stroke="#757575" stroke-width="1.5" />
+  <text fill="#121212" text-anchor="middle" font-size="15">
+    <tspan x="958" y="101" font-weight="600">Google Form</tspan>
+    <tspan x="958" y="120">proposals from</tspan>
+    <tspan x="958" y="139">the public</tspan>
+  </text>
+  <rect x="166" y="236" width="192" height="78" rx="8" fill="#ffffff" stroke="#757575" stroke-width="1.5" />
+  <text fill="#121212" text-anchor="middle" font-size="15">
+    <tspan x="262" y="261" font-weight="600">review_ui.py</tspan>
+    <tspan x="262" y="280">local review UI,</tspan>
+    <tspan x="262" y="299">never commits</tspan>
+  </text>
+  <rect x="398" y="236" width="656" height="78" rx="8" fill="#e8eefc" stroke="#1d4ed8" stroke-width="1.5" />
+  <text fill="#121212" text-anchor="middle" font-size="15">
+    <tspan x="726" y="261" font-weight="600">data/taxonomy-v2/integrare/</tspan>
+    <tspan x="726" y="280">intrari.csv · relatii.csv · revizuire.csv</tspan>
+    <tspan x="726" y="299">+ vocabulary: concepte.csv, arii.csv, valori.csv, …</tspan>
+  </text>
+  <rect x="166" y="390" width="192" height="96" rx="8" fill="#e8eefc" stroke="#1d4ed8" stroke-width="1.5" />
+  <text fill="#121212" text-anchor="middle" font-size="15">
+    <tspan x="262" y="415" font-weight="600">profile.py</tspan>
+    <tspan x="262" y="434">status, age, activity</tspan>
+    <tspan x="262" y="453">→ observatii/profil.csv</tspan>
+    <tspan x="262" y="472">+ site/img/</tspan>
+  </text>
+  <rect x="398" y="390" width="192" height="96" rx="8" fill="#ffffff" stroke="#757575" stroke-width="1.5" />
+  <text fill="#121212" text-anchor="middle" font-size="15">
+    <tspan x="494" y="415" font-weight="600">colectare-interzisa.csv</tspan>
+    <tspan x="494" y="434">hosts that no script</tspan>
+    <tspan x="494" y="453">requests: checked</tspan>
+    <tspan x="494" y="472">before each request</tspan>
+  </text>
+  <rect x="630" y="390" width="192" height="96" rx="8" fill="#e8eefc" stroke="#1d4ed8" stroke-width="1.5" />
+  <text fill="#121212" text-anchor="middle" font-size="15">
+    <tspan x="726" y="415" font-weight="600">review.py</tspan>
+    <tspan x="726" y="434">Claude Haiku,</tspan>
+    <tspan x="726" y="453">suggestions only</tspan>
+    <tspan x="726" y="472">→ mentiuni_etichete.csv</tspan>
+  </text>
+  <rect x="862" y="390" width="192" height="96" rx="8" fill="#e8eefc" stroke="#1d4ed8" stroke-width="1.5" />
+  <text fill="#121212" text-anchor="middle" font-size="15">
+    <tspan x="958" y="415" font-weight="600">search.py</tspan>
+    <tspan x="958" y="434">Serper + Brave</tspan>
+    <tspan x="958" y="453">→ mentiuni.csv</tspan>
+    <tspan x="958" y="472">editor keeps or drops</tspan>
+  </text>
+  <rect x="166" y="540" width="656" height="78" rx="8" fill="#1d4ed8" stroke="#00357e" stroke-width="1.5" />
+  <text fill="#ffffff" text-anchor="middle" font-size="15">
+    <tspan x="494" y="565" font-weight="600">build.py</tspan>
+    <tspan x="494" y="584">publication gate (hides ascuns) · status · score 0-100</tspan>
+    <tspan x="494" y="603">--with-inventory --with-structure → /date/, /entitati/</tspan>
+  </text>
+  <rect x="862" y="540" width="192" height="78" rx="8" fill="#ffffff" stroke="#757575" stroke-width="1.5" />
+  <text fill="#121212" text-anchor="middle" font-size="15">
+    <tspan x="958" y="565" font-weight="600">validate.py</tspan>
+    <tspan x="958" y="584">CI on every PR,</tspan>
+    <tspan x="958" y="603">--publication gate</tspan>
+  </text>
+  <rect x="166" y="664" width="424" height="78" rx="8" fill="#e8eefc" stroke="#1d4ed8" stroke-width="1.5" />
+  <text fill="#121212" text-anchor="middle" font-size="15">
+    <tspan x="378" y="689" font-weight="600">site/</tspan>
+    <tspan x="378" y="708">data.json · feed.xml · llms.txt</tspan>
+    <tspan x="378" y="727">entry pages · img/ · date/ · entitati/</tspan>
+  </text>
+  <rect x="630" y="664" width="192" height="78" rx="8" fill="#e8eefc" stroke="#1d4ed8" stroke-width="1.5" />
+  <text fill="#121212" text-anchor="middle" font-size="15">
+    <tspan x="726" y="689" font-weight="600">pages.yml</tspan>
+    <tspan x="726" y="708">GitHub Actions, on</tspan>
+    <tspan x="726" y="727">push to main</tspan>
+  </text>
+  <rect x="862" y="664" width="192" height="78" rx="8" fill="#e8eefc" stroke="#1d4ed8" stroke-width="1.5" />
+  <text fill="#121212" text-anchor="middle" font-size="15">
+    <tspan x="958" y="689" font-weight="600">GitHub Pages</tspan>
+    <tspan x="958" y="708">civtech.gov2.ro</tspan>
+    <tspan x="958" y="727">app.js: vanilla JS</tspan>
+  </text>
+  <!-- features -->
+  <rect x="166" y="776" width="146" height="30" rx="15" fill="#ffffff" stroke="#757575" stroke-width="1" />
+  <text x="239" y="796" text-anchor="middle" font-size="14" fill="#121212">Taxonomy v2 facets</text>
+  <rect x="320" y="776" width="162" height="30" rx="15" fill="#ffffff" stroke="#757575" stroke-width="1" />
+  <text x="401" y="796" text-anchor="middle" font-size="14" fill="#121212">Sort by status, score</text>
+  <rect x="490" y="776" width="142" height="30" rx="15" fill="#ffffff" stroke="#757575" stroke-width="1" />
+  <text x="561" y="796" text-anchor="middle" font-size="14" fill="#121212">Data finder /date/</text>
+  <rect x="640" y="776" width="138" height="30" rx="15" fill="#ffffff" stroke="#757575" stroke-width="1" />
+  <text x="709" y="796" text-anchor="middle" font-size="14" fill="#121212">Filters in the URL</text>
+  <rect x="786" y="776" width="78" height="30" rx="15" fill="#ffffff" stroke="#757575" stroke-width="1" />
+  <text x="825" y="796" text-anchor="middle" font-size="14" fill="#121212">RSS feed</text>
+  <rect x="872" y="776" width="70" height="30" rx="15" fill="#ffffff" stroke="#757575" stroke-width="1" />
+  <text x="907" y="796" text-anchor="middle" font-size="14" fill="#121212">llms.txt</text>
+  <rect x="950" y="776" width="100" height="30" rx="15" fill="#ffffff" stroke="#757575" stroke-width="1" />
+  <text x="1000" y="796" text-anchor="middle" font-size="14" fill="#121212">Romanian UI</text>
+  <!-- legend -->
+  <line x1="24" y1="852" x2="74" y2="852" stroke="#1d4ed8" stroke-width="2.5" />
+  <text x="82" y="857" font-size="14" fill="#121212">Data flow: a script or workflow reads or writes</text>
+  <line x1="420" y1="852" x2="470" y2="852" stroke="#616161" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="478" y="857" font-size="14" fill="#121212">Human action or review</text>
+  <line x1="680" y1="852" x2="730" y2="852" stroke="#616161" stroke-width="1.5" />
+  <text x="738" y="857" font-size="14" fill="#121212">Check that blocks a build or a request</text>
+</svg>

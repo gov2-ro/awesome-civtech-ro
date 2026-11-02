@@ -1,5 +1,21 @@
 # Activity
 
+## 2026-11-02 — Pipeline diagram in the README
+
+**Done**
+- `docs/reference/pipeline.svg` (source) and `pipeline.png` (2160 × 1760, 2x): one figure with five bands (Sources, Human-edited, Enrichment, Gates & build, Site), a features strip and a legend. `README.md` (heading „Pipeline”) and `docs/ARCHITECTURE.md` (section „From sources to the website”, above the Mermaid flowchart) show the PNG at 900 px, with alt text.
+- The figure came from the `diagram-designer` agent. It took the facts from `CLAUDE.md`, `docs/ARCHITECTURE.md` and the workflow files. Three line styles, one meaning each: blue solid = data flow, grey dashed = human action or review, grey solid = check that blocks a build or a request. All lines are orthogonal; one line hop.
+- Follow-up: `/entitati/` added to the build and site boxes, because `pages.yml` runs `build.py --with-inventory --with-structure`.
+
+**Hard**
+- The SVG names IBM Plex Sans but does not embed it. On its own it falls back to Arial. The README therefore uses the PNG, rendered with the site font from `site/fonts/fonts.css`.
+- Five columns at 900 px would force text below 12 px. The agent used horizontal bands. At 900 px the box text shows at about 12.5 px; labels at about 11–12 px.
+- The check lines from `colectare-interzisa.csv` go only to `profile.py` and `review.py`. `collect_docs.py`, `inventory.py` and `render_pages.py` also call the check but are not in the figure.
+
+**Decided**
+- The README embeds the PNG, not the SVG: GitHub renders an SVG with the viewer's fonts, so line widths may shift. The cost is a 2x image to regenerate with each change. The agent's generator and render script are in the session scratchpad, not in the repo.
+- The vocabulary files share one box with `intrari.csv`, to keep the figure simple.
+
 ## 2026-11-02 — `/date/furnizori/`: grouped order, jump list, entry icons
 
 **Done**

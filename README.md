@@ -11,6 +11,12 @@ Pentru erate sau sugestii de resurse noi, submit a PR sau issue, sau via [Google
 ![civtech.gov2.ro landing light](docs/reference/civtech.gov2.ro-landing-light.png)
 ![civtech.gov2.ro landing dark](docs/reference/civtech.gov2.ro-landing-dark.png)
 
+## Pipeline
+
+<img src="docs/reference/pipeline.png" width="900" alt="CivTech România pipeline: people edit CSV files in Git, directly or via a Google Sheet and Form; profile.py, search.py and review.py enrich them; validate.py and build.py check and build the static site; GitHub Pages publishes it at civtech.gov2.ro.">
+
+Source: [pipeline.svg](docs/reference/pipeline.svg). Blue lines show data flow, dashed lines show human actions, and grey lines show checks that block a build or a request.
+
 # 🤖🗯️
 
 ## Layout
