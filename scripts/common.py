@@ -418,6 +418,78 @@ def public_reason(reason: str) -> str:
     return DATA_GROUPS[-1]["key"] if reason == UNASSESSED else reason
 
 
+# --- The views of the data finder by source (docs/briefs/source-views.md) ------------------------------------------------------
+# The page `date/lista/` and the four pages beside it use the folder `date/`; an entry with one of these slugs would collide with a page.
+# `validate.py` reports such a slug, and `inventory_site.publish_variable_pages` refuses it.
+RESERVED_DATA_SLUGS = ("lista", "furnizori", "formate", "licente", "gazde")
+
+# `data/taxonomy-v2/furnizori.csv` (hand-edited) maps each provider name of `relatii.csv` (predicate `date_din`) to a normalised provider.
+# The build applies a row only when its `stare` is `acceptat`; an owner decision, never a script.
+PROVIDERS_FILE = "furnizori.csv"
+PROVIDER_COLS = ["nume_sursa", "furnizor", "nume", "eticheta", "tip", "stare", "nota"]
+PROVIDER_TYPES = ("institutie-publica", "ue-international", "ong", "companie", "comunitate", "autor")  # the order of the groups on /date/furnizori/
+PROVIDER_STATES = ("propus", "acceptat")
+PROVIDER_ID = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+
+
+def providers_path(data_dir: Path = PUBLIC_ROOT) -> Path:
+    """The provider file of a root: it sits in the package folder, beside `inventar-concepte.json`, one level above the editable copy."""
+    return data_dir.parent / PROVIDERS_FILE
+
+
+def read_providers(path: Path) -> list[dict]:
+    """The rows of the provider file, or an empty list when the file does not exist."""
+    return read_csv(path) if path.exists() else []
+
+
+def provider_names(relations: list[dict]) -> list[str]:
+    """The provider names of `relatii.csv` (rows with the predicate `date_din`, in any state), as the provider file spells them."""
+    return sorted({r["obiect_literal"] or r["obiect"] for r in relations if r["predicat"] == "date_din" and (r["obiect_literal"] or r["obiect"])})
+
+
+def provider_problems(rows: list[dict], names: list[str] | None = None) -> tuple[list[tuple[int, str]], list[tuple[int, str]]]:
+    """([(line, message)] errors, [(line, message)] warnings) of the provider file. Errors: a name twice, an id that is not kebab-case, a code
+    outside the lists, an empty `nume`, one provider with two names or two types, an accepted row without a type. Warnings (only when `names` is
+    given): a name of `relatii.csv` without a row, and a row whose name is not in `relatii.csv`. `rows` start at line 2."""
+    errors, warnings = [], []
+    seen, display, kind = {}, {}, {}
+    for line, r in enumerate(rows, 2):
+        name = r["nume_sursa"]
+        if not name:
+            errors.append((line, "lipsește nume_sursa"))
+            continue
+        if name in seen:
+            errors.append((line, f"{name}: nume_sursa duplicat (și în linia {seen[name]})"))
+        seen.setdefault(name, line)
+        if not PROVIDER_ID.match(r["furnizor"]):
+            errors.append((line, f"{name}: furnizor invalid (litere mici, cifre, cratime)"))
+        if not r["nume"]:
+            errors.append((line, f"{name}: lipsește numele furnizorului"))
+        if r["tip"] and r["tip"] not in PROVIDER_TYPES:
+            errors.append((line, f"{name}: tip necunoscut: {r['tip']}"))
+        if r["stare"] not in PROVIDER_STATES:
+            errors.append((line, f"{name}: stare necunoscută: {r['stare']!r} ({', '.join(PROVIDER_STATES)})"))
+        if r["stare"] == "acceptat" and not r["tip"]:
+            errors.append((line, f"{name}: un rând acceptat are nevoie de tip"))
+        for value, store, label in ((r["nume"], display, "nume"), (r["tip"], kind, "tip")):
+            first = store.setdefault(r["furnizor"], (value, line))
+            if first[0] != value:
+                errors.append((line, f"{name}: furnizorul {r['furnizor']} are două valori pentru {label} (și în linia {first[1]})"))
+    if names is not None:
+        for name in names:
+            if name not in seen:
+                warnings.append((1, f"{name}: numele din relatii.csv nu are rând în {PROVIDERS_FILE}"))
+        for name, line in seen.items():
+            if name not in names:
+                warnings.append((line, f"{name}: numele nu apare în relatii.csv (rând depășit?)"))
+    return errors, warnings
+
+
+def provider_table(rows: list[dict]) -> dict[str, dict]:
+    """{nume_sursa: row} of the rows that the owner accepted. A proposed row is not a decision and is left out."""
+    return {r["nume_sursa"]: r for r in rows if r["stare"] == "acceptat"}
+
+
 def inventory_scope(entries: list[dict], data_dir: Path = PUBLIC_ROOT) -> dict[str, str]:
     """slug -> reason (see `inventory_exclusion`; empty when in scope) for catalogue entries of a v2 root, with the status that
     build.py gives each one. A v1 root has no `relatie_date`, so every entry of it counts as in scope."""

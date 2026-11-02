@@ -20,8 +20,9 @@ from datetime import date
 from pathlib import Path
 
 import common  # the list's path is read from the module at call time, so a test can point it at a temporary file
-from common import (FORBIDDEN_COLS, PUBLIC_ROOT, MENTIUNI_COLS, ORGS_COLS, PROIECTE_COLS, data_schema, forbidden, load_catalogue, observation_paths,
-                    split_list, split_tip, to_href)
+from common import (FORBIDDEN_COLS, PROVIDER_COLS, PUBLIC_ROOT, MENTIUNI_COLS, ORGS_COLS, PROIECTE_COLS, RESERVED_DATA_SLUGS, data_schema,
+                    forbidden, load_catalogue, observation_paths, provider_names, provider_problems, providers_path, read_csv, split_list, split_tip,
+                    to_href)
 
 TAX = DOMENII = TIPURI = ACOPERIRE = FEL = ROLURI = ORG_SLUGS = None  # set by setup(), from the selected v1 root
 SLUG = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
@@ -213,6 +214,8 @@ def check_v2(root: Path, publication: bool):
     check_mentiuni(observation_paths(root)["mentions"])
     check_relation_fields(root)
     check_editor_fields(root)
+    check_reserved_slugs(root)
+    check_providers(root)
     if summary:
         states = ", ".join(f"{k}: {v}" for k, v in sorted(summary["classification_states"].items()))
         print(f"{summary['schema_version']}: {summary['entries']} intrări ({states}), {summary['concepts']} concepte", file=sys.stderr)
@@ -235,6 +238,40 @@ def check_relation_fields(root: Path):
             if r.get("relatie_date") == taxonomy_v2.NO_DATA and fields.get(r["slug"], 0):
                 report("warning", path, reader.line_num,
                        f"{r['slug']}: relatie_date is {taxonomy_v2.NO_DATA}, but the inventory has {fields[r['slug']]} extracted fields")
+
+
+def check_reserved_slugs(root: Path):
+    """An entry with the slug of a page of the data finder (`common.RESERVED_DATA_SLUGS`) would collide with that page: `date/<slug>/`."""
+    import taxonomy_v2
+    path = taxonomy_v2.Files(root).path("intrari.csv")
+    if not path.exists():
+        return
+    with open(path, encoding="utf-8-sig", newline="") as f:
+        reader = csv.DictReader(f)
+        for r in reader:
+            if r.get("slug", "").strip() in RESERVED_DATA_SLUGS:
+                report("error", path, reader.line_num, f"{r['slug'].strip()}: slug rezervat pentru o pagină a căutării în date (date/{r['slug'].strip()}/)")
+
+
+def check_providers(root: Path):
+    """The provider file `furnizori.csv` (docs/DATA-SCHEMA.md): the columns, the code lists, one row for each name, one display name and one type for each
+    provider. A name of `relatii.csv` without a row, and a row without a name there, are warnings: the build keeps such a name as a provider of its own."""
+    path = providers_path(root)
+    if not path.exists():
+        return
+    with open(path, encoding="utf-8-sig", newline="") as f:
+        header = csv.DictReader(f).fieldnames or []
+    missing, extra = [c for c in PROVIDER_COLS if c not in header], [c for c in header if c not in PROVIDER_COLS]
+    if missing or extra:
+        report("error", path, 1, "; ".join(x for x in (f"lipsesc coloanele: {', '.join(missing)}" if missing else "", f"coloane necunoscute: {', '.join(extra)}" if extra else "") if x))
+        return
+    relations = root / "relatii.csv"
+    names = provider_names(read_csv(relations)) if relations.exists() else None
+    errors, warnings = provider_problems(read_csv(path), names)
+    for line, msg in errors:
+        report("error", path, line, msg)
+    for line, msg in warnings:
+        report("warning", path, line, msg)
 
 
 def check_editor_fields(root: Path):
