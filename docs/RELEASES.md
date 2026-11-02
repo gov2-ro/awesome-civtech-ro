@@ -1,5 +1,6 @@
 # Releases
 
+- **v0.63.0** (2026-11-02): four views of the data finder by source: `/date/furnizori/`, `/date/formate/`, `/date/licente/`, `/date/gazde/`, with a view switcher on all five list pages. New hand-edited `furnizori.csv` (58 proposed rows, 6 proposed merges; the build applies accepted rows only) and the reserved slugs check. 1,329 tests (+22); 125 data-finder browser checks.
 - **v0.62.0** (2026-11-02): brief for four views of the projects by source data (providers, formats, licences, hosts) and the hand-edited provider file `furnizori.csv`.
 - **v0.61.0** (2026-11-02): reader `llms-api` for the API section of `llms.txt`; the API of `monitor-energie` (12 fields) from the file that the owner saved.
 - **v0.60.0** (2026-11-01): batch H with the owner's downloads: `harta-digitalizarii-primariilor` (38 fields from the data file of its embedded map) and `monitor-energie` (241 field records from a saved page). `accesinfo` hidden. 70 entries have structured fields.
