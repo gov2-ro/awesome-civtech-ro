@@ -1,5 +1,6 @@
 # Releases
 
+- **v0.64.0** (2026-11-02): `/date/furnizori/` matrix with short provider names (`nume_scurt`), a pivot, full width and sortable tables (also on `/date/lista/` and `/date/formate/`); `transparenta-eu` reassessed: ANAF and Ministerul Finanțelor accepted as providers, PNRR parameters added (60 fields), 10 dev-only providers and 10 classification changes proposed for review; the three checks that kept `validate` red since 2026-10-31 fixed.
 - **v0.63.1** (2026-11-02): owner review of `furnizori.csv`: 57 rows accepted, `seap-sicap` named „SEAP (e-licitatie)”; one row without a type stays proposed.
 - **v0.63.0** (2026-11-02): four views of the data finder by source: `/date/furnizori/`, `/date/formate/`, `/date/licente/`, `/date/gazde/`, with a view switcher on all five list pages. New hand-edited `furnizori.csv` (58 proposed rows, 6 proposed merges; the build applies accepted rows only) and the reserved slugs check. 1,329 tests (+22); 125 data-finder browser checks.
 - **v0.62.0** (2026-11-02): brief for four views of the projects by source data (providers, formats, licences, hosts) and the hand-edited provider file `furnizori.csv`.
