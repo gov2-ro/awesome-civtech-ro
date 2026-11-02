@@ -14,6 +14,14 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [ ] The owner may want the dev home page retained as documentation (`collect_docs.py --import-saved` with the dev address). Not done: it would mix dev facts into the profile of the live entry (see the activity entry).
 - [ ] Other public repositories of the project's author: `transparenta-eu-ins-loader`, `hack-for-facts-eb-maintenance`, `transparenta-eu-server-migration`. Not read. The scraper repository is not public.
 
+## Deployment cache — 2026-11-02
+
+- [ ] Owner, later: purge the Cloudflare cache of `civtech.gov2.ro` after each deploy. Measured on 2026-11-02: HTML and `data.json` are not cached by Cloudflare (`cf-cache-status: DYNAMIC`; GitHub Pages sends `max-age=600`). CSS, JS and images are cached, and Cloudflare tells browsers `max-age=14400` (4 h). CSS and JS carry `?v=<hash>`, so the real gap is the files without a version (`img/`).
+      1. Owner: create a Cloudflare API token with the permission *Zone → Cache Purge → Purge*, limited to the zone `gov2.ro`. Add the repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ZONE_ID`.
+      2. Add a step after `deploy-pages` in `pages.yml`: `POST /zones/$CF_ZONE/purge_cache` with `{"hosts":["civtech.gov2.ro"]}`. Purge by host, not everything: the zone also serves other subdomains (for example `ins.gov2.ro`). The step checks the token in its script and skips without it (a step `if` cannot read `secrets`).
+      3. Owner, optional: Cloudflare → Caching → Configuration → *Browser Cache TTL* = „Respect Existing Headers”. A purge clears the Cloudflare cache only, not the copies in browsers.
+      Not fixable here: the 10-minute `max-age` of HTML comes from GitHub Pages.
+
 ## CI — 2026-11-02
 
 - [x] Defect: `validate.yml` fails on `main` since 2026-10-31 (run 41209080813; the last success is 41108006979, 2026-10-30). Three checks fail, the same in each run: `test_profile_structure.Engine.test_seed_pilot_is_idempotent_and_has_no_owner_decisions` (error), `test_inventory_datasette.TrackedBaniPartide.test_no_request_was_made_to_a_listed_host_and_the_inventory_keeps_no_value_of_a_row` (failure), and the browser check „topic ancestry subiect:acces-informatii ⊇ subiect:legea-544-2001” of `check_preview.py`. They also fail locally on `b9612a7`, before the views by source. `pages.yml` still deploys.
