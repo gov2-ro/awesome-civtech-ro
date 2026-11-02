@@ -46,6 +46,7 @@ and in the `pachet.json` of an overlay (`headers`). No Python constant repeats t
 | `data/taxonomy-v2/revizuire.csv` | a person | [revizuire.csv (v2)](#revizuirecsv-v2) |
 | `data/taxonomy-v2/mapari-externe.csv` | a person | [mapari-externe.csv](#mapari-externecsv) |
 | `data/taxonomy-v2/colectare-interzisa.csv` | a person | [colectare-interzisa.csv](#colectare-interzisacsv) |
+| `data/taxonomy-v2/furnizori.csv` | a person | [furnizori.csv](#furnizoricsv) |
 | `data/taxonomy-v2/setari.json`, `schema.json`, `versiuni.json`, `manifest.json`, `catalogue.json` and the history files | a person, or `validate.py --export` | [Settings, contract and history](#settings-contract-and-history) |
 | `data/taxonomy-v2/integrare/` | `integrare.py` and a person | [Integration overlay](#integration-overlay-integrare) |
 | `data/taxonomy-v2/observatii/` | `profile.py`, `search.py`, `review.py` | [Observations](#observations-observatii) |
@@ -1578,6 +1579,26 @@ The explorer has two facets under "Mai multe filtre", in the pattern of `ent` (c
 
 Old URLs keep their meaning: `ina=1` still adds inactive entries, and the older parameter `s` (a status group, kept for URLs) still filters as before.
 
+### furnizori.csv
+
+`data/taxonomy-v2/furnizori.csv` maps each provider name of `integrare/relatii.csv` (rows with the predicate `date_din`) to a normalised provider. A person edits the file.
+It belongs to the package, like `inventar-concepte.json`: the build reads it from the folder above the data root. `scripts/common.py` holds the constants (`PROVIDER_COLS`,
+`PROVIDER_TYPES`, `PROVIDER_STATES`, `PROVIDERS_FILE`) and the checks (`provider_problems`, `provider_table`). The encoding, separator and quoting are those of the other CSV files.
+
+| Column | Meaning |
+| --- | --- |
+| `nume_sursa` | The name exactly as `relatii.csv` spells it (`obiect_literal`, or `obiect`). One row for each name. |
+| `furnizor` | The id of the normalised provider (kebab-case). Rows with the same id are one provider. |
+| `nume` | The display name of the provider. One `nume` for each `furnizor`. |
+| `eticheta` | A short label, optional. The facet „Furnizor” of `/date/` uses it instead of the name (`INS`, `MDLPA`, `Parlament`). The label applies in every state of the row. |
+| `tip` | `institutie-publica`, `ue-international`, `ong`, `companie`, `comunitate` or `autor` (the author's own data or collection). One `tip` for each `furnizor`. An empty value is allowed on a proposed row only. |
+| `stare` | `propus` or `acceptat`. Only the owner sets `acceptat`. |
+| `nota` | Free text, optional. |
+
+The build applies a row only when `stare` is `acceptat` (`provider_table`). A name without an accepted row stays a provider of its own on `/date/furnizori/`, with an unknown type (group „Neclasificat”).
+`validate.py` reports as errors: a missing or unknown column, a name twice, a `furnizor` id that is not kebab-case, a code outside the lists, an empty `nume`, one `furnizor` with two `nume` or two `tip` values, and an accepted row without `tip`.
+A name of `relatii.csv` without a row, and a row whose name is not in `relatii.csv`, are warnings. The file is not a tab of the Google Sheet and the review interface has no form for it: the owner accepts rows in bulk, in the file.
+
 ### Cross-project data finder preview
 
 The same flag generates `/date/` and `inventar/index.json`. It adds a navigation link in the explorer preview.
@@ -1597,6 +1618,22 @@ that is in scope and has field records. An entry out of scope, an organisation a
    or class (`grup`) shows it under the path. A field that an editor added shows „adăugat de editor”.
 
 The links inside a page are relative to the base (`date/<slug>/#pe-surse`, not `#pe-surse`, which a `<base>` would send to the explorer). `check_data_finder.py` checks every page against its own payload.
+The header of a page also links each provider of the entry to its anchor on `/date/furnizori/` (`#f-<furnizor>`) and each format of its sources to its anchor on `/date/formate/` (`#fmt-<format>`).
+
+**The views by source.** `build.py --with-inventory` writes four more static pages beside `/date/lista/`, with the same stylesheets, the same scope (`scope_reason`), the same note of the entries that the inventory leaves out
+(`left_out_section`) and one switcher („Pe familii de variabile · Pe furnizori · Pe formate · Pe licențe · Pe gazde”, `inventory_site.view_switcher`, the current page marked with `aria-current="page"`).
+`common.RESERVED_DATA_SLUGS` holds the five names. `validate.py` reports an entry with one of these slugs, and `publish_variable_pages` refuses it. `inventory_views.py` writes the four pages. They show names, formats, hosts, licences and counts, and no value of a data body.
+The finder header (`/date/`) links the four pages. The site has no sitemap that lists inventory pages, so there is nothing to add there.
+
+| Page | Groups by | Source of the data |
+| --- | --- | --- |
+| `/date/furnizori/` | the type of the provider (`PROVIDER_TYPES`, then „Neclasificat”), then the provider by the count of its entries. A matrix of the 12 providers with the most entries (columns) and the entries that use one (rows). A part for the entries without an accepted `date_din` relation. The relation to data of each entry is a small label. | `date_din` relations, `furnizori.csv` (accepted rows only) |
+| `/date/formate/` | five kinds of format (`FORMAT_KINDS`, `FORMAT_KIND_OF` in `inventory_site.py`; a test fails when a format of `FORMATS` has no kind). A table with one row for each entry and one column for each kind, with the field count of each format; then each format with its entries. | the `format` of each source of `inventar/<slug>.json` |
+| `/date/licente/` | the licence name that a source declares (`source_licence`, the schema.org licences of `declared_facts`, the licence of an INS metadata source), then „Licență nedeclarată” last. A name is shown as the source writes it: no normalisation. | the sources of the entries |
+| `/date/gazde/` | the host of a source, without `www.`, grouped by registered domain (`inventory_views.host_group`: a short list of two-level suffixes; `github.io`, `vercel.app` and `githubusercontent.com` are platforms and stay as full hosts). Only groups that serve two or more entries; one line counts the entries whose sources are all on a domain of their own. | the `url` of each source |
+
+Not done, with the reason: by discovery method (`metoda`; how the inventory found a source, not a property of the data), provider × variable family (`date_din` belongs to an entry, not to a field), and by period or geographic level
+(only seven entries declare them; the explorer has `nivel_acoperire` and `arii_acoperite`).
 
 Counting rule: a field with a non-null `in_contract` restates a record of another source. It stays in `seturi-date.json` and `campuri.csv` as evidence,
 but counts, group memberships and the preview use the restated record only (`inventory_state.counted_fields`; in the preview it becomes `also` on that record).

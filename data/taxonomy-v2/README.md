@@ -64,6 +64,7 @@ Un rezultat cu zero erori verifică structura. Nu confirmă corectitudinea clasi
 | `valori.csv` | Listele de coduri: o valoare pe rând, cu etichete, definiție, statut și ordine | Da |
 | `roluri-linkuri.csv` | Rolurile linkurilor (`github`, `donatii` …), cu etichete și ordine | Da |
 | `gazde-linkuri.csv` | Gazda unui link și rolul ei, o gazdă pe rând | Da |
+| `furnizori.csv` | Numele furnizorilor din `relatii.csv` (`date_din`), unite în furnizori normalizați, cu tip | Da; proprietarul trece rândurile la `acceptat` |
 | `setari.json` | Adresele de raportare a unei probleme | Da |
 | `catalogue.json` | Export al tabelelor pentru consum programatic | Nu; rulați `validate.py --export` |
 | `schema.json` | Contractul structurii: coloane, chei, regulile câmpurilor și lista de coduri a fiecărui câmp | Numai când schimbați modelul |
@@ -270,10 +271,20 @@ Un selector al unui grup de variabile îl poate potrivi ca pe orice alt câmp. A
 
 Coloanele și regulile complete: `docs/DATA-SCHEMA.md`, „Fields added by an editor”. Interfața de revizuire nu are încă un formular pentru acest fișier.
 
+## Furnizorii datelor
+
+`furnizori.csv` are un rând pentru fiecare nume din `relatii.csv` cu predicatul `date_din`. Coloanele: `nume_sursa` (numele exact), `furnizor` (id-ul furnizorului normalizat, cu cratime),
+`nume` (numele afișat), `eticheta` (eticheta scurtă din căutarea în date, opțională), `tip` (`institutie-publica`, `ue-international`, `ong`, `companie`, `comunitate` sau `autor`),
+`stare` (`propus` sau `acceptat`) și `nota`. Două nume cu același `furnizor` sunt același furnizor: de exemplu „SEAP” și „SICAP / SEAP”.
+Construirea site-ului folosește un rând numai când este `acceptat`. Până atunci numele rămâne un furnizor aparte, la „Neclasificat”, pe pagina `/date/furnizori/`.
+Un set al unui furnizor nu este același cu setul altui furnizor: unirea numelor nu unește seturile. `validate.py` verifică fișierul; un nume fără rând este doar avertisment.
+
 ## Pagina de variabile a unui proiect
 
 `python3 scripts/build.py --with-inventory` scrie, pentru fiecare proiect sau resursă cu câmpuri extrase, o pagină statică `/date/<slug>/`: câmpurile surselor, pe familii de variabile și pe surse.
 Pagina nu arată nicio valoare din date. Fiecare rând al listei `/date/lista/` trimite la pagina intrării, iar panoul „Date & metodă” din explorator are legătura „Toate variabilele”.
+Aceeași construire scrie patru pagini cu aceleași intrări, grupate după surse: `/date/furnizori/`, `/date/formate/`, `/date/licente/` și `/date/gazde/`. Un comutator leagă cele cinci vederi.
+Pagina unei intrări trimite fiecare furnizor și fiecare format al ei la locul lui din aceste pagini.
 
 ## Previzualizare
 

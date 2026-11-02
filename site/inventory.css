@@ -141,7 +141,7 @@
 .ov-matrix { min-width:0; }
 .ov-matrix thead th { white-space:normal; min-width:84px; max-width:130px; vertical-align:bottom; font-weight:600; }
 .ov-matrix td { text-align:center; min-width:84px; }
-.ov-mark { color:var(--ink); font-weight:600; }
+.ov-mark { position:relative; color:var(--ink); font-weight:600; }
 .ov-matrix-box { margin-bottom:28px; }
 .ov-matrix-box h2, .ov-group > h2 { font-size:19px; margin-bottom:10px; }
 .ov-group { border-top:1px solid var(--line); padding-top:18px; margin-top:24px; }

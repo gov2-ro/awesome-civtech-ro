@@ -1,5 +1,28 @@
 # Activity
 
+## 2026-11-02 — Views of the projects by source data
+
+**Done**
+- A: `data/taxonomy-v2/furnizori.csv` with 58 rows, one for each name of `relatii.csv` (`date_din`), all `propus`: 52 proposed providers (6 names join another name), 8 labels moved from `SOURCE_LABELS` into the column `eticheta`. `validate.py` checks the columns, the code lists, one row for each name, one `nume` and one `tip` for each provider; a name without a row, or a row without a name, is a warning (`common.provider_problems`).
+- B to E: `/date/furnizori/`, `/date/formate/`, `/date/licente/` and `/date/gazde/` (`scripts/inventory_views.py`), with one switcher on all five pages (`inventory_site.view_switcher`) and the note of the entries left out. The five slugs are `common.RESERVED_DATA_SLUGS`; `validate.py` reports an entry with one of them and `publish_variable_pages` refuses it.
+- F: four links in the finder header; on `/date/<slug>/` each provider links to `#f-<furnizor>` and each format to `#fmt-<format>`. The site has no sitemap of inventory pages.
+- Tests: 22 new tests in `scripts/test_inventory_site.py` (offline, on fixtures); `check_data_finder.py` has 44 more checks (125 in all). Mutation checks: a format without a kind, the reserved slugs, the accepted-only rule, the platform rule, the two-level suffix rule and the order of the unknown type each make a test fail.
+
+**Hard**
+- The brief says that 19 `date_din` rows name „Marius Comper”. They are `atribuit_in_sursa` rows, not `date_din`: no provider has the type `autor` in the proposal.
+- The brief says that `publish_variable_pages` skips `lista`. It raises, and a test pins that. I kept the error for all five slugs (backlog).
+- A hidden `.sr` span in the matrix cells made the page 1221 px wide at 375 px (the span is absolutely positioned and the frame was not). `position:relative` on the cell fixes it.
+
+**Decided**
+- A label in `eticheta` applies in every state of the row. Alternative: apply it only for accepted rows. That would remove „INS”, „MDLPA” and „Parlament” from the facet of `/date/` until the owner reviews the file, and change a public page with no decision.
+- The licence page shows the name as the source writes it. Three names stand for CC BY 4.0; the merge waits for a rule (backlog).
+
+**Measured** (build of 2026-11-02, scope of `/date/lista/`: 86 entries)
+- `/date/furnizori/`: 44 entries with a provider, 42 without; 57 providers (58 names; `Autoritatea pentru Digitalizarea României (ADR)` has no accepted relation) in 1 group, „Neclasificat”, because every row is `propus`; the matrix has 12 columns and 35 rows.
+- `/date/formate/`: 70 entries with sources, 26 formats in 5 kinds (entries by kind: API și JSON 45, Fișiere 18, Tabele 10, Scriptul paginii 11, Cod sursă 6).
+- `/date/licente/`: 234 sources, 9 with a declared licence, 6 names; 70 entries with sources.
+- `/date/gazde/`: 4 hosts or domains serve two or more entries (mariuscomper.uk 17 entries, raw.githubusercontent.com 11, gov2.ro 9, g4d.ro 2); 35 of 70 entries have all their sources on a domain of their own; 16 entries have no source.
+
 ## 2026-11-02 — Brief: views of the projects by source data
 
 **Done**

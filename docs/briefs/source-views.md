@@ -1,7 +1,7 @@
 # Brief — views of the projects by source data
 
 Date: 2026-11-02. Baseline: commit `10c7da8`.
-Status: open.
+Status: done 2026-11-02 (branch `source-views`).
 
 ## 1. Start here
 

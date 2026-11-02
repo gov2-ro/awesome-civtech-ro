@@ -4,7 +4,14 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
 ## Views of the projects by source data — 2026-11-02
 
-- [ ] Four static pages beside `/date/lista/`: `/date/furnizori/` (providers of `date_din`, normalised by the new hand-edited `furnizori.csv`), `/date/formate/` (five kinds of source format), `/date/licente/` (declared licences) and `/date/gazde/` (hosts shared by two or more entries), with one view switcher. [Brief](briefs/source-views.md).
+- [x] Four static pages beside `/date/lista/`: `/date/furnizori/` (providers of `date_din`, normalised by the new hand-edited `furnizori.csv`), `/date/formate/` (five kinds of source format), `/date/licente/` (declared licences) and `/date/gazde/` (hosts shared by two or more entries), with one view switcher. [Brief](briefs/source-views.md).
+      Done 2026-11-02 (branch `source-views`): 0 requests. A: `furnizori.csv` with 58 proposed rows (all `propus`) and its checks in `validate.py`. B to E: the four pages. F: links from `/date/` and from each `/date/<slug>/`.
+- [ ] Owner: review the 58 rows of `data/taxonomy-v2/furnizori.csv` (52 proposed providers; the merges and the doubtful types are in the `nota` column) and set `stare=acceptat` for the ones that are right. Until then `/date/furnizori/` shows each name as a provider of its own.
+- [ ] A form for `furnizori.csv` in the review interface (`scripts/review_ui.py`), if the owner wants more than a bulk acceptance in the file. Not built: the owner accepted D189–D210 in bulk.
+- [ ] A Sheet tab for `furnizori.csv` (`sheets.py`), only if the owner asks.
+- [ ] Licence names on `/date/licente/` are shown as the sources write them. Three names stand for CC BY 4.0 (`https://creativecommons.org/licenses/by/4.0/`, `CC Attribution 4.0 License`, `CC BY 4.0`). Decide one normalisation rule, with the owner, before the page merges them.
+- [ ] Measure the declared period and geographic level of the sources again when more sources than the seven INS metadata sources declare them. Then decide whether a view by period or level is worth a page.
+- [ ] `docs/briefs/source-views.md` says that `publish_variable_pages` skips the slug `lista`. The code raises `ValueError` (tested). The build keeps the error for all five reserved slugs: a collision should stop the build, not hide a page.
 
 ## Site structure and entity correspondences — 2026-10-30
 

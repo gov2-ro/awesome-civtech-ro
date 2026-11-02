@@ -318,6 +318,94 @@ with sync_playwright() as pw:
     ok('the list names no entry out of scope', named == EXPECTED)
     ok('the note about missing fields stays with the entries that are in scope', 'Lipsa câmpurilor nu înseamnă lipsa datelor' in page.locator('.ov-bare').inner_text()
        and 'Lipsa câmpurilor' not in page.locator('.ov-left').inner_text())
+    # The views by source (docs/briefs/source-views.md): the same entries as the list, grouped by a property of their sources. Each expectation is computed here from
+    # the generated data (`data.json`, the payloads `inventar/<slug>.json`), not read from the page code.
+    VIEWS = [('lista', 'Pe familii de variabile'), ('furnizori', 'Pe furnizori'), ('formate', 'Pe formate'), ('licente', 'Pe licențe'), ('gazde', 'Pe gazde')]
+    PAYLOADS = {e['slug']: json.load(urllib.request.urlopen(BASE + e['inventory']['url'])) for e in INDEX['entries'] if e['inventory'].get('url')}
+    def fetch(path):
+        try:
+            return urllib.request.urlopen(BASE + path).read().decode()
+        except urllib.error.HTTPError:
+            return ''
+    texts = {name: fetch(f'date/{name}/') for name, _ in VIEWS}
+    seen_pages = {}
+    def cached(path):
+        if path not in seen_pages:
+            seen_pages[path] = fetch(path)
+        return seen_pages[path]
+    for name, label in VIEWS:
+        page.set_viewport_size({'width': 1280, 'height': 900})
+        page.goto(BASE + f'date/{name}/')
+        page.wait_for_selector('.ov-views')
+        links = page.locator('.ov-views a').evaluate_all('els=>els.map(e=>[e.getAttribute("href"),e.textContent,e.getAttribute("aria-current")])')
+        ok(f'date/{name}/ has the switcher of the five views with this page marked',
+           [(h, t) for h, t, _ in links] == [(f'date/{n}/', l) for n, l in VIEWS] and [h for h, _, c in links if c == 'page'] == [f'date/{name}/'] and page.locator('.ov-views [aria-current]').count() == 1)
+        hrefs = set(page.locator('main a').evaluate_all('els=>els.map(e=>e.getAttribute("href"))'))
+        entry_hrefs = {h for h in hrefs if re.match(r'^(proiect|resursa)/[\w-]+/$', h or '')}
+        missing_entries = [h for h in entry_hrefs if 'class="' not in fetch(h + 'index.html')]
+        ok(f'date/{name}/: every entry link resolves, and names an entry in scope', not missing_entries and {h.split('/')[1] for h in entry_hrefs} <= EXPECTED)
+        broken = [h for h in hrefs if h and h.startswith('date/') and '#' in h and f'id="{h.split("#")[1]}"' not in cached(h.split('#')[0])]
+        ok(f'date/{name}/: every anchor of a link to a view exists on that view', not broken)
+        ok(f'date/{name}/ has no link to a bare anchor', page.locator('a[href^="#"]').count() == 0)
+        ok(f'date/{name}/ ends with the entries that the inventory leaves out', page.locator('.ov-left h2').inner_text() == f'Lăsate pe dinafară ({len(OUT)})')
+        sideways = []
+        for width in (1280, 375):
+            page.set_viewport_size({'width': width, 'height': 900})
+            page.goto(BASE + f'date/{name}/')
+            page.wait_for_selector('.ov-views')
+            if page.evaluate('document.documentElement.scrollWidth!==innerWidth'):
+                sideways.append(width)
+        ok(f'date/{name}/ does not scroll sideways at 1280 px or at 375 px', not sideways)
+    # Providers: every name of a relation `date_din` of an entry in scope is on the page, and the entries without one are named in their own part.
+    page.set_viewport_size({'width': 1280, 'height': 900})
+    page.goto(BASE + 'date/furnizori/')
+    names = {d['name'] for i in ITEMS if i['slug'] in EXPECTED for d in i.get('dataSources', [])}
+    body = page.locator('main').inner_text()
+    ok('furnizori: every provider name of an entry in scope is on the page', all(n in body for n in names) and len(names) > 0)
+    without = {i['slug'] for i in ITEMS if i['slug'] in EXPECTED and not i.get('dataSources')}
+    named = {h.rstrip('/').split('/')[-1] for h in page.locator('#fara-furnizor a').evaluate_all('els=>els.map(e=>e.getAttribute("href"))')}
+    ok('furnizori: the entries without a provider are named, and only they', named == without)
+    listed = {h.rstrip('/').split('/')[-1] for h in page.locator('.ov-providers a[href^="proiect/"], .ov-providers a[href^="resursa/"]').evaluate_all('els=>els.map(e=>e.getAttribute("href"))')}
+    ok('furnizori: the providers list the entries that have one, and only them', listed == EXPECTED - without)
+    ok('furnizori: the matrix names at most 12 providers and marks only entries with a provider',
+       0 < page.locator('.ov-matrix thead th').count() - 1 <= 12 and {r for r in page.locator('.ov-matrix tbody tr').evaluate_all('els=>els.map(e=>e.id.slice(2))')} <= EXPECTED - without)
+    # Formats: one row for each entry that has a source, five columns.
+    page.goto(BASE + 'date/formate/')
+    ok('formate: five columns of kinds', page.locator('.ov-formats thead th').evaluate_all('els=>els.map(e=>e.firstChild.textContent)')[1:] ==
+       ['API și JSON', 'Fișiere și seturi descrise', 'Tabele în pagină', 'Scriptul paginii', 'Cod sursă'])
+    ok('formate: one row for each entry that has a source', set(page.locator('.ov-formats tbody tr').evaluate_all('els=>els.map(e=>e.id)')) == {s for s, p in PAYLOADS.items() if p['sources'] and s in EXPECTED})
+    kinds_seen = {f for p in PAYLOADS.values() for f in (s['format'] for s in p['sources'])}
+    ok('formate: every format of the sources has its anchor', all(f'id="fmt-{f}"' in texts['formate'] for f in kinds_seen))
+    # Licences: the names that the sources declare, and the undeclared sources last.
+    page.goto(BASE + 'date/licente/')
+    declared = {x for p in PAYLOADS.values() for s in p['sources'] for x in ([s['licence']['name']] if s.get('licence') else []) + [y['licence']['name'] for y in (s.get('facts') or {}).get('schema', []) if y.get('licence')]}
+    shown = page.locator('.ov-licence').evaluate_all('els=>els.map(e=>e.dataset.licence)')
+    ok('licente: the licences are those that the sources declare, and the undeclared ones come last',
+       set(shown[:-1] if shown and shown[-1] == 'Licență nedeclarată' else shown) == declared and (not shown or shown[-1] == 'Licență nedeclarată' or not shown))
+    # Hosts: a host that two entries use is on the page; a host on the page is a host of a source.
+    page.goto(BASE + 'date/gazde/')
+    used = {}
+    for slug, payload in PAYLOADS.items():
+        for s in payload['sources']:
+            used.setdefault(re.sub(r'^www\.', '', (urllib.parse.urlsplit(s['url']).hostname or '').lower()), set()).add(slug)
+    on_page = set(page.locator('.ov-host code').all_inner_texts())
+    domains = set(page.locator('.ov-host').evaluate_all('els=>els.map(e=>e.dataset.host)'))
+    ok('gazde: every host used by two entries is on the page', {h for h, e in used.items() if len(e) >= 2 and e & EXPECTED} <= on_page | domains)
+    ok('gazde: every host on the page is the host of a source', (on_page - domains) <= set(used) and domains <= set(used) | {re.sub(r'^[^.]+\.', '', h) for h in used})
+    ok('gazde: the line of the entries on their own domain is there', page.locator('#domeniu-propriu strong').count() == 1)
+    # Part F: the page of an entry links its providers and formats to anchors that exist.
+    bad_links = []
+    for row in rows:
+        html_text = fetch(row['href'])
+        for target, fragment in re.findall(r'href="date/(furnizori|formate)/#([^"]+)"', html_text):
+            if f'id="{fragment}"' not in texts[target]:
+                bad_links.append(f'{row["slug"]}->{target}#{fragment}')
+    ok('every provider and format link on the page of an entry reaches an anchor that exists', not bad_links)
+    ok('the pages of the entries with a provider link it', any('date/furnizori/#f-' in fetch(r['href']) for r in rows))
+    page.goto(BASE + 'date/')
+    page.wait_for_selector('.finder-card')
+    ok('the finder header links the four views', all(page.locator(f'.finder-bar a[href="date/{n}/"]').count() == 1 for n in ('furnizori', 'formate', 'licente', 'gazde')))
+    page.set_viewport_size({'width': 1440, 'height': 1100})
     failed = browser.new_page()
     failed.route('**/inventar/index.json', lambda route: route.fulfill(status=503,body='{}'))
     failed.goto(BASE + 'date/')
