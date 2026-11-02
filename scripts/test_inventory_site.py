@@ -203,7 +203,7 @@ class InventorySite(unittest.TestCase):
     def test_finder_keeps_uninventoried_projects_and_separates_institutions_from_sources(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp); site = root / 'site'; (site / 'inventar').mkdir(parents=True)
-            for name in ('style.css', 'inventory.css', 'inventory.js'):
+            for name in ('style.css', 'inventory.css', 'inventory.js', 'inventory-tables.js'):
                 (site / name).write_text('/* fixture */')
             items = [built('no-fields', name='No fields', institutions=['institutie:parlament'],
                           dataSources=[{'name': 'Camera Deputaților', 'evidence': 'https://example.org/method'},
@@ -265,17 +265,18 @@ class InventorySite(unittest.TestCase):
         items = [built('p', name='Proj'), built('bare', name='Bare & co', kind='resursa'), built('org', name='Org', kind='organizatie')]
         with tempfile.TemporaryDirectory() as tmp:
             site = Path(tmp)
-            for name in ('style.css', 'inventory.css'):
+            for name in ('style.css', 'inventory.css', 'inventory-tables.js'):
                 (site / name).write_text('/* fixture */')
             publish_overview(items, site, {'p': (fields, sources)}, concepts, families)
             page = (site / 'date/lista/index.html').read_text()
         head = page[page.index('<thead>'):page.index('</thead>')]
-        self.assertEqual([h.split('<small>')[0] for h in head.split('<th scope="col">')[1:]], ['Proiect', 'Identificatori', 'Timp', 'Geografie', 'Altele'])
+        self.assertEqual([h.split('<small>')[0] for h in re.split(r'<th scope="col"[^>]*>', head)[1:]], ['Proiect', 'Identificatori', 'Timp', 'Geografie', 'Altele'])
         row = page[page.index('<tr id="p">'):page.index('</tr>', page.index('<tr id="p">'))]
         cells = row.split('<td')[1:]
-        self.assertEqual(cells[0], '><ul><li>CUI</li></ul></td>', 'two fields of one group give one normalised name')
+        self.assertEqual(cells[0], ' data-sort="1"><ul><li>CUI</li></ul></td>', 'two fields of one group give one normalised name')
         self.assertIn('<li>&lt;An&gt;</li>', cells[1])
-        self.assertEqual(cells[2], '></td>')
+        self.assertEqual(cells[2], ' data-sort="0"></td>')
+        self.assertIn('class="ov-table ov-sortable"', page)
         self.assertIn('>2</td>', cells[3], 'a rejected group leaves its fields with the others, counted by distinct name: q and total')
         self.assertNotIn('openapi.json', page, 'source field names belong to the project page, not to this table')
         self.assertIn('Bare &amp; co', page)
@@ -287,7 +288,7 @@ class InventorySite(unittest.TestCase):
             concept['stare'] = 'revizuit' if concept['id'] != 'gone' else 'respins'
         with tempfile.TemporaryDirectory() as tmp:
             site = Path(tmp)
-            for name in ('style.css', 'inventory.css'):
+            for name in ('style.css', 'inventory.css', 'inventory-tables.js'):
                 (site / name).write_text('/* fixture */')
             publish_overview(items, site, {'p': (fields, sources)}, concepts, families)
             self.assertIn('(grupurile revizuite)', (site / 'date/lista/index.html').read_text())
@@ -359,7 +360,7 @@ class SourceViews(unittest.TestCase):
         default_items, default_projections = self.fixture()
         tmp = tempfile.TemporaryDirectory(); self.addCleanup(tmp.cleanup)
         site = Path(tmp.name)
-        for name in ('style.css', 'inventory.css'):
+        for name in ('style.css', 'inventory.css', 'inventory-tables.js'):
             (site / name).write_text('/* fixture */')
         summary = publish_source_views(items or default_items, site, projections or default_projections, table or {})
         return site, summary
@@ -410,8 +411,11 @@ class SourceViews(unittest.TestCase):
     def test_the_provider_checks(self):
         from common import provider_problems
         def row(name, fid='x', nume='X', tip='ong', stare='propus'):
-            return {'nume_sursa': name, 'furnizor': fid, 'nume': nume, 'eticheta': '', 'tip': tip, 'stare': stare, 'nota': ''}
+            return {'nume_sursa': name, 'furnizor': fid, 'nume': nume, 'nume_scurt': '', 'eticheta': '', 'tip': tip, 'stare': stare, 'nota': ''}
         self.assertEqual(provider_problems([row('A'), row('B')], ['A', 'B']), ([], []))
+        self.assertTrue(provider_problems([{**row('A'), 'nume_scurt': 'a'}, {**row('B'), 'nume_scurt': 'b'}])[0], 'one provider, two short names')
+        self.assertTrue(provider_problems([{**row('A'), 'nume_scurt': 'a'}, row('B')])[0], 'one provider, a short name on one row and none on the other')
+        self.assertEqual(provider_problems([{**row('A'), 'nume_scurt': 'a'}, {**row('B'), 'nume_scurt': 'a'}])[0], [], 'the same short name on every row of a provider')
         errors, _ = provider_problems([row('A'), row('A')])
         self.assertEqual([m for _, m in errors if 'duplicat' in m], ['A: nume_sursa duplicat (și în linia 2)'])
         self.assertTrue(provider_problems([row('A', fid='Not Kebab')])[0])
@@ -424,6 +428,32 @@ class SourceViews(unittest.TestCase):
         errors, warnings = provider_problems([row('A'), row('Old')], ['A', 'New'])
         self.assertEqual(errors, [])
         self.assertEqual(sorted(w for _, w in warnings), ['New: numele din relatii.csv nu are rând în furnizori.csv', 'Old: numele nu apare în relatii.csv (rând depășit?)'])
+
+    def test_the_short_name_rule(self):
+        from common import provider_short_name as short
+        self.assertEqual(short('Institutul Național de Statistică (INS)'), 'INS', 'a: an acronym in a bracket at the end')
+        self.assertEqual(short('Ministerul Dezvoltării, Lucrărilor Publice și Administrației (MDLPA)'), 'MDLPA', 'a wins over b')
+        self.assertEqual(short('Agenția X (A1B)'), 'A1B', 'digits belong to an acronym')
+        self.assertEqual(short('Autoritatea Ă (ȘȚ)'), 'ȘȚ', 'Romanian capitals belong to an acronym')
+        self.assertEqual(short('Ministerul Finanțelor'), 'M. Finanțelor', 'b')
+        self.assertEqual(short('Ministerul Educației'), 'M. Educației')
+        self.assertEqual(short('Inspecția Muncii (Ministerul Muncii)'), 'Inspecția Muncii (Ministerul Muncii)', 'a bracket that is not an acronym stays; no leading Ministerul')
+        self.assertEqual(short('SEAP (e-licitatie)'), 'SEAP (e-licitatie)', 'c: a bracket with lower case is kept')
+        self.assertEqual(short('CURS (sondaje de opinie)'), 'CURS (sondaje de opinie)')
+        self.assertEqual(short('Agenția X (A)'), 'Agenția X (A)', 'one character is not an acronym')
+        self.assertEqual(short('Agenția (INS) Nord'), 'Agenția (INS) Nord', 'the bracket must end the name')
+        self.assertEqual(short('Ministerul'), 'Ministerul', 'only a leading "Ministerul " with a rest')
+        self.assertEqual(short('Camera Deputaților'), 'Camera Deputaților', 'c')
+        self.assertEqual(short('Institutul Național de Statistică (INS)', 'Stat.'), 'Stat.', 'an explicit name wins')
+
+    def test_every_short_name_of_the_tracked_file_is_short_and_the_owner_names_hold(self):
+        import common
+        rows = common.read_providers(common.providers_path(Path(__file__).resolve().parents[1] / 'data/taxonomy-v2/integrare'))
+        shorts = {r['furnizor']: common.provider_short_name(r['nume'], r['nume_scurt']) for r in rows}
+        self.assertEqual(shorts['monitorul-oficial'], 'Monitorul Oficial')
+        self.assertEqual(shorts['ins'], 'INS')
+        self.assertEqual(shorts['ministerul-finantelor'], 'M. Finanțelor')
+        self.assertEqual([f for f, n in shorts.items() if len(n) > 24], [])
 
     def test_a_row_of_the_provider_file_applies_only_when_accepted(self):
         from common import provider_table
@@ -468,25 +498,60 @@ class SourceViews(unittest.TestCase):
         self.assertNotIn('>Offline<', page, 'an entry out of scope is not listed')
         self.assertEqual((summary['furnizori']['entries'], summary['furnizori']['bare']), (2, 1))
         self.assertEqual(re.findall(r'<tr id="m-(\w+)"', page), ['a', 'b'])
-        self.assertEqual(page.count('class="ov-mark"'), 4, 'a mark for every pair of entry and provider: a-seap, a-sicap, b-seap, b-ins')
+        self.assertEqual(page.count('class="ov-mark"'), 8, 'a mark for every pair of entry and provider, in both orientations: a-seap, a-sicap, b-seap, b-ins')
         self.assertIn('Același furnizor nu înseamnă același set de date.', page)
 
-    def test_the_matrix_holds_the_most_used_providers_only(self):
-        from inventory_views import MATRIX_SIZE
-        items = [built(f'e{n}', name=f'E{n:02}', dataSources=[{'name': f'P{k:02}', 'evidence': 'https://e.org/'} for k in range(n + 1)]) for n in range(MATRIX_SIZE + 3)]
+    def test_the_matrix_holds_every_provider_in_both_orientations_sorted_by_count_then_name(self):
+        items = [built(f'e{n}', name=f'E{n:02}', dataSources=[{'name': f'P{k:02}', 'evidence': 'https://e.org/'} for k in range(n + 1)]) for n in range(15)]
         site, summary = self.publish(items=items, projections={})
         page = self.page(site, 'furnizori')
-        head = page[page.index('<thead>'):page.index('</thead>')]
-        self.assertEqual(head.count('<th scope="col">') - 1, MATRIX_SIZE)
-        self.assertIn('P00', head, 'the provider of every entry is the first column')
-        self.assertNotIn('P14', head, 'a provider of one entry is not in the matrix')
-        self.assertEqual(summary['furnizori']['matrix'], MATRIX_SIZE)
+        by_entries = page[page.index('data-matrix="entries"'):page.index('data-matrix="providers"')]
+        by_providers = page[page.index('data-matrix="providers"'):]
+        head = by_entries[:by_entries.index('</thead>')]
+        columns = re.findall(r'<a href="date/furnizori/#f-[\w-]+"[^>]*>(P\d\d)</a>', head)
+        self.assertEqual(columns, [f'P{k:02}' for k in range(15)], 'all 15 providers, the one of every entry first')
+        self.assertEqual(summary['furnizori']['matrix'], 15)
+        rows = re.findall(r'<tr id="mp-([\w-]+)"', by_providers)
+        self.assertEqual(rows, ['nume-p%02d' % k for k in range(15)], 'the pivot has every provider in the same order')
+        self.assertEqual(len(re.findall(r'<th scope="col" class="ov-vert"', by_providers)), 15, 'and every entry as a column')
+        self.assertEqual(by_entries.count('class="ov-mark"'), by_providers.count('class="ov-mark"'), 'the same marks in both')
+        self.assertEqual(page.count('class="ov-sortable"') + page.count('ov-sortable"'), 2)
+        self.assertIn('data-orient-toggle hidden', page, 'the toggle shows only with the script')
+        self.assertEqual(page.count('data-orient="'), 2, 'without the script both tables show')
+
+    def test_every_view_table_with_a_sort_marker_has_numeric_headers_and_sort_values_and_the_script_is_linked_with_its_hash(self):
+        site, _ = self.publish()
+        for name in ('furnizori', 'formate'):
+            page = self.page(site, name)
+            self.assertRegex(page, r'<script src="inventory-tables\.js\?v=[0-9a-f]{10}" defer></script>')
+            self.assertNotIn('v=BUILD', page)
+            self.assertIn('ov-sortable', page)
+        formats = self.page(site, 'formate')
+        self.assertEqual(len(re.findall(r'<th scope="col" data-sort-type="num">', formats)), 5, 'a count column sorts by number')
+        self.assertTrue(all(re.fullmatch(r'\d+', v) for v in re.findall(r'<td data-sort="([^"]*)"', formats)))
+        self.assertRegex(formats, r'<th scope="row" data-sort="[^"]+"><a href=')
+        matrix = self.page(site, 'furnizori')
+        counts = set(re.findall(r'<td class="ov-count" data-sort="(\d+)"', matrix))
+        self.assertEqual(set(re.findall(r'<td[^>]* data-sort="(\d+)"', matrix)) - {'0', '1'}, counts - {'0', '1'}, 'a mark sorts as 1, an empty cell as 0, a count as itself')
+
+    def test_the_matrix_headers_use_the_short_name_with_the_full_name_in_title_and_in_hidden_text(self):
+        from common import provider_table
+        rows = [{'nume_sursa': 'INS', 'furnizor': 'ins', 'nume': 'Institutul Național de Statistică (INS)', 'nume_scurt': '', 'eticheta': '', 'tip': 'institutie-publica', 'stare': 'acceptat', 'nota': ''},
+                {'nume_sursa': 'SEAP', 'furnizor': 'seap', 'nume': 'SEAP', 'nume_scurt': '', 'eticheta': '', 'tip': 'institutie-publica', 'stare': 'acceptat', 'nota': ''}]
+        site, _ = self.publish(provider_table(rows), items=[built('a', name='A', dataSources=[{'name': 'INS', 'evidence': 'https://e.org/'}, {'name': 'SEAP', 'evidence': 'https://e.org/'}])], projections={})
+        page = self.page(site, 'furnizori')
+        head = page[page.index('data-matrix="entries"'):page.index('</thead>')]
+        self.assertIn('title="Institutul Național de Statistică (INS)"><span aria-hidden="true">INS</span><span class="sr">Institutul Național de Statistică (INS)</span></a>', head)
+        self.assertIn('>SEAP</a>', head, 'a short name equal to the name has no title')
+        self.assertEqual(head.count('title='), 1)
+        listed = page[page.index('id="f-ins"'):]
+        self.assertIn('Institutul Național de Statistică (INS)<small>', listed, 'the list below keeps the full name')
 
     def test_the_format_page_has_one_column_for_each_kind_and_counts_entries_and_fields(self):
         site, summary = self.publish()
         page = self.page(site, 'formate')
         head = page[page.index('<thead>'):page.index('</thead>')]
-        labels = [h.split('<small>')[0] for h in head.split('<th scope="col">')[1:]]
+        labels = [h.split('<small>')[0] for h in re.split(r'<th scope="col"[^>]*>', head)[1:]]
         self.assertEqual(labels, ['Intrare', 'API și JSON', 'Fișiere și seturi descrise', 'Tabele în pagină', 'Scriptul paginii', 'Cod sursă'])
         self.assertEqual(summary['formate']['kinds'], {'api': 2, 'fisiere': 2, 'tabele': 1, 'script': 0, 'cod': 0}, 'entries with a source of the kind; offline and organisation excluded')
         row = page[page.index('<tr id="a">'):page.index('</tr>', page.index('<tr id="a">'))]
@@ -647,7 +712,7 @@ class Scope(unittest.TestCase):
              'campuri': [{'nume': 'col_' + slug, 'cale': 'col_' + slug, 'rol': 'camp-date', 'stare_tip': 'neprecizat-in-antet-csv', 'pointer': '/0'}]} for slug in slugs]}))
         site = Path(tmp) / 'site'
         (site / 'inventar').mkdir(parents=True)
-        for name in ('style.css', 'inventory.css', 'inventory.js'):
+        for name in ('style.css', 'inventory.css', 'inventory.js', 'inventory-tables.js'):
             (site / name).write_text('/* fixture */')
         items = [built('in-date'), built('in-calcul', dataRelation='calcul', name='Calculator'), built('in-resource', kind='resursa', dataRelation='date-proprii'),
                  built('no-data', dataRelation='fara-date'), built('no-data-resource', kind='resursa', dataRelation='fara-date'),

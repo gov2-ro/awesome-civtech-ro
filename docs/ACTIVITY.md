@@ -1,5 +1,23 @@
 # Activity
 
+## 2026-11-02 — `/date/furnizori/`: short names, pivot, full-width matrix, sortable tables (branch `provider-matrix`)
+
+**Done**
+- New optional column `nume_scurt` in `furnizori.csv` (after `nume`); `common.PROVIDER_COLS`, `provider_problems` (one `nume_scurt` per `furnizor`), `docs/DATA-SCHEMA.md` and `data/taxonomy-v2/README.md` follow. One rule function, `common.provider_short_name`: an explicit value; else the acronym in a final bracket (2 or more capitals or digits); else a leading „Ministerul ” becomes „M. ”; else `nume`. A bracket that is not an acronym stays.
+- Explicit short names (data edit, no other column touched), for the 12 providers whose derived name was longer than 24 characters: AMCCRS, Adm. Prezidențială, BVB, CSM, Consiliul UE, Copernicus, INMH, IRES, Monitorul Oficial (the owner's words), Presă oficială, Primăria Arad, Informatică Feroviară. Of the 52 providers of the file: 12 explicit, 19 by the acronym rule, 3 by the „M. ” rule, 18 keep `nume`.
+- The matrix has every provider (51 on the preview) and every entry with a provider (44), in both orientations, both in the HTML. `inventory-tables.js` shows one (toggle „Intrări pe rânduri” / „Furnizori pe rânduri") and sorts the tables of the matrix, `/date/lista/` and `/date/formate/` (button in each header, `aria-sort`, number sort for counts with the largest first, `Intl.Collator('ro')` for names). Without the script both tables show. A checked cell has `--mark-bg` (light and dark values). The frame uses `100cqw`, with a sticky header and first column.
+- Tests: suite 1330 -> 1334 (OK, 8 skipped). `check_data_finder.py` 148/148, `check_inventory_preview.py` 59/59, `check_preview.py` 141/141; `validate.py --publication` 0 errors, 0 warnings. Mutations caught: acronym length 2 -> 1, no „M. ” branch, branch order a/b (unit tests); first sort click ascending for counts, byte order instead of the Romanian collator (browser check).
+
+**Hard**
+- A link inside a button is invalid, so the header keeps its link (provider or entry) and the script adds a separate sort button beside it.
+- `100vw` includes the scrollbar and pushes the page sideways; `100cqw` on `body.finder` does not. The rule sits in `@supports`.
+- Narrow columns broke words in the middle (`overflow-wrap:anywhere`). The matrix now breaks only a word that does not fit (`break-word`) and gives each header 84 px.
+
+**Decided**
+- Both orientations stay in the HTML, with the toggle shown by script. Alternative: build the pivot in the browser; then the page would be empty without JavaScript.
+- The two columns that carry one provider must agree on `nume_scurt` (error otherwise), like `nume`. Alternative: allow it to differ per row; the header would then depend on row order.
+- Measured: contrast of the check mark on `--mark-bg`: light `#cdeedb` on `#111113` 15.1:1; dark `#3f5b2b` on `#fdfff1` 7.6:1.
+
 ## 2026-11-02 — CI: the three failing checks fixed (branch `fix-ci`)
 
 **Done**

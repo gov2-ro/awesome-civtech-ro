@@ -395,7 +395,7 @@ class Run(unittest.TestCase):
         (self.work.taxonomy / 'inventar-concepte.json').write_text(json.dumps({'concepte': concepts, 'familii': []}))
         site = base / 'site'
         (site / 'inventar').mkdir(parents=True)
-        for name in ('style.css', 'inventory.css', 'inventory.js'):
+        for name in ('style.css', 'inventory.css', 'inventory.js', 'inventory-tables.js'):
             (site / name).write_text('/* fixture */')
         item = {'slug': 'p', 'name': 'P', 'kind': 'proiect', 'status': 'activ', 'dataRelation': 'date-publice'}
         with patch('inventory_site.observation_paths', return_value={'profile': self.work.obs / 'profil.csv'}):

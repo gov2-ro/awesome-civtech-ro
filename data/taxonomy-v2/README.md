@@ -274,7 +274,7 @@ Coloanele și regulile complete: `docs/DATA-SCHEMA.md`, „Fields added by an ed
 ## Furnizorii datelor
 
 `furnizori.csv` are un rând pentru fiecare nume din `relatii.csv` cu predicatul `date_din`. Coloanele: `nume_sursa` (numele exact), `furnizor` (id-ul furnizorului normalizat, cu cratime),
-`nume` (numele afișat), `eticheta` (eticheta scurtă din căutarea în date, opțională), `tip` (`institutie-publica`, `ue-international`, `ong`, `companie`, `comunitate` sau `autor`),
+`nume` (numele afișat), `nume_scurt` (numele scurt din antetele matricei; opțional, același pe toate rândurile unui furnizor; dacă lipsește, se ia acronimul din paranteza de la sfârșitul numelui, apoi „Ministerul” devine „M.”, apoi numele întreg), `eticheta` (eticheta scurtă din căutarea în date, opțională), `tip` (`institutie-publica`, `ue-international`, `ong`, `companie`, `comunitate` sau `autor`),
 `stare` (`propus` sau `acceptat`) și `nota`. Două nume cu același `furnizor` sunt același furnizor: de exemplu „SEAP” și „SICAP / SEAP”.
 Construirea site-ului folosește un rând numai când este `acceptat`. Până atunci numele rămâne un furnizor aparte, la „Neclasificat”, pe pagina `/date/furnizori/`.
 Un set al unui furnizor nu este același cu setul altui furnizor: unirea numelor nu unește seturile. `validate.py` verifică fișierul; un nume fără rând este doar avertisment.

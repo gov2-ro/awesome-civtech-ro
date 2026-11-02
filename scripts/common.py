@@ -426,10 +426,24 @@ RESERVED_DATA_SLUGS = ("lista", "furnizori", "formate", "licente", "gazde")
 # `data/taxonomy-v2/furnizori.csv` (hand-edited) maps each provider name of `relatii.csv` (predicate `date_din`) to a normalised provider.
 # The build applies a row only when its `stare` is `acceptat`; an owner decision, never a script.
 PROVIDERS_FILE = "furnizori.csv"
-PROVIDER_COLS = ["nume_sursa", "furnizor", "nume", "eticheta", "tip", "stare", "nota"]
+PROVIDER_COLS = ["nume_sursa", "furnizor", "nume", "nume_scurt", "eticheta", "tip", "stare", "nota"]
 PROVIDER_TYPES = ("institutie-publica", "ue-international", "ong", "companie", "comunitate", "autor")  # the order of the groups on /date/furnizori/
 PROVIDER_STATES = ("propus", "acceptat")
 PROVIDER_ID = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+PROVIDER_ACRONYM = re.compile(r"\(([A-ZĂÂÎȘȚ0-9]{2,})\)\s*$")  # a bracket at the end of a name that holds an acronym
+
+
+def provider_short_name(nume: str, explicit: str = "") -> str:
+    """The short name of a provider for the headers of the matrix on /date/furnizori/. An explicit `nume_scurt` wins. Otherwise: (a) the acronym in a bracket at the
+    end of `nume`; (b) `nume` with a leading "Ministerul " written "M. "; (c) `nume` as it is. A bracket that is not an acronym stays."""
+    if explicit:
+        return explicit
+    acronym = PROVIDER_ACRONYM.search(nume)
+    if acronym:
+        return acronym.group(1)
+    if nume.startswith("Ministerul ") and len(nume) > len("Ministerul "):
+        return "M. " + nume[len("Ministerul "):]
+    return nume
 
 
 def providers_path(data_dir: Path = PUBLIC_ROOT) -> Path:
@@ -449,10 +463,10 @@ def provider_names(relations: list[dict]) -> list[str]:
 
 def provider_problems(rows: list[dict], names: list[str] | None = None) -> tuple[list[tuple[int, str]], list[tuple[int, str]]]:
     """([(line, message)] errors, [(line, message)] warnings) of the provider file. Errors: a name twice, an id that is not kebab-case, a code
-    outside the lists, an empty `nume`, one provider with two names or two types, an accepted row without a type. Warnings (only when `names` is
+    outside the lists, an empty `nume`, one provider with two names, two short names or two types, an accepted row without a type. Warnings (only when `names` is
     given): a name of `relatii.csv` without a row, and a row whose name is not in `relatii.csv`. `rows` start at line 2."""
     errors, warnings = [], []
-    seen, display, kind = {}, {}, {}
+    seen, display, short, kind = {}, {}, {}, {}
     for line, r in enumerate(rows, 2):
         name = r["nume_sursa"]
         if not name:
@@ -471,7 +485,7 @@ def provider_problems(rows: list[dict], names: list[str] | None = None) -> tuple
             errors.append((line, f"{name}: stare necunoscută: {r['stare']!r} ({', '.join(PROVIDER_STATES)})"))
         if r["stare"] == "acceptat" and not r["tip"]:
             errors.append((line, f"{name}: un rând acceptat are nevoie de tip"))
-        for value, store, label in ((r["nume"], display, "nume"), (r["tip"], kind, "tip")):
+        for value, store, label in ((r["nume"], display, "nume"), (r.get("nume_scurt", ""), short, "nume_scurt"), (r["tip"], kind, "tip")):
             first = store.setdefault(r["furnizor"], (value, line))
             if first[0] != value:
                 errors.append((line, f"{name}: furnizorul {r['furnizor']} are două valori pentru {label} (și în linia {first[1]})"))

@@ -1590,13 +1590,14 @@ It belongs to the package, like `inventar-concepte.json`: the build reads it fro
 | `nume_sursa` | The name exactly as `relatii.csv` spells it (`obiect_literal`, or `obiect`). One row for each name. |
 | `furnizor` | The id of the normalised provider (kebab-case). Rows with the same id are one provider. |
 | `nume` | The display name of the provider. One `nume` for each `furnizor`. |
+| `nume_scurt` | The short name for the headers of the matrix on `/date/furnizori/`, optional. One `nume_scurt` for each `furnizor`: write it on every row of the provider or on none. An empty value gives the derived name (`provider_short_name`): (a) the acronym in a bracket at the end of `nume` (2 or more capitals or digits, as in `(INS)`); (b) otherwise `nume` with a leading „Ministerul ” written „M. ”; (c) otherwise `nume`. A bracket that is not an acronym stays. Set it when the derived name is longer than about 24 characters. The page shows the full `nume` in the `title` of the header, in hidden text for a screen reader, and in the list below the matrix. |
 | `eticheta` | A short label, optional. The facet „Furnizor” of `/date/` uses it instead of the name (`INS`, `MDLPA`, `Parlament`). The label applies in every state of the row. |
 | `tip` | `institutie-publica`, `ue-international`, `ong`, `companie`, `comunitate` or `autor` (the author's own data or collection). One `tip` for each `furnizor`. An empty value is allowed on a proposed row only. |
 | `stare` | `propus` or `acceptat`. Only the owner sets `acceptat`. |
 | `nota` | Free text, optional. |
 
 The build applies a row only when `stare` is `acceptat` (`provider_table`). A name without an accepted row stays a provider of its own on `/date/furnizori/`, with an unknown type (group „Neclasificat”).
-`validate.py` reports as errors: a missing or unknown column, a name twice, a `furnizor` id that is not kebab-case, a code outside the lists, an empty `nume`, one `furnizor` with two `nume` or two `tip` values, and an accepted row without `tip`.
+`validate.py` reports as errors: a missing or unknown column, a name twice, a `furnizor` id that is not kebab-case, a code outside the lists, an empty `nume`, one `furnizor` with two `nume`, two `nume_scurt` or two `tip` values, and an accepted row without `tip`.
 A name of `relatii.csv` without a row, and a row whose name is not in `relatii.csv`, are warnings. The file is not a tab of the Google Sheet and the review interface has no form for it: the owner accepts rows in bulk, in the file.
 
 ### Cross-project data finder preview
@@ -1627,7 +1628,7 @@ The finder header (`/date/`) links the four pages. The site has no sitemap that 
 
 | Page | Groups by | Source of the data |
 | --- | --- | --- |
-| `/date/furnizori/` | the type of the provider (`PROVIDER_TYPES`, then „Neclasificat”), then the provider by the count of its entries. A matrix of the 12 providers with the most entries (columns) and the entries that use one (rows). A part for the entries without an accepted `date_din` relation. The relation to data of each entry is a small label. | `date_din` relations, `furnizori.csv` (accepted rows only) |
+| `/date/furnizori/` | the type of the provider (`PROVIDER_TYPES`, then „Neclasificat”), then the provider by the count of its entries. A matrix of every provider (sorted by the count of entries, then the name) and the entries that use one, in two orientations that are both in the HTML: entries in rows, or providers in rows. The script `site/inventory-tables.js` shows one of them and makes the columns of the matrix, of `/date/lista/` and of `/date/formate/` sortable (class `ov-sortable`, `data-sort`, `data-sort-type="num"`). The matrix frame uses the full width of the window. A part for the entries without an accepted `date_din` relation. The relation to data of each entry is a small label. | `date_din` relations, `furnizori.csv` (accepted rows only) |
 | `/date/formate/` | five kinds of format (`FORMAT_KINDS`, `FORMAT_KIND_OF` in `inventory_site.py`; a test fails when a format of `FORMATS` has no kind). A table with one row for each entry and one column for each kind, with the field count of each format; then each format with its entries. | the `format` of each source of `inventar/<slug>.json` |
 | `/date/licente/` | the licence name that a source declares (`source_licence`, the schema.org licences of `declared_facts`, the licence of an INS metadata source), then „Licență nedeclarată” last. A name is shown as the source writes it: no normalisation. | the sources of the entries |
 | `/date/gazde/` | the host of a source, without `www.`, grouped by registered domain (`inventory_views.host_group`: a short list of two-level suffixes; `github.io`, `vercel.app` and `githubusercontent.com` are platforms and stay as full hosts). Only groups that serve two or more entries; one line counts the entries whose sources are all on a domain of their own. | the `url` of each source |

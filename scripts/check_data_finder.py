@@ -24,6 +24,8 @@ def left_out_reason(item):
     return '' if item.get('dataRelation') in ('date-publice', 'date-proprii', 'calcul') else 'fara-date'
 OUT = {i['slug']: left_out_reason(i) for i in ITEMS if left_out_reason(i)}
 EXPECTED = {i['slug'] for i in ITEMS} - set(OUT)
+EXPECTED_WITH_PROVIDER = sum(1 for i in ITEMS if i['slug'] in EXPECTED and i.get('dataSources'))
+SHOTS = sys.argv[2] if len(sys.argv) > 2 else ''
 REASONS = (('fara-date', 'dat=fara-date'), ('inactiv', 'st=inactiv'))  # in the order of the note
 COUNTS = {reason: {kind: sum(OUT.get(i['slug']) == reason and i['kind'] == kind for i in ITEMS) for kind in ('proiect', 'resursa')}
           for reason, _ in REASONS}
@@ -367,8 +369,90 @@ with sync_playwright() as pw:
     ok('furnizori: the entries without a provider are named, and only they', named == without)
     listed = {h.rstrip('/').split('/')[-1] for h in page.locator('.ov-providers a[href^="proiect/"], .ov-providers a[href^="resursa/"]').evaluate_all('els=>els.map(e=>e.getAttribute("href"))')}
     ok('furnizori: the providers list the entries that have one, and only them', listed == EXPECTED - without)
-    ok('furnizori: the matrix names at most 12 providers and marks only entries with a provider',
-       0 < page.locator('.ov-matrix thead th').count() - 1 <= 12 and {r for r in page.locator('.ov-matrix tbody tr').evaluate_all('els=>els.map(e=>e.id.slice(2))')} <= EXPECTED - without)
+    # The matrix: every provider in both orientations, short names with titles, a background on the checked cells, the toggle, the sort, no sideways scroll.
+    page.goto(BASE + 'date/furnizori/')
+    page.wait_for_selector('[data-orient-toggle]:not([hidden])')
+    provider_ids = page.locator('.ov-providers > li.ov-provider').evaluate_all('els=>els.map(e=>e.id.slice(2))')
+    matrix_ids = page.locator('table[data-matrix="entries"] thead a[href*="#f-"]').evaluate_all('els=>els.map(e=>e.getAttribute("href").split("#f-")[1])')
+    pivot_ids = page.locator('table[data-matrix="providers"] tbody tr').evaluate_all('els=>els.map(e=>e.id.slice(3))')
+    ok('furnizori: the matrix has every provider of the list, not only twelve', len(provider_ids) > 12 and set(matrix_ids) == set(provider_ids) == set(pivot_ids) and len(matrix_ids) == len(provider_ids))
+    counts = page.locator('table[data-matrix="entries"] thead th small').evaluate_all('els=>els.slice(1).map(e=>Number(e.textContent))')
+    ok('furnizori: the providers are sorted by entry count, then by name', counts == sorted(counts, reverse=True) and pivot_ids == matrix_ids)
+    titled = page.locator('table[data-matrix] a[title]').evaluate_all('els=>els.map(e=>[e.title,e.querySelector("[aria-hidden]").textContent,e.querySelector(".sr").textContent])')
+    ok('furnizori: a short name has the full name in title and in hidden text', titled and all(t == sr and 0 < len(short) < len(t) for t, short, sr in titled))
+    ok('furnizori: the headers use the short names (no header longer than 24 characters unless it is the name itself)',
+       all(len(t) <= 24 for t in page.locator('table[data-matrix="entries"] thead a[href*="#f-"] > [aria-hidden]').all_inner_texts()))
+    ok('furnizori: the list below keeps the full name', any(t.startswith('Monitorul Oficial al României') for t in page.locator('.ov-provider h3').all_inner_texts()))
+    mark = page.locator('table[data-matrix="entries"] td.ov-mark').first
+    plain = page.locator('table[data-matrix="entries"] td:not(.ov-mark)').first
+    bg = lambda loc: loc.evaluate('e=>getComputedStyle(e).backgroundColor')
+    ok('furnizori: a checked cell has a background of its own, and the screen-reader text stays', bg(mark) != bg(plain) and mark.locator('.sr').inner_text() == 'da')
+    ok('furnizori: the toggle shows the entries in rows first and switches to the providers in rows',
+       page.locator('table[data-matrix="entries"]').is_visible() and not page.locator('table[data-matrix="providers"]').is_visible())
+    page.get_by_role('button', name='Furnizori pe rânduri').click()
+    ok('furnizori: after the toggle only the pivot shows, and the button is pressed',
+       page.locator('table[data-matrix="providers"]').is_visible() and not page.locator('table[data-matrix="entries"]').is_visible()
+       and page.get_by_role('button', name='Furnizori pe rânduri').get_attribute('aria-pressed') == 'true')
+    ok('furnizori: the pivot has one row for each provider and one column for each entry with a provider',
+       page.locator('table[data-matrix="providers"] tbody tr').count() == len(provider_ids)
+       and page.locator('table[data-matrix="providers"] thead th.ov-vert').count() == EXPECTED_WITH_PROVIDER)
+    sticky = page.locator('table[data-matrix="providers"] tbody th').first.evaluate('e=>getComputedStyle(e).position')
+    ok('furnizori: the first column is sticky, and the frame is as wide as the window', sticky == 'sticky'
+       and page.locator('[data-orient="providers"] .ov-scroll').evaluate('e=>e.getBoundingClientRect().width') >= page.evaluate('document.documentElement.clientWidth') - 1)
+    first = page.locator('table[data-matrix="providers"] thead th.ov-vert').first
+    first.locator('button.ov-sort').click()
+    users_first = page.locator('table[data-matrix="providers"] tbody tr').evaluate_all('(rows)=>rows.map(r=>r.cells[2].classList.contains("ov-mark"))')
+    ok('furnizori: sorting an entry column puts the providers that it uses first, and sets aria-sort',
+       first.get_attribute('aria-sort') == 'descending' and users_first == sorted(users_first, reverse=True) and users_first[0])
+    page.get_by_role('button', name='Intrări pe rânduri').click()
+    head = page.locator('table[data-matrix="entries"] thead th').nth(1)
+    head.locator('button.ov-sort').click()
+    marked = page.locator('table[data-matrix="entries"] tbody tr').evaluate_all('(rows)=>rows.map(r=>r.cells[1].classList.contains("ov-mark"))')
+    ok('furnizori: sorting a provider column puts the entries that use it first', head.get_attribute('aria-sort') == 'descending' and marked == sorted(marked, reverse=True) and marked[0])
+    head.locator('button.ov-sort').click()
+    marked = page.locator('table[data-matrix="entries"] tbody tr').evaluate_all('(rows)=>rows.map(r=>r.cells[1].classList.contains("ov-mark"))')
+    ok('furnizori: a second click reverses the order', head.get_attribute('aria-sort') == 'ascending' and marked == sorted(marked) and page.locator('table[data-matrix="entries"] [aria-sort]').count() == 1)
+    name_head = page.locator('table[data-matrix="entries"] thead th').first
+    name_head.locator('button.ov-sort').click()
+    names = page.locator('table[data-matrix="entries"] tbody th').evaluate_all('els=>els.map(e=>e.dataset.sort)')
+    collator = sorted(names, key=lambda n: n.casefold().replace('ă', 'a~').replace('â', 'a~').replace('î', 'i~').replace('ș', 's~').replace('ț', 't~'))
+    ok('furnizori: the name column sorts by name, ascending first', name_head.get_attribute('aria-sort') == 'ascending' and names == collator)
+    page.keyboard.press('Tab')
+    ok('furnizori: a sort control is a button that the keyboard reaches', page.locator('table.ov-sortable thead button.ov-sort').first.evaluate('e=>e.tagName') == 'BUTTON')
+    for width in (1440, 375):
+        for mode in ('Intrări pe rânduri', 'Furnizori pe rânduri'):
+            page.set_viewport_size({'width': width, 'height': 900})
+            page.goto(BASE + 'date/furnizori/')
+            page.get_by_role('button', name=mode).click()
+            if width == 375 and mode == 'Intrări pe rânduri':
+                ok('furnizori: no sideways scroll of the page at 375 px, in both orientations', not page.evaluate('document.documentElement.scrollWidth!==innerWidth'))
+            if width == 375 and mode == 'Furnizori pe rânduri':
+                ok('furnizori: the same for the pivot at 375 px', not page.evaluate('document.documentElement.scrollWidth!==innerWidth'))
+            if SHOTS:
+                page.screenshot(path=f'{SHOTS}/furnizori-{"intrari" if mode.startswith("Intr") else "furnizori"}-{width}.png')
+    page.set_viewport_size({'width': 1280, 'height': 900})
+    noscript = browser.new_context(java_script_enabled=False, viewport={'width': 1280, 'height': 900}).new_page()
+    noscript.goto(BASE + 'date/furnizori/')
+    ok('furnizori: without JavaScript both orientations show and the toggle does not',
+       noscript.locator('table[data-matrix]').count() == 2 and noscript.locator('table[data-matrix]:visible').count() == 2 and not noscript.locator('[data-orient-toggle]').is_visible())
+    noscript.close()
+    # Sortable tables of the list and the formats: a click sorts, aria-sort follows, a count sorts largest first.
+    for view in ('lista', 'formate'):
+        page.goto(BASE + f'date/{view}/')
+        table = page.locator('table.ov-sortable')
+        ok(f'{view}: the table has a sort button in every column header', table.locator('thead th').count() == table.locator('thead button.ov-sort').count() > 1)
+        col = 1
+        th = table.locator('thead th').nth(col)
+        th.locator('button.ov-sort').click()
+        sizes = table.locator('tbody tr').evaluate_all(f'(rows)=>rows.map(r=>Number(r.cells[{col}].dataset.sort))')
+        ok(f'{view}: a count column sorts largest first, with aria-sort', th.get_attribute('aria-sort') == 'descending' and sizes == sorted(sizes, reverse=True))
+        first_name = table.locator('tbody tr').first.locator('th').get_attribute('data-sort')
+        table.locator('thead th').first.locator('button.ov-sort').click()
+        names = table.locator('tbody th').evaluate_all('els=>els.map(e=>e.dataset.sort)')
+        ok(f'{view}: the first column sorts by name', table.locator('thead th').first.get_attribute('aria-sort') == 'ascending' and names == sorted(names, key=lambda n: n.casefold().replace('ă', 'a~').replace('â', 'a~').replace('î', 'i~').replace('ș', 's~').replace('ț', 't~')) and th.get_attribute('aria-sort') is None)
+        if view == 'formate' and SHOTS:
+            table.locator('thead th').nth(1).locator('button.ov-sort').click()
+            page.screenshot(path=f'{SHOTS}/formate-sorted.png')
     # Formats: one row for each entry that has a source, five columns.
     page.goto(BASE + 'date/formate/')
     ok('formate: five columns of kinds', page.locator('.ov-formats thead th').evaluate_all('els=>els.map(e=>e.firstChild.textContent)')[1:] ==

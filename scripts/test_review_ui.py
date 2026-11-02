@@ -500,7 +500,7 @@ class GroupDecisions(Fixture):
         self.assertEqual([m['id'] for m in variable_matches('p', fields, sources, groups)], ['b', 'c'])
         root = self.tmp / 'finder'
         (root / 'site/inventar').mkdir(parents=True)
-        for name in ('style.css', 'inventory.css', 'inventory.js'):
+        for name in ('style.css', 'inventory.css', 'inventory.js', 'inventory-tables.js'):
             (root / 'site' / name).write_text('/* fixture */')
         (root / 'inventar-concepte.json').write_text(json.dumps({'concepte': groups}))
         (root / 'integrare').mkdir()

@@ -14,7 +14,6 @@ from inventory_site import (FORMAT_KIND_OF, FORMAT_KINDS, FORMATS, OTHER_KIND, P
 
 TYPE_LABELS = {'institutie-publica': 'Instituții publice', 'ue-international': 'Uniunea Europeană și organizații internaționale', 'ong': 'ONG-uri',
                'companie': 'Companii', 'comunitate': 'Comunități', 'autor': 'Autori (datele proprii)', '': 'Neclasificat'}
-MATRIX_SIZE = 12  # providers in the matrix of `date/furnizori/`
 NO_LICENCE = 'Licență nedeclarată'
 
 # The hosts of `date/gazde/` are grouped by registered domain. The project has no dependencies, so a short list of two-level suffixes stands in for the
@@ -78,6 +77,56 @@ def provider_order(record):
     return (-len(record['entries']), record['name'].casefold())
 
 
+def provider_label(name, short, href=None):
+    """A provider in the header of the matrix: the short name, with the full name in `title` and, for a screen reader, in hidden text. The list below the matrix
+    keeps the full name. `href` makes the label a link."""
+    e = html.escape
+    if short == name:
+        inner, title = e(name), ''
+    else:
+        inner, title = f'<span aria-hidden="true">{e(short)}</span><span class="sr">{e(name)}</span>', f' title="{e(name, quote=True)}"'
+    return f'<a href="{href}"{title}>{inner}</a>' if href else f'<span{title}>{inner}</span>'
+
+
+MARK = '<td class="ov-mark" data-sort="1"><span aria-hidden="true">✓</span><span class="sr">da</span></td>'
+NO_MARK = '<td data-sort="0"></td>'
+
+
+def matrix_section(ranked, entries, bare):
+    """The matrix of `date/furnizori/` in two orientations, both in the HTML: the entries in rows and the providers in columns, and the pivot. Every provider is
+    in it, sorted by the count of entries then the name (`provider_order`); the entries are those with a provider, sorted by name. The headers use the short names.
+    The script `inventory-tables.js` shows one orientation and makes the columns sortable; without it both tables show, one after the other."""
+    e = html.escape
+    if not ranked:
+        return ''
+    used = {r['id']: {i['slug'] for i in r['entries']} for r in ranked}
+    users = [i for i in entries if i not in bare]
+    provider_head = ''.join(
+        f'<th scope="col" data-sort-type="num">{provider_label(r["name"], r["short"], f"{PAGE_DIR}/furnizori/#f-{e(r["id"])}")}<small>{len(r["entries"])}</small></th>' for r in ranked)
+    rows = ''.join(
+        f'<tr id="m-{e(i["slug"])}"><th scope="row" data-sort="{e(i["name"].casefold(), quote=True)}"><a href="{e(i["kind"])}/{e(i["slug"])}/">{e(i["name"])}</a></th>'
+        + ''.join(MARK if i['slug'] in used[r['id']] else NO_MARK for r in ranked) + '</tr>' for i in users)
+    by_entries = (f'<table class="ov-table ov-matrix ov-sortable" data-matrix="entries"><caption class="sr">Intrări pe rânduri, furnizori pe coloane</caption>'
+                  f'<thead><tr><th scope="col">Intrare<small>{len(users)}</small></th>{provider_head}</tr></thead><tbody>{rows}</tbody></table>')
+    entry_head = ''.join(
+        f'<th scope="col" class="ov-vert" data-sort-type="num"><a href="{e(i["kind"])}/{e(i["slug"])}/"><span>{e(i["name"])}</span></a></th>' for i in users)
+    pivot_rows = ''.join(
+        f'<tr id="mp-{e(r["id"])}"><th scope="row" data-sort="{e(r["short"].casefold(), quote=True)}">{provider_label(r["name"], r["short"], f"{PAGE_DIR}/furnizori/#f-{e(r["id"])}")}</th>'
+        f'<td class="ov-count" data-sort="{len(r["entries"])}">{len(r["entries"])}</td>'
+        + ''.join(MARK if i['slug'] in used[r['id']] else NO_MARK for i in users) + '</tr>' for r in ranked)
+    by_providers = (f'<table class="ov-table ov-matrix ov-sortable" data-matrix="providers"><caption class="sr">Furnizori pe rânduri, intrări pe coloane</caption>'
+                    f'<thead><tr><th scope="col">Furnizor<small>{len(ranked)}</small></th><th scope="col" data-sort-type="num">Intrări</th>{entry_head}</tr></thead>'
+                    f'<tbody>{pivot_rows}</tbody></table>')
+    toggle = ('<div class="ov-orient" role="group" aria-label="Orientarea matricei" data-orient-toggle hidden>'
+              '<button type="button" data-show="entries" aria-pressed="true">Intrări pe rânduri</button>'
+              '<button type="button" data-show="providers" aria-pressed="false">Furnizori pe rânduri</button></div>')
+    return (f'<section class="ov-matrix-box" id="matrice"><h2>Toți cei {len(ranked)} furnizori, pe {len(users)} intrări</h2>'
+            f'<p class="ov-note">Numele din antet sunt prescurtate; numele întreg stă în titlul lor și în lista de mai jos. O bifă înseamnă că intrarea are furnizorul. '
+            f'Un clic pe un antet sortează coloana: la un furnizor, intrările lui vin primele.</p>{toggle}'
+            f'<div data-orient="entries"><h3 class="ov-orient-title">Intrări pe rânduri</h3><div class="ov-scroll ov-wide">{by_entries}</div></div>'
+            f'<div data-orient="providers"><h3 class="ov-orient-title">Furnizori pe rânduri</h3><div class="ov-scroll ov-wide">{by_providers}</div></div></section>')
+
+
 def providers_view(items, projections, table, relations):
     e = html.escape
     entries = scoped(items)
@@ -95,16 +144,7 @@ def providers_view(items, projections, table, relations):
                         f'{aliases}{entry_list(r["entries"], projections, relations)}</li>')
         sections.append(f'<section class="ov-group" id="tip-{e(tip or "neclasificat")}" data-type="{e(tip)}">'
                         f'<h2>{e(TYPE_LABELS[tip])}<small>{ro_count(len(group), "furnizor", "furnizori")}</small></h2><ul class="ov-providers">{"".join(rows)}</ul></section>')
-    top = ranked[:MATRIX_SIZE]
-    users = [i for i in entries if any(i in r['entries'] for r in top)]
-    head = ''.join(f'<th scope="col"><a href="{PAGE_DIR}/furnizori/#f-{e(r["id"])}">{e(r["name"])}</a><small>{len(r["entries"])}</small></th>' for r in top)
-    body = ''.join(
-        f'<tr id="m-{e(i["slug"])}"><th scope="row"><a href="{e(i["kind"])}/{e(i["slug"])}/">{e(i["name"])}</a></th>'
-        + ''.join('<td class="ov-mark"><span aria-hidden="true">✓</span><span class="sr">da</span></td>' if i in r['entries'] else '<td></td>' for r in top)
-        + '</tr>' for i in users)
-    matrix = (f'<section class="ov-matrix-box" id="matrice"><h2>Cei {len(top)} furnizori cu cele mai multe intrări</h2>'
-              f'<div class="ov-scroll"><table class="ov-table ov-matrix"><thead><tr><th scope="col">Intrare<small>{len(users)}</small></th>{head}</tr></thead>'
-              f'<tbody>{body}</tbody></table></div></section>') if top else ''
+    matrix = matrix_section(ranked, entries, bare)
     none = ''
     if bare:
         links = ', '.join(f'<a href="{e(i["kind"])}/{e(i["slug"])}/">{e(i["name"])}</a>' for i in bare)
@@ -115,7 +155,7 @@ def providers_view(items, projections, table, relations):
             f'Același furnizor nu înseamnă același set de date. Un nume se unește cu altul numai după un rând acceptat în <code>furnizori.csv</code>; '
             f'{unmerged} dintre furnizori nu au încă un astfel de rând și rămân sub numele din relații, la „Neclasificat”.</p>')
     content = note + matrix + ''.join(sections) + none + left_out_section(left_out(items))
-    found_summary = {'groups': len(sections), 'providers': len(found), 'entries': len(entries) - len(bare), 'matrix': len(top), 'bare': len(bare)}
+    found_summary = {'groups': len(sections), 'providers': len(found), 'entries': len(entries) - len(bare), 'matrix': len(ranked), 'bare': len(bare)}
     return content, found_summary
 
 
@@ -150,14 +190,14 @@ def formats_view(items, projections, relations):
         cells = []
         for key, _ in kinds:
             names = sorted(((FORMATS.get(f, 'Sursă de date'), f, n) for f, n in fm.items() if format_kind(f)[0] == key), key=lambda x: x[0].casefold())
-            cells.append('<td>' + (('<ul>' + ''.join(
+            cells.append(f'<td data-sort="{len(names)}">' + (('<ul>' + ''.join(
                 f'<li><a href="{PAGE_DIR}/formate/#{format_anchor(f)}">{e(label)}</a>' + (f' <small>{n}</small>' if n else '') + '</li>' for label, f, n in names)
                 + '</ul>') if names else '') + '</td>')
-        rows.append(f'<tr id="{e(item["slug"])}"><th scope="row"><a href="{e(item["kind"])}/{e(item["slug"])}/">{e(item["name"])}</a>'
+        rows.append(f'<tr id="{e(item["slug"])}"><th scope="row" data-sort="{e(item["name"].casefold(), quote=True)}"><a href="{e(item["kind"])}/{e(item["slug"])}/">{e(item["name"])}</a>'
                     f'<small>{"proiect" if item["kind"] == "proiect" else "resursă"} · {ro_count(len(projections[item["slug"]][1]), "sursă", "surse")}'
                     + (f' · <a href="{PAGE_DIR}/{e(item["slug"])}/">Toate variabilele</a>' if has_page(item, projections) else '') + '</small></th>' + ''.join(cells) + '</tr>')
-    head = ''.join(f'<th scope="col">{e(label)}<small>{totals[key]}</small></th>' for key, label in kinds)
-    table = (f'<div class="ov-scroll"><table class="ov-table ov-fit ov-formats"><thead><tr><th scope="col">Intrare<small>{len(per_entry)}</small></th>{head}</tr></thead>'
+    head = ''.join(f'<th scope="col" data-sort-type="num">{e(label)}<small>{totals[key]}</small></th>' for key, label in kinds)
+    table = (f'<div class="ov-scroll"><table class="ov-table ov-fit ov-formats ov-sortable"><thead><tr><th scope="col">Intrare<small>{len(per_entry)}</small></th>{head}</tr></thead>'
              f'<tbody>{"".join(rows)}</tbody></table></div>')
     by_format = {}
     for item, fm in per_entry:

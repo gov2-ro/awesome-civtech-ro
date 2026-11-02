@@ -49,7 +49,7 @@ def site_of(tmp, sources, profiles, items, concepts=CONCEPTS, families=FAMILIES,
     (inv / 'seturi-date.json').write_text(json.dumps({'surse': sources}))
     site = base / 'site'
     (site / 'inventar').mkdir(parents=True)
-    for name in ('style.css', 'inventory.css', 'inventory.js'):
+    for name in ('style.css', 'inventory.css', 'inventory.js', 'inventory-tables.js'):
         (site / name).write_text('/* fixture */')
     with patch('inventory_site.observation_paths', return_value={'profile': base / 'observatii/profil.csv'}):
         projections = publish_preview(items, root, site)
@@ -588,7 +588,7 @@ class RealInventory(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             site = Path(tmp) / 'site'
             (site / 'inventar').mkdir(parents=True)
-            for name in ('style.css', 'inventory.css', 'inventory.js'):
+            for name in ('style.css', 'inventory.css', 'inventory.js', 'inventory-tables.js'):
                 (site / name).write_text('/* fixture */')
             with patch('inventory_site.observation_paths', return_value={'profile': taxonomy / 'observatii/profil.csv'}):
                 projections = publish_preview(items, taxonomy / 'integrare', site)
