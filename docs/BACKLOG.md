@@ -6,7 +6,8 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
 - [x] Four static pages beside `/date/lista/`: `/date/furnizori/` (providers of `date_din`, normalised by the new hand-edited `furnizori.csv`), `/date/formate/` (five kinds of source format), `/date/licente/` (declared licences) and `/date/gazde/` (hosts shared by two or more entries), with one view switcher. [Brief](briefs/source-views.md).
       Done 2026-11-02 (branch `source-views`): 0 requests. A: `furnizori.csv` with 58 proposed rows (all `propus`) and its checks in `validate.py`. B to E: the four pages. F: links from `/date/` and from each `/date/<slug>/`.
-- [ ] Owner: review the 58 rows of `data/taxonomy-v2/furnizori.csv` (52 proposed providers; the merges and the doubtful types are in the `nota` column) and set `stare=acceptat` for the ones that are right. Until then `/date/furnizori/` shows each name as a provider of its own.
+- [x] Owner: review the 58 rows of `data/taxonomy-v2/furnizori.csv`. Done 2026-11-02: the owner accepted all rows that have a `tip` (57) and renamed `seap-sicap` to „SEAP (e-licitatie)”.
+- [ ] Owner: give a `tip` to „Presă și comunicări oficiale (nespecificate)”, or remove the name from its `date_din` relation. The row stays `propus`: an accepted row needs a `tip`, so it shows as „Neclasificat”.
 - [ ] A form for `furnizori.csv` in the review interface (`scripts/review_ui.py`), if the owner wants more than a bulk acceptance in the file. Not built: the owner accepted D189–D210 in bulk.
 - [ ] A Sheet tab for `furnizori.csv` (`sheets.py`), only if the owner asks.
 - [ ] Licence names on `/date/licente/` are shown as the sources write them. Three names stand for CC BY 4.0 (`https://creativecommons.org/licenses/by/4.0/`, `CC Attribution 4.0 License`, `CC BY 4.0`). Decide one normalisation rule, with the owner, before the page merges them.

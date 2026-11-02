@@ -1,59 +1,59 @@
 nume_sursa,furnizor,nume,eticheta,tip,stare,nota
-AMCCRS (Primăria Municipiului București),amccrs,AMCCRS (Primăria Municipiului București),,institutie-publica,propus,
-ANAF,anaf,Agenția Națională de Administrare Fiscală (ANAF),,institutie-publica,propus,
-"ANAF (execuție bugetară, prin transparenta.eu)",anaf,Agenția Națională de Administrare Fiscală (ANAF),,institutie-publica,propus,"Datele ANAF, preluate printr-un intermediar (transparenta.eu). De verificat dacă intermediarul trebuie să fie furnizor aparte."
-ANCPI,ancpi,Agenția Națională de Cadastru și Publicitate Imobiliară (ANCPI),,institutie-publica,propus,
-ANOSR,anosr,Alianța Națională a Organizațiilor Studențești din România (ANOSR),,ong,propus,
-ANRSC,anrsc,Autoritatea Națională de Reglementare pentru Serviciile Comunitare de Utilități Publice (ANRSC),,institutie-publica,propus,
-Administrația Prezidențială,administratia-prezidentiala,Administrația Prezidențială,Adm. Prez,institutie-publica,propus,
-Agenția Națională pentru Resurse Minerale (ANRM),anrm,Agenția Națională pentru Resurse Minerale (ANRM),,institutie-publica,propus,
-Agenția pentru Finanțarea Investițiilor Rurale (AFIR),afir,Agenția pentru Finanțarea Investițiilor Rurale (AFIR),,institutie-publica,propus,
-Agenția pentru Monitorizarea și Evaluarea Performanțelor Întreprinderilor Publice (AMEPIP),amepip,Agenția pentru Monitorizarea și Evaluarea Performanțelor Întreprinderilor Publice (AMEPIP),,institutie-publica,propus,
-Autoritatea Electorală Permanentă (AEP),aep,Autoritatea Electorală Permanentă (AEP),,institutie-publica,propus,
-Autoritatea pentru Digitalizarea României (ADR),adr,Autoritatea pentru Digitalizarea României (ADR),,institutie-publica,propus,
-Banca Națională a României (BNR),bnr,Banca Națională a României (BNR),,institutie-publica,propus,
-Biroul Electoral Central (BEC),bec,Biroul Electoral Central (BEC),,institutie-publica,propus,
-Buletinul Procedurilor de Insolvență (BPI),bpi,Buletinul Procedurilor de Insolvență (BPI),,institutie-publica,propus,Publicație oficială a procedurilor de insolvență. De verificat cine o administrează.
-Bursa de Valori București,bvb,Bursa de Valori București,,companie,propus,
-CURS,curs,CURS (sondaje de opinie),,companie,propus,Firmă de sondaje.
-Camera Deputaților,camera-deputatilor,Camera Deputaților,Parlament,institutie-publica,propus,Rămâne separat de Senat. Eticheta „Parlament” grupează cele două camere în căutarea în date.
-Colegiul Psihologilor din România (CPR),cpr,Colegiul Psihologilor din România (CPR),,institutie-publica,propus,Organism profesional cu atribuții publice. De verificat tipul.
-Comisia Europeană (VIES),comisia-europeana,Comisia Europeană,,ue-international,propus,Același furnizor; VIES și ajutorul de stat sunt servicii ale Comisiei. Seturile diferă.
-Comisia Europeană (cazuri de ajutor de stat),comisia-europeana,Comisia Europeană,,ue-international,propus,Același furnizor; seturile diferă.
-Consiliul Național pentru Finanțarea Învățământului Superior (CNFIS),cnfis,Consiliul Național pentru Finanțarea Învățământului Superior (CNFIS),,institutie-publica,propus,
-Consiliul Superior al Magistraturii,csm,Consiliul Superior al Magistraturii,,institutie-publica,propus,
-Consiliul Uniunii Europene,consiliul-uniunii-europene,Consiliul Uniunii Europene,Consiliul UE,ue-international,propus,
-Consiliul Uniunii Europene (registrul public),consiliul-uniunii-europene,Consiliul Uniunii Europene,,ue-international,propus,Registrul public este un serviciu al aceluiași consiliu.
-Copernicus,copernicus,Copernicus (programul UE de observare a Pământului),,ue-international,propus,
-Direcția pentru Evidența Persoanelor și Administrarea Bazelor de Date (RNEP),rnep,Direcția pentru Evidența Persoanelor și Administrarea Bazelor de Date (RNEP),,institutie-publica,propus,
-Eurostat,eurostat,Eurostat,,ue-international,propus,
-Fitch Ratings,fitch-ratings,Fitch Ratings,,companie,propus,
-Guvernul României,guvernul-romaniei,Guvernul României,Guvern,institutie-publica,propus,
-"INMH (presiunea atmosferică, stația meteo Rădăuți)",inmh,INMH (Institutul Național de Meteorologie și Hidrologie),,institutie-publica,propus,Numele numește o stație meteo locală. De verificat dacă furnizorul este institutul sau o persoană.
-INSCOP Research,inscop-research,INSCOP Research,,companie,propus,Firmă de sondaje.
-IRES,ires,IRES (Institutul Român pentru Evaluare și Strategie),,companie,propus,Firmă de sondaje.
-Inspecția Muncii (Ministerul Muncii),inspectia-muncii,Inspecția Muncii,,institutie-publica,propus,
-Institutul Național de Statistică (INS),ins,Institutul Național de Statistică (INS),INS,institutie-publica,propus,
-MKOR,mkor,MKOR (sondaje de opinie),,companie,propus,Firmă de sondaje.
-Ministerul Dezvoltării (MDLPA),mdlpa,"Ministerul Dezvoltării, Lucrărilor Publice și Administrației (MDLPA)",MDLPA,institutie-publica,propus,
-Ministerul Educației,ministerul-educatiei,Ministerul Educației,,institutie-publica,propus,
-Ministerul Finanțelor,ministerul-finantelor,Ministerul Finanțelor,,institutie-publica,propus,
-"Ministerul Finanțelor (situații financiare, prin data.gov.ro)",ministerul-finantelor,Ministerul Finanțelor,,institutie-publica,propus,Același furnizor; data.gov.ro este portalul de publicare.
-Ministerul Investițiilor și Proiectelor Europene (MIPE),mipe,Ministerul Investițiilor și Proiectelor Europene (MIPE),,institutie-publica,propus,
-Ministerul Justiției (portalul instanțelor),ministerul-justitiei,Ministerul Justiției,,institutie-publica,propus,Portalul instanțelor aparține Ministerului Justiției.
-Monitorul Oficial,monitorul-oficial,Monitorul Oficial al României,MO,institutie-publica,propus,
-"Monitorul Oficial al României, Partea a II-a",monitorul-oficial,Monitorul Oficial al României,,institutie-publica,propus,Partea a II-a este o parte a aceleiași publicații.
-Moody’s,moodys,Moody’s,,companie,propus,
-Oficiul Național al Registrului Comerțului (ONRC),onrc,Oficiul Național al Registrului Comerțului (ONRC),,institutie-publica,propus,
-OpenStreetMap,openstreetmap,OpenStreetMap,,comunitate,propus,
-Parlamentul European (portalul de date deschise),parlamentul-european,Parlamentul European,,ue-international,propus,
-Portal Legislativ,portal-legislativ,Portal Legislativ,,institutie-publica,propus,De verificat cine administrează portalul.
+AMCCRS (Primăria Municipiului București),amccrs,AMCCRS (Primăria Municipiului București),,institutie-publica,acceptat,
+ANAF,anaf,Agenția Națională de Administrare Fiscală (ANAF),,institutie-publica,acceptat,
+"ANAF (execuție bugetară, prin transparenta.eu)",anaf,Agenția Națională de Administrare Fiscală (ANAF),,institutie-publica,acceptat,"Datele ANAF, preluate printr-un intermediar (transparenta.eu). De verificat dacă intermediarul trebuie să fie furnizor aparte."
+ANCPI,ancpi,Agenția Națională de Cadastru și Publicitate Imobiliară (ANCPI),,institutie-publica,acceptat,
+ANOSR,anosr,Alianța Națională a Organizațiilor Studențești din România (ANOSR),,ong,acceptat,
+ANRSC,anrsc,Autoritatea Națională de Reglementare pentru Serviciile Comunitare de Utilități Publice (ANRSC),,institutie-publica,acceptat,
+Administrația Prezidențială,administratia-prezidentiala,Administrația Prezidențială,Adm. Prez,institutie-publica,acceptat,
+Agenția Națională pentru Resurse Minerale (ANRM),anrm,Agenția Națională pentru Resurse Minerale (ANRM),,institutie-publica,acceptat,
+Agenția pentru Finanțarea Investițiilor Rurale (AFIR),afir,Agenția pentru Finanțarea Investițiilor Rurale (AFIR),,institutie-publica,acceptat,
+Agenția pentru Monitorizarea și Evaluarea Performanțelor Întreprinderilor Publice (AMEPIP),amepip,Agenția pentru Monitorizarea și Evaluarea Performanțelor Întreprinderilor Publice (AMEPIP),,institutie-publica,acceptat,
+Autoritatea Electorală Permanentă (AEP),aep,Autoritatea Electorală Permanentă (AEP),,institutie-publica,acceptat,
+Autoritatea pentru Digitalizarea României (ADR),adr,Autoritatea pentru Digitalizarea României (ADR),,institutie-publica,acceptat,
+Banca Națională a României (BNR),bnr,Banca Națională a României (BNR),,institutie-publica,acceptat,
+Biroul Electoral Central (BEC),bec,Biroul Electoral Central (BEC),,institutie-publica,acceptat,
+Buletinul Procedurilor de Insolvență (BPI),bpi,Buletinul Procedurilor de Insolvență (BPI),,institutie-publica,acceptat,Publicație oficială a procedurilor de insolvență. De verificat cine o administrează.
+Bursa de Valori București,bvb,Bursa de Valori București,,companie,acceptat,
+CURS,curs,CURS (sondaje de opinie),,companie,acceptat,Firmă de sondaje.
+Camera Deputaților,camera-deputatilor,Camera Deputaților,Parlament,institutie-publica,acceptat,Rămâne separat de Senat. Eticheta „Parlament” grupează cele două camere în căutarea în date.
+Colegiul Psihologilor din România (CPR),cpr,Colegiul Psihologilor din România (CPR),,institutie-publica,acceptat,Organism profesional cu atribuții publice. De verificat tipul.
+Comisia Europeană (VIES),comisia-europeana,Comisia Europeană,,ue-international,acceptat,Același furnizor; VIES și ajutorul de stat sunt servicii ale Comisiei. Seturile diferă.
+Comisia Europeană (cazuri de ajutor de stat),comisia-europeana,Comisia Europeană,,ue-international,acceptat,Același furnizor; seturile diferă.
+Consiliul Național pentru Finanțarea Învățământului Superior (CNFIS),cnfis,Consiliul Național pentru Finanțarea Învățământului Superior (CNFIS),,institutie-publica,acceptat,
+Consiliul Superior al Magistraturii,csm,Consiliul Superior al Magistraturii,,institutie-publica,acceptat,
+Consiliul Uniunii Europene,consiliul-uniunii-europene,Consiliul Uniunii Europene,Consiliul UE,ue-international,acceptat,
+Consiliul Uniunii Europene (registrul public),consiliul-uniunii-europene,Consiliul Uniunii Europene,,ue-international,acceptat,Registrul public este un serviciu al aceluiași consiliu.
+Copernicus,copernicus,Copernicus (programul UE de observare a Pământului),,ue-international,acceptat,
+Direcția pentru Evidența Persoanelor și Administrarea Bazelor de Date (RNEP),rnep,Direcția pentru Evidența Persoanelor și Administrarea Bazelor de Date (RNEP),,institutie-publica,acceptat,
+Eurostat,eurostat,Eurostat,,ue-international,acceptat,
+Fitch Ratings,fitch-ratings,Fitch Ratings,,companie,acceptat,
+Guvernul României,guvernul-romaniei,Guvernul României,Guvern,institutie-publica,acceptat,
+"INMH (presiunea atmosferică, stația meteo Rădăuți)",inmh,INMH (Institutul Național de Meteorologie și Hidrologie),,institutie-publica,acceptat,Numele numește o stație meteo locală. De verificat dacă furnizorul este institutul sau o persoană.
+INSCOP Research,inscop-research,INSCOP Research,,companie,acceptat,Firmă de sondaje.
+IRES,ires,IRES (Institutul Român pentru Evaluare și Strategie),,companie,acceptat,Firmă de sondaje.
+Inspecția Muncii (Ministerul Muncii),inspectia-muncii,Inspecția Muncii,,institutie-publica,acceptat,
+Institutul Național de Statistică (INS),ins,Institutul Național de Statistică (INS),INS,institutie-publica,acceptat,
+MKOR,mkor,MKOR (sondaje de opinie),,companie,acceptat,Firmă de sondaje.
+Ministerul Dezvoltării (MDLPA),mdlpa,"Ministerul Dezvoltării, Lucrărilor Publice și Administrației (MDLPA)",MDLPA,institutie-publica,acceptat,
+Ministerul Educației,ministerul-educatiei,Ministerul Educației,,institutie-publica,acceptat,
+Ministerul Finanțelor,ministerul-finantelor,Ministerul Finanțelor,,institutie-publica,acceptat,
+"Ministerul Finanțelor (situații financiare, prin data.gov.ro)",ministerul-finantelor,Ministerul Finanțelor,,institutie-publica,acceptat,Același furnizor; data.gov.ro este portalul de publicare.
+Ministerul Investițiilor și Proiectelor Europene (MIPE),mipe,Ministerul Investițiilor și Proiectelor Europene (MIPE),,institutie-publica,acceptat,
+Ministerul Justiției (portalul instanțelor),ministerul-justitiei,Ministerul Justiției,,institutie-publica,acceptat,Portalul instanțelor aparține Ministerului Justiției.
+Monitorul Oficial,monitorul-oficial,Monitorul Oficial al României,MO,institutie-publica,acceptat,
+"Monitorul Oficial al României, Partea a II-a",monitorul-oficial,Monitorul Oficial al României,,institutie-publica,acceptat,Partea a II-a este o parte a aceleiași publicații.
+Moody’s,moodys,Moody’s,,companie,acceptat,
+Oficiul Național al Registrului Comerțului (ONRC),onrc,Oficiul Național al Registrului Comerțului (ONRC),,institutie-publica,acceptat,
+OpenStreetMap,openstreetmap,OpenStreetMap,,comunitate,acceptat,
+Parlamentul European (portalul de date deschise),parlamentul-european,Parlamentul European,,ue-international,acceptat,
+Portal Legislativ,portal-legislativ,Portal Legislativ,,institutie-publica,acceptat,De verificat cine administrează portalul.
 Presă și comunicări oficiale (nespecificate),presa-comunicari-oficiale,Presă și comunicări oficiale (nespecificate),,,propus,Nu numește un furnizor. Tipul rămâne necompletat.
-Primăria Municipiului Arad,primaria-arad,Primăria Municipiului Arad,,institutie-publica,propus,
-RETIM,retim,RETIM,,companie,propus,
-S&P,s-and-p,S&P,,companie,propus,
-S.C. Informatică Feroviară S.A.,informatica-feroviara,S.C. Informatică Feroviară S.A.,,companie,propus,
-SEAP,seap-sicap,SEAP / SICAP (achiziții publice),,institutie-publica,propus,SICAP este sistemul care a înlocuit SEAP; ambele nume trimit la același sistem.
-SICAP / SEAP,seap-sicap,SEAP / SICAP (achiziții publice),,institutie-publica,propus,Același sistem ca „SEAP”.
-Senatul României,senatul-romaniei,Senatul României,Parlament,institutie-publica,propus,Rămâne separat de Camera Deputaților.
-Wikidata,wikidata,Wikidata,,comunitate,propus,
+Primăria Municipiului Arad,primaria-arad,Primăria Municipiului Arad,,institutie-publica,acceptat,
+RETIM,retim,RETIM,,companie,acceptat,
+S&P,s-and-p,S&P,,companie,acceptat,
+S.C. Informatică Feroviară S.A.,informatica-feroviara,S.C. Informatică Feroviară S.A.,,companie,acceptat,
+SEAP,seap-sicap,SEAP (e-licitatie),,institutie-publica,acceptat,SICAP este sistemul care a înlocuit SEAP; ambele nume trimit la același sistem.
+SICAP / SEAP,seap-sicap,SEAP (e-licitatie),,institutie-publica,acceptat,Același sistem ca „SEAP”.
+Senatul României,senatul-romaniei,Senatul României,Parlament,institutie-publica,acceptat,Rămâne separat de Camera Deputaților.
+Wikidata,wikidata,Wikidata,,comunitate,acceptat,

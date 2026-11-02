@@ -1,5 +1,14 @@
 # Activity
 
+## 2026-11-02 — Owner review of `furnizori.csv`
+
+**Done**
+- Set `stare=acceptat` on the 57 rows with a `tip`, at the owner's request („ok with all”). Renamed the provider `seap-sicap` to „SEAP (e-licitatie)”.
+- Measured on a `--with-inventory` preview build: `/date/furnizori/` has 32 public institutions, 5 EU and international, 1 NGO, 10 companies, 2 communities and 1 „Neclasificat”. `validate.py --publication`: 0 errors, 0 warnings.
+
+**Decided**
+- The row „Presă și comunicări oficiale (nespecificate)” stays `propus`. An accepted row needs a `tip`, and the owner did not give one. Accepting it without a type would fail `validate.py`.
+
 ## 2026-11-02 — Views of the projects by source data
 
 **Done**
