@@ -1,5 +1,18 @@
 # Activity
 
+## 2026-11-02 — Brief: views of the projects by source data
+
+**Done**
+- Wrote `docs/briefs/source-views.md` for four new views beside `/date/lista/`: by provider, by source format, by declared licence and by host.
+
+**Hard**
+- The 58 provider names in `relatii.csv` (`date_din`, 118 accepted rows, 44 entries) are free text. Some name one provider twice („SEAP” and „SICAP / SEAP”), and some are the author's own data („Marius Comper”, 19 rows).
+
+**Decided**
+- A hand-edited `furnizori.csv` maps each provider name to a normalised provider and a `tip`. The build applies a row only when the owner accepted it. Alternative: provider entities with slugs in `obiect`. That costs a change to `relatii.csv` and to the review interface, for no gain on these pages.
+- Not done, with the reason in the brief: views by discovery method (internal), provider × variable family (the data does not link a provider to a field), and by period or geographic level (only 7 entries declare it).
+- Measured: formats per entry from `campuri.csv` (json 32, json-esantion 13, js-literale 10, csv 9, html-tabele 8); shared hosts from `descoperiri.json` (mariuscomper.uk 16, raw.githubusercontent.com 11, ins.gov2.ro 8). Not measured: licences.
+
 ## 2026-11-02 — Reader `llms-api` and the API of `monitor-energie`
 
 **Done**

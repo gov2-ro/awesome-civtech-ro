@@ -2,6 +2,10 @@
 
 Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
+## Views of the projects by source data — 2026-11-02
+
+- [ ] Four static pages beside `/date/lista/`: `/date/furnizori/` (providers of `date_din`, normalised by the new hand-edited `furnizori.csv`), `/date/formate/` (five kinds of source format), `/date/licente/` (declared licences) and `/date/gazde/` (hosts shared by two or more entries), with one view switcher. [Brief](briefs/source-views.md).
+
 ## Site structure and entity correspondences — 2026-10-30
 
 - [x] Formalize the separate structure profiler and prepare a four-project pilot. [Spec](specs/site-structure-profiler.md), [brief](briefs/site-structure-pilot.md). Defines collections, page patterns, API operations, identifier namespaces and roles, evidence, and proposed record correspondences.

@@ -1,5 +1,6 @@
 # Releases
 
+- **v0.62.0** (2026-11-02): brief for four views of the projects by source data (providers, formats, licences, hosts) and the hand-edited provider file `furnizori.csv`.
 - **v0.61.0** (2026-11-02): reader `llms-api` for the API section of `llms.txt`; the API of `monitor-energie` (12 fields) from the file that the owner saved.
 - **v0.60.0** (2026-11-01): batch H with the owner's downloads: `harta-digitalizarii-primariilor` (38 fields from the data file of its embedded map) and `monitor-energie` (241 field records from a saved page). `accesinfo` hidden. 70 entries have structured fields.
 - **v0.59.0** (2026-11-01): reader `django-modele` for Django model files; `redirectioneaza` profiled from its open-source repository (73 field records). Second pass on batch H: bundles of three single-page apps read, no credential used. 68 entries have structured fields.
