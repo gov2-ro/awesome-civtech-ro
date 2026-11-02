@@ -698,3 +698,16 @@ H,2026-11-01T14:29:36.008086+00:00,GET,https://raw.githubusercontent.com/code4ro
 H,2026-11-01T21:56:37.947118+00:00,GET,https://beta.dela0.ro/harta-digitalizarii-primariilor/,ok,200,158095,nu,batch H: the address that the owner gave
 H,2026-11-01T21:56:52.320784+00:00,GET,https://dela0-site.github.io/digitalizare-primarii/,ok,200,113222,nu,batch H: the map iframe of the page that the owner gave
 H,2026-11-01T21:57:14.953394+00:00,GET,https://dela0-site.github.io/digitalizare-primarii/digitalizare_data.json,ok,206,300000,nu,batch H: the data file that the map loads
+T,2026-11-02T13:31:07.724645+00:00,GET,https://transparenta.eu/robots.txt,ok,200,431,nu,transparenta-eu: robots.txt and terms read first (reassessment)
+T,2026-11-02T13:31:08.050606+00:00,GET,https://dev-chronos.transparenta.eu/robots.txt,ok,200,431,nu,transparenta-eu: robots.txt and terms read first (reassessment)
+T,2026-11-02T13:31:08.385741+00:00,GET,https://transparenta.eu/terms,ok,200,82622,nu,transparenta-eu: robots.txt and terms read first (reassessment)
+T,2026-11-02T13:32:09.331445+00:00,GET,https://transparenta.eu/ai/pnrr-parameters.json,ok,200,4710,nu,transparenta-eu: documentation and schema files listed by llms.txt (reassessment)
+T,2026-11-02T13:32:09.424638+00:00,GET,https://transparenta.eu/api-guide.md,ok,200,2221,nu,transparenta-eu: documentation and schema files listed by llms.txt (reassessment)
+T,2026-11-02T13:32:09.612811+00:00,GET,https://transparenta.eu/ai/index.json,ok,200,871,nu,transparenta-eu: documentation and schema files listed by llms.txt (reassessment)
+T,2026-11-02T13:32:09.737563+00:00,GET,https://transparenta.eu/sitemap.xml,ok,200,2007,nu,transparenta-eu: documentation and schema files listed by llms.txt (reassessment)
+T,2026-11-02T13:32:22.089871+00:00,GET,https://dev-chronos.transparenta.eu/ai/index.json,ok,200,871,nu,transparenta-eu dev: documentation and schema files (reassessment; dev-only evidence)
+T,2026-11-02T13:32:22.304502+00:00,GET,https://dev-chronos.transparenta.eu/api-guide.md,ok,200,2221,nu,transparenta-eu dev: documentation and schema files (reassessment; dev-only evidence)
+T,2026-11-02T13:32:22.518387+00:00,GET,https://dev-chronos.transparenta.eu/sitemap.xml,ok,200,2163,nu,transparenta-eu dev: documentation and schema files (reassessment; dev-only evidence)
+T,2026-11-02T13:37:19.640507+00:00,GET,https://raw.githubusercontent.com/ClaudiuBogdan/hack-for-facts-eb-client/d9c44f3b8beb3594c436312dd0a9098e1a5c143f/src/lib/scraper-references/catalog.ts,ok,200,21544,nu,"transparenta-eu: repository files kept as evidence for provider items (client, branch dev, commit d9c44f3b)"
+T,2026-11-02T13:37:20.092179+00:00,GET,https://raw.githubusercontent.com/ClaudiuBogdan/hack-for-facts-eb-client/d9c44f3b8beb3594c436312dd0a9098e1a5c143f/src/features/justice/components/justice-source-line.tsx,ok,200,4253,nu,"transparenta-eu: repository files kept as evidence for provider items (client, branch dev, commit d9c44f3b)"
+T,2026-11-02T13:37:20.482663+00:00,GET,https://raw.githubusercontent.com/ClaudiuBogdan/hack-for-facts-eb-client/d9c44f3b8beb3594c436312dd0a9098e1a5c143f/src/features/pnrr/components/PnrrDashboard.tsx,ok,200,17727,nu,"transparenta-eu: repository files kept as evidence for provider items (client, branch dev, commit d9c44f3b)"
