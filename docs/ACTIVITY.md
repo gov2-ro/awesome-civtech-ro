@@ -1,5 +1,40 @@
 # Activity
 
+## 2026-11-02 — Reassessment of `transparenta-eu` (branch `transparenta-eu`)
+
+**Done**
+- Providers. Two `date_din` relations for `transparenta-eu`, both `acceptat`: L230 „ANAF” and L231 „Ministerul Finanțelor”. They join the accepted providers `anaf` and `ministerul-finantelor`. No new row in `furnizori.csv`: both names exist there as `nume_sursa`.
+  Written with `review_ui.apply_provider` through `Store.decide_provider`, so the audit trail matches D132 and later: items D238 and D239, decision „Acceptat 2026-11-02 (rând L230/L231): la cererea proprietarului …”.
+  Evidence: the footer of the home page („Sursa datelor: portalul „Transparența Bugetară” administrat de ANAF/Ministerul Finanțelor”), pinned to the retained fetched copy of 2026-10-24 (sha256 `fc6dd8e969b068ce`). The terms page (version 3.0, 2026-04-06) also asks for the attribution „Sursa: Ministerul Finanțelor, via Transparenta.eu”.
+- Dev-only providers. Ten items stay open (`deschis`, the open state of the file; the brief calls it „propus”): D240 SEAP, D241 Monitorul Oficial, D242 Portal Legislativ, D243 INS, D244 MIPE, D245 Ministerul Justiției (portalul instanțelor), D246 AEP, D247 BEC, D248 ONRC, D249 AMEPIP. Each says „Numai pe versiunea dev”. Priority `mica`.
+  Evidence: three files of the public client repository at commit `d9c44f3b` (`catalog.ts`, `justice-source-line.tsx`, `PnrrDashboard.tsx`), kept with `--probe`, plus the saved dev home page (sha256 `db28d64de25275d9`, not retained as documentation: see Decided).
+- Classification. Ten C items (`deschis`): C024 functions, C025 and C026 formats, C027 and C028 subjects and themes, C029 purposes, C030 and C031 technologies, C032 maturity, C033 institutions. `intrari.csv` is unchanged.
+- Inventory. `ai/pnrr-parameters.json` admitted (discovered since 2026-10-24, outside the 3-file limit): 25 field records, 0 requests (the body came from the probe cache). `api-guide.md` admitted: the `markdown` reader finds no pipe table, so 0 field records. `transparenta-eu`: 4 sources and 35 field records before; 6 sources and 60 field records after.
+- Repository read (shallow clones, `python3 -I`, no build or install script): see Measured.
+- Checks: `validate.py --publication` 0 errors, 0 warnings; `inventory.py --check` 0 errors (226 bodies hash-verified); `inventory_report.py --check` 0 outputs out of date; unit suite 1330 tests, 8 skipped, OK; `build.py --with-inventory` into a scratch directory: `/date/furnizori/` lists `transparenta-eu` under ANAF (7 entries) and under Ministerul Finanțelor (11 entries).
+
+**Hard**
+- The premise „the inventory lacks /pnrr” is only half true. The first collection (2026-10-24) already had `/pnrr` and `ai/pnrr-parameters.json` in `llms.txt`. The source was `descoperit`, not admitted, because of `--max-files 3`. The saved `llms.txt` (sha256 `eba5f749625f2f1f`) differs from the retained copy only by one trailing newline, so I did not import it.
+- The saved home page cannot become documentation: `collect_docs.py --import-saved` refuses (a fetched page with that address exists). The retained fetched page already holds the footer; the pin of D238 and D239 points to it.
+- The dev site is not the same product. Its `/ai/index.json`, `/api-guide.md` and `robots.txt` are the production files (same size, same links to `transparenta.eu`). Only its `llms.txt` and `sitemap.xml` differ (`/national-budget`, `/public-enterprises`).
+- The current classification (`drept-justitie`, `legislatie`, `proceduri-judiciare`) describes surfaces that only the dev site has. The live site is a budget explorer, an entity analytics view, a PNRR dashboard, a map, a chart builder and a campaign (C027).
+
+**Decided**
+- Names in `relatii.csv` are „ANAF” and „Ministerul Finanțelor”. The long names of the brief are the `nume` of the providers, not the names of the relations. Alternative: write the long names; that adds two names to `furnizori.csv` for nothing.
+- The dev home page is not imported into `observatii/documentare/`. `inventory.py` would read its input controls and links as documentation of the live entry, and mix dev facts into `intrari-utilizator.csv`. The D items cite the file by name and hash instead. Alternative: import under the dev address; reopen if the owner wants a retained copy.
+- The dev `llms.txt` is not a source of the entry, for the same reason.
+- MIPE (D244) stays proposed although `/pnrr` is live (sitemap, `llms.txt`, `ai/index.json`): no retained production page names MIPE. The dashboard component of the repository names it.
+- The priority of every dev-only item is `mica`, and of the classification items `medie` or `mica`, never `mare` (an open high-priority item blocks the publication gate).
+
+**Measured** (2026-11-02)
+- Requests, host and status: `transparenta.eu` 6 (robots.txt, terms, ai/pnrr-parameters.json, api-guide.md, ai/index.json, sitemap.xml; all 200); `dev-chronos.transparenta.eu` 4 (robots.txt, ai/index.json, api-guide.md, sitemap.xml; all 200); `raw.githubusercontent.com` 3 (all 200). The limits were 15 and 15. All rows are in `jurnal-cereri.csv`, lot `T`. Also 2 `git clone --depth 1` and 4 GitHub API reads (repositories of the project's author). No browser, no API data request, no 401, 403 or 429.
+- `robots.txt`: `User-agent: *` allows `/`; it blocks only the training crawlers GPTBot, ClaudeBot, CCBot and Google-Extended. The terms forbid no automated access, and say: „Datele deschise urmează licența sursei”.
+- Client repository (branch `dev`, commit `d9c44f3b`, 5,558 files, 413 route files): the data layer is a GraphQL client (349 distinct operation names) with a proxy at `/api/v1/graphql`. The upstream is `VITE_API_URL` (production template `https://api.transparenta.eu`, dev `https://dev-chronos-api.transparenta.eu`, internal service `hack-for-facts-eb-server`). PNRR also reads the official files as raw JSON through `/api/pnrr/raw/{projects,payments,indicators}`, from a bucket that mirrors the MIPE publication.
+  The file `src/lib/scraper-references/catalog.ts` lists 20 dataset references with a lifecycle: production (budget execution from the ANAF extranet, INS indicators, PNRR, legal acts), loading (ONRC, ANAF fiscal, SEAP/SICAP, AMEPIP, S1001, NGO registry, parliament, elections) and experimental (reference codes, investments, CNA licences). The scraper repository `hack-for-facts-eb-scrapper` is not public (404).
+- Server repository `ClaudiuBogdan/hack-for-facts-eb-server` is public (Apache-2.0, branch `main`, commit `2c8c3905`, 2026-04-30): Fastify, GraphQL (Mercurius), PostgreSQL. Modules include entity analytics, commitments, INS, MCP, notifications and a file-based store of five macro datasets (`datasets/yaml`: BNR exchange rates, INSSE CPI, GDP, inflation, population). Other public repositories of the author that I did not read: `hack-for-facts-eb-maintenance`, `transparenta-eu-ins-loader`, `transparenta-eu-server-migration`.
+- Production surfaces (sitemap, 13 addresses): `/`, `/charts`, `/map`, `/budget-explorer`, `/pnrr`, `/provocare`, `/primarie`, `/primarie/harta`, `/entity-analytics`, and four legal pages. The dev home page lists 13 surfaces and „22 seturi de date, 8 servite live”.
+- Assumed, not measured: that the production `/pnrr` page shows the MIPE source line as the repository component does; that the production API is open (no request was made to it); that a live AI feature exists (the terms say „pot”).
+
 ## 2026-11-02 — CI: the three failing checks fixed (branch `fix-ci`)
 
 **Done**

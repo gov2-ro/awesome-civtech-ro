@@ -1,6 +1,6 @@
 # Brief — reassessment of transparenta-eu
 
-Date: 2026-11-02. Author: coordinator (Opus). Executor: Sonnet. Status: in progress.
+Date: 2026-11-02. Author: coordinator (Opus). Executor: Sonnet. Status: done 2026-11-02 (see `docs/ACTIVITY.md`).
 
 ## Goal
 

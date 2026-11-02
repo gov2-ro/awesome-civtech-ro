@@ -2,6 +2,17 @@
 
 Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
+## transparenta-eu reassessment — 2026-11-02
+
+- [x] Reassess `transparenta-eu` (production, dev site, public repositories). [Brief](briefs/transparenta-reassessment.md). Done 2026-11-02 (branch `transparenta-eu`): two accepted providers (L230 ANAF, L231 Ministerul Finanțelor), ten open dev-only provider items (D240–D249), ten open classification items (C024–C033), `ai/pnrr-parameters.json` and `api-guide.md` admitted (35 → 60 field records, 4 → 6 sources). 10 requests to the two hosts, 3 to GitHub.
+- [ ] Owner: review D240–D249 (providers that only the dev site or the repository names). Accept them when the dev surface ships. D244 (MIPE) may be accepted earlier if a production `/pnrr` page shows the source line: one browser render of that page would settle it.
+- [ ] Owner: review C024–C033 (classification of the live site). C027 removes three dev-only subjects and themes from the live entry. C024, C025, C028 and C032 add what the production site shows. C026, C030 and C031 need a live proof first.
+- [ ] Structure profile of `transparenta-eu` (the pilot report `docs/reports/site-structure-pilot/` stays frozen): it should list `/pnrr`, `/map`, `/charts`, `/primarie` and `/provocare`, and the PNRR parameters schema. Add them with a recipe after the owner decides C024–C033.
+- [ ] Recheck the dev-only features when dev ships: national budget, SEAP procurement, companies, public enterprises, NGOs, legislation, justice (courts), elections, INS statistics. The dev `llms.txt` already lists `/national-budget` and `/public-enterprises`; no `ai/*.json` schema exists for them yet. Then read `llms.txt`, `ai/index.json` and the sitemap again, and add the new schemas.
+- [ ] Reader for `api-guide.md`: the `markdown` reader finds only pipe tables, and the guide lists parameters as bullets. It adds 0 field records; its parameters repeat the `ai/*.json` schemas. Write a reader only if a guide has data that the schemas lack.
+- [ ] The owner may want the dev home page retained as documentation (`collect_docs.py --import-saved` with the dev address). Not done: it would mix dev facts into the profile of the live entry (see the activity entry).
+- [ ] Other public repositories of the project's author: `transparenta-eu-ins-loader`, `hack-for-facts-eb-maintenance`, `transparenta-eu-server-migration`. Not read. The scraper repository is not public.
+
 ## CI — 2026-11-02
 
 - [x] Defect: `validate.yml` fails on `main` since 2026-10-31 (run 41209080813; the last success is 41108006979, 2026-10-30). Three checks fail, the same in each run: `test_profile_structure.Engine.test_seed_pilot_is_idempotent_and_has_no_owner_decisions` (error), `test_inventory_datasette.TrackedBaniPartide.test_no_request_was_made_to_a_listed_host_and_the_inventory_keeps_no_value_of_a_row` (failure), and the browser check „topic ancestry subiect:acces-informatii ⊇ subiect:legea-544-2001” of `check_preview.py`. They also fail locally on `b9612a7`, before the views by source. `pages.yml` still deploys.
