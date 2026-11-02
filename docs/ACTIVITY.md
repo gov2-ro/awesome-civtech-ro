@@ -1,5 +1,21 @@
 # Activity
 
+## 2026-11-02 — `/date/furnizori/`: grouped order, jump list, entry icons
+
+**Done**
+- Headers: the count and the sort mark stand on the line of the name (`.ov-sortable thead th small` inline, headers `nowrap`). Entry names in the matrix rows stay on one line, trimmed at 220 px with an ellipsis; the full name is in `title`.
+- Order: `grouped_order` sorts both axes at the start. Entries: more providers first, then by the pattern of their marks over the providers, then by name. Providers: more entries first, then by their pattern over the entries. A new column „Furnizori” counts the providers of each entry. A click on a header still sorts by that column; the start order is the fallback.
+- A jump list (`ov-toc`) under the page note: Matrice, each provider type with its count, and „Fără furnizor”. The provider types no longer sit only below the long matrix.
+- Entry icons: `inventory_site.entry_icon` puts the icon of `profile.py` (`img/icon/`, 16 × 16, `vertical-align:-3px`) before every entry name on `/date/lista/` and the four views. An entry without an icon gets an empty box of the same size, so that names stay aligned. The vertical headers of the pivot have no icon.
+- Checks: unit tests 55 → 56 in `test_inventory_site.py` (`grouped_order`, the jump list); `check_data_finder.py` 150 (grouped rows, one-line names; the short-name selector now needs hidden text, because entry links also carry `title`). validate --publication 0 errors; full unit suite OK (8 skipped); `check_inventory_preview` 59, `check_preview` 141.
+
+**Hard**
+- The first new check named its variable `rows`, which the part F loop later reads: it failed with a `TypeError` far from the cause. Renamed `widths`.
+
+**Decided**
+- Grouping is a sort key (count, then mark pattern), not a clustering algorithm. It is deterministic, has no dependency, and puts entries with the same providers side by side. A similarity clustering (for example a seriation) would group better, but its order is hard to explain on the page.
+- Provider images are not fetched now: a backlog item asks for a brief first (one request per provider site).
+
 ## 2026-11-02 — Reassessment of `transparenta-eu` (branch `transparenta-eu`)
 
 **Done**

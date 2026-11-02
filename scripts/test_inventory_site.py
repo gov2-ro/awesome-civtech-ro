@@ -497,9 +497,21 @@ class SourceViews(unittest.TestCase):
         self.assertIn('Gamma', page[page.index('id="fara-furnizor"'):])
         self.assertNotIn('>Offline<', page, 'an entry out of scope is not listed')
         self.assertEqual((summary['furnizori']['entries'], summary['furnizori']['bare']), (2, 1))
-        self.assertEqual(re.findall(r'<tr id="m-(\w+)"', page), ['a', 'b'])
+        self.assertEqual(re.findall(r'<tr id="m-(\w+)"', page), ['b', 'a'],
+                         'both have two providers; b has INS, which comes before SICAP / SEAP among the providers of one entry')
+        self.assertIn('class="ov-toc"', page)
+        self.assertIn('href="date/furnizori/#tip-institutie-publica"', page)
         self.assertEqual(page.count('class="ov-mark"'), 8, 'a mark for every pair of entry and provider, in both orientations: a-seap, a-sicap, b-seap, b-ins')
         self.assertIn('Același furnizor nu înseamnă același set de date.', page)
+
+    def test_the_matrix_starts_grouped_on_both_axes(self):
+        from inventory_views import grouped_order
+        users = [{'slug': s, 'name': s} for s in ('a', 'b', 'c', 'd')]
+        ranked = [{'id': 'p', 'entries': [1, 2, 3]}, {'id': 'q', 'entries': [1, 2]}, {'id': 'r', 'entries': [1, 2]}]
+        used = {'p': {'a', 'c', 'd'}, 'q': {'b', 'd'}, 'r': {'a', 'c'}}
+        order, providers = grouped_order(users, ranked, used)
+        self.assertEqual([u['slug'] for u in order], ['d', 'a', 'c', 'b'], 'more providers first; d marks the first two providers; a and c have the same providers and are neighbours')
+        self.assertEqual([r['id'] for r in providers], ['p', 'q', 'r'], 'more entries first; q marks the row d, which comes first, so q comes before r')
 
     def test_the_matrix_holds_every_provider_in_both_orientations_sorted_by_count_then_name(self):
         items = [built(f'e{n}', name=f'E{n:02}', dataSources=[{'name': f'P{k:02}', 'evidence': 'https://e.org/'} for k in range(n + 1)]) for n in range(15)]

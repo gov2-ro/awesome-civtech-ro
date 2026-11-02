@@ -142,12 +142,15 @@
 .ov-views a[aria-current="page"] { color:var(--ink); font-weight:600; text-decoration:none; border-bottom:2px solid currentColor; }
 .ov-fit { min-width:0; }
 .ov-matrix { min-width:0; }
-.ov-matrix thead th { white-space:normal; min-width:84px; max-width:130px; vertical-align:bottom; font-weight:600; }
+.ov-matrix thead th { min-width:84px; max-width:130px; vertical-align:bottom; font-weight:600; }
 .ov-matrix td { text-align:center; min-width:84px; }
 .ov-mark { position:relative; color:var(--ink); font-weight:600; background:var(--mark-bg); }
 .ov-table tbody tr:hover > .ov-mark { background:var(--mark-bg); }
 .ov-matrix tbody th { min-width:130px; max-width:190px; }
-.ov-matrix thead th a, .ov-matrix tbody th a { overflow-wrap:break-word; }
+.ov-matrix thead th a { overflow-wrap:break-word; }
+.ov-matrix tbody th a { display:block; max-width:220px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.ov-sortable thead th:not(.ov-vert) { white-space:nowrap; }
+.ov-sortable thead th small { display:inline; margin-left:5px; }
 .ov-matrix thead th { min-width:84px; max-width:130px; }
 .ov-matrix td { min-width:60px; }
 .ov-matrix td.ov-count { min-width:0; color:var(--muted); font-family:var(--font-mono); font-size:12px; }
@@ -171,6 +174,11 @@ th[aria-sort="descending"] .ov-sort span::before { content:"▼"; }
 th[aria-sort] .ov-sort span { font-size:0; }
 th[aria-sort] .ov-sort span::before { font-size:11px; }
 .ov-matrix-box { margin-bottom:28px; }
+.ov-toc { display:flex; flex-wrap:wrap; gap:6px 8px; margin:0 0 22px; font-size:13px; }
+.ov-toc a { padding:4px 10px; border:1px solid var(--line-strong); border-radius:999px; text-decoration:none; color:var(--ink-2); background:var(--bg); }
+.ov-toc a:hover { border-color:var(--accent); color:var(--accent); }
+.ov-toc small { margin-left:6px; color:var(--muted); font-family:var(--font-mono); font-size:11px; }
+.ov-group, .ov-bare, .ov-matrix-box { scroll-margin-top:12px; }
 .ov-matrix-box h2, .ov-group > h2 { font-size:19px; margin-bottom:10px; }
 .ov-group { border-top:1px solid var(--line); padding-top:18px; margin-top:24px; }
 .ov-group > h2 small, .ov-provider h3 small, .ov-format h3 small, .ov-licence h3 small, .ov-host h3 small, .ov-sources > li > small { font:400 12px/1.4 var(--font-mono); color:var(--muted); margin-left:10px; }
@@ -186,3 +194,6 @@ th[aria-sort] .ov-sort span::before { font-size:11px; }
 .ov-own { margin:26px 0 8px; font-size:14px; border-top:1px solid var(--line); padding-top:18px; }
 .vp-links { display:flex; flex-wrap:wrap; gap:4px 18px; font-size:14px; color:var(--ink-2); margin:0 0 6px; }
 @media (max-width:700px) { .ov-views { gap:4px 14px; } .ov-entries { columns:1; } .ov-matrix tbody th { min-width:110px; max-width:130px; } .ov-scroll { max-height:calc(100vh - 100px); } }
+.ov-ico { display:inline-block; width:16px; height:16px; margin-right:6px; vertical-align:-3px; border-radius:3px; object-fit:contain; }
+span.ov-ico { background:var(--surface-2); }
+a .ov-ico { text-decoration:none; }

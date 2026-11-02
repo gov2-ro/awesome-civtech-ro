@@ -266,6 +266,14 @@ def entry_providers(item, table):
     return list(found.values())
 
 
+def entry_icon(item):
+    """The icon of an entry before its name on the pages of `date/`: the favicon or logo that `profile.py` saved (`img/icon/`), 16 px, on the line of the
+    text. An entry without an icon gets an empty box of the same size, so that the names stay aligned."""
+    if item.get('icon'):
+        return f'<img class="ov-ico" src="{html.escape(item["icon"], quote=True)}" alt="" width="16" height="16" loading="lazy">'
+    return '<span class="ov-ico" aria-hidden="true"></span>'
+
+
 def publish_overview(items, site, projections, concepts, families):
     """Write `date/lista/`: a table with one row per project or resource that has extracted fields, one column per family of variables,
     and a last column for the fields in no group. A cell lists the group labels (the normalised names), not the source field names;
@@ -280,7 +288,7 @@ def publish_overview(items, site, projections, concepts, families):
     entries = sorted((i for i in items if not scope_reason(i)), key=lambda i: i['name'].casefold())
     for item in entries:
         fields, sources = projections.get(item['slug'], ([], []))
-        link = f'<a href="{e(item["kind"])}/{e(item["slug"])}/">{e(item["name"])}</a>'
+        link = f'<a href="{e(item["kind"])}/{e(item["slug"])}/">{entry_icon(item)}{e(item["name"])}</a>'
         if not fields:
             bare.append(link)
             continue
