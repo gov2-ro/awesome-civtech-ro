@@ -9775,6 +9775,26 @@
       ]
     },
     {
+      "proiect": "transparenta-eu",
+      "url": "https://transparenta.eu/api-guide.md",
+      "sursa_id": "9d82018adc1996d822c5",
+      "stare": "activ",
+      "metoda": "url-in-text",
+      "parinte": "https://transparenta.eu/llms.txt",
+      "link_original": "https://transparenta.eu/api-guide.md",
+      "dovada": null,
+      "locator_stare": "necunoscut",
+      "descoperit_la": "2026-11-02T13:39:32.204720+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-02T13:39:32.204720+00:00"
+        }
+      ]
+    },
+    {
       "proiect": "trei-din-patru",
       "url": "https://ins.gov2.ro/api/datasets/SCL101B?lang=en",
       "sursa_id": "c4b0b971cd54e91e6b95",

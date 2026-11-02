@@ -134951,6 +134951,23 @@
       "baza_tipului": "schema-declarata"
     },
     {
+      "url": "https://transparenta.eu/api-guide.md",
+      "final_url": "https://transparenta.eu/api-guide.md",
+      "http_status": 200,
+      "fetched_at": "2026-11-02T13:32:09.332134+00:00",
+      "content_type": "text/markdown",
+      "state": "ok",
+      "id": "9d82018adc1996d822c5",
+      "campuri": [],
+      "completitudine": "partial",
+      "snapshot": "surse/9d82018adc1996d822c5-d236f34b4856e573.json",
+      "sha256": "d236f34b4856e5738bc4cd111ab2113eb3d334c9cea157e20384d1b9c7cbc9a0",
+      "format": "markdown",
+      "stare": "analizat",
+      "limita_atinsa": false,
+      "baza_tipului": "cod-sau-documentatie"
+    },
+    {
       "url": "https://unde.geo-spatial.org/data/gridspec.json",
       "final_url": "https://unde.geo-spatial.org/data/gridspec.json",
       "http_status": 200,
