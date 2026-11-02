@@ -362,7 +362,7 @@ with sync_playwright() as pw:
     page.set_viewport_size({'width': 1280, 'height': 900})
     page.goto(BASE + 'date/furnizori/')
     names = {d['name'] for i in ITEMS if i['slug'] in EXPECTED for d in i.get('dataSources', [])}
-    body = page.locator('main').inner_text()
+    body = page.locator('main').text_content()
     ok('furnizori: every provider name of an entry in scope is on the page', all(n in body for n in names) and len(names) > 0)
     without = {i['slug'] for i in ITEMS if i['slug'] in EXPECTED and not i.get('dataSources')}
     named = {h.rstrip('/').split('/')[-1] for h in page.locator('#fara-furnizor a').evaluate_all('els=>els.map(e=>e.getAttribute("href"))')}
@@ -384,6 +384,15 @@ with sync_playwright() as pw:
     ok('furnizori: the entries start grouped, the ones with more providers first', widths == sorted(widths, reverse=True) and widths[0] > widths[-1])
     trimmed = page.locator('table[data-matrix="entries"] tbody th a').evaluate_all('els=>els.map(a=>[a.title===a.textContent, getComputedStyle(a).whiteSpace, a.getBoundingClientRect().height])')
     ok('furnizori: an entry name stays on one line, trimmed, with the full name in title', all(t and ws == 'nowrap' and h < 30 for t, ws, h in trimmed))
+    visible = lambda: page.locator('#matrice, .ov-group, #fara-furnizor').evaluate_all('els=>els.filter(e=>!e.hidden).map(e=>e.id)')
+    ok('furnizori: the tabs show the matrix only at the start', visible() == ['matrice'])
+    page.locator('nav.ov-toc a[href$="#tip-institutie-publica"]').click()
+    page.wait_for_timeout(100)
+    ok('furnizori: a tab shows its provider type only, and marks itself', visible() == ['tip-institutie-publica']
+       and page.locator('nav.ov-toc a[aria-current]').get_attribute('href').endswith('#tip-institutie-publica'))
+    page.goto(BASE + 'date/furnizori/#f-ins'); page.wait_for_timeout(100)
+    ok('furnizori: the address of a provider opens the tab of its type', visible() == ['tip-institutie-publica'] or page.locator('#f-ins').count() == 0)
+    page.goto(BASE + 'date/furnizori/'); page.wait_for_selector('[data-orient-toggle]:not([hidden])')
     ok('furnizori: the headers use the short names (no header longer than 24 characters unless it is the name itself)',
        all(len(t) <= 24 for t in page.locator('table[data-matrix="entries"] thead a[href*="#f-"] > [aria-hidden]').all_inner_texts()))
     ok('furnizori: the list below keeps the full name', any(t.startswith('Monitorul Oficial al României') for t in page.locator('.ov-provider h3').all_inner_texts()))

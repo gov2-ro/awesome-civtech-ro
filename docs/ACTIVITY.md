@@ -9,6 +9,9 @@
 - Entry icons: `inventory_site.entry_icon` puts the icon of `profile.py` (`img/icon/`, 16 × 16, `vertical-align:-3px`) before every entry name on `/date/lista/` and the four views. An entry without an icon gets an empty box of the same size, so that names stay aligned. The vertical headers of the pivot have no icon.
 - Checks: unit tests 55 → 56 in `test_inventory_site.py` (`grouped_order`, the jump list); `check_data_finder.py` 150 (grouped rows, one-line names; the short-name selector now needs hidden text, because entry links also carry `title`). validate --publication 0 errors; full unit suite OK (8 skipped); `check_inventory_preview` 59, `check_preview` 141.
 
+- Follow-up (v0.65.1): the jump list became tabs (`nav[data-tabs]` in `inventory-tables.js`). The page shows one section at a time; the link of the active section has `aria-current`. An address inside a section (`#f-ins`) opens the tab that holds it. Without the script every section shows. `check_data_finder.py` 153 checks (+3: the start tab, a tab click, an address of a provider).
+- The local `site/date/` was still the build of 2026-10-30: git ignores it and only `pages.yml` rebuilds it. `python3 scripts/build.py --with-inventory` refreshes it. The same build refreshed `site/data.json`, `feed.xml` and `llms.txt`, which still listed `accesinfo` (hidden on 2026-11-01).
+
 **Hard**
 - The first new check named its variable `rows`, which the part F loop later reads: it failed with a `TypeError` far from the cause. Renamed `widths`.
 

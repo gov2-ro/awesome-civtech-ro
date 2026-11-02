@@ -176,6 +176,8 @@ th[aria-sort] .ov-sort span::before { font-size:11px; }
 .ov-matrix-box { margin-bottom:28px; }
 .ov-toc { display:flex; flex-wrap:wrap; gap:6px 8px; margin:0 0 22px; font-size:13px; }
 .ov-toc a { padding:4px 10px; border:1px solid var(--line-strong); border-radius:999px; text-decoration:none; color:var(--ink-2); background:var(--bg); }
+.ov-toc a[aria-current] { background:var(--surface-2); color:var(--ink); border-color:var(--ink-2); font-weight:600; }
+.ov-group[hidden], .ov-bare[hidden], .ov-matrix-box[hidden] { display:none; }
 .ov-toc a:hover { border-color:var(--accent); color:var(--accent); }
 .ov-toc small { margin-left:6px; color:var(--muted); font-family:var(--font-mono); font-size:11px; }
 .ov-group, .ov-bare, .ov-matrix-box { scroll-margin-top:12px; }

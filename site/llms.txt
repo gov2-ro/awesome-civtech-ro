@@ -1,7 +1,7 @@
 # CivTech România
 
 > Colecție curatoriată de proiecte civic tech, organizații și resurse din România: instrumente civice, date deschise
-> și proiecte de bună guvernare. 108 proiecte, 13 organizații, 21 resurse.
+> și proiecte de bună guvernare. 107 proiecte, 13 organizații, 21 resurse.
 
 Fiecare intrare are o pagină proprie la https://civtech.gov2.ro/<tip>/<slug>/ (tip: proiect, organizatie, resursa). Starea
 (activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-10-30. Textele sunt în
@@ -72,7 +72,6 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 
 ## Proiecte: Drept, justiție și drepturi
 
-- [AccesInfo](https://civtech.gov2.ro/proiect/accesinfo/): Redactarea și urmărirea cererilor de informații publice (Legea 544). Site: https://play.google.com/apps/testing/com.radautiul_civic.access_info
 - [AI Aflat](https://civtech.gov2.ro/proiect/ai-aflat/): Asistent AI care explică legislația pe înțeles. Site: https://ai-aflat.ro
 - [Ce zice legea](https://civtech.gov2.ro/proiect/ce-zice-legea/): Site: https://cezicelegea.ro/
 - [Despre femicid](https://civtech.gov2.ro/proiect/despre-femicid/): Cazurile de femicid din România. Site: https://desprefemicid.ro/

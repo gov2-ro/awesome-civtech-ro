@@ -65,6 +65,25 @@
     show('entries');
   }
 
+  // A jump list with `data-tabs` shows one section at a time: the section that its link names, or the section that holds the target of the address
+  // (for example `#f-ins`, a provider inside its type). Without the script every section shows, one after the other.
+  function tabs(nav) {
+    var links = Array.prototype.slice.call(nav.querySelectorAll('a[href*="#"]'));
+    var panels = links.map(function (a) { return document.getElementById(a.getAttribute('href').split('#')[1]); });
+    if (panels.some(function (p) { return !p; })) return;
+    function show(id, scroll) {
+      var target = id && document.getElementById(id);
+      var index = 0;
+      panels.forEach(function (p, n) { if (target && (p === target || p.contains(target))) index = n; });
+      panels.forEach(function (p, n) { p.hidden = n !== index; });
+      links.forEach(function (a, n) { if (n === index) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
+      if (scroll && target) target.scrollIntoView();
+    }
+    window.addEventListener('hashchange', function () { show(decodeURIComponent(location.hash.slice(1)), true); });
+    show(decodeURIComponent(location.hash.slice(1)), true);
+  }
+
   Array.prototype.forEach.call(document.querySelectorAll('table.ov-sortable'), sortable);
   Array.prototype.forEach.call(document.querySelectorAll('[data-orient-toggle]'), orientation);
+  Array.prototype.forEach.call(document.querySelectorAll('nav[data-tabs]'), tabs);
 }());

@@ -175,7 +175,7 @@ def providers_view(items, projections, table, relations):
         toc.append(f'<a href="{PAGE_DIR}/furnizori/#fara-furnizor">Fără furnizor<small>{len(bare)}</small></a>')
     if ranked:
         toc[0] = toc[0].replace('href="#matrice"', f'href="{PAGE_DIR}/furnizori/#matrice"')
-    nav = f'<nav class="ov-toc" aria-label="Pe această pagină">{"".join(toc)}</nav>' if toc else ''
+    nav = f'<nav class="ov-toc" aria-label="Pe această pagină" data-tabs>{"".join(toc)}</nav>' if toc else ''
     content = note + nav + matrix + ''.join(sections) + none + left_out_section(left_out(items))
     found_summary = {'groups': len(sections), 'providers': len(found), 'entries': len(entries) - len(bare), 'matrix': len(ranked), 'bare': len(bare)}
     return content, found_summary
