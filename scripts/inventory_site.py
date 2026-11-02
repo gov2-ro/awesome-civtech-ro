@@ -4,11 +4,12 @@ import json
 import hashlib
 import re
 import shutil
+import unicodedata
 from pathlib import Path
 from urllib.parse import quote, unquote, urlsplit
 
 from collect_docs import is_saved
-from common import inventory_exclusion, observation_paths, public_reason
+from common import RESERVED_DATA_SLUGS, inventory_exclusion, observation_paths, provider_table, providers_path, public_reason, read_providers
 from inventory_concepts import PUBLIC_BASIS_LABELS, active_groups, as_list, group_state, selector_matches
 from inventory_persons import is_marked
 
@@ -27,12 +28,18 @@ FORMATS = {'openapi': 'Schemă API', 'json-schema': 'Schemă JSON', 'metadate-in
            'js-literale': 'Date din scriptul paginii', 'html-lista-seturi': 'Pagină cu lista seturilor de date', 'baza-datasette': 'Bază de date Datasette',
            'json-esantion': 'Fișier JSON citit parțial', 'django-modele': 'Modele Django din codul sursă', 'llms-api': 'Secțiunea API din llms.txt', 'rsc-json': 'Date JSON din răspunsul de navigare Next.js', 'html-glosar': 'Pagină cu glosarul câmpurilor', 'html-tabele-eurostat': 'Tabele Eurostat lipite în pagină',
            'js-pozitii': 'Pozițiile citite de scriptul paginii', 'typescript': 'Tipuri TypeScript'}
-SOURCE_LABELS = {
-    'Institutul Național de Statistică (INS)': 'INS', 'Ministerul Dezvoltării (MDLPA)': 'MDLPA',
-    'Administrația Prezidențială': 'Adm. Prez', 'Monitorul Oficial': 'MO',
-    'Camera Deputaților': 'Parlament', 'Senatul României': 'Parlament',
-    'Guvernul României': 'Guvern', 'Consiliul Uniunii Europene': 'Consiliul UE',
+
+# The five kinds of source format on `/date/formate/` (docs/briefs/source-views.md, part C). A test fails when a format of `FORMATS` has no kind.
+FORMAT_KINDS = (('api', 'API și JSON'), ('fisiere', 'Fișiere și seturi descrise'), ('tabele', 'Tabele în pagină'),
+                ('script', 'Scriptul paginii'), ('cod', 'Cod sursă'))
+FORMAT_KIND_OF = {
+    **dict.fromkeys(('openapi', 'json-schema', 'json', 'json-esantion', 'html-api-docs', 'llms-api', 'rsc-json', 'baza-datasette', 'json-comentat'), 'api'),
+    **dict.fromkeys(('csv', 'html-carduri-csv', 'html-lista-seturi', 'lista-ins', 'metadate-ins', 'markdown'), 'fisiere'),
+    **dict.fromkeys(('html-tabele', 'html-tabele-eurostat', 'html-glosar'), 'tabele'),
+    **dict.fromkeys(('js-literale', 'js-pozitii', 'js-acces'), 'script'),
+    **dict.fromkeys(('php', 'sql', 'typescript', 'csharp', 'django-modele'), 'cod'),
 }
+OTHER_KIND = ('altele', 'Alt format')  # a format that `FORMATS` does not list: the page still shows it, and the test above does not pass until it has a kind
 
 
 # What the finder leaves out of the variable inventory, by the two reasons that the public pages name, in the order of the note on `/date/lista/`.
@@ -114,6 +121,7 @@ def publish_finder(items, root, site, projections, vocabulary=None, entity_looku
         if has_page(item, projections):
             # The explorer links the page from the „Date & metodă” panel, so the key goes into data.json (build.py writes it after this call).
             item.setdefault('inventory', {})['page'] = f'{PAGE_DIR}/{item["slug"]}/'
+    labels = {r['nume_sursa']: r['eticheta'] for r in read_providers(providers_path(root)) if r['eticheta']}
     entries = []
     for item in items:
         if scope_reason(item):
@@ -124,7 +132,7 @@ def publish_finder(items, root, site, projections, vocabulary=None, entity_looku
             url = http_url(provider.get('evidence'))
             if not url:
                 continue
-            label = SOURCE_LABELS.get(provider['name'], provider['name'])
+            label = labels.get(provider['name'], provider['name'])
             providers.setdefault(label, []).append({'name': provider['name'], 'url': url})
         entries.append({'slug': item['slug'], 'name': item['name'], 'kind': item['kind'],
                         'description': item.get('desc') or item.get('tagline', ''),
@@ -156,7 +164,10 @@ def publish_finder(items, root, site, projections, vocabulary=None, entity_looku
     page.mkdir(exist_ok=True)
     (page / 'index.html').write_text(doc)
     publish_overview(items, site, projections, concepts, families)
-    publish_variable_pages(items, site, projections, concepts, families, vocabulary)
+    from inventory_views import publish_source_views  # a late import: that module uses this one
+    table = provider_table(read_providers(providers_path(root)))
+    publish_source_views(items, site, projections, table, vocabulary)
+    publish_variable_pages(items, site, projections, concepts, families, vocabulary, table)
 
 
 def field_groups(slug, fields, sources, concepts):
@@ -207,6 +218,54 @@ def left_out_section(counts):
             f'cele inactive sunt la „Inactive”.</p><ul>{"".join(items)}</ul></section>')
 
 
+VIEWS = (('lista', 'Pe familii de variabile'), ('furnizori', 'Pe furnizori'), ('formate', 'Pe formate'), ('licente', 'Pe licențe'), ('gazde', 'Pe gazde'))
+assert tuple(v for v, _ in VIEWS) == RESERVED_DATA_SLUGS  # the names of the views are the reserved slugs, in one order
+
+
+def view_switcher(current):
+    """The links between the five views of the finder (`date/lista/` and the four pages beside it), below the header. The current page carries
+    `aria-current="page"`. Every page uses this function; the hrefs are relative to the `<base href="../../">` of the pages."""
+    links = ''.join(f'<a href="{PAGE_DIR}/{name}/"' + (' aria-current="page"' if name == current else '') + f'>{label}</a>' for name, label in VIEWS)
+    return f'<nav class="ov-views" aria-label="Vederi după sursele datelor">{links}</nav>'
+
+
+def write_view(site, name, title, description, content):
+    """Write `date/<name>/index.html` from the template of the views: the title, the switcher with `name` marked, and the content.
+    The two style sheets get the hash of their current file."""
+    doc = ((Path(__file__).parent / 'templates/inventory-list.html').read_text().replace('<!--TITLE-->', html.escape(title))
+           .replace('<!--DESCRIPTION-->', html.escape(description, quote=True)).replace('<!--SWITCHER-->', view_switcher(name)).replace('<!--LISTA-->', content))
+    for asset in ('style.css', 'inventory.css'):
+        digest = hashlib.sha1((site / asset).read_bytes()).hexdigest()[:10]
+        doc = doc.replace(f'{asset}?v=BUILD', f'{asset}?v={digest}')
+    page = site / PAGE_DIR / name
+    page.mkdir(parents=True, exist_ok=True)
+    (page / 'index.html').write_text(doc)
+
+
+def provider_slug(name):
+    """An anchor-safe id of a provider name: ASCII letters and digits, with single dashes."""
+    folded = unicodedata.normalize('NFKD', name).encode('ascii', 'ignore').decode()
+    return re.sub(r'[^a-z0-9]+', '-', folded.lower()).strip('-') or 'furnizor'
+
+
+def resolve_provider(name, table):
+    """The provider that a name of `date_din` stands for. An accepted row of `furnizori.csv` (`table`, see `common.provider_table`) gives the
+    normalised id, name and type. Without one, the name is a provider of its own, with an unknown type: the page is honest before the review."""
+    row = table.get(name)
+    if row:
+        return {'id': row['furnizor'], 'name': row['nume'], 'type': row['tip'], 'accepted': True}
+    return {'id': 'nume-' + provider_slug(name), 'name': name, 'type': '', 'accepted': False}
+
+
+def entry_providers(item, table):
+    """The distinct providers of one built item (`dataSources`: the accepted `date_din` relations), in the order of the relations."""
+    found = {}
+    for source in item.get('dataSources', []):
+        provider = resolve_provider(source['name'], table)
+        found.setdefault(provider['id'], provider)
+    return list(found.values())
+
+
 def publish_overview(items, site, projections, concepts, families):
     """Write `date/lista/`: a table with one row per project or resource that has extracted fields, one column per family of variables,
     and a last column for the fields in no group. A cell lists the group labels (the normalised names), not the source field names;
@@ -252,13 +311,7 @@ def publish_overview(items, site, projections, concepts, families):
                f'<section class="ov-bare"><h2>De analizat ({len(bare)})</h2><p>{", ".join(bare)}</p>'
                f'<p class="ov-note">Lipsa câmpurilor nu înseamnă lipsa datelor: inventarul acestor intrări nu a fost făcut.</p></section>'
                f'{left_out_section(left_out(items))}')
-    doc = (Path(__file__).parent / 'templates/inventory-list.html').read_text().replace('<!--LISTA-->', content)
-    for asset in ('style.css', 'inventory.css'):
-        digest = hashlib.sha1((site / asset).read_bytes()).hexdigest()[:10]
-        doc = doc.replace(f'{asset}?v=BUILD', f'{asset}?v={digest}')
-    page = site / 'date' / 'lista'
-    page.mkdir(parents=True, exist_ok=True)
-    (page / 'index.html').write_text(doc)
+    write_view(site, 'lista', 'Variabile pe proiecte', 'Câmpurile extrase din sursele fiecărui proiect, grupate pe familii de variabile.', content)
 
 
 # --- the variables page of one entry: `/date/<slug>/` -------------------------------------------------------------------------------------
@@ -435,7 +488,28 @@ def source_section(source, fields, positions, groups_of):
             f'<p class="ov-note">{ro_count(len(rows), "câmp", "câmpuri")}</p>{body}</section>')
 
 
-def variable_page(item, fields, sources, concepts, families, relations):
+def source_links(item, sources, table):
+    """The two lines of the header of `/date/<slug>/` that lead to the views by source: each provider of the entry links to its anchor on `date/furnizori/`,
+    and each format of its sources to its anchor on `date/formate/`. A line is left out when the entry has none."""
+    e = html.escape
+    lines = []
+    providers = entry_providers(item, table)
+    if providers:
+        links = ', '.join(f'<a href="{PAGE_DIR}/furnizori/#f-{e(p["id"])}">{e(p["name"])}</a>' for p in providers)
+        lines.append(f'<span>{"Furnizor" if len(providers) == 1 else "Furnizori"}: {links}</span>')
+    formats = list(dict.fromkeys(s.get('format') or '' for s in sources))
+    if formats:
+        links = ', '.join(f'<a href="{PAGE_DIR}/formate/#{format_anchor(f)}">{e(FORMATS.get(f, "Sursă de date"))}</a>' for f in formats)
+        lines.append(f'<span>{"Format" if len(formats) == 1 else "Formate"}: {links}</span>')
+    return f'<p class="vp-links">{"".join(lines)}</p>' if lines else ''
+
+
+def format_anchor(fmt):
+    """The anchor of a format on `date/formate/`; a source without a format has the anchor `fmt-necunoscut`."""
+    return 'fmt-' + (fmt or 'necunoscut')
+
+
+def variable_page(item, fields, sources, concepts, families, relations, table=None):
     """The body of `/date/<slug>/`: the header, the part „Pe familii” and the part „Pe surse”."""
     e = html.escape
     slug, kind = item['slug'], item['kind']
@@ -452,6 +526,7 @@ def variable_page(item, fields, sources, concepts, families, relations):
     head = (f'<section class="vp-head"><p class="vp-kind">{"Proiect" if kind == "proiect" else "Resursă"}</p><h1>{e(item["name"])}</h1>'
             f'<p class="vp-meta"><span>Relația cu datele: {e(relations.get(relation, relation))}</span><span>{ro_count(len(sources), "sursă", "surse")}</span>'
             f'<span>{ro_count(len(fields), "câmp", "câmpuri")}</span><span class="inv-status">Inventar parțial</span></p>'
+            f'{source_links(item, sources, table or {})}'
             f'<p class="ov-note">{NOTE_PARTIAL}</p>'
             f'<p><a class="vp-open" href="{e(kind)}/{e(slug)}/">Fișa din explorator →</a></p>'
             f'<nav class="vp-nav" aria-label="Pe această pagină"><a href="{here}#pe-familii">Pe familii</a><a href="{here}#pe-surse">Pe surse</a></nav></section>')
@@ -460,9 +535,10 @@ def variable_page(item, fields, sources, concepts, families, relations):
             + f'<section class="vp-section" id="pe-surse"><h2>Pe surse</h2>{sourced}</section>')
 
 
-def publish_variable_pages(items, site, projections, concepts, families, vocabulary=None):
+def publish_variable_pages(items, site, projections, concepts, families, vocabulary=None, table=None):
     """Write `date/<slug>/index.html` for each entry with a page (`has_page`) and remove every page that no entry has now. The pages sit beside
-    `date/lista/`, which keeps its name: an entry with the slug `lista` would collide with it. Returns the slugs written."""
+    the five views (`RESERVED_DATA_SLUGS`), which keep their names: an entry with one of these slugs would collide with a view, so it is refused.
+    `table` holds the accepted rows of `furnizori.csv`. Returns the slugs written."""
     relations = relation_labels(vocabulary)
     template = (Path(__file__).parent / 'templates/inventory-vars.html').read_text()
     digests = {asset: hashlib.sha1((site / asset).read_bytes()).hexdigest()[:10] for asset in ('style.css', 'inventory.css')}
@@ -473,10 +549,10 @@ def publish_variable_pages(items, site, projections, concepts, families, vocabul
         if not has_page(item, projections):
             continue
         slug = item['slug']
-        if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', slug) or slug == 'lista':
+        if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', slug) or slug in RESERVED_DATA_SLUGS:
             raise ValueError('Invalid or reserved slug for a variables page: ' + slug)
         fields, sources = projections[slug]
-        doc = (template.replace('<!--NAME-->', html.escape(item['name'])).replace('<!--PAGE-->', variable_page(item, fields, sources, concepts, families, relations)))
+        doc = (template.replace('<!--NAME-->', html.escape(item['name'])).replace('<!--PAGE-->', variable_page(item, fields, sources, concepts, families, relations, table)))
         for asset, digest in digests.items():
             doc = doc.replace(f'{asset}?v=BUILD', f'{asset}?v={digest}')
         folder = base / slug
@@ -484,7 +560,7 @@ def publish_variable_pages(items, site, projections, concepts, families, vocabul
         (folder / 'index.html').write_text(doc)
         written.append(slug)
     for stale in base.iterdir():
-        if stale.is_dir() and stale.name != 'lista' and stale.name not in written:
+        if stale.is_dir() and stale.name not in RESERVED_DATA_SLUGS and stale.name not in written:
             shutil.rmtree(stale)
     return written
 

@@ -12,7 +12,7 @@ from unittest.mock import patch
 from inventory import analyse_source
 from inventory_concepts import validate_families
 from inventory_state import counted_fields
-from common import inventory_exclusion
+from common import RESERVED_DATA_SLUGS, inventory_exclusion
 from inventory_site import (BASIS, document_links, fold_restatements, group_api_parameters, left_out, publish_overview, publish_preview, scope_reason,
                             sheet_titles, variable_matches, publish_finder)
 
@@ -210,6 +210,9 @@ class InventorySite(unittest.TestCase):
                                        {'name': 'Senatul României', 'evidence': 'https://example.org/other'}]),
                      built('resource', name='A resource', kind='resursa'),
                      built('org', name='An organisation', kind='organizatie')]
+            (root / 'furnizori.csv').write_text('nume_sursa,furnizor,nume,eticheta,tip,stare,nota\n'
+                                                'Camera Deputaților,camera,Camera Deputaților,Parlament,institutie-publica,propus,\n'
+                                                'Senatul României,senat,Senatul României,Parlament,institutie-publica,propus,\n')
             publish_finder(items, root / 'integrare', site, {})
             index = json.loads((site / 'inventar/index.json').read_text())
             self.assertEqual([e['slug'] for e in index['entries']], ['no-fields', 'resource'])
@@ -322,6 +325,304 @@ class InventorySite(unittest.TestCase):
             self.assertFalse((site / 'date').exists())
             self.assertFalse((site / 'inventar').exists())
             self.assertNotIn('inventoryPreview', json.loads((site / 'data.json').read_text()))
+
+
+def source(ident, url, fmt, title=None, **extra):
+    return {'id': ident, 'url': url, 'format': fmt, 'title': title or ident, **extra}
+
+
+def field_of(ident, name='f'):
+    return {'name': name, 'path': '$.' + name, 'role': 'camp-date', 'source': ident}
+
+
+class SourceViews(unittest.TestCase):
+    """The four views by source (`inventory_views`): offline, on small fixtures. No test pins a count of the data that the owner edits."""
+
+    def fixture(self):
+        items = [built('a', name='Alpha', dataSources=[{'name': 'SEAP', 'evidence': 'https://e.org/1'}, {'name': 'SICAP / SEAP', 'evidence': 'https://e.org/2'}]),
+                 built('b', name='Beta', kind='resursa', dataSources=[{'name': 'INS', 'evidence': 'https://e.org/3'}, {'name': 'SEAP', 'evidence': 'https://e.org/4'}]),
+                 built('c', name='Gamma'),
+                 built('off', name='Offline', status='offline', dataSources=[{'name': 'SEAP', 'evidence': 'https://e.org/5'}]),
+                 built('org', name='Org', kind='organizatie')]
+        licence = {'name': 'CC BY 4.0', 'url': 'https://creativecommons.org/licenses/by/4.0/', 'attribution': ''}
+        projections = {
+            'a': ([field_of('a1'), field_of('a1', 'g'), field_of('a2')],
+                  [source('a1', 'https://www.data.g4d.ro/x.csv', 'csv', 'Fișier A', licence=licence), source('a2', 'https://executii-bugetare.g4d.ro/api.json', 'json', 'Api A')]),
+            'b': ([field_of('b1')], [source('b1', 'https://data.g4d.ro/y.csv', 'csv', 'Fișier B'), source('b2', 'https://ana.github.io/z.html', 'html-tabele', 'Tabel B')]),
+            'c': ([field_of('c1')], [source('c1', 'https://ana.github.io/w.json', 'json', 'Json C')]),
+            'off': ([field_of('o1')], [source('o1', 'https://data.g4d.ro/o.csv', 'csv', 'Fișier O')]),
+            'org': ([field_of('r1')], [source('r1', 'https://r.org/r.csv', 'csv')])}
+        return items, projections
+
+    def publish(self, table=None, items=None, projections=None):
+        from inventory_views import publish_source_views
+        default_items, default_projections = self.fixture()
+        tmp = tempfile.TemporaryDirectory(); self.addCleanup(tmp.cleanup)
+        site = Path(tmp.name)
+        for name in ('style.css', 'inventory.css'):
+            (site / name).write_text('/* fixture */')
+        summary = publish_source_views(items or default_items, site, projections or default_projections, table or {})
+        return site, summary
+
+    def page(self, site, name):
+        return (site / 'date' / name / 'index.html').read_text()
+
+    def test_the_views_are_the_reserved_slugs_in_one_order(self):
+        from inventory_site import VIEWS
+        self.assertEqual(tuple(v for v, _ in VIEWS), RESERVED_DATA_SLUGS)
+        self.assertEqual(RESERVED_DATA_SLUGS[0], 'lista')
+
+    def test_a_reserved_slug_is_an_error_of_validate(self):
+        import validate
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); (root / 'intrari.csv').write_text('slug,nume\nok,Ok\nformate,Formate\ngazde,Gazde\n')
+            before = validate.errors
+            with patch('taxonomy_v2.Files') as files, patch.object(validate, 'report') as report:
+                files.return_value.path.return_value = root / 'intrari.csv'
+                validate.check_reserved_slugs(root)
+        self.assertEqual([c.args[0] for c in report.call_args_list], ['error', 'error'])
+        self.assertEqual([c.args[2] for c in report.call_args_list], [3, 4])
+        self.assertEqual(validate.errors, before)
+
+    def test_every_format_has_one_kind_and_every_kind_has_a_format(self):
+        from inventory_site import FORMAT_KIND_OF, FORMAT_KINDS, FORMATS
+        self.assertEqual(sorted(set(FORMATS) - set(FORMAT_KIND_OF)), [], 'a format without a kind')
+        self.assertEqual(sorted(set(FORMAT_KIND_OF) - set(FORMATS)), [], 'a kind for a format that does not exist')
+        self.assertEqual(set(FORMAT_KIND_OF.values()), {k for k, _ in FORMAT_KINDS})
+        self.assertEqual([label for _, label in FORMAT_KINDS],
+                         ['API și JSON', 'Fișiere și seturi descrise', 'Tabele în pagină', 'Scriptul paginii', 'Cod sursă'])
+
+    def test_the_formats_of_the_tracked_inventory_all_have_a_kind(self):
+        from inventory_site import FORMAT_KIND_OF
+        path = Path(__file__).resolve().parents[1] / 'data/taxonomy-v2/observatii/inventare/campuri.csv'
+        with open(path, encoding='utf-8', newline='') as handle:
+            formats = {row['format'] for row in csv.DictReader(handle)}
+        self.assertEqual(sorted(formats - set(FORMAT_KIND_OF)), [])
+
+    def test_the_tracked_provider_file_is_valid_and_names_every_provider_of_the_relations(self):
+        import common
+        root = Path(__file__).resolve().parents[1] / 'data/taxonomy-v2/integrare'
+        rows = common.read_providers(common.providers_path(root))
+        names = common.provider_names(common.read_csv(root / 'relatii.csv'))
+        errors, warnings = common.provider_problems(rows, names)
+        self.assertEqual((errors, warnings), ([], []))
+
+    def test_the_provider_checks(self):
+        from common import provider_problems
+        def row(name, fid='x', nume='X', tip='ong', stare='propus'):
+            return {'nume_sursa': name, 'furnizor': fid, 'nume': nume, 'eticheta': '', 'tip': tip, 'stare': stare, 'nota': ''}
+        self.assertEqual(provider_problems([row('A'), row('B')], ['A', 'B']), ([], []))
+        errors, _ = provider_problems([row('A'), row('A')])
+        self.assertEqual([m for _, m in errors if 'duplicat' in m], ['A: nume_sursa duplicat (și în linia 2)'])
+        self.assertTrue(provider_problems([row('A', fid='Not Kebab')])[0])
+        self.assertTrue(provider_problems([row('A', tip='guvern')])[0])
+        self.assertTrue(provider_problems([row('A', stare='gata')])[0])
+        self.assertTrue(provider_problems([row('A', tip='', stare='acceptat')])[0], 'an accepted row needs a type')
+        self.assertEqual(provider_problems([row('A', tip='')])[0], [], 'a proposed row may leave the type open')
+        self.assertTrue(provider_problems([row('A', nume='X'), row('B', nume='Y')])[0], 'one provider, two display names')
+        self.assertTrue(provider_problems([row('A', tip='ong'), row('B', tip='companie')])[0], 'one provider, two types')
+        errors, warnings = provider_problems([row('A'), row('Old')], ['A', 'New'])
+        self.assertEqual(errors, [])
+        self.assertEqual(sorted(w for _, w in warnings), ['New: numele din relatii.csv nu are rând în furnizori.csv', 'Old: numele nu apare în relatii.csv (rând depășit?)'])
+
+    def test_a_row_of_the_provider_file_applies_only_when_accepted(self):
+        from common import provider_table
+        rows = [{'nume_sursa': 'SEAP', 'furnizor': 'seap-sicap', 'nume': 'SEAP / SICAP', 'eticheta': '', 'tip': 'institutie-publica', 'stare': 'acceptat', 'nota': ''},
+                {'nume_sursa': 'SICAP / SEAP', 'furnizor': 'seap-sicap', 'nume': 'SEAP / SICAP', 'eticheta': '', 'tip': 'institutie-publica', 'stare': 'propus', 'nota': ''}]
+        self.assertEqual(list(provider_table(rows)), ['SEAP'])
+        site, summary = self.publish({})
+        proposed = self.page(site, 'furnizori')
+        self.assertNotIn('id="f-seap-sicap"', proposed, 'a name stays a provider of its own before the review')
+        self.assertIn('id="f-nume-seap"', proposed)
+        self.assertIn('id="f-nume-sicap-seap"', proposed)
+        self.assertIn('data-type=""', proposed)
+        self.assertNotIn('data-type="institutie-publica"', proposed)
+        site, accepted = self.publish(provider_table(rows))
+        page = self.page(site, 'furnizori')
+        self.assertIn('id="f-seap-sicap"', page)
+        self.assertIn('id="f-nume-sicap-seap"', page, 'the proposed row is not applied')
+        self.assertIn('data-type="institutie-publica"', page)
+        self.assertEqual((accepted['furnizori']['providers'], summary['furnizori']['providers']), (3, 3), 'one accepted row renames one provider and merges none')
+
+    def test_two_accepted_names_of_one_provider_count_an_entry_once(self):
+        from common import provider_table
+        rows = [{'nume_sursa': n, 'furnizor': 'seap', 'nume': 'SEAP', 'eticheta': '', 'tip': 'institutie-publica', 'stare': 'acceptat', 'nota': ''} for n in ('SEAP', 'SICAP / SEAP')]
+        site, _ = self.publish(provider_table(rows))
+        page = self.page(site, 'furnizori')
+        block = page[page.index('id="f-seap"'):]
+        block = block[:block.index('</li></ul>')]
+        self.assertIn('2 intrări', block)
+        self.assertEqual(block.count('href="proiect/a/"'), 1)
+        self.assertIn('Numele din relații: SEAP, SICAP / SEAP.', block)
+
+    def test_the_provider_page_groups_by_type_counts_and_lists_the_entries_without_a_provider(self):
+        from common import provider_table
+        rows = [{'nume_sursa': 'SEAP', 'furnizor': 'seap', 'nume': 'SEAP', 'eticheta': '', 'tip': 'institutie-publica', 'stare': 'acceptat', 'nota': ''},
+                {'nume_sursa': 'INS', 'furnizor': 'ins', 'nume': 'INS', 'eticheta': '', 'tip': 'ue-international', 'stare': 'acceptat', 'nota': ''}]
+        site, summary = self.publish(provider_table(rows))
+        page = self.page(site, 'furnizori')
+        self.assertEqual(re.findall(r'<section class="ov-group" id="tip-([\w-]+)"', page), ['institutie-publica', 'ue-international', 'neclasificat'],
+                         'the order of the code list, then the providers without a type; SICAP / SEAP has no accepted row')
+        self.assertIn('Fără furnizor declarat (1)', page)
+        self.assertIn('Gamma', page[page.index('id="fara-furnizor"'):])
+        self.assertNotIn('>Offline<', page, 'an entry out of scope is not listed')
+        self.assertEqual((summary['furnizori']['entries'], summary['furnizori']['bare']), (2, 1))
+        self.assertEqual(re.findall(r'<tr id="m-(\w+)"', page), ['a', 'b'])
+        self.assertEqual(page.count('class="ov-mark"'), 4, 'a mark for every pair of entry and provider: a-seap, a-sicap, b-seap, b-ins')
+        self.assertIn('Același furnizor nu înseamnă același set de date.', page)
+
+    def test_the_matrix_holds_the_most_used_providers_only(self):
+        from inventory_views import MATRIX_SIZE
+        items = [built(f'e{n}', name=f'E{n:02}', dataSources=[{'name': f'P{k:02}', 'evidence': 'https://e.org/'} for k in range(n + 1)]) for n in range(MATRIX_SIZE + 3)]
+        site, summary = self.publish(items=items, projections={})
+        page = self.page(site, 'furnizori')
+        head = page[page.index('<thead>'):page.index('</thead>')]
+        self.assertEqual(head.count('<th scope="col">') - 1, MATRIX_SIZE)
+        self.assertIn('P00', head, 'the provider of every entry is the first column')
+        self.assertNotIn('P14', head, 'a provider of one entry is not in the matrix')
+        self.assertEqual(summary['furnizori']['matrix'], MATRIX_SIZE)
+
+    def test_the_format_page_has_one_column_for_each_kind_and_counts_entries_and_fields(self):
+        site, summary = self.publish()
+        page = self.page(site, 'formate')
+        head = page[page.index('<thead>'):page.index('</thead>')]
+        labels = [h.split('<small>')[0] for h in head.split('<th scope="col">')[1:]]
+        self.assertEqual(labels, ['Intrare', 'API și JSON', 'Fișiere și seturi descrise', 'Tabele în pagină', 'Scriptul paginii', 'Cod sursă'])
+        self.assertEqual(summary['formate']['kinds'], {'api': 2, 'fisiere': 2, 'tabele': 1, 'script': 0, 'cod': 0}, 'entries with a source of the kind; offline and organisation excluded')
+        row = page[page.index('<tr id="a">'):page.index('</tr>', page.index('<tr id="a">'))]
+        self.assertIn('Fișier CSV</a> <small>2</small>', row, 'two fields of the csv source')
+        self.assertIn('Fișier JSON</a> <small>1</small>', row)
+        self.assertIn('<a href="date/a/">Toate variabilele</a>', row)
+        self.assertIn('id="fmt-csv"', page)
+        self.assertIn('id="fel-api"', page)
+        self.assertNotIn('Fișier O', page)
+
+    def test_a_format_that_has_no_kind_still_shows_in_its_own_column(self):
+        items, projections = self.fixture()
+        projections['a'] = ([field_of('a1')], [source('a1', 'https://x.org/a', 'nou-format')])
+        site, _ = self.publish(items=items, projections=projections)
+        page = self.page(site, 'formate')
+        self.assertIn('Alt format', page)
+        self.assertIn('id="fmt-nou-format"', page)
+
+    def test_the_licence_page_groups_by_the_name_a_source_declares_and_puts_the_undeclared_last(self):
+        site, summary = self.publish()
+        page = self.page(site, 'licente')
+        ids = re.findall(r'<section class="ov-licence" id="lic-([\w-]+)"', page)
+        self.assertEqual(ids, ['cc-by-4-0', 'nedeclarata'])
+        self.assertIn('<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>', page)
+        self.assertEqual((summary['licente']['declared_sources'], summary['licente']['sources']), (1, 5))
+        declared_block = page[page.index('id="lic-cc-by-4-0"'):page.index('id="lic-nedeclarata"')]
+        self.assertIn('Fișier A', declared_block)
+        self.assertNotIn('Api A', declared_block)
+        self.assertIn('Api A', page[page.index('id="lic-nedeclarata"'):])
+        self.assertIn('nu o părere juridică', page)
+
+    def test_the_licence_of_a_schema_org_data_set_is_read_with_the_rule_of_the_variables_pages(self):
+        from inventory_views import declared_licences
+        facts = {'basis': 'declarat', 'schema': [{'name': 'x', 'licence': {'name': 'https://creativecommons.org/licenses/by/4.0/', 'url': 'https://creativecommons.org/licenses/by/4.0/'}}]}
+        self.assertEqual(declared_licences({'facts': facts}), [{'name': 'https://creativecommons.org/licenses/by/4.0/', 'url': 'https://creativecommons.org/licenses/by/4.0/'}])
+        self.assertEqual(declared_licences({}), [])
+        both = declared_licences({'licence': {'name': 'CC0', 'url': ''}, 'facts': {'schema': [{'licence': {'name': 'CC0', 'url': ''}}, {'licence': {'name': 'ODbL', 'url': ''}}]}})
+        self.assertEqual([x['name'] for x in both], ['CC0', 'ODbL'], 'a name is listed once for a source')
+
+    def test_hosts_group_by_registered_domain_and_platforms_stay_whole(self):
+        from inventory_views import host_group, source_host
+        self.assertEqual(host_group('executii-bugetare.g4d.ro'), 'g4d.ro')
+        self.assertEqual(host_group('data.g4d.ro'), 'g4d.ro')
+        self.assertEqual(host_group('g4d.ro'), 'g4d.ro')
+        self.assertEqual(host_group('x.y.gov.ro'), 'y.gov.ro', 'gov.ro is a suffix')
+        self.assertEqual(host_group('api.firma.com.ro'), 'firma.com.ro')
+        self.assertEqual(host_group('a.b.org.ro'), 'b.org.ro')
+        self.assertEqual(host_group('www.site.co.uk'), 'site.co.uk')
+        self.assertEqual(host_group('ana.github.io'), 'ana.github.io', 'a platform: the full host')
+        self.assertEqual(host_group('raw.githubusercontent.com'), 'raw.githubusercontent.com')
+        self.assertEqual(host_group('app.vercel.app'), 'app.vercel.app')
+        self.assertEqual(host_group('127.0.0.1'), '127.0.0.1')
+        self.assertEqual(host_group('localhost'), 'localhost')
+        self.assertEqual(source_host('https://WWW.Data.G4D.ro/x?y=1'), 'data.g4d.ro')
+        self.assertEqual(source_host('not a url'), '')
+
+    def test_the_host_page_shows_the_hosts_of_two_entries_under_their_domain_and_counts_the_entries_on_their_own_domain(self):
+        site, summary = self.publish()
+        page = self.page(site, 'gazde')
+        self.assertEqual(re.findall(r'data-host="([^"]+)"', page), ['ana.github.io', 'g4d.ro'], 'b and c share the full host of a platform; a and b share a registered domain')
+        self.assertEqual(summary['gazde']['grouped'], {'g4d.ro': ['data.g4d.ro', 'executii-bugetare.g4d.ro']})
+        block = page[page.index('data-host="g4d.ro"'):]
+        self.assertIn('<code>executii-bugetare.g4d.ro</code>', block)
+        self.assertIn('<code>data.g4d.ro</code>', block)
+        self.assertNotIn('Offline', page)
+
+    def test_the_number_of_entries_on_their_own_domain_counts_the_entries_that_no_other_entry_shares(self):
+        items = [built('a', name='A'), built('b', name='B'), built('c', name='C'), built('d', name='D')]
+        projections = {'a': ([], [source('s', 'https://one.example.org/a', 'csv')]), 'b': ([], [source('s', 'https://two.example.org/b', 'csv')]),
+                       'c': ([], [source('s', 'https://solo.net/c', 'csv'), source('t', 'https://example.org/c', 'csv')]), 'd': ([], [source('s', 'https://alone.io/d', 'csv')])}
+        site, summary = self.publish(items=items, projections=projections)
+        self.assertEqual((summary['gazde']['own'], summary['gazde']['with_sources']), (1, 4), 'a, b and c share example.org; c has a host of its own, but also a shared one; only d is alone')
+        self.assertIn('<strong>1</strong> din 4 intrări', self.page(site, 'gazde'))
+
+    def test_all_five_pages_carry_one_switcher_that_marks_the_current_page(self):
+        from inventory_site import VIEWS, publish_overview
+        site, _ = self.publish()
+        items, projections = self.fixture()
+        publish_overview(items, site, projections, [], [])
+        for name, label in VIEWS:
+            with self.subTest(page=name):
+                page = self.page(site, name)
+                nav = page[page.index('<nav class="ov-views"'):page.index('</nav>')]
+                self.assertEqual(nav.count('<a '), 5)
+                self.assertEqual(re.findall(r'<a href="date/(\w+)/" aria-current="page">', nav), [name])
+                self.assertEqual(nav.count('aria-current'), 1)
+                self.assertEqual(re.findall(r'<a href="date/(\w+)/"', nav), list(RESERVED_DATA_SLUGS))
+                self.assertIn('<base href="../../">', page)
+                self.assertNotIn('v=BUILD', page)
+                self.assertNotIn('<!--', page)
+                self.assertIn('Lăsate pe dinafară (', page, 'every page ends with the entries that the inventory leaves out')
+                self.assertIn('Lipsa', page)
+
+    def test_the_links_of_the_views_resolve_from_the_folder_of_the_page_and_no_anchor_is_bare(self):
+        from urllib.parse import urljoin, urlsplit
+        site, _ = self.publish()
+        for name in ('furnizori', 'formate', 'licente', 'gazde'):
+            page = self.page(site, name)
+            base = urljoin('https://civtech.example/date/' + name + '/', '../../')
+            for href in re.findall(r'href="([^"]+)"', page):
+                if href.startswith('https://'):
+                    continue
+                self.assertFalse(href.startswith(('#', '/')), f'{name}: {href}')
+                target = urlsplit(urljoin(base, href))
+                self.assertEqual(target.netloc, 'civtech.example')
+                if target.fragment and target.path.startswith('/date/') and target.path.split('/')[2] in RESERVED_DATA_SLUGS and target.path != f'/date/{name}/':
+                    other = self.page(site, target.path.split('/')[2])
+                    self.assertIn(f'id="{target.fragment}"', other, f'{name}: the anchor {href} does not exist')
+
+    def test_the_entry_page_links_each_provider_and_format_to_an_anchor_that_exists(self):
+        from common import provider_table
+        from inventory_site import source_links
+        rows = [{'nume_sursa': 'SEAP', 'furnizor': 'seap', 'nume': 'SEAP', 'eticheta': '', 'tip': 'institutie-publica', 'stare': 'acceptat', 'nota': ''}]
+        table = provider_table(rows)
+        items, projections = self.fixture()
+        site, _ = self.publish(table)
+        furnizori, formate = self.page(site, 'furnizori'), self.page(site, 'formate')
+        for item in items[:2]:
+            line = source_links(item, projections[item['slug']][1], table)
+            for fragment in re.findall(r'date/furnizori/#([\w-]+)', line):
+                self.assertIn(f'id="{fragment}"', furnizori)
+            for fragment in re.findall(r'date/formate/#([\w-]+)', line):
+                self.assertIn(f'id="{fragment}"', formate)
+            self.assertIn('date/formate/#fmt-csv', line)
+        self.assertIn('date/furnizori/#f-seap', source_links(items[0], projections['a'][1], table))
+        self.assertIn('date/furnizori/#f-nume-sicap-seap', source_links(items[0], projections['a'][1], table), 'a name without an accepted row links to its own anchor')
+        self.assertEqual(source_links(items[2], [], table), '')
+
+    def test_the_finder_header_links_the_four_pages(self):
+        header = (Path(__file__).parent / 'templates/inventory.html').read_text()
+        for name in ('furnizori', 'formate', 'licente', 'gazde'):
+            self.assertIn(f'href="date/{name}/"', header)
+
+    def test_the_label_file_replaces_the_labels_of_the_providers_of_the_finder(self):
+        import inventory_site
+        self.assertFalse(hasattr(inventory_site, 'SOURCE_LABELS'), 'the labels moved to furnizori.csv')
 
 
 class Scope(unittest.TestCase):

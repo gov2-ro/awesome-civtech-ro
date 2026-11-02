@@ -135,3 +135,26 @@
   .finder-card { padding:16px; }
   .ov-title { margin-left:0; flex-basis:100%; }
 }
+.ov-views { display:flex; flex-wrap:wrap; gap:6px 18px; margin:0 0 16px; padding-bottom:10px; border-bottom:1px solid var(--line); font-size:14px; }
+.ov-views a[aria-current="page"] { color:var(--ink); font-weight:600; text-decoration:none; border-bottom:2px solid currentColor; }
+.ov-fit { min-width:0; }
+.ov-matrix { min-width:0; }
+.ov-matrix thead th { white-space:normal; min-width:84px; max-width:130px; vertical-align:bottom; font-weight:600; }
+.ov-matrix td { text-align:center; min-width:84px; }
+.ov-mark { color:var(--ink); font-weight:600; }
+.ov-matrix-box { margin-bottom:28px; }
+.ov-matrix-box h2, .ov-group > h2 { font-size:19px; margin-bottom:10px; }
+.ov-group { border-top:1px solid var(--line); padding-top:18px; margin-top:24px; }
+.ov-group > h2 small, .ov-provider h3 small, .ov-format h3 small, .ov-licence h3 small, .ov-host h3 small, .ov-sources > li > small { font:400 12px/1.4 var(--font-mono); color:var(--muted); margin-left:10px; }
+.ov-providers, .ov-sources { list-style:none; margin:0; padding:0; display:grid; gap:18px; }
+.ov-provider h3, .ov-format h3, .ov-licence h3, .ov-host h3 { font-size:16px; margin-bottom:6px; overflow-wrap:anywhere; }
+.ov-licence, .ov-host { border-top:1px solid var(--line); padding-top:16px; margin-top:20px; min-width:0; }
+.ov-sources { gap:12px; font-size:14px; }
+.ov-sources ul { list-style:disc; margin:2px 0 0; padding-left:20px; font-size:13px; }
+.ov-sources li { overflow-wrap:anywhere; min-width:0; }
+.ov-entries { list-style:none; margin:0; padding:0; columns:3 260px; column-gap:24px; font-size:14px; }
+.ov-entries li { break-inside:avoid; padding:2px 0; overflow-wrap:anywhere; }
+.ov-entries small, .ov-formats th small, .ov-table td small { color:var(--muted); font-size:11px; }
+.ov-own { margin:26px 0 8px; font-size:14px; border-top:1px solid var(--line); padding-top:18px; }
+.vp-links { display:flex; flex-wrap:wrap; gap:4px 18px; font-size:14px; color:var(--ink-2); margin:0 0 6px; }
+@media (max-width:700px) { .ov-views { gap:4px 14px; } .ov-entries { columns:1; } }

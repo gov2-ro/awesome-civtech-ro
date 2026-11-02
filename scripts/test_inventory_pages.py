@@ -12,6 +12,7 @@ from pathlib import Path
 from unittest.mock import patch
 from urllib.parse import urljoin, urlsplit
 
+from common import RESERVED_DATA_SLUGS
 from inventory_concepts import BASIS_LABELS, EVIDENCE_BASES, PUBLIC_BASIS_LABELS
 from inventory_site import (DESCRIPTION_LIMIT, FIELD_BASIS_LABELS, GROUP_STATE_LABELS, ROLE_LABELS, TYPE_LABELS, clip, compact_facts, declared, declared_facts,
                             declared_schema, declared_sets, family_columns, field_groups, group_hits, has_page, publish_finder, publish_preview,
@@ -102,7 +103,7 @@ class Pages(unittest.TestCase):
     def test_an_entry_in_scope_with_fields_gets_a_page_and_no_other_entry_does(self):
         with tempfile.TemporaryDirectory() as tmp:
             (site, projections), items = fixture(tmp)
-            self.assertEqual(sorted(p.name for p in (site / 'date').iterdir() if p.is_dir()), ['lista', 'p'])
+            self.assertEqual(sorted(p.name for p in (site / 'date').iterdir() if p.is_dir()), sorted([*RESERVED_DATA_SLUGS, 'p']))
             self.assertEqual([i['slug'] for i in items if has_page(i, projections)], ['p'])
             self.assertEqual(items[0]['inventory']['page'], 'date/p/', 'the explorer data names the page that exists')
             self.assertTrue(all('page' not in i.get('inventory', {}) for i in items[1:]))
@@ -113,7 +114,7 @@ class Pages(unittest.TestCase):
             profiles = [{'slug': slug, 'surse_structurate': ['s']} for slug in ('org', 'off', 'free', 'fine')]
             items = [built('org', kind='organizatie', dataRelation=''), built('off', status='offline'), built('free', dataRelation='fara-date'), built('fine')]
             (site, projections), _ = fixture(tmp, sources=sources, profiles=profiles, items=items)
-            self.assertEqual(sorted(p.name for p in (site / 'date').iterdir() if p.is_dir()), ['fine', 'lista'])
+            self.assertEqual(sorted(p.name for p in (site / 'date').iterdir() if p.is_dir()), sorted([*RESERVED_DATA_SLUGS, 'fine']))
             self.assertTrue(all((site / 'inventar' / f'{slug}.json').exists() for slug in ('org', 'off', 'free', 'fine')), 'the explorer keeps every panel')
 
     def test_the_header_names_the_entry_with_its_link_the_relation_and_the_counts(self):
@@ -286,7 +287,8 @@ class Pages(unittest.TestCase):
                     # A file of the site: the fixture holds the two style sheets; the font and image files belong to the template and are checked in the real site.
                     self.assertTrue((site / target.path.lstrip('/')).exists() or value.startswith(('img/', 'fonts/')), value)
                 elif target.fragment:
-                    self.assertEqual(target.path, '/date/p/', 'an anchor of the page goes to the page, not to the explorer')
+                    self.assertIn(target.path, ('/date/p/', '/date/furnizori/', '/date/formate/'),
+                                  'an anchor goes to a page of the finder (this one, or the view of its providers or formats), not to the explorer')
         hrefs = {v for _, n, v in parse(page).links if n == 'href'}
         self.assertTrue({'./', 'date/', 'date/lista/', 'proiect/p/', 'date/p/#pe-familii', 'date/p/#pe-surse'} <= hrefs)
         self.assertIn('id="pe-familii"', page)
@@ -307,11 +309,11 @@ class Pages(unittest.TestCase):
             (site / 'date/old').mkdir()
             (site / 'date/old/index.html').write_text('stale')
             publish_variable_pages(items, site, projections, CONCEPTS, FAMILIES)
-            self.assertEqual(sorted(p.name for p in (site / 'date').iterdir() if p.is_dir()), ['lista', 'p'])
+            self.assertEqual(sorted(p.name for p in (site / 'date').iterdir() if p.is_dir()), sorted([*RESERVED_DATA_SLUGS, 'p']))
             self.assertTrue((site / 'date/lista/index.html').exists(), 'the list is not a page of an entry')
-            clash = {'lista': projections['p']}
-            with self.assertRaises(ValueError):
-                publish_variable_pages([built('lista')], site, clash, CONCEPTS, FAMILIES)
+            for reserved in RESERVED_DATA_SLUGS:
+                with self.subTest(reserved=reserved), self.assertRaises(ValueError):
+                    publish_variable_pages([built(reserved)], site, {reserved: projections['p']}, CONCEPTS, FAMILIES)
             with self.assertRaises(ValueError):
                 publish_variable_pages([built('Not_A_Slug')], site, {'Not_A_Slug': projections['p']}, CONCEPTS, FAMILIES)
 
@@ -593,7 +595,7 @@ class RealInventory(unittest.TestCase):
             publish_finder(items, taxonomy / 'integrare', site, projections)
             index = json.loads((site / 'inventar/index.json').read_text())
             family_of = {v['id']: v['family'] for v in index['variables']}
-            written = sorted(p.name for p in (site / 'date').iterdir() if p.is_dir() and p.name != 'lista')
+            written = sorted(p.name for p in (site / 'date').iterdir() if p.is_dir() and p.name not in RESERVED_DATA_SLUGS)
             self.assertEqual(written, sorted(i['slug'] for i in items if i.get('inventory', {}).get('url')))
             self.assertGreater(len(written), 0)
             for slug in written:
