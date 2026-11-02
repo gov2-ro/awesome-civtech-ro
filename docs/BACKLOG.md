@@ -2,6 +2,10 @@
 
 Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
+## CI — 2026-11-02
+
+- [ ] Defect: `validate.yml` fails on `main` since 2026-10-31 (run 41209080813; the last success is 41108006979, 2026-10-30). Three checks fail, the same in each run: `test_profile_structure.Engine.test_seed_pilot_is_idempotent_and_has_no_owner_decisions` (error), `test_inventory_datasette.TrackedBaniPartide.test_no_request_was_made_to_a_listed_host_and_the_inventory_keeps_no_value_of_a_row` (failure), and the browser check „topic ancestry subiect:acces-informatii ⊇ subiect:legea-544-2001” of `check_preview.py`. They also fail locally on `b9612a7`, before the views by source. `pages.yml` still deploys.
+
 ## Views of the projects by source data — 2026-11-02
 
 - [x] Four static pages beside `/date/lista/`: `/date/furnizori/` (providers of `date_din`, normalised by the new hand-edited `furnizori.csv`), `/date/formate/` (five kinds of source format), `/date/licente/` (declared licences) and `/date/gazde/` (hosts shared by two or more entries), with one view switcher. [Brief](briefs/source-views.md).
