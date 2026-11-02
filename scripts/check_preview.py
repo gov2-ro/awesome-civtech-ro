@@ -132,11 +132,13 @@ with sync_playwright() as pw:
     ok("selected filters are labelled pills", any(p.startswith("Subiect: ") for p in pills) and any(p.startswith("Ce poți face: ") for p in pills), " | ".join(pills))
 
     # 6. Topic ancestry: a broader topic finds entries assigned to its narrower topics.
+    # The child must have a visible entry: an entry that is archived or offline is off the default view, so a child with only such entries proves nothing.
     narrower = [c for c in C.values() if c["scheme"] == "subiect" and any(C[b]["broader"] for b in c["broader"])]
+    narrower = [c for c in narrower if any(c["id"] in i["topics"] and i["status"] not in INACTIVE for i in DB["items"])]
     if narrower:
         child = narrower[0]
         parent = next(b for b in child["broader"] if C[b]["broader"])
-        kind = next((i["kind"] for i in DB["items"] if child["id"] in i["topics"]), "proiect")
+        kind = next(i["kind"] for i in DB["items"] if child["id"] in i["topics"] and i["status"] not in INACTIVE)
         go(f"?k={kind}&topic={urllib.parse.quote(parent)}")
         want = [i for i in visible(kind) if parent in topic_set(i)]
         ok(f"topic ancestry {parent} ⊇ {child['id']}", count_text(page) == len(want) and any(child["id"] in i["topics"] for i in want), f"{count_text(page)} vs {len(want)}")

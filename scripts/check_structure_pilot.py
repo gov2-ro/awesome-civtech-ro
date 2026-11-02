@@ -129,8 +129,14 @@ def evidence_check(item, root, repo):
         fields(ref, {'path': str, 'source_id': str, 'pointer': str}, 'inventory reference')
         p = (repo / ref['path']).resolve()
         require(p.is_relative_to((repo / 'data/taxonomy-v2/observatii').resolve()), 'invalid inventory path')
-        source = pointer(read_json(p), ref['pointer'])
-        require(isinstance(source, dict) and source.get('id') == ref['source_id'], 'inventory source ID mismatch')
+        # The index in the pointer moves when the inventory gains sources; the source ID is the stable key.
+        # The pointer names the list. The ID selects one source in it.
+        parent, _, _ = ref['pointer'].rpartition('/')
+        sources = pointer(read_json(p), parent)
+        require(isinstance(sources, list), 'inventory source ID mismatch')
+        found = [s for s in sources if isinstance(s, dict) and s.get('id') == ref['source_id']]
+        require(len(found) == 1, 'inventory source ID mismatch')
+        source = found[0]
         require(source.get('url') == item['source'], 'inventory source URL mismatch')
 
 

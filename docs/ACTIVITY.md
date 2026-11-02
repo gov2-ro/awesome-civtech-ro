@@ -1,5 +1,18 @@
 # Activity
 
+## 2026-11-02 — CI: two of three failing checks fixed (branch `fix-ci`)
+
+**Done**
+- `test_seed_pilot_is_idempotent_and_has_no_owner_decisions`: the pilot profile `sicap-ai.json` points into `seturi-date.json` by list index (`/surse/14`, `/surse/122`). Commit `5568d69` added sources, so the indexes moved (now 16 and 152). `check_structure_pilot.py` now takes the list from the pointer and selects the source by `source_id`; the URL must still match. New test `test_SP09_inventory_reference_needs_a_source_with_that_id`.
+- Browser check „topic ancestry”: commit `b707114` hid `accesinfo`. The child topic `subiect:legea-544-2001` then had one entry, `ia-statul-la-intrebari`, which is archived and off the default view. The check expected that entry (0 vs 0 with a failed `any`). The check now picks a child that has a visible entry; the assertion is unchanged. `check_preview.py`: 141/141 on a fresh v2 preview.
+- Unit suite: before 1329 tests, 1 failure, 1 error; after 1330 tests, 1 failure. `validate.py --publication`: 0 errors, 0 warnings.
+
+**Hard**
+- `test_no_request_was_made_to_a_listed_host...` still fails. It reveals two real requests to `hotarari.ro` (2026-10-30, before the host was listed on 2026-10-31); one has HTTP 200. I did not change the test (backlog: owner decision).
+
+**Decided**
+- Select a source by ID, not by index. Alternative: renumber the pointers in the pilot report; that breaks again at the next inventory batch and edits a frozen report.
+
 ## 2026-11-02 — Owner review of `furnizori.csv`
 
 **Done**

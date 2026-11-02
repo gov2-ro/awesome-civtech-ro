@@ -250,6 +250,10 @@ class StructurePilot(unittest.TestCase):
         self.p['evidence'][0]['inventory_reference'] = {'path': 'docs/missing.json', 'source_id': 'missing', 'pointer': '/surse/0'}
         self.bad('invalid inventory path')
 
+    def test_SP09_inventory_reference_needs_a_source_with_that_id(self):
+        self.p['evidence'][0]['inventory_reference'] = {'path': 'data/taxonomy-v2/observatii/inventare/seturi-date.json', 'source_id': 'missing', 'pointer': '/surse/0'}
+        self.bad('inventory source ID mismatch')
+
     def test_SP09_unknown_evidence(self):
         self.p['patterns'][0]['evidence'] = ['missing']
         self.bad('unknown evidence')
