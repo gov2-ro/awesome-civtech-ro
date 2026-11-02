@@ -1,6 +1,6 @@
 # Activity
 
-## 2026-11-02 — CI: two of three failing checks fixed (branch `fix-ci`)
+## 2026-11-02 — CI: the three failing checks fixed (branch `fix-ci`)
 
 **Done**
 - `test_seed_pilot_is_idempotent_and_has_no_owner_decisions`: the pilot profile `sicap-ai.json` points into `seturi-date.json` by list index (`/surse/14`, `/surse/122`). Commit `5568d69` added sources, so the indexes moved (now 16 and 152). `check_structure_pilot.py` now takes the list from the pointer and selects the source by `source_id`; the URL must still match. New test `test_SP09_inventory_reference_needs_a_source_with_that_id`.
@@ -8,9 +8,10 @@
 - Unit suite: before 1329 tests, 1 failure, 1 error; after 1330 tests, 1 failure. `validate.py --publication`: 0 errors, 0 warnings.
 
 **Hard**
-- `test_no_request_was_made_to_a_listed_host...` still fails. It reveals two real requests to `hotarari.ro` (2026-10-30, before the host was listed on 2026-10-31); one has HTTP 200. I did not change the test (backlog: owner decision).
+- `test_no_request_was_made_to_a_listed_host...` found two real requests to `hotarari.ro` (2026-10-30, before the host was listed on 2026-10-31); one, the Cloudflare challenge POST of the same render, has HTTP 200. The Sonnet agent stopped on it; the coordinator (Opus) made the change: no request was made after a listing, so the test was too narrow, not the collection wrong.
 
 **Decided**
+- The forbidden-host test checks time, not status: a request before the listing day is allowed; on that day only the refusal (403); after it nothing. This is what its message always said („the refusals that came before the list”). Alternative: mark the challenge POST as a sub-request of the render; that needs a new column in `jurnal-cereri.csv` and a change to the browser logger.
 - Select a source by ID, not by index. Alternative: renumber the pointers in the pilot report; that breaks again at the next inventory batch and edits a frozen report.
 
 ## 2026-11-02 — Owner review of `furnizori.csv`

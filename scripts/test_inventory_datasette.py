@@ -278,8 +278,14 @@ class TrackedBaniPartide(unittest.TestCase):
 
     def test_no_request_was_made_to_a_listed_host_and_the_inventory_keeps_no_value_of_a_row(self):
         self.assertFalse([r for r in self.log if 'db.banipartide.ro' in r['url']], 'the database host was never requested')
-        listed = [r for r in self.log if forbidden(r['url'])]
-        self.assertTrue(listed and all(r['http_status'] == '403' for r in listed), 'the only requests to listed hosts are the refusals that came before the list')
+        # A request to a listed host is allowed only before its listing (`data` of its row). Before that day the status does not matter:
+        # a browser render can send a sub-request (a challenge POST) that succeeds while the page itself is refused. On that day, only
+        # the refusal (403) that led to the listing is allowed. After that day, nothing is.
+        listed = [(r, forbidden(r['url'])) for r in self.log if forbidden(r['url'])]
+        self.assertTrue(listed, 'the log keeps the refusals that led to the listings')
+        late = [r['url'] for r, row in listed if not row.get('data') or r['la'][:10] > row['data']
+                or (r['la'][:10] == row['data'] and r['http_status'] != '403')]
+        self.assertFalse(late, 'no request to a listed host on or after the day it was listed')
         self.assertIsNotNone(forbidden(self.URL))
         self.assertIsNotNone(forbidden('https://banipartide.ro/'))
         allowed = {'nume', 'cale', 'grup', 'rol', 'tip_declarat', 'stare_tip', 'pointer', 'randuri_tabel'}
