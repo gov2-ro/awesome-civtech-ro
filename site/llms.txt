@@ -1,10 +1,10 @@
 # CivTech România
 
 > Colecție curatoriată de proiecte civic tech, organizații și resurse din România: instrumente civice, date deschise
-> și proiecte de bună guvernare. 107 proiecte, 13 organizații, 21 resurse.
+> și proiecte de bună guvernare. 137 proiecte, 13 organizații, 21 resurse.
 
 Fiecare intrare are o pagină proprie la https://civtech.gov2.ro/<tip>/<slug>/ (tip: proiect, organizatie, resursa). Starea
-(activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-10-30. Textele sunt în
+(activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-11-06. Textele sunt în
 limba română. Datele sunt reutilizabile conform EUPL v1.2.
 
 ## Date
@@ -17,11 +17,16 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 
 ## Proiecte: Guvernare și democrație
 
+- [429 de primării mai puțin](https://civtech.gov2.ro/proiect/comasarea-comunelor/): Harta comunelor sub 1.500 de locuitori înainte și după comasare, cu costul administrației. Site: https://romaniainteractiva.ro/comasare/
 - [465.ro](https://civtech.gov2.ro/proiect/465/): Parlamentarii României și datele lor de contact. Site: https://465.ro/
 - [7 ani de acasă](https://civtech.gov2.ro/proiect/7-ani-de-acasa/) (arhivat): Site: https://www.7anideacasa.eu
 - [Am scăpat](https://civtech.gov2.ro/proiect/amscapat/): Cazuri de corupție: prescripții, achitări, condamnări. Site: https://amscapat.ro/
 - [Bani Partide](https://civtech.gov2.ro/proiect/bani-partide/): Finanțarea partidelor și a campaniilor electorale. Site: https://banipartide.ro/
+- [Calendarul strategic al României](https://civtech.gov2.ro/proiect/calendar-strategic/): Cele 89 de strategii guvernamentale pe o cronologie: adoptare, întârziere, expirare. Site: https://romaniainteractiva.ro/strategii/
 - [Ce fac politicienii?](https://civtech.gov2.ro/proiect/ce-fac-politicienii/): Cronologia declarațiilor și faptelor politicienilor, cu surse. Site: https://cefacpoliticienii.ro/
+- [Corpusul Cotroceni](https://civtech.gov2.ro/proiect/corpusul-cotroceni/): Discursurile celor cinci președinți ai României, 1990–2026, de căutat și analizat. Site: https://presedintii.ro/
+- [Cât costă un vot](https://civtech.gov2.ro/proiect/cat-costa-un-vot/): Cheltuielile de campanie declarate, împărțite la voturi, 2019–2025. Site: https://1vot.ro/
+- [Câte voturi aduce un primar?](https://civtech.gov2.ro/proiect/cate-voturi-aduce-un-primar/): Aduc primarii voturi partidului lor? Alegeri 1996–2025, în 3.186 de localități. Site: https://nicolaeurs.ro/catevoturiaduceunprimar/
 - [Date statistice INS](https://civtech.gov2.ro/proiect/ins-gov2/): Date de la Institutul Național de Statistică. Site: https://ins.gov2.ro
 - [destrajă.ro](https://civtech.gov2.ro/proiect/destraja/): Proiectele de lege din consultare la Senat, explicate și evaluate de trei modele AI. Site: https://destraja.ro/
 - [EuropeScope](https://civtech.gov2.ro/proiect/europescope/): Activitatea Parlamentului European și a Consiliului UE. Site: https://www.europescope.eu/
@@ -41,10 +46,13 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 - [Politicieni Corupți](https://civtech.gov2.ro/proiect/politicieni-corupti/): Arhivă independentă despre corupție și integritate. Site: https://politicieni-corupti.ro/
 - [Rezultate Vot](https://civtech.gov2.ro/proiect/rezultate-vot/): Site: https://rezultatevot.ro/
 - [România Interactivă](https://civtech.gov2.ro/proiect/romania-interactiva/): Clasamente, calculatoare și vizualizări din date oficiale. Site: https://romaniainteractiva.ro/
+- [România în puncte](https://civtech.gov2.ro/proiect/romania-in-puncte/): Cine a câștigat alegerile locale din 2024 în fiecare din cele 13.447 de localități. Site: https://romaniainteractiva.ro/locale/
 - [România Transparentă](https://civtech.gov2.ro/proiect/romania-transparenta/): Registre despre primării, companii de stat, universități. Site: https://romaniatransparenta.eu/
+- [Sondajele României](https://civtech.gov2.ro/proiect/sondajele-romaniei/): Media ponderată a sondajelor electorale din România, din 2004 încoace. Site: https://sondajeleromaniei.ro/
 - [Sondaje România](https://civtech.gov2.ro/proiect/sondaje-romania/): Agregator de sondaje electorale. Site: https://sondajeromania.ro/
 - [Testvot](https://civtech.gov2.ro/proiect/testvot/): Test de afinitate politică. Site: https://www.testvot.eu
 - [Tipizatul](https://civtech.gov2.ro/proiect/tipizatul/): Formulare tipizate emise de instituțiile publice. Site: https://www.tipizatul.eu/
+- [Toate guvernele României de după 1989](https://civtech.gov2.ro/proiect/guverne-dupa-1989/): Cele 28 de guverne de după 1989: durată, coaliții și cum s-a încheiat fiecare. Site: https://romaniainteractiva.ro/guverne/
 - [VicHub Data](https://civtech.gov2.ro/proiect/vichub-data/): Date publice despre România, în grafice și hărți. Site: https://data.vichub.dev/
 - [Vot Corect](https://civtech.gov2.ro/proiect/votcorect/): Informații și monitorizare alegeri electorale. Răspundem tuturor întrebărilor, sesizărilor și nelămuririlor legate de alegeri. Site: https://votcorect.ro
 - [Vot Diaspora](https://civtech.gov2.ro/proiect/votdiaspora/): Vot Diaspora este o platformă dezvoltată de Code for Romania care oferă rapid românilor din Diaspora informații despre cum pot vota la alegerile din anul 2024. Site: https://votdiaspora.ro/
@@ -58,15 +66,18 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 - [Bani pierduți](https://civtech.gov2.ro/proiect/bani-pierduti/) (offline): Site: https://www.banipierduti.ro
 - [Ce cumpără primăria](https://civtech.gov2.ro/proiect/ce-cumpara-primaria/): Achizițiile primăriilor, pe localități. Site: https://cecumparaprimaria.vercel.app/
 - [Ce face statul cu 1.000 de lei?](https://civtech.gov2.ro/proiect/ce-face-statul-cu-1000-de-lei/): Veniturile și cheltuielile statului, explicate la 1.000 de lei. Site: https://mariuscomper.uk/ce-face-statul-cu-1000-de-lei/
+- [Chitanța orașului](https://civtech.gov2.ro/proiect/chitanta-orasului/): Cât plătești orașului prin taxe și pe ce a cheltuit primăria în 2025. Site: https://nicolaeurs.ro/chitantaorasului/
 - [Companiile de stat](https://civtech.gov2.ro/proiect/companii-de-stat/): Câți bani, câte pierderi și cine le conduce. Site: https://companiidestat.ro/
 - [Companii Publice — România](https://civtech.gov2.ro/proiect/companii-publice-ro/): Site: https://cosettechichirau.github.io/companiipublice/
 - [Data Expert Forum](https://civtech.gov2.ro/proiect/data-expertforum/): Site: https://data.expertforum.ro/
 - [DemoANAF](https://civtech.gov2.ro/proiect/demoanaf/): CUI, curs BNR, IBAN trezorerie, e-Factura — fără cont. Site: https://demoanaf.ro/
 - [Execuții Bugetare](https://civtech.gov2.ro/proiect/executii-bugetare/): Veniturile și cheltuielile autorităților locale. Site: https://executii-bugetare.g4d.ro/
+- [Ghicește bugetul](https://civtech.gov2.ro/proiect/ghiceste-bugetul/): Quiz cu opt întrebări despre banii orașului tău, apoi cifrele din 2025. Site: https://nicolaeurs.ro/ghicestebugetul/
 - [Harta Banilor Publici](https://civtech.gov2.ro/proiect/harta-banilor-publici/) (offline): Achizițiile publice, pe hartă. Site: http://initiativaromania.ro/proiecte/harta-banilor-publici/
 - [Imobilele RA-APPS](https://civtech.gov2.ro/proiect/imobile-rapps/): Imobilele statului administrate de RA-APPS. Site: https://rapps.mirceaserdin.ro/
 - [Monitor SAFE](https://civtech.gov2.ro/proiect/monitor-safe/): Cum folosește România cele 16,68 mld. € din programul SAFE. Site: https://monitorsafe.ro/
 - [Open Budget](https://civtech.gov2.ro/proiect/open-budget/): Site: https://www.openbudget.ro
+- [Primar pentru un an](https://civtech.gov2.ro/proiect/primar-pentru-un-an/): Joc: închizi bugetul orașului tău pe 2026 fără să rămâi pe minus. Site: https://nicolaeurs.ro/primarpentruunan/
 - [SICAP.ai](https://civtech.gov2.ro/proiect/sicap-ai/): Motor de căutare pentru licitații și achiziții directe. Site: https://sicap.ai/
 - [Transparenta.eu](https://civtech.gov2.ro/proiect/transparenta-eu/): Bugete, legislație și justiție, într-un singur loc. Site: https://transparenta.eu/
 
@@ -104,26 +115,44 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 
 ## Proiecte: Sănătate
 
+- [Câți pacienți are un medic?](https://civtech.gov2.ro/proiect/pacienti-medic/): Locuitori la un medic, pe județe, 2012–2025, și comune fără medic de familie. Site: https://romaniainteractiva.ro/pacienti-medic/
+- [Cât de departe e spitalul?](https://civtech.gov2.ro/proiect/distanta-spital/): Distanța de la fiecare localitate la cea mai apropiată primire urgențe. Site: https://romaniainteractiva.ro/distanta-spital/
+- [Cât trăiești în județul tău](https://civtech.gov2.ro/proiect/speranta-viata-judete/): Speranța de viață pe județe, 1990–2025, pe sexe și medii, față de UE. Site: https://romaniainteractiva.ro/speranta-viata/
 - [Evermed](https://civtech.gov2.ro/proiect/evermed/): Clinici private cu contract CNAS. Site: https://evermed.ro/
+- [Harta vaccinării](https://civtech.gov2.ro/proiect/harta-vaccinarii/): Acoperirea vaccinală a copiilor pe județe, 2022–2026, față de pragul de 95%. Site: https://romaniainteractiva.ro/vaccinare/
+- [Morți care puteau fi evitate](https://civtech.gov2.ro/proiect/mortalitate-evitabila/): Decese evitabile sub 75 de ani în România față de UE, 2011–2023. Site: https://romaniainteractiva.ro/mortalitate-evitabila/
 - [Sănătate mintală](https://civtech.gov2.ro/proiect/sanatate-mintala/): Site: https://sanatateamintala.ro/
 - [Verifică psiholog](https://civtech.gov2.ro/proiect/verifica-psiholog/): Verifică gratuit psihologi autorizați CPR din România. 35.570 psihologi, 63.748 certificate. Date sincronizate zilnic. Site: https://www.verificapsiholog.ro/
 
 ## Proiecte: Educație și cultură
 
 - [Școala pentru Democrație](https://civtech.gov2.ro/proiect/scoala-pentru-democratie/): Site: https://scoalapentrudemocratie.ro/
+- [Guvernează dacă poți](https://civtech.gov2.ro/proiect/guverneaza-daca-poti/): Joc: ești premierul României patru ani, de la cifrele reale din 2025. Site: https://guverneazadacapoti.ro/
 - [Guvernezi!](https://civtech.gov2.ro/proiect/guvernezi/): Joc: ești prim-ministru patru ani. Cu ce politician semeni?. Site: https://www.guvernezi.ro/
+- [Harta notelor](https://civtech.gov2.ro/proiect/harta-notelor/): Promovabilitatea la Evaluarea Națională și bac, pe localități și școli, 2018–2026. Site: https://romaniainteractiva.ro/harta-notelor/
+- [UniRanking RO](https://civtech.gov2.ro/proiect/uniranking-ro/): Universitățile românești în clasamentele internaționale, 2021–2026. Site: https://romaniainteractiva.ro/UniRankingRO/
+- [Universitățile României, 1992–2026](https://civtech.gov2.ro/proiect/universitatile-romaniei/): Studenți pe orașe universitare și universități, 1992–2026. Site: https://romaniainteractiva.ro/universitati/
 
 ## Proiecte: Comunități și teritoriu
 
 - [bucuresti.help](https://civtech.gov2.ro/proiect/bucuresti-help/): Fotografiezi problema, AI-ul scrie sesizarea. Site: https://bucuresti.help/
+- [Bula ta](https://civtech.gov2.ro/proiect/bula-ta/): Ghicești șapte cifre despre România și afli cât se suprapune bula ta cu țara. Site: https://nicolaeurs.ro/bula-ta/
 - [Codul urbanismului](https://civtech.gov2.ro/proiect/codurbanism/): Ce reguli se aplică terenului sau dosarului tău după Legea 169/2026. Site: https://mariuscomper.uk/codurbanism/
+- [Cât de viu e orașul tău?](https://civtech.gov2.ro/proiect/orase-vii/): Cele 319 orașe după patru semne vitale: nașteri, migrație, locuințe, copii. Site: https://romaniainteractiva.ro/orasevii/
+- [Câte mașini are județul tău](https://civtech.gov2.ro/proiect/parc-auto-judete/): Parcul auto pe județe, 2012–2025: mașini la 1.000 de locuitori, combustibil, mărci. Site: https://romaniainteractiva.ro/masini/
 - [Domnule Primar](https://civtech.gov2.ro/proiect/domnule-primar/) (arhivat): Sesizări către primărie. Site: https://www.domnuleprimar.ro
+- [Geamănul european al județului tău](https://civtech.gov2.ro/proiect/geamanul-european/): Regiunea UE care seamănă cel mai mult cu județul tău, pe date Eurostat. Site: https://geamanuleuropean.ro/
+- [Generațiile României](https://civtech.gov2.ro/proiect/generatiile-romaniei/): Cele 11 generații de români comparate la 20–30 de ani, pe 9 criterii. Site: https://romaniainteractiva.ro/generatii/
+- [Județul tău în 8 recensăminte](https://civtech.gov2.ro/proiect/judetul-tau-in-8-recensaminte/): Populația fiecărui județ la cele opt recensăminte din 1948 până în 2021. Site: https://romaniainteractiva.ro/recensaminte/
 - [Onești City](https://civtech.gov2.ro/proiect/onesti-city/): Știri locale, anunțuri ale primăriei și sesizări. Site: https://www.onesti.city/
 - [Oradea City Report](https://civtech.gov2.ro/proiect/oradea-city-report/) (arhivat): Sesizări către Primăria Oradea. Site: http://www.oradea.ro/subpagina/oradea-city-report
 - [România fără gropi](https://civtech.gov2.ro/proiect/romania-fara-gropi/): Raportarea gropilor din drumuri. Site: http://romaniafaragropi.ro/
 - [România, loc cu loc](https://civtech.gov2.ro/proiect/biografia-localitatii/): Biografia statistică a fiecărei localități, din seriile INS TEMPO. Site: https://mariuscomper.uk/biografia-localitatii/
+- [România în viața ta](https://civtech.gov2.ro/proiect/romania-in-viata-ta/): Cum s-a schimbat România de la data nașterii tale, în grafice cu date oficiale. Site: https://inviatamea.ro/
+- [Satul care se stinge](https://civtech.gov2.ro/proiect/satul-care-se-stinge/): Câți locuitori a pierdut fiecare sat între recensămintele din 2011 și 2021. Site: https://satulcaresestinge.ro/
 - [Unde ți-ar fi bine să locuiești?](https://civtech.gov2.ro/proiect/unde-locuiesc/): Compară opt orașe după populație și legături feroviare directe. Site: https://mariuscomper.uk/unde-locuiesc/
 - [Unde locuiesc românii?](https://civtech.gov2.ro/proiect/unde-locuiesc-romanii/): Date despre populație, pe hartă. Site: https://unde.geo-spatial.org/
+- [Unul din 100](https://civtech.gov2.ro/proiect/unul-din-100/): România redusă la 100 de oameni, cu date pe fiecare județ. Site: https://unuldin100.ro/
 - [Vocea Cartierului Tău](https://civtech.gov2.ro/proiect/vocea-cartierului-tau/): Sesizarea și urmărirea problemelor din cartier. Site: https://vocea-cartierului-tau.ro/
 
 ## Proiecte: Economie și muncă
@@ -141,6 +170,7 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 - [Harta digitalizării primăriilor](https://civtech.gov2.ro/proiect/harta-digitalizarii-primariilor/): Starea reală a digitalizării primăriilor din România. Site: https://beta.dela0.ro/harta-digitalizarii-primariilor/
 - [Hoover](https://civtech.gov2.ro/proiect/hoover/) (arhivat): Motor de căutare în colecții mari de documente. Site: https://hoover.grep.ro
 - [Interoperabilitate.ro](https://civtech.gov2.ro/proiect/interoperabilitate/): Investigații despre infrastructura digitală a statului. Site: https://interoperabilitate.ro/
+- [Orașe digitale](https://civtech.gov2.ro/proiect/orase-digitale/): Indexul e-guvernării locale: 325 de orașe, 46 de indicatori, 2020–2026. Site: https://orase-digitale.ro/
 - [ro-api-hub](https://civtech.gov2.ro/proiect/ro-api-hub/): Catalog open-source al API-urilor publice și private din România. Site: https://github.com/Jamaalx/ro-api-hub
 
 ## Proiecte: Societate civilă

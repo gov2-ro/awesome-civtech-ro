@@ -3,15 +3,31 @@
 <title>CivTech România — proiecte noi</title><link>https://civtech.gov2.ro/</link>
 <atom:link href="https://civtech.gov2.ro/feed.xml" rel="self" type="application/rss+xml"/>
 <description>Cele mai noi proiecte din colecția CivTech România.</description><language>ro</language>
-<lastBuildDate>Mon, 02 Nov 2026 15:16:51 +0000</lastBuildDate>
+<lastBuildDate>Fri, 06 Nov 2026 15:43:59 +0000</lastBuildDate>
 <item><title>destrajă.ro</title><link>https://civtech.gov2.ro/proiect/destraja/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/destraja/</guid>
 <description>Proiectele de lege din consultare la Senat, explicate și evaluate de trei modele AI</description><pubDate>Tue, 27 Oct 2026 00:00:00 +0000</pubDate></item>
+<item><title>Sondajele României</title><link>https://civtech.gov2.ro/proiect/sondajele-romaniei/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/sondajele-romaniei/</guid>
+<description>Media ponderată a sondajelor electorale din România, din 2004 încoace</description><pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate></item>
+<item><title>Guvernează dacă poți</title><link>https://civtech.gov2.ro/proiect/guverneaza-daca-poti/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/guverneaza-daca-poti/</guid>
+<description>Joc: ești premierul României patru ani, de la cifrele reale din 2025</description><pubDate>Fri, 16 Oct 2026 00:00:00 +0000</pubDate></item>
+<item><title>Geamănul european al județului tău</title><link>https://civtech.gov2.ro/proiect/geamanul-european/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/geamanul-european/</guid>
+<description>Regiunea UE care seamănă cel mai mult cu județul tău, pe date Eurostat</description><pubDate>Wed, 14 Oct 2026 00:00:00 +0000</pubDate></item>
+<item><title>Cât costă un vot</title><link>https://civtech.gov2.ro/proiect/cat-costa-un-vot/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/cat-costa-un-vot/</guid>
+<description>Cheltuielile de campanie declarate, împărțite la voturi, 2019–2025</description><pubDate>Tue, 13 Oct 2026 00:00:00 +0000</pubDate></item>
 <item><title>Hotărâri.ro</title><link>https://civtech.gov2.ro/proiect/hotarari/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/hotarari/</guid>
 <description>Arhivă căutabilă de hotărâri ale consiliilor locale din România.</description><pubDate>Tue, 13 Oct 2026 00:00:00 +0000</pubDate></item>
+<item><title>Chitanța orașului</title><link>https://civtech.gov2.ro/proiect/chitanta-orasului/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/chitanta-orasului/</guid>
+<description>Cât plătești orașului prin taxe și pe ce a cheltuit primăria în 2025</description><pubDate>Mon, 12 Oct 2026 00:00:00 +0000</pubDate></item>
+<item><title>Ghicește bugetul</title><link>https://civtech.gov2.ro/proiect/ghiceste-bugetul/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/ghiceste-bugetul/</guid>
+<description>Quiz cu opt întrebări despre banii orașului tău, apoi cifrele din 2025</description><pubDate>Mon, 12 Oct 2026 00:00:00 +0000</pubDate></item>
+<item><title>Primar pentru un an</title><link>https://civtech.gov2.ro/proiect/primar-pentru-un-an/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/primar-pentru-un-an/</guid>
+<description>Joc: închizi bugetul orașului tău pe 2026 fără să rămâi pe minus</description><pubDate>Mon, 12 Oct 2026 00:00:00 +0000</pubDate></item>
 <item><title>România Interactivă</title><link>https://civtech.gov2.ro/proiect/romania-interactiva/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/romania-interactiva/</guid>
 <description>Clasamente, calculatoare și vizualizări din date oficiale</description><pubDate>Mon, 12 Oct 2026 00:00:00 +0000</pubDate></item>
 <item><title>De Obște</title><link>https://civtech.gov2.ro/proiect/de-obste/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/de-obste/</guid>
 <description>Prototip de platformă de servicii publice digitale</description><pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate></item>
+<item><title>Unul din 100</title><link>https://civtech.gov2.ro/proiect/unul-din-100/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/unul-din-100/</guid>
+<description>România redusă la 100 de oameni, cu date pe fiecare județ</description><pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate></item>
 <item><title>Ce cumpără primăria</title><link>https://civtech.gov2.ro/proiect/ce-cumpara-primaria/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/ce-cumpara-primaria/</guid>
 <description>Achizițiile primăriilor, pe localități</description><pubDate>Fri, 09 Oct 2026 00:00:00 +0000</pubDate></item>
 <item><title>Monitor SAFE</title><link>https://civtech.gov2.ro/proiect/monitor-safe/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/monitor-safe/</guid>
@@ -20,6 +36,8 @@
 <description>Joc: ești prim-ministru patru ani. Cu ce politician semeni?</description><pubDate>Thu, 08 Oct 2026 00:00:00 +0000</pubDate></item>
 <item><title>A Făcut?</title><link>https://civtech.gov2.ro/proiect/afacut/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/afacut/</guid>
 <description>Verifică investițiile publice din localitatea ta</description><pubDate>Tue, 06 Oct 2026 00:00:00 +0000</pubDate></item>
+<item><title>429 de primării mai puțin</title><link>https://civtech.gov2.ro/proiect/comasarea-comunelor/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/comasarea-comunelor/</guid>
+<description>Harta comunelor sub 1.500 de locuitori înainte și după comasare, cu costul administrației</description><pubDate>Sun, 04 Oct 2026 00:00:00 +0000</pubDate></item>
 <item><title>Ce face statul cu 1.000 de lei?</title><link>https://civtech.gov2.ro/proiect/ce-face-statul-cu-1000-de-lei/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/ce-face-statul-cu-1000-de-lei/</guid>
 <description>Veniturile și cheltuielile statului, explicate la 1.000 de lei</description><pubDate>Sun, 04 Oct 2026 00:00:00 +0000</pubDate></item>
 <item><title>Câți ani de pensie apuci?</title><link>https://civtech.gov2.ro/proiect/ani-de-pensie/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/ani-de-pensie/</guid>
@@ -30,8 +48,12 @@
 <description>Valorile oficiale de hazard seismic pentru 3.181 de localități</description><pubDate>Sun, 04 Oct 2026 00:00:00 +0000</pubDate></item>
 <item><title>România, loc cu loc</title><link>https://civtech.gov2.ro/proiect/biografia-localitatii/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/biografia-localitatii/</guid>
 <description>Biografia statistică a fiecărei localități, din seriile INS TEMPO</description><pubDate>Sun, 04 Oct 2026 00:00:00 +0000</pubDate></item>
+<item><title>Satul care se stinge</title><link>https://civtech.gov2.ro/proiect/satul-care-se-stinge/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/satul-care-se-stinge/</guid>
+<description>Câți locuitori a pierdut fiecare sat între recensămintele din 2011 și 2021</description><pubDate>Sun, 04 Oct 2026 00:00:00 +0000</pubDate></item>
 <item><title>Unde ți-ar fi bine să locuiești?</title><link>https://civtech.gov2.ro/proiect/unde-locuiesc/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/unde-locuiesc/</guid>
 <description>Compară opt orașe după populație și legături feroviare directe</description><pubDate>Sun, 04 Oct 2026 00:00:00 +0000</pubDate></item>
+<item><title>Corpusul Cotroceni</title><link>https://civtech.gov2.ro/proiect/corpusul-cotroceni/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/corpusul-cotroceni/</guid>
+<description>Discursurile celor cinci președinți ai României, 1990–2026, de căutat și analizat</description><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate></item>
 <item><title>Barometrul Digital</title><link>https://civtech.gov2.ro/proiect/barometrul-digital/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/barometrul-digital/</guid>
 <description>Securitatea site-urilor instituțiilor publice</description><pubDate>Mon, 14 Sep 2026 00:00:00 +0000</pubDate></item>
 <item><title>România Transparentă</title><link>https://civtech.gov2.ro/proiect/romania-transparenta/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/romania-transparenta/</guid>
@@ -48,6 +70,8 @@
 <description>Cazurile de femicid din România</description><pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate></item>
 <item><title>Ce fac politicienii?</title><link>https://civtech.gov2.ro/proiect/ce-fac-politicienii/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/ce-fac-politicienii/</guid>
 <description>Cronologia declarațiilor și faptelor politicienilor, cu surse</description><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate></item>
+<item><title>Orașe digitale</title><link>https://civtech.gov2.ro/proiect/orase-digitale/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/orase-digitale/</guid>
+<description>Indexul e-guvernării locale: 325 de orașe, 46 de indicatori, 2020–2026</description><pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate></item>
 <item><title>Imobilele RA-APPS</title><link>https://civtech.gov2.ro/proiect/imobile-rapps/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/imobile-rapps/</guid>
 <description>Imobilele statului administrate de RA-APPS</description><pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate></item>
 <item><title>Harta Firmelor</title><link>https://civtech.gov2.ro/proiect/harta-firmelor/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/harta-firmelor/</guid>
@@ -60,28 +84,4 @@
 <description>Sesizarea și urmărirea problemelor din cartier</description><pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate></item>
 <item><title>bucuresti.help</title><link>https://civtech.gov2.ro/proiect/bucuresti-help/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/bucuresti-help/</guid>
 <description>Fotografiezi problema, AI-ul scrie sesizarea</description><pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate></item>
-<item><title>Evermed</title><link>https://civtech.gov2.ro/proiect/evermed/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/evermed/</guid>
-<description>Clinici private cu contract CNAS</description><pubDate>Sat, 09 May 2026 00:00:00 +0000</pubDate></item>
-<item><title>Tipizatul</title><link>https://civtech.gov2.ro/proiect/tipizatul/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/tipizatul/</guid>
-<description>Formulare tipizate emise de instituțiile publice</description><pubDate>Mon, 04 May 2026 00:00:00 +0000</pubDate></item>
-<item><title>Calendar ridicare gunoi Arad</title><link>https://civtech.gov2.ro/proiect/reciclare-arad/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/reciclare-arad/</guid>
-<description></description><pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate></item>
-<item><title>monitorul.ai</title><link>https://civtech.gov2.ro/proiect/monitorul-ai/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/monitorul-ai/</guid>
-<description>Arhiva stenogramelor parlamentare</description><pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate></item>
-<item><title>Radar Digital</title><link>https://civtech.gov2.ro/proiect/radar-digital/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/radar-digital/</guid>
-<description>Semnalarea conținutului problematic de pe rețelele sociale</description><pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate></item>
-<item><title>DemoANAF</title><link>https://civtech.gov2.ro/proiect/demoanaf/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/demoanaf/</guid>
-<description>CUI, curs BNR, IBAN trezorerie, e-Factura — fără cont</description><pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate></item>
-<item><title>VicHub Data</title><link>https://civtech.gov2.ro/proiect/vichub-data/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/vichub-data/</guid>
-<description>Date publice despre România, în grafice și hărți</description><pubDate>Tue, 24 Mar 2026 00:00:00 +0000</pubDate></item>
-<item><title>București Verde</title><link>https://civtech.gov2.ro/proiect/bucuresti-verde/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/bucuresti-verde/</guid>
-<description>Documentarea și sesizarea tăierilor de arbori</description><pubDate>Sat, 07 Mar 2026 00:00:00 +0000</pubDate></item>
-<item><title>Centrul pentru Cariere</title><link>https://civtech.gov2.ro/proiect/centrul-pentru-cariere/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/centrul-pentru-cariere/</guid>
-<description></description><pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate></item>
-<item><title>eContractAuto</title><link>https://civtech.gov2.ro/proiect/econtractauto/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/econtractauto/</guid>
-<description>Contractul de vânzare-cumpărare auto în trei pași</description><pubDate>Sun, 25 Jan 2026 00:00:00 +0000</pubDate></item>
-<item><title>Harta digitalizării primăriilor</title><link>https://civtech.gov2.ro/proiect/harta-digitalizarii-primariilor/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/harta-digitalizarii-primariilor/</guid>
-<description>Starea reală a digitalizării primăriilor din România</description><pubDate>Thu, 22 Jan 2026 00:00:00 +0000</pubDate></item>
-<item><title>Monarh AI</title><link>https://civtech.gov2.ro/proiect/monarh-ai/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/monarh-ai/</guid>
-<description>Monitorizarea manipulării de pe TikTok</description><pubDate>Sat, 10 Jan 2026 00:00:00 +0000</pubDate></item>
 </channel></rss>

@@ -1,5 +1,18 @@
 # Activity
 
+## 2026-11-06 — 30 tools of România Interactivă published
+
+**Done**
+- The owner asked to publish without the search. All 30 entries changed from `propus` to `acceptat`, in bulk.
+- `validate.py --publication`: 0 errors, 0 warnings. Unit tests: 1335 run, 0 failed, 8 skipped. `build.py` writes 171 entries.
+
+**Hard**
+- The 30 entries have no rows in `mentiuni.csv`, so their mention signals are empty. Serper had no credits, and the owner skipped the search for now (backlog item).
+
+**Decided**
+- The 31 rows of `furnizori.csv` stay `propus`, because only the owner accepts them. The site shows these names as unclassified providers. The cost of accepting them unread is three rows with an empty `tip` and several sources that the owner may drop.
+- The three subjects that Opus chose and the four vocabulary proposals were published without a separate review. They stay open in the backlog.
+
 ## 2026-11-06 — 30 tools of România Interactivă as `propus` entries
 
 **Done**

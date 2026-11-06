@@ -4,11 +4,11 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
 ## România Interactivă tools — 2026-11-06
 
-- [ ] Owner: review the 30 `propus` entries from România Interactivă and accept them (`clasificare_stare=acceptat`). Until then `validate.py --publication` and a plain `build.py` fail, and unit tests fail (see [Activity](ACTIVITY.md), 2026-11-06). Nothing is published.
+- [x] Owner: publish the 30 entries from România Interactivă (2026-11-06): all `acceptat`, in bulk, without a review one by one and without search results.
 - [ ] Owner: review the 31 proposed rows in `furnizori.csv` (`stare=propus`, 2026-11-06), and accept them. Three rows have an empty `tip` (Dignitas, Europa Liberă România, Site-urile clasamentelor universitare). Their `nota` says what to check.
 - [ ] Owner: decide the four vocabulary proposals in `integrare/propuneri-vocabular.csv`: `subiect:mobilitate-transport`, `subiect:discurs-politic`, `subiect:conditii-de-viata`, `institutie:guvern`. The entries use a provisional subject.
 - [x] Portal page lists its tools: `partsHTML` in `site/app.js` reads `parte_din` in the inverse direction (2026-11-06).
-- [ ] Run the search for the 30 entries. Serper answered „Not enough credits” on 2026-11-06 (30 requests, 0 results, `mentiuni.csv` unchanged). Top up the credits, then run `uv run scripts/search.py --only <30 slugs>` (about 0.20 US dollars; the dry run shows 48 Serper and 30 Brave requests at most). Then report the kept results per slug.
+- [ ] Run the search for the 30 entries. The owner skipped it for the publication of 2026-11-06, so these entries have no mentions. Serper answered „Not enough credits” on 2026-11-06 (30 requests, 0 results, `mentiuni.csv` unchanged). Top up the credits, then run `uv run scripts/search.py --only <30 slugs>` (about 0.20 US dollars; the dry run shows 48 Serper and 30 Brave requests at most). Then report the kept results per slug.
 - [ ] Check the portal periodically for new tools (24 dated tools since 2026-10-10).
 
 ## transparenta-eu reassessment — 2026-11-02
