@@ -512,7 +512,8 @@ with sync_playwright() as pw:
     unsafe = json.loads(json.dumps(INDEX)); unsafe['entries'][0]['description'] = '<img src=x onerror="window.__unsafe=1">'
     safe = browser.new_page()
     safe.route('**/inventar/index.json', lambda route: route.fulfill(content_type='application/json',body=json.dumps(unsafe)))
-    safe.goto(BASE + 'date/?q=' + unsafe['entries'][0]['slug'])
+    # The search matches the name, not the slug.
+    safe.goto(BASE + 'date/?q=' + urllib.parse.quote(unsafe['entries'][0]['name']))
     safe.wait_for_selector('.finder-card')
     ok('source descriptions cannot execute HTML', safe.evaluate('window.__unsafe !== 1') and safe.locator('.finder-card img').count() == 0)
     ok('no browser errors', not errors)

@@ -7,6 +7,7 @@
 - `validate.py --publication`: 0 errors, 0 warnings. Unit tests: 1335 run, 0 failed, 8 skipped. `build.py` writes 171 entries.
 
 **Hard**
+- After the push, the `browser` job of `validate` ran over 22 minutes (normal: about 2) while `pages` passed. Opus had run only `check_preview.py` before the push. `check_data_finder.py` failed locally on `/date/?q=<slug>`: the search matches the name, not the slug. The check passed before only because the first entry was `465`; the new name „429 de primării mai puțin” now sorts first. The check now searches by name: 153 of 153 pass. Why the CI job hung instead of failing is not measured. Opus cancelled that run.
 - The 30 entries have no rows in `mentiuni.csv`, so their mention signals are empty. Serper had no credits, and the owner skipped the search for now (backlog item).
 
 **Decided**

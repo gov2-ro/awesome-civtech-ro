@@ -1,5 +1,6 @@
 # Releases
 
+- **v0.66.1** (2026-11-06): `check_data_finder.py` searches the first entry by name, not by slug; a new entry that sorts first broke the check.
 - **v0.66.0** (2026-11-06): 30 tools of România Interactivă as separate entries, each linked to the portal with `parte_din`; „Parte din” heading on the entry and the list of parts on the parent page; 31 proposed rows in `furnizori.csv`. Published without search results.
 - **v0.65.1** (2026-11-02): the jump list of `/date/furnizori/` works as tabs: one section at a time (the matrix, a provider type, or the entries without a provider); an address such as `#f-ins` opens the tab of its type. Without JavaScript every section shows.
 - **v0.65.0** (2026-11-02): `/date/furnizori/` starts grouped on both axes (more providers first, same providers side by side), with a jump list to each provider type, one-line headers and names; entry icons before every entry name on the pages of `/date/`.
