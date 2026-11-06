@@ -310,3 +310,64 @@ pensie-din-bursa,tax-ret,range,,https://mariuscomper.uk/pensie-din-bursa/,/input
 lista-firme,Caută după CUI sau nume de companie...,text,Caută după CUI sau nume de companie...,https://lista-firme.info/,/input_candidates/0,control-html-candidat
 fiipregatit,Întreabă-l pe FiiPregătit,text,Întreabă-l pe FiiPregătit,https://fiipregatit.ro/,/input_candidates/0,control-html-candidat
 dimineata,email,email,adresa@email.ro,https://dimineata.de/,/input_candidates/0,control-html-candidat
+romania-in-viata-ta,dob,date,,https://inviatamea.ro/,/input_candidates/0,control-html-candidat
+romania-in-viata-ta,nm,text,ex. Ana,https://inviatamea.ro/,/input_candidates/1,control-html-candidat
+corpusul-cotroceni,q,search,Termeni de căutat,https://presedintii.ro/,/input_candidates/0,control-html-candidat
+corpusul-cotroceni,kfilter,,,https://presedintii.ro/,/input_candidates/1,control-html-candidat
+corpusul-cotroceni,kmin,,,https://presedintii.ro/,/input_candidates/2,control-html-candidat
+corpusul-cotroceni,kstop,checkbox,,https://presedintii.ro/,/input_candidates/3,control-html-candidat
+corpusul-cotroceni,dict,,,https://presedintii.ro/,/input_candidates/4,control-html-candidat
+corpusul-cotroceni,mfw,,,https://presedintii.ro/,/input_candidates/5,control-html-candidat
+corpusul-cotroceni,chunk,,,https://presedintii.ro/,/input_candidates/6,control-html-candidat
+corpusul-cotroceni,atext,,Text de atribuit,https://presedintii.ro/,/input_candidates/7,control-html-candidat
+corpusul-cotroceni,aq,search,Termen pentru rețeaua de asocieri,https://presedintii.ro/,/input_candidates/8,control-html-candidat
+corpusul-cotroceni,awin,,,https://presedintii.ro/,/input_candidates/9,control-html-candidat
+corpusul-cotroceni,atop,,,https://presedintii.ro/,/input_candidates/10,control-html-candidat
+corpusul-cotroceni,mname,text,ex.: Premierul X,https://presedintii.ro/,/input_candidates/11,control-html-candidat
+corpusul-cotroceni,mtext,,Textele noului vorbitor,https://presedintii.ro/,/input_candidates/12,control-html-candidat
+corpusul-cotroceni,mfile,file,Încarcă fișiere text,https://presedintii.ro/,/input_candidates/13,control-html-candidat
+corpusul-cotroceni,ctxCopyOut,,Citat de copiat,https://presedintii.ro/,/input_candidates/14,control-html-candidat
+unul-din-100,q,,Scrie un județ sau un oraș…,https://unuldin100.ro/,/input_candidates/0,control-html-candidat
+geamanul-european,county,,,https://geamanuleuropean.ro/,/input_candidates/0,control-html-candidat
+geamanul-european,foreign,checkbox,,https://geamanuleuropean.ro/,/input_candidates/1,control-html-candidat
+orase-digitale,searchBox,text,Find your city…,https://orase-digitale.ro/,/input_candidates/0,control-html-candidat
+orase-digitale,cityPickerInput,text,Type a city name…,https://orase-digitale.ro/,/input_candidates/1,control-html-candidat
+orase-digitale,cmpAddInput,text,+ add city…,https://orase-digitale.ro/,/input_candidates/2,control-html-candidat
+orase-digitale,filterPop,,,https://orase-digitale.ro/,/input_candidates/3,control-html-candidat
+chitanta-orasului,city,,"Scrie numele orașului, cu sau fără diacritice",https://nicolaeurs.ro/chitantaorasului/,/input_candidates/0,control-html-candidat
+chitanta-orasului,sal,number,,https://nicolaeurs.ro/chitantaorasului/,/input_candidates/1,control-html-candidat
+chitanta-orasului,pen,number,,https://nicolaeurs.ro/chitantaorasului/,/input_candidates/2,control-html-candidat
+chitanta-orasului,chi,number,,https://nicolaeurs.ro/chitantaorasului/,/input_candidates/3,control-html-candidat
+chitanta-orasului,pfa,number,,https://nicolaeurs.ro/chitantaorasului/,/input_candidates/4,control-html-candidat
+chitanta-orasului,loc,number,,https://nicolaeurs.ro/chitantaorasului/,/input_candidates/5,control-html-candidat
+chitanta-orasului,shareTxt,,Text de distribuit,https://nicolaeurs.ro/chitantaorasului/,/input_candidates/6,control-html-candidat
+primar-pentru-un-an,city,,"Scrie numele orașului, cu sau fără diacritice",https://nicolaeurs.ro/primarpentruunan/,/input_candidates/0,control-html-candidat
+bula-ta,optIn,checkbox,,https://nicolaeurs.ro/bula-ta/,/input_candidates/0,control-html-candidat
+bula-ta,aIn,text,,https://nicolaeurs.ro/bula-ta/,/input_candidates/1,control-html-candidat
+bula-ta,sl,range,Cursor pentru răspuns,https://nicolaeurs.ro/bula-ta/,/input_candidates/2,control-html-candidat
+bula-ta,optIn2,checkbox,,https://nicolaeurs.ro/bula-ta/,/input_candidates/3,control-html-candidat
+judetul-tau-in-8-recensaminte,slider,range,,https://romaniainteractiva.ro/recensaminte/,/input_candidates/0,control-html-candidat
+judetul-tau-in-8-recensaminte,sel,,,https://romaniainteractiva.ro/recensaminte/,/input_candidates/1,control-html-candidat
+judetul-tau-in-8-recensaminte,cmp,,,https://romaniainteractiva.ro/recensaminte/,/input_candidates/2,control-html-candidat
+guverne-dupa-1989,sort,,,https://romaniainteractiva.ro/guverne/,/input_candidates/0,control-html-candidat
+universitatile-romaniei,centreSel,,Centru universitar,https://romaniainteractiva.ro/universitati/,/input_candidates/0,control-html-candidat
+universitatile-romaniei,uniQ,search,Caută o universitate,https://romaniainteractiva.ro/universitati/,/input_candidates/1,control-html-candidat
+universitatile-romaniei,cmpQ,search,Adaugă o universitate la comparație,https://romaniainteractiva.ro/universitati/,/input_candidates/2,control-html-candidat
+comasarea-comunelor,q,search,ex. Ceru-Băcăinți,https://romaniainteractiva.ro/comasare/,/input_candidates/0,control-html-candidat
+parc-auto-judete,year,range,Anul,https://romaniainteractiva.ro/masini/,/input_candidates/0,control-html-candidat
+orase-vii,q,search,Caută orașul tău,https://romaniainteractiva.ro/orasevii/,/input_candidates/0,control-html-candidat
+orase-vii,hj,,Evidențiază un județ,https://romaniainteractiva.ro/orasevii/,/input_candidates/1,control-html-candidat
+orase-vii,jud,,Județ,https://romaniainteractiva.ro/orasevii/,/input_candidates/2,control-html-candidat
+generatiile-romaniei,yob,number,ex. 1985,https://romaniainteractiva.ro/generatii/,/input_candidates/0,control-html-candidat
+generatiile-romaniei,cmpA,,,https://romaniainteractiva.ro/generatii/,/input_candidates/1,control-html-candidat
+generatiile-romaniei,cmpB,,,https://romaniainteractiva.ro/generatii/,/input_candidates/2,control-html-candidat
+calendar-strategic,q,search,Caută,https://romaniainteractiva.ro/strategii/,/input_candidates/0,control-html-candidat
+calendar-strategic,sort,,Ordonează,https://romaniainteractiva.ro/strategii/,/input_candidates/1,control-html-candidat
+harta-vaccinarii,yr,range,Anul evaluării,https://romaniainteractiva.ro/vaccinare/,/input_candidates/0,control-html-candidat
+harta-vaccinarii,sel,,Alege județul,https://romaniainteractiva.ro/vaccinare/,/input_candidates/1,control-html-candidat
+speranta-viata-judete,county,,Alege județul,https://romaniainteractiva.ro/speranta-viata/,/input_candidates/0,control-html-candidat
+speranta-viata-judete,year,range,Anul,https://romaniainteractiva.ro/speranta-viata/,/input_candidates/1,control-html-candidat
+distanta-spital,q,text,ex. Sulina sau Dumbrava Alba,https://romaniainteractiva.ro/distanta-spital/,/input_candidates/0,control-html-candidat
+pacienti-medic,county,,,https://romaniainteractiva.ro/pacienti-medic/,/input_candidates/0,control-html-candidat
+pacienti-medic,yr,range,Anul,https://romaniainteractiva.ro/pacienti-medic/,/input_candidates/1,control-html-candidat
+uniranking-ro,q,search,"ex. ubb, babes, Iași, medicină",https://romaniainteractiva.ro/UniRankingRO/,/input_candidates/0,control-html-candidat

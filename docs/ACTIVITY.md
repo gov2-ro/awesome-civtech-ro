@@ -1,5 +1,34 @@
 # Activity
 
+## 2026-11-06 — 30 tools of România Interactivă as `propus` entries
+
+**Done**
+- Owner decisions of 2026-11-06: add 30 of the 35 audited tools, each with `clasificare_stare=propus`; keep the portal row `romania-interactiva` and correct its description; link each tool to the portal with `parte_din`; keep the portal rows L176–L182 unchanged.
+- `intrari.csv` +30 rows (176 entries: 141 `acceptat`, 5 `ascuns`, 30 `propus`). The portal row changed in one word: `doi profesori` → `trei profesori`.
+- `relatii.csv` +156 rows, L232–L387. Per tool: the author rows, its own `date_din` rows and one `parte_din` row (`obiect=romania-interactiva`, evidence `https://romaniainteractiva.ro/`, `stare=propus`). `sondajele-romaniei` got an author row for Adrian Hudrea, and `bula-ta` one for Nicolae Urs. Both use the portal as source and say so in `nota_clasificare`. `orase-digitale` already had Nicolae Urs and Ioana Nisioi.
+- `uniranking-ro`: the 11 rows for single ranking bodies became one row, „Site-urile clasamentelor universitare”. The row for the Ministerul Educației stays. Five tools reuse the provider of an L176–L182 row; each got a new row of its own.
+- Opus chose the subjects of `parc-auto-judete`, `bula-ta` and `generatiile-romaniei`, and told the owner. The owner reviews them with the `propus` entries. `subiecte` holds the root groups.
+- `propuneri-vocabular.csv` +4 proposals, all `propus`: `subiect:mobilitate-transport`, `subiect:discurs-politic`, `subiect:conditii-de-viata`, `institutie:guvern`. No row uses these codes.
+- Profiler (30 entries): 30 `activ` (HTTP 200), 30 og images, 12 icons (18 pages give none), 1 link icon stored (github.com), 1 failed (romaniainteractiva.ro). 16 GitHub requests.
+- `collect_docs.py`: 109 requests, 13 entries with documentation found, 17 unconfirmed. No host refused. `inventory.py`: 0 requests, 30 new drafts; `inventory_report.py` updated `acoperire.csv` and `docs/reports/inventory-expansion.md`.
+- `validate.py`: 0 errors, 31 warnings (new provider names, none in `furnizori.csv`). Opus merged two names of the OECD into „OCDE”, so the count fell from 32 to 31. `validate.py --publication`: 30 errors (the `propus` entries), as expected.
+- Preview build (`--allow-draft --with-inventory`, scratch directory): 171 public entries. `check_preview.py`: 144 of 144 checks pass. The pages of `sondajele-romaniei`, `bula-ta`, `uniranking-ro` and the portal show „Parte din” as a separate line, with no page error.
+- Excluded, with the reason weak civic fit: `primul-meu-salariu`, `cariera-mea`, `pretul-atentiei-tale`, `ghid-masini-electrice`, `casatorii-divorturi`. Their relations and vocabulary proposals were dropped too.
+
+**Hard**
+- First use of `parte_din`: the import stopped at the check. The build exported the relation under `attributions`, and `site/app.js` showed „România Interactivă” in the „Atribuire” line of every tool page, as if the portal were an author. Opus then changed `site/app.js` so that `parte_din` has its own „Parte din” heading and does not feed the author line, „Cu aceeași atribuire” or the organisation card. Opus also added a browser check to `scripts/check_preview.py`. The import resumed with the 30 rows kept.
+- The portal page does not list its tools. No code reads `parte_din` in the inverse direction (backlog item).
+- Search failed: `search.py` got HTTP 400 „Not enough credits” from Serper for all 30 entries (30 requests, 0 results, cost 0). It sent no Brave request, and `mentiuni.csv` is unchanged. A run with `--provider brave` alone was not started: it would leave a partial set of rows that the next run skips.
+- The persons check of `inventory.py` (`test_inventory_persons`) found a value of the source `destraja.ro/senat.txt` in the note of `cat-costa-un-vot`. The name of a publication caused it (a false positive). The note now uses the short name of the publication. No entry was added to the file of reviewed false positives. The first text of this entry quoted the full name, and the check then failed on this file.
+- Full unit suite: 1335 tests, 22 fail (21 failures, 1 error), 8 skipped. All 22 come from the 30 `propus` entries or from the new provider names: 10 in `test_taxonomy_v2.RelationToData` (the publication gate; one of them pins „1 avertismente” and now sees 32), 8 in `test_review_ui` (the same gate and its check panel), 2 in `test_structure_site` and 2 in `test_inventory_site` (the gate, and `furnizori.csv` that lacks the new names). No test was changed. Opus measured the way out on a temporary copy. With the 30 entries `acceptat`, 3 tests fail: the persons check (now fixed) and 2 provider tests. With 31 provider rows also in `furnizori.csv` (`stare=propus`, empty `tip`), `validate.py --publication` gives 0 errors and 0 warnings, and 1 test fails: `test_every_short_name_of_the_tracked_file_is_short_and_the_owner_names_hold`, because the temporary rows have no short names.
+- These rows cannot land on `main` while they are `propus`: `pages.yml` runs `validate.py --publication`, and `validate.yml` runs the unit tests. A commit on `main` before acceptance stops the deploy.
+- `inventory.py` rewrote one `fetched_at` of an old row of `seturi-date.json` (`transparenta.eu/ai/index.json`, 2026-11-02 → 2026-10-25). I reverted the file. In `documentare/index.json` no old entry changed; only the order of the list differs, so the line diff is large.
+
+**Decided**
+- One provider name for Rezultate Vot / Code for Romania: „Rezultate Vot (Code for Romania)”, the name in the new row L285 of this import. No row of `furnizori.csv` named this provider before. The alternative „Code for Romania (rezultatevot.ro)” would add a second name to `furnizori.csv` for one provider.
+- All 30 entries keep `incredere=medie` and `stare` empty. The owner accepts them, not a script.
+- No release tag: Opus tags after the commit.
+
 ## 2026-11-02 — Pipeline diagram in the README
 
 **Done**

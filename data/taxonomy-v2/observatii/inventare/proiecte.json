@@ -8221,6 +8221,1664 @@
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
         "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
       ]
+    },
+    {
+      "slug": "satul-care-se-stinge",
+      "nume": "Satul care se stinge",
+      "stare": "propunere",
+      "completitudine": "neconfirmat",
+      "scop": "Câți locuitori a pierdut fiecare sat între recensămintele din 2011 și 2021",
+      "permite": [
+        "Caută și consultă",
+        "Compară"
+      ],
+      "formate_catalogate": [
+        "Hartă",
+        "Vizualizare de date",
+        "Set de date oferit"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "satul-care-se-stinge"
+      },
+      "intrari_utilizator": [],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
+        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+      ]
+    },
+    {
+      "slug": "guverneaza-daca-poti",
+      "nume": "Guvernează dacă poți",
+      "stare": "propunere",
+      "completitudine": "neconfirmat",
+      "scop": "Joc: ești premierul României patru ani, de la cifrele reale din 2025",
+      "permite": [
+        "Învață sau exersează"
+      ],
+      "formate_catalogate": [
+        "Joc sau test"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "guverneaza-daca-poti"
+      },
+      "intrari_utilizator": [],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
+        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+      ]
+    },
+    {
+      "slug": "romania-in-viata-ta",
+      "nume": "România în viața ta",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Cum s-a schimbat România de la data nașterii tale, în grafice cu date oficiale",
+      "permite": [],
+      "formate_catalogate": [
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "romania-in-viata-ta"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "dob",
+          "rol": "control-utilizator",
+          "tip_control_html": "date",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://inviatamea.ro/",
+            "sha256": "478775b27741b7b463d2a5b1e823764c595cc69c76185f2655b57e66cdc2c552",
+            "sha256_lista_controale": "f8bdf6e1d57af7866dfca854038f6000fce7672714baed844d28dc5a870f3637",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/a28228c07c87a15357aa90e9.json"
+          }
+        },
+        {
+          "nume": "nm",
+          "rol": "control-utilizator",
+          "tip_control_html": "text",
+          "descriere": "ex. Ana",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://inviatamea.ro/",
+            "sha256": "478775b27741b7b463d2a5b1e823764c595cc69c76185f2655b57e66cdc2c552",
+            "sha256_lista_controale": "f8bdf6e1d57af7866dfca854038f6000fce7672714baed844d28dc5a870f3637",
+            "pointer_snapshot": "/input_candidates/1",
+            "snapshot": "documentare/pagini/a28228c07c87a15357aa90e9.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
+        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+      ]
+    },
+    {
+      "slug": "corpusul-cotroceni",
+      "nume": "Corpusul Cotroceni",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Discursurile celor cinci președinți ai României, 1990–2026, de căutat și analizat",
+      "permite": [
+        "Caută și consultă",
+        "Compară",
+        "Analizează date"
+      ],
+      "formate_catalogate": [
+        "Registru sau bază de date",
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "corpusul-cotroceni"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "q",
+          "rol": "control-utilizator",
+          "tip_control_html": "search",
+          "descriere": "Termeni de căutat",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://presedintii.ro/",
+            "sha256": "49d98c17b232335549e63c445a6722b242f3691cc7753c0648f06ee570331e7e",
+            "sha256_lista_controale": "aae38699388de725f959ae5f5fae5a1e330e4a4a54a294541b4c287d6d8d9ebb",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/ebc6c90747e3c35504cfa49a.json"
+          }
+        },
+        {
+          "nume": "kfilter",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://presedintii.ro/",
+            "sha256": "49d98c17b232335549e63c445a6722b242f3691cc7753c0648f06ee570331e7e",
+            "sha256_lista_controale": "aae38699388de725f959ae5f5fae5a1e330e4a4a54a294541b4c287d6d8d9ebb",
+            "pointer_snapshot": "/input_candidates/1",
+            "snapshot": "documentare/pagini/ebc6c90747e3c35504cfa49a.json"
+          }
+        },
+        {
+          "nume": "kmin",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://presedintii.ro/",
+            "sha256": "49d98c17b232335549e63c445a6722b242f3691cc7753c0648f06ee570331e7e",
+            "sha256_lista_controale": "aae38699388de725f959ae5f5fae5a1e330e4a4a54a294541b4c287d6d8d9ebb",
+            "pointer_snapshot": "/input_candidates/2",
+            "snapshot": "documentare/pagini/ebc6c90747e3c35504cfa49a.json"
+          }
+        },
+        {
+          "nume": "kstop",
+          "rol": "control-utilizator",
+          "tip_control_html": "checkbox",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://presedintii.ro/",
+            "sha256": "49d98c17b232335549e63c445a6722b242f3691cc7753c0648f06ee570331e7e",
+            "sha256_lista_controale": "aae38699388de725f959ae5f5fae5a1e330e4a4a54a294541b4c287d6d8d9ebb",
+            "pointer_snapshot": "/input_candidates/3",
+            "snapshot": "documentare/pagini/ebc6c90747e3c35504cfa49a.json"
+          }
+        },
+        {
+          "nume": "dict",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://presedintii.ro/",
+            "sha256": "49d98c17b232335549e63c445a6722b242f3691cc7753c0648f06ee570331e7e",
+            "sha256_lista_controale": "aae38699388de725f959ae5f5fae5a1e330e4a4a54a294541b4c287d6d8d9ebb",
+            "pointer_snapshot": "/input_candidates/4",
+            "snapshot": "documentare/pagini/ebc6c90747e3c35504cfa49a.json"
+          }
+        },
+        {
+          "nume": "mfw",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://presedintii.ro/",
+            "sha256": "49d98c17b232335549e63c445a6722b242f3691cc7753c0648f06ee570331e7e",
+            "sha256_lista_controale": "aae38699388de725f959ae5f5fae5a1e330e4a4a54a294541b4c287d6d8d9ebb",
+            "pointer_snapshot": "/input_candidates/5",
+            "snapshot": "documentare/pagini/ebc6c90747e3c35504cfa49a.json"
+          }
+        },
+        {
+          "nume": "chunk",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://presedintii.ro/",
+            "sha256": "49d98c17b232335549e63c445a6722b242f3691cc7753c0648f06ee570331e7e",
+            "sha256_lista_controale": "aae38699388de725f959ae5f5fae5a1e330e4a4a54a294541b4c287d6d8d9ebb",
+            "pointer_snapshot": "/input_candidates/6",
+            "snapshot": "documentare/pagini/ebc6c90747e3c35504cfa49a.json"
+          }
+        },
+        {
+          "nume": "atext",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "Text de atribuit",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://presedintii.ro/",
+            "sha256": "49d98c17b232335549e63c445a6722b242f3691cc7753c0648f06ee570331e7e",
+            "sha256_lista_controale": "aae38699388de725f959ae5f5fae5a1e330e4a4a54a294541b4c287d6d8d9ebb",
+            "pointer_snapshot": "/input_candidates/7",
+            "snapshot": "documentare/pagini/ebc6c90747e3c35504cfa49a.json"
+          }
+        },
+        {
+          "nume": "aq",
+          "rol": "control-utilizator",
+          "tip_control_html": "search",
+          "descriere": "Termen pentru rețeaua de asocieri",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://presedintii.ro/",
+            "sha256": "49d98c17b232335549e63c445a6722b242f3691cc7753c0648f06ee570331e7e",
+            "sha256_lista_controale": "aae38699388de725f959ae5f5fae5a1e330e4a4a54a294541b4c287d6d8d9ebb",
+            "pointer_snapshot": "/input_candidates/8",
+            "snapshot": "documentare/pagini/ebc6c90747e3c35504cfa49a.json"
+          }
+        },
+        {
+          "nume": "awin",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://presedintii.ro/",
+            "sha256": "49d98c17b232335549e63c445a6722b242f3691cc7753c0648f06ee570331e7e",
+            "sha256_lista_controale": "aae38699388de725f959ae5f5fae5a1e330e4a4a54a294541b4c287d6d8d9ebb",
+            "pointer_snapshot": "/input_candidates/9",
+            "snapshot": "documentare/pagini/ebc6c90747e3c35504cfa49a.json"
+          }
+        },
+        {
+          "nume": "atop",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://presedintii.ro/",
+            "sha256": "49d98c17b232335549e63c445a6722b242f3691cc7753c0648f06ee570331e7e",
+            "sha256_lista_controale": "aae38699388de725f959ae5f5fae5a1e330e4a4a54a294541b4c287d6d8d9ebb",
+            "pointer_snapshot": "/input_candidates/10",
+            "snapshot": "documentare/pagini/ebc6c90747e3c35504cfa49a.json"
+          }
+        },
+        {
+          "nume": "mname",
+          "rol": "control-utilizator",
+          "tip_control_html": "text",
+          "descriere": "ex.: Premierul X",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://presedintii.ro/",
+            "sha256": "49d98c17b232335549e63c445a6722b242f3691cc7753c0648f06ee570331e7e",
+            "sha256_lista_controale": "aae38699388de725f959ae5f5fae5a1e330e4a4a54a294541b4c287d6d8d9ebb",
+            "pointer_snapshot": "/input_candidates/11",
+            "snapshot": "documentare/pagini/ebc6c90747e3c35504cfa49a.json"
+          }
+        },
+        {
+          "nume": "mtext",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "Textele noului vorbitor",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://presedintii.ro/",
+            "sha256": "49d98c17b232335549e63c445a6722b242f3691cc7753c0648f06ee570331e7e",
+            "sha256_lista_controale": "aae38699388de725f959ae5f5fae5a1e330e4a4a54a294541b4c287d6d8d9ebb",
+            "pointer_snapshot": "/input_candidates/12",
+            "snapshot": "documentare/pagini/ebc6c90747e3c35504cfa49a.json"
+          }
+        },
+        {
+          "nume": "mfile",
+          "rol": "control-utilizator",
+          "tip_control_html": "file",
+          "descriere": "Încarcă fișiere text",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://presedintii.ro/",
+            "sha256": "49d98c17b232335549e63c445a6722b242f3691cc7753c0648f06ee570331e7e",
+            "sha256_lista_controale": "aae38699388de725f959ae5f5fae5a1e330e4a4a54a294541b4c287d6d8d9ebb",
+            "pointer_snapshot": "/input_candidates/13",
+            "snapshot": "documentare/pagini/ebc6c90747e3c35504cfa49a.json"
+          }
+        },
+        {
+          "nume": "ctxCopyOut",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "Citat de copiat",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://presedintii.ro/",
+            "sha256": "49d98c17b232335549e63c445a6722b242f3691cc7753c0648f06ee570331e7e",
+            "sha256_lista_controale": "aae38699388de725f959ae5f5fae5a1e330e4a4a54a294541b4c287d6d8d9ebb",
+            "pointer_snapshot": "/input_candidates/14",
+            "snapshot": "documentare/pagini/ebc6c90747e3c35504cfa49a.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
+    },
+    {
+      "slug": "unul-din-100",
+      "nume": "Unul din 100",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "România redusă la 100 de oameni, cu date pe fiecare județ",
+      "permite": [
+        "Caută și consultă",
+        "Compară"
+      ],
+      "formate_catalogate": [
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "unul-din-100"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "q",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "Scrie un județ sau un oraș…",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://unuldin100.ro/",
+            "sha256": "7d1219b6654bb3342c803f44621ff6e32985b42cba2bd2f8f9bb7329ffd0ee49",
+            "sha256_lista_controale": "9b8dc6c748c8d3e6f2a4735b2c9f362c53c6ecd8b7ff6503b72a78d26f065234",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/cac5745aded2542603151786.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
+    },
+    {
+      "slug": "cat-costa-un-vot",
+      "nume": "Cât costă un vot",
+      "stare": "propunere",
+      "completitudine": "neconfirmat",
+      "scop": "Cheltuielile de campanie declarate, împărțite la voturi, 2019–2025",
+      "permite": [
+        "Compară",
+        "Analizează date"
+      ],
+      "formate_catalogate": [
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "cat-costa-un-vot"
+      },
+      "intrari_utilizator": [],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
+    },
+    {
+      "slug": "geamanul-european",
+      "nume": "Geamănul european al județului tău",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Regiunea UE care seamănă cel mai mult cu județul tău, pe date Eurostat",
+      "permite": [
+        "Caută și consultă",
+        "Compară"
+      ],
+      "formate_catalogate": [
+        "Hartă",
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "geamanul-european"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "county",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://geamanuleuropean.ro/",
+            "sha256": "70ebb14df14c3291a07ac497399f92bf4871eeedba5e94d49a749510c92a7c21",
+            "sha256_lista_controale": "1bd768cb322ecf4b16f2aeca9648a4e9f8cdb8d1713c6dc90700bcadc61ad0f2",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/0e376061ea303fb8eff916d8.json"
+          }
+        },
+        {
+          "nume": "foreign",
+          "rol": "control-utilizator",
+          "tip_control_html": "checkbox",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://geamanuleuropean.ro/",
+            "sha256": "70ebb14df14c3291a07ac497399f92bf4871eeedba5e94d49a749510c92a7c21",
+            "sha256_lista_controale": "1bd768cb322ecf4b16f2aeca9648a4e9f8cdb8d1713c6dc90700bcadc61ad0f2",
+            "pointer_snapshot": "/input_candidates/1",
+            "snapshot": "documentare/pagini/0e376061ea303fb8eff916d8.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
+        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+      ]
+    },
+    {
+      "slug": "sondajele-romaniei",
+      "nume": "Sondajele României",
+      "stare": "propunere",
+      "completitudine": "neconfirmat",
+      "scop": "Media ponderată a sondajelor electorale din România, din 2004 încoace",
+      "permite": [
+        "Compară",
+        "Monitorizează",
+        "Analizează date"
+      ],
+      "formate_catalogate": [
+        "Vizualizare de date",
+        "Registru sau bază de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "sondajele-romaniei"
+      },
+      "intrari_utilizator": [],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
+    },
+    {
+      "slug": "orase-digitale",
+      "nume": "Orașe digitale",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Indexul e-guvernării locale: 325 de orașe, 46 de indicatori, 2020–2026",
+      "permite": [
+        "Compară",
+        "Monitorizează",
+        "Caută și consultă"
+      ],
+      "formate_catalogate": [
+        "Hartă",
+        "Vizualizare de date",
+        "Set de date oferit"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "orase-digitale"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "searchBox",
+          "rol": "control-utilizator",
+          "tip_control_html": "text",
+          "descriere": "Find your city…",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://orase-digitale.ro/",
+            "sha256": "e0ba92e20180f0e431b5da9a2a0219ccc0b329fec980bc0d9207bd3e6e1f2c51",
+            "sha256_lista_controale": "a751cc50758a393e1c080985a4a8979100fb271913f8e7f8dbee3a3995b42d8b",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/687b95f9828912de02f8f4da.json"
+          }
+        },
+        {
+          "nume": "cityPickerInput",
+          "rol": "control-utilizator",
+          "tip_control_html": "text",
+          "descriere": "Type a city name…",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://orase-digitale.ro/",
+            "sha256": "e0ba92e20180f0e431b5da9a2a0219ccc0b329fec980bc0d9207bd3e6e1f2c51",
+            "sha256_lista_controale": "a751cc50758a393e1c080985a4a8979100fb271913f8e7f8dbee3a3995b42d8b",
+            "pointer_snapshot": "/input_candidates/1",
+            "snapshot": "documentare/pagini/687b95f9828912de02f8f4da.json"
+          }
+        },
+        {
+          "nume": "cmpAddInput",
+          "rol": "control-utilizator",
+          "tip_control_html": "text",
+          "descriere": "+ add city…",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://orase-digitale.ro/",
+            "sha256": "e0ba92e20180f0e431b5da9a2a0219ccc0b329fec980bc0d9207bd3e6e1f2c51",
+            "sha256_lista_controale": "a751cc50758a393e1c080985a4a8979100fb271913f8e7f8dbee3a3995b42d8b",
+            "pointer_snapshot": "/input_candidates/2",
+            "snapshot": "documentare/pagini/687b95f9828912de02f8f4da.json"
+          }
+        },
+        {
+          "nume": "filterPop",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://orase-digitale.ro/",
+            "sha256": "e0ba92e20180f0e431b5da9a2a0219ccc0b329fec980bc0d9207bd3e6e1f2c51",
+            "sha256_lista_controale": "a751cc50758a393e1c080985a4a8979100fb271913f8e7f8dbee3a3995b42d8b",
+            "pointer_snapshot": "/input_candidates/3",
+            "snapshot": "documentare/pagini/687b95f9828912de02f8f4da.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
+    },
+    {
+      "slug": "chitanta-orasului",
+      "nume": "Chitanța orașului",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Cât plătești orașului prin taxe și pe ce a cheltuit primăria în 2025",
+      "permite": [
+        "Compară"
+      ],
+      "formate_catalogate": [
+        "Formular",
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "chitanta-orasului"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "city",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "Scrie numele orașului, cu sau fără diacritice",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://nicolaeurs.ro/chitantaorasului/",
+            "sha256": "dc80f9934c8f5957064e819efdd1a9f5d50d6390c09412fd24d5460c7fdce932",
+            "sha256_lista_controale": "e51dea8d292a9015e789c91402d97c7f435133c02b64c0d776db67793a32978b",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/c64cfc1145fe8636c765dad7.json"
+          }
+        },
+        {
+          "nume": "sal",
+          "rol": "control-utilizator",
+          "tip_control_html": "number",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://nicolaeurs.ro/chitantaorasului/",
+            "sha256": "dc80f9934c8f5957064e819efdd1a9f5d50d6390c09412fd24d5460c7fdce932",
+            "sha256_lista_controale": "e51dea8d292a9015e789c91402d97c7f435133c02b64c0d776db67793a32978b",
+            "pointer_snapshot": "/input_candidates/1",
+            "snapshot": "documentare/pagini/c64cfc1145fe8636c765dad7.json"
+          }
+        },
+        {
+          "nume": "pen",
+          "rol": "control-utilizator",
+          "tip_control_html": "number",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://nicolaeurs.ro/chitantaorasului/",
+            "sha256": "dc80f9934c8f5957064e819efdd1a9f5d50d6390c09412fd24d5460c7fdce932",
+            "sha256_lista_controale": "e51dea8d292a9015e789c91402d97c7f435133c02b64c0d776db67793a32978b",
+            "pointer_snapshot": "/input_candidates/2",
+            "snapshot": "documentare/pagini/c64cfc1145fe8636c765dad7.json"
+          }
+        },
+        {
+          "nume": "chi",
+          "rol": "control-utilizator",
+          "tip_control_html": "number",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://nicolaeurs.ro/chitantaorasului/",
+            "sha256": "dc80f9934c8f5957064e819efdd1a9f5d50d6390c09412fd24d5460c7fdce932",
+            "sha256_lista_controale": "e51dea8d292a9015e789c91402d97c7f435133c02b64c0d776db67793a32978b",
+            "pointer_snapshot": "/input_candidates/3",
+            "snapshot": "documentare/pagini/c64cfc1145fe8636c765dad7.json"
+          }
+        },
+        {
+          "nume": "pfa",
+          "rol": "control-utilizator",
+          "tip_control_html": "number",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://nicolaeurs.ro/chitantaorasului/",
+            "sha256": "dc80f9934c8f5957064e819efdd1a9f5d50d6390c09412fd24d5460c7fdce932",
+            "sha256_lista_controale": "e51dea8d292a9015e789c91402d97c7f435133c02b64c0d776db67793a32978b",
+            "pointer_snapshot": "/input_candidates/4",
+            "snapshot": "documentare/pagini/c64cfc1145fe8636c765dad7.json"
+          }
+        },
+        {
+          "nume": "loc",
+          "rol": "control-utilizator",
+          "tip_control_html": "number",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://nicolaeurs.ro/chitantaorasului/",
+            "sha256": "dc80f9934c8f5957064e819efdd1a9f5d50d6390c09412fd24d5460c7fdce932",
+            "sha256_lista_controale": "e51dea8d292a9015e789c91402d97c7f435133c02b64c0d776db67793a32978b",
+            "pointer_snapshot": "/input_candidates/5",
+            "snapshot": "documentare/pagini/c64cfc1145fe8636c765dad7.json"
+          }
+        },
+        {
+          "nume": "shareTxt",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "Text de distribuit",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://nicolaeurs.ro/chitantaorasului/",
+            "sha256": "dc80f9934c8f5957064e819efdd1a9f5d50d6390c09412fd24d5460c7fdce932",
+            "sha256_lista_controale": "e51dea8d292a9015e789c91402d97c7f435133c02b64c0d776db67793a32978b",
+            "pointer_snapshot": "/input_candidates/6",
+            "snapshot": "documentare/pagini/c64cfc1145fe8636c765dad7.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
+    },
+    {
+      "slug": "primar-pentru-un-an",
+      "nume": "Primar pentru un an",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Joc: închizi bugetul orașului tău pe 2026 fără să rămâi pe minus",
+      "permite": [
+        "Învață sau exersează"
+      ],
+      "formate_catalogate": [
+        "Joc sau test"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "primar-pentru-un-an"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "city",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "Scrie numele orașului, cu sau fără diacritice",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://nicolaeurs.ro/primarpentruunan/",
+            "sha256": "121f715f6382bc0ce8426a29194d1e8041db1cac623c5129ff33bb762c67904a",
+            "sha256_lista_controale": "cf3a37721273080912a1f3400b5e0e843654ad2e1092d6feeeafd5ef48815614",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/5dc8d94d662732b4a1d24908.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
+    },
+    {
+      "slug": "ghiceste-bugetul",
+      "nume": "Ghicește bugetul",
+      "stare": "propunere",
+      "completitudine": "neconfirmat",
+      "scop": "Quiz cu opt întrebări despre banii orașului tău, apoi cifrele din 2025",
+      "permite": [
+        "Învață sau exersează"
+      ],
+      "formate_catalogate": [
+        "Joc sau test"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "ghiceste-bugetul"
+      },
+      "intrari_utilizator": [],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
+    },
+    {
+      "slug": "cate-voturi-aduce-un-primar",
+      "nume": "Câte voturi aduce un primar?",
+      "stare": "propunere",
+      "completitudine": "neconfirmat",
+      "scop": "Aduc primarii voturi partidului lor? Alegeri 1996–2025, în 3.186 de localități",
+      "permite": [
+        "Caută și consultă",
+        "Compară",
+        "Analizează date"
+      ],
+      "formate_catalogate": [
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "cate-voturi-aduce-un-primar"
+      },
+      "intrari_utilizator": [],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
+        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+      ]
+    },
+    {
+      "slug": "bula-ta",
+      "nume": "Bula ta",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Ghicești șapte cifre despre România și afli cât se suprapune bula ta cu țara",
+      "permite": [
+        "Învață sau exersează"
+      ],
+      "formate_catalogate": [
+        "Joc sau test"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "bula-ta"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "optIn",
+          "rol": "control-utilizator",
+          "tip_control_html": "checkbox",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://nicolaeurs.ro/bula-ta/",
+            "sha256": "0ecfb052253e4fd052e58a631b3a96e1be1b71de92e6c8a6441bc45cb015e58c",
+            "sha256_lista_controale": "96ea7d8bfbeefff1632c9420b0858bd3ad3c14c2fe81ae1db414a44dc4da453c",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/0a8971f04a1ac8f879ec67e5.json"
+          }
+        },
+        {
+          "nume": "aIn",
+          "rol": "control-utilizator",
+          "tip_control_html": "text",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://nicolaeurs.ro/bula-ta/",
+            "sha256": "0ecfb052253e4fd052e58a631b3a96e1be1b71de92e6c8a6441bc45cb015e58c",
+            "sha256_lista_controale": "96ea7d8bfbeefff1632c9420b0858bd3ad3c14c2fe81ae1db414a44dc4da453c",
+            "pointer_snapshot": "/input_candidates/1",
+            "snapshot": "documentare/pagini/0a8971f04a1ac8f879ec67e5.json"
+          }
+        },
+        {
+          "nume": "sl",
+          "rol": "control-utilizator",
+          "tip_control_html": "range",
+          "descriere": "Cursor pentru răspuns",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://nicolaeurs.ro/bula-ta/",
+            "sha256": "0ecfb052253e4fd052e58a631b3a96e1be1b71de92e6c8a6441bc45cb015e58c",
+            "sha256_lista_controale": "96ea7d8bfbeefff1632c9420b0858bd3ad3c14c2fe81ae1db414a44dc4da453c",
+            "pointer_snapshot": "/input_candidates/2",
+            "snapshot": "documentare/pagini/0a8971f04a1ac8f879ec67e5.json"
+          }
+        },
+        {
+          "nume": "optIn2",
+          "rol": "control-utilizator",
+          "tip_control_html": "checkbox",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://nicolaeurs.ro/bula-ta/",
+            "sha256": "0ecfb052253e4fd052e58a631b3a96e1be1b71de92e6c8a6441bc45cb015e58c",
+            "sha256_lista_controale": "96ea7d8bfbeefff1632c9420b0858bd3ad3c14c2fe81ae1db414a44dc4da453c",
+            "pointer_snapshot": "/input_candidates/3",
+            "snapshot": "documentare/pagini/0a8971f04a1ac8f879ec67e5.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
+        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+      ]
+    },
+    {
+      "slug": "judetul-tau-in-8-recensaminte",
+      "nume": "Județul tău în 8 recensăminte",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Populația fiecărui județ la cele opt recensăminte din 1948 până în 2021",
+      "permite": [
+        "Caută și consultă",
+        "Compară"
+      ],
+      "formate_catalogate": [
+        "Hartă",
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "judetul-tau-in-8-recensaminte"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "slider",
+          "rol": "control-utilizator",
+          "tip_control_html": "range",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://romaniainteractiva.ro/recensaminte/",
+            "sha256": "f4daffd2d54abc36a526622ea8abd3e9d520806265a34730e151daf3494d1a3c",
+            "sha256_lista_controale": "e2e5ec2e6921389f556747282144ce28b9509b124fa46d8cda831f9f9f195afd",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/2fa5759f9a76bd6b803a73a1.json"
+          }
+        },
+        {
+          "nume": "sel",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://romaniainteractiva.ro/recensaminte/",
+            "sha256": "f4daffd2d54abc36a526622ea8abd3e9d520806265a34730e151daf3494d1a3c",
+            "sha256_lista_controale": "e2e5ec2e6921389f556747282144ce28b9509b124fa46d8cda831f9f9f195afd",
+            "pointer_snapshot": "/input_candidates/1",
+            "snapshot": "documentare/pagini/2fa5759f9a76bd6b803a73a1.json"
+          }
+        },
+        {
+          "nume": "cmp",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://romaniainteractiva.ro/recensaminte/",
+            "sha256": "f4daffd2d54abc36a526622ea8abd3e9d520806265a34730e151daf3494d1a3c",
+            "sha256_lista_controale": "e2e5ec2e6921389f556747282144ce28b9509b124fa46d8cda831f9f9f195afd",
+            "pointer_snapshot": "/input_candidates/2",
+            "snapshot": "documentare/pagini/2fa5759f9a76bd6b803a73a1.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
+        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+      ]
+    },
+    {
+      "slug": "guverne-dupa-1989",
+      "nume": "Toate guvernele României de după 1989",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Cele 28 de guverne de după 1989: durată, coaliții și cum s-a încheiat fiecare",
+      "permite": [
+        "Caută și consultă",
+        "Compară"
+      ],
+      "formate_catalogate": [
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "guverne-dupa-1989"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "sort",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://romaniainteractiva.ro/guverne/",
+            "sha256": "d121c982e0297f4b81f8b5ee573b710b233ab65dde8bc148d1aeeb0b1fb23ea9",
+            "sha256_lista_controale": "fe9fe707ad00c639821059c387ef0b3f26678f6814aa15de2739d27ef796ed1b",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/36ba3e869dd0fb041c8f1d93.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
+        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+      ]
+    },
+    {
+      "slug": "romania-in-puncte",
+      "nume": "România în puncte",
+      "stare": "propunere",
+      "completitudine": "neconfirmat",
+      "scop": "Cine a câștigat alegerile locale din 2024 în fiecare din cele 13.447 de localități",
+      "permite": [
+        "Caută și consultă"
+      ],
+      "formate_catalogate": [
+        "Hartă"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "romania-in-puncte"
+      },
+      "intrari_utilizator": [],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
+        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+      ]
+    },
+    {
+      "slug": "harta-notelor",
+      "nume": "Harta notelor",
+      "stare": "propunere",
+      "completitudine": "neconfirmat",
+      "scop": "Promovabilitatea la Evaluarea Națională și bac, pe localități și școli, 2018–2026",
+      "permite": [
+        "Caută și consultă",
+        "Compară"
+      ],
+      "formate_catalogate": [
+        "Hartă",
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "harta-notelor"
+      },
+      "intrari_utilizator": [],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
+        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+      ]
+    },
+    {
+      "slug": "universitatile-romaniei",
+      "nume": "Universitățile României, 1992–2026",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Studenți pe orașe universitare și universități, 1992–2026",
+      "permite": [
+        "Caută și consultă",
+        "Compară",
+        "Analizează date"
+      ],
+      "formate_catalogate": [
+        "Hartă",
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "universitatile-romaniei"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "centreSel",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "Centru universitar",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://romaniainteractiva.ro/universitati/",
+            "sha256": "f6990023bb92e723ad80cd3b018afebe6f14f437789c83e11ff151aed634f22a",
+            "sha256_lista_controale": "9a6b2764238d32b21d6d5b1bcad0b058f9c38384c9aef83b7ec8bd64d0baf0ef",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/4c2feef6cdb5329e3972c5c9.json"
+          }
+        },
+        {
+          "nume": "uniQ",
+          "rol": "control-utilizator",
+          "tip_control_html": "search",
+          "descriere": "Caută o universitate",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://romaniainteractiva.ro/universitati/",
+            "sha256": "f6990023bb92e723ad80cd3b018afebe6f14f437789c83e11ff151aed634f22a",
+            "sha256_lista_controale": "9a6b2764238d32b21d6d5b1bcad0b058f9c38384c9aef83b7ec8bd64d0baf0ef",
+            "pointer_snapshot": "/input_candidates/1",
+            "snapshot": "documentare/pagini/4c2feef6cdb5329e3972c5c9.json"
+          }
+        },
+        {
+          "nume": "cmpQ",
+          "rol": "control-utilizator",
+          "tip_control_html": "search",
+          "descriere": "Adaugă o universitate la comparație",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://romaniainteractiva.ro/universitati/",
+            "sha256": "f6990023bb92e723ad80cd3b018afebe6f14f437789c83e11ff151aed634f22a",
+            "sha256_lista_controale": "9a6b2764238d32b21d6d5b1bcad0b058f9c38384c9aef83b7ec8bd64d0baf0ef",
+            "pointer_snapshot": "/input_candidates/2",
+            "snapshot": "documentare/pagini/4c2feef6cdb5329e3972c5c9.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
+        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+      ]
+    },
+    {
+      "slug": "comasarea-comunelor",
+      "nume": "429 de primării mai puțin",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Harta comunelor sub 1.500 de locuitori înainte și după comasare, cu costul administrației",
+      "permite": [
+        "Caută și consultă",
+        "Compară",
+        "Analizează date"
+      ],
+      "formate_catalogate": [
+        "Hartă",
+        "Vizualizare de date",
+        "Raport sau cercetare"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "comasarea-comunelor"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "q",
+          "rol": "control-utilizator",
+          "tip_control_html": "search",
+          "descriere": "ex. Ceru-Băcăinți",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://romaniainteractiva.ro/comasare/",
+            "sha256": "d4bf327bc88b1560b479b2b29dc446fbe5607184a616f4c8acba142d308b1f56",
+            "sha256_lista_controale": "0793aea43f46f48bf22bc572519ec2386ee6a41a82ac62606cbff30b9c016798",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/76792fbedb5aa1e83a7937fe.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
+    },
+    {
+      "slug": "parc-auto-judete",
+      "nume": "Câte mașini are județul tău",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Parcul auto pe județe, 2012–2025: mașini la 1.000 de locuitori, combustibil, mărci",
+      "permite": [
+        "Compară",
+        "Caută și consultă"
+      ],
+      "formate_catalogate": [
+        "Hartă",
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "parc-auto-judete"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "year",
+          "rol": "control-utilizator",
+          "tip_control_html": "range",
+          "descriere": "Anul",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://romaniainteractiva.ro/masini/",
+            "sha256": "3d2bceac8ac79c81d98e92fc9cdd05f1acfea0f7802f8760e43ffb3413bb1281",
+            "sha256_lista_controale": "c7239eb37bdc466bdb0ff31deaf81de1289bb94d7d254129141cb4cb21d6e339",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/45c58e54124ff1962ea78a4b.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
+        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+      ]
+    },
+    {
+      "slug": "orase-vii",
+      "nume": "Cât de viu e orașul tău?",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Cele 319 orașe după patru semne vitale: nașteri, migrație, locuințe, copii",
+      "permite": [
+        "Compară",
+        "Caută și consultă"
+      ],
+      "formate_catalogate": [
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "orase-vii"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "q",
+          "rol": "control-utilizator",
+          "tip_control_html": "search",
+          "descriere": "Caută orașul tău",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://romaniainteractiva.ro/orasevii/",
+            "sha256": "0f235a6ede5558f6eee9e2c3a987e6d4f2f6b6175176333b9bba5d52e32b930a",
+            "sha256_lista_controale": "43d9f9baab51dc2de401ad7248739d18661d9d48c17ae069172e0d65c874247a",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/5ea11386b527659399f465ff.json"
+          }
+        },
+        {
+          "nume": "hj",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "Evidențiază un județ",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://romaniainteractiva.ro/orasevii/",
+            "sha256": "0f235a6ede5558f6eee9e2c3a987e6d4f2f6b6175176333b9bba5d52e32b930a",
+            "sha256_lista_controale": "43d9f9baab51dc2de401ad7248739d18661d9d48c17ae069172e0d65c874247a",
+            "pointer_snapshot": "/input_candidates/1",
+            "snapshot": "documentare/pagini/5ea11386b527659399f465ff.json"
+          }
+        },
+        {
+          "nume": "jud",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "Județ",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://romaniainteractiva.ro/orasevii/",
+            "sha256": "0f235a6ede5558f6eee9e2c3a987e6d4f2f6b6175176333b9bba5d52e32b930a",
+            "sha256_lista_controale": "43d9f9baab51dc2de401ad7248739d18661d9d48c17ae069172e0d65c874247a",
+            "pointer_snapshot": "/input_candidates/2",
+            "snapshot": "documentare/pagini/5ea11386b527659399f465ff.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
+        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+      ]
+    },
+    {
+      "slug": "generatiile-romaniei",
+      "nume": "Generațiile României",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Cele 11 generații de români comparate la 20–30 de ani, pe 9 criterii",
+      "permite": [
+        "Compară",
+        "Analizează date"
+      ],
+      "formate_catalogate": [
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "generatiile-romaniei"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "yob",
+          "rol": "control-utilizator",
+          "tip_control_html": "number",
+          "descriere": "ex. 1985",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://romaniainteractiva.ro/generatii/",
+            "sha256": "b0f6f364d5df46d6d3183592600061d4e91313e9ea0fca9a05aa8ca9c8819e1b",
+            "sha256_lista_controale": "246abc7606d7da93757fa43cc0e9960fcda96898db03de457c0495d6db535203",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/9b142d31b5f35ff8dd35f277.json"
+          }
+        },
+        {
+          "nume": "cmpA",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://romaniainteractiva.ro/generatii/",
+            "sha256": "b0f6f364d5df46d6d3183592600061d4e91313e9ea0fca9a05aa8ca9c8819e1b",
+            "sha256_lista_controale": "246abc7606d7da93757fa43cc0e9960fcda96898db03de457c0495d6db535203",
+            "pointer_snapshot": "/input_candidates/1",
+            "snapshot": "documentare/pagini/9b142d31b5f35ff8dd35f277.json"
+          }
+        },
+        {
+          "nume": "cmpB",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://romaniainteractiva.ro/generatii/",
+            "sha256": "b0f6f364d5df46d6d3183592600061d4e91313e9ea0fca9a05aa8ca9c8819e1b",
+            "sha256_lista_controale": "246abc7606d7da93757fa43cc0e9960fcda96898db03de457c0495d6db535203",
+            "pointer_snapshot": "/input_candidates/2",
+            "snapshot": "documentare/pagini/9b142d31b5f35ff8dd35f277.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
+    },
+    {
+      "slug": "calendar-strategic",
+      "nume": "Calendarul strategic al României",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Cele 89 de strategii guvernamentale pe o cronologie: adoptare, întârziere, expirare",
+      "permite": [
+        "Monitorizează",
+        "Analizează date"
+      ],
+      "formate_catalogate": [
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "calendar-strategic"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "q",
+          "rol": "control-utilizator",
+          "tip_control_html": "search",
+          "descriere": "Caută",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://romaniainteractiva.ro/strategii/",
+            "sha256": "9452e819a579f31bdaf7338fe18cf52bb124ce3987295f7ae9532cd1d7e5c580",
+            "sha256_lista_controale": "48ac1b9041614d15a924b97f7c3d6dee4068d37e5eb4396712646774bf6de610",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/0264e551676e2aa59ed59346.json"
+          }
+        },
+        {
+          "nume": "sort",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "Ordonează",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://romaniainteractiva.ro/strategii/",
+            "sha256": "9452e819a579f31bdaf7338fe18cf52bb124ce3987295f7ae9532cd1d7e5c580",
+            "sha256_lista_controale": "48ac1b9041614d15a924b97f7c3d6dee4068d37e5eb4396712646774bf6de610",
+            "pointer_snapshot": "/input_candidates/1",
+            "snapshot": "documentare/pagini/0264e551676e2aa59ed59346.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
+    },
+    {
+      "slug": "harta-vaccinarii",
+      "nume": "Harta vaccinării",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Acoperirea vaccinală a copiilor pe județe, 2022–2026, față de pragul de 95%",
+      "permite": [
+        "Compară",
+        "Caută și consultă"
+      ],
+      "formate_catalogate": [
+        "Hartă",
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "harta-vaccinarii"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "yr",
+          "rol": "control-utilizator",
+          "tip_control_html": "range",
+          "descriere": "Anul evaluării",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://romaniainteractiva.ro/vaccinare/",
+            "sha256": "a5b24b281515b7ac8e1231b190e592dfd6de1bb11814b87679cb68372bd6dad3",
+            "sha256_lista_controale": "362c7eef87118a2c1a6a50e0d9d66bec75bbca6595e631a05fe1ac850e4bf7cf",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/e7524a65e2fef35c7e977228.json"
+          }
+        },
+        {
+          "nume": "sel",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "Alege județul",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://romaniainteractiva.ro/vaccinare/",
+            "sha256": "a5b24b281515b7ac8e1231b190e592dfd6de1bb11814b87679cb68372bd6dad3",
+            "sha256_lista_controale": "362c7eef87118a2c1a6a50e0d9d66bec75bbca6595e631a05fe1ac850e4bf7cf",
+            "pointer_snapshot": "/input_candidates/1",
+            "snapshot": "documentare/pagini/e7524a65e2fef35c7e977228.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
+        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+      ]
+    },
+    {
+      "slug": "speranta-viata-judete",
+      "nume": "Cât trăiești în județul tău",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Speranța de viață pe județe, 1990–2025, pe sexe și medii, față de UE",
+      "permite": [
+        "Compară",
+        "Caută și consultă"
+      ],
+      "formate_catalogate": [
+        "Hartă",
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "speranta-viata-judete"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "county",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "Alege județul",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://romaniainteractiva.ro/speranta-viata/",
+            "sha256": "82b5fc7d82812fc4fd0fcbe46b9e55379e2fddfafa917a9efbdb8667c7014bfe",
+            "sha256_lista_controale": "3ef48cac255d955f94902e4934a1e6310da67fd0daf74820028c8100e0be75bf",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/7c7d7422c19570fc00c16b0a.json"
+          }
+        },
+        {
+          "nume": "year",
+          "rol": "control-utilizator",
+          "tip_control_html": "range",
+          "descriere": "Anul",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://romaniainteractiva.ro/speranta-viata/",
+            "sha256": "82b5fc7d82812fc4fd0fcbe46b9e55379e2fddfafa917a9efbdb8667c7014bfe",
+            "sha256_lista_controale": "3ef48cac255d955f94902e4934a1e6310da67fd0daf74820028c8100e0be75bf",
+            "pointer_snapshot": "/input_candidates/1",
+            "snapshot": "documentare/pagini/7c7d7422c19570fc00c16b0a.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
+        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+      ]
+    },
+    {
+      "slug": "distanta-spital",
+      "nume": "Cât de departe e spitalul?",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Distanța de la fiecare localitate la cea mai apropiată primire urgențe",
+      "permite": [
+        "Caută și consultă",
+        "Analizează date"
+      ],
+      "formate_catalogate": [
+        "Hartă",
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "distanta-spital"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "q",
+          "rol": "control-utilizator",
+          "tip_control_html": "text",
+          "descriere": "ex. Sulina sau Dumbrava Alba",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://romaniainteractiva.ro/distanta-spital/",
+            "sha256": "815233158e9fda1483c0d68343e634893db0b2f45eb3bf9e09b70a426ad775a2",
+            "sha256_lista_controale": "440e86941ae065eca72dfa4e26a4217d4097c581f578be3a715bf1ec588f8bf4",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/c75664cf1e925a341fd1e8fb.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
+        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+      ]
+    },
+    {
+      "slug": "mortalitate-evitabila",
+      "nume": "Morți care puteau fi evitate",
+      "stare": "propunere",
+      "completitudine": "neconfirmat",
+      "scop": "Decese evitabile sub 75 de ani în România față de UE, 2011–2023",
+      "permite": [
+        "Compară",
+        "Analizează date"
+      ],
+      "formate_catalogate": [
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "mortalitate-evitabila"
+      },
+      "intrari_utilizator": [],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
+    },
+    {
+      "slug": "pacienti-medic",
+      "nume": "Câți pacienți are un medic?",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Locuitori la un medic, pe județe, 2012–2025, și comune fără medic de familie",
+      "permite": [
+        "Compară",
+        "Caută și consultă"
+      ],
+      "formate_catalogate": [
+        "Hartă",
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "pacienti-medic"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "county",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://romaniainteractiva.ro/pacienti-medic/",
+            "sha256": "6e13a3af72aadfafff03ce2beef77bd5616a754423ec12046f7cdf214d47f7d5",
+            "sha256_lista_controale": "4e2d6386532b2da31599d49c2ce178b13f41a353928771ee1e9f3ec43a2f9e59",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/079f73ffdf5c096d455619b7.json"
+          }
+        },
+        {
+          "nume": "yr",
+          "rol": "control-utilizator",
+          "tip_control_html": "range",
+          "descriere": "Anul",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://romaniainteractiva.ro/pacienti-medic/",
+            "sha256": "6e13a3af72aadfafff03ce2beef77bd5616a754423ec12046f7cdf214d47f7d5",
+            "sha256_lista_controale": "4e2d6386532b2da31599d49c2ce178b13f41a353928771ee1e9f3ec43a2f9e59",
+            "pointer_snapshot": "/input_candidates/1",
+            "snapshot": "documentare/pagini/079f73ffdf5c096d455619b7.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
+        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+      ]
+    },
+    {
+      "slug": "uniranking-ro",
+      "nume": "UniRanking RO",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Universitățile românești în clasamentele internaționale, 2021–2026",
+      "permite": [
+        "Compară",
+        "Analizează date"
+      ],
+      "formate_catalogate": [
+        "Vizualizare de date",
+        "Set de date oferit"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "uniranking-ro"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "q",
+          "rol": "control-utilizator",
+          "tip_control_html": "search",
+          "descriere": "ex. ubb, babes, Iași, medicină",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://romaniainteractiva.ro/UniRankingRO/",
+            "sha256": "35c8d51d647ee547ea6bed6100508cd275a1c2851bbededca979fb2a5543398d",
+            "sha256_lista_controale": "ec6205c981a0618a889109e097c6fbee7ce7471b97924d342a4ba58b3091f1bb",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/ce176683b67a5e14fe6346c0.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
     }
   ]
 }

@@ -178,6 +178,17 @@ with sync_playwright() as pw:
     drawer = page.locator('[data-slot="drawer"]').inner_text()
     ok("unconfirmed attribution is neutral", "rol neconfirmat" in drawer and "Autor" not in drawer.split("\n"), proj["slug"])
     ok("project panel groups", all(g in drawer.upper() for g in ("DESPRE CE", "CE OFERĂ", "ACOPERIRE")))
+    # A parent entry (`parte_din`) has its own heading. It is never an unconfirmed attribution or an organisation card.
+    parents = lambda i: [a["name"] for a in i["attributions"] if a["role"] == "parte_din"]
+    child = next((i for i in DB["items"] if parents(i) and not any(a["role"] != "parte_din" and a["name"] in parents(i) for a in i["attributions"])), None)
+    if child:
+        page.goto(BASE + f"{child['kind']}/{child['slug']}/")
+        page.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
+        drawer = page.locator('[data-slot="drawer"]').inner_text()
+        name = parents(child)[0]
+        ok("parent entry has its own heading", "PARTE DIN" in drawer.upper() and name in drawer, child["slug"])
+        ok("parent entry is not an attribution", not any("rol neconfirmat" in line and name in line for line in drawer.split("\n")), child["slug"])
+        ok("parent entry has no organisation card", page.locator('[data-slot="drawer"] .org-card', has_text=name).count() == 0, child["slug"])
     img = next(i for i in DB["items"] if i["img"])
     page.goto(BASE + f"{img['kind']}/{img['slug']}/")
     page.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')

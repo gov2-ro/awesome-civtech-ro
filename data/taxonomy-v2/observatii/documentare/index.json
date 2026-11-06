@@ -1526,6 +1526,141 @@
       ]
     },
     {
+      "slug": "bula-ta",
+      "url": "https://nicolaeurs.ro/bula-ta/",
+      "state": "documentatie-neconfirmata",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://nicolaeurs.ro/bula-ta/",
+          "final_url": "https://nicolaeurs.ro/bula-ta/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:25.927150+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Cât din România se vede din bula ta? · România Interactivă",
+          "sections": [],
+          "sha256": "0ecfb052253e4fd052e58a631b3a96e1be1b71de92e6c8a6441bc45cb015e58c",
+          "snapshot": "pagini/0a8971f04a1ac8f879ec67e5.json",
+          "text_chars": 11669
+        },
+        {
+          "url": "https://nicolaeurs.ro/bula-ta/llms.txt",
+          "final_url": "https://nicolaeurs.ro/bula-ta/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:28.389031+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://nicolaeurs.ro/llms.txt",
+          "final_url": "https://nicolaeurs.ro/llms.txt",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:25.680002+00:00",
+          "content_type": "text/plain",
+          "state": "colectat",
+          "kind": "llms",
+          "scope": "gazda-comuna",
+          "truncated": false,
+          "title": "",
+          "sections": [],
+          "sha256": "9a58d08bcd3e67b4c0aeda5e8d002e2e70786da144a30b8e7ace06de61a358dd",
+          "snapshot": "pagini/bffc840aeabf4a67fbc3953f.json",
+          "text_chars": 2531
+        },
+        {
+          "url": "https://nicolaeurs.ro/bula-ta/metodologie/",
+          "final_url": "https://nicolaeurs.ro/bula-ta/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:29.173607+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://nicolaeurs.ro/bula-ta/despre/",
+          "final_url": "https://nicolaeurs.ro/bula-ta/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:30.583901+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
+      "slug": "calendar-strategic",
+      "url": "https://romaniainteractiva.ro/strategii/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://romaniainteractiva.ro/strategii/",
+          "final_url": "https://romaniainteractiva.ro/strategii/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:40.188534+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Calendarul strategic al României · 89 de strategii guvernamentale | România Interactivă",
+          "sections": [
+            {
+              "kind": "metodologie",
+              "heading": "Metodologie",
+              "url": "https://romaniainteractiva.ro/strategii/#metodologie"
+            },
+            {
+              "kind": "metodologie",
+              "heading": "Metodologie",
+              "url": "https://romaniainteractiva.ro/strategii/"
+            }
+          ],
+          "sha256": "9452e819a579f31bdaf7338fe18cf52bb124ce3987295f7ae9532cd1d7e5c580",
+          "snapshot": "pagini/0264e551676e2aa59ed59346.json",
+          "text_chars": 4020
+        },
+        {
+          "url": "https://romaniainteractiva.ro/strategii/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/strategii/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:45.239002+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:28.959049+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "gazda-comuna"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/strategii/despre/",
+          "final_url": "https://romaniainteractiva.ro/strategii/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:50.025348+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
       "slug": "calitate-aer-radauti",
       "url": "https://calitateaer.radautiulcivic.ro/",
       "state": "documentatie-gasita",
@@ -1587,6 +1722,56 @@
           "state": "eroare-http",
           "error": "HTTP Error 404: Not Found",
           "kind": "metodologie",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
+      "slug": "cat-costa-un-vot",
+      "url": "https://1vot.ro/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://1vot.ro/",
+          "final_url": "https://1vot.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:19.455988+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Cât costă un vot? Banii din campanie, împărțiți la voturi · 1vot.ro",
+          "sections": [
+            {
+              "kind": "metodologie",
+              "heading": "Surse",
+              "url": "https://1vot.ro/"
+            }
+          ],
+          "sha256": "fe8447867974a3c6698525f3ac22911bdef348ace96a9812c95ec9d2b3c92728",
+          "snapshot": "pagini/649102f644f6b2717fa2469d.json",
+          "text_chars": 6364
+        },
+        {
+          "url": "https://1vot.ro/llms.txt",
+          "final_url": "https://1vot.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:20.709851+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://1vot.ro/despre/",
+          "final_url": "https://1vot.ro/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:21.531232+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
           "scope": "proiect"
         }
       ]
@@ -1670,6 +1855,70 @@
           "final_url": "https://mariuscomper.uk/cat-de-tare/despre/",
           "http_status": 404,
           "fetched_at": "2026-10-24T22:20:04.085039+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
+      "slug": "cate-voturi-aduce-un-primar",
+      "url": "https://nicolaeurs.ro/catevoturiaduceunprimar/",
+      "state": "documentatie-neconfirmata",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://nicolaeurs.ro/catevoturiaduceunprimar/",
+          "final_url": "https://nicolaeurs.ro/catevoturiaduceunprimar/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:25.585533+00:00",
+          "content_type": "text/html",
+          "state": "raspuns-prea-mare",
+          "kind": "pagina",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://nicolaeurs.ro/catevoturiaduceunprimar/llms.txt",
+          "final_url": "https://nicolaeurs.ro/catevoturiaduceunprimar/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:31.223253+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://nicolaeurs.ro/llms.txt",
+          "final_url": "https://nicolaeurs.ro/llms.txt",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:25.680002+00:00",
+          "content_type": "text/plain",
+          "state": "colectat",
+          "kind": "llms",
+          "scope": "gazda-comuna",
+          "truncated": false,
+          "title": "",
+          "sections": [],
+          "sha256": "9a58d08bcd3e67b4c0aeda5e8d002e2e70786da144a30b8e7ace06de61a358dd",
+          "snapshot": "pagini/bffc840aeabf4a67fbc3953f.json",
+          "text_chars": 2531
+        },
+        {
+          "url": "https://nicolaeurs.ro/catevoturiaduceunprimar/metodologie/",
+          "final_url": "https://nicolaeurs.ro/catevoturiaduceunprimar/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:32.031691+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://nicolaeurs.ro/catevoturiaduceunprimar/despre/",
+          "final_url": "https://nicolaeurs.ro/catevoturiaduceunprimar/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:32.829237+00:00",
           "state": "eroare-http",
           "error": "HTTP Error 404: Not Found",
           "kind": "despre",
@@ -2140,6 +2389,77 @@
       ]
     },
     {
+      "slug": "chitanta-orasului",
+      "url": "https://nicolaeurs.ro/chitantaorasului/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://nicolaeurs.ro/chitantaorasului/",
+          "final_url": "https://nicolaeurs.ro/chitantaorasului/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:23.145652+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Chitanța orașului: pe ce s-au cheltuit banii tăi în 2025",
+          "sections": [
+            {
+              "kind": "despre",
+              "heading": "Despre date",
+              "url": "https://nicolaeurs.ro/chitantaorasului/#despre-date"
+            },
+            {
+              "kind": "despre",
+              "heading": "Despre date",
+              "url": "https://nicolaeurs.ro/chitantaorasului/#despre-date"
+            }
+          ],
+          "sha256": "dc80f9934c8f5957064e819efdd1a9f5d50d6390c09412fd24d5460c7fdce932",
+          "snapshot": "pagini/c64cfc1145fe8636c765dad7.json",
+          "text_chars": 8258
+        },
+        {
+          "url": "https://nicolaeurs.ro/chitantaorasului/llms.txt",
+          "final_url": "https://nicolaeurs.ro/chitantaorasului/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:24.798742+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://nicolaeurs.ro/llms.txt",
+          "final_url": "https://nicolaeurs.ro/llms.txt",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:25.680002+00:00",
+          "content_type": "text/plain",
+          "state": "colectat",
+          "kind": "llms",
+          "scope": "gazda-comuna",
+          "truncated": false,
+          "title": "",
+          "sections": [],
+          "sha256": "9a58d08bcd3e67b4c0aeda5e8d002e2e70786da144a30b8e7ace06de61a358dd",
+          "snapshot": "pagini/bffc840aeabf4a67fbc3953f.json",
+          "text_chars": 2531
+        },
+        {
+          "url": "https://nicolaeurs.ro/chitantaorasului/metodologie/",
+          "final_url": "https://nicolaeurs.ro/chitantaorasului/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:27.387559+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
       "slug": "civica",
       "url": "https://asociatiacivica.ro/",
       "state": "documentatie-gasita",
@@ -2460,6 +2780,71 @@
       ]
     },
     {
+      "slug": "comasarea-comunelor",
+      "url": "https://romaniainteractiva.ro/comasare/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://romaniainteractiva.ro/comasare/",
+          "final_url": "https://romaniainteractiva.ro/comasare/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:32.170171+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "429 de primării mai puțin: comasarea comunelor sub 1.500 de locuitori | România Interactivă",
+          "sections": [
+            {
+              "kind": "metodologie",
+              "heading": "Metoda",
+              "url": "https://romaniainteractiva.ro/comasare/#metoda"
+            },
+            {
+              "kind": "metodologie",
+              "heading": "Surse",
+              "url": "https://romaniainteractiva.ro/comasare/"
+            }
+          ],
+          "sha256": "d4bf327bc88b1560b479b2b29dc446fbe5607184a616f4c8acba142d308b1f56",
+          "snapshot": "pagini/76792fbedb5aa1e83a7937fe.json",
+          "text_chars": 6330
+        },
+        {
+          "url": "https://romaniainteractiva.ro/comasare/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/comasare/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:34.114150+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:28.959049+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "gazda-comuna"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/comasare/despre/",
+          "final_url": "https://romaniainteractiva.ro/comasare/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:38.995547+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
       "slug": "companii-de-stat",
       "url": "https://companiidestat.ro/",
       "state": "documentatie-gasita",
@@ -2749,6 +3134,51 @@
           "state": "eroare-http",
           "error": "HTTP Error 404: Not Found",
           "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
+      "slug": "corpusul-cotroceni",
+      "url": "https://presedintii.ro/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://presedintii.ro/",
+          "final_url": "https://presedintii.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:19.455601+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Corpusul Cotroceni — discursurile președinților României, 1990–2026",
+          "sections": [
+            {
+              "kind": "despre",
+              "heading": "Cum funcționează instrumentul",
+              "url": "https://presedintii.ro/"
+            },
+            {
+              "kind": "metodologie",
+              "heading": "Metode",
+              "url": "https://presedintii.ro/"
+            }
+          ],
+          "sha256": "49d98c17b232335549e63c445a6722b242f3691cc7753c0648f06ee570331e7e",
+          "snapshot": "pagini/ebc6c90747e3c35504cfa49a.json",
+          "text_chars": 10656
+        },
+        {
+          "url": "https://presedintii.ro/llms.txt",
+          "final_url": "https://presedintii.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:20.812535+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
           "scope": "proiect"
         }
       ]
@@ -3620,6 +4050,70 @@
           "state": "eroare-http",
           "error": "HTTP Error 404: Not Found",
           "kind": "metodologie",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
+      "slug": "distanta-spital",
+      "url": "https://romaniainteractiva.ro/distanta-spital/",
+      "state": "documentatie-neconfirmata",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://romaniainteractiva.ro/distanta-spital/",
+          "final_url": "https://romaniainteractiva.ro/distanta-spital/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:45.874540+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Cât de departe e spitalul?",
+          "sections": [],
+          "sha256": "815233158e9fda1483c0d68343e634893db0b2f45eb3bf9e09b70a426ad775a2",
+          "snapshot": "pagini/c75664cf1e925a341fd1e8fb.json",
+          "text_chars": 2570
+        },
+        {
+          "url": "https://romaniainteractiva.ro/distanta-spital/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/distanta-spital/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:47.676586+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:28.959049+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "gazda-comuna"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/distanta-spital/metodologie/",
+          "final_url": "https://romaniainteractiva.ro/distanta-spital/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:48.453147+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/distanta-spital/despre/",
+          "final_url": "https://romaniainteractiva.ro/distanta-spital/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:49.234739+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
           "scope": "proiect"
         }
       ]
@@ -4523,6 +5017,191 @@
       ]
     },
     {
+      "slug": "geamanul-european",
+      "url": "https://geamanuleuropean.ro/",
+      "state": "documentatie-neconfirmata",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://geamanuleuropean.ro/",
+          "final_url": "https://geamanuleuropean.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:21.605690+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Geamănul european al județului tău | România Interactivă",
+          "sections": [],
+          "sha256": "70ebb14df14c3291a07ac497399f92bf4871eeedba5e94d49a749510c92a7c21",
+          "snapshot": "pagini/0e376061ea303fb8eff916d8.json",
+          "text_chars": 4279
+        },
+        {
+          "url": "https://geamanuleuropean.ro/llms.txt",
+          "final_url": "https://geamanuleuropean.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:23.418080+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://geamanuleuropean.ro/metodologie/",
+          "final_url": "https://geamanuleuropean.ro/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:24.319928+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://geamanuleuropean.ro/despre/",
+          "final_url": "https://geamanuleuropean.ro/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:25.119345+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
+      "slug": "generatiile-romaniei",
+      "url": "https://romaniainteractiva.ro/generatii/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://romaniainteractiva.ro/generatii/",
+          "final_url": "https://romaniainteractiva.ro/generatii/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:39.391544+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "E tot mai greu pentru fiecare generație? Generațiile României, 1900–2009 · România Interactivă",
+          "sections": [
+            {
+              "kind": "metodologie",
+              "heading": "Metodă",
+              "url": "https://romaniainteractiva.ro/generatii/#metoda"
+            },
+            {
+              "kind": "metodologie",
+              "heading": "Metodă și surse",
+              "url": "https://romaniainteractiva.ro/generatii/"
+            }
+          ],
+          "sha256": "b0f6f364d5df46d6d3183592600061d4e91313e9ea0fca9a05aa8ca9c8819e1b",
+          "snapshot": "pagini/9b142d31b5f35ff8dd35f277.json",
+          "text_chars": 4117
+        },
+        {
+          "url": "https://romaniainteractiva.ro/generatii/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/generatii/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:42.163858+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:28.959049+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "gazda-comuna"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/generatii/despre/",
+          "final_url": "https://romaniainteractiva.ro/generatii/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:42.965074+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
+      "slug": "ghiceste-bugetul",
+      "url": "https://nicolaeurs.ro/ghicestebugetul/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://nicolaeurs.ro/ghicestebugetul/",
+          "final_url": "https://nicolaeurs.ro/ghicestebugetul/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:23.951455+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Ghicește bugetul: cât de bine îți cunoști orașul?",
+          "sections": [
+            {
+              "kind": "despre",
+              "heading": "Despre date",
+              "url": "https://nicolaeurs.ro/ghicestebugetul/#despre-date"
+            }
+          ],
+          "sha256": "57b4ac944c09addf37f08b3b7a1fcfed2d4d0e642090171db1ad461854afa64e",
+          "snapshot": "pagini/7a66f86efb0c395b8e92c7d4.json",
+          "text_chars": 2882
+        },
+        {
+          "url": "https://nicolaeurs.ro/ghicestebugetul/llms.txt",
+          "final_url": "https://nicolaeurs.ro/ghicestebugetul/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:26.383810+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://nicolaeurs.ro/llms.txt",
+          "final_url": "https://nicolaeurs.ro/llms.txt",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:25.680002+00:00",
+          "content_type": "text/plain",
+          "state": "colectat",
+          "kind": "llms",
+          "scope": "gazda-comuna",
+          "truncated": false,
+          "title": "",
+          "sections": [],
+          "sha256": "9a58d08bcd3e67b4c0aeda5e8d002e2e70786da144a30b8e7ace06de61a358dd",
+          "snapshot": "pagini/bffc840aeabf4a67fbc3953f.json",
+          "text_chars": 2531
+        },
+        {
+          "url": "https://nicolaeurs.ro/ghicestebugetul/metodologie/",
+          "final_url": "https://nicolaeurs.ro/ghicestebugetul/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:27.388396+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
       "slug": "ghiduri-efor",
       "url": "https://expertforum.ro/ghiduri/",
       "state": "documentatie-neconfirmata",
@@ -4587,6 +5266,124 @@
       "motiv": "Termenii §5.2 exclud scraping-ul automat al site-ului viu.",
       "inventory_completeness": "neanalizat",
       "pages": []
+    },
+    {
+      "slug": "guverne-dupa-1989",
+      "url": "https://romaniainteractiva.ro/guverne/",
+      "state": "documentatie-neconfirmata",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://romaniainteractiva.ro/guverne/",
+          "final_url": "https://romaniainteractiva.ro/guverne/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:28.200124+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Toate guvernele României după 1989 | România Interactivă",
+          "sections": [],
+          "sha256": "d121c982e0297f4b81f8b5ee573b710b233ab65dde8bc148d1aeeb0b1fb23ea9",
+          "snapshot": "pagini/36ba3e869dd0fb041c8f1d93.json",
+          "text_chars": 7344
+        },
+        {
+          "url": "https://romaniainteractiva.ro/guverne/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/guverne/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:29.434855+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:28.959049+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "gazda-comuna"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/guverne/metodologie/",
+          "final_url": "https://romaniainteractiva.ro/guverne/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:30.567767+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/guverne/despre/",
+          "final_url": "https://romaniainteractiva.ro/guverne/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:38.590282+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
+      "slug": "guverneaza-daca-poti",
+      "url": "https://guverneazadacapoti.ro/",
+      "state": "documentatie-neconfirmata",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://guverneazadacapoti.ro/",
+          "final_url": "https://guverneazadacapoti.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:19.455507+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Guvernează dacă poți · Joc: ești premierul României, cu date reale",
+          "sections": [],
+          "sha256": "5f3997bced7eef783def46d8ea4f255314decf211e8cc0697beb7c798419efb9",
+          "snapshot": "pagini/9f3c71c72e4ebd2f41ece668.json",
+          "text_chars": 1954
+        },
+        {
+          "url": "https://guverneazadacapoti.ro/llms.txt",
+          "final_url": "https://guverneazadacapoti.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:20.943339+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://guverneazadacapoti.ro/metodologie/",
+          "final_url": "https://guverneazadacapoti.ro/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:21.741382+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://guverneazadacapoti.ro/despre/",
+          "final_url": "https://guverneazadacapoti.ro/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:22.528620+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
     },
     {
       "slug": "guvernezi",
@@ -4856,6 +5653,64 @@
       ]
     },
     {
+      "slug": "harta-notelor",
+      "url": "https://romaniainteractiva.ro/harta-notelor/",
+      "state": "documentatie-neconfirmata",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://romaniainteractiva.ro/harta-notelor/",
+          "final_url": "https://romaniainteractiva.ro/harta-notelor/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:29.782101+00:00",
+          "content_type": "text/html",
+          "state": "raspuns-prea-mare",
+          "kind": "pagina",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/harta-notelor/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/harta-notelor/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:36.166498+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:28.959049+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "gazda-comuna"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/harta-notelor/metodologie/",
+          "final_url": "https://romaniainteractiva.ro/harta-notelor/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:36.975075+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/harta-notelor/despre/",
+          "final_url": "https://romaniainteractiva.ro/harta-notelor/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:41.014315+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
       "slug": "harta-politicii",
       "url": "https://www.hartapoliticii.ro/",
       "state": "documentatie-neconfirmata",
@@ -5012,6 +5867,70 @@
           "final_url": "http://geo-spatial.org/hartatv/despre/",
           "http_status": 404,
           "fetched_at": "2026-10-24T22:19:32.049264+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
+      "slug": "harta-vaccinarii",
+      "url": "https://romaniainteractiva.ro/vaccinare/",
+      "state": "documentatie-neconfirmata",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://romaniainteractiva.ro/vaccinare/",
+          "final_url": "https://romaniainteractiva.ro/vaccinare/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:41.810166+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Harta vaccinării · Câți copii sunt vaccinați în județul tău",
+          "sections": [],
+          "sha256": "a5b24b281515b7ac8e1231b190e592dfd6de1bb11814b87679cb68372bd6dad3",
+          "snapshot": "pagini/e7524a65e2fef35c7e977228.json",
+          "text_chars": 3026
+        },
+        {
+          "url": "https://romaniainteractiva.ro/vaccinare/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/vaccinare/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:45.086582+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:28.959049+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "gazda-comuna"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/vaccinare/metodologie/",
+          "final_url": "https://romaniainteractiva.ro/vaccinare/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:47.598880+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/vaccinare/despre/",
+          "final_url": "https://romaniainteractiva.ro/vaccinare/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:48.422251+00:00",
           "state": "eroare-http",
           "error": "HTTP Error 404: Not Found",
           "kind": "despre",
@@ -5638,6 +6557,70 @@
           "fetched_at": "2026-10-24T22:19:33.153453+00:00",
           "state": "eroare-retea",
           "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
+      "slug": "judetul-tau-in-8-recensaminte",
+      "url": "https://romaniainteractiva.ro/recensaminte/",
+      "state": "documentatie-neconfirmata",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://romaniainteractiva.ro/recensaminte/",
+          "final_url": "https://romaniainteractiva.ro/recensaminte/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:26.518024+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Populația județelor la recensăminte, 1948–2021 | România Interactivă",
+          "sections": [],
+          "sha256": "f4daffd2d54abc36a526622ea8abd3e9d520806265a34730e151daf3494d1a3c",
+          "snapshot": "pagini/2fa5759f9a76bd6b803a73a1.json",
+          "text_chars": 6460
+        },
+        {
+          "url": "https://romaniainteractiva.ro/recensaminte/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/recensaminte/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:28.152784+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:28.959049+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "gazda-comuna"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/recensaminte/metodologie/",
+          "final_url": "https://romaniainteractiva.ro/recensaminte/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:29.769413+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/recensaminte/despre/",
+          "final_url": "https://romaniainteractiva.ro/recensaminte/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:31.365162+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
           "kind": "despre",
           "scope": "proiect"
         }
@@ -6428,6 +7411,66 @@
       ]
     },
     {
+      "slug": "mortalitate-evitabila",
+      "url": "https://romaniainteractiva.ro/mortalitate-evitabila/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://romaniainteractiva.ro/mortalitate-evitabila/",
+          "final_url": "https://romaniainteractiva.ro/mortalitate-evitabila/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:46.032629+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Morți care puteau fi evitate – mortalitatea evitabilă în România vs UE, 2011–2023 | România Interactivă",
+          "sections": [
+            {
+              "kind": "despre",
+              "heading": "Despre date",
+              "url": "https://romaniainteractiva.ro/mortalitate-evitabila/#date"
+            }
+          ],
+          "sha256": "5a1261cd7dd4e319edbc267116382a0fc3fdb256929ab11b40dbd96992f80a88",
+          "snapshot": "pagini/75278a040666f812ad3c8484.json",
+          "text_chars": 4608
+        },
+        {
+          "url": "https://romaniainteractiva.ro/mortalitate-evitabila/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/mortalitate-evitabila/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:49.474048+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:28.959049+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "gazda-comuna"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/mortalitate-evitabila/metodologie/",
+          "final_url": "https://romaniainteractiva.ro/mortalitate-evitabila/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:51.840648+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
       "slug": "multumesc",
       "url": "https://www.multumesc.org/",
       "state": "documentatie-neconfirmata",
@@ -6961,6 +8004,130 @@
       ]
     },
     {
+      "slug": "orase-digitale",
+      "url": "https://orase-digitale.ro/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://orase-digitale.ro/",
+          "final_url": "https://orase-digitale.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:22.397730+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Romania E-Government Index – 2020 · 2023 · 2026",
+          "sections": [],
+          "sha256": "e0ba92e20180f0e431b5da9a2a0219ccc0b329fec980bc0d9207bd3e6e1f2c51",
+          "snapshot": "pagini/687b95f9828912de02f8f4da.json",
+          "text_chars": 16944
+        },
+        {
+          "url": "https://orase-digitale.ro/llms.txt",
+          "final_url": "https://orase-digitale.ro/llms.txt",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:24.122402+00:00",
+          "content_type": "text/plain",
+          "state": "colectat",
+          "kind": "llms",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "",
+          "sections": [],
+          "sha256": "e1411265c6ed5b274601bfba5efa97e16723660d7bc6b997f3e9ca43c4075597",
+          "snapshot": "pagini/4451b33cc9f501b923c5d665.json",
+          "text_chars": 1705
+        },
+        {
+          "url": "https://orase-digitale.ro/metodologie/",
+          "final_url": "https://orase-digitale.ro/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:24.920322+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://orase-digitale.ro/despre/",
+          "final_url": "https://orase-digitale.ro/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:25.711881+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
+      "slug": "orase-vii",
+      "url": "https://romaniainteractiva.ro/orasevii/",
+      "state": "documentatie-neconfirmata",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://romaniainteractiva.ro/orasevii/",
+          "final_url": "https://romaniainteractiva.ro/orasevii/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:38.191661+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Cât de viu e orașul tău? Semnele vitale ale celor 319 orașe din România | România Interactivă",
+          "sections": [],
+          "sha256": "0f235a6ede5558f6eee9e2c3a987e6d4f2f6b6175176333b9bba5d52e32b930a",
+          "snapshot": "pagini/5ea11386b527659399f465ff.json",
+          "text_chars": 3144
+        },
+        {
+          "url": "https://romaniainteractiva.ro/orasevii/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/orasevii/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:41.144632+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:28.959049+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "gazda-comuna"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/orasevii/metodologie/",
+          "final_url": "https://romaniainteractiva.ro/orasevii/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:43.760543+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/orasevii/despre/",
+          "final_url": "https://romaniainteractiva.ro/orasevii/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:50.259315+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
       "slug": "orasul-care-se-intinde",
       "url": "https://mariuscomper.uk/orasul-care-se-intinde/",
       "state": "documentatie-gasita",
@@ -7039,6 +8206,134 @@
           "final_url": "https://mariuscomper.uk/orasul-care-se-intinde/despre/",
           "http_status": 404,
           "fetched_at": "2026-10-24T22:20:05.737134+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
+      "slug": "pacienti-medic",
+      "url": "https://romaniainteractiva.ro/pacienti-medic/",
+      "state": "documentatie-neconfirmata",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://romaniainteractiva.ro/pacienti-medic/",
+          "final_url": "https://romaniainteractiva.ro/pacienti-medic/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:50.819648+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Câți pacienți are un medic? Locuitori la un medic pe județe · România Interactivă",
+          "sections": [],
+          "sha256": "6e13a3af72aadfafff03ce2beef77bd5616a754423ec12046f7cdf214d47f7d5",
+          "snapshot": "pagini/079f73ffdf5c096d455619b7.json",
+          "text_chars": 4146
+        },
+        {
+          "url": "https://romaniainteractiva.ro/pacienti-medic/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/pacienti-medic/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:52.339030+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:28.959049+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "gazda-comuna"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/pacienti-medic/metodologie/",
+          "final_url": "https://romaniainteractiva.ro/pacienti-medic/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:55.122767+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/pacienti-medic/despre/",
+          "final_url": "https://romaniainteractiva.ro/pacienti-medic/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:56.712981+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
+      "slug": "parc-auto-judete",
+      "url": "https://romaniainteractiva.ro/masini/",
+      "state": "documentatie-neconfirmata",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://romaniainteractiva.ro/masini/",
+          "final_url": "https://romaniainteractiva.ro/masini/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:33.625812+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Câte mașini are județul tău",
+          "sections": [],
+          "sha256": "3d2bceac8ac79c81d98e92fc9cdd05f1acfea0f7802f8760e43ffb3413bb1281",
+          "snapshot": "pagini/45c58e54124ff1962ea78a4b.json",
+          "text_chars": 2937
+        },
+        {
+          "url": "https://romaniainteractiva.ro/masini/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/masini/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:36.612963+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:28.959049+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "gazda-comuna"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/masini/metodologie/",
+          "final_url": "https://romaniainteractiva.ro/masini/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:37.403163+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/masini/despre/",
+          "final_url": "https://romaniainteractiva.ro/masini/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:39.792103+00:00",
           "state": "eroare-http",
           "error": "HTTP Error 404: Not Found",
           "kind": "despre",
@@ -7734,6 +9029,72 @@
           "sha256": "52cef08132a5b166a5dbaa1c5d2cd4274ab796d676d770f38a7f66d6cc827e7e",
           "snapshot": "pagini/49f470d76b03a9ebb6b64bb4.json",
           "text_chars": 1147
+        }
+      ]
+    },
+    {
+      "slug": "primar-pentru-un-an",
+      "url": "https://nicolaeurs.ro/primarpentruunan/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://nicolaeurs.ro/primarpentruunan/",
+          "final_url": "https://nicolaeurs.ro/primarpentruunan/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:23.314502+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Primar pentru un an: închide bugetul orașului tău pe 2026",
+          "sections": [
+            {
+              "kind": "despre",
+              "heading": "Despre date",
+              "url": "https://nicolaeurs.ro/primarpentruunan/#despre-date"
+            }
+          ],
+          "sha256": "121f715f6382bc0ce8426a29194d1e8041db1cac623c5129ff33bb762c67904a",
+          "snapshot": "pagini/5dc8d94d662732b4a1d24908.json",
+          "text_chars": 6604
+        },
+        {
+          "url": "https://nicolaeurs.ro/primarpentruunan/llms.txt",
+          "final_url": "https://nicolaeurs.ro/primarpentruunan/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:24.874743+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://nicolaeurs.ro/llms.txt",
+          "final_url": "https://nicolaeurs.ro/llms.txt",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:25.680002+00:00",
+          "content_type": "text/plain",
+          "state": "colectat",
+          "kind": "llms",
+          "scope": "gazda-comuna",
+          "truncated": false,
+          "title": "",
+          "sections": [],
+          "sha256": "9a58d08bcd3e67b4c0aeda5e8d002e2e70786da144a30b8e7ace06de61a358dd",
+          "snapshot": "pagini/bffc840aeabf4a67fbc3953f.json",
+          "text_chars": 2531
+        },
+        {
+          "url": "https://nicolaeurs.ro/primarpentruunan/metodologie/",
+          "final_url": "https://nicolaeurs.ro/primarpentruunan/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:27.388257+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
         }
       ]
     },
@@ -8471,6 +9832,118 @@
       ]
     },
     {
+      "slug": "romania-in-puncte",
+      "url": "https://romaniainteractiva.ro/locale/",
+      "state": "documentatie-neconfirmata",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://romaniainteractiva.ro/locale/",
+          "final_url": "https://romaniainteractiva.ro/locale/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:28.991090+00:00",
+          "content_type": "text/html",
+          "state": "raspuns-prea-mare",
+          "kind": "pagina",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/locale/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/locale/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:31.472830+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:28.959049+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "gazda-comuna"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/locale/metodologie/",
+          "final_url": "https://romaniainteractiva.ro/locale/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:32.252965+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/locale/despre/",
+          "final_url": "https://romaniainteractiva.ro/locale/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:37.776983+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
+      "slug": "romania-in-viata-ta",
+      "url": "https://inviatamea.ro/",
+      "state": "documentatie-neconfirmata",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://inviatamea.ro/",
+          "final_url": "https://inviatamea.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:19.455786+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "România în viața ta: cum s-a schimbat țara de când te-ai născut",
+          "sections": [],
+          "sha256": "478775b27741b7b463d2a5b1e823764c595cc69c76185f2655b57e66cdc2c552",
+          "snapshot": "pagini/a28228c07c87a15357aa90e9.json",
+          "text_chars": 3706
+        },
+        {
+          "url": "https://inviatamea.ro/llms.txt",
+          "final_url": "https://inviatamea.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:20.699506+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://inviatamea.ro/metodologie/",
+          "final_url": "https://inviatamea.ro/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:21.522925+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://inviatamea.ro/despre/",
+          "final_url": "https://inviatamea.ro/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:22.340585+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
       "slug": "romania-interactiva",
       "url": "https://romaniainteractiva.ro/",
       "state": "documentatie-gasita",
@@ -8699,6 +10172,54 @@
           "sha256": "25089041153ade0b18d8d7c39a831cfb99965cd5d24f90e47650aa396f68153f",
           "snapshot": "pagini/cce9c588ea107bef33fe4bb0.json",
           "text_chars": 3142
+        }
+      ]
+    },
+    {
+      "slug": "satul-care-se-stinge",
+      "url": "https://satulcaresestinge.ro/",
+      "state": "documentatie-neconfirmata",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://satulcaresestinge.ro/",
+          "final_url": "https://satulcaresestinge.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:19.455206+00:00",
+          "content_type": "text/html",
+          "state": "raspuns-prea-mare",
+          "kind": "pagina",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://satulcaresestinge.ro/llms.txt",
+          "final_url": "https://satulcaresestinge.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:21.567692+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://satulcaresestinge.ro/metodologie/",
+          "final_url": "https://satulcaresestinge.ro/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:22.363106+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://satulcaresestinge.ro/despre/",
+          "final_url": "https://satulcaresestinge.ro/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:23.151607+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
         }
       ]
     },
@@ -9003,6 +10524,137 @@
           "sha256": "88b48647bcc30b9cc1dc32d8b3d4011e8397803481048ca4131edc337dd03ce5",
           "snapshot": "pagini/b1700e1df617d3c32c45dc03.json",
           "text_chars": 5981
+        }
+      ]
+    },
+    {
+      "slug": "sondajele-romaniei",
+      "url": "https://sondajeleromaniei.ro/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://sondajeleromaniei.ro/",
+          "final_url": "https://sondajeleromaniei.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:22.340998+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Sondajele României · sondaje pentru alegerile parlamentare",
+          "sections": [
+            {
+              "kind": "metodologie",
+              "heading": "Metodologie",
+              "url": "https://sondajeleromaniei.ro/#metodologie"
+            }
+          ],
+          "sha256": "909ef8700972b4b20f6c005ed82924e2a165ef1f64a234ef6a5e644473afccbf",
+          "snapshot": "pagini/5f14c12261e50afe45b5e144.json",
+          "text_chars": 7360
+        },
+        {
+          "url": "https://sondajeleromaniei.ro/llms.txt",
+          "final_url": "https://sondajeleromaniei.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:23.696216+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://sondajeleromaniei.ro/metodologie/",
+          "final_url": "https://sondajeleromaniei.ro/metodologie/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:24.480857+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "metodologie",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Metodologie · Sondajele României",
+          "sections": [
+            {
+              "kind": "metodologie",
+              "heading": "Metodologie",
+              "url": "https://sondajeleromaniei.ro/metodologie/"
+            },
+            {
+              "kind": "metodologie",
+              "heading": "Surse",
+              "url": "https://sondajeleromaniei.ro/metodologie/"
+            }
+          ],
+          "sha256": "efc6c02200c261be47521673752dba7f1d6c4bb1b6bb1f5378e20e92e6fc2636",
+          "snapshot": "pagini/a726809c361c456416a59cce.json",
+          "text_chars": 14455
+        }
+      ]
+    },
+    {
+      "slug": "speranta-viata-judete",
+      "url": "https://romaniainteractiva.ro/speranta-viata/",
+      "state": "documentatie-neconfirmata",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://romaniainteractiva.ro/speranta-viata/",
+          "final_url": "https://romaniainteractiva.ro/speranta-viata/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:42.615147+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Cât trăiești în județul tău – speranța de viață pe județe, 1990–2025 | România Interactivă",
+          "sections": [],
+          "sha256": "82b5fc7d82812fc4fd0fcbe46b9e55379e2fddfafa917a9efbdb8667c7014bfe",
+          "snapshot": "pagini/7c7d7422c19570fc00c16b0a.json",
+          "text_chars": 2190
+        },
+        {
+          "url": "https://romaniainteractiva.ro/speranta-viata/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/speranta-viata/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:44.055589+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:28.959049+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "gazda-comuna"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/speranta-viata/metodologie/",
+          "final_url": "https://romaniainteractiva.ro/speranta-viata/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:46.809468+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/speranta-viata/despre/",
+          "final_url": "https://romaniainteractiva.ro/speranta-viata/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:53.122852+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
         }
       ]
     },
@@ -9786,6 +11438,190 @@
           "final_url": "https://mariuscomper.uk/unde-se-termina-asfaltul/despre/",
           "http_status": 404,
           "fetched_at": "2026-10-24T22:20:06.004319+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
+      "slug": "uniranking-ro",
+      "url": "https://romaniainteractiva.ro/UniRankingRO/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://romaniainteractiva.ro/UniRankingRO/",
+          "final_url": "https://romaniainteractiva.ro/UniRankingRO/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:51.050847+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "UniRanking RO: universitățile românești în clasamentele lumii | România Interactivă",
+          "sections": [
+            {
+              "kind": "metodologie",
+              "heading": "Metodologia Ministerului Educației",
+              "url": "https://romaniainteractiva.ro/UniRankingRO/"
+            },
+            {
+              "kind": "metodologie",
+              "heading": "Metodologia noastră",
+              "url": "https://romaniainteractiva.ro/UniRankingRO/"
+            },
+            {
+              "kind": "metodologie",
+              "heading": "Surse",
+              "url": "https://romaniainteractiva.ro/UniRankingRO/"
+            }
+          ],
+          "sha256": "35c8d51d647ee547ea6bed6100508cd275a1c2851bbededca979fb2a5543398d",
+          "snapshot": "pagini/ce176683b67a5e14fe6346c0.json",
+          "text_chars": 4330
+        },
+        {
+          "url": "https://romaniainteractiva.ro/UniRankingRO/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/UniRankingRO/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:54.381172+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:28.959049+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "gazda-comuna"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/UniRankingRO/despre/",
+          "final_url": "https://romaniainteractiva.ro/UniRankingRO/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:55.171766+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
+      "slug": "universitatile-romaniei",
+      "url": "https://romaniainteractiva.ro/universitati/",
+      "state": "documentatie-neconfirmata",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://romaniainteractiva.ro/universitati/",
+          "final_url": "https://romaniainteractiva.ro/universitati/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:31.379121+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Universitățile României, 1992–2026",
+          "sections": [],
+          "sha256": "f6990023bb92e723ad80cd3b018afebe6f14f437789c83e11ff151aed634f22a",
+          "snapshot": "pagini/4c2feef6cdb5329e3972c5c9.json",
+          "text_chars": 5780
+        },
+        {
+          "url": "https://romaniainteractiva.ro/universitati/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/universitati/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:33.646043+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/llms.txt",
+          "final_url": "https://romaniainteractiva.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:28.959049+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "gazda-comuna"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/universitati/metodologie/",
+          "final_url": "https://romaniainteractiva.ro/universitati/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:34.433996+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://romaniainteractiva.ro/universitati/despre/",
+          "final_url": "https://romaniainteractiva.ro/universitati/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:35.295438+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
+      "slug": "unul-din-100",
+      "url": "https://unuldin100.ro/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://unuldin100.ro/",
+          "final_url": "https://unuldin100.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-06T14:39:19.455864+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Unul din 100 · Dacă România ar fi 100 de oameni",
+          "sections": [
+            {
+              "kind": "metodologie",
+              "heading": "Surse",
+              "url": "https://unuldin100.ro/"
+            }
+          ],
+          "sha256": "7d1219b6654bb3342c803f44621ff6e32985b42cba2bd2f8f9bb7329ffd0ee49",
+          "snapshot": "pagini/cac5745aded2542603151786.json",
+          "text_chars": 4408
+        },
+        {
+          "url": "https://unuldin100.ro/llms.txt",
+          "final_url": "https://unuldin100.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:20.837590+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://unuldin100.ro/despre/",
+          "final_url": "https://unuldin100.ro/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-06T14:39:21.620136+00:00",
           "state": "eroare-http",
           "error": "HTTP Error 404: Not Found",
           "kind": "despre",

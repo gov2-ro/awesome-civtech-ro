@@ -635,10 +635,12 @@ const authorLink = a => a.org && BY_SLUG.has(a.org)
   ? `<a href="${hrefFor(a.org)}" data-open="${esc(a.org)}">${esc(a.name)}</a>` : esc(a.name);
 // Attributions by role: an accepted role gets its own heading ("Creat de"); an unconfirmed one stays neutral, because
 // the old `autor` cell never said who created, published, funded or maintains an entry.
+// `parte_din` names a parent entry, not an author: it always gets its own heading and never counts as an attribution.
+const isParent = a => a.role === 'parte_din';
 function attributionRows(it) {
   const groups = new Map();
   for (const a of it.attributions) {
-    const head = a.accepted ? TAX.pred[a.role]?.label || a.role : 'Atribuire';
+    const head = a.accepted || isParent(a) ? TAX.pred[a.role]?.label || a.role : 'Atribuire';
     groups.set(head, [...(groups.get(head) || []), a]);
   }
   return [...groups].map(([head, as]) => [head, as.map(authorLink).join(' · ') + (head === 'Atribuire' ? ' <span class="muted small">· rol neconfirmat</span>' : '')]);
@@ -979,7 +981,7 @@ function renderDetail() {
       ${inventoryHTML(it)}
       ${structureHTML(it)}
       ${classHTML(it)}
-      ${it.attributions.filter(a => a.org && BY_SLUG.has(a.org)).map(a => orgCard(BY_SLUG.get(a.org))).join('')}
+      ${it.attributions.filter(a => !isParent(a) && a.org && BY_SLUG.has(a.org)).map(a => orgCard(BY_SLUG.get(a.org))).join('')}
       <dl class="dl">${dl.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>
       ${worksHTML(it)}
       ${related.length ? `<div class="related"><p class="kicker">Tot din ${esc(subject)}</p>${related.map(r => row(r, false)).join('')}</div>` : ''}
@@ -1405,11 +1407,11 @@ function start(db) {
     it._f.ent = new Set([it.entityType]);
     it._f.dat = new Set([dataGroup(it.dataRelation)].filter(Boolean));
     it._f.st = new Set([STATUS[it.status].group]);
-    it._orgs = it.attributions.map(a => a.name);
+    it._orgs = it.attributions.filter(a => !isParent(a)).map(a => a.name);
     // What ties entries together by attribution: the slug of an organisation, else the written name.
-    it._akeys = it.attributions.map(a => a.org || norm(a.name));
+    it._akeys = it.attributions.filter(a => !isParent(a)).map(a => a.org || norm(a.name));
     const concepts = [...new Set([...it._f.subj, ...it._f.topic, ...['cap', 'fmt', 'purpose', 'tech', 'inst', 'orgt'].flatMap(k => [...it._f[k]])])];
-    it._hay = norm([it.name, it.tagline, it.desc, it.inventory?.keywords, ...it.dataSources.map(s => s.name), ...it._orgs, it.domain, TAX.ent[it.entityType]?.label, ...it.areas.flatMap(names),
+    it._hay = norm([it.name, it.tagline, it.desc, it.inventory?.keywords, ...it.dataSources.map(s => s.name), ...it.attributions.map(a => a.name), it.domain, TAX.ent[it.entityType]?.label, ...it.areas.flatMap(names),
       ...concepts.flatMap(names), ...legacyWords(it)].join(' '));
   }
   SUGGEST = buildSuggestions();
