@@ -667,6 +667,13 @@ function worksHTML(it) {
   return `<div class="related"><p class="kicker">${title} · ${works.length}</p>${works.slice(0, MAX_WORKS).map(r => row(r, true)).join('')}${more > 0 ? `<p class="small muted">… și încă ${more}</p>` : ''}</div>`;
 }
 
+// The entries that name `it` as their parent (`parte_din`). The list has no cap: this page is the only way to reach them from the parent.
+function partsHTML(it) {
+  const parts = DB.items.filter(i => i.attributions.some(a => isParent(a) && a.org === it.slug)).sort((a, b) => rank(a) - rank(b) || byName(a, b));
+  if (!parts.length) return '';
+  return `<div class="related"><p class="kicker">Fac parte din această intrare · ${parts.length}</p>${parts.map(r => row(r, true)).join('')}</div>`;
+}
+
 // "Semnalează o problemă": three ways to tell us, each prefilled with the entry's name and address. data/site.json
 // (copied into data.json as `site`) says which ones exist: an empty address hides its option.
 function flagHTML(it) {
@@ -983,6 +990,7 @@ function renderDetail() {
       ${classHTML(it)}
       ${it.attributions.filter(a => !isParent(a) && a.org && BY_SLUG.has(a.org)).map(a => orgCard(BY_SLUG.get(a.org))).join('')}
       <dl class="dl">${dl.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>
+      ${partsHTML(it)}
       ${worksHTML(it)}
       ${related.length ? `<div class="related"><p class="kicker">Tot din ${esc(subject)}</p>${related.map(r => row(r, false)).join('')}</div>` : ''}
       ${flagHTML(it)}

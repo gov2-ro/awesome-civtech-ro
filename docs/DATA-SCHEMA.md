@@ -524,6 +524,8 @@ It excludes these rows from `attributions`. Empty sources mean unknown, not that
 Only accept providers explicitly identified by the project. Do not infer them from its subject or author.
 These relations are edited in the repository; the existing Sheets tabs do not sync them.
 
+The predicate `parte_din` names a parent entry in `obiect`. It is not an attribution. The entry page shows it under the heading „Parte din”, in every `stare`. It does not feed the author filter or „Cu aceeași atribuire”, and it adds no organisation card. The page of the parent lists all its parts under „Fac parte din această intrare”.
+
 ### arii.csv
 
 The geographic areas for `arii_acoperite`. An area ID does not imply a SIRUTA or NUTS code.
