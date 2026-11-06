@@ -786,6 +786,7 @@ Existing items below also cover profile refresh data loss, Sheets merge conflict
 
 
 ## Misc / unfilled
+- [ ] add Hack4Facts tag/flag/filter
 - assign a resource to more than one domain (and more keywords per resource; the Tip filter is already multi-select)
 - maybe an "Altele" domain for things that fit nowhere
 - [x] ranking by popularity / relevance — `score` in `build.py`, "Relevanță" sort; reach signals being reworked (`docs/specs/search-relevance.md`)
