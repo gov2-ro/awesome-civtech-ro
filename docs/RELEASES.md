@@ -1,5 +1,6 @@
 # Releases
 
+- **v0.68.0** (2026-11-13): lipsește (lipseste.ro) published: the program of government 2026–2028, measure by measure. Two proposed data providers: Monitorul Oficial and Senatul României. No author row: the site names nobody. Search skipped: no Serper credits.
 - **v0.67.1** (2026-11-12): PreveHub loses `tehnologie:ai`; `check_preview.py` allows that facet on projects only, and the validate run of v0.67.0 failed on it.
 
 - **v0.67.0** (2026-11-12): 4 entries published: Textdelege (with Portal Legislativ as data source), Nedrept, CIVICOM and PreveHub; two confirmed authors.
