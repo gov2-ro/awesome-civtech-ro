@@ -1,5 +1,7 @@
 # Releases
 
+- **v0.67.1** (2026-11-12): PreveHub loses `tehnologie:ai`; `check_preview.py` allows that facet on projects only, and the validate run of v0.67.0 failed on it.
+
 - **v0.67.0** (2026-11-12): 4 entries published: Textdelege (with Portal Legislativ as data source), Nedrept, CIVICOM and PreveHub; two confirmed authors.
 - **v0.66.1** (2026-11-06): `check_data_finder.py` searches the first entry by name, not by slug; a new entry that sorts first broke the check.
 - **v0.66.0** (2026-11-06): 30 tools of România Interactivă as separate entries, each linked to the portal with `parte_din`; „Parte din” heading on the entry and the list of parts on the parent page; 31 proposed rows in `furnizori.csv`. Published without search results.
