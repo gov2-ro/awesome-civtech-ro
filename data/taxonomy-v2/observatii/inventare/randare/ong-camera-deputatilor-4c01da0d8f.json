@@ -1,0 +1,25 @@
+{
+  "versiune": 2,
+  "proiect": "ong-camera-deputatilor",
+  "url_cerut": "http://www.cdep.ro/informatii_publice/ong.chest_aprobate",
+  "url_final": "about:blank",
+  "stare": "timeout",
+  "http_status": null,
+  "randat_la": "2026-11-01T14:26:53.280320+00:00",
+  "text_lungime": 0,
+  "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "controale_numar": 0,
+  "cereri_date": [],
+  "corpuri_pastrate": [],
+  "corpuri_omise": [],
+  "captura": {
+    "algoritm": "sha256",
+    "sha256": "6ecb50d5968b8ec594778924461813411f110db0e84e240f74575dfcfc1b271b",
+    "octeti": 511,
+    "fisier": "6ecb50d5968b8ec594778924461813411f110db0e84e240f74575dfcfc1b271b.json",
+    "reprezentare": "UTF-8 bytes of the render record as JSON: indent 2, non-ASCII characters kept, one final newline"
+  },
+  "capturi_anterioare": [
+    "3a0c484ff1c93ceb2c25d56377e56028e2123078d76f91564f2cd7bc6629886c"
+  ]
+}

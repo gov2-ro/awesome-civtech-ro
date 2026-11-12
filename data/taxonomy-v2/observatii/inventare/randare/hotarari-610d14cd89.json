@@ -1,0 +1,27 @@
+{
+  "versiune": 1,
+  "proiect": "hotarari",
+  "url_cerut": "https://hotarari.ro/statistici",
+  "url_final": "https://hotarari.ro/statistici",
+  "stare": "ok",
+  "http_status": 403,
+  "titlu": "Acces automat restricționat — hotarari.ro",
+  "randat_la": "2026-10-30T23:39:27.116781+00:00",
+  "text_randat": null,
+  "text_lungime": 825,
+  "text_sha256": "c32246b539c5340bcbbf996b432fdc521b0bba3ff95436f99eebf69709f88baa",
+  "controale_vizibile": [],
+  "cereri_date": [
+    {
+      "metoda": "POST",
+      "url": "https://hotarari.ro/cdn-cgi/challenge-platform/h/g/jsd/oneshot/c787ce48cf6b/0.39787417150652893:1793402057:F4_ez7M2T6LsxCy57Y-594ff29SYSkbocdszAYtsO1Y/a52e425bcfd4e4b0",
+      "tip_resursa": "xhr",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": 0
+    }
+  ],
+  "corpuri_pastrate": [],
+  "corpuri_omise": [],
+  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+}

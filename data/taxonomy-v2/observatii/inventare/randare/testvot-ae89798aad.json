@@ -1,0 +1,34 @@
+{
+  "versiune": 1,
+  "proiect": "testvot",
+  "url_cerut": "https://www.testvot.eu/",
+  "url_final": "https://www.testvot.eu/",
+  "stare": "ok",
+  "http_status": 200,
+  "titlu": "TestVot 2025",
+  "randat_la": "2026-10-31T10:02:48.363599+00:00",
+  "text_randat": "TESTVOT 2025\n\nTestează-ți votul!\n\nTestVot 2025 alegeri prezidențiale\n\nPentru a folosi aplicația trebuie să fii de acord cu politica de confidențialitate a datelor.\n\nSunt de acord\n\nCONTINUĂ\nTESTVOT 2025\n\nTestVot este o aplicație imparțială care poate ajuta în a decide pe cine să votezi.\n\nDespre proiect\n\nUn proiect al Median Research Centre (MRC)\n\nMetodologia proiectului\n\nLegături (GDPR)\n\nProtecția datelor\n\nContact\n\nportal@medianresearch.ro\n\nCreat printr-o colaborare a organizațiilor non-profit\n\n,",
+  "controale_vizibile": [
+    {
+      "tag": "input",
+      "name": "privacy",
+      "id": null,
+      "type": "checkbox",
+      "label": null,
+      "options": null
+    }
+  ],
+  "cereri_date": [
+    {
+      "metoda": "GET",
+      "url": "https://www.testvot.eu/api/users/me",
+      "tip_resursa": "fetch",
+      "http_status": 401,
+      "content_type": "application/problem+json",
+      "octeti": 126
+    }
+  ],
+  "corpuri_pastrate": [],
+  "corpuri_omise": [],
+  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+}

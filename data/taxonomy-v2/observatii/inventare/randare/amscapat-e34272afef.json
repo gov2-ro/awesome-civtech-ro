@@ -1,0 +1,32 @@
+{
+  "versiune": 1,
+  "proiect": "amscapat",
+  "url_cerut": "https://amscapat.ro/",
+  "url_final": "https://amscapat.ro/",
+  "stare": "ok",
+  "http_status": 200,
+  "titlu": "amscapat.ro – Cazuri de Corupție în România",
+  "randat_la": "2026-10-31T09:47:36.791434+00:00",
+  "text_randat": null,
+  "text_lungime": 4308,
+  "text_sha256": "aef2f6706bbd48f97af8416e60a269019683bf17f9b2617dde39a08ebfe5413d",
+  "controale_vizibile": [],
+  "cereri_date": [
+    {
+      "metoda": "POST",
+      "url": "https://amscapat.ro/__l5e/trackevents",
+      "tip_resursa": "fetch",
+      "http_status": 202,
+      "content_type": "application/json",
+      "octeti": 17
+    }
+  ],
+  "corpuri_pastrate": [],
+  "corpuri_omise": [
+    {
+      "url": "https://hczymwpxoujqcqcttvnf.supabase.co/rest/v1/corruption_cases?select=%2A&published=eq.true&order=created_at.desc",
+      "motiv": "body of 248336 bytes is over the 200000 limit"
+    }
+  ],
+  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+}

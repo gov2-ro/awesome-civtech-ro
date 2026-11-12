@@ -386,3 +386,7 @@ L384,uniranking-ro,atribuit_in_sursa,,Adrian Hudrea,autor,Adrian Hudrea,rol_neco
 L385,uniranking-ro,date_din,,Site-urile clasamentelor universitare,surse_date,https://romaniainteractiva.ro/UniRankingRO/,propus
 L386,uniranking-ro,date_din,,Ministerul Educației,surse_date,https://romaniainteractiva.ro/UniRankingRO/,propus
 L387,uniranking-ro,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
+L388,textdelege,atribuit_in_sursa,,bogdantoma27,autor,bogdantoma27,rol_neconfirmat
+L389,textdelege,date_din,,Portal Legislativ,surse_date,https://github.com/lexifina/romania-law/blob/main/DATA.md#sources,acceptat
+L390,nedrept,creat_de,,Gabriel Popa,autor,Gabriel Popa,acceptat
+L391,civicom,creat_de,,Mihai Coteț,autor,Mihai Coteț,acceptat

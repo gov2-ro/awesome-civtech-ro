@@ -1,5 +1,21 @@
 # Activity
 
+## 2026-11-12 — 4 entries published: Textdelege, Nedrept, CIVICOM, PreveHub
+
+**Done**
+- Added 4 entries with `/add-new-url` and the owner accepted all of them. `validate.py --publication`: 0 errors. Unit tests: 1335 run, 0 failed, 8 skipped. `build.py` writes 175 entries.
+- Textdelege: the owner asked for the upstream source of `lexifina/romania-law`. Its `DATA.md#sources` names the Portal Legislativ. Row `L389` (`date_din`, `acceptat`) records it. Lexifina stays a link only.
+- Authors: the owner confirmed Gabriel Popa (Nedrept, `L390`) and Mihai Coteț (CIVICOM, `L391`). Both rows use `creat_de` and `acceptat`. `bogdantoma27` (`L388`) stays `rol_neconfirmat`.
+
+**Hard**
+- `search.py` failed for nedrept, civicom and prevehub: Serper returned errors (0 credits). The agent skipped the search for textdelege on request. The 4 entries have no rows in `mentiuni.csv`.
+- `prevehub.ro` answers `curl` with HTTP 403. A browser loads it. The agent read the pages with Playwright 1.56.0, the version with a cached browser.
+- The agent first put `subiect:drepturile-omului` in `subiecte`. `validate.py` accepts only top-level subjects there. The value moved to `teme`.
+- While the entries were `propus`, 19 tests failed and 1 errored. They passed once the entries were `acceptat`.
+
+**Decided**
+- A confirmed author gets `creat_de`. The alternative, `atribuit_in_sursa` with `acceptat`, keeps a role that nobody verified.
+
 ## 2026-11-06 — 30 tools of România Interactivă published
 
 **Done**

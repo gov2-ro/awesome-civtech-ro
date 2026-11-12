@@ -9879,6 +9879,362 @@
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
         "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
       ]
+    },
+    {
+      "slug": "textdelege",
+      "nume": "Textdelege",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Legile României cu istoricul fiecărui articol",
+      "permite": [
+        "Caută și consultă",
+        "Primește alerte"
+      ],
+      "formate_catalogate": [
+        "Catalog sau colecție"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "textdelege"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "q",
+          "rol": "control-utilizator",
+          "tip_control_html": "search",
+          "descriere": "Caută sau citează: „art. 1112 Codul civil”, „Legea 31/1990”",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://textdelege.ro/",
+            "sha256": "f453765b737e9100954f2c4a610f260578ed9d5f2c75509292b57144be690c2f",
+            "sha256_lista_controale": "b2d815faa54108edef9981b2b7fd7546a064c95bb03df6023b0bf3b6c0c2a372",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/5b1854ea3ebcd7577bceff6c.json"
+          }
+        },
+        {
+          "nume": "bar-theme",
+          "rol": "control-utilizator",
+          "tip_control_html": "radio",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://textdelege.ro/",
+            "sha256": "f453765b737e9100954f2c4a610f260578ed9d5f2c75509292b57144be690c2f",
+            "sha256_lista_controale": "b2d815faa54108edef9981b2b7fd7546a064c95bb03df6023b0bf3b6c0c2a372",
+            "pointer_snapshot": "/input_candidates/1",
+            "snapshot": "documentare/pagini/5b1854ea3ebcd7577bceff6c.json"
+          }
+        },
+        {
+          "nume": "bar-size",
+          "rol": "control-utilizator",
+          "tip_control_html": "radio",
+          "descriere": "Text de 15 pixeli",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://textdelege.ro/",
+            "sha256": "f453765b737e9100954f2c4a610f260578ed9d5f2c75509292b57144be690c2f",
+            "sha256_lista_controale": "b2d815faa54108edef9981b2b7fd7546a064c95bb03df6023b0bf3b6c0c2a372",
+            "pointer_snapshot": "/input_candidates/4",
+            "snapshot": "documentare/pagini/5b1854ea3ebcd7577bceff6c.json"
+          }
+        },
+        {
+          "nume": "menu-theme",
+          "rol": "control-utilizator",
+          "tip_control_html": "radio",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://textdelege.ro/",
+            "sha256": "f453765b737e9100954f2c4a610f260578ed9d5f2c75509292b57144be690c2f",
+            "sha256_lista_controale": "b2d815faa54108edef9981b2b7fd7546a064c95bb03df6023b0bf3b6c0c2a372",
+            "pointer_snapshot": "/input_candidates/9",
+            "snapshot": "documentare/pagini/5b1854ea3ebcd7577bceff6c.json"
+          }
+        },
+        {
+          "nume": "menu-size",
+          "rol": "control-utilizator",
+          "tip_control_html": "radio",
+          "descriere": "Text de 15 pixeli",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://textdelege.ro/",
+            "sha256": "f453765b737e9100954f2c4a610f260578ed9d5f2c75509292b57144be690c2f",
+            "sha256_lista_controale": "b2d815faa54108edef9981b2b7fd7546a064c95bb03df6023b0bf3b6c0c2a372",
+            "pointer_snapshot": "/input_candidates/12",
+            "snapshot": "documentare/pagini/5b1854ea3ebcd7577bceff6c.json"
+          }
+        },
+        {
+          "nume": "data",
+          "rol": "control-utilizator",
+          "tip_control_html": "text",
+          "descriere": "ZZ.LL.AAAA",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://textdelege.ro/",
+            "sha256": "f453765b737e9100954f2c4a610f260578ed9d5f2c75509292b57144be690c2f",
+            "sha256_lista_controale": "b2d815faa54108edef9981b2b7fd7546a064c95bb03df6023b0bf3b6c0c2a372",
+            "pointer_snapshot": "/input_candidates/18",
+            "snapshot": "documentare/pagini/5b1854ea3ebcd7577bceff6c.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
+    },
+    {
+      "slug": "nedrept",
+      "nume": "Nedrept",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Cazuri în care statul a acționat împotriva unor persoane",
+      "permite": [
+        "Caută și consultă",
+        "Compară"
+      ],
+      "formate_catalogate": [
+        "Catalog sau colecție",
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "nedrept"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "Caută după nume",
+          "rol": "control-utilizator",
+          "tip_control_html": "search",
+          "descriere": "Caută după nume",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://nedrept.ro/ro/",
+            "sha256": "5ae5fd2847e4cf10e1c77d3eb9b0d01e530e7373f9b78810e27bb539f3316014",
+            "sha256_lista_controale": "b4b86ebe6d2d273b0c4decd0979a65812a7a2ccf01fa7cf8f066ee0068c24399",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/edd92b6ed06584286b9276ea.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
+    },
+    {
+      "slug": "civicom",
+      "nume": "CIVICOM",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Platformă pentru proteste, petiții și acțiuni civice",
+      "permite": [
+        "Caută și consultă",
+        "Semnează sau organizează petiții",
+        "Organizează advocacy"
+      ],
+      "formate_catalogate": [],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "civicom"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "cautare-acasa",
+          "rol": "control-utilizator",
+          "tip_control_html": "search",
+          "descriere": "Caută un eveniment după nume...",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://civicom.ro/",
+            "sha256": "0de594049ca4ff2f6dbf39b8b00eb8085ae04cbda1d62c1139a8019911621b14",
+            "sha256_lista_controale": "777d32d9b140d7c4286d444c22775737203b6190e2ff89185d927133a5fd383d",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/4495c5e4cc0ae20f7465a594.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
+    },
+    {
+      "slug": "prevehub",
+      "nume": "PreveHub",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "ONG pentru prevenirea fraudelor și a criminalității",
+      "permite": [
+        "Învață sau exersează"
+      ],
+      "formate_catalogate": [
+        "Articol",
+        "Ghid"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "prevehub"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "Descrie situația ta...",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "Descrie situația ta...",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://prevehub.ro/",
+            "sha256": "8ff8334d75e8b4696f1f2010c4299d53750665da2f5571b52f76da0c63abe4ff",
+            "sha256_lista_controale": "3fe3e0ef4172941bddf8c2939674196b4b313cec0fb5b82daa248b77a606e2b4",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/d52e60116ec664f54006afeb.json"
+          }
+        },
+        {
+          "nume": "f230-nume",
+          "rol": "control-utilizator",
+          "tip_control_html": "text",
+          "descriere": "Ionescu",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://prevehub.ro/",
+            "sha256": "8ff8334d75e8b4696f1f2010c4299d53750665da2f5571b52f76da0c63abe4ff",
+            "sha256_lista_controale": "3fe3e0ef4172941bddf8c2939674196b4b313cec0fb5b82daa248b77a606e2b4",
+            "pointer_snapshot": "/input_candidates/1",
+            "snapshot": "documentare/pagini/d52e60116ec664f54006afeb.json"
+          }
+        },
+        {
+          "nume": "f230-prenume",
+          "rol": "control-utilizator",
+          "tip_control_html": "text",
+          "descriere": "Maria",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://prevehub.ro/",
+            "sha256": "8ff8334d75e8b4696f1f2010c4299d53750665da2f5571b52f76da0c63abe4ff",
+            "sha256_lista_controale": "3fe3e0ef4172941bddf8c2939674196b4b313cec0fb5b82daa248b77a606e2b4",
+            "pointer_snapshot": "/input_candidates/2",
+            "snapshot": "documentare/pagini/d52e60116ec664f54006afeb.json"
+          }
+        },
+        {
+          "nume": "f230-initiala",
+          "rol": "control-utilizator",
+          "tip_control_html": "text",
+          "descriere": "Ex: V",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://prevehub.ro/",
+            "sha256": "8ff8334d75e8b4696f1f2010c4299d53750665da2f5571b52f76da0c63abe4ff",
+            "sha256_lista_controale": "3fe3e0ef4172941bddf8c2939674196b4b313cec0fb5b82daa248b77a606e2b4",
+            "pointer_snapshot": "/input_candidates/3",
+            "snapshot": "documentare/pagini/d52e60116ec664f54006afeb.json"
+          }
+        },
+        {
+          "nume": "f230-cnp",
+          "rol": "control-utilizator",
+          "tip_control_html": "text",
+          "descriere": "1234567890123",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://prevehub.ro/",
+            "sha256": "8ff8334d75e8b4696f1f2010c4299d53750665da2f5571b52f76da0c63abe4ff",
+            "sha256_lista_controale": "3fe3e0ef4172941bddf8c2939674196b4b313cec0fb5b82daa248b77a606e2b4",
+            "pointer_snapshot": "/input_candidates/4",
+            "snapshot": "documentare/pagini/d52e60116ec664f54006afeb.json"
+          }
+        },
+        {
+          "nume": "f230-adresa",
+          "rol": "control-utilizator",
+          "tip_control_html": "text",
+          "descriere": "Str. Exemplu nr. 10",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://prevehub.ro/",
+            "sha256": "8ff8334d75e8b4696f1f2010c4299d53750665da2f5571b52f76da0c63abe4ff",
+            "sha256_lista_controale": "3fe3e0ef4172941bddf8c2939674196b4b313cec0fb5b82daa248b77a606e2b4",
+            "pointer_snapshot": "/input_candidates/5",
+            "snapshot": "documentare/pagini/d52e60116ec664f54006afeb.json"
+          }
+        },
+        {
+          "nume": "f230-judet",
+          "rol": "control-utilizator",
+          "tip_control_html": "text",
+          "descriere": "Ilfov",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://prevehub.ro/",
+            "sha256": "8ff8334d75e8b4696f1f2010c4299d53750665da2f5571b52f76da0c63abe4ff",
+            "sha256_lista_controale": "3fe3e0ef4172941bddf8c2939674196b4b313cec0fb5b82daa248b77a606e2b4",
+            "pointer_snapshot": "/input_candidates/6",
+            "snapshot": "documentare/pagini/d52e60116ec664f54006afeb.json"
+          }
+        },
+        {
+          "nume": "f230-localitate",
+          "rol": "control-utilizator",
+          "tip_control_html": "text",
+          "descriere": "Pantelimon",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://prevehub.ro/",
+            "sha256": "8ff8334d75e8b4696f1f2010c4299d53750665da2f5571b52f76da0c63abe4ff",
+            "sha256_lista_controale": "3fe3e0ef4172941bddf8c2939674196b4b313cec0fb5b82daa248b77a606e2b4",
+            "pointer_snapshot": "/input_candidates/7",
+            "snapshot": "documentare/pagini/d52e60116ec664f54006afeb.json"
+          }
+        },
+        {
+          "nume": "f230-email",
+          "rol": "control-utilizator",
+          "tip_control_html": "email",
+          "descriere": "email@exemplu.ro",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://prevehub.ro/",
+            "sha256": "8ff8334d75e8b4696f1f2010c4299d53750665da2f5571b52f76da0c63abe4ff",
+            "sha256_lista_controale": "3fe3e0ef4172941bddf8c2939674196b4b313cec0fb5b82daa248b77a606e2b4",
+            "pointer_snapshot": "/input_candidates/8",
+            "snapshot": "documentare/pagini/d52e60116ec664f54006afeb.json"
+          }
+        },
+        {
+          "nume": "f230-consent",
+          "rol": "control-utilizator",
+          "tip_control_html": "checkbox",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://prevehub.ro/",
+            "sha256": "8ff8334d75e8b4696f1f2010c4299d53750665da2f5571b52f76da0c63abe4ff",
+            "sha256_lista_controale": "3fe3e0ef4172941bddf8c2939674196b4b313cec0fb5b82daa248b77a606e2b4",
+            "pointer_snapshot": "/input_candidates/9",
+            "snapshot": "documentare/pagini/d52e60116ec664f54006afeb.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
     }
   ]
 }

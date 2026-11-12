@@ -1,0 +1,57 @@
+{
+  "versiune": 1,
+  "proiect": "vocea-cartierului-tau",
+  "url_cerut": "https://vocea-cartierului-tau.ro/program-monitorizare-iluminat-public",
+  "url_final": "https://vocea-cartierului-tau.ro/program-monitorizare-iluminat-public",
+  "stare": "ok",
+  "http_status": 200,
+  "titlu": "Sesizari pentru extinderea iluminatului public in Craiova | Vocea Cartierului Tau",
+  "randat_la": "2026-10-31T09:47:28.356727+00:00",
+  "text_randat": null,
+  "text_lungime": 8378,
+  "text_sha256": "0d3690658a14254e08ce6fb646222591311968f8dd5882606bcaddf2577dc8f4",
+  "controale_vizibile": [
+    {
+      "tag": "input",
+      "name": null,
+      "id": "vct-program-search",
+      "type": "search",
+      "label": "Cartier, adresa, ID sau problema",
+      "options": null
+    },
+    {
+      "tag": "select",
+      "name": null,
+      "id": "vct-program-status",
+      "type": "select-one",
+      "label": null,
+      "options": [
+        "Toate statusurile",
+        "Monitorizare (7)",
+        "Rezolvat (4)",
+        "Follow-up institutie (1)",
+        "Partial rezolvat (1)"
+      ]
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "vct-news-email",
+      "type": "email",
+      "label": "Adresa ta de email",
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "vct-news-consent",
+      "type": "checkbox",
+      "label": null,
+      "options": null
+    }
+  ],
+  "cereri_date": [],
+  "corpuri_pastrate": [],
+  "corpuri_omise": [],
+  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+}

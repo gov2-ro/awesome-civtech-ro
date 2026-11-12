@@ -1,0 +1,42 @@
+{
+  "versiune": 2,
+  "proiect": "econtractauto",
+  "url_cerut": "https://econtractauto.ro/",
+  "url_final": "https://econtractauto.ro/",
+  "stare": "ok",
+  "http_status": 200,
+  "randat_la": "2026-11-01T14:27:17.106551+00:00",
+  "text_lungime": 4128,
+  "text_sha256": "5165b3c3255b01212ddf69c7a88551196aa7adc392004bf4d98c80bd7a7580a8",
+  "controale_numar": 0,
+  "cereri_date": [
+    {
+      "metoda": "POST",
+      "url": "https://econtractauto.ro/__l5e/trackevents",
+      "tip_resursa": "fetch",
+      "http_status": 202,
+      "content_type": "application/json",
+      "octeti": 17
+    },
+    {
+      "metoda": "GET",
+      "url": "https://econtractauto.ro/templates/contract-template-2026.pdf",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "octeti": 333750
+    }
+  ],
+  "corpuri_pastrate": [],
+  "corpuri_omise": [],
+  "captura": {
+    "algoritm": "sha256",
+    "sha256": "bdf4ef0380a8f64531b8c950c0c0532f77b25f22804ec6e8464f754fdeb021af",
+    "octeti": 5435,
+    "fisier": "bdf4ef0380a8f64531b8c950c0c0532f77b25f22804ec6e8464f754fdeb021af.json",
+    "reprezentare": "UTF-8 bytes of the render record as JSON: indent 2, non-ASCII characters kept, one final newline"
+  },
+  "capturi_anterioare": [
+    "354e2f6f11ebdbd947c3668de048de8d66f11cd93583a8dec08a1afc550492e8"
+  ]
+}

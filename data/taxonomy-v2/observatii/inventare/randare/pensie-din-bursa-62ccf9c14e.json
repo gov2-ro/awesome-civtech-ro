@@ -1,0 +1,116 @@
+{
+  "versiune": 1,
+  "proiect": "pensie-din-bursa",
+  "url_cerut": "https://mariuscomper.uk/pensie-din-bursa/",
+  "url_final": "https://mariuscomper.uk/pensie-din-bursa/",
+  "stare": "ok",
+  "http_status": 200,
+  "titlu": "Votul a trecut. Cota ta e încă zero.",
+  "randat_la": "2026-10-31T09:48:35.892389+00:00",
+  "text_randat": null,
+  "text_lungime": 16439,
+  "text_sha256": "2030bc1ab2020b780e2c734345400108ef6414ef2487396cb8d6212a19687530",
+  "controale_vizibile": [
+    {
+      "tag": "input",
+      "name": null,
+      "id": "in-monthly",
+      "type": "range",
+      "label": null,
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "in-start",
+      "type": "range",
+      "label": null,
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "in-retire",
+      "type": "range",
+      "label": null,
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "in-rate",
+      "type": "range",
+      "label": null,
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "in-infl",
+      "type": "range",
+      "label": null,
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "in-gains",
+      "type": "range",
+      "label": null,
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "in-years",
+      "type": "range",
+      "label": null,
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": "lei-mode",
+      "id": "t-real",
+      "type": "radio",
+      "label": null,
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": "lei-mode",
+      "id": "t-nominal",
+      "type": "radio",
+      "label": null,
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "tax-today",
+      "type": "range",
+      "label": null,
+      "options": null
+    },
+    {
+      "tag": "input",
+      "name": null,
+      "id": "tax-ret",
+      "type": "range",
+      "label": null,
+      "options": null
+    }
+  ],
+  "cereri_date": [
+    {
+      "metoda": "POST",
+      "url": "https://mariuscomper.uk/cdn-cgi/challenge-platform/h/g/jsd/oneshot/c787ce48cf6b/0.01403518436563389:1793438356:mWkJKZkQd0SE2mmvPMbZ_N_th5NtwJUFxVMOaWQwe_8/a531bea7ceeee4b6",
+      "tip_resursa": "xhr",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": 0
+    }
+  ],
+  "corpuri_pastrate": [],
+  "corpuri_omise": [],
+  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+}

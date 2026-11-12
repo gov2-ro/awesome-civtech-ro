@@ -1,0 +1,27 @@
+{
+  "versiune": 2,
+  "proiect": "tipizatul",
+  "url_cerut": "https://www.tipizatul.eu/",
+  "url_final": "https://www.tipizatul.eu/",
+  "stare": "timeout",
+  "http_status": null,
+  "randat_la": "2026-11-01T14:25:52.646019+00:00",
+  "text_lungime": 0,
+  "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "controale_numar": 0,
+  "cereri_date": [],
+  "corpuri_pastrate": [],
+  "corpuri_omise": [
+    "https://firestore.googleapis.com/google.firestore.v1.Firestore/Listen/channel?gsessionid=Nq8gaBd495KxMGY3Wge6B-ZqYN7ZcW2sMqsRXzxYaCmoTGDNTT8Y2A&VER=8&database=projects%2Ftipizatul%2Fdatabases%2F%28default%29&RID=rpc&SID=wdd0v2dsUihKOe4MkAr-kA&AID=0&CI=0&TYPE=xmlhttp&zx=cfwyxdox3cog&t=1"
+  ],
+  "captura": {
+    "algoritm": "sha256",
+    "sha256": "364184d063c50497700d1678fc97c6c5c7842df986c886063bf44effec368d3e",
+    "octeti": 898,
+    "fisier": "364184d063c50497700d1678fc97c6c5c7842df986c886063bf44effec368d3e.json",
+    "reprezentare": "UTF-8 bytes of the render record as JSON: indent 2, non-ASCII characters kept, one final newline"
+  },
+  "capturi_anterioare": [
+    "67eeffe44014bc7b3ab490a9dfd96e504ec0c28c2ee0bfeaaa6f18a51092fab3"
+  ]
+}

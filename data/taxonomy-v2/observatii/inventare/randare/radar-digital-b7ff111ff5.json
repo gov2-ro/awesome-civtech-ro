@@ -1,0 +1,27 @@
+{
+  "versiune": 2,
+  "proiect": "radar-digital",
+  "url_cerut": "https://radardigital.ro/stats",
+  "url_final": "https://radardigital.ro/stats",
+  "stare": "timeout",
+  "http_status": null,
+  "randat_la": "2026-11-01T14:24:52.033090+00:00",
+  "text_lungime": 0,
+  "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "controale_numar": 0,
+  "cereri_date": [],
+  "corpuri_pastrate": [],
+  "corpuri_omise": [
+    "https://firestore.googleapis.com/google.firestore.v1.Firestore/Listen/channel?gsessionid=0gtcEw6q2oB2-gAIlZ0RYs1_N7Wa-WZYLyxrNGZl2BPz9AxPjE0X1g&VER=8&database=projects%2Fradar-digital%2Fdatabases%2F%28default%29&RID=rpc&SID=gEpzN336hE5IDNXdT_ekIg&AID=0&CI=0&TYPE=xmlhttp&zx=qc9rgq8j8d0t&t=1"
+  ],
+  "captura": {
+    "algoritm": "sha256",
+    "sha256": "8c1623de0c78f444ffdfdd2622b1d13168e8c15ce388f46fd8b7743e1e29693c",
+    "octeti": 914,
+    "fisier": "8c1623de0c78f444ffdfdd2622b1d13168e8c15ce388f46fd8b7743e1e29693c.json",
+    "reprezentare": "UTF-8 bytes of the render record as JSON: indent 2, non-ASCII characters kept, one final newline"
+  },
+  "capturi_anterioare": [
+    "54204c78d294f67508bb0e6c0d4d387b7bb7ebc60a84351ce0953944b6e23dc5"
+  ]
+}

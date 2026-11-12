@@ -2548,6 +2548,84 @@
       ]
     },
     {
+      "slug": "civicom",
+      "url": "https://civicom.ro/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://civicom.ro/",
+          "final_url": "https://civicom.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-12T16:58:38.666870+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "CIVICOM: platforma de implicare civică din România",
+          "sections": [],
+          "sha256": "0de594049ca4ff2f6dbf39b8b00eb8085ae04cbda1d62c1139a8019911621b14",
+          "snapshot": "pagini/4495c5e4cc0ae20f7465a594.json",
+          "text_chars": 2437
+        },
+        {
+          "url": "https://civicom.ro/llms.txt",
+          "final_url": "https://civicom.ro/llms.txt",
+          "http_status": 200,
+          "fetched_at": "2026-11-12T16:58:40.011608+00:00",
+          "content_type": "text/plain",
+          "state": "colectat",
+          "kind": "llms",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "",
+          "sections": [],
+          "sha256": "f5b87b57b4b4bbec2ecee2f0916910b0dc43fea27ed273c942c6473540815ce8",
+          "snapshot": "pagini/a3d49fff45e0db987f46d4cf.json",
+          "text_chars": 4291
+        },
+        {
+          "url": "https://civicom.ro/despre",
+          "final_url": "https://civicom.ro/despre",
+          "http_status": 200,
+          "fetched_at": "2026-11-12T16:58:40.442896+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "despre",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Despre CIVICOM, platforma de implicare civică din România",
+          "sections": [],
+          "sha256": "db4a6cc47b2d85dd5224396dee7c1b72a612945291a7ea296d4faac30e4a622f",
+          "snapshot": "pagini/da0bb78228f6e6cbea357bb7.json",
+          "text_chars": 5151
+        },
+        {
+          "url": "https://civicom.ro/cum-functioneaza",
+          "final_url": "https://civicom.ro/cum-functioneaza",
+          "http_status": 200,
+          "fetched_at": "2026-11-12T16:58:41.970277+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "despre",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Cum funcționează CIVICOM, în 4 minute | CIVICOM",
+          "sections": [
+            {
+              "kind": "despre",
+              "heading": "Cum funcționează CIVICOM, în 4 minute",
+              "url": "https://civicom.ro/cum-functioneaza"
+            }
+          ],
+          "sha256": "70421700de012355e5cbdf5b21f3185e1a41998fb2fd36ce8298418de2e9417d",
+          "snapshot": "pagini/0d7b7b068b0adc7d3d10005a.json",
+          "text_chars": 2127
+        }
+      ]
+    },
+    {
       "slug": "code4ro",
       "url": "https://code4.ro/",
       "state": "documentatie-gasita",
@@ -7573,6 +7651,66 @@
       ]
     },
     {
+      "slug": "nedrept",
+      "url": "https://nedrept.ro/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://nedrept.ro/",
+          "final_url": "https://nedrept.ro/ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-12T16:42:58.521432+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": true,
+          "title": "Nedrept",
+          "sections": [],
+          "sha256": "5ae5fd2847e4cf10e1c77d3eb9b0d01e530e7373f9b78810e27bb539f3316014",
+          "snapshot": "pagini/edd92b6ed06584286b9276ea.json",
+          "text_chars": 60000
+        },
+        {
+          "url": "https://nedrept.ro/llms.txt",
+          "final_url": "https://nedrept.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-12T16:42:58.804646+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://nedrept.ro/ro/cazuri/raluca-morosanu/f-09/",
+          "final_url": "https://nedrept.ro/ro/cazuri/raluca-morosanu/f-09/",
+          "http_status": 200,
+          "fetched_at": "2026-11-12T16:42:58.906008+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "despre",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Raluca Moroșanu, judecătoare la Curtea de Apel București, F-09 | Nedrept",
+          "sections": [],
+          "sha256": "9d6748216f8274f190c7fa69d1f79ff5cee969e50c6f1b35f6dd9dad855702b6",
+          "snapshot": "pagini/dc5778e977c257ce51d76707.json",
+          "text_chars": 3007
+        },
+        {
+          "url": "https://nedrept.ro/metodologie/",
+          "final_url": "https://nedrept.ro/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-12T16:42:59.217185+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
       "slug": "nu-astepta-supereroi",
       "url": "https://www.nuasteptasupereroi.ro/",
       "state": "documentatie-neconfirmata",
@@ -8952,6 +9090,110 @@
           "error": "HTTP Error 404: Not Found",
           "kind": "despre",
           "scope": "proiect"
+        }
+      ]
+    },
+    {
+      "slug": "prevehub",
+      "url": "https://prevehub.ro/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://prevehub.ro/",
+          "final_url": "https://prevehub.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-12T16:58:38.667174+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "PreveHub — Prevenirea, reinventată pentru era digitală PreveHub — Prevenirea, reinventată pentru era digitală",
+          "sections": [
+            {
+              "kind": "despre",
+              "heading": "Cum funcționează frauda care clonează Ghișeul.ro",
+              "url": "https://prevehub.ro/"
+            }
+          ],
+          "sha256": "8ff8334d75e8b4696f1f2010c4299d53750665da2f5571b52f76da0c63abe4ff",
+          "snapshot": "pagini/d52e60116ec664f54006afeb.json",
+          "text_chars": 7221
+        },
+        {
+          "url": "https://prevehub.ro/llms.txt",
+          "final_url": "https://prevehub.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-12T16:58:39.472755+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://prevehub.ro/despre.html",
+          "final_url": "https://prevehub.ro/despre.html",
+          "http_status": 200,
+          "fetched_at": "2026-11-12T16:58:39.975137+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "despre",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Despre noi — PreveHub",
+          "sections": [],
+          "sha256": "69f309949abec2f4d090372942d3f54ea68e85e6c380a1b7a057a84256118f5c",
+          "snapshot": "pagini/90d3261251c9625fd93f4d5e.json",
+          "text_chars": 5298
+        },
+        {
+          "url": "https://prevehub.ro/teme.html",
+          "final_url": "https://prevehub.ro/teme.html",
+          "http_status": 200,
+          "fetched_at": "2026-11-12T16:58:40.143363+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "despre",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Domenii de prevenire — PreveHub",
+          "sections": [
+            {
+              "kind": "metodologie",
+              "heading": "Metode de prevenire",
+              "url": "https://prevehub.ro/teme.html#info-metode"
+            },
+            {
+              "kind": "metodologie",
+              "heading": "Metode simple de prevenire",
+              "url": "https://prevehub.ro/teme.html"
+            },
+            {
+              "kind": "metodologie",
+              "heading": "Metode de prevenire",
+              "url": "https://prevehub.ro/teme.html"
+            }
+          ],
+          "sha256": "a03a90c95a3f78ab8cda3e17c5a9088f8b51c88192fa4942e779c3c2196dc36e",
+          "snapshot": "pagini/c9641ae9574d06157b1d7455.json",
+          "text_chars": 31256
+        },
+        {
+          "url": "https://prevehub.ro/campanii.html",
+          "final_url": "https://prevehub.ro/campanii.html",
+          "http_status": 200,
+          "fetched_at": "2026-11-12T16:58:40.639796+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "despre",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Campanii de Prevenire — PreveHub",
+          "sections": [],
+          "sha256": "5622445ae995cf2752ff193193d7c3d9b9fe574f4684ac992c5afcf9c57b592e",
+          "snapshot": "pagini/ee0e85830b54e1b9f1e421d8.json",
+          "text_chars": 2571
         }
       ]
     },
@@ -10952,6 +11194,56 @@
           "sha256": "ace8333e9a0ae95d12735f8c12bf4b4485a18982b31f290c66fabdf3c412e586",
           "snapshot": "pagini/ee17dc07860303f211bfa663.json",
           "text_chars": 12
+        }
+      ]
+    },
+    {
+      "slug": "textdelege",
+      "url": "https://textdelege.ro/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://textdelege.ro/",
+          "final_url": "https://textdelege.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-12T16:16:01.019377+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Legile României, cu toate modificările lor. | Textdelege",
+          "sections": [],
+          "sha256": "f453765b737e9100954f2c4a610f260578ed9d5f2c75509292b57144be690c2f",
+          "snapshot": "pagini/5b1854ea3ebcd7577bceff6c.json",
+          "text_chars": 5155
+        },
+        {
+          "url": "https://textdelege.ro/llms.txt",
+          "final_url": "https://textdelege.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-12T16:16:02.517164+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://textdelege.ro/despre",
+          "final_url": "https://textdelege.ro/despre",
+          "http_status": 200,
+          "fetched_at": "2026-11-12T16:16:02.954621+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "despre",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Despre Textdelege | Textdelege",
+          "sections": [],
+          "sha256": "cccef6b8babffdfd38504f8e5424751504dd0b92ce3cf53fa314a5e74f56ea78",
+          "snapshot": "pagini/9bf75ab2f08d4db0d8a26e4c.json",
+          "text_chars": 4167
         }
       ]
     },

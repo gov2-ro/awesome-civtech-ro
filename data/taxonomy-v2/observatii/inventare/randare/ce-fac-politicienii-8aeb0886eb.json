@@ -1,0 +1,299 @@
+{
+  "versiune": 1,
+  "proiect": "ce-fac-politicienii",
+  "url_cerut": "https://cefacpoliticienii.ro/dev",
+  "url_final": "https://cefacpoliticienii.ro/dev",
+  "stare": "ok",
+  "http_status": 200,
+  "titlu": "API pentru dezvoltatori · cefacpoliticienii.ro",
+  "randat_la": "2026-10-30T23:39:21.755959+00:00",
+  "text_randat": null,
+  "text_lungime": 3709,
+  "text_sha256": "b59cbb009cec7738ae0a559655fb8def3c7ac936d0f2ebdfbcaee6d10ec81d92",
+  "controale_vizibile": [],
+  "cereri_date": [
+    {
+      "metoda": "POST",
+      "url": "https://cefacpoliticienii.ro/cdn-cgi/challenge-platform/h/g/jsd/oneshot/c787ce48cf6b/0.39787417150652893:1793402057:F4_ez7M2T6LsxCy57Y-594ff29SYSkbocdszAYtsO1Y/a52e4233eaaa6ce1",
+      "tip_resursa": "xhr",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "octeti": 0
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/cauta?_rsc=3C4NIa5PyWwrGM_5",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/cont?_rsc=3C4NIa5PyWwrGM_5",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/arhiva?_rsc=3C4NIa5PyWwrGM_5",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/despre?_rsc=3C4NIa5PyWwrGM_5",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/declaratii?_rsc=3C4NIa5PyWwrGM_5",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/cerceteaza?_rsc=3C4NIa5PyWwrGM_5",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/contradictii?_rsc=3C4NIa5PyWwrGM_5",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/voturi?_rsc=3C4NIa5PyWwrGM_5",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/despre?_rsc=82ZgJ_sx_0kWOpAH",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/despre?_rsc=pLjy2UU5g7th1DJz",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/partide?_rsc=3C4NIa5PyWwrGM_5",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/?_rsc=3C4NIa5PyWwrGM_5",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/despre?_rsc=LXaNWcjZDeAbYPML",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/despre?_rsc=si5mCTpYmXUM5SAu",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/despre?_rsc=rrh3eVbEdol-lQQh",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/cont?_rsc=_ydrq0-XcjYmqV3D",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/cauta?_rsc=y3und3ggrW9yiDQY",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/arhiva?_rsc=uZTQScN7uhmZxD5i",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/contradictii?_rsc=_ydrq0-XcjYmqV3D",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/voturi?_rsc=pLjy2UU5g7th1DJz",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/voturi?_rsc=HPBNy8CBqD0B0vy6",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/voturi?_rsc=cxNk4-aOkyRp3g_m",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/cerceteaza?_rsc=pLjy2UU5g7th1DJz",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/cerceteaza?_rsc=L6IyZvuD1fn_2W2b",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/cerceteaza?_rsc=IFC9QszFc-FXG1a_",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/declaratii?_rsc=pLjy2UU5g7th1DJz",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/cerceteaza?_rsc=w4gyY9yx5Tgv74rP",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/declaratii?_rsc=hqub9_e41CUEdBmB",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/declaratii?_rsc=kvlcjK_r5uZjG-8k",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/partide?_rsc=pLjy2UU5g7th1DJz",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/partide?_rsc=RhKSY8P5mQuIoFB2",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/?_rsc=pLjy2UU5g7th1DJz",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/partide?_rsc=-khGnedJiRQdtzfD",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    },
+    {
+      "metoda": "GET",
+      "url": "https://cefacpoliticienii.ro/?_rsc=6f77T-8baXPIQF_T",
+      "tip_resursa": "fetch",
+      "http_status": 200,
+      "content_type": "text/x-component",
+      "octeti": null
+    }
+  ],
+  "corpuri_pastrate": [],
+  "corpuri_omise": [],
+  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+}

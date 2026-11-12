@@ -1,10 +1,10 @@
 # CivTech România
 
 > Colecție curatoriată de proiecte civic tech, organizații și resurse din România: instrumente civice, date deschise
-> și proiecte de bună guvernare. 137 proiecte, 13 organizații, 21 resurse.
+> și proiecte de bună guvernare. 140 proiecte, 14 organizații, 21 resurse.
 
 Fiecare intrare are o pagină proprie la https://civtech.gov2.ro/<tip>/<slug>/ (tip: proiect, organizatie, resursa). Starea
-(activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-11-06. Textele sunt în
+(activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-11-12. Textele sunt în
 limba română. Datele sunt reutilizabile conform EUPL v1.2.
 
 ## Date
@@ -91,8 +91,10 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 - [Ia statul la întrebări](https://civtech.gov2.ro/proiect/ia-statul-la-intrebari/) (arhivat): Cereri de informații publice (Legea 544). Site: https://www.romaniacurata.ro
 - [Jailando](https://civtech.gov2.ro/proiect/jailando/) (arhivat): Politicieni condamnați la închisoare. Site: http://jailando.com/
 - [Monitor cetățenie](https://civtech.gov2.ro/proiect/monitor-cetatenie/): Statistici despre cererile de cetățenie română. Site: https://www.gregorieu.com/cetatenie/ro
+- [Nedrept](https://civtech.gov2.ro/proiect/nedrept/): Cazuri în care statul a acționat împotriva unor persoane. Site: https://nedrept.ro/
 - [Onorata Instanță](https://civtech.gov2.ro/proiect/onorata-instanta/): Site: https://www.onoratainstanta.ro
 - [Portal Just Modern](https://civtech.gov2.ro/proiect/portal-just-modern/): Căutarea dosarelor și termenelor din instanțe. Site: https://portaljustmodern.ro/
+- [Textdelege](https://civtech.gov2.ro/proiect/textdelege/): Legile României cu istoricul fiecărui articol. Site: https://textdelege.ro/
 
 ## Proiecte: Media și informare
 
@@ -175,6 +177,7 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 
 ## Proiecte: Societate civilă
 
+- [CIVICOM](https://civtech.gov2.ro/proiect/civicom/): Platformă pentru proteste, petiții și acțiuni civice. Site: https://civicom.ro/
 - [DeClic](https://civtech.gov2.ro/proiect/declic/): Comunitate de campanii și petiții civice. Site: https://declic.ro
 - [ONG-urile înregistrate la Camera Deputaților](https://civtech.gov2.ro/proiect/ong-camera-deputatilor/): Registrul oficial. Site: http://www.cdep.ro/informatii_publice/ong.chest_aprobate
 - [Redirecționează](https://civtech.gov2.ro/proiect/redirectioneaza/): Redirecționarea a 3,5% din impozit către un ONG. Site: https://redirectioneaza.ro/
@@ -203,6 +206,7 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 - [Ethical Media Alliance](https://civtech.gov2.ro/organizatie/ethical-media/): Inițiativă non-profit pentru sustenabilitatea presei de interes public. Site: https://www.ethicalmedia.eu/
 - [Expert Forum](https://civtech.gov2.ro/organizatie/efor/): Think-tank pentru buget, alegeri și integritate. Site: https://expertforum.ro/
 - [Funky Citizens](https://civtech.gov2.ro/organizatie/funky-citizens/): ONG pentru bună guvernare și cetățenie activă: bugete, alegeri, dezinformare. Site: https://funky.ong/
+- [PreveHub](https://civtech.gov2.ro/organizatie/prevehub/): ONG pentru prevenirea fraudelor și a criminalității. Site: https://prevehub.ro/
 - [Rădăuțiul Civic](https://civtech.gov2.ro/organizatie/radautiul-civic/): Asociație pentru cetățenie activă și dezvoltarea comunității din Rădăuți. Site: https://www.radautiulcivic.ro/
 - [TechSoup](https://civtech.gov2.ro/organizatie/techsoup/): Tehnologie pentru organizații nonprofit. Site: https://www.techsoup.ro/
 - [Tech & Tonic](https://civtech.gov2.ro/organizatie/tech-and-tonic/): Asociație despre impactul social al tehnologiei și al AI-ului. Site: https://techandtonic.ro/

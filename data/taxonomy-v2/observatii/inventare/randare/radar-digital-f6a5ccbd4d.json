@@ -1,0 +1,21 @@
+{
+  "versiune": 1,
+  "proiect": "radar-digital",
+  "url_cerut": "https://radardigital.ro/",
+  "url_final": "https://radardigital.ro/",
+  "stare": "timeout",
+  "http_status": null,
+  "titlu": "",
+  "randat_la": "2026-10-31T10:02:59.611969+00:00",
+  "text_randat": "",
+  "controale_vizibile": [],
+  "cereri_date": [],
+  "corpuri_pastrate": [],
+  "corpuri_omise": [
+    {
+      "url": "https://firestore.googleapis.com/google.firestore.v1.Firestore/Listen/channel?gsessionid=jsZ0g4btwZnRnOmLeBpIbIIu1DJ_daFmKdE1R6cFJ0cBtXaXjCYeQQ&VER=8&database=projects%2Fradar-digital%2Fdatabases%2F%28default%29&RID=rpc&SID=0L0Xn8oSKBOp4VuaTD-GRw&AID=0&CI=0&TYPE=xmlhttp&zx=kutk6qx53mdg&t=1",
+      "motiv": "TargetClosedError: Response.body: Target page, context or browser has been closed"
+    }
+  ],
+  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+}

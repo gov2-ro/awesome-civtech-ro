@@ -371,3 +371,21 @@ distanta-spital,q,text,ex. Sulina sau Dumbrava Alba,https://romaniainteractiva.r
 pacienti-medic,county,,,https://romaniainteractiva.ro/pacienti-medic/,/input_candidates/0,control-html-candidat
 pacienti-medic,yr,range,Anul,https://romaniainteractiva.ro/pacienti-medic/,/input_candidates/1,control-html-candidat
 uniranking-ro,q,search,"ex. ubb, babes, Iași, medicină",https://romaniainteractiva.ro/UniRankingRO/,/input_candidates/0,control-html-candidat
+textdelege,q,search,"Caută sau citează: „art. 1112 Codul civil”, „Legea 31/1990”",https://textdelege.ro/,/input_candidates/0,control-html-candidat
+textdelege,bar-theme,radio,,https://textdelege.ro/,/input_candidates/1,control-html-candidat
+textdelege,bar-size,radio,Text de 15 pixeli,https://textdelege.ro/,/input_candidates/4,control-html-candidat
+textdelege,menu-theme,radio,,https://textdelege.ro/,/input_candidates/9,control-html-candidat
+textdelege,menu-size,radio,Text de 15 pixeli,https://textdelege.ro/,/input_candidates/12,control-html-candidat
+textdelege,data,text,ZZ.LL.AAAA,https://textdelege.ro/,/input_candidates/18,control-html-candidat
+nedrept,Caută după nume,search,Caută după nume,https://nedrept.ro/ro/,/input_candidates/0,control-html-candidat
+civicom,cautare-acasa,search,Caută un eveniment după nume...,https://civicom.ro/,/input_candidates/0,control-html-candidat
+prevehub,Descrie situația ta...,,Descrie situația ta...,https://prevehub.ro/,/input_candidates/0,control-html-candidat
+prevehub,f230-nume,text,Ionescu,https://prevehub.ro/,/input_candidates/1,control-html-candidat
+prevehub,f230-prenume,text,Maria,https://prevehub.ro/,/input_candidates/2,control-html-candidat
+prevehub,f230-initiala,text,Ex: V,https://prevehub.ro/,/input_candidates/3,control-html-candidat
+prevehub,f230-cnp,text,1234567890123,https://prevehub.ro/,/input_candidates/4,control-html-candidat
+prevehub,f230-adresa,text,Str. Exemplu nr. 10,https://prevehub.ro/,/input_candidates/5,control-html-candidat
+prevehub,f230-judet,text,Ilfov,https://prevehub.ro/,/input_candidates/6,control-html-candidat
+prevehub,f230-localitate,text,Pantelimon,https://prevehub.ro/,/input_candidates/7,control-html-candidat
+prevehub,f230-email,email,email@exemplu.ro,https://prevehub.ro/,/input_candidates/8,control-html-candidat
+prevehub,f230-consent,checkbox,,https://prevehub.ro/,/input_candidates/9,control-html-candidat

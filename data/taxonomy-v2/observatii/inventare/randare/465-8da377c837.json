@@ -1,0 +1,18 @@
+{
+  "versiune": 1,
+  "proiect": "465",
+  "url_cerut": "https://465.ro/",
+  "url_final": "https://465.ro/",
+  "stare": "ok",
+  "http_status": 200,
+  "titlu": "465 Parlamentari — Date de contact publice",
+  "randat_la": "2026-10-30T23:38:27.938297+00:00",
+  "text_randat": null,
+  "text_lungime": 13744,
+  "text_sha256": "500d92d8022499e265b7f651f7c3a4bcb7726dfffa53d5931ddae55dcb91155b",
+  "controale_vizibile": [],
+  "cereri_date": [],
+  "corpuri_pastrate": [],
+  "corpuri_omise": [],
+  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+}

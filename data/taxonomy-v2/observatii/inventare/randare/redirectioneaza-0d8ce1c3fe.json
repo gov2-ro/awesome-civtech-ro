@@ -1,0 +1,25 @@
+{
+  "versiune": 1,
+  "proiect": "redirectioneaza",
+  "url_cerut": "https://redirectioneaza.ro/",
+  "url_final": "https://redirectioneaza.ro/",
+  "stare": "ok",
+  "http_status": 200,
+  "titlu": "redirectioneaza.ro",
+  "randat_la": "2026-10-31T10:02:47.807017+00:00",
+  "text_randat": "O soluție Commit Global.\nDespre\nPentru contribuabili\nPentru organizații\nIntră în cont ONG\nÎnregistrează ONG\nTu decizi ce se întâmplă\ncu 3.5% din impozitul pe venit\n\nFără să te coste nimic în plus, redirecționând, oferi un strop de putere în plus unui ONG care să facă bine și în numele tău. Poți opta pentru redistribuirea sumei până pe 25 Mai.\n\nDacă ONG-ul tău preferat nu se află pe această pagină, consultă lista completă de organizații de pe redirectioneaza.ro.\n\nCaută un ONG după nume sau CUI/CIF\norganizații înregistrate în platformă\n6092\nde formulare completate în 2026\n71923\nredirecționate către ONG-uri din 2017 prin redirectioneaza.ro\n> 9 milioane €\nExplorează ONG-uri\n\nAlege organizația către care vrei să redirecționezi!\n\nPrietenii Institutului Oncologic Bucuresti\nIOB este o foaie albă de hârtie pe care nu s-a scris nimic timp de aproape 30 de ani.Dar lucrurile au început să se miște, oamenii vor să se trateze în România, vor să fie consultați, operați, urmări…\nAsociatia Promo Factory\nAsociatia Promo Factory desfasoara activitati de sprijinire in integrarea sociala si cresterea calitatii vietii persoanelor cu handicap si promovarea egalitatii de sansa.Ne dorim sa contribuim prin a…\nAsociatia The Challenge Academy\nÎnființată în anul 2020, Asociația The Challenge Academy are ca scop promovarea educației de arhitectură pe bază de experiment, cu precădere în rândul studenților arhitecți, precum și în rândul arhi…\nAsociația Gustă din Bucovina\nComunitatea producătorilor locali din Județul Suceava, verificați de Direcția Agricolă Suceava, uniți în cadrul Asociației Gustă din Bucovina, parte a proiectului de succes Piața Volantă \"Din Drag de…\nVezi toate organizațiile\nReprezinți un ONG? Alătură-te NGO Hub\n\nPunem la dispoziția societății civile redirectioneaza.ro, platforma prin care ONG-urile pot colecta mai ușor formularele 230. Platforma face parte din ecosistemul NGO Hub, alături de alte soluții digitale create pentru nevoile organizațiilor non-profit. Și organizația ta poate avea acces, gratuit!\n\nÎnregistrează organizația\nAflă mai multe →\nFooter\n\nAcest proiect este dezvoltat de Code for Romania & Commit Global\n\nFacebook\nInstagram\nX\nGitHub\nLinkedIn\nCode for Romania\nDespre Code for Romania\nSusține proiectele noastre\nredirectioneaza.ro\nAcasă\nDespre\nPentru contribuabili\nDescoperă organizații\nÎntrebări frecvente\nPentru organizații\nÎntrebări frecvente\nSuport tehnic\nLinkuri utile\nPolitica de confidențialitate\nTermeni și condiții\nNotă de informare\n\n© 2026 Code for Romania. Organizație neguvernamentală independentă, neafiliată politic și apolitică.",
+  "controale_vizibile": [
+    {
+      "tag": "input",
+      "name": null,
+      "id": null,
+      "type": "text",
+      "label": "Caută un ONG după nume sau CUI/CIF",
+      "options": null
+    }
+  ],
+  "cereri_date": [],
+  "corpuri_pastrate": [],
+  "corpuri_omise": [],
+  "nota": "No click, no typing, no form submission. Requests are the same-site fetch/XHR traffic during load only."
+}
