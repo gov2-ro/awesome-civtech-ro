@@ -6769,6 +6769,60 @@
       ]
     },
     {
+      "slug": "lipseste",
+      "url": "https://lipseste.ro/",
+      "state": "documentatie-neconfirmata",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://lipseste.ro/",
+          "final_url": "https://lipseste.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-12T21:03:24.500587+00:00",
+          "content_type": "text/html",
+          "state": "text-insuficient",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "lipsește — Ce putem verifica?",
+          "sections": [],
+          "sha256": "e0edc2bacb87059ba840c78d881f032da1c4150872a8f305501ceaf74f1b3db7",
+          "snapshot": "pagini/895193929449b86c3d17feb9.json",
+          "text_chars": 29
+        },
+        {
+          "url": "https://lipseste.ro/llms.txt",
+          "final_url": "https://lipseste.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-12T21:03:24.679284+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://lipseste.ro/metodologie/",
+          "final_url": "https://lipseste.ro/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-12T21:03:24.804510+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://lipseste.ro/despre/",
+          "final_url": "https://lipseste.ro/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-12T21:03:25.089925+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
       "slug": "lista-firme",
       "url": "https://lista-firme.info/",
       "state": "documentatie-neconfirmata",

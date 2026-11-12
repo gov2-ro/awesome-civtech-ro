@@ -10235,6 +10235,33 @@
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
         "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
       ]
+    },
+    {
+      "slug": "lipseste",
+      "nume": "lipsește",
+      "stare": "propunere",
+      "completitudine": "neconfirmat",
+      "scop": "Programul de guvernare 2026–2028, măsură cu măsură",
+      "permite": [
+        "Analizează date",
+        "Solicită informații publice"
+      ],
+      "formate_catalogate": [
+        "Set de date oferit",
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "lipseste"
+      },
+      "intrari_utilizator": [],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
+        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+      ]
     }
   ]
 }

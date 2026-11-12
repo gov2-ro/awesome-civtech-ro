@@ -390,3 +390,5 @@ L388,textdelege,atribuit_in_sursa,,bogdantoma27,autor,bogdantoma27,rol_neconfirm
 L389,textdelege,date_din,,Portal Legislativ,surse_date,https://github.com/lexifina/romania-law/blob/main/DATA.md#sources,acceptat
 L390,nedrept,creat_de,,Gabriel Popa,autor,Gabriel Popa,acceptat
 L391,civicom,creat_de,,Mihai Coteț,autor,Mihai Coteț,acceptat
+L392,lipseste,date_din,,Monitorul Oficial,surse_date,https://lipseste.ro/?view=sources,propus
+L393,lipseste,date_din,,Senatul României,surse_date,https://lipseste.ro/?view=sources,propus

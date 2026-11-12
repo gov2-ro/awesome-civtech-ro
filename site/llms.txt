@@ -1,7 +1,7 @@
 # CivTech România
 
 > Colecție curatoriată de proiecte civic tech, organizații și resurse din România: instrumente civice, date deschise
-> și proiecte de bună guvernare. 140 proiecte, 14 organizații, 21 resurse.
+> și proiecte de bună guvernare. 141 proiecte, 14 organizații, 21 resurse.
 
 Fiecare intrare are o pagină proprie la https://civtech.gov2.ro/<tip>/<slug>/ (tip: proiect, organizatie, resursa). Starea
 (activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-11-12. Textele sunt în
@@ -33,6 +33,7 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 - [Harta Politicii](https://civtech.gov2.ro/proiect/harta-politicii/) (offline): Site: https://www.hartapoliticii.ro
 - [Hotărâri.ro](https://civtech.gov2.ro/proiect/hotarari/): Arhivă căutabilă de hotărâri ale consiliilor locale din România. Site: https://hotarari.ro/
 - [iGov](https://civtech.gov2.ro/proiect/igov/): Rapoarte verificabile din surse publice. Site: https://igov.ro/
+- [lipsește](https://civtech.gov2.ro/proiect/lipseste/): Programul de guvernare 2026–2028, măsură cu măsură. Site: https://lipseste.ro/
 - [Mari Corupți](https://civtech.gov2.ro/proiect/mari-corupti/) (offline): Site: https://www.maricorupti.ro
 - [monitorul.ai](https://civtech.gov2.ro/proiect/monitorul-ai/): Arhiva stenogramelor parlamentare. Site: https://monitorul.ai/
 - [Mulțumesc.org](https://civtech.gov2.ro/proiect/multumesc/) (offline): Site: https://www.multumesc.org
