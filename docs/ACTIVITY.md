@@ -1,5 +1,18 @@
 # Activity
 
+## 2026-11-13 — lab.anaudriste.ro skipped
+
+**Done**
+- Audited `lab.anaudriste.ro` with `/add-new-url`. The agent added no row. The owner decided to skip it.
+
+**Hard**
+- The site is a paid subscription product (SRL Lab, €79 a year or €9.99 a month). The agent found no civic purpose on the homepage.
+- The owner meant `/legislatie/`. The server answers HTTP 403 "Acces refuzat" for that page and for its sitemap, to `curl` and to a headless browser. `robots.txt` allows `/legislatie/`. The agent did not try to bypass the block, so it never read the page.
+
+**Decided**
+- Skip the site. The owner's description of `/legislatie/` (only links between laws) shows little added value. The agent did not check it.
+- The alternative was an owner-saved copy of the page, imported as a `resursa`. It costs a manual save for a small gain.
+
 ## 2026-11-12 — 4 entries published: Textdelege, Nedrept, CIVICOM, PreveHub
 
 **Done**
