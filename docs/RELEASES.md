@@ -1,5 +1,6 @@
 # Releases
 
+- **v0.69.0** (2026-11-16): 6 entries published: Asociația Curaj Înainte (organisation), leginoi, Statul meu, Context Politic, Cotele Dunării, and Uzina din nori as a resource. Five `parte_din` rows link the projects to the association. Search ran on Brave only: no Serper credits. Open: Acum Știi, dinpod.ro, Merg Bine, Real Romania and the sub-projects of Uzina din nori.
 - **v0.68.0** (2026-11-13): lipsește (lipseste.ro) published: the program of government 2026–2028, measure by measure. Two proposed data providers: Monitorul Oficial and Senatul României. No author row: the site names nobody. Search skipped: no Serper credits.
 - **v0.67.1** (2026-11-12): PreveHub loses `tehnologie:ai`; `check_preview.py` allows that facet on projects only, and the validate run of v0.67.0 failed on it.
 
