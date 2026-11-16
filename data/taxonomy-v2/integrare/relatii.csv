@@ -392,3 +392,12 @@ L390,nedrept,creat_de,,Gabriel Popa,autor,Gabriel Popa,acceptat
 L391,civicom,creat_de,,Mihai Coteț,autor,Mihai Coteț,acceptat
 L392,lipseste,date_din,,Monitorul Oficial,surse_date,https://lipseste.ro/?view=sources,propus
 L393,lipseste,date_din,,Senatul României,surse_date,https://lipseste.ro/?view=sources,propus
+L394,leginoi,atribuit_in_sursa,,Asociația Curaj Înainte,autor,Asociația Curaj Înainte,rol_neconfirmat
+L395,curaj-inainte,atribuit_in_sursa,,Mihnea Dumitru,autor,Mihnea Dumitru,rol_neconfirmat
+L396,curaj-inainte,atribuit_in_sursa,,Cosmin Dragomir,autor,Cosmin Dragomir,rol_neconfirmat
+L397,uzina-din-nori,atribuit_in_sursa,,Mihnea Dumitru,autor,Mihnea Dumitru,rol_neconfirmat
+L398,uzina-din-nori,parte_din,curaj-inainte,,,https://curajinainte.org/,propus
+L399,statul-meu,parte_din,curaj-inainte,,,https://statulmeu.ro/despre-proiect/,propus
+L400,context-politic,parte_din,curaj-inainte,,,https://contextpolitic.ro/llms.txt,propus
+L401,cotele-dunarii,parte_din,curaj-inainte,,,https://curajinainte.org/,propus
+L402,leginoi,parte_din,curaj-inainte,,,https://statulmeu.ro/despre-proiect/,propus

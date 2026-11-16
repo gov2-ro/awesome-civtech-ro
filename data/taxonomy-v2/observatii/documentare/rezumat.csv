@@ -42,8 +42,11 @@ companii-de-stat,https://companiidestat.ro/,documentatie-gasita,3,https://compan
 companii-publice-ro,https://cosettechichirau.github.io/companiipublice/,documentatie-neconfirmata,1,,,,neanalizat
 complet-online,https://mariuscomper.uk/complet-online/,documentatie-gasita,3,https://mariuscomper.uk/complet-online/,,https://mariuscomper.uk/complet-online/llms.txt,neanalizat
 constru-pentru-cine,https://mariuscomper.uk/constru-pentru-cine/,documentatie-neconfirmata,2,,,,neanalizat
+context-politic,https://contextpolitic.ro/,documentatie-gasita,4,https://contextpolitic.ro/termeni/,,https://contextpolitic.ro/llms.txt|https://contextpolitic.ro/llms-full.txt,neanalizat
 corpusul-cotroceni,https://presedintii.ro/,documentatie-gasita,1,https://presedintii.ro/,https://presedintii.ro/,,neanalizat
+cotele-dunarii,https://coteledunarii.ro/,documentatie-gasita,4,,https://coteledunarii.ro/2026/07/02/despre-refuzul-credintei-si-realitatea-fara-dumnezeu/|https://coteledunarii.ro/2026/07/02/despre-refuzul-credintei-si-realitatea-fara-dumnezeu/,https://coteledunarii.ro/llms.txt/,neanalizat
 crpe,https://crpe.ro/,documentatie-neconfirmata,2,,,,neanalizat
+curaj-inainte,https://curajinainte.org/,documentatie-gasita,2,,https://curajinainte.org/,https://curajinainte.org/llms.txt/,neanalizat
 data-expertforum,https://data.expertforum.ro/,documentatie-neconfirmata,1,,,,neanalizat
 de-obste,https://in.deobste.ro/,documentatie-gasita,2,,https://in.deobste.ro/despre,,neanalizat
 de-unde-vine-apa,https://mariuscomper.uk/de-unde-vine-apa/,documentatie-gasita,2,https://mariuscomper.uk/de-unde-vine-apa/,,,neanalizat
@@ -96,6 +99,7 @@ interoperabilitate,https://interoperabilitate.ro/,documentatie-gasita,3,https://
 jailando,http://jailando.com/,documentatie-neconfirmata,0,,,,neanalizat
 judetul-tau-in-8-recensaminte,https://romaniainteractiva.ro/recensaminte/,documentatie-neconfirmata,1,,,,neanalizat
 jurnalism-independent,https://gov2-ro.github.io/repository/jurnalism-independent/,documentatie-neconfirmata,1,,,,neanalizat
+leginoi,https://leginoi.ro/,documentatie-gasita,4,,https://leginoi.ro/despre/,https://leginoi.ro/llms.txt|https://leginoi.ro/llms-full.txt,neanalizat
 lipseste,https://lipseste.ro/,documentatie-neconfirmata,0,,,,neanalizat
 lista-firme,https://lista-firme.info/,documentatie-neconfirmata,1,,,,neanalizat
 mari-corupti,https://www.maricorupti.ro/,documentatie-neconfirmata,0,,,,neanalizat
@@ -160,6 +164,7 @@ sondaje-romania,https://sondajeromania.ro/,documentatie-gasita,3,https://sondaje
 sondajele-romaniei,https://sondajeleromaniei.ro/,documentatie-gasita,2,https://sondajeleromaniei.ro/|https://sondajeleromaniei.ro/metodologie/,,,neanalizat
 speranta-viata-judete,https://romaniainteractiva.ro/speranta-viata/,documentatie-neconfirmata,1,,,,neanalizat
 statul-digital,https://mariuscomper.uk/statul-digital/,documentatie-gasita,3,,,https://mariuscomper.uk/statul-digital/llms.txt,neanalizat
+statul-meu,https://statulmeu.ro/,documentatie-gasita,3,,https://statulmeu.ro/despre-proiect/,https://statulmeu.ro/llms.txt,neanalizat
 tech-and-tonic,https://techandtonic.ro/,documentatie-gasita,4,,https://techandtonic.ro/|https://techandtonic.ro/manifesto/|https://techandtonic.ro/ce-stie-chatgpt-despre-tine-si-de-ce-ar-trebui-sa-te-ingrijoreze-pressone/|https://techandtonic.ro/cum-te-foloseste-tehnologia-un-experiment-care-arata-cate-date-publice-exista-despre-noi-pe-internet-pressone/,,neanalizat
 techsoup,https://www.techsoup.ro/,documentatie-neconfirmata,0,,,,neanalizat
 testvot,https://www.testvot.eu/,documentatie-neconfirmata,0,,,,neanalizat
@@ -174,6 +179,7 @@ unde-se-termina-asfaltul,https://mariuscomper.uk/unde-se-termina-asfaltul/,docum
 uniranking-ro,https://romaniainteractiva.ro/UniRankingRO/,documentatie-gasita,1,https://romaniainteractiva.ro/UniRankingRO/,,,neanalizat
 universitatile-romaniei,https://romaniainteractiva.ro/universitati/,documentatie-neconfirmata,1,,,,neanalizat
 unul-din-100,https://unuldin100.ro/,documentatie-gasita,1,https://unuldin100.ro/,,,neanalizat
+uzina-din-nori,https://uzinadinnori.ro/,documentatie-gasita,1,,https://uzinadinnori.ro/,,neanalizat
 verifica-psiholog,https://www.verificapsiholog.ro/,documentatie-gasita,1,https://www.verificapsiholog.ro/,https://www.verificapsiholog.ro/,,neanalizat
 vichub-data,https://data.vichub.dev/,documentatie-neconfirmata,1,,,,neanalizat
 vocea-cartierului-tau,https://vocea-cartierului-tau.ro/,documentatie-gasita,4,,https://vocea-cartierului-tau.ro/despre|https://vocea-cartierului-tau.ro/program-monitorizare-parcari-rezidentiale|https://vocea-cartierului-tau.ro/program-monitorizare-spatii-verzi,,neanalizat

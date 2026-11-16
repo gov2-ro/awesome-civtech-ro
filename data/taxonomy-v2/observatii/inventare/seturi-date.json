@@ -56409,6 +56409,535 @@
       }
     },
     {
+      "url": "https://curajinainte.org/ai-context.json",
+      "final_url": "https://curajinainte.org/ai-context.json/",
+      "http_status": 200,
+      "fetched_at": "2026-11-16T12:54:21.406435+00:00",
+      "content_type": "application/json",
+      "state": "ok",
+      "id": "28b4fadb5e5c0f2ff6bb",
+      "campuri": [
+        {
+          "nume": "name",
+          "cale": "$.name",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/name"
+        },
+        {
+          "nume": "alternate_names[]",
+          "cale": "$.alternate_names[]",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/alternate_names/0"
+        },
+        {
+          "nume": "type",
+          "cale": "$.type",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/type"
+        },
+        {
+          "nume": "url",
+          "cale": "$.url",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/url"
+        },
+        {
+          "nume": "url_en",
+          "cale": "$.url_en",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/url_en"
+        },
+        {
+          "nume": "latin",
+          "cale": "$.motto.latin",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/motto/latin"
+        },
+        {
+          "nume": "romanian",
+          "cale": "$.motto.romanian",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/motto/romanian"
+        },
+        {
+          "nume": "english",
+          "cale": "$.motto.english",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/motto/english"
+        },
+        {
+          "nume": "mission",
+          "cale": "$.mission",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/mission"
+        },
+        {
+          "nume": "cui",
+          "cale": "$.legal.cui",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/legal/cui"
+        },
+        {
+          "nume": "registry_no",
+          "cale": "$.legal.registry_no",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/legal/registry_no"
+        },
+        {
+          "nume": "founded",
+          "cale": "$.legal.founded",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/legal/founded"
+        },
+        {
+          "nume": "legal_form",
+          "cale": "$.legal.legal_form",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/legal/legal_form"
+        },
+        {
+          "nume": "jurisdiction",
+          "cale": "$.legal.jurisdiction",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/legal/jurisdiction"
+        },
+        {
+          "nume": "address",
+          "cale": "$.legal.address",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/legal/address"
+        },
+        {
+          "nume": "email",
+          "cale": "$.contact.email",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/contact/email"
+        },
+        {
+          "nume": "website",
+          "cale": "$.contact.website",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/contact/website"
+        },
+        {
+          "nume": "facebook",
+          "cale": "$.contact.facebook",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/contact/facebook"
+        },
+        {
+          "nume": "instagram",
+          "cale": "$.contact.instagram",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/contact/instagram"
+        },
+        {
+          "nume": "name",
+          "cale": "$.people[].name",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/people/0/name"
+        },
+        {
+          "nume": "role",
+          "cale": "$.people[].role",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/people/0/role"
+        },
+        {
+          "nume": "notes",
+          "cale": "$.people[].notes",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/people/0/notes"
+        },
+        {
+          "nume": "name",
+          "cale": "$.projects[].name",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/projects/0/name"
+        },
+        {
+          "nume": "url",
+          "cale": "$.projects[].url",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/projects/0/url"
+        },
+        {
+          "nume": "archive",
+          "cale": "$.projects[].archive",
+          "tipuri_observate": [
+            "string",
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/projects/0/archive"
+        },
+        {
+          "nume": "description",
+          "cale": "$.projects[].description",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/projects/0/description"
+        },
+        {
+          "nume": "status",
+          "cale": "$.projects[].status",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/projects/0/status"
+        },
+        {
+          "nume": "name",
+          "cale": "$.work_areas[].name",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/work_areas/0/name"
+        },
+        {
+          "nume": "description",
+          "cale": "$.work_areas[].description",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/work_areas/0/description"
+        },
+        {
+          "nume": "status",
+          "cale": "$.work_areas[].status",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/work_areas/0/status"
+        },
+        {
+          "nume": "sources[]",
+          "cale": "$.funding.sources[]",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/funding/sources/0"
+        },
+        {
+          "nume": "restrictions",
+          "cale": "$.funding.restrictions",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/funding/restrictions"
+        },
+        {
+          "nume": "reporting",
+          "cale": "$.funding.reporting",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/funding/reporting"
+        },
+        {
+          "nume": "share",
+          "cale": "$.how_to_support.income_tax_redirection.share",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/how_to_support/income_tax_redirection/share"
+        },
+        {
+          "nume": "window",
+          "cale": "$.how_to_support.income_tax_redirection.window",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/how_to_support/income_tax_redirection/window"
+        },
+        {
+          "nume": "url",
+          "cale": "$.how_to_support.income_tax_redirection.url",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/how_to_support/income_tax_redirection/url"
+        },
+        {
+          "nume": "paypal",
+          "cale": "$.how_to_support.paypal",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/how_to_support/paypal"
+        },
+        {
+          "nume": "iban",
+          "cale": "$.how_to_support.bank_transfer.iban",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/how_to_support/bank_transfer/iban"
+        },
+        {
+          "nume": "bank",
+          "cale": "$.how_to_support.bank_transfer.bank",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/how_to_support/bank_transfer/bank"
+        },
+        {
+          "nume": "swift",
+          "cale": "$.how_to_support.bank_transfer.swift",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/how_to_support/bank_transfer/swift"
+        },
+        {
+          "nume": "corporate_sponsorship",
+          "cale": "$.how_to_support.corporate_sponsorship",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/how_to_support/corporate_sponsorship"
+        },
+        {
+          "nume": "gdpr",
+          "cale": "$.compliance.gdpr",
+          "tipuri_observate": [
+            "boolean"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/compliance/gdpr"
+        },
+        {
+          "nume": "law_190_2018",
+          "cale": "$.compliance.law_190_2018",
+          "tipuri_observate": [
+            "boolean"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/compliance/law_190_2018"
+        },
+        {
+          "nume": "cookie_law_506_2004",
+          "cale": "$.compliance.cookie_law_506_2004",
+          "tipuri_observate": [
+            "boolean"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/compliance/cookie_law_506_2004"
+        },
+        {
+          "nume": "accessibility_232_2022",
+          "cale": "$.compliance.accessibility_232_2022",
+          "tipuri_observate": [
+            "boolean"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/compliance/accessibility_232_2022"
+        },
+        {
+          "nume": "ngo_ordinance_26_2000",
+          "cale": "$.compliance.ngo_ordinance_26_2000",
+          "tipuri_observate": [
+            "boolean"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/compliance/ngo_ordinance_26_2000"
+        },
+        {
+          "nume": "accounting_law_82_1991",
+          "cale": "$.compliance.accounting_law_82_1991",
+          "tipuri_observate": [
+            "boolean"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/compliance/accounting_law_82_1991"
+        },
+        {
+          "nume": "languages[]",
+          "cale": "$.languages[]",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/languages/0"
+        },
+        {
+          "nume": "areas_served[]",
+          "cale": "$.areas_served[]",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/areas_served/0"
+        },
+        {
+          "nume": "last_updated",
+          "cale": "$.last_updated",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/last_updated"
+        },
+        {
+          "nume": "usage",
+          "cale": "$.usage",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/usage"
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/28b4fadb5e5c0f2ff6bb-4b726a2733b18b05.json",
+      "sha256": "4b726a2733b18b052218cb07cea3521b286dbf1b2636270a581d124b496039cc",
+      "format": "json",
+      "stare": "analizat",
+      "limita_atinsa": false,
+      "baza_tipului": "esantion-date"
+    },
+    {
       "url": "https://data.expertforum.ro/",
       "final_url": "https://data.expertforum.ro/",
       "http_status": null,
@@ -77951,6 +78480,18 @@
           }
         ]
       }
+    },
+    {
+      "url": "https://leginoi.ro/mof/export.json",
+      "final_url": "https://leginoi.ro/mof/export.json",
+      "http_status": 200,
+      "fetched_at": "2026-11-16T08:38:47.897725+00:00",
+      "content_type": "application/json",
+      "state": "raspuns-prea-mare",
+      "id": "a2bbb2e43e766cc61b69",
+      "campuri": [],
+      "completitudine": "neconfirmat",
+      "snapshot": "surse/a2bbb2e43e766cc61b69.json"
     },
     {
       "url": "https://legislatie.ai-aflat.ro/v1/acts?status=active&importance_min=6&sort=source_id&order=desc&limit=4&offset=0",

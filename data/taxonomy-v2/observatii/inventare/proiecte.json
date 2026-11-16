@@ -10262,6 +10262,273 @@
         "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
+    },
+    {
+      "slug": "leginoi",
+      "nume": "leginoi",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Legile României, de la propunere la Monitorul Oficial",
+      "permite": [
+        "Caută și consultă",
+        "Monitorizează",
+        "Analizează date"
+      ],
+      "formate_catalogate": [
+        "Registru sau bază de date",
+        "Set de date oferit"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "leginoi"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "meniu-toggle",
+          "rol": "control-utilizator",
+          "tip_control_html": "checkbox",
+          "descriere": "Meniu",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://leginoi.ro/",
+            "sha256": "59e423f564ee8a702f9dc3dba0e4398102cfc96cb8428bae46e36afd03869168",
+            "sha256_lista_controale": "5a7c71cf3be227dcfa4d55a6b554c1f0da8856bd9211c071faa44dd3f350aec8",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/6714e5df346282d1b271721d.json"
+          }
+        },
+        {
+          "nume": "q",
+          "rol": "control-utilizator",
+          "tip_control_html": "search",
+          "descriere": "Inițiativă, lege, subiect sau număr",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://leginoi.ro/",
+            "sha256": "59e423f564ee8a702f9dc3dba0e4398102cfc96cb8428bae46e36afd03869168",
+            "sha256_lista_controale": "5a7c71cf3be227dcfa4d55a6b554c1f0da8856bd9211c071faa44dd3f350aec8",
+            "pointer_snapshot": "/input_candidates/1",
+            "snapshot": "documentare/pagini/6714e5df346282d1b271721d.json"
+          }
+        }
+      ],
+      "surse_structurate": [
+        "a2bbb2e43e766cc61b69"
+      ],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
+    },
+    {
+      "slug": "curaj-inainte",
+      "nume": "Asociația Curaj Înainte",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "ONG care promovează România, democrația și informarea corectă",
+      "permite": [],
+      "formate_catalogate": [],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "curaj-inainte"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "ci-cookie-analytics",
+          "rol": "control-utilizator",
+          "tip_control_html": "checkbox",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://curajinainte.org/",
+            "sha256": "fb73e33ded7941cc8782093d23aa731a50f24b434e7906783d66cc0e7cd0617c",
+            "sha256_lista_controale": "8976d40f5eef7e5f4f0f2d1e24c4510d7bb8375722d651a3d72f94aad5ee985a",
+            "pointer_snapshot": "/input_candidates/1",
+            "snapshot": "documentare/pagini/79e37087dd1b20f4f242f67a.json"
+          }
+        }
+      ],
+      "surse_structurate": [
+        "28b4fadb5e5c0f2ff6bb"
+      ],
+      "campuri_din_surse": 51,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
+      ]
+    },
+    {
+      "slug": "uzina-din-nori",
+      "nume": "Uzina din nori",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Instrumente AI pentru informare corectă, monitorizare media și fact-checking",
+      "permite": [
+        "Verifică fapte",
+        "Analizează date",
+        "Monitorizează",
+        "Caută și consultă"
+      ],
+      "formate_catalogate": [
+        "Catalog sau colecție"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "uzina-din-nori"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "udn_website",
+          "rol": "control-utilizator",
+          "tip_control_html": "text",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://uzinadinnori.ro/",
+            "sha256": "f810fafff8fb7de78ed1826977544c42b34bd11bbfb0982a83558eb3ae267487",
+            "sha256_lista_controale": "356de0dc3561bb2c9a30da9173b9ca74494507c9689507516cd2ec0741be6e9b",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/fdc9bea662b9ce8da8125898.json"
+          }
+        },
+        {
+          "nume": "udn_name",
+          "rol": "control-utilizator",
+          "tip_control_html": "text",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://uzinadinnori.ro/",
+            "sha256": "f810fafff8fb7de78ed1826977544c42b34bd11bbfb0982a83558eb3ae267487",
+            "sha256_lista_controale": "356de0dc3561bb2c9a30da9173b9ca74494507c9689507516cd2ec0741be6e9b",
+            "pointer_snapshot": "/input_candidates/1",
+            "snapshot": "documentare/pagini/fdc9bea662b9ce8da8125898.json"
+          }
+        },
+        {
+          "nume": "udn_email",
+          "rol": "control-utilizator",
+          "tip_control_html": "email",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://uzinadinnori.ro/",
+            "sha256": "f810fafff8fb7de78ed1826977544c42b34bd11bbfb0982a83558eb3ae267487",
+            "sha256_lista_controale": "356de0dc3561bb2c9a30da9173b9ca74494507c9689507516cd2ec0741be6e9b",
+            "pointer_snapshot": "/input_candidates/2",
+            "snapshot": "documentare/pagini/fdc9bea662b9ce8da8125898.json"
+          }
+        },
+        {
+          "nume": "udn_message",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://uzinadinnori.ro/",
+            "sha256": "f810fafff8fb7de78ed1826977544c42b34bd11bbfb0982a83558eb3ae267487",
+            "sha256_lista_controale": "356de0dc3561bb2c9a30da9173b9ca74494507c9689507516cd2ec0741be6e9b",
+            "pointer_snapshot": "/input_candidates/3",
+            "snapshot": "documentare/pagini/fdc9bea662b9ce8da8125898.json"
+          }
+        },
+        {
+          "nume": "moove_gdpr_strict_cookies",
+          "rol": "control-utilizator",
+          "tip_control_html": "checkbox",
+          "descriere": "Strictly Necessary Cookies",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://uzinadinnori.ro/",
+            "sha256": "f810fafff8fb7de78ed1826977544c42b34bd11bbfb0982a83558eb3ae267487",
+            "sha256_lista_controale": "356de0dc3561bb2c9a30da9173b9ca74494507c9689507516cd2ec0741be6e9b",
+            "pointer_snapshot": "/input_candidates/4",
+            "snapshot": "documentare/pagini/fdc9bea662b9ce8da8125898.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
+    },
+    {
+      "slug": "statul-meu",
+      "nume": "Statul meu",
+      "stare": "propunere",
+      "completitudine": "neconfirmat",
+      "scop": "Joc despre politică, cu trei întrebări zilnice despre România reală",
+      "permite": [
+        "Învață sau exersează"
+      ],
+      "formate_catalogate": [
+        "Joc sau test",
+        "Set de date oferit",
+        "API oferit"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "statul-meu"
+      },
+      "intrari_utilizator": [],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
+    },
+    {
+      "slug": "context-politic",
+      "nume": "Context Politic",
+      "stare": "propunere",
+      "completitudine": "neconfirmat",
+      "scop": "Politica României, pe scurt: știri din 25 de redacții, grupate pe subiecte",
+      "permite": [
+        "Monitorizează"
+      ],
+      "formate_catalogate": [
+        "Catalog sau colecție",
+        "API oferit"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "context-politic"
+      },
+      "intrari_utilizator": [],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
+    },
+    {
+      "slug": "cotele-dunarii",
+      "nume": "Cotele Dunării",
+      "stare": "propunere",
+      "completitudine": "neconfirmat",
+      "scop": "Subiectele zilei din presă, numărate oră de oră, și nivelul Dunării",
+      "permite": [
+        "Monitorizează"
+      ],
+      "formate_catalogate": [
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "cotele-dunarii"
+      },
+      "intrari_utilizator": [],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
     }
   ]
 }

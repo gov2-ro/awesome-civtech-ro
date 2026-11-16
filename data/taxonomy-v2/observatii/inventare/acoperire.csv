@@ -180,3 +180,9 @@ nedrept,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o
 civicom,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
 prevehub,organizatie,,in-afara-ariei,0,0,,0,0,0,,,,,,
 lipseste,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+leginoi,proiect,,blocat,0,0,,0,0,0,,,1,,HTTP 200 la https://leginoi.ro/mof/export.json,
+curaj-inainte,organizatie,baza,in-afara-ariei,1,51,0,0,0,51,0,0,1,,,
+uzina-din-nori,resursa,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+statul-meu,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+context-politic,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+cotele-dunarii,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."

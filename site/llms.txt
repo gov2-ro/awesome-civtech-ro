@@ -1,10 +1,10 @@
 # CivTech România
 
 > Colecție curatoriată de proiecte civic tech, organizații și resurse din România: instrumente civice, date deschise
-> și proiecte de bună guvernare. 141 proiecte, 14 organizații, 21 resurse.
+> și proiecte de bună guvernare. 145 proiecte, 15 organizații, 22 resurse.
 
 Fiecare intrare are o pagină proprie la https://civtech.gov2.ro/<tip>/<slug>/ (tip: proiect, organizatie, resursa). Starea
-(activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-11-12. Textele sunt în
+(activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-11-16. Textele sunt în
 limba română. Datele sunt reutilizabile conform EUPL v1.2.
 
 ## Date
@@ -33,6 +33,7 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 - [Harta Politicii](https://civtech.gov2.ro/proiect/harta-politicii/) (offline): Site: https://www.hartapoliticii.ro
 - [Hotărâri.ro](https://civtech.gov2.ro/proiect/hotarari/): Arhivă căutabilă de hotărâri ale consiliilor locale din România. Site: https://hotarari.ro/
 - [iGov](https://civtech.gov2.ro/proiect/igov/): Rapoarte verificabile din surse publice. Site: https://igov.ro/
+- [leginoi](https://civtech.gov2.ro/proiect/leginoi/): Legile României, de la propunere la Monitorul Oficial. Site: https://leginoi.ro/
 - [lipsește](https://civtech.gov2.ro/proiect/lipseste/): Programul de guvernare 2026–2028, măsură cu măsură. Site: https://lipseste.ro/
 - [Mari Corupți](https://civtech.gov2.ro/proiect/mari-corupti/) (offline): Site: https://www.maricorupti.ro
 - [monitorul.ai](https://civtech.gov2.ro/proiect/monitorul-ai/): Arhiva stenogramelor parlamentare. Site: https://monitorul.ai/
@@ -51,6 +52,7 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 - [România Transparentă](https://civtech.gov2.ro/proiect/romania-transparenta/): Registre despre primării, companii de stat, universități. Site: https://romaniatransparenta.eu/
 - [Sondajele României](https://civtech.gov2.ro/proiect/sondajele-romaniei/): Media ponderată a sondajelor electorale din România, din 2004 încoace. Site: https://sondajeleromaniei.ro/
 - [Sondaje România](https://civtech.gov2.ro/proiect/sondaje-romania/): Agregator de sondaje electorale. Site: https://sondajeromania.ro/
+- [Statul meu](https://civtech.gov2.ro/proiect/statul-meu/): Joc despre politică, cu trei întrebări zilnice despre România reală. Site: https://statulmeu.ro/
 - [Testvot](https://civtech.gov2.ro/proiect/testvot/): Test de afinitate politică. Site: https://www.testvot.eu
 - [Tipizatul](https://civtech.gov2.ro/proiect/tipizatul/): Formulare tipizate emise de instituțiile publice. Site: https://www.tipizatul.eu/
 - [Toate guvernele României de după 1989](https://civtech.gov2.ro/proiect/guverne-dupa-1989/): Cele 28 de guverne de după 1989: durată, coaliții și cum s-a încheiat fiecare. Site: https://romaniainteractiva.ro/guverne/
@@ -100,6 +102,8 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 ## Proiecte: Media și informare
 
 - [Antibunk](https://civtech.gov2.ro/proiect/antibunk/): Identificarea și combaterea dezinformării online. Site: https://antibunk.ro/
+- [Context Politic](https://civtech.gov2.ro/proiect/context-politic/): Politica României, pe scurt: știri din 25 de redacții, grupate pe subiecte. Site: https://contextpolitic.ro/
+- [Cotele Dunării](https://civtech.gov2.ro/proiect/cotele-dunarii/): Subiectele zilei din presă, numărate oră de oră, și nivelul Dunării. Site: https://coteledunarii.ro/
 - [Dignitas](https://civtech.gov2.ro/proiect/dignitas/): Fact-checking colaborativ pentru afirmații politice românești. Site: https://dignitas.ro/
 - [dimineața.de](https://civtech.gov2.ro/proiect/dimineata/): Jurnalism civic pentru Sibiu și România, cu surse și proces editorial explicat. Site: https://dimineata.de/
 - [Factual](https://civtech.gov2.ro/proiect/factual/): Fact-checking pentru declarațiile politicienilor. Site: https://www.factual.ro
@@ -199,6 +203,7 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 
 - [AI parte](https://civtech.gov2.ro/organizatie/ai-parte/): Rețea a părinților și catalog al școlilor din România, plus cursuri de AI. Site: https://aiparte.ro/
 - [AmpliFY ONG](https://civtech.gov2.ro/organizatie/amplify/): sprijinim organizațiile, persoanele și inițiativele cu impact social. Site: https://amplifyong.ro/
+- [Asociația Curaj Înainte](https://civtech.gov2.ro/organizatie/curaj-inainte/): ONG care promovează România, democrația și informarea corectă. Site: https://curajinainte.org/
 - [Centrul de Resurse pentru Participare Publică](https://civtech.gov2.ro/organizatie/cere/): Organizare comunitară și advocacy pentru participare publică. Site: https://cere.ong/
 - [Centrul pentru Inovare Publică](https://civtech.gov2.ro/organizatie/inovarepublica/): Asociație pentru democrație, educație civică și societate incluzivă. Site: https://inovarepublica.ro/
 - [Centrul Român de Politici Europene](https://civtech.gov2.ro/organizatie/crpe/): Think-tank românesc specializat în afaceri europene și politici publice. Site: https://crpe.ro/
@@ -221,6 +226,7 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 - [Proiecte geo-spatial.org](https://civtech.gov2.ro/resursa/proiecte-geo-spatial/): GIS. Site: https://geo-spatial.org/initiative
 - [Site-uri utile pentru cetățeni](https://civtech.gov2.ro/resursa/site-uri-utile-funky/): Lista Funky Citizens. Site: http://www.funkycitizens.org/site-uri-utile-pentru-cetateni/
 - [Situri civice (Etherpad)](https://civtech.gov2.ro/resursa/etherpad-situri-civice/): Listă colaborativă de site-uri civice. Site: https://tableta.ceata.org/p/situricivice
+- [Uzina din nori](https://civtech.gov2.ro/resursa/uzina-din-nori/): Instrumente AI pentru informare corectă, monitorizare media și fact-checking. Site: https://uzinadinnori.ro/
 
 ## Resurse: Publicație
 

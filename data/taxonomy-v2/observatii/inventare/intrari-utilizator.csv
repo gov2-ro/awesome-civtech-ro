@@ -389,3 +389,11 @@ prevehub,f230-judet,text,Ilfov,https://prevehub.ro/,/input_candidates/6,control-
 prevehub,f230-localitate,text,Pantelimon,https://prevehub.ro/,/input_candidates/7,control-html-candidat
 prevehub,f230-email,email,email@exemplu.ro,https://prevehub.ro/,/input_candidates/8,control-html-candidat
 prevehub,f230-consent,checkbox,,https://prevehub.ro/,/input_candidates/9,control-html-candidat
+leginoi,meniu-toggle,checkbox,Meniu,https://leginoi.ro/,/input_candidates/0,control-html-candidat
+leginoi,q,search,"Inițiativă, lege, subiect sau număr",https://leginoi.ro/,/input_candidates/1,control-html-candidat
+curaj-inainte,ci-cookie-analytics,checkbox,,https://curajinainte.org/,/input_candidates/1,control-html-candidat
+uzina-din-nori,udn_website,text,,https://uzinadinnori.ro/,/input_candidates/0,control-html-candidat
+uzina-din-nori,udn_name,text,,https://uzinadinnori.ro/,/input_candidates/1,control-html-candidat
+uzina-din-nori,udn_email,email,,https://uzinadinnori.ro/,/input_candidates/2,control-html-candidat
+uzina-din-nori,udn_message,,,https://uzinadinnori.ro/,/input_candidates/3,control-html-candidat
+uzina-din-nori,moove_gdpr_strict_cookies,checkbox,Strictly Necessary Cookies,https://uzinadinnori.ro/,/input_candidates/4,control-html-candidat

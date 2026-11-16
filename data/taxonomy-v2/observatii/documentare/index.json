@@ -3217,6 +3217,94 @@
       ]
     },
     {
+      "slug": "context-politic",
+      "url": "https://contextpolitic.ro/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://contextpolitic.ro/",
+          "final_url": "https://contextpolitic.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-16T13:40:43.998408+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Context Politic – Politica României, pe scurt",
+          "sections": [],
+          "sha256": "fce901d7a77af01352b3f1d0fc918ddd77207a9b3aefdf5fc6abac4c4659923b",
+          "snapshot": "pagini/893b7ca95e1d4fef4310a985.json",
+          "text_chars": 9911
+        },
+        {
+          "url": "https://contextpolitic.ro/llms.txt",
+          "final_url": "https://contextpolitic.ro/llms.txt",
+          "http_status": 200,
+          "fetched_at": "2026-11-16T13:40:44.146539+00:00",
+          "content_type": "text/plain",
+          "state": "colectat",
+          "kind": "llms",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "",
+          "sections": [],
+          "sha256": "7290e8dffe3aef63c65f91b18fddc23a12e8f4902626ac0719ea46b6f6ff79b6",
+          "snapshot": "pagini/ae866dd221c9f0b33745bf34.json",
+          "text_chars": 1390
+        },
+        {
+          "url": "https://contextpolitic.ro/termeni/",
+          "final_url": "https://contextpolitic.ro/termeni/",
+          "http_status": 200,
+          "fetched_at": "2026-11-16T13:40:44.217338+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "metodologie",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Termeni și metodă — Context Politic",
+          "sections": [
+            {
+              "kind": "metodologie",
+              "heading": "Metoda",
+              "url": "https://contextpolitic.ro/termeni/"
+            }
+          ],
+          "sha256": "cbe513966a4ddfd89b73463b465d1ea21cad61294063a1d8439c8ea011b4968c",
+          "snapshot": "pagini/cc930a581b18529c720c6215.json",
+          "text_chars": 3888
+        },
+        {
+          "url": "https://contextpolitic.ro/llms-full.txt",
+          "final_url": "https://contextpolitic.ro/llms-full.txt",
+          "http_status": 200,
+          "fetched_at": "2026-11-16T13:40:44.437330+00:00",
+          "content_type": "text/plain",
+          "state": "colectat",
+          "kind": "llms",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "",
+          "sections": [],
+          "sha256": "fc0ee49851a6934d31fcb42e21011b6170b5cc79530e6fdb23868872e6522e39",
+          "snapshot": "pagini/8e27e51e5393ccb1fda944b4.json",
+          "text_chars": 5854
+        },
+        {
+          "url": "https://contextpolitic.ro/despre/",
+          "final_url": "https://contextpolitic.ro/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-16T13:40:44.545508+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
       "slug": "corpusul-cotroceni",
       "url": "https://presedintii.ro/",
       "state": "documentatie-gasita",
@@ -3258,6 +3346,88 @@
           "error": "HTTP Error 404: Not Found",
           "kind": "llms",
           "scope": "proiect"
+        }
+      ]
+    },
+    {
+      "slug": "cotele-dunarii",
+      "url": "https://coteledunarii.ro/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://coteledunarii.ro/",
+          "final_url": "https://coteledunarii.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-16T13:40:43.998300+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Cotele Dunarii · fluviu de informatie",
+          "sections": [],
+          "sha256": "2d1dd58939806157a392ec3e4d5b430e0955d2ff4c124f6571b8dd1e5426208f",
+          "snapshot": "pagini/8eced4653761f6b7d819221e.json",
+          "text_chars": 5066
+        },
+        {
+          "url": "https://coteledunarii.ro/llms.txt",
+          "final_url": "https://coteledunarii.ro/llms.txt/",
+          "http_status": 200,
+          "fetched_at": "2026-11-16T13:40:44.253305+00:00",
+          "content_type": "text/plain",
+          "state": "colectat",
+          "kind": "llms",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "",
+          "sections": [],
+          "sha256": "6ff337e4a1756d0237b644e1b3d169a60ba73e554524b582eee26234b86f0b09",
+          "snapshot": "pagini/dc5170a7fc52508988c89314.json",
+          "text_chars": 2393
+        },
+        {
+          "url": "https://coteledunarii.ro/metodologie/",
+          "final_url": "https://coteledunarii.ro/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-16T13:40:44.494542+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://coteledunarii.ro/despre/",
+          "final_url": "https://coteledunarii.ro/2026/07/02/despre-refuzul-credintei-si-realitatea-fara-dumnezeu/",
+          "http_status": 200,
+          "fetched_at": "2026-11-16T13:40:44.622382+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "despre",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Despre refuzul credinței și realitatea fără Dumnezeu · Cotele Dunarii",
+          "sections": [],
+          "sha256": "6e850a41971fb4ce99b9f8712cb55b5710b97e867d3cbbe86759cd542ffcc1eb",
+          "snapshot": "pagini/e4f08b50a1a4d91026a34f51.json",
+          "text_chars": 1898
+        },
+        {
+          "url": "https://coteledunarii.ro/2026/07/02/despre-refuzul-credintei-si-realitatea-fara-dumnezeu/",
+          "final_url": "https://coteledunarii.ro/2026/07/02/despre-refuzul-credintei-si-realitatea-fara-dumnezeu/",
+          "http_status": 200,
+          "fetched_at": "2026-11-16T13:40:44.858517+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "despre",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Despre refuzul credinței și realitatea fără Dumnezeu · Cotele Dunarii",
+          "sections": [],
+          "sha256": "6e850a41971fb4ce99b9f8712cb55b5710b97e867d3cbbe86759cd542ffcc1eb",
+          "snapshot": "pagini/be0a65017bd800e77e683874.json",
+          "text_chars": 1898
         }
       ]
     },
@@ -3318,6 +3488,57 @@
           "sha256": "6c1ef6baf0726d3e4fb154e8d36595a09858d55fc2e6e8234d60ecffc4a44484",
           "snapshot": "pagini/920921ec785f7258533ce039.json",
           "text_chars": 5756
+        }
+      ]
+    },
+    {
+      "slug": "curaj-inainte",
+      "url": "https://curajinainte.org/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://curajinainte.org/",
+          "final_url": "https://curajinainte.org/",
+          "http_status": 200,
+          "fetched_at": "2026-11-16T12:54:20.054165+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Curaj Înainte – ubi libertas excidit, aedificare magis",
+          "sections": [
+            {
+              "kind": "despre",
+              "heading": "Detalii despre sponsorizare",
+              "url": "https://curajinainte.org/#sprijina-sponsor"
+            },
+            {
+              "kind": "despre",
+              "heading": "Despre noi",
+              "url": "https://curajinainte.org/#despre"
+            }
+          ],
+          "sha256": "fb73e33ded7941cc8782093d23aa731a50f24b434e7906783d66cc0e7cd0617c",
+          "snapshot": "pagini/79e37087dd1b20f4f242f67a.json",
+          "text_chars": 18773
+        },
+        {
+          "url": "https://curajinainte.org/llms.txt",
+          "final_url": "https://curajinainte.org/llms.txt/",
+          "http_status": 200,
+          "fetched_at": "2026-11-16T12:54:20.268449+00:00",
+          "content_type": "text/plain",
+          "state": "colectat",
+          "kind": "llms",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "",
+          "sections": [],
+          "sha256": "b11998f16a5471ca31dc7f74841bb07694dcf4d6255610eae96f055fd4a56055",
+          "snapshot": "pagini/82dd94237b62cff4fc98b2e7.json",
+          "text_chars": 8651
         }
       ]
     },
@@ -6765,6 +6986,78 @@
           "error": "HTTP Error 404: Not Found",
           "kind": "despre",
           "scope": "proiect"
+        }
+      ]
+    },
+    {
+      "slug": "leginoi",
+      "url": "https://leginoi.ro/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://leginoi.ro/",
+          "final_url": "https://leginoi.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-16T08:38:46.114151+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Legile României azi: Parlament, Guvern, Președinție, Monitorul Oficial – LegiNoi.ro",
+          "sections": [],
+          "sha256": "59e423f564ee8a702f9dc3dba0e4398102cfc96cb8428bae46e36afd03869168",
+          "snapshot": "pagini/6714e5df346282d1b271721d.json",
+          "text_chars": 8108
+        },
+        {
+          "url": "https://leginoi.ro/llms.txt",
+          "final_url": "https://leginoi.ro/llms.txt",
+          "http_status": 200,
+          "fetched_at": "2026-11-16T08:38:46.233958+00:00",
+          "content_type": "text/plain",
+          "state": "colectat",
+          "kind": "llms",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "",
+          "sections": [],
+          "sha256": "5439c21d754a8eed6d7992c6c63f74c2fba2fd5c06440fc0e460a736c72c48b6",
+          "snapshot": "pagini/cd2c927b6c8421b73220ba03.json",
+          "text_chars": 9596
+        },
+        {
+          "url": "https://leginoi.ro/despre/",
+          "final_url": "https://leginoi.ro/despre/",
+          "http_status": 200,
+          "fetched_at": "2026-11-16T08:38:46.300190+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "despre",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Despre – LegiNoi.ro",
+          "sections": [],
+          "sha256": "6149cbf4a9afab8b718f2a0c73e742e06162d2ee541a3475bad55df792b831d1",
+          "snapshot": "pagini/46955eaeaa65a6406ae4e340.json",
+          "text_chars": 23191
+        },
+        {
+          "url": "https://leginoi.ro/llms-full.txt",
+          "final_url": "https://leginoi.ro/llms-full.txt",
+          "http_status": 200,
+          "fetched_at": "2026-11-16T08:38:46.403595+00:00",
+          "content_type": "text/plain",
+          "state": "colectat",
+          "kind": "llms",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "",
+          "sections": [],
+          "sha256": "ccc87ef9326063d228ebbeb0d1fea4434131fe55aa26469ebe60dc3ca257fc3b",
+          "snapshot": "pagini/aecc0994c3d6fcd8b5fda446.json",
+          "text_chars": 20311
         }
       ]
     },
@@ -11011,6 +11304,68 @@
       ]
     },
     {
+      "slug": "statul-meu",
+      "url": "https://statulmeu.ro/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://statulmeu.ro/",
+          "final_url": "https://statulmeu.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-16T13:40:43.997852+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Statul meu – Bună ziua domnule președinte!",
+          "sections": [],
+          "sha256": "f0ba2ea1c200821abaf8e18aaabb0025933f00eca3647956a2170e2f8af51ba4",
+          "snapshot": "pagini/02d5ae3b1991a60b454954e5.json",
+          "text_chars": 3294
+        },
+        {
+          "url": "https://statulmeu.ro/llms.txt",
+          "final_url": "https://statulmeu.ro/llms.txt",
+          "http_status": 200,
+          "fetched_at": "2026-11-16T13:40:44.121654+00:00",
+          "content_type": "text/plain",
+          "state": "colectat",
+          "kind": "llms",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "",
+          "sections": [],
+          "sha256": "1a812f7cdb071733de80bfca9c1514f85e7d5279e4c15654a90f38b608a4cf73",
+          "snapshot": "pagini/dcc1e3feb47e3b34b42e4fc5.json",
+          "text_chars": 3329
+        },
+        {
+          "url": "https://statulmeu.ro/despre-proiect/",
+          "final_url": "https://statulmeu.ro/despre-proiect/",
+          "http_status": 200,
+          "fetched_at": "2026-11-16T13:40:44.195824+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "despre",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Despre proiect – Statul meu",
+          "sections": [
+            {
+              "kind": "despre",
+              "heading": "Despre proiect",
+              "url": "https://statulmeu.ro/despre-proiect/"
+            }
+          ],
+          "sha256": "8943bf45ed5d36f58081b8a5fd2064298945c35c8bac009a8ba6128eb24c2710",
+          "snapshot": "pagini/b76fad2521deb72235041e19.json",
+          "text_chars": 9546
+        }
+      ]
+    },
+    {
       "slug": "tech-and-tonic",
       "url": "https://techandtonic.ro/",
       "state": "documentatie-gasita",
@@ -11971,6 +12326,56 @@
           "state": "eroare-http",
           "error": "HTTP Error 404: Not Found",
           "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
+      "slug": "uzina-din-nori",
+      "url": "https://uzinadinnori.ro/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://uzinadinnori.ro/",
+          "final_url": "https://uzinadinnori.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-16T13:04:51.584894+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Uzina din nori — Proiectele lui Mihnea Dumitru",
+          "sections": [
+            {
+              "kind": "despre",
+              "heading": "Despre",
+              "url": "https://uzinadinnori.ro/#despre"
+            }
+          ],
+          "sha256": "f810fafff8fb7de78ed1826977544c42b34bd11bbfb0982a83558eb3ae267487",
+          "snapshot": "pagini/fdc9bea662b9ce8da8125898.json",
+          "text_chars": 10288
+        },
+        {
+          "url": "https://uzinadinnori.ro/llms.txt",
+          "final_url": "https://uzinadinnori.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-16T13:04:51.692512+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://uzinadinnori.ro/metodologie/",
+          "final_url": "https://uzinadinnori.ro/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-16T13:04:51.816522+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
           "scope": "proiect"
         }
       ]

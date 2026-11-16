@@ -2241,6 +2241,35 @@
       ]
     },
     {
+      "proiect": "curaj-inainte",
+      "url": "https://curajinainte.org/ai-context.json",
+      "sursa_id": "28b4fadb5e5c0f2ff6bb",
+      "stare": "activ",
+      "metoda": "url-in-text",
+      "parinte": "https://curajinainte.org/llms.txt/",
+      "link_original": "https://curajinainte.org/ai-context.json",
+      "dovada": {
+        "url": "https://curajinainte.org/llms.txt/",
+        "sha256": "b11998f16a5471ca31dc7f74841bb07694dcf4d6255610eae96f055fd4a56055",
+        "snapshot": "documentare/pagini/82dd94237b62cff4fc98b2e7.json",
+        "pointer": "/text",
+        "interval": [
+          8379,
+          8419
+        ]
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-16T12:54:20.268449+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "admis",
+          "la": "2026-11-16T12:54:21.117536+00:00"
+        }
+      ]
+    },
+    {
       "proiect": "data-expertforum",
       "url": "https://data.expertforum.ro/",
       "sursa_id": "dfb618198f8feeea1af4",
@@ -5539,6 +5568,35 @@
         }
       ],
       "nota": "Listing route built from the documented route template and the documented base URL; limit=1 asks for one card to show the response schema."
+    },
+    {
+      "proiect": "leginoi",
+      "url": "https://leginoi.ro/mof/export.json",
+      "sursa_id": "a2bbb2e43e766cc61b69",
+      "stare": "activ",
+      "metoda": "url-in-text",
+      "parinte": "https://leginoi.ro/llms.txt",
+      "link_original": "https://leginoi.ro/mof/export.json",
+      "dovada": {
+        "url": "https://leginoi.ro/llms.txt",
+        "sha256": "5439c21d754a8eed6d7992c6c63f74c2fba2fd5c06440fc0e460a736c72c48b6",
+        "snapshot": "documentare/pagini/cd2c927b6c8421b73220ba03.json",
+        "pointer": "/text",
+        "interval": [
+          8178,
+          8212
+        ]
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-16T08:38:46.233958+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "admis",
+          "la": "2026-11-16T08:38:46.907480+00:00"
+        }
+      ]
     },
     {
       "proiect": "lista-firme",
