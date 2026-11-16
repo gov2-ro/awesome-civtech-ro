@@ -51973,6 +51973,175 @@
       "baza_tipului": "esantion-date"
     },
     {
+      "url": "https://civia.ro/api/v2/open311/requests.json",
+      "final_url": "https://civia.ro/api/v2/open311/requests.json",
+      "http_status": 200,
+      "fetched_at": "2026-11-16T15:02:56.230892+00:00",
+      "content_type": "application/json",
+      "state": "ok",
+      "id": "746d11aa087c62c3a090",
+      "campuri": [
+        {
+          "nume": "service_request_id",
+          "cale": "$[].service_request_id",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/0/service_request_id"
+        },
+        {
+          "nume": "status",
+          "cale": "$[].status",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/0/status"
+        },
+        {
+          "nume": "status_notes",
+          "cale": "$[].status_notes",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/0/status_notes"
+        },
+        {
+          "nume": "service_code",
+          "cale": "$[].service_code",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/0/service_code"
+        },
+        {
+          "nume": "service_name",
+          "cale": "$[].service_name",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/0/service_name"
+        },
+        {
+          "nume": "description",
+          "cale": "$[].description",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/0/description"
+        },
+        {
+          "nume": "title",
+          "cale": "$[].title",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/0/title"
+        },
+        {
+          "nume": "requested_datetime",
+          "cale": "$[].requested_datetime",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/0/requested_datetime"
+        },
+        {
+          "nume": "updated_datetime",
+          "cale": "$[].updated_datetime",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/0/updated_datetime"
+        },
+        {
+          "nume": "resolved_at",
+          "cale": "$[].resolved_at",
+          "tipuri_observate": [
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/0/resolved_at"
+        },
+        {
+          "nume": "address",
+          "cale": "$[].address",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/0/address"
+        },
+        {
+          "nume": "lat",
+          "cale": "$[].lat",
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/0/lat"
+        },
+        {
+          "nume": "long",
+          "cale": "$[].long",
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/0/long"
+        },
+        {
+          "nume": "media_url",
+          "cale": "$[].media_url",
+          "tipuri_observate": [
+            "string",
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/0/media_url"
+        },
+        {
+          "nume": "detail_url",
+          "cale": "$[].detail_url",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/0/detail_url"
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/746d11aa087c62c3a090-615fafe28d6234b3.json",
+      "sha256": "615fafe28d6234b36ceff7c7a26687effb702cc48c4db378c67dd68584a7736d",
+      "format": "json",
+      "stare": "analizat",
+      "limita_atinsa": true,
+      "baza_tipului": "esantion-date"
+    },
+    {
       "url": "https://companiidestat.ro/date/v1/companii_de_stat_radiate.csv",
       "final_url": "https://companiidestat.ro/date/v1/companii_de_stat_radiate.csv",
       "http_status": 200,

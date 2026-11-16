@@ -1198,6 +1198,35 @@
       ]
     },
     {
+      "proiect": "civia",
+      "url": "https://civia.ro/api/v2/open311/requests.json",
+      "sursa_id": "746d11aa087c62c3a090",
+      "stare": "activ",
+      "metoda": "url-in-text",
+      "parinte": "https://civia.ro/llms.txt",
+      "link_original": "https://civia.ro/api/v2/open311/requests.json",
+      "dovada": {
+        "url": "https://civia.ro/llms.txt",
+        "sha256": "9ce5eba9911c560281c7c5dbc0ad5a3fb7dcca412fe6b3e7d5e09a64e446dece",
+        "snapshot": "documentare/pagini/a9dd2ea217ebcd099004b5ad.json",
+        "pointer": "/text",
+        "interval": [
+          9450,
+          9495
+        ]
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-16T15:02:54.579842+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "admis",
+          "la": "2026-11-16T15:02:56.049974+00:00"
+        }
+      ]
+    },
+    {
       "proiect": "codurbanism",
       "url": "https://mariuscomper.uk/codurbanism/data/en/all-comparisons.json",
       "sursa_id": "ab25235e392ffd6aea46",

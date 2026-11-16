@@ -436,6 +436,8 @@ function tagsHTML(key, options, counts) {
 const useful = (key, options) => options.length > 1 || listOf(key).length > 0;
 function facetsHTML() {
   const out = [];
+  const shortcut = presetChip();  // the chips row is hidden on wide screens, so the sidebar carries the shortcut too
+  if (shortcut) out.push(`<div class="preset">${shortcut}</div>`);
   for (const key of ['subj', 'cap', 'source', 'fmt']) {
     const options = optionsOf(key);
     if (!useful(key, options)) continue;
@@ -465,7 +467,16 @@ function renderChips() {
   subj.sort((a, b) => c[b] - c[a] || label(a).localeCompare(label(b), 'ro'));
   const total = DB.items.filter(i => matches(i, 'subj')).length;
   const chip = (val, text, n, on) => `<button class="chip" data-act="${val ? 'multi' : 'clear'}" data-key="subj" data-val="${esc(val)}" aria-pressed="${on}">${esc(text)}<span class="n">${n || 0}</span></button>`;
-  slot('chips').innerHTML = chip('', 'Toate', total, !sel.length) + subj.filter(v => c[v] > 3 || sel.includes(v)).map(v => chip(v, label(v), c[v], sel.includes(v))).join('');
+  slot('chips').innerHTML = chip('', 'Toate', total, !sel.length) + subj.filter(v => c[v] > 3 || sel.includes(v)).map(v => chip(v, label(v), c[v], sel.includes(v))).join('') + presetChip();
+}
+// A named shortcut: it sets two filters at once. Shown on the projects tab, and only when it finds an entry.
+// coverage `national-local`: a national platform whose data is split by locality (detaliere_date), such as Civia.
+const LOCAL_REPORTS = { cap: 'functie:sesizare', coverage: 'local,national-local' };
+const presetOn = () => Object.entries(LOCAL_REPORTS).every(([k, v]) => state[k] === v);
+function presetChip() {
+  if (state.k !== 'proiect') return '';
+  const n = DB.items.filter(it => it.kind === 'proiect' && (showsInactive() || !isInactive(it)) && Object.entries(LOCAL_REPORTS).every(([k, v]) => v.split(',').some(x => has(it, k, x)))).length;
+  return n ? `<button class="chip" data-act="preset" aria-pressed="${presetOn()}">Sesizări locale<span class="n">${n}</span></button>` : '';
 }
 
 function renderToolbar(n) {
@@ -1231,6 +1242,7 @@ document.addEventListener('click', e => {
   } else if (act === 'clear') { state[key] = ''; writeURL(); renderFilters(); renderResults(); }
   else if (act === 'reset') { for (const k of FILTERS) state[k] = ''; writeURL(); renderAll(); }
   else if (act === 'kind') { state.k = val; state.o = defaultSort(); for (const k of FILTERS) if (k !== 'q') state[k] = ''; writeURL(); renderAll(); }
+  else if (act === 'preset') { const on = presetOn(); for (const [k, v] of Object.entries(LOCAL_REPORTS)) state[k] = on ? '' : v; state.p = ''; writeURL(); renderAll(); }
   else if (act === 'view') { state.v = val; writeURL(); renderResults(); }
   else if (act === 'fs') { store.set('ct.fs', val); applyPrefs(); }
   else if (act === 'theme') { store.set('ct.theme', val); applyPrefs(); }

@@ -397,3 +397,6 @@ uzina-din-nori,udn_name,text,,https://uzinadinnori.ro/,/input_candidates/1,contr
 uzina-din-nori,udn_email,email,,https://uzinadinnori.ro/,/input_candidates/2,control-html-candidat
 uzina-din-nori,udn_message,,,https://uzinadinnori.ro/,/input_candidates/3,control-html-candidat
 uzina-din-nori,moove_gdpr_strict_cookies,checkbox,Strictly Necessary Cookies,https://uzinadinnori.ro/,/input_candidates/4,control-html-candidat
+civia,Adresa ta de email,email,Adresa ta de email,https://civia.ro/,/input_candidates/0,control-html-candidat
+civia,"Scrie mesajul tău: o eroare, o idee, o întrebare...",,"Scrie mesajul tău: o eroare, o idee, o întrebare...",https://civia.ro/,/input_candidates/1,control-html-candidat
+civia,"Adresa ta de email, opțională",email,"Adresa ta de email, opțională",https://civia.ro/,/input_candidates/2,control-html-candidat

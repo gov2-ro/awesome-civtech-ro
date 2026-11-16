@@ -2460,6 +2460,88 @@
       ]
     },
     {
+      "slug": "civia",
+      "url": "https://civia.ro/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://civia.ro/",
+          "final_url": "https://civia.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-16T15:02:54.483967+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Sesizare la primărie online, cu răspuns urmărit - Civia",
+          "sections": [],
+          "sha256": "8520a5795b42af0aebe7337e3e4f4840f3455c9d9150fb053a8574c2a28b09bc",
+          "snapshot": "pagini/adc81902a4d50716e582e165.json",
+          "text_chars": 8362
+        },
+        {
+          "url": "https://civia.ro/llms.txt",
+          "final_url": "https://civia.ro/llms.txt",
+          "http_status": 200,
+          "fetched_at": "2026-11-16T15:02:54.579842+00:00",
+          "content_type": "text/plain",
+          "state": "colectat",
+          "kind": "llms",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "",
+          "sections": [],
+          "sha256": "9ce5eba9911c560281c7c5dbc0ad5a3fb7dcca412fe6b3e7d5e09a64e446dece",
+          "snapshot": "pagini/a9dd2ea217ebcd099004b5ad.json",
+          "text_chars": 10951
+        },
+        {
+          "url": "https://civia.ro/statistici-sesizari-romania",
+          "final_url": "https://civia.ro/statistici-sesizari-romania",
+          "http_status": 200,
+          "fetched_at": "2026-11-16T15:02:55.000517+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "despre",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Statistici sesizări România, date live - Civia",
+          "sections": [],
+          "sha256": "b95bacc5b934c052bdc9546eb41d2e597674474539230cde482b8c0e83764d6c",
+          "snapshot": "pagini/95f23e16dbb654756a4f6a7f.json",
+          "text_chars": 3628
+        },
+        {
+          "url": "https://civia.ro/llms-full.txt",
+          "final_url": "https://civia.ro/llms-full.txt",
+          "http_status": 200,
+          "fetched_at": "2026-11-16T15:02:55.306912+00:00",
+          "content_type": "text/markdown",
+          "state": "colectat",
+          "kind": "llms",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "",
+          "sections": [],
+          "sha256": "e0b75e22096acbfa800482f208299073c67e7c98f5f6cb4b9e9c89d6f6d5d939",
+          "snapshot": "pagini/069e01eb56c44e017a623cb8.json",
+          "text_chars": 14572
+        },
+        {
+          "url": "https://civia.ro/metodologie/",
+          "final_url": "https://civia.ro/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-16T15:02:55.459194+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
       "slug": "civica",
       "url": "https://asociatiacivica.ro/",
       "state": "documentatie-gasita",
@@ -2622,6 +2704,65 @@
           "sha256": "70421700de012355e5cbdf5b21f3185e1a41998fb2fd36ce8298418de2e9417d",
           "snapshot": "pagini/0d7b7b068b0adc7d3d10005a.json",
           "text_chars": 2127
+        }
+      ]
+    },
+    {
+      "slug": "civiti",
+      "url": "https://civiti.ro/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://civiti.ro/",
+          "final_url": "https://civiti.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-16T15:02:54.484365+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Sesizări către primărie, online și gratuit | Civiti",
+          "sections": [
+            {
+              "kind": "despre",
+              "heading": "Cum funcționează",
+              "url": "https://civiti.ro/"
+            }
+          ],
+          "sha256": "28ee21ab3d119902b5808201cab06fd0d3783046082292e83805f10936560568",
+          "snapshot": "pagini/5b6feb22de593d452b8ff949.json",
+          "text_chars": 5365
+        },
+        {
+          "url": "https://civiti.ro/llms.txt",
+          "final_url": "https://civiti.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-16T15:02:54.654699+00:00",
+          "content_type": "text/html",
+          "state": "html-in-loc-de-llms",
+          "kind": "llms",
+          "scope": "proiect",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "snapshot": "pagini/5bbabf6092c2a7999f3988dc.json",
+          "text_chars": 0
+        },
+        {
+          "url": "https://civiti.ro/despre",
+          "final_url": "https://civiti.ro/despre",
+          "http_status": 200,
+          "fetched_at": "2026-11-16T15:02:55.121919+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "despre",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Despre Civiti — Povestea platformei | Civiti",
+          "sections": [],
+          "sha256": "76a35111def650d6c93d5a70c8a5872bad010ea06a8e4136187c9175b857ff24",
+          "snapshot": "pagini/fd0d4dcdf27d4ae19e3b73cc.json",
+          "text_chars": 3817
         }
       ]
     },

@@ -10529,6 +10529,106 @@
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
         "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
       ]
+    },
+    {
+      "slug": "civia",
+      "nume": "Civia",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Sesizări către primării, scrise cu AI și urmărite până la răspuns",
+      "permite": [
+        "Trimite sau urmărește o sesizare",
+        "Completează sau generează documente",
+        "Monitorizează"
+      ],
+      "formate_catalogate": [
+        "Formular",
+        "Hartă",
+        "Set de date oferit",
+        "API oferit"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "civia"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "Adresa ta de email",
+          "rol": "control-utilizator",
+          "tip_control_html": "email",
+          "descriere": "Adresa ta de email",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://civia.ro/",
+            "sha256": "8520a5795b42af0aebe7337e3e4f4840f3455c9d9150fb053a8574c2a28b09bc",
+            "sha256_lista_controale": "5243687b00dcd2c07c3061a82ad67ffe8a1a0a4a826b8bb33dc11baf5ddded1e",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/adc81902a4d50716e582e165.json"
+          }
+        },
+        {
+          "nume": "Scrie mesajul tău: o eroare, o idee, o întrebare...",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "Scrie mesajul tău: o eroare, o idee, o întrebare...",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://civia.ro/",
+            "sha256": "8520a5795b42af0aebe7337e3e4f4840f3455c9d9150fb053a8574c2a28b09bc",
+            "sha256_lista_controale": "5243687b00dcd2c07c3061a82ad67ffe8a1a0a4a826b8bb33dc11baf5ddded1e",
+            "pointer_snapshot": "/input_candidates/1",
+            "snapshot": "documentare/pagini/adc81902a4d50716e582e165.json"
+          }
+        },
+        {
+          "nume": "Adresa ta de email, opțională",
+          "rol": "control-utilizator",
+          "tip_control_html": "email",
+          "descriere": "Adresa ta de email, opțională",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://civia.ro/",
+            "sha256": "8520a5795b42af0aebe7337e3e4f4840f3455c9d9150fb053a8574c2a28b09bc",
+            "sha256_lista_controale": "5243687b00dcd2c07c3061a82ad67ffe8a1a0a4a826b8bb33dc11baf5ddded1e",
+            "pointer_snapshot": "/input_candidates/2",
+            "snapshot": "documentare/pagini/adc81902a4d50716e582e165.json"
+          }
+        }
+      ],
+      "surse_structurate": [
+        "746d11aa087c62c3a090"
+      ],
+      "campuri_din_surse": 15,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
+      ]
+    },
+    {
+      "slug": "civiti",
+      "nume": "Civiti",
+      "stare": "propunere",
+      "completitudine": "neconfirmat",
+      "scop": "Sesizări către primărie prin email, cu presiune colectivă",
+      "permite": [
+        "Trimite sau urmărește o sesizare",
+        "Completează sau generează documente",
+        "Semnează sau organizează petiții"
+      ],
+      "formate_catalogate": [
+        "Formular",
+        "Hartă"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "civiti"
+      },
+      "intrari_utilizator": [],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
     }
   ]
 }

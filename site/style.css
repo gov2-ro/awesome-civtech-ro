@@ -562,6 +562,7 @@ svg.gh { width: 20px; height: 20px; fill: currentColor; stroke: none; }
 .fopt.check[aria-pressed="true"] .n { color: inherit; opacity: .7; }
 .subfacet + .subfacet { margin-top: 12px; }
 .subfacet .kicker { margin: 0 0 6px; font-size: calc(11px * var(--fs)); }
+.preset { margin: 0 0 12px; }
 .fhelp { margin: 14px 0 0; padding-top: 10px; border-top: 1px solid var(--line); font-size: calc(12.5px * var(--fs)); color: var(--muted); }
 .draft-note { flex-basis: 100%; margin: 0; padding: 8px 12px; border-radius: 6px; background: var(--surface); color: var(--warn); font-size: calc(13.5px * var(--fs)); }
 .d-class section { margin-top: 14px; }

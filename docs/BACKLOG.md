@@ -2,6 +2,16 @@
 
 Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
+## Local reporting platforms (sesizări) — 2026-11-16
+
+- [x] Audit `functie:sesizare` (2026-11-16): 10 entries carry it. 5 are local (`bucuresti-help`, `bucuresti-verde`, `onesti-city`, `oradea-city-report`, `vocea-cartierului-tau`). The filter `cap=functie:sesizare` with `coverage=local` already returns exactly those 5. A keyword scan of the other entries found no missed local reporting platform.
+- [-] Split `functie:sesizare` by recipient (concept A: authority, public, organisation). Dropped for now: the three odd entries are national (`radar-digital` reports to social networks, `votcorect` answers election questions, `piata-de-spaga` is blocked and unread), so the local filter already excludes them. Reopen when more than about 15 entries carry the tag, or when a national filter needs the split.
+- [x] Onboarded `civia` and `civiti` as `propus` (2026-11-16, owner said yes). Original note: `civia.ro` (independent, all 41 counties and Bucharest, 933 reports sent, Open311 API and open data, takes donations; the site names no operator) and `civiti.ro` (Bucharest only, built by one person, source code on GitHub). Run `/add-new-url` for each.
+- [x] `oradea-city-report` and `domnule-primar` keep their tags (2026-11-16, owner decision): the default view hides inactive entries, so they do not show. Check `civictech_original` of `oradea-city-report` (the city hall's own page) only if the owner asks.
+- [x] Shortcut „Sesizări locale” (`cap=functie:sesizare&coverage=local`) in the sidebar and the chips row of the projects tab (`LOCAL_REPORTS`, `presetChip` in `site/app.js`; 2026-11-16). Browser-checked at 1400 and 390 px; `check_preview.py` 145/145. It shows 6 entries and leaves out the inactive `oradea-city-report`, which stays tagged `functie:sesizare` (the default view hides inactive entries). Commit `site/index.html` after the next real build, because `build.py` rewrites its `?v=` hashes.
+- [x] `civia` (national, with `detaliere_date=localitati`) is in „Sesizări locale” (2026-11-16, owner decision): the shortcut uses `coverage=local,national-local`. No taxonomy change: `national-local` is an existing coverage group.
+- [ ] Not onboarded, on purpose: `volalert.ro` (ECOVOL Ilfov S.A., a company with municipal partners, Voluntari), My BrasovCity (Brașov City Hall), the app of ADP Sector 1, the reader map of HotNews. All are official or commercial, not independent. Add one only if the owner wants official tools too.
+
 ## România Interactivă tools — 2026-11-06
 
 - [x] Owner: publish the 30 entries from România Interactivă (2026-11-06): all `acceptat`, in bulk, without a review one by one and without search results.

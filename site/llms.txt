@@ -1,7 +1,7 @@
 # CivTech România
 
 > Colecție curatoriată de proiecte civic tech, organizații și resurse din România: instrumente civice, date deschise
-> și proiecte de bună guvernare. 145 proiecte, 15 organizații, 22 resurse.
+> și proiecte de bună guvernare. 147 proiecte, 15 organizații, 22 resurse.
 
 Fiecare intrare are o pagină proprie la https://civtech.gov2.ro/<tip>/<slug>/ (tip: proiect, organizatie, resursa). Starea
 (activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-11-16. Textele sunt în
@@ -144,6 +144,8 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 
 - [bucuresti.help](https://civtech.gov2.ro/proiect/bucuresti-help/): Fotografiezi problema, AI-ul scrie sesizarea. Site: https://bucuresti.help/
 - [Bula ta](https://civtech.gov2.ro/proiect/bula-ta/): Ghicești șapte cifre despre România și afli cât se suprapune bula ta cu țara. Site: https://nicolaeurs.ro/bula-ta/
+- [Civia](https://civtech.gov2.ro/proiect/civia/): Sesizări către primării, scrise cu AI și urmărite până la răspuns. Site: https://civia.ro/
+- [Civiti](https://civtech.gov2.ro/proiect/civiti/): Sesizări către primărie prin email, cu presiune colectivă. Site: https://civiti.ro/
 - [Codul urbanismului](https://civtech.gov2.ro/proiect/codurbanism/): Ce reguli se aplică terenului sau dosarului tău după Legea 169/2026. Site: https://mariuscomper.uk/codurbanism/
 - [Cât de viu e orașul tău?](https://civtech.gov2.ro/proiect/orase-vii/): Cele 319 orașe după patru semne vitale: nașteri, migrație, locuințe, copii. Site: https://romaniainteractiva.ro/orasevii/
 - [Câte mașini are județul tău](https://civtech.gov2.ro/proiect/parc-auto-judete/): Parcul auto pe județe, 2012–2025: mașini la 1.000 de locuitori, combustibil, mărci. Site: https://romaniainteractiva.ro/masini/
