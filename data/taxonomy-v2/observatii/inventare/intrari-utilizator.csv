@@ -400,3 +400,4 @@ uzina-din-nori,moove_gdpr_strict_cookies,checkbox,Strictly Necessary Cookies,htt
 civia,Adresa ta de email,email,Adresa ta de email,https://civia.ro/,/input_candidates/0,control-html-candidat
 civia,"Scrie mesajul tău: o eroare, o idee, o întrebare...",,"Scrie mesajul tău: o eroare, o idee, o întrebare...",https://civia.ro/,/input_candidates/1,control-html-candidat
 civia,"Adresa ta de email, opțională",email,"Adresa ta de email, opțională",https://civia.ro/,/input_candidates/2,control-html-candidat
+chatcodfiscal,docSearch,search,"Caută: cod fiscal, e-Factura, concediu...",https://chatcodfiscal.ro/,/input_candidates/0,control-html-candidat

@@ -10629,6 +10629,45 @@
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
         "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
       ]
+    },
+    {
+      "slug": "chatcodfiscal",
+      "nume": "ChatCodFiscal",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Legislația fiscală, pentru oameni și agenți AI, prin MCP",
+      "permite": [
+        "Caută și consultă"
+      ],
+      "formate_catalogate": [
+        "Catalog sau colecție"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "chatcodfiscal"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "docSearch",
+          "rol": "control-utilizator",
+          "tip_control_html": "search",
+          "descriere": "Caută: cod fiscal, e-Factura, concediu...",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://chatcodfiscal.ro/",
+            "sha256": "bec79d56094dff23e89110c4a6922ce54888e74ee2c60e1cab3dfc3b9dfa1dbc",
+            "sha256_lista_controale": "2b0ba55aad961a0027eed1e2246755bf98a1c786360f2a712765283042fddd7a",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/ef8a72d05d2c6507a2fb7da6.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
     }
   ]
 }

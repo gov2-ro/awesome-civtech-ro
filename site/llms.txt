@@ -1,10 +1,10 @@
 # CivTech România
 
 > Colecție curatoriată de proiecte civic tech, organizații și resurse din România: instrumente civice, date deschise
-> și proiecte de bună guvernare. 147 proiecte, 15 organizații, 22 resurse.
+> și proiecte de bună guvernare. 148 proiecte, 15 organizații, 22 resurse.
 
 Fiecare intrare are o pagină proprie la https://civtech.gov2.ro/<tip>/<slug>/ (tip: proiect, organizatie, resursa). Starea
-(activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-11-16. Textele sunt în
+(activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-11-17. Textele sunt în
 limba română. Datele sunt reutilizabile conform EUPL v1.2.
 
 ## Date
@@ -69,10 +69,11 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 - [Bani pierduți](https://civtech.gov2.ro/proiect/bani-pierduti/) (offline): Site: https://www.banipierduti.ro
 - [Ce cumpără primăria](https://civtech.gov2.ro/proiect/ce-cumpara-primaria/): Achizițiile primăriilor, pe localități. Site: https://cecumparaprimaria.vercel.app/
 - [Ce face statul cu 1.000 de lei?](https://civtech.gov2.ro/proiect/ce-face-statul-cu-1000-de-lei/): Veniturile și cheltuielile statului, explicate la 1.000 de lei. Site: https://mariuscomper.uk/ce-face-statul-cu-1000-de-lei/
+- [ChatCodFiscal](https://civtech.gov2.ro/proiect/chatcodfiscal/): Legislația fiscală, pentru oameni și agenți AI, prin MCP. Site: https://chatcodfiscal.ro/
 - [Chitanța orașului](https://civtech.gov2.ro/proiect/chitanta-orasului/): Cât plătești orașului prin taxe și pe ce a cheltuit primăria în 2025. Site: https://nicolaeurs.ro/chitantaorasului/
 - [Companiile de stat](https://civtech.gov2.ro/proiect/companii-de-stat/): Câți bani, câte pierderi și cine le conduce. Site: https://companiidestat.ro/
 - [Companii Publice — România](https://civtech.gov2.ro/proiect/companii-publice-ro/): Site: https://cosettechichirau.github.io/companiipublice/
-- [Data Expert Forum](https://civtech.gov2.ro/proiect/data-expertforum/): Site: https://data.expertforum.ro/
+- [Data Expert Forum](https://civtech.gov2.ro/proiect/data-expertforum/): Seturi de date compilate de Expert Forum pe alegeri, achiziții și sănătate. Site: https://data.expertforum.ro/
 - [DemoANAF](https://civtech.gov2.ro/proiect/demoanaf/): CUI, curs BNR, IBAN trezorerie, e-Factura — fără cont. Site: https://demoanaf.ro/
 - [Execuții Bugetare](https://civtech.gov2.ro/proiect/executii-bugetare/): Veniturile și cheltuielile autorităților locale. Site: https://executii-bugetare.g4d.ro/
 - [Ghicește bugetul](https://civtech.gov2.ro/proiect/ghiceste-bugetul/): Quiz cu opt întrebări despre banii orașului tău, apoi cifrele din 2025. Site: https://nicolaeurs.ro/ghicestebugetul/

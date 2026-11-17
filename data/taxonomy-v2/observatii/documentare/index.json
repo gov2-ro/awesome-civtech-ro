@@ -2389,6 +2389,93 @@
       ]
     },
     {
+      "slug": "chatcodfiscal",
+      "url": "https://chatcodfiscal.ro/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://chatcodfiscal.ro/",
+          "final_url": "https://chatcodfiscal.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-17T12:32:11.643649+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "ChatCodFiscal — MCP pentru legislația fiscală din România",
+          "sections": [],
+          "sha256": "bec79d56094dff23e89110c4a6922ce54888e74ee2c60e1cab3dfc3b9dfa1dbc",
+          "snapshot": "pagini/ef8a72d05d2c6507a2fb7da6.json",
+          "text_chars": 39717
+        },
+        {
+          "url": "https://chatcodfiscal.ro/llms.txt",
+          "final_url": "https://chatcodfiscal.ro/llms.txt",
+          "http_status": 200,
+          "fetched_at": "2026-11-17T12:32:11.759749+00:00",
+          "content_type": "text/plain",
+          "state": "colectat",
+          "kind": "llms",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "",
+          "sections": [],
+          "sha256": "8bd6630b4c3dc1c48bd565b17872093fa349e550619d01635c90f7905b3a85af",
+          "snapshot": "pagini/7dcf794a5312ed3d557ba1b0.json",
+          "text_chars": 32943
+        },
+        {
+          "url": "https://chatcodfiscal.ro/legislatie/307847-norme-metodologice-de-aplicare-a-codului-fiscal-2026-03-31/",
+          "final_url": "https://chatcodfiscal.ro/legislatie/307847-norme-metodologice-de-aplicare-a-codului-fiscal-2026-03-31/",
+          "http_status": 200,
+          "fetched_at": "2026-11-17T12:32:11.813304+00:00",
+          "content_type": "text/html",
+          "state": "raspuns-prea-mare",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://chatcodfiscal.ro/legislatie/268667-norme-aplicare-concediu-crestere-copil-2023-09-19/",
+          "final_url": "https://chatcodfiscal.ro/legislatie/268667-norme-aplicare-concediu-crestere-copil-2023-09-19/",
+          "http_status": 200,
+          "fetched_at": "2026-11-17T12:32:13.086509+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "metodologie",
+          "scope": "proiect",
+          "truncated": true,
+          "title": "NORME METODOLOGICE HG NR. 52/2011 - NORME DE APLICARE OUG 111/2010 | ChatCodFiscal",
+          "sections": [
+            {
+              "kind": "metodologie",
+              "heading": "Articolul 39 - In aplicarea prezentelor norme metodologice, precum si pentru reglementarea u...",
+              "url": "https://chatcodfiscal.ro/legislatie/268667-norme-aplicare-concediu-crestere-copil-2023-09-19/#ancora_s_art_41"
+            },
+            {
+              "kind": "metodologie",
+              "heading": "Articolul 40 - Anexele nr. 1-3fac parte integranta din prezentele norme metodologice.",
+              "url": "https://chatcodfiscal.ro/legislatie/268667-norme-aplicare-concediu-crestere-copil-2023-09-19/#ancora_s_art_42"
+            }
+          ],
+          "sha256": "ea8b8a39ead0939b283a513a063c32fcb162c752400efae5075e2b26f7568300",
+          "snapshot": "pagini/d630a121814c2276cbb1f2a3.json",
+          "text_chars": 60000
+        },
+        {
+          "url": "https://chatcodfiscal.ro/despre/",
+          "final_url": "https://chatcodfiscal.ro/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-17T12:32:13.693997+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
       "slug": "chitanta-orasului",
       "url": "https://nicolaeurs.ro/chitantaorasului/",
       "state": "documentatie-gasita",
