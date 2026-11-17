@@ -211,15 +211,51 @@ def score(e: dict, p: dict, alive: bool, desc: str, img, reach: dict, classified
     return round(total * (1 if alive else .4))
 
 
-def feed(items: list[dict], generated: datetime) -> str:
-    """RSS 2.0 of live projects, newest first by `since` (first trace on the web, not the date added here)."""
-    live = [i for i in items if i["kind"] == "proiect" and i["since"] and i["status"] not in ("offline", "arhivat")]
+# The catalogue files whose git history dates each entry: v1 first, then the v2 table that replaced them.
+CATALOGUE_HISTORY = ("data/proiecte.csv", "data/orgs.csv", "data/taxonomy-v2/integrare/intrari.csv")
+
+
+def added_dates() -> dict[str, str]:
+    """slug -> the date of the first commit that wrote a public row with that slug to a catalogue file: a row
+    added hidden (`clasificare_stare` `ascuns`) dates from the commit that shows it. Empty when git or the full
+    history is missing (a shallow clone dates every row to its tip commit)."""
+    import csv
+    import subprocess
+    from taxonomy_v2 import HIDDEN
+    git = lambda *a: subprocess.run(["git", "-C", str(ROOT), *a], capture_output=True, text=True)
+    shallow = git("rev-parse", "--is-shallow-repository")
+    if shallow.returncode or shallow.stdout.strip() != "false":
+        print("feed: no full git history; the feed dates entries by `since`", file=sys.stderr)
+        return {}
+    log = git("log", "--reverse", "--format=@@%as", "-p", "--unified=0", "--no-renames", "--", *CATALOGUE_HISTORY)
+    out, day = {}, ""
+    for line in log.stdout.splitlines():
+        if line.startswith("@@") and not line.startswith("@@ "):
+            day = line[2:]
+        elif (line.startswith("+") and not line.startswith("+++") and (m := re.match(r"\+([a-z0-9][a-z0-9-]*),", line))
+              and HIDDEN not in next(csv.reader([line[1:]]))):
+            out.setdefault(m[1], day)
+    return out
+
+
+def feed(items: list[dict], generated: datetime, vocabulary: dict | None = None) -> str:
+    """RSS 2.0 of live projects, newest first by the date added to the catalogue (git history), else by `since`
+    (first trace on the web). Each item carries the subjects and topics as categories, the description and the original URL."""
+    added = added_dates()
+    label = {c["id"]: c["label"] for c in (vocabulary or {}).get("concepts", [])}
+    live = [i for i in items if i["kind"] == "proiect" and (added.get(i["slug"]) or i["since"]) and i["status"] not in ("offline", "arhivat")]
+    when = lambda i: added.get(i["slug"]) or i["since"]
     out = []
-    for i in sorted(live, key=lambda i: i["since"], reverse=True)[:FEED_SIZE]:
-        when = datetime.fromisoformat(i["since"]).replace(tzinfo=timezone.utc)
+    for i in sorted(live, key=lambda i: (when(i), i["since"]), reverse=True)[:FEED_SIZE]:
         link = f"{SITE_URL}{i['kind']}/{i['slug']}/"
+        cats = [label[c] for c in dict.fromkeys([i["primarySubject"], *i["subjects"], *i["topics"]] if "subjects" in i else []) if c in label]
+        body = [f"<p><strong>{html.escape(i['tagline'])}</strong></p>" if i["tagline"] else "",
+                f"<p>{html.escape(i['desc'])}</p>" if i["desc"] and i["desc"] != i["tagline"] else "",
+                f'<p>Site: <a href="{html.escape(i["url"])}">{html.escape(i["domain"] or i["url"])}</a></p>' if i["url"] else "",
+                f"<p>Pe web din: {i['since']}</p>" if i["since"] else "",
+                f"<p>Subiecte: {html.escape(', '.join(cats))}</p>" if cats else ""]
         out.append(f"""<item><title>{escape(i['name'])}</title><link>{escape(link)}</link><guid isPermaLink="true">{escape(link)}</guid>
-<description>{escape(i['tagline'] or i['desc'] or '')}</description><pubDate>{format_datetime(when)}</pubDate></item>""")
+{''.join(f'<category>{escape(c)}</category>' for c in cats)}<description>{escape(''.join(body))}</description><pubDate>{format_datetime(datetime.fromisoformat(when(i)).replace(tzinfo=timezone.utc))}</pubDate></item>""")
     return f"""<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
 <title>CivTech România — proiecte noi</title><link>{SITE_URL}</link>
@@ -773,7 +809,7 @@ def main():
     by = {}
     for i in items:
         by[i["status"]] = by.get(i["status"], 0) + 1
-    (site / "feed.xml").write_text(feed(items, now))
+    (site / "feed.xml").write_text(feed(items, now, out.get("vocabulary")))
     stamp_assets(site)
     if v2:
         pages = entry_pages(items, site)

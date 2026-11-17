@@ -1,5 +1,21 @@
 # Activity
 
+## 2026-11-18 — RSS feed dated by publication, with categories
+
+**Done**
+- `build.py` dates each feed item by the first commit that wrote a public row with its slug (`added_dates`). The scan reads `data/proiecte.csv`, `data/orgs.csv` and `integrare/intrari.csv`. A row with `clasificare_stare` `ascuns` does not count, so gio dates from 2026-11-17, not 2026-10-29.
+- Each item now has `<category>` elements (primary subject, subjects, topics) and an HTML description. The description holds the tagline, the long description, a link to the original site, the `since` date and the subjects.
+- `pages.yml` checks out the full history (`fetch-depth: 0`). Test `Feed.test_order_categories_and_description`. Full suite: 1336 tests, 0 failed, 8 skipped.
+- Measured: the git scan takes 0.14 s on 407 commits.
+
+**Hard**
+- The owner saw no recent additions in the feed. The cause: items were sorted by `since` (the first trace on the web). Civia, Civiti, ChatCodFiscal and gio are older sites, so they fell below the 40-item cut.
+
+**Decided**
+- The date comes from git history, not from a new `adaugat` column. The owner chose this. It costs no Sheet column and no editor work. The cost: the ~100 entries of the first import share 2026-10-17, and a slug rename resets the date.
+- A shallow clone gives no history. Then `build.py` falls back to `since` and prints a warning, because a shallow log would date every row to its tip commit.
+- The feed still lists projects only. Organisations and resources (WatchDog Oltenia) stay out, as the title says „proiecte noi”.
+
 ## 2026-11-13 — lab.anaudriste.ro skipped
 
 **Done**

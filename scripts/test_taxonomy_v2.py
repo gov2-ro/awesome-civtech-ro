@@ -819,5 +819,30 @@ class Build(unittest.TestCase):
         self.assertEqual(before, after)
 
 
+class Feed(unittest.TestCase):
+    """feed.xml: newest first by the date added (git), else `since`; categories, description and the original URL."""
+
+    def test_order_categories_and_description(self):
+        import xml.etree.ElementTree as ET
+        from datetime import datetime, timezone
+        from unittest import mock
+        sys.path.insert(0, str(HERE))
+        import build
+        item = lambda slug, since: {"slug": slug, "kind": "proiect", "name": slug.upper(), "tagline": "Scurt", "desc": "Lung",
+                                    "url": f"https://{slug}.ro/", "domain": f"{slug}.ro", "since": since, "status": "activ",
+                                    "primarySubject": "subiect:a", "subjects": ["subiect:a"], "topics": ["tema:b"]}
+        items = [item("vechi", "2010-01-01"), item("nou", "2026-11-01"), item("fara-git", "2020-01-01")]
+        vocab = {"concepts": [{"id": "subiect:a", "label": "Subiect A"}, {"id": "tema:b", "label": "Tema B"}]}
+        with mock.patch.object(build, "added_dates", return_value={"vechi": "2026-11-17", "nou": "2026-10-17"}):
+            root = ET.fromstring(build.feed(items, datetime.now(timezone.utc), vocab))
+        rows = root.findall("channel/item")
+        self.assertEqual([r.findtext("title") for r in rows], ["VECHI", "NOU", "FARA-GIT"])
+        self.assertEqual(rows[2].findtext("pubDate"), "Wed, 01 Jan 2020 00:00:00 +0000")  # no git date: `since`
+        self.assertEqual([c.text for c in rows[0].findall("category")], ["Subiect A", "Tema B"])
+        body = rows[0].findtext("description")
+        for part in ("<strong>Scurt</strong>", "<p>Lung</p>", '<a href="https://vechi.ro/">vechi.ro</a>', "Pe web din: 2010-01-01"):
+            self.assertIn(part, body)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

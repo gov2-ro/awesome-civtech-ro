@@ -24,6 +24,8 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # build.py dates the feed items by the commit that added each entry
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"

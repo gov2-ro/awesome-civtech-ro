@@ -801,7 +801,7 @@ Existing items below also cover profile refresh data loss, Sheets merge conflict
 - maybe an "Altele" domain for things that fit nowhere
 - [x] ranking by popularity / relevance — `score` in `build.py`, "Relevanță" sort; reach signals being reworked (`docs/specs/search-relevance.md`)
 - [x] sort by age — "Cele mai noi" sort, by `since`
-- [x] RSS feed — `site/feed.xml` from `build.py`: 40 newest live projects by `since`
+- [x] RSS feed — `site/feed.xml` from `build.py`: 40 newest live projects by the date each entry became public (git history of the catalogue CSVs; `since` without it), with subjects and topics as categories, the description and the original URL (2026-11-18)
 - [x] `site/llms.txt` from `build.py` (llmstxt.org): summary, data links, every entry linked to its page
 - [x] update logo — `site/img/logo.png` from `civtech-ro-favicon-2.png` (180 px)
 - [x] og image / description — `site/img/share.png` (1200×630), og/twitter tags in `index.html`
