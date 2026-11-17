@@ -10693,6 +10693,119 @@
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
         "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
       ]
+    },
+    {
+      "slug": "bateriefotovoltaica",
+      "nume": "Preț Baterie",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Verifică dacă oferta pentru baterie fotovoltaică are preț corect",
+      "permite": [
+        "Compară",
+        "Verifică informații",
+        "Primește alerte"
+      ],
+      "formate_catalogate": [
+        "Formular",
+        "Ghid"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "bateriefotovoltaica"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "kwh",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "10",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://bateriefotovoltaica.ro/",
+            "sha256": "e76f2a4399b3ec37d7ba5c57bf6df6bb75c17c95e90a909605f82cba57f2630e",
+            "sha256_lista_controale": "8937ee98d03b626e6c0ef90da3bfb7961995f0fb7a7db2ce4e504a325a5e036f",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/d6d3c012304127cd60f9e04f.json"
+          }
+        },
+        {
+          "nume": "price",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "18.000",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://bateriefotovoltaica.ro/",
+            "sha256": "e76f2a4399b3ec37d7ba5c57bf6df6bb75c17c95e90a909605f82cba57f2630e",
+            "sha256_lista_controale": "8937ee98d03b626e6c0ef90da3bfb7961995f0fb7a7db2ce4e504a325a5e036f",
+            "pointer_snapshot": "/input_candidates/1",
+            "snapshot": "documentare/pagini/d6d3c012304127cd60f9e04f.json"
+          }
+        },
+        {
+          "nume": "brand",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://bateriefotovoltaica.ro/",
+            "sha256": "e76f2a4399b3ec37d7ba5c57bf6df6bb75c17c95e90a909605f82cba57f2630e",
+            "sha256_lista_controale": "8937ee98d03b626e6c0ef90da3bfb7961995f0fb7a7db2ce4e504a325a5e036f",
+            "pointer_snapshot": "/input_candidates/2",
+            "snapshot": "documentare/pagini/d6d3c012304127cd60f9e04f.json"
+          }
+        },
+        {
+          "nume": "inv",
+          "rol": "control-utilizator",
+          "tip_control_html": "radio",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://bateriefotovoltaica.ro/",
+            "sha256": "e76f2a4399b3ec37d7ba5c57bf6df6bb75c17c95e90a909605f82cba57f2630e",
+            "sha256_lista_controale": "8937ee98d03b626e6c0ef90da3bfb7961995f0fb7a7db2ce4e504a325a5e036f",
+            "pointer_snapshot": "/input_candidates/3",
+            "snapshot": "documentare/pagini/d6d3c012304127cd60f9e04f.json"
+          }
+        },
+        {
+          "nume": "county",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "Județ",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://bateriefotovoltaica.ro/",
+            "sha256": "e76f2a4399b3ec37d7ba5c57bf6df6bb75c17c95e90a909605f82cba57f2630e",
+            "sha256_lista_controale": "8937ee98d03b626e6c0ef90da3bfb7961995f0fb7a7db2ce4e504a325a5e036f",
+            "pointer_snapshot": "/input_candidates/5",
+            "snapshot": "documentare/pagini/d6d3c012304127cd60f9e04f.json"
+          }
+        },
+        {
+          "nume": "email",
+          "rol": "control-utilizator",
+          "tip_control_html": "email",
+          "descriere": "Email",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://bateriefotovoltaica.ro/",
+            "sha256": "e76f2a4399b3ec37d7ba5c57bf6df6bb75c17c95e90a909605f82cba57f2630e",
+            "sha256_lista_controale": "8937ee98d03b626e6c0ef90da3bfb7961995f0fb7a7db2ce4e504a325a5e036f",
+            "pointer_snapshot": "/input_candidates/6",
+            "snapshot": "documentare/pagini/d6d3c012304127cd60f9e04f.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
+        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+      ]
     }
   ]
 }

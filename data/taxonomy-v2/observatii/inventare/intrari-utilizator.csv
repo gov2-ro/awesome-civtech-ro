@@ -401,3 +401,9 @@ civia,Adresa ta de email,email,Adresa ta de email,https://civia.ro/,/input_candi
 civia,"Scrie mesajul tău: o eroare, o idee, o întrebare...",,"Scrie mesajul tău: o eroare, o idee, o întrebare...",https://civia.ro/,/input_candidates/1,control-html-candidat
 civia,"Adresa ta de email, opțională",email,"Adresa ta de email, opțională",https://civia.ro/,/input_candidates/2,control-html-candidat
 chatcodfiscal,docSearch,search,"Caută: cod fiscal, e-Factura, concediu...",https://chatcodfiscal.ro/,/input_candidates/0,control-html-candidat
+bateriefotovoltaica,kwh,,10,https://bateriefotovoltaica.ro/,/input_candidates/0,control-html-candidat
+bateriefotovoltaica,price,,18.000,https://bateriefotovoltaica.ro/,/input_candidates/1,control-html-candidat
+bateriefotovoltaica,brand,,,https://bateriefotovoltaica.ro/,/input_candidates/2,control-html-candidat
+bateriefotovoltaica,inv,radio,,https://bateriefotovoltaica.ro/,/input_candidates/3,control-html-candidat
+bateriefotovoltaica,county,,Județ,https://bateriefotovoltaica.ro/,/input_candidates/5,control-html-candidat
+bateriefotovoltaica,email,email,Email,https://bateriefotovoltaica.ro/,/input_candidates/6,control-html-candidat

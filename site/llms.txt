@@ -1,7 +1,7 @@
 # CivTech România
 
 > Colecție curatoriată de proiecte civic tech, organizații și resurse din România: instrumente civice, date deschise
-> și proiecte de bună guvernare. 149 proiecte, 16 organizații, 22 resurse.
+> și proiecte de bună guvernare. 150 proiecte, 16 organizații, 22 resurse.
 
 Fiecare intrare are o pagină proprie la https://civtech.gov2.ro/<tip>/<slug>/ (tip: proiect, organizatie, resursa). Starea
 (activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-11-17. Textele sunt în
@@ -121,6 +121,7 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 - [Calitatea Aerului Rădăuți](https://civtech.gov2.ro/proiect/calitate-aer-radauti/): Rețea proprie de senzori pentru calitatea aerului. Site: https://calitateaer.radautiulcivic.ro/
 - [Harta tăierilor de păduri](https://civtech.gov2.ro/proiect/harta-taierilor/) (arhivat): Site: http://harta.plantamfaptebune.ro/Public
 - [Monitor Energie](https://civtech.gov2.ro/proiect/monitor-energie/): Platformă de monitorizare în timp real a Sistemului Energetic Național. Producția de energie electrică, consumul național, importul, exportul și fluxurile transfrontaliere din România, actualizate…. Site: https://monitorenergie.ro/
+- [Preț Baterie](https://civtech.gov2.ro/proiect/bateriefotovoltaica/): Verifică dacă oferta pentru baterie fotovoltaică are preț corect. Site: https://bateriefotovoltaica.ro/
 
 ## Proiecte: Sănătate
 

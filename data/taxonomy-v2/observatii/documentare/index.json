@@ -1293,6 +1293,60 @@
       ]
     },
     {
+      "slug": "bateriefotovoltaica",
+      "url": "https://bateriefotovoltaica.ro/",
+      "state": "documentatie-neconfirmata",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://bateriefotovoltaica.ro/",
+          "final_url": "https://bateriefotovoltaica.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-17T18:31:16.765057+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Verifică oferta de baterie fotovoltaică: prețul e corect? Casa Verde Baterii",
+          "sections": [],
+          "sha256": "e76f2a4399b3ec37d7ba5c57bf6df6bb75c17c95e90a909605f82cba57f2630e",
+          "snapshot": "pagini/d6d3c012304127cd60f9e04f.json",
+          "text_chars": 2730
+        },
+        {
+          "url": "https://bateriefotovoltaica.ro/llms.txt",
+          "final_url": "https://bateriefotovoltaica.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-17T18:31:16.870162+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://bateriefotovoltaica.ro/metodologie/",
+          "final_url": "https://bateriefotovoltaica.ro/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-17T18:31:16.960197+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://bateriefotovoltaica.ro/despre/",
+          "final_url": "https://bateriefotovoltaica.ro/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-17T18:31:17.038524+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
       "slug": "biografia-localitatii",
       "url": "https://mariuscomper.uk/biografia-localitatii/",
       "state": "documentatie-gasita",

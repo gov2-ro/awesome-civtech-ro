@@ -3,9 +3,11 @@
 <title>CivTech România — proiecte noi</title><link>https://civtech.gov2.ro/</link>
 <atom:link href="https://civtech.gov2.ro/feed.xml" rel="self" type="application/rss+xml"/>
 <description>Cele mai noi proiecte din colecția CivTech România.</description><language>ro</language>
-<lastBuildDate>Tue, 17 Nov 2026 17:49:01 +0000</lastBuildDate>
+<lastBuildDate>Tue, 17 Nov 2026 19:32:26 +0000</lastBuildDate>
 <item><title>Textdelege</title><link>https://civtech.gov2.ro/proiect/textdelege/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/textdelege/</guid>
 <description>Legile României cu istoricul fiecărui articol</description><pubDate>Tue, 10 Nov 2026 00:00:00 +0000</pubDate></item>
+<item><title>Preț Baterie</title><link>https://civtech.gov2.ro/proiect/bateriefotovoltaica/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/bateriefotovoltaica/</guid>
+<description>Verifică dacă oferta pentru baterie fotovoltaică are preț corect</description><pubDate>Mon, 09 Nov 2026 00:00:00 +0000</pubDate></item>
 <item><title>Statul meu</title><link>https://civtech.gov2.ro/proiect/statul-meu/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/statul-meu/</guid>
 <description>Joc despre politică, cu trei întrebări zilnice despre România reală</description><pubDate>Thu, 05 Nov 2026 00:00:00 +0000</pubDate></item>
 <item><title>lipsește</title><link>https://civtech.gov2.ro/proiect/lipseste/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/lipseste/</guid>
@@ -82,6 +84,4 @@
 <description>Imobilele statului administrate de RA-APPS</description><pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate></item>
 <item><title>Harta Firmelor</title><link>https://civtech.gov2.ro/proiect/harta-firmelor/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/harta-firmelor/</guid>
 <description>Legăturile dintre firme, oameni și contracte publice</description><pubDate>Sat, 30 May 2026 00:00:00 +0000</pubDate></item>
-<item><title>ro-api-hub</title><link>https://civtech.gov2.ro/proiect/ro-api-hub/</link><guid isPermaLink="true">https://civtech.gov2.ro/proiect/ro-api-hub/</guid>
-<description>Catalog open-source al API-urilor publice și private din România</description><pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate></item>
 </channel></rss>
