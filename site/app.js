@@ -436,8 +436,6 @@ function tagsHTML(key, options, counts) {
 const useful = (key, options) => options.length > 1 || listOf(key).length > 0;
 function facetsHTML() {
   const out = [];
-  const shortcut = presetChip();  // the chips row is hidden on wide screens, so the sidebar carries the shortcut too
-  if (shortcut) out.push(`<div class="preset">${shortcut}</div>`);
   for (const key of ['subj', 'cap', 'source', 'fmt']) {
     const options = optionsOf(key);
     if (!useful(key, options)) continue;
@@ -447,7 +445,8 @@ function facetsHTML() {
     const options = optionsOf(key);
     return useful(key, options) ? `<div class="subfacet"><p class="kicker">${esc(facetTitle(key))}</p>${tagsHTML(key, options, facetCounts(key, options))}</div>` : '';
   }).join('');
-  if (more) out.push(facet('more', 'Mai multe filtre', more, MORE.some(k => state[k])));
+  const shortcut = presetChip();  // the chips row is hidden on wide screens, so the sidebar carries the shortcut too, under "Mai multe filtre"
+  if (more || shortcut) out.push(facet('more', 'Mai multe filtre', (shortcut ? `<div class="preset">${shortcut}</div>` : '') + more, MORE.some(k => state[k]) || presetOn()));
 
   const has = (pred) => kindItems().some(pred);
   const toggles = [];
