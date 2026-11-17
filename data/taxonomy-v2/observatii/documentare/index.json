@@ -12997,6 +12997,132 @@
           "text_chars": 29
         }
       ]
+    },
+    {
+      "slug": "watchdog-oltenia",
+      "url": "https://watchdog-oltenia.ro/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://watchdog-oltenia.ro/",
+          "final_url": "https://watchdog-oltenia.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-17T17:33:03.103926+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "WatchDog Oltenia | Monitorizare civică și transparență",
+          "sections": [
+            {
+              "kind": "metodologie",
+              "heading": "Metodologia Tech",
+              "url": "https://watchdog-oltenia.ro/"
+            },
+            {
+              "kind": "metodologie",
+              "heading": "Surse de Date",
+              "url": "https://watchdog-oltenia.ro/"
+            }
+          ],
+          "sha256": "da9b970d9968d7388c35f64d7a3b829feb1cb055f287c9d372c9798d9ac5e5e7",
+          "snapshot": "pagini/d9a3c74e56defbb68250de1a.json",
+          "text_chars": 5248
+        },
+        {
+          "url": "https://watchdog-oltenia.ro/llms.txt",
+          "final_url": "https://watchdog-oltenia.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-17T17:33:03.208213+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://watchdog-oltenia.ro/despre",
+          "final_url": "https://watchdog-oltenia.ro/despre",
+          "http_status": 200,
+          "fetched_at": "2026-11-17T17:33:03.266522+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "despre",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Despre | WatchDog Oltenia",
+          "sections": [
+            {
+              "kind": "metodologie",
+              "heading": "Metodologia WatchDog Oltenia",
+              "url": "https://watchdog-oltenia.ro/despre"
+            },
+            {
+              "kind": "metodologie",
+              "heading": "Surse de Date",
+              "url": "https://watchdog-oltenia.ro/despre"
+            }
+          ],
+          "sha256": "f99931093afb5492441265245a5cfc0f6b4b3ea787deff8ab6c424791f28e65e",
+          "snapshot": "pagini/2987677f45a56d530c765737.json",
+          "text_chars": 3059
+        },
+        {
+          "url": "https://watchdog-oltenia.ro/monitorizare/articol/index/am-depasit-500-de-sesizari-in-platforma-vocea-cartierului-tau/",
+          "final_url": "https://watchdog-oltenia.ro/monitorizare/articol/index/am-depasit-500-de-sesizari-in-platforma-vocea-cartierului-tau/",
+          "http_status": 200,
+          "fetched_at": "2026-11-17T17:33:03.349678+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "despre",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "AM DEPĂȘIT 500 DE SESIZĂRI ÎN PLATFORMA „VOCEA CARTIERULUI TĂU”! - WatchDog Oltenia",
+          "sections": [
+            {
+              "kind": "despre",
+              "heading": "DESPRE NOI",
+              "url": "https://watchdog-oltenia.ro/monitorizare/articol/index/am-depasit-500-de-sesizari-in-platforma-vocea-cartierului-tau/"
+            },
+            {
+              "kind": "metodologie",
+              "heading": "Surse de Date",
+              "url": "https://watchdog-oltenia.ro/monitorizare/articol/index/am-depasit-500-de-sesizari-in-platforma-vocea-cartierului-tau/"
+            }
+          ],
+          "sha256": "586c079ebeb43ae5bf165869e42f83ac2f74759d4ec8aae77ed2c545e56518a3",
+          "snapshot": "pagini/eef775bea7c23c0cb5750fd0.json",
+          "text_chars": 3002
+        },
+        {
+          "url": "https://watchdog-oltenia.ro/monitorizare/articol/index/vocea-cartierului-tau-si-watchdog-oltenia-mentionate-in-presa-nationala-si-locala/",
+          "final_url": "https://watchdog-oltenia.ro/monitorizare/articol/index/vocea-cartierului-tau-si-watchdog-oltenia-mentionate-in-presa-nationala-si-locala/",
+          "http_status": 200,
+          "fetched_at": "2026-11-17T17:33:03.438223+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "despre",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Vocea Cartierului Tău și WatchDog Oltenia, menționate în presa națională și locală - WatchDog Oltenia",
+          "sections": [
+            {
+              "kind": "despre",
+              "heading": "DESPRE NOI",
+              "url": "https://watchdog-oltenia.ro/monitorizare/articol/index/vocea-cartierului-tau-si-watchdog-oltenia-mentionate-in-presa-nationala-si-locala/"
+            },
+            {
+              "kind": "metodologie",
+              "heading": "Surse de Date",
+              "url": "https://watchdog-oltenia.ro/monitorizare/articol/index/vocea-cartierului-tau-si-watchdog-oltenia-mentionate-in-presa-nationala-si-locala/"
+            }
+          ],
+          "sha256": "dda0651a5c04a4c90de4a7fcaa982a43dbe26cd218557b1de3dfccfdae8feb56",
+          "snapshot": "pagini/8226e0aa5509e35877364dd6.json",
+          "text_chars": 7507
+        }
+      ]
     }
   ]
 }

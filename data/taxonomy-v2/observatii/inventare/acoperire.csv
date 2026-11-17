@@ -143,7 +143,7 @@ lista-firme,proiect,D,cu-surse-structurate,7,108,4,0,51,57,0,0,7,"Cheile vin din
 fiipregatit,proiect,,neevaluat,0,0,,0,0,0,,,,,,
 destraja,proiect,G,cu-surse-structurate,2,80,0,0,0,80,0,0,2,Un singur render de pagină; răspunsurile sunt fragmente text/plain. Nu s-a adăugat un cititor nou pentru acest format.,,Căutați un export CSV/JSON public sau o schemă stabilă.
 dimineata,proiect,,fara-date,0,0,,0,0,0,,,,,,
-gio,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,
+gio,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
 hotarari,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
 satul-care-se-stinge,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
 guverneaza-daca-poti,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
@@ -189,3 +189,4 @@ cotele-dunarii,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documenta
 civia,proiect,baza,cu-surse-structurate,1,15,0,0,0,15,0,0,1,Extragerea a atins o limită de eșantionare.,,
 civiti,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
 chatcodfiscal,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+watchdog-oltenia,organizatie,,in-afara-ariei,0,0,,0,0,0,,,,,,

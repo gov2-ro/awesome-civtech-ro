@@ -1,7 +1,7 @@
 # CivTech România
 
 > Colecție curatoriată de proiecte civic tech, organizații și resurse din România: instrumente civice, date deschise
-> și proiecte de bună guvernare. 148 proiecte, 15 organizații, 22 resurse.
+> și proiecte de bună guvernare. 149 proiecte, 16 organizații, 22 resurse.
 
 Fiecare intrare are o pagină proprie la https://civtech.gov2.ro/<tip>/<slug>/ (tip: proiect, organizatie, resursa). Starea
 (activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-11-17. Textele sunt în
@@ -30,6 +30,7 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 - [Date statistice INS](https://civtech.gov2.ro/proiect/ins-gov2/): Date de la Institutul Național de Statistică. Site: https://ins.gov2.ro
 - [destrajă.ro](https://civtech.gov2.ro/proiect/destraja/): Proiectele de lege din consultare la Senat, explicate și evaluate de trei modele AI. Site: https://destraja.ro/
 - [EuropeScope](https://civtech.gov2.ro/proiect/europescope/): Activitatea Parlamentului European și a Consiliului UE. Site: https://www.europescope.eu/
+- [gio](https://civtech.gov2.ro/proiect/gio/): Explorează relațiile din România citate în videourile lui Valeriu Nicolae. Site: https://gio.ciolan.io/
 - [Harta Politicii](https://civtech.gov2.ro/proiect/harta-politicii/) (offline): Site: https://www.hartapoliticii.ro
 - [Hotărâri.ro](https://civtech.gov2.ro/proiect/hotarari/): Arhivă căutabilă de hotărâri ale consiliilor locale din România. Site: https://hotarari.ro/
 - [iGov](https://civtech.gov2.ro/proiect/igov/): Rapoarte verificabile din surse publice. Site: https://igov.ro/
@@ -219,6 +220,7 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 - [Rădăuțiul Civic](https://civtech.gov2.ro/organizatie/radautiul-civic/): Asociație pentru cetățenie activă și dezvoltarea comunității din Rădăuți. Site: https://www.radautiulcivic.ro/
 - [TechSoup](https://civtech.gov2.ro/organizatie/techsoup/): Tehnologie pentru organizații nonprofit. Site: https://www.techsoup.ro/
 - [Tech & Tonic](https://civtech.gov2.ro/organizatie/tech-and-tonic/): Asociație despre impactul social al tehnologiei și al AI-ului. Site: https://techandtonic.ro/
+- [WatchDog Oltenia](https://civtech.gov2.ro/organizatie/watchdog-oltenia/): Grup civic din Craiova: monitorizare a banilor publici în Oltenia. Site: https://watchdog-oltenia.ro/
 
 ## Resurse: Resursă
 
