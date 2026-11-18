@@ -50,7 +50,7 @@ MOVED = {**dict.fromkeys(("statul-digital", "complet-online", "prima-cifra", "pe
                           "calendar-strategic", "orase-vii", "pacienti-medic", "cat-costa-un-vot", "cate-voturi-aduce-un-primar",
                           "generatiile-romaniei", "unul-din-100", "ce-face-statul-cu-1000-de-lei"), "proiect")}  # 2026-11-18
 DEFAULT_SHARE = {"src": "img/share.png", "w": 1106, "h": 558}
-GENERATED = ("data.json", "feed.xml", "llms.txt", "sitemap.xml", "inventar", "date", "entitati", *PAGE_KINDS)  # what a build writes; never copied from site/
+GENERATED = ("data.json", "feed.xml", "llms.txt", "sitemap.xml", "indexnow.json", "inventar", "date", "entitati", *PAGE_KINDS)  # what a build writes; never copied from site/
 
 
 def pick_desc(desc: str, prof: dict) -> tuple[str, str]:
@@ -279,12 +279,26 @@ def feed(items: list[dict], generated: datetime, vocabulary: dict | None = None)
 """
 
 
+def data_pages(site: Path) -> list[str]:
+    """The pages of the data finder that this build wrote (`--with-inventory`): `date/` and every `date/<name>/`, as
+    addresses. Each one gets a canonical link to its own address, so that a filtered view (`?q=...`) of the finder does
+    not count as another page. The templates in scripts/templates/ carry no canonical link of their own."""
+    urls = []
+    for page in sorted((site / "date").rglob("index.html")) if (site / "date").is_dir() else []:
+        url = SITE_URL + page.parent.relative_to(site).as_posix() + "/"
+        doc = page.read_text(encoding="utf-8")
+        if 'rel="canonical"' not in doc:
+            page.write_text(swap(doc, r"</head>", f'<link rel="canonical" href="{esc(url)}">\n</head>'), encoding="utf-8")
+        urls.append(url)
+    return urls
+
+
 def sitemap(items: list[dict], site: Path) -> str:
-    """sitemap.xml: the home page, the archive of each section and one page per entry. site/robots.txt (hand-edited)
-    names it. The stubs at old addresses stay out (they point to the new page), and so do /date/ and /entitati/,
-    whose pages carry `noindex`. No <lastmod>: no date records when the page of an entry last changed."""
+    """sitemap.xml: the home page, the archive of each section, one page per entry and the pages of the data finder
+    (`data_pages`). site/robots.txt (hand-edited) names it. The stubs at old addresses stay out (they point to the new
+    page), and so does /entitati/, whose pages carry `noindex`. No <lastmod>: no date records when a page last changed."""
     urls = [SITE_URL, *(f"{SITE_URL}{k}/" for k in PAGE_KINDS if (site / k / "index.html").exists()),
-            *(f"{SITE_URL}{i['kind']}/{i['slug']}/" for i in items)]
+            *(f"{SITE_URL}{i['kind']}/{i['slug']}/" for i in items), *data_pages(site)]
     body = "\n".join(f"<url><loc>{escape(u)}</loc></url>" for u in urls)
     return f'''<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

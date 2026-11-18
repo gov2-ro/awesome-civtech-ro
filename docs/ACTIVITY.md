@@ -1,5 +1,21 @@
 # Activity
 
+## 2026-11-19 — `/date/` indexable; IndexNow
+
+**Done**
+- `scripts/templates/inventory{,-list,-vars}.html`: no `noindex` (owner's decision). `build.data_pages()` gives each `date/**/index.html` a canonical link to its own address (a filtered view `?q=` is not another page) and adds the 77 pages to the sitemap: 275 addresses in all. `/entitati/` stays `noindex`.
+- `scripts/indexnow.py` (stdlib): `plan` hashes the page behind each sitemap address (without the `?v=` asset hashes) into `site/indexnow.json`, reads the live copy of the previous deploy and lists the new or changed addresses; `submit` posts them to `api.indexnow.org`. `pages.yml` runs `plan` before the upload and `submit` after the deploy, with `continue-on-error`. Key file `site/d6b0b67c2f21769e610547f2d2ef0cde.txt`.
+- `scripts/test_indexnow.py`: 13 tests. Unit tests 1,359 OK; browser checks 185/185, 63/63, 156/156, 51/51.
+
+**Hard**
+- Measured: two builds of the same data give the same 275 hashes, so a deploy with no change sends nothing. A CSS or JS change alone changes only the `?v=` hashes, which the hash leaves out.
+
+**Decided**
+- The previous state lives on the site itself (`indexnow.json`), not in the repository or a cache: no commit from CI, and the comparison is always with what is live. Cost of the alternative (an Actions cache): a lost cache resends every address. Cost of this choice: if a submission fails, those addresses are not sent again until their pages change.
+- A removed address is not sent: it answers 404, and the engines drop it on their next visit.
+- The first deploy sends all 275 addresses (no earlier manifest). The limit is 10,000 per request.
+- A new entry changes the left list of every page in its section, so a deploy that adds a project sends about 140 addresses. This is within the protocol's use (the page did change).
+
 ## 2026-11-18 — gov2.ro collection; org.gov2.ro and RO-ALERT
 
 **Done**

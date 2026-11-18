@@ -14,8 +14,8 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [x] `MOVED_FROM_RESURSA` became `MOVED` (slug → old section), so a move from any section gets a stub. 12 entries moved from `proiect` on 2026-11-18.
 - [x] Search: the box suggests filters only; matches in the other tabs show as a line of counts above the results (owner, 2026-11-18).
 - [x] SEO step 1: `sitemap.xml` (home, 4 archives, one URL per entry; no stubs, no `noindex` pages) and `robots.txt`. Done 2026-11-18.
-- [ ] Owner: register civtech.gov2.ro in Google Search Console and Bing Webmaster Tools, and submit `https://civtech.gov2.ro/sitemap.xml`. Then record what is indexed, as the baseline.
-- [ ] Decide whether `/date/` stays `noindex` (`scripts/templates/inventory*.html`). It is public since 2026-10-26, but its pages ask search engines not to index them, so the sitemap leaves them out.
+- [x] Owner: register civtech.gov2.ro in Google Search Console and Bing Webmaster Tools, and submit `https://civtech.gov2.ro/sitemap.xml` (done 2026-11-18). Then record what is indexed, as the baseline.
+- [x] Decide whether `/date/` stays `noindex` (owner, 2026-11-19: it does not; v0.81.0) (`scripts/templates/inventory*.html`). It is public since 2026-10-26, but its pages ask search engines not to index them, so the sitemap leaves them out.
 - [x] SEO steps 2–3: JSON-LD per entry (type by section) and breadcrumbs; the whole entry in the static HTML (v0.79.0, brief `docs/briefs/entry-page.md`).
 - [x] Entry as a full page, not a drawer over the list (v0.79.0) (owner, 2026-11-18). Each entry already has its own address, and the drawer holds a lot: description, links, attributions, data sources, inventory, related entries. Revisit the layout of the entry at the same time. Keep the keyboard navigation (`j`/`k`, `Esc`) and the old `?p=<slug>` links. Related: the SEO work (sitemap, JSON-LD, the full entry in static HTML), not yet briefed.
 - [ ] Header at 1024–1279 px: the four tabs leave the search box about 40 px wide and cut the title. Measured 2026-11-18 at 1024 px; the fourth tab caused it. Options: shorter tab labels at that width, or the search as an icon that opens.

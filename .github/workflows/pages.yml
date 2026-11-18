@@ -33,9 +33,16 @@ jobs:
         run: |
           python3 scripts/validate.py --data-dir data/taxonomy-v2/integrare --publication
           python3 scripts/build.py --data-dir data/taxonomy-v2/integrare --with-inventory --with-structure
+      # IndexNow: compare the pages with the manifest of the live site (the previous deploy), before this deploy replaces it.
+      - name: Plan the IndexNow submission
+        run: python3 scripts/indexnow.py plan --site-dir site --out "$RUNNER_TEMP/indexnow-urls.txt"
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
       - id: deployment
         uses: actions/deploy-pages@v4
+      # After the deploy, so that the engines find the new pages and the key file. A failure warns and never fails the run.
+      - name: Tell search engines about new and changed pages (IndexNow)
+        continue-on-error: true
+        run: python3 scripts/indexnow.py submit --site-dir site --urls "$RUNNER_TEMP/indexnow-urls.txt"

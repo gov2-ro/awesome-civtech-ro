@@ -94,6 +94,8 @@ docs/reference/init-prototype/*
 /site/resursa/
 /site/publicatie/
 /site/sitemap.xml
+# written by scripts/indexnow.py plan in the Pages workflow
+/site/indexnow.json
 
 # Claude Code agent worktrees
 .claude/worktrees/
