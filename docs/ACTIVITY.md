@@ -1,5 +1,39 @@
 # Activity
 
+## 2026-11-18 — Feed of every section; 12 projects move to „Analize & investigații”
+
+**Done**
+- Owner accepted `hack-for-facts` (URL `/proiecte`, the catalogue page) and `marius-comper` (collection at `/viata-publica/`; 19 `parte_din`, L410–L428).
+- 12 entries move from `proiect` to `publicatie` (`tip_entitate` and `sectiune_url`): `harta-digitalizarii-primariilor`, `interoperabilitate`, `comasarea-comunelor`, `mortalitate-evitabila`, `calendar-strategic`, `orase-vii`, `pacienti-medic`, `cat-costa-un-vot`, `cate-voturi-aduce-un-primar`, `generatiile-romaniei`, `unul-din-100`, `ce-face-statul-cu-1000-de-lei`. The tab has 25 entries.
+- `build.py`: `MOVED` (slug → old section) replaces `MOVED_FROM_RESURSA`; a stub goes to the old section's folder. `feed()` lists every section; channel title „intrări noi”.
+- Tests: a stub for an entry that left `proiect`; feed items of other sections and the kept GUID. Full suite: 1338 tests, 0 failures, 8 skipped. `check_preview.py`: 150/150.
+
+**Hard**
+- The test of a publication: it states a finding, at a date, about one question; a person reads it once. A project is used again to look up one's own case. Lookup maps with a data story stay projects (`satul-care-se-stinge`, `distanta-spital`, `harta-vaccinarii`, and others), as `cat-de-tare` and `biografia-localitatii` did. `banii-nostri` stays a project (owner).
+
+**Decided**
+- A moved entry that was in the feed keeps its old `/proiect/<slug>/` GUID, so readers do not show it again. Cost of a new GUID: 12 repeated items in every reader.
+- Search box (open, owner to decide): the box suggests facets and entries of every tab, while the list filters the current tab by free text. Proposal: keep the facet suggestions, drop the entry suggestions, and show the matches in the other tabs as counts above the results.
+
+## 2026-11-18 — Fourth section „Analize & investigații”
+
+**Done**
+- New code `publicatie` in `valori.csv` (list `sectiune_url`, `ordine` 3, label „Analize & investigații”). The tab and the address `/publicatie/<slug>/` follow from it: `vocabulary.kinds` of `data.json` reads the list.
+- `sectiune_url` of 13 entries moved from `resursa` to `publicatie`: the 12 Comper publications and `piratii-digitali-ai-kremlinului`. No other cell of `intrari.csv` changed. `apti-unelte-democratie` stays in `resursa`.
+- `build.py`: `PAGE_KINDS` has the fourth kind; the archive `/publicatie/` and its lead text; `llms.txt` has a section and a count for the publications; `redirect_stubs` writes `site/resursa/<slug>/index.html` for each slug of `MOVED_FROM_RESURSA` (canonical link, `meta refresh`, one visible link).
+- `common.py`: `FINDER_KINDS`. The variable inventory (`/date/`) still covers the publications with data (13 entries; 12 have a `relatie_date` that is in scope). `inventory_site.py` and `inventory_report.py` use it; the note „Lăsate pe dinafară” links `k=publicatie`.
+- `site/app.js`, `site/index.html`: `KINDS`, and the links to the static lists. `check_preview.py`: the archive loop, the tab, a `/publicatie/` entry page and one stub.
+- Docs: `DATA-SCHEMA.md`, `data/taxonomy-v2/README.md`, `CONTRIBUTING.md`, `CLAUDE.md`.
+
+**Hard**
+- Decision 7 (stable feed GUID) needs no change. The feed lists entries of kind `proiect` only, so none of the 13 entries was ever in it. The GUID of a moved entry is absent before and after. If the feed ever lists publications, the GUID must stay the old `/resursa/<slug>/` address.
+- The brief says the tab „Resurse & liste” shows 10 entries. The preview build shows 11: 8 older lists, `hack-for-facts`, `marius-comper` and `apti-unelte-democratie` (a list article that stays, by decision 4). The count in the brief omits `apti-unelte-democratie`.
+
+**Decided**
+- The slugs that moved are a constant in `build.py` (`MOVED_FROM_RESURSA`), not a data column. A stub needs the old address, and nothing in the data records it. Cost of the alternative (a column): a schema change and a Sheet column for 13 fixed values. A new entry in `publicatie` gets no stub.
+- The publications stay in the scope of `/date/` (`FINDER_KINDS`). Without it, the move would drop 12 data stories from the finder.
+- `form.py` is unchanged: `KIND_SECTION` and `data/form-v2.json` still send a proposed `publicatie` to `resursa`. See the backlog.
+
 ## 2026-11-18 — RSS feed dated by publication, with categories
 
 **Done**

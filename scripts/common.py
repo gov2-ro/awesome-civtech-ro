@@ -391,11 +391,15 @@ DATA_GROUPS = (
 )
 
 
+# The sections whose entries the variable inventory (`/date/`) covers: a publication with data (a data story) counts like a resource.
+FINDER_KINDS = ("proiect", "resursa", "publicatie")
+
+
 def inventory_exclusion(kind: str, status: str, relation: str) -> str:
     """Why an entry is out of the variable inventory, or an empty string when it is in scope. An entry is in scope when it
-    is a project or a resource, its built status is not inactive, and its `relatie_date` is `date-publice`, `date-proprii`
+    is a project, a resource or a publication, its built status is not inactive, and its `relatie_date` is `date-publice`, `date-proprii`
     or `calcul`. An empty value and `fara-date` both leave it out. A code that valori.csv does not list counts as empty."""
-    if kind not in ("proiect", "resursa"):
+    if kind not in FINDER_KINDS:
         return OUT_OF_SCOPE[0]
     if status in INACTIVE_STATUSES:
         return OUT_OF_SCOPE[1]

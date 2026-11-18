@@ -2,6 +2,15 @@
 
 Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
+## Section „Analize & investigații” — 2026-11-18
+
+- [x] Add the section code `publicatie` and move 13 entries (brief `docs/briefs/publicatii-section.md`). Tab, archive, stubs at the old `/resursa/` addresses, `llms.txt` and tests done 2026-11-18. Not committed: the owner reviews first.
+- [x] Owner: accept `hack-for-facts` and `marius-comper`. Accepted 2026-11-18.
+- [ ] `form.py`: `KIND_SECTION` and `data/form-v2.json` (`kind_section`) send a proposed `publicatie` to `resursa`. Decide whether it goes to `publicatie`. Change both files together, then run `form.py --write-map`.
+- [x] The feed lists every section (owner, 2026-11-18). An entry that left `proiect` keeps its old GUID; the entries that left `resursa` were never in the feed.
+- [x] `MOVED_FROM_RESURSA` became `MOVED` (slug → old section), so a move from any section gets a stub. 12 entries moved from `proiect` on 2026-11-18.
+- [ ] Search: the suggestion box and the live list filter show different results at the same time (owner, 2026-11-18). Decide what the box shows; see ACTIVITY 2026-11-18.
+
 ## Local reporting platforms (sesizări) — 2026-11-16
 
 - [x] Audit `functie:sesizare` (2026-11-16): 10 entries carry it. 5 are local (`bucuresti-help`, `bucuresti-verde`, `onesti-city`, `oradea-city-report`, `vocea-cartierului-tau`). The filter `cap=functie:sesizare` with `coverage=local` already returns exactly those 5. A keyword scan of the other entries found no missed local reporting platform.

@@ -17,7 +17,7 @@ from collections import Counter
 from pathlib import Path
 
 from collect_docs import is_saved
-from common import ROOT, PUBLIC_ROOT, UNASSESSED, inventory_scope, load_catalogue, observation_paths
+from common import FINDER_KINDS, ROOT, PUBLIC_ROOT, UNASSESSED, inventory_scope, load_catalogue, observation_paths
 from inventory_concepts import (CANDIDATE_STATES, GROUP_STATES, SELECTOR_STATES, active_groups, candidate_items, candidate_label, candidate_state, group_state,
                                 repeated_exclusions, selector_matches, selector_state)
 from inventory_state import counted_fields
@@ -174,7 +174,7 @@ def csv_text(rows):
 def metrics(data, rows):
     """The measures of section 3, recomputed from the tracked files."""
     entries, profiles, sources = data['entries'], data['profiles'], data['sources']
-    finder = [e for e in entries if e['kind'] in ('proiect', 'resursa')]
+    finder = [e for e in entries if e['kind'] in FINDER_KINDS]
     with_fields = [e for e in finder if profiles[e['slug']]['campuri_din_surse']]
     kinds = Counter()
     for source in sources.values():
@@ -185,7 +185,7 @@ def metrics(data, rows):
     log_direct = [r for r in data['log'] if r['cache'] == 'nu']
     public = [e for e in finder if e.get('classification_state') != HIDDEN]  # what /date/ can list: a hidden entry never reaches the site
     reasons = Counter(data['scope'][e['slug']] for e in public)
-    return {'entries': len(entries), 'projects': sum(e['kind'] == 'proiect' for e in entries), 'resources': sum(e['kind'] == 'resursa' for e in entries),
+    return {'entries': len(entries), 'projects': sum(e['kind'] == 'proiect' for e in entries), 'resources': sum(e['kind'] in ('resursa', 'publicatie') for e in entries),
             'organisations': sum(e['kind'] == 'organizatie' for e in entries), 'finder': len(finder), 'with_fields': len(with_fields),
             'without_fields': len(finder) - len(with_fields), 'hidden': len(finder) - len(public), 'in_scope': reasons[''],
             'left_out': {reason: reasons[reason] for reason in ('fara-date', UNASSESSED, 'inactiv')}, 'source_urls': len(sources), 'parsed': len(parsed), 'failed': len(sources) - len(parsed),
@@ -253,7 +253,7 @@ def render_report(data, rows):
     verification = notes.get('verificari', {})
     by_slug = {r[0]: dict(zip(COLUMNS, r)) for r in rows}
     entries = {e['slug']: e for e in data['entries']}
-    finder_slugs = [e['slug'] for e in data['entries'] if e['kind'] in ('proiect', 'resursa')]
+    finder_slugs = [e['slug'] for e in data['entries'] if e['kind'] in FINDER_KINDS]
     out = []
     w = out.append
     w('# Inventory expansion report')

@@ -534,7 +534,7 @@ svg.gh { width: 20px; height: 20px; fill: currentColor; stroke: none; }
 .flag li { display: grid; gap: 1px; }
 .flag li span { color: var(--muted); font-size: calc(14px * var(--fs)); line-height: 1.4; }
 
-/* ---------- archive pages: /proiect/, /organizatie/, /resursa/ (written by build.py) ---------- */
+/* ---------- archive pages: /proiect/, /organizatie/, /resursa/, /publicatie/ (written by build.py) ---------- */
 .arch-hdr { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; padding-top: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
 .arch-brand { font: 600 calc(17px * var(--fs)) / 1.3 var(--font-head); letter-spacing: -.01em; color: inherit; text-decoration: none; }
 .arch-nav { display: flex; flex-wrap: wrap; gap: 0 18px; flex: 1; }

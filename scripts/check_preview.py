@@ -18,6 +18,7 @@ import csv
 import json
 import re
 import sys
+import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import date, datetime, timedelta, timezone
@@ -213,12 +214,38 @@ with sync_playwright() as pw:
         ok("abstention shows an incomplete classification", "nu stabilesc încă subiectul" in page.locator('[data-slot="drawer"]').inner_text(), blank["slug"])
 
     # 10. Archives.
-    for kind in ("proiect", "organizatie", "resursa"):
+    for kind in ("proiect", "organizatie", "resursa", "publicatie"):
         r = page.goto(BASE + f"{kind}/")
         n = page.locator(".arch-item").count()
         ok(f"archive /{kind}/", r.status == 200 and n == sum(i["kind"] == kind for i in DB["items"]), f"{n} items")
     heads = page.goto(BASE + "proiect/") and page.locator(".arch-group h2").all_inner_texts()
     ok("project archive grouped by primary subject", len(heads) > 5 and any("Fără subiect" in h for h in heads) == any(not i["primarySubject"] and i["kind"] == "proiect" for i in DB["items"]), f"{len(heads)} groups")
+
+    # 10b. The section "Analize & investigații": its tab, an entry page under /publicatie/, and the stub at the old /resursa/ address.
+    pubs = [i for i in DB["items"] if i["kind"] == "publicatie"]
+    if pubs:
+        label = next(k["label"] for k in DB["vocabulary"]["kinds"] if k["key"] == "publicatie")
+        go("?k=publicatie")
+        tab = page.locator('.tab[aria-current="page"]')
+        ok("publication tab shows its label and count", tab.inner_text().startswith(label) and count_text(page) == len([i for i in pubs if i["status"] not in ("offline", "arhivat")]),
+           f"{tab.inner_text()!r}; {count_text(page)} of {len(pubs)}")
+        pub = pubs[0]
+        page.goto(BASE + f"publicatie/{pub['slug']}/")
+        page.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
+        ok("publication page opens its tab and panel", page.locator('.tab[aria-current="page"]').inner_text().startswith(label)
+           and page.locator("#d-title").inner_text() == pub["name"], pub["slug"])
+        def has_stub(i):  # a moved entry has a stub at its old address; a new one has none (a 404 raises)
+            try:
+                return b'http-equiv="refresh"' in urllib.request.urlopen(urllib.request.Request(BASE + f"resursa/{i['slug']}/", headers={"User-Agent": "Mozilla/5.0 (check_preview.py)"})).read()
+            except urllib.error.HTTPError:
+                return False
+        moved = next((i for i in pubs if has_stub(i)), None)
+        ok("a moved publication keeps a stub at its old address", moved is not None)
+        if moved:
+            page.goto(BASE + f"resursa/{moved['slug']}/")
+            page.wait_for_url(f"**/publicatie/{moved['slug']}/")
+            page.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
+            ok("old /resursa/ address reaches the new page", page.locator("#d-title").inner_text() == moved["name"], moved["slug"])
 
     # 11. Search: synonyms, English labels, diacritics; concept suggestions say their facet.
     go("")
@@ -487,7 +514,7 @@ with sync_playwright() as pw:
                 route.abort()
         return handler, calls
 
-    archive_hrefs = [BASE + f"{k}/" for k in ("proiect", "organizatie", "resursa")]
+    archive_hrefs = [BASE + f"{k}/" for k in ("proiect", "organizatie", "resursa", "publicatie")]
     hrefs_in = lambda p, sel: p.evaluate("sel => [...document.querySelectorAll(sel)].map(a => a.href)", sel)
     load_errors = []
     f = browser.new_page(viewport={"width": 1280, "height": 900})
@@ -499,7 +526,7 @@ with sync_playwright() as pw:
     alert = f.locator('[data-slot="results"] [role="alert"]')
     ok("failed data load shows a message and a retry button", alert.count() == 1 and "Nu am putut încărca" in alert.inner_text()
        and "Încearcă din nou" in alert.locator('[data-act="retry"]').inner_text(), alert.inner_text().replace("\n", " | ")[:120])
-    ok("failed data load links the three static lists", hrefs_in(f, '[data-slot="results"] [role="alert"] a') == archive_hrefs)
+    ok("failed data load links the static lists", hrefs_in(f, '[data-slot="results"] [role="alert"] a') == archive_hrefs)
     f.fill('[data-slot="q"]', "achizitii")
     f.evaluate("document.querySelector('[data-act=\"sheet\"]').click()")
     f.wait_for_timeout(300)

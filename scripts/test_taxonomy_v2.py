@@ -832,16 +832,51 @@ class Feed(unittest.TestCase):
                                     "url": f"https://{slug}.ro/", "domain": f"{slug}.ro", "since": since, "status": "activ",
                                     "primarySubject": "subiect:a", "subjects": ["subiect:a"], "topics": ["tema:b"]}
         items = [item("vechi", "2010-01-01"), item("nou", "2026-11-01"), item("fara-git", "2020-01-01")]
+        items += [{**item("org-noua", "2001-01-01"), "kind": "organizatie"}, {**item("orase-vii", "2000-01-01"), "kind": "publicatie"}]
         vocab = {"concepts": [{"id": "subiect:a", "label": "Subiect A"}, {"id": "tema:b", "label": "Tema B"}]}
         with mock.patch.object(build, "added_dates", return_value={"vechi": "2026-11-17", "nou": "2026-10-17"}):
             root = ET.fromstring(build.feed(items, datetime.now(timezone.utc), vocab))
         rows = root.findall("channel/item")
-        self.assertEqual([r.findtext("title") for r in rows], ["VECHI", "NOU", "FARA-GIT"])
+        self.assertEqual([r.findtext("title") for r in rows], ["VECHI", "NOU", "FARA-GIT", "ORG-NOUA", "ORASE-VII"])
+        self.assertEqual(rows[3].findtext("link"), f"{build.SITE_URL}organizatie/org-noua/")
+        self.assertEqual(rows[4].findtext("link"), f"{build.SITE_URL}publicatie/orase-vii/")
+        self.assertEqual(rows[4].findtext("guid"), f"{build.SITE_URL}proiect/orase-vii/")  # moved from `proiect`: the old GUID
         self.assertEqual(rows[2].findtext("pubDate"), "Wed, 01 Jan 2020 00:00:00 +0000")  # no git date: `since`
         self.assertEqual([c.text for c in rows[0].findall("category")], ["Subiect A", "Tema B"])
         body = rows[0].findtext("description")
         for part in ("<strong>Scurt</strong>", "<p>Lung</p>", '<a href="https://vechi.ro/">vechi.ro</a>', "Pe web din: 2010-01-01"):
             self.assertIn(part, body)
+
+
+class RedirectStubs(unittest.TestCase):
+    """A moved entry keeps a stub at its old /resursa/ address; a new entry in the same section gets none."""
+
+    def test_stub_for_a_moved_slug_only(self):
+        import tempfile
+        sys.path.insert(0, str(HERE))
+        import build
+        item = lambda slug: {"slug": slug, "kind": "publicatie", "name": slug.upper()}
+        with tempfile.TemporaryDirectory() as tmp:
+            site = Path(tmp)
+            n = build.redirect_stubs([item("pe-datorie"), item("hack-nou"), {**item("statul-digital"), "kind": "resursa"}], site)
+            self.assertEqual(n, 1)
+            page = (site / "resursa" / "pe-datorie" / "index.html").read_text(encoding="utf-8")
+            new = f"{build.SITE_URL}publicatie/pe-datorie/"
+            for part in (f'<link rel="canonical" href="{new}">', f'content="0; url=../../publicatie/pe-datorie/"', '<a href="../../publicatie/pe-datorie/">'):
+                self.assertIn(part, page)
+            self.assertFalse((site / "resursa" / "hack-nou").exists())
+            self.assertFalse((site / "resursa" / "statul-digital").exists())  # still in `resursa`: it has its own page
+
+    def test_stub_for_an_entry_that_left_proiect(self):
+        import tempfile
+        sys.path.insert(0, str(HERE))
+        import build
+        with tempfile.TemporaryDirectory() as tmp:
+            site = Path(tmp)
+            self.assertEqual(build.redirect_stubs([{"slug": "orase-vii", "kind": "publicatie", "name": "Orase"}], site), 1)
+            page = (site / "proiect" / "orase-vii" / "index.html").read_text(encoding="utf-8")
+            self.assertIn(f'href="{build.SITE_URL}publicatie/orase-vii/"', page)
+            self.assertFalse((site / "resursa" / "orase-vii").exists())
 
 
 if __name__ == "__main__":

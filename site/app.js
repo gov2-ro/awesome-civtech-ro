@@ -135,10 +135,10 @@ function ancestors(id) {
 /* ---------- URL state ---------- */
 // Projects read best grouped by subject; the short org/resource lists read best flat.
 const defaultSort = () => state.k === 'proiect' ? 'subiect' : 'az';
-// An entry opens at its own address, /<kind>/<slug>/ with kind = proiect | organizatie | resursa (a page that
+// An entry opens at its own address, /<kind>/<slug>/ with kind = proiect | organizatie | resursa | publicatie (a page that
 // scripts/build.py writes, so link previews and search engines see it), with the filters in the query. The old
 // ?p=<slug> still opens it. ROOT is the site's path, whatever page loaded.
-const KINDS = 'proiect|organizatie|resursa';
+const KINDS = 'proiect|organizatie|resursa|publicatie';
 const ROOT = location.pathname.replace(new RegExp(`((${KINDS})/[^/]*/?|index\\.html)$`), '');
 const pathSlug = () => decodeURIComponent((location.pathname.match(new RegExp(`/(?:${KINDS})/([^/]+)/?$`)) || [])[1] || '');
 const entryPath = slug => `${ROOT}${BY_SLUG.get(slug)?.kind || 'proiect'}/${encodeURIComponent(slug)}/`;
@@ -1371,7 +1371,7 @@ function loadFailed(byUser) {
     <h3>Nu am putut încărca lista.</h3>
     <p>Verifică conexiunea la internet și încearcă din nou.</p>
     <p><button class="btn btn-outline" data-act="retry">Încearcă din nou</button></p>
-    <p>Până atunci, citește listele simple: <a href="${ROOT}proiect/">proiecte</a> · <a href="${ROOT}organizatie/">organizații</a> · <a href="${ROOT}resursa/">resurse</a>.</p>
+    <p>Până atunci, citește listele simple: <a href="${ROOT}proiect/">proiecte</a> · <a href="${ROOT}organizatie/">organizații</a> · <a href="${ROOT}resursa/">resurse</a> · <a href="${ROOT}publicatie/">analize și investigații</a>.</p>
   </div>`;
   if (byUser) $('[data-act="retry"]', slot('results'))?.focus();
 }

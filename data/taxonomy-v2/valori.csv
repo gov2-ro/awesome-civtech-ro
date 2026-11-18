@@ -8,6 +8,7 @@ tip_entitate,campanie,Campanie,Campaign,Campanie publică delimitată.,propus,5
 sectiune_url,proiect,Proiecte,Projects,Fila și adresa /proiect/.,propus,0
 sectiune_url,organizatie,Organizații,Organisations,Fila și adresa /organizatie/.,propus,1
 sectiune_url,resursa,Resurse & liste,Resources & lists,Fila și adresa /resursa/.,propus,2
+sectiune_url,publicatie,Analize & investigații,Analyses & investigations,Fila și adresa /publicatie/.,propus,3
 nivel_acoperire,national,Național,National,Se aplică în toată țara.,propus,0
 nivel_acoperire,local,Local,Local,Se aplică într-o localitate sau un județ.,propus,1
 nivel_acoperire,international,Internațional,International,Se aplică în mai multe țări sau la nivel european.,propus,2

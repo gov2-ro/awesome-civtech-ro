@@ -795,7 +795,7 @@ class Scope(unittest.TestCase):
             self.assertEqual(sorted(re.findall(r'<tr id="([^"]+)">', body)), in_scope)
             for slug in set(by) - set(in_scope):
                 self.assertNotIn(f'/{slug}/"', page.split('<section class="ov-left">')[0], slug + ' is named in the table or in the list of entries without fields')
-            self.assertEqual(index['leftOut'], {'fara-date': {'proiect': 2, 'resursa': 1}, 'inactiv': {'proiect': 2, 'resursa': 1}},
+            self.assertEqual(index['leftOut'], {'fara-date': {'proiect': 2, 'resursa': 1, 'publicatie': 0}, 'inactiv': {'proiect': 2, 'resursa': 1, 'publicatie': 0}},
                              'without data: the code fara-date and an empty value together; inactive: whatever the code')
             self.assertEqual(left_out(items), index['leftOut'])
 
@@ -829,7 +829,7 @@ class Scope(unittest.TestCase):
             publish_finder(items, root, site, projections)
             self.assertNotIn('ov-left', (site / 'date/lista/index.html').read_text())
             self.assertEqual(json.loads((site / 'inventar/index.json').read_text())['leftOut'],
-                             {'fara-date': {'proiect': 0, 'resursa': 0}, 'inactiv': {'proiect': 0, 'resursa': 0}})
+                             {'fara-date': {'proiect': 0, 'resursa': 0, 'publicatie': 0}, 'inactiv': {'proiect': 0, 'resursa': 0, 'publicatie': 0}})
 
     def test_an_entry_that_leaves_the_scope_keeps_its_explorer_panel_and_leaves_the_finder(self):
         with tempfile.TemporaryDirectory() as tmp:

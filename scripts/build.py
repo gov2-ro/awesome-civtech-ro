@@ -2,7 +2,7 @@
 (RSS, newest projects first), site/llms.txt (the whole list as Markdown, for language models; llmstxt.org) and
 site/proiect/<slug>/index.html (one page per entry, for link previews and
 search engines; git ignores them, the Pages workflow builds them). All generated, not edited.
-The page's folder is the entry's tab: site/proiect/, site/organizatie/ or site/resursa/.
+The page's folder is the entry's tab: site/proiect/, site/organizatie/, site/resursa/ or site/publicatie/.
 
     python3 scripts/build.py
     python3 scripts/build.py --site-dir /tmp/civtech-v1                     # the same site, written elsewhere
@@ -38,7 +38,16 @@ CODE_ROLES = ("github", "gitlab", "cod")
 SITE_URL = "https://civtech.gov2.ro/"
 FEED_SIZE = 40
 REPO_URL = "https://github.com/gov2-ro/awesome-civtech-ro"
-PAGE_KINDS = ("proiect", "organizatie", "resursa")  # the folders under site/ that entry_pages() owns
+PAGE_KINDS = ("proiect", "organizatie", "resursa", "publicatie")  # the folders under site/ that entry_pages() owns
+# The public entries that changed section, mapped to their old section. Each one keeps a stub page at its old address
+# (see redirect_stubs), and an entry that left `proiect` keeps its old feed GUID (see feed). Add a slug here only when
+# its old address was public.
+MOVED = {**dict.fromkeys(("statul-digital", "complet-online", "prima-cifra", "pe-datorie", "ultima-noapte-pib", "constru-pentru-cine",
+                          "orasul-care-se-intinde", "trei-din-patru", "unde-se-termina-asfaltul", "de-unde-vine-apa", "recontorizarea",
+                          "pensie-din-bursa", "piratii-digitali-ai-kremlinului"), "resursa"),  # 2026-11-18
+         **dict.fromkeys(("harta-digitalizarii-primariilor", "interoperabilitate", "comasarea-comunelor", "mortalitate-evitabila",
+                          "calendar-strategic", "orase-vii", "pacienti-medic", "cat-costa-un-vot", "cate-voturi-aduce-un-primar",
+                          "generatiile-romaniei", "unul-din-100", "ce-face-statul-cu-1000-de-lei"), "proiect")}  # 2026-11-18
 DEFAULT_SHARE = {"src": "img/share.png", "w": 1106, "h": 558}
 GENERATED = ("data.json", "feed.xml", "llms.txt", "inventar", "date", "entitati", *PAGE_KINDS)  # what a build writes; never copied from site/
 
@@ -239,28 +248,30 @@ def added_dates() -> dict[str, str]:
 
 
 def feed(items: list[dict], generated: datetime, vocabulary: dict | None = None) -> str:
-    """RSS 2.0 of live projects, newest first by the date added to the catalogue (git history), else by `since`
+    """RSS 2.0 of the live entries of every section, newest first by the date added to the catalogue (git history), else by `since`
     (first trace on the web). Each item carries the subjects and topics as categories, the description and the original URL."""
     added = added_dates()
     label = {c["id"]: c["label"] for c in (vocabulary or {}).get("concepts", [])}
-    live = [i for i in items if i["kind"] == "proiect" and (added.get(i["slug"]) or i["since"]) and i["status"] not in ("offline", "arhivat")]
+    live = [i for i in items if (added.get(i["slug"]) or i["since"]) and i["status"] not in ("offline", "arhivat")]
     when = lambda i: added.get(i["slug"]) or i["since"]
     out = []
     for i in sorted(live, key=lambda i: (when(i), i["since"]), reverse=True)[:FEED_SIZE]:
         link = f"{SITE_URL}{i['kind']}/{i['slug']}/"
+        # Until 2026-11-18 the feed held only projects: an entry that left `proiect` keeps that GUID, so readers do not show it again.
+        guid = f"{SITE_URL}proiect/{i['slug']}/" if MOVED.get(i["slug"]) == "proiect" and i["kind"] != "proiect" else link
         cats = [label[c] for c in dict.fromkeys([i["primarySubject"], *i["subjects"], *i["topics"]] if "subjects" in i else []) if c in label]
         body = [f"<p><strong>{html.escape(i['tagline'])}</strong></p>" if i["tagline"] else "",
                 f"<p>{html.escape(i['desc'])}</p>" if i["desc"] and i["desc"] != i["tagline"] else "",
                 f'<p>Site: <a href="{html.escape(i["url"])}">{html.escape(i["domain"] or i["url"])}</a></p>' if i["url"] else "",
                 f"<p>Pe web din: {i['since']}</p>" if i["since"] else "",
                 f"<p>Subiecte: {html.escape(', '.join(cats))}</p>" if cats else ""]
-        out.append(f"""<item><title>{escape(i['name'])}</title><link>{escape(link)}</link><guid isPermaLink="true">{escape(link)}</guid>
+        out.append(f"""<item><title>{escape(i['name'])}</title><link>{escape(link)}</link><guid isPermaLink="true">{escape(guid)}</guid>
 {''.join(f'<category>{escape(c)}</category>' for c in cats)}<description>{escape(''.join(body))}</description><pubDate>{format_datetime(datetime.fromisoformat(when(i)).replace(tzinfo=timezone.utc))}</pubDate></item>""")
     return f"""<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
-<title>CivTech România — proiecte noi</title><link>{SITE_URL}</link>
+<title>CivTech România — intrări noi</title><link>{SITE_URL}</link>
 <atom:link href="{SITE_URL}feed.xml" rel="self" type="application/rss+xml"/>
-<description>Cele mai noi proiecte din colecția CivTech România.</description><language>ro</language>
+<description>Cele mai noi proiecte, organizații, resurse și analize din colecția CivTech România.</description><language>ro</language>
 <lastBuildDate>{format_datetime(generated)}</lastBuildDate>
 {chr(10).join(out)}
 </channel></rss>
@@ -347,13 +358,39 @@ def entry_pages(items: list[dict], site: Path = SITE) -> int:
         out = site / kind / slug
         out.mkdir(parents=True)
         (out / "index.html").write_text(doc, encoding="utf-8")
+    redirect_stubs(items, site)
     return len(items)
+
+
+def redirect_stubs(items: list[dict], site: Path) -> int:
+    """GitHub Pages has no server redirects. A moved entry keeps its old page at site/<old section>/<slug>/index.html: a
+    canonical link and a refresh to the new address, and one visible link. Only the public slugs of MOVED that are no
+    longer in their old section get a stub. Call it after the entry pages, which clear the folders."""
+    n = 0
+    for i in items:
+        old = MOVED.get(i["slug"])
+        if not old or i["kind"] == old:
+            continue
+        new = f"{SITE_URL}{i['kind']}/{i['slug']}/"  # the canonical address
+        near = f"../../{i['kind']}/{i['slug']}/"  # the refresh and the link stay on the host that serves the stub (a preview too)
+        out = site / old / i["slug"]
+        out.mkdir(parents=True, exist_ok=True)
+        (out / "index.html").write_text(f"""<!doctype html>
+<html lang="ro"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{esc(i["name"])} — CivTech România</title>
+<link rel="canonical" href="{esc(new)}">
+<meta http-equiv="refresh" content="0; url={esc(near)}">
+</head><body><p>Pagina s-a mutat: <a href="{esc(near)}">{esc(i["name"])}</a>.</p></body></html>
+""", encoding="utf-8")
+        n += 1
+    return n
 
 
 ARCHIVE_LEAD = {
     "proiect": "{n} proiecte civic tech din România, pe domenii.",
     "organizatie": "{n} organizații care fac civic tech, transparență și participare în România.",
     "resursa": "{n} resurse: liste, articole, ghiduri, campanii și cercetări.",
+    "publicatie": "{n} analize, investigații și rapoarte cu conținut propriu.",
 }
 
 
@@ -377,7 +414,7 @@ def archive_pages(items: list[dict], tax: dict, site: Path = SITE) -> int:
 
 
 def write_archives(items: list[dict], kinds: dict[str, str], groups, meta, site: Path, leads: dict = ARCHIVE_LEAD, note: str = "") -> int:
-    """One list of every entry of a kind at site/<kind>/index.html (/proiect/, /organizatie/, /resursa/): plain HTML,
+    """One list of every entry of a kind at site/<kind>/index.html (/proiect/, /organizatie/, /resursa/, /publicatie/): plain HTML,
     readable without scripts, each entry linking to its own page. `groups(kind, items)` gives (title, hint, items)
     sections and `meta(item)` its small grey line. Call it after entry_pages(), which clears the folders."""
     template = (site / "index.html").read_text(encoding="utf-8")
@@ -452,13 +489,14 @@ def llms_doc(items: list[dict], sections: list[tuple[str, list[dict]]], sources:
     projects = [i for i in items if i["kind"] == "proiect"]
     orgs = [i for i in items if i["kind"] == "organizatie"]
     res = [i for i in items if i["kind"] == "resursa"]
+    pubs = [i for i in items if i["kind"] == "publicatie"]
     checked = max((i["checked"] for i in items), default="")
     parts = [f"""# CivTech România
 
 > Colecție curatoriată de proiecte civic tech, organizații și resurse din România: instrumente civice, date deschise
-> și proiecte de bună guvernare. {len(projects)} proiecte, {len(orgs)} organizații, {len(res)} resurse.
+> și proiecte de bună guvernare. {len(projects)} proiecte, {len(orgs)} organizații, {len(res)} resurse{f", {len(pubs)} analize și investigații" if pubs else ""}.
 
-Fiecare intrare are o pagină proprie la {SITE_URL}<tip>/<slug>/ (tip: proiect, organizatie, resursa). Starea
+Fiecare intrare are o pagină proprie la {SITE_URL}<tip>/<slug>/ (tip: proiect, organizatie, resursa, publicatie). Starea
 (activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: {checked}. Textele sunt în
 limba română. Datele sunt reutilizabile conform EUPL v1.2.{note}
 
@@ -725,6 +763,7 @@ def pages_v2(items: list[dict], head: dict, site: Path) -> tuple[str, int]:
     sections = [(f"Proiecte: {t}", rows) for t, _, rows in by_subject(projects)]
     sections.append(("Organizații", [i for i in items if i["kind"] == "organizatie"]))
     sections += [(f"Resurse: {t['label']}", [i for i in res if i["entityType"] == t["key"]]) for t in v["entityTypes"]]
+    sections.append((next((k["label"] for k in v["kinds"] if k["key"] == "publicatie"), "Publicații"), [i for i in items if i["kind"] == "publicatie"]))
     sources = f"- [intrari.csv]({REPO_URL}/blob/main/data/taxonomy-v2/intrari.csv): tabelul editat de om (propunere v2)\n"
     return llms_doc(items, sections, sources, f" {note}" if note else ""), archives
 

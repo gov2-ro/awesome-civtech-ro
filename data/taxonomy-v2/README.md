@@ -135,6 +135,9 @@ Coloana este numai pentru editori și nu este în Formular. `validate.py` averti
 `stare` păstrează intervenția manuală asupra stării site-ului. Nu descrie maturitatea sau verificarea clasificării.
 `civictech_original` păstrează vechea valoare. Nu reprezintă o certificare nouă.
 `sectiune_url` păstrează adresele actuale chiar dacă se schimbă `tip_entitate`.
+`sectiune_url` are patru valori: `proiect`, `organizatie`, `resursa` („Resurse & liste”) și `publicatie` („Analize & investigații”).
+Fila urmează coloana `sectiune_url`, rând cu rând, nu `tip_entitate`. O publicație cu conținut propriu (investigație, raport, poveste cu date) merge la `publicatie`; o listă sau o colecție merge la `resursa`.
+Când mutați o intrare publică dintr-o secțiune în alta, adăugați slug-ul și secțiunea veche în `MOVED` din `scripts/build.py`, ca adresa veche să trimită la cea nouă.
 
 ## Limitele copiei
 

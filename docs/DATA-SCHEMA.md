@@ -117,7 +117,7 @@ from it. `form.py --apply` copies it into the Google Form's choices.
 | `tipuri` | Kinds of tool. | `key`, `label`, `hint` |
 | `acoperire` | Geographic reach. | `key`, `label` |
 | `fel` | The values of the column `fel`. | `key`, `label`, `kind` (the tab the entry goes to: `proiect` or `resursa`) |
-| `kinds` | The three tabs: `proiect`, `organizatie`, `resursa`. The key is also the folder of the entry's page. | `key`, `label` |
+| `kinds` | The tabs: `proiect`, `organizatie`, `resursa`, `publicatie` (v1 has the first three). The key is also the folder of the entry's page. | `key`, `label` |
 | `cuvinte` | Keyword clean-up. | `ignora` (a list of keywords to drop), `alias` (a map: variant → canonical form) |
 | `linkuri.roluri` | Link roles. | `key`, `label`, `hosts` (hosts that give the role without a prefix) |
 
@@ -403,7 +403,7 @@ One row for each entry (project, organisation or resource). Today it holds the 1
 | --- | --- | --- |
 | `slug` | Unique name of the entry; the join key of `observatii/`. | Same format as v1. Required. |
 | `tip_entitate` | What the entry is. | Code list `tip_entitate`: `proiect`, `organizatie`, `resursa`, `publicatie`, `set-date`, `campanie`. Required. |
-| `sectiune_url` | The site section and the folder of the entry's page. | Code list `sectiune_url`: `proiect`, `organizatie`, `resursa`. Required. `tip_entitate` `organizatie` needs `sectiune_url` `organizatie`. |
+| `sectiune_url` | The site section and the folder of the entry's page. | Code list `sectiune_url`: `proiect`, `organizatie`, `resursa`, `publicatie` (tab "Analize & investigații"). Required. `tip_entitate` `organizatie` needs `sectiune_url` `organizatie`. No other rule ties `tip_entitate` to `sectiune_url`: the section follows this column, row by row. A moved entry keeps a stub page at its old address (`MOVED` in `build.py`: slug → old section). An entry that left `proiect` keeps its old GUID in `feed.xml`, which lists every section. |
 | `nume`, `descriere_scurta`, `descriere`, `url`, `linkuri` | The original text and links of the v1 row. | Copied without rewriting. `nume` is required. A role prefix in `linkuri` must be an `id` of `roluri-linkuri.csv`. |
 | `subiect_principal` | The one top-level subject that places the entry in the grouped list. | One concept of the scheme `subiect`, top level. It must be in `subiecte`. Empty only when `clasificare_stare` is `de-revizuit`. |
 | `subiecte` | The top-level subjects the entry covers. | At least one concept of `subiect`, top level. Empty only in `de-revizuit`. A value needs a `subiect_principal`. |
@@ -469,7 +469,7 @@ Every list is used by a column of `schema.json`, and every list that `schema.jso
 | List | Used by | Codes |
 | --- | --- | --- |
 | `tip_entitate` | `intrari.csv` `tip_entitate` | `proiect`, `organizatie`, `resursa`, `publicatie`, `set-date`, `campanie` |
-| `sectiune_url` | `intrari.csv` `sectiune_url` | `proiect`, `organizatie`, `resursa` |
+| `sectiune_url` | `intrari.csv` `sectiune_url` | `proiect`, `organizatie`, `resursa`, `publicatie` |
 | `detaliere_date` | `intrari.csv` `detaliere_date` | `agregat-national`, `judete`, `localitati`, `judete-localitati` |
 | `relatie_date` | `intrari.csv` `relatie_date` | `date-publice`, `date-proprii`, `calcul`, `fara-date` |
 | `nivel_acoperire` | `intrari.csv` | `national`, `local`, `international`, `necunoscut` |

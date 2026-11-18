@@ -60,7 +60,7 @@ def scope_reason(item):
 def left_out(items):
     """{reason: {kind: count}} for the projects and resources that the public inventory leaves out, by the two public reasons (`LEFT_OUT`).
     An organisation is not counted: the inventory never lists one."""
-    counts = {reason: {'proiect': 0, 'resursa': 0} for reason in LEFT_OUT}
+    counts = {reason: {'proiect': 0, 'resursa': 0, 'publicatie': 0} for reason in LEFT_OUT}
     for item in items:
         reason = public_reason(scope_reason(item))
         if reason in counts:
@@ -209,8 +209,8 @@ def left_out_section(counts):
         if not n:
             continue
         title, meaning, query = LEFT_OUT_TEXT[reason]
-        links = ' · '.join(f'<a href="./?{"k=resursa&amp;" if kind == "resursa" else ""}{query}">{ro_count(counts[reason][kind], one, many)}</a>'
-                           for kind, one, many in (('proiect', 'proiect', 'proiecte'), ('resursa', 'resursă', 'resurse')) if counts[reason][kind])
+        links = ' · '.join(f'<a href="./?{f"k={kind}&amp;" if kind != "proiect" else ""}{query}">{ro_count(counts[reason][kind], one, many)}</a>'
+                           for kind, one, many in (('proiect', 'proiect', 'proiecte'), ('resursa', 'resursă', 'resurse'), ('publicatie', 'publicație', 'publicații')) if counts[reason][kind])
         items.append(f'<li data-reason="{reason}"><strong>{title}</strong> ({n}): {meaning}. În explorator: {links}.</li>')
     return (f'<section class="ov-left"><h2>Lăsate pe dinafară ({total})</h2>'
             f'<p class="ov-note">Inventarul listează numai proiectele și resursele active care au date, calcule sau formulare. '

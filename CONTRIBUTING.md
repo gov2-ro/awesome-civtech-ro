@@ -27,7 +27,7 @@ GitHub rulează aceleași comenzi pe fiecare pull request care schimbă `data/`,
 | coloană | ce conține |
 | --- | --- |
 | `slug` | identificator unic: litere mici, cifre, cratime (`harta-firmelor`) |
-| `fel` | `proiect`, sau o resursă: `resursa` (listă, colecție), `articol`, `ghid`, `campanie`, `cercetare`. Resursele apar la „Resurse & liste” |
+| `fel` | `proiect`, sau o resursă: `resursa` (listă, colecție), `articol`, `ghid`, `campanie`, `cercetare`. Resursele apar la „Resurse & liste”. (În modelul v2, o publicație cu conținut propriu — investigație, raport — apare la „Analize & investigații”.) |
 | `nume` | numele proiectului, așa cum îl folosește el |
 | `descriere_scurta` | o frază, sub ~90 de caractere |
 | `descriere` | ce face, pentru cine, din ce date |
