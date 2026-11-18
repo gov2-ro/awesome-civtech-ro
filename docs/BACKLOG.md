@@ -5,7 +5,7 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 ## Section „Analize & investigații” — 2026-11-18
 
 - [ ] Validate two entry pages (one project, one organisation) in the Schema.org validator and the Google Rich Results test. Not done in v0.79.0 (no external service used).
-- [ ] `CLAUDE.md` still describes the entry as a drawer in places and lacks `scripts/test_entry_page.py` and `scripts/entry_page.py`. The brief asks for the update, but the executor may not edit files outside `site/`, `scripts/` and `docs/`: the coordinator updates it.
+- [x] `CLAUDE.md` still describes the entry as a drawer in places and lacks `scripts/test_entry_page.py` and `scripts/entry_page.py`. The brief asks for the update, but the executor may not edit files outside `site/`, `scripts/` and `docs/`: the coordinator updates it. Done 2026-11-18.
 
 - [x] Add the section code `publicatie` and move 13 entries (brief `docs/briefs/publicatii-section.md`). Tab, archive, stubs at the old `/resursa/` addresses, `llms.txt` and tests done 2026-11-18. Not committed: the owner reviews first.
 - [x] Owner: accept `hack-for-facts` and `marius-comper`. Accepted 2026-11-18.

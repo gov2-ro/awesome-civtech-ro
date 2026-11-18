@@ -47,8 +47,8 @@ The 181 projects and resources of the catalogue (the finder lists the 132 that a
 | Parsed sources / HTTP failures | 24 / 1 | 228 / 7 |
 | Source-scoped field records (paths, not variables) | 2,302 | 8,184 |
 | Schema declarations / sampled JSON paths / CSV headers / INS dimensions | 1,312 / 904 / 82 / 4 | 1,979 / 3,666 / 311 / 4 |
-| HTML control candidates / entries with candidates | 308 / 78 | 420 / 115 |
-| Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 132 / 65 |
+| HTML control candidates / entries with candidates | 308 / 78 | 419 / 114 |
+| Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 131 / 66 |
 | Accepted provider relations / entries with accepted providers | 26 / 11 | 121 / 46 |
 | Pending provider proposals (review items D132 and later) | 15 | 10 |
 | Proposed business-variable groups | 7 | 46 |

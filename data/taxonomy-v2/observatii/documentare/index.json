@@ -7648,47 +7648,25 @@
     },
     {
       "slug": "marius-comper",
-      "url": "https://mariuscomper.uk/viata-publica/",
-      "state": "documentatie-gasita",
+      "url": "https://mariuscomper.uk/proiecte/",
+      "state": "documentatie-neconfirmata",
       "inventory_completeness": "neanalizat",
       "pages": [
         {
-          "url": "https://mariuscomper.uk/viata-publica/",
-          "final_url": "https://mariuscomper.uk/viata-publica/",
+          "url": "https://mariuscomper.uk/proiecte/",
+          "final_url": "https://mariuscomper.uk/proiecte/",
           "http_status": 200,
-          "fetched_at": "2026-11-18T13:20:53.079980+00:00",
+          "fetched_at": "2026-11-18T20:55:58.249179+00:00",
           "content_type": "text/html",
-          "state": "colectat",
+          "state": "raspuns-prea-mare",
           "kind": "pagina",
-          "scope": "proiect",
-          "truncated": true,
-          "title": "Viața publică: de unde începi când te afectează o decizie? · Marius Comper",
-          "sections": [
-            {
-              "kind": "metodologie",
-              "heading": "Surse",
-              "url": "https://mariuscomper.uk/viata-publica/#sources"
-            },
-            {
-              "kind": "despre",
-              "heading": "Răsfoiește toate proiectele despre viața publică ↓",
-              "url": "https://mariuscomper.uk/viata-publica/#collection"
-            },
-            {
-              "kind": "metodologie",
-              "heading": "Surse",
-              "url": "https://mariuscomper.uk/viata-publica/"
-            }
-          ],
-          "sha256": "273426e093cc79021fe90f7e903d342e487f569d8d6c9c2e994edf147053fea5",
-          "snapshot": "pagini/eb6f98e6f560248d284d6a5d.json",
-          "text_chars": 60000
+          "scope": "proiect"
         },
         {
-          "url": "https://mariuscomper.uk/viata-publica/llms.txt",
-          "final_url": "https://mariuscomper.uk/viata-publica/llms.txt",
+          "url": "https://mariuscomper.uk/proiecte/llms.txt",
+          "final_url": "https://mariuscomper.uk/proiecte/llms.txt",
           "http_status": 404,
-          "fetched_at": "2026-11-18T13:20:53.229950+00:00",
+          "fetched_at": "2026-11-18T20:55:58.402490+00:00",
           "state": "eroare-http",
           "error": "HTTP Error 404: Not Found",
           "kind": "llms",
@@ -7698,11 +7676,31 @@
           "url": "https://mariuscomper.uk/llms.txt",
           "final_url": "https://mariuscomper.uk/llms.txt",
           "http_status": 200,
-          "fetched_at": "2026-11-18T13:20:53.516510+00:00",
+          "fetched_at": "2026-11-18T20:55:58.750614+00:00",
           "content_type": "text/markdown",
           "state": "raspuns-prea-mare",
           "kind": "llms",
           "scope": "gazda-comuna"
+        },
+        {
+          "url": "https://mariuscomper.uk/proiecte/metodologie/",
+          "final_url": "https://mariuscomper.uk/proiecte/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-18T20:55:59.482614+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://mariuscomper.uk/proiecte/despre/",
+          "final_url": "https://mariuscomper.uk/proiecte/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-18T20:55:59.552548+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
         }
       ]
     },
