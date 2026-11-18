@@ -17,7 +17,8 @@ DB = json.load(urllib.request.urlopen(BASE + 'data.json'))
 # The scope of the variable inventory, written here from the brief (docs/briefs/data-relation.md, sections 3 and 9) and not read from the build:
 # a project or a resource, not offline or arhivat, with a relation to data of date-publice, date-proprii or calcul (the group `cu-date`).
 # The two reasons to leave an entry out: inactive (counted first), and without data (the code fara-date, or an empty value).
-ITEMS = [i for i in DB['items'] if i['kind'] in ('proiect', 'resursa')]
+FINDER_KINDS = ('proiect', 'resursa', 'publicatie')  # common.FINDER_KINDS: the sections in the scope of /date/
+ITEMS = [i for i in DB['items'] if i['kind'] in FINDER_KINDS]
 def left_out_reason(item):
     if item['status'] in ('offline', 'arhivat'):
         return 'inactiv'
@@ -27,7 +28,7 @@ EXPECTED = {i['slug'] for i in ITEMS} - set(OUT)
 EXPECTED_WITH_PROVIDER = sum(1 for i in ITEMS if i['slug'] in EXPECTED and i.get('dataSources'))
 SHOTS = sys.argv[2] if len(sys.argv) > 2 else ''
 REASONS = (('fara-date', 'dat=fara-date'), ('inactiv', 'st=inactiv'))  # in the order of the note
-COUNTS = {reason: {kind: sum(OUT.get(i['slug']) == reason and i['kind'] == kind for i in ITEMS) for kind in ('proiect', 'resursa')}
+COUNTS = {reason: {kind: sum(OUT.get(i['slug']) == reason and i['kind'] == kind for i in ITEMS) for kind in FINDER_KINDS}
           for reason, _ in REASONS}
 results, errors = [], []
 PROJECTS = sum(e['kind'] == 'proiect' for e in INDEX['entries'])
@@ -288,11 +289,12 @@ with sync_playwright() as pw:
         page.wait_for_selector('#data-count')
         ok('the finder does not find an entry out of scope: ' + name, not ({i['slug'] for i in ITEMS if i['name'] == name} & shown(page)))
     # The facet `cu-date` of the explorer is the scope of the finder: the same entries on each tab (the explorer hides inactive entries by default, as the finder does).
-    for kind, prefix in (('proiect', ''), ('resursa', 'k=resursa&')):
+    for kind in FINDER_KINDS:
+        prefix = '' if kind == 'proiect' else f'k={kind}&'
         page.goto(BASE + f'?{prefix}dat=cu-date')
         page.wait_for_selector('[data-slot="toolbar"] .count')
         listed = set(page.locator('[data-slot="results"] [data-open]').evaluate_all('els => els.map(e => e.dataset.open)'))
-        ok(f'the explorer group cu-date lists the {kind} entries of the finder, no more and no fewer', listed == {e['slug'] for e in INDEX['entries'] if e['kind'] == kind} and len(listed) > 0)
+        ok(f'the explorer group cu-date lists the {kind} entries of the finder, no more and no fewer', listed == {e['slug'] for e in INDEX['entries'] if e['kind'] == kind} and (len(listed) > 0 or kind != 'proiect'))
     def follow(link, expected):
         """Click a link to the explorer: it opens with the selection of the link and lists as many entries as the link says."""
         text = link.inner_text()
@@ -303,7 +305,8 @@ with sync_playwright() as pw:
         return listed == expected == int(re.match(r'\d+', text).group()) and urllib.parse.urlsplit(page.url).query == urllib.parse.urlsplit(href).query
     for path, label in (('date/', 'finder'), ('date/lista/', 'list')):
         for reason, query in REASONS:
-            for kind, extra in (('proiect', ''), ('resursa', 'k=resursa&')):
+            for kind in FINDER_KINDS:
+                extra = '' if kind == 'proiect' else f'k={kind}&'
                 if not COUNTS[reason][kind]:
                     continue
                 page.goto(BASE + path)
@@ -367,7 +370,7 @@ with sync_playwright() as pw:
     without = {i['slug'] for i in ITEMS if i['slug'] in EXPECTED and not i.get('dataSources')}
     named = {h.rstrip('/').split('/')[-1] for h in page.locator('#fara-furnizor a').evaluate_all('els=>els.map(e=>e.getAttribute("href"))')}
     ok('furnizori: the entries without a provider are named, and only they', named == without)
-    listed = {h.rstrip('/').split('/')[-1] for h in page.locator('.ov-providers a[href^="proiect/"], .ov-providers a[href^="resursa/"]').evaluate_all('els=>els.map(e=>e.getAttribute("href"))')}
+    listed = {h.rstrip('/').split('/')[-1] for h in page.locator('.ov-providers a[href^="proiect/"], .ov-providers a[href^="resursa/"], .ov-providers a[href^="publicatie/"]').evaluate_all('els=>els.map(e=>e.getAttribute("href"))')}
     ok('furnizori: the providers list the entries that have one, and only them', listed == EXPECTED - without)
     # The matrix: every provider in both orientations, short names with titles, a background on the checked cells, the toggle, the sort, no sideways scroll.
     page.goto(BASE + 'date/furnizori/')

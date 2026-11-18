@@ -1,5 +1,14 @@
 # Activity
 
+## 2026-11-18 — Data finder: the section `publicatie` in the note and the checks
+
+**Done**
+- `site/inventory.js`: the note „Lăsate pe dinafară” links the publications without data (2: `interoperabilitate`, `piratii-digitali-ai-kremlinului`). `inventar/index.json` had the count since the section was added; the page did not show it.
+- `check_inventory_preview.py`, `check_data_finder.py`: the sections in the scope of `/date/` are `proiect`, `resursa` and `publicatie`. Local run of the CI build: 153/153, 63/63, 156/156, 51/51.
+
+**Hard**
+- The `validate` run of v0.76.0 failed: the group `cu-date` of the tab `resursa` is empty since every resource with data moved to `publicatie`. The Sonnet report had named these two checks as not updated and not run; nobody ran them before the push.
+
 ## 2026-11-18 — Search box suggests filters only; tabs centred in the header
 
 **Done**

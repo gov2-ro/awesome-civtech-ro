@@ -13,6 +13,8 @@ import sys
 import urllib.request
 from playwright.sync_api import sync_playwright
 
+FINDER_KINDS = ('proiect', 'resursa', 'publicatie')  # common.FINDER_KINDS: the sections in the scope of /date/
+
 BASE = sys.argv[1] if len(sys.argv) > 1 else 'http://localhost:8770/'
 DB = json.load(urllib.request.urlopen(BASE + 'data.json'))
 assert DB.get('inventoryPreview'), 'Build with --with-inventory first.'
@@ -180,8 +182,9 @@ with sync_playwright() as pw:
         mobile.close()
     # The explorer is not limited by the scope of /date/ (owner, 2026-10-27): an entry out of scope (inactive, without data, or an organisation)
     # keeps its markers and its "Date & metodă" panel. The sets come from data.json and the rule of the brief, not from the build.
-    in_scope = lambda i: i['kind'] in ('proiect', 'resursa') and i['status'] not in ('offline', 'arhivat') and i.get('dataRelation') in ('date-publice', 'date-proprii', 'calcul')
-    for kind in ('proiect', 'resursa'):
+    in_scope = lambda i: i['kind'] in FINDER_KINDS and i['status'] not in ('offline', 'arhivat') and i.get('dataRelation') in ('date-publice', 'date-proprii', 'calcul')
+    filled = set()  # the tabs whose group cu-date has entries; one at least must have
+    for kind in FINDER_KINDS:
         page.goto(BASE + f'?k={kind}&ina=1&o=az')
         page.wait_for_selector('[data-slot="toolbar"] .count')
         marker_rows = '[data-slot="results"] .row:has(.inventory-tag), [data-slot="results"] .card:has(.inventory-tag)'
@@ -193,7 +196,10 @@ with sync_playwright() as pw:
             page.goto(BASE + f'?k={kind}&o=az&dat={group}')
             page.wait_for_selector('[data-slot="toolbar"] .count')
             ok(f'the group {group} shows the markers of its own entries on the {kind} tab',
-               set(page.locator(marker_rows).evaluate_all('els=>els.map(e=>e.dataset.open)')) == want and (group != 'cu-date' or len(want) > 0))
+               set(page.locator(marker_rows).evaluate_all('els=>els.map(e=>e.dataset.open)')) == want)
+            if group == 'cu-date' and want:
+                filled.add(kind)
+    ok('the group cu-date has entries on one tab at least', bool(filled))
     outside_docs = [i for i in DB['items'] if not in_scope(i) and i.get('inventory', {}).get('docs')]
     ok('entries out of scope keep their documentation links in the data', len(outside_docs) > 0)
     for item in [next((i for i in outside_docs if i['kind'] == 'organizatie'), None), next((i for i in outside_docs if i['kind'] != 'organizatie'), None)]:
@@ -260,7 +266,7 @@ with sync_playwright() as pw:
     # The link to the variables page of an entry (`/date/<slug>/`): only an entry that has the page, and the page is the one of that entry.
     with_page = [i for i in DB['items'] if i.get('inventory', {}).get('page')]
     ok('an entry with a variables page has fields, and the page is date/<slug>/', len(with_page) > 0 and all(i['inventory']['count'] and i['inventory']['page'] == f'date/{i["slug"]}/' for i in with_page))
-    ok('an entry in the scope of /date/ with fields has the page', all(i['inventory'].get('page') for i in DB['items'] if i['kind'] in ('proiect', 'resursa') and i['status'] not in ('offline', 'arhivat')
+    ok('an entry in the scope of /date/ with fields has the page', all(i['inventory'].get('page') for i in DB['items'] if i['kind'] in FINDER_KINDS and i['status'] not in ('offline', 'arhivat')
                                                                        and i.get('dataRelation') in ('date-publice', 'date-proprii', 'calcul') and i.get('inventory', {}).get('count')))
     linked = browser.new_page(viewport={'width': 1280, 'height': 900})
     linked.goto(BASE + 'proiect/demoanaf/')

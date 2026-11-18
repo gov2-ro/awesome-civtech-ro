@@ -1,5 +1,6 @@
 # Releases
 
+- **v0.76.1** (2026-11-18): the data finder `/date/` names the publications it leaves out (2 without data), and its two browser checks cover the section `publicatie`. The `validate` run of v0.76.0 failed on this.
 - **v0.76.0** (2026-11-18): the search box suggests filters only and stays closed when none fits; a line above the results counts the matches in the other tabs and opens them. The header tabs sit in the middle of the space between the title and the search. The feed now carries Hack for Facts and Marius Comper.
 - **v0.75.0** (2026-11-18): new tab „Analize & investigații” (`sectiune_url=publicatie`) with 25 entries: 13 from „Resurse & liste” and 12 from „Proiecte”; the old addresses forward to the new ones. The RSS feed lists every section, and moved entries keep their GUID. Hack for Facts (the civic-tech catalogue of AmpliFY ONG and Ethical Media Alliance) and Marius Comper · Viața publică (a collection; 19 entries `parte_din`) published. Search ran on Brave only: no Serper credits.
 - **v0.74.0** (2026-11-18): the RSS feed sorts projects by the date they became public in the catalogue (git history), not by their first trace on the web. Each item gets its subjects and topics as categories, the long description and a link to the original site. The Pages workflow checks out the full history.
