@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://civtech.gov2.ro/sitemap.xml

@@ -49,7 +49,7 @@ MOVED = {**dict.fromkeys(("statul-digital", "complet-online", "prima-cifra", "pe
                           "calendar-strategic", "orase-vii", "pacienti-medic", "cat-costa-un-vot", "cate-voturi-aduce-un-primar",
                           "generatiile-romaniei", "unul-din-100", "ce-face-statul-cu-1000-de-lei"), "proiect")}  # 2026-11-18
 DEFAULT_SHARE = {"src": "img/share.png", "w": 1106, "h": 558}
-GENERATED = ("data.json", "feed.xml", "llms.txt", "inventar", "date", "entitati", *PAGE_KINDS)  # what a build writes; never copied from site/
+GENERATED = ("data.json", "feed.xml", "llms.txt", "sitemap.xml", "inventar", "date", "entitati", *PAGE_KINDS)  # what a build writes; never copied from site/
 
 
 def pick_desc(desc: str, prof: dict) -> tuple[str, str]:
@@ -276,6 +276,20 @@ def feed(items: list[dict], generated: datetime, vocabulary: dict | None = None)
 {chr(10).join(out)}
 </channel></rss>
 """
+
+
+def sitemap(items: list[dict], site: Path) -> str:
+    """sitemap.xml: the home page, the archive of each section and one page per entry. site/robots.txt (hand-edited)
+    names it. The stubs at old addresses stay out (they point to the new page), and so do /date/ and /entitati/,
+    whose pages carry `noindex`. No <lastmod>: no date records when the page of an entry last changed."""
+    urls = [SITE_URL, *(f"{SITE_URL}{k}/" for k in PAGE_KINDS if (site / k / "index.html").exists()),
+            *(f"{SITE_URL}{i['kind']}/{i['slug']}/" for i in items)]
+    body = "\n".join(f"<url><loc>{escape(u)}</loc></url>" for u in urls)
+    return f'''<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{body}
+</urlset>
+'''
 
 
 def clip(text: str, n: int) -> str:
@@ -858,10 +872,11 @@ def main():
         pages = entry_pages(items, site)
         archives = archive_pages(items, head["taxonomy"], site)
     (site / "llms.txt").write_text(llms, encoding="utf-8")
+    (site / "sitemap.xml").write_text(sitemap(items, site), encoding="utf-8")
     where = site.relative_to(ROOT) if site.is_relative_to(ROOT) else site
     obs = observation_paths(data_dir)
     coverage = label_coverage(load_mentions(obs["mentions"]), read_csv(obs["labels"]) if obs["labels"].exists() else [])
-    print(f"wrote {len(items)} entries to {where}/data.json  {by}; {where}/feed.xml; {where}/llms.txt; {pages} entry pages and "
+    print(f"wrote {len(items)} entries to {where}/data.json  {by}; {where}/feed.xml; {where}/llms.txt; {where}/sitemap.xml; {pages} entry pages and "
           f"{archives} archives in {where}/{{{','.join(PAGE_KINDS)}}}/" + (f"  [{out['schemaVersion']}{', draft' if out['draft'] else ''}]" if v2 else "")
           + f"; {coverage_line(coverage)}")
 

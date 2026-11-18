@@ -1,5 +1,15 @@
 # Activity
 
+## 2026-11-18 — sitemap.xml and robots.txt
+
+**Done**
+- `build.py`: `sitemap()` writes `site/sitemap.xml` on every build: the home page, the archive of each section and one URL per entry (195 URLs today). Git ignores it; the Pages workflow builds it. `site/robots.txt` (hand-edited) allows everything and names the sitemap. Test `Sitemap` in `test_taxonomy_v2.py`.
+- Every URL of the sitemap has a page in the build (checked: 195 of 195).
+
+**Decided**
+- No `<lastmod>`. No date records when the page of an entry changed: `updated` is the date of the source site, not of our page. Google uses `lastmod` only when it is consistently right. Cost of a wrong date: the engine ignores the field for the whole site.
+- The stubs at old addresses and the `noindex` pages (`/date/`, `/entitati/`) stay out. A sitemap that lists a `noindex` page sends two opposite signals.
+
 ## 2026-11-18 — Data finder: the section `publicatie` in the note and the checks
 
 **Done**

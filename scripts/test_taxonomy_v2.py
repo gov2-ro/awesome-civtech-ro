@@ -848,6 +848,27 @@ class Feed(unittest.TestCase):
             self.assertIn(part, body)
 
 
+class Sitemap(unittest.TestCase):
+    """sitemap.xml: the home page, the archives that exist and one URL per entry; no stub at an old address."""
+
+    def test_entries_and_archives_only(self):
+        import tempfile
+        import xml.etree.ElementTree as ET
+        sys.path.insert(0, str(HERE))
+        import build
+        with tempfile.TemporaryDirectory() as tmp:
+            site = Path(tmp)
+            for kind in ("proiect", "publicatie"):
+                (site / kind).mkdir()
+                (site / kind / "index.html").write_text("x", encoding="utf-8")
+            build.redirect_stubs([{"slug": "pe-datorie", "kind": "publicatie", "name": "P"}], site)
+            items = [{"slug": "a", "kind": "proiect"}, {"slug": "pe-datorie", "kind": "publicatie"}]
+            ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+            locs = [e.text for e in ET.fromstring(build.sitemap(items, site)).findall("s:url/s:loc", ns)]
+        u = build.SITE_URL
+        self.assertEqual(locs, [u, f"{u}proiect/", f"{u}publicatie/", f"{u}proiect/a/", f"{u}publicatie/pe-datorie/"])
+
+
 class RedirectStubs(unittest.TestCase):
     """A moved entry keeps a stub at its old /resursa/ address; a new entry in the same section gets none."""
 

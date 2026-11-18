@@ -93,6 +93,7 @@ docs/reference/init-prototype/*
 /site/organizatie/
 /site/resursa/
 /site/publicatie/
+/site/sitemap.xml
 
 # Claude Code agent worktrees
 .claude/worktrees/
