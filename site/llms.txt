@@ -217,7 +217,7 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 - [Ghiduri politici publice, monitorizare date](https://civtech.gov2.ro/resursa/ghiduri-efor/): Detectorul de bani publici, ghid politici publice, baze de date pentru investigații financiare. Site: https://expertforum.ro/ghiduri/
 - [Hack for Facts](https://civtech.gov2.ro/resursa/hack-for-facts/): Catalog curatoriat de proiecte civic tech din România, pe categorii. Site: https://hackforfacts.amplifyong.ro/proiecte
 - [Listă publicații independente](https://civtech.gov2.ro/resursa/jurnalism-independent/): Listă filtrabilă a publicațiilor de presă independentă din România. Site: https://gov2-ro.github.io/repository/jurnalism-independent/
-- [Marius Comper · Viața publică](https://civtech.gov2.ro/resursa/marius-comper/): Proiecte despre bani publici, reguli, servicii și instituții, ordonate pe întrebări. Site: https://mariuscomper.uk/viata-publica/
+- [Marius Comper · Proiecte publice](https://civtech.gov2.ro/resursa/marius-comper/): Biblioteca proiectelor lui Marius Comper, cu filtre pe subiect, format și limbă. Site: https://mariuscomper.uk/proiecte/
 - [Monitorizarea Planului Național privind Deceniul Digital](https://civtech.gov2.ro/resursa/monitorizare-plan-digital-national/): și evaluarea progresului inițiativelor de incluziune digitală din România. Site: https://www.crpe.ro/ro/295766-2/
 - [Proiecte geo-spatial.org](https://civtech.gov2.ro/resursa/proiecte-geo-spatial/): GIS. Site: https://geo-spatial.org/initiative
 - [Site-uri utile pentru cetățeni](https://civtech.gov2.ro/resursa/site-uri-utile-funky/): Lista Funky Citizens. Site: http://www.funkycitizens.org/site-uri-utile-pentru-cetateni/

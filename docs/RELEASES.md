@@ -1,5 +1,6 @@
 # Releases
 
+- **v0.79.3** (2026-11-18): Marius Comper's collection points to his whole library, `mariuscomper.uk/proiecte/` (1,633 projects), as „Marius Comper · Proiecte publice”; the section „Viața publică” stays as a link. New share image from the library page.
 - **v0.79.2** (2026-11-18): the header is back on the page's background (the owner's choice after trying the dark header); it keeps the gov2.ro logo, the normal one on the light theme and the negative one on the dark theme, and the 3 px blue rule. In the left list of an entry, the subject heading now sticks right under „← filtre”: rows no longer show through the gap between them.
 - **v0.79.1** (2026-11-18): JSON-LD of the entry pages: `sameAs` holds only profiles on networks (no API, MCP or donation pages); a name that has no entry in the catalogue gets no type (the data does not say person or organisation); the code repository sits in `isBasedOn` as a `SoftwareSourceCode`, because `codeRepository` is not a property of `WebApplication`.
 - **v0.79.0** (2026-11-18): the entry is a full page, not a drawer over the list: a left list of the section, the entry on a sheet, keys (`j`/`k`, `Esc`, `o`), swipe on a phone. Each entry page holds the whole view as static HTML, with a JSON-LD graph (`WebPage`, `BreadcrumbList`, the entry by section) and a `WebSite` on the home page (SEO steps 2 and 3).
