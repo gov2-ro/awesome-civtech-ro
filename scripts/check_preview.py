@@ -33,6 +33,12 @@ A = {a["id"]: a for a in DB["vocabulary"]["areas"]}
 results = []
 
 
+def entry_ready(p):
+    """The entry view that app.js drew (the tabs are buttons then), not the static markup that build.py wrote."""
+    p.wait_for_selector('[data-slot="tabs"] button.tab')
+    p.wait_for_selector('[data-slot="entry"]:not([hidden]) #d-title')
+
+
 def ok(name, cond, detail=""):
     results.append((name, bool(cond), detail))
     print(("PASS " if cond else "FAIL ") + name + (f"  [{detail}]" if detail else ""))
@@ -81,7 +87,7 @@ with sync_playwright() as pw:
 
     def go(path):
         page.goto(BASE + path)
-        page.wait_for_selector('[data-slot="toolbar"] .count')
+        page.wait_for_selector('[data-slot="toolbar"] .count', state="attached")
 
     # 1. Default grouped view: every visible project once, under its primary subject.
     go("")
@@ -162,45 +168,47 @@ with sync_playwright() as pw:
     go("?o=domeniu")
     ok("v1 ?o=domeniu shows the grouped view", page.locator('[data-slot="results"] .group').count() > 1 and page.locator("#sort").input_value() == "subiect")
     page.goto(BASE + "?p=ce-cumpara-primaria")
-    page.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
+    entry_ready(page)
     ok("v1 ?p= moves to the entry address", page.url.rstrip("/").endswith("/proiect/ce-cumpara-primaria"), page.url)
 
     # 9. Direct links and the detail panel.
     org = next(i for i in DB["items"] if i["kind"] == "organizatie" and i["attributions"] == [] and i["primarySubject"])
     page.goto(BASE + f"organizatie/{org['slug']}/")
-    page.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
-    ok("direct organisation link opens its tab and panel", page.locator('.tab[aria-current="page"]').inner_text().startswith("Organizații")
+    entry_ready(page)
+    ok("direct organisation link opens its tab and page", page.locator('.tab[aria-current="page"]').inner_text().startswith("Organizații")
        and page.locator("#d-title").inner_text() == org["name"])
-    drawer = page.locator('[data-slot="drawer"]').inner_text()
-    ok("organisation panel: Despre ce / Ce face", "DESPRE CE" in drawer.upper() and "CE FACE" in drawer.upper())
+    sheet = page.locator('[data-slot="page"]').inner_text()
+    ok("organisation page: Clasificare, Acoperire", "CLASIFICARE" in sheet.upper() and "ACOPERIRE" in sheet.upper())
     proj = next(i for i in DB["items"] if i["kind"] == "proiect" and i["attributions"] and not any(a["accepted"] for a in i["attributions"]) and i["status"] == "activ")
     page.goto(BASE + f"proiect/{proj['slug']}/")
-    page.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
-    drawer = page.locator('[data-slot="drawer"]').inner_text()
-    ok("unconfirmed attribution is neutral", "rol neconfirmat" in drawer and "Autor" not in drawer.split("\n"), proj["slug"])
-    ok("project panel groups", all(g in drawer.upper() for g in ("DESPRE CE", "CE OFERĂ", "ACOPERIRE")))
+    entry_ready(page)
+    sheet = page.locator('[data-slot="page"]').inner_text()
+    heads = page.locator(".p-facts dt").all_inner_texts()
+    roles = {p["label"] for p in DB["vocabulary"]["predicates"] if p["key"] != "atribuit_in_sursa"}
+    ok("unconfirmed attribution is neutral", "rol neconfirmat" in sheet and "Autor" in heads and not roles & set(heads), proj["slug"])
+    ok("project page groups", all(g in sheet.upper() for g in ("CLASIFICARE", "ACOPERIRE")) and "SUBIECT" in sheet.upper())
     # A parent entry (`parte_din`) has its own heading. It is never an unconfirmed attribution or an organisation card.
     parents = lambda i: [a["name"] for a in i["attributions"] if a["role"] == "parte_din"]
     child = next((i for i in DB["items"] if parents(i) and not any(a["role"] != "parte_din" and a["name"] in parents(i) for a in i["attributions"])), None)
     if child:
         page.goto(BASE + f"{child['kind']}/{child['slug']}/")
-        page.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
-        drawer = page.locator('[data-slot="drawer"]').inner_text()
+        entry_ready(page)
+        sheet = page.locator('[data-slot="page"]').inner_text()
         name = parents(child)[0]
-        ok("parent entry has its own heading", "PARTE DIN" in drawer.upper() and name in drawer, child["slug"])
-        ok("parent entry is not an attribution", not any("rol neconfirmat" in line and name in line for line in drawer.split("\n")), child["slug"])
-        ok("parent entry has no organisation card", page.locator('[data-slot="drawer"] .org-card', has_text=name).count() == 0, child["slug"])
+        ok("parent entry has its own heading", "Parte din" in page.locator(".p-facts dt").all_inner_texts() and name in sheet, child["slug"])
+        ok("parent entry is not an attribution", not any("rol neconfirmat" in line and name in line for line in sheet.split("\n")), child["slug"])
+        ok("parent entry is a link to the parent's page", page.locator('.p-facts dd a[data-open]', has_text=name).count() == 1, child["slug"])
         slug = next(a["org"] for a in child["attributions"] if a["role"] == "parte_din")
         count = sum(any(a["role"] == "parte_din" and a["org"] == slug for a in i["attributions"]) for i in DB["items"])
         parent = next(i for i in DB["items"] if i["slug"] == slug)
         page.goto(BASE + f"{parent['kind']}/{slug}/")
-        page.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
-        drawer = page.locator('[data-slot="drawer"]').inner_text()
-        ok("parent page lists every part", f"FAC PARTE DIN ACEASTĂ INTRARE · {count}" in drawer.upper() and page.locator('[data-slot="drawer"] .related .row').count() >= count, slug)
+        entry_ready(page)
+        sheet = page.locator('[data-slot="page"]').inner_text()
+        ok("parent page lists every part", f"CONȚINE ({count})" in sheet.upper() and page.locator('.p-sec:has(h2:text-matches("Conține")) .p-card').count() == count, slug)
     img = next(i for i in DB["items"] if i["img"])
     page.goto(BASE + f"{img['kind']}/{img['slug']}/")
-    page.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
-    every_image = "[...document.querySelectorAll('[data-slot=drawer] img')].every(i => i.complete && i.naturalWidth > 0)"
+    entry_ready(page)
+    every_image = "[...document.querySelectorAll('[data-slot=page] img')].every(i => i.complete && i.naturalWidth > 0)"
     try:  # over a real network the images arrive after the panel opens
         page.wait_for_function(every_image, timeout=10000)
     except PlaywrightTimeout:
@@ -210,8 +218,8 @@ with sync_playwright() as pw:
     blank = next((i for i in DB["items"] if not i["primarySubject"]), None)  # an abstention; none once every entry has a subject
     if blank:
         page.goto(BASE + f"{blank['kind']}/{blank['slug']}/")
-        page.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
-        ok("abstention shows an incomplete classification", "nu stabilesc încă subiectul" in page.locator('[data-slot="drawer"]').inner_text(), blank["slug"])
+        entry_ready(page)
+        ok("abstention shows an incomplete classification", "nu stabilesc încă subiectul" in page.locator('[data-slot="page"]').inner_text(), blank["slug"])
 
     # 10. Archives.
     for kind in ("proiect", "organizatie", "resursa", "publicatie"):
@@ -231,8 +239,8 @@ with sync_playwright() as pw:
            f"{tab.inner_text()!r}; {count_text(page)} of {len(pubs)}")
         pub = pubs[0]
         page.goto(BASE + f"publicatie/{pub['slug']}/")
-        page.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
-        ok("publication page opens its tab and panel", page.locator('.tab[aria-current="page"]').inner_text().startswith(label)
+        entry_ready(page)
+        ok("publication page opens its tab and page", page.locator('.tab[aria-current="page"]').inner_text().startswith(label)
            and page.locator("#d-title").inner_text() == pub["name"], pub["slug"])
         def has_stub(i):  # a moved entry has a stub at its old address; a new one has none (a 404 raises)
             try:
@@ -244,7 +252,7 @@ with sync_playwright() as pw:
         if moved:
             page.goto(BASE + f"resursa/{moved['slug']}/")
             page.wait_for_url(f"**/publicatie/{moved['slug']}/")
-            page.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
+            entry_ready(page)
             ok("old /resursa/ address reaches the new page", page.locator("#d-title").inner_text() == moved["name"], moved["slug"])
 
     # 11. Search: synonyms, English labels, diacritics; concept suggestions say their facet.
@@ -308,7 +316,8 @@ with sync_playwright() as pw:
     want = [i for i in projects if source in [d["name"] for d in i.get("dataSources", [])]]
     ok("data source filter counts providers", count_text(page) == len(want))
     go("proiect/" + sourced["slug"] + "/")
-    ok("detail links source evidence", page.locator('[data-slot="drawer"] .d-class a', has_text=re.compile('^' + re.escape(source) + '$')).get_attribute("href") == evidence)
+    ok("the page links the source's filtered list and its evidence", page.locator('.p-facts .p-src a[data-nav]', has_text=re.compile('^' + re.escape(source) + '$')).count() == 1
+       and page.locator(f'.p-facts .p-src a.ev[href="{evidence}"]').count() >= 1)
     parliament = next(i for i in DB['items'] if any(d['name'] in ('Camera Deputaților', 'Senatul României') for d in i.get('dataSources', [])))
     want = [i for i in visible(parliament['kind']) if any(d['name'] in ('Camera Deputaților', 'Senatul României') for d in i.get('dataSources', []))]
     go('?k=' + parliament['kind'] + '&source=Parlament')
@@ -316,7 +325,7 @@ with sync_playwright() as pw:
     go('?k=' + parliament['kind'] + '&source=' + urllib.parse.quote('Senatul României'))
     ok('old chamber filter maps to Parlament', count_text(page) == len(want) and 'Parlament' in page.locator('[data-slot="toolbar"] .pill').inner_text())
     go(parliament['kind'] + '/' + parliament['slug'] + '/')
-    ok('detail combines chamber links', page.locator('[data-slot="drawer"] .d-class a', has_text='Parlament').count() == 1)
+    ok('the page lists the chambers it names', page.locator('.p-facts .p-src a[data-nav]', has_text=re.compile('^(Camera Deputaților|Senatul României|Parlament)$')).count() >= 1)
     go('')
     cap_facet = page.locator('[data-slot="side"] [data-facet="cap"]')
     cap_facet.evaluate('(d) => d.open = true')
@@ -433,32 +442,27 @@ with sync_playwright() as pw:
     hidden = page.locator('[data-slot="results"] .row-kw .vh').first.inner_text()
     ok("result badges name their facet", hidden.rstrip(": ") in ("Subiect", "Format", "Ce poți face"), hidden)
     page.locator('[data-slot="results"] [data-open]').first.click()
-    page.wait_for_selector('[data-slot="drawer"]:not([hidden])')
-    page.wait_for_timeout(100)
+    entry_ready(page)
     page.keyboard.press("Control+k")
-    ok("search shortcut stays out of an open dialog", page.evaluate("!!document.activeElement.closest('[data-slot=\"drawer\"]')"))
-    page.focus('[data-slot="drawer"] [data-act="close"]')
-    page.keyboard.press("Shift+Tab")
-    ok("Shift+Tab from Close reaches a visible control", page.evaluate(
-        "(() => { const a = document.activeElement; return !!a.closest('[data-slot=\"drawer\"]') && a.dataset.act !== 'close' && a.checkVisibility(); })()"))
+    ok("search shortcut focuses the search in the entry view", page.evaluate("document.activeElement === document.querySelector('[data-slot=\"q\"]')"))
     page.keyboard.press("Escape")
 
     # 13. What the v1 site shows must stay: report options, site link, related entries, card types, v1 search words.
     it = next(i for i in DB["items"] if i["kind"] == "organizatie" and i["sheet"])
     go(f"organizatie/{it['slug']}/")
-    page.wait_for_selector('[data-slot="drawer"]:not([hidden]) h2')
-    flag = page.locator('[data-slot="drawer"] .flag a', has_text="Corectează în tabel")
+    entry_ready(page)
+    flag = page.locator('.p-facts .flag a', has_text="Corectează în tabel")
     ok("report panel opens the entry's Sheet row", flag.count() == 1 and f"gid={DB['site']['tabs'][it['sheet']['tab']]}&range=A{it['sheet']['row']}" in flag.get_attribute("href"),
        str(it["sheet"]))
-    link = page.locator('[data-slot="drawer"] .d-url')
+    link = page.locator('.p-url')
     ok("site link is the plain address", link.count() == 1 and it["domain"] in link.inner_text() and "Deschide" not in link.inner_text(), link.inner_text() if link.count() else "none")
     alone = [i for i in DB["items"] if i["kind"] == "organizatie" and i["primarySubject"] and i["status"] not in INACTIVE
              and not any(j["primarySubject"] == i["primarySubject"] and j["slug"] != i["slug"] for j in DB["items"] if j["kind"] == "organizatie")
              and any(i["primarySubject"] in subj_set(j) and j["slug"] != i["slug"] and j["status"] not in INACTIVE for j in DB["items"] if j["kind"] == "organizatie")]
     if alone:
         go(f"organizatie/{alone[0]['slug']}/")
-        page.wait_for_selector('[data-slot="drawer"]:not([hidden]) h2')
-        ok("related entries include secondary-subject matches", page.locator('[data-slot="drawer"] .related [data-open]').count() > 0, alone[0]["slug"])
+        entry_ready(page)
+        ok("related entries include secondary-subject matches", page.locator('.p-sec:has(h2:text-matches("Tot din")) [data-open]').count() > 0, alone[0]["slug"])
     ok("footer offers the Sheet, the Form and GitHub", all(page.locator(f'footer a[href*="{h}"]').count() == 1 for h in ("docs.google.com/spreadsheets", "forms.gle", "/issues/new")))
     go("?o=az&v=cards")
     fmt_item = next(i for i in sorted(projects, key=lambda i: i["name"].lower()) if i["formats"] and i["entityType"] == "proiect")
@@ -566,11 +570,11 @@ with sync_playwright() as pw:
     handler, calls = flaky(1)
     f.route("**/data.json", handler)
     f.goto(BASE + f"proiect/{proj['slug']}/")
-    f.wait_for_selector('[data-slot="results"] [data-act="retry"]')
-    ok("failed load on an entry page links the lists from the site root", hrefs_in(f, '[data-slot="results"] [role="alert"] a') == archive_hrefs)
-    f.click('[data-act="retry"]')
-    f.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
-    ok("retry on an entry page opens the entry", f.locator("#d-title").inner_text() == proj["name"])
+    f.wait_for_selector('[data-slot="results"] [data-act="retry"]', state="attached")
+    f.wait_for_timeout(300)
+    ok("a failed load on an entry page leaves the static entry, with its tabs and left list as plain links",
+       f.locator("#d-title").inner_text() == proj["name"] and f.locator("#d-title").is_visible() and f.locator(".p-toc a.toc-it").count() > 0
+       and hrefs_in(f, ".tabs a") == archive_hrefs)
     f.close()
 
     # 16. Without JavaScript: an introduction and the three archives; the footer links the methodology page.
@@ -582,8 +586,8 @@ with sync_playwright() as pw:
     links = hrefs_in(n, "#results a")
     ok("without JavaScript the home page links the three archives", links == archive_hrefs and all(nojs.request.get(h).status == 200 for h in links), str(links))
     n.goto(BASE + f"proiect/{proj['slug']}/")
-    ok("without JavaScript an entry page shows the entry and links the archives", n.locator("article.nojs h1").inner_text() == proj["name"]
-       and hrefs_in(n, "#results a") == archive_hrefs)
+    ok("without JavaScript an entry page shows the entry and links the archives", n.locator("h1").inner_text() == proj["name"]
+       and hrefs_in(n, ".tabs a") == archive_hrefs and not n.locator('[data-slot="list"]').is_visible())
     method = "https://github.com/gov2-ro/awesome-civtech-ro/blob/main/docs/METODOLOGIE.md"
     ok("footer links the methodology page", hrefs_in(n, "footer a").count(method) == 1)
     page.goto(BASE)
@@ -618,30 +622,30 @@ with sync_playwright() as pw:
     h = browser.new_page(viewport={"width": 1280, "height": 900})
     h.on("pageerror", lambda e: errors.append(str(e)))
     h.goto(BASE + f"{plain['kind']}/{plain['slug']}/")
-    h.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
+    entry_ready(h)
     ok("an entry opened directly keeps its own head", not differs(head(h), x_head), str(differs(head(h), x_head)))
-    h.click('[data-slot="drawer"] [data-act="close"]')
-    h.wait_for_selector('[data-slot="drawer"][hidden]', state="attached")
+    h.click('.toc-top a[data-nav]')
+    h.wait_for_selector('[data-slot="entry"][hidden]', state="attached")
     ok("closing a directly opened entry restores the home canonical and share tags", not differs(head(h), home_head), str(differs(head(h), home_head)))
     ok("closing an entry restores the page title", plain["name"] not in h.title())
     h.goto(BASE + f"?k={cover['kind']}&ina=1&o=az")
     h.wait_for_selector('[data-slot="toolbar"] .count')
     ok("the home page keeps its own head", not differs(head(h), home_head), str(differs(head(h), home_head)))
     h.locator(f'[data-slot="results"] [data-open="{cover["slug"]}"] a.stretch').first.click()
-    h.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
+    entry_ready(h)
     got = head(h)
     ok("opening an entry in the page sets its canonical and share tags", not differs(got, y_head, TEXTS) and all(got[k].startswith(y_head[k][:30]) for k in TEXTS),
        str(differs(got, y_head, TEXTS)))
     h.go_back()
-    h.wait_for_selector('[data-slot="drawer"][hidden]', state="attached")
+    h.wait_for_selector('[data-slot="entry"][hidden]', state="attached")
     ok("Back restores the home canonical and share tags", not differs(head(h), home_head), str(differs(head(h), home_head)))
     h.locator(f'[data-slot="results"] [data-open="{cover["slug"]}"] a.stretch').first.click()
-    h.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
+    entry_ready(h)
     h.keyboard.press("Escape")
-    h.wait_for_selector('[data-slot="drawer"][hidden]', state="attached")
+    h.wait_for_selector('[data-slot="entry"][hidden]', state="attached")
     ok("Escape restores the home canonical and share tags", not differs(head(h), home_head), str(differs(head(h), home_head)))
     h.goto(BASE + f"?p={plain['slug']}")
-    h.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
+    entry_ready(h)
     ok("an old ?p= link gets the entry's canonical", not differs(head(h), x_head, TEXTS), str(differs(head(h), x_head, TEXTS)))
     h.close()
 
@@ -694,11 +698,11 @@ with sync_playwright() as pw:
     pills = w.locator('[data-slot="toolbar"] .pill').all_inner_texts()
     ok("the toggle's pill and count match", "Apărute recent" in pills and count_text(w) == fresh_n, f"{pills}; {count_text(w)} vs {fresh_n}")
     w.goto(BASE + f"proiect/{a_item['slug']}/")
-    w.wait_for_selector('[data-slot="drawer"]:not([hidden]) #d-title')
-    drawer_text = w.locator('[data-slot="drawer"]').inner_text()
-    badge = w.locator('[data-slot="drawer"] .d-badges .new')
-    ok("detail row is \"Prima urmă observată\" and says it is not a launch date", "PRIMA URMĂ OBSERVATĂ" in drawer_text.upper() and "VECHIME" not in drawer_text.upper()
-       and "nu este data lansării" in drawer_text, "")
+    entry_ready(w)
+    sheet_text = w.locator('[data-slot="page"]').inner_text()
+    badge = w.locator('[data-slot="page"] .d-badges .new')
+    ok("the page row is \"Prima urmă\", gives the age, and says it is not a launch date", "PRIMA URMĂ" in sheet_text.upper() and "VECHIME" not in sheet_text.upper()
+       and "nu este data lansării" in sheet_text and "acum 30 de zile" in sheet_text, "")
     ok("detail badge says apărut recent with the age", badge.count() == 1 and badge.inner_text().startswith("apărut recent · acum 30 de zile"), badge.inner_text() if badge.count() else "none")
     mw = browser.new_page(viewport={"width": 390, "height": 844}, is_mobile=True, has_touch=True)
     mw.on("pageerror", lambda e: errors.append(str(e)))
@@ -710,6 +714,144 @@ with sync_playwright() as pw:
     mw.close()
     w.close()
     nojs.close()
+
+    # 19. The entry as a full page: no drawer, the left list of the section, keys, Esc and Back, the filters that ride along, a phone.
+    fin = "subiect:finante-publice"
+    e = browser.new_page(viewport={"width": 1440, "height": 900})
+    e.on("pageerror", lambda x: errors.append(str(x)))
+    e.on("console", lambda m: m.type == "error" and errors.append(m.text))
+    e.goto(BASE + f"?k=proiect&subj={urllib.parse.quote(fin)}&o=az")
+    e.wait_for_selector('[data-slot="results"] .row')
+    want_rows = [i for i in projects if fin in subj_set(i)]
+    e.evaluate("window.scrollTo(0, 700)")
+    list_order = e.locator('[data-slot="results"] .row').evaluate_all("els => els.map(x => x.dataset.open)")
+    row = e.locator('[data-slot="results"] .row').nth(min(8, len(want_rows) - 1))
+    slug = row.get_attribute("data-open")
+    row.scroll_into_view_if_needed()
+    before = e.evaluate("scrollY")
+    row.locator("a.stretch").click()
+    entry_ready(e)
+    ok("a click on a row opens the full page at the entry's address", e.url.split("?")[0].endswith(f"/proiect/{slug}/") and "subj=" in e.url and "k=" not in e.url, e.url)
+    ok("no drawer is left in the page", e.locator('[data-slot="drawer"], .drawer').count() == 0 and e.locator('[data-slot="list"]').is_hidden())
+    ok("the focus is on the title, at the top of the page", e.evaluate("document.activeElement?.id") == "d-title" and e.evaluate("scrollY") == 0)
+    toc = e.locator(".p-toc .toc-it")
+    ok("the left list marks the entry", e.locator('.p-toc .toc-it[aria-current="page"]').get_attribute("data-open") == slug and e.locator('.p-toc [aria-current]').count() == 1)
+    ok("a filter in the query narrows the left list", toc.count() == len(want_rows), f"{toc.count()} vs {len(want_rows)}")
+    ok("the left list shows the same entries as the list, in the same order", toc.evaluate_all("els => els.map(x => x.dataset.open)") == list_order)
+    ok("the tab of the entry is current", e.locator('.tab[aria-current="page"]').inner_text().startswith("Proiecte"))
+    ok("the left list has only the link back, no section name", e.locator(".toc-top").inner_text().replace("\n", " ").strip().startswith("← filtre"))
+    order = toc.evaluate_all("els => els.map(x => x.dataset.open)")
+    at = order.index(slug)
+    e.keyboard.press("j")
+    e.wait_for_function("s => location.pathname.includes(s)", arg=order[at + 1])
+    ok("j opens the next entry of the left list", e.locator('.p-toc [aria-current]').get_attribute("data-open") == order[at + 1] and "subj=" in e.url, e.url)
+    e.keyboard.press("ArrowRight")
+    e.wait_for_function("s => location.pathname.includes(s)", arg=order[at + 2])
+    e.keyboard.press("k")
+    e.wait_for_function("s => location.pathname.includes(s)", arg=order[at + 1])
+    e.keyboard.press("ArrowLeft")
+    e.wait_for_function("s => location.pathname.includes(s)", arg=order[at])
+    ok("k and the arrow keys step back through the left list", e.locator("#d-title").inner_text() == next(i["name"] for i in DB["items"] if i["slug"] == slug))
+    nxt = e.locator(".p-nav .p-next")
+    ok("the link to the next entry follows the left list", nxt.get_attribute("data-open") == order[at + 1])
+    e.keyboard.press("Escape")
+    e.wait_for_selector('[data-slot="entry"][hidden]', state="attached")
+    e.wait_for_timeout(100)
+    ok("Esc returns to the list with its filters", "subj=" in e.url and "/proiect/" not in e.url.split("?")[0] and count_text(e) == len(want_rows), e.url)
+    ok("Esc puts the scroll back", abs(e.evaluate("scrollY") - before) <= 2, f"{e.evaluate('scrollY')} vs {before}")
+    ok("Esc puts the focus on the row of the entry", e.evaluate(f"document.activeElement?.closest('[data-open]')?.dataset.open") == slug)
+    e.go_back()
+    entry_ready(e)
+    ok("Back returns from the list to the entry", e.url.split("?")[0].endswith(f"/proiect/{slug}/"))
+    e.go_back()
+    e.wait_for_selector('[data-slot="entry"][hidden]', state="attached")
+    e.wait_for_timeout(100)
+    ok("Back leaves the entry for the list, with the scroll and the focus", abs(e.evaluate("scrollY") - before) <= 2
+       and e.evaluate(f"document.activeElement?.closest('[data-open]')?.dataset.open") == slug)
+    e.go_forward()
+    entry_ready(e)
+    e.locator(".toc-top a[data-nav]").click()
+    e.wait_for_selector('[data-slot="entry"][hidden]', state="attached")
+    ok("the link \"← filtre\" returns to the list, with the filters", "subj=" in e.url and count_text(e) == len(want_rows))
+    row = e.locator(f'[data-slot="results"] [data-open="{slug}"] a.stretch')
+    row.click()
+    entry_ready(e)
+    e.fill('[data-slot="q"]', "licitatii")
+    e.wait_for_selector('[data-slot="entry"][hidden]', state="attached")
+    ok("a query typed in the entry view returns to the list with the query", "q=licitatii" in e.url and e.locator('[data-slot="list"]').is_visible())
+    e.goto(BASE + f"proiect/{slug}/?subj={urllib.parse.quote(fin)}")
+    entry_ready(e)
+    sheet_box, main_box, facts_box = (e.locator(s).bounding_box() for s in (".p-sheet", ".p-main", ".p-facts"))
+    toc_box = e.locator(".p-toc").bounding_box()
+    ok("at 1440 px: the left list, the sheet and the facts box stand side by side", abs(toc_box["x"]) < 2 and sheet_box["x"] >= 255 and facts_box["x"] > main_box["x"] + main_box["width"] - 2
+       and abs(e.evaluate("document.documentElement.scrollWidth") - 1440) <= 1, f"{toc_box['x']:.0f} {sheet_box['x']:.0f} {facts_box['x']:.0f}")
+    e.set_viewport_size({"width": 1024, "height": 800})
+    e.wait_for_timeout(200)
+    main_box, facts_box = e.locator(".p-main").bounding_box(), e.locator(".p-facts").bounding_box()
+    ok("at 1024 px the facts box goes above the main column and the list stays", facts_box["y"] < main_box["y"] and e.locator(".p-toc").is_visible())
+    e.set_viewport_size({"width": 1440, "height": 900})
+    first, last = order[0], order[-1]
+    ok("the page is the whole section when the filters are removed", e.locator(".toc-filter a").count() == 1)
+    e.locator(".toc-filter a").click()
+    e.wait_for_function("() => document.querySelectorAll('.p-toc .toc-it').length > 0 && !location.search.includes('subj')")
+    ok("\"toată secțiunea\" lists the whole section", e.locator(".p-toc .toc-it").count() >= len(projects), f"{e.locator('.p-toc .toc-it').count()} vs {len(projects)}")
+    # The old ?p= link opens the entry, and an entry opened by its address alone opens on its own tab.
+    e.goto(BASE + f"?p={slug}")
+    entry_ready(e)
+    ok("?p=<slug> opens the entry page", e.url.split("?")[0].endswith(f"/proiect/{slug}/") and e.locator('.p-toc [aria-current]').count() == 1)
+    # Every label of the classification opens the list filtered by it.
+    chip = e.locator(".p-class a.p-chip").first
+    label_ = chip.inner_text()
+    chip.click()
+    e.wait_for_selector('[data-slot="entry"][hidden]', state="attached")
+    ok("a label of the classification opens the list filtered by it", "subj=" in e.url and any(label_ in t for t in e.locator('[data-slot="toolbar"] .pill').all_inner_texts()), e.url)
+    e.close()
+    for scheme in ("light", "dark"):
+        t = browser.new_page(viewport={"width": 1440, "height": 900}, color_scheme=scheme)
+        t.on("pageerror", lambda x: errors.append(str(x)))
+        t.on("console", lambda m: m.type == "error" and errors.append(m.text))
+        t.goto(BASE + f"proiect/{slug}/")
+        entry_ready(t)
+        bg = t.evaluate("getComputedStyle(document.querySelector('.p-sheet')).backgroundColor")
+        back = t.evaluate("getComputedStyle(document.querySelector('.p-layout')).backgroundColor")
+        ok(f"the sheet stands out from the page behind it ({scheme})", bg != back, f"{bg} vs {back}")
+        t.close()
+    ph = browser.new_page(viewport={"width": 390, "height": 844}, is_mobile=True, has_touch=True)
+    ph.on("pageerror", lambda x: errors.append(str(x)))
+    ph.on("console", lambda m: m.type == "error" and errors.append(m.text))
+    ph.goto(BASE + f"proiect/{slug}/")
+    entry_ready(ph)
+    ok("at 390 px the left list is hidden and there is no horizontal scroll", ph.locator(".p-toc").is_hidden() and ph.evaluate("document.documentElement.scrollWidth") <= 391,
+       str(ph.evaluate("document.documentElement.scrollWidth")))
+    ph.click(".toc-btn")
+    ok("the button opens the left list, full screen", ph.locator(".p-toc.open").is_visible() and ph.locator(".p-toc .toc-it").count() > 10)
+    ph.keyboard.press("Escape")
+    ok("Esc closes the left list", ph.locator(".p-toc.open").count() == 0)
+    ph.click(".toc-btn")
+    ph.click(".toc-close")
+    ok("the button \"Închide\" closes the left list", ph.locator(".p-toc.open").count() == 0)
+    here = ph.locator("#d-title").inner_text()
+    ph.evaluate("""() => { const el = document.querySelector('.p-sheet'); const mk = (x) => new Touch({ identifier: 1, target: el, clientX: x, clientY: 400 });
+      el.dispatchEvent(new TouchEvent('touchstart', { touches: [mk(300)], changedTouches: [mk(300)], bubbles: true }));
+      el.dispatchEvent(new TouchEvent('touchend', { touches: [], changedTouches: [mk(120)], bubbles: true })); }""")
+    ph.wait_for_function("t => document.querySelector('#d-title').innerText !== t", arg=here)
+    ok("a swipe on the sheet steps to the next entry", ph.locator("#d-title").inner_text() != here)
+    ph.click(".toc-btn")
+    ph.locator(".p-toc .toc-it").nth(3).click()
+    ph.wait_for_selector('.p-toc:not(.open)', state="attached")
+    ok("a row of the opened left list opens that entry and closes the list", ph.locator(".p-toc.open").count() == 0 and ph.evaluate("document.documentElement.scrollWidth") <= 391)
+    ph.close()
+    e2 = browser.new_page(viewport={"width": 1440, "height": 900})
+    e2.on("pageerror", lambda x: errors.append(str(x)))
+    org = next(i for i in DB["items"] if i["kind"] == "organizatie" and any(j["kind"] != "organizatie" and any(a["org"] == i["slug"] and a["role"] != "parte_din" for a in j["attributions"]) for j in DB["items"]))
+    e2.goto(BASE + f"organizatie/{org['slug']}/")
+    entry_ready(e2)
+    ok("an organisation's page lists its projects and resources, with no cap", e2.locator('.p-sec:has(h2:text-matches("Proiecte și resurse")) .p-card').count()
+       == len([j for j in DB["items"] if j["kind"] != "organizatie" and any(a["org"] == org["slug"] and a["role"] != "parte_din" for a in j["attributions"]) and not any(a2["org"] == org["slug"] and a2["role"] == "parte_din" for a2 in j["attributions"])]))
+    e2.locator(".p-card").first.click()
+    e2.wait_for_function("s => !location.pathname.includes(s)", arg=org["slug"])
+    ok("a card opens the other entry, and its tab becomes current", e2.locator('.tab[aria-current="page"]').count() == 1 and "k=" not in e2.url)
+    e2.close()
 
     ok("no page errors", not errors, "; ".join(errors[:3]))
     browser.close()

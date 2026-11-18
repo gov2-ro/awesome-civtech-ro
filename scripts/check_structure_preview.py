@@ -89,7 +89,7 @@ with sync_playwright() as pw:
     ok('lookup is discoverable from profile',profile.get_by_role('link',name='Caută o entitate între proiecte →').get_attribute('href').endswith('/entitati/'))
     page.set_viewport_size({'width':390,'height':844})
     page.goto(BASE+'proiect/romania-transparenta/');page.wait_for_selector('[data-structure-profile]')
-    ok('mobile drawer has no horizontal overflow',page.locator('[data-slot="drawer"]').evaluate('(e)=>e.scrollWidth<=e.clientWidth+1'))
+    ok('mobile entry page has no horizontal overflow',page.evaluate('()=>document.documentElement.scrollWidth<=innerWidth+1'))
     profile=page.locator('[data-structure-profile]');profile.scroll_into_view_if_needed()
     page.screenshot(path='/tmp/civtech-structure-profile-mobile.png')
     page.goto(BASE+'entitati/?namespace=ro:cui&value=1973096');page.wait_for_selector('.entity-card')

@@ -168,7 +168,7 @@ with sync_playwright() as pw:
         mobile.wait_for_selector('.inv-field')
         mobile.evaluate('document.fonts.ready')
         bounds = mobile.locator('.d-inventory').bounding_box()
-        ok(f'inventory fits the {width}px detail panel', bounds['x'] >= 0 and bounds['x'] + bounds['width'] <= width + 1 and mobile.locator('.d-scroll').evaluate('(e)=>e.scrollWidth<=e.clientWidth'))
+        ok(f'inventory fits the {width}px entry page', bounds['x'] >= 0 and bounds['x'] + bounds['width'] <= width + 1 and mobile.evaluate('()=>document.documentElement.scrollWidth<=innerWidth+1'))
         overflow = mobile.evaluate('document.documentElement.scrollWidth')
         ok(f'page has no horizontal overflow at {width}px', overflow <= width)
         if overflow > width:  # name the widest elements, so that a failure on another platform says where to look
