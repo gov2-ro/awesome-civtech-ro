@@ -1,5 +1,18 @@
 # Activity
 
+## 2026-11-18 — Review of the full entry page (v0.79.0)
+
+**Done**
+- Coordinator review against `docs/briefs/entry-page.md`: the layout, the keys, the static page without JavaScript and the JSON-LD types by section match the brief. Rerun on the coordinator's preview: 185/185, 63/63, 156/156, 51/51 browser checks; unit tests OK (8 skipped).
+- Three JSON-LD fixes in `scripts/entry_page.py` (v0.79.1): `sameAs` only for network profiles (SICAP.ai had its API and MCP addresses there); no `@type` on an attribution name with no catalogue entry (130 of 153 attributions; they were all typed `Organization`, persons included); `codeRepository` moved into `isBasedOn` (`SoftwareSourceCode`).
+
+**Decided**
+- An untyped `creator`/`author` node over a wrong `Organization` type. Cost of the alternative: a person such as Radu Ciocan published as an organisation in every entry page.
+
+**Open**
+- `CLAUDE.md` still describes the drawer: the executor's edit was refused by the permission settings; the owner decides (lines in `docs/BACKLOG.md`).
+- No external schema validator was run.
+
 ## 2026-11-18 — The entry as a full page, static HTML and JSON-LD (v0.79.0)
 
 **Done**

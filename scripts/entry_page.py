@@ -420,13 +420,15 @@ def json_ld(i: dict, ctx: Context) -> str:
     image = (SITE_URL + i["img"]["src"]) if i["img"] else (SITE_URL + i["icon"]) if i["icon"] else ""
     if image:
         entry["image"] = image
-    same = list(dict.fromkeys(l["url"] for l in i["links"] if l["url"] != i["url"]))
+    # sameAs names the same thing elsewhere: profiles on networks only, not an API, a donation page or a document.
+    same = list(dict.fromkeys(l["url"] for l in i["links"] if l["role"] in ctx.network and l["url"] != i["url"]))
     if same:
         entry["sameAs"] = same
     people = []
     for a in (a for a in i["attributions"] if a["role"] != "parte_din"):
         o = ctx.by.get(a["org"]) if a["org"] else None
-        people.append({"@type": "Organization", "@id": SITE_URL + href(o), "name": o["name"]} if o else {"@type": "Organization", "name": a["name"]})
+        # A name with no entry in the catalogue may be a person or an organisation; the data does not say, so it gets no type.
+        people.append({"@type": "Organization", "@id": SITE_URL + href(o), "name": o["name"]} if o else {"name": a["name"]})
     if people and i["kind"] != "organizatie":
         entry["creator" if kind == "WebApplication" else "author"] = people
     parent = next((ctx.by[a["org"]] for a in i["attributions"] if a["role"] == "parte_din" and a["org"] in ctx.by), None)
@@ -443,7 +445,8 @@ def json_ld(i: dict, ctx: Context) -> str:
     if i.get("repo") and i.get("repo").get("license"):
         entry["license"] = i.get("repo")["license"]
     if kind == "WebApplication" and i["code"]:
-        entry["codeRepository"] = i["code"]
+        # codeRepository belongs to SoftwareSourceCode, not to WebApplication.
+        entry["isBasedOn"] = {"@type": "SoftwareSourceCode", "codeRepository": i["code"]}
     graph = [
         {"@type": "WebSite", "@id": site_id, "url": SITE_URL, "name": "CivTech România", "inLanguage": "ro",
          "publisher": {"@type": "Organization", "name": "gov2.ro", "url": "https://gov2.ro"}},
