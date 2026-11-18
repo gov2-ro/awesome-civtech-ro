@@ -1,5 +1,15 @@
 # Activity
 
+## 2026-11-18 — Header back on the page's background; left-list headings
+
+**Done**
+- `style.css`: the header no longer redefines the colour tokens (`--h-*`, `--p-*` and the `.hdr`/`.hdr .ac` overrides are gone). `--logo` / `--logo-neg` choose the gov2.ro logo per theme, in the header and in the footer. The 3 px rule `#0b3d91` stays.
+- `.toc-h` sticks at `top: 6px` (was 14 px): with `.toc-top` about 27 px high, an 8 px gap showed the rows scrolling under it.
+- Browser checks 185/185, 63/63, 156/156, 51/51.
+
+**Decided**
+- The owner tried the dark header (v0.78.0) and chose the page's own background. The gov2.ro logo and the blue rule stay.
+
 ## 2026-11-18 — Review of the full entry page (v0.79.0)
 
 **Done**

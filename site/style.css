@@ -17,10 +17,8 @@
   --tri-r: #ce1126;
   --shadow: 0 8px 28px rgb(0 0 0 / .12);
   --shadow-lg: 0 24px 64px rgb(0 0 0 / .18);
-  /* The header takes the other theme's colours (dark on the light theme), after the gov2.ro design system. */
-  --h-bg: #0b0c0c; --h-surface: #1d1e19; --h-surface-2: #3b3c35; --h-ink: #ffffff; --h-ink-2: #d6d6d0; --h-muted: #a3a49a;
-  --h-line: #2e2f2a; --h-line-strong: #57584f; --h-accent: #8cc6ff; --h-accent-ink: #8cc6ff;
-  --h-tri-b: #66d9ef; --h-tri-y: #e6db74; --h-tri-r: #f92672; --h-scheme: dark; --h-logo: none; --h-logo-neg: block;
+  /* Which gov2.ro logo shows: the normal one on a light page, the negative one on a dark page. */
+  --logo: block; --logo-neg: none;
 
   --font-head: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
   --font-body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
@@ -51,9 +49,7 @@
     --tri-r: #f92672;
     --shadow: 0 8px 28px rgb(0 0 0 / .5);
     --shadow-lg: 0 24px 64px rgb(0 0 0 / .6);
-    --h-bg: #f3f2f1; --h-surface: #ececea; --h-surface-2: #e2e1df; --h-ink: #0b0c0c; --h-ink-2: #3a3a40; --h-muted: #5f6068;
-    --h-line: #dcdbd9; --h-line-strong: #cfcdca; --h-accent: #1d4ed8; --h-accent-ink: #0b3d91;
-    --h-tri-b: #0b3aa8; --h-tri-y: #c99700; --h-tri-r: #ce1126; --h-scheme: light; --h-logo: block; --h-logo-neg: none;
+    --logo: none; --logo-neg: block;
     color-scheme: dark;
   }
 }
@@ -76,14 +72,9 @@
   --tri-r: #f92672;
   --shadow: 0 8px 28px rgb(0 0 0 / .5);
   --shadow-lg: 0 24px 64px rgb(0 0 0 / .6);
-  --h-bg: #f3f2f1; --h-surface: #ececea; --h-surface-2: #e2e1df; --h-ink: #0b0c0c; --h-ink-2: #3a3a40; --h-muted: #5f6068;
-  --h-line: #dcdbd9; --h-line-strong: #cfcdca; --h-accent: #1d4ed8; --h-accent-ink: #0b3d91;
-  --h-tri-b: #0b3aa8; --h-tri-y: #c99700; --h-tri-r: #ce1126; --h-scheme: light; --h-logo: block; --h-logo-neg: none;
+  --logo: none; --logo-neg: block;
   color-scheme: dark;
 }
-/* The page's own colours, kept for what opens from the header (the suggestions) while the header redefines the tokens. */
-:root { --p-bg: var(--bg); --p-surface: var(--surface); --p-surface-2: var(--surface-2); --p-ink: var(--ink); --p-ink-2: var(--ink-2); --p-muted: var(--muted);
-  --p-line: var(--line); --p-line-strong: var(--line-strong); --p-accent: var(--accent); --p-accent-ink: var(--accent-ink); }
 :root { --fs: 1; }
 :root[data-fs="s"] { --fs: .9; }
 :root[data-fs="l"] { --fs: 1.15; }
@@ -135,14 +126,9 @@ svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width:
 /* ---------- header ----------
    One grid, rearranged per breakpoint. Below 1024px the header sticks with a negative
    top (set from JS) so only the search + chip rows stay on screen. */
-.hdr { position: sticky; top: 0; z-index: 30; background: color-mix(in srgb, var(--bg) 96%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 3px solid #0b3d91; color: var(--ink); }
-.hdr { --bg: var(--h-bg); --surface: var(--h-surface); --surface-2: var(--h-surface-2); --ink: var(--h-ink); --ink-2: var(--h-ink-2); --muted: var(--h-muted);
-  --line: var(--h-line); --line-strong: var(--h-line-strong); --accent: var(--h-accent); --accent-ink: var(--h-accent-ink);
-  --tri-b: var(--h-tri-b); --tri-y: var(--h-tri-y); --tri-r: var(--h-tri-r); color-scheme: var(--h-scheme); }
-.hdr .ac { --bg: var(--p-bg); --surface: var(--p-surface); --surface-2: var(--p-surface-2); --ink: var(--p-ink); --ink-2: var(--p-ink-2); --muted: var(--p-muted);
-  --line: var(--p-line); --line-strong: var(--p-line-strong); --accent: var(--p-accent); --accent-ink: var(--p-accent-ink); color: var(--ink); }
-.g2-mark { height: 32px; width: auto; flex: none; display: var(--h-logo); }
-.g2-mark.neg { display: var(--h-logo-neg); }
+.hdr { position: sticky; top: 0; z-index: 30; background: color-mix(in srgb, var(--bg) 94%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 3px solid #0b3d91; }
+.g2-mark { height: 32px; width: auto; flex: none; display: var(--logo); }
+.g2-mark.neg { display: var(--logo-neg); }
 .hdr-in {
   display: grid; align-items: center; column-gap: 8px;
   grid-template-columns: minmax(0, 1fr) auto;
@@ -195,11 +181,11 @@ svg.gh { width: 20px; height: 20px; fill: currentColor; stroke: none; }
 .gh-link svg.gh, .gh-link svg.rss { width: 16px; height: 16px; }
 .gh-link svg.rss { fill: currentColor; }
 .code-link svg.forge { width: 16px; height: 16px; fill: currentColor; stroke: none; vertical-align: -3px; margin-right: 6px; }
-/* gov2.ro in the footer: the page's own theme, so the logo is the one the header does not show. */
+/* gov2.ro in the footer. */
 .g2-by { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; margin: 8px 0 0; }
 .g2-by a { display: inline-flex; align-items: center; gap: 10px; color: inherit; }
-.g2-by img { height: 28px; width: auto; display: var(--h-logo-neg); }
-.g2-by img.neg { display: var(--h-logo); }
+.g2-by img { height: 28px; width: auto; display: var(--logo); }
+.g2-by img.neg { display: var(--logo-neg); }
 .tabs { grid-area: tabs; display: flex; justify-content: center; gap: 2px; overflow-x: auto; scrollbar-width: none; margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); }
 .tabs::-webkit-scrollbar { display: none; }
 .tab {
@@ -657,7 +643,7 @@ svg.gh { width: 20px; height: 20px; fill: currentColor; stroke: none; }
 @media (max-width: 899px) { .toc-filter { width: auto; } }
 .toc-close { display: none; background: none; border: 1px solid var(--line); border-radius: var(--radius); padding: 4px 8px; cursor: pointer; }
 .p-toc.open .toc-close { display: inline-block; }
-.toc-h { position: sticky; top: 14px; z-index: 1; background: var(--toc-bg); margin: 14px 0 2px; padding: 4px 8px; font: 500 calc(11px * var(--fs))/1.4 var(--font-mono); letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+.toc-h { position: sticky; top: 6px; z-index: 1; background: var(--toc-bg); margin: 14px 0 2px; padding: 4px 8px; font: 500 calc(11px * var(--fs))/1.4 var(--font-mono); letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
 .toc-it { display: flex; align-items: center; gap: 8px; padding: 4px 8px; border-radius: 6px; font-size: calc(14px * var(--fs)); line-height: 1.3; color: var(--ink-2); text-decoration: none; }
 .toc-it:hover { background: var(--surface-2); color: var(--ink); }
 .toc-it[aria-current] { background: var(--bg); color: var(--ink); font-weight: 600; box-shadow: inset 2px 0 0 var(--ink); }
