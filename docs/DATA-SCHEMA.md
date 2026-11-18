@@ -290,7 +290,7 @@ for the plan to order the questions like the CSV. The planned v2 Form does not u
 
 ## site.json
 
-Where a visitor can report a problem with an entry: the drawer's "Semnalează o problemă". `build.py`
+Where a visitor can report a problem with an entry: the entry page's "Semnalează o problemă". `build.py`
 copies the file into `data.json` as `site`. An empty value hides that option.
 
 | Key | Meaning |

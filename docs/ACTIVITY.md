@@ -1,5 +1,26 @@
 # Activity
 
+## 2026-11-18 — The entry as a full page, static HTML and JSON-LD (v0.79.0)
+
+**Done**
+- `app.js`: the drawer is gone. `renderView()` shows the list or the entry (`state.p`); `renderEntry()` draws the left list (`entryList`, `tocHTML`) and the sheet (`entryHTML`, `factsHTML`, `classHTML`). `openEntry`, `closeEntry`, `step` (follows the left list); the swipe moved to the sheet. The scroll and the focus return to the list row. Old `?p=<slug>` links still open the entry. The entry address has no `k`: the path names the tab.
+- `style.css`: the layout of the approved mock-up; drawer, organisation card and `.related` rules removed. `index.html`: entry slots and a `WebSite` JSON-LD.
+- `scripts/entry_page.py` (new) and `build.entry_pages()`: the left list of the section, the top block, the main column and the facts box as static HTML, the header tabs as links, and the JSON-LD graph. `scripts/test_entry_page.py`: 7 tests.
+- Checks: `check_preview.py` 185/185 (the drawer checks became entry-view checks, with new ones), `check_inventory_preview.py` 63/63, `check_data_finder.py` 156/156, `check_structure_preview.py` 51/51.
+- Measured: the static page of `sicap-ai` grew from 10,857 to 48,521 bytes (138 left-list links, 200 links in all). The 190 entry pages average 37,012 bytes; the largest is 56,053.
+
+**Hard**
+- A static page that shows the entry before the script runs would pass a check at once. `entry_ready()` waits for the tabs to be buttons, which only `app.js` draws.
+- `Esc` must leave the entry also when the focus is in the inventory search box. Only the header search box keeps its own `Esc`.
+
+**Decided**
+- Unconfirmed attributions read „Autor” with the note „rol neconfirmat” (the mock-up's word). An accepted role keeps its own heading („Creat de”).
+- `app.js` removes the JSON-LD from the head when it shows another entry than the one the page was written for. Cost of keeping it: structured data that names the wrong entry.
+- The static left list holds every entry of the section, inactive ones last and greyed. The browser's left list follows the filters, as the list does.
+- The entry node of the JSON-LD has no `inLanguage` (the data has no language per entry); the `WebPage` has `"ro"`. Its `@id` is the page address.
+- Assumed: topics count with subjects in `about`; `creator` on a `WebApplication`, `author` elsewhere.
+- Not done: validation in an external schema validator. The swipe was checked with a synthetic touch event, not on a device. `CLAUDE.md` is not updated (outside the executor's folders).
+
 ## 2026-11-18 — Cloudflare Web Analytics
 
 **Done**

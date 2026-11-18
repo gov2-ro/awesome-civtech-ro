@@ -1,5 +1,6 @@
 # Releases
 
+- **v0.79.0** (2026-11-18): the entry is a full page, not a drawer over the list: a left list of the section, the entry on a sheet, keys (`j`/`k`, `Esc`, `o`), swipe on a phone. Each entry page holds the whole view as static HTML, with a JSON-LD graph (`WebPage`, `BreadcrumbList`, the entry by section) and a `WebSite` on the home page (SEO steps 2 and 3).
 - **v0.78.1** (2026-11-18): Cloudflare Web Analytics (no cookies) on every page of civtech.gov2.ro: the home page, the entry pages, the section lists and the data finder. A preview on another host loads nothing.
 - **v0.78.0** (2026-11-18): the header takes the other theme's colours (near-black on the light theme, light grey on the dark theme), after the gov2.ro design system, with the gov2.ro logo and a blue rule. The footer ends with the gov2.ro logo and a link to gov2.ro. „Cod sursă” shows the GitHub or GitLab logo in place of the host name.
 - **v0.77.0** (2026-11-18): `sitemap.xml` (the home page, the four section lists and one URL per entry: 195 URLs) and `robots.txt`, the first SEO step. The `/date/` pages stay out: they carry `noindex`.

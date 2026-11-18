@@ -4,6 +4,9 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
 ## Section „Analize & investigații” — 2026-11-18
 
+- [ ] Validate two entry pages (one project, one organisation) in the Schema.org validator and the Google Rich Results test. Not done in v0.79.0 (no external service used).
+- [ ] `CLAUDE.md` still describes the entry as a drawer in places and lacks `scripts/test_entry_page.py` and `scripts/entry_page.py`. The brief asks for the update, but the executor may not edit files outside `site/`, `scripts/` and `docs/`: the coordinator updates it.
+
 - [x] Add the section code `publicatie` and move 13 entries (brief `docs/briefs/publicatii-section.md`). Tab, archive, stubs at the old `/resursa/` addresses, `llms.txt` and tests done 2026-11-18. Not committed: the owner reviews first.
 - [x] Owner: accept `hack-for-facts` and `marius-comper`. Accepted 2026-11-18.
 - [ ] `form.py`: `KIND_SECTION` and `data/form-v2.json` (`kind_section`) send a proposed `publicatie` to `resursa`. Decide whether it goes to `publicatie`. Change both files together, then run `form.py --write-map`.
@@ -13,8 +16,8 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [x] SEO step 1: `sitemap.xml` (home, 4 archives, one URL per entry; no stubs, no `noindex` pages) and `robots.txt`. Done 2026-11-18.
 - [ ] Owner: register civtech.gov2.ro in Google Search Console and Bing Webmaster Tools, and submit `https://civtech.gov2.ro/sitemap.xml`. Then record what is indexed, as the baseline.
 - [ ] Decide whether `/date/` stays `noindex` (`scripts/templates/inventory*.html`). It is public since 2026-10-26, but its pages ask search engines not to index them, so the sitemap leaves them out.
-- [ ] SEO steps 2–3, with the full-page entry below: JSON-LD per entry (type by section) and breadcrumbs; the whole entry in the static HTML.
-- [ ] Entry as a full page, not a drawer over the list (owner, 2026-11-18). Each entry already has its own address, and the drawer holds a lot: description, links, attributions, data sources, inventory, related entries. Revisit the layout of the entry at the same time. Keep the keyboard navigation (`j`/`k`, `Esc`) and the old `?p=<slug>` links. Related: the SEO work (sitemap, JSON-LD, the full entry in static HTML), not yet briefed.
+- [x] SEO steps 2–3: JSON-LD per entry (type by section) and breadcrumbs; the whole entry in the static HTML (v0.79.0, brief `docs/briefs/entry-page.md`).
+- [x] Entry as a full page, not a drawer over the list (v0.79.0) (owner, 2026-11-18). Each entry already has its own address, and the drawer holds a lot: description, links, attributions, data sources, inventory, related entries. Revisit the layout of the entry at the same time. Keep the keyboard navigation (`j`/`k`, `Esc`) and the old `?p=<slug>` links. Related: the SEO work (sitemap, JSON-LD, the full entry in static HTML), not yet briefed.
 - [ ] Header at 1024–1279 px: the four tabs leave the search box about 40 px wide and cut the title. Measured 2026-11-18 at 1024 px; the fourth tab caused it. Options: shorter tab labels at that width, or the search as an icon that opens.
 
 ## Local reporting platforms (sesizări) — 2026-11-16

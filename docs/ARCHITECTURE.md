@@ -87,7 +87,7 @@ A common variable does not establish that two datasets can be joined.
 It also writes local JSON payloads under `/inventar/` and pages for variable groups.
 The finder excludes inactive entries, organisations and entries classified without data.
 Missing inventories do not imply that a project has no data.
-The catalogue drawer loads field details only when a person opens them.
+The entry page loads field details only when a person opens them.
 
 ### Site structure and entity identity
 
