@@ -28,7 +28,7 @@
 <script>try{var r=document.documentElement,f=JSON.parse(localStorage.getItem('ct.fs')),t=JSON.parse(localStorage.getItem('ct.theme'));if(/^(s|l|xl)$/.test(f))r.dataset.fs=f;if(/^(light|dark)$/.test(t))r.dataset.theme=t}catch(e){}</script>
 <link rel="icon" type="image/png" href="img/logo.png">
 <link rel="apple-touch-icon" href="img/logo.png">
-<link rel="stylesheet" href="style.css?v=cd6365395a">
+<link rel="stylesheet" href="style.css?v=1c40b7babe">
 <link rel="stylesheet" href="structure.css?v=f39f72cf23">
 </head>
 <body>
@@ -37,6 +37,7 @@
 <header class="hdr" data-slot="hdr">
   <div class="wrap hdr-in">
     <a class="brand" href="./">
+      <img class="g2-mark" src="img/gov2.png" alt="" width="32" height="32"><img class="g2-mark neg" src="img/gov2-negative.png" alt="" width="53" height="32">
       <span class="brand-name" data-slot="brand" data-fx="rise" aria-hidden="true"><span>CivTech România</span></span>
       <span class="sr">CivTech România — prima pagină</span>
     </a>
@@ -107,12 +108,13 @@
   </div>
   <p class="mono small muted keys">Taste: <kbd class="kbd">/</kbd> caută · <kbd class="kbd">j</kbd> <kbd class="kbd">k</kbd> sau <kbd class="kbd">←</kbd> <kbd class="kbd">→</kbd> trec la proiectul următor / anterior · <kbd class="kbd">Enter</kbd> deschide fișa · <kbd class="kbd">o</kbd> deschide site-ul proiectului · <kbd class="kbd">Esc</kbd> închide</p>
   <p class="mono small muted" data-slot="checked"></p>
+  <p class="g2-by"><a href="https://gov2.ro" target="_blank" rel="noopener"><img src="img/gov2.png" alt="" width="28" height="28"><img class="neg" src="img/gov2-negative.png" alt="" width="46" height="28">Un proiect gov2.ro</a></p>
 </footer>
 
 <div class="scrim" data-slot="scrim" data-act="close" hidden></div>
 <div class="drawer" data-slot="drawer" role="dialog" aria-modal="true" aria-labelledby="d-title" hidden></div>
 <div class="sheet" data-slot="sheet" role="dialog" aria-modal="true" aria-label="Filtre" hidden></div>
 
-<script src="app.js?v=f148dc7e84"></script>
+<script src="app.js?v=22f56d27e8"></script>
 </body>
 </html>

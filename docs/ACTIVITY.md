@@ -1,5 +1,17 @@
 # Activity
 
+## 2026-11-18 — Inverse header, gov2.ro logo, forge logo in „Cod sursă”
+
+**Done**
+- `style.css`: the header redefines the colour tokens with the other theme's values (`--h-*` on `:root`, per theme). In the light theme it is `#0b0c0c` (the header colour of the gov2.ro design system); in the dark theme it is `#f3f2f1`. A 3 px rule `#0b3d91` under it. The tabs, the search, the chips and the filter button follow the tokens. The search suggestions keep the page's colours (`--p-*`, resolved on `:root`).
+- `index.html`: the gov2.ro logo before the title (the negative one on the dark header); a last footer line „Un proiect gov2.ro” with the logo that contrasts with the page. Images: `site/img/gov2.png`, `site/img/gov2-negative.png` (from `institutii-publice/explorer/assets/img/`).
+- `app.js`: `codeLink()` shows the GitHub or GitLab logo and the path without the host.
+- 153/153 browser checks (`check_preview.py`), 1,339 unit tests OK.
+
+**Decided**
+- The header takes the whole other palette, not only a dark background: one switch of tokens covers every control in it. Cost of the alternative (colours per control): about 15 rules, and each new control in the header needs its own.
+- The design system's 8 px blue band became 3 px: the owner asked to align „a bit”.
+
 ## 2026-11-18 — sitemap.xml and robots.txt
 
 **Done**

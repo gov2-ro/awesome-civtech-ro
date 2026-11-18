@@ -669,6 +669,13 @@ function sameAuthor(it) {
   return DB.items.filter(i => i !== it && i.kind !== 'organizatie' && i._akeys.some(k => keys.includes(k)))
     .sort((a, b) => rank(a) - rank(b) || byName(a, b));
 }
+// A repository link: the forge's logo in place of its host name (github.com/gov2-ro/x → [logo] gov2-ro/x).
+function codeLink(url) {
+  const m = url.match(/^https?:\/\/(?:www\.)?(github|gitlab)\.com\/(.+?)\/?$/i);
+  const text = m ? m[2] : url.replace(/^https?:\/\/(www\.)?/, '');
+  const logo = m ? `<svg class="forge" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="${NETWORK[m[1].toLowerCase()]}"/></svg>` : '';
+  return `<a class="code-link" href="${esc(url)}" target="_blank" rel="noopener"${m ? ` title="${m[1] === 'gitlab' ? 'GitLab' : 'GitHub'}"` : ''}>${logo}${esc(text)}</a>`;
+}
 // The organisation behind a project: name, one line about it, and a way into its page.
 function orgCard(o) {
   return `<a class="org-card" href="${hrefFor(o.slug)}" data-open="${esc(o.slug)}">
@@ -970,7 +977,7 @@ function renderDetail() {
     it.contact && ['Contact', esc(it.contact)],
     it.url && ['Site', `${alive ? `<a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.domain)}</a>` : `<span class="muted">${esc(it.domain)}</span>`}${it.movedFrom ? ` <span class="muted small">(mutat de pe ${esc(it.movedFrom)})</span>` : ''}`],
     ...linkRows(it),
-    it.code && ['Cod sursă', `<a href="${esc(it.code)}" target="_blank" rel="noopener">${esc(it.code.replace(/^https?:\/\/(www\.)?/, ''))}</a>`],
+    it.code && ['Cod sursă', codeLink(it.code)],
     repoRow(it),
     it.repo?.license && ['Licență', esc(it.repo.license)],
     it.wayback && ['Arhivă', `<a href="${esc(it.wayback)}" target="_blank" rel="noopener">Wayback Machine</a>`],

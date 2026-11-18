@@ -1,5 +1,6 @@
 # Releases
 
+- **v0.78.0** (2026-11-18): the header takes the other theme's colours (near-black on the light theme, light grey on the dark theme), after the gov2.ro design system, with the gov2.ro logo and a blue rule. The footer ends with the gov2.ro logo and a link to gov2.ro. „Cod sursă” shows the GitHub or GitLab logo in place of the host name.
 - **v0.77.0** (2026-11-18): `sitemap.xml` (the home page, the four section lists and one URL per entry: 195 URLs) and `robots.txt`, the first SEO step. The `/date/` pages stay out: they carry `noindex`.
 - **v0.76.1** (2026-11-18): the data finder `/date/` names the publications it leaves out (2 without data), and its two browser checks cover the section `publicatie`. The `validate` run of v0.76.0 failed on this.
 - **v0.76.0** (2026-11-18): the search box suggests filters only and stays closed when none fits; a line above the results counts the matches in the other tabs and opens them. The header tabs sit in the middle of the space between the title and the search. The feed now carries Hack for Facts and Marius Comper.
