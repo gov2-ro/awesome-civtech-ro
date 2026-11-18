@@ -30,6 +30,7 @@ from datetime import date, datetime, timezone
 
 from pathlib import Path
 
+import entry_page
 from common import (BOILERPLATE, DATA, DATA_GROUPS, NETWORK_ROLES, PUBLIC_ROOT, ROOT, SITE, coverage_line, data_schema, domain_of, kept_by_slug, label_coverage,
                     link_host, load_catalogue, load_entries, load_mentions, load_profile, load_vocabulary, observation_paths,
                     parse_link, public_catalogue, read_csv, split_list, split_tip, status_of, years_since)
@@ -329,7 +330,7 @@ def esc(v) -> str:
 
 
 def swap(doc: str, pattern: str, repl: str) -> str:
-    doc, n = re.subn(pattern, lambda _: repl, doc, count=1)
+    doc, n = re.subn(pattern, lambda _: repl, doc, count=1, flags=re.S)
     if not n:
         raise SystemExit(f"site/index.html has no {pattern}: the page writers in build.py need it")
     return doc
@@ -350,25 +351,38 @@ def page_head(template: str, *, title: str, text: str, url: str, img: dict, alt:
     return doc
 
 
-def entry_pages(items: list[dict], site: Path = SITE) -> int:
-    """One page per entry at site/<kind>/<slug>/index.html: index.html with that entry's own <head> (see page_head)
-    and the entry's text in <noscript>. app.js reads the slug from the path and opens the entry."""
+def entry_pages(items: list[dict], site: Path = SITE, head: dict | None = None) -> int:
+    """One page per entry at site/<kind>/<slug>/index.html: index.html with that entry's own <head> (see page_head), its
+    structured data (JSON-LD), and the entry view as static HTML: the left list of the section, the top block, the main
+    column and the facts box (scripts/entry_page.py). app.js reads the slug from the path and renders the same view over it.
+    A v1 `head` has no vocabulary: those pages keep a short summary in <noscript>."""
     template = (site / "index.html").read_text(encoding="utf-8")
     for kind in {i["kind"] for i in items} | set(PAGE_KINDS):
         shutil.rmtree(site / kind, ignore_errors=True)
+    ctx = entry_page.Context(items, head, (site / "app.js").read_text(encoding="utf-8")) if head and "vocabulary" in head else None
     for i in items:
         slug, name, kind = i["slug"], i["name"], i["kind"]
         text = clip(i["desc"] or i["tagline"] or "", 200) or "Colecție de instrumente civice, date deschise și proiecte de bună guvernare din România."
         img = i["img"] if i["img"] and i["img"]["kind"] != "logo" else DEFAULT_SHARE
         doc = page_head(template, title=f"{name} — CivTech România", text=text, url=f"{SITE_URL}{kind}/{slug}/", img=img, alt=name, depth=2)
+        if ctx:
+            view = entry_page.entry_view(i, ctx)
+            doc = swap(doc, r'<script type="application/ld\+json">.*?</script>', entry_page.json_ld(i, ctx))
+            doc = swap(doc, r'<main class="layout wrap" data-slot="list">', '<main class="layout wrap" data-slot="list" hidden>')
+            doc = swap(doc, r'<main class="p-layout" data-slot="entry" hidden>.*?</main>',
+                       f'<main class="p-layout" data-slot="entry"><aside class="p-toc" data-slot="toc" aria-label="Lista din secțiune">{view["toc"]}</aside>'
+                       f'<div class="p-sheet" id="page" data-slot="page">{view["sheet"]}</div></main>')
+            doc = swap(doc, r'<nav class="tabs" aria-label="Ce cauți" data-slot="tabs"></nav>', f'<nav class="tabs" aria-label="Ce cauți" data-slot="tabs">{view["tabs"]}</nav>')
+            doc = swap(doc, r'<a class="skip" href="#results">Sari la rezultate</a>', '<a class="skip" href="#page">Sari la intrare</a>')
         # With a <base>, a bare "#fragment" would leave the page: point it at this page.
         doc = doc.replace('href="#', f'href="{kind}/{slug}/#')
-        nojs = (f'<noscript><article class="nojs"><h1>{esc(name)}</h1>'
-                + (f"<p>{esc(i['tagline'])}</p>" if i["tagline"] else "")
-                + (f"<p>{esc(i['desc'])}</p>" if i["desc"] else "")
-                + (f'<p><a href="{esc(i["url"])}">{esc(i["domain"])}</a></p>' if i["url"] else "")
-                + '<p><a href="./">CivTech România</a></p></article></noscript>')
-        doc = swap(doc, r'<a class="skip"', nojs + '\n<a class="skip"')
+        if not ctx:
+            nojs = (f'<noscript><article class="nojs"><h1>{esc(name)}</h1>'
+                    + (f"<p>{esc(i['tagline'])}</p>" if i["tagline"] else "")
+                    + (f"<p>{esc(i['desc'])}</p>" if i["desc"] else "")
+                    + (f'<p><a href="{esc(i["url"])}">{esc(i["domain"])}</a></p>' if i["url"] else "")
+                    + '<p><a href="./">CivTech România</a></p></article></noscript>')
+            doc = swap(doc, r'<a class="skip"', nojs + '\n<a class="skip"')
         out = site / kind / slug
         out.mkdir(parents=True)
         (out / "index.html").write_text(doc, encoding="utf-8")
@@ -865,7 +879,7 @@ def main():
     (site / "feed.xml").write_text(feed(items, now, out.get("vocabulary")))
     stamp_assets(site)
     if v2:
-        pages = entry_pages(items, site)
+        pages = entry_pages(items, site, out)
         llms, archives = pages_v2(items, out, site)
     else:
         llms = llms_txt(items, head["taxonomy"])
