@@ -6,7 +6,7 @@ Inventory assertions are proposals. Raw field totals count source paths, not ind
 ## 1. Outcome
 
 - Milestones A (safe incremental collection), B (INS), C (12 entries), D (meanings and shared groups) and E (preview, coverage, report) are complete.
-- Structured field evidence now covers 71 of 176 projects and resources (baseline 14). The retained sources are 234 URLs (228 parsed, 6 failed) with 8,184 field records.
+- Structured field evidence now covers 71 of 178 projects and resources (baseline 14). The retained sources are 234 URLs (228 parsed, 6 failed) with 8,184 field records.
 - Each field record is a path in a source. The proposals are 46 shared groups (baseline 7), 16 provider review items and the dictionary evidence that `inventory.py --check` verifies.
 - The public build is unchanged: the default payload equals the v0.13.0 payload apart from its generation time; classifications and accepted providers are identical.
 - Collection used 320 direct requests in total (49 browser navigations); the 150-request limit of lot C was not reached.
@@ -34,21 +34,21 @@ Field-level meaning is thinner than group-level meaning. Source-declared field d
 
 ## 2. Coverage before and after
 
-The 176 projects and resources of the catalogue (the finder lists the 130 that are in scope):
+The 178 projects and resources of the catalogue (the finder lists the 130 that are in scope):
 
 | Measure | Baseline | Now |
 | --- | ---: | ---: |
-| Catalogue entries | 140 | 192 |
-| Projects / resources / organisations | 106 / 21 / 13 | 154 / 22 / 16 |
-| Projects and resources (catalogue, hidden entries included) | 127 | 176 |
+| Catalogue entries | 140 | 194 |
+| Projects / resources / organisations | 106 / 21 / 13 | 142 / 36 / 16 |
+| Projects and resources (catalogue, hidden entries included) | 127 | 178 |
 | Entries with structured field evidence | 14 | 71 |
-| Projects/resources without extracted structured fields | 113 | 105 |
+| Projects/resources without extracted structured fields | 113 | 107 |
 | Retained structured-source URLs | 25 | 234 |
 | Parsed sources / HTTP failures | 24 / 1 | 228 / 6 |
 | Source-scoped field records (paths, not variables) | 2,302 | 8,184 |
 | Schema declarations / sampled JSON paths / CSV headers / INS dimensions | 1,312 / 904 / 82 / 4 | 1,979 / 3,666 / 311 / 4 |
-| HTML control candidates / entries with candidates | 308 / 78 | 408 / 112 |
-| Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 129 / 63 |
+| HTML control candidates / entries with candidates | 308 / 78 | 409 / 113 |
+| Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 130 / 64 |
 | Accepted provider relations / entries with accepted providers | 26 / 11 | 121 / 46 |
 | Pending provider proposals (review items D132 and later) | 15 | 10 |
 | Proposed business-variable groups | 7 | 46 |
@@ -57,11 +57,11 @@ The 176 projects and resources of the catalogue (the finder lists the 130 that a
 
 Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 118 in all; deschis 10, acceptat 94, respins 11, amanat 0, tehnic 3. Variable groups: 46 in all; propus 0, revizuit 46, respins 0, amanat 0. Group members (selectors): 236 in all; propus 0, confirmat 236, exclus 0.
 
-Scope of the data finder (`/date/`): 130 of the 172 public projects and resources are in scope. An entry is in scope when it is not inactive (`offline`, `arhivat`) and its `relatie_date` is `date-publice`, `date-proprii` or `calcul`. The finder leaves out 42: 24 without data (`fara-date`), 0 not assessed (empty value), 18 inactive (counted first: an inactive entry is never counted as another reason). 4 hidden entries (`ascuns`) are in no count of this paragraph.
+Scope of the data finder (`/date/`): 130 of the 174 public projects and resources are in scope. An entry is in scope when it is not inactive (`offline`, `arhivat`) and its `relatie_date` is `date-publice`, `date-proprii` or `calcul`. The finder leaves out 44: 26 without data (`fara-date`), 0 not assessed (empty value), 18 inactive (counted first: an inactive entry is never counted as another reason). 4 hidden entries (`ascuns`) are in no count of this paragraph.
 
 Field records by evidence type now: observat-in-esantion-json 3,666, declarat-in-schema 1,979, declarat-in-cod-sursa 1,184, exemplu-in-documentatie 364, neprecizat-in-antet-csv 311, antet-tabel-html 236, declarat-in-lista-baza 171, declarat-in-metadate 68, declarat-in-tabel-documentatie 53, declarat-in-documentatie-api 48, declarat-in-lista-documentatie 40, declarat-in-text-documentatie 36, utilizat-in-cod-pagina 28.
 
-Coverage by measure, for the 176 projects and resources (`acoperire.csv` has the rows). A column that counts fields counts source paths:
+Coverage by measure, for the 178 projects and resources (`acoperire.csv` has the rows). A column that counts fields counts source paths:
 
 | Measure | Entries counted | Total |
 | --- | ---: | ---: |
@@ -78,13 +78,13 @@ Coverage by measure, for the 176 projects and resources (`acoperire.csv` has the
 Totals add the per-entry counts. A source that several entries share counts once for each of them, so the field total here is higher than the number of distinct field records above.
 Denominators are defined in `docs/DATA-SCHEMA.md` (Coverage export). Entries without a structured source have an empty (unknown) measure count, not zero.
 
-All 192 catalogue entries (hidden entries included):
+All 194 catalogue entries (hidden entries included):
 
 | State | Entries |
 | --- | ---: |
 | blocat | 5 |
 | cu-surse-structurate | 71 |
-| fara-date | 24 |
+| fara-date | 26 |
 | in-afara-ariei | 16 |
 | inactiv | 19 |
 | investigat-fara-surse | 4 |

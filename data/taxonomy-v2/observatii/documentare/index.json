@@ -6023,6 +6023,72 @@
       ]
     },
     {
+      "slug": "hack-for-facts",
+      "url": "https://hackforfacts.amplifyong.ro/",
+      "state": "documentatie-neconfirmata",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://hackforfacts.amplifyong.ro/",
+          "final_url": "https://hackforfacts.amplifyong.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-18T11:28:06.196255+00:00",
+          "content_type": "text/html",
+          "state": "text-insuficient",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Hack for Facts — tehnologie și implicare civică",
+          "sections": [],
+          "sha256": "07b79b7fe09d89c449b3c2925ce7c86717fc5707340172c68b3d97f70d01b371",
+          "snapshot": "pagini/95d4b70af679a8b34074964f.json",
+          "text_chars": 47
+        },
+        {
+          "url": "https://hackforfacts.amplifyong.ro/llms.txt",
+          "final_url": "https://hackforfacts.amplifyong.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-18T11:28:06.298184+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://hackforfacts.amplifyong.ro/metodologie/",
+          "final_url": "https://hackforfacts.amplifyong.ro/metodologie/",
+          "http_status": 200,
+          "fetched_at": "2026-11-18T11:28:06.385911+00:00",
+          "content_type": "text/html",
+          "state": "copie-pagina-initiala",
+          "kind": "metodologie",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Hack for Facts — tehnologie și implicare civică",
+          "sections": [],
+          "sha256": "07b79b7fe09d89c449b3c2925ce7c86717fc5707340172c68b3d97f70d01b371",
+          "snapshot": "pagini/12ac91e3a56de561cef9df98.json",
+          "text_chars": 47
+        },
+        {
+          "url": "https://hackforfacts.amplifyong.ro/despre/",
+          "final_url": "https://hackforfacts.amplifyong.ro/despre/",
+          "http_status": 200,
+          "fetched_at": "2026-11-18T11:28:06.486233+00:00",
+          "content_type": "text/html",
+          "state": "copie-pagina-initiala",
+          "kind": "despre",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Hack for Facts — tehnologie și implicare civică",
+          "sections": [],
+          "sha256": "07b79b7fe09d89c449b3c2925ce7c86717fc5707340172c68b3d97f70d01b371",
+          "snapshot": "pagini/07f3ee446e9dfd49e11da3f5.json",
+          "text_chars": 47
+        }
+      ]
+    },
+    {
       "slug": "harta-banilor-publici",
       "url": "http://initiativaromania.ro/proiecte/harta-banilor-publici/",
       "state": "documentatie-neconfirmata",
@@ -7517,6 +7583,66 @@
           "sha256": "2ca3b3a78b1e37e95a2e132fc72a9e2af87bf81749f76080aacdf7788b04805e",
           "snapshot": "pagini/3989fcfafade7d6bea71bcc3.json",
           "text_chars": 14
+        }
+      ]
+    },
+    {
+      "slug": "marius-comper",
+      "url": "https://mariuscomper.uk/viata-publica/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://mariuscomper.uk/viata-publica/",
+          "final_url": "https://mariuscomper.uk/viata-publica/",
+          "http_status": 200,
+          "fetched_at": "2026-11-18T13:20:53.079980+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": true,
+          "title": "Viața publică: de unde începi când te afectează o decizie? · Marius Comper",
+          "sections": [
+            {
+              "kind": "metodologie",
+              "heading": "Surse",
+              "url": "https://mariuscomper.uk/viata-publica/#sources"
+            },
+            {
+              "kind": "despre",
+              "heading": "Răsfoiește toate proiectele despre viața publică ↓",
+              "url": "https://mariuscomper.uk/viata-publica/#collection"
+            },
+            {
+              "kind": "metodologie",
+              "heading": "Surse",
+              "url": "https://mariuscomper.uk/viata-publica/"
+            }
+          ],
+          "sha256": "273426e093cc79021fe90f7e903d342e487f569d8d6c9c2e994edf147053fea5",
+          "snapshot": "pagini/eb6f98e6f560248d284d6a5d.json",
+          "text_chars": 60000
+        },
+        {
+          "url": "https://mariuscomper.uk/viata-publica/llms.txt",
+          "final_url": "https://mariuscomper.uk/viata-publica/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-18T13:20:53.229950+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://mariuscomper.uk/llms.txt",
+          "final_url": "https://mariuscomper.uk/llms.txt",
+          "http_status": 200,
+          "fetched_at": "2026-11-18T13:20:53.516510+00:00",
+          "content_type": "text/markdown",
+          "state": "raspuns-prea-mare",
+          "kind": "llms",
+          "scope": "gazda-comuna"
         }
       ]
     },

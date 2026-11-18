@@ -10806,6 +10806,70 @@
         "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
+    },
+    {
+      "slug": "hack-for-facts",
+      "nume": "Hack for Facts",
+      "stare": "propunere",
+      "completitudine": "neconfirmat",
+      "scop": "Catalog curatoriat de proiecte civic tech din România, pe categorii",
+      "permite": [
+        "Caută și consultă"
+      ],
+      "formate_catalogate": [
+        "Catalog sau colecție"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "hack-for-facts"
+      },
+      "intrari_utilizator": [],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
+        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+      ]
+    },
+    {
+      "slug": "marius-comper",
+      "nume": "Marius Comper · Viața publică",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Proiecte despre bani publici, reguli, servicii și instituții, ordonate pe întrebări",
+      "permite": [
+        "Caută și consultă"
+      ],
+      "formate_catalogate": [
+        "Catalog sau colecție"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "marius-comper"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "project-search",
+          "rol": "control-utilizator",
+          "tip_control_html": "search",
+          "descriere": "Un loc, o întrebare, un cuvânt…",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://mariuscomper.uk/viata-publica/",
+            "sha256": "273426e093cc79021fe90f7e903d342e487f569d8d6c9c2e994edf147053fea5",
+            "sha256_lista_controale": "7c5aac9131213232c238ef8e66a695a73fcac1cf9af19242320b6d2a288c498c",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/eb6f98e6f560248d284d6a5d.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
     }
   ]
 }
