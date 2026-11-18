@@ -105142,6 +105142,18 @@
       ]
     },
     {
+      "url": "https://org.gov2.ro/institutii.csv",
+      "final_url": "https://org.gov2.ro/institutii.csv",
+      "http_status": 200,
+      "fetched_at": "2026-11-18T20:01:00.051608+00:00",
+      "content_type": "text/csv",
+      "state": "raspuns-prea-mare",
+      "id": "813c4f3088de42e38b63",
+      "campuri": [],
+      "completitudine": "neconfirmat",
+      "snapshot": "surse/813c4f3088de42e38b63.json"
+    },
+    {
       "url": "https://posturi.gov2.ro/posturi.json",
       "final_url": "https://posturi.gov2.ro/posturi.json",
       "http_status": 200,

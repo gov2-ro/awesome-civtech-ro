@@ -408,3 +408,14 @@ bateriefotovoltaica,inv,radio,,https://bateriefotovoltaica.ro/,/input_candidates
 bateriefotovoltaica,county,,Județ,https://bateriefotovoltaica.ro/,/input_candidates/5,control-html-candidat
 bateriefotovoltaica,email,email,Email,https://bateriefotovoltaica.ro/,/input_candidates/6,control-html-candidat
 marius-comper,project-search,search,"Un loc, o întrebare, un cuvânt…",https://mariuscomper.uk/viata-publica/,/input_candidates/0,control-html-candidat
+org-gov2,web,checkbox,,https://org.gov2.ro/,/input_candidates/0,control-html-candidat
+org-gov2,noanaf,checkbox,,https://org.gov2.ro/,/input_candidates/1,control-html-candidat
+org-gov2,review,checkbox,,https://org.gov2.ro/,/input_candidates/2,control-html-candidat
+org-gov2,rad,checkbox,,https://org.gov2.ro/,/input_candidates/3,control-html-candidat
+org-gov2,q,search,Căutare,https://org.gov2.ro/,/input_candidates/4,control-html-candidat
+org-gov2,cat,,Categorie,https://org.gov2.ro/,/input_candidates/5,control-html-candidat
+org-gov2,fam,,Tip instituție,https://org.gov2.ro/,/input_candidates/6,control-html-candidat
+org-gov2,county,,Județ,https://org.gov2.ro/,/input_candidates/7,control-html-candidat
+org-gov2,uat,,Localitate (UAT),https://org.gov2.ro/,/input_candidates/8,control-html-candidat
+org-gov2,sort,,,https://org.gov2.ro/,/input_candidates/9,control-html-candidat
+ro-alert,search,search,Caută în mesaje,https://lab.gov2.ro/ro-alert/,/input_candidates/0,control-html-candidat

@@ -7419,6 +7419,31 @@
       "istoric": []
     },
     {
+      "proiect": "org-gov2",
+      "url": "https://org.gov2.ro/institutii.csv",
+      "sursa_id": "813c4f3088de42e38b63",
+      "stare": "activ",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://org.gov2.ro/",
+      "link_original": "https://org.gov2.ro/institutii.csv",
+      "dovada": {
+        "url": "https://org.gov2.ro/",
+        "sha256": "25a5283d1c62b2ecad9305695f6d60159bfa17f166455962c860dbd8ff469258",
+        "snapshot": "documentare/pagini/bb069aa41c64fcbd2a3d7dba.json",
+        "pointer": "/links/4"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-18T20:00:56.405178+00:00",
+      "prioritate": 1,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "admis",
+          "la": "2026-11-18T20:00:58.934844+00:00"
+        }
+      ]
+    },
+    {
       "proiect": "pe-datorie",
       "url": "https://mariuscomper.uk/pe-datorie/",
       "sursa_id": "5b8b79f4d220b8c604e3",

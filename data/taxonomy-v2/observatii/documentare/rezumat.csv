@@ -81,6 +81,7 @@ generatiile-romaniei,https://romaniainteractiva.ro/generatii/,documentatie-gasit
 ghiceste-bugetul,https://nicolaeurs.ro/ghicestebugetul/,documentatie-gasita,2,,https://nicolaeurs.ro/ghicestebugetul/,,neanalizat
 ghiduri-efor,https://expertforum.ro/ghiduri/,documentatie-neconfirmata,0,,,,neanalizat
 gio,https://gio.ciolan.io/,colectare-interzisa,0,,,,neanalizat
+gov2-ro,https://gov2.ro/,documentatie-gasita,2,,,https://gov2.ro/llms.txt,neanalizat
 guverne-dupa-1989,https://romaniainteractiva.ro/guverne/,documentatie-neconfirmata,1,,,,neanalizat
 guverneaza-daca-poti,https://guverneazadacapoti.ro/,documentatie-neconfirmata,1,,,,neanalizat
 guvernezi,https://www.guvernezi.ro/,documentatie-gasita,3,https://www.guvernezi.ro/metoda,,https://www.guvernezi.ro/llms.txt,neanalizat
@@ -131,6 +132,7 @@ oradea-city-report,http://www.oradea.ro/subpagina/oradea-city-report,documentati
 orase-digitale,https://orase-digitale.ro/,documentatie-gasita,2,,,https://orase-digitale.ro/llms.txt,neanalizat
 orase-vii,https://romaniainteractiva.ro/orasevii/,documentatie-neconfirmata,1,,,,neanalizat
 orasul-care-se-intinde,https://mariuscomper.uk/orasul-care-se-intinde/,documentatie-gasita,2,https://mariuscomper.uk/orasul-care-se-intinde/,,,neanalizat
+org-gov2,https://org.gov2.ro/,documentatie-gasita,2,,https://org.gov2.ro/despre.html,,neanalizat
 pacienti-medic,https://romaniainteractiva.ro/pacienti-medic/,documentatie-neconfirmata,1,,,,neanalizat
 parc-auto-judete,https://romaniainteractiva.ro/masini/,documentatie-neconfirmata,1,,,,neanalizat
 parlament-transparent,https://parlament.openpolitics.ro/,documentatie-neconfirmata,0,,,,neanalizat
@@ -154,6 +156,7 @@ recontorizarea,https://mariuscomper.uk/recontorizarea/,documentatie-gasita,2,htt
 redirectioneaza,https://redirectioneaza.ro/,documentatie-gasita,2,,https://redirectioneaza.ro/despre/,,neanalizat
 registrul-firmelor,https://registru.horecaos.org/,documentatie-gasita,4,https://registru.horecaos.org/surse,https://registru.horecaos.org/blog/de-unde-vin-datele-despre-firme-romania,https://registru.horecaos.org/llms.txt,neanalizat
 rezultate-vot,https://rezultatevot.ro/,documentatie-gasita,2,,https://rezultatevot.ro/despre-proiect,,neanalizat
+ro-alert,https://lab.gov2.ro/ro-alert/,documentatie-neconfirmata,1,,,,neanalizat
 ro-api-hub,https://github.com/Jamaalx/ro-api-hub,documentatie-gasita,4,,https://github.com/Jamaalx/ro-api-hub|https://github.com/Jamaalx/ro-api-hub/blob/main/README.md|https://github.com/Jamaalx/ro-api-hub/commits/main/README.md,,neanalizat
 romania-fara-gropi,http://romaniafaragropi.ro/,documentatie-gasita,3,,https://romaniafaragropi.ro/despre-rfgraspunsuri-de-la-politia-rutiera/|https://romaniafaragropi.ro/despre-rfg/,,neanalizat
 romania-in-puncte,https://romaniainteractiva.ro/locale/,documentatie-neconfirmata,0,,,,neanalizat

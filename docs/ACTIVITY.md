@@ -1,5 +1,18 @@
 # Activity
 
+## 2026-11-18 — gov2.ro collection; org.gov2.ro and RO-ALERT
+
+**Done**
+- `intrari.csv`: `gov2-ro` (resursa, `format:colectie`, `fara-date`), `org-gov2` (proiect), `ro-alert` (publicatie, `maturitate:prototip`: the README says POC). Accepted by the owner on 2026-11-18. `jurnalism-independent` URL → `https://gov2.ro/liste/jurnalism/`. Links: Ethical Media Alliance (3), Marius Comper (2), AI parte (2), gov2.ro (6 networks plus GitHub).
+- `relatii.csv`: L022/L062/L080 author „GOV2” → „gov2.ro” (`valoare_sursa` keeps „GOV2”); L429–L431 authors of the new entries; L432–L436 `parte_din` → `gov2-ro` (`propus`, as for Marius Comper); L437 `ro-alert` `date_din` IGSU.
+- `furnizori.csv`: IGSU, `propus` (the test that every provider of the relations has a row failed without it).
+- Profiler: 3 active, share images and icons. Search (Brave only, no Serper credits): 0 results for `org-gov2` and `ro-alert`. Inventory: documentation found for `org-gov2` and `gov2-ro`, not confirmed for `ro-alert`; 13 requests.
+- Unit tests OK; browser checks 185/185, 63/63, 156/156, 51/51.
+
+**Decided**
+- CivTech România is not an entry of its own collection: a catalogue that lists itself is circular. The `gov2-ro` description says that gov2.ro publishes it.
+- `stiri.gov2.ro` stays out: the gov2.ro home page has it commented out.
+
 ## 2026-11-18 — Header back on the page's background; left-list headings
 
 **Done**

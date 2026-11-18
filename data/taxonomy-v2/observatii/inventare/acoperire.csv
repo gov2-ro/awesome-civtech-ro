@@ -193,3 +193,6 @@ watchdog-oltenia,organizatie,,in-afara-ariei,0,0,,0,0,0,,,,,,
 bateriefotovoltaica,proiect,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
 hack-for-facts,resursa,,fara-date,0,0,,0,0,0,,,,,,
 marius-comper,resursa,,fara-date,0,0,,0,0,0,,,,,,
+gov2-ro,resursa,,fara-date,0,0,,0,0,0,,,,,,
+org-gov2,proiect,,blocat,0,0,,0,0,0,,,1,,HTTP 200 la https://org.gov2.ro/institutii.csv,
+ro-alert,publicatie,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."

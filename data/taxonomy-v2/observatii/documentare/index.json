@@ -5849,6 +5849,66 @@
       "pages": []
     },
     {
+      "slug": "gov2-ro",
+      "url": "https://gov2.ro/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://gov2.ro/",
+          "final_url": "https://gov2.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-18T20:00:56.403974+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "gov2.ro",
+          "sections": [],
+          "sha256": "016e566e56abb2c436e18903dbc2c03db9e2439acb9aca543fc9506a24bedaa6",
+          "snapshot": "pagini/82c318223bcc52b2cc68e1ef.json",
+          "text_chars": 665
+        },
+        {
+          "url": "https://gov2.ro/llms.txt",
+          "final_url": "https://gov2.ro/llms.txt",
+          "http_status": 200,
+          "fetched_at": "2026-11-18T20:00:56.921569+00:00",
+          "content_type": "text/plain",
+          "state": "colectat",
+          "kind": "llms",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "",
+          "sections": [],
+          "sha256": "dbfb21f6fce9836e6c7f25c243df384c6f7de74b285aa4861a37eb2f9cca18bd",
+          "snapshot": "pagini/5481e2382af810f3587abccd.json",
+          "text_chars": 2077
+        },
+        {
+          "url": "https://gov2.ro/metodologie/",
+          "final_url": "https://gov2.ro/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-18T20:00:57.290961+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://gov2.ro/despre/",
+          "final_url": "https://gov2.ro/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-18T20:00:57.806681+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
       "slug": "guverne-dupa-1989",
       "url": "https://romaniainteractiva.ro/guverne/",
       "state": "documentatie-neconfirmata",
@@ -9107,6 +9167,56 @@
       ]
     },
     {
+      "slug": "org-gov2",
+      "url": "https://org.gov2.ro/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://org.gov2.ro/",
+          "final_url": "https://org.gov2.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-18T20:00:56.405178+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Instituții publice · org.gov2.ro",
+          "sections": [],
+          "sha256": "25a5283d1c62b2ecad9305695f6d60159bfa17f166455962c860dbd8ff469258",
+          "snapshot": "pagini/bb069aa41c64fcbd2a3d7dba.json",
+          "text_chars": 680
+        },
+        {
+          "url": "https://org.gov2.ro/llms.txt",
+          "final_url": "https://org.gov2.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-18T20:00:56.517134+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://org.gov2.ro/despre.html",
+          "final_url": "https://org.gov2.ro/despre.html",
+          "http_status": 200,
+          "fetched_at": "2026-11-18T20:00:56.777509+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "despre",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Despre date · org.gov2.ro",
+          "sections": [],
+          "sha256": "5ce0958094c50a57a2b35e7539c475990305b72382aae7f76b21fb446e42e471",
+          "snapshot": "pagini/1da9d7cf7f028617b8ffae0d.json",
+          "text_chars": 2918
+        }
+      ]
+    },
+    {
       "slug": "pacienti-medic",
       "url": "https://romaniainteractiva.ro/pacienti-medic/",
       "state": "documentatie-neconfirmata",
@@ -10646,6 +10756,70 @@
           "sha256": "98e949b1d8472ef25ae57ca4e6d75887ba898c97a34ab2fafa6923591e6f4740",
           "snapshot": "pagini/01b28703dfcdd8d020dd9c0b.json",
           "text_chars": 3509
+        }
+      ]
+    },
+    {
+      "slug": "ro-alert",
+      "url": "https://lab.gov2.ro/ro-alert/",
+      "state": "documentatie-neconfirmata",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://lab.gov2.ro/ro-alert/",
+          "final_url": "https://lab.gov2.ro/ro-alert/",
+          "http_status": 200,
+          "fetched_at": "2026-11-18T20:00:56.405060+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "RO-ALERT · Dashboard",
+          "sections": [],
+          "sha256": "a44d06c26e33a9344080c49b57d211d8c687168cb395d857e5eb949b2046bdf0",
+          "snapshot": "pagini/26e129b24125afb4d1db03e7.json",
+          "text_chars": 476
+        },
+        {
+          "url": "https://lab.gov2.ro/ro-alert/llms.txt",
+          "final_url": "https://lab.gov2.ro/ro-alert/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-18T20:00:56.940974+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://lab.gov2.ro/llms.txt",
+          "final_url": "https://lab.gov2.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-18T20:00:57.461418+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "gazda-comuna"
+        },
+        {
+          "url": "https://lab.gov2.ro/ro-alert/metodologie/",
+          "final_url": "https://lab.gov2.ro/ro-alert/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-18T20:00:57.810973+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://lab.gov2.ro/ro-alert/despre/",
+          "final_url": "https://lab.gov2.ro/ro-alert/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-18T20:00:58.186820+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
         }
       ]
     },

@@ -20,7 +20,7 @@ L018,ce-zice-legea,atribuit_in_sursa,code4ro,,autor,code4ro,rol_neconfirmat
 L019,companii-de-stat,atribuit_in_sursa,,Andrei Miclea,autor,Andrei Miclea / Ioan G. Lazarovici-Georgiu,rol_neconfirmat
 L020,companii-de-stat,atribuit_in_sursa,,Ioan G. Lazarovici-Georgiu,autor,Andrei Miclea / Ioan G. Lazarovici-Georgiu,rol_neconfirmat
 L021,data-expertforum,atribuit_in_sursa,efor,,autor,efor,rol_neconfirmat
-L022,ins-gov2,atribuit_in_sursa,,GOV2,autor,GOV2,rol_neconfirmat
+L022,ins-gov2,atribuit_in_sursa,,gov2.ro,autor,GOV2,rol_neconfirmat
 L023,de-obste,atribuit_in_sursa,,Gabriel Popa,autor,Gabriel Popa,rol_neconfirmat
 L024,despre-femicid,atribuit_in_sursa,,Adriana Diaconu,autor,Adriana Diaconu,rol_neconfirmat
 L025,didi365,atribuit_in_sursa,,Top Clossers SRL,autor,Top Clossers SRL,rol_neconfirmat
@@ -60,7 +60,7 @@ L058,oradea-city-report,atribuit_in_sursa,,Primăria Oradea,autor,Primăria Orad
 L059,parlament-transparent,atribuit_in_sursa,,Median Research Centre,autor,Median Research Centre,rol_neconfirmat
 L060,piata-de-spaga,atribuit_in_sursa,funky-citizens,,autor,funky-citizens,rol_neconfirmat
 L061,political-colours,atribuit_in_sursa,,geo-spatial.org,autor,geo-spatial.org,rol_neconfirmat
-L062,posturi-gov2,atribuit_in_sursa,,GOV2,autor,GOV2,rol_neconfirmat
+L062,posturi-gov2,atribuit_in_sursa,,gov2.ro,autor,GOV2,rol_neconfirmat
 L063,radar-digital,atribuit_in_sursa,,Florin Scripcaru,autor,Florin Scripcaru,rol_neconfirmat
 L064,redirectioneaza,atribuit_in_sursa,code4ro,,autor,code4ro,rol_neconfirmat
 L065,rezultate-vot,atribuit_in_sursa,code4ro,,autor,code4ro,rol_neconfirmat
@@ -78,7 +78,7 @@ L076,vocea-cartierului-tau,atribuit_in_sursa,,Silviu Ionuț Carp,autor,Silviu Io
 L077,votdiaspora,atribuit_in_sursa,code4ro,,autor,code4ro,rol_neconfirmat
 L078,votez-info,atribuit_in_sursa,,Inițiativa România,autor,Inițiativa România,rol_neconfirmat
 L079,ghiduri-efor,atribuit_in_sursa,efor,,autor,efor,rol_neconfirmat
-L080,jurnalism-independent,atribuit_in_sursa,,GOV2,autor,GOV2,rol_neconfirmat
+L080,jurnalism-independent,atribuit_in_sursa,,gov2.ro,autor,GOV2,rol_neconfirmat
 L081,presspay,atribuit_in_sursa,ethical-media,,autor,ethical-media,rol_neconfirmat
 L082,aiparte-research,atribuit_in_sursa,ai-parte,,autor,ai-parte,rol_neconfirmat
 L083,ro-api-hub,atribuit_in_sursa,,Alex Mantello,autor,Alex Mantello,rol_neconfirmat
@@ -427,3 +427,12 @@ L425,unde-se-termina-asfaltul,parte_din,marius-comper,,,https://mariuscomper.uk/
 L426,de-unde-vine-apa,parte_din,marius-comper,,,https://mariuscomper.uk/viata-publica/,propus
 L427,recontorizarea,parte_din,marius-comper,,,https://mariuscomper.uk/viata-publica/,propus
 L428,pensie-din-bursa,parte_din,marius-comper,,,https://mariuscomper.uk/viata-publica/,propus
+L429,gov2-ro,atribuit_in_sursa,,gov2.ro,autor,gov2.ro,rol_neconfirmat
+L430,org-gov2,atribuit_in_sursa,,gov2.ro,autor,un proiect gov2.ro,rol_neconfirmat
+L431,ro-alert,atribuit_in_sursa,,gov2.ro,autor,gov2.ro,rol_neconfirmat
+L432,ins-gov2,parte_din,gov2-ro,,,https://gov2.ro/,propus
+L433,posturi-gov2,parte_din,gov2-ro,,,https://gov2.ro/,propus
+L434,jurnalism-independent,parte_din,gov2-ro,,,https://gov2.ro/,propus
+L435,org-gov2,parte_din,gov2-ro,,,https://gov2.ro/,propus
+L436,ro-alert,parte_din,gov2-ro,,,https://gov2.ro/,propus
+L437,ro-alert,date_din,,Inspectoratul General pentru Situații de Urgență (IGSU),surse_date,https://data.gov.ro/ro/dataset?q=mesaje+ro-alert&organization=inspectoratul-general-pentru-situatii-de-urgenta,propus

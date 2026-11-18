@@ -10870,6 +10870,238 @@
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
         "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
       ]
+    },
+    {
+      "slug": "gov2-ro",
+      "nume": "gov2.ro",
+      "stare": "propunere",
+      "completitudine": "neconfirmat",
+      "scop": "Proiecte independente care fac datele publice mai ușor de găsit și de folosit",
+      "permite": [],
+      "formate_catalogate": [
+        "Catalog sau colecție"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "gov2-ro"
+      },
+      "intrari_utilizator": [],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
+    },
+    {
+      "slug": "org-gov2",
+      "nume": "Instituții publice · gov2",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Instituțiile publice și companiile de stat din România, cu site, contact și CUI",
+      "permite": [
+        "Caută și consultă"
+      ],
+      "formate_catalogate": [
+        "Registru sau bază de date",
+        "Set de date oferit"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "org-gov2"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "web",
+          "rol": "control-utilizator",
+          "tip_control_html": "checkbox",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://org.gov2.ro/",
+            "sha256": "25a5283d1c62b2ecad9305695f6d60159bfa17f166455962c860dbd8ff469258",
+            "sha256_lista_controale": "ae1038feed9f4fa728cd57e85a4c4f87e60d28cf2c68d58d78f65f2352ff4334",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/bb069aa41c64fcbd2a3d7dba.json"
+          }
+        },
+        {
+          "nume": "noanaf",
+          "rol": "control-utilizator",
+          "tip_control_html": "checkbox",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://org.gov2.ro/",
+            "sha256": "25a5283d1c62b2ecad9305695f6d60159bfa17f166455962c860dbd8ff469258",
+            "sha256_lista_controale": "ae1038feed9f4fa728cd57e85a4c4f87e60d28cf2c68d58d78f65f2352ff4334",
+            "pointer_snapshot": "/input_candidates/1",
+            "snapshot": "documentare/pagini/bb069aa41c64fcbd2a3d7dba.json"
+          }
+        },
+        {
+          "nume": "review",
+          "rol": "control-utilizator",
+          "tip_control_html": "checkbox",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://org.gov2.ro/",
+            "sha256": "25a5283d1c62b2ecad9305695f6d60159bfa17f166455962c860dbd8ff469258",
+            "sha256_lista_controale": "ae1038feed9f4fa728cd57e85a4c4f87e60d28cf2c68d58d78f65f2352ff4334",
+            "pointer_snapshot": "/input_candidates/2",
+            "snapshot": "documentare/pagini/bb069aa41c64fcbd2a3d7dba.json"
+          }
+        },
+        {
+          "nume": "rad",
+          "rol": "control-utilizator",
+          "tip_control_html": "checkbox",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://org.gov2.ro/",
+            "sha256": "25a5283d1c62b2ecad9305695f6d60159bfa17f166455962c860dbd8ff469258",
+            "sha256_lista_controale": "ae1038feed9f4fa728cd57e85a4c4f87e60d28cf2c68d58d78f65f2352ff4334",
+            "pointer_snapshot": "/input_candidates/3",
+            "snapshot": "documentare/pagini/bb069aa41c64fcbd2a3d7dba.json"
+          }
+        },
+        {
+          "nume": "q",
+          "rol": "control-utilizator",
+          "tip_control_html": "search",
+          "descriere": "Căutare",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://org.gov2.ro/",
+            "sha256": "25a5283d1c62b2ecad9305695f6d60159bfa17f166455962c860dbd8ff469258",
+            "sha256_lista_controale": "ae1038feed9f4fa728cd57e85a4c4f87e60d28cf2c68d58d78f65f2352ff4334",
+            "pointer_snapshot": "/input_candidates/4",
+            "snapshot": "documentare/pagini/bb069aa41c64fcbd2a3d7dba.json"
+          }
+        },
+        {
+          "nume": "cat",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "Categorie",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://org.gov2.ro/",
+            "sha256": "25a5283d1c62b2ecad9305695f6d60159bfa17f166455962c860dbd8ff469258",
+            "sha256_lista_controale": "ae1038feed9f4fa728cd57e85a4c4f87e60d28cf2c68d58d78f65f2352ff4334",
+            "pointer_snapshot": "/input_candidates/5",
+            "snapshot": "documentare/pagini/bb069aa41c64fcbd2a3d7dba.json"
+          }
+        },
+        {
+          "nume": "fam",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "Tip instituție",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://org.gov2.ro/",
+            "sha256": "25a5283d1c62b2ecad9305695f6d60159bfa17f166455962c860dbd8ff469258",
+            "sha256_lista_controale": "ae1038feed9f4fa728cd57e85a4c4f87e60d28cf2c68d58d78f65f2352ff4334",
+            "pointer_snapshot": "/input_candidates/6",
+            "snapshot": "documentare/pagini/bb069aa41c64fcbd2a3d7dba.json"
+          }
+        },
+        {
+          "nume": "county",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "Județ",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://org.gov2.ro/",
+            "sha256": "25a5283d1c62b2ecad9305695f6d60159bfa17f166455962c860dbd8ff469258",
+            "sha256_lista_controale": "ae1038feed9f4fa728cd57e85a4c4f87e60d28cf2c68d58d78f65f2352ff4334",
+            "pointer_snapshot": "/input_candidates/7",
+            "snapshot": "documentare/pagini/bb069aa41c64fcbd2a3d7dba.json"
+          }
+        },
+        {
+          "nume": "uat",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "Localitate (UAT)",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://org.gov2.ro/",
+            "sha256": "25a5283d1c62b2ecad9305695f6d60159bfa17f166455962c860dbd8ff469258",
+            "sha256_lista_controale": "ae1038feed9f4fa728cd57e85a4c4f87e60d28cf2c68d58d78f65f2352ff4334",
+            "pointer_snapshot": "/input_candidates/8",
+            "snapshot": "documentare/pagini/bb069aa41c64fcbd2a3d7dba.json"
+          }
+        },
+        {
+          "nume": "sort",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://org.gov2.ro/",
+            "sha256": "25a5283d1c62b2ecad9305695f6d60159bfa17f166455962c860dbd8ff469258",
+            "sha256_lista_controale": "ae1038feed9f4fa728cd57e85a4c4f87e60d28cf2c68d58d78f65f2352ff4334",
+            "pointer_snapshot": "/input_candidates/9",
+            "snapshot": "documentare/pagini/bb069aa41c64fcbd2a3d7dba.json"
+          }
+        }
+      ],
+      "surse_structurate": [
+        "813c4f3088de42e38b63"
+      ],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
+    },
+    {
+      "slug": "ro-alert",
+      "nume": "RO-ALERT · gov2",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Arhiva mesajelor RO-ALERT pe hartă, în tabel și în timp, din datele IGSU",
+      "permite": [
+        "Monitorizează",
+        "Caută și consultă"
+      ],
+      "formate_catalogate": [
+        "Hartă",
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "ro-alert"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "search",
+          "rol": "control-utilizator",
+          "tip_control_html": "search",
+          "descriere": "Caută în mesaje",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://lab.gov2.ro/ro-alert/",
+            "sha256": "a44d06c26e33a9344080c49b57d211d8c687168cb395d857e5eb949b2046bdf0",
+            "sha256_lista_controale": "47275edb3ed34fa792306bfbe22a326bae5c58521260b052a486c30c693fd507",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/26e129b24125afb4d1db03e7.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
+        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+      ]
     }
   ]
 }
