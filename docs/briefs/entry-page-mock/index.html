@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Machetă: pagina unei intrări — CivTech România</title>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="../style.css">
+<style>
+  .wrap { max-width: 1600px; }
+  /* Mock-up only: the layout of a full entry page. Colours and type come from style.css. */
+  .mock-bar { background: #fff7d6; color: #5c4a00; border-bottom: 1px solid #e8d78a; font: 500 13px/1.4 var(--font-mono); padding: 8px 0; }
+  .mock-bar .wrap { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+  .mock-bar select { font: inherit; padding: 2px 6px; }
+  .mock-bar a { color: inherit; }
+  @media (prefers-color-scheme: dark) { .mock-bar { background: #3a3200; color: #ffe98a; border-color: #5c4a00; } }
+
+  @media (max-width: 899px) { #tabs { display: none; } }
+  .hdr-in { max-width: none; }
+  .p-crumbs { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 20px 0 8px; font: 500 calc(12px * var(--fs))/1.4 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .p-crumbs a { color: inherit; text-decoration: none; } .p-crumbs a:hover { color: var(--ink); text-decoration: underline; }
+  .p-crumbs .sep { opacity: .5; }
+
+  /* The entry lies on the list like a sheet: the list stays on the tinted backdrop at the left, and long names run under the sheet. */
+  .p-layout { display: grid; }
+  .p-sheet { min-width: 0; }
+  @media (min-width: 900px) {
+    .p-layout { grid-template-columns: 260px minmax(0, 1fr); max-width: none; padding: 0; background: var(--surface); }
+    .p-sheet { position: relative; z-index: 2; background: var(--bg); padding: 0 32px; min-height: calc(100vh - 72px);
+      border-left: 1px solid var(--line); border-top-left-radius: 2px; box-shadow: -10px 0 30px rgb(0 0 0 / .07); }
+  }
+  @media (min-width: 900px) and (prefers-color-scheme: dark) { .p-sheet { box-shadow: -10px 0 30px rgb(0 0 0 / .45); } }
+  .p-toc { min-width: 0; --toc-bg: var(--bg); }
+  @media (min-width: 900px) { .p-toc:not(.open) { --toc-bg: var(--surface); } .p-toc .toc-it .blank { background: var(--surface-2); } }
+  @media (min-width: 900px) {
+    .p-toc { position: sticky; top: 72px; z-index: 1; align-self: start; width: 480px; max-height: calc(100vh - 72px); overflow-y: auto; overflow-x: hidden;
+      scrollbar-width: none; padding: 16px 0 40px 20px; }
+    .p-toc::-webkit-scrollbar { display: none; }
+    .toc-it span { white-space: nowrap; }
+  }
+  @media (max-width: 899px) { .p-toc { display: none; } .p-toc.open { display: block; position: fixed; inset: 0; z-index: 40; overflow: auto; background: var(--bg); padding: 16px; } }
+  .toc-top { position: sticky; top: -16px; z-index: 2; background: var(--toc-bg); width: 228px; padding: 4px 0 6px; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin: 0 0 6px; }
+  .toc-top b { font: 650 calc(15px * var(--fs))/1.3 var(--font-head); }
+  .toc-top a, .toc-close { font: 500 calc(12px * var(--fs))/1.4 var(--font-mono); color: var(--muted); }
+  .toc-filter { font-size: calc(12px * var(--fs)); color: var(--muted); margin: 0 0 8px; }
+  .toc-close { display: none; background: none; border: 1px solid var(--line); border-radius: var(--radius); padding: 4px 8px; cursor: pointer; }
+  .p-toc.open .toc-close { display: inline-block; }
+  .toc-h { position: sticky; top: 14px; z-index: 1; background: var(--toc-bg); margin: 14px 0 2px; padding: 4px 8px; font: 500 calc(11px * var(--fs))/1.4 var(--font-mono); letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+  .toc-it { display: flex; align-items: center; gap: 8px; padding: 4px 8px; border-radius: 6px; font-size: calc(14px * var(--fs)); line-height: 1.3; color: var(--ink-2); text-decoration: none; }
+  .toc-it:hover { background: var(--surface-2); color: var(--ink); }
+  @media (max-width: 899px) { .toc-it:hover { background: var(--surface); } .toc-top { width: auto; } }
+  .toc-it[aria-current] { background: var(--bg); color: var(--ink); font-weight: 600; box-shadow: inset 2px 0 0 var(--ink); }
+  .toc-it img, .toc-it .blank { width: 20px; height: 20px; border-radius: 4px; object-fit: contain; background: var(--surface); flex: none; }
+  .toc-it.off { opacity: .55; }
+  .toc-btn { display: none; margin: 16px 0 0; font: 500 calc(13px * var(--fs))/1 var(--font-mono); background: none; border: 1px solid var(--line); border-radius: var(--radius); padding: 8px 12px; color: var(--ink); cursor: pointer; }
+  @media (max-width: 899px) { .toc-btn { display: inline-block; } }
+  .p-hero { display: grid; gap: 24px; align-items: start; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+  @media (min-width: 1200px) { .p-hero { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 40px; } }
+  .p-title { display: flex; gap: 16px; align-items: flex-start; }
+  .p-title img { width: 56px; height: 56px; border-radius: 10px; object-fit: contain; background: #fff; border: 1px solid var(--line); padding: 4px; flex: none; }
+  .p-title h1 { font: 650 clamp(28px, 4vw, 44px)/1.08 var(--font-head); letter-spacing: -.02em; margin: 0; }
+  .p-tag { font-size: calc(19px * var(--fs)); line-height: 1.4; margin: 14px 0 0; color: var(--ink); }
+  .p-hero .p-desc { margin-top: 14px; color: var(--ink-2); }
+  .p-cta { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; margin: 18px 0 0; }
+  .p-url { font-size: calc(17px * var(--fs)); font-weight: 600; color: var(--ink); margin-right: 6px; }
+  .p-cta .d-badges { display: contents; }
+  .p-facts a.net { display: inline-flex; padding: 3px; color: var(--ink-2); border-radius: var(--radius); }
+  .p-facts a.net:hover { color: var(--accent-ink); }
+  .p-facts a.net svg { width: 18px; height: 18px; fill: currentColor; stroke: none; display: block; }
+  .p-links { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+  .p-shot { border-radius: var(--radius); border: 1px solid var(--line); overflow: hidden; background: var(--surface); aspect-ratio: 1200 / 630; }
+  .p-shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .p-body { display: grid; gap: 32px; padding: 28px 0 40px; grid-template-areas: "facts" "main"; }
+  @media (min-width: 1200px) { .p-body { grid-template-columns: minmax(0, 1fr) 300px; grid-template-areas: "main facts"; gap: 40px; } .p-facts { position: sticky; top: 88px; align-self: start; } }
+  .p-main { grid-area: main; min-width: 0; } .p-facts { grid-area: facts; min-width: 0; }
+  .p-sec { margin: 0 0 32px; }
+  .p-sec h2 { font: 600 calc(13px * var(--fs))/1.3 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  .p-desc { font-size: calc(17px * var(--fs)); line-height: 1.6; margin: 0; max-width: 68ch; }
+  .p-note { font-size: calc(13px * var(--fs)); color: var(--muted); margin: 8px 0 0; }
+
+  .p-facts .box { border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; background: var(--bg); }
+  .p-facts dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 8px 14px; margin: 0; font-size: calc(14px * var(--fs)); }
+  .p-facts dt { color: var(--muted); font: 500 calc(12px * var(--fs))/1.6 var(--font-mono); }
+  .p-facts dd { margin: 0; overflow-wrap: anywhere; }
+  .p-facts .report { display: block; margin-top: 12px; font-size: calc(13px * var(--fs)); color: var(--muted); }
+
+  .p-class { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 10px 16px; margin: 0; }
+  .p-class dt { color: var(--muted); font: 500 calc(12px * var(--fs))/2 var(--font-mono); }
+  .p-class dd { margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .p-chip { display: inline-flex; align-items: center; min-height: 28px; padding: 0 10px; border: 1px solid var(--line); border-radius: 14px; font-size: calc(14px * var(--fs)); color: var(--ink); text-decoration: none; background: var(--bg); }
+  .p-chip:hover { border-color: var(--ink); }
+  .p-chip.main { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  @media (max-width: 560px) { .p-class, .p-facts dl { grid-template-columns: 1fr; gap: 2px; } .p-class dd, .p-facts dd { margin-bottom: 10px; } }
+
+  .p-data { display: grid; gap: 12px; }
+  .p-data .big { font: 600 calc(22px * var(--fs))/1.2 var(--font-head); }
+  .p-data .ex { display: flex; flex-wrap: wrap; gap: 6px; }
+  .p-data code { font: 400 calc(12px * var(--fs))/1 var(--font-mono); padding: 5px 7px; border-radius: 4px; background: var(--surface); }
+
+  .p-cards { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+  .p-card { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 4px 12px; padding: 12px; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: inherit; }
+  .p-card:hover { border-color: var(--ink); }
+  .p-card img, .p-card .blank { width: 40px; height: 40px; border-radius: 6px; object-fit: contain; background: var(--surface); grid-row: span 2; }
+  .p-card b { font: 600 calc(15px * var(--fs))/1.3 var(--font-head); }
+  .p-card span { font-size: calc(13px * var(--fs)); color: var(--muted); line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+  .p-nav { display: flex; justify-content: space-between; gap: 16px; padding: 20px 0 48px; border-top: 1px solid var(--line); font-size: calc(14px * var(--fs)); }
+  .p-nav a { color: var(--ink); text-decoration: none; max-width: 45%; } .p-nav a:hover { text-decoration: underline; }
+  .p-nav small { display: block; color: var(--muted); font: 500 calc(11px * var(--fs))/1.6 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+<div class="mock-bar"><div class="wrap">
+  <span>MACHETĂ · nu este pagina publică</span>
+  <label>Intrare: <select id="pick"></select></label>
+  <a id="cur" href="#">pagina de azi (panou) ↗</a>
+</div></div>
+
+<header class="hdr"><div class="wrap hdr-in" style="grid-template-areas:'brand tabs';grid-template-columns:auto 1fr">
+  <a class="brand" href="../"><img class="g2-mark" src="../img/gov2.png" alt="" width="32" height="32"><img class="g2-mark neg" src="../img/gov2-negative.png" alt="" width="53" height="32"><span class="brand-name"><span>CivTech România</span></span></a>
+  <nav class="tabs" id="tabs" style="justify-content:flex-end"></nav>
+</div></header>
+
+<main class="wrap p-layout"><aside class="p-toc" id="toc" aria-label="Lista din secțiune"></aside><div id="page" class="p-sheet"><p class="p-note">Se încarcă…</p></div></main>
+
+<script>
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const ROOT = '../';
+// Copied from site/app.js.
+const NETWORK = {
+  facebook: 'M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z',
+  instagram: 'M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077',
+  linkedin: 'M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z',
+  x: 'M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z',
+  bluesky: 'M5.202 2.857C7.954 4.922 10.913 9.11 12 11.358c1.087-2.247 4.046-6.436 6.798-8.501C20.783 1.366 24 .213 24 3.883c0 .732-.42 6.156-.667 7.037-.856 3.061-3.978 3.842-6.755 3.37 4.854.826 6.089 3.562 3.422 6.299-5.065 5.196-7.28-1.304-7.847-2.97-.104-.305-.152-.448-.153-.327 0-.121-.05.022-.153.327-.568 1.666-2.782 8.166-7.847 2.97-2.667-2.737-1.432-5.473 3.422-6.3-2.777.473-5.899-.308-6.755-3.369C.42 10.04 0 4.615 0 3.883c0-3.67 3.217-2.517 5.202-1.026',
+  mastodon: 'M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z',
+  threads: 'M18.263 11.097c-.03-3.486-1.92-5.586-5.111-5.586-2.13 0-3.922.963-4.863 2.499l2.062 1.438c.535-.843 1.272-1.543 2.628-1.543 1.528 0 2.318.85 2.544 2.431a15 15 0 0 0-2.236-.173c-4.125 0-6.068 1.867-6.068 4.336s1.943 3.99 4.804 3.99c3.139 0 5.013-2.115 5.781-4.735.798.361 1.348 1.204 1.348 2.47 0 3.387-3.907 5.232-7.22 5.232-4.885 0-8.077-3.207-8.077-8.424 0-6.392 4.223-10.487 9.9-10.487 3.808 0 5.69 1.671 6.97 3.914l2.108-1.475C21.44 2.078 18.331 0 13.663 0 6.227 0 1.168 5.277 1.168 12.934c0 7 4.953 11.066 10.856 11.066 4.878 0 9.809-2.846 9.809-7.716 0-2.545-1.46-4.231-3.569-5.187m-6.33 4.855c-1.077 0-2.026-.512-2.026-1.453 0-1.483 1.822-1.934 3.606-1.934.678 0 1.34.045 1.927.173-.422 1.927-1.671 3.215-3.508 3.214Z',
+  tiktok: 'M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z',
+  youtube: 'M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z',
+  telegram: 'M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z',
+  discord: 'M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z',
+  github: 'M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12',
+  gitlab: 'm23.6004 9.5927-.0337-.0862L20.3.9814a.851.851 0 0 0-.3362-.405.8748.8748 0 0 0-.9997.0539.8748.8748 0 0 0-.29.4399l-2.2055 6.748H7.5375l-2.2057-6.748a.8573.8573 0 0 0-.29-.4412.8748.8748 0 0 0-.9997-.0537.8585.8585 0 0 0-.3362.4049L.4332 9.5015l-.0325.0862a6.0657 6.0657 0 0 0 2.0119 7.0105l.0113.0087.03.0213 4.976 3.7264 2.462 1.8633 1.4995 1.1321a1.0085 1.0085 0 0 0 1.2197 0l1.4995-1.1321 2.4619-1.8633 5.006-3.7489.0125-.01a6.0682 6.0682 0 0 0 2.0094-7.003z',
+};
+const SAMPLES = ['de-unde-vine-apa', 'marius-comper', 'sicap-ai', 'funky-citizens', 'hack-for-facts', 'orase-vii', 'monitorul-ai'];
+const FACET = [['subjects', 'subj', 'Subiecte'], ['topics', 'topic', 'Teme'], ['purposes', 'purpose', 'Scop civic'], ['capabilities', 'cap', 'Ce poți face'],
+  ['formats', 'fmt', 'Format'], ['technologies', 'tech', 'Tehnologie'], ['institutions', 'inst', 'Instituții vizate'], ['organisationTypes', 'orgt', 'Tip de organizație']];
+// The list the visitor came from: the filters of the list page ride along in the query (only `subj` and `q` in this mock).
+const QS = new URLSearchParams(location.search); QS.delete('slug');
+const keep = QS.toString() ? '&' + QS : '';
+function codeLink(url) {
+  const m = url.match(/^https?:\/\/(?:www\.)?(github|gitlab)\.com\/(.+?)\/?$/i);
+  const text = m ? m[2] : url.replace(/^https?:\/\/(www\.)?/, '');
+  const logo = m ? `<svg class="forge" viewBox="0 0 24 24" aria-hidden="true"><path d="${NETWORK[m[1].toLowerCase()]}"/></svg>` : '';
+  return `<a class="code-link" href="${esc(url)}" target="_blank" rel="noopener">${logo}${esc(text)}</a>`;
+}
+const STATUS = { activ: 'Activ', offline: 'Offline', arhivat: 'Arhivat', neverificat: 'Neverificat', necunoscut: 'Necunoscut', parcat: 'Domeniu parcat', mutat: 'Mutat', blocat: 'Blocat' };
+
+fetch(ROOT + 'data.json').then(r => r.json()).then(DB => {
+  const V = DB.vocabulary, BY = new Map(DB.items.map(i => [i.slug, i]));
+  const label = id => V.concepts.find(c => c.id === id)?.label || V.areas.find(a => a.id === id)?.label || id;
+  const kindLabel = k => V.kinds.find(x => x.key === k)?.label || k;
+  const list = (k, extra = '') => `${ROOT}?k=${k}${extra}`;
+  const pick = document.getElementById('pick');
+  const slug = new URLSearchParams(location.search).get('slug') || SAMPLES[0];
+  pick.innerHTML = [...new Set([...SAMPLES.filter(s => BY.has(s)), slug])].map(s => `<option ${s === slug ? 'selected' : ''}>${esc(s)}</option>`).join('')
+    + '<option value="">— altă intrare: ?slug=… în adresă</option>';
+  pick.onchange = () => { if (pick.value) location.search = '?slug=' + pick.value; };
+  const it = BY.get(slug);
+  if (!it) { document.getElementById('page').innerHTML = `<p>Nu există intrarea „${esc(slug)}”.</p>`; return; }
+  document.getElementById('cur').href = `${ROOT}${it.kind}/${it.slug}/`;
+  document.title = `${it.name} — CivTech România`;
+  document.getElementById('tabs').innerHTML = V.kinds.map(k => `<a class="tab" href="${list(k.key)}" ${k.key === it.kind ? 'aria-current="page"' : ''}>${esc(k.label)}</a>`).join('');
+
+  const alive = !['offline', 'arhivat'].includes(it.status);
+  const subj = it.primarySubject;
+  const parent = it.attributions.find(a => a.role === 'parte_din' && BY.has(a.org));
+  const authors = it.attributions.filter(a => a.role !== 'parte_din');
+  const children = DB.items.filter(i => i.attributions.some(a => a.role === 'parte_din' && a.org === it.slug));
+  const sameAuthor = it.kind === 'organizatie'
+    ? DB.items.filter(i => i.kind !== 'organizatie' && !children.includes(i) && i.attributions.some(a => a.role !== 'parte_din' && a.org === it.slug))
+    : !authors.length ? [] : DB.items.filter(i => i !== it && !children.includes(i) && i.attributions.some(a => a.role !== 'parte_din' && authors.some(b => (a.org && a.org === b.org) || a.name === b.name)));
+  const related = !subj ? [] : DB.items.filter(i => i.kind === it.kind && i.slug !== it.slug && i.subjects.includes(subj) && !children.includes(i) && !sameAuthor.includes(i))
+    .sort((a, b) => (b.primarySubject === subj) - (a.primarySubject === subj) || b.score - a.score).slice(0, 6);
+  // The sidebar: the list of the section, with the list page's filters, grouped as the list page groups it
+  // (projects by primary subject, the other sections A–Z), inactive entries last in each group.
+  const byName = (a, b) => a.name.localeCompare(b.name, 'ro');
+  const fSubj = QS.get('subj'), fQ = (QS.get('q') || '').toLowerCase();
+  const inList = DB.items.filter(i => i.kind === it.kind && (!fSubj || i.subjects.includes(fSubj)) && (!fQ || (i.name + ' ' + (i.tagline || '') + ' ' + (i.desc || '')).toLowerCase().includes(fQ)));
+  if (!inList.includes(it)) inList.push(it);
+  const off = i => ['offline', 'arhivat'].includes(i.status);
+  const groups = new Map();
+  if (it.kind === 'proiect') {
+    const order = V.concepts.map(c => c.id);
+    for (const i of [...inList].sort((a, b) => order.indexOf(a.primarySubject) - order.indexOf(b.primarySubject))) {
+      const g = i.primarySubject || '';
+      if (!groups.has(g)) groups.set(g, []);
+      groups.get(g).push(i);
+    }
+  } else groups.set('', inList);
+  for (const g of groups.values()) g.sort((a, b) => off(a) - off(b) || byName(a, b));
+  const sameKind = [...groups.values()].flat();
+  const at = sameKind.indexOf(it), prev = sameKind[at - 1], next = sameKind[at + 1];
+  const tocItem = i => `<a class="toc-it${off(i) ? ' off' : ''}" href="?slug=${esc(i.slug)}${keep}" ${i === it ? 'aria-current="page"' : ''}>${i.icon ? `<img src="${ROOT}${esc(i.icon)}" alt="" loading="lazy">` : '<i class="blank"></i>'}<span>${esc(i.name)}</span></a>`;
+  const toc = document.getElementById('toc');
+  toc.innerHTML = `<div class="toc-top"><a href="${list(it.kind, fSubj ? '&subj=' + encodeURIComponent(fSubj) : '')}" title="Înapoi la lista cu filtre">← filtre</a><button class="toc-close" type="button">Închide</button></div>
+    ${fSubj || fQ ? `<p class="toc-filter">Filtrat: ${[fSubj && esc(label(fSubj)), fQ && `„${esc(fQ)}”`].filter(Boolean).join(' · ')} · <a href="?slug=${esc(it.slug)}">toată secțiunea</a></p>` : ''}
+    ${[...groups].map(([g, xs]) => `${g ? `<p class="toc-h">${esc(label(g))} · ${xs.length}</p>` : ''}${xs.map(tocItem).join('')}`).join('')}`;
+  toc.querySelector('.toc-close').onclick = () => toc.classList.remove('open');
+
+  const card = i => `<a class="p-card" href="?slug=${esc(i.slug)}${keep}">${i.icon ? `<img src="${ROOT}${esc(i.icon)}" alt="">` : '<i class="blank"></i>'}<b>${esc(i.name)}</b><span>${esc(i.tagline || i.desc)}</span></a>`;
+  const host = u => u.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+  const facts = [
+    authors.length && ['Autor', authors.map(a => a.org && BY.has(a.org) ? `<a href="?slug=${esc(a.org)}">${esc(BY.get(a.org).name)}</a>` : esc(a.name)).join(', ')],
+    parent && ['Parte din', `<a href="?slug=${esc(parent.org)}">${esc(BY.get(parent.org).name)}</a>`],
+    it.url && ['Site', `<a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.domain)}</a>`],
+    it.links.length && ['Linkuri', `<span class="p-links">${[...it.links].sort((a, b) => !NETWORK[a.role] - !NETWORK[b.role]).map(l => NETWORK[l.role]
+      ? `<a class="net" href="${esc(l.url)}" target="_blank" rel="noopener" title="${esc(l.label)}" aria-label="${esc(l.label)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="${NETWORK[l.role]}"/></svg></a>`
+      : `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label || l.role || host(l.url))}</a>`).join('')}</span>`],
+    it.code && ['Cod sursă', codeLink(it.code)],
+    it.repo?.license && ['Licență', esc(it.repo.license)],
+    it.contact && ['Contact', esc(it.contact)],
+    it.areas.length && ['Acoperire', it.areas.map(a => `<a href="${list(it.kind, '&area=' + encodeURIComponent(a))}">${esc(label(a))}</a>`).join(', ')],
+    it.dataRelation && ['Date', esc(V.dataRelations.find(d => d.key === it.dataRelation)?.label || it.dataRelation)],
+    it.dataSources.length && ['Surse de date', it.dataSources.map(s => `<a href="${list(it.kind, '&source=' + encodeURIComponent(s.name))}">${esc(s.name)}</a>`).join(', ')],
+    it.since && ['Prima urmă', `${esc(it.since)} <span class="muted small">· nu e data lansării</span>`],
+    it.updated && ['Actualizat', esc(it.updated)],
+    ['Stare', `${esc(STATUS[it.status] || it.status)}${it.checked ? ` <span class="muted small">· verificat ${esc(it.checked)}</span>` : ''}`],
+  ].filter(Boolean);
+  const classRows = FACET.map(([field, key, title]) => (it[field] || []).length && `<dt>${title}</dt><dd>${it[field].map(id =>
+    `<a class="p-chip${id === subj ? ' main' : ''}" href="${list(it.kind, `&${key}=${encodeURIComponent(id)}`)}">${esc(label(id))}</a>`).join('')}</dd>`).filter(Boolean).join('');
+  const inv = it.inventory;
+  const sheet = DB.site?.sheet && it.sheet ? `${DB.site.sheet}#gid=${DB.site.tabs?.[it.sheet.tab] || 0}&range=A${it.sheet.row}` : '';
+
+  document.getElementById('page').innerHTML = `
+    <button class="toc-btn" type="button" id="tocBtn">☰ ${esc(kindLabel(it.kind))} · ${inList.length}</button>
+    <nav class="p-crumbs" aria-label="Unde ești"><a href="${list(it.kind)}">${esc(kindLabel(it.kind))}</a>${subj ? `<span class="sep">›</span><a href="${list(it.kind, '&subj=' + encodeURIComponent(subj))}">${esc(label(subj))}</a>` : ''}</nav>
+    <section class="p-hero">
+      <div>
+        <div class="p-title">${it.icon ? `<img src="${ROOT}${esc(it.icon)}" alt="">` : ''}<h1>${esc(it.name)}</h1></div>
+        ${it.tagline ? `<p class="p-tag">${esc(it.tagline)}</p>` : ''}
+        ${it.desc ? `<p class="p-desc">${esc(it.desc)}</p>${it.descSrc === 'site' ? '<p class="p-note">Descriere preluată de pe site-ul proiectului.</p>' : ''}` : ''}
+        <div class="p-cta">
+          ${alive && it.url ? `<a class="p-url" href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.domain)} ↗</a>` : ''}
+          ${it.wayback ? `<a class="btn btn-outline" href="${esc(it.wayback)}" target="_blank" rel="noopener">Arhivă</a>` : ''}
+          ${inv?.page ? `<a class="btn btn-outline" href="${ROOT}${esc(inv.page)}">Datele proiectului</a>` : ''}
+        <div class="d-badges"><span>${esc(STATUS[it.status] || it.status)}</span><span>${esc(V.entityTypes.find(e => e.key === it.entityType)?.label || it.entityType)}</span>${it.code ? '<span>cod public</span>' : ''}${it.civictech ? '<span>civic tech</span>' : ''}</div>
+        </div>
+      </div>
+      ${it.img ? `<div class="p-shot"><img src="${ROOT}${esc(it.img.src)}" alt="Imagine de pe ${esc(it.domain)}"></div>` : ''}
+    </section>
+    <div class="p-body">
+      <div class="p-main">
+        ${inv?.count ? `<section class="p-sec"><h2>Date &amp; metodă</h2><div class="p-data">
+          <div><span class="big">${inv.count}</span> câmpuri și parametri · ${inv.sources} ${inv.sources === 1 ? 'sursă consultată' : 'surse consultate'}${inv.partial ? ' · inventar parțial' : ''}</div>
+          <div class="ex">${(inv.examples || []).map(e => `<code>${esc(e)}</code>`).join('')}</div>
+          ${(inv.docs || []).length ? `<div>Documentație: ${inv.docs.map(d => `<a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.label)}</a>`).join(', ')}</div>` : ''}
+          ${inv.page ? `<div><a href="${ROOT}${esc(inv.page)}">Toate câmpurile, în inventarul de date →</a></div>` : ''}
+        </div></section>` : ''}
+        ${classRows ? `<section class="p-sec"><h2>Clasificare</h2><dl class="p-class">${classRows}</dl><p class="p-note">Fiecare etichetă deschide lista cu aceeași etichetă.</p></section>` : ''}
+        ${children.length ? `<section class="p-sec"><h2>Conține (${children.length})</h2><div class="p-cards">${children.map(card).join('')}</div></section>` : ''}
+        ${sameAuthor.length ? `<section class="p-sec"><h2>${it.kind === 'organizatie' ? 'Proiecte și resurse' : 'Același autor'} (${sameAuthor.length})</h2><div class="p-cards">${sameAuthor.map(card).join('')}</div></section>` : ''}
+        ${related.length ? `<section class="p-sec"><h2>Tot din ${esc(label(subj))}</h2><div class="p-cards">${related.map(card).join('')}</div></section>` : ''}
+      </div>
+      <aside class="p-facts"><div class="box"><dl>${facts.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl></div>
+        ${sheet ? `<a class="report" href="${esc(sheet)}" target="_blank" rel="noopener">Lipsește ceva sau e greșit? Corectează în Google Sheets ↗</a>` : ''}</aside>
+    </div>
+    <nav class="p-nav" aria-label="Intrarea anterioară și următoare">
+      ${prev ? `<a href="?slug=${esc(prev.slug)}${keep}"><small>← anterioara din listă</small>${esc(prev.name)}</a>` : '<span></span>'}
+      <a href="${list(it.kind)}" style="text-align:center"><small>înapoi la</small>${esc(kindLabel(it.kind))}</a>
+      ${next ? `<a href="?slug=${esc(next.slug)}${keep}" style="text-align:right"><small>următoarea din listă →</small>${esc(next.name)}</a>` : '<span></span>'}
+    </nav>`;
+  const cur = toc.querySelector('[aria-current]');
+  const centre = () => { if (cur) toc.scrollTop = cur.offsetTop - toc.clientHeight / 2; };
+  document.getElementById('tocBtn').onclick = () => { toc.classList.add('open'); centre(); };
+  centre();
+});
+</script>
+</body>
+</html>
