@@ -144,6 +144,7 @@ svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width:
   clip-path: inset(0 0 0 0);
 }
 .brand-name > span.in { transition: none; }
+.brand-name > .sizer { grid-area: 1 / 1; visibility: hidden; font-style: normal; }
 .brand-name > .out, .brand-name > .in { opacity: 0; }
 [data-fx="rise"] > .out { transform: translateY(-60%) skewX(-8deg); filter: blur(3px); }
 [data-fx="rise"] > .in { transform: translateY(60%) skewX(8deg); filter: blur(3px); }
@@ -200,7 +201,8 @@ svg.gh { width: 20px; height: 20px; fill: currentColor; stroke: none; }
 .chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
 .chip[aria-pressed="true"] .n { color: inherit; opacity: .7; }
 @media (min-width: 1024px) {
-  .hdr-in { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); grid-template-areas: "brand tabs tools"; column-gap: 24px; min-height: 60px; }
+  /* The tabs sit in the middle of the space between the brand (as wide as its longest title) and the tools. */
+  .hdr-in { grid-template-columns: auto minmax(max-content, 1fr) minmax(0, max-content); grid-template-areas: "brand tabs tools"; column-gap: 24px; min-height: 60px; }
   .brand { min-height: 60px; }
   .tabs { margin: 0; padding: 0; align-self: stretch; }
   .tab { padding: 0 12px; }
@@ -223,9 +225,6 @@ svg.gh { width: 20px; height: 20px; fill: currentColor; stroke: none; }
 .ac-opt mark { background: none; color: inherit; font-weight: 600; text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 2px; }
 .ac-opt .l { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ac-opt .r { font: 400 calc(12px * var(--fs))/1 var(--font-mono); color: var(--muted); flex: none; }
-.ac-opt .ico { width: 20px; height: 20px; border-radius: 3px; object-fit: contain; flex: none; background: var(--surface); }
-.ac-opt .ico.blank { display: inline-block; }
-.ac-hint { padding: 10px 12px; font-size: calc(14px * var(--fs)); color: var(--muted); }
 
 /* ---------- layout ---------- */
 .layout { display: grid; gap: 24px; padding-top: 16px; padding-bottom: 48px; }
@@ -283,6 +282,8 @@ svg.gh { width: 20px; height: 20px; fill: currentColor; stroke: none; }
 .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-bottom: 16px; min-height: 36px; }
 .count { font: 500 calc(13px * var(--fs))/1 var(--font-mono); color: var(--muted); }
 .count b { color: var(--ink); font-weight: 500; }
+.elsewhere { font: 400 calc(13px * var(--fs))/1 var(--font-mono); color: var(--muted); }
+.elsewhere .linkbtn { font: inherit; }
 .active { display: flex; flex-wrap: wrap; gap: 6px; }
 .pill { display: inline-flex; align-items: center; gap: 6px; min-height: 28px; padding: 0 8px 0 10px; border-radius: 14px; border: 0; background: var(--surface-2); cursor: pointer; font-size: calc(14px * var(--fs)); }
 .pill svg { width: 13px; height: 13px; }

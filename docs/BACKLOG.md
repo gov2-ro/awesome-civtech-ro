@@ -9,7 +9,9 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 - [ ] `form.py`: `KIND_SECTION` and `data/form-v2.json` (`kind_section`) send a proposed `publicatie` to `resursa`. Decide whether it goes to `publicatie`. Change both files together, then run `form.py --write-map`.
 - [x] The feed lists every section (owner, 2026-11-18). An entry that left `proiect` keeps its old GUID; the entries that left `resursa` were never in the feed.
 - [x] `MOVED_FROM_RESURSA` became `MOVED` (slug → old section), so a move from any section gets a stub. 12 entries moved from `proiect` on 2026-11-18.
-- [ ] Search: the suggestion box and the live list filter show different results at the same time (owner, 2026-11-18). Decide what the box shows; see ACTIVITY 2026-11-18.
+- [x] Search: the box suggests filters only; matches in the other tabs show as a line of counts above the results (owner, 2026-11-18).
+- [ ] Entry as a full page, not a drawer over the list (owner, 2026-11-18). Each entry already has its own address, and the drawer holds a lot: description, links, attributions, data sources, inventory, related entries. Revisit the layout of the entry at the same time. Keep the keyboard navigation (`j`/`k`, `Esc`) and the old `?p=<slug>` links. Related: the SEO work (sitemap, JSON-LD, the full entry in static HTML), not yet briefed.
+- [ ] Header at 1024–1279 px: the four tabs leave the search box about 40 px wide and cut the title. Measured 2026-11-18 at 1024 px; the fourth tab caused it. Options: shorter tab labels at that width, or the search as an icon that opens.
 
 ## Local reporting platforms (sesizări) — 2026-11-16
 

@@ -1,5 +1,19 @@
 # Activity
 
+## 2026-11-18 — Search box suggests filters only; tabs centred in the header
+
+**Done**
+- `app.js`: the search box no longer suggests entries; it suggests filters (subjects, topics, sources, areas, authors) and stays closed when none fits. Above the results, a line counts the free-text matches in the other tabs („și 11 în Proiecte, 3 în Analize & investigații”); a count opens its tab and keeps the query. `textMatch()` and `elsewhere()` are new; the code paths for entry suggestions are gone.
+- Header (≥ 1024 px): columns `auto minmax(max-content, 1fr) minmax(0, max-content)`, and the brand box is as wide as the longest title (hidden copies of `TITLES`). The tabs sit in the middle of the space between the brand box and the search.
+- `check_preview.py`: three checks for the search change. 153/153 passed.
+
+**Hard**
+- Measured gaps between the brand box and the first tab, and between the last tab and the search (px): 1280: 118/24 before, 24/24 after; 1440: 198/24 before, 57/57 after; 1600: 218/24 before, 77/77 after.
+- At 1024 px the header was already full before this change: search box 39 px wide, the title cut. Backlog.
+
+**Decided**
+- The brand box takes the width of the longest title, so the tabs do not move when the title rotates. Cost: with a short title the space left of the tabs looks wider than the space right of them. The alternative (centre on the visible title) moves the tabs every 3–5 s.
+
 ## 2026-11-18 — Feed of every section; 12 projects move to „Analize & investigații”
 
 **Done**

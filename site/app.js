@@ -181,12 +181,18 @@ function matches(it, skip) {
   if (skip !== 'nou' && state.nou && !isFresh(it)) return false;
   // The status facet counts its own options without this rule, or `inactiv` would show 0 and could not be chosen.
   if (skip !== 'ina' && skip !== 'st' && !showsInactive() && isInactive(it)) return false;
+  return textMatch(it);
+}
+// Free-text search: every word of the query is in the entry's text.
+function textMatch(it) {
   const q = query();
-  if (q) {
-    const terms = norm(q).split(/\s+/).filter(Boolean);
-    if (!terms.every(t => it._hay.includes(t))) return false;
-  }
-  return true;
+  return !q || norm(q).split(/\s+/).filter(Boolean).every(t => it._hay.includes(t));
+}
+// Free-text matches in the other tabs. A change of tab keeps only the query and hides inactive entries, so count the same.
+function elsewhere() {
+  if (!query()) return [];
+  return Object.keys(TAX.kind).filter(k => k !== state.k)
+    .map(k => ({ k, n: DB.items.filter(i => i.kind === k && !isInactive(i) && textMatch(i)).length })).filter(x => x.n);
 }
 const kindItems = () => DB.items.filter(i => i.kind === state.k);
 // Entries per option of one facet: the other facets apply, this facet's own selection does not. Each entry counts once
@@ -499,6 +505,7 @@ function renderToolbar(n) {
   slot('toolbar').innerHTML = `
     ${DB.draft && DRAFT_NOTE ? '<p class="draft-note">Previzualizare: clasificările sunt propuneri, încă neacceptate de editor.</p>' : ''}
     <span class="count"><b>${n}</b> ${n === 1 ? 'rezultat' : 'rezultate'}</span>
+    ${(o => o.length ? `<span class="elsewhere">și ${o.map(x => `<button class="linkbtn" data-act="kind" data-val="${x.k}">${x.n} în ${esc(TAX.kind[x.k].label)}</button>`).join(', ')}</span>` : '')(elsewhere())}
     ${pills.length ? `<span class="active">${pills.join('')}</span><button class="linkbtn" data-act="reset">Șterge filtrele</button>` : ''}
     <span class="tool-right">
       <label class="sr" for="sort">Ordonare</label>
@@ -1030,7 +1037,7 @@ let SUGGEST = [], acItems = [], acIndex = -1;
 // Concept suggestions carry their facet in the label ("Subiect: Inteligență artificială" is not "Tehnologie: Folosește AI").
 // Each one is found by its Romanian and English labels and its alternative labels, without diacritics.
 const FACET_OF_SCHEME = { scop: 'purpose', functie: 'cap', format: 'fmt', tehnologie: 'tech', institutie: 'inst', organizatie: 'orgt' };
-const AC_GROUPS = { Subiecte: 3, Teme: 4, Funcționalități: 3, Formate: 3, Tehnologii: 2, Scopuri: 2, Surse: 3, Instituții: 2, Zone: 3, Proiecte: 6, Autori: 3 };
+const AC_GROUPS = { Subiecte: 3, Teme: 4, Funcționalități: 3, Formate: 3, Tehnologii: 2, Scopuri: 2, Surse: 3, Instituții: 2, Zone: 3, Autori: 3 };
 const GROUP_OF = { subj: 'Subiecte', topic: 'Teme', source: 'Surse', cap: 'Funcționalități', fmt: 'Formate', tech: 'Tehnologii', purpose: 'Scopuri', inst: 'Instituții', orgt: 'Instituții', area: 'Zone' };
 function buildSuggestions() {
   const out = [];
@@ -1042,7 +1049,7 @@ function buildSuggestions() {
   for (const s of sourceGroups(DB.items.flatMap(i => i.dataSources)))
     out.push({ g: 'Surse', label: s.name, kind: 'source', val: s.name, names: [s.name, ...s.names] });
   for (const a of DB.vocabulary.areas) out.push({ g: 'Zone', label: a.label, kind: 'area', val: a.id, names: [a.label] });
-  for (const it of DB.items) out.push({ g: 'Proiecte', label: it.name, kind: 'item', val: it.slug, it, names: [it.name] });
+  // No entries here: the list shows the matches of this tab, and the line above it counts the other tabs.
   for (const o of new Set(DB.items.flatMap(i => i._orgs))) out.push({ g: 'Autori', label: o, kind: 'org', val: o, names: [o] });
   for (const s of out) s._n = [...new Set(s.names.filter(Boolean).map(norm))];
   return out;
@@ -1060,7 +1067,6 @@ function scoreOf(names, q) {
 function countFor(s) {
   const base = DB.items.filter(i => i.kind === state.k && (showsInactive() || !isInactive(i)));
   if (s.kind === 'org') return DB.items.filter(i => i._orgs.includes(s.val)).length;
-  if (s.kind === 'item') return null;
   return base.filter(i => has(i, s.kind, s.val)).length;
 }
 function highlight(label, q) {
@@ -1079,24 +1085,16 @@ function renderAC() {
   for (const x of scored) (groups[x.s.g] ??= []).length < GROUP_LIMIT[x.s.g] && groups[x.s.g].push(x);
   acItems = Object.keys(GROUP_LIMIT).flatMap(g => groups[g] || []);
   acIndex = -1;
-  if (!acItems.length) {
-    box.innerHTML = `<div class="ac-hint">Nicio sugestie. Rezultatele de mai jos conțin textul căutat.</div>`;
-  } else {
-    let html = '', last = '';
-    acItems.forEach((x, i) => {
-      if (x.s.g !== last) { html += `<div class="ac-group" role="presentation">${x.s.g}</div>`; last = x.s.g; }
-      const it = x.s.it;
-      const lead = x.s.kind === 'item'
-        ? (it.icon ? `<img class="ico" src="${esc(it.icon)}" alt="">` : '<span class="ico blank"></span>') : '';
-      const right = x.s.kind === 'item'
-        ? (it.kind !== 'proiect' ? TAX.kind[it.kind].label.toLowerCase() : isInactive(it) ? STATUS[it.status].label.toLowerCase() : it.primarySubject ? label(it.primarySubject) : '')
-        : x.n;
-      // A concept found by another name (an English label or a synonym) shows that name too.
-      const shown = FACETS.includes(x.s.kind) ? `${esc(facetTitle(x.s.kind))}: ${highlight(x.s.label, q)}${x.via !== norm(x.s.label) ? ` <span class="muted">(${esc(x.s.names.find(n => norm(n) === x.via) || '')})</span>` : ''}` : highlight(x.s.label, q);
-      html += `<div class="ac-opt" role="option" id="ac-${i}" data-ac="${i}" aria-selected="false">${lead}<span class="l">${shown}</span><span class="r">${esc(right)}</span></div>`;
-    });
-    box.innerHTML = html;
-  }
+  // No filter fits: the box stays closed. The list and the line above it show the text matches.
+  if (!acItems.length) { closeAC(); return; }
+  let html = '', last = '';
+  acItems.forEach((x, i) => {
+    if (x.s.g !== last) { html += `<div class="ac-group" role="presentation">${x.s.g}</div>`; last = x.s.g; }
+    // A concept found by another name (an English label or a synonym) shows that name too.
+    const shown = FACETS.includes(x.s.kind) ? `${esc(facetTitle(x.s.kind))}: ${highlight(x.s.label, q)}${x.via !== norm(x.s.label) ? ` <span class="muted">(${esc(x.s.names.find(n => norm(n) === x.via) || '')})</span>` : ''}` : highlight(x.s.label, q);
+    html += `<div class="ac-opt" role="option" id="ac-${i}" data-ac="${i}" aria-selected="false"><span class="l">${shown}</span><span class="r">${x.n}</span></div>`;
+  });
+  box.innerHTML = html;
   box.hidden = false;
   input.setAttribute('aria-expanded', 'true');
 }
@@ -1120,12 +1118,6 @@ function pickAC(i) {
   const input = slot('q');
   input.value = ''; state.q = '';
   closeAC();
-  if (s.kind === 'item') {
-    writeURL(); renderFilters(); renderResults();
-    input.blur();
-    state.p = s.val; writeURL(true); renderDetail();
-    return;
-  }
   if (FACETS.includes(s.kind)) {
     if (!listOf(s.kind).includes(s.val)) state[s.kind] = [...listOf(s.kind), s.val].join(',');
   }
@@ -1344,6 +1336,9 @@ function fitHeader() {
   hdr.style.top = innerWidth < 1024 ? `-${search.offsetTop - parseFloat(getComputedStyle(search).marginTop)}px` : '0px';
 }
 new ResizeObserver(fitHeader).observe(slot('hdr'));
+// The brand box is as wide as the longest title, so that the tabs, centred between the brand and the search, do not
+// move when the title changes. Hidden copies of every title size the box; the visible span is the first child.
+slot('brand').insertAdjacentHTML('beforeend', TITLES.map(t => `<i class="sizer">${esc(t)}</i>`).join(''));
 
 /* ---------- display preferences: text size and theme ---------- */
 // The <head> script in index.html applies them before the first paint; this keeps the footer buttons and the

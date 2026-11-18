@@ -273,6 +273,17 @@ with sync_playwright() as pw:
     page.fill('[data-slot="q"]', "achizitii")
     page.wait_for_timeout(400)
     ok("free-text search still works without a concept", count_text(page) > 0, str(count_text(page)))
+    # The box suggests filters only; entries of the other tabs show as a line of counts above the results.
+    go("?k=organizatie")
+    page.fill('[data-slot="q"]', "ce face statul")
+    page.wait_for_timeout(400)
+    elsewhere = page.locator('[data-slot="toolbar"] .elsewhere')
+    line = elsewhere.inner_text() if elsewhere.count() else ""
+    ok("no entry suggestions in the box", page.locator('[data-slot="ac"]').is_hidden(), page.locator('[data-slot="ac"]').inner_text()[:80])
+    ok("other tabs counted above the results", "Analize & investigații" in line, line)
+    elsewhere.locator('.linkbtn', has_text="Analize").click()
+    page.wait_for_timeout(300)
+    ok("a count opens its tab and keeps the query", "k=publicatie" in page.url and "q=ce+face+statul" in page.url and count_text(page) > 0, page.url)
 
     # 12. Short topic list, labelled badges, dialog focus.
     go("")
