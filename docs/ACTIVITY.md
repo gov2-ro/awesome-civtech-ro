@@ -1,5 +1,14 @@
 # Activity
 
+## 2026-11-18 — Cloudflare Web Analytics
+
+**Done**
+- The owner's beacon (token `ec575a13…`, host `civtech.gov2.ro`) in `<head>` of `site/index.html` and of the four page templates in `scripts/templates/` (`inventory`, `inventory-list`, `inventory-vars`, `entities`). The entry pages and the section lists copy the head of `index.html`, so they carry it too. `review_ui.html` is local and has none.
+
+**Decided**
+- A small inline script loads the beacon only when `location.hostname` is `civtech.gov2.ro`. Local previews and the CI browser checks (which also block requests to other hosts) send nothing. Cost of the plain snippet: every preview and CI run counts as a visit, under host `localhost`.
+- No HTML comment around it: the template tests reject a `<!--` left in a built page (6 failures with the comment).
+
 ## 2026-11-18 — Inverse header, gov2.ro logo, forge logo in „Cod sursă”
 
 **Done**
