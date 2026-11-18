@@ -14,6 +14,7 @@
 - The previous state lives on the site itself (`indexnow.json`), not in the repository or a cache: no commit from CI, and the comparison is always with what is live. Cost of the alternative (an Actions cache): a lost cache resends every address. Cost of this choice: if a submission fails, those addresses are not sent again until their pages change.
 - A removed address is not sent: it answers 404, and the engines drop it on their next visit.
 - The first deploy sends all 275 addresses (no earlier manifest). The limit is 10,000 per request.
+- First deploy (run 44411941918): the API answered HTTP 403 `SiteVerificationNotCompleted`, because the key file went live in the same deploy. A manual `submit` of the 275 live addresses a few minutes later got HTTP 200. Later deploys find the key already verified.
 - A new entry changes the left list of every page in its section, so a deploy that adds a project sends about 140 addresses. This is within the protocol's use (the page did change).
 
 ## 2026-11-18 — gov2.ro collection; org.gov2.ro and RO-ALERT
