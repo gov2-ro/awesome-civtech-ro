@@ -4748,6 +4748,78 @@
       ]
     },
     {
+      "slug": "dosarjust",
+      "url": "https://dosarjust.ro/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://dosarjust.ro/",
+          "final_url": "https://dosarjust.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-19T15:19:38.536643+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "DosarJust — Caută orice dosar din România. Gratuit, fără reclame.",
+          "sections": [],
+          "sha256": "fa405efb2eda5e1094c434ed0b5caaa74ea3e5192f5615e30c9a2e6e97d4a82c",
+          "snapshot": "pagini/ef496d927e6c3f77a0940d65.json",
+          "text_chars": 531
+        },
+        {
+          "url": "https://dosarjust.ro/llms.txt",
+          "final_url": "https://dosarjust.ro/llms.txt",
+          "http_status": 200,
+          "fetched_at": "2026-11-19T15:19:38.955780+00:00",
+          "content_type": "text/plain",
+          "state": "colectat",
+          "kind": "llms",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "",
+          "sections": [],
+          "sha256": "07ead0f00f778034deb781d0d754593dd8f2e800485c2017b19d4aea394176b0",
+          "snapshot": "pagini/d6482f473ff56c271dfee67a.json",
+          "text_chars": 5243
+        },
+        {
+          "url": "https://dosarjust.ro/metodologie/",
+          "final_url": "https://dosarjust.ro/metodologie/",
+          "http_status": 200,
+          "fetched_at": "2026-11-19T15:19:39.238102+00:00",
+          "content_type": "text/html",
+          "state": "copie-pagina-initiala",
+          "kind": "metodologie",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "DosarJust — Caută orice dosar din România. Gratuit, fără reclame.",
+          "sections": [],
+          "sha256": "fa405efb2eda5e1094c434ed0b5caaa74ea3e5192f5615e30c9a2e6e97d4a82c",
+          "snapshot": "pagini/13f30608df107b220e93856c.json",
+          "text_chars": 531
+        },
+        {
+          "url": "https://dosarjust.ro/despre/",
+          "final_url": "https://dosarjust.ro/despre/",
+          "http_status": 200,
+          "fetched_at": "2026-11-19T15:19:39.507470+00:00",
+          "content_type": "text/html",
+          "state": "copie-pagina-initiala",
+          "kind": "despre",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "DosarJust — Caută orice dosar din România. Gratuit, fără reclame.",
+          "sections": [],
+          "sha256": "fa405efb2eda5e1094c434ed0b5caaa74ea3e5192f5615e30c9a2e6e97d4a82c",
+          "snapshot": "pagini/adca55b3b33ab12687831b6a.json",
+          "text_chars": 531
+        }
+      ]
+    },
+    {
       "slug": "drepturi-civile",
       "url": "https://www.drepturicivile.ro/",
       "state": "documentatie-neconfirmata",

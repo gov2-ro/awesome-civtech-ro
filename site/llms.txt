@@ -1,10 +1,10 @@
 # CivTech România
 
 > Colecție curatoriată de proiecte civic tech, organizații și resurse din România: instrumente civice, date deschise
-> și proiecte de bună guvernare. 139 proiecte, 16 organizații, 12 resurse, 26 analize și investigații.
+> și proiecte de bună guvernare. 140 proiecte, 16 organizații, 12 resurse, 26 analize și investigații.
 
 Fiecare intrare are o pagină proprie la https://civtech.gov2.ro/<tip>/<slug>/ (tip: proiect, organizatie, resursa, publicatie). Starea
-(activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-11-18. Textele sunt în
+(activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-11-19. Textele sunt în
 limba română. Datele sunt reutilizabile conform EUPL v1.2.
 
 ## Date
@@ -87,6 +87,7 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 - [AI Aflat](https://civtech.gov2.ro/proiect/ai-aflat/): Asistent AI care explică legislația pe înțeles. Site: https://ai-aflat.ro
 - [Ce zice legea](https://civtech.gov2.ro/proiect/ce-zice-legea/): Site: https://cezicelegea.ro/
 - [Despre femicid](https://civtech.gov2.ro/proiect/despre-femicid/): Cazurile de femicid din România. Site: https://desprefemicid.ro/
+- [DosarJust](https://civtech.gov2.ro/proiect/dosarjust/): Căutare și alerte pentru dosarele instanțelor din România, gratuit. Site: https://dosarjust.ro/
 - [Drepturi civile](https://civtech.gov2.ro/proiect/drepturi-civile/) (arhivat): Ghid despre drepturile tale în relația cu autoritățile. Site: https://www.drepturicivile.ro
 - [eContractAuto](https://civtech.gov2.ro/proiect/econtractauto/): Contractul de vânzare-cumpărare auto în trei pași. Site: https://econtractauto.ro/
 - [Ia statul la întrebări](https://civtech.gov2.ro/proiect/ia-statul-la-intrebari/) (arhivat): Cereri de informații publice (Legea 544). Site: https://www.romaniacurata.ro

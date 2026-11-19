@@ -4290,6 +4290,56 @@
       ]
     },
     {
+      "proiect": "dosarjust",
+      "url": "https://dosarjust.ro/.well-known/ai-catalog.json",
+      "sursa_id": "3e089206935b766ec20e",
+      "stare": "activ",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://dosarjust.ro/llms.txt",
+      "link_original": "https://dosarjust.ro/.well-known/ai-catalog.json",
+      "dovada": {
+        "url": "https://dosarjust.ro/llms.txt",
+        "sha256": "07ead0f00f778034deb781d0d754593dd8f2e800485c2017b19d4aea394176b0",
+        "snapshot": "documentare/pagini/d6482f473ff56c271dfee67a.json",
+        "pointer": "/links/0"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-19T15:19:38.955780+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "admis",
+          "la": "2026-11-19T15:19:40.366433+00:00"
+        }
+      ]
+    },
+    {
+      "proiect": "dosarjust",
+      "url": "https://dosarjust.ro/api/public/openapi.json",
+      "sursa_id": "30ac532b52f108bdfe76",
+      "stare": "activ",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://dosarjust.ro/llms.txt",
+      "link_original": "https://dosarjust.ro/api/public/openapi.json",
+      "dovada": {
+        "url": "https://dosarjust.ro/llms.txt",
+        "sha256": "07ead0f00f778034deb781d0d754593dd8f2e800485c2017b19d4aea394176b0",
+        "snapshot": "documentare/pagini/d6482f473ff56c271dfee67a.json",
+        "pointer": "/links/8"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-19T15:19:38.955780+00:00",
+      "prioritate": 0,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "admis",
+          "la": "2026-11-19T15:19:40.366433+00:00"
+        }
+      ]
+    },
+    {
       "proiect": "dupa-cutremur",
       "url": "https://storage.googleapis.com/dupacutremur/_strazi_arie_colaps_06122022.geojson",
       "sursa_id": "35d2d1b9b7e30cdf2631",

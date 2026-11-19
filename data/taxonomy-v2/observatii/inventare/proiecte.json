@@ -11088,6 +11088,37 @@
         "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
+    },
+    {
+      "slug": "dosarjust",
+      "nume": "DosarJust",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Căutare și alerte pentru dosarele instanțelor din România, gratuit.",
+      "permite": [
+        "Caută și consultă",
+        "Monitorizează",
+        "Primește alerte",
+        "Analizează date"
+      ],
+      "formate_catalogate": [
+        "Registru sau bază de date",
+        "API oferit",
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "dosarjust"
+      },
+      "intrari_utilizator": [],
+      "surse_structurate": [
+        "30ac532b52f108bdfe76",
+        "3e089206935b766ec20e"
+      ],
+      "campuri_din_surse": 334,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
+      ]
     }
   ]
 }

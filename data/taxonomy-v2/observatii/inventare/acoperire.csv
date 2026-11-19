@@ -196,3 +196,4 @@ marius-comper,resursa,,fara-date,0,0,,0,0,0,,,,,,
 gov2-ro,resursa,,fara-date,0,0,,0,0,0,,,,,,
 org-gov2,proiect,,blocat,0,0,,0,0,0,,,1,,HTTP 200 la https://org.gov2.ro/institutii.csv,
 ro-alert,publicatie,,neinvestigat-in-lot,0,0,,0,0,0,,,,,,"Căutați documentație, o schemă sau un export. Lipsa extragerii nu înseamnă lipsa datelor."
+dosarjust,proiect,baza,cu-surse-structurate,2,334,0,210,310,13,0,0,2,Extragerea a atins o limită de eșantionare.,,
