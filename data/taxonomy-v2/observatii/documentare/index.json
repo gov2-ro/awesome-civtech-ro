@@ -7210,6 +7210,56 @@
       ]
     },
     {
+      "slug": "insseption",
+      "url": "https://insse.csaladen.es/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://insse.csaladen.es/",
+          "final_url": "https://insse.csaladen.es/",
+          "http_status": 200,
+          "fetched_at": "2026-11-19T15:46:41.184923+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Explore Romanian statistics · insseption",
+          "sections": [],
+          "sha256": "1a1054a707f4490011e8faf6c46cbb4c9e8a38efdec1962b22641ad2b2aa6290",
+          "snapshot": "pagini/2f8d9aa085cd9d1b52fa2b05.json",
+          "text_chars": 475
+        },
+        {
+          "url": "https://insse.csaladen.es/llms.txt",
+          "final_url": "https://insse.csaladen.es/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-19T15:46:41.456788+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://insse.csaladen.es/docs/en",
+          "final_url": "https://insse.csaladen.es/docs/en",
+          "http_status": 200,
+          "fetched_at": "2026-11-19T15:46:41.753749+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "despre",
+          "scope": "proiect",
+          "truncated": true,
+          "title": "Guide · insseption API",
+          "sections": [],
+          "sha256": "b22f1be15f3a6f7c9078ba3248ab6fd2c78b2a7b904662f67f0375a64b43ddcc",
+          "snapshot": "pagini/4ff764e865cca1ef67d937e7.json",
+          "text_chars": 60000
+        }
+      ]
+    },
+    {
       "slug": "interoperabilitate",
       "url": "https://interoperabilitate.ro/",
       "state": "documentatie-gasita",

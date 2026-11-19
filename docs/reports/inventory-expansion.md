@@ -6,7 +6,7 @@ Inventory assertions are proposals. Raw field totals count source paths, not ind
 ## 1. Outcome
 
 - Milestones A (safe incremental collection), B (INS), C (12 entries), D (meanings and shared groups) and E (preview, coverage, report) are complete.
-- Structured field evidence now covers 72 of 182 projects and resources (baseline 14). The retained sources are 237 URLs (230 parsed, 7 failed) with 8,518 field records.
+- Structured field evidence now covers 72 of 183 projects and resources (baseline 14). The retained sources are 237 URLs (230 parsed, 7 failed) with 8,518 field records.
 - Each field record is a path in a source. The proposals are 46 shared groups (baseline 7), 16 provider review items and the dictionary evidence that `inventory.py --check` verifies.
 - The public build is unchanged: the default payload equals the v0.13.0 payload apart from its generation time; classifications and accepted providers are identical.
 - Collection used 320 direct requests in total (49 browser navigations); the 150-request limit of lot C was not reached.
@@ -34,21 +34,21 @@ Field-level meaning is thinner than group-level meaning. Source-declared field d
 
 ## 2. Coverage before and after
 
-The 182 projects and resources of the catalogue (the finder lists the 133 that are in scope):
+The 183 projects and resources of the catalogue (the finder lists the 134 that are in scope):
 
 | Measure | Baseline | Now |
 | --- | ---: | ---: |
-| Catalogue entries | 140 | 198 |
-| Projects / resources / organisations | 106 / 21 / 13 | 144 / 38 / 16 |
-| Projects and resources (catalogue, hidden entries included) | 127 | 182 |
+| Catalogue entries | 140 | 199 |
+| Projects / resources / organisations | 106 / 21 / 13 | 145 / 38 / 16 |
+| Projects and resources (catalogue, hidden entries included) | 127 | 183 |
 | Entries with structured field evidence | 14 | 72 |
-| Projects/resources without extracted structured fields | 113 | 110 |
+| Projects/resources without extracted structured fields | 113 | 111 |
 | Retained structured-source URLs | 25 | 237 |
 | Parsed sources / HTTP failures | 24 / 1 | 230 / 7 |
 | Source-scoped field records (paths, not variables) | 2,302 | 8,518 |
 | Schema declarations / sampled JSON paths / CSV headers / INS dimensions | 1,312 / 904 / 82 / 4 | 2,300 / 3,679 / 311 / 4 |
-| HTML control candidates / entries with candidates | 308 / 78 | 419 / 114 |
-| Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 132 / 66 |
+| HTML control candidates / entries with candidates | 308 / 78 | 420 / 115 |
+| Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 133 / 66 |
 | Accepted provider relations / entries with accepted providers | 26 / 11 | 121 / 46 |
 | Pending provider proposals (review items D132 and later) | 15 | 10 |
 | Proposed business-variable groups | 7 | 46 |
@@ -57,11 +57,11 @@ The 182 projects and resources of the catalogue (the finder lists the 133 that a
 
 Review state, counted from the tracked files. Provider items (`camp` `surse_date`): 118 in all; deschis 10, acceptat 94, respins 11, amanat 0, tehnic 3. Variable groups: 46 in all; propus 0, revizuit 46, respins 0, amanat 0. Group members (selectors): 236 in all; propus 0, confirmat 236, exclus 0.
 
-Scope of the data finder (`/date/`): 133 of the 178 public projects and resources are in scope. An entry is in scope when it is not inactive (`offline`, `arhivat`) and its `relatie_date` is `date-publice`, `date-proprii` or `calcul`. The finder leaves out 45: 27 without data (`fara-date`), 0 not assessed (empty value), 18 inactive (counted first: an inactive entry is never counted as another reason). 4 hidden entries (`ascuns`) are in no count of this paragraph.
+Scope of the data finder (`/date/`): 134 of the 179 public projects and resources are in scope. An entry is in scope when it is not inactive (`offline`, `arhivat`) and its `relatie_date` is `date-publice`, `date-proprii` or `calcul`. The finder leaves out 45: 27 without data (`fara-date`), 0 not assessed (empty value), 18 inactive (counted first: an inactive entry is never counted as another reason). 4 hidden entries (`ascuns`) are in no count of this paragraph.
 
 Field records by evidence type now: observat-in-esantion-json 3,679, declarat-in-schema 2,300, declarat-in-cod-sursa 1,184, exemplu-in-documentatie 364, neprecizat-in-antet-csv 311, antet-tabel-html 236, declarat-in-lista-baza 171, declarat-in-metadate 68, declarat-in-tabel-documentatie 53, declarat-in-documentatie-api 48, declarat-in-lista-documentatie 40, declarat-in-text-documentatie 36, utilizat-in-cod-pagina 28.
 
-Coverage by measure, for the 182 projects and resources (`acoperire.csv` has the rows). A column that counts fields counts source paths:
+Coverage by measure, for the 183 projects and resources (`acoperire.csv` has the rows). A column that counts fields counts source paths:
 
 | Measure | Entries counted | Total |
 | --- | ---: | ---: |
@@ -78,7 +78,7 @@ Coverage by measure, for the 182 projects and resources (`acoperire.csv` has the
 Totals add the per-entry counts. A source that several entries share counts once for each of them, so the field total here is higher than the number of distinct field records above.
 Denominators are defined in `docs/DATA-SCHEMA.md` (Coverage export). Entries without a structured source have an empty (unknown) measure count, not zero.
 
-All 198 catalogue entries (hidden entries included):
+All 199 catalogue entries (hidden entries included):
 
 | State | Entries |
 | --- | ---: |
@@ -89,7 +89,7 @@ All 198 catalogue entries (hidden entries included):
 | inactiv | 19 |
 | investigat-fara-surse | 4 |
 | neevaluat | 2 |
-| neinvestigat-in-lot | 52 |
+| neinvestigat-in-lot | 53 |
 
 `in-afara-ariei` entries are organisations: the finder lists projects and resources. An organisation need not expose a dataset. Missing extraction never proves missing data.
 `fara-date`, `inactiv` and `neevaluat` are projects and resources that the finder leaves out and that have no source record. An entry with a usable source keeps `cu-surse-structurate`, and an entry whose sources failed keeps `blocat`, whatever its scope: the evidence stays in `observatii/`, and only the public output leaves the entry out.
