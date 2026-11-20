@@ -1,5 +1,16 @@
 # Activity
 
+## 2026-11-20 — Search across tabs; author view
+
+**Done**
+- `site/app.js`: a text query lists the matches of the other tabs below the active tab, one heading per tab. It applies only when no facet filter is set (a facet belongs to one tab). The "și N în …" hint is off in that case.
+- New filter `?autor=Name`: same cross-tab list, an `Autor: …` pill, and it survives a tab change. Author names without an organisation page are now links (`app.js` `authorLink`, `scripts/entry_page.py` `author_link`).
+- Checked in Chromium: `?q=Gabriel+Popa` and `?autor=Gabriel+Popa` give 6 results (5 Proiecte, 1 Analize & investigații); the author link on `/publicatie/interoperabilitate/` opens that view.
+
+**Decided**
+- Author matching is by exact name (`norm`), not by an author entity: names are plain text in `relatii.csv`. Cost of the alternative (`/autor/<slug>/` pages): an author list in the data, a slug and sitemap entries.
+- Other-tab results sit under headings, not in one list with a label per row: no change to the row layout.
+
 ## 2026-11-19 — `/date/` indexable; IndexNow
 
 **Done**

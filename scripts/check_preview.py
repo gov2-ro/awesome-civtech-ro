@@ -281,17 +281,22 @@ with sync_playwright() as pw:
     page.fill('[data-slot="q"]', "achizitii")
     page.wait_for_timeout(400)
     ok("free-text search still works without a concept", count_text(page) > 0, str(count_text(page)))
-    # The box suggests filters only; entries of the other tabs show as a line of counts above the results.
+    # The box suggests filters only; entries of the other tabs list below the active tab, one heading per tab.
     go("?k=organizatie")
     page.fill('[data-slot="q"]', "ce face statul")
     page.wait_for_timeout(400)
-    elsewhere = page.locator('[data-slot="toolbar"] .elsewhere')
-    line = elsewhere.inner_text() if elsewhere.count() else ""
+    heads = page.locator('[data-slot="results"] .group-head').all_inner_texts()
     ok("no entry suggestions in the box", page.locator('[data-slot="ac"]').is_hidden(), page.locator('[data-slot="ac"]').inner_text()[:80])
-    ok("other tabs counted above the results", "Analize & investigații" in line, line)
-    elsewhere.locator('.linkbtn', has_text="Analize").click()
+    ok("other tabs listed below the active tab", any("Analize & investigații" in h for h in heads), str(heads))
+    ok("no count line while other tabs are listed", page.locator('[data-slot="toolbar"] .elsewhere').count() == 0)
+    page.locator('[data-slot="tabs"] .tab', has_text="Analize").click()
     page.wait_for_timeout(300)
-    ok("a count opens its tab and keeps the query", "k=publicatie" in page.url and "q=ce+face+statul" in page.url and count_text(page) > 0, page.url)
+    ok("a tab keeps the query", "k=publicatie" in page.url and "q=ce+face+statul" in page.url and count_text(page) > 0, page.url)
+    # The author view: the same list across tabs, reached from the author's name on an entry page.
+    go("?autor=Gabriel+Popa")
+    heads = page.locator('[data-slot="results"] .group-head').all_inner_texts()
+    ok("author view lists more than one tab", any("din celelalte secțiuni" in h for h in heads) and count_text(page) > 1, str(heads))
+    ok("author view has its pill", page.locator('[data-slot="toolbar"] .pill', has_text="Autor: Gabriel Popa").count() == 1)
 
     # 12. Short topic list, labelled badges, dialog focus.
     go("")

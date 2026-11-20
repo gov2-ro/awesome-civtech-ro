@@ -11,7 +11,7 @@ import json
 import re
 import unicodedata
 from datetime import date
-from urllib.parse import quote
+from urllib.parse import quote, urlencode
 
 SITE_URL = "https://civtech.gov2.ro/"
 FRESH_DAYS, NEWEST_DAYS = 183, 60  # as in app.js
@@ -193,7 +193,7 @@ def class_html(i: dict, ctx: Context) -> str:
 
 def author_link(a: dict, ctx: Context) -> str:
     o = ctx.by.get(a["org"]) if a["org"] else None
-    return f'<a href="{esc(href(o))}" data-open="{esc(o["slug"])}">{esc(o["name"])}</a>' if o else esc(a["name"])
+    return f'<a href="{esc(href(o))}" data-open="{esc(o["slug"])}">{esc(o["name"])}</a>' if o else f'<a href="?{urlencode({"autor": a["name"]})}" data-nav title="Toate lucrările acestui autor">{esc(a["name"])}</a>'
 
 
 def author_rows(i: dict, ctx: Context) -> list[tuple[str, str]]:

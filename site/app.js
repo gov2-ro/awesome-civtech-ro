@@ -72,14 +72,14 @@ const MIN_Q = 3;
 // d, t, kw and c are v1 bookmarks (domain, types, keywords, city): they keep their v1 meaning through each entry's
 // `legacy` fields and show as their own pills; they are never translated into the new facets.
 const DEFAULTS = { k: 'proiect', q: '', subj: '', topic: '', cap: '', fmt: '', source: '', coverage: '', area: '', purpose: '', tech: '', inst: '', ent: '', orgt: '', dat: '', st: '',
-  d: '', t: '', kw: '', c: '', org: '', a: '', s: '', cod: '', civ: '', nou: '', ina: '', v: '', o: '', p: '' };
+  d: '', t: '', kw: '', c: '', autor: '', org: '', a: '', s: '', cod: '', civ: '', nou: '', ina: '', v: '', o: '', p: '' };
 const FACETS = ['subj', 'topic', 'cap', 'fmt', 'source', 'coverage', 'area', 'purpose', 'tech', 'inst', 'ent', 'orgt', 'dat', 'st'];
 const MORE = ['coverage', 'area', 'purpose', 'tech', 'inst', 'ent', 'orgt', 'dat', 'st'];  // under "Mai multe filtre"
 const LEGACY = ['d', 't', 'kw', 'c'];
 // The "classifications are proposals" notices (toolbar and detail panel); hidden for now. build.py has its own switch.
 const DRAFT_NOTE = false;
 const MULTI = [...FACETS, 't', 'kw'];
-const FILTERS = ['q', ...FACETS, ...LEGACY, 'org', 'a', 's', 'cod', 'civ', 'nou', 'ina'];
+const FILTERS = ['q', ...FACETS, ...LEGACY, 'autor', 'org', 'a', 's', 'cod', 'civ', 'nou', 'ina'];
 // The concept scheme behind each facet (its title comes from the scheme's label in data.json).
 const SCHEME_OF = { subj: 'subiect', topic: 'subiect', cap: 'functie', fmt: 'format', purpose: 'scop', tech: 'tehnologie', inst: 'institutie', orgt: 'organizatie' };
 const FIELD = { subj: 'subjects', topic: 'topics', cap: 'capabilities', fmt: 'formats', area: 'areas', purpose: 'purposes', tech: 'technologies',
@@ -174,6 +174,7 @@ function matches(it, skip) {
   if (skip !== 't' && state.t && !listOf('t').some(t => (old.tips || []).includes(t))) return false;
   if (skip !== 'kw' && state.kw && !listOf('kw').some(k => (old.keywords || []).includes(k))) return false;
   if (skip !== 'c' && state.c && old.oras !== state.c) return false;
+  if (state.autor && !byAuthor(it)) return false;
   if (skip !== 'org' && state.org && !it._orgs.includes(state.org)) return false;
   if (skip !== 'a' && state.a && it.coverageLevel !== state.a) return false;
   if (skip !== 's' && state.s && STATUS[it.status].group !== state.s) return false;
@@ -184,6 +185,8 @@ function matches(it, skip) {
   if (skip !== 'ina' && skip !== 'st' && !showsInactive() && isInactive(it)) return false;
   return textMatch(it);
 }
+// An entry that names the author `autor` (by name, any role but `parte_din`).
+const byAuthor = it => it.attributions.some(a => !isParent(a) && norm(a.name) === norm(state.autor));
 // Free-text search: every word of the query is in the entry's text.
 function textMatch(it) {
   const q = query();
@@ -191,10 +194,14 @@ function textMatch(it) {
 }
 // Free-text matches in the other tabs. A change of tab keeps only the query and hides inactive entries, so count the same.
 function elsewhere() {
-  if (!query()) return [];
+  if (!query() || crossOn()) return [];
   return Object.keys(TAX.kind).filter(k => k !== state.k)
     .map(k => ({ k, n: DB.items.filter(i => i.kind === k && !isInactive(i) && textMatch(i)).length })).filter(x => x.n);
 }
+// Cross-tab results: a text query or an author, with no facet filter, also lists the matches of the other tabs
+// (below the active tab). A facet filter belongs to one tab, so it turns this off.
+const crossOn = () => !!(query() || state.autor) && activeFilterCount() === (state.ina ? 1 : 0);
+const otherTabs = () => crossOn() ? DB.items.filter(i => i.kind !== state.k && (showsInactive() || !isInactive(i)) && textMatch(i) && (!state.autor || byAuthor(i))) : [];
 const kindItems = () => DB.items.filter(i => i.kind === state.k);
 // Entries per option of one facet: the other facets apply, this facet's own selection does not. Each entry counts once
 // per option, also when several of its concepts lead to that option.
@@ -494,6 +501,7 @@ function renderToolbar(n) {
   for (const t of listOf('t')) pill('t', t, `Tip (v1): ${TAX.tip[t]?.label || t}`);
   for (const k of listOf('kw')) pill('kw', k, `#${kwLabel(k)} (v1)`);
   if (state.c) pill('c', '', `Oraș (v1): ${state.c}`);
+  if (state.autor) pill('autor', '', `Autor: ${state.autor}`);
   if (state.org) pill('org', '', state.org);
   if (state.a) pill('a', '', TAX.cov[state.a]?.label || state.a);
   if (state.s) pill('s', '', state.s);
@@ -522,14 +530,16 @@ function renderToolbar(n) {
 const currentView = () => state.v || 'list';
 
 function renderResults() {
-  const list = DB.items.filter(i => matches(i));
-  renderToolbar(list.length);
+  const list = DB.items.filter(i => matches(i)), more = otherTabs();
+  renderToolbar(list.length + more.length);
   const view = currentView();
   const block = (items, withDomain) => view === 'cards'
     ? `<div class="grid">${items.map(i => card(i, withDomain)).join('')}</div>`
     : `<div class="list">${LIST_HEAD}${items.map(i => row(i, withDomain)).join('')}</div>`;
   let html;
-  if (!list.length) {
+  if (!list.length && more.length) {
+    html = '';
+  } else if (!list.length) {
     html = `<div class="empty"><h3>Niciun rezultat.</h3><p>Încearcă alt termen de căutare sau elimină unul dintre filtre.</p><p><button class="btn btn-outline" data-act="reset">Șterge filtrele</button></p></div>`;
   } else if (state.o === 'subiect' && state.subj) {
     // Filtered by subject: one flat list under the chosen subjects, so that an entry found through a secondary
@@ -550,6 +560,14 @@ function renderResults() {
     }).join('');
   } else {
     html = block(sorted(list), true);
+  }
+  if (more.length) {
+    const head = (text, n, hint) => `<div class="group-head"><h2>${esc(text)}</h2><span class="n">${n}</span><p>${esc(hint)}</p></div>`;
+    if (list.length) html = head(TAX.kind[state.k].label, list.length, 'secțiunea curentă') + html;
+    html += Object.keys(TAX.kind).filter(k => k !== state.k).map(k => {
+      const xs = more.filter(i => i.kind === k);
+      return xs.length ? `<section class="group">${head(TAX.kind[k].label, xs.length, 'din celelalte secțiuni')}${block(sorted(xs), true)}</section>` : '';
+    }).join('');
   }
   slot('results').innerHTML = html;
 }
@@ -950,7 +968,8 @@ function classHTML(it) {
 
 // An attribution that is an organisation of the catalogue opens its page; any other name is plain text.
 const authorLink = a => a.org && BY_SLUG.has(a.org)
-  ? `<a href="${esc(hrefFor(a.org))}" data-open="${esc(a.org)}">${esc(BY_SLUG.get(a.org).name)}</a>` : esc(a.name);
+  ? `<a href="${esc(hrefFor(a.org))}" data-open="${esc(a.org)}">${esc(BY_SLUG.get(a.org).name)}</a>`
+  : navLink(`${ROOT}?${new URLSearchParams({ autor: a.name })}`, esc(a.name), '', ' title="Toate lucrările acestui autor"');
 // Attributions by role: an accepted role gets its own heading ("Creat de"); an unconfirmed one stays neutral ("Autor",
 // with the note), because the old `autor` cell never said who created, published, funded or maintains an entry.
 // `parte_din` names a parent entry, not an author: it always gets its own row.
@@ -1194,7 +1213,7 @@ function renderView(focus = true) {
 }
 function openEntry(slug) {
   const it = BY_SLUG.get(slug);
-  if (it && it.kind !== state.k) { state.k = it.kind; state.o = defaultSort(); for (const k of FILTERS) if (k !== 'q') state[k] = ''; }
+  if (it && it.kind !== state.k) { state.k = it.kind; state.o = defaultSort(); for (const k of FILTERS) if (k !== 'q' && k !== 'autor') state[k] = ''; }
   state.p = slug;
   writeURL(true);
   renderView();
@@ -1320,7 +1339,7 @@ document.addEventListener('click', e => {
     writeURL(); renderAll();
   } else if (act === 'clear') { state[key] = ''; writeURL(); renderFilters(); renderResults(); }
   else if (act === 'reset') { for (const k of FILTERS) state[k] = ''; writeURL(); renderAll(); }
-  else if (act === 'kind') { state.k = val; state.o = defaultSort(); for (const k of FILTERS) if (k !== 'q') state[k] = ''; writeURL(); renderAll(); }
+  else if (act === 'kind') { state.k = val; state.o = defaultSort(); for (const k of FILTERS) if (k !== 'q' && k !== 'autor') state[k] = ''; writeURL(); renderAll(); }
   else if (act === 'preset') { const on = presetOn(); for (const [k, v] of Object.entries(LOCAL_REPORTS)) state[k] = on ? '' : v; state.p = ''; writeURL(); renderAll(); }
   else if (act === 'view') { state.v = val; writeURL(); renderResults(); }
   else if (act === 'fs') { store.set('ct.fs', val); applyPrefs(); }
