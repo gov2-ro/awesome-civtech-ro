@@ -1,5 +1,32 @@
 # Activity
 
+## 2026-11-23 — Inventory batch I: source audit of twelve entries (branch `inventory-batch-i`)
+
+**Done**
+- Audited the twelve entries of [the brief](briefs/inventory-batch-i.md) that had an inventory row and no field. Ten now have structured sources; two stop at the persons rule. Specification file: `adaugari/lot-i.json` (24 sources). Lot `I`.
+- `satul-care-se-stinge`: the repository `dorinspoaller/recensamant-ro-2011-2021` (the data set that the page declares in its JSON-LD, CC BY 4.0), read at commit `66acf0bd`: `sate.csv`, `uat.csv`, `uat_varsta.csv`, `judete_educatie_2021.csv` (4 sources, 66 field records, reader `csv`). The three files over 2,000,000 bytes were not read.
+- `guverneaza-daca-poti` (142 fields), `ghiceste-bugetul` (47), `mortalitate-evitabila` (29): the page itself, reader `js-literale`. For the game the option `omise` drops interface constants and the table of former prime ministers (names of persons).
+- `sondajele-romaniei`: `data/date.js` (726,070 bytes, reader `js-literale`, 253 fields).
+- `lipseste`: six files of `/data/` that the script bundle names: `masuri.csv` (`csv`, 21 fields), `registru-cereri.json` (23), `analiza-370.json` and `solicitari-544.json` (range read of 150,000 bytes, `json-esantion`, 58 and 53), `masuri/index.json` (`json-esantion`, 4), `institutii-544.json` (44, persons mark). 203 fields.
+- `statul-meu`: two open-data files and the API route that `llms.txt` declares (21 fields). `context-politic`: the JSON report (63 fields, persons mark). `cotele-dunarii`: the stations JSON, source INHGA (17 fields).
+- `civiti`: five entity files of `civiti/civiti-server` at commit `e05171e6` (reader `csharp`, 144 fields).
+- `cat-costa-un-vot` and `cate-voturi-aduce-un-primar`: no source (see Hard). Entry notes for all twelve are in `inventar-note.json`; report and `acoperire.csv` regenerated.
+- Measured: entries with field records 73 to 83; source links of the profiles 247 to 271; field records 8,580 to 9,565 (+985). Direct requests: 66 in all (35 logged in lot `I`, 31 first looks with `curl` before the lot was opened, 12 of them home pages); browser pages: 0. No 401, 403 or 429.
+- `inventory.py --check`: 0 evidence errors, 25 marked sources searched. `validate.py`: 0 errors.
+
+**Hard**
+- A source with records about named persons must carry the persons mark, and `js-literale` cannot be marked. `cat-costa-un-vot` keeps candidates (name, party, spending, votes) in a script constant; `cate-voturi-aduce-un-primar` keeps the names of mayors in a JSON data island. I stopped on both, as the brief says. The page of `cate-voturi-aduce-un-primar` is 2,163,390 bytes; its island ends at byte 690,546, so a range read of 700,000 bytes would reach it.
+- `specification citire: "json"` is not a reader name: the plain reader has no `citire`. The first run recorded two sources in `eroare-parsare`, and the registry kept the wrong `citire`. I restored the six generated files from Git and ran again from the cache (0 requests).
+- Two persons-mark sources matched names in tracked files. `context-politic`: the project name, in 3 files. `lipseste/institutii-544.json`: four names of public institutions, in 9 file pairs. I added 12 rows to `persoane-false-positives.csv` (public name, `reviewed_on` 2026-11-23). The owner can remove them; the check then fails again.
+- `institutii-544.json` holds two personal work addresses of named officials among 74 contacts. I marked it; the profile keeps schema only.
+- The documentation collector cannot show the data of `lipseste`: the page is a single-page app (29 characters). The paths come from literals of its script bundle (1.66 MB, read as text, no key used).
+
+**Decided**
+- Marked `context-politic` although the report holds news titles, not person records: the titles name politicians in free text. Cost of the other choice: persons named in a source that is not marked.
+- Kept `sondajele-romaniei` unmarked. The poll records are about polls; names of candidates appear only as result keys, and in one collection (`partid`) of which the reader copies three example keys. Cost: if the owner counts this as persons, the source must go (`--retire`) because no reader allows the mark. Open question in the backlog.
+- Read `civiti` from the repository only. No look at the live app: its web bundle holds keys.
+- Proposed, not accepted: providers for `ghiceste-bugetul` (Ministerul Finanțelor, Forexebug, through Transparenta.eu), `cotele-dunarii` (INHGA), `mortalitate-evitabila` (Eurostat, `hlth_cd_apr`), `satul-care-se-stinge` (INS; Dorin Spoaller as the author of the cleaned set), `sondajele-romaniei` (the poll institutes). No change to `relatii.csv`, `furnizori.csv` or `revizuire.csv`.
+
 ## 2026-11-20 — Search across tabs; author view
 
 **Done**

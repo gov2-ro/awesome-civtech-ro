@@ -1227,6 +1227,261 @@
       ]
     },
     {
+      "proiect": "civiti",
+      "url": "https://raw.githubusercontent.com/civiti/civiti-server/e05171e62148299084fb67326bab9c25d3366af4/Civiti.Domain/Entities/Authority.cs",
+      "sursa_id": "79509f1d51c0138603ba",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/civiti/civiti-server/tree/e05171e62148299084fb67326bab9c25d3366af4",
+      "link_original": "https://raw.githubusercontent.com/civiti/civiti-server/e05171e62148299084fb67326bab9c25d3366af4/Civiti.Domain/Entities/Authority.cs",
+      "dovada": {
+        "url": "https://api.github.com/repos/civiti/civiti-server/git/trees/e05171e62148299084fb67326bab9c25d3366af4?recursive=1",
+        "revizie": "e05171e62148299084fb67326bab9c25d3366af4",
+        "cale": "Civiti.Domain/Entities/Authority.cs",
+        "blob_sha": "836825a7fe0e229a2dbde8f1dcfe81833f8d12b1",
+        "pointer": "/tree/233",
+        "sha256": "2f96ce87f9b95faf4c75c4bd9894368e4b3f0b0131b55db4045429e4312bc02e",
+        "snapshot": "inventare/surse/3f98b125fd8810e44365.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-23T09:58:12.981935+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-23T09:58:12.981935+00:00"
+        }
+      ],
+      "nota": "The authority that a report can be sent to. Entity of the server repository at a recorded commit; it shows what the code declares, not what the deployed service stores. The code declares personal fields of users and report authors; the file holds no record.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://civiti.ro/despre",
+          "sha256": "76a35111def650d6c93d5a70c8a5872bad010ea06a8e4136187c9175b857ff24",
+          "pointer": "/links/8",
+          "fragment": "https://github.com/civiti",
+          "snapshot": "documentare/pagini/fd0d4dcdf27d4ae19e3b73cc.json",
+          "rol": "legatura-proiect-repo"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/civiti/civiti-server/e05171e62148299084fb67326bab9c25d3366af4/README.md",
+          "sha256": "b295b3e4406c2416bb725aa859c0a8ea3aafbb4aa16335a916bb9e47cc01d180",
+          "pointer": "/body",
+          "interval": [
+            17,
+            38
+          ],
+          "fragment": "Backend-ul platformei",
+          "snapshot": "inventare/surse/79d4775740026566c519.json",
+          "rol": "scop-declarat-in-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "civiti",
+      "url": "https://raw.githubusercontent.com/civiti/civiti-server/e05171e62148299084fb67326bab9c25d3366af4/Civiti.Domain/Entities/Comment.cs",
+      "sursa_id": "9eb19a8cf9bc32a8f5ae",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/civiti/civiti-server/tree/e05171e62148299084fb67326bab9c25d3366af4",
+      "link_original": "https://raw.githubusercontent.com/civiti/civiti-server/e05171e62148299084fb67326bab9c25d3366af4/Civiti.Domain/Entities/Comment.cs",
+      "dovada": {
+        "url": "https://api.github.com/repos/civiti/civiti-server/git/trees/e05171e62148299084fb67326bab9c25d3366af4?recursive=1",
+        "revizie": "e05171e62148299084fb67326bab9c25d3366af4",
+        "cale": "Civiti.Domain/Entities/Comment.cs",
+        "blob_sha": "7c7d66f6b6c1d77a2c8d0ed22320ab50d2bcbbd3",
+        "pointer": "/tree/236",
+        "sha256": "2f96ce87f9b95faf4c75c4bd9894368e4b3f0b0131b55db4045429e4312bc02e",
+        "snapshot": "inventare/surse/3f98b125fd8810e44365.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-23T09:58:12.981935+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-23T09:58:12.981935+00:00"
+        }
+      ],
+      "nota": "A comment on a report. Entity of the server repository at a recorded commit; it shows what the code declares, not what the deployed service stores. The code declares personal fields of users and report authors; the file holds no record.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://civiti.ro/despre",
+          "sha256": "76a35111def650d6c93d5a70c8a5872bad010ea06a8e4136187c9175b857ff24",
+          "pointer": "/links/8",
+          "fragment": "https://github.com/civiti",
+          "snapshot": "documentare/pagini/fd0d4dcdf27d4ae19e3b73cc.json",
+          "rol": "legatura-proiect-repo"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/civiti/civiti-server/e05171e62148299084fb67326bab9c25d3366af4/README.md",
+          "sha256": "b295b3e4406c2416bb725aa859c0a8ea3aafbb4aa16335a916bb9e47cc01d180",
+          "pointer": "/body",
+          "interval": [
+            17,
+            38
+          ],
+          "fragment": "Backend-ul platformei",
+          "snapshot": "inventare/surse/79d4775740026566c519.json",
+          "rol": "scop-declarat-in-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "civiti",
+      "url": "https://raw.githubusercontent.com/civiti/civiti-server/e05171e62148299084fb67326bab9c25d3366af4/Civiti.Domain/Entities/Issue.cs",
+      "sursa_id": "568c8c3d4be22809ab0c",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/civiti/civiti-server/tree/e05171e62148299084fb67326bab9c25d3366af4",
+      "link_original": "https://raw.githubusercontent.com/civiti/civiti-server/e05171e62148299084fb67326bab9c25d3366af4/Civiti.Domain/Entities/Issue.cs",
+      "dovada": {
+        "url": "https://api.github.com/repos/civiti/civiti-server/git/trees/e05171e62148299084fb67326bab9c25d3366af4?recursive=1",
+        "revizie": "e05171e62148299084fb67326bab9c25d3366af4",
+        "cale": "Civiti.Domain/Entities/Issue.cs",
+        "blob_sha": "6ee503354c63fe20140d88812ee9ed408fcc6b1e",
+        "pointer": "/tree/239",
+        "sha256": "2f96ce87f9b95faf4c75c4bd9894368e4b3f0b0131b55db4045429e4312bc02e",
+        "snapshot": "inventare/surse/3f98b125fd8810e44365.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-23T09:58:12.981935+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-23T09:58:12.981935+00:00"
+        }
+      ],
+      "nota": "The civic report: author, title, description, category, address, coordinates, district, urgency, status, counters (emails sent, votes, reports), moderation and resolution dates. The enumerations of the file give the categories, the urgency levels and the statuses. Entity of the server repository at a recorded commit; it shows what the code declares, not what the deployed service stores. The code declares personal fields of users and report authors; the file holds no record.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://civiti.ro/despre",
+          "sha256": "76a35111def650d6c93d5a70c8a5872bad010ea06a8e4136187c9175b857ff24",
+          "pointer": "/links/8",
+          "fragment": "https://github.com/civiti",
+          "snapshot": "documentare/pagini/fd0d4dcdf27d4ae19e3b73cc.json",
+          "rol": "legatura-proiect-repo"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/civiti/civiti-server/e05171e62148299084fb67326bab9c25d3366af4/README.md",
+          "sha256": "b295b3e4406c2416bb725aa859c0a8ea3aafbb4aa16335a916bb9e47cc01d180",
+          "pointer": "/body",
+          "interval": [
+            17,
+            38
+          ],
+          "fragment": "Backend-ul platformei",
+          "snapshot": "inventare/surse/79d4775740026566c519.json",
+          "rol": "scop-declarat-in-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "civiti",
+      "url": "https://raw.githubusercontent.com/civiti/civiti-server/e05171e62148299084fb67326bab9c25d3366af4/Civiti.Domain/Entities/IssuePhoto.cs",
+      "sursa_id": "5d0d1ae9226294db1f8b",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/civiti/civiti-server/tree/e05171e62148299084fb67326bab9c25d3366af4",
+      "link_original": "https://raw.githubusercontent.com/civiti/civiti-server/e05171e62148299084fb67326bab9c25d3366af4/Civiti.Domain/Entities/IssuePhoto.cs",
+      "dovada": {
+        "url": "https://api.github.com/repos/civiti/civiti-server/git/trees/e05171e62148299084fb67326bab9c25d3366af4?recursive=1",
+        "revizie": "e05171e62148299084fb67326bab9c25d3366af4",
+        "cale": "Civiti.Domain/Entities/IssuePhoto.cs",
+        "blob_sha": "6ddc40bed363d628e90a1620d24b4c798a1dab82",
+        "pointer": "/tree/242",
+        "sha256": "2f96ce87f9b95faf4c75c4bd9894368e4b3f0b0131b55db4045429e4312bc02e",
+        "snapshot": "inventare/surse/3f98b125fd8810e44365.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-23T09:58:12.981935+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-23T09:58:12.981935+00:00"
+        }
+      ],
+      "nota": "A photo that belongs to a report. Entity of the server repository at a recorded commit; it shows what the code declares, not what the deployed service stores. The code declares personal fields of users and report authors; the file holds no record.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://civiti.ro/despre",
+          "sha256": "76a35111def650d6c93d5a70c8a5872bad010ea06a8e4136187c9175b857ff24",
+          "pointer": "/links/8",
+          "fragment": "https://github.com/civiti",
+          "snapshot": "documentare/pagini/fd0d4dcdf27d4ae19e3b73cc.json",
+          "rol": "legatura-proiect-repo"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/civiti/civiti-server/e05171e62148299084fb67326bab9c25d3366af4/README.md",
+          "sha256": "b295b3e4406c2416bb725aa859c0a8ea3aafbb4aa16335a916bb9e47cc01d180",
+          "pointer": "/body",
+          "interval": [
+            17,
+            38
+          ],
+          "fragment": "Backend-ul platformei",
+          "snapshot": "inventare/surse/79d4775740026566c519.json",
+          "rol": "scop-declarat-in-repo"
+        }
+      ]
+    },
+    {
+      "proiect": "civiti",
+      "url": "https://raw.githubusercontent.com/civiti/civiti-server/e05171e62148299084fb67326bab9c25d3366af4/Civiti.Domain/Entities/UserProfile.cs",
+      "sursa_id": "7fb811095449c231c62a",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/civiti/civiti-server/tree/e05171e62148299084fb67326bab9c25d3366af4",
+      "link_original": "https://raw.githubusercontent.com/civiti/civiti-server/e05171e62148299084fb67326bab9c25d3366af4/Civiti.Domain/Entities/UserProfile.cs",
+      "dovada": {
+        "url": "https://api.github.com/repos/civiti/civiti-server/git/trees/e05171e62148299084fb67326bab9c25d3366af4?recursive=1",
+        "revizie": "e05171e62148299084fb67326bab9c25d3366af4",
+        "cale": "Civiti.Domain/Entities/UserProfile.cs",
+        "blob_sha": "ab75a4b4a33db1d344706d556b9f8b0eceea3c34",
+        "pointer": "/tree/252",
+        "sha256": "2f96ce87f9b95faf4c75c4bd9894368e4b3f0b0131b55db4045429e4312bc02e",
+        "snapshot": "inventare/surse/3f98b125fd8810e44365.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-23T09:58:12.981935+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-23T09:58:12.981935+00:00"
+        }
+      ],
+      "nota": "The profile of a user account (schema only; the file holds no record). Entity of the server repository at a recorded commit; it shows what the code declares, not what the deployed service stores. The code declares personal fields of users and report authors; the file holds no record.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://civiti.ro/despre",
+          "sha256": "76a35111def650d6c93d5a70c8a5872bad010ea06a8e4136187c9175b857ff24",
+          "pointer": "/links/8",
+          "fragment": "https://github.com/civiti",
+          "snapshot": "documentare/pagini/fd0d4dcdf27d4ae19e3b73cc.json",
+          "rol": "legatura-proiect-repo"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/civiti/civiti-server/e05171e62148299084fb67326bab9c25d3366af4/README.md",
+          "sha256": "b295b3e4406c2416bb725aa859c0a8ea3aafbb4aa16335a916bb9e47cc01d180",
+          "pointer": "/body",
+          "interval": [
+            17,
+            38
+          ],
+          "fragment": "Backend-ul platformei",
+          "snapshot": "inventare/surse/79d4775740026566c519.json",
+          "rol": "scop-declarat-in-repo"
+        }
+      ]
+    },
+    {
       "proiect": "codurbanism",
       "url": "https://mariuscomper.uk/codurbanism/data/en/all-comparisons.json",
       "sursa_id": "ab25235e392ffd6aea46",
@@ -2266,6 +2521,83 @@
           "fragment": "GET /api/datasets/{matrix_code}?lang={ro|en}",
           "snapshot": "documentare/pagini/02d1c0ba202f746170be686e.json",
           "rol": "ruta-metadate-set"
+        }
+      ]
+    },
+    {
+      "proiect": "context-politic",
+      "url": "https://contextpolitic.ro/wp-json/contextpolitic/v1/report",
+      "sursa_id": "604f0fb2cf8cb53bd168",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://contextpolitic.ro/llms.txt",
+      "link_original": "https://contextpolitic.ro/wp-json/contextpolitic/v1/report",
+      "dovada": {
+        "url": "https://contextpolitic.ro/llms.txt",
+        "sha256": "7290e8dffe3aef63c65f91b18fddc23a12e8f4902626ac0719ea46b6f6ff79b6",
+        "pointer": "/text",
+        "interval": [
+          677,
+          760
+        ],
+        "fragment": "JSON (raportul complet): https://contextpolitic.ro/wp-json/contextpolitic/v1/report",
+        "snapshot": "documentare/pagini/ae866dd221c9f0b33745bf34.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-23T09:58:12.981935+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-23T09:58:12.981935+00:00"
+        }
+      ],
+      "nota": "The full report of the current edition: the summary of the day, news topics with scores, entities with their subjects, the brief and the list of sources. Titles and summaries name politicians in free text, so the source carries the persons mark; the profile keeps schema only.",
+      "persoane": true
+    },
+    {
+      "proiect": "cotele-dunarii",
+      "url": "https://coteledunarii.ro/wp-json/cotele/v1/statii",
+      "sursa_id": "6a3af623657657e4ac29",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://coteledunarii.ro/llms.txt",
+      "link_original": "https://coteledunarii.ro/wp-json/cotele/v1/statii",
+      "dovada": {
+        "url": "https://coteledunarii.ro/llms.txt/",
+        "sha256": "6ff337e4a1756d0237b644e1b3d169a60ba73e554524b582eee26234b86f0b09",
+        "pointer": "/text",
+        "interval": [
+          1957,
+          2024
+        ],
+        "fragment": "Stațiile în JSON: https://coteledunarii.ro/wp-json/cotele/v1/statii",
+        "snapshot": "documentare/pagini/dc5170a7fc52508988c89314.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-23T09:58:12.981935+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-23T09:58:12.981935+00:00"
+        }
+      ],
+      "nota": "The Danube hydrometric stations (from Baziaș to Tulcea): code, name, kilometre, zone, level in centimetres, change in 24 hours, trend, defence level, reading time and the last days of the series. The response names its source: INHGA.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://coteledunarii.ro/llms.txt/",
+          "sha256": "6ff337e4a1756d0237b644e1b3d169a60ba73e554524b582eee26234b86f0b09",
+          "pointer": "/text",
+          "interval": [
+            1145,
+            1224
+          ],
+          "fragment": "Pentru starea fluviului, sursa primară rămâne instituția publică de hidrologie.",
+          "snapshot": "documentare/pagini/dc5170a7fc52508988c89314.json",
+          "rol": "furnizor-declarat-de-pagina"
         }
       ]
     },
@@ -5065,6 +5397,126 @@
       "nota": "Data file that the page fetched when the browser rendered it. The list of the 42 counties that the page loads first: code and name."
     },
     {
+      "proiect": "ghiceste-bugetul",
+      "url": "https://nicolaeurs.ro/ghicestebugetul/",
+      "sursa_id": "77180fa9b20addc0a08a",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://nicolaeurs.ro/ghicestebugetul/",
+      "link_original": "https://nicolaeurs.ro/ghicestebugetul/",
+      "dovada": {
+        "url": "https://nicolaeurs.ro/ghicestebugetul/",
+        "sha256": "57b4ac944c09addf37f08b3b7a1fcfed2d4d0e642090171db1ad461854afa64e",
+        "pointer": "/text",
+        "interval": [
+          414,
+          475
+        ],
+        "fragment": "Date: Ministerul Finanțelor (Forexebug), prin Transparenta.eu",
+        "snapshot": "documentare/pagini/7a66f86efb0c395b8e92c7d4.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-23T09:58:12.981935+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-23T09:58:12.981935+00:00"
+        }
+      ],
+      "nota": "The page keeps the data of the game in the script constant DATA: spending and revenue by category and an approved-budget reconstruction for each municipality, town and Bucharest sector (one positional row each: SIRUTA, name, county, type, population and amounts). The page describes the categories and the confidence grades A to C in its \"Despre date\" section. The rows have no field names in the page; their meaning is the page text and not the reader.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://nicolaeurs.ro/ghicestebugetul/",
+          "sha256": "57b4ac944c09addf37f08b3b7a1fcfed2d4d0e642090171db1ad461854afa64e",
+          "pointer": "/text",
+          "interval": [
+            414,
+            475
+          ],
+          "fragment": "Date: Ministerul Finanțelor (Forexebug), prin Transparenta.eu",
+          "snapshot": "documentare/pagini/7a66f86efb0c395b8e92c7d4.json",
+          "rol": "furnizor-declarat-de-pagina"
+        },
+        {
+          "url": "https://nicolaeurs.ro/ghicestebugetul/",
+          "sha256": "57b4ac944c09addf37f08b3b7a1fcfed2d4d0e642090171db1ad461854afa64e",
+          "pointer": "/text",
+          "interval": [
+            1065,
+            1103
+          ],
+          "fragment": "Date extrase pe 25–26 septembrie 2026.",
+          "snapshot": "documentare/pagini/7a66f86efb0c395b8e92c7d4.json",
+          "rol": "perioada-extragerii-declarata-de-pagina"
+        }
+      ],
+      "citire": {
+        "tip": "js-literale"
+      }
+    },
+    {
+      "proiect": "guverneaza-daca-poti",
+      "url": "https://guverneazadacapoti.ro/",
+      "sursa_id": "7c9b5ebb37ab2dec07ba",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://guverneazadacapoti.ro/",
+      "link_original": "https://guverneazadacapoti.ro/",
+      "dovada": {
+        "url": "https://guverneazadacapoti.ro/",
+        "sha256": "5f3997bced7eef783def46d8ea4f255314decf211e8cc0697beb7c798419efb9",
+        "pointer": "/text",
+        "interval": [
+          1010,
+          1076
+        ],
+        "fragment": "Jocul pornește de la situația reală a României la finalul lui 2025",
+        "snapshot": "documentare/pagini/9f3c71c72e4ebd2f41ece668.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-23T09:58:12.981935+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-23T09:58:12.981935+00:00"
+        }
+      ],
+      "nota": "A simulation game. The page keeps the model in script constants: policies (POL), indicators (IND), situations (SIT), groups (GRP), scenarios (SCN), events (EV) and a table of real figures of 2025 (DATA: label, value, source name, address). The model values are game parameters, not observed data; only the table DATA holds real figures. Constants that are interface text, icons or colours are omitted by option. PMS (a table of former prime ministers by name) is omitted too: it names natural persons and the reader of script literals has no persons mode.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://guverneazadacapoti.ro/",
+          "sha256": "5f3997bced7eef783def46d8ea4f255314decf211e8cc0697beb7c798419efb9",
+          "pointer": "/text",
+          "interval": [
+            1193,
+            1236
+          ],
+          "fragment": "(INS, Eurostat, Transparency International)",
+          "snapshot": "documentare/pagini/9f3c71c72e4ebd2f41ece668.json",
+          "rol": "sursa-declarata-de-pagina"
+        }
+      ],
+      "citire": {
+        "tip": "js-literale",
+        "omise": [
+          "PMS",
+          "CAT",
+          "CAT_ORDER",
+          "ICON",
+          "PHR",
+          "HEAD",
+          "QUAD",
+          "PARTS",
+          "DIMS",
+          "DW"
+        ]
+      }
+    },
+    {
       "proiect": "harta-digitalizarii-primariilor",
       "url": "https://dela0-site.github.io/digitalizare-primarii/digitalizare_data.json",
       "sursa_id": "dafdc812656ff4a70e55",
@@ -5676,6 +6128,197 @@
           "la": "2026-11-16T08:38:46.907480+00:00"
         }
       ]
+    },
+    {
+      "proiect": "lipseste",
+      "url": "https://lipseste.ro/data/analiza-370.json",
+      "sursa_id": "158f8a181841c9f14a3d",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://lipseste.ro/",
+      "link_original": "https://lipseste.ro/data/analiza-370.json",
+      "dovada": {
+        "url": "https://lipseste.ro/assets/index-ecVlTTaM.js",
+        "sha256": "be7c2c0a4b5b02d4fe8d9750ca442218c8c64a14193c908465a6f61a78d01567",
+        "pointer": "/body",
+        "interval": [
+          1633351,
+          1633373
+        ],
+        "fragment": "/data/analiza-370.json",
+        "snapshot": "inventare/surse/918a32ee4d4b1a766b9c.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-23T09:58:12.981935+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-23T09:58:12.981935+00:00"
+        }
+      ],
+      "nota": "The full analysis of the 370 measures (about 2.5 MB). A range read of 150,000 bytes; the file is cut. It holds the copy texts, the sources of the programme and the analysis of each measure.",
+      "citire": "json-esantion"
+    },
+    {
+      "proiect": "lipseste",
+      "url": "https://lipseste.ro/data/institutii-544.json",
+      "sursa_id": "115421d2d416d930d50d",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://lipseste.ro/",
+      "link_original": "https://lipseste.ro/data/institutii-544.json",
+      "dovada": {
+        "url": "https://lipseste.ro/assets/index-ecVlTTaM.js",
+        "sha256": "be7c2c0a4b5b02d4fe8d9750ca442218c8c64a14193c908465a6f61a78d01567",
+        "pointer": "/body",
+        "interval": [
+          1634540,
+          1634565
+        ],
+        "fragment": "/data/institutii-544.json",
+        "snapshot": "inventare/surse/918a32ee4d4b1a766b9c.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-23T09:58:12.981935+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-23T09:58:12.981935+00:00"
+        }
+      ],
+      "nota": "Register of the institutions that can receive a request under Law 544/2001, with contact channels, the source of each contact and its check state. Some contact channels are personal work addresses of named officials, so the source carries the persons mark; the profile keeps schema only.",
+      "persoane": true
+    },
+    {
+      "proiect": "lipseste",
+      "url": "https://lipseste.ro/data/masuri.csv",
+      "sursa_id": "161b477050567265d8c9",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://lipseste.ro/",
+      "link_original": "https://lipseste.ro/data/masuri.csv",
+      "dovada": {
+        "url": "https://lipseste.ro/assets/index-ecVlTTaM.js",
+        "sha256": "be7c2c0a4b5b02d4fe8d9750ca442218c8c64a14193c908465a6f61a78d01567",
+        "pointer": "/body",
+        "interval": [
+          1633839,
+          1633855
+        ],
+        "fragment": "/data/masuri.csv",
+        "snapshot": "inventare/surse/918a32ee4d4b1a766b9c.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-23T09:58:12.981935+00:00",
+      "prioritate": 1,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-23T09:58:12.981935+00:00"
+        }
+      ],
+      "nota": "CSV of the 370 measures of the 2026-2028 government programme: public identifier, domain, number, titles, page in the Official Gazette, analysis state and date, score 0 to 8, a state for each of the eight criteria, the 544 addressee and a summary. The home page is a single-page app with an empty root; the path is a literal of its script bundle (the project also links it).",
+      "citire": "csv"
+    },
+    {
+      "proiect": "lipseste",
+      "url": "https://lipseste.ro/data/masuri/index.json",
+      "sursa_id": "364da933917cfbf2a51b",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://lipseste.ro/",
+      "link_original": "https://lipseste.ro/data/masuri/index.json",
+      "dovada": {
+        "url": "https://lipseste.ro/assets/index-ecVlTTaM.js",
+        "sha256": "be7c2c0a4b5b02d4fe8d9750ca442218c8c64a14193c908465a6f61a78d01567",
+        "pointer": "/body",
+        "interval": [
+          1633613,
+          1633636
+        ],
+        "fragment": "/data/masuri/index.json",
+        "snapshot": "inventare/surse/918a32ee4d4b1a766b9c.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-23T09:58:12.981935+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-23T09:58:12.981935+00:00"
+        }
+      ],
+      "nota": "Index of the files of the 370 measures (public identifier, internal identifier, title and file path). A range read of 6,000 bytes; the file is cut.",
+      "citire": "json-esantion"
+    },
+    {
+      "proiect": "lipseste",
+      "url": "https://lipseste.ro/data/registru-cereri.json",
+      "sursa_id": "3a1abcbc2c5683669b9b",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://lipseste.ro/",
+      "link_original": "https://lipseste.ro/data/registru-cereri.json",
+      "dovada": {
+        "url": "https://lipseste.ro/assets/index-ecVlTTaM.js",
+        "sha256": "be7c2c0a4b5b02d4fe8d9750ca442218c8c64a14193c908465a6f61a78d01567",
+        "pointer": "/body",
+        "interval": [
+          1628021,
+          1628047
+        ],
+        "fragment": "/data/registru-cereri.json",
+        "snapshot": "inventare/surse/918a32ee4d4b1a766b9c.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-23T09:58:12.981935+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-23T09:58:12.981935+00:00"
+        }
+      ],
+      "nota": "Public register of the access-to-information requests that the project sent, with their state. The file says that it holds no personal data. It declares the entry format and the states."
+    },
+    {
+      "proiect": "lipseste",
+      "url": "https://lipseste.ro/data/solicitari-544.json",
+      "sursa_id": "1c65802bd9ef9d8268fc",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://lipseste.ro/",
+      "link_original": "https://lipseste.ro/data/solicitari-544.json",
+      "dovada": {
+        "url": "https://lipseste.ro/assets/index-ecVlTTaM.js",
+        "sha256": "be7c2c0a4b5b02d4fe8d9750ca442218c8c64a14193c908465a6f61a78d01567",
+        "pointer": "/body",
+        "interval": [
+          1634118,
+          1634143
+        ],
+        "fragment": "/data/solicitari-544.json",
+        "snapshot": "inventare/surse/918a32ee4d4b1a766b9c.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-23T09:58:12.981935+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-23T09:58:12.981935+00:00"
+        }
+      ],
+      "nota": "Request dossiers under Law 544/2001, one for each measure: addressee, institutions, information to ask for and the request text with fields to fill. A range read of 150,000 bytes; the file is cut.",
+      "citire": "json-esantion"
     },
     {
       "proiect": "lista-firme",
@@ -6963,6 +7606,55 @@
         }
       ],
       "nota": "Indicatori statistici agregați despre avere."
+    },
+    {
+      "proiect": "mortalitate-evitabila",
+      "url": "https://romaniainteractiva.ro/mortalitate-evitabila/",
+      "sursa_id": "b990e005dae8c346732e",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://romaniainteractiva.ro/mortalitate-evitabila/",
+      "link_original": "https://romaniainteractiva.ro/mortalitate-evitabila/",
+      "dovada": {
+        "url": "https://romaniainteractiva.ro/mortalitate-evitabila/",
+        "sha256": "5a1261cd7dd4e319edbc267116382a0fc3fdb256929ab11b40dbd96992f80a88",
+        "pointer": "/text",
+        "interval": [
+          135,
+          158
+        ],
+        "fragment": "date Eurostat 2011–2023",
+        "snapshot": "documentare/pagini/75278a040666f812ad3c8484.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-23T09:58:12.981935+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-23T09:58:12.981935+00:00"
+        }
+      ],
+      "nota": "The page keeps its data in script constants (rates and numbers of avoidable deaths by cause, sex, year and country; the EU series) and declares the Eurostat data set hlth_cd_apr in its JSON-LD Dataset (isBasedOn).",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://romaniainteractiva.ro/mortalitate-evitabila/",
+          "sha256": "5a1261cd7dd4e319edbc267116382a0fc3fdb256929ab11b40dbd96992f80a88",
+          "pointer": "/text",
+          "interval": [
+            135,
+            158
+          ],
+          "fragment": "date Eurostat 2011–2023",
+          "snapshot": "documentare/pagini/75278a040666f812ad3c8484.json",
+          "rol": "sursa-declarata-de-pagina"
+        }
+      ],
+      "citire": {
+        "tip": "js-literale",
+        "tabele": true
+      }
     },
     {
       "proiect": "onesti-city",
@@ -9159,6 +9851,266 @@
       ]
     },
     {
+      "proiect": "satul-care-se-stinge",
+      "url": "https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/date/judete_educatie_2021.csv",
+      "sursa_id": "16eb8793212c7ef93374",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/dorinspoaller/recensamant-ro-2011-2021/tree/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b",
+      "link_original": "https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/date/judete_educatie_2021.csv",
+      "dovada": {
+        "url": "https://api.github.com/repos/dorinspoaller/recensamant-ro-2011-2021/git/trees/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b?recursive=1",
+        "revizie": "66acf0bd5ad5ddbd89ac3cceb8a16057609e812b",
+        "cale": "date/judete_educatie_2021.csv",
+        "blob_sha": "efc9353142b73a2c3346675fa19f983e1119e1ef",
+        "pointer": "/tree/3",
+        "sha256": "c980ce594e99ccfca8316cf4cbbe4a0197caaf0881cb58d7ce4321d3b5d982aa",
+        "snapshot": "inventare/surse/33896b2e35c764f177ec.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-23T09:58:12.981935+00:00",
+      "prioritate": 1,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-23T09:58:12.981935+00:00"
+        }
+      ],
+      "nota": "Population by level of education, by county, by sex and by urban or rural area, for the 2021 census (2,192 rows by the README). The columns level, sublevel and detail keep the hierarchy of the INS table. Repository file at a recorded commit. The home page of the project is over 2,000,000 bytes (its data is inline) and has no retained copy; the repository is the data set that the page declares in its JSON-LD. The three larger files (etnie, religie, activitati) are over 2,000,000 bytes and are not read.",
+      "dovezi_suplimentare": [
+        {
+          "tip": "profil",
+          "snapshot": "profil.csv",
+          "slug": "satul-care-se-stinge",
+          "coloana": "repos",
+          "valoare": "https://github.com/dorinspoaller/recensamant-ro-2011-2021",
+          "pointer": "/profil/satul-care-se-stinge/repos",
+          "rol": "legatura-proiect-repo"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/README.md",
+          "sha256": "8b1f70da7a28059baacf37aee3100b33f453db9c2b91f70c513b0850de70f4f3",
+          "pointer": "/body",
+          "interval": [
+            4859,
+            4905
+          ],
+          "fragment": "din rezultatele definitive ale recensămintelor",
+          "snapshot": "inventare/surse/54a5d152d530f6ca6778.json",
+          "rol": "origine-date-declarata-in-repo"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/README.md",
+          "sha256": "8b1f70da7a28059baacf37aee3100b33f453db9c2b91f70c513b0850de70f4f3",
+          "pointer": "/body",
+          "interval": [
+            7020,
+            7076
+          ],
+          "fragment": "Creative Commons Atribuire 4.0 Internațional (CC BY 4.0)",
+          "snapshot": "inventare/surse/54a5d152d530f6ca6778.json",
+          "rol": "licenta-declarata-in-repo"
+        }
+      ],
+      "citire": "csv"
+    },
+    {
+      "proiect": "satul-care-se-stinge",
+      "url": "https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/date/sate.csv",
+      "sursa_id": "f1b0d4d301eb401c38ec",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/dorinspoaller/recensamant-ro-2011-2021/tree/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b",
+      "link_original": "https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/date/sate.csv",
+      "dovada": {
+        "url": "https://api.github.com/repos/dorinspoaller/recensamant-ro-2011-2021/git/trees/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b?recursive=1",
+        "revizie": "66acf0bd5ad5ddbd89ac3cceb8a16057609e812b",
+        "cale": "date/sate.csv",
+        "blob_sha": "32837da0dc63f49d9227e64aab98347fc131682e",
+        "pointer": "/tree/4",
+        "sha256": "c980ce594e99ccfca8316cf4cbbe4a0197caaf0881cb58d7ce4321d3b5d982aa",
+        "snapshot": "inventare/surse/33896b2e35c764f177ec.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-23T09:58:12.981935+00:00",
+      "prioritate": 1,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-23T09:58:12.981935+00:00"
+        }
+      ],
+      "nota": "One row for each village or component locality (13,596 by the README): SIRUTA code, name, parent UAT, population in 2011 and 2021, population by sex in 2021 and approximate coordinates. The file is the data of the lookup map. A CSV header declares no storage type. Repository file at a recorded commit. The home page of the project is over 2,000,000 bytes (its data is inline) and has no retained copy; the repository is the data set that the page declares in its JSON-LD. The three larger files (etnie, religie, activitati) are over 2,000,000 bytes and are not read.",
+      "dovezi_suplimentare": [
+        {
+          "tip": "profil",
+          "snapshot": "profil.csv",
+          "slug": "satul-care-se-stinge",
+          "coloana": "repos",
+          "valoare": "https://github.com/dorinspoaller/recensamant-ro-2011-2021",
+          "pointer": "/profil/satul-care-se-stinge/repos",
+          "rol": "legatura-proiect-repo"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/README.md",
+          "sha256": "8b1f70da7a28059baacf37aee3100b33f453db9c2b91f70c513b0850de70f4f3",
+          "pointer": "/body",
+          "interval": [
+            4859,
+            4905
+          ],
+          "fragment": "din rezultatele definitive ale recensămintelor",
+          "snapshot": "inventare/surse/54a5d152d530f6ca6778.json",
+          "rol": "origine-date-declarata-in-repo"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/README.md",
+          "sha256": "8b1f70da7a28059baacf37aee3100b33f453db9c2b91f70c513b0850de70f4f3",
+          "pointer": "/body",
+          "interval": [
+            7020,
+            7076
+          ],
+          "fragment": "Creative Commons Atribuire 4.0 Internațional (CC BY 4.0)",
+          "snapshot": "inventare/surse/54a5d152d530f6ca6778.json",
+          "rol": "licenta-declarata-in-repo"
+        }
+      ],
+      "citire": "csv"
+    },
+    {
+      "proiect": "satul-care-se-stinge",
+      "url": "https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/date/uat.csv",
+      "sursa_id": "084c0437a944c0df0d2a",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/dorinspoaller/recensamant-ro-2011-2021/tree/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b",
+      "link_original": "https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/date/uat.csv",
+      "dovada": {
+        "url": "https://api.github.com/repos/dorinspoaller/recensamant-ro-2011-2021/git/trees/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b?recursive=1",
+        "revizie": "66acf0bd5ad5ddbd89ac3cceb8a16057609e812b",
+        "cale": "date/uat.csv",
+        "blob_sha": "dc6f32ac1238e26402076abef89ac919c6cf1b4b",
+        "pointer": "/tree/5",
+        "sha256": "c980ce594e99ccfca8316cf4cbbe4a0197caaf0881cb58d7ce4321d3b5d982aa",
+        "snapshot": "inventare/surse/33896b2e35c764f177ec.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-23T09:58:12.981935+00:00",
+      "prioritate": 1,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-23T09:58:12.981935+00:00"
+        }
+      ],
+      "nota": "One row for each municipality, town or commune (3,181 by the README): population, children, people over 65, dwellings, employment status and inactive groups. The README defines the columns. Repository file at a recorded commit. The home page of the project is over 2,000,000 bytes (its data is inline) and has no retained copy; the repository is the data set that the page declares in its JSON-LD. The three larger files (etnie, religie, activitati) are over 2,000,000 bytes and are not read.",
+      "dovezi_suplimentare": [
+        {
+          "tip": "profil",
+          "snapshot": "profil.csv",
+          "slug": "satul-care-se-stinge",
+          "coloana": "repos",
+          "valoare": "https://github.com/dorinspoaller/recensamant-ro-2011-2021",
+          "pointer": "/profil/satul-care-se-stinge/repos",
+          "rol": "legatura-proiect-repo"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/README.md",
+          "sha256": "8b1f70da7a28059baacf37aee3100b33f453db9c2b91f70c513b0850de70f4f3",
+          "pointer": "/body",
+          "interval": [
+            4859,
+            4905
+          ],
+          "fragment": "din rezultatele definitive ale recensămintelor",
+          "snapshot": "inventare/surse/54a5d152d530f6ca6778.json",
+          "rol": "origine-date-declarata-in-repo"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/README.md",
+          "sha256": "8b1f70da7a28059baacf37aee3100b33f453db9c2b91f70c513b0850de70f4f3",
+          "pointer": "/body",
+          "interval": [
+            7020,
+            7076
+          ],
+          "fragment": "Creative Commons Atribuire 4.0 Internațional (CC BY 4.0)",
+          "snapshot": "inventare/surse/54a5d152d530f6ca6778.json",
+          "rol": "licenta-declarata-in-repo"
+        }
+      ],
+      "citire": "csv"
+    },
+    {
+      "proiect": "satul-care-se-stinge",
+      "url": "https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/date/uat_varsta.csv",
+      "sursa_id": "1d2857d61854aeafe46b",
+      "stare": "activ",
+      "metoda": "repo-la-revizie",
+      "parinte": "https://github.com/dorinspoaller/recensamant-ro-2011-2021/tree/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b",
+      "link_original": "https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/date/uat_varsta.csv",
+      "dovada": {
+        "url": "https://api.github.com/repos/dorinspoaller/recensamant-ro-2011-2021/git/trees/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b?recursive=1",
+        "revizie": "66acf0bd5ad5ddbd89ac3cceb8a16057609e812b",
+        "cale": "date/uat_varsta.csv",
+        "blob_sha": "4faec26206c2146451940d309690f76c18c0483e",
+        "pointer": "/tree/9",
+        "sha256": "c980ce594e99ccfca8316cf4cbbe4a0197caaf0881cb58d7ce4321d3b5d982aa",
+        "snapshot": "inventare/surse/33896b2e35c764f177ec.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-23T09:58:12.981935+00:00",
+      "prioritate": 1,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-23T09:58:12.981935+00:00"
+        }
+      ],
+      "nota": "One row for each UAT and census year: population by five-year age group. The README says two rows for each UAT, one for 2011 and one for 2021. Repository file at a recorded commit. The home page of the project is over 2,000,000 bytes (its data is inline) and has no retained copy; the repository is the data set that the page declares in its JSON-LD. The three larger files (etnie, religie, activitati) are over 2,000,000 bytes and are not read.",
+      "dovezi_suplimentare": [
+        {
+          "tip": "profil",
+          "snapshot": "profil.csv",
+          "slug": "satul-care-se-stinge",
+          "coloana": "repos",
+          "valoare": "https://github.com/dorinspoaller/recensamant-ro-2011-2021",
+          "pointer": "/profil/satul-care-se-stinge/repos",
+          "rol": "legatura-proiect-repo"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/README.md",
+          "sha256": "8b1f70da7a28059baacf37aee3100b33f453db9c2b91f70c513b0850de70f4f3",
+          "pointer": "/body",
+          "interval": [
+            4859,
+            4905
+          ],
+          "fragment": "din rezultatele definitive ale recensămintelor",
+          "snapshot": "inventare/surse/54a5d152d530f6ca6778.json",
+          "rol": "origine-date-declarata-in-repo"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/README.md",
+          "sha256": "8b1f70da7a28059baacf37aee3100b33f453db9c2b91f70c513b0850de70f4f3",
+          "pointer": "/body",
+          "interval": [
+            7020,
+            7076
+          ],
+          "fragment": "Creative Commons Atribuire 4.0 Internațional (CC BY 4.0)",
+          "snapshot": "inventare/surse/54a5d152d530f6ca6778.json",
+          "rol": "licenta-declarata-in-repo"
+        }
+      ],
+      "citire": "csv"
+    },
+    {
       "proiect": "sicap-ai",
       "url": "https://api.sicap.ai/v1/openapi",
       "sursa_id": "ab1e1c56ea0dfa406173",
@@ -9741,6 +10693,54 @@
       "nota": "The index of the seat projections of single polls. The browser received this file when it rendered the parlamentare page, so the file was not requested again (0 requests). It is one object of 21 members: each key names a poll (an institute and a date, for example INSCOP_2026-03-06) and each value is the name of the file of that poll (poll_NNN_YYYYMMDD_seats.json). The keys are values, so the reader gives the collection and no field name for a key. The 21 files that the values name were not requested. The owner admitted this source on 2026-10-27, after the corrected JSON reader had read it as one keyed collection; the first pass of lot D had left it out."
     },
     {
+      "proiect": "sondajele-romaniei",
+      "url": "https://sondajeleromaniei.ro/data/date.js",
+      "sursa_id": "47e4d2de050a1bf8647f",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://sondajeleromaniei.ro/",
+      "link_original": "https://sondajeleromaniei.ro/data/date.js",
+      "dovada": {
+        "url": "https://sondajeleromaniei.ro/",
+        "sha256": "1107d667e6c6804f84bd3f2977774b8437014a92e69d337bcd494c9781f9cdf0",
+        "pointer": "/body",
+        "interval": [
+          59560,
+          59572
+        ],
+        "fragment": "data/date.js",
+        "snapshot": "inventare/surse/4938fd68e6e9e4ae58c6.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-23T09:58:12.981935+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-23T09:58:12.981935+00:00"
+        }
+      ],
+      "nota": "The script file that every page loads (window.SONDAJE, 726,070 bytes). Keys: polls (one record per poll: institute, field dates, sample, method, results by party or candidate, publication address), elections with official results and seats, exit polls, institute scores and exclusions, and a county outline. The result keys are party and candidate names. Each poll record has the address of the original publication.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://sondajeleromaniei.ro/metodologie/",
+          "sha256": "efc6c02200c261be47521673752dba7f1d6c4bb1b6bb1f5378e20e92e6fc2636",
+          "pointer": "/text",
+          "interval": [
+            167,
+            241
+          ],
+          "fragment": "Pe scurt: media de pe site nu pune toate sondajele pe picior de egalitate.",
+          "snapshot": "documentare/pagini/a726809c361c456416a59cce.json",
+          "rol": "metoda-declarata-de-pagina"
+        }
+      ],
+      "citire": {
+        "tip": "js-literale"
+      }
+    },
+    {
       "proiect": "statul-digital",
       "url": "https://mariuscomper.uk/statul-digital/",
       "sursa_id": "ddcedb1c18db2c5eb70d",
@@ -9805,6 +10805,113 @@
       ],
       "nota": "Script file that the page loads: the data bundle of the report (the executive summary, the registers, the contracts, the rings and the nodes). The bound of 2,000 fields and of 25 elements applies.",
       "citire": "js-literale"
+    },
+    {
+      "proiect": "statul-meu",
+      "url": "https://statulmeu.ro/date-deschise/2026-11-13-1.json",
+      "sursa_id": "7090fb7bd21d18789197",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://statulmeu.ro/llms.txt",
+      "link_original": "https://statulmeu.ro/date-deschise/2026-11-13-1.json",
+      "dovada": {
+        "url": "https://statulmeu.ro/llms.txt",
+        "sha256": "1a812f7cdb071733de80bfca9c1514f85e7d5279e4c15654a90f38b608a4cf73",
+        "pointer": "/text",
+        "interval": [
+          1102,
+          1165
+        ],
+        "fragment": "JSON pe întrebare: https://statulmeu.ro/date-deschise/{id}.json",
+        "snapshot": "documentare/pagini/dcc1e3feb47e3b34b42e4fc5.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-23T09:58:12.981935+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-23T09:58:12.981935+00:00"
+        }
+      ],
+      "nota": "Open data of one question of the daily barometer (the identifier is the date and the number of the question). The files hold only weighted totals and categories of at least 50 respondents. The question of 2026-11-13 is below the threshold, so \"rezultat\" is null and \"celule\" is empty: the cell fields are not visible yet.",
+      "dovezi_suplimentare": [
+        {
+          "url": "https://statulmeu.ro/llms.txt",
+          "sha256": "1a812f7cdb071733de80bfca9c1514f85e7d5279e4c15654a90f38b608a4cf73",
+          "pointer": "/text",
+          "interval": [
+            557,
+            583
+          ],
+          "fragment": "Licența datelor: CC BY 4.0",
+          "snapshot": "documentare/pagini/dcc1e3feb47e3b34b42e4fc5.json",
+          "rol": "licenta-declarata-in-llms"
+        }
+      ]
+    },
+    {
+      "proiect": "statul-meu",
+      "url": "https://statulmeu.ro/date-deschise/v1.json",
+      "sursa_id": "0044ecfdf3eb7abd42e7",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://statulmeu.ro/date-deschise/",
+      "link_original": "https://statulmeu.ro/date-deschise/v1.json",
+      "dovada": {
+        "url": "https://statulmeu.ro/date-deschise/",
+        "sha256": "9868a5efbf240768397390f94ae5c721f0982a7c37a1526e5d5cc742382afb61",
+        "pointer": "/body",
+        "interval": [
+          21802,
+          21809
+        ],
+        "fragment": "v1.json",
+        "snapshot": "inventare/surse/088e3cf35a84517686ef.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-23T09:58:12.981935+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-23T09:58:12.981935+00:00"
+        }
+      ],
+      "nota": "Open data of the first of the eight value questions (v1 to v8), aggregated over all players who gave consent. The question has an axis and two poles. \"rezultat\" is null and \"celule\" is empty at this date."
+    },
+    {
+      "proiect": "statul-meu",
+      "url": "https://statulmeu.ro/wp-json/statulmeu/v1/rezultate/2026-11-13-1",
+      "sursa_id": "efe86243f2701d6ad6bc",
+      "stare": "activ",
+      "metoda": "adaugat-explicit",
+      "parinte": "https://statulmeu.ro/llms.txt",
+      "link_original": "https://statulmeu.ro/wp-json/statulmeu/v1/rezultate/2026-11-13-1",
+      "dovada": {
+        "url": "https://statulmeu.ro/llms.txt",
+        "sha256": "1a812f7cdb071733de80bfca9c1514f85e7d5279e4c15654a90f38b608a4cf73",
+        "pointer": "/text",
+        "interval": [
+          1168,
+          1229
+        ],
+        "fragment": "API: https://statulmeu.ro/wp-json/statulmeu/v1/rezultate/{id}",
+        "snapshot": "documentare/pagini/dcc1e3feb47e3b34b42e4fc5.json"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-23T09:58:12.981935+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "adaugat",
+          "la": "2026-11-23T09:58:12.981935+00:00"
+        }
+      ],
+      "nota": "The API route of the results of one question, declared in llms.txt. The answer for the question of 2026-11-13 has the members total, n_brut, prag, celule and calculat (below the threshold of 300: null and empty)."
     },
     {
       "proiect": "transparenta-eu",

@@ -611,6 +611,151 @@
       "limite_en": "One browser navigation; it was not repeated after timeout.",
       "blocaj_en": "The single browser navigation timed out; it was not repeated.",
       "urmator_en": "Retry only if the page becomes accessible."
+    },
+    "satul-care-se-stinge": {
+      "rezultat": "Datele paginii sunt un depozit GitHub (CSV, licență CC BY 4.0, cu codul SIRUTA ca cheie): populația la recensămintele din 2011 și 2021 pe sate și pe UAT, grupe de vârstă și educația pe județe.",
+      "limite": [
+        "Patru fișiere CSV citite la un commit fixat; antetul unui CSV nu declară tipuri.",
+        "Fișierele pentru etnie, religie și activități economice depășesc 2.000.000 de octeți și nu au fost citite.",
+        "Pagina proiectului depășește 2.000.000 de octeți (datele sunt în pagină) și nu are copie păstrată."
+      ],
+      "blocaj": "",
+      "urmatorul_pas": "Hotărâți dacă un fișier peste 2.000.000 de octeți poate fi citit (decizia amânată în BACKLOG).",
+      "limite_en": "Four CSV files read at a fixed commit; a CSV header declares no type. The ethnicity, religion and economic-activity files and the project page are over 2,000,000 bytes and were not read.",
+      "blocaj_en": "none",
+      "urmator_en": "Decide whether a file over 2,000,000 bytes may be read (the decision postponed in the backlog)."
+    },
+    "guverneaza-daca-poti": {
+      "rezultat": "Joc de simulare. Pagina păstrează modelul în constante de script (politici, indicatori, situații, grupuri, scenarii) și un tabel cu cifrele reale din 2025.",
+      "limite": [
+        "Constantele modelului sunt parametri de joc, nu date observate.",
+        "Tabelul premierilor de după 1989 (nume de persoane) este omis prin opțiune: cititorul de literale nu are mod pentru persoane.",
+        "Sursa este chiar pagina; clasamentul seminarelor folosește un API care nu a fost cercetat."
+      ],
+      "blocaj": "",
+      "urmatorul_pas": "Dacă proprietarul vrea, adăugați un cititor de literale cu mod pentru persoane.",
+      "limite_en": "The model constants are game parameters, not observed data. The table of prime ministers (names of persons) is omitted by option because the script reader has no persons mode. The seminar ranking API was not examined.",
+      "blocaj_en": "none",
+      "urmator_en": "If the owner wants it, add a script-literal reader with a persons mode."
+    },
+    "cat-costa-un-vot": {
+      "rezultat": "Datele paginii sunt un literal de script: candidații la prezidențiale, cu partidul, cheltuielile declarate și voturile, plus datele partidelor la alegerile europarlamentare și parlamentare.",
+      "limite": [
+        "Nicio sursă păstrată."
+      ],
+      "blocaj": "Înregistrările sunt despre persoane (candidații numiți). O sursă cu persoane se citește numai ca CSV sau JSON, iar datele sunt un literal de script: cititorul `js-literale` nu are mod pentru persoane. Conform briefului, ne oprim.",
+      "urmatorul_pas": "Cititor de literale de script cu mod pentru persoane (BACKLOG, lotul H, punctul a).",
+      "limite_en": "No source kept.",
+      "blocaj_en": "The records are about named persons (candidates). A source with persons is read only as CSV or JSON, and the data is a script literal: the reader `js-literale` has no persons mode. The brief says to stop.",
+      "urmator_en": "A script-literal reader with a persons mode (backlog, batch H, item a)."
+    },
+    "sondajele-romaniei": {
+      "rezultat": "Pagina încarcă `data/date.js` (726.070 de octeți): sondajele (institut, perioadă, eșantion, metodă, rezultate pe partid sau candidat, adresa publicării), scrutinele cu rezultate oficiale și mandate, exit poll-urile, notele institutelor și un contur al județelor.",
+      "limite": [
+        "Fișier script citit ca literale: 253 de înregistrări de câmp; limita de eșantionare a fost atinsă.",
+        "O colecție (`partid`) leagă numele candidaților de partide: cititorul copiază trei chei de exemplu. Proprietarul decide dacă aceasta cere marcajul pentru persoane."
+      ],
+      "blocaj": "",
+      "urmatorul_pas": "Proprietarul decide asupra colecției `partid`; apoi propuneți furnizorii (institutele de sondaje).",
+      "limite_en": "A script file read as literals: 253 field records; the sampling limit was reached. One collection (`partid`) maps candidate names to parties; the reader copies three example keys. The owner decides whether it needs the persons mark.",
+      "blocaj_en": "none",
+      "urmator_en": "The owner decides on the collection `partid`; then propose the providers (the poll institutes)."
+    },
+    "ghiceste-bugetul": {
+      "rezultat": "Pagina păstrează în constanta `DATA` execuția bugetară din 2025 pe categorii pentru fiecare municipiu, oraș și sector (Ministerul Finanțelor, Forexebug, prin Transparenta.eu).",
+      "limite": [
+        "Rândurile sunt poziționale, fără nume de câmp în pagină; sensul vine din textul „Despre date”.",
+        "Limita de eșantionare a fost atinsă (25 de elemente pe tablou)."
+      ],
+      "blocaj": "",
+      "urmatorul_pas": "Propuneți furnizorul (Ministerul Finanțelor prin Transparenta.eu) și legați coloanele pozițiilor de textul paginii.",
+      "limite_en": "The rows are positional, with no field names in the page; the meaning comes from the \"Despre date\" text. The sampling limit was reached.",
+      "blocaj_en": "none",
+      "urmator_en": "Propose the provider (Ministry of Finance through Transparenta.eu) and link the columns to the page text."
+    },
+    "cate-voturi-aduce-un-primar": {
+      "rezultat": "Datele sunt un obiect JSON în pagină (3.186 de localități, alegerile 1996–2025), cu numele primarilor pe localitate.",
+      "limite": [
+        "Pagina are 2.163.390 de octeți (peste 2.000.000); insula de date se termină la octetul 690.546, deci o citire parțială ar ajunge la ea."
+      ],
+      "blocaj": "Înregistrările conțin numele primarilor (persoane), iar datele sunt o insulă de date în pagină: cititorul `js-literale` nu are mod pentru persoane. În plus, pagina depășește 2.000.000 de octeți (decizie amânată). Conform briefului, ne oprim.",
+      "urmatorul_pas": "Cititor de insule de date cu mod pentru persoane (BACKLOG, lotul H, punctul a) și decizia asupra răspunsurilor mari.",
+      "limite_en": "The page is 2,163,390 bytes; the data island ends at byte 690,546, so a partial read would reach it.",
+      "blocaj_en": "The records hold the names of mayors (persons) and the data is an island in the page: the reader `js-literale` has no persons mode. The page is also over 2,000,000 bytes (decision postponed). The brief says to stop.",
+      "urmator_en": "A data-island reader with a persons mode (backlog, batch H, item a) and the decision on large responses."
+    },
+    "mortalitate-evitabila": {
+      "rezultat": "Pagina păstrează în constante de script ratele și numerele de decese evitabile pe cauze, sexe, ani și țări și declară setul Eurostat hlth_cd_apr în JSON-LD.",
+      "limite": [
+        "Citit ca literale de script; limita de eșantionare a fost atinsă.",
+        "Setul Eurostat hlth_cd_apr nu a fost cerut separat."
+      ],
+      "blocaj": "",
+      "urmatorul_pas": "Verificați setul Eurostat hlth_cd_apr ca sursă proprie (INS/Eurostat) și propuneți furnizorul.",
+      "limite_en": "Read as script literals; the sampling limit was reached. The Eurostat data set hlth_cd_apr was not requested separately.",
+      "blocaj_en": "none",
+      "urmator_en": "Check the Eurostat data set hlth_cd_apr as a source of its own and propose the provider."
+    },
+    "lipseste": {
+      "rezultat": "Aplicația cu o singură pagină încarcă fișiere din `/data/`: lista celor 370 de măsuri (CSV), analiza completă (JSON), registrul cererilor, registrul instituțiilor, dosarele de cereri după Legea 544 și un index al fișierelor măsurilor.",
+      "limite": [
+        "Trei fișiere JSON sunt citite ca eșantion (150.000 și 6.000 de octeți).",
+        "Căile fișierelor vin din pachetul de script al paginii (literale); nu s-a folosit nicio cheie.",
+        "Fișierul CSV al dosarelor și fișierele individuale ale măsurilor nu au fost adăugate."
+      ],
+      "blocaj": "",
+      "urmatorul_pas": "Propuneți furnizorii (Programul de guvernare, Monitorul Oficial) și decideți dacă se adaugă fișierele pe măsură.",
+      "limite_en": "Three JSON files are read as samples (150,000 and 6,000 bytes). The file paths come from literals of the page script bundle; no key was used. The CSV of the dossiers and the files of single measures were not added.",
+      "blocaj_en": "none",
+      "urmator_en": "Propose the providers (government programme, Official Gazette) and decide whether the per-measure files are added."
+    },
+    "statul-meu": {
+      "rezultat": "Date deschise sub CC BY 4.0, doar agregate: un fișier JSON pe întrebare, fișierele întrebărilor de valori (v1–v8) și un API; toate întrebările sunt încă sub pragul de 50 de respondenți, deci celulele sunt goale.",
+      "limite": [
+        "Câmpurile cu rezultate (`rezultat`, `celule`) nu se văd încă: răspunsurile sunt goale sub prag.",
+        "Doar o întrebare reprezentativă și un fișier v1 au fost citite."
+      ],
+      "blocaj": "",
+      "urmatorul_pas": "Reluați citirea când o întrebare trece pragul, ca să apară câmpurile celulelor.",
+      "limite_en": "The result fields (`rezultat`, `celule`) are not visible yet: the answers are empty below the threshold. One representative question and one v1 file were read.",
+      "blocaj_en": "none",
+      "urmator_en": "Read again when a question passes the threshold, so that the cell fields appear."
+    },
+    "context-politic": {
+      "rezultat": "Raportul complet al ediției curente, în JSON (subiecte, scoruri, entități, scurt, surse).",
+      "limite": [
+        "Titlurile și sumarele numesc persoane publice în text liber: sursa poartă marcajul pentru persoane, iar profilul păstrează doar schema.",
+        "O singură ediție citită; câmpurile se schimbă cu ediția."
+      ],
+      "blocaj": "",
+      "urmatorul_pas": "Propuneți furnizorii (redacțiile urmărite) numai dacă proprietarul o cere.",
+      "limite_en": "Titles and summaries name public persons in free text: the source carries the persons mark and the profile keeps schema only. One edition was read.",
+      "blocaj_en": "none",
+      "urmator_en": "Propose the providers (the followed newsrooms) only if the owner asks."
+    },
+    "cotele-dunarii": {
+      "rezultat": "JSON cu stațiile hidrometrice de pe Dunăre (cotă, variație, tendință, istoric pe șapte zile), cu sursa declarată: INHGA.",
+      "limite": [
+        "O singură citire; seria are doar ultimele zile."
+      ],
+      "blocaj": "",
+      "urmatorul_pas": "Propuneți furnizorul INHGA (original) și Cotele Dunării (distribuitor).",
+      "limite_en": "One read; the series holds only the last days.",
+      "blocaj_en": "none",
+      "urmator_en": "Propose the provider INHGA (original producer) and Cotele Dunării (distributor)."
+    },
+    "civiti": {
+      "rezultat": "Codul public al serverului (GitHub, la un commit fixat) declară entitățile de date: sesizare, autoritate, comentariu, poză și profil de utilizator.",
+      "limite": [
+        "Schema vine din cod, nu din date; nu dovedește ce păstrează serviciul public azi.",
+        "Nu s-a cercetat niciun API public viu; nu s-a citit pachetul de script al aplicației web.",
+        "Documentul `docs/database-schema.md` este vechi (platforma se numea Civica) și nu a fost adăugat."
+      ],
+      "blocaj": "",
+      "urmatorul_pas": "Cercetați dacă lista publică de sesizări are un API fără cheie; dacă da, sursa poartă marcajul pentru persoane.",
+      "limite_en": "The schema comes from code, not from data; it does not prove what the live service stores. No live public API was examined; the web script bundle was not read. `docs/database-schema.md` is outdated (the platform was named Civica) and was not added.",
+      "blocaj_en": "none",
+      "urmator_en": "Check whether the public list of reports has an API with no key; if so, the source carries the persons mark."
     }
   },
   "ins": [

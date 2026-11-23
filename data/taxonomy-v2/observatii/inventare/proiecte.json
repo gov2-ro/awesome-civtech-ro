@@ -8226,7 +8226,7 @@
       "slug": "satul-care-se-stinge",
       "nume": "Satul care se stinge",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "Câți locuitori a pierdut fiecare sat între recensămintele din 2011 și 2021",
       "permite": [
         "Caută și consultă",
@@ -8242,11 +8242,15 @@
         "slug": "satul-care-se-stinge"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "16eb8793212c7ef93374",
+        "f1b0d4d301eb401c38ec",
+        "084c0437a944c0df0d2a",
+        "1d2857d61854aeafe46b"
+      ],
+      "campuri_din_surse": 66,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
     },
@@ -8254,7 +8258,7 @@
       "slug": "guverneaza-daca-poti",
       "nume": "Guvernează dacă poți",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "Joc: ești premierul României patru ani, de la cifrele reale din 2025",
       "permite": [
         "Învață sau exersează"
@@ -8267,11 +8271,12 @@
         "slug": "guverneaza-daca-poti"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "7c9b5ebb37ab2dec07ba"
+      ],
+      "campuri_din_surse": 142,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
     },
@@ -8690,7 +8695,7 @@
       "slug": "sondajele-romaniei",
       "nume": "Sondajele României",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "Media ponderată a sondajelor electorale din România, din 2004 încoace",
       "permite": [
         "Compară",
@@ -8706,11 +8711,12 @@
         "slug": "sondajele-romaniei"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "47e4d2de050a1bf8647f"
+      ],
+      "campuri_din_surse": 253,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
@@ -8965,7 +8971,7 @@
       "slug": "ghiceste-bugetul",
       "nume": "Ghicește bugetul",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "Quiz cu opt întrebări despre banii orașului tău, apoi cifrele din 2025",
       "permite": [
         "Învață sau exersează"
@@ -8978,11 +8984,12 @@
         "slug": "ghiceste-bugetul"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "77180fa9b20addc0a08a"
+      ],
+      "campuri_din_surse": 47,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
@@ -9762,7 +9769,7 @@
       "slug": "mortalitate-evitabila",
       "nume": "Morți care puteau fi evitate",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "Decese evitabile sub 75 de ani în România față de UE, 2011–2023",
       "permite": [
         "Compară",
@@ -9776,11 +9783,12 @@
         "slug": "mortalitate-evitabila"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "b990e005dae8c346732e"
+      ],
+      "campuri_din_surse": 29,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
@@ -10240,7 +10248,7 @@
       "slug": "lipseste",
       "nume": "lipsește",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "Programul de guvernare 2026–2028, măsură cu măsură",
       "permite": [
         "Analizează date",
@@ -10255,11 +10263,17 @@
         "slug": "lipseste"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "161b477050567265d8c9",
+        "158f8a181841c9f14a3d",
+        "115421d2d416d930d50d",
+        "364da933917cfbf2a51b",
+        "3a1abcbc2c5683669b9b",
+        "1c65802bd9ef9d8268fc"
+      ],
+      "campuri_din_surse": 203,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
     },
@@ -10459,7 +10473,7 @@
       "slug": "statul-meu",
       "nume": "Statul meu",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "Joc despre politică, cu trei întrebări zilnice despre România reală",
       "permite": [
         "Învață sau exersează"
@@ -10474,18 +10488,21 @@
         "slug": "statul-meu"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "7090fb7bd21d18789197",
+        "0044ecfdf3eb7abd42e7",
+        "efe86243f2701d6ad6bc"
+      ],
+      "campuri_din_surse": 21,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
       "slug": "context-politic",
       "nume": "Context Politic",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "Politica României, pe scurt: știri din 25 de redacții, grupate pe subiecte",
       "permite": [
         "Monitorizează"
@@ -10499,18 +10516,19 @@
         "slug": "context-politic"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "604f0fb2cf8cb53bd168"
+      ],
+      "campuri_din_surse": 63,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
       "slug": "cotele-dunarii",
       "nume": "Cotele Dunării",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "Subiectele zilei din presă, numărate oră de oră, și nivelul Dunării",
       "permite": [
         "Monitorizează"
@@ -10523,11 +10541,12 @@
         "slug": "cotele-dunarii"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "6a3af623657657e4ac29"
+      ],
+      "campuri_din_surse": 17,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
@@ -10607,7 +10626,7 @@
       "slug": "civiti",
       "nume": "Civiti",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "Sesizări către primărie prin email, cu presiune colectivă",
       "permite": [
         "Trimite sau urmărește o sesizare",
@@ -10623,11 +10642,16 @@
         "slug": "civiti"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "79509f1d51c0138603ba",
+        "9eb19a8cf9bc32a8f5ae",
+        "568c8c3d4be22809ab0c",
+        "5d0d1ae9226294db1f8b",
+        "7fb811095449c231c62a"
+      ],
+      "campuri_din_surse": 144,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {

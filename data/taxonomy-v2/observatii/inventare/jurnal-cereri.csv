@@ -711,3 +711,38 @@ T,2026-11-02T13:32:22.518387+00:00,GET,https://dev-chronos.transparenta.eu/sitem
 T,2026-11-02T13:37:19.640507+00:00,GET,https://raw.githubusercontent.com/ClaudiuBogdan/hack-for-facts-eb-client/d9c44f3b8beb3594c436312dd0a9098e1a5c143f/src/lib/scraper-references/catalog.ts,ok,200,21544,nu,"transparenta-eu: repository files kept as evidence for provider items (client, branch dev, commit d9c44f3b)"
 T,2026-11-02T13:37:20.092179+00:00,GET,https://raw.githubusercontent.com/ClaudiuBogdan/hack-for-facts-eb-client/d9c44f3b8beb3594c436312dd0a9098e1a5c143f/src/features/justice/components/justice-source-line.tsx,ok,200,4253,nu,"transparenta-eu: repository files kept as evidence for provider items (client, branch dev, commit d9c44f3b)"
 T,2026-11-02T13:37:20.482663+00:00,GET,https://raw.githubusercontent.com/ClaudiuBogdan/hack-for-facts-eb-client/d9c44f3b8beb3594c436312dd0a9098e1a5c143f/src/features/pnrr/components/PnrrDashboard.tsx,ok,200,17727,nu,"transparenta-eu: repository files kept as evidence for provider items (client, branch dev, commit d9c44f3b)"
+I,2026-11-23T09:53:45.640224+00:00,GET,https://api.github.com/repos/dorinspoaller/recensamant-ro-2011-2021/commits/HEAD,ok,200,19016,nu,commit of the linked repository (batch I)
+I,2026-11-23T09:53:46.376817+00:00,GET,https://api.github.com/repos/civiti/civiti-server/commits/HEAD,ok,200,114867,nu,commit of the linked repository (batch I)
+I,2026-11-23T09:53:59.752527+00:00,GET,https://api.github.com/repos/dorinspoaller/recensamant-ro-2011-2021/git/trees/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b?recursive=1,ok,200,3138,nu,"tree listings, READMEs and pages that locate the sources (batch I)"
+I,2026-11-23T09:54:00.271385+00:00,GET,https://api.github.com/repos/civiti/civiti-server/git/trees/e05171e62148299084fb67326bab9c25d3366af4?recursive=1,ok,200,130733,nu,"tree listings, READMEs and pages that locate the sources (batch I)"
+I,2026-11-23T09:54:00.572920+00:00,GET,https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/README.md,ok,200,7746,nu,"tree listings, READMEs and pages that locate the sources (batch I)"
+I,2026-11-23T09:54:00.675054+00:00,GET,https://raw.githubusercontent.com/civiti/civiti-server/e05171e62148299084fb67326bab9c25d3366af4/README.md,ok,200,1822,nu,"tree listings, READMEs and pages that locate the sources (batch I)"
+I,2026-11-23T09:54:00.783416+00:00,GET,https://statulmeu.ro/date-deschise/,ok,200,37031,nu,"tree listings, READMEs and pages that locate the sources (batch I)"
+I,2026-11-23T09:54:01.181898+00:00,GET,https://lipseste.ro/assets/index-ecVlTTaM.js,ok,200,1694604,nu,"tree listings, READMEs and pages that locate the sources (batch I)"
+I,2026-11-23T09:54:02.874393+00:00,GET,https://sondajeleromaniei.ro/,ok,200,60415,nu,"tree listings, READMEs and pages that locate the sources (batch I)"
+I,2026-11-23T09:54:12.830628+00:00,GET,https://lipseste.ro/data/registru-cereri.json,ok,206,1972,nu,bounded look at four data files named in the bundle of lipseste.ro
+I,2026-11-23T09:54:13.645396+00:00,GET,https://lipseste.ro/data/solicitari-544.json,ok,206,6000,nu,bounded look at four data files named in the bundle of lipseste.ro
+I,2026-11-23T09:54:14.041375+00:00,GET,https://lipseste.ro/data/institutii-544.json,ok,206,6000,nu,bounded look at four data files named in the bundle of lipseste.ro
+I,2026-11-23T09:54:14.339517+00:00,GET,https://lipseste.ro/data/masuri/index.json,ok,206,6000,nu,bounded look at four data files named in the bundle of lipseste.ro
+I,2026-11-23T09:54:28.987470+00:00,GET,https://lipseste.ro/data/analiza-370.json,ok,206,150000,nu,"bounded range read of data files of lipseste.ro, 150,000 bytes each"
+I,2026-11-23T09:54:29.233907+00:00,GET,https://lipseste.ro/data/solicitari-544.json,ok,206,150000,nu,"bounded range read of data files of lipseste.ro, 150,000 bytes each"
+I,2026-11-23T09:54:29.507395+00:00,GET,https://lipseste.ro/data/institutii-544.json,ok,206,130588,nu,"bounded range read of data files of lipseste.ro, 150,000 bytes each"
+I,2026-11-23T09:56:11.041629+00:00,GET,https://contextpolitic.ro/wp-json/contextpolitic/v1/report,ok,200,37202,nu,inventar
+I,2026-11-23T09:56:11.094712+00:00,GET,https://coteledunarii.ro/wp-json/cotele/v1/statii,ok,200,13506,nu,inventar
+I,2026-11-23T09:56:11.705351+00:00,GET,https://lipseste.ro/data/masuri.csv,ok,200,200857,nu,inventar
+I,2026-11-23T09:56:12.304010+00:00,GET,https://raw.githubusercontent.com/civiti/civiti-server/e05171e62148299084fb67326bab9c25d3366af4/Civiti.Domain/Entities/Authority.cs,ok,200,1335,nu,inventar
+I,2026-11-23T09:56:12.306409+00:00,GET,https://raw.githubusercontent.com/civiti/civiti-server/e05171e62148299084fb67326bab9c25d3366af4/Civiti.Domain/Entities/Comment.cs,ok,200,1088,nu,inventar
+I,2026-11-23T09:56:12.396886+00:00,GET,https://raw.githubusercontent.com/civiti/civiti-server/e05171e62148299084fb67326bab9c25d3366af4/Civiti.Domain/Entities/Issue.cs,ok,200,5728,nu,inventar
+I,2026-11-23T09:56:12.590913+00:00,GET,https://raw.githubusercontent.com/civiti/civiti-server/e05171e62148299084fb67326bab9c25d3366af4/Civiti.Domain/Entities/IssuePhoto.cs,ok,200,1618,nu,inventar
+I,2026-11-23T09:56:12.699207+00:00,GET,https://raw.githubusercontent.com/civiti/civiti-server/e05171e62148299084fb67326bab9c25d3366af4/Civiti.Domain/Entities/UserProfile.cs,ok,200,2138,nu,inventar
+I,2026-11-23T09:56:12.774263+00:00,GET,https://guverneazadacapoti.ro/,ok,200,149734,nu,inventar
+I,2026-11-23T09:56:12.932085+00:00,GET,https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/date/judete_educatie_2021.csv,ok,200,206167,nu,inventar
+I,2026-11-23T09:56:13.115274+00:00,GET,https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/date/sate.csv,ok,200,1089419,nu,inventar
+I,2026-11-23T09:56:13.223826+00:00,GET,https://statulmeu.ro/date-deschise/2026-11-13-1.json,ok,200,366,nu,inventar
+I,2026-11-23T09:56:13.298467+00:00,GET,https://statulmeu.ro/date-deschise/v1.json,ok,200,489,nu,inventar
+I,2026-11-23T09:56:13.336108+00:00,GET,https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/date/uat.csv,ok,200,360336,nu,inventar
+I,2026-11-23T09:56:13.387235+00:00,GET,https://statulmeu.ro/wp-json/statulmeu/v1/rezultate/2026-11-13-1,ok,200,64,nu,inventar
+I,2026-11-23T09:56:13.527478+00:00,GET,https://nicolaeurs.ro/ghicestebugetul/,ok,200,291007,nu,inventar
+I,2026-11-23T09:56:13.548194+00:00,GET,https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/date/uat_varsta.csv,ok,200,632130,nu,inventar
+I,2026-11-23T09:56:13.993605+00:00,GET,https://romaniainteractiva.ro/mortalitate-evitabila/,ok,200,40497,nu,inventar
+I,2026-11-23T09:56:15.002193+00:00,GET,https://sondajeleromaniei.ro/data/date.js,ok,200,726070,nu,inventar
