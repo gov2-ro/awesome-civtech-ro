@@ -588,6 +588,15 @@ svg.gh { width: 20px; height: 20px; fill: currentColor; stroke: none; }
 .inv-field-meta { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; font-size: calc(10px * var(--fs)); color: var(--muted); }
 .inv-basis { background: var(--surface); padding: 1px 5px; border-radius: 3px; }
 .inv-field-meta a, .inv-docs a { display: inline-flex; gap: 3px; align-items: center; color: var(--accent-ink); text-underline-offset: 3px; }
+/* The data-set card (docs/specs/data-set-card.md): on the entry page, in "Date & metodă", and on /date/<slug>/, in "Seturi de date". */
+.ds-cards { display: grid; gap: 10px; min-width: 0; }
+.ds-card { border: 1px solid var(--line-strong); border-radius: 6px; padding: 12px 14px; display: grid; gap: 5px; min-width: 0; background: var(--bg); }
+.ds-card > h3, .ds-card > h4 { font-size: calc(16px * var(--fs)); font-weight: 600; line-height: 1.35; overflow-wrap: anywhere; margin: 0; }
+.ds-line { font-size: calc(13px * var(--fs)); color: var(--ink-2); line-height: 1.55; overflow-wrap: anywhere; margin: 0; }
+.ds-line small { color: var(--muted); font-size: calc(11px * var(--fs)); }
+.ds-note, .ds-meta { font-size: calc(12px * var(--fs)); color: var(--muted); line-height: 1.5; overflow-wrap: anywhere; margin: 0; }
+.ds-card a { color: var(--accent-ink); text-underline-offset: 3px; }
+.inv-tech { font-weight: 500; }
 .inv-field-meta svg, .inv-docs svg { width: 11px; height: 11px; flex: none; }
 .inv-reference { min-width: 0; font-size: calc(11px * var(--fs)); color: var(--muted); }
 .inv-reference > summary { cursor: pointer; }
