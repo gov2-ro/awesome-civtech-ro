@@ -339,7 +339,8 @@ def dataset_card(c: dict, level: int = 4) -> str:
     name = esc(provider["name"])
     provider_html = f'<a href="date/furnizori/#{esc(provider["anchor"])}">{name}</a>' if provider["anchor"] else name
     access = ", ".join(f'<a href="{esc(a["url"])}" target="_blank" rel="noopener">{esc(a["label"])}</a>' if a["url"] else esc(a["label"]) for a in c["access"])
-    grain = f' <small>({esc(c["grain"]["label"])})</small>' if c["grain"] else ""
+    # The grain repeats the record when its label is in the record text („o achiziție directă” / „Achiziție directă”); it shows only when it adds something.
+    grain = f' <small>({esc(c["grain"]["label"])})</small>' if c["grain"] and c["grain"]["label"].casefold() not in c["record"].casefold() else ""
     facts = [f"<span>furnizor: {provider_html}</span>", f"<span>o înregistrare: {esc(c['record'])}{grain}</span>",
              f"<span>perioada: {esc(c['period']) if c['period'] else 'nedeclarată'}</span>"]
     if access:
@@ -386,8 +387,8 @@ def data_summary(i: dict) -> str:
         tech = (f'<p class="inv-all inv-tech"><a href="{esc(inv["page"])}">Vedere tehnică: {ro_plural(inv["count"], "câmp", "câmpuri")} din '
                 f'{ro_plural(inv["sources"], "document", "documente")} <span aria-hidden="true">→</span></a></p>')
     status = '<span class="inv-status">Inventar parțial</span>' if counted else ""
-    body = (f'<p class="inv-intro">{inv["count"]} câmpuri și parametri · {inv["sources"]} fișiere consultate</p>'
-            f'<p class="inv-note">Extrase automat din sursele de mai jos. Proiectul poate folosi și alte date.</p><div class="inv-examples">{examples}</div>') if counted else ""
+    intro = "" if tech else f'<p class="inv-intro">{inv["count"]} câmpuri și parametri · {inv["sources"]} fișiere consultate</p>'  # the link „Vedere tehnică” already counts them
+    body = (intro + f'<p class="inv-note">Extrase automat din sursele de mai jos. Proiectul poate folosi și alte date.</p><div class="inv-examples">{examples}</div>') if counted else ""
     return (f'<section class="d-inventory" data-inventory-root="{esc(i["slug"])}"><div class="inv-heading"><h3>Date &amp; metodă</h3>{status}</div>'
             f'{dataset_cards(cards)}{tech}{body}</section>')
 

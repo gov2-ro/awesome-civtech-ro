@@ -726,7 +726,7 @@ function datasetCard(c, level = 4) {
   const access = c.access.map(a => a.url ? `<a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.label)}</a>` : esc(a.label)).join(', ');
   const host = u => { try { return new URL(u).hostname || u; } catch { return u; } };
   const facts = [`<span>furnizor: ${prov.anchor ? `<a href="${ROOT}date/furnizori/#${esc(prov.anchor)}">${esc(prov.name)}</a>` : esc(prov.name)}</span>`,
-    `<span>o înregistrare: ${esc(c.record)}${c.grain ? ` <small>(${esc(c.grain.label)})</small>` : ''}</span>`,
+    `<span>o înregistrare: ${esc(c.record)}${c.grain && !c.record.toLowerCase().includes(c.grain.label.toLowerCase()) ? ` <small>(${esc(c.grain.label)})</small>` : ''}</span>`,
     `<span>perioada: ${c.period ? esc(c.period) : 'nedeclarată'}</span>`];
   if (access) facts.push(`<span>acces: ${access}</span>`);
   const lines = [`<p class="ds-line">${facts.join(' · ')}</p>`];
@@ -750,7 +750,7 @@ function inventoryHTML(it) {
   return `<section class="d-inventory" data-inventory-root="${esc(it.slug)}" aria-labelledby="inventory-title">
     ${head}
     ${cardsHTML}
-    ${inv.count ? `<p class="inv-intro">${plural(inv.count, 'câmp sau parametru', 'câmpuri și parametri')} · ${plural(inv.sources, 'fișier consultat', 'fișiere consultate')}</p>
+    ${inv.count ? `${tech ? '' : `<p class="inv-intro">${plural(inv.count, 'câmp sau parametru', 'câmpuri și parametri')} · ${plural(inv.sources, 'fișier consultat', 'fișiere consultate')}</p>`}
       <p class="inv-note">Extrase automat din sursele de mai jos. Proiectul poate folosi și alte date.</p>
       ${inv.stale ? `<p class="inv-note inv-stale">${plural(inv.stale, 'sursă are', 'surse au')} ultima reîmprospătare eșuată. Datele afișate provin dintr-o consultare anterioară.</p>` : ''}
       <div class="inv-examples">${inv.examples.map(name => `<button data-act="inventory-example" data-slug="${esc(it.slug)}" data-val="${esc(name)}"><code>${esc(name)}</code></button>`).join('')}</div>

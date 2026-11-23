@@ -1679,7 +1679,7 @@ Entries without fields are named once below the table. Only entries in scope are
 that is in scope and has field records. An entry out of scope, an organisation and an entry without fields get none, and a slug `lista` is refused (it is the list). A rebuild removes the pages that no entry has any more.
 `inventory_site.publish_variable_pages` writes them; the pages carry no value of a data body, no example and no evidence fragment. They show only what the field browser shows: names, paths, types, units, descriptions and groups.
 
-1. The header: the name, the link to the entry (`/<kind>/<slug>/`), the relation to data (the label of `relatie_date`), the number of sources and of fields, and „Inventar parțial”.
+1. The header: the name, the link to the entry (`/<kind>/<slug>/`), the relation to data (the label of `relatie_date`), the number of documents citite („documente citite”) and of fields, and „Inventar parțial”.
 2. „Pe familii”: a block for each family that the entry reaches, in the order of `/date/lista/`; in it, each group (its label links to `/date/?variables=<id>`, with its review state) and the fields that match it, as source title and
    path. A field that two groups match is under both. A family without a field has no block. „Altele” lists the fields that match no group. The matching rule is `inventory_site.group_hits`, the one that the finder and the list use.
 3. „Pe surse”: a block for each source of `inventar/<slug>.json`, with the title of the field browser, its address, its format, its licence (`source_licence`), when it was read (and a failed refresh), its data set facts and a table of its fields

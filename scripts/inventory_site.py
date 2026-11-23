@@ -350,7 +350,7 @@ FIELD_BASIS_LABELS = {'schema': 'Descris în schemă', 'metadata': 'Descris în 
                       'apidoc': 'Declarat în documentația API', 'doclist': 'Declarat în lista de coloane din documentație', 'dblist': 'Declarat în lista bazei de date',
                       'editor': 'adăugat de editor'}
 GROUP_STATE_LABELS = {'propus': 'Propus', 'revizuit': 'Revizuit', 'amanat': 'Amânat'}
-NOTE_PARTIAL = 'Extrase automat din sursele de mai jos. Proiectul poate folosi și alte date. Un câmp comun nu garantează că seturile se pot combina.'
+NOTE_PARTIAL = 'Extrase automat din documentele citite mai jos. Proiectul poate folosi și alte date. Un câmp comun nu garantează că seturile se pot combina.'
 
 
 def type_label(field):
@@ -553,7 +553,7 @@ def variable_page(item, fields, sources, concepts, families, relations, table=No
     cards = item.get('datasets') or []
     nav = f'<a href="{here}#seturi-de-date">Seturi de date</a><a href="{here}#vedere-tehnica">Vedere tehnică</a>' if cards else ''
     head = (f'<section class="vp-head"><p class="vp-kind">{"Proiect" if kind == "proiect" else "Resursă"}</p><h1>{e(item["name"])}</h1>'
-            f'<p class="vp-meta"><span>Relația cu datele: {e(relations.get(relation, relation))}</span><span>{ro_count(len(sources), "sursă", "surse")}</span>'
+            f'<p class="vp-meta"><span>Relația cu datele: {e(relations.get(relation, relation))}</span><span>{ro_count(len(sources), "document citit", "documente citite")}</span>'
             f'<span>{ro_count(len(fields), "câmp", "câmpuri")}</span><span class="inv-status">Inventar parțial</span></p>'
             f'{source_links(item, sources, table or {})}'
             f'<p class="ov-note">{NOTE_PARTIAL}</p>'
