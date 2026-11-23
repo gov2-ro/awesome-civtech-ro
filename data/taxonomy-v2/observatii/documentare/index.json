@@ -7014,6 +7014,85 @@
       ]
     },
     {
+      "slug": "igov-analiza-presei",
+      "url": "https://igov.ro/analiza-presei/",
+      "state": "documentatie-neconfirmata",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://igov.ro/analiza-presei/",
+          "final_url": "https://igov.ro/analiza-presei/",
+          "http_status": 200,
+          "fetched_at": "2026-11-23T11:02:38.244386+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Analiza presei — iGov.ro",
+          "sections": [],
+          "sha256": "ff298a6efabb4413c6501da30f6795b890e14ee189d68afddc78a0b697393594",
+          "snapshot": "pagini/2eba9c718bf98612971566b5.json",
+          "text_chars": 2193
+        },
+        {
+          "url": "https://igov.ro/analiza-presei/llms.txt",
+          "final_url": "https://igov.ro/analiza-presei/llms.txt",
+          "http_status": 200,
+          "fetched_at": "2026-11-23T11:02:38.435736+00:00",
+          "content_type": "text/html",
+          "state": "html-in-loc-de-llms",
+          "kind": "llms",
+          "scope": "proiect",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "snapshot": "pagini/20576bda58d51d8fd7fb4377.json",
+          "text_chars": 0
+        },
+        {
+          "url": "https://igov.ro/llms.txt",
+          "final_url": "https://igov.ro/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-23T11:02:38.597694+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "gazda-comuna"
+        },
+        {
+          "url": "https://igov.ro/analiza-presei/surse-semnalate",
+          "final_url": "https://igov.ro/analiza-presei/surse-semnalate",
+          "http_status": 200,
+          "fetched_at": "2026-11-23T11:02:38.726981+00:00",
+          "content_type": "text/html",
+          "state": "copie-pagina-initiala",
+          "kind": "metodologie",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Analiza presei — iGov.ro",
+          "sections": [],
+          "sha256": "ff298a6efabb4413c6501da30f6795b890e14ee189d68afddc78a0b697393594",
+          "snapshot": "pagini/66ffc237a015c205d88621f8.json",
+          "text_chars": 2193
+        },
+        {
+          "url": "https://igov.ro/analiza-presei/metodologie/",
+          "final_url": "https://igov.ro/analiza-presei/metodologie/",
+          "http_status": 200,
+          "fetched_at": "2026-11-23T11:02:38.910343+00:00",
+          "content_type": "text/html",
+          "state": "copie-pagina-initiala",
+          "kind": "metodologie",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Analiza presei — iGov.ro",
+          "sections": [],
+          "sha256": "ff298a6efabb4413c6501da30f6795b890e14ee189d68afddc78a0b697393594",
+          "snapshot": "pagini/c185c1b0f2a1b55f3b5e6438.json",
+          "text_chars": 2193
+        }
+      ]
+    },
+    {
       "slug": "imobile-rapps",
       "url": "https://rapps.mirceaserdin.ro/",
       "state": "documentatie-neconfirmata",
@@ -7079,6 +7158,106 @@
           "sha256": "0c99c392bd8234d3bb6a684da10445f5255a66734a4d7abd0330a5ea2cddc41d",
           "snapshot": "pagini/b28a96adba814f9d518db8d6.json",
           "text_chars": 781
+        }
+      ]
+    },
+    {
+      "slug": "ineter",
+      "url": "https://ineter.ro/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://ineter.ro/",
+          "final_url": "https://ineter.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-23T11:02:38.244274+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "ineter — comunicarea statului român, direct de la sursă",
+          "sections": [],
+          "sha256": "3442fee29c7934f7d1f4099e70bddead4ab6d85250755115b65ed57d555870e2",
+          "snapshot": "pagini/e79e12c7a0758c9ff5212716.json",
+          "text_chars": 35819
+        },
+        {
+          "url": "https://ineter.ro/llms.txt",
+          "final_url": "https://ineter.ro/llms.txt",
+          "http_status": 200,
+          "fetched_at": "2026-11-23T11:02:38.431737+00:00",
+          "content_type": "text/markdown",
+          "state": "colectat",
+          "kind": "llms",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "",
+          "sections": [],
+          "sha256": "d388bd4af6a53ae76da2b26b333ef32522ea6d5c368fcf89e1e694b65f55ce6c",
+          "snapshot": "pagini/726cbc99dc5999e29a25e1ca.json",
+          "text_chars": 5730
+        },
+        {
+          "url": "https://ineter.ro/surse/",
+          "final_url": "https://ineter.ro/surse/",
+          "http_status": 200,
+          "fetched_at": "2026-11-23T11:02:38.513208+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "metodologie",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Surse oficiale urmărite | ineter",
+          "sections": [
+            {
+              "kind": "metodologie",
+              "heading": "Surse oficiale urmărite",
+              "url": "https://ineter.ro/surse/"
+            }
+          ],
+          "sha256": "63eef3f667e8d85c2185aa0c744b697dda35175fe3ba19497048ea85f97d7fb1",
+          "snapshot": "pagini/71acba49d84794eea0eba467.json",
+          "text_chars": 21160
+        },
+        {
+          "url": "https://ineter.ro/despre/",
+          "final_url": "https://ineter.ro/despre/",
+          "http_status": 200,
+          "fetched_at": "2026-11-23T11:02:39.436647+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "despre",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Despre ineter | ineter",
+          "sections": [
+            {
+              "kind": "despre",
+              "heading": "Cum funcționează",
+              "url": "https://ineter.ro/despre/"
+            }
+          ],
+          "sha256": "e03a14961a9b8ed2d1965509638f761e276cb8ab5ea81efe9575cb3ed1da3b9f",
+          "snapshot": "pagini/90fa5cb2f9a5e6f9f6c34f2b.json",
+          "text_chars": 12732
+        },
+        {
+          "url": "https://ineter.ro/wp-json/ineter/v1/sources",
+          "final_url": "https://ineter.ro/wp-json/ineter/v1/sources",
+          "http_status": 200,
+          "fetched_at": "2026-11-23T11:02:39.570046+00:00",
+          "content_type": "application/json",
+          "state": "colectat",
+          "kind": "metodologie",
+          "scope": "proiect",
+          "truncated": true,
+          "title": "",
+          "sections": [],
+          "sha256": "0704803586cb428cd6c6d44be551c65f3fe06cb6ea710cb8cab8e0745c362d5e",
+          "snapshot": "pagini/ea5d22881d6760f827eeb8af.json",
+          "text_chars": 60000
         }
       ]
     },
@@ -9397,6 +9576,100 @@
           "error": "HTTP Error 404: Not Found",
           "kind": "despre",
           "scope": "proiect"
+        }
+      ]
+    },
+    {
+      "slug": "palavre",
+      "url": "https://palavre.ro/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://palavre.ro/",
+          "final_url": "https://palavre.ro/",
+          "http_status": 200,
+          "fetched_at": "2026-11-23T11:02:38.243955+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "palavre — cine a scris primul, cine a preluat, cine a adăugat ceva",
+          "sections": [],
+          "sha256": "9b66d72d3bdceca899248e37868fe5208bb82eccfe78a4642526ba02efea4827",
+          "snapshot": "pagini/b7a7ef9d2043659de7193d79.json",
+          "text_chars": 9653
+        },
+        {
+          "url": "https://palavre.ro/llms.txt",
+          "final_url": "https://palavre.ro/llms.txt",
+          "http_status": 200,
+          "fetched_at": "2026-11-23T11:02:38.394014+00:00",
+          "content_type": "text/markdown",
+          "state": "colectat",
+          "kind": "llms",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "",
+          "sections": [],
+          "sha256": "e38b3d2923079ce1629ed3e0ba916b6e2daabe8d3d607d2bb2a01d0af7682f0b",
+          "snapshot": "pagini/d19452042a8e2c43aa2583c5.json",
+          "text_chars": 6800
+        },
+        {
+          "url": "https://palavre.ro/metoda/",
+          "final_url": "https://palavre.ro/metoda/",
+          "http_status": 200,
+          "fetched_at": "2026-11-23T11:02:38.479044+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "metodologie",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Metoda | palavre",
+          "sections": [
+            {
+              "kind": "metodologie",
+              "heading": "Metoda",
+              "url": "https://palavre.ro/metoda/"
+            }
+          ],
+          "sha256": "62fc26bc8fa85cd1debe2df34c05052f2ded5ffb2f7390a6f4483bcd1066cff7",
+          "snapshot": "pagini/3cce207f32ee2f4e457f786e.json",
+          "text_chars": 13758
+        },
+        {
+          "url": "https://palavre.ro/despre/",
+          "final_url": "https://palavre.ro/despre/",
+          "http_status": 200,
+          "fetched_at": "2026-11-23T11:02:38.607539+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "despre",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Despre palavre | palavre",
+          "sections": [],
+          "sha256": "77e715b504192f740fc0e6273773e9b67aa898c4c59ab3df19b340418dda87e6",
+          "snapshot": "pagini/fea16f3abeb391822593fdae.json",
+          "text_chars": 7480
+        },
+        {
+          "url": "https://palavre.ro/redactie/stiri-pe-surse/",
+          "final_url": "https://palavre.ro/redactie/stiri-pe-surse/",
+          "http_status": 200,
+          "fetched_at": "2026-11-23T11:02:38.734255+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "metodologie",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Știri pe Surse — cât text propriu, cât text comun, de la cine | palavre",
+          "sections": [],
+          "sha256": "84504679b980b281a5bb5879cce990eb4073cf75976342a161db10e18c2b1d2c",
+          "snapshot": "pagini/90e4404f6431685a8ed3f008.json",
+          "text_chars": 12968
         }
       ]
     },

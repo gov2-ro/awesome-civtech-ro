@@ -419,3 +419,33 @@ org-gov2,uat,,Localitate (UAT),https://org.gov2.ro/,/input_candidates/8,control-
 org-gov2,sort,,,https://org.gov2.ro/,/input_candidates/9,control-html-candidat
 ro-alert,search,search,Caută în mesaje,https://lab.gov2.ro/ro-alert/,/input_candidates/0,control-html-candidat
 insseption,dsfilter,search,Filter the catalogue,https://insse.csaladen.es/docs/en,/input_candidates/0,control-html-candidat
+ineter,q,search,Caută în știrile oficiale…,https://ineter.ro/,/input_candidates/0,control-html-candidat
+ineter,a11yFontSize,range,,https://ineter.ro/,/input_candidates/1,control-html-candidat
+ineter,a11yLineHeight,range,,https://ineter.ro/,/input_candidates/2,control-html-candidat
+ineter,a11yContrast,checkbox,,https://ineter.ro/,/input_candidates/3,control-html-candidat
+ineter,a11ySpacing,checkbox,,https://ineter.ro/,/input_candidates/4,control-html-candidat
+ineter,a11yDyslexic,checkbox,,https://ineter.ro/,/input_candidates/5,control-html-candidat
+ineter,a11yUnderline,checkbox,,https://ineter.ro/,/input_candidates/6,control-html-candidat
+ineter,a11yFocus,checkbox,,https://ineter.ro/,/input_candidates/7,control-html-candidat
+ineter,a11yCursor,checkbox,,https://ineter.ro/,/input_candidates/8,control-html-candidat
+ineter,a11yMotion,checkbox,,https://ineter.ro/,/input_candidates/9,control-html-candidat
+ineter,a11yHideImages,checkbox,,https://ineter.ro/,/input_candidates/10,control-html-candidat
+ineter,a11yGuide,checkbox,,https://ineter.ro/,/input_candidates/11,control-html-candidat
+ineter,a11ySaturation,,,https://ineter.ro/,/input_candidates/12,control-html-candidat
+igov-analiza-presei,explorePeriod,,,https://igov.ro/analiza-presei/,/input_candidates/0,control-html-candidat
+igov-analiza-presei,exploreCounty,,,https://igov.ro/analiza-presei/,/input_candidates/1,control-html-candidat
+igov-analiza-presei,exploreTopic,,,https://igov.ro/analiza-presei/,/input_candidates/2,control-html-candidat
+igov-analiza-presei,explorePublisher,,,https://igov.ro/analiza-presei/,/input_candidates/3,control-html-candidat
+igov-analiza-presei,exploreDezinfo,checkbox,,https://igov.ro/analiza-presei/,/input_candidates/4,control-html-candidat
+igov-analiza-presei,exploreSearch,search,"un nume, un loc…",https://igov.ro/analiza-presei/,/input_candidates/5,control-html-candidat
+igov-analiza-presei,issueOrder,,,https://igov.ro/analiza-presei/,/input_candidates/6,control-html-candidat
+igov-analiza-presei,topicOrder,,,https://igov.ro/analiza-presei/,/input_candidates/7,control-html-candidat
+igov-analiza-presei,storyOrder,,,https://igov.ro/analiza-presei/,/input_candidates/8,control-html-candidat
+igov-analiza-presei,storySearch,search,"Un subiect, un nume, un eveniment…",https://igov.ro/analiza-presei/,/input_candidates/9,control-html-candidat
+igov-analiza-presei,dateFrom,date,,https://igov.ro/analiza-presei/,/input_candidates/10,control-html-candidat
+igov-analiza-presei,dateTo,date,,https://igov.ro/analiza-presei/,/input_candidates/11,control-html-candidat
+igov-analiza-presei,scope,,,https://igov.ro/analiza-presei/,/input_candidates/12,control-html-candidat
+igov-analiza-presei,county,,,https://igov.ro/analiza-presei/,/input_candidates/13,control-html-candidat
+igov-analiza-presei,theme,,,https://igov.ro/analiza-presei/,/input_candidates/14,control-html-candidat
+igov-analiza-presei,source,,,https://igov.ro/analiza-presei/,/input_candidates/15,control-html-candidat
+igov-analiza-presei,articleSearch,search,Cuvinte din titlu…,https://igov.ro/analiza-presei/,/input_candidates/16,control-html-candidat

@@ -1,10 +1,10 @@
 # CivTech România
 
 > Colecție curatoriată de proiecte civic tech, organizații și resurse din România: instrumente civice, date deschise
-> și proiecte de bună guvernare. 141 proiecte, 16 organizații, 12 resurse, 26 analize și investigații.
+> și proiecte de bună guvernare. 144 proiecte, 16 organizații, 12 resurse, 26 analize și investigații.
 
 Fiecare intrare are o pagină proprie la https://civtech.gov2.ro/<tip>/<slug>/ (tip: proiect, organizatie, resursa, publicatie). Starea
-(activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-11-19. Textele sunt în
+(activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-11-23. Textele sunt în
 limba română. Datele sunt reutilizabile conform EUPL v1.2.
 
 ## Date
@@ -30,6 +30,7 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 - [Harta Politicii](https://civtech.gov2.ro/proiect/harta-politicii/) (offline): Site: https://www.hartapoliticii.ro
 - [Hotărâri.ro](https://civtech.gov2.ro/proiect/hotarari/): Arhivă căutabilă de hotărâri ale consiliilor locale din România. Site: https://hotarari.ro/
 - [iGov](https://civtech.gov2.ro/proiect/igov/): Rapoarte verificabile din surse publice. Site: https://igov.ro/
+- [ineter](https://civtech.gov2.ro/proiect/ineter/): Comunicarea statului român, direct de la sursă, într-un singur flux. Site: https://ineter.ro/
 - [insseption](https://civtech.gov2.ro/proiect/insseption/): Întrebări în limbaj obișnuit despre statistica INS, cu grafice, hărți și API. Site: https://insse.csaladen.es/
 - [Instituții publice · gov2](https://civtech.gov2.ro/proiect/org-gov2/): Instituțiile publice și companiile de stat din România, cu site, contact și CUI. Site: https://org.gov2.ro/
 - [leginoi](https://civtech.gov2.ro/proiect/leginoi/): Legile României, de la propunere la Monitorul Oficial. Site: https://leginoi.ro/
@@ -107,7 +108,9 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 - [Dignitas](https://civtech.gov2.ro/proiect/dignitas/): Fact-checking colaborativ pentru afirmații politice românești. Site: https://dignitas.ro/
 - [dimineața.de](https://civtech.gov2.ro/proiect/dimineata/): Jurnalism civic pentru Sibiu și România, cu surse și proces editorial explicat. Site: https://dimineata.de/
 - [Factual](https://civtech.gov2.ro/proiect/factual/): Fact-checking pentru declarațiile politicienilor. Site: https://www.factual.ro
+- [iGov – Analiza presei](https://civtech.gov2.ro/proiect/igov-analiza-presei/): Panou despre teme, publicații și presa locală din știrile colectate. Site: https://igov.ro/analiza-presei/
 - [Monarh AI](https://civtech.gov2.ro/proiect/monarh-ai/): Monitorizarea manipulării de pe TikTok. Site: https://monarhdef.ro/
+- [palavre](https://civtech.gov2.ro/proiect/palavre/): Cine a scris primul și cât text e nou, în presa din România. Site: https://palavre.ro/
 - [PressPay](https://civtech.gov2.ro/proiect/presspay/): Abonament lunar împărțit între publicațiile independente pe care le apreciezi. Site: https://presspay.ro/
 - [Radar Digital](https://civtech.gov2.ro/proiect/radar-digital/): Semnalarea conținutului problematic de pe rețelele sociale. Site: https://radardigital.ro/
 

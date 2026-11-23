@@ -99,7 +99,9 @@ hoover,https://hoover.grep.ro/,documentatie-neconfirmata,0,,,,neanalizat
 hotarari,https://hotarari.ro/,documentatie-gasita,1,,,https://hotarari.ro/llms.txt,neanalizat
 ia-statul-la-intrebari,https://www.romaniacurata.ro/,documentatie-gasita,4,http://www.romaniacurata.ro/bio/alina-mungiu-pippidi/|https://www.romaniacurata.ro/interviu-alina-mungiu-pippidi-coalitie-guvernare/,https://www.romaniacurata.ro/sar/|http://www.romaniacurata.ro/bio/alina-mungiu-pippidi/,,neanalizat
 igov,https://igov.ro/,documentatie-gasita,3,https://igov.ro/despre.html|https://igov.ro/propune-flux.html,https://igov.ro/|https://igov.ro/despre.html,,neanalizat
+igov-analiza-presei,https://igov.ro/analiza-presei/,documentatie-neconfirmata,1,,,,neanalizat
 imobile-rapps,https://rapps.mirceaserdin.ro/,documentatie-neconfirmata,1,,,,neanalizat
+ineter,https://ineter.ro/,documentatie-gasita,5,https://ineter.ro/surse/|https://ineter.ro/wp-json/ineter/v1/sources,https://ineter.ro/despre/,https://ineter.ro/llms.txt,neanalizat
 inovarepublica,https://inovarepublica.ro/,documentatie-gasita,2,,https://inovarepublica.ro/|https://inovarepublica.ro/despre-noi/,,neanalizat
 ins-gov2,https://ins.gov2.ro/,documentatie-gasita,2,,,https://ins.gov2.ro/llms.txt,neanalizat
 insseption,https://insse.csaladen.es/,documentatie-gasita,2,,https://insse.csaladen.es/docs/en,,neanalizat
@@ -136,6 +138,7 @@ orase-vii,https://romaniainteractiva.ro/orasevii/,documentatie-neconfirmata,1,,,
 orasul-care-se-intinde,https://mariuscomper.uk/orasul-care-se-intinde/,documentatie-gasita,2,https://mariuscomper.uk/orasul-care-se-intinde/,,,neanalizat
 org-gov2,https://org.gov2.ro/,documentatie-gasita,2,,https://org.gov2.ro/despre.html,,neanalizat
 pacienti-medic,https://romaniainteractiva.ro/pacienti-medic/,documentatie-neconfirmata,1,,,,neanalizat
+palavre,https://palavre.ro/,documentatie-gasita,5,https://palavre.ro/metoda/|https://palavre.ro/redactie/stiri-pe-surse/,https://palavre.ro/despre/,https://palavre.ro/llms.txt,neanalizat
 parc-auto-judete,https://romaniainteractiva.ro/masini/,documentatie-neconfirmata,1,,,,neanalizat
 parlament-transparent,https://parlament.openpolitics.ro/,documentatie-neconfirmata,0,,,,neanalizat
 pe-datorie,https://mariuscomper.uk/pe-datorie/,documentatie-gasita,2,https://mariuscomper.uk/pe-datorie/,,,neanalizat

@@ -11193,6 +11193,506 @@
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
         "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
       ]
+    },
+    {
+      "slug": "palavre",
+      "nume": "palavre",
+      "stare": "propunere",
+      "completitudine": "neconfirmat",
+      "scop": "Cine a scris primul și cât text e nou, în presa din România",
+      "permite": [
+        "Monitorizează",
+        "Analizează date"
+      ],
+      "formate_catalogate": [
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "palavre"
+      },
+      "intrari_utilizator": [],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
+    },
+    {
+      "slug": "ineter",
+      "nume": "ineter",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Comunicarea statului român, direct de la sursă, într-un singur flux",
+      "permite": [
+        "Monitorizează",
+        "Caută și consultă"
+      ],
+      "formate_catalogate": [
+        "Catalog sau colecție"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "ineter"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "q",
+          "rol": "control-utilizator",
+          "tip_control_html": "search",
+          "descriere": "Caută în știrile oficiale…",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://ineter.ro/",
+            "sha256": "3442fee29c7934f7d1f4099e70bddead4ab6d85250755115b65ed57d555870e2",
+            "sha256_lista_controale": "3f852deb2246729211d799c68e28045e27d64097362b1ffcc8a843ce6034080e",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/e79e12c7a0758c9ff5212716.json"
+          }
+        },
+        {
+          "nume": "a11yFontSize",
+          "rol": "control-utilizator",
+          "tip_control_html": "range",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://ineter.ro/",
+            "sha256": "3442fee29c7934f7d1f4099e70bddead4ab6d85250755115b65ed57d555870e2",
+            "sha256_lista_controale": "3f852deb2246729211d799c68e28045e27d64097362b1ffcc8a843ce6034080e",
+            "pointer_snapshot": "/input_candidates/1",
+            "snapshot": "documentare/pagini/e79e12c7a0758c9ff5212716.json"
+          }
+        },
+        {
+          "nume": "a11yLineHeight",
+          "rol": "control-utilizator",
+          "tip_control_html": "range",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://ineter.ro/",
+            "sha256": "3442fee29c7934f7d1f4099e70bddead4ab6d85250755115b65ed57d555870e2",
+            "sha256_lista_controale": "3f852deb2246729211d799c68e28045e27d64097362b1ffcc8a843ce6034080e",
+            "pointer_snapshot": "/input_candidates/2",
+            "snapshot": "documentare/pagini/e79e12c7a0758c9ff5212716.json"
+          }
+        },
+        {
+          "nume": "a11yContrast",
+          "rol": "control-utilizator",
+          "tip_control_html": "checkbox",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://ineter.ro/",
+            "sha256": "3442fee29c7934f7d1f4099e70bddead4ab6d85250755115b65ed57d555870e2",
+            "sha256_lista_controale": "3f852deb2246729211d799c68e28045e27d64097362b1ffcc8a843ce6034080e",
+            "pointer_snapshot": "/input_candidates/3",
+            "snapshot": "documentare/pagini/e79e12c7a0758c9ff5212716.json"
+          }
+        },
+        {
+          "nume": "a11ySpacing",
+          "rol": "control-utilizator",
+          "tip_control_html": "checkbox",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://ineter.ro/",
+            "sha256": "3442fee29c7934f7d1f4099e70bddead4ab6d85250755115b65ed57d555870e2",
+            "sha256_lista_controale": "3f852deb2246729211d799c68e28045e27d64097362b1ffcc8a843ce6034080e",
+            "pointer_snapshot": "/input_candidates/4",
+            "snapshot": "documentare/pagini/e79e12c7a0758c9ff5212716.json"
+          }
+        },
+        {
+          "nume": "a11yDyslexic",
+          "rol": "control-utilizator",
+          "tip_control_html": "checkbox",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://ineter.ro/",
+            "sha256": "3442fee29c7934f7d1f4099e70bddead4ab6d85250755115b65ed57d555870e2",
+            "sha256_lista_controale": "3f852deb2246729211d799c68e28045e27d64097362b1ffcc8a843ce6034080e",
+            "pointer_snapshot": "/input_candidates/5",
+            "snapshot": "documentare/pagini/e79e12c7a0758c9ff5212716.json"
+          }
+        },
+        {
+          "nume": "a11yUnderline",
+          "rol": "control-utilizator",
+          "tip_control_html": "checkbox",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://ineter.ro/",
+            "sha256": "3442fee29c7934f7d1f4099e70bddead4ab6d85250755115b65ed57d555870e2",
+            "sha256_lista_controale": "3f852deb2246729211d799c68e28045e27d64097362b1ffcc8a843ce6034080e",
+            "pointer_snapshot": "/input_candidates/6",
+            "snapshot": "documentare/pagini/e79e12c7a0758c9ff5212716.json"
+          }
+        },
+        {
+          "nume": "a11yFocus",
+          "rol": "control-utilizator",
+          "tip_control_html": "checkbox",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://ineter.ro/",
+            "sha256": "3442fee29c7934f7d1f4099e70bddead4ab6d85250755115b65ed57d555870e2",
+            "sha256_lista_controale": "3f852deb2246729211d799c68e28045e27d64097362b1ffcc8a843ce6034080e",
+            "pointer_snapshot": "/input_candidates/7",
+            "snapshot": "documentare/pagini/e79e12c7a0758c9ff5212716.json"
+          }
+        },
+        {
+          "nume": "a11yCursor",
+          "rol": "control-utilizator",
+          "tip_control_html": "checkbox",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://ineter.ro/",
+            "sha256": "3442fee29c7934f7d1f4099e70bddead4ab6d85250755115b65ed57d555870e2",
+            "sha256_lista_controale": "3f852deb2246729211d799c68e28045e27d64097362b1ffcc8a843ce6034080e",
+            "pointer_snapshot": "/input_candidates/8",
+            "snapshot": "documentare/pagini/e79e12c7a0758c9ff5212716.json"
+          }
+        },
+        {
+          "nume": "a11yMotion",
+          "rol": "control-utilizator",
+          "tip_control_html": "checkbox",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://ineter.ro/",
+            "sha256": "3442fee29c7934f7d1f4099e70bddead4ab6d85250755115b65ed57d555870e2",
+            "sha256_lista_controale": "3f852deb2246729211d799c68e28045e27d64097362b1ffcc8a843ce6034080e",
+            "pointer_snapshot": "/input_candidates/9",
+            "snapshot": "documentare/pagini/e79e12c7a0758c9ff5212716.json"
+          }
+        },
+        {
+          "nume": "a11yHideImages",
+          "rol": "control-utilizator",
+          "tip_control_html": "checkbox",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://ineter.ro/",
+            "sha256": "3442fee29c7934f7d1f4099e70bddead4ab6d85250755115b65ed57d555870e2",
+            "sha256_lista_controale": "3f852deb2246729211d799c68e28045e27d64097362b1ffcc8a843ce6034080e",
+            "pointer_snapshot": "/input_candidates/10",
+            "snapshot": "documentare/pagini/e79e12c7a0758c9ff5212716.json"
+          }
+        },
+        {
+          "nume": "a11yGuide",
+          "rol": "control-utilizator",
+          "tip_control_html": "checkbox",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://ineter.ro/",
+            "sha256": "3442fee29c7934f7d1f4099e70bddead4ab6d85250755115b65ed57d555870e2",
+            "sha256_lista_controale": "3f852deb2246729211d799c68e28045e27d64097362b1ffcc8a843ce6034080e",
+            "pointer_snapshot": "/input_candidates/11",
+            "snapshot": "documentare/pagini/e79e12c7a0758c9ff5212716.json"
+          }
+        },
+        {
+          "nume": "a11ySaturation",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://ineter.ro/",
+            "sha256": "3442fee29c7934f7d1f4099e70bddead4ab6d85250755115b65ed57d555870e2",
+            "sha256_lista_controale": "3f852deb2246729211d799c68e28045e27d64097362b1ffcc8a843ce6034080e",
+            "pointer_snapshot": "/input_candidates/12",
+            "snapshot": "documentare/pagini/e79e12c7a0758c9ff5212716.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
+    },
+    {
+      "slug": "igov-analiza-presei",
+      "nume": "iGov – Analiza presei",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Panou despre teme, publicații și presa locală din știrile colectate",
+      "permite": [
+        "Analizează date",
+        "Monitorizează",
+        "Caută și consultă"
+      ],
+      "formate_catalogate": [
+        "Vizualizare de date",
+        "Hartă"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "igov-analiza-presei"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "explorePeriod",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://igov.ro/analiza-presei/",
+            "sha256": "ff298a6efabb4413c6501da30f6795b890e14ee189d68afddc78a0b697393594",
+            "sha256_lista_controale": "f0be48f307a958bacd1d5c8e9df5f7e59fe7ae8c38842b3d3248d3af6f0d9e4a",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/2eba9c718bf98612971566b5.json"
+          }
+        },
+        {
+          "nume": "exploreCounty",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://igov.ro/analiza-presei/",
+            "sha256": "ff298a6efabb4413c6501da30f6795b890e14ee189d68afddc78a0b697393594",
+            "sha256_lista_controale": "f0be48f307a958bacd1d5c8e9df5f7e59fe7ae8c38842b3d3248d3af6f0d9e4a",
+            "pointer_snapshot": "/input_candidates/1",
+            "snapshot": "documentare/pagini/2eba9c718bf98612971566b5.json"
+          }
+        },
+        {
+          "nume": "exploreTopic",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://igov.ro/analiza-presei/",
+            "sha256": "ff298a6efabb4413c6501da30f6795b890e14ee189d68afddc78a0b697393594",
+            "sha256_lista_controale": "f0be48f307a958bacd1d5c8e9df5f7e59fe7ae8c38842b3d3248d3af6f0d9e4a",
+            "pointer_snapshot": "/input_candidates/2",
+            "snapshot": "documentare/pagini/2eba9c718bf98612971566b5.json"
+          }
+        },
+        {
+          "nume": "explorePublisher",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://igov.ro/analiza-presei/",
+            "sha256": "ff298a6efabb4413c6501da30f6795b890e14ee189d68afddc78a0b697393594",
+            "sha256_lista_controale": "f0be48f307a958bacd1d5c8e9df5f7e59fe7ae8c38842b3d3248d3af6f0d9e4a",
+            "pointer_snapshot": "/input_candidates/3",
+            "snapshot": "documentare/pagini/2eba9c718bf98612971566b5.json"
+          }
+        },
+        {
+          "nume": "exploreDezinfo",
+          "rol": "control-utilizator",
+          "tip_control_html": "checkbox",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://igov.ro/analiza-presei/",
+            "sha256": "ff298a6efabb4413c6501da30f6795b890e14ee189d68afddc78a0b697393594",
+            "sha256_lista_controale": "f0be48f307a958bacd1d5c8e9df5f7e59fe7ae8c38842b3d3248d3af6f0d9e4a",
+            "pointer_snapshot": "/input_candidates/4",
+            "snapshot": "documentare/pagini/2eba9c718bf98612971566b5.json"
+          }
+        },
+        {
+          "nume": "exploreSearch",
+          "rol": "control-utilizator",
+          "tip_control_html": "search",
+          "descriere": "un nume, un loc…",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://igov.ro/analiza-presei/",
+            "sha256": "ff298a6efabb4413c6501da30f6795b890e14ee189d68afddc78a0b697393594",
+            "sha256_lista_controale": "f0be48f307a958bacd1d5c8e9df5f7e59fe7ae8c38842b3d3248d3af6f0d9e4a",
+            "pointer_snapshot": "/input_candidates/5",
+            "snapshot": "documentare/pagini/2eba9c718bf98612971566b5.json"
+          }
+        },
+        {
+          "nume": "issueOrder",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://igov.ro/analiza-presei/",
+            "sha256": "ff298a6efabb4413c6501da30f6795b890e14ee189d68afddc78a0b697393594",
+            "sha256_lista_controale": "f0be48f307a958bacd1d5c8e9df5f7e59fe7ae8c38842b3d3248d3af6f0d9e4a",
+            "pointer_snapshot": "/input_candidates/6",
+            "snapshot": "documentare/pagini/2eba9c718bf98612971566b5.json"
+          }
+        },
+        {
+          "nume": "topicOrder",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://igov.ro/analiza-presei/",
+            "sha256": "ff298a6efabb4413c6501da30f6795b890e14ee189d68afddc78a0b697393594",
+            "sha256_lista_controale": "f0be48f307a958bacd1d5c8e9df5f7e59fe7ae8c38842b3d3248d3af6f0d9e4a",
+            "pointer_snapshot": "/input_candidates/7",
+            "snapshot": "documentare/pagini/2eba9c718bf98612971566b5.json"
+          }
+        },
+        {
+          "nume": "storyOrder",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://igov.ro/analiza-presei/",
+            "sha256": "ff298a6efabb4413c6501da30f6795b890e14ee189d68afddc78a0b697393594",
+            "sha256_lista_controale": "f0be48f307a958bacd1d5c8e9df5f7e59fe7ae8c38842b3d3248d3af6f0d9e4a",
+            "pointer_snapshot": "/input_candidates/8",
+            "snapshot": "documentare/pagini/2eba9c718bf98612971566b5.json"
+          }
+        },
+        {
+          "nume": "storySearch",
+          "rol": "control-utilizator",
+          "tip_control_html": "search",
+          "descriere": "Un subiect, un nume, un eveniment…",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://igov.ro/analiza-presei/",
+            "sha256": "ff298a6efabb4413c6501da30f6795b890e14ee189d68afddc78a0b697393594",
+            "sha256_lista_controale": "f0be48f307a958bacd1d5c8e9df5f7e59fe7ae8c38842b3d3248d3af6f0d9e4a",
+            "pointer_snapshot": "/input_candidates/9",
+            "snapshot": "documentare/pagini/2eba9c718bf98612971566b5.json"
+          }
+        },
+        {
+          "nume": "dateFrom",
+          "rol": "control-utilizator",
+          "tip_control_html": "date",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://igov.ro/analiza-presei/",
+            "sha256": "ff298a6efabb4413c6501da30f6795b890e14ee189d68afddc78a0b697393594",
+            "sha256_lista_controale": "f0be48f307a958bacd1d5c8e9df5f7e59fe7ae8c38842b3d3248d3af6f0d9e4a",
+            "pointer_snapshot": "/input_candidates/10",
+            "snapshot": "documentare/pagini/2eba9c718bf98612971566b5.json"
+          }
+        },
+        {
+          "nume": "dateTo",
+          "rol": "control-utilizator",
+          "tip_control_html": "date",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://igov.ro/analiza-presei/",
+            "sha256": "ff298a6efabb4413c6501da30f6795b890e14ee189d68afddc78a0b697393594",
+            "sha256_lista_controale": "f0be48f307a958bacd1d5c8e9df5f7e59fe7ae8c38842b3d3248d3af6f0d9e4a",
+            "pointer_snapshot": "/input_candidates/11",
+            "snapshot": "documentare/pagini/2eba9c718bf98612971566b5.json"
+          }
+        },
+        {
+          "nume": "scope",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://igov.ro/analiza-presei/",
+            "sha256": "ff298a6efabb4413c6501da30f6795b890e14ee189d68afddc78a0b697393594",
+            "sha256_lista_controale": "f0be48f307a958bacd1d5c8e9df5f7e59fe7ae8c38842b3d3248d3af6f0d9e4a",
+            "pointer_snapshot": "/input_candidates/12",
+            "snapshot": "documentare/pagini/2eba9c718bf98612971566b5.json"
+          }
+        },
+        {
+          "nume": "county",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://igov.ro/analiza-presei/",
+            "sha256": "ff298a6efabb4413c6501da30f6795b890e14ee189d68afddc78a0b697393594",
+            "sha256_lista_controale": "f0be48f307a958bacd1d5c8e9df5f7e59fe7ae8c38842b3d3248d3af6f0d9e4a",
+            "pointer_snapshot": "/input_candidates/13",
+            "snapshot": "documentare/pagini/2eba9c718bf98612971566b5.json"
+          }
+        },
+        {
+          "nume": "theme",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://igov.ro/analiza-presei/",
+            "sha256": "ff298a6efabb4413c6501da30f6795b890e14ee189d68afddc78a0b697393594",
+            "sha256_lista_controale": "f0be48f307a958bacd1d5c8e9df5f7e59fe7ae8c38842b3d3248d3af6f0d9e4a",
+            "pointer_snapshot": "/input_candidates/14",
+            "snapshot": "documentare/pagini/2eba9c718bf98612971566b5.json"
+          }
+        },
+        {
+          "nume": "source",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://igov.ro/analiza-presei/",
+            "sha256": "ff298a6efabb4413c6501da30f6795b890e14ee189d68afddc78a0b697393594",
+            "sha256_lista_controale": "f0be48f307a958bacd1d5c8e9df5f7e59fe7ae8c38842b3d3248d3af6f0d9e4a",
+            "pointer_snapshot": "/input_candidates/15",
+            "snapshot": "documentare/pagini/2eba9c718bf98612971566b5.json"
+          }
+        },
+        {
+          "nume": "articleSearch",
+          "rol": "control-utilizator",
+          "tip_control_html": "search",
+          "descriere": "Cuvinte din titlu…",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://igov.ro/analiza-presei/",
+            "sha256": "ff298a6efabb4413c6501da30f6795b890e14ee189d68afddc78a0b697393594",
+            "sha256_lista_controale": "f0be48f307a958bacd1d5c8e9df5f7e59fe7ae8c38842b3d3248d3af6f0d9e4a",
+            "pointer_snapshot": "/input_candidates/16",
+            "snapshot": "documentare/pagini/2eba9c718bf98612971566b5.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
+        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+      ]
     }
   ]
 }
