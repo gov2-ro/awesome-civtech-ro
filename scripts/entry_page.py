@@ -341,7 +341,7 @@ def dataset_card(c: dict, level: int = 4) -> str:
     access = ", ".join(f'<a href="{esc(a["url"])}" target="_blank" rel="noopener">{esc(a["label"])}</a>' if a["url"] else esc(a["label"]) for a in c["access"])
     # The grain repeats the record when its label is in the record text („o achiziție directă” / „Achiziție directă”); it shows only when it adds something.
     grain = f' <small>({esc(c["grain"]["label"])})</small>' if c["grain"] and c["grain"]["label"].casefold() not in c["record"].casefold() else ""
-    facts = [f"<span>furnizor: {provider_html}</span>", f"<span>o înregistrare: {esc(c['record'])}{grain}</span>",
+    facts = [f"<span>furnizor: {provider_html}</span>", *([f"<span>o înregistrare: {esc(c['record'])}{grain}</span>"] if c["record"] else []),
              f"<span>perioada: {esc(c['period']) if c['period'] else 'nedeclarată'}</span>"]
     if access:
         facts.append(f"<span>acces: {access}</span>")
@@ -355,7 +355,9 @@ def dataset_card(c: dict, level: int = 4) -> str:
     if c["methodNote"]:
         lines.append(f'<p class="ds-note">Metodă: {esc(c["methodNote"])}</p>')
     meta = ([f"bază: {esc(c['basisLabel'])}"] if c["basisLabel"] else []) + ([f"verificat la {esc(c['checked'])}"] if c["checked"] else [])
-    evidence = ", ".join(f'<a href="{esc(u)}" target="_blank" rel="noopener">{esc(host_text(u))}</a>' for u in c["evidence"])
+    hosts = [host_text(u) for u in c["evidence"]]  # a repeated host gets a number („host (2)”), so that three links do not read as one link three times
+    labels = [h if not hosts[:n].count(h) else f"{h} ({hosts[:n].count(h) + 1})" for n, h in enumerate(hosts)]
+    evidence = ", ".join(f'<a href="{esc(u)}" target="_blank" rel="noopener">{esc(label)}</a>' for u, label in zip(c["evidence"], labels))
     if evidence:
         meta.append(f"dovadă: {evidence}")
     if meta:

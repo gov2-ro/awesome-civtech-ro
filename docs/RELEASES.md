@@ -1,5 +1,6 @@
 # Releases
 
+- **v0.87.0** (2026-11-23): pilot of the data-set card: 53 proposed cards for 15 procurement and company entries (provider and access on all; record 91%, identifiers with a role 49%, period 42%); five proposed providers for `romania-transparenta`. Display fixes: key variables by field name, no empty record, numbered evidence hosts.
 - **v0.86.1** (2026-11-23): the 96 proposed `date_din` rows are decided (93 accepted, 2 rejected, the university rankings split into QS, THE and ARWU); 31 provider rows accepted. The finder shows a provider for 76 of 137 entries (46 before). Intermediaries carry a note.
 - **v0.86.0** (2026-11-23): the data-set card is built, with no card yet: `integrare/fise-date.csv` (header only), three code lists, the checks in `validate.py`, `datasets` in `data.json`, the card on the entry page, on `/date/<slug>/` and in the finder; `/date/<slug>/` counts „documente citite”. The public pages do not change until the owner accepts a card.
 - **v0.85.0** (2026-11-23): the data-set card spec is accepted (file `integrare/fise-date.csv`); briefs for the build and for the pilot cards of procurement and companies.

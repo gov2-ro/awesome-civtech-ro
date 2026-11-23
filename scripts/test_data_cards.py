@@ -344,5 +344,25 @@ class NoCardChangesNothing(unittest.TestCase):
         self.assertTrue(all('datasets' not in e for e in index['entries']))
 
 
+class Display(unittest.TestCase):
+    """Two display rules found in the pilot review: a key variable named by its path shows the field name, and an empty record shows no „o înregistrare:”."""
+
+    def payload(self, **values):
+        row = card(id='S009', slug='sicap-ai', set='Un set', furnizor='autor', stare='acceptat', **values)
+        return data_cards.card_payload(row, {}, {}, {}, {('abc', '$.date[].restant_lei'): 'restant_lei'})
+
+    def test_a_key_variable_by_path_shows_the_field_name(self):
+        keys = self.payload(variabile_cheie='abc#$.date[].restant_lei|abc#unknown.path')['keyVariables']
+        self.assertEqual([k['label'] for k in keys], ['restant_lei', 'unknown.path'])
+
+    def test_a_repeated_evidence_host_is_numbered(self):
+        html = entry_page.dataset_card(self.payload(dovada='https://a.ro/x|https://a.ro/y|https://b.ro/'))
+        self.assertIn('>a.ro</a>, <a href="https://a.ro/y" target="_blank" rel="noopener">a.ro (2)</a>, <a href="https://b.ro/" target="_blank" rel="noopener">b.ro</a>', html)
+
+    def test_an_empty_record_is_not_shown(self):
+        self.assertNotIn('o înregistrare', entry_page.dataset_card(self.payload()))
+        self.assertIn('o înregistrare: o firmă', entry_page.dataset_card(self.payload(inregistrare='o firmă')))
+
+
 if __name__ == '__main__':
     unittest.main()

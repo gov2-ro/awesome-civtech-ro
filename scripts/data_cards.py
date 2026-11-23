@@ -196,7 +196,7 @@ def label_of(codes: dict, lst: str, code: str) -> str:
     return (codes.get(lst, {}).get(code) or {}).get("eticheta_ro", code)
 
 
-def card_payload(card: dict, codes: dict, provider_names: dict[str, str], concepts: dict[str, dict]) -> dict:
+def card_payload(card: dict, codes: dict, provider_names: dict[str, str], concepts: dict[str, dict], field_names: dict | None = None) -> dict:
     """One accepted card as an item of `datasets` (spec section 5): the columns of 4.1 but `nota`, with the codes resolved to their labels so that every page reads
     the same words. `codes` is `Package.codes`; `provider_names` is {furnizor: display name}; `concepts` is `read_concepts`."""
     access_codes, urls = card_items(card["acces"]), card_items(card["url_acces"])
@@ -214,7 +214,8 @@ def card_payload(card: dict, codes: dict, provider_names: dict[str, str], concep
     for item in card_items(card["variabile_cheie"]):
         if "#" in item:
             source, _, path = item.partition("#")
-            keys.append({"source": source, "path": path, "label": path})
+            # the field's own name (`risk_score`), not its path (`$.date[].restant_lei`); `field_names` is {(sursa_id, path): nume} of campuri.csv
+            keys.append({"source": source, "path": path, "label": (field_names or {}).get((source, path)) or path})
         else:
             keys.append({"id": item, "label": (concepts.get(item) or {}).get("label", item)})
     provider = card["furnizor"]
@@ -238,7 +239,8 @@ def cards_by_entry(root: Path, pkg) -> dict[str, list[dict]]:
         return {}
     names = {row["furnizor"]: row["nume"] for row in provider_table(read_providers(providers_path(root))).values()}
     concepts = read_concepts(root)
+    field_names = {(f["source"], f["path"]): f["name"] for fields in read_entry_fields(root).values() for f in fields}
     found: dict[str, list[dict]] = {}
     for r in rows:
-        found.setdefault(r["slug"], []).append(card_payload(r, pkg.codes, names, concepts))
+        found.setdefault(r["slug"], []).append(card_payload(r, pkg.codes, names, concepts, field_names))
     return found

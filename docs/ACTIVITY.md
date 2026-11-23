@@ -1,5 +1,20 @@
 # Activity
 
+## 2026-11-23 — Data-set card: review and merge of the pilot (v0.87.0)
+
+**Done**
+- Reviewed the branch `data-set-card-pilot` and merged it. The 53 cards are `propus`; the public site shows none of them until the owner accepts them.
+- Three display fixes in `entry_page.dataset_card` and `datasetCard`: a key variable `<sursa_id>#<path>` shows its field name (`restant_lei`, not `$.date[].restant_lei`); an empty `inregistrare` is not shown; a repeated evidence host gets a number. Three unit tests.
+- A preview with all 53 cards set to `acceptat` (scratch copy, not committed) renders them on the entry pages and on `/date/<slug>/`.
+- Checks: `validate.py --publication` 0 errors, 6 warnings (S034–S039: the `date_din` relations of `romania-transparenta` are `propus`); unit tests 1,419 OK (9 skipped); browser checks 188/188, 63/63, 156/156, 51/51, 29/29.
+
+**Decided** (Opus)
+- Kept the agent's change to the tests: copies of the data root start with a header-only `fise-date.csv`, and the real-file test checks the header and the states, not an empty file.
+- The agent's time per card (11 s median) measures an agent, not a person. The proposal script stays not built; the decision waits for a person's time on the first accepted cards.
+
+**Measured**
+- The data-set card has 100% provider and access, 91% record, 49% identifiers with a role and 42% period on 53 cards. The spec measured 12 of 137 entries with a role and 15 with a period before the pilot.
+
 ## 2026-11-23 — Data-set card: the pilot cards (brief `data-set-card-pilot.md`)
 
 **Done**
