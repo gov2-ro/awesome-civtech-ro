@@ -316,7 +316,7 @@ def legacy_data_summary(i):
 
 
 class NoCardChangesNothing(unittest.TestCase):
-    """The public build, on the current data: no entry has a card, so every panel and every list must be as before."""
+    """The public build, on the current data: an entry without an accepted card keeps the panel and the pages it had before the cards."""
 
     @classmethod
     def setUpClass(cls):
@@ -324,24 +324,29 @@ class NoCardChangesNothing(unittest.TestCase):
         code, out = run('scripts/build.py', '--site-dir', cls.site, '--with-inventory')
         assert code == 0, out
         cls.data = json.loads((cls.site / 'data.json').read_text(encoding='utf-8'))
+        cls.carded = {i['slug'] for i in cls.data['items'] if i['datasets']}
 
-    def test_no_entry_has_a_card(self):
-        self.assertTrue(all(i['datasets'] == [] for i in self.data['items']))
+    def test_only_accepted_cards_are_built(self):
+        accepted = {r['slug'] for r in csv.DictReader(REAL_FILE.open(encoding='utf-8')) if r['stare'] == 'acceptat'}
+        self.assertEqual(self.carded, accepted & {i['slug'] for i in self.data['items']})
 
-    def test_the_panel_of_every_entry_is_the_old_panel(self):
-        self.assertGreater(sum(bool(i.get('inventory', {}).get('count')) for i in self.data['items']), 50)
+    def test_the_panel_of_every_entry_without_a_card_is_the_old_panel(self):
+        self.assertGreater(sum(bool(i.get('inventory', {}).get('count')) for i in self.data['items'] if i['slug'] not in self.carded), 50)
         for item in self.data['items']:
-            self.assertEqual(entry_page.data_summary(item), legacy_data_summary(item), item['slug'])
+            if item['slug'] not in self.carded:
+                self.assertEqual(entry_page.data_summary(item), legacy_data_summary(item), item['slug'])
 
-    def test_no_entry_page_names_a_card(self):
+    def test_no_page_of_an_entry_without_a_card_names_a_card(self):
         for page in list(self.site.glob('proiect/*/index.html')) + list((self.site / 'date').glob('*/index.html')):
+            if page.parent.name in self.carded:
+                continue
             text = page.read_text(encoding='utf-8')
             self.assertNotIn('ds-card', text, page)
             self.assertNotIn('vedere-tehnica', text, page)
 
-    def test_the_index_has_no_datasets_key(self):
+    def test_the_index_has_no_datasets_key_for_an_entry_without_a_card(self):
         index = json.loads((self.site / 'inventar/index.json').read_text(encoding='utf-8'))
-        self.assertTrue(all('datasets' not in e for e in index['entries']))
+        self.assertTrue(all('datasets' not in e for e in index['entries'] if e['slug'] not in self.carded))
 
 
 class Display(unittest.TestCase):

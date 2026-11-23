@@ -97,9 +97,18 @@ class Context:
     def author_keys(self, i: dict) -> list[str]:
         return [a["org"] or norm(a["name"]) for a in i["attributions"] if a["role"] != "parte_din"]
 
+    def owner_keys(self, i: dict) -> list[str]:
+        """The author keys plus the parent when the parent is an organisation (app.js `authorKeys`)."""
+        return self.author_keys(i) + [a["org"] for a in i["attributions"]
+                                      if a["role"] == "parte_din" and self.by.get(a["org"], {}).get("kind") == "organizatie"]
+
     def same_author(self, i: dict) -> list[dict]:
-        keys = [i["slug"]] if i["kind"] == "organizatie" else self.author_keys(i)
-        return sorted((o for o in self.items if o is not i and o["kind"] != "organizatie" and any(k in keys for k in self.author_keys(o))), key=self.order)
+        """Entries with the same author, those of the tab of `i` first; for an organisation, the entries that name it."""
+        org = i["kind"] == "organizatie"
+        keys = [i["slug"]] if org else self.owner_keys(i)
+        rows = (o for o in self.items if o is not i and o["kind"] != "organizatie"
+                and any(k in keys for k in (self.author_keys(o) if org else self.owner_keys(o))))
+        return sorted(rows, key=lambda o: (o["kind"] != i["kind"], *self.order(o)))
 
     def subject_set(self, i: dict) -> set[str]:
         """The values the `subj` filter matches for an entry: its subjects, its topics, and their broader concepts."""
@@ -389,7 +398,7 @@ def data_summary(i: dict) -> str:
         tech = (f'<p class="inv-all inv-tech"><a href="{esc(inv["page"])}">Vedere tehnică: {ro_plural(inv["count"], "câmp", "câmpuri")} din '
                 f'{ro_plural(inv["sources"], "document", "documente")} <span aria-hidden="true">→</span></a></p>')
     status = '<span class="inv-status">Inventar parțial</span>' if counted else ""
-    intro = "" if tech else f'<p class="inv-intro">{inv["count"]} câmpuri și parametri · {inv["sources"]} fișiere consultate</p>'  # the link „Vedere tehnică” already counts them
+    intro = "" if tech or not counted else f'<p class="inv-intro">{inv["count"]} câmpuri și parametri · {inv["sources"]} fișiere consultate</p>'  # the link „Vedere tehnică” already counts them
     body = (intro + f'<p class="inv-note">Extrase automat din sursele de mai jos. Proiectul poate folosi și alte date.</p><div class="inv-examples">{examples}</div>') if counted else ""
     return (f'<section class="d-inventory" data-inventory-root="{esc(i["slug"])}"><div class="inv-heading"><h3>Date &amp; metodă</h3>{status}</div>'
             f'{dataset_cards(cards)}{tech}{body}</section>')

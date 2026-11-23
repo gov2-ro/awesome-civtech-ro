@@ -664,11 +664,14 @@ function repoRow(it) {
 
 // `parte_din` names a parent entry, not an author: it never counts as an attribution.
 const isParent = a => a.role === 'parte_din';
-// Entries (projects and resources) with the same attribution as `it`; for an organisation, the entries that name it.
+// The author keys of an entry: its attributions, plus its parent when the parent is an organisation
+// (the siblings in an organisation have the same author; the items of a list or a project do not).
+const authorKeys = it => [...it._akeys, ...it.attributions.filter(a => isParent(a) && DB.items.some(o => o.slug === a.org && o.kind === 'organizatie')).map(a => a.org)];
+// Entries (projects and resources) with the same author as `it`, those of its own tab first; for an organisation, the entries that name it.
 function sameAuthor(it) {
-  const keys = it.kind === 'organizatie' ? [it.slug] : it._akeys;
-  return DB.items.filter(i => i !== it && i.kind !== 'organizatie' && i._akeys.some(k => keys.includes(k)))
-    .sort((a, b) => rank(a) - rank(b) || byName(a, b));
+  const keys = it.kind === 'organizatie' ? [it.slug] : authorKeys(it);
+  return DB.items.filter(i => i !== it && i.kind !== 'organizatie' && (it.kind === 'organizatie' ? i._akeys : authorKeys(i)).some(k => keys.includes(k)))
+    .sort((a, b) => (a.kind !== it.kind) - (b.kind !== it.kind) || rank(a) - rank(b) || byName(a, b));
 }
 // A repository link: the forge's logo in place of its host name (github.com/gov2-ro/x → [logo] gov2-ro/x).
 function codeLink(url) {
