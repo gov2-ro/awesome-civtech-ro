@@ -437,3 +437,10 @@ L435,org-gov2,parte_din,gov2-ro,,,https://gov2.ro/,propus
 L436,ro-alert,parte_din,gov2-ro,,,https://gov2.ro/,propus
 L437,ro-alert,date_din,,Inspectoratul General pentru Situații de Urgență (IGSU),surse_date,https://data.gov.ro/ro/dataset?q=mesaje+ro-alert&organization=inspectoratul-general-pentru-situatii-de-urgenta,propus
 L438,insseption,atribuit_in_sursa,,csaladenes,autor,https://github.com/csaladenes/insseption,rol_neconfirmat
+L439,palavre,parte_din,curaj-inainte,,,https://palavre.ro/despre/,propus
+L440,ineter,parte_din,curaj-inainte,,,https://ineter.ro/llms.txt,propus
+L441,igov-analiza-presei,parte_din,igov,,,https://igov.ro/analiza-presei/,propus
+L442,palavre,atribuit_in_sursa,uzina-din-nori,,autor,Uzina din Nori,rol_neconfirmat
+L443,ineter,atribuit_in_sursa,uzina-din-nori,,autor,Uzina din Nori,rol_neconfirmat
+L444,igov-analiza-presei,atribuit_in_sursa,,Marius Dima,autor,Marius Dima / Andra Martinescu,rol_neconfirmat
+L445,igov-analiza-presei,atribuit_in_sursa,,Andra Martinescu,autor,Marius Dima / Andra Martinescu,rol_neconfirmat
