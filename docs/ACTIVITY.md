@@ -1,5 +1,18 @@
 # Activity
 
+## 2026-11-23 — Two sessions on one checkout; the card „Ajutoarele de stat” (v0.88.1)
+
+**Done**
+- S054 „Ajutoarele de stat, pe an, județ și măsură (RegAS)” of `romania-transparenta` is in `fise-date.csv`, `propus`. Evidence: the OpenAPI summary of `/v1/date/ajutoare_agregat` („adunate pe an, județ, măsură și furnizor”) and `llms.txt`. The commit of v0.88.0 carried it.
+- One line of the v0.88.0 entry still quoted the display name of `context-politic` and failed `test_inventory_persons`. It now names the slug.
+- Checks: unit tests 1,417 run, 9 skipped, all OK.
+
+**Hard**
+- Two Opus sessions applied the owner's „accept the recommendations” in the same working tree at the same time. The other session committed both sets of changes (v0.88.0). Three build tests failed only while both sessions built at once; they pass alone. Measured: no data was lost.
+
+**Decided**
+- One session at a time writes to a checkout. A second session uses its own worktree.
+
 ## 2026-11-23 — Pilot cards: the recommended rows accepted; „Același autor” with the organisation (v0.88.0)
 
 **Done**
@@ -12,7 +25,7 @@
 **Hard**
 - With accepted cards, `build.py` without `--with-inventory` crashed in `entry_page.data_summary`: an entry with a card and no inventory read `inv["count"]` on `None`. The Pages build uses `--with-inventory`, so the deploy did not fail; the plain build of CI and of `CLAUDE.md` did. Fixed: the intro is only written for a counted inventory.
 - `test_data_cards.NoCardChangesNothing` assumed that no card is accepted. It now checks that only accepted cards are built, and that an entry without a card keeps its old panel and pages.
-- The person-data check (`test_inventory_persons`) found „Context Politic” in this entry: the same text is a value of the Context Politic report source, which is marked as containing persons. The entry names the projects by slug instead.
+- The person-data check (`test_inventory_persons`) found the display name of `context-politic` in this entry: the same text is a value of that project's report source, which is marked as containing persons. The entry names the projects by slug instead.
 - `docs/reports/inventory-expansion.md` regenerated: accepted `date_din` relations 217 → 222, providers 76 → 77.
 - Full run: 1,417 tests OK, 9 skipped (before the fixes: 8 failures and 1 error, all from the points above).
 

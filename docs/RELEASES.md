@@ -1,5 +1,6 @@
 # Releases
 
+- **v0.88.1** (2026-11-23): the card „Ajutoarele de stat” of `romania-transparenta` (S054, proposed); the activity log no longer quotes a value of a source with persons.
 - **v0.88.0** (2026-11-23): 34 pilot data-set cards accepted and public, with the five `date_din` relations of `romania-transparenta` and the provider `consiliul-concurentei`; 19 cards stay `propus`. „Același autor” on an entry page includes the other entries of its organisation, those of the same tab first.
 - **v0.87.0** (2026-11-23): pilot of the data-set card: 53 proposed cards for 15 procurement and company entries (provider and access on all; record 91%, identifiers with a role 49%, period 42%); five proposed providers for `romania-transparenta`. Display fixes: key variables by field name, no empty record, numbered evidence hosts.
 - **v0.86.1** (2026-11-23): the 96 proposed `date_din` rows are decided (93 accepted, 2 rejected, the university rankings split into QS, THE and ARWU); 31 provider rows accepted. The finder shows a provider for 76 of 137 entries (46 before). Intermediaries carry a note.
