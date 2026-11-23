@@ -1,5 +1,29 @@
 # Activity
 
+## 2026-11-23 — Data-set card: the pilot cards (brief `data-set-card-pilot.md`)
+
+**Done**
+- 53 cards, all `propus`, in `integrare/fise-date.csv` for the 15 pilot entries (ids S001–S053): `sicap-ai` 5, `achizitii-directe-ti-2026` 1, `banii-nostri` 1, `ce-cumpara-primaria` 2, `companii-de-stat` 2, `data-expertforum` 15, `igov` 2, `monitor-safe` 2, `registrul-firmelor` 3, `romania-transparenta` 7, `ce-face-statul-cu-1000-de-lei` 1, `harta-firmelor` 8, `pe-datorie` 1, `prima-cifra` 1, `statul-digital` 2.
+- `relatii.csv`: five `date_din` rows for `romania-transparenta`, all `propus` (L448 AMEPIP, L449 ANAF, L450 Ministerul Finanțelor, L451 SEAP, L452 Consiliul Concurenței (RegAS)). `furnizori.csv`: one `propus` row, `consiliul-concurentei`. Evidence: the API responses of `docs/reports/site-structure-pilot/evidence/romania-transparenta-*.txt` (field `provenienta`) and `llms.txt`.
+- Fill rate of the 53 cards: provider, access, evidence and basis 100%; record 91%; grain 74%; key variables 75%; access address 68%; identifiers 49% (24 cards have a role); period 42%; method note 4% (2 cards). Basis: declared 32, observed 12, editorial 9. Provider: `autor` 20, SEAP 11, Ministerul Finanțelor 7, ANAF 4.
+- Checks: `validate.py --publication` 0 errors, 6 warnings (S034–S039: the `date_din` relations of `romania-transparenta` are only `propus`; expected). An isolated build with a temporary copy of the root (all rows `acceptat`) shows 53 cards in `data.json` and the card blocks on `/date/<slug>/`. The copy is not committed.
+
+**Hard**
+- The retained text of the documentation pages is not in the repository (`observatii/documentare/pagini/` is absent; only hashes). The evidence of an entry is then the entry text, the recipe, the inventory, the selector `context` and, for `romania-transparenta`, the saved responses in `docs/reports/site-structure-pilot/evidence/`. Where a provider-to-set link rested only on a relation (L150, L221 to L224, L154), the card has basis `editorial` and says so in `nota`.
+- The validator makes a card with a `propus` provider an error; brief rule 3 says it is a warning. The card „Ajutoarele de stat, pe an, județ, măsură” of `romania-transparenta` (provider `consiliul-concurentei`, record „un total de ajutor pe an, județ, măsură și furnizor”, granularity `agregat`, API `/v1/date/ajutoare_agregat`, evidence `llms.txt` and the OpenAPI description „din RegAS”) is not written. The owner accepts the provider first.
+- A key variable of the form `<sursa_id>#<path>` shows as a raw path on `/date/<slug>/`.
+
+**Decided** (Sonnet, to be confirmed by the owner)
+- `data-expertforum` has one card for each of the 15 sets that its data page declares. Provider `autor`: the sets are calculations of EFOR on public data. Eight cards have no sheet address (the page names the set, the retained evidence has no file). Five have no `inregistrare`, because the sheets of one set hold different records (Drumuri Bune, mass-media COVID) or no sheet was read.
+- Periods come only from a statement (a title, a Dataset `period`, a selector `context`, a file list). `perioada` stays empty for „T1 2026” and „aprilie 2021”: the column holds years.
+- No card for a set whose provider the evidence does not name: `igov` registry of governance and appointments; `igov` channels and institutions; `companii-de-stat` local subsidies, listed companies, salaries; `ce-cumpara-primaria` ANAF and MDLPA; `romania-transparenta` hospitals, universities and the other 40 sets of `/v1/date`; `banii-nostri` report tables; `monitor-safe` overview; `pe-datorie` ratings and list of governments; `harta-firmelor` ANRM; `registrul-firmelor` courts, SEAP, OpenStreetMap.
+- Identifiers left out because the role is not in the evidence: CAEN (no role in the list `rol_identificator`), the ONRC registration number of `sicap-ai`, the CUI of a municipality (`romania-transparenta`), the notice number of `statul-digital`, the keys `buyers{*}` of `igov`.
+- Time (the `date` command, agent time, not the time of a person): 09 minutes 30 seconds from the start to the last card, about 11 seconds per card; the reading of `romania-transparenta` took the longest (2 min 20 s for 7 cards and 5 relations). The measure does not show the time of a person who checks the evidence in a browser: the estimate of spec section 7, step 4 is not settled by it.
+
+**Assumed**
+- That `data.g4d.ro` (`banii-nostri`) needs no key: the recipe has no authentication, and the retained response came without one.
+- That `perioada` 2015–2020 for `data-expertforum` „Migrație alegători, locale 2020” is the bound of the years that the description names (2015, 2016, 2020).
+
 ## 2026-11-23 — The 96 proposed `date_din` rows decided (v0.86.1)
 
 **Done**
