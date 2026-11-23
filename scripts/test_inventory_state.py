@@ -36,10 +36,12 @@ class Net:
     """A fake network: URL -> body. `fail` makes every request answer with an HTTP error."""
 
     def __init__(self, bodies):
-        self.bodies, self.calls, self.fail = dict(bodies), [], None
+        self.bodies, self.calls, self.fail, self.limits = dict(bodies), [], None, {}
 
-    def __call__(self, url):
+    def __call__(self, url, max_bytes=None):
         self.calls.append(url)
+        if max_bytes:
+            self.limits[url] = max_bytes
         base = {'url': url, 'final_url': url, 'fetched_at': '2026-02-01T00:00:00+00:00'}
         if self.fail or url not in self.bodies:
             return {**base, 'http_status': self.fail or 404, 'state': 'eroare-http', 'error': 'HTTP Error'}
@@ -654,6 +656,117 @@ class RequestBudget(unittest.TestCase):
         self.assertTrue(collect_docs.is_binary(b'%PDF-1.7 ...'))
         self.assertTrue(collect_docs.is_binary(b'name\x00value'))
         self.assertFalse(collect_docs.is_binary('CUI;județ\n001;AB\n'.encode()))
+
+
+class SizeException(unittest.TestCase):
+    """`max_octeti`: the size limit of the response of one source. The default stays `collect_docs.MAX_BYTES`; the cap is `collect_docs.HARD_MAX_BYTES`."""
+    SITE = 'https://big.example/'
+    URL = SITE + 'data.csv'
+
+    def run_with(self, **extra):
+        work = Workspace(self)
+        net = Net({self.URL: 'a,b\n1,2\n'})
+        spec = {'url': self.URL, 'metoda': 'adaugat-explicit', 'parinte': self.SITE, 'nota': 'Test.', **extra}
+        work.run([entry('p', self.SITE)], {'p': docs_for('p', self.SITE, [])}, net, add_sources=[('p', spec)])
+        return work, net
+
+    def test_without_the_key_the_request_has_the_default_limit(self):
+        work, net = self.run_with()
+        self.assertEqual(net.calls, [self.URL])
+        self.assertEqual(net.limits, {})
+        self.assertNotIn('max_octeti', work.registry()[0])
+
+    def test_a_value_up_to_the_cap_is_accepted_kept_in_the_registry_and_given_to_the_request(self):
+        for value in (collect_docs.MAX_BYTES + 1, 5_000_000, collect_docs.HARD_MAX_BYTES):
+            with self.subTest(value=value):
+                work, net = self.run_with(max_octeti=value)
+                self.assertEqual(net.limits, {self.URL: value})
+                self.assertEqual(work.registry()[0]['max_octeti'], value)
+
+    def test_a_value_over_the_cap_or_of_another_kind_stops_the_run_before_it_writes_or_requests(self):
+        for value in (collect_docs.HARD_MAX_BYTES + 1, 2_000_000, 0, -5, True, '5000000', 5.5, None):
+            with self.subTest(value=value):
+                work = Workspace(self)
+                net = Net({self.URL: 'a,b\n1,2\n'})
+                spec = {'url': self.URL, 'metoda': 'adaugat-explicit', 'parinte': self.SITE, 'nota': 'Test.', 'max_octeti': value}
+                with self.assertRaises(StateError) as caught:
+                    work.run([entry('p', self.SITE)], {'p': docs_for('p', self.SITE, [])}, net, add_sources=[('p', spec)])
+                self.assertIn('max_octeti', str(caught.exception))
+                self.assertEqual(net.calls, [])
+                self.assertFalse((work.out / 'proiecte.json').exists())
+
+    def test_the_state_check_refuses_a_registry_record_over_the_cap(self):
+        record = new_discovery('p', self.URL, 'adaugat-explicit', state='activ', max_bytes=collect_docs.HARD_MAX_BYTES + 1)
+        self.assertTrue(any('max_octeti' in e for e in validate_state([], [], {('p', self.URL): record})))
+
+    def test_the_fetcher_applies_the_limit_to_its_own_request_only(self):
+        body = b'a,b\n' + b'1,2\n' * 600_000  # 2,400,004 bytes
+
+        class Answer:
+            status, url = 200, 'https://big.example/data.csv'
+            headers = type('H', (), {'get_content_type': lambda self: 'text/csv', 'get_content_charset': lambda self: 'utf-8', 'get': lambda self, *a: ''})()
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *exc):
+                return False
+
+            def read(self, size=-1):
+                return body[:size] if size >= 0 else body
+
+        fetch = collect_docs.Fetcher()
+        with patch.object(collect_docs, 'urlopen', lambda request, timeout: Answer()):
+            self.assertEqual(fetch(self.URL)['state'], 'raspuns-prea-mare')
+            large = fetch(self.URL, max_bytes=3_000_000)
+            self.assertEqual((large['state'], len(large['body'])), ('ok', len(body)))
+            self.assertEqual(fetch(self.URL)['state'], 'raspuns-prea-mare', 'the next request without the key has the default limit again')
+            self.assertEqual(fetch(self.URL, max_bytes=2_100_000)['state'], 'raspuns-prea-mare', 'a body over its own limit is refused')
+            with self.assertRaises(ValueError):
+                fetch(self.URL, max_bytes=collect_docs.HARD_MAX_BYTES + 1)
+
+
+class CutCsv(unittest.TestCase):
+    """A range read of a large CSV file ends inside a row. The reader needs the header only, so a cut body is read like a whole one."""
+    URL = 'https://big.example/uat_etnie.csv'
+    WHOLE = 'siruta,uat,romani,maghiari\n1,Alba,100,5\n2,Arad,200,6\n3,Bihor,300,7\n'
+
+    def test_a_body_that_ends_inside_a_row_gives_the_fields_of_the_whole_file(self):
+        from inventory import analyse_source
+        whole = analyse_source({'url': self.URL, 'final_url': self.URL, 'state': 'ok', 'body': self.WHOLE, 'content_type': 'text/csv'}, 'csv')
+        for cut in (self.WHOLE[:-4], self.WHOLE[:-1], self.WHOLE[:35], self.WHOLE[:26]):
+            with self.subTest(length=len(cut)):
+                source = analyse_source({'url': self.URL, 'final_url': self.URL, 'state': 'ok', 'body': cut, 'content_type': 'text/csv', 'partial': True}, 'csv')
+                self.assertEqual((source['stare'], source['partial']), ('analizat', True))
+                self.assertEqual(source['campuri'], whole['campuri'])
+                self.assertNotIn('partial', whole)
+
+    def test_a_cut_body_inside_a_quoted_cell_is_still_read(self):
+        from inventory import analyse_source
+        source = analyse_source({'url': self.URL, 'final_url': self.URL, 'state': 'ok', 'body': 'a,b\n1,"cut in a qu', 'content_type': 'text/csv', 'partial': True}, 'csv')
+        self.assertEqual([f['nume'] for f in source['campuri']], ['a', 'b'])
+
+    def test_the_fetcher_drops_the_last_partial_line_of_a_range_read(self):
+        body = self.WHOLE.encode()
+
+        class Answer:
+            status, url = 206, 'https://big.example/uat_etnie.csv'
+            headers = type('H', (), {'get_content_type': lambda self: 'text/csv', 'get_content_charset': lambda self: 'utf-8',
+                                     'get': lambda self, *a: 'bytes 0-39/9999'})()
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *exc):
+                return False
+
+            def read(self, size=-1):
+                return body[:size]
+
+        with patch.object(collect_docs, 'urlopen', lambda request, timeout: Answer()):
+            result = collect_docs.Fetcher()(self.URL, sample=40)
+        self.assertEqual((result['state'], result['partial']), ('ok', True))
+        self.assertEqual(result['body'], self.WHOLE[:self.WHOLE.rfind('\n', 0, 40) + 1])
 
 
 if __name__ == '__main__':

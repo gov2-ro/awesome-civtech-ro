@@ -16,7 +16,10 @@ import threading
 from datetime import datetime, timezone
 from pathlib import Path
 
+from collect_docs import HARD_MAX_BYTES, MAX_BYTES
 from inventory_persons import MARK, is_marked, mark_errors, problems as person_problems
+
+SIZE_KEY = 'max_octeti'
 
 REGISTRY = 'descoperiri.json'
 STATES = ('activ', 'descoperit', 'retras')
@@ -101,8 +104,21 @@ def load_previous(out):
     return previous
 
 
+def size_errors(record, where):
+    """`max_octeti` of a source specification or registry record: absent, or an integer above `MAX_BYTES` (a smaller value is no exception) and
+    up to `HARD_MAX_BYTES`. Any other value is an error, so that the run stops before it writes or requests anything."""
+    if SIZE_KEY not in record:
+        return []
+    value = record[SIZE_KEY]
+    if isinstance(value, bool) or not isinstance(value, int):
+        return [f'{where}: `{SIZE_KEY}` accepts only an integer']
+    if not MAX_BYTES < value <= HARD_MAX_BYTES:
+        return [f'{where}: `{SIZE_KEY}` is {value}; it must be above {MAX_BYTES} and at most {HARD_MAX_BYTES}']
+    return []
+
+
 def new_discovery(slug, url, method, *, state='descoperit', parent=None, evidence=None, original=None,
-                  discovered_at=None, rank=None, note=None, extra=None, reading=None, persons=False):
+                  discovered_at=None, rank=None, note=None, extra=None, reading=None, persons=False, max_bytes=None):
     """A registry record. `locator_stare` says whether the original discovery locator is known. `persons` marks a source whose body holds
     records about natural persons (see inventory_persons)."""
     record = {'proiect': slug, 'url': url, 'sursa_id': source_id(url), 'stare': state, 'metoda': method,
@@ -117,6 +133,8 @@ def new_discovery(slug, url, method, *, state='descoperit', parent=None, evidenc
         record['citire'] = reading
     if persons:
         record[MARK] = True
+    if max_bytes:
+        record[SIZE_KEY] = max_bytes
     return record
 
 
@@ -208,6 +226,7 @@ def validate_state(profiles, sources, registry, previous=None):
         if record['locator_stare'] == 'cunoscut' and not record.get('dovada'):
             errors.append(f'Known locator without evidence: {slug} {url}')
         errors += mark_errors(record, f'Registry record {slug} {url}')
+        errors += size_errors(record, f'Registry record {slug} {url}')
     marked = {url for (_, url), record in registry.items() if is_marked(record)}
     for source in sources:
         if source['url'] in marked and usable(source) and not is_marked(source):

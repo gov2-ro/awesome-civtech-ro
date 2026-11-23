@@ -132,10 +132,10 @@
     "url": "https://guverneazadacapoti.ro/",
     "metoda": "adaugat-explicit",
     "parinte": "https://guverneazadacapoti.ro/",
+    "persoane": true,
     "citire": {
       "tip": "js-literale",
       "omise": [
-        "PMS",
         "CAT",
         "CAT_ORDER",
         "ICON",
@@ -158,13 +158,14 @@
         "rol": "sursa-declarata-de-pagina"
       }
     ],
-    "nota": "A simulation game. The page keeps the model in script constants: policies (POL), indicators (IND), situations (SIT), groups (GRP), scenarios (SCN), events (EV) and a table of real figures of 2025 (DATA: label, value, source name, address). The model values are game parameters, not observed data; only the table DATA holds real figures. Constants that are interface text, icons or colours are omitted by option. PMS (a table of former prime ministers by name) is omitted too: it names natural persons and the reader of script literals has no persons mode."
+    "nota": "A simulation game. The page keeps the model in script constants: policies (POL), indicators (IND), situations (SIT), groups (GRP), scenarios (SCN), events (EV) and a table of real figures of 2025 (DATA: label, value, source name, address). The model values are game parameters, not observed data; only the table DATA holds real figures. Constants that are interface text, icons or colours are omitted by option. PMS (a table of former prime ministers by name) is read, and the source has the persons mark: the record keeps key names, paths, types and counts, and no value."
   },
   {
     "proiect": "sondajele-romaniei",
     "url": "https://sondajeleromaniei.ro/data/date.js",
     "metoda": "adaugat-explicit",
     "parinte": "https://sondajeleromaniei.ro/",
+    "persoane": true,
     "citire": {
       "tip": "js-literale"
     },

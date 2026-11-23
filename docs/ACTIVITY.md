@@ -1,5 +1,30 @@
 # Activity
 
+## 2026-11-23 — Inventory batch I2: persons mode, size exception, large CSV files (branch `inventory-batch-i`)
+
+**Done**
+- Part A: `js-literale` accepts the mark `persoane: true`. A marked source keeps key names, paths, types and counts. The example keys of a keyed collection are the placeholders `‹nume 1›`, `‹nume 2›`, `‹nume 3›`. The comment above a declaration, `seturi_ld` and the `variableMeasured` fields are not kept. `--check` reads each string of each literal and each collection key as a value. Spec: `docs/DATA-SCHEMA.md`, "Sources with persons".
+- Marked: `sondajele-romaniei` (253 fields before, 113 after: the objects with a key that is not a field name now give one collection field each), `guverneaza-daca-poti` (142 before, 137 after; `PMS` is read, no longer in `omise`), and the new sources `cat-costa-un-vot` (`1vot.ro`, 48 fields) and `cate-voturi-aduce-un-primar` (452 fields, limit reached) and `romania-in-puncte` (`locale/`, 33 fields). Not marked: `harta-notelor` (schools and localities; 168 fields).
+- Part B: the specification key `max_octeti` (an integer above 2,000,000 and at most 10,000,000). Set for `cate-voturi-aduce-un-primar` (2,500,000; page 2,163,390 bytes), `romania-in-puncte` (2,500,000; 2,115,832 bytes) and `harta-notelor` (9,000,000; 8,151,144 bytes). The `romania-interactiva` project shares both pages and now holds their fields too.
+- The three large CSV files of `satul-care-se-stinge` (`uat_activitati_2021`, `uat_etnie`, `uat_religie`) are read by a range read of 200,000 bytes: 5, 6 and 6 fields, `partial: true`. The `csv` reader needed no change: the fetcher drops the last partial line, and the reader reads the header only.
+- Part C: `lipseste/data/masuri/finante-m01.json` (11,523 bytes, first id of the index) has 45 fields; none is in `analiza-370.json` (58 fields). Added as a source. `solicitari-544.csv` is not added (owner decision). The other 369 per-measure files are not read.
+- Tests: 17 new (persons mode, placeholders, check finds a leak, `max_octeti` accepted/refused/default, fetcher limit, cut CSV, replay updates).
+- Direct requests: 8, all in lot `I2` of `jurnal-cereri.csv` (3 whole pages, 1 first look at `1vot.ro`, 3 range reads of CSV files, 1 per-measure file). Browser pages: 0. No 401, 403 or 429.
+- Totals before and after: entries with field records 83 to 87; field records 9,594 to 10,212; source links of the profiles 271 to 279; sources with persons 25 to 30; bodies hash-verified 252 to 258. `inventory.py --check`: 0 evidence errors, 0 leaks (it takes about two minutes now, 30 bodies against about 40 files).
+
+**Hard**
+- The check found three false positives that had not appeared before, because `sondajele-romaniei` and `guverneaza-daca-poti` are marked now: the name of an organisation (a source named in the table of the game page) and two dates of polls or elections. I added 12 rows to `persoane-false-positives.csv` (3 values, 12 files; CRLF kept; `reviewed_on` 2026-11-23). The owner can remove them.
+- A marked source still showed candidate names in tracked files: `cale` and `nume` of `SONDAJE.scrutine[].r.<name>`, where a small object has names as keys. The collection rule needs 12 members. In the mode of persons, an object with a key that is not a field name is a collection. This is a rule of the mode and is in `DATA-SCHEMA.md`.
+- A replay did not update a registered source. The reader option (`omise`) and the locators of `romania-interactiva` (page hash of the old 600,000-byte sample) stayed. Now a replay replaces `citire` and `dovezi_suplimentare` when the file differs (event `locator-completat`). When a source becomes marked, a quoted fragment of its own body leaves the record. For `locale/` this removed the AEP sentence of `romania-interactiva` and `lot-c2.json`; the sentence stays in review item D179.
+- My first replay wrote noise events: the rule dropped a fragment of the page text (pointer `/text`) of `1vot.ro`. I restored the generated files from Git and ran again; only a locator with the pointer `/body` leaves a marked record.
+- The brief named three candidate names. The check scans `docs/briefs/`, so I took the names out of the brief. After the work the three names are in no tracked file of this source (`grep`); they stay in three search-result files (`mentiuni.csv`), which no reader of the inventory writes.
+- The registry notes of the two `romania-interactiva` records for `harta-notelor/` and `locale/` still describe the old 600,000-byte sample. The notes of a replay replace the registry note only for a marked source.
+
+**Decided**
+- Marked `romania-in-puncte` (`locale/`): the data island lists mayors and candidates by name. Cost of the other choice: names of persons in a source without the mark. Left `harta-notelor` unmarked: it has schools and localities, no person.
+- Chose the sizes of `max_octeti` a little above the measured page (about 15 percent), not the cap.
+- Replay updates `citire` and the locators (see Hard). Cost of the alternative: edit `descoperiri.json` by hand, a generated file.
+
 ## 2026-11-23 — Inventory batch I: source audit of twelve entries (branch `inventory-batch-i`)
 
 **Done**

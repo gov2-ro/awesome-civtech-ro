@@ -183,10 +183,11 @@ class Readers(unittest.TestCase):
     def test_a_field_record_loses_every_key_that_is_not_allowed(self):
         field = {'nume': 'a', 'cale': '$.a', 'tipuri_observate': ['string'], 'stare_tip': 'x', 'rol': 'camp-date', 'pointer': '/a', 'valori_enum': ['Ana'],
                  'descriere': 'Ana Exemplu', 'valoare': 'Ana', 'exemplu': 'Ana', 'chei_exemplu': ['Ana'], 'unitate': 'lei', 'numar_elemente': 0}
-        self.assertEqual(set(safe_fields([field])[0]), {'nume', 'cale', 'tipuri_observate', 'stare_tip', 'rol', 'pointer', 'numar_elemente'})
+        self.assertEqual(set(safe_fields([field])[0]), {'nume', 'cale', 'tipuri_observate', 'stare_tip', 'rol', 'pointer', 'numar_elemente', 'chei_exemplu'})
+        self.assertEqual(safe_fields([field])[0]['chei_exemplu'], ['‹nume 1›'], 'an example key is a value of the body: only a placeholder stays')
 
     def test_a_reader_that_adds_a_key_to_a_field_of_a_marked_source_cannot_put_it_in_the_record_or_in_the_check(self):
-        def reader(body, url, content_type='', hint=None):
+        def reader(body, url, content_type='', hint=None, persons=False):
             return 'json', [{'nume': 'a', 'cale': '$.a', 'tipuri_observate': ['string'], 'stare_tip': 'observat-in-esantion-json', 'rol': 'camp-date', 'pointer': '/a',
                              'valori_enum': ['Ana Exemplu'], 'descriere': 'Ana Exemplu'}], False
         response = {'url': PEOPLE, 'final_url': PEOPLE, 'state': 'ok', 'body': BODY}
@@ -588,3 +589,114 @@ class RenderText(Isolated):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+LITERALS = SITE + 'data.js'
+# A script of invented candidates. `PARTID` has 12 keys that are names (a keyed collection); `CAND` is a list of records.
+SCRIPT = (
+    '// The candidates of the test, with their parties.\n'
+    'const PARTID = {' + ', '.join(f'"Candidat Fictiv {n}": "Partidul {n}"' for n in range(1, 13)) + '};\n'
+    'const CAND = [{"nume": "Maria Inventata", "partid": "Partidul 1", "voturi": 12}, {"nume": "Radu Imaginar", "partid": "Partidul 2", "voturi": 7}];\n'
+)
+READING = {'tip': 'js-literale'}
+
+
+class Literals(unittest.TestCase):
+    """The mode of persons of `js-literale`: key names, paths, types and counts only; the example keys are placeholders."""
+
+    def run_marked(self, marked=True):
+        work = Tree(self)
+        extra = {MARK: True} if marked else {}
+        work.run(work.entries(), work.docs(), Net({LITERALS: SCRIPT}), add_sources=[('p', spec(LITERALS, citire=READING, **extra))])
+        return work, work.sources()[LITERALS]
+
+    def test_a_marked_script_keeps_paths_types_counts_and_placeholders_and_no_value(self):
+        work, source = self.run_marked()
+        self.assertEqual((source['format'], source['stare']), ('js-literale', 'analizat'))
+        self.assertEqual(problems(source), [])
+        paths = {f['cale']: f for f in source['campuri']}
+        self.assertEqual(sorted(paths), ['CAND[].nume', 'CAND[].partid', 'CAND[].voturi', 'PARTID{*}'])
+        collection = paths['PARTID{*}']
+        self.assertEqual((collection['numar_chei'], collection['chei_exemplu']), (12, ['‹nume 1›', '‹nume 2›', '‹nume 3›']))
+        for field in source['campuri']:
+            self.assertLessEqual(set(field), FIELD_KEYS, field['cale'])
+        self.assertNotIn('comentariu', json.dumps(source['declaratii']))
+        self.assertNotIn('seturi_ld', source)
+        text = everything(work)
+        for value in ('Candidat Fictiv', 'Maria Inventata', 'Radu Imaginar', 'candidates of the test'):
+            self.assertNotIn(value, text, 'no file of the inventory holds a value or a comment of the script')
+        self.assertEqual(work.check()['errors'], [])
+
+    def test_fewer_than_three_keys_give_as_many_placeholders_as_keys(self):
+        fields = [{'nume': 'a', 'cale': 'A{*}', 'chei_exemplu': ['Ana', 'Ion']}]
+        self.assertEqual(safe_fields(fields)[0]['chei_exemplu'], ['‹nume 1›', '‹nume 2›'])
+
+    def test_an_unmarked_script_is_what_it_was(self):
+        _, source = self.run_marked(False)
+        collection = next(f for f in source['campuri'] if f['cale'] == 'PARTID{*}')
+        self.assertEqual(collection['chei_exemplu'], ['Candidat Fictiv 1', 'Candidat Fictiv 2', 'Candidat Fictiv 3'])
+        self.assertIn('comentariu', json.dumps(source['declaratii']))
+
+    def test_the_record_of_a_marked_script_with_a_real_key_or_a_comment_is_a_problem(self):
+        _, source = self.run_marked()
+        real = {**source, 'campuri': [{**f, 'chei_exemplu': ['Candidat Fictiv 1']} if 'chei_exemplu' in f else f for f in source['campuri']]}
+        self.assertTrue(any('not a placeholder' in e for e in problems(real)))
+        self.assertNotIn('Candidat Fictiv', ' '.join(problems(real)), 'a message names keys and addresses, never a value')
+        commented = {**source, 'declaratii': [{**source['declaratii'][0], 'comentario': 1, 'comentariu': {'valoare': 'x'}}]}
+        self.assertTrue(any('keeps its comment' in e for e in problems(commented)))
+
+    def test_the_values_of_a_script_are_its_strings_and_the_keys_of_its_collections(self):
+        values, names = body_values(SCRIPT, 'js-literale', READING)
+        self.assertTrue({'Maria Inventata', 'Candidat Fictiv 1', 'Partidul 1'} <= values)
+        self.assertTrue({'nume', 'partid', 'voturi'} <= names)
+        self.assertFalse(names & {'Candidat Fictiv 1'})
+
+    def test_the_check_finds_a_value_of_the_script_in_a_tracked_file_and_not_a_placeholder(self):
+        work, _ = self.run_marked()
+        work.add('inventar-note.json', json.dumps({'text': 'The keys are ‹nume 1›, ‹nume 2› and ‹nume 3›. The field is CAND[].nume.'}))
+        self.assertEqual(work.leaks(), [])
+        work.add('inventar-note.json', json.dumps({'text': 'The list holds Maria Inventata.'}))
+        self.assertEqual(len(work.leaks()), 1)
+        work.add('inventar-note.json', json.dumps({'text': 'A key of the collection is Candidat Fictiv 3.'}))
+        errors = work.leaks()
+        self.assertEqual(len(errors), 1)
+        self.assertNotIn('Candidat Fictiv', errors[0])
+
+    def test_a_json_ld_data_set_and_the_fields_of_its_metadata_are_not_kept(self):
+        page = ('<script type="application/ld+json">{"@type": "Dataset", "name": "Lista Fictiva", "variableMeasured": [{"name": "Voturi Fictive"}]}</script>'
+                '<script>const CAND = [{"nume": "Maria Inventata"}];</script>')
+        marked = analyse_source({'url': LITERALS, 'final_url': LITERALS, 'state': 'ok', 'body': page}, READING, persons=True)
+        plain = analyse_source({'url': LITERALS, 'final_url': LITERALS, 'state': 'ok', 'body': page}, READING)
+        self.assertEqual([f['cale'] for f in marked['campuri']], ['CAND[].nume'])
+        self.assertEqual(len(plain['campuri']), 2)
+        self.assertNotIn('seturi_ld', marked)
+        self.assertEqual(problems(marked), [])
+        self.assertNotIn('Lista Fictiva', json.dumps(marked))
+
+
+class Replay(unittest.TestCase):
+    """A replay of a specification file updates a registered source: the reader option, the locators, and the mark."""
+
+    def test_a_changed_reader_option_and_a_changed_locator_reach_a_registered_source(self):
+        work = Tree(self)
+        net = Net({LITERALS: SCRIPT})
+        work.run(work.entries(), work.docs(), net, add_sources=[('p', spec(LITERALS, citire={'tip': 'js-literale', 'omise': ['CAND']}))])
+        self.assertEqual(sorted(f['cale'] for f in work.sources()[LITERALS]['campuri']), ['PARTID{*}'])
+        work.run(work.entries(), work.docs(), None, add_sources=[('p', spec(LITERALS, citire={'tip': 'js-literale'}))], offline=True)
+        self.assertEqual(next(d for d in work.registry() if d['url'] == LITERALS)['citire'], {'tip': 'js-literale'})
+        self.assertIn('CAND[].nume', [f['cale'] for f in work.sources()[LITERALS]['campuri']])
+
+    def test_a_source_that_becomes_marked_loses_the_fragment_of_its_own_body_but_not_a_fragment_of_a_page_text(self):
+        work = Tree(self)
+        net = Net({LITERALS: SCRIPT})
+        own = {'url': LITERALS, 'sha256': 'x', 'pointer': '/body', 'interval': [0, 5], 'fragment': 'const', 'snapshot': 's', 'rol': 'x'}
+        page = {'url': LITERALS, 'sha256': 'y', 'pointer': '/text', 'interval': [0, 5], 'fragment': 'Lista', 'snapshot': 't', 'rol': 'y'}
+        work.run(work.entries(), work.docs(), net, add_sources=[('p', spec(LITERALS, citire=READING, dovezi_suplimentare=[own, page]))])
+        self.assertEqual(len(next(d for d in work.registry() if d['url'] == LITERALS)['dovezi_suplimentare']), 2)
+        work.run(work.entries(), work.docs(), None, add_sources=[('p', spec(LITERALS, citire=READING, **{MARK: True}))], offline=True)
+        record = next(d for d in work.registry() if d['url'] == LITERALS)
+        self.assertEqual(record['dovezi_suplimentare'], [page])
+        self.assertEqual([e['eveniment'] for e in record['istoric']], ['adaugat', 'locator-completat', 'marcat-persoane'])
+        before = work.files()
+        work.run(work.entries(), work.docs(), None, add_sources=[('p', spec(LITERALS, citire=READING, **{MARK: True}))], offline=True)
+        self.assertEqual(work.files(), before, 'a second replay changes nothing')

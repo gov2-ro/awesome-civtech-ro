@@ -50,7 +50,7 @@ from inventory_datasette import FORMAT as DATASETTE, database as datasette_datab
 from inventory_ins import ins_dataset, ins_listing, ins_measure, is_listing
 from inventory_rsc import FORMAT as RSC_JSON, extract as rsc_document
 from inventory_jsonsample import FORMAT as JSON_SAMPLE, list_sizes, recover as recover_json
-from inventory_literals import POSITIONAL_WIDTH, datasets as literal_datasets, declarations as literal_declarations, indented_names, keyed_object, omitted_names
+from inventory_literals import PERSONS_OPTION, POSITIONAL_WIDTH, datasets as literal_datasets, declarations as literal_declarations, indented_names, keyed_object, omitted_names
 from inventory_persons import (MARK, READERS as PERSON_READERS, body_values, candidates, is_marked, leaks, mark_errors, occurs,
                                fingerprint, reviewed_false_positives, safe_fields, safe_header, scope_files)
 from inventory_setlist import list_datasets
@@ -58,7 +58,7 @@ from inventory_yaml import load as load_yaml, pointer_part
 from inventory_sheet import header_facts, read as read_sheet
 from inventory_text import EXTENSIONS, read_text
 from inventory_state import (REGISTRY, counted_fields, RequestLog, StateError, active_members, admit, check_text, dump, load_previous,
-                             new_discovery, now_utc, priority, protect, registry_map, retire, seed_registry, sorted_registry,
+                             new_discovery, now_utc, priority, protect, registry_map, retire, seed_registry, size_errors, sorted_registry,
                              source_id, usable, validate_state, write_atomic, write_file_atomic)
 
 MAX_FIELDS, MAX_DEPTH, SAMPLE_ROWS = 2000, 7, 25
@@ -274,9 +274,10 @@ def has_csv_options(hint):
     return isinstance(hint, dict) and hint.get('tip') == 'csv' and len(hint) > 1
 
 
-def parse_source(body, url, content_type='', hint=None):
+def parse_source(body, url, content_type='', hint=None, persons=False):
     """Parse a retained body. `hint` is the registry's `citire`: a reader name, or {'tip': name, ...options}. Without a hint the
-    URL's extension picks a code reader; HTML at a schema/data URL is still an error."""
+    URL's extension picks a code reader; HTML at a schema/data URL is still an error. `persons` is the mark of a source with persons:
+    the reader of page scripts then reads an object with a key that is not a field name as a keyed collection."""
     kind = hint.get('tip') if isinstance(hint, dict) else hint
     if kind == YAML_OPENAPI:
         document, lines = load_yaml(body)
@@ -297,7 +298,8 @@ def parse_source(body, url, content_type='', hint=None):
             raise ValueError('The sample holds no complete record with a field')
         return JSON_SAMPLE, fields, not complete or len(fields) >= MAX_FIELDS or sampling_limit(document)
     if kind and kind != 'csv':
-        return read_text(body, kind, hint if isinstance(hint, dict) else None)
+        options = hint if isinstance(hint, dict) else None
+        return read_text(body, kind, {**(options or {}), PERSONS_OPTION: True} if persons and kind == 'js-literale' else options)
     if has_csv_options(hint):
         return 'csv', read_sheet(body, hint), False
     extension = re.search(r'(\.[a-z]{2,4})(?:$|\?)', url, re.I)
@@ -446,7 +448,7 @@ def analyse_source(response, hint=None, persons=False):
     metadata['sha256'] = hashlib.sha256(body.encode()).hexdigest()
     metadata['snapshot'] = 'surse/' + source_id(response['url']) + '-' + metadata['sha256'][:16] + '.json'
     try:
-        fmt, fields, truncated = parse_source(body, response['final_url'], response.get('content_type', ''), hint)
+        fmt, fields, truncated = parse_source(body, response['final_url'], response.get('content_type', ''), hint, persons)
         if persons:
             if fmt not in PERSON_READERS:
                 raise ValueError(f'A source with persons is read as {", ".join(PERSON_READERS)}, not as {fmt}: the other readers copy text')
@@ -472,8 +474,9 @@ def analyse_source(response, hint=None, persons=False):
         elif fmt == 'html-lista-seturi':
             metadata['seturi'] = list_datasets(body)
         elif fmt == 'js-literale':
-            metadata['declaratii'] = literal_declarations(body, indented_names(hint), omitted_names(hint))
-            metadata['seturi_ld'] = literal_datasets(body)
+            metadata['declaratii'] = literal_declarations(body, indented_names(hint), omitted_names(hint), persons)
+            if not persons:  # the data sets of the JSON-LD are text that the page wrote
+                metadata['seturi_ld'] = literal_datasets(body)
     except (ValueError, TypeError, KeyError, csv.Error) as exc:
         metadata.update(stare='eroare-parsare', error=str(exc))
     return metadata
@@ -630,7 +633,7 @@ def reading_name(source):
 
 def reread(source, body, response):
     """What the reader gives for a retained body now, in the shape that a replay would write: a source with persons keeps no key beyond the allowed ones."""
-    fmt, fields, truncated = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'))
+    fmt, fields, truncated = parse_source(body, source['final_url'], response.get('content_type', ''), source.get('citire'), is_marked(source))
     return fmt, safe_fields(fields) if is_marked(source) else fields, truncated
 
 
@@ -725,8 +728,8 @@ def check_report(out, observations):
                     errors.append('Fields or database facts differ from the retained body: ' + source['url'])
             elif source.get('format') in TEXT_FORMATS:
                 _, fields, _ = reread(source, body, response)
-                if fields != source['campuri'] or (source['format'] == 'js-literale' and (literal_declarations(body, indented_names(source.get('citire')), omitted_names(source.get('citire'))) != source.get('declaratii')
-                                                                                         or literal_datasets(body) != source.get('seturi_ld'))):
+                if fields != source['campuri'] or (source['format'] == 'js-literale' and (literal_declarations(body, indented_names(source.get('citire')), omitted_names(source.get('citire')), is_marked(source)) != source.get('declaratii')
+                                                                                         or (None if is_marked(source) else literal_datasets(body)) != source.get('seturi_ld'))):
                     errors.append('Fields differ from the retained body: ' + source['url'])
             elif source.get('campuri'):
                 yaml_contract = reading_name(source) == YAML_OPENAPI
@@ -855,7 +858,7 @@ def check_persons(report, previous, out, observations):
         for spec in specs if isinstance(specs, list) else []:
             if not isinstance(spec, dict):
                 continue
-            errors += mark_errors(spec, f'{path.name} {spec.get("url")}')
+            errors += mark_errors(spec, f'{path.name} {spec.get("url")}') + size_errors(spec, f'{path.name} {spec.get("url")}')
             if is_marked(spec) and canonical(spec.get('url', '')) not in marked_urls:
                 errors.append(f'{path.name}: {spec.get("url")} has the mark for persons in the specification and not in the registry (replay the file with --add-sources-file)')
     sources = list(previous['sources'].values())
@@ -1243,13 +1246,14 @@ def update_inventory(entries, docs, verified, previous, *, cache, selected=(), o
     registry = seed_registry(previous, found)
     for slug, url, reason in retire_sources:
         retire(registry, slug, url, reason, now)
+    marked_now = {d['url'] for d in registry.values() if is_marked(d)} | {canonical(spec['url']) for _, spec in add_sources if is_marked(spec) and canonical(spec['url'])}
     for slug, spec in add_sources:
         if slug not in by_slug:
             raise StateError('Unknown slug: ' + slug)
         url = canonical(spec['url'])
         if not url:
             raise StateError('Not an HTTP URL: ' + spec['url'])
-        wrong = mark_errors(spec, url)
+        wrong = mark_errors(spec, url) + size_errors(spec, url)
         if wrong:
             raise StateError('; '.join(wrong))
         key = (slug, url)
@@ -1259,13 +1263,24 @@ def update_inventory(entries, docs, verified, previous, *, cache, selected=(), o
         elif key not in registry:
             registry[key] = new_discovery(slug, url, spec.get('metoda', 'adaugat-explicit'), state='activ', parent=spec.get('parinte'),
                                           evidence=spec.get('dovada'), discovered_at=now, note=spec.get('nota'),
-                                          extra=spec.get('dovezi_suplimentare'), reading=spec.get('citire'), persons=is_marked(spec))
+                                          extra=spec.get('dovezi_suplimentare'), reading=spec.get('citire'), persons=is_marked(spec), max_bytes=spec.get('max_octeti'))
             registry[key]['istoric'].append({'eveniment': 'adaugat', 'la': now})
         elif registry[key]['stare'] == 'descoperit':
             registry[key]['stare'] = 'activ'
             registry[key]['istoric'].append({'eveniment': 'admis', 'la': now})
-        if spec.get('citire') and not registry[key].get('citire'):
-            registry[key]['citire'] = spec['citire']
+        if spec.get('citire') and registry[key].get('citire') != spec['citire']:
+            registry[key]['citire'] = spec['citire']  # the file is the input: a changed reader option (`omise`) reaches a source that is registered
+        if spec.get('max_octeti'):
+            registry[key]['max_octeti'] = spec['max_octeti']
+        if spec.get('dovezi_suplimentare') and registry[key].get('dovezi_suplimentare') != spec['dovezi_suplimentare']:
+            # The file is the input: a locator that the specification resolved against the body now retained replaces the older one.
+            registry[key]['dovezi_suplimentare'] = spec['dovezi_suplimentare']
+            registry[key]['istoric'].append({'eveniment': 'locator-completat', 'la': now, 'motiv': 'the specification locates the fragment in the retained body'})
+        own = [e for e in registry[key].get('dovezi_suplimentare', []) if e.get('url') == url and e.get('pointer') == '/body'] if url in marked_now else []
+        if own:  # the body of a source with persons is never quoted: a fragment of it leaves the record
+            kept = [e for e in registry[key]['dovezi_suplimentare'] if e not in own]
+            registry[key].update(dovezi_suplimentare=kept) if kept else registry[key].pop('dovezi_suplimentare')
+            registry[key]['istoric'].append({'eveniment': 'locator-completat', 'la': now, 'motiv': 'source with persons: the quoted fragment of its body left the record'})
         if is_marked(spec):
             # The mark is never taken back by a specification that lacks it. The note of a marked specification replaces the registry note,
             # so that a value that an earlier note quoted can leave the tracked file.
@@ -1296,6 +1311,7 @@ def update_inventory(entries, docs, verified, previous, *, cache, selected=(), o
             hint_of.setdefault(record['url'], record['citire'])
     fetch_urls = {d['url'] for s in chosen for d in active_members(registry, s)}
     person_urls = {d['url'] for d in registry.values() if is_marked(d)}
+    size_of = {d['url']: d['max_octeti'] for d in registry.values() if d.get('max_octeti')}
 
     def obtain(url):
         ident = source_id(url)
@@ -1311,7 +1327,7 @@ def update_inventory(entries, docs, verified, previous, *, cache, selected=(), o
         if cached is not None and not (refresh and (force or url in force_urls)):
             response, origin = cached, 'cache'
         elif refresh:
-            response, origin = protect(fetch(url)), 'retea'
+            response, origin = protect(fetch(url, max_bytes=size_of[url]) if url in size_of else fetch(url)), 'retea'
             if response.get('state') == 'limita-cereri':
                 response, origin = None, 'omis'
         if response is None:
@@ -1623,7 +1639,7 @@ def main():
                 specs = json.loads(args.add_sources_file.read_text())
             except (OSError, ValueError) as exc:
                 raise StateError(f'Cannot read {args.add_sources_file}: {exc}') from exc
-            errors = [e for spec in specs for e in mark_errors(spec, str(spec.get('url')))]
+            errors = [e for spec in specs for e in mark_errors(spec, str(spec.get('url'))) + size_errors(spec, str(spec.get('url')))]
             if errors:
                 raise StateError('; '.join(errors))
             # The addresses of sources with persons: the registry marks, and the specifications of this file mark.

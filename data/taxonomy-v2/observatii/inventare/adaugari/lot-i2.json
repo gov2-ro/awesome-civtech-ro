@@ -1,0 +1,191 @@
+[
+  {
+    "proiect": "cat-costa-un-vot",
+    "url": "https://1vot.ro/",
+    "metoda": "adaugat-explicit",
+    "parinte": "https://1vot.ro/",
+    "persoane": true,
+    "citire": {
+      "tip": "js-literale"
+    },
+    "locate": {
+      "pagina": "https://1vot.ro/",
+      "text": "Cheltuielile declarate împărțite la voturile valabile primite."
+    },
+    "dovezi": [
+      {
+        "pagina": "https://1vot.ro/",
+        "text": "Surse: AEP, rapoartele de venituri și cheltuieli electorale; BEC, rezultatele finale.",
+        "rol": "sursa-declarata-de-pagina"
+      }
+    ],
+    "nota": "The page keeps its data in the script constant E: for each of six elections, a table of candidates and parties, each row with a name, a party, the declared spending and the valid votes (positional rows). The constant ORDER lists the elections. The source has the persons mark: the record keeps key names, paths, types and counts, and no value."
+  },
+  {
+    "proiect": "cate-voturi-aduce-un-primar",
+    "url": "https://nicolaeurs.ro/catevoturiaduceunprimar/",
+    "metoda": "adaugat-explicit",
+    "parinte": "https://nicolaeurs.ro/llms.txt",
+    "persoane": true,
+    "max_octeti": 2500000,
+    "citire": {
+      "tip": "js-literale"
+    },
+    "locate": {
+      "pagina": "https://nicolaeurs.ro/llms.txt",
+      "text": "Câte voturi aduce un primar? (how many votes does a mayor bring?)"
+    },
+    "nota": "The page is 2,163,390 bytes and keeps its data in a JSON data island (names of mayors, results of local, parliamentary and presidential elections in 3,186 localities). The source has the persons mark and the size exception `max_octeti`: the record keeps key names, paths, types and counts, and no value."
+  },
+  {
+    "proiect": "romania-in-puncte",
+    "url": "https://romaniainteractiva.ro/locale/",
+    "metoda": "adaugat-explicit",
+    "parinte": "https://romaniainteractiva.ro/",
+    "persoane": true,
+    "max_octeti": 2500000,
+    "citire": {
+      "tip": "js-literale",
+      "tabele": true
+    },
+    "locate": {
+      "pagina": "https://romaniainteractiva.ro/",
+      "text": "url:\"https://romaniainteractiva.ro/locale/\"",
+      "cache": true
+    },
+    "nota": "Tool page of the project. The response is more than 2,000,000 bytes, so the specification sets the size exception `max_octeti`; the whole page is read. The data island holds the candidates of the local elections of 9 June 2024 (names of mayors and candidates). The source has the persons mark: the record keeps key names, paths, types and counts, and no value. The page is not quoted: the evidence of the provider is in the record of the project romania-interactiva."
+  },
+  {
+    "proiect": "harta-notelor",
+    "url": "https://romaniainteractiva.ro/harta-notelor/",
+    "metoda": "adaugat-explicit",
+    "parinte": "https://romaniainteractiva.ro/",
+    "max_octeti": 9000000,
+    "citire": {
+      "tip": "js-literale",
+      "tabele": true
+    },
+    "locate": {
+      "pagina": "https://romaniainteractiva.ro/",
+      "text": "url:\"https://romaniainteractiva.ro/harta-notelor/\"",
+      "cache": true
+    },
+    "dovezi": [
+      {
+        "pagina": "https://romaniainteractiva.ro/harta-notelor/",
+        "text": "<b>Date.</b> Ministerul Educației, fișierele de date deschise de pe ",
+        "cache": true,
+        "rol": "sursa-declarata-de-pagina"
+      }
+    ],
+    "nota": "Tool page of the project. The response is more than 2,000,000 bytes, so the specification sets the size exception `max_octeti`; the whole page is read."
+  },
+  {
+    "proiect": "satul-care-se-stinge",
+    "url": "https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/date/uat_activitati_2021.csv",
+    "metoda": "repo-la-revizie",
+    "parinte": "https://github.com/dorinspoaller/recensamant-ro-2011-2021/tree/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b",
+    "repo": {
+      "arbore": "https://api.github.com/repos/dorinspoaller/recensamant-ro-2011-2021/git/trees/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b?recursive=1",
+      "revizie": "66acf0bd5ad5ddbd89ac3cceb8a16057609e812b",
+      "cale": "date/uat_activitati_2021.csv"
+    },
+    "dovezi": [
+      {
+        "proiect": "satul-care-se-stinge",
+        "profil": "repos",
+        "rol": "legatura-proiect-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/README.md",
+        "text": "din rezultatele definitive ale recensămintelor",
+        "cache": true,
+        "rol": "origine-date-declarata-in-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/README.md",
+        "text": "Creative Commons Atribuire 4.0 Internațional (CC BY 4.0)",
+        "cache": true,
+        "rol": "licenta-declarata-in-repo"
+      }
+    ],
+    "citire": "csv",
+    "nota": "Economic activity of the UAT in 2021 (4.36 MB). Repository file at a recorded commit, over 2,000,000 bytes. Bounded range read of the first 200,000 bytes, cut at the last complete line: the header and the first rows. The source is partial and the field list is the whole header. The README says that the data comes from the final results of the censuses."
+  },
+  {
+    "proiect": "satul-care-se-stinge",
+    "url": "https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/date/uat_etnie.csv",
+    "metoda": "repo-la-revizie",
+    "parinte": "https://github.com/dorinspoaller/recensamant-ro-2011-2021/tree/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b",
+    "repo": {
+      "arbore": "https://api.github.com/repos/dorinspoaller/recensamant-ro-2011-2021/git/trees/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b?recursive=1",
+      "revizie": "66acf0bd5ad5ddbd89ac3cceb8a16057609e812b",
+      "cale": "date/uat_etnie.csv"
+    },
+    "dovezi": [
+      {
+        "proiect": "satul-care-se-stinge",
+        "profil": "repos",
+        "rol": "legatura-proiect-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/README.md",
+        "text": "din rezultatele definitive ale recensămintelor",
+        "cache": true,
+        "rol": "origine-date-declarata-in-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/README.md",
+        "text": "Creative Commons Atribuire 4.0 Internațional (CC BY 4.0)",
+        "cache": true,
+        "rol": "licenta-declarata-in-repo"
+      }
+    ],
+    "citire": "csv",
+    "nota": "Ethnicity of the population of the UAT (6.27 MB). Repository file at a recorded commit, over 2,000,000 bytes. Bounded range read of the first 200,000 bytes, cut at the last complete line: the header and the first rows. The source is partial and the field list is the whole header. The README says that the data comes from the final results of the censuses."
+  },
+  {
+    "proiect": "satul-care-se-stinge",
+    "url": "https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/date/uat_religie.csv",
+    "metoda": "repo-la-revizie",
+    "parinte": "https://github.com/dorinspoaller/recensamant-ro-2011-2021/tree/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b",
+    "repo": {
+      "arbore": "https://api.github.com/repos/dorinspoaller/recensamant-ro-2011-2021/git/trees/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b?recursive=1",
+      "revizie": "66acf0bd5ad5ddbd89ac3cceb8a16057609e812b",
+      "cale": "date/uat_religie.csv"
+    },
+    "dovezi": [
+      {
+        "proiect": "satul-care-se-stinge",
+        "profil": "repos",
+        "rol": "legatura-proiect-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/README.md",
+        "text": "din rezultatele definitive ale recensămintelor",
+        "cache": true,
+        "rol": "origine-date-declarata-in-repo"
+      },
+      {
+        "pagina": "https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/README.md",
+        "text": "Creative Commons Atribuire 4.0 Internațional (CC BY 4.0)",
+        "cache": true,
+        "rol": "licenta-declarata-in-repo"
+      }
+    ],
+    "citire": "csv",
+    "nota": "Religion of the population of the UAT (7.26 MB). Repository file at a recorded commit, over 2,000,000 bytes. Bounded range read of the first 200,000 bytes, cut at the last complete line: the header and the first rows. The source is partial and the field list is the whole header. The README says that the data comes from the final results of the censuses."
+  },
+  {
+    "proiect": "lipseste",
+    "url": "https://lipseste.ro/data/masuri/finante-m01.json",
+    "metoda": "adaugat-explicit",
+    "parinte": "https://lipseste.ro/data/masuri/index.json",
+    "locate": {
+      "pagina": "https://lipseste.ro/data/masuri/index.json",
+      "text": "/data/masuri/finante-m01.json",
+      "cache": true
+    },
+    "nota": "One of the 370 per-measure files: the first identifier of masuri/index.json (11,523 bytes, read whole). It holds the source text of the measure, its elements, claims, criteria and curated selections. Its 45 fields are not in analiza-370.json (58 fields in the sample of 150,000 bytes). The other 369 files are not read. Their schema is probably the same, but nobody checked it."
+  }
+]

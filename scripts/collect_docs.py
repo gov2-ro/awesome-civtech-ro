@@ -35,6 +35,8 @@ from common import (FORBIDDEN_STATE, OUT_OF_SCOPE, PUBLIC_ROOT, ForbiddenHost, f
                     refuse_forbidden)
 
 MAX_BYTES = 2_000_000
+# The largest response that a source specification may allow with `max_octeti` (see DATA-SCHEMA.md, specification files).
+HARD_MAX_BYTES = 10_000_000
 MAX_TEXT = 60_000
 UA = 'Mozilla/5.0 (compatible; CivTech-documentation/1.0; +https://civtech.gov2.ro/)'
 IGNORE = {'script', 'style', 'noscript', 'svg', 'template'}
@@ -364,10 +366,10 @@ class KeepSaved:
     def requests(self):
         return self.fetch.requests
 
-    def __call__(self, url, sample=None):
+    def __call__(self, url, sample=None, max_bytes=None):
         if url in self.urls:
             return {'url': url, 'final_url': url, 'http_status': None, 'fetched_at': datetime.now(timezone.utc).isoformat(), 'state': 'copie-salvata'}
-        return self.fetch(url, sample)
+        return self.fetch(url, sample, max_bytes) if max_bytes else self.fetch(url, sample)
 
 
 class Fetcher:
@@ -381,13 +383,17 @@ class Fetcher:
         self.guard = threading.Lock()
         self.requests = 0
 
-    def __call__(self, url, sample=None):
+    def __call__(self, url, sample=None, max_bytes=None):
         """Fetch a URL. With `sample` (bytes) the request asks for a byte range and reads no more than that:
         a bounded sample of a large file. A sample body ends at its last complete line and carries `partial: true`.
+        With `max_bytes` (the `max_octeti` of one source) the response may be larger than `MAX_BYTES`, up to `HARD_MAX_BYTES`; a larger value is an error.
         An address on a listed host gets no request, no cache entry, no log row and no place in the budget."""
+        if max_bytes is not None and not (isinstance(max_bytes, int) and not isinstance(max_bytes, bool) and 0 < max_bytes <= HARD_MAX_BYTES):
+            raise ValueError(f'max_bytes must be an integer from 1 to {HARD_MAX_BYTES}')
+        limit = max_bytes or MAX_BYTES
         if (row := forbidden(url)) is not None:
             return forbidden_result(url, row)
-        key = (url, sample)
+        key = (url, sample) if limit == MAX_BYTES else (url, sample, limit)
         with self.guard:
             lock = self.locks.setdefault(key, threading.Lock())
             host = self.hosts.setdefault(urlsplit(url).hostname, threading.Semaphore(2))
@@ -407,7 +413,7 @@ class Fetcher:
                 headers['Range'] = f'bytes=0-{sample - 1}'
             try:
                 with host, urlopen(Request(wire_url(url), headers=headers), timeout=self.timeout) as response:
-                    raw = response.read((sample or MAX_BYTES) + 1)
+                    raw = response.read((sample or limit) + 1)
                     size = len(raw)
                     result.update(http_status=response.status, final_url=response.url,
                                   content_type=response.headers.get_content_type())
@@ -418,7 +424,7 @@ class Fetcher:
                         # The server honoured the range. The body is complete only when the range covers the whole file.
                         covered = re.match(r'bytes \d+-(\d+)/(\d+)$', response.headers.get('Content-Range', ''))
                         result['partial'] = not (covered and int(covered.group(2)) <= int(covered.group(1)) + 1)
-                    if len(raw) > MAX_BYTES:
+                    if len(raw) > limit:
                         result.update(state='raspuns-prea-mare', body='')
                     elif is_binary(raw, result['content_type']):
                         result.update(state='format-binar', body='')

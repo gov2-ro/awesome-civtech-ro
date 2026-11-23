@@ -916,6 +916,7 @@ It is separate from the per-run file limit. A smaller limit never deletes a disc
   Later documentation can complete it (history event `locator-completat`).
 - `link_original`, `descoperit_la` (retrieval time of the parent page, or `null`), `prioritate` (lower first), `nota` (optional).
 - `persoane`: `true`, or absent. The mark of a source whose body holds records about natural persons (see "Sources with persons"). No other value is allowed.
+- `max_octeti`: an integer, or absent. The size exception of the source (see "Specification files"). Without it the limit is 2,000,000 bytes.
 - `dovezi_suplimentare`: optional list of further locators, each with `rol`. For a dataset-metadata source, `ruta-metadate-set` locates the
   documented route and `utilizare-in-proiect` locates the sentence in a project's own page that names the dataset code.
   A locator made by `--add-sources-file` also holds `fragment`, the exact text at `interval`. `inventory.py --check` verifies the page hash,
@@ -1225,7 +1226,8 @@ The reader makes no request and runs no script.
 - Each `variableMeasured` entry is also a field: `rol` `masura`, `stare_tip` `declarat-in-metadate`, `grup` (the name of the data set) and `cale` `Dataset1.variableMeasured.NAME`.
   `descriere` and `unitate` are set only when the page writes `description` and `unitText`.
 - `baza_tipului` of such a source is `esantion-date`. `--check` parses the retained body again and compares the fields, `declaratii` and `seturi_ld`.
-- A response over 2,000,000 bytes has no retained body (`raspuns-prea-mare`). A bounded range read (`--sample-bytes`) stops at the last complete line. It can end before the script of the page.
+- A response over 2,000,000 bytes has no retained body (`raspuns-prea-mare`), unless the specification sets `max_octeti` (up to 10,000,000). A bounded range read (`--sample-bytes`) stops at the last complete line. It can end before the script of the page.
+- Persons: `js-literale` may read a marked source (see "Sources with persons", the mode of persons).
 
 **TypeScript declarations (`typescript`).** A project can keep the shape of its data in TypeScript: the documents of a search index, the filters of a query, a response. `inventory_typescript.read` lists the members of those declarations with the type as the code writes it. It makes no request and runs no code. The file is read from each declaration line (`interface Name`, `type Name = {`); the code around the declarations is never read.
 
@@ -1287,11 +1289,20 @@ The coverage export marks an entry with such a source with the lot `S`. The file
 The only allowed value is `true`; any other value (`false`, a text, a number) is an error of the run, of the state check, of `inventory.py --check` and of `render_pages.py`. Module `inventory_persons`.
 The registry record keeps the mark (`persoane`, history event `marcat-persoane`) and so does the source record in `seturi-date.json`. A mark is never taken back by a specification that lacks it.
 
-- **The readers keep key names, paths, observed types and counts only.** A marked source is read as `csv`, `json` or `json-esantion`; any other reader copies text (a description, an enumeration, an example, a header title)
+- **The readers keep key names, paths, observed types and counts only.** A marked source is read as `csv`, `json`, `json-esantion`, `rsc-json` or `js-literale`; any other reader copies text (a description, an enumeration, an example, a header title)
   and gives the state `eroare-parsare`. A field record keeps `nume`, `cale`, `tip_declarat`, `tipuri_observate`, `stare_tip`, `rol`, `pointer`, `coloana_csv`, `numar_chei` and `numar_elemente`; no `valori_enum`, no example, no `descriere`.
   In the header facts (`antet`) of a CSV, a cell above the header stays only when it is a key name (an identifier such as `perf_2015`); any other text keeps its cell address and loses its text.
+  The field record of `js-literale` may also keep `chei_exemplu`, with placeholders only (see below).
   `--check` reads each marked body again and compares the fields and the header facts with the same rule.
+- **The mode of persons of `js-literale`** (since 2026-11-23). The reader of page scripts keeps paths, types and counts, as above, and also:
+  - A keyed collection (`colectie-cu-chei`) keeps `numar_chei` and writes `chei_exemplu` as placeholders: `‹nume 1›`, `‹nume 2›`, `‹nume 3›`, as many as the real example keys (at most three).
+    The real keys are values (names of persons). A placeholder is never a real name.
+  - An object that has a key that is not a field name (not `^[a-z][A-Za-z0-9_]*$`: `Ana Exemplu`, `Ion`, `12`) is read as a keyed collection, whatever its number of members. Such a key is a value, and a path must not carry it.
+  - The comment above a declaration is not kept (`declaratii` has no `comentariu`). `seturi_ld` is not written, and the fields of `variableMeasured` are not written: all of them are text that the page wrote.
+  - The check (`--check`) reads the body again: each string of each literal (also of a declaration that `omise` lists) is a value; so is each key of a collection and each key that is not a field name.
+    A placeholder is not in the body, so it never triggers the check. The option `omise` is then only for text that is not data; a table of persons does not need it.
 - **A specification never quotes the body of a marked source** (`locate` or `dovezi` with `cache: true` and the address of a marked source is an error), because the registry stores the quoted fragment.
+  When a source becomes marked, a fragment of its own body that the registry holds (a locator with the pointer `/body` and the address of the source) leaves the record (history event `locator-completat`).
 - **The note of a marked specification replaces the note of its registry record** (history event `nota-inlocuita`), so that a value that an earlier note quoted can leave the tracked file.
 - **`inventory.py --check` searches for the values of each marked body that it holds.** The files are those that the inventory and its editors write: `observatii/inventare/*.json` and `*.csv`, `adaugari/*.json`,
   `randare/*.json`, `data/taxonomy-v2/*.json`, `integrare/*.csv`, and `docs/*.md`, `docs/reports/*.md`, `docs/briefs/*.md`. Search results (`mentiuni.csv`), the frozen packages (`source/`, `reference/`, `runs/`)
@@ -1345,7 +1356,10 @@ or of a quoted `api_key`, `token`, `secret`, `password` or `bearer` value of 16 
 `redactari` counts the masked values. The inventory never uses a credential that a page contains.
 
 **Bounded reads.** `--probe URL ...` (needs `--lot`) fetches into the source cache and changes no record. `--sample-bytes N` asks for a byte range and keeps at most N bytes;
-the body ends at its last complete line and the source carries `partial: true`, and its hash is the hash of the sample. A response over 2,000,000 bytes is `raspuns-prea-mare` and has no body.
+the body ends at its last complete line and the source carries `partial: true`, and its hash is the hash of the sample. A response over 2,000,000 bytes is `raspuns-prea-mare` and has no body,
+unless the specification of the source sets `max_octeti`.
+A CSV file over 2,000,000 bytes is read with a range read of about 200,000 bytes: the header and the first rows. The `csv` reader needs the header only, so a body that ends inside a row
+(a saved copy, or a cut quoted cell) gives the same fields as the whole file; the fetcher already drops the last partial line. The source keeps `partial: true` and `completitudine` `partial`; `limita_atinsa` stays false, because the field list is the whole header.
 `scripts/render_pages.py` (optional, PEP 723, needs Playwright's Chromium) opens a page once, records the same-site fetch and XHR requests (`cereri_date`, `corpuri_pastrate`, `corpuri_omise`),
 and stores up to six JSON or CSV response bodies of 200,000 bytes or less as sources with `via: browser`. It never clicks, types or submits.
 The server may refuse a plain request for an address that the browser reached; the helper does not work around that refusal. Browser rows in the request log have `cache` `browser`.
@@ -1376,7 +1390,13 @@ Migration: `python3 scripts/inventory.py --migrate-captures [FILE ...]` keeps th
 (without FILE: every legacy record that Git tracks; untracked records stay as they are). Repeating it changes nothing. `scripts/inventory_captures.py` holds the format.
 
 **Specification files (`adaugari/`).** `inventory.py --add-sources-file` reads `adaugari/*.json`: the investigation inputs. A specification names the project, URL, method, parent, a
-`locate` or `repo` request for the discovery locator, `dovezi` for further locators, `citire`, `nota` and the mark `persoane`. Replaying the files from complete caches gives the same registry.
+`locate` or `repo` request for the discovery locator, `dovezi` for further locators, `citire`, `nota`, the mark `persoane` and the size exception `max_octeti`. Replaying the files from complete caches gives the same registry.
+A replay also updates a registered source: the `citire` and the `dovezi` of the file replace the registry values when they differ (history event `locator-completat` for a locator).
+
+`max_octeti` (an integer; since 2026-11-23) lets one source exceed the limit of the response. Without it the limit stays `collect_docs.MAX_BYTES` (2,000,000 bytes).
+With it the limit of that source is its value, and no other request changes. The value must be above 2,000,000 and at most 10,000,000 (`collect_docs.HARD_MAX_BYTES`). Any other value,
+and any value that is not an integer, is an error of the run, of `--check` and of the state check: the run stops before it requests or writes anything.
+The registry record keeps the value (`max_octeti`), so a refresh (`--force-url`) uses it. Choose a value a little above the measured size of the page, not the cap.
 
 The documentation collector keeps the pages that an earlier run collected and a later run cannot collect again. The page stays and
 gains `ultima_incercare` (`fetched_at`, `state`, `http_status`, `error`). A page collected again replaces its earlier copy.

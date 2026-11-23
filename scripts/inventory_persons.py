@@ -5,8 +5,10 @@ The registry keeps the mark (`descoperiri.json`) and the source record carries i
 
 What the mark changes:
 
-- The readers keep key names, paths, observed types and counts only. A reader of a marked source is `csv`, `json`, `json-esantion` or `rsc-json`; every other
+- The readers keep key names, paths, observed types and counts only. A reader of a marked source is `csv`, `json`, `json-esantion`, `rsc-json` or `js-literale`; every other
   reader copies text (a description, an enumeration, an example) and is refused. A field record keeps the keys of `FIELD_KEYS` and no other.
+  For `js-literale` the example keys of a keyed collection are the placeholders `‹nume 1›`, `‹nume 2›`, `‹nume 3›` (the real keys are values), the
+  comment above a declaration is not kept, and neither are the data sets of the JSON-LD and the fields that the page declares in it.
   The rows above a CSV header keep a cell only when it is a key name (an identifier such as `perf_2015`); a title or any other text is dropped.
 - A specification cannot quote the body of a marked source (`inventory.resolve_spec`): the registry stores the quoted fragment.
 - The note of a marked specification replaces the note of its registry record, so a value that an earlier note quoted can leave the tracked file.
@@ -38,20 +40,24 @@ import re
 from pathlib import Path
 
 from inventory_jsonsample import FORMAT as JSON_SAMPLE, recover
+from inventory_literals import body_strings, indented_names
 from inventory_rsc import FORMAT as RSC_JSON, extract as rsc_document
 from inventory_sheet import delimiter, settings
 
 MARK = 'persoane'
-READERS = ('csv', 'json', JSON_SAMPLE, RSC_JSON)
+READERS = ('csv', 'json', JSON_SAMPLE, RSC_JSON, 'js-literale')
 # The keys that a field record of a marked source may keep: a name, a path, a type, a role, a position and a count.
-FIELD_KEYS = frozenset({'nume', 'cale', 'tip_declarat', 'tipuri_observate', 'stare_tip', 'rol', 'pointer', 'coloana_csv', 'numar_chei', 'numar_elemente'})
+FIELD_KEYS = frozenset({'nume', 'cale', 'tip_declarat', 'tipuri_observate', 'stare_tip', 'rol', 'pointer', 'coloana_csv', 'numar_chei', 'numar_elemente',
+                        'chei_exemplu'})
+# The example keys of a keyed collection (`js-literale`) are placeholders: the real keys are values (names of persons).
+PLACEHOLDER = re.compile(r'^‹nume [123]›$')
 # A field that an editor added (`inventory_editor`) may also keep these keys: the editor wrote them and the leak check looks at the file that holds them.
 EDITOR_STATE = 'adaugat-de-editor'
 EDITOR_KEYS = frozenset({'descriere', 'unitate', 'nota_editor', 'dovada_editor'})
 # The keys that a source record of a marked source may keep. None of them holds a value of the body.
 SOURCE_KEYS = frozenset({'url', 'final_url', 'http_status', 'fetched_at', 'content_type', 'state', 'id', 'campuri', 'completitudine', 'snapshot', 'sha256',
                          'format', 'stare', 'limita_atinsa', 'baza_tipului', 'citire', 'ultima_incercare', 'versiuni_anterioare', 'partial', 'antet',
-                         'esantion', 'persoane', 'origine', 'salvat_la', 'nume_fisier', 'sha256_fisier', 'nota_copie', 'via', 'redactari', 'error'})
+                         'esantion', 'declaratii', 'persoane', 'origine', 'salvat_la', 'nume_fisier', 'sha256_fisier', 'nota_copie', 'via', 'redactari', 'error'})
 MIN_VALUE = 4
 NAME_CELL = re.compile(r'^[A-Za-z_][A-Za-z0-9_.-]*$')
 TIMESTAMP = re.compile(r'\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}')
@@ -74,9 +80,16 @@ def is_marked(record):
     return record.get(MARK) is True
 
 
+def placeholders(keys):
+    """`‹nume 1›`, `‹nume 2›`, `‹nume 3›`: one placeholder for each example key (at most three), never the key."""
+    return [f'‹nume {number}›' for number in range(1, min(len(keys), 3) + 1)]
+
+
 def safe_fields(fields):
-    """The field records of a marked source, with the keys of `FIELD_KEYS` only."""
-    return [{key: value for key, value in field.items() if key in FIELD_KEYS} for field in fields]
+    """The field records of a marked source, with the keys of `FIELD_KEYS` only. A field that a page declares in its metadata (`declarat-in-metadate`:
+    a name, a description and a unit that the page wrote) is text and is dropped. The example keys of a collection become placeholders."""
+    kept = [{key: value for key, value in field.items() if key in FIELD_KEYS} for field in fields if field.get('stare_tip') != 'declarat-in-metadate']
+    return [{**field, 'chei_exemplu': placeholders(field['chei_exemplu'])} if 'chei_exemplu' in field else field for field in kept]
 
 
 def safe_header(facts):
@@ -95,6 +108,9 @@ def problems(source):
     for field in source.get('campuri', []):
         allowed = FIELD_KEYS | EDITOR_KEYS if field.get('stare_tip') == EDITOR_STATE else FIELD_KEYS
         found += [f'{where}: field {field.get("cale")} has the key {key}' for key in sorted(set(field) - allowed)]
+        if any(not PLACEHOLDER.match(str(key)) for key in field.get('chei_exemplu', [])):
+            found.append(f'{where}: field {field.get("cale")} keeps an example key that is not a placeholder')
+    found += [f'{where}: the declaration {row.get("variabila")} keeps its comment' for row in source.get('declaratii', []) if 'comentariu' in row]
     for row in (source.get('antet') or {}).get('randuri_deasupra', []):
         found += [f'{where}: the header row {row["rand"]} keeps the text of cell {cell["celula"]}' for cell in row['celule']
                   if 'valoare' in cell and not NAME_CELL.match(cell['valoare'])]
@@ -119,6 +135,8 @@ def leaves(value, keys, found):
 def body_values(body, format_name, hint=None):
     """(values, names): the string values of a retained body and its key names. A JSON key and a CSV header cell are names, also a row above the header."""
     values, names = set(), set()
+    if format_name == 'js-literale':
+        return body_strings(body, indented_names(hint))
     if format_name in ('json', JSON_SAMPLE, RSC_JSON):
         document = recover(body)[0] if format_name == JSON_SAMPLE else rsc_document(body) if format_name == RSC_JSON else json.loads(body)
         leaves(document, names, values)

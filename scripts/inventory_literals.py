@@ -48,6 +48,8 @@ IDENTIFIER_KEY = re.compile(r'^[a-z][A-Za-z0-9_]*$')
 MAX_NESTING = 40
 EXAMPLE_KEYS = 3
 EXAMPLE_LENGTH = 40
+# The internal reader option of a source with persons (`inventory.parse_source` adds it; it is never in a specification or a registry record).
+PERSONS_OPTION = '_persoane'
 
 SCRIPT = re.compile(r'<script\b([^>]*)>(.*?)</script\s*>', re.S | re.I)
 DECLARATION = re.compile(r'^(?:(?:const|let|var)[ \t]+|window\.)([A-Za-z_$][\w$]*)[ \t]*=[ \t]*(Object\.freeze\([ \t]*)?(?=[\[{])', re.M)
@@ -346,9 +348,10 @@ def preceding_comment(body, start):
     return comment
 
 
-def declarations(body, indented=(), omitted=()):
+def declarations(body, indented=(), omitted=(), persons=False):
     """What the reader found, read or skipped. A skipped declaration says why. The comment above a declaration is the page's own words.
-    A declaration named in `omitted` is listed as not read, with the reason `omisa-prin-optiune`."""
+    A declaration named in `omitted` is listed as not read, with the reason `omisa-prin-optiune`.
+    With `persons` (a source that holds records about natural persons) the comment is not copied: it is text, and the mode keeps no text."""
     out = []
     for item in script_literals(body, indented):
         node = item['node']
@@ -359,7 +362,7 @@ def declarations(body, indented=(), omitted=()):
             row.update(forma='tablou' if node.kind == 'tablou' else 'obiect', elemente=len(node.payload), pointer=f'char:{node.start}-{node.end}')
         else:
             row.update(motiv=item['reason'], pointer=f'char:{item["start"]}-{item["at"]}')
-        comment = preceding_comment(body, item['start']) if item['forma-sursa'] == 'literal-script' else None
+        comment = preceding_comment(body, item['start']) if item['forma-sursa'] == 'literal-script' and not persons else None
         if comment:
             row['comentariu'] = comment
         out.append(row)
@@ -407,9 +410,15 @@ def keyed(members):
     return keyed_collection([key for key, _ in members], ['numar' if child.kind in ('intreg', 'numar') else child.kind for _, child in members])
 
 
+def name_keys(members):
+    """True when an object of a source with persons must be walked as a keyed collection: it has a key that is not a field name (`^[a-z][A-Za-z0-9_]*$`).
+    A key such as `Ana Exemplu`, `Ion` or `12` is a value of the data, and a path must not carry it. The rule of `keyed` still applies first."""
+    return bool(members) and any(not IDENTIFIER_KEY.match(key) for key, _ in members)
+
+
 class Walk:
-    def __init__(self, body):
-        self.body, self.found, self.limit = body, {}, False
+    def __init__(self, body, persons=False):
+        self.body, self.found, self.limit, self.persons = body, {}, False, persons
 
     def register(self, variable, path, node, kind, role='camp-date', **extra):
         field = self.found.get(path)
@@ -430,7 +439,7 @@ class Walk:
             return
         if kind == 'obiect':
             members = node.payload
-            if keyed(members):
+            if keyed(members) or (self.persons and name_keys(members)):
                 here = path + '{*}'
                 keys = [k[:EXAMPLE_LENGTH] for k, _ in members[:EXAMPLE_KEYS]]
                 self.register(variable, here, node, 'object', 'colectie-cu-chei', numar_chei=len(members), chei_exemplu=keys)
@@ -460,9 +469,10 @@ class Walk:
 TYPES = {'text': 'string', 'intreg': 'integer', 'numar': 'number', 'logic': 'boolean', 'nul': 'null'}
 
 
-def read(body, indented=(), omitted=()):
-    """(fields, truncated). Fields are in page order; the same body always gives the same list. A declaration named in `omitted` is not walked."""
-    walker = Walk(body)
+def read(body, indented=(), omitted=(), persons=False):
+    """(fields, truncated). Fields are in page order; the same body always gives the same list. A declaration named in `omitted` is not walked.
+    With `persons` (a source that holds records about natural persons) an object that has a key that is not a field name is a keyed collection (see `name_keys`)."""
+    walker = Walk(body, persons)
     for item in script_literals(body, indented):
         if item['node'] is not None and item['variabila'] not in omitted:
             walker.walk(item['variabila'], item['node'], item['variabila'], 0)
@@ -584,3 +594,31 @@ def measured_variables(body):
                      'descriere': description['valoare'] if description else '', 'unitate': unit['valoare'] if unit else None}
             fields.append(field)
     return fields
+
+
+# --- the values of a body (the check of a source with persons) ----------------------------------------------------------
+
+def body_strings(body, indented=()):
+    """(values, names) of every literal of the body, read or omitted: the decoded strings, and the object keys. The keys of a keyed collection
+    are values (county names, candidate names), so they go to `values`; so is every key that is not a field name (`name_keys`: the mode of persons reads
+    such an object as a collection). Every other key is a field name and goes to `names`.
+    The check of a source with persons (`inventory_persons.body_values`) uses it."""
+    values, names = set(), set()
+
+    def visit(node):
+        if node.kind == 'text':
+            values.add(decode(node.payload))
+        elif node.kind == 'tablou':
+            for child in node.payload:
+                visit(child)
+        elif node.kind == 'obiect':
+            collection = keyed(node.payload)
+            for key, _ in node.payload:
+                (values if collection or not IDENTIFIER_KEY.match(key) else names).add(key)
+            for _, child in node.payload:
+                visit(child)
+
+    for item in script_literals(body, indented):
+        if item['node'] is not None:
+            visit(item['node'])
+    return values, names

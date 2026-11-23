@@ -175,14 +175,6 @@
       "text": "url:\"https://romaniainteractiva.ro/locale/\"",
       "cache": true
     },
-    "dovezi": [
-      {
-        "pagina": "https://romaniainteractiva.ro/locale/",
-        "text": "<b>Surse.</b> Autoritatea Electorală Permanentă, procesele-verbale finale ale alegerilor locale din 9 iunie 2024",
-        "cache": true,
-        "rol": "sursa-declarata-de-pagina"
-      }
-    ],
     "nota": "Tool page of the project, listed in its catalog and in sitemap.xml. The response is over 2,000,000 bytes; a range read of the first 600,000 bytes ends at the last complete line, before the script that holds the data. The sample holds the text and the JSON-LD data set, no table and no literal."
   },
   {

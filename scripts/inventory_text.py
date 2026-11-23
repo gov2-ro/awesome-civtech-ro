@@ -46,7 +46,7 @@ from inventory_django import read as read_django
 from inventory_eurostat import read as eurostat_fields
 from inventory_glossary import glossary
 from inventory_llms import read as read_llms
-from inventory_literals import indented_names, omitted_names, read as read_literals
+from inventory_literals import PERSONS_OPTION, indented_names, omitted_names, read as read_literals
 from inventory_positions import positions
 from inventory_setlist import set_list
 from inventory_typescript import read as read_typescript
@@ -657,7 +657,7 @@ def json_comentat(body):
 
 def js_literale(body, options=None):
     """Data literals of page scripts, and (with the option `tabele`) the tables of the same page. Table fields come first: they are what a visitor sees."""
-    fields, truncated = read_literals(body, indented_names(options), omitted_names(options))
+    fields, truncated = read_literals(body, indented_names(options), omitted_names(options), bool((options or {}).get(PERSONS_OPTION)))
     tables = (options or {}).get('tabele')
     if tables:
         fields = table_fields(parse_tables(body), selected=None if tables is True else set(tables)) + fields

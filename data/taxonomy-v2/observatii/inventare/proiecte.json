@@ -4237,7 +4237,7 @@
         "0d5f5faf20db101c5549",
         "d811d4161707affa6e8f"
       ],
-      "campuri_din_surse": 269,
+      "campuri_din_surse": 470,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
@@ -8246,9 +8246,12 @@
         "16eb8793212c7ef93374",
         "f1b0d4d301eb401c38ec",
         "084c0437a944c0df0d2a",
+        "9be9615cf13f225c330b",
+        "ab7ca2049b9ac6236429",
+        "77461ac9a8e14751eb52",
         "1d2857d61854aeafe46b"
       ],
-      "campuri_din_surse": 66,
+      "campuri_din_surse": 83,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
@@ -8274,7 +8277,7 @@
       "surse_structurate": [
         "7c9b5ebb37ab2dec07ba"
       ],
-      "campuri_din_surse": 142,
+      "campuri_din_surse": 137,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
@@ -8614,7 +8617,7 @@
       "slug": "cat-costa-un-vot",
       "nume": "Cât costă un vot",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "Cheltuielile de campanie declarate, împărțite la voturi, 2019–2025",
       "permite": [
         "Compară",
@@ -8628,11 +8631,12 @@
         "slug": "cat-costa-un-vot"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "940da99e85586fed3026"
+      ],
+      "campuri_din_surse": 48,
       "lacune": [
-        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
     },
     {
@@ -8714,7 +8718,7 @@
       "surse_structurate": [
         "47e4d2de050a1bf8647f"
       ],
-      "campuri_din_surse": 253,
+      "campuri_din_surse": 113,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date."
       ]
@@ -8996,7 +9000,7 @@
       "slug": "cate-voturi-aduce-un-primar",
       "nume": "Câte voturi aduce un primar?",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "Aduc primarii voturi partidului lor? Alegeri 1996–2025, în 3.186 de localități",
       "permite": [
         "Caută și consultă",
@@ -9011,11 +9015,12 @@
         "slug": "cate-voturi-aduce-un-primar"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "5996e89116e24b2c64ed"
+      ],
+      "campuri_din_surse": 452,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
     },
@@ -9216,7 +9221,7 @@
       "slug": "romania-in-puncte",
       "nume": "România în puncte",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "Cine a câștigat alegerile locale din 2024 în fiecare din cele 13.447 de localități",
       "permite": [
         "Caută și consultă"
@@ -9229,11 +9234,12 @@
         "slug": "romania-in-puncte"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "b1c51df8fb7a7411eb90"
+      ],
+      "campuri_din_surse": 33,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
     },
@@ -9241,7 +9247,7 @@
       "slug": "harta-notelor",
       "nume": "Harta notelor",
       "stare": "propunere",
-      "completitudine": "neconfirmat",
+      "completitudine": "partial",
       "scop": "Promovabilitatea la Evaluarea Națională și bac, pe localități și școli, 2018–2026",
       "permite": [
         "Caută și consultă",
@@ -9256,11 +9262,12 @@
         "slug": "harta-notelor"
       },
       "intrari_utilizator": [],
-      "surse_structurate": [],
-      "campuri_din_surse": 0,
+      "surse_structurate": [
+        "29ebe0e76759019c35bf"
+      ],
+      "campuri_din_surse": 168,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
-        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
     },
@@ -10267,11 +10274,12 @@
         "161b477050567265d8c9",
         "158f8a181841c9f14a3d",
         "115421d2d416d930d50d",
+        "b0c7e7cd1053e81e1579",
         "364da933917cfbf2a51b",
         "3a1abcbc2c5683669b9b",
         "1c65802bd9ef9d8268fc"
       ],
-      "campuri_din_surse": 203,
+      "campuri_din_surse": 248,
       "lacune": [
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."

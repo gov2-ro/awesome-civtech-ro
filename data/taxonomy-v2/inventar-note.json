@@ -196,15 +196,15 @@
     },
     "romania-interactiva": {
       "limite": [
-        "Șapte dintre cele 22 de instrumente ale catalogului au fost citite; celelalte 15 sunt pe alte gazde și nu au fost cercetate (limita de zece surse). Paginile locale/ și harta-notelor/ au peste 2.000.000 de octeți: s-au păstrat primii 600.000 de octeți, care se opresc înaintea scriptului cu date.",
+        "Șapte dintre cele 22 de instrumente ale catalogului au fost citite; celelalte 15 sunt pe alte gazde și nu au fost cercetate (limita de zece surse). Paginile locale/ și harta-notelor/ au peste 2.000.000 de octeți: în lotul I2 sunt citite întregi (excepția `max_octeti`); locale/ are marcajul pentru persoane.",
         "Câmpurile din scripturile paginilor sunt observate în eșantion (cel mult 25 de elemente); numele scurte (L, T, V, t, b, x) nu sunt descrise de pagini."
       ],
-      "blocaj": "Datele paginilor locale/ și harta-notelor/ nu au fost citite: răspunsurile depășesc 2.000.000 de octeți. Populația orașelor din Orașe digitale (câmpul pop) nu are sursă numită în pagină.",
-      "urmatorul_pas": "Decideți dacă un răspuns de peste 2.000.000 de octeți poate fi citit întreg. Alegeți din cele 15 instrumente neinspectate (de exemplu 1vot.ro, geamanuleuropean.ro, sondajeleromaniei.ro, satulcaresestinge.ro). Hotărâți despre selectorii propuși pentru grupurile revizuite (vezi raportul).",
-      "rezultat": "Platform of public tools by three lecturers of FSPAC, Babeș-Bolyai University: its home page lists 22 tools, six on the project host and the others on their own hosts. The pass read seven: the census tool (county population at eight censuses, 1948–2021), the governments timeline (28 governments), the university centres tool (students per centre and per university), the marriages and divorces map (counties, 1990–2024), the local elections map and the exam results map (both over 2,000,000 bytes, read as samples), and Orașe digitale (the e-government index of 325 cities). Each tool keeps its data in the page: script constants, a JSON data island and one HTML table. The new reader `js-literale` lists them with the types of a bounded sample; the JSON-LD `Dataset` of every page gives its name, period, licence and `isBasedOn`. Every page ends with a \"Surse\" or \"Date\" note that names its providers: INS (TEMPO matrices SCL103D, POP210A, POP212A, POP107A and census tables), Eurostat, CNFIS, AEP, the Ministry of Education (via data.gov.ro), Guvernul României, Monitorul Oficial and Agerpres; the dormitory data come from an ANOSR analysis and a Cushman & Wakefield Echinox study. Three INS matrices were read as metadata. Orașe digitale is the authors' own collection (manual coding of 46 indicators in five categories, three waves); the page names no source for the population of a city. The pages declare no field types, no units and no field descriptions, except six `variableMeasured` entries of Orașe digitale.",
-      "limite_en": "Seven of 22 catalogue tools were read. Two pages are samples of 600,000 bytes (no data). Field records come from a bounded sample of script literals; short key names are not described by the pages.",
-      "urmator_en": "Decide whether a response over 2,000,000 bytes may be read whole; choose more tools from the 15 that were not read (1vot.ro, geamanuleuropean.ro, sondajeleromaniei.ro, satulcaresestinge.ro); decide on the candidate selectors for the reviewed groups.",
-      "blocaj_en": "The data of the local elections and exam results pages is beyond the 2,000,000-byte limit of the fetcher; the population of a city in Orașe digitale has no named source."
+      "blocaj": "Populația orașelor din Orașe digitale (câmpul pop) nu are sursă numită în pagină.",
+      "urmatorul_pas": "Alegeți din cele 15 instrumente neinspectate (de exemplu 1vot.ro, geamanuleuropean.ro, sondajeleromaniei.ro, satulcaresestinge.ro). Hotărâți despre selectorii propuși pentru grupurile revizuite (vezi raportul).",
+      "rezultat": "Platform of public tools by three lecturers of FSPAC, Babeș-Bolyai University: its home page lists 22 tools, six on the project host and the others on their own hosts. The pass read seven: the census tool (county population at eight censuses, 1948–2021), the governments timeline (28 governments), the university centres tool (students per centre and per university), the marriages and divorces map (counties, 1990–2024), the local elections map and the exam results map (both over 2,000,000 bytes; read whole since batch I2), and Orașe digitale (the e-government index of 325 cities). Each tool keeps its data in the page: script constants, a JSON data island and one HTML table. The new reader `js-literale` lists them with the types of a bounded sample; the JSON-LD `Dataset` of every page gives its name, period, licence and `isBasedOn`. Every page ends with a \"Surse\" or \"Date\" note that names its providers: INS (TEMPO matrices SCL103D, POP210A, POP212A, POP107A and census tables), Eurostat, CNFIS, AEP, the Ministry of Education (via data.gov.ro), Guvernul României, Monitorul Oficial and Agerpres; the dormitory data come from an ANOSR analysis and a Cushman & Wakefield Echinox study. Three INS matrices were read as metadata. Orașe digitale is the authors' own collection (manual coding of 46 indicators in five categories, three waves); the page names no source for the population of a city. The pages declare no field types, no units and no field descriptions, except six `variableMeasured` entries of Orașe digitale.",
+      "limite_en": "Seven of 22 catalogue tools were read. Two pages are over 2,000,000 bytes; batch I2 reads them whole (size exception `max_octeti`), and `locale/` has the persons mark. Field records come from a bounded sample of script literals; short key names are not described by the pages.",
+      "urmator_en": "Choose more tools from the 15 that were not read (1vot.ro, geamanuleuropean.ro, sondajeleromaniei.ro, satulcaresestinge.ro); decide on the candidate selectors for the reviewed groups.",
+      "blocaj_en": "The population of a city in Orașe digitale has no named source."
     },
     "lista-firme": {
       "rezultat": "Search by CUI or name over the Romanian companies, with an API (catalogue: `format:api`) and the repository `tudorr89/info-firme`. The API has no documentation page. The repository README (commit 1dcb375, 2026-10-24) documents `GET https://lista-firme.info/api/v1/info?cui=...` and `?name=...`; the code reads `company` and not `name`. The routes file has the one route `info` and a fallback that aborts any other API path with 401 (by the code; not requested). Neither the README nor the routes file mentions a key. The six migrations read give 51 field records (the columns of `companies`, `addresses`, `infos` and `statuses`). The terms page names the originators: ONRC (via data.gov.ro) and the public ANAF APIs. On 2026-10-27 the owner raised the request limit of the entry for one request. `GET /api/v1/info?cui=51859625` (the CUI of the operator) answered HTTP 200 with 2,276 bytes of JSON; it needed no key. It is the seventh source, with 57 field records (55 before 2026-10-27: the corrected reader adds the two empty lists as two records): key paths and observed types, no value. The response has 17 keys. Nine are columns of `companies` (`name`, `cui`, `euid`, `registration_date`, `type`, `website`, `parent_country`, `mark`, `reg_com`). One is computed: `is_active` (the scope `preferActive` of the model adds it in the query; it is not a column). Seven are relations: `address` (12 keys), `info`, `status`, `caen`, `legal_representatives`, `natural_person_representatives` and `eu_branches`. Against the migrations the API hides `id`, `created_at` and `updated_at` of `companies`, and `id`, `company_id`, `created_at` and `updated_at` of `addresses`. `status` holds only `details` (`code` and `description`): none of the five `statuses` columns read appears. The relation `caen` has three elements, each with `code`, `version` and the same seven keys under `caen_details` and `details`. The relation `legal_representatives` has one element with 14 keys, among them the name, the birth date and place and the current location of a natural person. It keeps `id`, `company_id`, `created_at` and `updated_at`: the API hides keys of this kind for the company and the address. For this company `info` is null, so the 18 columns of `infos` were not observed. `natural_person_representatives` and `eu_branches` are empty lists (each is a field of the type array with 0 elements), so the keys of their elements are unknown. Three candidate members are proposed for the reviewed groups `cui`, `judet` and `localitate`: the paths `$.cui`, `$.address.county` and `$.address.city` of the response. The two provider items D189 and D190 are decided. A group for the CAEN code is a suggestion only (section 5).",
@@ -616,50 +616,51 @@
       "rezultat": "Datele paginii sunt un depozit GitHub (CSV, licență CC BY 4.0, cu codul SIRUTA ca cheie): populația la recensămintele din 2011 și 2021 pe sate și pe UAT, grupe de vârstă și educația pe județe.",
       "limite": [
         "Patru fișiere CSV citite la un commit fixat; antetul unui CSV nu declară tipuri.",
-        "Fișierele pentru etnie, religie și activități economice depășesc 2.000.000 de octeți și nu au fost citite.",
-        "Pagina proiectului depășește 2.000.000 de octeți (datele sunt în pagină) și nu are copie păstrată."
+        "Pagina proiectului depășește 2.000.000 de octeți (datele sunt în pagină) și nu are copie păstrată.",
+        "Fișierele pentru etnie, religie și activități economice depășesc 2.000.000 de octeți: sunt citite prin cereri de interval de 200.000 de octeți (antetul și primele rânduri); sursele sunt parțiale."
       ],
       "blocaj": "",
-      "urmatorul_pas": "Hotărâți dacă un fișier peste 2.000.000 de octeți poate fi citit (decizia amânată în BACKLOG).",
-      "limite_en": "Four CSV files read at a fixed commit; a CSV header declares no type. The ethnicity, religion and economic-activity files and the project page are over 2,000,000 bytes and were not read.",
+      "urmatorul_pas": "Propuneți furnizorii (INS; Dorin Spoaller ca autor al setului curățat).",
+      "limite_en": "Seven CSV files read at a fixed commit; a CSV header declares no type. The ethnicity, religion and economic-activity files are over 2,000,000 bytes and are read by range requests of 200,000 bytes (the header and the first rows); those sources are partial. The project page is over 2,000,000 bytes and has no retained copy.",
       "blocaj_en": "none",
-      "urmator_en": "Decide whether a file over 2,000,000 bytes may be read (the decision postponed in the backlog)."
+      "urmator_en": "Propose the providers (INS; Dorin Spoaller as the author of the cleaned set)."
     },
     "guverneaza-daca-poti": {
       "rezultat": "Joc de simulare. Pagina păstrează modelul în constante de script (politici, indicatori, situații, grupuri, scenarii) și un tabel cu cifrele reale din 2025.",
       "limite": [
         "Constantele modelului sunt parametri de joc, nu date observate.",
-        "Tabelul premierilor de după 1989 (nume de persoane) este omis prin opțiune: cititorul de literale nu are mod pentru persoane.",
+        "Tabelul premierilor de după 1989 (`PMS`, nume de persoane) este citit, iar sursa are marcajul pentru persoane: înregistrarea păstrează numele câmpurilor, căile, tipurile și numerele, fără nicio valoare (137 de înregistrări de câmp).",
         "Sursa este chiar pagina; clasamentul seminarelor folosește un API care nu a fost cercetat."
       ],
       "blocaj": "",
-      "urmatorul_pas": "Dacă proprietarul vrea, adăugați un cititor de literale cu mod pentru persoane.",
-      "limite_en": "The model constants are game parameters, not observed data. The table of prime ministers (names of persons) is omitted by option because the script reader has no persons mode. The seminar ranking API was not examined.",
+      "urmatorul_pas": "Propuneți furnizorii (INS, Eurostat, Transparency International).",
+      "limite_en": "The model constants are game parameters, not observed data. The table of prime ministers (`PMS`, names of persons) is read, and the source has the persons mark: the record keeps key names, paths, types and counts, and no value (137 field records). The seminar ranking API was not examined.",
       "blocaj_en": "none",
-      "urmator_en": "If the owner wants it, add a script-literal reader with a persons mode."
+      "urmator_en": "Propose the providers (INS, Eurostat, Transparency International)."
     },
     "cat-costa-un-vot": {
       "rezultat": "Datele paginii sunt un literal de script: candidații la prezidențiale, cu partidul, cheltuielile declarate și voturile, plus datele partidelor la alegerile europarlamentare și parlamentare.",
       "limite": [
-        "Nicio sursă păstrată."
+        "Sursa este pagina: constanta `E` (șase scrutine) este citită cu modul pentru persoane al cititorului `js-literale`: 48 de înregistrări de câmp, cu nume, căi, tipuri și numere, fără nicio valoare.",
+        "Rândurile sunt poziționale (nume, partid, cheltuieli, voturi): ce înseamnă o poziție spune textul paginii, nu cititorul."
       ],
-      "blocaj": "Înregistrările sunt despre persoane (candidații numiți). O sursă cu persoane se citește numai ca CSV sau JSON, iar datele sunt un literal de script: cititorul `js-literale` nu are mod pentru persoane. Conform briefului, ne oprim.",
-      "urmatorul_pas": "Cititor de literale de script cu mod pentru persoane (BACKLOG, lotul H, punctul a).",
-      "limite_en": "No source kept.",
-      "blocaj_en": "The records are about named persons (candidates). A source with persons is read only as CSV or JSON, and the data is a script literal: the reader `js-literale` has no persons mode. The brief says to stop.",
-      "urmator_en": "A script-literal reader with a persons mode (backlog, batch H, item a)."
+      "blocaj": "",
+      "urmatorul_pas": "Propuneți furnizorii (AEP pentru cheltuieli, BEC pentru voturi).",
+      "limite_en": "The page is the source: the constant `E` (six elections) is read with the persons mode of the reader `js-literale`: 48 field records with names, paths, types and counts, and no value. The rows are positional (name, party, spending, votes); the page text says what a position means, not the reader.",
+      "blocaj_en": "none",
+      "urmator_en": "Propose the providers (AEP for the spending, BEC for the votes)."
     },
     "sondajele-romaniei": {
       "rezultat": "Pagina încarcă `data/date.js` (726.070 de octeți): sondajele (institut, perioadă, eșantion, metodă, rezultate pe partid sau candidat, adresa publicării), scrutinele cu rezultate oficiale și mandate, exit poll-urile, notele institutelor și un contur al județelor.",
       "limite": [
-        "Fișier script citit ca literale: 253 de înregistrări de câmp; limita de eșantionare a fost atinsă.",
-        "O colecție (`partid`) leagă numele candidaților de partide: cititorul copiază trei chei de exemplu. Proprietarul decide dacă aceasta cere marcajul pentru persoane."
+        "Fișier script citit ca literale, cu modul pentru persoane: 113 înregistrări de câmp, fără nicio valoare. Cheile de exemplu ale colecțiilor sunt înlocuitori (`‹nume 1›`).",
+        "Limita de eșantionare a fost atinsă."
       ],
       "blocaj": "",
-      "urmatorul_pas": "Proprietarul decide asupra colecției `partid`; apoi propuneți furnizorii (institutele de sondaje).",
-      "limite_en": "A script file read as literals: 253 field records; the sampling limit was reached. One collection (`partid`) maps candidate names to parties; the reader copies three example keys. The owner decides whether it needs the persons mark.",
+      "urmatorul_pas": "Propuneți furnizorii (institutele de sondaje).",
+      "limite_en": "A script file read as literals with the persons mode: 113 field records, no value. The example keys of the collections are placeholders (`‹nume 1›`). The sampling limit was reached.",
       "blocaj_en": "none",
-      "urmator_en": "The owner decides on the collection `partid`; then propose the providers (the poll institutes)."
+      "urmator_en": "Propose the providers (the poll institutes)."
     },
     "ghiceste-bugetul": {
       "rezultat": "Pagina păstrează în constanta `DATA` execuția bugetară din 2025 pe categorii pentru fiecare municipiu, oraș și sector (Ministerul Finanțelor, Forexebug, prin Transparenta.eu).",
@@ -676,13 +677,14 @@
     "cate-voturi-aduce-un-primar": {
       "rezultat": "Datele sunt un obiect JSON în pagină (3.186 de localități, alegerile 1996–2025), cu numele primarilor pe localitate.",
       "limite": [
-        "Pagina are 2.163.390 de octeți (peste 2.000.000); insula de date se termină la octetul 690.546, deci o citire parțială ar ajunge la ea."
+        "Pagina are 2.163.390 de octeți și este citită întreagă prin excepția de mărime `max_octeti` (2.500.000). Sursa are marcajul pentru persoane: 452 de înregistrări de câmp, fără nicio valoare.",
+        "Limita de eșantionare a fost atinsă (cel mult 25 de elemente pe tablou, 2.000 de câmpuri)."
       ],
-      "blocaj": "Înregistrările conțin numele primarilor (persoane), iar datele sunt o insulă de date în pagină: cititorul `js-literale` nu are mod pentru persoane. În plus, pagina depășește 2.000.000 de octeți (decizie amânată). Conform briefului, ne oprim.",
-      "urmatorul_pas": "Cititor de insule de date cu mod pentru persoane (BACKLOG, lotul H, punctul a) și decizia asupra răspunsurilor mari.",
-      "limite_en": "The page is 2,163,390 bytes; the data island ends at byte 690,546, so a partial read would reach it.",
-      "blocaj_en": "The records hold the names of mayors (persons) and the data is an island in the page: the reader `js-literale` has no persons mode. The page is also over 2,000,000 bytes (decision postponed). The brief says to stop.",
-      "urmator_en": "A data-island reader with a persons mode (backlog, batch H, item a) and the decision on large responses."
+      "blocaj": "",
+      "urmatorul_pas": "Propuneți furnizorii (AEP, BEC, INS pentru populație).",
+      "limite_en": "The page is 2,163,390 bytes and is read whole by the size exception `max_octeti` (2,500,000). The source has the persons mark: 452 field records, no value. The sampling limit was reached (25 elements for each array, 2,000 fields).",
+      "blocaj_en": "none",
+      "urmator_en": "Propose the providers (AEP, BEC, INS for the population)."
     },
     "mortalitate-evitabila": {
       "rezultat": "Pagina păstrează în constante de script ratele și numerele de decese evitabile pe cauze, sexe, ani și țări și declară setul Eurostat hlth_cd_apr în JSON-LD.",
@@ -701,13 +703,13 @@
       "limite": [
         "Trei fișiere JSON sunt citite ca eșantion (150.000 și 6.000 de octeți).",
         "Căile fișierelor vin din pachetul de script al paginii (literale); nu s-a folosit nicio cheie.",
-        "Fișierul CSV al dosarelor și fișierele individuale ale măsurilor nu au fost adăugate."
+        "Un fișier individual de măsură (`masuri/finante-m01.json`, primul identificator din index) este citit întreg: 45 de câmpuri care nu sunt în `analiza-370.json`. Celelalte 369 nu sunt citite. Fișierul CSV al dosarelor 544 nu este adăugat (aceleași date ca JSON-ul)."
       ],
       "blocaj": "",
-      "urmatorul_pas": "Propuneți furnizorii (Programul de guvernare, Monitorul Oficial) și decideți dacă se adaugă fișierele pe măsură.",
-      "limite_en": "Three JSON files are read as samples (150,000 and 6,000 bytes). The file paths come from literals of the page script bundle; no key was used. The CSV of the dossiers and the files of single measures were not added.",
+      "urmatorul_pas": "Propuneți furnizorii (Programul de guvernare, Monitorul Oficial).",
+      "limite_en": "Three JSON files are read as samples (150,000 and 6,000 bytes). The file paths come from literals of the page script bundle; no key was used. One per-measure file (`masuri/finante-m01.json`, the first identifier of the index) is read whole: 45 fields that `analiza-370.json` lacks. The other 369 are not read. The CSV of the dossiers is not added (same data as the JSON file).",
       "blocaj_en": "none",
-      "urmator_en": "Propose the providers (government programme, Official Gazette) and decide whether the per-measure files are added."
+      "urmator_en": "Propose the providers (government programme, Official Gazette)."
     },
     "statul-meu": {
       "rezultat": "Date deschise sub CC BY 4.0, doar agregate: un fișier JSON pe întrebare, fișierele întrebărilor de valori (v1–v8) și un API; toate întrebările sunt încă sub pragul de 50 de respondenți, deci celulele sunt goale.",
@@ -756,6 +758,30 @@
       "limite_en": "The schema comes from code, not from data; it does not prove what the live service stores. No live public API was examined; the web script bundle was not read. `docs/database-schema.md` is outdated (the platform was named Civica) and was not added.",
       "blocaj_en": "none",
       "urmator_en": "Check whether the public list of reports has an API with no key; if so, the source carries the persons mark."
+    },
+    "romania-in-puncte": {
+      "rezultat": "Harta alegerilor locale din 9 iunie 2024: un punct pentru fiecare dintre cele 13.447 de localități. Pagina (2.115.832 de octeți) păstrează datele într-o insulă de date JSON și în literale de script: localități, rezultate pe candidat, consilii locale și județene.",
+      "limite": [
+        "Pagina este citită întreagă prin excepția de mărime `max_octeti` (2.500.000). Sursa are marcajul pentru persoane (numele primarilor și ai candidaților): 33 de înregistrări de câmp, fără nicio valoare.",
+        "Fragmentul din pagină care numește furnizorul (AEP) nu mai este citat: o sursă cu persoane nu se citează. Propoziția rămâne în elementul D179 al coadei de revizuire."
+      ],
+      "blocaj": "",
+      "urmatorul_pas": "Decideți elementul D179 (furnizorul AEP).",
+      "limite_en": "The map of the local elections of 9 June 2024, one point for each of 13,447 localities. The page (2,115,832 bytes) keeps its data in a JSON data island and in script literals: localities, results for each candidate, local and county councils. Read whole by the size exception `max_octeti` (2,500,000). The source has the persons mark (names of mayors and candidates): 33 field records, no value. The fragment of the page that names the provider (AEP) is no longer quoted, because a source with persons is never quoted; the sentence stays in item D179 of the review queue.",
+      "blocaj_en": "none",
+      "urmator_en": "Decide item D179 (provider AEP)."
+    },
+    "harta-notelor": {
+      "rezultat": "Hartă și clasamente ale rezultatelor la Evaluarea Națională și la bacalaureat, 2018–2026, pe țară, regiuni, județe, localități și școli. Pagina (8.151.144 de octeți) păstrează datele în literale de script: localități cu coordonate, note și promovabilitate pe an, școli, specializări și distribuții.",
+      "limite": [
+        "Pagina este citită întreagă prin excepția de mărime `max_octeti` (9.000.000). Sursa nu are marcajul pentru persoane: datele sunt agregate pe localități și școli, cu nume de școli, nu de persoane.",
+        "Limita de eșantionare a fost atinsă: 168 de înregistrări de câmp."
+      ],
+      "blocaj": "",
+      "urmatorul_pas": "Propuneți furnizorul (Ministerul Educației, date deschise).",
+      "limite_en": "Map and rankings of the results of the National Evaluation and the baccalaureate, 2018–2026, by country, region, county, locality and school. The page (8,151,144 bytes) keeps its data in script literals: localities with coordinates, grades and pass rates for each year, schools, specialisations and distributions. Read whole by the size exception `max_octeti` (9,000,000). The source has no persons mark: the data is aggregated by locality and school, with school names and no person. The sampling limit was reached: 168 field records.",
+      "blocaj_en": "none",
+      "urmator_en": "Propose the provider (Ministry of Education, open data)."
     }
   },
   "ins": [

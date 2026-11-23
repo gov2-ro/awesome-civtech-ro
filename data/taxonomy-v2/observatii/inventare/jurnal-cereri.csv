@@ -746,3 +746,11 @@ I,2026-11-23T09:56:13.527478+00:00,GET,https://nicolaeurs.ro/ghicestebugetul/,ok
 I,2026-11-23T09:56:13.548194+00:00,GET,https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/date/uat_varsta.csv,ok,200,632130,nu,inventar
 I,2026-11-23T09:56:13.993605+00:00,GET,https://romaniainteractiva.ro/mortalitate-evitabila/,ok,200,40497,nu,inventar
 I,2026-11-23T09:56:15.002193+00:00,GET,https://sondajeleromaniei.ro/data/date.js,ok,200,726070,nu,inventar
+I2,2026-11-23T10:27:08.653849+00:00,GET,https://1vot.ro/,ok,200,52726,nu,first look at the page of cat-costa-un-vot (script constant E; persons mode of js-literale)
+I2,2026-11-23T10:28:12.462082+00:00,GET,https://nicolaeurs.ro/catevoturiaduceunprimar/,ok,200,2163390,nu,"whole read of tool pages over 2,000,000 bytes (max_octeti); persons mode of js-literale"
+I2,2026-11-23T10:28:12.684072+00:00,GET,https://romaniainteractiva.ro/locale/,ok,200,2115832,nu,"whole read of tool pages over 2,000,000 bytes (max_octeti); persons mode of js-literale"
+I2,2026-11-23T10:28:14.836692+00:00,GET,https://romaniainteractiva.ro/harta-notelor/,ok,200,8151144,nu,"whole read of tool pages over 2,000,000 bytes (max_octeti); persons mode of js-literale"
+I2,2026-11-23T10:31:30.069578+00:00,GET,https://lipseste.ro/data/masuri/finante-m01.json,ok,200,11907,nu,one per-measure file named by masuri/index.json (first id): compare its fields with analiza-370.json
+I2,2026-11-23T10:41:41.502186+00:00,GET,https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/date/uat_activitati_2021.csv,ok,206,200000,nu,"bounded range read (200,000 bytes) of three CSV files over 2,000,000 bytes: header and first rows"
+I2,2026-11-23T10:41:41.987737+00:00,GET,https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/date/uat_etnie.csv,ok,206,200000,nu,"bounded range read (200,000 bytes) of three CSV files over 2,000,000 bytes: header and first rows"
+I2,2026-11-23T10:41:42.490252+00:00,GET,https://raw.githubusercontent.com/dorinspoaller/recensamant-ro-2011-2021/66acf0bd5ad5ddbd89ac3cceb8a16057609e812b/date/uat_religie.csv,ok,206,200000,nu,"bounded range read (200,000 bytes) of three CSV files over 2,000,000 bytes: header and first rows"
