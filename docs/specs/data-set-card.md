@@ -1,6 +1,6 @@
 # Spec: a card for each data set (fișa setului de date)
 
-Status: proposed 2026-11-23. The owner decides. Nothing is built.
+Status: accepted 2026-11-23 (owner's answers in section 9). Briefs: [`docs/briefs/data-set-card-build.md`](../briefs/data-set-card-build.md) (the build), [`docs/briefs/data-set-card-pilot.md`](../briefs/data-set-card-pilot.md) (the pilot cards).
 Source: item 1 of the external review (`docs/BACKLOG.md`, section "External review of `/date/` and the taxonomy — 2026-11-23"; local copy `tmp/261123/Revizie civtech.gov2.ro_date.pdf`, not tracked).
 Measured at commit `e300e9b` (2026-11-23). The measuring scripts are not in the repository; Appendix B gives the method, so a person can repeat it.
 
@@ -80,7 +80,7 @@ Correction to the review: `source_row` and `risk_score` are fields of `achizitii
 
 ### 4.1 Storage: one hand-edited file
 
-New file `data/taxonomy-v2/integrare/seturi-de-date.csv`. One row for each pair of entry and data set. A person edits it in the repository (like `relatii.csv`; not a tab of the Sheet in the first version).
+New file `data/taxonomy-v2/integrare/fise-date.csv`. One row for each pair of entry and data set. A person edits it in the repository (like `relatii.csv`; not a tab of the Sheet in the first version).
 
 | Column | Meaning | Rule |
 | --- | --- | --- |
@@ -141,7 +141,7 @@ The technical view is the existing page `/date/<slug>/` ("Pe familii", "Pe surse
 
 ## 6. Changes to `DATA-SCHEMA.md`
 
-- New section `seturi-de-date.csv` under "Taxonomy v2 package", with the table of 4.1 and the checks of 8.
+- New section `fise-date.csv` under "Taxonomy v2 package", with the table of 4.1 and the checks of 8.
 - "Conventions of the v2 files" and "Integration overlay: integrare/": list the new file.
 - "data.json of the v2 model": the key `datasets`.
 - "Explorer inventory preview" and "Cross-project data finder preview": the card block and the heading "Vedere tehnică"; the word "document citit" where the text means a file that the inventory read.
@@ -161,13 +161,13 @@ The technical view is the existing page `/date/<slug>/` ("Pe familii", "Pe surse
 Errors: a missing or unknown column; an `id` twice; an unknown `slug`; a `furnizor` that is not an accepted provider and not `autor`; a code outside its list (`granularitate`, `acces`, the `cod` and `rol` of `identificatori`, `baza`, `stare`); `url_acces` and `acces` of different lengths; an item of `variabile_cheie` that does not exist for the entry; an `acceptat` row without `inregistrare`, `dovada` or `verificat_la`; a card on an entry out of the inventory scope (an organisation).
 Warnings: no `date_din` relation of the entry to the card's provider, or only a `propus` one; a derived variable (`categorie` `iesire-derivata`) in `variabile_cheie` without `nota_metoda`; `verificat_la` older than 365 days.
 
-## 9. Decisions for the owner
+## 9. Decisions of the owner (2026-11-23)
 
-1. Accept the card as the public unit of `/date/` and of "Date & metodă", with the fields as a technical view (this spec). Alternative: keep the field view as the main view and add only the provider chips; cost: the review's main finding stays open.
-2. The file name and place: `integrare/seturi-de-date.csv` (proposed). It is close to the generated `observatii/inventare/seturi-date.json`; the alternative `integrare/fise-date.csv` avoids the clash.
-3. The 96 `propus` `date_din` rows (30 entries): decide them before the pilot, or the pilot cards of those entries show a provider that the facts box does not show.
-4. `romania-transparenta` has no `date_din` relation: add the providers (ANAF, MF, the others that its documentation names) as `propus` in the pilot brief, or leave the entry out of the pilot.
-5. Taxonomy questions that this spec does not decide (you asked to decide them after item 1): the review moves `detaliere_date` and `relatie_date` from `intrari.csv` to the card. The card has `granularitate` and `perioada`, which overlap with `detaliere_date`. The decision belongs to the taxonomy items.
+1. Accepted: the card is the public unit of `/date/` and of "Date & metodă"; the fields are a technical view.
+2. The file is `integrare/fise-date.csv`. The proposed name `seturi-de-date.csv` was too close to the generated `observatii/inventare/seturi-date.json`.
+3. The owner decides the 96 `propus` `date_din` rows (30 entries) before the pilot, or asks for help. The pilot brief starts only after that.
+4. `romania-transparenta`: the pilot brief proposes its providers as `propus` `date_din` rows (and `furnizori.csv` rows for new names). The owner accepts them.
+5. Still open, with the taxonomy items: the review moves `detaliere_date` and `relatie_date` from `intrari.csv` to the card. The card has `granularitate` and `perioada`, which overlap with `detaliere_date`. This spec does not change those columns.
 
 ## Appendix A. SICAP.ai, the evidence for the example card
 

@@ -1,5 +1,18 @@
 # Activity
 
+## 2026-11-23 — Data-set card: owner's decisions and two briefs (v0.85.0)
+
+**Done**
+- Spec `docs/specs/data-set-card.md` accepted. Briefs for Sonnet: `docs/briefs/data-set-card-build.md` (ready) and `docs/briefs/data-set-card-pilot.md` (waiting).
+
+**Decided** (owner, 2026-11-23)
+- The card is the public unit of `/date/`; the fields are a technical view.
+- The file is `integrare/fise-date.csv`, not `seturi-de-date.csv`: the generated `seturi-date.json` has a name too close to it.
+- The owner decides the 96 `propus` `date_din` rows before the pilot, or asks for help.
+- The pilot proposes the providers of `romania-transparenta` as `propus` rows.
+- The build brief writes no card row: the public site does not change until the owner accepts pilot cards. Cost: the browser checks need fixture cards in an isolated build.
+- `detaliere_date` and `relatie_date` stay open with the taxonomy items.
+
 ## 2026-11-23 — Review item 1: the data-set card, measured and specified (v0.84.0)
 
 **Done**
