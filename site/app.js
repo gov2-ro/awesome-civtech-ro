@@ -726,7 +726,7 @@ function datasetCard(c, level = 4) {
   const access = c.access.map(a => a.url ? `<a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.label)}</a>` : esc(a.label)).join(', ');
   const host = u => { try { return new URL(u).hostname || u; } catch { return u; } };
   const facts = [`<span>furnizor: ${prov.anchor ? `<a href="${ROOT}date/furnizori/#${esc(prov.anchor)}">${esc(prov.name)}</a>` : esc(prov.name)}</span>`,
-    `<span>o înregistrare: ${esc(c.record)}${c.grain && !c.record.toLowerCase().includes(c.grain.label.toLowerCase()) ? ` <small>(${esc(c.grain.label)})</small>` : ''}</span>`,
+    ...(c.record ? [`<span>o înregistrare: ${esc(c.record)}${c.grain && !c.record.toLowerCase().includes(c.grain.label.toLowerCase()) ? ` <small>(${esc(c.grain.label)})</small>` : ''}</span>`] : []),
     `<span>perioada: ${c.period ? esc(c.period) : 'nedeclarată'}</span>`];
   if (access) facts.push(`<span>acces: ${access}</span>`);
   const lines = [`<p class="ds-line">${facts.join(' · ')}</p>`];
@@ -734,7 +734,8 @@ function datasetCard(c, level = 4) {
   if (c.keyVariables.length) lines.push(`<p class="ds-line">Variabile principale: ${c.keyVariables.map(k => `<span>${esc(k.label)}</span>`).join(', ')}</p>`);
   if (c.methodNote) lines.push(`<p class="ds-note">Metodă: ${esc(c.methodNote)}</p>`);
   const meta = [...(c.basisLabel ? [`bază: ${esc(c.basisLabel)}`] : []), ...(c.checked ? [`verificat la ${esc(c.checked)}`] : [])];
-  if (c.evidence.length) meta.push(`dovadă: ${c.evidence.map(u => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(host(u))}</a>`).join(', ')}`);
+  const hosts = c.evidence.map(host), label = (h, n) => { const k = hosts.slice(0, n).filter(x => x === h).length; return k ? `${h} (${k + 1})` : h; };  // a repeated host gets a number, as in entry_page.py
+  if (c.evidence.length) meta.push(`dovadă: ${c.evidence.map((u, n) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(label(hosts[n], n))}</a>`).join(', ')}`);
   if (meta.length) lines.push(`<p class="ds-meta">${meta.join(' · ')}</p>`);
   return `<article class="ds-card" id="set-${esc(c.id)}"><${h}>${esc(c.set)}</${h}>${lines.join('')}</article>`;
 }

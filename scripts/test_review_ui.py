@@ -48,6 +48,8 @@ def setUpModule():
     TEMPLATE = Path(tempfile.mkdtemp(prefix='review-ui-template-'))
     atexit.register(shutil.rmtree, TEMPLATE, True)
     shutil.copytree(REAL, TEMPLATE / 'taxonomy-v2', ignore=shutil.ignore_patterns('runs', '__pycache__', 'catalogue.json', 'surse', 'pagini'))
+    # the pilot cards stay in the real file; the copy has no inventory scope, so a card there would be an error
+    (TEMPLATE / 'taxonomy-v2' / 'integrare' / common.CARDS_FILE).write_text(','.join(common.CARD_COLS) + '\n', encoding='utf-8')
     repo = Path(common.ROOT)
     for real in REAL_FILES[:3]:
         rel = real.relative_to(repo).as_posix()

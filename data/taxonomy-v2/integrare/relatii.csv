@@ -446,3 +446,8 @@ L444,igov-analiza-presei,atribuit_in_sursa,,Marius Dima,autor,Marius Dima / Andr
 L445,igov-analiza-presei,atribuit_in_sursa,,Andra Martinescu,autor,Marius Dima / Andra Martinescu,rol_neconfirmat
 L446,uniranking-ro,date_din,,Times Higher Education World University Rankings,surse_date,https://romaniainteractiva.ro/UniRankingRO/,acceptat
 L447,uniranking-ro,date_din,,Academic Ranking of World Universities (ARWU),surse_date,https://romaniainteractiva.ro/UniRankingRO/,acceptat
+L448,romania-transparenta,date_din,,Agenția pentru Monitorizarea și Evaluarea Performanțelor Întreprinderilor Publice (AMEPIP),surse_date,https://api.romaniatransparenta.eu/v1/companii/43721310,propus
+L449,romania-transparenta,date_din,,ANAF,surse_date,https://api.romaniatransparenta.eu/v1/companii/43721310,propus
+L450,romania-transparenta,date_din,,Ministerul Finanțelor,surse_date,https://api.romaniatransparenta.eu/v1/date/institutii_centrale,propus
+L451,romania-transparenta,date_din,,SEAP,surse_date,https://romaniatransparenta.eu/registre/administratia-centrala/4266863,propus
+L452,romania-transparenta,date_din,,Consiliul Concurenței (RegAS),surse_date,https://romaniatransparenta.eu/llms.txt,propus

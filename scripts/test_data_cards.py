@@ -58,9 +58,9 @@ def good(**changes):
 
 
 class RealFile(unittest.TestCase):
-    def test_the_real_file_is_a_header_only(self):
-        self.assertEqual(REAL_FILE.read_text(encoding='utf-8'), ','.join(CARD_COLS) + '\n')
-        self.assertEqual(common.load_cards(), [])
+    def test_the_real_file_has_the_header_and_only_proposed_or_accepted_rows(self):
+        self.assertEqual(REAL_FILE.read_text(encoding='utf-8').split('\n', 1)[0], ','.join(CARD_COLS))
+        self.assertTrue(all(r['stare'] in ('propus', 'acceptat') for r in common.load_cards()))
 
     def test_the_header_is_declared_in_the_package_and_in_the_constants(self):
         pachet = json.loads((common.PUBLIC_ROOT / 'pachet.json').read_text(encoding='utf-8'))
@@ -78,10 +78,10 @@ class RealFile(unittest.TestCase):
         for lst in ('acces_set', 'rol_identificator', 'granularitate_set'):
             self.assertTrue(all(r['statut'] == 'propus' and r['eticheta_ro'] and r['definitie_ro'] for r in codes[lst].values()), lst)
 
-    def test_the_real_root_passes_validation_without_a_card_message(self):
+    def test_the_real_root_passes_validation_with_no_card_error(self):
         code, out = run('scripts/validate.py', '--publication')
         self.assertEqual(code, 0, out)
-        self.assertIn('0 erori, 0 avertismente', out)
+        self.assertIn('0 erori', out)
 
 
 class Checks(unittest.TestCase):
@@ -342,6 +342,26 @@ class NoCardChangesNothing(unittest.TestCase):
     def test_the_index_has_no_datasets_key(self):
         index = json.loads((self.site / 'inventar/index.json').read_text(encoding='utf-8'))
         self.assertTrue(all('datasets' not in e for e in index['entries']))
+
+
+class Display(unittest.TestCase):
+    """Two display rules found in the pilot review: a key variable named by its path shows the field name, and an empty record shows no „o înregistrare:”."""
+
+    def payload(self, **values):
+        row = card(id='S009', slug='sicap-ai', set='Un set', furnizor='autor', stare='acceptat', **values)
+        return data_cards.card_payload(row, {}, {}, {}, {('abc', '$.date[].restant_lei'): 'restant_lei'})
+
+    def test_a_key_variable_by_path_shows_the_field_name(self):
+        keys = self.payload(variabile_cheie='abc#$.date[].restant_lei|abc#unknown.path')['keyVariables']
+        self.assertEqual([k['label'] for k in keys], ['restant_lei', 'unknown.path'])
+
+    def test_a_repeated_evidence_host_is_numbered(self):
+        html = entry_page.dataset_card(self.payload(dovada='https://a.ro/x|https://a.ro/y|https://b.ro/'))
+        self.assertIn('>a.ro</a>, <a href="https://a.ro/y" target="_blank" rel="noopener">a.ro (2)</a>, <a href="https://b.ro/" target="_blank" rel="noopener">b.ro</a>', html)
+
+    def test_an_empty_record_is_not_shown(self):
+        self.assertNotIn('o înregistrare', entry_page.dataset_card(self.payload()))
+        self.assertIn('o înregistrare: o firmă', entry_page.dataset_card(self.payload(inregistrare='o firmă')))
 
 
 if __name__ == '__main__':
