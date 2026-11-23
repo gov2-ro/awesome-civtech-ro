@@ -217,6 +217,8 @@ def check(root, baseline: bool = False, publication: bool = False, package: "Pac
 
     lifecycle = set(schema["lifecycle_status"])
     referenced = {r["list"] for rules in schema["field_rules"].values() for r in rules.values() if r.get("kind") == "code"}
+    # A column that holds a list of codes (or `cod:rol` pairs) cannot have a field rule; `list_columns` names its code list, and validate.py checks the cells.
+    referenced |= {lst for columns in schema.get("list_columns", {}).values() for lst in columns.values()}
     for lst in referenced - set(pkg.codes):
         fail(f"valori.csv: schema.json refers to the missing code list `{lst}`")
     for lst in set(pkg.codes) - referenced:

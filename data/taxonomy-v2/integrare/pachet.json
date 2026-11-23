@@ -13,9 +13,29 @@
     "rezultate.csv",
     "propuneri-vocabular.csv",
     "catalogue.json",
-    "relatii.csv"
+    "relatii.csv",
+    "fise-date.csv"
   ],
   "headers": {
+    "fise-date.csv": [
+      "id",
+      "slug",
+      "set",
+      "furnizor",
+      "inregistrare",
+      "granularitate",
+      "perioada",
+      "acces",
+      "url_acces",
+      "identificatori",
+      "variabile_cheie",
+      "nota_metoda",
+      "dovada",
+      "baza",
+      "verificat_la",
+      "stare",
+      "nota"
+    ],
     "modificari.csv": [
       "id",
       "data",
