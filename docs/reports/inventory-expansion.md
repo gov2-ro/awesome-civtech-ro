@@ -49,7 +49,7 @@ The 186 projects and resources of the catalogue (the finder lists the 137 that a
 | Schema declarations / sampled JSON paths / CSV headers / INS dimensions | 1,312 / 904 / 82 / 4 | 2,300 / 5,034 / 415 / 4 |
 | HTML control candidates / entries with candidates | 308 / 78 | 450 / 117 |
 | Partial / unconfirmed profiles (all 140 entries) | 78 / 62 | 149 / 53 |
-| Accepted provider relations / entries with accepted providers | 26 / 11 | 217 / 76 |
+| Accepted provider relations / entries with accepted providers | 26 / 11 | 222 / 77 |
 | Pending provider proposals (review items D132 and later) | 15 | 10 |
 | Proposed business-variable groups | 7 | 46 |
 | Unit tests discovered / skipped | 308 / 6 | 1053 / 6 |

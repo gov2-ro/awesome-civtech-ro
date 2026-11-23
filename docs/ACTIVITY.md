@@ -1,5 +1,25 @@
 # Activity
 
+## 2026-11-23 — Pilot cards: the recommended rows accepted; „Același autor” with the organisation (v0.88.0)
+
+**Done**
+- The owner accepted the 40 rows that the review list recommends (`docs/reports/fise-date-pilot-2026-11-23.csv`, column `decizie`): 34 cards in `integrare/fise-date.csv`, the five `date_din` relations L448–L452 of `romania-transparenta` in `relatii.csv`, and the provider `consiliul-concurentei` in `furnizori.csv`. The other 19 cards stay `propus` (backlog).
+- „Același autor” on an entry page now counts the parent as the author when the parent is an organisation (`parte_din` an `organizatie`). Entries of the same tab come first. Example: `ineter` listed only palavre; it now lists the five other projects of Curaj Înainte (slugs `context-politic`, `cotele-dunarii`, `leginoi`, `palavre`, `statul-meu`), then the resource `uzina-din-nori`. `sameAuthor` / `authorKeys` in `site/app.js` and `Context.same_author` / `owner_keys` in `scripts/entry_page.py` agree (checked on `ineter`).
+
+**Measured**
+- `validate.py --publication`: 0 errors, 0 warnings (6 warnings before: S034–S039, the relations L448–L452 were `propus`). An isolated build shows 34 cards in `data.json`.
+
+**Hard**
+- With accepted cards, `build.py` without `--with-inventory` crashed in `entry_page.data_summary`: an entry with a card and no inventory read `inv["count"]` on `None`. The Pages build uses `--with-inventory`, so the deploy did not fail; the plain build of CI and of `CLAUDE.md` did. Fixed: the intro is only written for a counted inventory.
+- `test_data_cards.NoCardChangesNothing` assumed that no card is accepted. It now checks that only accepted cards are built, and that an entry without a card keeps its old panel and pages.
+- The person-data check (`test_inventory_persons`) found „Context Politic” in this entry: the same text is a value of the Context Politic report source, which is marked as containing persons. The entry names the projects by slug instead.
+- `docs/reports/inventory-expansion.md` regenerated: accepted `date_din` relations 217 → 222, providers 76 → 77.
+- Full run: 1,417 tests OK, 9 skipped (before the fixes: 8 failures and 1 error, all from the points above).
+
+**Decided**
+- A parent that is a project or a resource (`romania-interactiva`, `marius-comper`, `gov2-ro`, `igov`) does not make its children „same author”: they are the items of a list or a collection, not the work of one author. Cost of the alternative: 30 unrelated entries under „Același autor” on each child of `romania-interactiva`.
+- The organisation page keeps its two sections („Conține” for `parte_din`, „Proiecte și resurse” for the other attributions); only the entry pages change.
+
 ## 2026-11-23 — Data-set card: review and merge of the pilot (v0.87.0)
 
 **Done**
