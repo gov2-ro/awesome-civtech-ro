@@ -2,6 +2,14 @@
 
 Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
+## New entries — 2026-11-23
+
+- [ ] Owner: decide `acceptat` for `palavre`, `ineter`, `igov-analiza-presei`. The publication gate blocks the build until then.
+- [ ] Coordinator: run `collect_docs.py`, `inventory.py` and `inventory_report.py` for the three slugs after the merge.
+- [ ] Owner: `palavre` takes official communications from `ineter`. No predicate fits; decide whether to add one.
+- [ ] Search for `igov-analiza-presei` returned 0 rows (query used the name and the author). Run again with a better query if the owner wants mentions.
+- [ ] Serper has no credits; Brave was used.
+
 ## Section „Analize & investigații” — 2026-11-18
 
 - [ ] Validate two entry pages (one project, one organisation) in the Schema.org validator and the Google Rich Results test. Not done in v0.79.0 (no external service used).

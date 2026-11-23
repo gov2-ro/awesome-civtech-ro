@@ -1,5 +1,22 @@
 # Activity
 
+## 2026-11-23 — Three new entries: palavre, ineter, igov-analiza-presei
+
+**Done**
+- `intrari.csv`: `palavre`, `ineter` (proiect, `propus`) and `igov-analiza-presei` (proiect, `propus`). The owner asked for all three.
+- `relatii.csv` L439–L445: `parte_din` → `curaj-inainte` for `palavre` and `ineter`; `parte_din` → `igov` for `igov-analiza-presei`; author rows (`uzina-din-nori` for the first two; Marius Dima and Andra Martinescu, as on `igov`, for the third). All `propus` or `rol_neconfirmat`.
+- Profile: all three `activ`, HTTP 200; images in `site/img/`. Search with Brave only: Serper had no credits (HTTP 400). Palavre: 13 rows, all noise (the word "palavre" is a dictionary entry). Ineter: 6 rows, all noise (INETER is a Nicaraguan institute, `ineter.gob.ni`). `igov-analiza-presei`: 0 rows, because the query used the entry name and the author.
+- `validate.py`: 0 errors. The preview build with `--allow-draft` works (198 entries).
+
+**Hard**
+- `curajinainte.ro` does not resolve (NXDOMAIN). The owner's name for the organisation is `curajinainte.org`. Both `palavre.ro` and `ineter.ro` name "Asociația Curaj Înainte" (CUI 39175610) and link to `curajinainte.org`. The `curaj-inainte` row is unchanged.
+- The inventory step was skipped on request (coordinator runs it after the merge).
+- 24 tests fail on this branch. Most fail because the publication gate rejects the three `propus` entries in tests that build a public copy. `test_inventory_report` also needs the inventory step.
+
+**Decided**
+- `igov-analiza-presei` is a `proiect`, not a `publicatie`: the page has filters, a map and a CSV export, and a person uses it again. It does not state one finding at one date.
+- `igov` and its inventory sources do not cover the page. The `igov` row names a press map in its text only. The documentation pages found are `/`, `/despre.html` and `/propune-flux.html`. Cost of one row: two rows for one site. Cost of the alternative: the page has no address of its own in the catalogue.
+
 ## 2026-11-20 — Search across tabs; author view
 
 **Done**
