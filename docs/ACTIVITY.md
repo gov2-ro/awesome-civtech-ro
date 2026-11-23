@@ -1,5 +1,25 @@
 # Activity
 
+## 2026-11-23 — Data-set card: the build, with no card (brief `data-set-card-build.md`)
+
+**Done**
+- Part A: `integrare/fise-date.csv` (header only, 17 columns), declared in `pachet.json` (`local_files`, `headers`); three code lists in `valori.csv` (`acces_set` 5, `rol_identificator` 8, `granularitate_set` 22, all `propus`); constants and `load_cards` in `common.py`.
+- Part B: `validate.py` `check_cards` and `scripts/data_cards.py` (`card_problems`): the errors and warnings of spec section 8, with GitHub annotations through `report`.
+- Part C: `datasets` on each item of `data.json` (`[]` without an accepted card); `datasets` on an entry of `inventar/index.json` only when it has a card.
+- Part D: `entry_page.dataset_card` and `datasetCard` in `site/app.js` write the same card; the panel „Date & metodă” shows the cards, then „Vedere tehnică: N câmpuri din M documente →”.
+- Part E: `/date/<slug>/` with „Seturi de date” and „Vedere tehnică”; one line for each card in the finder.
+- Part F: `DATA-SCHEMA.md`, `METODOLOGIE.md`, `CLAUDE.md`. Tests: `scripts/test_data_cards.py` (38), `scripts/check_data_cards.py` (browser, builds its own fixture preview; added to `validate.yml`).
+
+**Hard**
+- The loader refuses a code list that no column of `schema.json` uses, and a field rule checks one code, not a list. The three new lists belong to list columns. Fix: a key `list_columns` in `schema.json` and one line in `taxonomy_v2.check`; the invariant (every list is used) stays.
+- A `local` identifier has the form `local:<namespace>` and the namespaces hold colons. Spec 4.1 gives it no role. The build writes an empty role and shows the namespace.
+- „Vedere tehnică” holds the two old parts one heading level deeper (`demote`), so that the headings keep their order.
+
+**Decided**
+- An empty `url_acces` cell means no address for any code (an item between bars may be empty). Cost of the strict rule: every `web` card would need a bar.
+- The index of the finder has no `datasets` key for an entry without a card, so that the public `index.json` does not change.
+- Additions to the spec's error list: an address that is not http(s), a missing `set`, an `id` outside `S001`, a `verificat_la` that is not ISO.
+
 ## 2026-11-23 — Thanks to eek for the external review
 
 **Done**

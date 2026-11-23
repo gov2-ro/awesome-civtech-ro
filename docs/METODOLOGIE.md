@@ -330,3 +330,7 @@ Un refuz sau un blocaj nu autorizează ocolirea cu alt client ori browser.
 | Interpretarea dovezilor și publicarea structurii | `scripts/structure_curation.py`, `scripts/structure_site.py` |
 | Acceptarea corespondențelor | `data/taxonomy-v2/structura/decisions.json` |
 | Căutarea entităților | `site/entities.js` |
+
+## Fișa setului de date
+
+O fișă de set de date este o afirmație editorială cu dovadă: un om citește mai multe surse și spune ce set de date folosește intrarea, de la cine, ce descrie o înregistrare, pentru ce perioadă, cum se obține și ce identificatori are. Câmpurile din inventar sunt doar observații: ele arată ce se poate extrage, nu ce contează. Fiecare fișă are o bază (`declarat`, `observat` sau `editorial`), o dovadă și data ultimei verificări. Numai proprietarul acceptă o fișă. Un câmp nedeclarat rămâne gol, iar pagina spune „nedeclarat”.
