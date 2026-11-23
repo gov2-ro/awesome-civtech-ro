@@ -82,7 +82,8 @@ with sync_playwright() as pw:
 
     page.goto(BASE + '?q=REF_AREA')
     page.wait_for_selector('[data-slot="toolbar"] .count')
-    expected = [i for i in DB['items'] if i['kind'] == 'proiect' and i['status'] not in ('offline', 'arhivat') and 'ref_area' in i.get('inventory', {}).get('keywords', '').lower()]
+    # A text query also counts the matches of the other tabs (app.js `otherTabs`, v0.82.0); inactive entries stay hidden.
+    expected = [i for i in DB['items'] if i['status'] not in ('offline', 'arhivat') and 'ref_area' in i.get('inventory', {}).get('keywords', '').lower()]
     ok('main explorer search finds inventoried field names', int(page.locator('[data-slot="toolbar"] .count b').inner_text()) == len(expected) and len(expected) > 0)
 
     # New evidence kinds: dataset facts, declared alternatives, formulas, periods, and a failed refresh that must not look fresh.
