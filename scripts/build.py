@@ -31,6 +31,7 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 
 import entry_page
+from data_cards import cards_by_entry
 from common import (BOILERPLATE, DATA, DATA_GROUPS, NETWORK_ROLES, PUBLIC_ROOT, ROOT, SITE, coverage_line, data_schema, domain_of, kept_by_slug, label_coverage,
                     link_host, load_catalogue, load_entries, load_mentions, load_profile, load_vocabulary, observation_paths,
                     parse_link, public_catalogue, read_csv, split_list, split_tip, status_of, years_since)
@@ -665,6 +666,7 @@ def items_v2(root: Path, site: Path) -> tuple[list[dict], dict]:
     items = []
     catalogue = public_catalogue(root)  # a hidden entry (`clasificare_stare` `ascuns`) stays in the data and never reaches the site
     shown = {e["slug"] for e in catalogue}
+    cards = cards_by_entry(root, pkg)  # the accepted data-set cards (docs/specs/data-set-card.md); an entry without one gets []
     for n, e in enumerate(catalogue):
         p = profile.get(e["slug"], {})
         o = observed(e, p, roles, site)
@@ -698,6 +700,7 @@ def items_v2(root: Path, site: Path) -> tuple[list[dict], dict]:
             "dataRelation": e["data_relation"],
             "areas": e["areas"],
             "dataSources": [{"name": a["name"], "evidence": a["evidence"]} for a in e["data_sources"]],
+            "datasets": cards.get(e["slug"], []),
             # Unresolved roles stay neutral: `role` is the predicate, `accepted` says whether an editor confirmed it.
             "attributions": [{"name": a["name"], "org": a["slug"] if a["slug"] in shown else "", "role": a["predicate"],
                               "accepted": a["state"] == "acceptat"} for a in e["attributions"]],

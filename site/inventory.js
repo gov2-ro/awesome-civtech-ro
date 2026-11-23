@@ -115,6 +115,15 @@ function proof(entry) {
   return html;
 }
 
+// One line for each data-set card of the entry (docs/specs/data-set-card.md): the set, the provider, the access and the identifiers.
+function setLine(c) {
+  const parts = [`<strong>${esc(c.set)}</strong>`,
+    c.provider.anchor ? `<a href="${esc(url('date/furnizori/#' + c.provider.anchor))}">${esc(c.provider.name)}</a>` : esc(c.provider.name),
+    c.access.length ? esc(c.access.map(a => a.label).join(', ')) : '',
+    c.identifiers.length ? esc(c.identifiers.map(x => `${x.codeLabel} (${x.roleLabel || x.namespace})`).join(', ')) : ''];
+  return `<li>${parts.filter(Boolean).join(' · ')}</li>`;
+}
+
 function card(entry) {
   const inv = entry.inventory;
   const evidence = entry.variables.length || Object.keys(entry.providers).length || inv.docs?.length;
@@ -122,7 +131,8 @@ function card(entry) {
     <div class="finder-card-head"><span>${entry.kind === 'proiect' ? 'Proiect' : 'Resursă'}${entry.status === 'arhivat' ? ' · Arhivat' : entry.status === 'offline' ? ' · Offline' : ''}</span>
       <span>${inv.count ? 'Inventar parțial' : 'Câmpuri încă neinventariate'}</span></div>
     <h2><a href="${esc(url(entry.href))}">${esc(entry.name)}</a></h2>
-    <p class="finder-description">${esc(entry.description)}</p><dl>
+    <p class="finder-description">${esc(entry.description)}</p>
+    ${entry.datasets?.length ? `<ul class="finder-sets" aria-label="Seturi de date">${entry.datasets.map(setLine).join('')}</ul>` : ''}<dl>
     ${entry.variables.length ? `<dt>Variabile${entry.variables.some(v => (meta[v.id]?.state || 'propus') === 'propus') ? ' · asocieri propuse' : ''}</dt><dd>${entry.variables.map(v => filterButton('variables',v.id,labels.variables[v.id])).join('')}</dd>` : ''}
     <dt>Surse de date</dt><dd>${Object.keys(entry.providers).map(v => filterButton('providers',v,v)).join('') || '<span class="finder-unknown">Proveniență încă neverificată</span>'}</dd>
     ${entry.institutions.length ? `<dt>Instituții vizate</dt><dd>${entry.institutions.map(v => filterButton('institutions',v,labels.institutions[v])).join('')}</dd>` : ''}
@@ -222,7 +232,7 @@ async function start() {
     for (const e of entries) {
       e._values = {variables:e.variables.map(v => v.id), providers:Object.keys(e.providers), subjects:e.subjects, institutions:e.institutions};
       for (const p of e._values.providers) labels.providers[p]=p;
-      e._text = norm([e.name,e.description,e.keywords,...Object.values(e.providers).flat().map(p => p.name),
+      e._text = norm([e.name,e.description,e.keywords,...(e.datasets || []).map(c => c.set),...Object.values(e.providers).flat().map(p => p.name),
         ...groups.flatMap(g => e._values[g.key].map(v => labels[g.key][v]))].join(' '));
     }
     // Do not offer catalogue concepts which no project or resource uses.

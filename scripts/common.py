@@ -508,6 +508,40 @@ def provider_table(rows: list[dict]) -> dict[str, dict]:
     return {r["nume_sursa"]: r for r in rows if r["stare"] == "acceptat"}
 
 
+# --- The data-set card (docs/specs/data-set-card.md) -------------------------------------------------------------------------------
+# `integrare/fise-date.csv` is hand-edited: one row for each pair of entry and data set. The build shows the rows with `stare` `acceptat`; only the owner sets it.
+CARDS_FILE = "fise-date.csv"
+CARD_COLS = ["id", "slug", "set", "furnizor", "inregistrare", "granularitate", "perioada", "acces", "url_acces", "identificatori", "variabile_cheie",
+             "nota_metoda", "dovada", "baza", "verificat_la", "stare", "nota"]
+CARD_IDENTIFIERS = ("cui", "siruta", "euid", "cpv", "caen", "local")  # `cod` of an item of `identificatori`; `local` is followed by the namespace of the recipe
+CARD_IDENTIFIER_LABELS = {"cui": "CUI", "siruta": "SIRUTA", "euid": "EUID", "cpv": "cod CPV", "caen": "cod CAEN", "local": "ID local"}
+CARD_BASES = ("declarat", "observat", "editorial")
+CARD_BASIS_LABELS = {"declarat": "declarat de proiect sau de furnizor", "observat": "observat în documentele citite", "editorial": "citire editorială a mai multor dovezi"}
+CARD_STATES = ("propus", "acceptat")
+CARD_OWN_PROVIDER = "autor"  # `furnizor` of a card for the data that the entry makes itself
+CARD_KEY_VARIABLES_MAX = 6
+CARD_ID = re.compile(r"^S\d{3,}$")
+
+
+def card_items(cell: str) -> list[str]:
+    """The items of a list cell of the card (`|`-separated, as every v2 list). An empty cell has no item; an empty item between two bars stays."""
+    return [x.strip() for x in cell.split("|")] if cell.strip() else []
+
+
+def card_identifier(item: str) -> tuple[str, str]:
+    """(`cod`, rest) of an item of `identificatori`. The rest is the role code; for `local` it is the namespace of the recipe, which holds colons itself."""
+    code, _, rest = item.partition(":")
+    return code, rest
+
+
+def load_cards(data_dir: Path = PUBLIC_ROOT, slug: str | None = None, accepted_only: bool = False) -> list[dict]:
+    """The rows of `fise-date.csv` of a root, in file order: all of them, or the rows of one entry. `accepted_only` keeps the rows that the owner accepted,
+    which are the only rows that the build shows. A root without the file has no card."""
+    path = Path(data_dir) / CARDS_FILE
+    rows = read_csv(path) if path.exists() else []
+    return [r for r in rows if (slug is None or r["slug"] == slug) and (not accepted_only or r["stare"] == "acceptat")]
+
+
 def inventory_scope(entries: list[dict], data_dir: Path = PUBLIC_ROOT) -> dict[str, str]:
     """slug -> reason (see `inventory_exclusion`; empty when in scope) for catalogue entries of a v2 root, with the status that
     build.py gives each one. A v1 root has no `relatie_date`, so every entry of it counts as in scope."""

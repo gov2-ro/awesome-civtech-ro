@@ -32,6 +32,13 @@
     "site",
     "nota"
   ],
+  "list_columns": {
+    "fise-date.csv": {
+      "granularitate": "granularitate_set",
+      "acces": "acces_set",
+      "identificatori": "rol_identificator"
+    }
+  },
   "keys": {
     "intrari.csv": [
       "slug"

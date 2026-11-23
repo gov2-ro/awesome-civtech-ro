@@ -76,3 +76,38 @@ relatie_date,date-publice,Date publice,Public data,Intrarea folosește sau repub
 relatie_date,date-proprii,Date proprii,Own data,"Intrarea colectează sau curează propriile date: sesizări de la utilizatori, poziții din chestionare, o bază de date editorială.",propus,1
 relatie_date,calcul,Calculator sau formular,Calculator or form,"Intrarea primește date de la utilizator și aplică reguli sau parametri, fără un set de date în spate.",propus,2
 relatie_date,fara-date,Fără date,No data,"Un ghid, un curs, o campanie, un articol sau o listă de linkuri. Nu există nimic de extras.",propus,3
+acces_set,web,web,Web pages,Vizitatorul citește datele doar în paginile proiectului.,propus,0
+acces_set,fisier,fișier,File download,"Vizitatorul descarcă un fișier: CSV, JSON sau XLSX.",propus,1
+acces_set,api,API,API,"Vizitatorul cere datele printr-un API deschis, fără cheie.",propus,2
+acces_set,api-cheie,API (cheie),API with a key,Vizitatorul cere datele printr-un API care cere o cheie.,propus,3
+acces_set,la-cerere,la cerere,On request,"Vizitatorul obține datele la cerere, de exemplu în baza Legii 544/2001.",propus,4
+rol_identificator,autoritate-contractanta,autoritate contractantă,Contracting authority,Codul numește autoritatea contractantă dintr-o achiziție.,propus,0
+rol_identificator,furnizor,furnizor,Supplier,Codul numește furnizorul sau ofertantul dintr-o achiziție sau dintr-o plată.,propus,1
+rol_identificator,firma,firmă,Company,"Codul numește o firmă, fără alt rol.",propus,2
+rol_identificator,institutie,instituție,Institution,"Codul numește o instituție publică, fără alt rol.",propus,3
+rol_identificator,uat,UAT,Territorial unit,Codul numește o unitate administrativ-teritorială.,propus,4
+rol_identificator,obiect,obiect,Object,"Codul numește obiectul înregistrării: un produs, un serviciu sau o clasă.",propus,5
+rol_identificator,contribuabil,contribuabil,Taxpayer,Codul numește un contribuabil.,propus,6
+rol_identificator,creditor,creditor,Creditor,Codul numește un creditor.,propus,7
+granularitate_set,subiect-juridic,Subiect juridic,Legal subject,"O înregistrare descrie un subiect juridic: o firmă, o instituție sau o autoritate.",propus,0
+granularitate_set,teritoriu,Teritoriu,Territory,"O înregistrare descrie o unitate teritorială: un UAT, o localitate sau un județ.",propus,1
+granularitate_set,agregat,Agregat,Aggregate,"O înregistrare este un total sau un indicator calculat pe un grup, nu un obiect singular.",propus,2
+granularitate_set,contract,Contract,Contract,O înregistrare descrie un contract de achiziție.,propus,3
+granularitate_set,achizitie-directa,Achiziție directă,Direct purchase,O înregistrare descrie o achiziție directă.,propus,4
+granularitate_set,firma-an,Firmă pe an,Company-year,O înregistrare descrie o firmă într-un an: un bilanț sau indicatori anuali.,propus,5
+granularitate_set,firma-perioada,Firmă pe perioadă,Company-period,"O înregistrare descrie valorile unei firme pe o perioadă, de exemplu achiziții agregate.",propus,6
+granularitate_set,institutie-an,Instituție pe an,Institution-year,"O înregistrare descrie o instituție într-un an, de exemplu o execuție bugetară anuală.",propus,7
+granularitate_set,instanta-an,Instanță pe an,Court-year,"O înregistrare descrie o instanță într-un an, de exemplu indicatori de performanță.",propus,8
+granularitate_set,document,Document,Document,"O înregistrare descrie un document: un comunicat, un articol sau o pagină de metodă.",propus,9
+granularitate_set,raport,Raport,Report,O înregistrare descrie un raport.,propus,10
+granularitate_set,set-de-date,Set de date,Dataset,O înregistrare descrie un set de date dintr-un catalog.,propus,11
+granularitate_set,proiect,Proiect,Project,O înregistrare descrie un proiect.,propus,12
+granularitate_set,propunere,Propunere,Proposal,"O înregistrare descrie o propunere de finanțare, de exemplu un proiect fără contract semnat.",propus,13
+granularitate_set,canal,Canal,Channel,O înregistrare descrie un canal sau un flux public de informații.,propus,14
+granularitate_set,numire,Numire,Appointment,O înregistrare descrie o numire sau un mandat într-o funcție.,propus,15
+granularitate_set,observatie-guvernanta,Observație de guvernanță,Governance observation,O înregistrare descrie o observație despre guvernanța unei entități.,propus,16
+granularitate_set,plati-agregat,Plăți agregate,Payment aggregate,"O înregistrare este un total de plăți, de exemplu subvenții.",propus,17
+granularitate_set,curs-valutar-zi,Curs valutar pe zi,Exchange rate per day,O înregistrare descrie cursul unei monede într-o zi.,propus,18
+granularitate_set,cod-clasificare,Cod de clasificare,Classification code,"O înregistrare descrie un cod dintr-o clasificare, de exemplu CAEN.",propus,19
+granularitate_set,cont,Cont,Account,"O înregistrare descrie un cont, de exemplu un cont de trezorerie.",propus,20
+granularitate_set,inregistrare-registru,Înregistrare în registru,Registry entry,"O înregistrare descrie o intrare într-un registru, de exemplu ONRC.",propus,21

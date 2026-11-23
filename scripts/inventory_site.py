@@ -112,6 +112,15 @@ def variable_matches(slug, fields, sources, concepts):
     return matches
 
 
+def card_summary(card):
+    """The line of a data-set card in the finder (`datasets` of `inventar/index.json`): the set, the provider, the access codes and the identifiers.
+    An entry without an accepted card has no `datasets` key in the index."""
+    return {'id': card['id'], 'set': card['set'], 'provider': {'id': card['provider']['id'], 'name': card['provider']['name'], 'anchor': card['provider']['anchor']},
+            'access': [{'code': a['code'], 'label': a['label']} for a in card['access']],
+            'identifiers': [{'code': x['code'], 'codeLabel': x['codeLabel'], 'role': x['role'], 'roleLabel': x['roleLabel'], 'namespace': x.get('namespace', '')}
+                            for x in card['identifiers']]}
+
+
 def publish_finder(items, root, site, projections, vocabulary=None, entity_lookup=False):
     """Write the discovery index, finder, project list and each entry's variable page."""
     concept_path = root.parent / 'inventar-concepte.json'
@@ -141,7 +150,8 @@ def publish_finder(items, root, site, projections, vocabulary=None, entity_looku
                         'institutions': item.get('institutions', []), 'providers': providers,
                         'variables': variable_matches(item['slug'], fields, sources, concepts),
                         'inventory': {k: v for k, v in item.get('inventory', {}).items() if k != 'keywords'},
-                        'keywords': item.get('inventory', {}).get('keywords', '')})
+                        'keywords': item.get('inventory', {}).get('keywords', ''),
+                        **({'datasets': [card_summary(c) for c in item['datasets']]} if item.get('datasets') else {})})
     index = {'partial': True, 'factBasis': PUBLIC_BASIS_LABELS, 'concepts': [{'id': c['id'], 'scheme': c['scheme'], 'label': c['label']}
                                          for c in (vocabulary or {}).get('concepts', []) if c['scheme'] in ('subiect', 'institutie')],
              'families': [{'id': f['id'], 'label': f['label']} for f in families],
@@ -340,7 +350,7 @@ FIELD_BASIS_LABELS = {'schema': 'Descris în schemă', 'metadata': 'Descris în 
                       'apidoc': 'Declarat în documentația API', 'doclist': 'Declarat în lista de coloane din documentație', 'dblist': 'Declarat în lista bazei de date',
                       'editor': 'adăugat de editor'}
 GROUP_STATE_LABELS = {'propus': 'Propus', 'revizuit': 'Revizuit', 'amanat': 'Amânat'}
-NOTE_PARTIAL = 'Extrase automat din sursele de mai jos. Proiectul poate folosi și alte date. Un câmp comun nu garantează că seturile se pot combina.'
+NOTE_PARTIAL = 'Extrase automat din documentele citite mai jos. Proiectul poate folosi și alte date. Un câmp comun nu garantează că seturile se pot combina.'
 
 
 def type_label(field):
@@ -517,8 +527,17 @@ def format_anchor(fmt):
     return 'fmt-' + (fmt or 'necunoscut')
 
 
+TECH_NOTE = 'Câmpurile sunt extrase automat din documentele citite. Ele arată ce se poate extrage, nu ce contează.'
+
+
+def demote(markup):
+    """The markup with every heading `h2` to `h5` one level deeper (`h3` to `h6`). The text is escaped, so no data can hold a tag."""
+    return re.sub(r'<(/?)h([2-5])\b', lambda m: f'<{m.group(1)}h{int(m.group(2)) + 1}', markup)
+
+
 def variable_page(item, fields, sources, concepts, families, relations, table=None):
-    """The body of `/date/<slug>/`: the header, the part „Pe familii” and the part „Pe surse”."""
+    """The body of `/date/<slug>/`: the header, the part „Pe familii” and the part „Pe surse”. An entry with an accepted card (`datasets`) gets the part „Seturi de date” first,
+    and the two other parts go under the heading „Vedere tehnică”."""
     e = html.escape
     slug, kind = item['slug'], item['kind']
     labels = {c['id']: c['label'] for c in concepts}
@@ -531,16 +550,23 @@ def variable_page(item, fields, sources, concepts, families, relations, table=No
         by_source.setdefault(f['source'], []).append(n)
     relation = item.get('dataRelation', '')
     here = f'{PAGE_DIR}/{e(slug)}/'
+    cards = item.get('datasets') or []
+    nav = f'<a href="{here}#seturi-de-date">Seturi de date</a><a href="{here}#vedere-tehnica">Vedere tehnică</a>' if cards else ''
     head = (f'<section class="vp-head"><p class="vp-kind">{"Proiect" if kind == "proiect" else "Resursă"}</p><h1>{e(item["name"])}</h1>'
-            f'<p class="vp-meta"><span>Relația cu datele: {e(relations.get(relation, relation))}</span><span>{ro_count(len(sources), "sursă", "surse")}</span>'
+            f'<p class="vp-meta"><span>Relația cu datele: {e(relations.get(relation, relation))}</span><span>{ro_count(len(sources), "document citit", "documente citite")}</span>'
             f'<span>{ro_count(len(fields), "câmp", "câmpuri")}</span><span class="inv-status">Inventar parțial</span></p>'
             f'{source_links(item, sources, table or {})}'
             f'<p class="ov-note">{NOTE_PARTIAL}</p>'
             f'<p><a class="vp-open" href="{e(kind)}/{e(slug)}/">Fișa din explorator →</a></p>'
-            f'<nav class="vp-nav" aria-label="Pe această pagină"><a href="{here}#pe-familii">Pe familii</a><a href="{here}#pe-surse">Pe surse</a></nav></section>')
+            f'<nav class="vp-nav" aria-label="Pe această pagină">{nav}<a href="{here}#pe-familii">Pe familii</a><a href="{here}#pe-surse">Pe surse</a></nav></section>')
     sourced = ''.join(source_section(s, fields, by_source.get(s['id'], []), groups_of) for s in sources)
-    return (head + family_section(slug, fields, sources, concepts, families)
-            + f'<section class="vp-section" id="pe-surse"><h2>Pe surse</h2>{sourced}</section>')
+    technical = family_section(slug, fields, sources, concepts, families) + f'<section class="vp-section" id="pe-surse"><h2>Pe surse</h2>{sourced}</section>'
+    if not cards:
+        return head + technical
+    # An entry with a card: the cards first, then both parts under „Vedere tehnică” (one level deeper, so the headings stay in order).
+    from entry_page import dataset_cards
+    return (head + f'<section class="vp-section" id="seturi-de-date"><h2>Seturi de date</h2>{dataset_cards(cards, 3)}</section>'
+            f'<section class="vp-section vp-tech" id="vedere-tehnica"><h2>Vedere tehnică</h2><p class="ov-note">{TECH_NOTE}</p>{demote(technical)}</section>')
 
 
 def publish_variable_pages(items, site, projections, concepts, families, vocabulary=None, table=None):

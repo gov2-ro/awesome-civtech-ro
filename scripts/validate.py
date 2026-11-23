@@ -216,6 +216,7 @@ def check_v2(root: Path, publication: bool):
     check_editor_fields(root)
     check_reserved_slugs(root)
     check_providers(root)
+    check_cards(root)
     if summary:
         states = ", ".join(f"{k}: {v}" for k, v in sorted(summary["classification_states"].items()))
         print(f"{summary['schema_version']}: {summary['entries']} intrări ({states}), {summary['concepts']} concepte", file=sys.stderr)
@@ -268,6 +269,28 @@ def check_providers(root: Path):
     relations = root / "relatii.csv"
     names = provider_names(read_csv(relations)) if relations.exists() else None
     errors, warnings = provider_problems(read_csv(path), names)
+    for line, msg in errors:
+        report("error", path, line, msg)
+    for line, msg in warnings:
+        report("warning", path, line, msg)
+
+
+def check_cards(root: Path):
+    """The data-set cards `fise-date.csv` (docs/specs/data-set-card.md, section 8). The package check reports a wrong header (the file is declared in pachet.json), so a file with
+    a wrong header stops here. A root without the file has no card."""
+    import taxonomy_v2
+    import data_cards
+    path = taxonomy_v2.Files(root).path(common.CARDS_FILE)
+    if not path.exists():
+        return
+    with open(path, encoding="utf-8-sig", newline="") as f:
+        header = csv.DictReader(f).fieldnames or []
+    if data_cards.header_problem(header):
+        return
+    rows = common.load_cards(path.parent)
+    if not rows:
+        return
+    errors, warnings = data_cards.card_problems(rows, data_cards.card_context(root))
     for line, msg in errors:
         report("error", path, line, msg)
     for line, msg in warnings:

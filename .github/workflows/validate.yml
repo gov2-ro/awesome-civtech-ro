@@ -67,6 +67,7 @@ jobs:
           uv run scripts/check_inventory_preview.py http://localhost:8765/
           uv run scripts/check_data_finder.py http://localhost:8765/
           uv run scripts/check_structure_preview.py http://localhost:8765/
+          uv run scripts/check_data_cards.py
 
   workflows:
     runs-on: ubuntu-latest

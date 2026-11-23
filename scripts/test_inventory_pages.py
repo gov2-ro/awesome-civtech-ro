@@ -126,7 +126,7 @@ class Pages(unittest.TestCase):
         self.assertIn('<a class="vp-open" href="proiect/p/">', head, 'a link to the entry of the explorer, from the base of the site')
         self.assertIn('Relația cu datele: Date publice', head)
         fields, sources = projections['p']
-        self.assertIn(f'<span>{len(sources)} surse</span>', head)
+        self.assertIn(f'<span>{len(sources)} documente citite</span>', head)
         self.assertIn(f'<span>{len(fields)} câmpuri</span>', head)
         self.assertIn('Inventar parțial', head)
         self.assertIn('<title>Variabile · Proiect &lt;P&gt; &amp; co · CivTech România</title>', page)

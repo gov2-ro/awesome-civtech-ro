@@ -486,6 +486,11 @@ Every list is used by a column of `schema.json`, and every list that `schema.jso
 | `revizuire_stare` | `revizuire.csv` `stare` | `deschis`, `acceptat`, `respins`, `amanat`, `tehnic` |
 | `mapare_relatie` | `mapari-externe.csv` `relatie` | `closeMatch`, `exactMatch`, `broadMatch`, `narrowMatch`, `relatedMatch` |
 | `mapare_stare` | `mapari-externe.csv` `stare_mapare` | `propus`, `acceptat`, `respins` |
+| `granularitate_set` | `fise-date.csv` `granularitate` | 22 codes, one for each `record_grain` value of `structura/recipes/*.json` but `unknown`: `subiect-juridic`, `teritoriu`, `agregat`, `contract`, `achizitie-directa`, `firma-an`, `firma-perioada`, `institutie-an`, `instanta-an`, `document`, `raport`, `set-de-date`, `proiect`, `propunere`, `canal`, `numire`, `observatie-guvernanta`, `plati-agregat`, `curs-valutar-zi`, `cod-clasificare`, `cont`, `inregistrare-registru` |
+| `acces_set` | `fise-date.csv` `acces` | `web`, `fisier`, `api`, `api-cheie`, `la-cerere` |
+| `rol_identificator` | `fise-date.csv` `identificatori` (the part after the colon) | `autoritate-contractanta`, `furnizor`, `firma`, `institutie`, `uat`, `obiect`, `contribuabil`, `creditor` |
+
+A column that holds a list of codes cannot have a field rule. `schema.json` → `list_columns` names the list of such a column (`{"fise-date.csv": {"granularitate": "granularitate_set", ...}}`), so that the rule "every list is used" holds. `validate.py` checks the cells (`data_cards.py`).
 
 ### Link roles and hosts
 
@@ -648,6 +653,7 @@ same as the package: every classification is a proposal.
 | `rezultate.csv` | `integrare.py --write` | One row for each entry; see below. |
 | `propuneri-vocabular.csv` | `integrare.py --write` | The proposed concepts and areas; see below. |
 | `modificari.csv` | a person | The change log; see below. |
+| `fise-date.csv` | a person | The data-set cards; see `fise-date.csv` below. |
 | `reconciliere.csv` | a person | The reconciliation of the review queue; see below. |
 | `catalogue.json` | `validate.py --root … --export` | The JSON export of the overlay. |
 
@@ -782,6 +788,7 @@ and replaces the v1 classification:
   `date-publice`, `date-proprii` and `calcul`. `fara-date` ("Fără date") has `fara-date` and the empty string. The explorer facet `dat` reads the groups
   from here and keeps no list of codes.
 - `dataSources`: `{name, evidence}` for each accepted data provider or publication.
+- `datasets`: the accepted data-set cards of the entry, in `id` order; `[]` when the entry has none. Each item: `id`, `set`, `provider` (`{id, name, anchor}`; `name` from `furnizori.csv`, `anchor` `f-<furnizor>` for the link to `date/furnizori/`; the own data of the entry (`autor`) has the name „autorul intrării” and an empty `anchor`), `record`, `grain` (`{code, label}` or null), `period` (an empty string means undeclared), `access` (`[{code, label, url}]`), `identifiers` (`[{code, codeLabel, role, roleLabel}]`; a `local` identifier has `namespace` and an empty role), `keyVariables` (`[{id, label}]` for a group, `[{source, path, label}]` for a field), `methodNote`, `evidence` (a list of URLs), `basis`, `basisLabel`, `checked`. The column `nota` and every `propus` row stay out. Labels come from `valori.csv`, so that every page reads the same words.
 - `attributions`: `{name, org, role, accepted}`. `role` is the relation predicate; an unconfirmed role shows neutrally.
 - `legacy`: the original `domeniu`, `tips`, `keywords`, `fel`, `acoperire` and `oras`, only for old bookmarks.
 - Top level: `draft` (true while any classification is not accepted), `vocabulary` (the used concepts with labels,
@@ -1493,6 +1500,8 @@ A source whose data sets all declare the same licence carries `licence` (`name`,
 `inventory_site.py` supplies this projection. `check_inventory_preview.py` checks lazy loading, field/main search,
 source/role selection, partial labels, CSV unknown types, retry recovery, inert descriptions and narrow layouts.
 
+A card (`datasets` in `data.json`) goes first in the panel „Date & metodă”; the count, the examples and the field explorer stay below the link „Vedere tehnică”. In this section a „document citit” is a file that the inventory read; the card names the data set (see `fise-date.csv`).
+
 ### Local review interface
 
 `scripts/review_ui.py` is a local tool (stdlib only, never published; `build.py` copies none of it). It reviews three queues in a browser and writes the repository files.
@@ -1601,6 +1610,43 @@ The explorer has two facets under "Mai multe filtre", in the pattern of `ent` (c
 
 Old URLs keep their meaning: `ina=1` still adds inactive entries, and the older parameter `s` (a status group, kept for URLs) still filters as before.
 
+### fise-date.csv
+
+`data/taxonomy-v2/integrare/fise-date.csv` holds the data-set cards (spec: `docs/specs/data-set-card.md`). A person edits it; it is not a tab of the Google Sheet. One row for each pair of entry and data set.
+A data set is one body of data from one provider that the entry uses. A document read by the inventory is not a data set. `pachet.json` declares the file (`local_files`, `headers`).
+The file has a header and no row until the pilot cards are made. `scripts/common.py` holds the constants (`CARD_COLS`, `CARD_IDENTIFIERS`, `CARD_BASES`, `CARD_STATES`) and the loader `load_cards`; `scripts/data_cards.py` holds the checks and the build payload.
+A list cell uses `|` between items.
+
+| Column | Meaning |
+| --- | --- |
+| `id` | The card: `S001`, `S002`, … Unique. Never reused. |
+| `slug` | The entry. A `slug` of `intrari.csv`. |
+| `set` | The name of the data set in Romanian, as a visitor says it. Required; about 80 characters at most. |
+| `furnizor` | A `furnizor` id of `furnizori.csv` with `stare` `acceptat`, or `autor` for the data that the entry makes itself. |
+| `inregistrare` | What one record describes: „o achiziție directă”. Required for `acceptat`. |
+| `granularitate` | The record grain as a code of the list `granularitate_set`. Optional. |
+| `perioada` | `2007–2025`, `2019–` (still updated), one year, or empty. Empty means „nedeclarată”. Never a guess from the fields. |
+| `acces` | Codes of the list `acces_set`, with `\|` between them. |
+| `url_acces` | One address for each access code, in the same order, with `\|` between them. An empty item is allowed (a `web` access at the address of the entry). An empty cell means no address for any code. |
+| `identificatori` | Items `cod:rol`. `cod` is `cui`, `siruta`, `euid`, `cpv`, `caen` or `local`; `rol` is a code of `rol_identificator`. A local identifier is `local:<namespace>` and takes the namespace id of the structure recipe of the entry (it has no role). |
+| `variabile_cheie` | At most six items. Each is a group id of `inventar-concepte.json` that reaches a field of the entry (the rule of `inventory_site.group_hits`), or `<sursa_id>#<cale>` of a row of `observatii/inventare/campuri.csv` for the entry. |
+| `nota_metoda` | How a derived value is calculated, or another warning. Optional. |
+| `dovada` | One or more URLs where a person can check the card. Required for `acceptat`. |
+| `baza` | `declarat` (the project or the provider says it), `observat` (seen in a document read or in a recipe) or `editorial` (a person's reading of several pieces of evidence). |
+| `verificat_la` | The ISO date of the last editorial check. Required for `acceptat`. |
+| `stare` | `propus` or `acceptat`. Only the owner sets `acceptat`. The build shows only `acceptat` rows. |
+| `nota` | Free text for editors. Not published. |
+
+`validate.py` reports as errors: a missing or unknown column; an `id` that is invalid or twice; an unknown `slug`; an entry out of the scope of the inventory (an organisation, an inactive entry, or one without a `relatie_date` of `date-publice`, `date-proprii` or `calcul`);
+a missing `set` or `furnizor`; a `furnizor` that is not accepted and not `autor`; a code outside its list (`granularitate`, `acces`, `cod` and `rol` of `identificatori`, `baza`, `stare`); `url_acces` and `acces` of different lengths;
+an address that is not an http or https URL; a `local` identifier whose namespace is not in the recipe of the entry (or an entry with no recipe); more than six key variables, or a key variable that does not exist for the entry;
+an `acceptat` row without `inregistrare`, `dovada` or `verificat_la`; a `verificat_la` that is not an ISO date.
+Warnings: no `date_din` relation of the entry to the provider, or only a `propus` one; a derived variable (`categorie` `iesire-derivata`) in `variabile_cheie` without `nota_metoda`; `verificat_la` older than 365 days; a `set` over 80 characters; a `perioada` that is not a year, a range or empty.
+`validate.py --publication` fails on every error.
+
+On the pages: the entry page shows the cards in „Date & metodă” and, under them, the link „Vedere tehnică: N câmpuri din M documente →”. `/date/<slug>/` shows „Seturi de date” first and puts „Pe familii” and „Pe surse” under „Vedere tehnică”.
+The finder `/date/` shows one line for each card (set, provider, access, identifiers). An entry without an accepted card has the pages that it had before. `entry_page.dataset_card` and `datasetCard` in `site/app.js` write the same card.
+
 ### furnizori.csv
 
 `data/taxonomy-v2/furnizori.csv` maps each provider name of `integrare/relatii.csv` (rows with the predicate `date_din`) to a normalised provider. A person edits the file.
@@ -1633,7 +1679,7 @@ Entries without fields are named once below the table. Only entries in scope are
 that is in scope and has field records. An entry out of scope, an organisation and an entry without fields get none, and a slug `lista` is refused (it is the list). A rebuild removes the pages that no entry has any more.
 `inventory_site.publish_variable_pages` writes them; the pages carry no value of a data body, no example and no evidence fragment. They show only what the field browser shows: names, paths, types, units, descriptions and groups.
 
-1. The header: the name, the link to the entry (`/<kind>/<slug>/`), the relation to data (the label of `relatie_date`), the number of sources and of fields, and „Inventar parțial”.
+1. The header: the name, the link to the entry (`/<kind>/<slug>/`), the relation to data (the label of `relatie_date`), the number of documents citite („documente citite”) and of fields, and „Inventar parțial”.
 2. „Pe familii”: a block for each family that the entry reaches, in the order of `/date/lista/`; in it, each group (its label links to `/date/?variables=<id>`, with its review state) and the fields that match it, as source title and
    path. A field that two groups match is under both. A family without a field has no block. „Altele” lists the fields that match no group. The matching rule is `inventory_site.group_hits`, the one that the finder and the list use.
 3. „Pe surse”: a block for each source of `inventar/<slug>.json`, with the title of the field browser, its address, its format, its licence (`source_licence`), when it was read (and a failed refresh), its data set facts and a table of its fields
@@ -1722,6 +1768,8 @@ All selected variables must occur in a matching entry. Other facets use OR withi
 Counts measure distinct entries. Values with at most three matches stay under `Mai multe`; selected values remain visible.
 The URL stores search, resource inclusion and repeated facet parameters. Browser navigation restores those selections.
 Entries with missing inventories remain searchable through their catalogue fields. Missing evidence does not assert missing data.
+
+`inventar/index.json` gives an entry with an accepted card the key `datasets`: `[{id, set, provider, access, identifiers}]`; an entry without a card has no such key. The finder card shows one line for each item above the field examples. `/date/<slug>/` of an entry with a card has the parts „Seturi de date” and „Vedere tehnică” (the words „Pe familii” and „Pe surse” stay as its two sub-parts).
 
 ## Structure curation inputs (`taxonomy-v2/structura/`)
 

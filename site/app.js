@@ -720,17 +720,41 @@ function inventoryState(slug) {
   return INV_STATE.get(slug);
 }
 const inventoryTag = it => it.inventory?.count ? `<button class="inventory-tag" data-act="inventory" data-val="${esc(it.slug)}" title="Inventar parțial de date" aria-label="Deschide inventarul de date pentru ${esc(it.name)}">Inventar de date</button>` : '';
+// One data-set card (docs/specs/data-set-card.md): `dataset_card` in scripts/entry_page.py writes the same markup. The card payload carries every label.
+function datasetCard(c, level = 4) {
+  const prov = c.provider, h = `h${level}`;
+  const access = c.access.map(a => a.url ? `<a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.label)}</a>` : esc(a.label)).join(', ');
+  const host = u => { try { return new URL(u).hostname || u; } catch { return u; } };
+  const facts = [`<span>furnizor: ${prov.anchor ? `<a href="${ROOT}date/furnizori/#${esc(prov.anchor)}">${esc(prov.name)}</a>` : esc(prov.name)}</span>`,
+    `<span>o înregistrare: ${esc(c.record)}${c.grain && !c.record.toLowerCase().includes(c.grain.label.toLowerCase()) ? ` <small>(${esc(c.grain.label)})</small>` : ''}</span>`,
+    `<span>perioada: ${c.period ? esc(c.period) : 'nedeclarată'}</span>`];
+  if (access) facts.push(`<span>acces: ${access}</span>`);
+  const lines = [`<p class="ds-line">${facts.join(' · ')}</p>`];
+  if (c.identifiers.length) lines.push(`<p class="ds-line">Identificatori: ${c.identifiers.map(x => `<span>${esc(x.codeLabel)} (${esc(x.roleLabel || x.namespace)})</span>`).join(' · ')}</p>`);
+  if (c.keyVariables.length) lines.push(`<p class="ds-line">Variabile principale: ${c.keyVariables.map(k => `<span>${esc(k.label)}</span>`).join(', ')}</p>`);
+  if (c.methodNote) lines.push(`<p class="ds-note">Metodă: ${esc(c.methodNote)}</p>`);
+  const meta = [...(c.basisLabel ? [`bază: ${esc(c.basisLabel)}`] : []), ...(c.checked ? [`verificat la ${esc(c.checked)}`] : [])];
+  if (c.evidence.length) meta.push(`dovadă: ${c.evidence.map(u => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(host(u))}</a>`).join(', ')}`);
+  if (meta.length) lines.push(`<p class="ds-meta">${meta.join(' · ')}</p>`);
+  return `<article class="ds-card" id="set-${esc(c.id)}"><${h}>${esc(c.set)}</${h}>${lines.join('')}</article>`;
+}
 function inventoryHTML(it) {
-  const inv = it.inventory;
-  if (!inv) return '';
-  const docs = inv.docs.length ? `<nav class="inv-docs" aria-label="Documentația proiectului">${inv.docs.map(d => `<a href="${esc(d.url)}" target="_blank" rel="noopener" title="${esc(d.title)}">${esc(clip(d.label, 48))}${ICON.out}</a>`).join('')}</nav>` : '';
+  const inv = it.inventory, cards = it.datasets || [];
+  if (!inv && !cards.length) return '';
+  const docs = inv?.docs.length ? `<nav class="inv-docs" aria-label="Documentația proiectului">${inv.docs.map(d => `<a href="${esc(d.url)}" target="_blank" rel="noopener" title="${esc(d.title)}">${esc(clip(d.label, 48))}${ICON.out}</a>`).join('')}</nav>` : '';
+  // With a card, the cards come first and the link "Vedere tehnică" replaces "Toate variabilele"; the count and the examples stay under it.
+  const tech = cards.length && inv?.page ? `<p class="inv-all inv-tech"><a href="${esc(inv.page)}">Vedere tehnică: ${plural(inv.count, 'câmp', 'câmpuri')} din ${plural(inv.sources, 'document', 'documente')} <span aria-hidden="true">→</span></a></p>` : '';
+  const head = `<div class="inv-heading"><h3 id="inventory-title">Date &amp; metodă</h3>${inv?.count ? '<span class="inv-status">Inventar parțial</span>' : ''}</div>`;
+  const cardsHTML = cards.length ? `<div class="ds-cards">${cards.map(c => datasetCard(c)).join('')}</div>${tech}` : '';
+  if (!inv) return `<section class="d-inventory" data-inventory-root="${esc(it.slug)}" aria-labelledby="inventory-title">${head}${cardsHTML}</section>`;
   return `<section class="d-inventory" data-inventory-root="${esc(it.slug)}" aria-labelledby="inventory-title">
-    <div class="inv-heading"><h3 id="inventory-title">Date &amp; metodă</h3>${inv.count ? '<span class="inv-status">Inventar parțial</span>' : ''}</div>
-    ${inv.count ? `<p class="inv-intro">${plural(inv.count, 'câmp sau parametru', 'câmpuri și parametri')} · ${plural(inv.sources, 'fișier consultat', 'fișiere consultate')}</p>
+    ${head}
+    ${cardsHTML}
+    ${inv.count ? `${tech ? '' : `<p class="inv-intro">${plural(inv.count, 'câmp sau parametru', 'câmpuri și parametri')} · ${plural(inv.sources, 'fișier consultat', 'fișiere consultate')}</p>`}
       <p class="inv-note">Extrase automat din sursele de mai jos. Proiectul poate folosi și alte date.</p>
       ${inv.stale ? `<p class="inv-note inv-stale">${plural(inv.stale, 'sursă are', 'surse au')} ultima reîmprospătare eșuată. Datele afișate provin dintr-o consultare anterioară.</p>` : ''}
       <div class="inv-examples">${inv.examples.map(name => `<button data-act="inventory-example" data-slug="${esc(it.slug)}" data-val="${esc(name)}"><code>${esc(name)}</code></button>`).join('')}</div>
-      ${inv.page ? `<p class="inv-all"><a href="${esc(inv.page)}">Toate variabilele <span aria-hidden="true">→</span></a></p>` : ''}
+      ${inv.page && !cards.length ? `<p class="inv-all"><a href="${esc(inv.page)}">Toate variabilele <span aria-hidden="true">→</span></a></p>` : ''}
       ${docs}
       <details class="inv-details" data-inv-panel data-slug="${esc(it.slug)}" ${inventoryIntent === it.slug ? 'open' : ''}>
         <summary>Explorează câmpurile <span aria-hidden="true">↗</span></summary>
@@ -1052,7 +1076,7 @@ function entryHTML(it, list) {
     </section>
     <div class="p-body">
       <div class="p-main">
-        ${inv || DB.structurePreview ? `<div class="p-sec p-data">${inventoryHTML(it)}${structureHTML(it)}</div>` : ''}
+        ${inv || it.datasets?.length || DB.structurePreview ? `<div class="p-sec p-data">${inventoryHTML(it)}${structureHTML(it)}</div>` : ''}
         ${classHTML(it)}
         ${cardsSection('Conține', parts)}
         ${cardsSection(it.kind === 'organizatie' ? 'Proiecte și resurse' : 'Același autor', works)}

@@ -610,7 +610,7 @@ class ValidateStep(unittest.TestCase):
         with patch('taxonomy_v2.check', return_value=([], None)), patch('taxonomy_v2.Files'), patch.object(validate, 'check_mentiuni'), \
                 patch('validate.observation_paths', return_value={'mentions': Path('/nonexistent/mentiuni.csv')}), \
                 patch.object(validate, 'check_relation_fields'), patch.object(validate, 'check_reserved_slugs'), patch.object(validate, 'check_providers'), \
-                patch.object(validate, 'check_editor_fields') as step:
+                patch.object(validate, 'check_cards'), patch.object(validate, 'check_editor_fields') as step:
             validate.check_v2(Path('/nonexistent/integrare'), publication=False)
         step.assert_called_once_with(Path('/nonexistent/integrare'))
 

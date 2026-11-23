@@ -11,7 +11,7 @@ import json
 import re
 import unicodedata
 from datetime import date
-from urllib.parse import quote, urlencode
+from urllib.parse import quote, urlencode, urlsplit
 
 SITE_URL = "https://civtech.gov2.ro/"
 FRESH_DAYS, NEWEST_DAYS = 183, 60  # as in app.js
@@ -317,16 +317,80 @@ def cards_section(title: str, rows: list[dict]) -> str:
     return f'<section class="p-sec"><h2>{title} ({len(rows)})</h2><div class="p-cards">{"".join(card_html(o) for o in rows)}</div></section>' if rows else ""
 
 
+def ro_plural(n: int, one: str, many: str) -> str:
+    """`1 câmp`, `5 câmpuri`, `20 de câmpuri`: the Romanian count phrase, as `plural` in site/app.js."""
+    return f"1 {one}" if n == 1 else f"{n}{' de' if n % 100 >= 20 or n % 100 == 0 else ''} {many}"
+
+
+def host_text(url: str) -> str:
+    """The host of an address, as `new URL(url).hostname` in site/app.js gives it; the whole text when it is no address."""
+    try:
+        return urlsplit(url).hostname or url
+    except ValueError:
+        return url
+
+
+def dataset_card(c: dict, level: int = 4) -> str:
+    """One data-set card (docs/specs/data-set-card.md, section 1) as HTML: the set, then the provider, the record, the period and the access on one line, the identifiers with
+    their role, the key variables, the method note, and the basis, the date and the evidence. `level` is the heading level of the set name. Paths are relative to the `<base>` of
+    the page, as on the entry page and on `/date/<slug>/`. The same card is on the entry page ("Date & metodă") and on `/date/<slug>/` ("Seturi de date");
+    `datasetCard` in site/app.js writes the same markup (with the site root before each path)."""
+    provider = c["provider"]
+    name = esc(provider["name"])
+    provider_html = f'<a href="date/furnizori/#{esc(provider["anchor"])}">{name}</a>' if provider["anchor"] else name
+    access = ", ".join(f'<a href="{esc(a["url"])}" target="_blank" rel="noopener">{esc(a["label"])}</a>' if a["url"] else esc(a["label"]) for a in c["access"])
+    # The grain repeats the record when its label is in the record text („o achiziție directă” / „Achiziție directă”); it shows only when it adds something.
+    grain = f' <small>({esc(c["grain"]["label"])})</small>' if c["grain"] and c["grain"]["label"].casefold() not in c["record"].casefold() else ""
+    facts = [f"<span>furnizor: {provider_html}</span>", f"<span>o înregistrare: {esc(c['record'])}{grain}</span>",
+             f"<span>perioada: {esc(c['period']) if c['period'] else 'nedeclarată'}</span>"]
+    if access:
+        facts.append(f"<span>acces: {access}</span>")
+    lines = [f'<p class="ds-line">{" · ".join(facts)}</p>']
+    if c["identifiers"]:
+        ids = " · ".join(f'<span>{esc(x["codeLabel"])} ({esc(x["roleLabel"] or x["namespace"])})</span>' for x in c["identifiers"])
+        lines.append(f'<p class="ds-line">Identificatori: {ids}</p>')
+    if c["keyVariables"]:
+        keys = ", ".join(f'<span>{esc(k["label"])}</span>' for k in c["keyVariables"])
+        lines.append(f'<p class="ds-line">Variabile principale: {keys}</p>')
+    if c["methodNote"]:
+        lines.append(f'<p class="ds-note">Metodă: {esc(c["methodNote"])}</p>')
+    meta = ([f"bază: {esc(c['basisLabel'])}"] if c["basisLabel"] else []) + ([f"verificat la {esc(c['checked'])}"] if c["checked"] else [])
+    evidence = ", ".join(f'<a href="{esc(u)}" target="_blank" rel="noopener">{esc(host_text(u))}</a>' for u in c["evidence"])
+    if evidence:
+        meta.append(f"dovadă: {evidence}")
+    if meta:
+        lines.append(f'<p class="ds-meta">{" · ".join(meta)}</p>')
+    return f'<article class="ds-card" id="set-{esc(c["id"])}"><h{level}>{esc(c["set"])}</h{level}>{"".join(lines)}</article>'
+
+
+def dataset_cards(cards: list[dict], level: int = 4) -> str:
+    return f'<div class="ds-cards">{"".join(dataset_card(c, level) for c in cards)}</div>'
+
+
 def data_summary(i: dict) -> str:
-    """The static form of "Date & metodă": the count, the examples and a link to the data page (the browser loads the inventory on demand)."""
+    """The static form of "Date & metodă": the count, the examples and a link to the data page (the browser loads the inventory on demand).
+    An entry with an accepted card shows the cards first, then the link "Vedere tehnică"; the count and the examples stay under it. An entry without a card has the panel
+    that it had before the cards."""
     inv = i.get("inventory")
-    if not inv or not inv.get("count"):
-        return ""
-    examples = "".join(f"<span><code>{esc(e)}</code></span>" for e in (inv.get("examples") or []))
-    page = f'<p class="inv-all"><a href="{esc(inv["page"])}">Toate variabilele <span aria-hidden="true">→</span></a></p>' if inv.get("page") else ""
-    return (f'<section class="d-inventory" data-inventory-root="{esc(i["slug"])}"><div class="inv-heading"><h3>Date &amp; metodă</h3><span class="inv-status">Inventar parțial</span></div>'
-            f'<p class="inv-intro">{inv["count"]} câmpuri și parametri · {inv["sources"]} fișiere consultate</p>'
-            f'<p class="inv-note">Extrase automat din sursele de mai jos. Proiectul poate folosi și alte date.</p><div class="inv-examples">{examples}</div>{page}</section>')
+    cards = i.get("datasets") or []
+    counted = bool(inv and inv.get("count"))
+    examples = "".join(f"<span><code>{esc(e)}</code></span>" for e in ((inv or {}).get("examples") or []))
+    if not cards:
+        if not counted:
+            return ""
+        page = f'<p class="inv-all"><a href="{esc(inv["page"])}">Toate variabilele <span aria-hidden="true">→</span></a></p>' if inv.get("page") else ""
+        return (f'<section class="d-inventory" data-inventory-root="{esc(i["slug"])}"><div class="inv-heading"><h3>Date &amp; metodă</h3><span class="inv-status">Inventar parțial</span></div>'
+                f'<p class="inv-intro">{inv["count"]} câmpuri și parametri · {inv["sources"]} fișiere consultate</p>'
+                f'<p class="inv-note">Extrase automat din sursele de mai jos. Proiectul poate folosi și alte date.</p><div class="inv-examples">{examples}</div>{page}</section>')
+    tech = ""
+    if inv and inv.get("page"):
+        tech = (f'<p class="inv-all inv-tech"><a href="{esc(inv["page"])}">Vedere tehnică: {ro_plural(inv["count"], "câmp", "câmpuri")} din '
+                f'{ro_plural(inv["sources"], "document", "documente")} <span aria-hidden="true">→</span></a></p>')
+    status = '<span class="inv-status">Inventar parțial</span>' if counted else ""
+    intro = "" if tech else f'<p class="inv-intro">{inv["count"]} câmpuri și parametri · {inv["sources"]} fișiere consultate</p>'  # the link „Vedere tehnică” already counts them
+    body = (intro + f'<p class="inv-note">Extrase automat din sursele de mai jos. Proiectul poate folosi și alte date.</p><div class="inv-examples">{examples}</div>') if counted else ""
+    return (f'<section class="d-inventory" data-inventory-root="{esc(i["slug"])}"><div class="inv-heading"><h3>Date &amp; metodă</h3>{status}</div>'
+            f'{dataset_cards(cards)}{tech}{body}</section>')
 
 
 def sheet_html(i: dict, ctx: Context) -> str:
