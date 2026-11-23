@@ -2,10 +2,48 @@
 
 Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
+## External review of `/date/` and the taxonomy — 2026-11-23
+
+Source: „Revizie: awesome-civtech-ro și civtech.gov2.ro/date” (23 Nov 2026, 7 pages, counted at commit `7b476a5`), local copy `tmp/261123/Revizie civtech.gov2.ro_date.pdf` (not tracked). It also summarises two other model reviews (Gemini, GPT); their full answers are not in this repository.
+Main claim: the data part serves the cataloguer, not the visitor. Each item below is a proposal; the owner decides. Items 1–3 change specs (`DATA-SCHEMA.md`, `docs/specs/taxonomy-v2.md`) and need a brief first.
+
+The five changes, in the review's order:
+- [ ] 1. A card for each data set, not for each field. For each project: the data set, its provider, what one record is, the period, the access (web, CSV, API) and the identifiers with their role. The raw fields (10,212 since v0.83.0) move to a technical view and stay as evidence. Start with procurement and companies. Example (SICAP.ai): `Cod CPV` goes into the summary, `source_row` stays technical, and `risk_score` needs a note on how it is calculated.
+- [ ] 2. Two clear ways into the catalogue: by subject and by source institution (`date_din` relations: 217 relations, 90 providers; INS 31, Eurostat 15, MF 12, MO 9, ONRC 7, SEAP 7, AEP 7, ANAF 6). Direct matches come first. The review says that the „Relevanță” score (visibility, sitemap volume) does not tell who uses ONRC data.
+- [ ] 3. Entity search („Entități între proiecte”) on CUI, SIRUTA and EUID only:
+  - local IDs (`cat-de-tare:legacy-row`, `monitorsafe:proposal:slug`, `banii-nostri:purchase:daid`) move to the project page;
+  - show the role (contracting authority or supplier) and the date or reference year of each record;
+  - show the confirmed identity apart from the link state; a link built from a pattern and not checked reads „Caută în [proiect] →”, not „înregistrare observată”;
+  - a CUI–EUID link needs a correspondence table with a source;
+  - optional: a search by name for the large institutions (people know „Ministerul Afacerilor Externe”, not 4266863).
+- [ ] 4. An automatic, bounded freshness check: a rotating batch of links and sources, weekly, in GitHub Actions; failures go to the review queue. Paid search stays manual. Show three dates on each card: last link check, last source observation, last editorial check.
+- [ ] 5. A one-minute correction (the entry prefilled, the source link, the corrected claim, short evidence; not the 34-column CSV) and one current editing guide. Fix the contradiction: the main README says `integrare/` is the public source; `data/taxonomy-v2/README.md` still calls it a review copy.
+
+Taxonomy (proposal: six facets; `intrari.csv` from 34 to about 15 columns):
+- [ ] Domeniu: one column for the 13 subjects, the first one is the main subject (merges `subiect_principal` and `subiecte`, which hold the same 13 values).
+- [ ] Teme: about 25 controlled labels (the merge list is in the review, p. 5). A rare label (28 of 61 have 3 projects or fewer) becomes a search synonym (`alternative_ro`) of the nearest label. Rule: a label becomes a filter at 4 projects or more. „Legea 544/2001” stays a label of its own.
+- [ ] „Ce poți face”: 8 actions, from `functionalitati` and `formate` (they overlap).
+- [ ] „Despre cine”: about 15 institutions, from an extended `institutii_vizate` (used on 48 entries today).
+- [ ] „Date de la”: the providers of `furnizori.csv`, from the `date_din` relations, as a filter.
+- [ ] „Acoperire și stare”: national, local or international, plus county or locality; active, in progress or archived. `maturitate` has two values in practice (77 of 86 are „operațional”).
+- [ ] Remove: `scopuri` („informare” on 68%; „anticorupție” and „pregătire pentru riscuri” move to Teme), `tehnologii` (AI and MCP move to Teme), `tip_organizatie` (organisation cards only), `detaliere_date` and `relatie_date` (move to the data-set card).
+- [ ] EuroVoc: keep the 22 proposed mappings as export metadata and do not extend them until a partner asks (the two other reviews disagree: remove or keep).
+
+Maintenance:
+- [ ] Repository size: 67 MB, with generated artefacts and caches in Git. Remove the frozen v1 files of `data/` when the rollback is no longer needed (owner decision).
+- [ ] Documentation for contributors: `DATA-SCHEMA.md` (193 KB) and `BACKLOG.md` (134 KB) are reference material, not a guide.
+
+Usability tests on `/date/` (give the three tasks to a few people and watch the clicks):
+- [ ] Find a tool for direct purchases (achiziții directe). How many clicks? Do the field details help or confuse?
+- [ ] Find who really uses ONRC data. Do you trust the list? Do you understand where it comes from?
+- [ ] In „Entități între proiecte”, search a known CUI. Do the results make sense, do the links work, what does „corespondență confirmată” mean?
+
+Keep (the review's three strengths): the static site with no server and no keys, tested before publication; the honest methodology („prima urmă observată” is not the launch date, HTTP 200 is not current data, `colectare-interzisa.csv` is respected); the explicit coverage states and evidence pointers.
+
 ## New entries — 2026-11-23
 
-- [ ] Owner: decide `acceptat` for `palavre`, `ineter`, `igov-analiza-presei`. The publication gate blocks the build until then.
-- [ ] Coordinator: run `collect_docs.py`, `inventory.py` and `inventory_report.py` for the three slugs after the merge.
+- [x] Owner: decide `acceptat` for `palavre`, `ineter`, `igov-analiza-presei`. Accepted 2026-11-23 (v0.83.0).
+- [x] Coordinator: run `collect_docs.py`, `inventory.py` and `inventory_report.py` for the three slugs after the merge. Done 2026-11-23: 15 requests, no structured source.
 - [ ] Owner: `palavre` takes official communications from `ineter`. No predicate fits; decide whether to add one.
 - [ ] Search for `igov-analiza-presei` returned 0 rows (query used the name and the author). Run again with a better query if the owner wants mentions.
 - [ ] Serper has no credits; Brave was used.
