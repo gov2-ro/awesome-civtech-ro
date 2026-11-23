@@ -1,5 +1,23 @@
 # Activity
 
+## 2026-11-23 — Review item 1: the data-set card, measured and specified (v0.84.0)
+
+**Done**
+- Spec `docs/specs/data-set-card.md` (status: proposed). One hand-edited file `integrare/seturi-de-date.csv`, one row for each entry and data set; the fields stay as a technical view on `/date/<slug>/`. Nothing is built.
+- Measured on the 137 entries of the finder index at `e300e9b`: accepted provider 46 (any provider row 76); data set named 16; record declared 9 (25 with a structure recipe); period declared 15; access evidence 86 (API 20, file 57, only code 5); identifiers with a role 12.
+- Entries that can get a card without a new request: 45 (19 with a structure recipe and an accepted provider, 26 with an accepted provider and a document citit). All five fields from evidence alone: 1 (`demoanaf`).
+- Re-counted the review's figures (Appendix C of the spec). The method gives the review's numbers exactly at `7b476a5`.
+
+**Hard**
+- The three evidence layers have different units: `date_din` names a provider of the entry, the inventory names documents citite and fields, a structure recipe names collections of a site. None of them is a data set. SICAP.ai has 6 documents citite and 3 or 4 data sets.
+- The review's example (`source_row`, `risk_score`) is from `achizitii-directe-ti-2026`, not from SICAP.ai.
+
+**Decided**
+- A new file and not new columns on `date_din` rows: one provider can give one entry several data sets (SICAP.ai: tenders and direct purchases from SEAP). Cost of the alternative: 13 columns that 228 of 445 relation rows leave empty.
+- Hand-edited, not generated: record, role and key variables need a person (the review's main finding). A proposal script waits until a person needs more than about 10 minutes per card.
+- Open for the owner (spec section 9): accept the card; the file name; the 96 `propus` `date_din` rows; the providers of `romania-transparenta`; `detaliere_date` and `relatie_date` stay with the taxonomy items.
+- Measured: the counts above. Assumed: the grouping of formats into API, file and code (spec Appendix B).
+
 ## 2026-11-23 — Merge of batches I, I2 and the new entries (v0.83.0)
 
 **Done**
