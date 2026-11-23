@@ -1,5 +1,6 @@
 # Releases
 
+- **v0.86.1** (2026-11-23): the 96 proposed `date_din` rows are decided (93 accepted, 2 rejected, the university rankings split into QS, THE and ARWU); 31 provider rows accepted. The finder shows a provider for 76 of 137 entries (46 before). Intermediaries carry a note.
 - **v0.86.0** (2026-11-23): the data-set card is built, with no card yet: `integrare/fise-date.csv` (header only), three code lists, the checks in `validate.py`, `datasets` in `data.json`, the card on the entry page, on `/date/<slug>/` and in the finder; `/date/<slug>/` counts „documente citite”. The public pages do not change until the owner accepts a card.
 - **v0.85.0** (2026-11-23): the data-set card spec is accepted (file `integrare/fise-date.csv`); briefs for the build and for the pilot cards of procurement and companies.
 - **v0.84.0** (2026-11-23): spec of the data-set card (review item 1, proposed): one card for each data set of an entry (provider, record, period, access, identifiers with role), the raw fields as a technical view. Measured: 45 of 137 entries can get a card from existing evidence; 1 has all five fields. Re-count of the external review's figures at `e300e9b`.

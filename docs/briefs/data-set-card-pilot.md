@@ -1,6 +1,6 @@
 # Brief — the data-set card: pilot cards for procurement and companies
 
-Date: 2026-11-23. Status: waiting. Two conditions must be true before it starts:
+Date: 2026-11-23. Status: ready (both conditions met on 2026-11-23: v0.86.0 and v0.86.1). The two conditions were:
 
 1. [`data-set-card-build.md`](data-set-card-build.md) is merged (the file, the checks and the pages exist).
 2. The owner has decided the `propus` `date_din` rows of the pilot entries (spec section 9, decision 3), or says to start without them.

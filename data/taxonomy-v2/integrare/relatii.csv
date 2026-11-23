@@ -141,7 +141,7 @@ L139,harta-firmelor,date_din,,Monitorul Oficial,surse_date,https://harta-firmelo
 L140,registrul-firmelor,date_din,,Oficiul Național al Registrului Comerțului (ONRC),surse_date,https://registru.horecaos.org/,acceptat
 L141,registrul-firmelor,date_din,,ANAF,surse_date,https://registru.horecaos.org/,acceptat
 L142,achizitii-directe-ti-2026,date_din,,SEAP,surse_date,https://achizitii-directe-ti-2026.mariuscomper.uk/,acceptat
-L143,achizitii-directe-ti-2026,date_din,,Autoritatea pentru Digitalizarea României (ADR),descriere; candidat neverificat,https://achizitii-directe-ti-2026.mariuscomper.uk/,propus
+L143,achizitii-directe-ti-2026,date_din,,Autoritatea pentru Digitalizarea României (ADR),surse_date,https://achizitii-directe-ti-2026.mariuscomper.uk/,acceptat
 L144,prima-cifra,date_din,,SEAP,surse_date,https://mariuscomper.uk/prima-cifra/,acceptat
 L145,recontorizarea,date_din,,Eurostat,surse_date,https://mariuscomper.uk/recontorizarea/,acceptat
 L146,sicap-ai,date_din,,SEAP,surse_date,https://sicap.ai/,acceptat
@@ -231,167 +231,167 @@ L229,hotarari,atribuit_in_sursa,,WOW SITE EXPERT S.R.L.,autor,WOW SITE EXPERT S.
 L230,transparenta-eu,date_din,,ANAF,surse_date,https://transparenta.eu/,acceptat
 L231,transparenta-eu,date_din,,Ministerul Finanțelor,surse_date,https://transparenta.eu/,acceptat
 L232,satul-care-se-stinge,atribuit_in_sursa,,Dorin Spoaller,autor,https://satulcaresestinge.ro/,rol_neconfirmat
-L233,satul-care-se-stinge,date_din,,Institutul Național de Statistică (INS),surse_date,https://satulcaresestinge.ro/,propus
-L234,satul-care-se-stinge,date_din,,Autoritatea Electorală Permanentă (AEP),surse_date,https://satulcaresestinge.ro/,propus
-L235,satul-care-se-stinge,date_din,,Oficiul Național al Registrului Comerțului (ONRC),surse_date,https://satulcaresestinge.ro/,propus
-L236,satul-care-se-stinge,date_din,,Baza de date localități România (GitHub),surse_date,https://satulcaresestinge.ro/,propus
+L233,satul-care-se-stinge,date_din,,Institutul Național de Statistică (INS),surse_date,https://satulcaresestinge.ro/,acceptat
+L234,satul-care-se-stinge,date_din,,Autoritatea Electorală Permanentă (AEP),surse_date,https://satulcaresestinge.ro/,acceptat
+L235,satul-care-se-stinge,date_din,,Oficiul Național al Registrului Comerțului (ONRC),surse_date,https://satulcaresestinge.ro/,acceptat
+L236,satul-care-se-stinge,date_din,,Baza de date localități România (GitHub),surse_date,https://satulcaresestinge.ro/,acceptat
 L237,satul-care-se-stinge,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L238,guverneaza-daca-poti,atribuit_in_sursa,,Dorin Spoaller,autor,https://guverneazadacapoti.ro/,rol_neconfirmat
-L239,guverneaza-daca-poti,date_din,,Institutul Național de Statistică (INS),surse_date,https://guverneazadacapoti.ro/,propus
-L240,guverneaza-daca-poti,date_din,,Eurostat,surse_date,https://guverneazadacapoti.ro/,propus
-L241,guverneaza-daca-poti,date_din,,Transparency International,surse_date,https://guverneazadacapoti.ro/,propus
+L239,guverneaza-daca-poti,date_din,,Institutul Național de Statistică (INS),surse_date,https://guverneazadacapoti.ro/,acceptat
+L240,guverneaza-daca-poti,date_din,,Eurostat,surse_date,https://guverneazadacapoti.ro/,acceptat
+L241,guverneaza-daca-poti,date_din,,Transparency International,surse_date,https://guverneazadacapoti.ro/,acceptat
 L242,guverneaza-daca-poti,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L243,romania-in-viata-ta,atribuit_in_sursa,,Dorin Spoaller,autor,https://inviatamea.ro/,rol_neconfirmat
-L244,romania-in-viata-ta,date_din,,Banca Mondială,surse_date,https://inviatamea.ro/,propus
-L245,romania-in-viata-ta,date_din,,Organizația Națiunilor Unite (ONU),surse_date,https://inviatamea.ro/,propus
-L246,romania-in-viata-ta,date_din,,Institutul Național de Statistică (INS),surse_date,https://inviatamea.ro/,propus
-L247,romania-in-viata-ta,date_din,,FAO,surse_date,https://inviatamea.ro/,propus
-L248,romania-in-viata-ta,date_din,,Organizația Mondială a Sănătății (OMS),surse_date,https://inviatamea.ro/,propus
-L249,romania-in-viata-ta,date_din,,OCDE,surse_date,https://inviatamea.ro/,propus
-L250,romania-in-viata-ta,date_din,,Organizația Internațională a Muncii (OIM),surse_date,https://inviatamea.ro/,propus
-L251,romania-in-viata-ta,date_din,,Uniunea Internațională a Telecomunicațiilor (ITU),surse_date,https://inviatamea.ro/,propus
-L252,romania-in-viata-ta,date_din,,Copernicus,surse_date,https://inviatamea.ro/,propus
-L253,romania-in-viata-ta,date_din,,Global Carbon Project,surse_date,https://inviatamea.ro/,propus
-L254,romania-in-viata-ta,date_din,,Ember,surse_date,https://inviatamea.ro/,propus
-L255,romania-in-viata-ta,date_din,,Energy Institute,surse_date,https://inviatamea.ro/,propus
-L256,romania-in-viata-ta,date_din,,Human Mortality Database,surse_date,https://inviatamea.ro/,propus
-L257,romania-in-viata-ta,date_din,,V-Dem,surse_date,https://inviatamea.ro/,propus
-L258,romania-in-viata-ta,date_din,,Dignitas,surse_date,https://inviatamea.ro/,propus
-L259,romania-in-viata-ta,date_din,,Agerpres,surse_date,https://inviatamea.ro/,propus
-L260,romania-in-viata-ta,date_din,,Biroul Electoral Central (BEC),surse_date,https://inviatamea.ro/,propus
-L261,romania-in-viata-ta,date_din,,Pew Research Center,surse_date,https://inviatamea.ro/,propus
-L262,romania-in-viata-ta,date_din,,Our World in Data,surse_date,https://inviatamea.ro/,propus
+L244,romania-in-viata-ta,date_din,,Banca Mondială,surse_date,https://inviatamea.ro/,acceptat
+L245,romania-in-viata-ta,date_din,,Organizația Națiunilor Unite (ONU),surse_date,https://inviatamea.ro/,acceptat
+L246,romania-in-viata-ta,date_din,,Institutul Național de Statistică (INS),surse_date,https://inviatamea.ro/,acceptat
+L247,romania-in-viata-ta,date_din,,FAO,surse_date,https://inviatamea.ro/,acceptat
+L248,romania-in-viata-ta,date_din,,Organizația Mondială a Sănătății (OMS),surse_date,https://inviatamea.ro/,acceptat
+L249,romania-in-viata-ta,date_din,,OCDE,surse_date,https://inviatamea.ro/,acceptat
+L250,romania-in-viata-ta,date_din,,Organizația Internațională a Muncii (OIM),surse_date,https://inviatamea.ro/,acceptat
+L251,romania-in-viata-ta,date_din,,Uniunea Internațională a Telecomunicațiilor (ITU),surse_date,https://inviatamea.ro/,acceptat
+L252,romania-in-viata-ta,date_din,,Copernicus,surse_date,https://inviatamea.ro/,acceptat
+L253,romania-in-viata-ta,date_din,,Global Carbon Project,surse_date,https://inviatamea.ro/,acceptat
+L254,romania-in-viata-ta,date_din,,Ember,surse_date,https://inviatamea.ro/,acceptat
+L255,romania-in-viata-ta,date_din,,Energy Institute,surse_date,https://inviatamea.ro/,acceptat
+L256,romania-in-viata-ta,date_din,,Human Mortality Database,surse_date,https://inviatamea.ro/,acceptat
+L257,romania-in-viata-ta,date_din,,V-Dem,surse_date,https://inviatamea.ro/,acceptat
+L258,romania-in-viata-ta,date_din,,Dignitas,surse_date,https://inviatamea.ro/,respins
+L259,romania-in-viata-ta,date_din,,Agerpres,surse_date,https://inviatamea.ro/,acceptat
+L260,romania-in-viata-ta,date_din,,Biroul Electoral Central (BEC),surse_date,https://inviatamea.ro/,acceptat
+L261,romania-in-viata-ta,date_din,,Pew Research Center,surse_date,https://inviatamea.ro/,acceptat
+L262,romania-in-viata-ta,date_din,,Our World in Data,surse_date,https://inviatamea.ro/,acceptat
 L263,romania-in-viata-ta,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L264,corpusul-cotroceni,atribuit_in_sursa,,Dorin Spoaller,autor,https://presedintii.ro/,rol_neconfirmat
 L265,corpusul-cotroceni,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L266,unul-din-100,atribuit_in_sursa,,Dorin Spoaller,autor,https://unuldin100.ro/,rol_neconfirmat
-L267,unul-din-100,date_din,,Institutul Național de Statistică (INS),surse_date,https://unuldin100.ro/,propus
-L268,unul-din-100,date_din,,Eurostat,surse_date,https://unuldin100.ro/,propus
-L269,unul-din-100,date_din,,Organizația Națiunilor Unite (ONU),surse_date,https://unuldin100.ro/,propus
+L267,unul-din-100,date_din,,Institutul Național de Statistică (INS),surse_date,https://unuldin100.ro/,acceptat
+L268,unul-din-100,date_din,,Eurostat,surse_date,https://unuldin100.ro/,acceptat
+L269,unul-din-100,date_din,,Organizația Națiunilor Unite (ONU),surse_date,https://unuldin100.ro/,acceptat
 L270,unul-din-100,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L271,cat-costa-un-vot,atribuit_in_sursa,,Dorin Spoaller,autor,https://1vot.ro/,rol_neconfirmat
-L272,cat-costa-un-vot,date_din,,Autoritatea Electorală Permanentă (AEP),surse_date,https://1vot.ro/,propus
-L273,cat-costa-un-vot,date_din,,Biroul Electoral Central (BEC),surse_date,https://1vot.ro/,propus
-L274,cat-costa-un-vot,date_din,,Eurostat,surse_date,https://1vot.ro/,propus
-L275,cat-costa-un-vot,date_din,,Institutul Național de Statistică (INS),surse_date,https://1vot.ro/,propus
-L276,cat-costa-un-vot,date_din,,Europa Liberă România,surse_date,https://1vot.ro/,propus
-L277,cat-costa-un-vot,date_din,,Expert Forum,surse_date,https://1vot.ro/,propus
+L272,cat-costa-un-vot,date_din,,Autoritatea Electorală Permanentă (AEP),surse_date,https://1vot.ro/,acceptat
+L273,cat-costa-un-vot,date_din,,Biroul Electoral Central (BEC),surse_date,https://1vot.ro/,acceptat
+L274,cat-costa-un-vot,date_din,,Eurostat,surse_date,https://1vot.ro/,acceptat
+L275,cat-costa-un-vot,date_din,,Institutul Național de Statistică (INS),surse_date,https://1vot.ro/,acceptat
+L276,cat-costa-un-vot,date_din,,Europa Liberă România,surse_date,https://1vot.ro/,respins
+L277,cat-costa-un-vot,date_din,,Expert Forum,surse_date,https://1vot.ro/,acceptat
 L278,cat-costa-un-vot,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L279,geamanul-european,atribuit_in_sursa,,Dorin Spoaller,autor,https://geamanuleuropean.ro/,rol_neconfirmat
-L280,geamanul-european,date_din,,Eurostat,surse_date,https://geamanuleuropean.ro/,propus
+L280,geamanul-european,date_din,,Eurostat,surse_date,https://geamanuleuropean.ro/,acceptat
 L281,geamanul-european,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L282,sondajele-romaniei,atribuit_in_sursa,,Adrian Hudrea,autor,https://romaniainteractiva.ro/,rol_neconfirmat
-L283,sondajele-romaniei,date_din,,Biroul Electoral Central (BEC),surse_date,https://sondajeleromaniei.ro/metodologie/,propus
-L284,sondajele-romaniei,date_din,,Autoritatea Electorală Permanentă (AEP),surse_date,https://sondajeleromaniei.ro/metodologie/,propus
-L285,sondajele-romaniei,date_din,,Rezultate Vot (Code for Romania),surse_date,https://sondajeleromaniei.ro/metodologie/,propus
-L286,sondajele-romaniei,date_din,,INSCOP Research,surse_date,https://sondajeleromaniei.ro/,propus
-L287,sondajele-romaniei,date_din,,CURS,surse_date,https://sondajeleromaniei.ro/,propus
-L288,sondajele-romaniei,date_din,,Avangarde,surse_date,https://sondajeleromaniei.ro/,propus
-L289,sondajele-romaniei,date_din,,IRES,surse_date,https://sondajeleromaniei.ro/,propus
-L290,sondajele-romaniei,date_din,,Sociopol,surse_date,https://sondajeleromaniei.ro/,propus
-L291,sondajele-romaniei,date_din,,Wikipedia,surse_date,https://sondajeleromaniei.ro/metodologie/,propus
+L283,sondajele-romaniei,date_din,,Biroul Electoral Central (BEC),surse_date,https://sondajeleromaniei.ro/metodologie/,acceptat
+L284,sondajele-romaniei,date_din,,Autoritatea Electorală Permanentă (AEP),surse_date,https://sondajeleromaniei.ro/metodologie/,acceptat
+L285,sondajele-romaniei,date_din,,Rezultate Vot (Code for Romania),surse_date,https://sondajeleromaniei.ro/metodologie/,acceptat
+L286,sondajele-romaniei,date_din,,INSCOP Research,surse_date,https://sondajeleromaniei.ro/,acceptat
+L287,sondajele-romaniei,date_din,,CURS,surse_date,https://sondajeleromaniei.ro/,acceptat
+L288,sondajele-romaniei,date_din,,Avangarde,surse_date,https://sondajeleromaniei.ro/,acceptat
+L289,sondajele-romaniei,date_din,,IRES,surse_date,https://sondajeleromaniei.ro/,acceptat
+L290,sondajele-romaniei,date_din,,Sociopol,surse_date,https://sondajeleromaniei.ro/,acceptat
+L291,sondajele-romaniei,date_din,,Wikipedia,surse_date,https://sondajeleromaniei.ro/metodologie/,acceptat
 L292,sondajele-romaniei,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L293,orase-digitale,atribuit_in_sursa,,Nicolae Urs,autor,Nicolae Urs / Ioana Nisioi,rol_neconfirmat
 L294,orase-digitale,atribuit_in_sursa,,Ioana Nisioi,autor,Nicolae Urs / Ioana Nisioi,rol_neconfirmat
 L295,orase-digitale,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L296,chitanta-orasului,atribuit_in_sursa,,Nicolae Urs,autor,Nicolae Urs,rol_neconfirmat
-L297,chitanta-orasului,date_din,,Ministerul Finanțelor,surse_date,https://nicolaeurs.ro/chitantaorasului/,propus
-L298,chitanta-orasului,date_din,,Institutul Național de Statistică (INS),surse_date,https://nicolaeurs.ro/chitantaorasului/,propus
+L297,chitanta-orasului,date_din,,Ministerul Finanțelor,surse_date,https://nicolaeurs.ro/chitantaorasului/,acceptat
+L298,chitanta-orasului,date_din,,Institutul Național de Statistică (INS),surse_date,https://nicolaeurs.ro/chitantaorasului/,acceptat
 L299,chitanta-orasului,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L300,primar-pentru-un-an,atribuit_in_sursa,,Nicolae Urs,autor,Nicolae Urs,rol_neconfirmat
-L301,primar-pentru-un-an,date_din,,Ministerul Finanțelor,surse_date,https://nicolaeurs.ro/primarpentruunan/,propus
+L301,primar-pentru-un-an,date_din,,Ministerul Finanțelor,surse_date,https://nicolaeurs.ro/primarpentruunan/,acceptat
 L302,primar-pentru-un-an,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L303,ghiceste-bugetul,atribuit_in_sursa,,Nicolae Urs,autor,Nicolae Urs,rol_neconfirmat
-L304,ghiceste-bugetul,date_din,,Ministerul Finanțelor,surse_date,https://nicolaeurs.ro/ghicestebugetul/,propus
+L304,ghiceste-bugetul,date_din,,Ministerul Finanțelor,surse_date,https://nicolaeurs.ro/ghicestebugetul/,acceptat
 L305,ghiceste-bugetul,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L306,cate-voturi-aduce-un-primar,atribuit_in_sursa,,Nicolae Urs,autor,Nicolae Urs,rol_neconfirmat
-L307,cate-voturi-aduce-un-primar,date_din,,Autoritatea Electorală Permanentă (AEP),surse_date,https://nicolaeurs.ro/catevoturiaduceunprimar/,propus
-L308,cate-voturi-aduce-un-primar,date_din,,Rezultate Vot (Code for Romania),surse_date,https://nicolaeurs.ro/catevoturiaduceunprimar/,propus
-L309,cate-voturi-aduce-un-primar,date_din,,Institutul Național de Statistică (INS),surse_date,https://nicolaeurs.ro/catevoturiaduceunprimar/,propus
+L307,cate-voturi-aduce-un-primar,date_din,,Autoritatea Electorală Permanentă (AEP),surse_date,https://nicolaeurs.ro/catevoturiaduceunprimar/,acceptat
+L308,cate-voturi-aduce-un-primar,date_din,,Rezultate Vot (Code for Romania),surse_date,https://nicolaeurs.ro/catevoturiaduceunprimar/,acceptat
+L309,cate-voturi-aduce-un-primar,date_din,,Institutul Național de Statistică (INS),surse_date,https://nicolaeurs.ro/catevoturiaduceunprimar/,acceptat
 L310,cate-voturi-aduce-un-primar,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L311,bula-ta,atribuit_in_sursa,,România Interactivă,autor,"România Interactivă, FSPAC, Universitatea Babeș-Bolyai",rol_neconfirmat
 L312,bula-ta,atribuit_in_sursa,,"Facultatea de Științe Politice, Administrative și ale Comunicării (FSPAC), Universitatea Babeș-Bolyai",autor,"România Interactivă, FSPAC, Universitatea Babeș-Bolyai",rol_neconfirmat
 L313,bula-ta,atribuit_in_sursa,,Nicolae Urs,autor,https://romaniainteractiva.ro/,rol_neconfirmat
-L314,bula-ta,date_din,,Institutul Național de Statistică (INS),surse_date,https://nicolaeurs.ro/bula-ta/,propus
-L315,bula-ta,date_din,,Eurostat,surse_date,https://nicolaeurs.ro/bula-ta/,propus
+L314,bula-ta,date_din,,Institutul Național de Statistică (INS),surse_date,https://nicolaeurs.ro/bula-ta/,acceptat
+L315,bula-ta,date_din,,Eurostat,surse_date,https://nicolaeurs.ro/bula-ta/,acceptat
 L316,bula-ta,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L317,judetul-tau-in-8-recensaminte,atribuit_in_sursa,,Dorin Spoaller,autor,Dorin Spoaller,rol_neconfirmat
-L318,judetul-tau-in-8-recensaminte,date_din,,Institutul Național de Statistică (INS),surse_date,https://romaniainteractiva.ro/recensaminte/,propus
+L318,judetul-tau-in-8-recensaminte,date_din,,Institutul Național de Statistică (INS),surse_date,https://romaniainteractiva.ro/recensaminte/,acceptat
 L319,judetul-tau-in-8-recensaminte,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L320,guverne-dupa-1989,atribuit_in_sursa,,Dorin Spoaller,autor,Dorin Spoaller,rol_neconfirmat
-L321,guverne-dupa-1989,date_din,,Monitorul Oficial,surse_date,https://romaniainteractiva.ro/guverne/,propus
-L322,guverne-dupa-1989,date_din,,Guvernul României,surse_date,https://romaniainteractiva.ro/guverne/,propus
-L323,guverne-dupa-1989,date_din,,Agerpres,surse_date,https://romaniainteractiva.ro/guverne/,propus
+L321,guverne-dupa-1989,date_din,,Monitorul Oficial,surse_date,https://romaniainteractiva.ro/guverne/,acceptat
+L322,guverne-dupa-1989,date_din,,Guvernul României,surse_date,https://romaniainteractiva.ro/guverne/,acceptat
+L323,guverne-dupa-1989,date_din,,Agerpres,surse_date,https://romaniainteractiva.ro/guverne/,acceptat
 L324,guverne-dupa-1989,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L325,romania-in-puncte,atribuit_in_sursa,,Dorin Spoaller,autor,Dorin Spoaller,rol_neconfirmat
-L326,romania-in-puncte,date_din,,Autoritatea Electorală Permanentă (AEP),surse_date,https://romaniainteractiva.ro/locale/,propus
+L326,romania-in-puncte,date_din,,Autoritatea Electorală Permanentă (AEP),surse_date,https://romaniainteractiva.ro/locale/,acceptat
 L327,romania-in-puncte,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L328,harta-notelor,atribuit_in_sursa,,Adrian Hudrea,autor,Adrian Hudrea / Dorin Spoaller,rol_neconfirmat
 L329,harta-notelor,atribuit_in_sursa,,Dorin Spoaller,autor,Adrian Hudrea / Dorin Spoaller,rol_neconfirmat
-L330,harta-notelor,date_din,,Ministerul Educației,surse_date,https://romaniainteractiva.ro/harta-notelor/,propus
+L330,harta-notelor,date_din,,Ministerul Educației,surse_date,https://romaniainteractiva.ro/harta-notelor/,acceptat
 L331,harta-notelor,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L332,universitatile-romaniei,atribuit_in_sursa,,Dorin Spoaller,autor,Dorin Spoaller,rol_neconfirmat
-L333,universitatile-romaniei,date_din,,Consiliul Național pentru Finanțarea Învățământului Superior (CNFIS),surse_date,https://romaniainteractiva.ro/universitati/,propus
-L334,universitatile-romaniei,date_din,,ANOSR,surse_date,https://romaniainteractiva.ro/universitati/,propus
-L335,universitatile-romaniei,date_din,,Institutul Național de Statistică (INS),surse_date,https://romaniainteractiva.ro/universitati/,propus
-L336,universitatile-romaniei,date_din,,Cushman & Wakefield Echinox,surse_date,https://romaniainteractiva.ro/universitati/,propus
-L337,universitatile-romaniei,date_din,,Ministerul Educației,surse_date,https://romaniainteractiva.ro/universitati/,propus
+L333,universitatile-romaniei,date_din,,Consiliul Național pentru Finanțarea Învățământului Superior (CNFIS),surse_date,https://romaniainteractiva.ro/universitati/,acceptat
+L334,universitatile-romaniei,date_din,,ANOSR,surse_date,https://romaniainteractiva.ro/universitati/,acceptat
+L335,universitatile-romaniei,date_din,,Institutul Național de Statistică (INS),surse_date,https://romaniainteractiva.ro/universitati/,acceptat
+L336,universitatile-romaniei,date_din,,Cushman & Wakefield Echinox,surse_date,https://romaniainteractiva.ro/universitati/,acceptat
+L337,universitatile-romaniei,date_din,,Ministerul Educației,surse_date,https://romaniainteractiva.ro/universitati/,acceptat
 L338,universitatile-romaniei,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L339,comasarea-comunelor,atribuit_in_sursa,,Dorin Spoaller,autor,Dorin Spoaller,rol_neconfirmat
-L340,comasarea-comunelor,date_din,,Ministerul Dezvoltării (MDLPA),surse_date,https://romaniainteractiva.ro/comasare/,propus
-L341,comasarea-comunelor,date_din,,Institutul Național de Statistică (INS),surse_date,https://romaniainteractiva.ro/comasare/,propus
-L342,comasarea-comunelor,date_din,,Oficiul Național al Registrului Comerțului (ONRC),surse_date,https://romaniainteractiva.ro/comasare/,propus
-L343,comasarea-comunelor,date_din,,Autoritatea Electorală Permanentă (AEP),surse_date,https://romaniainteractiva.ro/comasare/,propus
+L340,comasarea-comunelor,date_din,,Ministerul Dezvoltării (MDLPA),surse_date,https://romaniainteractiva.ro/comasare/,acceptat
+L341,comasarea-comunelor,date_din,,Institutul Național de Statistică (INS),surse_date,https://romaniainteractiva.ro/comasare/,acceptat
+L342,comasarea-comunelor,date_din,,Oficiul Național al Registrului Comerțului (ONRC),surse_date,https://romaniainteractiva.ro/comasare/,acceptat
+L343,comasarea-comunelor,date_din,,Autoritatea Electorală Permanentă (AEP),surse_date,https://romaniainteractiva.ro/comasare/,acceptat
 L344,comasarea-comunelor,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L345,parc-auto-judete,atribuit_in_sursa,,Dorin Spoaller,autor,Dorin Spoaller,rol_neconfirmat
-L346,parc-auto-judete,date_din,,Direcția Regim Permise de Conducere și Înmatriculare a Vehiculelor (DRPCIV),surse_date,https://romaniainteractiva.ro/masini/,propus
-L347,parc-auto-judete,date_din,,Eurostat,surse_date,https://romaniainteractiva.ro/masini/,propus
+L346,parc-auto-judete,date_din,,Direcția Regim Permise de Conducere și Înmatriculare a Vehiculelor (DRPCIV),surse_date,https://romaniainteractiva.ro/masini/,acceptat
+L347,parc-auto-judete,date_din,,Eurostat,surse_date,https://romaniainteractiva.ro/masini/,acceptat
 L348,parc-auto-judete,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L349,orase-vii,atribuit_in_sursa,,Dorin Spoaller,autor,Dorin Spoaller,rol_neconfirmat
-L350,orase-vii,date_din,,Institutul Național de Statistică (INS),surse_date,https://romaniainteractiva.ro/orasevii/,propus
+L350,orase-vii,date_din,,Institutul Național de Statistică (INS),surse_date,https://romaniainteractiva.ro/orasevii/,acceptat
 L351,orase-vii,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L352,generatiile-romaniei,atribuit_in_sursa,,Dorin Spoaller,autor,Dorin Spoaller,rol_neconfirmat
-L353,generatiile-romaniei,date_din,,Institutul Național de Statistică (INS),surse_date,https://romaniainteractiva.ro/generatii/,propus
-L354,generatiile-romaniei,date_din,,Eurostat,surse_date,https://romaniainteractiva.ro/generatii/,propus
-L355,generatiile-romaniei,date_din,,Maddison Project Database,surse_date,https://romaniainteractiva.ro/generatii/,propus
-L356,generatiile-romaniei,date_din,,V-Dem,surse_date,https://romaniainteractiva.ro/generatii/,propus
-L357,generatiile-romaniei,date_din,,OCDE,surse_date,https://romaniainteractiva.ro/generatii/,propus
-L358,generatiile-romaniei,date_din,,Banca Mondială,surse_date,https://romaniainteractiva.ro/generatii/,propus
-L359,generatiile-romaniei,date_din,,Banca Națională a României (BNR),surse_date,https://romaniainteractiva.ro/generatii/,propus
+L353,generatiile-romaniei,date_din,,Institutul Național de Statistică (INS),surse_date,https://romaniainteractiva.ro/generatii/,acceptat
+L354,generatiile-romaniei,date_din,,Eurostat,surse_date,https://romaniainteractiva.ro/generatii/,acceptat
+L355,generatiile-romaniei,date_din,,Maddison Project Database,surse_date,https://romaniainteractiva.ro/generatii/,acceptat
+L356,generatiile-romaniei,date_din,,V-Dem,surse_date,https://romaniainteractiva.ro/generatii/,acceptat
+L357,generatiile-romaniei,date_din,,OCDE,surse_date,https://romaniainteractiva.ro/generatii/,acceptat
+L358,generatiile-romaniei,date_din,,Banca Mondială,surse_date,https://romaniainteractiva.ro/generatii/,acceptat
+L359,generatiile-romaniei,date_din,,Banca Națională a României (BNR),surse_date,https://romaniainteractiva.ro/generatii/,acceptat
 L360,generatiile-romaniei,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L361,calendar-strategic,atribuit_in_sursa,,Dorin Spoaller,autor,Dorin Spoaller,rol_neconfirmat
-L362,calendar-strategic,date_din,,Secretariatul General al Guvernului (SGG),surse_date,https://romaniainteractiva.ro/strategii/,propus
-L363,calendar-strategic,date_din,,Portal Legislativ,surse_date,https://romaniainteractiva.ro/strategii/,propus
-L364,calendar-strategic,date_din,,Ministerul Finanțelor,surse_date,https://romaniainteractiva.ro/strategii/,propus
+L362,calendar-strategic,date_din,,Secretariatul General al Guvernului (SGG),surse_date,https://romaniainteractiva.ro/strategii/,acceptat
+L363,calendar-strategic,date_din,,Portal Legislativ,surse_date,https://romaniainteractiva.ro/strategii/,acceptat
+L364,calendar-strategic,date_din,,Ministerul Finanțelor,surse_date,https://romaniainteractiva.ro/strategii/,acceptat
 L365,calendar-strategic,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L366,harta-vaccinarii,atribuit_in_sursa,,Dorin Spoaller,autor,Dorin Spoaller,rol_neconfirmat
-L367,harta-vaccinarii,date_din,,Institutul Național de Sănătate Publică (INSP),surse_date,https://romaniainteractiva.ro/vaccinare/,propus
+L367,harta-vaccinarii,date_din,,Institutul Național de Sănătate Publică (INSP),surse_date,https://romaniainteractiva.ro/vaccinare/,acceptat
 L368,harta-vaccinarii,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L369,speranta-viata-judete,atribuit_in_sursa,,Dorin Spoaller,autor,Dorin Spoaller,rol_neconfirmat
-L370,speranta-viata-judete,date_din,,Institutul Național de Statistică (INS),surse_date,https://romaniainteractiva.ro/speranta-viata/,propus
-L371,speranta-viata-judete,date_din,,Eurostat,surse_date,https://romaniainteractiva.ro/speranta-viata/,propus
+L370,speranta-viata-judete,date_din,,Institutul Național de Statistică (INS),surse_date,https://romaniainteractiva.ro/speranta-viata/,acceptat
+L371,speranta-viata-judete,date_din,,Eurostat,surse_date,https://romaniainteractiva.ro/speranta-viata/,acceptat
 L372,speranta-viata-judete,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L373,distanta-spital,atribuit_in_sursa,,Dorin Spoaller,autor,Dorin Spoaller,rol_neconfirmat
-L374,distanta-spital,date_din,,Ministerul Sănătății,surse_date,https://romaniainteractiva.ro/distanta-spital/,propus
-L375,distanta-spital,date_din,,Institutul Național de Statistică (INS),surse_date,https://romaniainteractiva.ro/distanta-spital/,propus
+L374,distanta-spital,date_din,,Ministerul Sănătății,surse_date,https://romaniainteractiva.ro/distanta-spital/,acceptat
+L375,distanta-spital,date_din,,Institutul Național de Statistică (INS),surse_date,https://romaniainteractiva.ro/distanta-spital/,acceptat
 L376,distanta-spital,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L377,mortalitate-evitabila,atribuit_in_sursa,,Dorin Spoaller,autor,Dorin Spoaller,rol_neconfirmat
-L378,mortalitate-evitabila,date_din,,Eurostat,surse_date,https://romaniainteractiva.ro/mortalitate-evitabila/,propus
+L378,mortalitate-evitabila,date_din,,Eurostat,surse_date,https://romaniainteractiva.ro/mortalitate-evitabila/,acceptat
 L379,mortalitate-evitabila,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L380,pacienti-medic,atribuit_in_sursa,,Dorin Spoaller,autor,Dorin Spoaller,rol_neconfirmat
-L381,pacienti-medic,date_din,,Institutul Național de Statistică (INS),surse_date,https://romaniainteractiva.ro/pacienti-medic/,propus
-L382,pacienti-medic,date_din,,Eurostat,surse_date,https://romaniainteractiva.ro/pacienti-medic/,propus
+L381,pacienti-medic,date_din,,Institutul Național de Statistică (INS),surse_date,https://romaniainteractiva.ro/pacienti-medic/,acceptat
+L382,pacienti-medic,date_din,,Eurostat,surse_date,https://romaniainteractiva.ro/pacienti-medic/,acceptat
 L383,pacienti-medic,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L384,uniranking-ro,atribuit_in_sursa,,Adrian Hudrea,autor,Adrian Hudrea,rol_neconfirmat
-L385,uniranking-ro,date_din,,Site-urile clasamentelor universitare,surse_date,https://romaniainteractiva.ro/UniRankingRO/,propus
-L386,uniranking-ro,date_din,,Ministerul Educației,surse_date,https://romaniainteractiva.ro/UniRankingRO/,propus
+L385,uniranking-ro,date_din,,QS World University Rankings,surse_date,https://romaniainteractiva.ro/UniRankingRO/,acceptat
+L386,uniranking-ro,date_din,,Ministerul Educației,surse_date,https://romaniainteractiva.ro/UniRankingRO/,acceptat
 L387,uniranking-ro,parte_din,romania-interactiva,,,https://romaniainteractiva.ro/,propus
 L388,textdelege,atribuit_in_sursa,,bogdantoma27,autor,bogdantoma27,rol_neconfirmat
 L389,textdelege,date_din,,Portal Legislativ,surse_date,https://github.com/lexifina/romania-law/blob/main/DATA.md#sources,acceptat
 L390,nedrept,creat_de,,Gabriel Popa,autor,Gabriel Popa,acceptat
 L391,civicom,creat_de,,Mihai Coteț,autor,Mihai Coteț,acceptat
-L392,lipseste,date_din,,Monitorul Oficial,surse_date,https://lipseste.ro/?view=sources,propus
-L393,lipseste,date_din,,Senatul României,surse_date,https://lipseste.ro/?view=sources,propus
+L392,lipseste,date_din,,Monitorul Oficial,surse_date,https://lipseste.ro/?view=sources,acceptat
+L393,lipseste,date_din,,Senatul României,surse_date,https://lipseste.ro/?view=sources,acceptat
 L394,leginoi,atribuit_in_sursa,,Asociația Curaj Înainte,autor,Asociația Curaj Înainte,rol_neconfirmat
 L395,curaj-inainte,atribuit_in_sursa,,Mihnea Dumitru,autor,Mihnea Dumitru,rol_neconfirmat
 L396,curaj-inainte,atribuit_in_sursa,,Cosmin Dragomir,autor,Cosmin Dragomir,rol_neconfirmat
@@ -435,7 +435,7 @@ L433,posturi-gov2,parte_din,gov2-ro,,,https://gov2.ro/,propus
 L434,jurnalism-independent,parte_din,gov2-ro,,,https://gov2.ro/,propus
 L435,org-gov2,parte_din,gov2-ro,,,https://gov2.ro/,propus
 L436,ro-alert,parte_din,gov2-ro,,,https://gov2.ro/,propus
-L437,ro-alert,date_din,,Inspectoratul General pentru Situații de Urgență (IGSU),surse_date,https://data.gov.ro/ro/dataset?q=mesaje+ro-alert&organization=inspectoratul-general-pentru-situatii-de-urgenta,propus
+L437,ro-alert,date_din,,Inspectoratul General pentru Situații de Urgență (IGSU),surse_date,https://data.gov.ro/ro/dataset?q=mesaje+ro-alert&organization=inspectoratul-general-pentru-situatii-de-urgenta,acceptat
 L438,insseption,atribuit_in_sursa,,csaladenes,autor,https://github.com/csaladenes/insseption,rol_neconfirmat
 L439,palavre,parte_din,curaj-inainte,,,https://palavre.ro/despre/,propus
 L440,ineter,parte_din,curaj-inainte,,,https://ineter.ro/llms.txt,propus
@@ -444,3 +444,5 @@ L442,palavre,atribuit_in_sursa,uzina-din-nori,,autor,Uzina din Nori,rol_neconfir
 L443,ineter,atribuit_in_sursa,uzina-din-nori,,autor,Uzina din Nori,rol_neconfirmat
 L444,igov-analiza-presei,atribuit_in_sursa,,Marius Dima,autor,Marius Dima / Andra Martinescu,rol_neconfirmat
 L445,igov-analiza-presei,atribuit_in_sursa,,Andra Martinescu,autor,Marius Dima / Andra Martinescu,rol_neconfirmat
+L446,uniranking-ro,date_din,,Times Higher Education World University Rankings,surse_date,https://romaniainteractiva.ro/UniRankingRO/,acceptat
+L447,uniranking-ro,date_din,,Academic Ranking of World Universities (ARWU),surse_date,https://romaniainteractiva.ro/UniRankingRO/,acceptat

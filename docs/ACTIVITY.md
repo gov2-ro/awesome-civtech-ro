@@ -1,5 +1,20 @@
 # Activity
 
+## 2026-11-23 — The 96 proposed `date_din` rows decided (v0.86.1)
+
+**Done**
+- Review list `docs/reports/date-din-propuse-2026-11-23.csv`: the 96 rows grouped by provider, with an offline check of the retained page text (78 name the provider, 6 do not, 12 have no copy). The first version of the check matched „INS” inside other words; it now uses word boundaries.
+- `relatii.csv`: 93 rows `acceptat`, 2 `respins`; L385 („Site-urile clasamentelor universitare”) became QS, and L446 and L447 add THE and ARWU (evidence: the UniRankingRO page). L143 (ADR, `achizitii-directe-ti-2026`) now has `camp_sursa=surse_date`.
+- `furnizori.csv`: 28 proposed rows accepted, 3 new rows (`qs`, `the`, `arwu`, tip `companie`), the group row `clasamente-universitare` removed. Three rows stay `propus`.
+- The finder shows a provider for 76 of 137 entries (46 before). `inventory_report.py` rewrote `acoperire.csv` and `inventory-expansion.md`.
+- Checks: `validate.py --publication` 0 errors, 0 warnings; unit tests 1,414 OK (9 skipped) after the report refresh; browser checks 188/188, 63/63, 156/156, 51/51.
+
+**Decided** (owner, 2026-11-23; Opus proposed)
+- Intermediaries are providers when the project names them: Wikipedia, Our World in Data and Rezultate Vot, each with a `nota` „Intermediar: …”. Cost of the alternative: the site would contradict the projects' own source lists. The data-set card shows the route later.
+- Europa Liberă is a publisher, not a provider: 1vot.ro cites its article („pe baza datelor AEP”; „Expert Forum, prin Europa Liberă”). L276 `respins`; AEP and Expert Forum stay.
+- Dignitas (L258) `respins`: its list of governments (dignitas.ro/attachment/497/full.pdf) is not exclusive to it.
+- The 12 rows without a retained copy are accepted on the audits of 2026-11-06 and 2026-11-13, which read the rendered pages. Assumed, not re-measured.
+
 ## 2026-11-23 — Data-set card: review and merge of the build (v0.86.0)
 
 **Done**
