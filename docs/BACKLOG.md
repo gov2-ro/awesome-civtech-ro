@@ -4,7 +4,7 @@ Statuses: `[ ]` open, `[~]` in progress, `[x]` done, `[-]` dropped.
 
 ## External review of `/date/` and the taxonomy — 2026-11-23
 
-Source: „Revizie: awesome-civtech-ro și civtech.gov2.ro/date” (23 Nov 2026, 7 pages, counted at commit `7b476a5`), local copy `tmp/261123/Revizie civtech.gov2.ro_date.pdf` (not tracked). It also summarises two other model reviews (Gemini, GPT); their full answers are not in this repository.
+Source: „Revizie: awesome-civtech-ro și civtech.gov2.ro/date” (23 Nov 2026, 7 pages, counted at commit `7b476a5`), sent by [eek](https://github.com/eek) — thanks, local copy `tmp/261123/Revizie civtech.gov2.ro_date.pdf` (not tracked). It also summarises two other model reviews (Gemini, GPT); their full answers are not in this repository.
 Main claim: the data part serves the cataloguer, not the visitor. Each item below is a proposal; the owner decides. Items 1–3 change specs (`DATA-SCHEMA.md`, `docs/specs/taxonomy-v2.md`) and need a brief first.
 
 The five changes, in the review's order:

@@ -1,7 +1,7 @@
 # Spec: a card for each data set (fișa setului de date)
 
 Status: accepted 2026-11-23 (owner's answers in section 9). Briefs: [`docs/briefs/data-set-card-build.md`](../briefs/data-set-card-build.md) (the build), [`docs/briefs/data-set-card-pilot.md`](../briefs/data-set-card-pilot.md) (the pilot cards).
-Source: item 1 of the external review (`docs/BACKLOG.md`, section "External review of `/date/` and the taxonomy — 2026-11-23"; local copy `tmp/261123/Revizie civtech.gov2.ro_date.pdf`, not tracked).
+Source: item 1 of the external review by [eek](https://github.com/eek), with thanks (`docs/BACKLOG.md`, section "External review of `/date/` and the taxonomy — 2026-11-23"; local copy `tmp/261123/Revizie civtech.gov2.ro_date.pdf`, not tracked).
 Measured at commit `e300e9b` (2026-11-23). The measuring scripts are not in the repository; Appendix B gives the method, so a person can repeat it.
 
 ## 1. Goal

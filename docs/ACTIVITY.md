@@ -1,5 +1,10 @@
 # Activity
 
+## 2026-11-23 — Thanks to eek for the external review
+
+**Done**
+- The external review of `/date/` and the taxonomy (`tmp/261123/Revizie civtech.gov2.ro_date.pdf`) came from [eek](https://github.com/eek). The README (section „Thanks”), the backlog, the spec `data-set-card.md` and the commit messages of the review work credit him.
+
 ## 2026-11-23 — Data-set card: owner's decisions and two briefs (v0.85.0)
 
 **Done**
@@ -16,6 +21,7 @@
 ## 2026-11-23 — Review item 1: the data-set card, measured and specified (v0.84.0)
 
 **Done**
+- Source: the external review by [eek](https://github.com/eek).
 - Spec `docs/specs/data-set-card.md` (status: proposed). One hand-edited file `integrare/seturi-de-date.csv`, one row for each entry and data set; the fields stay as a technical view on `/date/<slug>/`. Nothing is built.
 - Measured on the 137 entries of the finder index at `e300e9b`: accepted provider 46 (any provider row 76); data set named 16; record declared 9 (25 with a structure recipe); period declared 15; access evidence 86 (API 20, file 57, only code 5); identifiers with a role 12.
 - Entries that can get a card without a new request: 45 (19 with a structure recipe and an accepted provider, 26 with an accepted provider and a document citit). All five fields from evidence alone: 1 (`demoanaf`).

@@ -367,6 +367,10 @@ Raportul complet, cu limite, blocaje și rezultatele verificărilor, este în [i
 Lucrările rămase sunt în [BACKLOG.md](docs/BACKLOG.md#inventory-expansion--implemented-2026-10-25-milestones-ae-v0140v0180).
 Specificația implementată este în [inventory-expansion.md](docs/briefs/inventory-expansion.md).
 
+## Thanks
+
+Thanks to [eek](https://github.com/eek) for the external review of `/date/` and the taxonomy (23 November 2026). Its five proposals are in [BACKLOG.md](docs/BACKLOG.md#external-review-of-date-and-the-taxonomy--2026-11-23); the first one led to the [data-set card](docs/specs/data-set-card.md).
+
 ----
 
 Copyright (c) 2026 [gov2.ro](https://gov2.ro)
