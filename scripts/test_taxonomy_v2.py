@@ -72,6 +72,7 @@ class Copy:
         self.root = Path(self.tmp.name) / "taxonomy-v2"
         shutil.copytree(source or PACKAGE, self.root, ignore=shutil.ignore_patterns("runs", "__pycache__", "catalogue.json", "pagini", "surse"))
         self.overlay = self.root / "integrare"
+        (self.overlay / common.CARDS_FILE).write_text(",".join(common.CARD_COLS) + "\n", encoding="utf-8")  # the real pilot cards need the inventory scope that a copy lacks
 
     def rows(self, name: str, root: Path = None) -> tuple[list[str], list[dict]]:
         return taxonomy_v2.read_table((root or self.root) / name)
