@@ -1,5 +1,20 @@
 # Activity
 
+## 2026-11-23 — Merge of batches I, I2 and the new entries (v0.83.0)
+
+**Done**
+- Merged `inventory-batch-i` (batches I and I2) and `new-entries-2026-11-23` into `main`. The owner accepted `palavre`, `ineter` and `igov-analiza-presei`.
+- D179 and D180 (`revizuire.csv`) now cite the hash of the whole page, with the owner's approval. The decisions are unchanged.
+- Inventory step for the new entries: `collect_docs.py` 15 requests, `inventory.py` 0 requests, no structured source.
+- Checks: `validate.py --publication` 0 errors; `inventory.py --check` 0 evidence errors, 0 leaks in 30 marked sources; unit tests OK (skipped=8); browser checks 188/188, 63/63, 156/156, 51/51.
+
+**Hard**
+- `check_inventory_preview.py` failed on `main` since v0.82.0 (CI red on 7b476a5; the deploy still ran). The search for `REF_AREA` shows 8 results (4 projects, 4 publications), and the check expected the 4 projects only. The check now counts every active entry, as `app.js` `otherTabs` does.
+
+**Decided**
+- The registry notes of lot C2 for `locale/` and `harta-notelor/` still describe the 600,000-byte sample. They stay: they record that lot, and the registry is replayed from the spec files.
+- `curajinainte.ro` does not exist (NXDOMAIN). The new entries are `parte_din` the existing `curaj-inainte` (curajinainte.org).
+
 ## 2026-11-23 — Three new entries: palavre, ineter, igov-analiza-presei
 
 **Done**
