@@ -1,5 +1,19 @@
 # Activity
 
+## 2026-11-23 — Data-set card: review and merge of the build (v0.86.0)
+
+**Done**
+- Reviewed the branch `data-set-card` against the brief and the spec, and merged it. The pilot brief can start after the owner's decision on the `propus` `date_din` rows.
+- Three display fixes: the entry panel shows the count once (the link „Vedere tehnică” counts the fields); the grain shows only when its label is not in the record text; `/date/<slug>/` counts „documente citite”, not „surse”, and its note says „din documentele citite”.
+- Checks: `validate.py --publication` 0 errors, 0 warnings; unit tests 1,414 run, 9 skipped, all OK; browser checks 188/188, 63/63, 156/156, 51/51, and 29/29 for the cards.
+
+**Hard**
+- The agent's worktree started at v0.83.0, not v0.85.0. It moved to v0.85.0 before any work. The branch then moved onto the reworded `main` (the credit to eek); one conflict in this file kept both entries.
+
+**Decided**
+- The wording change on `/date/<slug>/` applies to every page, with or without a card. One word for one thing is worth more than byte-identical pages. The heading „Pe surse” and its anchor stay, so links do not break.
+- Kept the agent's extensions of the spec's checks (an inactive or unassessed entry cannot have a card; a few more errors and warnings). Cost of the alternative: a card that the finder never lists.
+
 ## 2026-11-23 — Data-set card: the build, with no card (brief `data-set-card-build.md`)
 
 **Done**

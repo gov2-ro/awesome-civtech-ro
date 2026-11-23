@@ -9,7 +9,7 @@ Main claim: the data part serves the cataloguer, not the visitor. Each item belo
 
 The five changes, in the review's order:
 - [~] 1. A card for each data set, not for each field. Spec accepted 2026-11-23: [`docs/specs/data-set-card.md`](specs/data-set-card.md). File `integrare/fise-date.csv`. Note: `source_row` and `risk_score` belong to `achizitii-directe-ti-2026`, not to SICAP.ai. For each project: the data set, its provider, what one record is, the period, the access (web, CSV, API) and the identifiers with their role. The raw fields (10,212 since v0.83.0) move to a technical view and stay as evidence. Start with procurement and companies. Example (SICAP.ai): `Cod CPV` goes into the summary, `source_row` stays technical, and `risk_score` needs a note on how it is calculated.
-  - [~] Build: [brief](briefs/data-set-card-build.md). Done on branch `data-set-card` (parts A to F); waits for the review. No card row in the real file.
+  - [x] Build: [brief](briefs/data-set-card-build.md). Done 2026-11-23 (v0.86.0): parts A to F, reviewed and merged. No card row in the real file.
   - [ ] Optional second step: schema.org `Dataset` JSON-LD for each card on the entry page (spec section 5). Not built.
   - [ ] Owner: decide the 96 `propus` `date_din` rows (30 entries) before the pilot, or ask for help.
   - [ ] Pilot cards, procurement and companies: [brief](briefs/data-set-card-pilot.md) (waits for the build and the owner's decision above).
