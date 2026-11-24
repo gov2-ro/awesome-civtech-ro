@@ -36,12 +36,12 @@ jobs:
       # IndexNow: compare the pages with the manifest of the live site (the previous deploy), before this deploy replaces it.
       - name: Plan the IndexNow submission
         run: python3 scripts/indexnow.py plan --site-dir site --out "$RUNNER_TEMP/indexnow-urls.txt"
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: site
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
       # After the deploy, so that the engines find the new pages and the key file. A failure warns and never fails the run.
       - name: Tell search engines about new and changed pages (IndexNow)
         continue-on-error: true
