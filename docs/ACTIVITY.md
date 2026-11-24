@@ -1,5 +1,19 @@
 # Activity
 
+## 2026-11-24 — Two entries added; the Pages deploy broke and was fixed
+
+**Done**
+- `pagubiti` (Păgubiți.ro) and `solomonar` added through `/add-new-url`, then accepted by the owner and published. No mentions rows: Serper returned `HTTP 400 Not enough credits`.
+- `pages.yml`: `configure-pages` v5 to v6, `upload-pages-artifact` v3 to v5, `deploy-pages` v4 to v5. The next run passed, and both entry pages answer HTTP 200.
+
+**Hard**
+- From 2026-11-24, `deploy-pages` v4 reported `Found 0 artifact(s)` although the run listed the artifact (14 MB, not expired). It failed on the push, on a rerun and on two manual runs. The Pages settings were correct. The last good run was on 2026-11-23.
+- I did not prove the cause. I assume that the old artifact code does not match a change in GitHub's artifact service. The three version bumps removed the failure.
+- `validate` is red since `release: v0.88.1`: `test_data_cards.ValidateScript.test_an_error_fails_the_publication_gate_and_names_the_line` expects the plain error text, and CI prints the `::error` annotation. The test passes locally. It is not fixed.
+
+**Decided**
+- Change the deploy workflow only after the owner agreed. The alternative, to retry until GitHub recovers, failed four times.
+
 ## 2026-11-23 — Two sessions on one checkout; the card „Ajutoarele de stat” (v0.88.1)
 
 **Done**
