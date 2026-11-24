@@ -10916,6 +10916,56 @@
       ]
     },
     {
+      "proiect": "solomonar",
+      "url": "https://solomonar.vercel.app/data/v1/organizatii/_index.json",
+      "sursa_id": "126bcb2c4e8d27342bc7",
+      "stare": "activ",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://solomonar.vercel.app/",
+      "link_original": "https://solomonar.vercel.app/data/v1/organizatii/_index.json",
+      "dovada": {
+        "url": "https://solomonar.vercel.app/",
+        "sha256": "4226400cd9cba7d8850a9c44e3a227f4a758835e627fd2ab19821ab942c23ee2",
+        "snapshot": "documentare/pagini/fec25719779e1004031870b3.json",
+        "pointer": "/links/14"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-24T11:37:57.100869+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "admis",
+          "la": "2026-11-24T11:37:58.572329+00:00"
+        }
+      ]
+    },
+    {
+      "proiect": "solomonar",
+      "url": "https://solomonar.vercel.app/data/v1/stats.json",
+      "sursa_id": "eac24ce5828c1dbf5576",
+      "stare": "activ",
+      "metoda": "link-in-documentatie",
+      "parinte": "https://solomonar.vercel.app/",
+      "link_original": "https://solomonar.vercel.app/data/v1/stats.json",
+      "dovada": {
+        "url": "https://solomonar.vercel.app/",
+        "sha256": "4226400cd9cba7d8850a9c44e3a227f4a758835e627fd2ab19821ab942c23ee2",
+        "snapshot": "documentare/pagini/fec25719779e1004031870b3.json",
+        "pointer": "/links/6"
+      },
+      "locator_stare": "cunoscut",
+      "descoperit_la": "2026-11-24T11:37:57.100869+00:00",
+      "prioritate": 2,
+      "retras": null,
+      "istoric": [
+        {
+          "eveniment": "admis",
+          "la": "2026-11-24T11:37:58.572329+00:00"
+        }
+      ]
+    },
+    {
       "proiect": "sondaje-romania",
       "url": "https://sondajeromania.ro/average-seats.json",
       "sursa_id": "218f1838e52fb4587763",

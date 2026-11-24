@@ -9580,6 +9580,72 @@
       ]
     },
     {
+      "slug": "pagubiti",
+      "url": "https://endimion2k.github.io/zamolxis/",
+      "state": "documentatie-gasita",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://endimion2k.github.io/zamolxis/",
+          "final_url": "https://endimion2k.github.io/zamolxis/",
+          "http_status": 200,
+          "fetched_at": "2026-11-24T11:37:57.100519+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Păgubiți.ro · Procesele de masă din instanțele României",
+          "sections": [
+            {
+              "kind": "despre",
+              "heading": "Despre date",
+              "url": "https://endimion2k.github.io/zamolxis/#despre"
+            }
+          ],
+          "sha256": "e40d2853deea84c9d3c8f53511d31adadd35c09c039d1527cfa23502a31b48a6",
+          "snapshot": "pagini/c955e899e7e2695e37703e1c.json",
+          "text_chars": 3104
+        },
+        {
+          "url": "https://endimion2k.github.io/zamolxis/llms.txt",
+          "final_url": "https://endimion2k.github.io/zamolxis/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-24T11:37:57.361431+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://endimion2k.github.io/llms.txt",
+          "final_url": "https://endimion2k.github.io/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-24T11:37:57.663673+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "gazda-comuna"
+        },
+        {
+          "url": "https://endimion2k.github.io/zamolxis/metodologie.html",
+          "final_url": "https://endimion2k.github.io/zamolxis/metodologie.html",
+          "http_status": 200,
+          "fetched_at": "2026-11-24T11:37:57.908227+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "metodologie",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Cum alegem procesele · Păgubiți.ro",
+          "sections": [],
+          "sha256": "a81a23e85a7aa16584172e4fcbc4d58059ae56de67688efd3b4d64dd37f8c256",
+          "snapshot": "pagini/edf061dd0f86c0b308905ec8.json",
+          "text_chars": 5508
+        }
+      ]
+    },
+    {
       "slug": "palavre",
       "url": "https://palavre.ro/",
       "state": "documentatie-gasita",
@@ -12006,6 +12072,60 @@
           "final_url": "http://www.funkycitizens.org/site-uri-utile-pentru-cetateni/despre/",
           "http_status": 404,
           "fetched_at": "2026-10-24T22:19:51.568242+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
+      "slug": "solomonar",
+      "url": "https://solomonar.vercel.app/",
+      "state": "documentatie-neconfirmata",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://solomonar.vercel.app/",
+          "final_url": "https://solomonar.vercel.app/",
+          "http_status": 200,
+          "fetched_at": "2026-11-24T11:37:57.100869+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Solomonar — cine conduce statul și pe unde trec banii publici",
+          "sections": [],
+          "sha256": "4226400cd9cba7d8850a9c44e3a227f4a758835e627fd2ab19821ab942c23ee2",
+          "snapshot": "pagini/fec25719779e1004031870b3.json",
+          "text_chars": 1913
+        },
+        {
+          "url": "https://solomonar.vercel.app/llms.txt",
+          "final_url": "https://solomonar.vercel.app/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-24T11:37:57.308069+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://solomonar.vercel.app/metodologie/",
+          "final_url": "https://solomonar.vercel.app/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-24T11:37:57.475993+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://solomonar.vercel.app/despre/",
+          "final_url": "https://solomonar.vercel.app/despre/",
+          "http_status": 404,
+          "fetched_at": "2026-11-24T11:37:57.743594+00:00",
           "state": "eroare-http",
           "error": "HTTP Error 404: Not Found",
           "kind": "despre",

@@ -158358,6 +158358,1264 @@
       "baza_tipului": "esantion-date"
     },
     {
+      "url": "https://solomonar.vercel.app/data/v1/organizatii/_index.json",
+      "final_url": "https://solomonar.vercel.app/data/v1/organizatii/_index.json",
+      "http_status": 200,
+      "fetched_at": "2026-11-24T11:38:01.088624+00:00",
+      "content_type": "application/json",
+      "state": "ok",
+      "id": "126bcb2c4e8d27342bc7",
+      "campuri": [
+        {
+          "nume": "generated_at",
+          "cale": "$.meta.generated_at",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/meta/generated_at"
+        },
+        {
+          "nume": "source_url",
+          "cale": "$.meta.source_url",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/meta/source_url"
+        },
+        {
+          "nume": "scraper_version",
+          "cale": "$.meta.scraper_version",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/meta/scraper_version"
+        },
+        {
+          "nume": "count",
+          "cale": "$.meta.count",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/meta/count"
+        },
+        {
+          "nume": "sources",
+          "cale": "$.data[].sources",
+          "tipuri_observate": [
+            "array"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/data/0/sources",
+          "numar_elemente": 0
+        },
+        {
+          "nume": "romega_id",
+          "cale": "$.data[].romega_id",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/data/0/romega_id"
+        },
+        {
+          "nume": "name",
+          "cale": "$.data[].name",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/data/0/name"
+        },
+        {
+          "nume": "short_name",
+          "cale": "$.data[].short_name",
+          "tipuri_observate": [
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/data/0/short_name"
+        },
+        {
+          "nume": "type",
+          "cale": "$.data[].type",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/data/0/type"
+        },
+        {
+          "nume": "tier",
+          "cale": "$.data[].tier",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/data/0/tier"
+        },
+        {
+          "nume": "parent",
+          "cale": "$.data[].parent",
+          "tipuri_observate": [
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/data/0/parent"
+        },
+        {
+          "nume": "tutelary_authority",
+          "cale": "$.data[].tutelary_authority",
+          "tipuri_observate": [
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/data/0/tutelary_authority"
+        },
+        {
+          "nume": "domain",
+          "cale": "$.data[].domain",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/data/0/domain"
+        },
+        {
+          "nume": "county",
+          "cale": "$.data[].county",
+          "tipuri_observate": [
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/data/0/county"
+        },
+        {
+          "nume": "cif",
+          "cale": "$.data[].cif",
+          "tipuri_observate": [
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/data/0/cif"
+        },
+        {
+          "nume": "valid_from",
+          "cale": "$.data[].valid_from",
+          "tipuri_observate": [
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/data/0/valid_from"
+        },
+        {
+          "nume": "valid_to",
+          "cale": "$.data[].valid_to",
+          "tipuri_observate": [
+            "null"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/data/0/valid_to"
+        },
+        {
+          "nume": "placeholder",
+          "cale": "$.data[].placeholder",
+          "tipuri_observate": [
+            "boolean"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/data/0/placeholder"
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/126bcb2c4e8d27342bc7-683f90d4bf555f6e.json",
+      "sha256": "683f90d4bf555f6e0f8f9c6b3b423de7b776a534bea51abeba95e3775ceda1ef",
+      "format": "json",
+      "stare": "analizat",
+      "limita_atinsa": true,
+      "baza_tipului": "esantion-date"
+    },
+    {
+      "url": "https://solomonar.vercel.app/data/v1/stats.json",
+      "final_url": "https://solomonar.vercel.app/data/v1/stats.json",
+      "http_status": 200,
+      "fetched_at": "2026-11-24T11:38:01.116781+00:00",
+      "content_type": "application/json",
+      "state": "ok",
+      "id": "eac24ce5828c1dbf5576",
+      "campuri": [
+        {
+          "nume": "generat",
+          "cale": "$.generat",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/generat"
+        },
+        {
+          "nume": "total",
+          "cale": "$.declaratii.total",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/declaratii/total"
+        },
+        {
+          "nume": "avere",
+          "cale": "$.declaratii.avere",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/declaratii/avere"
+        },
+        {
+          "nume": "interese",
+          "cale": "$.declaratii.interese",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/declaratii/interese"
+        },
+        {
+          "nume": "total",
+          "cale": "$.companii_stat.total",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/companii_stat/total"
+        },
+        {
+          "nume": "cu_reprezentanti",
+          "cale": "$.companii_stat.cu_reprezentanti",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/companii_stat/cu_reprezentanti"
+        },
+        {
+          "nume": "cu_bilant",
+          "cale": "$.companii_stat.cu_bilant",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/companii_stat/cu_bilant"
+        },
+        {
+          "nume": "total",
+          "cale": "$.cv_uri.total",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/cv_uri/total"
+        },
+        {
+          "nume": "soe_institutii",
+          "cale": "$.cv_uri.soe_institutii",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/cv_uri/soe_institutii"
+        },
+        {
+          "nume": "deputati",
+          "cale": "$.cv_uri.deputati",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/cv_uri/deputati"
+        },
+        {
+          "nume": "senatori",
+          "cale": "$.cv_uri.senatori",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/cv_uri/senatori"
+        },
+        {
+          "nume": "persoane",
+          "cale": "$.graf.persoane",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/graf/persoane"
+        },
+        {
+          "nume": "cu_parlamentar",
+          "cale": "$.graf.cu_parlamentar",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/graf/cu_parlamentar"
+        },
+        {
+          "nume": "cross_links_declarant_companie",
+          "cale": "$.graf.cross_links_declarant_companie",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/graf/cross_links_declarant_companie"
+        },
+        {
+          "nume": "parlamentari_companii",
+          "cale": "$.graf.parlamentari_companii",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/graf/parlamentari_companii"
+        },
+        {
+          "nume": "plx",
+          "cale": "$.comisii_cdep.plx",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/comisii_cdep/plx"
+        },
+        {
+          "nume": "documente",
+          "cale": "$.comisii_cdep.documente",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/comisii_cdep/documente"
+        },
+        {
+          "nume": "motiuni",
+          "cale": "$.motiuni",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/motiuni"
+        },
+        {
+          "nume": "total",
+          "cale": "$.partide.total",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/partide/total"
+        },
+        {
+          "nume": "subventii_inreg",
+          "cale": "$.partide.subventii_inreg",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/partide/subventii_inreg"
+        },
+        {
+          "nume": "rapoarte_rvc",
+          "cale": "$.partide.rapoarte_rvc",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/partide/rapoarte_rvc"
+        },
+        {
+          "nume": "PSD",
+          "cale": "$.partide.subventie_totala_top.PSD",
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/partide/subventie_totala_top/PSD"
+        },
+        {
+          "nume": "PNL",
+          "cale": "$.partide.subventie_totala_top.PNL",
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/partide/subventie_totala_top/PNL"
+        },
+        {
+          "nume": "USR",
+          "cale": "$.partide.subventie_totala_top.USR",
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/partide/subventie_totala_top/USR"
+        },
+        {
+          "nume": "AUR",
+          "cale": "$.partide.subventie_totala_top.AUR",
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/partide/subventie_totala_top/AUR"
+        },
+        {
+          "nume": "PMP",
+          "cale": "$.partide.subventie_totala_top.PMP",
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/partide/subventie_totala_top/PMP"
+        },
+        {
+          "nume": "uat_inreg",
+          "cale": "$.bugete.uat_inreg",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bugete/uat_inreg"
+        },
+        {
+          "nume": "bgc_luni",
+          "cale": "$.bugete.bgc_luni",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/bugete/bgc_luni"
+        },
+        {
+          "nume": "versiune",
+          "cale": "$.gold.versiune",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/gold/versiune"
+        },
+        {
+          "nume": "persoane_canonice",
+          "cale": "$.gold.persoane_canonice",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/gold/persoane_canonice"
+        },
+        {
+          "nume": "parlamentari",
+          "cale": "$.gold.parlamentari",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/gold/parlamentari"
+        },
+        {
+          "nume": "high",
+          "cale": "$.gold.incredere.high",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/gold/incredere/high"
+        },
+        {
+          "nume": "context",
+          "cale": "$.gold.incredere.context",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/gold/incredere/context"
+        },
+        {
+          "nume": "candidat",
+          "cale": "$.gold.incredere.candidat",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/gold/incredere/candidat"
+        },
+        {
+          "nume": "cross_links_total",
+          "cale": "$.gold.cross_links_total",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/gold/cross_links_total"
+        },
+        {
+          "nume": "cross_links_confirmate",
+          "cale": "$.gold.cross_links_confirmate",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/gold/cross_links_confirmate"
+        },
+        {
+          "nume": "registru",
+          "cale": "$.gold.registru",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/gold/registru"
+        },
+        {
+          "nume": "firme_castigatoare",
+          "cale": "$.achizitii.firme_castigatoare",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/achizitii/firme_castigatoare"
+        },
+        {
+          "nume": "follow_the_money_leaduri",
+          "cale": "$.achizitii.follow_the_money_leaduri",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/achizitii/follow_the_money_leaduri"
+        },
+        {
+          "nume": "confirmate_autodeclarate",
+          "cale": "$.achizitii.confirmate_autodeclarate",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/achizitii/confirmate_autodeclarate"
+        },
+        {
+          "nume": "achizitii_directe_total",
+          "cale": "$.achizitii.achizitii_directe_total",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/achizitii/achizitii_directe_total"
+        },
+        {
+          "nume": "furnizori_directe",
+          "cale": "$.achizitii.furnizori_directe",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/achizitii/furnizori_directe"
+        },
+        {
+          "nume": "valoare_directe_mld",
+          "cale": "$.achizitii.valoare_directe_mld",
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/achizitii/valoare_directe_mld"
+        },
+        {
+          "nume": "persoane_cu_achizitii_directe",
+          "cale": "$.achizitii.persoane_cu_achizitii_directe",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/achizitii/persoane_cu_achizitii_directe"
+        },
+        {
+          "nume": "dna_comunicate",
+          "cale": "$.audit.dna_comunicate",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/audit/dna_comunicate"
+        },
+        {
+          "nume": "dna_ro",
+          "cale": "$.audit.dna_ro",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/audit/dna_ro"
+        },
+        {
+          "nume": "curtea_de_conturi",
+          "cale": "$.audit.curtea_de_conturi",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/audit/curtea_de_conturi"
+        },
+        {
+          "nume": "acte_esantion",
+          "cale": "$.legislatie.acte_esantion",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/legislatie/acte_esantion"
+        },
+        {
+          "nume": "comisii",
+          "cale": "$.comisii_senat.comisii",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/comisii_senat/comisii"
+        },
+        {
+          "nume": "locuri",
+          "cale": "$.comisii_senat.locuri",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/comisii_senat/locuri"
+        },
+        {
+          "nume": "senatori",
+          "cale": "$.comisii_senat.senatori",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/comisii_senat/senatori"
+        },
+        {
+          "nume": "companii_listate",
+          "cale": "$.actionariat.companii_listate",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/actionariat/companii_listate"
+        },
+        {
+          "nume": "cu_participatie_stat",
+          "cale": "$.actionariat.cu_participatie_stat",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/actionariat/cu_participatie_stat"
+        },
+        {
+          "nume": "sursa",
+          "cale": "$.actionariat.sursa",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/actionariat/sursa"
+        },
+        {
+          "nume": "entitati",
+          "cale": "$.search.entitati",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/search/entitati"
+        },
+        {
+          "nume": "companii_cu_declaratii",
+          "cale": "$.coverage.companii_cu_declaratii",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/coverage/companii_cu_declaratii"
+        },
+        {
+          "nume": "companii_gol",
+          "cale": "$.coverage.companii_gol",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/coverage/companii_gol"
+        },
+        {
+          "nume": "organizatii_fara_declaratii",
+          "cale": "$.coverage.organizatii_fara_declaratii",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/coverage/organizatii_fara_declaratii"
+        },
+        {
+          "nume": "person",
+          "cale": "$.duckdb_gold.tabele.person",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/duckdb_gold/tabele/person"
+        },
+        {
+          "nume": "company",
+          "cale": "$.duckdb_gold.tabele.company",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/duckdb_gold/tabele/company"
+        },
+        {
+          "nume": "person_company",
+          "cale": "$.duckdb_gold.tabele.person_company",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/duckdb_gold/tabele/person_company"
+        },
+        {
+          "nume": "party",
+          "cale": "$.duckdb_gold.tabele.party",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/duckdb_gold/tabele/party"
+        },
+        {
+          "nume": "committee_member",
+          "cale": "$.duckdb_gold.tabele.committee_member",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/duckdb_gold/tabele/committee_member"
+        },
+        {
+          "nume": "state_holding",
+          "cale": "$.duckdb_gold.tabele.state_holding",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/duckdb_gold/tabele/state_holding"
+        },
+        {
+          "nume": "view_uri_analitice",
+          "cale": "$.duckdb_gold.view_uri_analitice",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/duckdb_gold/view_uri_analitice"
+        },
+        {
+          "nume": "engine",
+          "cale": "$.duckdb_gold.engine",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/duckdb_gold/engine"
+        },
+        {
+          "nume": "plx",
+          "cale": "$.legislativ.plx",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/legislativ/plx"
+        },
+        {
+          "nume": "plx_cu_initiatori_parlamentari",
+          "cale": "$.legislativ.plx_cu_initiatori_parlamentari",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/legislativ/plx_cu_initiatori_parlamentari"
+        },
+        {
+          "nume": "plx_guvern",
+          "cale": "$.legislativ.plx_guvern",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/legislativ/plx_guvern"
+        },
+        {
+          "nume": "legislatie_acte",
+          "cale": "$.legislativ.legislatie_acte",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/legislativ/legislatie_acte"
+        },
+        {
+          "nume": "entitati_ro",
+          "cale": "$.opensanctions.entitati_ro",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/opensanctions/entitati_ro"
+        },
+        {
+          "nume": "sanctiuni",
+          "cale": "$.opensanctions.sanctiuni",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/opensanctions/sanctiuni"
+        },
+        {
+          "nume": "pep",
+          "cale": "$.opensanctions.pep",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/opensanctions/pep"
+        },
+        {
+          "nume": "in_graf",
+          "cale": "$.opensanctions.in_graf",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/opensanctions/in_graf"
+        },
+        {
+          "nume": "mentiuni",
+          "cale": "$.rezolutie_splink.mentiuni",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/rezolutie_splink/mentiuni"
+        },
+        {
+          "nume": "clustere_splink",
+          "cale": "$.rezolutie_splink.clustere_splink",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/rezolutie_splink/clustere_splink"
+        },
+        {
+          "nume": "persoane_gold",
+          "cale": "$.rezolutie_splink.persoane_gold",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/rezolutie_splink/persoane_gold"
+        },
+        {
+          "nume": "acord_pct",
+          "cale": "$.rezolutie_splink.acord_pct",
+          "tipuri_observate": [
+            "number"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/rezolutie_splink/acord_pct"
+        },
+        {
+          "nume": "total",
+          "cale": "$.firme_onrc.total",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/firme_onrc/total"
+        },
+        {
+          "nume": "cu_caen",
+          "cale": "$.firme_onrc.cu_caen",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/firme_onrc/cu_caen"
+        },
+        {
+          "nume": "firme_noi_cu_bani_stat",
+          "cale": "$.firme_onrc.firme_noi_cu_bani_stat",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/firme_onrc/firme_noi_cu_bani_stat"
+        },
+        {
+          "nume": "total",
+          "cale": "$.alerte.total",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/alerte/total"
+        },
+        {
+          "nume": "conflict_confirmat",
+          "cale": "$.alerte.pe_tip.conflict_confirmat",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/alerte/pe_tip/conflict_confirmat"
+        },
+        {
+          "nume": "soe_pierdere_contracte_mari",
+          "cale": "$.alerte.pe_tip.soe_pierdere_contracte_mari",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/alerte/pe_tip/soe_pierdere_contracte_mari"
+        },
+        {
+          "nume": "partid_subventie_fara_parlamentari",
+          "cale": "$.alerte.pe_tip.partid_subventie_fara_parlamentari",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/alerte/pe_tip/partid_subventie_fara_parlamentari"
+        },
+        {
+          "nume": "parlamentar_conduce_soe",
+          "cale": "$.alerte.pe_tip.parlamentar_conduce_soe",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/alerte/pe_tip/parlamentar_conduce_soe"
+        },
+        {
+          "nume": "firma_noua_bani_stat",
+          "cale": "$.alerte.pe_tip.firma_noua_bani_stat",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/alerte/pe_tip/firma_noua_bani_stat"
+        },
+        {
+          "nume": "outlier_valoare_contract",
+          "cale": "$.alerte.pe_tip.outlier_valoare_contract",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/alerte/pe_tip/outlier_valoare_contract"
+        },
+        {
+          "nume": "concentrare_persoana",
+          "cale": "$.alerte.pe_tip.concentrare_persoana",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/alerte/pe_tip/concentrare_persoana"
+        },
+        {
+          "nume": "firma_mama_straina",
+          "cale": "$.alerte.pe_tip.firma_mama_straina",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/alerte/pe_tip/firma_mama_straina"
+        },
+        {
+          "nume": "metadate",
+          "cale": "$.ani_central.metadate",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/ani_central/metadate"
+        },
+        {
+          "nume": "persoane_in_graf",
+          "cale": "$.ani_central.persoane_in_graf",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/ani_central/persoane_in_graf"
+        },
+        {
+          "nume": "sursa",
+          "cale": "$.ani_central.sursa",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/ani_central/sursa"
+        },
+        {
+          "nume": "tinta",
+          "cale": "$.ani_central.tinta",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/ani_central/tinta"
+        },
+        {
+          "nume": "companii",
+          "cale": "$.companii",
+          "tipuri_observate": [
+            "object"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/companii",
+          "numar_elemente": 0
+        },
+        {
+          "nume": "companii_cu_reps",
+          "cale": "$.reprezentanti.companii_cu_reps",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/reprezentanti/companii_cu_reps"
+        },
+        {
+          "nume": "total_reps",
+          "cale": "$.reprezentanti.total_reps",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/reprezentanti/total_reps"
+        },
+        {
+          "nume": "companii",
+          "cale": "$.guvernanta.companii",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/guvernanta/companii"
+        },
+        {
+          "nume": "numiri",
+          "cale": "$.guvernanta.numiri",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/guvernanta/numiri"
+        },
+        {
+          "nume": "persoane",
+          "cale": "$.guvernanta.persoane",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/guvernanta/persoane"
+        },
+        {
+          "nume": "confirmat",
+          "cale": "$.guvernanta.potrivite_graf.confirmat",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/guvernanta/potrivite_graf/confirmat"
+        },
+        {
+          "nume": "candidat",
+          "cale": "$.guvernanta.potrivite_graf.candidat",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/guvernanta/potrivite_graf/candidat"
+        },
+        {
+          "nume": "cumul",
+          "cale": "$.guvernanta.cumul",
+          "tipuri_observate": [
+            "integer"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/guvernanta/cumul"
+        },
+        {
+          "nume": "sursa_generata",
+          "cale": "$.guvernanta.sursa_generata",
+          "tipuri_observate": [
+            "string"
+          ],
+          "stare_tip": "observat-in-esantion-json",
+          "rol": "camp-date",
+          "pointer": "/guvernanta/sursa_generata"
+        }
+      ],
+      "completitudine": "partial",
+      "snapshot": "surse/eac24ce5828c1dbf5576-0cc65a922a3147a1.json",
+      "sha256": "0cc65a922a3147a16369b15169dd9c4c83dfc215cbfe793950581f12f153b82b",
+      "format": "json",
+      "stare": "analizat",
+      "limita_atinsa": false,
+      "baza_tipului": "esantion-date"
+    },
+    {
       "url": "https://sondajeleromaniei.ro/data/date.js",
       "final_url": "https://sondajeleromaniei.ro/data/date.js",
       "http_status": 200,

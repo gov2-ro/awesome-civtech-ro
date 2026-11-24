@@ -449,3 +449,5 @@ igov-analiza-presei,county,,,https://igov.ro/analiza-presei/,/input_candidates/1
 igov-analiza-presei,theme,,,https://igov.ro/analiza-presei/,/input_candidates/14,control-html-candidat
 igov-analiza-presei,source,,,https://igov.ro/analiza-presei/,/input_candidates/15,control-html-candidat
 igov-analiza-presei,articleSearch,search,Cuvinte din titlu…,https://igov.ro/analiza-presei/,/input_candidates/16,control-html-candidat
+pagubiti,q,search,"ex. Nordis, Casa de Pensii, City Insurance",https://endimion2k.github.io/zamolxis/,/input_candidates/0,control-html-candidat
+solomonar,q,search,"Caută o persoană, o companie sau un partid",https://solomonar.vercel.app/,/input_candidates/0,control-html-candidat

@@ -1,10 +1,10 @@
 # CivTech România
 
 > Colecție curatoriată de proiecte civic tech, organizații și resurse din România: instrumente civice, date deschise
-> și proiecte de bună guvernare. 144 proiecte, 16 organizații, 12 resurse, 26 analize și investigații.
+> și proiecte de bună guvernare. 146 proiecte, 16 organizații, 12 resurse, 26 analize și investigații.
 
 Fiecare intrare are o pagină proprie la https://civtech.gov2.ro/<tip>/<slug>/ (tip: proiect, organizatie, resursa, publicatie). Starea
-(activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-11-23. Textele sunt în
+(activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-11-24. Textele sunt în
 limba română. Datele sunt reutilizabile conform EUPL v1.2.
 
 ## Date
@@ -50,6 +50,7 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 - [România Interactivă](https://civtech.gov2.ro/proiect/romania-interactiva/): Clasamente, calculatoare și vizualizări din date oficiale. Site: https://romaniainteractiva.ro/
 - [România în puncte](https://civtech.gov2.ro/proiect/romania-in-puncte/): Cine a câștigat alegerile locale din 2024 în fiecare din cele 13.447 de localități. Site: https://romaniainteractiva.ro/locale/
 - [România Transparentă](https://civtech.gov2.ro/proiect/romania-transparenta/): Registre despre primării, companii de stat, universități. Site: https://romaniatransparenta.eu/
+- [Solomonar](https://civtech.gov2.ro/proiect/solomonar/): Declarații de avere, companii de stat și contracte publice, legate într-un graf. Site: https://solomonar.vercel.app/
 - [Sondajele României](https://civtech.gov2.ro/proiect/sondajele-romaniei/): Media ponderată a sondajelor electorale din România, din 2004 încoace. Site: https://sondajeleromaniei.ro/
 - [Sondaje România](https://civtech.gov2.ro/proiect/sondaje-romania/): Agregator de sondaje electorale. Site: https://sondajeromania.ro/
 - [Statul meu](https://civtech.gov2.ro/proiect/statul-meu/): Joc despre politică, cu trei întrebări zilnice despre România reală. Site: https://statulmeu.ro/
@@ -97,6 +98,7 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 - [Monitor cetățenie](https://civtech.gov2.ro/proiect/monitor-cetatenie/): Statistici despre cererile de cetățenie română. Site: https://www.gregorieu.com/cetatenie/ro
 - [Nedrept](https://civtech.gov2.ro/proiect/nedrept/): Cazuri în care statul a acționat împotriva unor persoane. Site: https://nedrept.ro/
 - [Onorata Instanță](https://civtech.gov2.ro/proiect/onorata-instanta/): Site: https://www.onoratainstanta.ro
+- [Păgubiți.ro](https://civtech.gov2.ro/proiect/pagubiti/): Procese de masă și acțiuni colective din instanțe, după pârât. Site: https://endimion2k.github.io/zamolxis/
 - [Portal Just Modern](https://civtech.gov2.ro/proiect/portal-just-modern/): Căutarea dosarelor și termenelor din instanțe. Site: https://portaljustmodern.ro/
 - [Textdelege](https://civtech.gov2.ro/proiect/textdelege/): Legile României cu istoricul fiecărui articol. Site: https://textdelege.ro/
 

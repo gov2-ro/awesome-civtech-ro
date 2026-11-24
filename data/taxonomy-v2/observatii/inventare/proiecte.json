@@ -11693,6 +11693,93 @@
         "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
+    },
+    {
+      "slug": "pagubiti",
+      "nume": "Păgubiți.ro",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Procese de masă și acțiuni colective din instanțe, după pârât.",
+      "permite": [
+        "Caută și consultă",
+        "Analizează date"
+      ],
+      "formate_catalogate": [
+        "Registru sau bază de date",
+        "Vizualizare de date"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "pagubiti"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "q",
+          "rol": "control-utilizator",
+          "tip_control_html": "search",
+          "descriere": "ex. Nordis, Casa de Pensii, City Insurance",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://endimion2k.github.io/zamolxis/",
+            "sha256": "e40d2853deea84c9d3c8f53511d31adadd35c09c039d1527cfa23502a31b48a6",
+            "sha256_lista_controale": "3691771b910d93d577374fb7a518daed324092cb4bda2af8fa8a43478916e2ef",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/c955e899e7e2695e37703e1c.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere."
+      ]
+    },
+    {
+      "slug": "solomonar",
+      "nume": "Solomonar",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Declarații de avere, companii de stat și contracte publice, legate într-un graf.",
+      "permite": [
+        "Caută și consultă",
+        "Analizează date"
+      ],
+      "formate_catalogate": [
+        "Registru sau bază de date",
+        "Vizualizare de date",
+        "Set de date oferit",
+        "API oferit"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "solomonar"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "q",
+          "rol": "control-utilizator",
+          "tip_control_html": "search",
+          "descriere": "Caută o persoană, o companie sau un partid",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://solomonar.vercel.app/",
+            "sha256": "4226400cd9cba7d8850a9c44e3a227f4a758835e627fd2ab19821ab942c23ee2",
+            "sha256_lista_controale": "88f63254b8e62f0550c44e59fd398adb9a9b6c27520e93a35a842b58efad2f43",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/fec25719779e1004031870b3.json"
+          }
+        }
+      ],
+      "surse_structurate": [
+        "126bcb2c4e8d27342bc7",
+        "eac24ce5828c1dbf5576"
+      ],
+      "campuri_din_surse": 122,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+      ]
     }
   ]
 }

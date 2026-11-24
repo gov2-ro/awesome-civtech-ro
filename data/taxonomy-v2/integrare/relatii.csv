@@ -451,3 +451,5 @@ L449,romania-transparenta,date_din,,ANAF,surse_date,https://api.romaniatranspare
 L450,romania-transparenta,date_din,,Ministerul Finanțelor,surse_date,https://api.romaniatransparenta.eu/v1/date/institutii_centrale,acceptat
 L451,romania-transparenta,date_din,,SEAP,surse_date,https://romaniatransparenta.eu/registre/administratia-centrala/4266863,acceptat
 L452,romania-transparenta,date_din,,Consiliul Concurenței (RegAS),surse_date,https://romaniatransparenta.eu/llms.txt,acceptat
+L453,pagubiti,atribuit_in_sursa,,Catalin Popa,autor,Operator: Catalin Popa,rol_neconfirmat
+L454,solomonar,atribuit_in_sursa,,Catalin Popa,autor,Owner: Cătălin Popa (STATE.md),rol_neconfirmat
