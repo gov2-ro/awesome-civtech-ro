@@ -451,3 +451,12 @@ igov-analiza-presei,source,,,https://igov.ro/analiza-presei/,/input_candidates/1
 igov-analiza-presei,articleSearch,search,Cuvinte din titlu…,https://igov.ro/analiza-presei/,/input_candidates/16,control-html-candidat
 pagubiti,q,search,"ex. Nordis, Casa de Pensii, City Insurance",https://endimion2k.github.io/zamolxis/,/input_candidates/0,control-html-candidat
 solomonar,q,search,"Caută o persoană, o companie sau un partid",https://solomonar.vercel.app/,/input_candidates/0,control-html-candidat
+coada-registrul-comertului,in_pct,range,,https://stefatorus.github.io/onrc-analiza-big-data-amanari/,/input_candidates/0,control-html-candidat
+coada-registrul-comertului,cap_pct,range,,https://stefatorus.github.io/onrc-analiza-big-data-amanari/,/input_candidates/1,control-html-candidat
+coada-registrul-comertului,oug_extended,checkbox,,https://stefatorus.github.io/onrc-analiza-big-data-amanari/,/input_candidates/2,control-html-candidat
+coada-registrul-comertului,caen_auto,checkbox,,https://stefatorus.github.io/onrc-analiza-big-data-amanari/,/input_candidates/3,control-html-candidat
+coada-registrul-comertului,stagger,checkbox,,https://stefatorus.github.io/onrc-analiza-big-data-amanari/,/input_candidates/4,control-html-candidat
+coada-registrul-comertului,staff_fte,range,,https://stefatorus.github.io/onrc-analiza-big-data-amanari/,/input_candidates/5,control-html-candidat
+coada-registrul-comertului,triage,checkbox,,https://stefatorus.github.io/onrc-analiza-big-data-amanari/,/input_candidates/6,control-html-candidat
+coada-registrul-comertului,start,range,,https://stefatorus.github.io/onrc-analiza-big-data-amanari/,/input_candidates/7,control-html-candidat
+coada-registrul-comertului,art3,,Transfer Art. III,https://stefatorus.github.io/onrc-analiza-big-data-amanari/,/input_candidates/8,control-html-candidat

@@ -1,5 +1,19 @@
 # Activity
 
+## 2026-11-25 — Added „Coada de la Registrul Comerțului”
+
+**Done**
+- `coada-registrul-comertului` added through `/add-new-url` in the section `publicatie`, then accepted by the owner and published.
+- Brave search: 2 rows, 1 counted as a mention (revistabiz.ro). I judge it unrelated from its snippet. I did not prune it.
+- Serper returned `HTTP 400 Not enough credits`.
+- Checks: `validate.py --publication` 0 errors; unit tests 1,417 run, 9 skipped, all OK.
+
+**Hard**
+- With the row at `propus`, the unit tests had 21 failures and 4 errors. All unit tests pass at `acceptat`.
+
+**Decided**
+- The entry records the author's open point: `docs/DATA.md` of the repository marks the BERC terms „DE VERIFICAT”.
+
 ## 2026-11-24 — Two entries added; the Pages deploy broke and was fixed
 
 **Done**

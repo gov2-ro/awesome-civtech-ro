@@ -11780,6 +11780,161 @@
         "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
         "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
       ]
+    },
+    {
+      "slug": "coada-registrul-comertului",
+      "nume": "Coada de la Registrul Comerțului",
+      "stare": "propunere",
+      "completitudine": "partial",
+      "scop": "Cât se așteaptă un dosar la Registrul Comerțului: raport, date și estimator",
+      "permite": [
+        "Analizează date",
+        "Compară"
+      ],
+      "formate_catalogate": [
+        "Raport sau cercetare",
+        "Vizualizare de date",
+        "Set de date oferit"
+      ],
+      "baza_descrierii": {
+        "tabel": "intrari.csv",
+        "slug": "coada-registrul-comertului"
+      },
+      "intrari_utilizator": [
+        {
+          "nume": "in_pct",
+          "rol": "control-utilizator",
+          "tip_control_html": "range",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://stefatorus.github.io/onrc-analiza-big-data-amanari/",
+            "sha256": "a186fca1b952884447392d878cb7bce88acd55cecfe9a5e7f49cc8a5e411e69b",
+            "sha256_lista_controale": "9ee816f8023d0cad6d69c9db5d0989d3b60ef6760bdd1b510d0e2cc0be61e455",
+            "pointer_snapshot": "/input_candidates/0",
+            "snapshot": "documentare/pagini/c65a2ae5be13efeb095d0a18.json"
+          }
+        },
+        {
+          "nume": "cap_pct",
+          "rol": "control-utilizator",
+          "tip_control_html": "range",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://stefatorus.github.io/onrc-analiza-big-data-amanari/",
+            "sha256": "a186fca1b952884447392d878cb7bce88acd55cecfe9a5e7f49cc8a5e411e69b",
+            "sha256_lista_controale": "9ee816f8023d0cad6d69c9db5d0989d3b60ef6760bdd1b510d0e2cc0be61e455",
+            "pointer_snapshot": "/input_candidates/1",
+            "snapshot": "documentare/pagini/c65a2ae5be13efeb095d0a18.json"
+          }
+        },
+        {
+          "nume": "oug_extended",
+          "rol": "control-utilizator",
+          "tip_control_html": "checkbox",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://stefatorus.github.io/onrc-analiza-big-data-amanari/",
+            "sha256": "a186fca1b952884447392d878cb7bce88acd55cecfe9a5e7f49cc8a5e411e69b",
+            "sha256_lista_controale": "9ee816f8023d0cad6d69c9db5d0989d3b60ef6760bdd1b510d0e2cc0be61e455",
+            "pointer_snapshot": "/input_candidates/2",
+            "snapshot": "documentare/pagini/c65a2ae5be13efeb095d0a18.json"
+          }
+        },
+        {
+          "nume": "caen_auto",
+          "rol": "control-utilizator",
+          "tip_control_html": "checkbox",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://stefatorus.github.io/onrc-analiza-big-data-amanari/",
+            "sha256": "a186fca1b952884447392d878cb7bce88acd55cecfe9a5e7f49cc8a5e411e69b",
+            "sha256_lista_controale": "9ee816f8023d0cad6d69c9db5d0989d3b60ef6760bdd1b510d0e2cc0be61e455",
+            "pointer_snapshot": "/input_candidates/3",
+            "snapshot": "documentare/pagini/c65a2ae5be13efeb095d0a18.json"
+          }
+        },
+        {
+          "nume": "stagger",
+          "rol": "control-utilizator",
+          "tip_control_html": "checkbox",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://stefatorus.github.io/onrc-analiza-big-data-amanari/",
+            "sha256": "a186fca1b952884447392d878cb7bce88acd55cecfe9a5e7f49cc8a5e411e69b",
+            "sha256_lista_controale": "9ee816f8023d0cad6d69c9db5d0989d3b60ef6760bdd1b510d0e2cc0be61e455",
+            "pointer_snapshot": "/input_candidates/4",
+            "snapshot": "documentare/pagini/c65a2ae5be13efeb095d0a18.json"
+          }
+        },
+        {
+          "nume": "staff_fte",
+          "rol": "control-utilizator",
+          "tip_control_html": "range",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://stefatorus.github.io/onrc-analiza-big-data-amanari/",
+            "sha256": "a186fca1b952884447392d878cb7bce88acd55cecfe9a5e7f49cc8a5e411e69b",
+            "sha256_lista_controale": "9ee816f8023d0cad6d69c9db5d0989d3b60ef6760bdd1b510d0e2cc0be61e455",
+            "pointer_snapshot": "/input_candidates/5",
+            "snapshot": "documentare/pagini/c65a2ae5be13efeb095d0a18.json"
+          }
+        },
+        {
+          "nume": "triage",
+          "rol": "control-utilizator",
+          "tip_control_html": "checkbox",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://stefatorus.github.io/onrc-analiza-big-data-amanari/",
+            "sha256": "a186fca1b952884447392d878cb7bce88acd55cecfe9a5e7f49cc8a5e411e69b",
+            "sha256_lista_controale": "9ee816f8023d0cad6d69c9db5d0989d3b60ef6760bdd1b510d0e2cc0be61e455",
+            "pointer_snapshot": "/input_candidates/6",
+            "snapshot": "documentare/pagini/c65a2ae5be13efeb095d0a18.json"
+          }
+        },
+        {
+          "nume": "start",
+          "rol": "control-utilizator",
+          "tip_control_html": "range",
+          "descriere": "",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://stefatorus.github.io/onrc-analiza-big-data-amanari/",
+            "sha256": "a186fca1b952884447392d878cb7bce88acd55cecfe9a5e7f49cc8a5e411e69b",
+            "sha256_lista_controale": "9ee816f8023d0cad6d69c9db5d0989d3b60ef6760bdd1b510d0e2cc0be61e455",
+            "pointer_snapshot": "/input_candidates/7",
+            "snapshot": "documentare/pagini/c65a2ae5be13efeb095d0a18.json"
+          }
+        },
+        {
+          "nume": "art3",
+          "rol": "control-utilizator",
+          "tip_control_html": null,
+          "descriere": "Transfer Art. III",
+          "stare_tip": "control-html-candidat",
+          "dovada": {
+            "url": "https://stefatorus.github.io/onrc-analiza-big-data-amanari/",
+            "sha256": "a186fca1b952884447392d878cb7bce88acd55cecfe9a5e7f49cc8a5e411e69b",
+            "sha256_lista_controale": "9ee816f8023d0cad6d69c9db5d0989d3b60ef6760bdd1b510d0e2cc0be61e455",
+            "pointer_snapshot": "/input_candidates/8",
+            "snapshot": "documentare/pagini/c65a2ae5be13efeb095d0a18.json"
+          }
+        }
+      ],
+      "surse_structurate": [],
+      "campuri_din_surse": 0,
+      "lacune": [
+        "Inventar parțial. Controalele HTML și tipurile observate nu definesc întregul model de date.",
+        "Nu s-a verificat un dicționar sau o schemă de date în această trecere.",
+        "Colectarea statică nu a confirmat o pagină de documentare specifică proiectului."
+      ]
     }
   ]
 }

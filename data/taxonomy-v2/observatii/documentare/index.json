@@ -2908,6 +2908,70 @@
       ]
     },
     {
+      "slug": "coada-registrul-comertului",
+      "url": "https://stefatorus.github.io/onrc-analiza-big-data-amanari/",
+      "state": "documentatie-neconfirmata",
+      "inventory_completeness": "neanalizat",
+      "pages": [
+        {
+          "url": "https://stefatorus.github.io/onrc-analiza-big-data-amanari/",
+          "final_url": "https://stefatorus.github.io/onrc-analiza-big-data-amanari/",
+          "http_status": 200,
+          "fetched_at": "2026-11-25T15:48:23.848922+00:00",
+          "content_type": "text/html",
+          "state": "colectat",
+          "kind": "pagina",
+          "scope": "proiect",
+          "truncated": false,
+          "title": "Estimator: așteptarea la Registrul Comerțului",
+          "sections": [],
+          "sha256": "a186fca1b952884447392d878cb7bce88acd55cecfe9a5e7f49cc8a5e411e69b",
+          "snapshot": "pagini/c65a2ae5be13efeb095d0a18.json",
+          "text_chars": 4679
+        },
+        {
+          "url": "https://stefatorus.github.io/onrc-analiza-big-data-amanari/llms.txt",
+          "final_url": "https://stefatorus.github.io/onrc-analiza-big-data-amanari/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-25T15:48:23.957441+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://stefatorus.github.io/llms.txt",
+          "final_url": "https://stefatorus.github.io/llms.txt",
+          "http_status": 404,
+          "fetched_at": "2026-11-25T15:48:24.223463+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "llms",
+          "scope": "gazda-comuna"
+        },
+        {
+          "url": "https://stefatorus.github.io/onrc-analiza-big-data-amanari/metodologie/",
+          "final_url": "https://stefatorus.github.io/onrc-analiza-big-data-amanari/metodologie/",
+          "http_status": 404,
+          "fetched_at": "2026-11-25T15:48:24.554352+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 404: Not Found",
+          "kind": "metodologie",
+          "scope": "proiect"
+        },
+        {
+          "url": "https://stefatorus.github.io/onrc-analiza-big-data-amanari/despre/",
+          "final_url": "https://stefatorus.github.io/onrc-analiza-big-data-amanari/despre/",
+          "http_status": 503,
+          "fetched_at": "2026-11-25T15:48:24.807187+00:00",
+          "state": "eroare-http",
+          "error": "HTTP Error 503: Service Unavailable",
+          "kind": "despre",
+          "scope": "proiect"
+        }
+      ]
+    },
+    {
       "slug": "code4ro",
       "url": "https://code4.ro/",
       "state": "documentatie-gasita",

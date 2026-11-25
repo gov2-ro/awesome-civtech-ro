@@ -1,10 +1,10 @@
 # CivTech România
 
 > Colecție curatoriată de proiecte civic tech, organizații și resurse din România: instrumente civice, date deschise
-> și proiecte de bună guvernare. 146 proiecte, 16 organizații, 12 resurse, 26 analize și investigații.
+> și proiecte de bună guvernare. 146 proiecte, 16 organizații, 12 resurse, 27 analize și investigații.
 
 Fiecare intrare are o pagină proprie la https://civtech.gov2.ro/<tip>/<slug>/ (tip: proiect, organizatie, resursa, publicatie). Starea
-(activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-11-24. Textele sunt în
+(activ, offline, arhivat) vine dintr-o verificare automată a site-ului; ultima verificare: 2026-11-25. Textele sunt în
 limba română. Datele sunt reutilizabile conform EUPL v1.2.
 
 ## Date
@@ -244,6 +244,7 @@ limba română. Datele sunt reutilizabile conform EUPL v1.2.
 - [Calendarul strategic al României](https://civtech.gov2.ro/publicatie/calendar-strategic/): Cele 89 de strategii guvernamentale pe o cronologie: adoptare, întârziere, expirare. Site: https://romaniainteractiva.ro/strategii/
 - [Ce face statul cu 1.000 de lei?](https://civtech.gov2.ro/publicatie/ce-face-statul-cu-1000-de-lei/): Veniturile și cheltuielile statului, explicate la 1.000 de lei. Site: https://mariuscomper.uk/ce-face-statul-cu-1000-de-lei/
 - [Câți pacienți are un medic?](https://civtech.gov2.ro/publicatie/pacienti-medic/): Locuitori la un medic, pe județe, 2012–2025, și comune fără medic de familie. Site: https://romaniainteractiva.ro/pacienti-medic/
+- [Coada de la Registrul Comerțului](https://civtech.gov2.ro/publicatie/coada-registrul-comertului/): Cât se așteaptă un dosar la Registrul Comerțului: raport, date și estimator. Site: https://stefatorus.github.io/onrc-analiza-big-data-amanari/
 - [Complet online. La ghișeu.](https://civtech.gov2.ro/publicatie/complet-online/): Auditul celor 613 fișe „online” din catalogul serviciilor publice. Site: https://mariuscomper.uk/complet-online/
 - [Cât costă un vot](https://civtech.gov2.ro/publicatie/cat-costa-un-vot/): Cheltuielile de campanie declarate, împărțite la voturi, 2019–2025. Site: https://1vot.ro/
 - [Cât de viu e orașul tău?](https://civtech.gov2.ro/publicatie/orase-vii/): Cele 319 orașe după patru semne vitale: nașteri, migrație, locuințe, copii. Site: https://romaniainteractiva.ro/orasevii/
